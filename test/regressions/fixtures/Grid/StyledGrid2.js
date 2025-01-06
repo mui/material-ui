@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 // styled(Grid) should work with nested grids.
 const StyledGrid = styled(Grid)({});
 
-export default function StressNestedGrid2() {
+export default function StyledGrid2() {
   return (
     <Box sx={{ p: 3, width: 600 }}>
       <Grid container spacing={4}>

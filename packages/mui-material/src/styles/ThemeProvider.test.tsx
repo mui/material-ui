@@ -95,5 +95,18 @@ describe('ThemeProvider', () => {
 
       expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
     });
+
+    it('allows default mode to be changed', () => {
+      const theme = createTheme({
+        colorSchemes: { dark: true },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme} defaultMode="dark">
+          <ModeSwitcher />
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
+    });
   });
 });

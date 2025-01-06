@@ -236,7 +236,7 @@ Inspired by Gmail's desktop navigation bar.
 
 ### Collapsible list
 
-Inspired by the [Gatsby documentation](https://www.gatsbyjs.com/docs) navbar.
+Inspired by the [Gatsby documentation](https://www.gatsbyjs.com/docs/) navbar.
 This example uses the `startAction` prop to create a collapsible button.
 
 {{"demo": "ExampleCollapsibleList.js"}}

@@ -49,7 +49,7 @@ export default function ScrollbarSize(props) {
     onChange(scrollbarHeight.current);
   }, [onChange]);
 
-  return <div style={styles} ref={nodeRef} {...other} />;
+  return <div style={styles} {...other} ref={nodeRef} />;
 }
 
 ScrollbarSize.propTypes = {

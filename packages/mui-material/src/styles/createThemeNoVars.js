@@ -3,7 +3,6 @@ import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
 import systemCreateTheme from '@mui/system/createTheme';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
@@ -11,6 +10,7 @@ import createTypography from './createTypography';
 import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
+import { stringifyTheme } from './stringifyTheme';
 
 function createThemeNoVars(options = {}, ...args) {
   const {
@@ -25,7 +25,7 @@ function createThemeNoVars(options = {}, ...args) {
   } = options;
 
   if (options.vars) {
-    throw new MuiError(
+    throw /* minify-error */ new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
         'Please use another name.',
     );
@@ -118,6 +118,7 @@ function createThemeNoVars(options = {}, ...args) {
       theme: this,
     });
   };
+  muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
 
   return muiTheme;
 }

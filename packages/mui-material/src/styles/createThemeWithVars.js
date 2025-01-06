@@ -1,4 +1,3 @@
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 import deepmerge from '@mui/utils/deepmerge';
 import { unstable_createGetCssVar as systemCreateGetCssVar, createSpacing } from '@mui/system';
 import { createUnarySpacing } from '@mui/system/spacing';
@@ -41,7 +40,7 @@ function setColor(obj, key, defaultValue) {
 }
 
 function toRgb(color) {
-  if (!color || !color.startsWith('hsl')) {
+  if (typeof color !== 'string' || !color.startsWith('hsl')) {
     return color;
   }
   return hslToRgb(color);
@@ -158,9 +157,8 @@ export default function createThemeWithVars(options = {}, ...args) {
   }
 
   if (!defaultScheme) {
-    throw new MuiError(
-      'MUI: The `colorSchemes.%s` option is either missing or invalid.',
-      defaultColorScheme,
+    throw /* minify-error */ new Error(
+      `MUI: The \`colorSchemes.${defaultColorScheme}\` option is either missing or invalid.`,
     );
   }
 
@@ -423,7 +421,7 @@ export default function createThemeWithVars(options = {}, ...args) {
 
       // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
 
-      if (colors && typeof colors === 'object') {
+      if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
         // Silent the error for custom palettes.
         if (colors.main) {
           setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));

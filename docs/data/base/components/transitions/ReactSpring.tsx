@@ -139,5 +139,6 @@ function ReactSpringTransition({ children }: React.PropsWithChildren<{}>) {
     }
   }, [requestedEnter, api, onExited]);
 
+  // @ts-expect-error https://github.com/pmndrs/react-spring/issues/2341
   return <animated.div style={springs}>{children}</animated.div>;
 }

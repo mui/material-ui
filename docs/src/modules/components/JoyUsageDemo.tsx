@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import Check from '@mui/icons-material/Check';
 import CheckRounded from '@mui/icons-material/CheckRounded';
@@ -165,7 +166,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    * A function to override the code block result.
    */
   getCodeBlock?: (code: string, props: ComponentProps) => string;
-  renderDemo: (props: ComponentProps) => React.ReactElement<any>;
+  renderDemo: (props: ComponentProps) => React.ReactElement<unknown>;
 }
 
 export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({

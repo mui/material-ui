@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import clamp from '@mui/utils/clamp';
-import MuiError from '@mui/internal-babel-macros/MuiError.macro';
 
 /**
  * Returns a number whose value is limited to the given range.
@@ -32,6 +31,14 @@ export function hexToRgb(color) {
 
   if (colors && colors[0].length === 1) {
     colors = colors.map((n) => n + n);
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (color.length !== color.trim().length) {
+      console.error(
+        `MUI: The color: "${color}" is invalid. Make sure the color input doesn't contain leading/trailing space.`,
+      );
+    }
   }
 
   return colors
@@ -69,10 +76,9 @@ export function decomposeColor(color) {
   const type = color.substring(0, marker);
 
   if (!['rgb', 'rgba', 'hsl', 'hsla', 'color'].includes(type)) {
-    throw new MuiError(
-      'MUI: Unsupported `%s` color.\n' +
+    throw /* minify-error */ new Error(
+      `MUI: Unsupported \`${color}\` color.\n` +
         'The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().',
-      color,
     );
   }
 
@@ -86,10 +92,9 @@ export function decomposeColor(color) {
       values[3] = values[3].slice(1);
     }
     if (!['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].includes(colorSpace)) {
-      throw new MuiError(
-        'MUI: unsupported `%s` color space.\n' +
+      throw /* minify-error */ new Error(
+        `MUI: unsupported \`${colorSpace}\` color space.\n` +
           'The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.',
-        colorSpace,
       );
     }
   } else {

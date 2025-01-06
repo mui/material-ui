@@ -146,7 +146,7 @@ export function Ad() {
   const ad = React.useContext(AdContext);
   const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
 
-  const timerAdblock = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const timerAdblock = React.useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const checkAdblock = React.useCallback(
     (attempt = 1) => {
@@ -232,7 +232,6 @@ export function Ad() {
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
-      className="Ad-root"
     >
       <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>

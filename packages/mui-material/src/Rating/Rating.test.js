@@ -18,7 +18,7 @@ describe('<Rating />', () => {
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp', 'componentsProp'],
+    skip: ['componentsProp'],
   }));
 
   it('should render', () => {

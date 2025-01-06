@@ -4,7 +4,7 @@
 
 ## Dark mode only
 
-You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme` helper:
+You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme()` helper:
 
 ```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -26,7 +26,7 @@ export default function App() {
 }
 ```
 
-Adding `mode: 'dark'` to the `createTheme` helper modifies several palette values, as shown in the following demo:
+Adding `mode: 'dark'` to the `createTheme()` helper modifies several palette values, as shown in the following demo:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
@@ -132,9 +132,46 @@ To instantly switch between color schemes with no transition, apply the `disable
 </ThemeProvider>
 ```
 
+## Disable double rendering
+
+By default, the `ThemeProvider` rerenders when the theme contains light **and** dark color schemes to prevent SSR hydration mismatches.
+
+To disable this behavior, use the `noSsr` prop:
+
+```jsx
+<ThemeProvider theme={theme} noSsr>
+```
+
+`noSsr` is useful if you are building:
+
+- A client-only application, such as a single-page application (SPA). This prop will optimize the performance and prevent the dark mode flickering when users refresh the page.
+- A server-rendered application with [Suspense](https://react.dev/reference/react/Suspense). However, you must ensure that the server render output matches the initial render output on the client.
+
+## Setting the default mode
+
+When `colorSchemes` is provided, the default mode is `system`, which means the app uses the system preference when users first visit the site.
+
+To set a different default mode, pass the `defaultMode` prop to the ThemeProvider component:
+
+```js
+<ThemeProvider theme={theme} defaultMode="dark">
+```
+
+:::info
+The `defaultMode` value can be `'light'`, `'dark'`, or `'system'`.
+:::
+
+### InitColorSchemeScript component
+
+If you are using the `InitColorSchemeScript` component to [prevent SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering), you have to set the `defaultMode` with the same value you passed to the `ThemeProvider` component:
+
+```js
+<InitColorSchemeScript defaultMode="dark">
+```
+
 ## Styling in dark mode
 
-Use the `theme.applyStyles` utility to apply styles for a specific mode.
+Use the `theme.applyStyles()` utility to apply styles for a specific mode.
 
 We recommend using this function over checking `theme.palette.mode` to switch between styles as it has more benefits:
 
@@ -149,20 +186,22 @@ With the `styled` function:
 ```jsx
 import { styled } from '@mui/material/styles';
 
-const MyComponent = styled('div')(({ theme }) => ({
-  color: '#fff',
-  backgroundColor: theme.palette.primary.main,
-  ...theme.applyStyles('dark', {
-    backgroundColor: theme.palette.secondary.main,
-  }),
-  '&:hover': {
-    boxShadow: theme.shadows[3],
-    backgroundColor: theme.palette.primary.dark,
-    ...theme.applyStyles('dark', {
-      backgroundColor: theme.palette.secondary.dark,
-    }),
+const MyComponent = styled('div')(({ theme }) => [
+  {
+    color: '#fff',
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      boxShadow: theme.shadows[3],
+      backgroundColor: theme.palette.primary.dark,
+    },
   },
-}));
+  theme.applyStyles('dark', {
+    backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+    },
+  }),
+]);
 ```
 
 With the `sx` prop:
@@ -175,21 +214,87 @@ import Button from '@mui/material/Button';
     (theme) => ({
       color: '#fff',
       backgroundColor: theme.palette.primary.main,
-      ...theme.applyStyles('dark', {
-        backgroundColor: theme.palette.secondary.main,
-      }),
       '&:hover': {
         boxShadow: theme.shadows[3],
         backgroundColor: theme.palette.primary.dark,
-        ...theme.applyStyles('dark', {
-          backgroundColor: theme.palette.secondary.dark,
-        }),
       },
     }),
+    (theme) =>
+      theme.applyStyles('dark', {
+        backgroundColor: theme.palette.secondary.main,
+        '&:hover': {
+          backgroundColor: theme.palette.secondary.dark,
+        },
+      }),
   ]}
 >
   Submit
 </Button>;
+```
+
+:::warning
+When `cssVariables: true`, styles applied with `theme.applyStyles()` have higher specificity than those defined outside of it.
+So if you need to override styles, you must also use `theme.applyStyles()` as shown below:
+
+```jsx
+const BaseButton = styled('button')(({ theme }) =>
+  theme.applyStyles('dark', {
+    backgroundColor: 'white',
+  }),
+);
+
+const AliceblueButton = styled(BaseButton)({
+  backgroundColor: 'aliceblue', // In dark mode, backgroundColor will be white as theme.applyStyles() has higher specificity
+});
+
+const PinkButton = styled(BaseButton)(({ theme }) =>
+  theme.applyStyles('dark', {
+    backgroundColor: 'pink', // In dark mode, backgroundColor will be pink
+  }),
+);
+```
+
+:::
+
+### API
+
+`theme.applyStyles(mode, styles) => CSSObject`
+
+Apply styles for a specific mode.
+
+#### Arguments
+
+- `mode` (`'light' | 'dark'`) - The mode for which the styles should be applied.
+- `styles` (`CSSObject`) - An object that contains the styles to be applied for the specified mode.
+
+#### Overriding applyStyles
+
+You can override `theme.applyStyles()` with a custom function to gain complete control over the values it returns.
+Please review the [source code](https://github.com/mui/material-ui/blob/HEAD/packages/mui-system/src/createTheme/applyStyles.ts) to understand how the default implementation works before overriding it.
+For instance, if you need the function to return a string instead of an object so it can be used inside template literals:
+
+```js
+const theme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: '.mode-%s',
+  },
+  colorSchemes: {
+    dark: {},
+    light: {},
+  },
+  applyStyles: function (key: string, styles: any) {
+    // return a string instead of an object
+    return `*:where(.mode-${key}) & {${styles}}`;
+  },
+});
+
+const StyledButton = styled('button')`
+  ${theme.applyStyles(
+    'dark', `
+      background: white;
+    `
+  )}
+`;
 ```
 
 ### Codemod
@@ -204,17 +309,6 @@ npx @mui/codemod@latest v6.0.0/theme-v6 <path/to/theme-file>
 ```
 
 > Run `v6.0.0/theme-v6` against the file that contains the custom `styleOverrides`. Ignore this codemod if you don't have a custom theme.
-
-### API
-
-`theme.applyStyles(mode, styles) => CSSObject`
-
-Apply styles for a specific mode.
-
-#### Arguments
-
-- `mode` (`'light' | 'dark'`) - The mode for which the styles should be applied.
-- `styles` (`CSSObject`) - An object which contains the styles to be applied for the specified mode.
 
 ## Dark mode flicker
 

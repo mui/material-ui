@@ -75,7 +75,7 @@ const useUtilityClasses = () => {
 
 const defaultPopperOptions = {};
 
-const PopperTooltip = React.forwardRef(function PopperTooltip<
+const PopperTooltip = React.forwardRef<HTMLDivElement, PopperTooltipProps>(function PopperTooltip<
   RootComponentType extends React.ElementType,
 >(props: PopperTooltipProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLDivElement>) {
   const {
@@ -234,6 +234,187 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
   );
 }) as PolymorphicComponent<PopperTooltipTypeMap>;
 
+PopperTooltip.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
+   */
+  anchorEl: chainPropTypes(
+    PropTypes.oneOfType([HTMLElementType, PropTypes.object, PropTypes.func]),
+    (props) => {
+      if (props.open) {
+        const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
+
+        if (
+          resolvedAnchorEl &&
+          isHTMLElement(resolvedAnchorEl) &&
+          resolvedAnchorEl.nodeType === 1
+        ) {
+          const box = resolvedAnchorEl.getBoundingClientRect();
+
+          if (
+            process.env.NODE_ENV !== 'test' &&
+            box.top === 0 &&
+            box.left === 0 &&
+            box.right === 0 &&
+            box.bottom === 0
+          ) {
+            return new Error(
+              [
+                'MUI: The `anchorEl` prop provided to the component is invalid.',
+                'The anchor element should be part of the document layout.',
+                "Make sure the element is present in the document or that it's not display none.",
+              ].join('\n'),
+            );
+          }
+        } else if (
+          !resolvedAnchorEl ||
+          typeof resolvedAnchorEl.getBoundingClientRect !== 'function' ||
+          (isVirtualElement(resolvedAnchorEl) &&
+            resolvedAnchorEl.contextElement != null &&
+            resolvedAnchorEl.contextElement.nodeType !== 1)
+        ) {
+          return new Error(
+            [
+              'MUI: The `anchorEl` prop provided to the component is invalid.',
+              'It should be an HTML element instance or a virtualElement ',
+              '(https://popper.js.org/docs/v2/virtual-elements/).',
+            ].join('\n'),
+          );
+        }
+      }
+
+      return null;
+    },
+  ),
+  /**
+   * Popper render function or node.
+   */
+  children: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ]),
+  /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction: PropTypes.oneOf(['ltr', 'rtl']),
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: PropTypes.bool,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.object,
+      effect: PropTypes.func,
+      enabled: PropTypes.bool,
+      fn: PropTypes.func,
+      name: PropTypes.any,
+      options: PropTypes.object,
+      phase: PropTypes.oneOf([
+        'afterMain',
+        'afterRead',
+        'afterWrite',
+        'beforeMain',
+        'beforeRead',
+        'beforeWrite',
+        'main',
+        'read',
+        'write',
+      ]),
+      requires: PropTypes.arrayOf(PropTypes.string),
+      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
+  /**
+   * If `true`, the component is shown.
+   */
+  open: PropTypes.bool.isRequired,
+  /**
+   * Popper placement.
+   * @default 'bottom'
+   */
+  placement: PropTypes.oneOf([
+    'auto-end',
+    'auto-start',
+    'auto',
+    'bottom-end',
+    'bottom-start',
+    'bottom',
+    'left-end',
+    'left-start',
+    'left',
+    'right-end',
+    'right-start',
+    'right',
+    'top-end',
+    'top-start',
+    'top',
+  ]),
+  /**
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * @default {}
+   */
+  popperOptions: PropTypes.shape({
+    modifiers: PropTypes.array,
+    onFirstUpdate: PropTypes.func,
+    placement: PropTypes.oneOf([
+      'auto-end',
+      'auto-start',
+      'auto',
+      'bottom-end',
+      'bottom-start',
+      'bottom',
+      'left-end',
+      'left-start',
+      'left',
+      'right-end',
+      'right-start',
+      'right',
+      'top-end',
+      'top-start',
+      'top',
+    ]),
+    strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  }),
+  /**
+   * A ref that points to the used popper instance.
+   */
+  popperRef: refType,
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
+  TransitionProps: PropTypes.object,
+} as any;
+
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *
@@ -245,10 +426,10 @@ const PopperTooltip = React.forwardRef(function PopperTooltip<
  *
  * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
-const Popper = React.forwardRef(function Popper<RootComponentType extends React.ElementType>(
-  props: PopperProps<RootComponentType>,
-  forwardedRef: React.ForwardedRef<HTMLDivElement>,
-) {
+
+const Popper = React.forwardRef<HTMLDivElement, PopperProps>(function Popper<
+  RootComponentType extends React.ElementType,
+>(props: PopperProps<RootComponentType>, forwardedRef: React.ForwardedRef<HTMLDivElement>) {
   const {
     anchorEl,
     children,

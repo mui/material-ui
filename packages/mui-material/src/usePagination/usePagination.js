@@ -124,7 +124,7 @@ export default function usePagination(props = {}) {
           page: item,
           selected: item === page,
           disabled,
-          'aria-current': item === page ? 'true' : undefined,
+          'aria-current': item === page ? 'page' : undefined,
         }
       : {
           onClick: (event) => {

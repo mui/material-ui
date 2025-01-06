@@ -48,7 +48,7 @@ You must apply the `dir` attribute directly to these components if it's not glob
 
 ### 2. Set the theme direction
 
-Use the `createTheme` API to set the theme direction to `'rtl'`:
+Use the `createTheme()` API to set the theme direction to `'rtl'`:
 
 ```js
 import { createTheme } from '@mui/material/styles';
