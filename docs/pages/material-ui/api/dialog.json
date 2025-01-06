@@ -82,6 +82,12 @@
       "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": null
+    },
+    {
+      "name": "paper",
+      "description": "The component that renders the paper.",
+      "default": "Paper",
+      "class": "MuiDialog-paper"
     }
   ],
   "classes": [
@@ -89,12 +95,6 @@
       "key": "container",
       "className": "MuiDialog-container",
       "description": "Styles applied to the container element.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiDialog-paper",
-      "description": "Styles applied to the Paper component.",
       "isGlobal": false
     },
     {
