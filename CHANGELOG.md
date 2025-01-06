@@ -10,7 +10,7 @@ A big thanks to the 1 contributor who made this release possible.
 
 ### `@mui/material@5.16.14`
 
-- &#8203;<!-- 1 -->[Autocomplete] Revert: Fix options list rendering in freeSolo mode (#44857) @ZeeshanTamboli
+- [Autocomplete] Revert: Fix options list rendering in freeSolo mode (#44857) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @ZeeshanTamboli
 
