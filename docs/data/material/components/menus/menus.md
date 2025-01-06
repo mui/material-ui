@@ -67,7 +67,7 @@ For instance, you can display the menu on top of the anchor:
 ## Composition with Menu List
 
 The Menu component uses the Popover component internally.
-But you might want to use a different positioning strategy, or prefer not to block scrolling.
+But you might want to use a different positioning strategy, or prefer not to block scrolling, for example.
 
 The Menu List component lets you compose your own menu for these kinds of use cases—its primary purpose is to handle focus.
 See the demo below for an example of composition that uses Menu List and replaces the Menu's default Popover with a Popper component instead:
