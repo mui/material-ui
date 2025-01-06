@@ -14,7 +14,7 @@ It includes a comprehensive collection of prebuilt components that are ready for
 
 :::info
 Material UI v6 supports Material Design 2.
-You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future design-related updates.
 :::
 
 ## Advantages of Material UI
