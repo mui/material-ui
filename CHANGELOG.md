@@ -1,5 +1,82 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.3.1
+
+<!-- generated comparing v6.3.0..master -->
+
+_Jan 3, 2025_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@6.3.1`
+
+- [Autocomplete] Revert: Fix options list rendering in freeSolo mode (#44858) @ZeeshanTamboli
+- [Tooltip] Warn instead of error when trigger is disabled (#44846) @yash49
+- [TableSortLabel] Add slots and slotProps (#44728) @sai6855
+- [Select] Deprecate composed classes (#44925) @sai6855
+
+### Docs
+
+- [material-ui][Accordion] Update `Anatomy` section in Accordion docs (#44849) @ZeeshanTamboli
+- [material-ui][CardActionArea] Added demo in docs of cards for adding props to CardActionArea (#44789) @siddhantantil39
+- [material-ui][Grid2] Add interactive demo for Grid v2 (#44820) @yash49
+- [material-ui][Select] Update docs to reflect the omission of placeholder prop (#44856) @adityaparab
+- [joy-ui] Fix Color mode button on Theme builder (#44864) @komkanit
+- Fix 301 redirections @oliviertassinari
+
+### Core
+
+- [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
+- [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
+- [docs-infra] Add vale coverage for App Router and Page Router (060c55c) @oliviertassinari
+- Sync with other repos (1b9300f) @oliviertassinari
+- Fix docs:build to work in docs folder too (6b923a4) @oliviertassinari
+- Setup React 18 CI tests (#44868) @DiegoAndai
+- Update test to use public API (#44875) @oliviertassinari
+
+All contributors of this release in alphabetical order: @adityaparab, @DiegoAndai, @komkanit, @oliviertassinari, @sai6855, @siddhantantil39, @yash49, @ZeeshanTamboli
+
+## 6.3.0
+
+<!-- generated comparing v6.2.1..master -->
+
+_Dec 23, 2024_
+
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- Fix invalid HTML structure in the Accordion component (#44408) @ZeeshanTamboli
+  The HTML elements of the Accordion summary have been updated:
+  - the root element is now button (previously div).
+  - summary content and the icon wrapper are now span (previously div).
+    This will only impact you if you used the HTML element as selectors in your styles.
+
+### `@mui/material@6.3.0`
+
+- [Accordion] Fix invalid HTML inside heading (#44408) @ZeeshanTamboli
+- [useAutocomplete] Improve TS typing of `groupedOptions` prop (#44657) @lewxdev
+- Prevent `ownerState` propagation for transition slots (#44401) @ZeeshanTamboli
+- [StepContent] Add slots and slotProps (#44742) @sai6855
+- [TablePagination] Add the rest of `slots` and `slotProps`. (#44570) @siriwatknp
+
+### `@mui/system@6.3.0`
+
+- Set `before` directly without using prepend for global styles (#44648) @siriwatknp
+
+### Docs
+
+- [material-ui] Improve `theme.applyStyles()` docs (#44658) @DiegoAndai
+- [material-ui] Update MD callout (#43958) @aarongarciah
+
+### Core
+
+- Remove unnecessary conditional around `.muiName =` (#44071) @Janpot
+- [blog] Material UI: 2024 EOY updates blog post (#44722) @alelthomas
+- Fix quickstart command in pigment docs (#44806) @yash49
+- [docs-infra] Remove Next.js production profiler (#44823) @romgrk
+- [docs-infra] Remove no longer support `optimizeFonts` Next.js option (#44802) @LukasTy
+
+All contributors of this release in alphabetical order: @aarongarciah, @alelthomas, @DiegoAndai, @Janpot, @lewxdev, @LukasTy, @romgrk, @sai6855, @siriwatknp, @yash49, @ZeeshanTamboli
+
 ## 6.2.1
 
 <!-- generated comparing v6.2.0..master -->
