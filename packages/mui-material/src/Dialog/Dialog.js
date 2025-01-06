@@ -295,6 +295,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     transition: TransitionProps,
     paper: {
       component: PaperComponent,
+      backdrop: BackdropComponent,
       ...PaperProps,
     },
     ...slotProps,
@@ -304,6 +305,12 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     slots: backwardCompatibleSlots,
     slotProps: backwardCompatibleSlotProps,
   };
+
+  const [BackdropSlot, backdropSlotProps] = useSlot('backdrop', {
+    elementType: DialogBackdrop,
+    externalForwardedProps,
+    ownerState,
+  });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
     elementType: Fade,
@@ -327,12 +334,12 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     <DialogRoot
       className={clsx(classes.root, className)}
       closeAfterTransition
-      components={{ Backdrop: DialogBackdrop }}
-      componentsProps={{
+      slots={{ backdrop: BackdropSlot }}
+      slotProps={{
         backdrop: {
           transitionDuration,
-          as: BackdropComponent,
-          ...BackdropProps,
+          as: backdropSlotProps.component,
+          ...backdropSlotProps,
         },
       }}
       disableEscapeKeyDown={disableEscapeKeyDown}
