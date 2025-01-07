@@ -23,12 +23,14 @@ const useUtilityClasses = (ownerState) => {
 const FormControlRoot = styled('div', {
   name: 'MuiFormControl',
   slot: 'Root',
-  overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...styles[`margin${capitalize(ownerState.margin)}`],
-      ...(ownerState.fullWidth && styles.fullWidth),
-    };
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[`margin${capitalize(ownerState.margin)}`],
+      ownerState.fullWidth && styles.fullWidth,
+    ];
   },
 })({
   display: 'inline-flex',

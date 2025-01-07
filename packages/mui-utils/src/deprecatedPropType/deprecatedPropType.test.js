@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import deprecatedPropType from './deprecatedPropType';
+import deprecatedPropType from '@mui/utils/deprecatedPropType';
 
 describe('deprecatedPropType', () => {
   const componentName = 'ComponentName';

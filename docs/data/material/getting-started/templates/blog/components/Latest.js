@@ -127,7 +127,7 @@ const TitleTypography = styled(Typography)(({ theme }) => ({
     height: '1px',
     bottom: 0,
     left: 0,
-    backgroundColor: theme.palette.text.primary,
+    backgroundColor: (theme.vars || theme).palette.text.primary,
     opacity: 0.3,
     transition: 'width 0.3s ease, opacity 0.3s ease',
   },

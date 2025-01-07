@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import * as ReactDOMClient from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router';
 import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
@@ -178,7 +178,6 @@ const blacklist = [
   'docs-components-skeleton/Facebook.png', // Flaky image loading
   'docs-components-skeleton/SkeletonChildren.png', // flaky image loading
   'docs-components-skeleton/YouTube.png', // Flaky image loading
-  'docs-components-slider/VerticalAccessibleSlider.png', // Redundant
   'docs-components-snackbars/ConsecutiveSnackbars.png', // Needs interaction
   'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
   'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction

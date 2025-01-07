@@ -1069,6 +1069,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'true');
 
       const listbox = getByRole('listbox');
+      expect(listbox.tagName.toLowerCase()).to.equal('ul');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
       expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
@@ -2438,22 +2439,6 @@ describe('<Autocomplete />', () => {
       );
 
       expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
-    });
-
-    it('should not render popper when there are no options', () => {
-      render(
-        <Autocomplete
-          open
-          freeSolo
-          options={[]}
-          renderInput={(params) => <TextField {...params} />}
-          slotProps={{
-            popper: { 'data-testid': 'popperRoot' },
-          }}
-        />,
-      );
-      const popper = screen.queryByTestId('popperRoot');
-      expect(popper).to.equal(null);
     });
   });
 

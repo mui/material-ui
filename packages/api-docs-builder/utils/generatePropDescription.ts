@@ -1,12 +1,12 @@
 import * as doctrine from 'doctrine';
 import * as recast from 'recast';
 import { PropTypeDescriptor } from 'react-docgen';
+import { escapeCell, removeNewLines } from '../buildApi';
 import {
   isElementTypeAcceptingRefProp,
   isElementAcceptingRefProp,
 } from './generatePropTypeDescription';
 import { DescribeablePropDescriptor } from './createDescribeableProp';
-import escapeCell from './escapeCell';
 import { SeeMore } from '../types/utils.types';
 
 function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
@@ -129,7 +129,7 @@ export default function generatePropDescription(
     // Remove new lines from tag descriptions to avoid markdown errors.
     annotation.tags.forEach((tag) => {
       if (tag.description) {
-        tag.description = tag.description.replace(/\r*\n/g, ' ');
+        tag.description = removeNewLines(tag.description);
       }
     });
 

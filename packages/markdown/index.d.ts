@@ -6,10 +6,11 @@ interface TableOfContentsEntry {
 }
 
 export function createRender(context: {
-  headingHashes: Record<string, string>;
-  toc: TableOfContentsEntry[];
-  userLanguage: string;
-  ignoreLanguagePages: (path: string) => boolean;
+  headingHashes?: Record<string, string>;
+  toc?: TableOfContentsEntry[];
+  userLanguage?: string;
+  ignoreLanguagePages?: (path: string) => boolean;
+  options: object;
 }): (markdown: string) => string;
 
 export interface MarkdownHeaders {

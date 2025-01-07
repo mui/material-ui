@@ -20,6 +20,11 @@ describe('<TableSortLabel />', () => {
     testDeepOverrides: { slotName: 'icon', slotClassName: classes.icon },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp'],
+    slots: {
+      icon: {
+        expectedClassName: classes.icon,
+      },
+    },
   }));
 
   it('should set the active class when active', () => {
