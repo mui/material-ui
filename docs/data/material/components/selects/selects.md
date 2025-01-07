@@ -205,6 +205,7 @@ If you use the ListSubheader directly, **no additional code is required**.
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label.
 That `id` needs to match the `labelId` of the `Select`, for example:
+Note: When working with `cypress testing`, this element is rendered in a different location in the DOM (possibly a virtual dom), you can use `id` to identify the test element.
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>
