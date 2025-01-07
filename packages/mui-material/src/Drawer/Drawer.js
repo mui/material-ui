@@ -15,6 +15,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDrawerUtilityClass } from './drawerClasses';
 import useSlot from '../utils/useSlot';
+import { mergeSlotProps } from '../utils';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -246,14 +247,9 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     slotProps: {
       ...slotProps,
       root: slotProps.root || ModalProps,
-      backdrop: slotProps.backdrop || {
-        ...BackdropProps,
-        ...BackdropPropsProp,
+      backdrop: mergeSlotProps(slotProps.backdrop || { ...BackdropProps, ...BackdropPropsProp }, {
         transitionDuration,
-      },
-      // backdrop: mergeSlotProps(slotProps.backdrop || { ...BackdropProps, ...BackdropPropsProp }, {
-      //   transitionDuration,
-      // }),
+      }),
       paper: slotProps.paper || PaperProps,
       transition: slotProps.transition || SlideProps,
     },
