@@ -65,7 +65,7 @@ export interface AutocompleteRenderOptionState {
 }
 
 export interface AutocompleteRenderGroupParams {
-  key: string;
+  key: number;
   group: string;
   children?: React.ReactNode;
 }

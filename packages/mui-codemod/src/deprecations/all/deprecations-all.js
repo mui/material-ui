@@ -21,6 +21,7 @@ import transformOutlinedInputProps from '../outlined-input-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
 import transformSpeedDialProps from '../speed-dial-props';
 import transformTableSortLabelClasses from '../table-sort-label-classes';
+import transformSelectClasses from '../select-classes';
 import transformStepConnectorClasses from '../step-connector-classes';
 import transformStepContentProps from '../step-content-props';
 import transformStepLabelProps from '../step-label-props';
@@ -62,6 +63,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformStepLabelProps(file, api, options);
   file.source = transformTableSortLabelClasses(file, api, options);
   file.source = transformTextFieldProps(file, api, options);
+  file.source = transformSelectClasses(file, api, options);
   file.source = transformTabClasses(file, api, options);
   file.source = transformToggleButtonGroupClasses(file, api, options);
   file.source = transformTooltipProps(file, api, options);
