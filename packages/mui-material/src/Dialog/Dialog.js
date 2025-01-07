@@ -293,11 +293,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
   const backwardCompatibleSlotProps = {
     transition: TransitionProps,
-    paper: {
-      component: PaperComponent,
-      backdrop: BackdropComponent,
-      ...PaperProps,
-    },
     ...slotProps,
   };
 
@@ -305,12 +300,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     slots: backwardCompatibleSlots,
     slotProps: backwardCompatibleSlotProps,
   };
-
-  const [BackdropSlot, backdropSlotProps] = useSlot('backdrop', {
-    elementType: DialogBackdrop,
-    externalForwardedProps,
-    ownerState,
-  });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
     elementType: Fade,
@@ -324,22 +313,16 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     },
   });
 
-  const [PaperSlot, paperSlotProps] = useSlot('paper', {
-    elementType: DialogPaper,
-    externalForwardedProps,
-    ownerState,
-  });
-
   return (
     <DialogRoot
       className={clsx(classes.root, className)}
       closeAfterTransition
-      slots={{ backdrop: BackdropSlot }}
-      slotProps={{
+      components={{ backdrop: DialogBackdrop }}
+      componentsProps={{
         backdrop: {
           transitionDuration,
-          as: backdropSlotProps.component,
-          ...backdropSlotProps,
+          as: BackdropComponent,
+          ...BackdropProps,
         },
       }}
       disableEscapeKeyDown={disableEscapeKeyDown}
@@ -358,18 +341,18 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
           onMouseDown={handleMouseDown}
           ownerState={ownerState}
         >
-          <PaperSlot
-            as={paperSlotProps.component}
+          <DialogPaper
+            as={PaperComponent}
             elevation={24}
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
             aria-modal={ariaModal}
-            {...paperSlotProps}
-            className={clsx(classes.paper, paperSlotProps.className)}
+            {...PaperProps}
+            className={clsx(classes.paper, PaperProps.className)}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
-          </PaperSlot>
+          </DialogPaper>
         </DialogContainer>
       </TransitionSlot>
     </DialogRoot>

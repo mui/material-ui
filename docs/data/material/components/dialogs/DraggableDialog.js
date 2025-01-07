@@ -40,11 +40,7 @@ export default function DraggableDialog() {
       <Dialog
         open={open}
         onClose={handleClose}
-        slotProps={{
-          paper: {
-            component: PaperComponent,
-          },
-        }}
+        PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
