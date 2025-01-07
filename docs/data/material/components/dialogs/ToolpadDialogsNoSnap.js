@@ -9,6 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 function DeleteDialog({ open, onClose, payload }) {
   const [inputValue, setInputValue] = React.useState('');
@@ -108,9 +109,9 @@ function DeleteDialogTrigger({ name }) {
   };
 
   return (
-    <Button variant="contained" loading={isDeleting} onClick={handleDelete}>
+    <LoadingButton loading={isDeleting} variant="contained" onClick={handleDelete}>
       Delete
-    </Button>
+    </LoadingButton>
   );
 }
 
