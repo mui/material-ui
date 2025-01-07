@@ -21,17 +21,18 @@ export interface DrawerBackdropSlotPropsOverrides {}
 
 export interface DrawerSlots {
   /**
-   * The component used for the popper.
-   * @default Modal
+   * The component used for the Modal root.
+   * @default div
    */
   root: React.ElementType;
   /**
-   * The component used for the backdrop.
+   * The component used for the Modal backdrop.
    * @default Backdrop
    */
   backdrop: React.ElementType;
   /**
-   * The component used for the docked. It's also a root slot when variant is `permanent` or `persistent`.
+   * The component used for the docked.
+   * It's also a root slot when variant is `permanent` or `persistent`.
    * @default div
    */
   docked: React.ElementType;

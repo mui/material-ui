@@ -82,19 +82,19 @@
   "slots": [
     {
       "name": "root",
-      "description": "The component used for the popper.",
-      "default": "Modal",
+      "description": "The component used for the Modal root.",
+      "default": "div",
       "class": "MuiDrawer-root"
     },
     {
       "name": "backdrop",
-      "description": "The component used for the backdrop.",
+      "description": "The component used for the Modal backdrop.",
       "default": "Backdrop",
       "class": null
     },
     {
       "name": "docked",
-      "description": "The component used for the docked. It's also a root slot when variant is `permanent` or `persistent`.",
+      "description": "The component used for the docked.\nIt's also a root slot when variant is `permanent` or `persistent`.",
       "default": "div",
       "class": "MuiDrawer-docked"
     },

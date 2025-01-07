@@ -80,10 +80,10 @@
     }
   },
   "slotDescriptions": {
-    "backdrop": "The component used for the backdrop.",
+    "backdrop": "The component used for the Modal backdrop.",
     "docked": "The component used for the docked. It&#39;s also a root slot when variant is <code>permanent</code> or <code>persistent</code>.",
     "paper": "The component used for the paper.",
-    "root": "The component used for the popper.",
+    "root": "The component used for the Modal root.",
     "transition": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }
