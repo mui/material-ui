@@ -217,6 +217,7 @@ const blacklist = [
   'docs-getting-started-templates', // No public components
   'docs-getting-started-usage/Usage.png', // No public components
   'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
+  'docs-getting-started-templates-dashboard-components/MainGrid.png', // No public components
   'docs-landing', // Mostly images, redundant
   'docs-production-error', // No components, page for DX
   'docs-styles-advanced', // Redundant
