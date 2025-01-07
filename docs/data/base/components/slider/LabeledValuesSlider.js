@@ -128,14 +128,14 @@ const Slider = styled(BaseSlider)(
   }
 
     & .label {
-      font-family: IBM Plex Sans;
+      font-family: "IBM Plex Sans", sans-serif;
       font-weight: 600;
       font-size: 14px;
       background: unset;
       background-color: ${theme.palette.mode === 'light' ? blue[600] : blue[900]};
       width: 32px;
       height: 32px;
-      padding: 0px;
+      padding: 0;
       visibility: hidden;
       color: #fff;
       border-radius: 50% 50% 50% 0;
@@ -156,6 +156,5 @@ const Slider = styled(BaseSlider)(
       transform: rotate(45deg);
       text-align: center;
     }
-  }
 `,
 );

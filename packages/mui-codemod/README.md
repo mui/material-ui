@@ -1107,6 +1107,32 @@ npx @mui/codemod@latest deprecations/form-control-label-props <path>
 npx @mui/codemod@latest deprecations/list-item-props <path>
 ```
 
+#### `list-item-text-props`
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
+```
+
+```diff
+ MuiListItemText: {
+   defaultProps: {
+-  primaryTypographyProps:primaryTypographyProps
++  slotProps:{ primary: primaryTypographyProps }
+-  secondaryTypographyProps:secondaryTypographyProps
++  slotProps:{ secondary: secondaryTypographyProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
 #### `image-list-item-bar-classes`
 
 JS transforms:
@@ -1380,6 +1406,54 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
+#### `select-classes`
+
+JS transforms:
+
+```diff
+ import { selectClasses } from '@mui/material/Select';
+
+ MuiSelect: {
+   styleOverrides: {
+     root: {
+-      [`& .${selectClasses.iconFilled}`]: {
++      [`& .${selectClasses.filled} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconOutlined}`]: {
++      [`& .${selectClasses.outlined} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconStandard}`]: {
++      [`& .${selectClasses.standard} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiSelect-iconFilled
++ .MuiSelect-filled ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconOutlined
++ .MuiSelect-outlined ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconStandard
++ .MuiSelect-standard ~ .MuiSelect-icon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/select-classes <path>
+```
+
 #### `slider-props`
 
 ```diff
@@ -1481,6 +1555,21 @@ JS transforms:
 
 ```bash
 npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
+#### `step-content-props`
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
 ```
 
 #### `step-label-props`
@@ -1666,6 +1755,13 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
  <Typography
 -  paragraph
 +  sx={{ marginBottom: '16px' }}
+ />
+```
+
+```diff
+ <Typography
+-  paragraph={isTypographyParagraph}
++  sx={isTypographyParagraph ? { marginBottom: '16px' } : undefined}
  />
 ```
 

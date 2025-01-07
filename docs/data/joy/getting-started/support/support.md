@@ -33,10 +33,10 @@ You can browse the documentation, find an example close to your use case, and th
 
 <a href="/joy-ui/react-button/#basics">
 <span class="only-light-mode">
-<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 <span class="only-dark-mode">
-<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 </a>
 

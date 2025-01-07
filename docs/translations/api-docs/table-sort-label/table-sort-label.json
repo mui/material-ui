@@ -9,6 +9,8 @@
     "direction": { "description": "The current sort direction." },
     "hideSortIcon": { "description": "Hide sort icon when active is false." },
     "IconComponent": { "description": "Sort icon to use." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     }
@@ -29,7 +31,6 @@
       "nodeName": "the root element",
       "conditions": "<code>direction=\"desc\"</code>"
     },
-    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconDirectionAsc": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",
@@ -41,7 +42,10 @@
       "nodeName": "the icon component",
       "conditions": "<code>direction=\"desc\"</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/table-sort-label/#table-sort-label-classes-icon\">.MuiTableSortLabel-icon</a> and <a href=\"/material-ui/api/table-sort-label/#table-sort-label-classes-direction-desc\">.MuiTableSortLabel-directionDesc</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
+  },
+  "slotDescriptions": {
+    "icon": "The component that renders the icon slot.",
+    "root": "The component that renders the root slot."
   }
 }

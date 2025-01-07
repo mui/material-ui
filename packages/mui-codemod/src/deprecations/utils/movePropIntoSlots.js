@@ -9,7 +9,8 @@ function moveJsxPropIntoSlots(j, element, propName, slotName) {
   );
 
   if (index !== -1) {
-    const removedValue = element.openingElement.attributes.splice(index, 1)[0].value.expression;
+    const attrNode = element.openingElement.attributes.splice(index, 1)[0];
+    const removedValue = attrNode.value.expression || attrNode.value;
     let hasSlots = false;
     element.openingElement.attributes.forEach((attr) => {
       if (attr.name?.name === 'slots') {

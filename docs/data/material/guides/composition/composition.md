@@ -22,6 +22,49 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "Composition.js"}}
 
+### Forwarding slot props
+
+Use the `mergeSlotProps` utility function to merge custom props with the slot props.
+If the arguments are functions then they'll be resolved before merging, and the result from the first argument will override the second.
+
+```jsx
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
+import { mergeSlotProps } from '@mui/material/utils';
+
+export const CustomTooltip = (props: TooltipProps) => {
+  const { children, title, sx: sxProps } = props;
+
+  return (
+    <Tooltip
+      {...props}
+      title={<Box sx={{ p: 4 }}>{title}</Box>}
+      slotProps={{
+        ...props.slotProps,
+        popper: mergeSlotProps(props.slotProps?.popper, {
+          className: 'custom-tooltip-popper',
+          disablePortal: true,
+          placement: 'top',
+        }),
+      }}
+    >
+      {children}
+    </Tooltip>
+  );
+};
+```
+
+:::info
+`className` values are concatenated rather than overriding one another.
+In the snippet above, the `custom-tooltip-popper` class is applied to the Tooltip's popper slot.
+If you added another `className` via the `slotProps` prop on the Custom Tooltip—as shown below—then both would be present on the rendered popper slot:
+
+```js
+<CustomTooltip slotProps={{ popper: { className: 'foo' } }} />
+```
+
+The popper slot in the original example would now have both classes applied to it, in addition to any others that may be present: `"[…] custom-tooltip-popper foo"`.
+:::
+
 ## Component prop
 
 Material UI allows you to change the root element that will be rendered via a prop called `component`.
@@ -49,10 +92,10 @@ This pattern is very powerful and allows for great flexibility, as well as a way
 
 ### Passing other React components
 
-You can pass any other React component to `component` prop. For example, you can pass `Link` component from `react-router-dom`:
+You can pass any other React component to `component` prop. For example, you can pass `Link` component from `react-router`:
 
 ```tsx
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Button from '@mui/material/Button';
 
 function Demo() {
@@ -84,7 +127,7 @@ Now the `CustomComponent` can be used with a `component` prop which should be se
 In addition, the `CustomComponent` will have all props of a `<a>` HTML element.
 The other props of the `Typography` component will also be present in props of the `CustomComponent`.
 
-You can find a code example with the Button and react-router-dom in [these demos](/material-ui/integrations/routing/#component-prop).
+You can find a code example with the Button and react-router in [these demos](/material-ui/integrations/routing/#component-prop).
 
 ### Generic
 

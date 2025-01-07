@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DialogsProvider, useDialogs, DialogProps } from '@toolpad/core/useDialogs';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Dialog from '@mui/material/Dialog';
 import Alert from '@mui/material/Alert';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -8,7 +9,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 function DeleteDialog({ open, onClose, payload }: DialogProps<string, string>) {
   const [inputValue, setInputValue] = React.useState('');
