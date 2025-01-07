@@ -10,7 +10,6 @@ import CustomizedProgressBars from '../../../../../docs/data/material/components
 import DelayingAppearance from '../../../../../docs/data/material/components/progress/DelayingAppearance.tsx';
 import LinearColor from '../../../../../docs/data/material/components/progress/LinearColor.tsx';
 import LinearIndeterminate from '../../../../../docs/data/material/components/progress/LinearIndeterminate.tsx';
-import LinearWithValueLabel from '../../../../../docs/data/material/components/progress/LinearWithValueLabel.tsx';
 
 export default function Progress() {
   return (
@@ -74,12 +73,6 @@ export default function Progress() {
         <h2> Linear Indeterminate</h2>
         <div className="demo-container">
           <LinearIndeterminate />
-        </div>
-      </section>
-      <section>
-        <h2> Linear With Value Label</h2>
-        <div className="demo-container">
-          <LinearWithValueLabel />
         </div>
       </section>
     </MaterialUILayout>
