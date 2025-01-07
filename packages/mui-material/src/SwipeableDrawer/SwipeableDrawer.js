@@ -13,6 +13,7 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { useTheme } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionProps } from '../transitions/utils';
+import { mergeSlotProps } from '../utils';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
@@ -159,6 +160,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     swipeAreaWidth = 20,
     transitionDuration = transitionDurationDefault,
     variant = 'temporary', // Mobile first.
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -589,31 +592,40 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       <Drawer
         open={variant === 'temporary' && maybeSwiping ? true : open}
         variant={variant}
-        ModalProps={{
-          BackdropProps: {
-            ...BackdropProps,
-            ref: backdropRef,
-          },
-          // Ensures that paperRef.current will be defined inside the touch start event handler
-          // See https://github.com/mui/material-ui/issues/30414 for more information
-          ...(variant === 'temporary' && {
-            keepMounted: true,
-          }),
-          ...ModalPropsProp,
-        }}
         hideBackdrop={hideBackdrop}
-        PaperProps={{
-          ...PaperProps,
-          style: {
-            pointerEvents: variant === 'temporary' && !open && !allowSwipeInChildren ? 'none' : '',
-            ...PaperProps.style,
-          },
-          ref: handleRef,
-        }}
         anchor={anchor}
-        transitionDuration={calculatedDurationRef.current || transitionDuration}
         onClose={onClose}
         ref={ref}
+        slots={slots}
+        slotProps={{
+          ...slotProps,
+          root: mergeSlotProps(slotProps.root, {
+            // Ensures that paperRef.current will be defined inside the touch start event handler
+            // See https://github.com/mui/material-ui/issues/30414 for more information
+            ...(variant === 'temporary' && {
+              keepMounted: true,
+            }),
+            ...ModalPropsProp,
+          }),
+          backdrop: mergeSlotProps(slotProps.backdrop, {
+            BackdropProps: {
+              ...BackdropProps,
+              ref: backdropRef,
+            },
+          }),
+          paper: mergeSlotProps(slotProps.paper, {
+            ...PaperProps,
+            style: {
+              pointerEvents:
+                variant === 'temporary' && !open && !allowSwipeInChildren ? 'none' : '',
+              ...PaperProps.style,
+            },
+            ref: handleRef,
+          }),
+          transition: mergeSlotProps(slotProps.transition, {
+            transitionDuration: calculatedDurationRef.current || transitionDuration,
+          }),
+        }}
         {...other}
       />
       {!disableSwipeToOpen && variant === 'temporary' && (
@@ -722,6 +734,28 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
     style: PropTypes.object,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    docked: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    docked: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+    transition: PropTypes.elementType,
   }),
   /**
    * The element is used to intercept the touch events on the edge.
