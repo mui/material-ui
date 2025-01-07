@@ -18,7 +18,7 @@ window.muiFixture = {
 };
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
+const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
 const regressionFixtures = [];
 importRegressionFixtures.keys().forEach((path) => {
   const [suite, name] = path
@@ -33,7 +33,7 @@ importRegressionFixtures.keys().forEach((path) => {
       path,
       suite: `regression-${suite}`,
       name,
-      Component: React.lazy(() => importRegressionFixtures(path)),
+      Component: importRegressionFixtures(path).default,
     });
   }
 }, []);
@@ -269,7 +269,7 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
+const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/);
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
@@ -285,7 +285,7 @@ importDemos.keys().forEach((path) => {
       path,
       suite,
       name,
-      Component: React.lazy(() => importDemos(path)),
+      Component: importDemos(path),
     });
   }
 }, []);
