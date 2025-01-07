@@ -246,14 +246,12 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     },
     slotProps: {
       ...slotProps,
-      root: slotProps.root || ModalProps,
       backdrop: mergeSlotProps(slotProps.backdrop || { ...BackdropProps, ...BackdropPropsProp }, {
         transitionDuration,
       }),
       paper: slotProps.paper || PaperProps,
       transition: slotProps.transition || SlideProps,
     },
-    other,
   };
 
   const [PaperSlot, paperSlotProps] = useSlot('paper', {
@@ -273,6 +271,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     className: clsx(classes.root, classes.docked, className),
     ownerState,
     externalForwardedProps,
+    additionalProps: other, // pass `other` here because `DockedSlot` is also a root slot for some variants
   });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
@@ -284,19 +283,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
       direction: oppositeDirection[anchorInvariant],
       timeout: transitionDuration,
       appear: mounted.current,
-    },
-  });
-
-  const [RootSlot, rootSlotProps] = useSlot('root', {
-    elementType: DrawerRoot,
-    ref,
-    className: clsx(classes.root, classes.modal, className),
-    ownerState,
-    externalForwardedProps,
-    additionalProps: {
-      open,
-      onClose,
-      hideBackdrop,
     },
   });
 
@@ -313,7 +299,29 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   }
 
   // variant === temporary
-  return <RootSlot {...rootSlotProps}>{slidingDrawer}</RootSlot>;
+  // `DrawerRoot` does not need `useSlot` because it is a `Modal` (composed component),
+  // pass `slots` and `slotProps` to `DrawerRoot` directly
+  return (
+    <DrawerRoot
+      BackdropProps={{
+        ...BackdropProps,
+        ...BackdropPropsProp,
+        transitionDuration,
+      }}
+      className={clsx(classes.root, classes.modal, className)}
+      open={open}
+      ownerState={ownerState}
+      onClose={onClose}
+      hideBackdrop={hideBackdrop}
+      ref={ref}
+      slots={externalForwardedProps.slots}
+      slotProps={externalForwardedProps.slotProps}
+      {...other}
+      {...ModalProps}
+    >
+      {slidingDrawer}
+    </DrawerRoot>
+  );
 });
 
 Drawer.propTypes /* remove-proptypes */ = {
