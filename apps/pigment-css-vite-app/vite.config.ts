@@ -3,23 +3,12 @@ import reactPlugin from '@vitejs/plugin-react';
 import Pages from 'vite-plugin-pages';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { pigment } from '@pigment-css/vite-plugin';
-import { extendTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
-const theme = extendTheme({
-  getSelector: function getSelector(colorScheme, css) {
-    if (colorScheme) {
-      return {
-        [`@media (prefers-color-scheme: ${colorScheme})`]: {
-          ':root': css,
-        },
-      };
-    }
-    return ':root';
-  },
+const theme = createTheme({
+  cssVariables: true,
+  colorSchemes: { light: true, dark: true },
 });
-theme.getColorSchemeSelector = (colorScheme) => {
-  return `@media (prefers-color-scheme: ${colorScheme})`;
-};
 
 export default defineConfig({
   plugins: [

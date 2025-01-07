@@ -83,6 +83,7 @@ async function main() {
       path: screenshotPath,
       type: 'png',
       animations: 'disabled',
+      mask: [page.locator('css=[data-playwright-masked]')],
     });
   }
 

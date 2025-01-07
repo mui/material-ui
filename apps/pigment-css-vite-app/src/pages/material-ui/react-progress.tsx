@@ -73,7 +73,8 @@ export default function Progress() {
       </section>
       <section>
         <h2> Linear Determinate</h2>
-        <div className="demo-container">
+        <div className="demo-container" data-playwright-masked>
+          {/* masked when taking screenshot with playwright because this demo is a flaky one */}
           <LinearDeterminate />
         </div>
       </section>
