@@ -46,7 +46,7 @@ You can find complete templates and themes like those shown below in the <a href
 
 ## Toolpad Core (beta)
 
-If you're looking to build internal tools and dashboards fast, but don't want to start building from scratch, you can find examples of functional dashboards – with authentication, routing, and theming already integrated – in the [featured examples](https://mui.com/toolpad/core/introduction/examples/#featured-examples) section of the Toolpad Core docs.
+If you're looking to build internal tools and dashboards fast, but don't want to start building from scratch, you can find examples of functional dashboards–with authentication, routing, and theming already integrated–in the [featured examples section](https://mui.com/toolpad/core/introduction/examples/#featured-examples) of the Toolpad Core docs.
 
 <a href="https://mui.com/toolpad/core/introduction/examples/#featured-examples">
 <span class="only-light-mode">
