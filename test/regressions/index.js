@@ -285,7 +285,7 @@ importDemos.keys().forEach((path) => {
       path,
       suite,
       name,
-      Component: importDemos(path),
+      Component: importDemos(path).default,
     });
   }
 }, []);
