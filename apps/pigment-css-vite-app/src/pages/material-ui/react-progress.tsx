@@ -9,7 +9,6 @@ import CircularWithValueLabel from '../../../../../docs/data/material/components
 import CustomizedProgressBars from '../../../../../docs/data/material/components/progress/CustomizedProgressBars.tsx';
 import DelayingAppearance from '../../../../../docs/data/material/components/progress/DelayingAppearance.tsx';
 import LinearColor from '../../../../../docs/data/material/components/progress/LinearColor.tsx';
-import LinearDeterminate from '../../../../../docs/data/material/components/progress/LinearDeterminate.tsx';
 import LinearIndeterminate from '../../../../../docs/data/material/components/progress/LinearIndeterminate.tsx';
 import LinearWithValueLabel from '../../../../../docs/data/material/components/progress/LinearWithValueLabel.tsx';
 
@@ -69,12 +68,6 @@ export default function Progress() {
         <h2> Linear Color</h2>
         <div className="demo-container">
           <LinearColor />
-        </div>
-      </section>
-      <section>
-        <h2> Linear Determinate</h2>
-        <div className="demo-container">
-          <LinearDeterminate />
         </div>
       </section>
       <section>
