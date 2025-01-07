@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import Head from 'next/head';
 import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
