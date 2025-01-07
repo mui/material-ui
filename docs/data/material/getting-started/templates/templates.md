@@ -14,15 +14,15 @@ title: New Free React Templates
 Our curated collection of free Material UI templates includes a dashboard, a marketing page, a checkout flow, sign-in and sign-up pages, and a blog.
 You can download each one directly from the source code or via CodeSandbox or StackBlitz.
 
+:::info
+If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core examples](https://mui.com/toolpad/core/introduction/examples/#featured-examples) for functional apps with authentication, routing and theming already integrated.
+:::
+
 All templates feature a custom theme and a default Material Design 2 theme, with light and dark modes for both.
 You can toggle through each of these style options in the top right corner of the live previews.
 
 Sections of each layout are defined either by comments or use of separate files, so you can extract parts of a page (such as a hero unit or a footer) for reuse in other pages.
 These templates can be combined with one of the [example projects](/material-ui/getting-started/example-projects/) to form a complete starter app.
-
-:::info
-If you're looking to build internal tools and dashboards quickly, head to [Toolpad Core examples](https://mui.com/toolpad/core/introduction/examples/#featured-examples) for functional apps with authentication, routing and theming already integrated.
-:::
 
 :::info
 If you see any room for improvement, please feel free to open an [issue](https://github.com/mui/material-ui/issues/new/choose) or a [pull request](https://github.com/mui/material-ui/pulls) on GitHub.
