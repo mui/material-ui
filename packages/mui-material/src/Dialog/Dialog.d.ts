@@ -16,11 +16,6 @@ export interface DialogSlots {
   transition?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
-  /**
-   * The component that renders the paper.
-   * @default Paper
-   */
-  paper?: React.ElementType<PaperProps>;
 }
 
 export interface DialogTransitionSlotPropsOverrides {}
@@ -36,14 +31,6 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
     transition: SlotProps<
       React.ElementType<TransitionProps>,
       DialogTransitionSlotPropsOverrides,
-      DialogOwnerState
-    >;
-    /**
-     * Props forwarded to the paper slot.
-     */
-    paper: SlotProps<
-      React.ElementType<PaperProps>,
-      DialogPaperSlotPropsOverrides,
       DialogOwnerState
     >;
   }

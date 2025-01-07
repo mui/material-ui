@@ -55,6 +55,10 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the container element"
     },
+    "paper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Paper component"
+    },
     "paperFullScreen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
@@ -118,7 +122,6 @@
     }
   },
   "slotDescriptions": {
-    "paper": "The component that renders the paper.",
     "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

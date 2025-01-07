@@ -459,7 +459,6 @@ Dialog.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the body of the dialog.
    * @default Paper
-   * @deprecated Use `slotProps.paper.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent: PropTypes.elementType,
   /**
@@ -478,7 +477,6 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -486,7 +484,6 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    paper: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
