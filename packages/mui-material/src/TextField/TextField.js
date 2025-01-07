@@ -16,6 +16,7 @@ import FormHelperText from '../FormHelperText';
 import Select from '../Select';
 import { getTextFieldUtilityClass } from './textFieldClasses';
 import useSlot from '../utils/useSlot';
+import { unstable_mergeRefs as mergeRefs } from '@mui/utils';
 
 const variantComponent = {
   standard: Input,
@@ -199,6 +200,31 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ownerState,
   });
 
+  // Add inputRef to track our specific input element
+  const numberInputRef = React.useRef(null);
+  
+  React.useEffect(() => {
+    if (type === 'number') {
+      const cleanup = () => {
+        // Only blur if it's our specific number input that's active
+        if (document.activeElement === numberInputRef.current) {
+          numberInputRef.current.blur();
+        }
+      };
+
+      window.addEventListener('mouseup', cleanup);
+      return () => {
+        window.removeEventListener('mouseup', cleanup);
+      };
+    }
+  }, [type]);
+
+  // Merge refs to maintain both our internal ref and any provided inputRef
+  const handleRef = React.useMemo(
+    () => mergeRefs([numberInputRef, inputRef]),
+    [inputRef]
+  );
+
   const InputElement = (
     <InputSlot
       aria-describedby={helperTextId}
@@ -214,7 +240,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       type={type}
       value={value}
       id={id}
-      inputRef={inputRef}
+      inputRef={type === 'number' ? handleRef : inputRef}
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}
