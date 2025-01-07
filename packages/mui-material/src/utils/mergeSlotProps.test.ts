@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 
 import mergeSlotProps from './mergeSlotProps';
@@ -5,6 +6,7 @@ import mergeSlotProps from './mergeSlotProps';
 type OwnerState = {
   className: string;
   'aria-label'?: string;
+  style?: React.CSSProperties;
 };
 
 describe('utils/index.js', () => {
@@ -18,6 +20,27 @@ describe('utils/index.js', () => {
       ).to.deep.equal({
         className: 'default',
         'aria-label': 'foo',
+      });
+    });
+
+    it('merge styles', () => {
+      expect(
+        mergeSlotProps<{ style: React.CSSProperties }>(
+          { style: { color: 'red' } },
+          { style: { backgroundColor: 'blue' } },
+        ),
+      ).to.deep.equal({
+        style: { color: 'red', backgroundColor: 'blue' },
+      });
+
+      // external styles should override
+      expect(
+        mergeSlotProps<{ style: React.CSSProperties }>(
+          { style: { backgroundColor: 'red' } },
+          { style: { backgroundColor: 'blue' } },
+        ),
+      ).to.deep.equal({
+        style: { backgroundColor: 'red' },
       });
     });
 
@@ -75,6 +98,35 @@ describe('utils/index.js', () => {
       ).to.deep.equal({
         className: 'base default external',
         'aria-label': 'foo',
+      });
+    });
+
+    it('merge styles for callbacks', () => {
+      expect(
+        mergeSlotProps(
+          () => ({
+            style: { color: 'red' },
+          }),
+          () => ({
+            style: { backgroundColor: 'blue' },
+          }),
+        )(),
+      ).to.deep.equal({
+        style: { color: 'red', backgroundColor: 'blue' },
+      });
+
+      // external styles should override
+      expect(
+        mergeSlotProps(
+          () => ({
+            style: { backgroundColor: 'red' },
+          }),
+          () => ({
+            style: { backgroundColor: 'blue' },
+          }),
+        )(),
+      ).to.deep.equal({
+        style: { backgroundColor: 'red' },
       });
     });
 
