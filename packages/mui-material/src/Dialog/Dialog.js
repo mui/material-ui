@@ -317,7 +317,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     <DialogRoot
       className={clsx(classes.root, className)}
       closeAfterTransition
-      components={{ backdrop: DialogBackdrop }}
+      components={{ Backdrop: DialogBackdrop }}
       componentsProps={{
         backdrop: {
           transitionDuration,
@@ -350,6 +350,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             aria-modal={ariaModal}
             {...PaperProps}
             className={clsx(classes.paper, PaperProps.className)}
+            ownerState={ownerState}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </DialogPaper>
