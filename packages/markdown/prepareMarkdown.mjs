@@ -1,8 +1,8 @@
 /* eslint-disable no-irregular-whitespace */
-const fs = require('fs');
-const path = require('path');
-const kebabCase = require('lodash/kebabCase');
-const {
+import fs from 'fs';
+import path from 'path';
+import kebabCase from 'lodash/kebabCase.js';
+import {
   createRender,
   getContents,
   getDescription,
@@ -10,7 +10,7 @@ const {
   getFeatureList,
   getHeaders,
   getTitle,
-} = require('./parseMarkdown');
+} from './parseMarkdown.mjs';
 
 const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
 
@@ -264,4 +264,4 @@ ${headers.hooks
   return { docs };
 }
 
-module.exports = prepareMarkdown;
+export default prepareMarkdown;

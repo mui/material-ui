@@ -6,12 +6,9 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
-    ".": "./index.js",
-    "./loader": "./loader.js",
-    "./prism": {
-      "require": "./prism.js",
-      "import": "./prism.mjs"
-    }
+    ".": "./index.mjs",
+    "./loader": "./loader.mjs",
+    "./prism": "./prism.mjs"
   },
   "repository": {
     "type": "git",

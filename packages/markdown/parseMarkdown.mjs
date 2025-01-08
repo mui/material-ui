@@ -1,6 +1,6 @@
-const { marked } = require('marked');
-const textToHash = require('./textToHash');
-const prism = require('./prism');
+import { marked } from 'marked';
+import textToHash from './textToHash.mjs';
+import prism from './prism.mjs';
 
 /**
  * Option used by `marked` the library parsing markdown.
@@ -486,7 +486,7 @@ function createRender(context) {
   return render;
 }
 
-module.exports = {
+export {
   createRender,
   getContents,
   getDescription,
