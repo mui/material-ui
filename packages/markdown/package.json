@@ -4,11 +4,16 @@
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.mjs",
-  "types": "./index.d.ts",
+  "browser": "./index.mjs",
+  "types": "./index.d.mts",
   "exports": {
     ".": "./index.mjs",
     "./loader": "./loader.mjs",
-    "./prism": "./prism.mjs"
+    "./prism": {
+      "types": "./prism.d.mts",
+      "require": null,
+      "import": "./prism.mjs"
+    }
   },
   "repository": {
     "type": "git",

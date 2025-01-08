@@ -31,6 +31,6 @@ module.exports = {
       '@mui/internal-test-utils': path.resolve(__dirname, './packages-internal/test-utils/src'),
       docs: path.resolve(__dirname, './docs'),
     },
-    extensions: ['.js', '.ts', '.tsx', '.d.ts'],
+    extensions: ['.js', '.mjs', '.ts', '.tsx', '.d.ts'],
   },
 };
