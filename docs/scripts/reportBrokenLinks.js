@@ -33,8 +33,6 @@ const usedLinks = {};
 
 parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
 
-console.log(availableLinks, usedLinks);
-
 write('Broken links found by `pnpm docs:link-check` that exist:\n');
 Object.keys(usedLinks)
   .filter((link) => link.startsWith('/'))

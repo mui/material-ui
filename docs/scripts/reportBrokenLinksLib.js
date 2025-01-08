@@ -1,9 +1,8 @@
-/* eslint-disable no-console */
 import path from 'path';
 import fse from 'fs-extra';
 import { createRender } from '@mui/internal-markdown';
 import { marked } from 'marked';
-import { LANGUAGES_IGNORE_PAGES } from '../config.js';
+import { LANGUAGES_IGNORE_PAGES } from '../config';
 
 // Use renderer to extract all links into a markdown document
 function getPageLinks(markdown) {
