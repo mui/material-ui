@@ -124,8 +124,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     size = 'medium',
     disableRipple = false,
     className,
-    slots,
-    slotProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
