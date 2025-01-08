@@ -21,6 +21,12 @@ describe('<Checkbox />', () => {
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'rootClass'],
+    slots: {
+      root: {
+        testWithElement: null,
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   it('should have the classes required for Checkbox', () => {

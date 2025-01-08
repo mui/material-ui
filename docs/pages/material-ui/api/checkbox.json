@@ -34,6 +34,14 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -47,6 +55,14 @@
   "imports": [
     "import Checkbox from '@mui/material/Checkbox';",
     "import { Checkbox } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "SwitchBase",
+      "class": "MuiCheckbox-root"
+    }
   ],
   "classes": [
     {
@@ -77,12 +93,6 @@
       "key": "indeterminate",
       "className": "MuiCheckbox-indeterminate",
       "description": "State class applied to the root element if `indeterminate={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiCheckbox-root",
-      "description": "Class name applied to the root element.",
       "isGlobal": false
     },
     {

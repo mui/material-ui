@@ -36,6 +36,8 @@
     "size": {
       "description": "The size of the component. <code>small</code> is equivalent to the dense checkbox styling."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -69,7 +71,6 @@
       "nodeName": "the root element",
       "conditions": "<code>indeterminate={true}</code>"
     },
-    "root": { "description": "Class name applied to the root element." },
     "sizeMedium": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -80,5 +81,6 @@
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     }
-  }
+  },
+  "slotDescriptions": { "root": "The component that renders the root slot." }
 }

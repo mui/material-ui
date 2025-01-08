@@ -17,6 +17,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, indeterminate, color, size } = ownerState;
@@ -123,6 +124,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     size = 'medium',
     disableRipple = false,
     className,
+    slots,
+    slotProps,
     ...other
   } = props;
 
@@ -139,8 +142,22 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    ...other,
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: CheckboxRoot,
+    ref,
+    className: clsx(classes.root, className),
+    ownerState,
+    externalForwardedProps,
+  });
+
   return (
-    <CheckboxRoot
+    <RootSlot
       type="checkbox"
       inputProps={{
         'data-indeterminate': indeterminate,
@@ -152,11 +169,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       checkedIcon={React.cloneElement(indeterminateIcon, {
         fontSize: indeterminateIcon.props.fontSize ?? size,
       })}
-      ownerState={ownerState}
-      ref={ref}
-      className={clsx(classes.root, className)}
       disableRipple={disableRipple}
-      {...other}
+      {...rootProps}
       classes={classes}
     />
   );
@@ -259,6 +273,20 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
