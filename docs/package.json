@@ -16,7 +16,7 @@
     "typescript": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
     "typescript:transpile": "echo 'Use `pnpm docs:typescript:formatted'` instead && exit 1",
     "typescript:transpile:dev": "echo 'Use `pnpm docs:typescript'` instead && exit 1",
-    "link-check": "node ./scripts/reportBrokenLinks.js"
+    "link-check": "tsx ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
     "@babel/core": "^7.26.0",
