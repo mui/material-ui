@@ -8,7 +8,10 @@
   "exports": {
     ".": "./index.js",
     "./loader": "./loader.js",
-    "./prism": "./prism.js"
+    "./prism": {
+      "require": "./prism.js",
+      "import": "./prism.mjs"
+    }
   },
   "repository": {
     "type": "git",

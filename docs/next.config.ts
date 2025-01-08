@@ -5,18 +5,13 @@ import * as fs from 'fs';
 // @ts-ignore
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
-import { findPages } from './src/modules/utils/find.mjs';
+import { findPages } from './src/modules/utils/find';
+import { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES, LANGUAGES_IN_PROGRESS } from './config';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const require = createRequire(import.meta.url);
 
-const withDocsInfra = require('./nextConfigDocsInfra.js');
-const {
-  LANGUAGES,
-  LANGUAGES_SSR,
-  LANGUAGES_IGNORE_PAGES,
-  LANGUAGES_IN_PROGRESS,
-} = require('./config.js');
+const withDocsInfra = require('./nextConfigDocsInfra');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
