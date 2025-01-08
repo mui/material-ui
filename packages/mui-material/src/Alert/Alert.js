@@ -373,16 +373,48 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
     closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    message: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        component: PropTypes.elementType,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+      }),
+    ]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    action: PropTypes.elementType,
     closeButton: PropTypes.elementType,
     closeIcon: PropTypes.elementType,
+    icon: PropTypes.elementType,
+    message: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
