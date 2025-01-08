@@ -18,7 +18,7 @@ window.muiFixture = {
 };
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
+const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
 const regressionFixtures = [];
 importRegressionFixtures.keys().forEach((path) => {
   const [suite, name] = path
@@ -33,7 +33,7 @@ importRegressionFixtures.keys().forEach((path) => {
       path,
       suite: `regression-${suite}`,
       name,
-      Component: React.lazy(() => importRegressionFixtures(path)),
+      Component: importRegressionFixtures(path).default,
     });
   }
 }, []);
@@ -269,7 +269,7 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
+const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/);
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
@@ -285,7 +285,7 @@ importDemos.keys().forEach((path) => {
       path,
       suite,
       name,
-      Component: React.lazy(() => importDemos(path)),
+      Component: importDemos(path).default,
     });
   }
 }, []);
@@ -298,32 +298,26 @@ if (unusedBlacklistPatterns.size > 0) {
   );
 }
 
-const viewerRoot = document.getElementById('test-viewer');
-
 function FixtureRenderer({ component: FixtureComponent, path }) {
-  const viewerReactRoot = React.useRef(null);
-
-  React.useLayoutEffect(() => {
-    const renderTimeout = setTimeout(() => {
-      const children = (
-        <TestViewer path={path}>
+  React.useEffect(() => {
+    const viewerRoot = document.getElementById('test-viewer');
+    const testRoot = document.createElement('div');
+    viewerRoot.appendChild(testRoot);
+    const reactRoot = ReactDOMClient.createRoot(testRoot);
+    React.startTransition(() => {
+      reactRoot.render(
+        <TestViewer path={path} FixtureComponent={FixtureComponent}>
           <FixtureComponent />
-        </TestViewer>
+        </TestViewer>,
       );
-
-      if (viewerReactRoot.current === null) {
-        viewerReactRoot.current = ReactDOMClient.createRoot(viewerRoot);
-      }
-
-      viewerReactRoot.current.render(children);
     });
 
     return () => {
-      clearTimeout(renderTimeout);
       setTimeout(() => {
-        viewerReactRoot.current.unmount();
-        viewerReactRoot.current = null;
-      });
+        reactRoot.unmount();
+      }, 0);
+
+      viewerRoot.removeChild(testRoot);
     };
   }, [FixtureComponent, path]);
 
@@ -384,8 +378,6 @@ function App(props) {
     });
   }, []);
 
-  const fixturePrepared = fontState !== 'pending';
-
   function computePath(fixture) {
     return `/${fixture.suite}/${fixture.name}`;
   }
@@ -397,29 +389,27 @@ function App(props) {
 
   return (
     <React.Fragment>
-      <Routes>
-        {fixtures.map((fixture) => {
-          const path = computePath(fixture);
-          const FixtureComponent = fixture.Component;
-          if (FixtureComponent === undefined) {
-            console.warn('Missing `Component` for ', fixture);
-            return null;
-          }
+      {fontState === 'active' ? (
+        <Routes>
+          {fixtures.map((fixture) => {
+            const path = computePath(fixture);
+            const FixtureComponent = fixture.Component;
+            if (FixtureComponent === undefined) {
+              console.warn('Missing `Component` for ', fixture);
+              return null;
+            }
 
-          return (
-            <Route
-              key={path}
-              exact
-              path={path}
-              element={
-                fixturePrepared ? (
-                  <FixtureRenderer component={FixtureComponent} path={path} />
-                ) : null
-              }
-            />
-          );
-        })}
-      </Routes>
+            return (
+              <Route
+                key={path}
+                exact
+                path={path}
+                element={<FixtureRenderer component={FixtureComponent} path={path} />}
+              />
+            );
+          })}
+        </Routes>
+      ) : null}
 
       {isDev ? (
         <div>
