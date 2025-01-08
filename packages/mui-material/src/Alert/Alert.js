@@ -191,6 +191,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
+    ...other,
     slots: {
       closeButton: components.CloseButton,
       closeIcon: components.CloseIcon,
@@ -201,6 +202,35 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ...slotProps,
     },
   };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AlertRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [IconSlot, iconSlotProps] = useSlot('icon', {
+    className: classes.icon,
+    elementType: AlertIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [MessageSlot, messageSlotProps] = useSlot('message', {
+    className: classes.message,
+    elementType: AlertMessage,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ActionSlot, actionSlotProps] = useSlot('action', {
+    className: classes.action,
+    elementType: AlertAction,
+    externalForwardedProps,
+    ownerState,
+  });
 
   const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
     elementType: IconButton,
@@ -215,29 +245,16 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   });
 
   return (
-    <AlertRoot
-      role={role}
-      elevation={0}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot role={role} elevation={0} {...rootSlotProps}>
       {icon !== false ? (
-        <AlertIcon ownerState={ownerState} className={classes.icon}>
+        <IconSlot {...iconSlotProps}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
-        </AlertIcon>
+        </IconSlot>
       ) : null}
-      <AlertMessage ownerState={ownerState} className={classes.message}>
-        {children}
-      </AlertMessage>
-      {action != null ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
-          {action}
-        </AlertAction>
-      ) : null}
+      <MessageSlot {...messageSlotProps}>{children}</MessageSlot>
+      {action != null ? <ActionSlot {...actionSlotProps}>{action}</ActionSlot> : null}
       {action == null && onClose ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
+        <ActionSlot {...actionSlotProps}>
           <CloseButtonSlot
             size="small"
             aria-label={closeText}
@@ -248,9 +265,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
           >
             <CloseIconSlot fontSize="small" {...closeIconProps} />
           </CloseButtonSlot>
-        </AlertAction>
+        </ActionSlot>
       ) : null}
-    </AlertRoot>
+    </RootSlot>
   );
 });
 
