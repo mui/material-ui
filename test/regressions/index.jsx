@@ -18,11 +18,16 @@ window.muiFixture = {
 };
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
+const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.(js|ts|tsx)'], {
+  import: 'default',
+  eager: true,
+});
+
 const regressionFixtures = [];
-importRegressionFixtures.keys().forEach((path) => {
+
+Object.keys(importRegressionFixtures).forEach((path) => {
   const [suite, name] = path
-    .replace('./', '')
+    .replace('./fixtures/', '')
     .replace(/\.\w+$/, '')
     .split('/');
 
@@ -33,10 +38,11 @@ importRegressionFixtures.keys().forEach((path) => {
       path,
       suite: `regression-${suite}`,
       name,
-      Component: importRegressionFixtures(path).default,
+      Component: importRegressionFixtures[path],
     });
   }
 }, []);
+console.log(regressionFixtures);
 
 const blacklist = [
   // Excludes demos that we don't want
@@ -269,10 +275,18 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/);
+const importDemos = import.meta.glob(['./docs/data/**/*', '!**/pagesApi.js'], {
+  import: 'default',
+  eager: true,
+});
+
 const demoFixtures = [];
-importDemos.keys().forEach((path) => {
-  const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
+Object.keys(importDemos).forEach((path) => {
+  const [name, ...suiteArray] = path
+    .replace('./docs/data/', '')
+    .replace('.js', '')
+    .split('/')
+    .reverse();
   const suite = `docs-${suiteArray
     .reverse()
     .join('-')
@@ -285,7 +299,7 @@ importDemos.keys().forEach((path) => {
       path,
       suite,
       name,
-      Component: importDemos(path).default,
+      Component: importDemos[path],
     });
   }
 }, []);
@@ -426,6 +440,7 @@ function App(props) {
               <ol>
                 {fixtures.map((fixture) => {
                   const path = computePath(fixture);
+
                   return (
                     <li key={path}>
                       <Link to={path}>{path}</Link>
