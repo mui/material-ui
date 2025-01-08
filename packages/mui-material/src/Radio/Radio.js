@@ -126,8 +126,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     className,
     disabled: disabledProp,
     disableRipple = false,
-    slots={},
-    slotProps={},
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -282,6 +282,20 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
