@@ -463,7 +463,7 @@ App.propTypes = {
 const container = document.getElementById('react-root');
 const children = (
   <Router>
-    <App fixtures={regressionFixtures.concat(demoFixtures)} />{' '}
+    <App fixtures={regressionFixtures.concat(demoFixtures)} />
   </Router>
 );
 const reactRoot = ReactDOMClient.createRoot(container);
