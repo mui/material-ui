@@ -29,11 +29,7 @@ Menus are implemented using a collection of related components:
 
 A basic menu opens over the anchor element by default (this option can be [changed](#menu-positioning) via props). When close to a screen edge, a basic menu vertically realigns to make sure that all menu items are completely visible.
 
-Choosing an option should immediately ideally commit the option and close the menu.
-
-### Usage
-
-In contrast to simple menus, simple dialogs can present additional detail related to the options available for a list item or provide navigational or orthogonal actions related to the primary task. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
+You should configure the component so that selecting an option immediately confirms it and closes the menu, as shown in the demo below.
 
 {{"demo": "BasicMenu.js"}}
 
