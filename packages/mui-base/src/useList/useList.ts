@@ -28,15 +28,13 @@ import { EventHandlers } from '../utils/types';
 const EMPTY_OBJECT = {};
 const NOOP = () => {};
 
-function defaultItemComparer<ItemValue>(optionA: ItemValue, optionB: ItemValue) {
-  return optionA === optionB;
-}
+const defaultItemComparer = <ItemValue>(optionA: ItemValue, optionB: ItemValue) =>
+  optionA === optionB;
 
 const defaultIsItemDisabled = () => false;
 
-function defaultItemStringifier<ItemValue>(item: ItemValue) {
-  return typeof item === 'string' ? item : String(item);
-}
+const defaultItemStringifier = <ItemValue>(item: ItemValue) =>
+  typeof item === 'string' ? item : String(item);
 
 const defaultGetInitialState = () => ({
   highlightedValue: null,

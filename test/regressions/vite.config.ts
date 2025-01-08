@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import * as url from 'url';
@@ -8,12 +8,28 @@ const WORKSPACE_ROOT = path.resolve(currentDirectory, '../../');
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  esbuild: {
-    loader: 'tsx', // OR "jsx"
-    include: /\.[jt]sx?$/,
-    exclude: [],
-  },
+  plugins: [
+    {
+      name: 'treat-js-files-as-jsx',
+      async transform(code, id) {
+        if (/\/node_modules\//.test(id)) {
+          return null;
+        }
+
+        if (!/.*\.js$/.test(id)) {
+          return null;
+        }
+
+        // Use the exposed transform from vite, instead of directly
+        // transforming with esbuild
+        return transformWithEsbuild(code, id, {
+          loader: 'jsx',
+          jsx: 'automatic',
+        });
+      },
+    },
+    react(),
+  ],
   resolve: {
     alias: {
       '@mui/internal-markdown': path.resolve(WORKSPACE_ROOT, './packages/markdown'),
