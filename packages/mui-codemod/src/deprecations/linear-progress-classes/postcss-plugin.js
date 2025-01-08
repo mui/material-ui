@@ -39,7 +39,7 @@ const classes = [
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace deperecated LinearProgress classes with new classes`,
+    postcssPlugin: `Replace deprecated LinearProgress classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 
