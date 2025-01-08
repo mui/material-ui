@@ -18,6 +18,7 @@ import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 
 import { useDefaultProps } from '../DefaultPropsProvider';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, size } = ownerState;
@@ -125,6 +126,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     className,
     disabled: disabledProp,
     disableRipple = false,
+    slots={},
+    slotProps={},
     ...other
   } = props;
 
@@ -164,22 +167,33 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     }
   }
 
+  const externalForwardedProps = {
+    ...other,
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: RadioRoot,
+    ref,
+    className: clsx(classes.root, className),
+    ownerState,
+    externalForwardedProps,
+  });
+
   return (
-    <RadioRoot
+    <RootSlot
       type="radio"
       icon={React.cloneElement(icon, { fontSize: defaultIcon.props.fontSize ?? size })}
       checkedIcon={React.cloneElement(checkedIcon, {
         fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
       disabled={disabled}
-      ownerState={ownerState}
       classes={classes}
       name={name}
       checked={checked}
       onChange={onChange}
-      ref={ref}
-      className={clsx(classes.root, className)}
-      {...other}
+      {...rootProps}
     />
   );
 });

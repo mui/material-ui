@@ -18,6 +18,11 @@ describe('<Radio />', () => {
     testVariantProps: { color: 'secondary' },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('styleSheet', () => {
