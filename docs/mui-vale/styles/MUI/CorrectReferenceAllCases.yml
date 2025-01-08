@@ -2,7 +2,7 @@
 extends: substitution
 message: Use '%s' instead of '%s'
 level: error
-ignorecase: true
+ignorecase: true # There is only one correct way to spell those, so we want to match inputs regarless of case.
 # swap maps tokens in form of bad: good
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
@@ -37,3 +37,5 @@ swap:
   code sandbox: CodeSandbox
   Stackblitz: StackBlitz
   Webpack: webpack # https://twitter.com/wSokra/status/855800490713649152
+  app router: App Router # Next.js
+  page router: Page Router # Next.js
