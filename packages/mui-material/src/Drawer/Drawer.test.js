@@ -10,6 +10,12 @@ import describeConformance from '../../test/describeConformance';
 describe('<Drawer />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
+  const CustomPaper = React.forwardRef(({ className, children, ownerState, ...props }, ref) => (
+    <i className={className} ref={ref} {...props} data-testid="custom">
+      {children}
+    </i>
+  ));
+
   describeConformance(
     <Drawer open disablePortal>
       <div />
@@ -22,6 +28,16 @@ describe('<Drawer />', () => {
       testVariantProps: { variant: 'persistent' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+          testWithComponent: null,
+        },
+        paper: {
+          expectedClassName: classes.paper,
+          testWithComponent: CustomPaper,
+        },
+      },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );

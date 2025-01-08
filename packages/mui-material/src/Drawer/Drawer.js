@@ -303,11 +303,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   // pass `slots` and `slotProps` to `DrawerRoot` directly
   return (
     <DrawerRoot
-      BackdropProps={{
-        ...BackdropProps,
-        ...BackdropPropsProp,
-        transitionDuration,
-      }}
       className={clsx(classes.root, classes.modal, className)}
       open={open}
       ownerState={ownerState}
