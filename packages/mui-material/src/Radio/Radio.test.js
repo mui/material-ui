@@ -21,6 +21,7 @@ describe('<Radio />', () => {
     slots: {
       root: {
         expectedClassName: classes.root,
+        testWithElement: null,
       },
     },
   }));
