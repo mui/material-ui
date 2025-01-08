@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -436,17 +437,25 @@ export default function PricingCards() {
         </Box>
 
         <Box
-          sx={{
-            display: 'flex',
-            border: '1px solid',
-            borderRadius: 1,
-            flexDirection: 'column',
-            p: 2,
-            pt: 1.5,
-            flex: '1 1 0px',
-            borderColor: 'primary.light',
-            backgroundColor: '#FCFDFE',
-          }}
+          sx={[
+            () => ({
+              display: 'flex',
+              border: '1px solid',
+              borderRadius: 1,
+              flexDirection: 'column',
+              p: 2,
+              pt: 1.5,
+              flex: '1 1 0px',
+              borderColor: 'primary.light',
+              background:
+                'linear-gradient(0deg, rgba(250, 250, 250, 1)  0%, rgba(255,255,255,0) 100%)',
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                borderColor: 'primaryDark.700',
+                background: alpha(theme.palette.primaryDark[700], 0.3),
+              }),
+          ]}
         >
           <Box sx={{ height: 'fit-content' }}>
             <PlanName plan="premium" />
