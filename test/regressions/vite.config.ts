@@ -15,24 +15,27 @@ export default defineConfig({
         if (/\/node_modules\//.test(id)) {
           return null;
         }
-
         if (!/.*\.js$/.test(id)) {
           return null;
         }
-
+        if (/\.prism.js/.test(id)) {
+          return null;
+        }
         // Use the exposed transform from vite, instead of directly
         // transforming with esbuild
         return transformWithEsbuild(code, id, {
-          loader: 'jsx',
+          loader: 'tsx',
           jsx: 'automatic',
         });
       },
     },
     react(),
   ],
+  define: {
+    'process.env': '{}',
+  },
   resolve: {
     alias: {
-      '@mui/internal-markdown': path.resolve(WORKSPACE_ROOT, './packages/markdown'),
       '@mui/material': path.resolve(WORKSPACE_ROOT, './packages/mui-material/src'),
       '@mui/docs': path.resolve(WORKSPACE_ROOT, './packages/mui-docs/src'),
       '@mui/icons-material': path.resolve(WORKSPACE_ROOT, './packages/mui-icons-material/lib/esm'),
@@ -58,6 +61,15 @@ export default defineConfig({
         WORKSPACE_ROOT,
         './packages-internal/test-utils/src',
       ),
+      docs: path.resolve(WORKSPACE_ROOT, './docs'),
+    },
+  },
+  optimizeDeps: {
+    force: true,
+    esbuildOptions: {
+      loader: {
+        '.js': 'tsx',
+      },
     },
   },
 });

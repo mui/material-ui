@@ -42,7 +42,6 @@ Object.keys(importRegressionFixtures).forEach((path) => {
     });
   }
 }, []);
-console.log(regressionFixtures);
 
 const blacklist = [
   // Excludes demos that we don't want
@@ -275,10 +274,26 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-const importDemos = import.meta.glob(['./docs/data/**/*', '!**/pagesApi.js'], {
-  import: 'default',
-  eager: true,
-});
+const importDemos = import.meta.glob(
+  [
+    '../../docs/data/*/**/*.js',
+    '!**/*.d.ts',
+    '!**.preview',
+    '!**/.eslintrc.js',
+    '!**/pages.ts',
+    '!**/pagesApi.js',
+    '!**/SearchIcons.js',
+    '!**/getting-started/**',
+    '!**/docs-guides/**',
+    '!**/material-icons/SearchIcons.js',
+  ],
+  {
+    import: 'default',
+    eager: true,
+  },
+);
+
+console.log(importDemos);
 
 const demoFixtures = [];
 Object.keys(importDemos).forEach((path) => {
