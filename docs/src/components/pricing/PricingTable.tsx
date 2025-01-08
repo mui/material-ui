@@ -18,7 +18,7 @@ import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import BusinessIcon from '@mui/icons-material/Business';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
+import { PrioritySupportSwitch2 } from 'docs/src/components/pricing/PrioritySupportSwitch';
 import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
 import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 
@@ -55,7 +55,7 @@ function formatCurrency(value: number) {
 
 export function PlanName({
   plan,
-  disableDescription = false,
+  disableDescription = true,
 }: {
   plan: 'community' | 'pro' | 'premium' | 'enterprise';
   disableDescription?: boolean;
@@ -251,7 +251,7 @@ export function PlanPrice(props: PlanPriceProps) {
             </Typography>
           }
         </Box>
-        <PrioritySupportSwitch />
+        <PrioritySupportSwitch2 />
       </React.Fragment>
     );
   }
@@ -1120,7 +1120,7 @@ const premiumData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
-  'priority-support': <PrioritySupportSwitch />,
+  'priority-support': <PrioritySupportSwitch2 />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <InfoPrioritySupport value={yes} metadata="24 hours" value2={no} />,
@@ -1383,6 +1383,7 @@ function PricingTableDevelopment(props: any) {
     : renderRow('mui-x-development-perpetual');
 }
 
+/*
 function PricingTableBuyPro() {
   const { licenseModel } = useLicenseModel();
 
@@ -1441,6 +1442,7 @@ function PricingTableBuyEnterprise() {
     </Button>
   );
 }
+*/
 
 const StyledCollapse = styled(Collapse, {
   name: 'MuiSlider',
@@ -1529,7 +1531,7 @@ export default function PricingTable({
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="community" />
-            <PlanPrice plan="community" />
+            {/* <PlanPrice plan="community" />
             <Button
               component={Link}
               noLinkStyle
@@ -1540,26 +1542,26 @@ export default function PricingTable({
               sx={{ py: 1, mt: 'auto' }}
             >
               Get started
-            </Button>
+            </Button> */}
           </Box>
           <ColumnHeadHighlight>
             <div>
               <PlanName plan="pro" />
-              <PlanPrice plan="pro" />
+              {/* <PlanPrice plan="pro" /> */}
             </div>
-            <PricingTableBuyPro />
+            {/* <PricingTableBuyPro /> */}
           </ColumnHeadHighlight>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="premium" />
-            <PlanPrice plan="premium" />
-            <PricingTableBuyPremium />
+            {/* <PlanPrice plan="premium" /> */}
+            {/* <PricingTableBuyPremium /> */}
           </Box>
           <ColumnHeadHighlight>
             <div>
               <PlanName plan="enterprise" />
-              <PlanPrice plan="enterprise" />
+              {/* <PlanPrice plan="enterprise" /> */}
             </div>
-            <PricingTableBuyEnterprise />
+            {/* <PricingTableBuyEnterprise /> */}
           </ColumnHeadHighlight>
         </Box>
       )}
