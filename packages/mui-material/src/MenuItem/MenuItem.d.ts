@@ -65,7 +65,6 @@ export type MenuItemTypeMap<
  * API:
  *
  * - [MenuItem API](https://mui.com/material-ui/api/menu-item/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 

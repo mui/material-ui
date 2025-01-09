@@ -19,10 +19,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "JoyBox",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Box/Box.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-box/\">Box</a></li></ul>",

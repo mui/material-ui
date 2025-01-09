@@ -135,10 +135,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyModalClose",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/ModalClose/ModalClose.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-drawer/\">Drawer</a></li>\n<li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",

@@ -65,10 +65,7 @@
       "isGlobal": true
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyAccordionDetails",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/AccordionDetails/AccordionDetails.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-accordion/\">Accordion</a></li></ul>",

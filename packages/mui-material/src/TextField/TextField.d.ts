@@ -331,7 +331,6 @@ export type TextFieldOwnerState = BaseTextFieldProps;
  * API:
  *
  * - [TextField API](https://mui.com/material-ui/api/text-field/)
- * - inherits [FormControl API](https://mui.com/material-ui/api/form-control/)
  */
 export default function TextField<Variant extends TextFieldVariants>(
   props: {

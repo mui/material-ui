@@ -162,10 +162,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyModalDialog",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ModalDialog/ModalDialog.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",

@@ -116,7 +116,6 @@ export type AccordionTypeMap<
  * API:
  *
  * - [Accordion API](https://mui.com/material-ui/api/accordion/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 declare const Accordion: OverridableComponent<AccordionTypeMap>;
 

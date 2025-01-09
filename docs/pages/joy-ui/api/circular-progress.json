@@ -168,10 +168,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyCircularProgress",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/CircularProgress/CircularProgress.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-circular-progress/\">Circular Progress</a></li></ul>",

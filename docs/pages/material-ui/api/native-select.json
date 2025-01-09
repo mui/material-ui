@@ -122,12 +122,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiNativeSelect",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
-  "inheritance": { "component": "Input", "pathname": "/material-ui/api/input/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-select/\">Select</a></li></ul>",
   "cssComponent": false
 }

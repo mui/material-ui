@@ -42,7 +42,6 @@ export interface CardTypeMap<
  * API:
  *
  * - [Card API](https://mui.com/material-ui/api/card/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 
 declare const Card: OverridableComponent<CardTypeMap>;

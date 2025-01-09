@@ -126,10 +126,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiSpeedDial",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SpeedDial/SpeedDial.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed Dial</a></li></ul>",

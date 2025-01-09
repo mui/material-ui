@@ -41,12 +41,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiMenuList",
-  "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-material/src/MenuList/MenuList.js",
-  "inheritance": { "component": "List", "pathname": "/material-ui/api/list/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false
 }

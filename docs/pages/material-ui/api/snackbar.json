@@ -91,10 +91,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiSnackbar",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Snackbar/Snackbar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",

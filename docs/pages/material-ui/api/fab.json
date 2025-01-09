@@ -100,12 +100,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiFab",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/Fab/Fab.js",
-  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-floating-action-button/\">Floating Action Button</a></li></ul>",
   "cssComponent": false
 }

@@ -204,10 +204,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoyCheckbox",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Checkbox/Checkbox.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-checkbox/\">Checkbox</a></li></ul>",

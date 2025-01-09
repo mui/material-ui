@@ -24,10 +24,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiCardContent",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/CardContent/CardContent.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>",

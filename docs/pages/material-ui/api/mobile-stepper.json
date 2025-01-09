@@ -83,12 +83,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiMobileStepper",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/MobileStepper/MobileStepper.js",
-  "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
   "cssComponent": false
 }

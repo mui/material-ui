@@ -113,6 +113,5 @@ export interface CheckboxProps
  * API:
  *
  * - [Checkbox API](https://mui.com/material-ui/api/checkbox/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 export default function Checkbox(props: CheckboxProps): React.JSX.Element;

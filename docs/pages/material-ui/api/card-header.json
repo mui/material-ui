@@ -60,10 +60,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiCardHeader",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/CardHeader/CardHeader.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>",

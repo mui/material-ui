@@ -170,10 +170,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "JoyDrawer",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Drawer/Drawer.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-drawer/\">Drawer</a></li></ul>",

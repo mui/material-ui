@@ -119,12 +119,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiSwipeableDrawer",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SwipeableDrawer/SwipeableDrawer.js",
-  "inheritance": { "component": "Drawer", "pathname": "/material-ui/api/drawer/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawer</a></li></ul>",
   "cssComponent": false
 }

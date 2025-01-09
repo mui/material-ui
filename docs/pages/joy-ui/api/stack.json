@@ -37,10 +37,7 @@
     }
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyStack",
-  "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-joy/src/Stack/Stack.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-stack/\">Stack</a></li></ul>",

@@ -65,9 +65,7 @@
       "isGlobal": true
     }
   ],
-  "spread": true,
   "muiName": "Popup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Unstable_Popup/Popup.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-popup/\">Popup</a></li></ul>",

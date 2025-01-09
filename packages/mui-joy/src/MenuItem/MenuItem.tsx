@@ -177,7 +177,6 @@ const MenuItem = React.memo(InnerMenuItem);
  * API:
  *
  * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
- * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
  */
 const StableMenuItem = React.forwardRef(function StableMenuItem(
   props: MenuItemProps,

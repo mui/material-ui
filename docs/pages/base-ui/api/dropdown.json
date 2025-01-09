@@ -10,8 +10,6 @@
     "import { Dropdown } from '@mui/base';"
   ],
   "classes": [],
-  "spread": false,
-  "themeDefaultProps": null,
   "muiName": "Dropdown",
   "filename": "/packages/mui-base/src/Dropdown/Dropdown.tsx",
   "inheritance": null,

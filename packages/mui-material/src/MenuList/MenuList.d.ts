@@ -59,7 +59,6 @@ export type MenuListClassKey = keyof NonNullable<MenuListTypeMap['props']['class
  * API:
  *
  * - [MenuList API](https://mui.com/material-ui/api/menu-list/)
- * - inherits [List API](https://mui.com/material-ui/api/list/)
  */
 declare const MenuList: ExtendList<MenuListTypeMap>;
 

@@ -96,10 +96,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiModal",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Modal/Modal.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-modal/\">Modal</a></li></ul>",

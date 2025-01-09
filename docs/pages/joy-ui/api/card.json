@@ -150,10 +150,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyCard",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Card/Card.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-card/\">Card</a></li></ul>",

@@ -7,8 +7,6 @@
   "name": "NoSsr",
   "imports": ["import { NoSsr } from '@mui/base/NoSsr';", "import { NoSsr } from '@mui/base';"],
   "classes": [],
-  "spread": false,
-  "themeDefaultProps": null,
   "muiName": "NoSsr",
   "filename": "/packages/mui-base/src/NoSsr/NoSsr.tsx",
   "inheritance": null,

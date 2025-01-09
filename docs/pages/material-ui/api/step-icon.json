@@ -50,12 +50,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiStepIcon",
-  "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-material/src/StepIcon/StepIcon.js",
-  "inheritance": { "component": "SvgIcon", "pathname": "/material-ui/api/svg-icon/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
   "cssComponent": false
 }

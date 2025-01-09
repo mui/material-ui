@@ -35,12 +35,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiCardActionArea",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/CardActionArea/CardActionArea.js",
-  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>",
   "cssComponent": false
 }

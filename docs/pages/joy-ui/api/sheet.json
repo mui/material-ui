@@ -108,10 +108,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoySheet",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Sheet/Sheet.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-sheet/\">Sheet</a></li></ul>",

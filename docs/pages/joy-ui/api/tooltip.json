@@ -223,10 +223,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoyTooltip",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-joy/src/Tooltip/Tooltip.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-tooltip/\">Tooltip</a></li></ul>",

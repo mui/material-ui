@@ -34,8 +34,6 @@
     "import { Hidden } from '@mui/material';"
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": null,
   "muiName": "MuiHidden",
   "filename": "/packages/mui-material/src/Hidden/Hidden.js",
   "inheritance": null,

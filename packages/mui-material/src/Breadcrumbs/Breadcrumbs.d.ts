@@ -96,7 +96,6 @@ export interface BreadcrumbsTypeMap<
  * API:
  *
  * - [Breadcrumbs API](https://mui.com/material-ui/api/breadcrumbs/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 

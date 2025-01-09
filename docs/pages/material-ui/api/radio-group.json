@@ -37,12 +37,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiRadioGroup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/RadioGroup/RadioGroup.js",
-  "inheritance": { "component": "FormGroup", "pathname": "/material-ui/api/form-group/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li></ul>",
   "cssComponent": false
 }

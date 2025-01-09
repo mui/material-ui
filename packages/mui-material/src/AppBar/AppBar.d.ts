@@ -61,7 +61,6 @@ export type AppBarTypeMap<
  * API:
  *
  * - [AppBar API](https://mui.com/material-ui/api/app-bar/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 
 declare const AppBar: OverridableComponent<AppBarTypeMap>;

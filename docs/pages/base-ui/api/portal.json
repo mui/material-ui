@@ -7,8 +7,6 @@
   "name": "Portal",
   "imports": ["import { Portal } from '@mui/base/Portal';", "import { Portal } from '@mui/base';"],
   "classes": [],
-  "spread": false,
-  "themeDefaultProps": null,
   "muiName": "Portal",
   "filename": "/packages/mui-base/src/Portal/Portal.tsx",
   "inheritance": null,

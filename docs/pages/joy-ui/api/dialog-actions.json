@@ -41,10 +41,7 @@
     }
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyDialogActions",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/DialogActions/DialogActions.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",

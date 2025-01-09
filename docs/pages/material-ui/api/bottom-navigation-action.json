@@ -45,12 +45,9 @@
       "isGlobal": true
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiBottomNavigationAction",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/BottomNavigationAction/BottomNavigationAction.js",
-  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-bottom-navigation/\">Bottom Navigation</a></li></ul>",
   "cssComponent": false
 }

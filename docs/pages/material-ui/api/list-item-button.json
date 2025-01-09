@@ -77,12 +77,9 @@
       "isGlobal": true
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiListItemButton",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemButton/ListItemButton.js",
-  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
   "cssComponent": false
 }

@@ -52,10 +52,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTimeline",
-  "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-lab/src/Timeline/Timeline.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",

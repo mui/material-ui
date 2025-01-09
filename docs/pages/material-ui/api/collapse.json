@@ -77,15 +77,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiCollapse",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Collapse/Collapse.js",
-  "inheritance": {
-    "component": "Transition",
-    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
-  },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li>\n<li><a href=\"/material-ui/react-list/\">Lists</a></li>\n<li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
   "cssComponent": false
 }

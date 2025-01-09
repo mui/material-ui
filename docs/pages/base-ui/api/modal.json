@@ -62,9 +62,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
   "muiName": "Modal",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Modal/Modal.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-modal/\">Modal</a></li></ul>",

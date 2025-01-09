@@ -207,10 +207,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoySnackbar",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Snackbar/Snackbar.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-snackbar/\">Snackbar</a></li></ul>",

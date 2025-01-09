@@ -12,8 +12,6 @@
     "import { TextareaAutosize } from '@mui/material';"
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": null,
   "muiName": "MuiTextareaAutosize",
   "filename": "/packages/mui-material/src/TextareaAutosize/TextareaAutosize.tsx",
   "inheritance": null,

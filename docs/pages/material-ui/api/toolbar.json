@@ -50,10 +50,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiToolbar",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Toolbar/Toolbar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App Bar</a></li></ul>",

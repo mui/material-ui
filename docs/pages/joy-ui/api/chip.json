@@ -197,10 +197,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyChip",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Chip/Chip.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-chip/\">Chip</a></li></ul>",

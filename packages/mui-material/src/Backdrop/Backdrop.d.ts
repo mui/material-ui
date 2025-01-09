@@ -127,7 +127,6 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
  * API:
  *
  * - [Backdrop API](https://mui.com/material-ui/api/backdrop/)
- * - inherits [Fade API](https://mui.com/material-ui/api/fade/)
  */
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 

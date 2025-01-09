@@ -52,7 +52,6 @@ export type StepButtonTypeMap<
  * API:
  *
  * - [StepButton API](https://mui.com/material-ui/api/step-button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const StepButton: ExtendButtonBase<
   StepButtonTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>

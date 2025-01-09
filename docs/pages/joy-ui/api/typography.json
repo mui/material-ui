@@ -220,10 +220,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyTypography",
-  "forwardsRefTo": "HTMLParagraphElement",
   "filename": "/packages/mui-joy/src/Typography/Typography.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-skeleton/\">Skeleton</a></li>\n<li><a href=\"/joy-ui/react-typography/\">Typography</a></li></ul>",

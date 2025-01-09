@@ -76,7 +76,6 @@ export type InputLabelTypeMap<
  * API:
  *
  * - [InputLabel API](https://mui.com/material-ui/api/input-label/)
- * - inherits [FormLabel API](https://mui.com/material-ui/api/form-label/)
  */
 declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
 

@@ -33,9 +33,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
   "muiName": "TabPanel",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabPanel/TabPanel.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-tabs/\">Tabs</a></li></ul>",

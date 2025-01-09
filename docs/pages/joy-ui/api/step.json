@@ -78,10 +78,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyStep",
-  "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/Step/Step.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-stepper/\">Stepper</a></li></ul>",

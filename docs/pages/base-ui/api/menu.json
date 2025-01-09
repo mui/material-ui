@@ -45,9 +45,7 @@
       "isGlobal": true
     }
   ],
-  "spread": true,
   "muiName": "Menu",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Menu/Menu.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",

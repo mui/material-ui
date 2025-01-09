@@ -236,10 +236,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoySlider",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/Slider/Slider.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-slider/\">Slider</a></li></ul>",

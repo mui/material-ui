@@ -33,10 +33,7 @@
     }
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyListItemContent",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ListItemContent/ListItemContent.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-list/\">Lists</a></li></ul>",

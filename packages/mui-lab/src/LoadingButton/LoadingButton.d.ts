@@ -68,7 +68,6 @@ export type LoadingButtonTypeMap<
  * API:
  *
  * - [LoadingButton API](https://mui.com/material-ui/api/loading-button/)
- * - inherits [Button API](https://mui.com/material-ui/api/button/)
  */
 declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 

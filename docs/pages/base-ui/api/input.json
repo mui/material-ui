@@ -119,9 +119,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
   "muiName": "Input",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Input/Input.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-input/\">Input</a></li></ul>",

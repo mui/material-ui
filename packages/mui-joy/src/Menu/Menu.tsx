@@ -79,7 +79,6 @@ const MenuRoot = styled(StyledList, {
  * API:
  *
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
- * - inherits [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
 const Menu = React.forwardRef(function Menu(inProps, ref: React.ForwardedRef<HTMLUListElement>) {
   const props = useThemeProps({

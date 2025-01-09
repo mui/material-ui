@@ -168,10 +168,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyToggleButtonGroup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ToggleButtonGroup/ToggleButtonGroup.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-toggle-button-group/\">Toggle Button Group</a></li></ul>",

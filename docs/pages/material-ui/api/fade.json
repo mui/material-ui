@@ -21,15 +21,9 @@
   "name": "Fade",
   "imports": ["import Fade from '@mui/material/Fade';", "import { Fade } from '@mui/material';"],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiFade",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Fade/Fade.js",
-  "inheritance": {
-    "component": "Transition",
-    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
-  },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
   "cssComponent": false
 }

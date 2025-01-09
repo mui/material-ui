@@ -71,7 +71,6 @@ export type TabTypeMap<
  * API:
  *
  * - [Tab API](https://mui.com/material-ui/api/tab/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const Tab: ExtendButtonBase<TabTypeMap>;
 

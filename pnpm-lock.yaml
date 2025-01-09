@@ -15460,6 +15460,14 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
+  '@mui/x-internals@7.23.5(@types/react@19.0.2)(react@19.0.0)':
+    dependencies:
+      '@babel/runtime': 7.26.0
+      '@mui/utils': 6.3.0(@types/react@19.0.2)(react@19.0.0)
+      react: 19.0.0
+    transitivePeerDependencies:
+      - '@types/react'
+
   '@mui/x-license@7.23.2(@types/react@19.0.2)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
@@ -15472,6 +15480,14 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
       '@mui/utils': 6.3.1(@types/react@19.0.2)(react@19.0.0)
+      react: 19.0.0
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@mui/x-license@7.23.5(@types/react@19.0.2)(react@19.0.0)':
+    dependencies:
+      '@babel/runtime': 7.26.0
+      '@mui/utils': 6.3.0(@types/react@19.0.2)(react@19.0.0)
       react: 19.0.0
     transitivePeerDependencies:
       - '@types/react'

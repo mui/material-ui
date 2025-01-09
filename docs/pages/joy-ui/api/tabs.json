@@ -157,10 +157,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyTabs",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Tabs/Tabs.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-tabs/\">Tabs</a></li></ul>",

@@ -154,10 +154,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTabs",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Tabs/Tabs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>",

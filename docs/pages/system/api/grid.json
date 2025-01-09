@@ -101,10 +101,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiGrid",
-  "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-system/src/Grid/Grid.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-grid/\">Grid (Joy UI)</a></li>\n<li><a href=\"/material-ui/react-grid/\">Grid (Material UI)</a></li></ul>",

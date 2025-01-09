@@ -442,12 +442,9 @@
       "isDeprecated": true
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiLoadingButton",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-lab/src/LoadingButton/LoadingButton.js",
-  "inheritance": { "component": "Button", "pathname": "/material-ui/api/button/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-button-group/\">Button Group</a></li>\n<li><a href=\"/material-ui/react-button/\">Button</a></li></ul>",
   "cssComponent": false
 }

@@ -71,8 +71,6 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiAvatarGroup",
   "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,

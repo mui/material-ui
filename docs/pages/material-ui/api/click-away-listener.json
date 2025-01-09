@@ -24,8 +24,6 @@
     "import { ClickAwayListener } from '@mui/material';"
   ],
   "classes": [],
-  "spread": false,
-  "themeDefaultProps": null,
   "muiName": "MuiClickAwayListener",
   "filename": "/packages/mui-material/src/ClickAwayListener/ClickAwayListener.tsx",
   "inheritance": null,

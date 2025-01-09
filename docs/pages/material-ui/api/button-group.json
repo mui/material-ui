@@ -257,10 +257,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiButtonGroup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ButtonGroup/ButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-button-group/\">Button Group</a></li></ul>",

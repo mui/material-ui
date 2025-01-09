@@ -21,15 +21,9 @@
   "name": "Grow",
   "imports": ["import Grow from '@mui/material/Grow';", "import { Grow } from '@mui/material';"],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiGrow",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Grow/Grow.js",
-  "inheritance": {
-    "component": "Transition",
-    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
-  },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-popover/\">Popover</a></li>\n<li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
   "cssComponent": false
 }

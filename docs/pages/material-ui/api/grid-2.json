@@ -71,10 +71,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiGrid2",
-  "forwardsRefTo": "HTMLElement",
   "filename": "/packages/mui-material/src/Grid2/Grid2.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-grid2/\">Grid version 2</a></li></ul>",
