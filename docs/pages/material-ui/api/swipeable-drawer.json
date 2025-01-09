@@ -33,27 +33,29 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: func<br>&#124;&nbsp;object, docked?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, docked?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, swipeArea?: object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: elementType, docked?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
+        "description": "{ backdrop?: elementType, docked?: elementType, paper?: elementType, root?: elementType, swipeArea?: elementType, transition?: elementType }"
       },
       "default": "{}"
     },
-    "SwipeAreaProps": { "type": { "name": "object" } },
+    "SwipeAreaProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps.swipeArea</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
     "transitionDuration": {
       "type": {
         "name": "union",
         "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
       },
-      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}",
-      "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps.transition.transitionDuration</code> instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
     }
   },
   "name": "SwipeableDrawer",

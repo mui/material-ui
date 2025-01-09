@@ -39,19 +39,6 @@ export default function transformer(file, api, options) {
   movePropIntoSlotProps(j, {
     root,
     componentName: 'Drawer',
-    propName: 'ModalProps',
-    slotName: 'root',
-  });
-  movePropIntoSlotProps(j, {
-    root,
-    componentName: 'SwipeableDrawer',
-    propName: 'ModalProps',
-    slotName: 'root',
-  });
-
-  movePropIntoSlotProps(j, {
-    root,
-    componentName: 'Drawer',
     propName: 'PaperProps',
     slotName: 'paper',
   });

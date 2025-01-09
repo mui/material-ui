@@ -119,7 +119,6 @@ export interface DrawerProps
   elevation?: number;
   /**
    * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
-   * @deprecated use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   ModalProps?: Partial<ModalProps>;
@@ -154,7 +153,6 @@ export interface DrawerProps
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @deprecated use the `slotProps.transition.transitionDuration` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,

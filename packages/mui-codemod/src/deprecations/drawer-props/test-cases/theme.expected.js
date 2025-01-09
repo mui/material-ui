@@ -33,29 +33,6 @@ fn({
   MuiDrawer: {
     defaultProps: {
       slotProps: {
-        root: {
-          disablePortal: true,
-        }
-      },
-    },
-  },
-});
-fn({
-  MuiSwipeableDrawer: {
-    defaultProps: {
-      slotProps: {
-        root: {
-          disablePortal: true,
-        }
-      },
-    },
-  },
-});
-
-fn({
-  MuiDrawer: {
-    defaultProps: {
-      slotProps: {
         paper: {
           elevation: 20,
         }

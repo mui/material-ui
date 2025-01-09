@@ -14,13 +14,6 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/m
 }} />;
 
 <Drawer slotProps={{
-  root: { disablePortal: true }
-}} />;
-<SwipeableDrawer slotProps={{
-  root: { disablePortal: true }
-}} />;
-
-<Drawer slotProps={{
   paper: { elevation: 20 }
 }} />;
 <SwipeableDrawer slotProps={{
@@ -40,7 +33,6 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/m
   }}
   slotProps={{
     backdrop: { transitionDuration: 300 },
-    root: { disablePortal: true },
     paper: { elevation: 20 },
     transition: { direction: 'right' }
   }} />;
@@ -50,7 +42,6 @@ import { Drawer as MyDrawer, SwipeableDrawer as MySwipeableDrawer } from '@mui/m
   }}
   slotProps={{
     backdrop: { transitionDuration: 300 },
-    root: { disablePortal: true },
     paper: { elevation: 20 },
     transition: { direction: 'right' }
   }} />;

@@ -241,16 +241,16 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
 
   const externalForwardedProps = {
     slots: {
+      transition: TransitionComponent,
       ...slots,
-      transition: slots.transition || TransitionComponent,
     },
     slotProps: {
+      paper: PaperProps,
+      transition: SlideProps,
       ...slotProps,
       backdrop: mergeSlotProps(slotProps.backdrop || { ...BackdropProps, ...BackdropPropsProp }, {
         transitionDuration,
       }),
-      paper: slotProps.paper || PaperProps,
-      transition: slotProps.transition || SlideProps,
     },
   };
 
@@ -357,7 +357,6 @@ Drawer.propTypes /* remove-proptypes */ = {
   hideBackdrop: PropTypes.bool,
   /**
    * Props applied to the [`Modal`](https://mui.com/material-ui/api/modal/) element.
-   * @deprecated use the `slotProps.root` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   ModalProps: PropTypes.object,
@@ -418,7 +417,6 @@ Drawer.propTypes /* remove-proptypes */ = {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @deprecated use the `slotProps.transition.transitionDuration` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {
    *   enter: theme.transitions.duration.enteringScreen,
    *   exit: theme.transitions.duration.leavingScreen,

@@ -22,25 +22,6 @@ fn({
 fn({
   MuiDrawer: {
     defaultProps: {
-      ModalProps: {
-        disablePortal: true,
-      },
-    },
-  },
-});
-fn({
-  MuiSwipeableDrawer: {
-    defaultProps: {
-      ModalProps: {
-        disablePortal: true,
-      },
-    },
-  },
-});
-
-fn({
-  MuiDrawer: {
-    defaultProps: {
       PaperProps: {
         elevation: 20,
       },
