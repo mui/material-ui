@@ -23,7 +23,7 @@ export interface LinearProgressClasses {
    */
   dashedColorPrimary: string;
   /** Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`.
-   * @deprecated Combine the [.MuiLinearProgress-dashed](/material-ui/api/linear-progress/#linear-progress-classes-dashed) and [.MuiChip-colorSecondary](/material-ui/api/linear-progress/#linear-progress-classes-colorSecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Combine the [.MuiLinearProgress-dashed](/material-ui/api/linear-progress/#linear-progress-classes-dashed) and [.MuiLinearProgress-colorSecondary](/material-ui/api/linear-progress/#linear-progress-classes-colorSecondary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   dashedColorSecondary: string;
   /** Styles applied to the layered bar1 and bar2 elements. */
