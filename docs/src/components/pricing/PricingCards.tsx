@@ -12,52 +12,7 @@ import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportC
 import IconImage from 'docs/src/components/icon/IconImage';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
-
-const planInfo = {
-  community: {
-    iconName: 'pricing/x-plan-community',
-    title: 'Community',
-    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
-    features: ['+40 free components', 'Community support'],
-  },
-  pro: {
-    iconName: 'pricing/x-plan-pro',
-    title: 'Pro',
-    description: 'Best for professional developers or startups building data-rich applications.',
-    features: [
-      'All Community features and...',
-      'MUI X Pro access',
-      '10+ Pro features',
-      'Pro support',
-    ],
-  },
-  premium: {
-    iconName: 'pricing/x-plan-premium',
-    title: 'Premium',
-    description:
-      'The most advanced features for data-rich applications along with standard support.',
-    features: [
-      'All Pro features and...',
-      'MUI X Premium access',
-      '5+ Premium features',
-      'Premium support',
-    ],
-  },
-  enterprise: {
-    iconName: 'pricing/x-plan-enterprise',
-    title: 'Enterprise',
-    description:
-      'All features of Premium coupled with enterprise-grade support and customer success.',
-    features: [
-      'All Premium features and...',
-      'Technical support for all libraries',
-      'Guaranteed response time',
-      'Pre-screening',
-      'Issue escalation',
-      'Customer success manager',
-    ],
-  },
-} as const;
+import { PlanName, planInfo } from 'docs/src/components/pricing/PricingTable';
 
 const formatter = new Intl.NumberFormat('en-US');
 
@@ -65,52 +20,8 @@ function formatCurrency(value: number) {
   return `$${formatter.format(value)}`;
 }
 
-export function PlanName({
-  plan,
-  disableDescription = false,
-}: {
-  plan: 'community' | 'pro' | 'premium' | 'enterprise';
-  disableDescription?: boolean;
-}) {
-  const { title, iconName, description } = planInfo[plan];
-  return (
-    <React.Fragment>
-      <Typography
-        variant="body2"
-        sx={{
-          fontWeight: 'bold',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          pr: 0.5,
-        }}
-      >
-        <IconImage name={iconName} mode="" loading="eager" sx={{ mr: 1 }} /> {title}
-      </Typography>
-      {!disableDescription && (
-        <Typography
-          variant="body2"
-          sx={{
-            color: 'text.secondary',
-            display: 'flex',
-            textAlign: 'center',
-            justifyContent: 'center',
-            alignItems: 'baseline',
-            mt: 1,
-            minHeight: { md: 63 },
-          }}
-        >
-          {description}
-        </Typography>
-      )}
-    </React.Fragment>
-  );
-}
-
 interface PlanPriceProps {
   plan: 'community' | 'pro' | 'premium' | 'enterprise';
-  // checked?: boolean;
-  // handleChange2?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function PlanPrice(props: PlanPriceProps) {
@@ -386,7 +297,7 @@ export default function PricingCards() {
           }}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="community" />
+            <PlanName plan="community" disableDescription={false} />
             <PlanPrice plan="community" />
           </Box>
           <Divider sx={{ my: 2 }} />
@@ -417,7 +328,7 @@ export default function PricingCards() {
           }}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="pro" />
+            <PlanName plan="pro" disableDescription={false} />
             <PlanPrice plan="pro" />
           </Box>
           {/* <PricingTableBuyPro /> */}
@@ -458,7 +369,7 @@ export default function PricingCards() {
           ]}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="premium" />
+            <PlanName plan="premium" disableDescription={false} />
             <PlanPrice plan="premium" />
           </Box>
           {/* <PricingTableBuyPremium />  */}
@@ -490,7 +401,7 @@ export default function PricingCards() {
           }}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="enterprise" />
+            <PlanName plan="enterprise" disableDescription={false} />
             <PlanPrice plan="enterprise" />
           </Box>
           {/* <PricingTableBuyEnterprise /> */}

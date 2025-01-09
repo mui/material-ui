@@ -1,41 +1,27 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import { Link } from '@mui/docs/Link';
-import PricingTable, { PlanName, PlanPrice } from 'docs/src/components/pricing/PricingTable';
-import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
-
-function getButtonText(plan: string) {
-  if (plan.match(/(pro|premium)/)) {
-    return 'Buy now';
-  }
-  if (plan === 'enterprise') {
-    return 'Contact sales';
-  }
-  if (plan === 'community') {
-    return 'Get started';
-  }
-  return 'missing';
-}
+import PricingTable, { PlanName, planInfo } from 'docs/src/components/pricing/PricingTable';
+import { PlanPrice } from 'docs/src/components/pricing/PricingCards';
+import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 
 const Plan = React.forwardRef<
   HTMLDivElement,
   {
     plan: 'community' | 'pro' | 'premium' | 'enterprise';
-    benefits?: Array<string>;
+
     unavailable?: boolean;
   } & PaperProps
->(function Plan({ plan, benefits, unavailable, sx, ...props }, ref) {
+>(function Plan({ plan, unavailable, sx, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
-  const { licenseModel } = useLicenseModel();
+
+  const { features } = planInfo[plan];
 
   return (
     <Paper
@@ -44,57 +30,35 @@ const Plan = React.forwardRef<
       sx={{ p: 2, ...(unavailable && { '& .MuiTypography-root': { opacity: 0.5 } }), ...sx }}
       {...props}
     >
-      <PlanName plan={plan} />
-      <Box {...(plan === 'community' && { my: 2 })} {...(plan === 'enterprise' && { mb: 2 })}>
+      <PlanName plan={plan} disableDescription={false} />
+      <Box sx={{ mb: 2 }}>
+        {(plan === 'pro' || plan === 'premium') && <LicenseModelSwitch />}
         <PlanPrice plan={plan} />
       </Box>
-      {unavailable ? (
-        <Button
-          variant="outlined"
-          disabled
-          fullWidth
-          sx={{ py: 1, '&.Mui-disabled': { color: 'text.disabled' } }}
+      {features.map((feature, index) => (
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+          }}
         >
-          In progress!
-        </Button>
-      ) : (
-        <Button
-          variant={plan.match(/(pro|premium|enterprise)/) ? 'contained' : 'outlined'}
-          fullWidth
-          component={Link}
-          noLinkStyle
-          href={
-            {
-              community: '/material-ui/getting-started/usage/',
-              pro:
-                licenseModel === 'annual'
-                  ? 'https://mui.com/store/items/mui-x-pro/'
-                  : 'https://mui.com/store/items/mui-x-pro-perpetual/',
-              premium:
-                licenseModel === 'annual'
-                  ? 'https://mui.com/store/items/mui-x-premium/'
-                  : 'https://mui.com/store/items/mui-x-premium-perpetual/',
-              enterprise: 'mailto:sales@mui.com',
-            }[plan]
-          }
-          endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1 }}
-        >
-          {getButtonText(plan)}
-        </Button>
-      )}
-      {benefits &&
-        benefits.map((text) => (
-          <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+          <Box
+            key={index}
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              mt: 1,
+            }}
+          >
             <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.secondary', fontWeight: 'extraBold', ml: 1 }}
-            >
-              {text}
+            <Typography variant="body2" sx={{ color: 'text.secondary', ml: 1 }}>
+              {feature}
             </Typography>
           </Box>
-        ))}
+        </Box>
+      ))}
     </Paper>
   );
 });

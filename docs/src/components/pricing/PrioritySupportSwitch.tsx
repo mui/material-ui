@@ -33,51 +33,39 @@ export default function PrioritySupportSwitch() {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
         border: '1px dashed',
         borderColor: 'primary.dark',
         borderRadius: 1,
         padding: 2,
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'stretch',
-          width: '100%',
-          gap: 4,
-        }}
-      >
-        <FormGroup>
-          <FormControlLabel
-            control={<Switch checked={prioritySupport} onChange={handleChange} />}
-            label={
-              <Tooltip title={prioritySupportDescription} {...tooltipProps}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: 'text.secondary',
-                    textAlign: 'left',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  Priority support
-                </Typography>
-              </Tooltip>
-            }
-            sx={{
-              mb: 0.5,
-              ml: 0,
-              gap: 7,
-            }}
-            labelPlacement="start"
-          />
-        </FormGroup>
-      </Box>
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch checked={prioritySupport} onChange={handleChange} />}
+          label={
+            <Tooltip title={prioritySupportDescription} {...tooltipProps}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: 'text.secondary',
+                  textAlign: 'left',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Priority support
+              </Typography>
+            </Tooltip>
+          }
+          sx={{
+            mb: 0.5,
+            ml: 0,
+            mr: 0,
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+          labelPlacement="start"
+        />
+      </FormGroup>
       <Typography variant="body2" color="text.secondary">
         24h SLA response time, support for MUI Core, and the highest priority on bug fixes.
       </Typography>

@@ -14,44 +14,56 @@ import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
-import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
-import BusinessIcon from '@mui/icons-material/Business';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import { PrioritySupportSwitch2 } from 'docs/src/components/pricing/PrioritySupportSwitch';
 import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
-import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 
-const planInfo = {
+export const planInfo = {
   community: {
     iconName: 'pricing/x-plan-community',
     title: 'Community',
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
+    features: ['+40 free components', 'Community support'],
   },
   pro: {
     iconName: 'pricing/x-plan-pro',
     title: 'Pro',
     description: 'Best for professional developers or startups building data-rich applications.',
+    features: [
+      'All Community features and...',
+      'MUI X Pro access',
+      '10+ Pro features',
+      'Pro support',
+    ],
   },
   premium: {
     iconName: 'pricing/x-plan-premium',
     title: 'Premium',
     description:
       'The most advanced features for data-rich applications along with standard support.',
+    features: [
+      'All Pro features and...',
+      'MUI X Premium access',
+      '5+ Premium features',
+      'Premium support',
+    ],
   },
   enterprise: {
     iconName: 'pricing/x-plan-enterprise',
     title: 'Enterprise',
     description:
       'All features of Premium coupled with enterprise-grade support and customer success.',
+    features: [
+      'All Premium features and...',
+      'Technical support for all libraries',
+      'Guaranteed response time',
+      'Pre-screening',
+      'Issue escalation',
+      'Customer success manager',
+    ],
   },
 } as const;
-
-const formatter = new Intl.NumberFormat('en-US');
-
-function formatCurrency(value: number) {
-  return `$${formatter.format(value)}`;
-}
 
 export function PlanName({
   plan,
@@ -91,188 +103,6 @@ export function PlanName({
           {description}
         </Typography>
       )}
-    </React.Fragment>
-  );
-}
-
-interface PlanPriceProps {
-  plan: 'community' | 'pro' | 'premium' | 'enterprise';
-  // checked?: boolean;
-  // handleChange2?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export function PlanPrice(props: PlanPriceProps) {
-  const { plan } = props;
-
-  const { licenseModel } = useLicenseModel();
-  const annual = licenseModel === 'annual';
-  const planPriceMinHeight = 24;
-
-  const { prioritySupport } = usePrioritySupport();
-
-  if (plan === 'community') {
-    return (
-      <React.Fragment>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 7 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'success.600' }}
-          >
-            $0
-          </Typography>
-        </Box>
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-          Free forever!
-        </Typography>
-      </React.Fragment>
-    );
-  }
-
-  const priceUnit = annual ? '/ year / dev' : '/ dev';
-  const getPriceExplanation = (displayedValue: number) => {
-    if (annual) {
-      return `Equivalent to $${displayedValue} / month / dev`;
-    }
-    return '';
-  };
-
-  if (plan === 'pro') {
-    const annualValue = 180;
-    const perpetualValue = annualValue * 3;
-    const monthlyValueForAnnual = annualValue / 12;
-
-    const mainDisplayValue = annual ? annualValue : perpetualValue;
-    const priceExplanation = getPriceExplanation(annual ? monthlyValueForAnnual : perpetualValue);
-
-    return (
-      <React.Fragment>
-        <LicenseModelSwitch />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 1, mb: 0 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'primary.main' }}
-          >
-            {formatCurrency(mainDisplayValue)}
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-            {priceUnit}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mb: 3,
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          {
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem' }}
-            >
-              {priceExplanation}
-            </Typography>
-          }
-        </Box>
-      </React.Fragment>
-    );
-  }
-
-  if (plan === 'premium') {
-    const premiumAnnualValue = 588;
-    const premiumPerpetualValue = premiumAnnualValue * 3;
-    const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
-
-    const premiumAnnualValueWithPrioritySupport = premiumAnnualValue + 399;
-    const premiumPerpetualValueWithPrioritySupport = premiumPerpetualValue + 399;
-    const premiumMonthlyValueForAnnualWithPrioritySupport = 82; // premiumAnnualValueWithPrioritySupport / 12;
-
-    const priceExplanation = getPriceExplanation(
-      prioritySupport
-        ? premiumMonthlyValueForAnnualWithPrioritySupport
-        : premiumMonthlyValueForAnnual,
-    );
-
-    let premiumDisplayedValue: number = premiumAnnualValue;
-    if (annual && prioritySupport) {
-      premiumDisplayedValue = premiumAnnualValueWithPrioritySupport;
-    } else if (!annual && prioritySupport) {
-      premiumDisplayedValue = premiumPerpetualValueWithPrioritySupport;
-    } else if (annual && !prioritySupport) {
-      premiumDisplayedValue = premiumAnnualValue;
-    } else if (!annual && !prioritySupport) {
-      premiumDisplayedValue = premiumPerpetualValue;
-    }
-
-    return (
-      <React.Fragment>
-        <LicenseModelSwitch />
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            mt: 1,
-            mb: 0,
-          }}
-        >
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{ fontWeight: 'bold', color: 'primary.main' }}
-          >
-            {formatCurrency(premiumDisplayedValue)}
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: '3px' }}>
-            {priceUnit}
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mb: 3,
-            minHeight: planPriceMinHeight,
-          }}
-        >
-          {
-            <Typography
-              variant="body2"
-              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem' }}
-            >
-              {priceExplanation}
-            </Typography>
-          }
-        </Box>
-        <PrioritySupportSwitch2 />
-      </React.Fragment>
-    );
-  }
-
-  // else enterprise
-  return (
-    <React.Fragment>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          mt: 4,
-        }}
-      >
-        <BusinessIcon sx={{ fontSize: 65, color: 'text.tertiary' }} />
-      </Box>
-      <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-        Custom pricing
-      </Typography>
     </React.Fragment>
   );
 }
@@ -1383,67 +1213,6 @@ function PricingTableDevelopment(props: any) {
     : renderRow('mui-x-development-perpetual');
 }
 
-/*
-function PricingTableBuyPro() {
-  const { licenseModel } = useLicenseModel();
-
-  return (
-    <Button
-      component={Link}
-      noLinkStyle
-      href={
-        licenseModel === 'annual'
-          ? 'https://mui.com/store/items/mui-x-pro/'
-          : 'https://mui.com/store/items/mui-x-pro-perpetual/'
-      }
-      variant="contained"
-      endIcon={<KeyboardArrowRightRounded />}
-      sx={{ py: 1, mt: 'auto' }}
-    >
-      Buy now
-    </Button>
-  );
-}
-
-function PricingTableBuyPremium() {
-  const { licenseModel } = useLicenseModel();
-
-  return (
-    <Button
-      component={Link}
-      noLinkStyle
-      href={
-        licenseModel === 'annual'
-          ? 'https://mui.com/store/items/mui-x-premium/'
-          : 'https://mui.com/store/items/mui-x-premium-perpetual/'
-      }
-      variant="contained"
-      fullWidth
-      endIcon={<KeyboardArrowRightRounded />}
-      sx={{ py: 1, mt: 'auto' }}
-    >
-      Buy now
-    </Button>
-  );
-}
-
-function PricingTableBuyEnterprise() {
-  return (
-    <Button
-      component={Link}
-      noLinkStyle
-      href="mailto:sales@mui.com"
-      variant="contained"
-      fullWidth
-      endIcon={<KeyboardArrowRightRounded />}
-      sx={{ py: 1, mt: 'auto' }}
-    >
-      Contact Sales
-    </Button>
-  );
-}
-*/
-
 const StyledCollapse = styled(Collapse, {
   name: 'MuiSlider',
   slot: 'Track',
@@ -1531,37 +1300,15 @@ export default function PricingTable({
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="community" />
-            {/* <PlanPrice plan="community" />
-            <Button
-              component={Link}
-              noLinkStyle
-              href="/material-ui/getting-started/usage/"
-              variant="outlined"
-              fullWidth
-              endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1, mt: 'auto' }}
-            >
-              Get started
-            </Button> */}
           </Box>
           <ColumnHeadHighlight>
-            <div>
-              <PlanName plan="pro" />
-              {/* <PlanPrice plan="pro" /> */}
-            </div>
-            {/* <PricingTableBuyPro /> */}
+            <PlanName plan="pro" />
           </ColumnHeadHighlight>
           <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
             <PlanName plan="premium" />
-            {/* <PlanPrice plan="premium" /> */}
-            {/* <PricingTableBuyPremium /> */}
           </Box>
           <ColumnHeadHighlight>
-            <div>
-              <PlanName plan="enterprise" />
-              {/* <PlanPrice plan="enterprise" /> */}
-            </div>
-            {/* <PricingTableBuyEnterprise /> */}
+            <PlanName plan="enterprise" />
           </ColumnHeadHighlight>
         </Box>
       )}
