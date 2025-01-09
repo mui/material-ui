@@ -254,7 +254,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     },
   };
 
-  const [PaperSlot, paperSlotProps] = useSlot('paper', {
+  const [PaperSlot, { as: paperComponent, ...paperSlotProps }] = useSlot('paper', {
     elementType: DrawerPaper,
     className: clsx(classes.paper, PaperProps.className),
     ownerState,
@@ -286,7 +286,13 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     },
   });
 
-  const drawer = <PaperSlot {...paperSlotProps}>{children}</PaperSlot>;
+  const drawer = (
+    // need to convert `as` to `component` prop, otherwise the `slotProps.paper.component` will replace the `Paper`.
+    // what we want is to replace the `div` that the Paper is rendered into.
+    <PaperSlot component={paperComponent} {...paperSlotProps}>
+      {children}
+    </PaperSlot>
+  );
 
   if (variant === 'permanent') {
     return <DockedSlot {...dockedSlotProps}>{drawer}</DockedSlot>;
