@@ -148,10 +148,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyAvatar",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Avatar/Avatar.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-avatar/\">Avatar</a></li>\n<li><a href=\"/joy-ui/react-skeleton/\">Skeleton</a></li></ul>",

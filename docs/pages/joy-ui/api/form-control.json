@@ -128,10 +128,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyFormControl",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/FormControl/FormControl.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-input/\">Input</a></li></ul>",

@@ -29,10 +29,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiListItemIcon",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ListItemIcon/ListItemIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",

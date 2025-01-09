@@ -122,10 +122,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyStepIndicator",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/StepIndicator/StepIndicator.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-stepper/\">Stepper</a></li></ul>",

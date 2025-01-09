@@ -43,9 +43,7 @@
       "isGlobal": true
     }
   ],
-  "spread": true,
   "muiName": "Tab",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/Tab/Tab.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-tabs/\">Tabs</a></li></ul>",

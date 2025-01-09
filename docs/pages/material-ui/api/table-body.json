@@ -24,10 +24,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTableBody",
-  "forwardsRefTo": "HTMLTableSectionElement",
   "filename": "/packages/mui-material/src/TableBody/TableBody.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",

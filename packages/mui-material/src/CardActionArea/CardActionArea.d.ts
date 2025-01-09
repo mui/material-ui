@@ -34,7 +34,6 @@ export type CardActionAreaTypeMap<
  * API:
  *
  * - [CardActionArea API](https://mui.com/material-ui/api/card-action-area/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const CardActionArea: ExtendButtonBase<
   CardActionAreaTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>

@@ -56,10 +56,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiImageListItem",
-  "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-material/src/ImageListItem/ImageListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image List</a></li></ul>",

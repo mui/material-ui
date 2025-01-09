@@ -215,10 +215,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoySelect",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Select/Select.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-select/\">Select</a></li></ul>",

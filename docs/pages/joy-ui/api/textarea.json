@@ -166,10 +166,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoyTextarea",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/Textarea/Textarea.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-textarea/\">Textarea</a></li></ul>",

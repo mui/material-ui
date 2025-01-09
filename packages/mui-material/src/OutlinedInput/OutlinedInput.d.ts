@@ -33,7 +33,6 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
  * API:
  *
  * - [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
- * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 declare const OutlinedInput: ((props: OutlinedInputProps) => React.JSX.Element) & {
   muiName: string;

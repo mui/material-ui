@@ -133,12 +133,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiSwitch",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Switch/Switch.js",
-  "inheritance": { "component": "IconButton", "pathname": "/material-ui/api/icon-button/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-switch/\">Switch</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>",
   "cssComponent": false
 }

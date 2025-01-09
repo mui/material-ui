@@ -33,10 +33,7 @@
     }
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyListItemDecorator",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-joy/src/ListItemDecorator/ListItemDecorator.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-list/\">Lists</a></li></ul>",

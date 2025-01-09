@@ -166,12 +166,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiInput",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Input/Input.js",
-  "inheritance": { "component": "InputBase", "pathname": "/material-ui/api/input-base/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
   "cssComponent": false
 }

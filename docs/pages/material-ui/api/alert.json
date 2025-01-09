@@ -244,12 +244,9 @@
       "isDeprecated": true
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiAlert",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Alert/Alert.js",
-  "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-alert/\">Alert</a></li></ul>",
   "cssComponent": false
 }

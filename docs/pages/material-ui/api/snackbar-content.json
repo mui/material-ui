@@ -37,12 +37,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiSnackbarContent",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SnackbarContent/SnackbarContent.js",
-  "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
   "cssComponent": false
 }

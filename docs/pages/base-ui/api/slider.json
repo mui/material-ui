@@ -199,9 +199,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
   "muiName": "Slider",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/Slider/Slider.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-slider/\">Slider</a></li></ul>",

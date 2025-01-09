@@ -12,8 +12,6 @@
     "import { TabContext } from '@mui/lab';"
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": null,
   "muiName": "MuiTabContext",
   "filename": "/packages/mui-lab/src/TabContext/TabContext.js",
   "inheritance": null,

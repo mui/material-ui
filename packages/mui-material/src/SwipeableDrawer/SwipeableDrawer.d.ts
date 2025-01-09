@@ -86,7 +86,6 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
  * API:
  *
  * - [SwipeableDrawer API](https://mui.com/material-ui/api/swipeable-drawer/)
- * - inherits [Drawer API](https://mui.com/material-ui/api/drawer/)
  */
 declare const SwipeableDrawer: React.JSXElementConstructor<SwipeableDrawerProps>;
 

@@ -37,7 +37,6 @@ export interface DialogTitleTypeMap<
  * API:
  *
  * - [DialogTitle API](https://mui.com/material-ui/api/dialog-title/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const DialogTitle: OverridableComponent<DialogTitleTypeMap>;
 

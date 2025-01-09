@@ -39,10 +39,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiMasonry",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/Masonry/Masonry.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-masonry/\">Masonry</a></li></ul>",

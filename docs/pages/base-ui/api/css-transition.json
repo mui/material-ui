@@ -10,8 +10,6 @@
     "import { CssTransition } from '@mui/base';"
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": null,
   "muiName": "CssTransition",
   "filename": "/packages/mui-base/src/Transitions/CssTransition.tsx",
   "inheritance": null,

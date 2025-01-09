@@ -32,15 +32,9 @@
   "name": "Slide",
   "imports": ["import Slide from '@mui/material/Slide';", "import { Slide } from '@mui/material';"],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "MuiSlide",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Slide/Slide.js",
-  "inheritance": {
-    "component": "Transition",
-    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
-  },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li>\n<li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
   "cssComponent": false
 }

@@ -9,8 +9,6 @@
     "import { CssBaseline } from '@mui/material';"
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": null,
   "muiName": "MuiCssBaseline",
   "filename": "/packages/mui-material/src/CssBaseline/CssBaseline.js",
   "inheritance": null,

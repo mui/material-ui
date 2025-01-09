@@ -58,6 +58,5 @@ export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps
  * API:
  *
  * - [SpeedDialAction API](https://mui.com/material-ui/api/speed-dial-action/)
- * - inherits [Tooltip API](https://mui.com/material-ui/api/tooltip/)
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.Element;

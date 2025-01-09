@@ -9,8 +9,6 @@
     "import { CssBaseline } from '@mui/joy';"
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": null,
   "muiName": "JoyCssBaseline",
   "filename": "/packages/mui-joy/src/CssBaseline/CssBaseline.tsx",
   "inheritance": null,

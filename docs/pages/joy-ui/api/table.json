@@ -216,10 +216,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoyTable",
-  "forwardsRefTo": "HTMLTableElement",
   "filename": "/packages/mui-joy/src/Table/Table.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-table/\">Table</a></li></ul>",

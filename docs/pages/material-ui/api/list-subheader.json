@@ -64,10 +64,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiListSubheader",
-  "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-material/src/ListSubheader/ListSubheader.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",

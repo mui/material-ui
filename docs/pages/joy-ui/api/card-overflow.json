@@ -110,10 +110,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyCardOverflow",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/CardOverflow/CardOverflow.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-card/\">Card</a></li></ul>",
