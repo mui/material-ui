@@ -37,8 +37,8 @@ export default function PrioritySupportSwitch() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        border: '1px solid',
-        borderColor: 'primary.light',
+        border: '1px dashed',
+        borderColor: 'primary.dark',
         borderRadius: 1,
         padding: 2,
       }}
@@ -60,7 +60,7 @@ export default function PrioritySupportSwitch() {
                 <Typography
                   variant="body1"
                   sx={{
-                    color: 'text.primary',
+                    color: 'text.secondary',
                     textAlign: 'left',
                     whiteSpace: 'nowrap',
                   }}

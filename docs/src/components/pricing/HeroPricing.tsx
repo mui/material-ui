@@ -6,7 +6,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 
 export default function HeroPricing() {
   return (
-    <Section cozy>
+    <Section cozy noPaddingBottom>
       <SectionHeadline
         alwaysCenter
         overline="Pricing"

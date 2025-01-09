@@ -395,7 +395,7 @@ export default function PricingCards() {
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
               >
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
                 {feature}
@@ -427,7 +427,7 @@ export default function PricingCards() {
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
               >
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
                 {feature}
@@ -467,7 +467,7 @@ export default function PricingCards() {
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
               >
                 {/* <CheckCircleIcon color="success" fontSize="small" sx={{ mr: 1 }} /> */}
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
@@ -500,7 +500,7 @@ export default function PricingCards() {
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
               >
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
                 {feature}
