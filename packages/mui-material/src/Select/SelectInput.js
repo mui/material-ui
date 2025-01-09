@@ -124,6 +124,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     open: openProp,
     readOnly,
     renderValue,
+    required,
     SelectDisplayProps = {},
     tabIndex: tabIndexProp,
     // catching `type` from Input which makes no sense for SelectInput
@@ -496,13 +497,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="combobox"
-        aria-controls={listboxId}
+        aria-controls={open ? listboxId : undefined}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
         aria-label={ariaLabel}
         aria-labelledby={[labelId, buttonId].filter(Boolean).join(' ') || undefined}
         aria-describedby={ariaDescribedby}
+        aria-required={required ? 'true' : undefined}
+        aria-invalid={error ? 'true' : undefined}
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
@@ -534,6 +537,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
+        required={required}
         {...other}
         ownerState={ownerState}
       />
@@ -700,6 +704,10 @@ SelectInput.propTypes = {
    * @returns {ReactNode}
    */
   renderValue: PropTypes.func,
+  /**
+   * If `true`, the component is required.
+   */
+  required: PropTypes.bool,
   /**
    * Props applied to the clickable div element.
    */

@@ -5,6 +5,12 @@
  */
 
 const path = require('path');
+const a11yBase = require('eslint-config-airbnb/rules/react-a11y');
+
+const controlHasAssociatedLabelConfig = a11yBase.rules['jsx-a11y/control-has-associated-label'];
+
+const controlHasAssociatedLabelOptions =
+  typeof controlHasAssociatedLabelConfig[1] === 'object' ? controlHasAssociatedLabelConfig[1] : {};
 
 const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
@@ -35,11 +41,13 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
     group: [
       '@mui/*/*/*',
       '@pigment-css/*/*/*',
-      '@base_ui/*/*/*',
+      '@base-ui/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      // TODO delete, @mui/docs should be @mui/internal-docs
-      '!@mui/docs/**',
+      // TODO delete
+      '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
+      '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
+      '!@mui/docs/**', // @mui/docs should be @mui/internal-docs
     ],
     message: OneLevelImportMessage,
   },
@@ -158,6 +166,16 @@ module.exports = /** @type {Config} */ ({
     ],
     // We are a library, we need to support it too
     'jsx-a11y/no-autofocus': 'off',
+    // Remove when issues are fixed
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/959
+    // https://github.com/airbnb/javascript/issues/3069
+    'jsx-a11y/control-has-associated-label': [
+      'error',
+      {
+        ...controlHasAssociatedLabelOptions,
+        ignoreElements: [...(controlHasAssociatedLabelOptions.ignoreElements || []), 'th', 'td'],
+      },
+    ],
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
@@ -525,6 +543,7 @@ module.exports = /** @type {Config} */ ({
         'import/order': 'off',
         // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
         'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
+        'react/prop-types': 'off',
       },
     },
     {

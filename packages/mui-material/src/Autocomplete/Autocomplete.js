@@ -671,56 +671,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
   const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
 
-  const renderAutocompletePopperChildren = (children) => (
-    <AutocompletePopper as={PopperSlot} {...popperProps}>
-      <AutocompletePaper as={PaperSlot} {...paperProps}>
-        {children}
-      </AutocompletePaper>
-    </AutocompletePopper>
-  );
-
-  let autocompletePopper = null;
-  if (groupedOptions.length > 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      // TODO v7: remove `as` prop and move ListboxComponentProp to externalForwardedProps or remove ListboxComponentProp entirely
-      // https://github.com/mui/material-ui/pull/43994#issuecomment-2401945800
-      <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
-        {groupedOptions.map((option, index) => {
-          if (groupBy) {
-            return renderGroup({
-              key: option.key,
-              group: option.group,
-              children: option.options.map((option2, index2) =>
-                renderListOption(option2, option.index + index2),
-              ),
-            });
-          }
-          return renderListOption(option, index);
-        })}
-      </ListboxSlot>,
-    );
-  } else if (loading && groupedOptions.length === 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-        {loadingText}
-      </AutocompleteLoading>,
-    );
-  } else if (groupedOptions.length === 0 && !freeSolo && !loading) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteNoOptions
-        className={classes.noOptions}
-        ownerState={ownerState}
-        role="presentation"
-        onMouseDown={(event) => {
-          // Prevent input blur when interacting with the "no options" content
-          event.preventDefault();
-        }}
-      >
-        {noOptionsText}
-      </AutocompleteNoOptions>,
-    );
-  }
-
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -785,7 +735,46 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl ? autocompletePopper : null}
+      {anchorEl ? (
+        <AutocompletePopper as={PopperSlot} {...popperProps}>
+          <AutocompletePaper as={PaperSlot} {...paperProps}>
+            {loading && groupedOptions.length === 0 ? (
+              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                {loadingText}
+              </AutocompleteLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <AutocompleteNoOptions
+                className={classes.noOptions}
+                ownerState={ownerState}
+                role="presentation"
+                onMouseDown={(event) => {
+                  // Prevent input blur when interacting with the "no options" content
+                  event.preventDefault();
+                }}
+              >
+                {noOptionsText}
+              </AutocompleteNoOptions>
+            ) : null}
+            {groupedOptions.length > 0 ? (
+              <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
+                {groupedOptions.map((option, index) => {
+                  if (groupBy) {
+                    return renderGroup({
+                      key: option.key,
+                      group: option.group,
+                      children: option.options.map((option2, index2) =>
+                        renderListOption(option2, option.index + index2),
+                      ),
+                    });
+                  }
+                  return renderListOption(option, index);
+                })}
+              </ListboxSlot>
+            ) : null}
+          </AutocompletePaper>
+        </AutocompletePopper>
+      ) : null}
     </React.Fragment>
   );
 });
@@ -994,7 +983,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy: PropTypes.func,
