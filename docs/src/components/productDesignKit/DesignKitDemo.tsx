@@ -140,11 +140,6 @@ export function MaterialDesignKitInfo() {
             alt="Sketch logo."
             loading="lazy"
           />
-          <img
-            src="/static/branding/design-kits/adobexd-logo.svg"
-            alt="Adobe XD logo."
-            loading="lazy"
-          />
         </Box>
       </Box>
       <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
