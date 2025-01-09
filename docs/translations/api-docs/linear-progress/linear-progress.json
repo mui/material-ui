@@ -89,13 +89,13 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the additional bar element",
       "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"primary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-dashed\">.MuiLinearProgress-dashed</a> and <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-colorPrimary\">.MuiChip-colorPrimary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-dashed\">.MuiLinearProgress-dashed</a> and <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-colorPrimary\">.MuiLinearProgress-colorPrimary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "dashedColorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the additional bar element",
       "conditions": "<code>variant=\"buffer\"</code> and <code>color=\"secondary\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-dashed\">.MuiLinearProgress-dashed</a> and <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-colorSecondary\">.MuiChip-colorSecondary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-dashed\">.MuiLinearProgress-dashed</a> and <a href=\"/material-ui/api/linear-progress/#linear-progress-classes-colorSecondary\">.MuiLinearProgress-colorSecondary</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "determinate": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
