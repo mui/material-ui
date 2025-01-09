@@ -10,11 +10,13 @@ import describeConformance from '../../test/describeConformance';
 describe('<Drawer />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
-  const CustomPaper = React.forwardRef(({ className, children, ownerState, ...props }, ref) => (
-    <i className={className} ref={ref} {...props} data-testid="custom">
-      {children}
-    </i>
-  ));
+  const CustomPaper = React.forwardRef(
+    ({ className, children, ownerState, square, ...props }, ref) => (
+      <i className={className} ref={ref} {...props} data-testid="custom">
+        {children}
+      </i>
+    ),
+  );
 
   describeConformance(
     <Drawer open disablePortal>
@@ -36,6 +38,7 @@ describe('<Drawer />', () => {
         paper: {
           expectedClassName: classes.paper,
           testWithComponent: CustomPaper,
+          testWithElement: null, // already tested with CustomPaper
         },
       },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
