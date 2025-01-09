@@ -103,16 +103,11 @@ export default function MaterialEnd({ noFaq }: MaterialEndProps) {
                     Does it support Material Design 3?
                   </Typography>
                   <Typography>
-                    The adoption of Material Design 3 is tentatively planned for Material UI v7. See
-                    the{' '}
-                    <Link href="https://mui.com/versions/#release-schedule">
-                      the release schedule
-                    </Link>{' '}
-                    and follow{' '}
+                    Material UI currently adopts Material Design 2. You can follow{' '}
                     <Link href="https://github.com/mui/material-ui/issues/29345">
                       this GitHub issue
                     </Link>{' '}
-                    for future updates.
+                    for future design-related updates.
                   </Typography>
                 </div>
               </ListItem>
