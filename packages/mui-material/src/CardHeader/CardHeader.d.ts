@@ -60,23 +60,35 @@ export type CardHeaderSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the root slot.
      * By default, the avaible props are based on the div element.
      */
-    root: SlotProps<React.ElementType, CardHeaderRootSlotPropsOverrides, CardHeaderOwnerState>;
+    root: SlotProps<
+      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
+      CardHeaderRootSlotPropsOverrides,
+      CardHeaderOwnerState
+    >;
     /**
      * Props forwarded to the avatar slot.
      * By default, the avaible props are based on the div element.
      */
-    avatar: SlotProps<React.ElementType, CardHeaderAvatarSlotPropsOverrides, CardHeaderOwnerState>;
+    avatar: SlotProps<
+      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
+      CardHeaderAvatarSlotPropsOverrides,
+      CardHeaderOwnerState
+    >;
     /**
      * Props forwarded to the action slot.
      * By default, the avaible props are based on the div element.
      */
-    action: SlotProps<React.ElementType, CardHeaderActionSlotPropsOverrides, CardHeaderOwnerState>;
+    action: SlotProps<
+      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
+      CardHeaderActionSlotPropsOverrides,
+      CardHeaderOwnerState
+    >;
     /**
      * Props forwarded to the content slot.
      * By default, the avaible props are based on the div element.
      */
     content: SlotProps<
-      React.ElementType,
+      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
       CardHeaderContentSlotPropsOverrides,
       CardHeaderOwnerState
     >;
@@ -84,13 +96,17 @@ export type CardHeaderSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the title slot (as long as disableTypography is not `true`).
      * By default, the avaible props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component.
      */
-    title: SlotProps<React.ElementType, CardHeaderTitleSlotPropsOverrides, CardHeaderOwnerState>;
+    title: SlotProps<
+      React.ElementType<TypographyProps>,
+      CardHeaderTitleSlotPropsOverrides,
+      CardHeaderOwnerState
+    >;
     /**
      * Props forwarded to the subheader slot (as long as disableTypography is not `true`).
      * By default, the avaible props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component.
      */
     subheader: SlotProps<
-      React.ElementType,
+      React.ElementType<TypographyProps>,
       CardHeaderSubheaderSlotPropsOverrides,
       CardHeaderOwnerState
     >;

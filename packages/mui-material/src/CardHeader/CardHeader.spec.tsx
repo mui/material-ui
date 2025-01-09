@@ -312,26 +312,32 @@ function mixedTypographyPropsTest() {
   slotProps={{
     root: {
       component: 'div',
+      className: 'flex',
       'data-testid': 'hello',
     },
     action: {
       component: 'div',
+      className: 'flex',
       'data-testid': 'hello',
     },
     avatar: {
       component: 'div',
+      className: 'flex',
       'data-testid': 'hello',
     },
     content: {
       component: 'div',
+      className: 'flex',
       'data-testid': 'hello',
     },
     title: {
       component: 'div',
+      className: 'flex',
       'data-testid': 'hello',
     },
     subheader: {
       component: 'div',
+      className: 'flex',
       'data-testid': 'hello',
     },
   }}

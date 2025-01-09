@@ -102,9 +102,9 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
   const externalForwardedProps = {
     slots,
     slotProps: {
+      title: titleTypographyProps,
+      subheader: subheaderTypographyProps,
       ...slotProps,
-      title: slotProps.title ?? titleTypographyProps,
-      subheader: slotProps.subheader ?? subheaderTypographyProps,
     },
   };
 
@@ -114,13 +114,13 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     elementType: Typography,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      variant: avatar ? 'body2' : 'h5',
+      component: 'span',
+    },
   });
   if (title != null && title.type !== Typography && !disableTypography) {
-    title = (
-      <TitleSlot variant={avatar ? 'body2' : 'h5'} component="span" {...titleSlotProps}>
-        {title}
-      </TitleSlot>
-    );
+    title = <TitleSlot {...titleSlotProps}>{title}</TitleSlot>;
   }
 
   let subheader = subheaderProp;
@@ -129,18 +129,14 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     elementType: Typography,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      variant: avatar ? 'body2' : 'body1',
+      color: 'textSecondary',
+      component: 'span',
+    },
   });
   if (subheader != null && subheader.type !== Typography && !disableTypography) {
-    subheader = (
-      <SubheaderSlot
-        variant={avatar ? 'body2' : 'body1'}
-        color="textSecondary"
-        component="span"
-        {...subheaderSlotProps}
-      >
-        {subheader}
-      </SubheaderSlot>
-    );
+    subheader = <SubheaderSlot {...subheaderSlotProps}>{subheader}</SubheaderSlot>;
   }
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
@@ -227,84 +223,12 @@ CardHeader.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    action: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    avatar: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    content: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    root: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    subheader: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
-    title: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    avatar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    subheader: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    title: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
