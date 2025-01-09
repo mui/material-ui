@@ -373,35 +373,11 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    action: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    message: PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({
-        component: PropTypes.elementType,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
-      }),
-    ]),
+    message: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**

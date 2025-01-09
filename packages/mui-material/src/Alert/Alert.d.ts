@@ -76,12 +76,20 @@ export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the message slot.
      * By default, the avaible props are based on a div element.
      */
-    message: SlotProps<React.ElementType, AlertMessageSlotPropsOverrides, AlertOwnerState>;
+    message: SlotProps<
+      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
+      AlertMessageSlotPropsOverrides,
+      AlertOwnerState
+    >;
     /**
      * Props forwarded to the action slot.
      * By default, the avaible props are based on a div element.
      */
-    action: SlotProps<React.ElementType, AlertActionSlotPropsOverrides, AlertOwnerState>;
+    action: SlotProps<
+      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
+      AlertActionSlotPropsOverrides,
+      AlertOwnerState
+    >;
     /**
      * Props forwarded to the closeButton slot.
      * By default, the avaible props are based on the [IconButton](https://mui.com/material-ui/api/icon-button/#props) component.

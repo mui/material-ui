@@ -50,7 +50,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ action?: func<br>&#124;&nbsp;{ component?: elementType, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object }, closeButton?: func<br>&#124;&nbsp;object, closeIcon?: func<br>&#124;&nbsp;object, icon?: func<br>&#124;&nbsp;object, message?: func<br>&#124;&nbsp;{ component?: elementType, sx?: Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object }, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ action?: func<br>&#124;&nbsp;object, closeButton?: func<br>&#124;&nbsp;object, closeIcon?: func<br>&#124;&nbsp;object, icon?: func<br>&#124;&nbsp;object, message?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
