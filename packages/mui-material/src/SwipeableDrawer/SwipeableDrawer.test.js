@@ -11,7 +11,7 @@ import useForkRef from '../utils/useForkRef';
 import describeConformance from '../../test/describeConformance';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
-  const { style, ...other } = props;
+  const { style, square, ...other } = props;
   const paperRef = React.useRef(null);
   const handleRef = useForkRef(ref, paperRef);
 
