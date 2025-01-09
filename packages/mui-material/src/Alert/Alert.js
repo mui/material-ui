@@ -209,6 +209,10 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     elementType: AlertRoot,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      role,
+      elevation: 0,
+    },
   });
 
   const [IconSlot, iconSlotProps] = useSlot('icon', {
@@ -245,7 +249,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   });
 
   return (
-    <RootSlot role={role} elevation={0} {...rootSlotProps}>
+    <RootSlot {...rootSlotProps}>
       {icon !== false ? (
         <IconSlot {...iconSlotProps}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
