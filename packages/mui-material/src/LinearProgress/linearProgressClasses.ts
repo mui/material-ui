@@ -28,6 +28,10 @@ export interface LinearProgressClasses {
   dashedColorSecondary: string;
   /** Styles applied to the layered bar1 and bar2 elements. */
   bar: string;
+  /** Styles applied to the bar1 element. */
+  bar1: string;
+  /** Styles applied to the bar2 element. */
+  bar2: string;
   /** Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer".
    * @deprecated Use the [.MuiLinearProgress-bar](/material-ui/api/linear-progress/#linear-progress-classes-bar) and [.MuiLinearProgress-colorPrimary](/material-ui/api/linear-progress/#linear-progress-classes-colorPrimary) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
@@ -76,6 +80,8 @@ const linearProgressClasses: LinearProgressClasses = generateUtilityClasses('Mui
   'dashedColorPrimary',
   'dashedColorSecondary',
   'bar',
+  'bar1',
+  'bar2',
   'barColorPrimary',
   'barColorSecondary',
   'bar1Indeterminate',

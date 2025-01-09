@@ -38,6 +38,18 @@
       "isGlobal": false
     },
     {
+      "key": "bar1",
+      "className": "MuiLinearProgress-bar1",
+      "description": "Styles applied to the bar1 element.",
+      "isGlobal": false
+    },
+    {
+      "key": "bar2",
+      "className": "MuiLinearProgress-bar2",
+      "description": "Styles applied to the bar2 element.",
+      "isGlobal": false
+    },
+    {
       "key": "bar1Buffer",
       "className": "MuiLinearProgress-bar1Buffer",
       "description": "Styles applied to the bar1 element if `variant=\"buffer\"`.",

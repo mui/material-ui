@@ -21,6 +21,14 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the layered bar1 and bar2 elements"
     },
+    "bar1": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the bar1 element"
+    },
+    "bar2": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the bar2 element"
+    },
     "bar1Buffer": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the bar1 element",
