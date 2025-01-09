@@ -13,7 +13,6 @@ import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const DialogBackdrop = styled(Backdrop, {
