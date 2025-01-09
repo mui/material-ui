@@ -161,10 +161,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyButtonGroup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ButtonGroup/ButtonGroup.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-button-group/\">Button Group</a></li></ul>",

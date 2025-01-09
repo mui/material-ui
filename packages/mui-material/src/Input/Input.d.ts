@@ -28,7 +28,6 @@ export interface InputProps extends StandardProps<InputBaseProps> {
  * API:
  *
  * - [Input API](https://mui.com/material-ui/api/input/)
- * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
  */
 declare const Input: ((props: InputProps) => React.JSX.Element) & { muiName: string };
 

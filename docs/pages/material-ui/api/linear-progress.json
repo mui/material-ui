@@ -140,10 +140,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiLinearProgress",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/LinearProgress/LinearProgress.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-progress/\">Progress</a></li></ul>",

@@ -94,10 +94,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiSkeleton",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Skeleton/Skeleton.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-skeleton/\">Skeleton</a></li></ul>",

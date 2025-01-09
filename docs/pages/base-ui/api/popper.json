@@ -57,9 +57,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
   "muiName": "Popper",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/Popper/Popper.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-popper/\">Popper</a></li></ul>",

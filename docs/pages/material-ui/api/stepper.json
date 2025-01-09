@@ -56,10 +56,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiStepper",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Stepper/Stepper.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",

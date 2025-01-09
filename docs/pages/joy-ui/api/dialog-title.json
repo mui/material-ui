@@ -181,10 +181,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyDialogTitle",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/DialogTitle/DialogTitle.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",

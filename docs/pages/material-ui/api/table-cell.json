@@ -125,10 +125,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTableCell",
-  "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-material/src/TableCell/TableCell.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",

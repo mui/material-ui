@@ -134,10 +134,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyMenuList",
-  "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/MenuList/MenuList.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",

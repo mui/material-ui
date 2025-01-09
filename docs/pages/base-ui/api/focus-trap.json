@@ -20,8 +20,6 @@
     "import { FocusTrap } from '@mui/base';"
   ],
   "classes": [],
-  "spread": false,
-  "themeDefaultProps": null,
   "muiName": "FocusTrap",
   "filename": "/packages/mui-base/src/FocusTrap/FocusTrap.tsx",
   "inheritance": null,

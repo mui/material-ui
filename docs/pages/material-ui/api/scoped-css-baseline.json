@@ -25,10 +25,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiScopedCssBaseline",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/ScopedCssBaseline/ScopedCssBaseline.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-css-baseline/\">CSS Baseline</a></li></ul>",

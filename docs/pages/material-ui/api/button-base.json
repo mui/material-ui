@@ -52,10 +52,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiButtonBase",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/ButtonBase/ButtonBase.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-button/\">Button</a></li></ul>",

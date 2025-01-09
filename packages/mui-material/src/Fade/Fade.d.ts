@@ -44,6 +44,5 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
  * API:
  *
  * - [Fade API](https://mui.com/material-ui/api/fade/)
- * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 export default function Fade(props: FadeProps): React.JSX.Element;

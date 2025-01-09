@@ -84,7 +84,6 @@ export type FabTypeMap<
  * API:
  *
  * - [Fab API](https://mui.com/material-ui/api/fab/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const Fab: ExtendButtonBase<FabTypeMap>;
 

@@ -81,7 +81,6 @@ export type ListItemButtonTypeMap<
  * API:
  *
  * - [ListItemButton API](https://mui.com/material-ui/api/list-item-button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const ListItemButton: ExtendButtonBase<ListItemButtonTypeMap>;
 

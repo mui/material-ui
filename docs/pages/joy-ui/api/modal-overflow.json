@@ -22,10 +22,7 @@
     }
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyModalOverflow",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ModalOverflow/ModalOverflow.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-modal/\">Modal</a></li></ul>",

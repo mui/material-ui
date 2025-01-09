@@ -83,9 +83,7 @@
       "isGlobal": true
     }
   ],
-  "spread": true,
   "muiName": "Switch",
-  "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/Switch/Switch.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/base-ui/react-switch/\">Switch</a></li></ul>",

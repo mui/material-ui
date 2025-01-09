@@ -158,10 +158,7 @@
       "isGlobal": false
     }
   ],
-  "spread": false,
-  "themeDefaultProps": true,
   "muiName": "JoyRadioGroup",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/RadioGroup/RadioGroup.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-radio-button/\">Radio</a></li></ul>",

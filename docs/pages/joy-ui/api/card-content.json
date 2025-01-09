@@ -37,10 +37,7 @@
     }
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyCardContent",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/CardContent/CardContent.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-card/\">Card</a></li></ul>",

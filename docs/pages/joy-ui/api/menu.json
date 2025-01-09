@@ -157,15 +157,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": false,
   "muiName": "JoyMenu",
-  "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/Menu/Menu.tsx",
-  "inheritance": {
-    "component": "Popper",
-    "pathname": "/base-ui/react-popper/components-api/#popper"
-  },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false
 }

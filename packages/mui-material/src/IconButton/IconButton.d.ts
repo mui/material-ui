@@ -78,7 +78,6 @@ export type IconButtonTypeMap<
  * API:
  *
  * - [IconButton API](https://mui.com/material-ui/api/icon-button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 

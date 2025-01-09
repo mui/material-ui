@@ -47,12 +47,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTimelineOppositeContent",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/TimelineOppositeContent/TimelineOppositeContent.js",
-  "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",
   "cssComponent": false
 }

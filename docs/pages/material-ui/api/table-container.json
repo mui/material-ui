@@ -24,10 +24,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTableContainer",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/TableContainer/TableContainer.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",

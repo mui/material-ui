@@ -121,10 +121,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyAutocompleteOption",
-  "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-joy/src/AutocompleteOption/AutocompleteOption.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-autocomplete/\">Autocomplete</a></li></ul>",

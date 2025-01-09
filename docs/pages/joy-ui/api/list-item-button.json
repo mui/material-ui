@@ -154,10 +154,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyListItemButton",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/ListItemButton/ListItemButton.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-list/\">Lists</a></li></ul>",

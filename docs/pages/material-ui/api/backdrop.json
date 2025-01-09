@@ -78,12 +78,9 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiBackdrop",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Backdrop/Backdrop.js",
-  "inheritance": { "component": "Fade", "pathname": "/material-ui/api/fade/" },
+  "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-backdrop/\">Backdrop</a></li></ul>",
   "cssComponent": false
 }

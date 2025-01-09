@@ -123,10 +123,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiDrawer",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawer</a></li></ul>",

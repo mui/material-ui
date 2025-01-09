@@ -86,10 +86,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiAvatar",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Avatar/Avatar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatar</a></li></ul>",

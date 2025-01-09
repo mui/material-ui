@@ -33,10 +33,7 @@
     }
   ],
   "classes": [],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyFormHelperText",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-joy/src/FormHelperText/FormHelperText.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-input/\">Input</a></li></ul>",

@@ -59,10 +59,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiTimelineItem",
-  "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-lab/src/TimelineItem/TimelineItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",

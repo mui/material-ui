@@ -55,7 +55,6 @@ export interface LinkTypeMap<AdditionalProps = {}, RootComponent extends React.E
  * API:
  *
  * - [Link API](https://mui.com/material-ui/api/link/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 

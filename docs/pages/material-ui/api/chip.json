@@ -346,10 +346,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiChip",
-  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Chip/Chip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-chip/\">Chip</a></li></ul>",

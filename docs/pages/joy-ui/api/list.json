@@ -163,10 +163,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "JoyList",
-  "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-joy/src/List/List.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/joy-ui/react-list/\">Lists</a></li></ul>",

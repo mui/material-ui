@@ -205,10 +205,7 @@
       "isDeprecated": true
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiPaginationItem",
-  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/PaginationItem/PaginationItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-pagination/\">Pagination</a></li></ul>",
