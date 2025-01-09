@@ -184,11 +184,11 @@ export interface ButtonClasses {
   loadingIconPlaceholder: string;
   /** Styles applied to the loadingIndicator element. */
   loadingIndicator: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="center"`. */
+  /** Styles applied to the root element if `loadingPosition="center"`. */
   loadingPositionCenter: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="start"`. */
+  /** Styles applied to the root element if `loadingPosition="start"`. */
   loadingPositionStart: string;
-  /** Styles applied to the loadingIndicator element if `loadingPosition="end"`. */
+  /** Styles applied to the root element if `loadingPosition="end"`. */
   loadingPositionEnd: string;
 }
 

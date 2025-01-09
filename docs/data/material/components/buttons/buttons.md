@@ -147,7 +147,7 @@ When the `loading` prop is set to `boolean`, the loading wrapper is always prese
 The `loading` value should always be `null` or `boolean`. The pattern below is not recommended as it can cause the Google Translation Crash:
 
 ```jsx
-<Button {...isFetching && { loading: true }}> // ❌ Don't do this
+<Button {...(isFetching && { loading: true })}> // ❌ Don't do this
 ```
 
 :::
