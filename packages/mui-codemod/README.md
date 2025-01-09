@@ -1242,6 +1242,66 @@ npx @mui/codemod@latest deprecations/input-base-props <path>
 npx @mui/codemod@latest deprecations/input-props <path>
 ```
 
+#### `linear-progress-classes`
+
+JS transforms:
+
+```diff
+ import { linearProgressClasses } from '@mui/material/LinearProgress';
+
+ MuiLinearProgress: {
+   styleOverrides: {
+     root: {
+-      [`&.${linearProgressClasses.bar1Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Determinate}`]: {},
++      [`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar2Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.bar2Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.barColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.barColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.dashedColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.dashed}`]: {},
+-      [`&.${linearProgressClasses.dashedColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.dashed}`]: {},
+     },
+   },
+  }
+```
+
+CSS transforms:
+
+```diff
+-.MuiLinearProgress-bar1Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Determinate
++.MuiLinearProgress-determinate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar2Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar2
+-.MuiLinearProgress-bar2Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar2
+-.MuiLinearProgress-barColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-bar
+-.MuiLinearProgress-barColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-bar
+-.MuiLinearProgress-dashedColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed
+-.MuiLinearProgress-dashedColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-dashed
+```
+
+```bash
+npx @mui/codemod@latest deprecations/linear-progress-classes <path>
+```
+
 #### `modal-props`
 
 ```diff
@@ -1404,6 +1464,54 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
+```
+
+#### `select-classes`
+
+JS transforms:
+
+```diff
+ import { selectClasses } from '@mui/material/Select';
+
+ MuiSelect: {
+   styleOverrides: {
+     root: {
+-      [`& .${selectClasses.iconFilled}`]: {
++      [`& .${selectClasses.filled} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconOutlined}`]: {
++      [`& .${selectClasses.outlined} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconStandard}`]: {
++      [`& .${selectClasses.standard} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiSelect-iconFilled
++ .MuiSelect-filled ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconOutlined
++ .MuiSelect-outlined ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconStandard
++ .MuiSelect-standard ~ .MuiSelect-icon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/select-classes <path>
 ```
 
 #### `slider-props`
