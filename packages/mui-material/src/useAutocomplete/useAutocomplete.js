@@ -144,6 +144,10 @@ function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
+  const initialInputValue = React.useRef(
+    getInitialInputValue(defaultValue, multiple, getOptionLabel),
+  ).current;
+
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -151,7 +155,7 @@ function useAutocomplete(props) {
   });
   const [inputValue, setInputValueState] = useControlled({
     controlled: inputValueProp,
-    default: getInitialInputValue(defaultValue, multiple, getOptionLabel),
+    default: initialInputValue,
     name: componentName,
     state: 'inputValue',
   });
