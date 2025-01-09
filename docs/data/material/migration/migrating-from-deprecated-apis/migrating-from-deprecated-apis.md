@@ -855,6 +855,36 @@ Here's how to migrate:
   },
 ```
 
+## CardHeader
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#card-header-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/card-header-props <path>
+```
+
+### titleTypographyProps
+
+The CardHeader's `titleTypographyProps` props were deprecated in favor of `slotProps.title`:
+
+```diff
+ <CardHeader
+-  titleTypographyProps={titleTypographyProps}
++  slotProps={{ title: titleTypographyProps }}
+ />
+```
+
+### subheaderTypographyProps
+
+The CardHeader's `subheaderTypographyProps` props were deprecated in favor of `slotProps.subheader`:
+
+```diff
+ <CardHeader
+-  subheaderTypographyProps={subheaderTypographyProps}
++  slotProps={{ subheader: subheaderTypographyProps }}
+ />
+```
+
 ## Chip
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#chip-classes) below to migrate the code as described in the following sections:
