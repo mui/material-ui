@@ -168,7 +168,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: { ...slotProps, list: slotProps.list || MenuListProps },
+    slotProps: { list: MenuListProps, ...slotProps },
   };
 
   const PaperSlot = slots.paper ?? MenuPaper;
