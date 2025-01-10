@@ -254,19 +254,19 @@
     {
       "key": "loadingPositionCenter",
       "className": "MuiButton-loadingPositionCenter",
-      "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"center\"`.",
+      "description": "Styles applied to the root element if `loadingPosition=\"center\"`.",
       "isGlobal": false
     },
     {
       "key": "loadingPositionEnd",
       "className": "MuiButton-loadingPositionEnd",
-      "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"end\"`.",
+      "description": "Styles applied to the root element if `loadingPosition=\"end\"`.",
       "isGlobal": false
     },
     {
       "key": "loadingPositionStart",
       "className": "MuiButton-loadingPositionStart",
-      "description": "Styles applied to the loadingIndicator element if `loadingPosition=\"start\"`.",
+      "description": "Styles applied to the root element if `loadingPosition=\"start\"`.",
       "isGlobal": false
     },
     {

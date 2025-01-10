@@ -202,17 +202,17 @@
     },
     "loadingPositionCenter": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the loadingIndicator element",
+      "nodeName": "the root element",
       "conditions": "<code>loadingPosition=\"center\"</code>"
     },
     "loadingPositionEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the loadingIndicator element",
+      "nodeName": "the root element",
       "conditions": "<code>loadingPosition=\"end\"</code>"
     },
     "loadingPositionStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the loadingIndicator element",
+      "nodeName": "the root element",
       "conditions": "<code>loadingPosition=\"start\"</code>"
     },
     "loadingWrapper": {
