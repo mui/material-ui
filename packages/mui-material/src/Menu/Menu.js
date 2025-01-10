@@ -80,7 +80,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    TransitionComponent,
     TransitionProps = {},
     variant = 'selectedMenu',
     slots = {},
@@ -215,9 +214,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       ref={ref}
       transitionDuration={transitionDuration}
       TransitionProps={{ onEntering: handleEntering, ...transitionProps }}
-      TransitionComponent={slots.transition ?? TransitionComponent}
       ownerState={ownerState}
       {...other}
+      TransitionComponent={slots.transition ?? other.TransitionComponent}
       classes={PopoverClasses}
     >
       <ListSlot
