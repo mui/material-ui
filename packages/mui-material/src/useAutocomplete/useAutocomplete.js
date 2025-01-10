@@ -61,11 +61,12 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInitialInputValue(defaultValue, multiple, getOptionLabel) {
-  if (multiple || defaultValue == null) {
+function getInputValue(value, multiple, getOptionLabel) {
+  if (multiple || value == null) {
     return '';
   }
-  return typeof defaultValue === 'object' ? getOptionLabel(defaultValue) : defaultValue;
+  const optionLabel = getOptionLabel(value);
+  return typeof optionLabel === 'string' ? optionLabel : '';
 }
 
 function useAutocomplete(props) {
@@ -144,8 +145,10 @@ function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
+  // Calculate the initial inputValue on mount only.
+  // Using useRef since defaultValue doesn't need to update inputValue dynamically.
   const initialInputValue = React.useRef(
-    getInitialInputValue(defaultValue, multiple, getOptionLabel),
+    getInputValue(defaultValue, multiple, getOptionLabel),
   ).current;
 
   const [value, setValueState] = useControlled({
@@ -170,15 +173,7 @@ function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
-      let newInputValue;
-      if (multiple) {
-        newInputValue = '';
-      } else if (newValue == null) {
-        newInputValue = '';
-      } else {
-        const optionLabel = getOptionLabel(newValue);
-        newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
-      }
+      const newInputValue = getInputValue(newValue, multiple, getOptionLabel);
 
       if (inputValue === newInputValue) {
         return;
