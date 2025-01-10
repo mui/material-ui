@@ -14,7 +14,6 @@ import Backdrop from '../Backdrop';
 import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
 import useSlot from '../utils/useSlot';
-import { useForkRef } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -185,9 +184,11 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   });
 
   const [BackdropSlot, backdropProps] = useSlot('backdrop', {
+    ref: BackdropProps?.ref,
     elementType: BackdropComponent,
     externalForwardedProps,
     additionalProps: BackdropProps,
+    shouldForwardComponentProp: true,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
@@ -205,8 +206,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ownerState,
   });
 
-  const backdropRef = useForkRef(BackdropProps?.ref, backdropProps.ref);
-
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
   }
@@ -214,9 +213,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   return (
     <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
       <RootSlot {...rootProps}>
-        {!hideBackdrop && BackdropComponent ? (
-          <BackdropSlot {...backdropProps} ref={backdropRef} />
-        ) : null}
+        {!hideBackdrop && BackdropComponent ? <BackdropSlot {...backdropProps} /> : null}
         <FocusTrap
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
