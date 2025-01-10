@@ -86,12 +86,6 @@
       "isGlobal": false
     },
     {
-      "key": "colorSecondary",
-      "className": "MuiFilledInput-colorSecondary",
-      "description": "Styles applied to the root element if color secondary.",
-      "isGlobal": false
-    },
-    {
       "key": "disabled",
       "className": "Mui-disabled",
       "description": "State class applied to the root element if `disabled={true}`.",

@@ -106,4 +106,10 @@ describe('<FilledInput />', () => {
     expect(root).to.have.class(classes.adornedEnd);
     expect(root).to.have.class(classes.adornedStart);
   });
+
+  it('should not have colorSecondary class on FilledInput', () => {
+    render(<FilledInput color="secondary" />);
+    expect(document.querySelector(`.MuiFilledInput-colorSecondary`)).to.equal(null);
+    expect(document.querySelector(`.MuiInputBase-colorSecondary`)).to.not.equal(null);
+  });
 });

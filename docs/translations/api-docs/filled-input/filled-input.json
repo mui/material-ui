@@ -99,11 +99,6 @@
       "nodeName": "the root element",
       "conditions": "<code>startAdornment</code> is provided"
     },
-    "colorSecondary": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "color secondary"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
