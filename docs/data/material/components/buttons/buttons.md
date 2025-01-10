@@ -113,9 +113,9 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "IconButtonColors.js"}}
 
-### Loading (from v6.4.0)
+### Loading
 
-Use `loading` prop to set icon buttons in a loading state and disable interactions.
+Starting from v6.4.0, use `loading` prop to set icon buttons in a loading state and disable interactions.
 
 {{"demo": "LoadingIconButton.js"}}
 
@@ -131,9 +131,9 @@ To create a file upload button, turn the button into a label using `component="l
 
 {{"demo": "InputFileUpload.js"}}
 
-## Loading (from v6.4.0)
+## Loading
 
-Use the `loading` prop to set buttons in a loading state and disable interactions.
+Starting from v6.4.0, use the `loading` prop to set buttons in a loading state and disable interactions.
 
 {{"demo": "LoadingButtons.js"}}
 
