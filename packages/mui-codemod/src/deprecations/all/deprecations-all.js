@@ -16,6 +16,7 @@ import transformImageListItemBarClasses from '../image-list-item-bar-classes';
 import transformInputBaseProps from '../input-base-props';
 import transformInputProps from '../input-props';
 import transformListItemTextProps from '../list-item-text-props';
+import transformLinearProgressClasses from '../linear-progress-classes';
 import transformModalProps from '../modal-props';
 import transformOutlinedInputProps from '../outlined-input-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
@@ -30,6 +31,7 @@ import transformTabClasses from '../tab-classes';
 import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 import transformTooltipProps from '../tooltip-props';
 import transformTablePaginationProps from '../table-pagination-props';
+import transformCardHeaderProps from '../card-header-props';
 import transformDrawerProps from '../drawer-props';
 
 /**
@@ -55,6 +57,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformInputBaseProps(file, api, options);
   file.source = transformInputProps(file, api, options);
   file.source = transformListItemTextProps(file, api, options);
+  file.source = transformLinearProgressClasses(file, api, options);
   file.source = transformModalProps(file, api, options);
   file.source = transformOutlinedInputProps(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
@@ -69,6 +72,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformToggleButtonGroupClasses(file, api, options);
   file.source = transformTooltipProps(file, api, options);
   file.source = transformTablePaginationProps(file, api, options);
+  file.source = transformCardHeaderProps(file, api, options);
   file.source = transformDrawerProps(file, api, options);
 
   return file.source;
