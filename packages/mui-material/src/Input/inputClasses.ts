@@ -5,14 +5,10 @@ import { inputBaseClasses } from '../InputBase';
 export interface InputClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-  formControl: string;
   /** Styles applied to the root element if the component is focused. */
   focused: string;
   /** Styles applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Styles applied to the root element if color secondary. */
-  colorSecondary: string;
   /** Styles applied to the root element unless `disableUnderline={true}`. */
   underline: string;
   /** State class applied to the root element if `error={true}`. */

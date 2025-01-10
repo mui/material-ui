@@ -70,12 +70,6 @@
   "imports": ["import Input from '@mui/material/Input';", "import { Input } from '@mui/material';"],
   "classes": [
     {
-      "key": "colorSecondary",
-      "className": "MuiInput-colorSecondary",
-      "description": "Styles applied to the root element if color secondary.",
-      "isGlobal": false
-    },
-    {
       "key": "disabled",
       "className": "Mui-disabled",
       "description": "Styles applied to the root element if `disabled={true}`.",
@@ -92,12 +86,6 @@
       "className": "Mui-focused",
       "description": "Styles applied to the root element if the component is focused.",
       "isGlobal": true
-    },
-    {
-      "key": "formControl",
-      "className": "MuiInput-formControl",
-      "description": "Styles applied to the root element if the component is a descendant of `FormControl`.",
-      "isGlobal": false
     },
     {
       "key": "fullWidth",
