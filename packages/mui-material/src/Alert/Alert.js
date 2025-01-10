@@ -191,7 +191,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const externalForwardedProps = {
-    ...other,
     slots: {
       closeButton: components.CloseButton,
       closeIcon: components.CloseIcon,
@@ -205,9 +204,13 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
+    shouldForwardComponentProp: true,
     className: clsx(classes.root, className),
     elementType: AlertRoot,
-    externalForwardedProps,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
     ownerState,
     additionalProps: {
       role,
