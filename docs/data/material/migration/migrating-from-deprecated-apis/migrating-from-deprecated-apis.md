@@ -1176,35 +1176,35 @@ Here's how to migrate:
  MuiDrawer: {
    styleOverrides: {
      root: {
--      [`&.${drawerClasses.paperAnchorBottom}`]: {
+-      [`.${drawerClasses.paperAnchorBottom}`]: {
 +      [`&.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
--      [`&.${drawerClasses.paperAnchorLeft}`]: {
+-      [`.${drawerClasses.paperAnchorLeft}`]: {
 +      [`&.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
--      [`&.${drawerClasses.paperAnchorRight}`]: {
+-      [`.${drawerClasses.paperAnchorRight}`]: {
 +      [`&.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
--      [`&.${drawerClasses.paperAnchorTop}`]: {
+-      [`.${drawerClasses.paperAnchorTop}`]: {
 +      [`&.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
--      [`&.${drawerClasses.paperAnchorDockedBottom}`]: {
+-      [`.${drawerClasses.paperAnchorDockedBottom}`]: {
 +      [`&.${drawerClasses.docked}.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
--      [`&.${drawerClasses.paperAnchorDockedLeft}`]: {
+-      [`.${drawerClasses.paperAnchorDockedLeft}`]: {
 +      [`&.${drawerClasses.docked}.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
--      [`&.${drawerClasses.paperAnchorDockedRight}`]: {
+-      [`.${drawerClasses.paperAnchorDockedRight}`]: {
 +      [`&.${drawerClasses.docked}.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
--      [`&.${drawerClasses.paperAnchorDockedTop}`]: {
+-      [`.${drawerClasses.paperAnchorDockedTop}`]: {
 +      [`&.${drawerClasses.docked}.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
          color: 'red',
        },
