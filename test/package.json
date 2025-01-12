@@ -25,7 +25,7 @@
     "@types/sinon": "^17.0.3",
     "chai": "^4.5.0",
     "docs": "workspace:^",
-    "fast-glob": "^3.3.2",
+    "fast-glob": "^3.3.3",
     "fs-extra": "^11.2.0",
     "html-webpack-plugin": "^5.6.3",
     "lodash": "^4.17.21",
