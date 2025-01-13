@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -59,9 +58,10 @@ const CheckboxRoot = styled(SwitchBase, {
         props: { color: 'default', disableRipple: false },
         style: {
           '&:hover': {
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+            backgroundColor: theme.alpha(
+              (theme.vars || theme).palette.action.active,
+              theme.palette.action.hoverOpacity,
+            ),
           },
         },
       },
@@ -71,9 +71,10 @@ const CheckboxRoot = styled(SwitchBase, {
           props: { color, disableRipple: false },
           style: {
             '&:hover': {
-              backgroundColor: theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              backgroundColor: theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                theme.palette.action.hoverOpacity,
+              ),
             },
           },
         })),
