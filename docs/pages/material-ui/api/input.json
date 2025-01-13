@@ -88,63 +88,15 @@
       "isGlobal": true
     },
     {
-      "key": "fullWidth",
-      "className": "MuiInput-fullWidth",
-      "description": "Styles applied to the root element if `fullWidth={true}`.",
-      "isGlobal": false
-    },
-    {
       "key": "input",
       "className": "MuiInput-input",
       "description": "Styles applied to the input element.",
       "isGlobal": false
     },
     {
-      "key": "inputAdornedEnd",
-      "className": "MuiInput-inputAdornedEnd",
-      "description": "Styles applied to the input element if `endAdornment` is provided.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputAdornedStart",
-      "className": "MuiInput-inputAdornedStart",
-      "description": "Styles applied to the input element if `startAdornment` is provided.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputMultiline",
-      "className": "MuiInput-inputMultiline",
-      "description": "Styles applied to the input element if `multiline={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputSizeSmall",
-      "className": "MuiInput-inputSizeSmall",
-      "description": "Styles applied to the input element if `size=\"small\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "inputTypeSearch",
-      "className": "MuiInput-inputTypeSearch",
-      "description": "Styles applied to the input element if `type=\"search\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "multiline",
-      "className": "MuiInput-multiline",
-      "description": "Styles applied to the root element if `multiline={true}`.",
-      "isGlobal": false
-    },
-    {
       "key": "root",
       "className": "MuiInput-root",
       "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "sizeSmall",
-      "className": "MuiInput-sizeSmall",
-      "description": "Styles applied to the input element if `size=\"small\"`.",
       "isGlobal": false
     },
     {
