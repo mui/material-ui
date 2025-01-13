@@ -1738,6 +1738,47 @@ Here's how to migrate:
  },
 ```
 
+## Tabs
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/tabs-props <path>
+```
+
+### ScrollButtonComponent
+
+The Tabs's `ScrollButtonComponent` prop was deprecated in favor of `slots.scrollButton`:
+
+```diff
+ <Tabs
+-  ScrollButtonComponent={ScrollButtonComponent}
++  slots={{ scrollButton: ScrollButtonComponent }}
+ />
+```
+
+### TabScrollButtonProps
+
+The Tabs's `TabScrollButtonProps` prop was deprecated in favor of `slotProps.scrollButton`:
+
+```diff
+ <Tabs
+-  TabScrollButtonProps={TabScrollButtonProps}
++  slotProps={{ scrollButton: TabScrollButtonProps }}
+ />
+```
+
+### TabIndicatorProps
+
+The Tabs's `TabIndicatorProps` prop was deprecated in favor of `slotProps.indicator`:
+
+```diff
+ <Tabs
+-  TabIndicatorProps={TabIndicatorProps}
++  slotProps={{ indicator: TabIndicatorProps }}
+ />
+```
+
 ## Tab
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tab-classes) below to migrate the code as described in the following sections:
