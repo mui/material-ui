@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, screen, within } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
@@ -160,5 +160,47 @@ describe('<IconButton />', () => {
     );
     await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  describe('prop: loading', () => {
+    it('disables the button', () => {
+      render(<IconButton loading />);
+
+      const button = screen.getByRole('button');
+      expect(button).to.have.property('tabIndex', -1);
+      expect(button).to.have.property('disabled', true);
+    });
+
+    it('cannot be enabled while `loading`', () => {
+      render(<IconButton disabled={false} loading />);
+
+      expect(screen.getByRole('button')).to.have.property('disabled', true);
+    });
+
+    it('renders a progressbar that is labelled by the button', () => {
+      render(<IconButton loading>Submit</IconButton>);
+
+      const button = screen.getByRole('button');
+      const progressbar = within(button).getByRole('progressbar');
+      expect(progressbar).toHaveAccessibleName('Submit');
+    });
+  });
+
+  describe('prop: loadingIndicator', () => {
+    it('is not rendered by default', () => {
+      render(<IconButton loadingIndicator="loading">Test</IconButton>);
+
+      expect(screen.getByRole('button')).to.have.text('Test');
+    });
+
+    it('is rendered before the children when `loading`', () => {
+      render(
+        <IconButton loadingIndicator="loading…" loading>
+          Test
+        </IconButton>,
+      );
+
+      expect(screen.getByRole('button')).to.have.text('loading…Test');
+    });
   });
 });
