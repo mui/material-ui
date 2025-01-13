@@ -293,6 +293,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
   const backwardCompatibleSlotProps = {
     transition: TransitionProps,
+    paper: PaperProps,
     ...slotProps,
   };
 
@@ -300,6 +301,13 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     slots: backwardCompatibleSlots,
     slotProps: backwardCompatibleSlotProps,
   };
+
+  const [PaperSlot, { as: paperComponent, ...paperSlotProps }] = useSlot('paper', {
+    elementType: DialogPaper,
+    externalForwardedProps,
+    ownerState,
+    className: clsx(classes.paper, PaperProps.className),
+  });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
     elementType: Fade,
@@ -341,19 +349,18 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
           onMouseDown={handleMouseDown}
           ownerState={ownerState}
         >
-          <DialogPaper
+          <PaperSlot
             as={PaperComponent}
             elevation={24}
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
             aria-modal={ariaModal}
-            {...PaperProps}
-            className={clsx(classes.paper, PaperProps.className)}
-            ownerState={ownerState}
+            {...paperSlotProps}
+            component={paperComponent}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
-          </DialogPaper>
+          </PaperSlot>
         </DialogContainer>
       </TransitionSlot>
     </DialogRoot>
