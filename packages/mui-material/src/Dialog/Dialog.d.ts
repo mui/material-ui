@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps, Breakpoint } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { BackdropProps, InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/transition';
@@ -45,17 +45,46 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
   DialogSlots,
   {
     /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the [Modal](https://mui.com/material-ui/api/modal/#props) component.
+     */
+    root: SlotProps<React.ElementType<ModalProps>, DialogRootSlotPropsOverrides, DialogOwnerState>;
+    /**
+     * Props forwarded to the backdrop slot.
+     * By default, the avaible props are based on the [Backdrop](https://mui.com/material-ui/api/backdrop/#props) component.
+     */
+    backdrop: SlotProps<
+      React.ElementType<BackdropProps>,
+      DialogBackdropSlotPropsOverrides,
+      DialogOwnerState
+    >;
+    /**
+     * Props forwarded to the container slot.
+     * By default, the avaible props are based on a div element.
+     */
+    container: SlotProps<
+      React.ElementType<React.HTMLAttributes<HTMLDivElement>>,
+      DialogContainerSlotPropsOverrides,
+      DialogOwnerState
+    >;
+    /**
      * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
     transition: SlotProps<
       React.ElementType<TransitionProps>,
       DialogTransitionSlotPropsOverrides,
       DialogOwnerState
     >;
-    paper: SlotProps<React.ElementType, DialogPaperSlotPropsOverrides, DialogOwnerState>;
-    container: SlotProps<React.ElementType, DialogContainerSlotPropsOverrides, DialogOwnerState>;
-    backdrop: SlotProps<React.ElementType, DialogBackdropSlotPropsOverrides, DialogOwnerState>;
-    root: SlotProps<React.ElementType, DialogRootSlotPropsOverrides, DialogOwnerState>;
+    /**
+     * Props forwarded to the paper slot.
+     * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
+     */
+    paper: SlotProps<
+      React.ElementType<PaperProps>,
+      DialogPaperSlotPropsOverrides,
+      DialogOwnerState
+    >;
   }
 >;
 
