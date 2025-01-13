@@ -35,9 +35,7 @@
     "selectionFollowsFocus": {
       "description": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation."
     },
-    "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -68,10 +66,6 @@
       "nodeName": "the tablist element",
       "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
     },
-    "flexContainer": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the flex container element"
-    },
     "flexContainerVertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the flex container element",
@@ -82,11 +76,6 @@
       "nodeName": "the tablist element",
       "conditions": "<code>variant=\"scrollable\"</code> and <code>visibleScrollbar={false}</code>"
     },
-    "indicator": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the TabIndicator component"
-    },
-    "root": { "description": "Styles applied to the root element." },
     "scrollableX": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tablist element",
@@ -106,14 +95,20 @@
       "nodeName": "the ScrollButtonComponent component",
       "conditions": "<code>allowScrollButtonsMobile={true}</code>"
     },
-    "scroller": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the tablist element"
-    },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "endScrollButtonIcon": "The component used for the end scroll button icon.",
+    "flexContainer": "The component used for the flex container.",
+    "indicator": "The component used for the tab indicator.",
+    "root": "The component used for the popper.",
+    "scrollbar": "The component used for the scroller.",
+    "scrollButton": "The component used for the scroll button.",
+    "scroller": "The component used for the scroller.",
+    "startScrollButtonIcon": "The component used for the start scroll button icon."
   }
 }

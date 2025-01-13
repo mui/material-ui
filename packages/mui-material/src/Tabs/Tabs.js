@@ -986,6 +986,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The component used to render the scroll buttons.
+   * @deprecated use the `slots.scrollButton` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default TabScrollButton
    */
   ScrollButtonComponent: PropTypes.elementType,
@@ -1007,12 +1008,17 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   selectionFollowsFocus: PropTypes.bool,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
     endScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    flexContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    scrollbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    scrollButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    scroller: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -1020,7 +1026,15 @@ Tabs.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    endScrollButtonIcon: PropTypes.elementType,
     EndScrollButtonIcon: PropTypes.elementType,
+    flexContainer: PropTypes.elementType,
+    indicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+    scrollbar: PropTypes.elementType,
+    scrollButton: PropTypes.elementType,
+    scroller: PropTypes.elementType,
+    startScrollButtonIcon: PropTypes.elementType,
     StartScrollButtonIcon: PropTypes.elementType,
   }),
   /**
@@ -1033,11 +1047,13 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the tab indicator element.
+   * @deprecated use the `slotProps.indicator` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default  {}
    */
   TabIndicatorProps: PropTypes.object,
   /**
    * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
+   * @deprecated use the `slotProps.scrollButton` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TabScrollButtonProps: PropTypes.object,
