@@ -199,7 +199,9 @@
     "webpack": "^5.97.1",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.0.0"
   },
   "packageManager": "pnpm@9.15.2",
   "engines": {
