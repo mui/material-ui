@@ -16,12 +16,30 @@ export interface DialogSlots {
   transition?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
-  
+  /**
+   * The component that renders the paper.
+   * @default Paper
+   */
+  paper?: React.ElementType;
+  /**
+   * The component that renders the container.
+   */
+  container?: React.ElementType;
+  /**
+   * The component that renders the backdrop.
+   */
+  backdrop?: React.ElementType;
+  /**
+   * The component that renders the root.
+   */
+  root?: React.ElementType;
 }
 
 export interface DialogTransitionSlotPropsOverrides {}
-
 export interface DialogPaperSlotPropsOverrides {}
+export interface DialogContainerSlotPropsOverrides {}
+export interface DialogBackdropSlotPropsOverrides {}
+export interface DialogRootSlotPropsOverrides {}
 
 export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
   DialogSlots,
@@ -34,6 +52,10 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
       DialogTransitionSlotPropsOverrides,
       DialogOwnerState
     >;
+    paper: SlotProps<React.ElementType, DialogPaperSlotPropsOverrides, DialogOwnerState>;
+    container: SlotProps<React.ElementType, DialogContainerSlotPropsOverrides, DialogOwnerState>;
+    backdrop: SlotProps<React.ElementType, DialogBackdropSlotPropsOverrides, DialogOwnerState>;
+    root: SlotProps<React.ElementType, DialogRootSlotPropsOverrides, DialogOwnerState>;
   }
 >;
 

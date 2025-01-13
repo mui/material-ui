@@ -59,6 +59,23 @@ describe('<Dialog />', () => {
           testWithComponent: CustomFade,
           testWithElement: null,
         },
+        root: {
+          expectedClassName: classes.root,
+          testWithElement: null,
+        },
+        backdrop: {
+          expectedClassName: classes.backdrop,
+          testWithElement: null,
+        },
+        container: {
+          expectedClassName: classes.container,
+          testWithElement: null,
+          testWithComponent:CustomFade
+        },
+        paper: {
+          expectedClassName: classes.paper,
+          testWithElement: null,
+        },
       },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
