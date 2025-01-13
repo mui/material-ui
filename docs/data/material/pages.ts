@@ -373,7 +373,7 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/design-resources/material-ui-sync',
         title: 'Figma Sync plugin',
-        beta: true,
+        unstable: true,
       },
     ],
   },
