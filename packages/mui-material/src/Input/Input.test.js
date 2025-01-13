@@ -97,8 +97,8 @@ describe('<Input />', () => {
 
   it('should not have type class on Input', () => {
     render(<Input type="search" />);
-    expect(document.querySelector(`.MuiInput-typeSearch`)).to.equal(null);
-    expect(document.querySelector(`.MuiInputBase-typeSearch`)).to.not.equal(null);
+    expect(document.querySelector(`.MuiInput-inputTypeSearch`)).to.equal(null);
+    expect(document.querySelector(`.MuiInputBase-inputTypeSearch`)).to.not.equal(null);
   });
 
   it('should not have inputAdornedStart class on Input', () => {
