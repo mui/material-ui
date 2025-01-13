@@ -18,6 +18,7 @@ import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+import useSlot from '../utils/useSlot';
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -293,13 +294,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     indicatorColor = 'primary',
     onChange,
     orientation = 'horizontal',
-    ScrollButtonComponent = TabScrollButton,
+    ScrollButtonComponent, // TODO: remove in v7 (deprecated in v6)
     scrollButtons = 'auto',
     selectionFollowsFocus,
     slots = {},
     slotProps = {},
-    TabIndicatorProps = {},
-    TabScrollButtonProps = {},
+    TabIndicatorProps = {}, // TODO: remove in v7 (deprecated in v6)
+    TabScrollButtonProps = {}, // TODO: remove in v7 (deprecated in v6)
     textColor = 'primary',
     value,
     variant = 'standard',
@@ -371,6 +372,15 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const valueToIndex = new Map();
   const tabsRef = React.useRef(null);
   const tabListRef = React.useRef(null);
+
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      indicator: TabIndicatorProps,
+      scrollButton: TabScrollButtonProps,
+      ...slotProps,
+    },
+  };
 
   const getTabsMeta = () => {
     const tabsNode = tabsRef.current;
@@ -540,14 +550,42 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     });
   }, []);
 
+  const [ScrollbarSlot, scrollbarSlotProps] = useSlot('scrollbar', {
+    className: clsx(classes.scrollableX, classes.hideScrollbar),
+    elementType: TabsScrollbarSize,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      onChange: handleScrollbarSizeChange,
+    },
+  });
+
+  const [ScrollButtonSlot, scrollButtonSlotProps] = useSlot('scrollButton', {
+    className: clsx(classes.scrollButtons, TabScrollButtonProps.className),
+    elementType: TabScrollButton,
+    externalForwardedProps,
+    ownerState,
+    internalForwardedProps: {
+      slots: {
+        StartScrollButtonIcon: slots.startScrollButtonIcon || slots.StartScrollButtonIcon,
+        EndScrollButtonIcon: slots.endScrollButtonIcon || slots.EndScrollButtonIcon,
+      },
+      slotProps: {
+        startScrollButtonIcon: startScrollButtonIconProps,
+        endScrollButtonIcon: endScrollButtonIconProps,
+      },
+    },
+    additionalProps: {
+      orientation,
+    },
+  });
+
   const getConditionalElements = () => {
     const conditionalElements = {};
 
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <TabsScrollbarSize
-        onChange={handleScrollbarSizeChange}
-        className={clsx(classes.scrollableX, classes.hideScrollbar)}
-      />
+      <ScrollbarSlot {...scrollbarSlotProps} />
     ) : null;
 
     const scrollButtonsActive = displayStartScroll || displayEndScroll;
@@ -555,30 +593,20 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
     conditionalElements.scrollButtonStart = showScrollButtons ? (
-      <ScrollButtonComponent
-        slots={{ StartScrollButtonIcon: slots.StartScrollButtonIcon }}
-        slotProps={{ startScrollButtonIcon: startScrollButtonIconProps }}
-        orientation={orientation}
+      <ScrollButtonSlot
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
         disabled={!displayStartScroll}
-        {...TabScrollButtonProps}
-        className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
+        {...scrollButtonSlotProps}
       />
     ) : null;
 
     conditionalElements.scrollButtonEnd = showScrollButtons ? (
-      <ScrollButtonComponent
-        slots={{ EndScrollButtonIcon: slots.EndScrollButtonIcon }}
-        slotProps={{
-          endScrollButtonIcon: endScrollButtonIconProps,
-        }}
-        orientation={orientation}
+      <ScrollButtonSlot
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
         disabled={!displayEndScroll}
-        {...TabScrollButtonProps}
-        className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
+        {...scrollButtonSlotProps}
       />
     ) : null;
 
@@ -731,17 +759,17 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     [updateIndicatorState, updateScrollButtonState],
   );
 
-  const indicator = (
-    <TabsIndicator
-      {...TabIndicatorProps}
-      className={clsx(classes.indicator, TabIndicatorProps.className)}
-      ownerState={ownerState}
-      style={{
-        ...indicatorStyle,
-        ...TabIndicatorProps.style,
-      }}
-    />
-  );
+  const [IndicatorSlot, indicatorSlotProps] = useSlot('indicator', {
+    className: clsx(classes.indicator, TabIndicatorProps.className),
+    elementType: TabsIndicator,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      style: indicatorStyle,
+    },
+  });
+
+  const indicator = <IndicatorSlot {...indicatorSlotProps} />;
 
   let childIndex = 0;
   const children = React.Children.map(childrenProp, (child) => {
@@ -820,44 +848,68 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const conditionalElements = getConditionalElements();
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: TabsRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      component,
+    },
+    ownerState,
+  });
+
+  const [ScrollerSlot, scrollerSlotProps] = useSlot('scroller', {
+    ref: tabsRef,
+    className: classes.scroller,
+    elementType: TabsScroller,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      style: {
+        overflow: scrollerStyle.overflow,
+        [vertical ? `margin${isRtl ? 'Left' : 'Right'}` : 'marginBottom']: visibleScrollbar
+          ? undefined
+          : -scrollerStyle.scrollbarWidth,
+      },
+    },
+  });
+
+  const [FlexContainerSlot, flexContainerSlotProps] = useSlot('flexContainer', {
+    ref: tabListRef,
+    className: classes.flexContainer,
+    elementType: FlexContainer,
+    externalForwardedProps,
+    ownerState,
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onKeyDown: (event) => {
+        handleKeyDown(event);
+        handlers.onKeyDown?.(event);
+      },
+    }),
+  });
+
   return (
-    <TabsRoot
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      ref={ref}
-      as={component}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {conditionalElements.scrollButtonStart}
       {conditionalElements.scrollbarSizeListener}
-      <TabsScroller
-        className={classes.scroller}
-        ownerState={ownerState}
-        style={{
-          overflow: scrollerStyle.overflow,
-          [vertical ? `margin${isRtl ? 'Left' : 'Right'}` : 'marginBottom']: visibleScrollbar
-            ? undefined
-            : -scrollerStyle.scrollbarWidth,
-        }}
-        ref={tabsRef}
-      >
+      <ScrollerSlot {...scrollerSlotProps}>
         {/* The tablist isn't interactive but the tabs are */}
-        <FlexContainer
+        <FlexContainerSlot
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           aria-orientation={orientation === 'vertical' ? 'vertical' : null}
-          className={classes.flexContainer}
-          ownerState={ownerState}
-          onKeyDown={handleKeyDown}
-          ref={tabListRef}
           role="tablist"
+          {...flexContainerSlotProps}
         >
           {children}
-        </FlexContainer>
+        </FlexContainerSlot>
         {mounted && indicator}
-      </TabsScroller>
+      </ScrollerSlot>
       {conditionalElements.scrollButtonEnd}
-    </TabsRoot>
+    </RootSlot>
   );
 });
 

@@ -71,6 +71,20 @@ describe('<Tabs />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      scroller: {
+        expectedClassName: classes.scroller,
+      },
+      flexContainer: {
+        expectedClassName: classes.flexContainer,
+      },
+      indicator: {
+        expectedClassName: classes.indicator,
+      },
+    },
     skip: ['componentsProp', 'themeVariants'],
   }));
 
@@ -178,8 +192,8 @@ describe('<Tabs />', () => {
         scrollButtons
         textColor="secondary"
         slots={{
-          StartScrollButtonIcon: ArrowBackIcon,
-          EndScrollButtonIcon: ArrowForwardIcon,
+          startScrollButtonIcon: ArrowBackIcon,
+          endScrollButtonIcon: ArrowForwardIcon,
         }}
         slotProps={{
           endScrollButtonIcon: (ownerState) => ({
@@ -1438,6 +1452,50 @@ describe('<Tabs />', () => {
       fireEvent.click(deleteButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
+    });
+  });
+
+  describe('scrollButton slot', () => {
+    it('should render start and end scroll buttons', () => {
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slotProps={{
+            scrollButton: { 'data-testid': 'scroll-button', className: 'foo' },
+          }}
+        />,
+      );
+      expect(screen.getAllByTestId('scroll-button')).to.have.length(2);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class('foo');
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
+    });
+
+    it('should render a customer scroll button', () => {
+      function CustomButton({ ownerState, ...props }) {
+        return <button {...props} />;
+      }
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slots={{
+            scrollButton: CustomButton,
+          }}
+          slotProps={{
+            scrollButton: { 'data-testid': 'scroll-button', className: 'foo' },
+          }}
+        />,
+      );
+      expect(screen.getAllByTestId('scroll-button')).to.have.length(2);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class('foo');
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
     });
   });
 });
