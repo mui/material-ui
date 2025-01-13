@@ -16,6 +16,7 @@ export interface DialogSlots {
   transition?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
+  
 }
 
 export interface DialogTransitionSlotPropsOverrides {}
