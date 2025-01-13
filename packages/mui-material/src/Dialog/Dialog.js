@@ -316,6 +316,13 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     className: clsx(classes.paper, PaperProps.className),
   });
 
+  const [ContainerSlot, containerSlotProps] = useSlot('container', {
+    elementType: DialogContainer,
+    externalForwardedProps,
+    ownerState,
+    className: clsx(classes.container),
+  });
+
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
     elementType: Fade,
     externalForwardedProps,
@@ -332,8 +339,8 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     <DialogRoot
       className={clsx(classes.root, className)}
       closeAfterTransition
-      components={{ Backdrop: BackdropSlot }}
-      componentsProps={{
+      slots={{ Backdrop: BackdropSlot }}
+      slotProps={{
         backdrop: {
           transitionDuration,
           as: BackdropComponent,
@@ -352,11 +359,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
       <TransitionSlot {...transitionSlotProps}>
         {/* roles are applied via cloneElement from TransitionComponent */}
         {/* roles needs to be applied on the immediate child of Modal or it'll inject one */}
-        <DialogContainer
-          className={clsx(classes.container)}
-          onMouseDown={handleMouseDown}
-          ownerState={ownerState}
-        >
+        <ContainerSlot onMouseDown={handleMouseDown} {...containerSlotProps}>
           <PaperSlot
             as={PaperComponent}
             elevation={24}
@@ -369,7 +372,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </PaperSlot>
-        </DialogContainer>
+        </ContainerSlot>
       </TransitionSlot>
     </DialogRoot>
   );
