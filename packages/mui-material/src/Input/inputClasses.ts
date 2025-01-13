@@ -6,7 +6,7 @@ export interface InputClasses {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   formControl: string;
   /** Styles applied to the root element if the component is focused. */
@@ -14,7 +14,7 @@ export interface InputClasses {
   /** Styles applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if color secondary.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   colorSecondary: string;
   /** Styles applied to the root element unless `disableUnderline={true}`. */
@@ -22,37 +22,37 @@ export interface InputClasses {
   /** State class applied to the root element if `error={true}`. */
   error: string;
   /** Styles applied to the input element if `size="small"`.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   sizeSmall: string;
   /** Styles applied to the root element if `multiline={true}`.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   multiline: string;
   /** Styles applied to the root element if `fullWidth={true}`.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   fullWidth: string;
   /** Styles applied to the input element. */
   input: string;
   /** Styles applied to the input element if `size="small"`.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   inputSizeSmall: string;
   /** Styles applied to the input element if `multiline={true}`.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   inputMultiline: string;
   /** Styles applied to the input element if `startAdornment` is provided.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   inputAdornedStart: string;
   /** Styles applied to the input element if `endAdornment` is provided.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   inputAdornedEnd: string;
   /** Styles applied to the input element if `type="search"`.
-   * @ignore
+   * @ignore TODO v7: remove this class as this class is not used anywhere.
    */
   inputTypeSearch: string;
 }
