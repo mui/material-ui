@@ -58,3 +58,68 @@ function SampleIcon() {
     expectType<HTMLDivElement | null, typeof elem>(elem);
   }}
 />;
+
+<Tabs
+  slots={{
+    root: 'div',
+    scroller: 'div',
+    flexContainer: 'div',
+    scrollbar: 'div',
+    indicator: 'div',
+    scrollButton: 'div',
+    startScrollButtonIcon: 'div',
+    endScrollButtonIcon: 'div',
+  }}
+/>;
+
+const CustomComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  (props, ref) => <div ref={ref} {...props} />,
+);
+<Tabs
+  slots={{
+    root: CustomComponent,
+    scroller: CustomComponent,
+    flexContainer: CustomComponent,
+    scrollbar: CustomComponent,
+    indicator: CustomComponent,
+    scrollButton: CustomComponent,
+    startScrollButtonIcon: CustomComponent,
+    endScrollButtonIcon: CustomComponent,
+  }}
+/>;
+
+<Tabs
+  slotProps={{
+    root: {
+      className: 'flex',
+    },
+    scroller: {
+      className: 'flex',
+    },
+    flexContainer: {
+      className: 'flex',
+    },
+    scrollbar: {
+      className: 'flex',
+    },
+    indicator: {
+      className: 'flex',
+      sx: {
+        color: 'primary.main',
+      },
+      style: { backgroundColor: 'green' },
+    },
+    scrollButton: {
+      className: 'flex',
+      disableRipple: true,
+    },
+    startScrollButtonIcon: {
+      className: 'flex',
+      fontSize: 'large',
+    },
+    endScrollButtonIcon: {
+      className: 'flex',
+      fontSize: 'large',
+    },
+  }}
+/>;
