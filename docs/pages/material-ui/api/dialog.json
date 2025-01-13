@@ -52,11 +52,17 @@
       "default": "'paper'"
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, container?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: elementType, container?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {
@@ -96,21 +102,30 @@
       "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": null
+    },
+    {
+      "name": "paper",
+      "description": "The component that renders the paper.",
+      "default": "Paper",
+      "class": "MuiDialog-paper"
+    },
+    {
+      "name": "container",
+      "description": "The component that renders the container.",
+      "class": "MuiDialog-container"
+    },
+    {
+      "name": "backdrop",
+      "description": "The component that renders the backdrop.",
+      "class": null
+    },
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "class": "MuiDialog-root"
     }
   ],
   "classes": [
-    {
-      "key": "container",
-      "className": "MuiDialog-container",
-      "description": "Styles applied to the container element.",
-      "isGlobal": false
-    },
-    {
-      "key": "paper",
-      "className": "MuiDialog-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
-    },
     {
       "key": "paperFullScreen",
       "className": "MuiDialog-paperFullScreen",
@@ -169,12 +184,6 @@
       "key": "paperWidthXs",
       "className": "MuiDialog-paperWidthXs",
       "description": "Styles applied to the Paper component if `maxWidth=\"xs\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiDialog-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

@@ -51,14 +51,6 @@
     }
   },
   "classDescriptions": {
-    "container": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the container element"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
     "paperFullScreen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
@@ -109,7 +101,6 @@
       "nodeName": "the Paper component",
       "conditions": "<code>maxWidth=\"xs\"</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "scrollBody": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the container element",
@@ -122,6 +113,10 @@
     }
   },
   "slotDescriptions": {
+    "backdrop": "The component that renders the backdrop.",
+    "container": "The component that renders the container.",
+    "paper": "The component that renders the paper.",
+    "root": "The component that renders the root.",
     "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

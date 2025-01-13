@@ -502,6 +502,10 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    container: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -509,6 +513,10 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    container: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
