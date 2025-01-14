@@ -8,6 +8,46 @@ import { Queue, sleep, retry } from '@mui/internal-waterfall';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
+// Icons we don't publish.
+// This is just a list of new icons.
+// In the future we might change what icons we want to exclude (for example by popularity)
+const ignoredIconNames = new Set([
+  // TODO v6: Whatsapp duplicates with WhatsApp
+  // We don't need it https://fonts.google.com/icons?icon.set=Material+Icons&icon.query=whatsapp
+  // 'whatsapp'
+  '123',
+  '6_ft_apart',
+  'add_chart', // Leads to inconsistent casing with `Addchart`
+  'compost',
+  'cruelty_free',
+  'data_exploration',
+  'disabled_visible',
+  'drive_file_move_rtl',
+  'exposure_neg_1', // Google product
+  'exposure_neg_2', // Google product
+  'exposure_plus_1', // Google product
+  'exposure_plus_2', // Google product
+  'exposure_zero', // Google product
+  'free_cancellation',
+  'front_hand',
+  'generating_tokens',
+  'group_off',
+  'horizontal_distribute', // Advanced text editor
+  'hotel_class',
+  'incomplete_circle',
+  'motion_photos_on', // Google product
+  'motion_photos_pause', // Google product
+  'motion_photos_paused', // Google product
+  'new_label',
+  'personal_injury',
+  'pin_end',
+  'pin_invoke',
+  'polymer', // Legacy brand
+  'private_connectivity',
+  'real_estate_agent',
+  'vertical_distribute', // Advanced text editor
+]);
+
 const legacyIconNames = new Set([
   'battery_20',
   'battery_30',
@@ -130,7 +170,7 @@ async function run() {
     const data = JSON.parse(text.replace(")]}'", ''));
     let icons = data.icons;
     icons = icons.filter((icon) => {
-      return !legacyIconNames.has(icon.name);
+      return !ignoredIconNames.has(icon.name) && !legacyIconNames.has(icon.name);
     });
     icons = icons.map((icon, index) => ({ index, ...icon }));
     icons = icons.splice(argv.startAfter || 0);
