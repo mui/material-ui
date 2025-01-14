@@ -70,7 +70,7 @@ describe('<Dialog />', () => {
         container: {
           expectedClassName: classes.container,
           testWithElement: null,
-          testWithComponent:CustomFade
+          testWithComponent: CustomFade,
         },
         paper: {
           expectedClassName: classes.paper,
