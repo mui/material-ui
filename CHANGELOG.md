@@ -6,9 +6,9 @@
 
 _Jan 13, 2025_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
-- Added `loading` prop to the `Button` and `IconButton` components (#44637) @siriwatknp
+- Added [`loading` prop](https://mui.com/material-ui/react-button/#loading-2) to the `Button` and `IconButton` components (#44637) @siriwatknp
 
 ### `@mui/material@6.4.0`
 
@@ -42,11 +42,12 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [core] Remove redundant screenshots (#44877) @oliviertassinari
 - [core] Remove Suspense and clock mocking from regressions and e2e tests (#44935) @DiegoAndai
+- [code-infra] Allow react@18 on `@mui/internal-test-utils` (#45023) @LukasTy
 - [code-infra] Stabilize flaky pigment progressbar tests (#44969) @Janpot
 - [example] Update the CDN example to adapt React 19. (#44979) @IceOfSummer
 - [figma] Clarify that Material UI Sync plugin is experimental (#44975) @oliviertassinari
 
-All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @good-jinu, @headironc, @iaziz11, @IceOfSummer, @Janpot, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siddhantantil39, @siriwatknp, @yashdev16, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @good-jinu, @headironc, @iaziz11, @IceOfSummer, @Janpot, @LukasTy, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siddhantantil39, @siriwatknp, @yashdev16, @ZeeshanTamboli
 
 ## 6.3.1
 
