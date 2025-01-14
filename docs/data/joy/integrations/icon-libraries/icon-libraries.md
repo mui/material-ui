@@ -5,7 +5,7 @@
 ## Material UI Icons
 
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material)
-includes the 2,200+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [SVG Icon](/material-ui/api/svg-icon/) components.
+includes the 2,100+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [SVG Icon](/material-ui/api/svg-icon/) components.
 
 ### Installation
 
