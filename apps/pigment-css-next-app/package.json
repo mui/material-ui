@@ -28,7 +28,7 @@
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.2",
     "eslint": "^8.57.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   },
   "nx": {
     "targets": {
