@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
+import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import SaveIcon from '@mui/icons-material/Save';
@@ -27,10 +27,10 @@ export default function FullWidthLoadingButtonsTransition() {
         }
         label="Loading"
       />
-      <LoadingButton onClick={handleClick} loading={loading} variant="outlined" fullWidth>
+      <Button onClick={handleClick} loading={loading} variant="outlined" fullWidth>
         Fetch data
-      </LoadingButton>
-      <LoadingButton
+      </Button>
+      <Button
         onClick={handleClick}
         endIcon={<SendIcon />}
         loading={loading}
@@ -39,8 +39,8 @@ export default function FullWidthLoadingButtonsTransition() {
         fullWidth
       >
         Send
-      </LoadingButton>
-      <LoadingButton
+      </Button>
+      <Button
         color="secondary"
         onClick={handleClick}
         loading={loading}
@@ -50,7 +50,7 @@ export default function FullWidthLoadingButtonsTransition() {
         fullWidth
       >
         Save
-      </LoadingButton>
+      </Button>
     </div>
   );
 }
