@@ -27,7 +27,7 @@
     "@types/node": "^20.17.12",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
-    "eslint": "^8.57.1",
+    "eslint": "^9.18.0",
     "typescript": "^5.7.2"
   },
   "nx": {
