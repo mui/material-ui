@@ -28,7 +28,7 @@ const synonyms = {
     '+ bill building card cash coin commerce company credit currency dollars market money new online payment plus retail shopping storefront symbol',
   AddCard:
     '+ bill cash coin commerce cost credit currency dollars finance money new online payment plus price shopping symbol',
-  Addchart:
+  AddChart:
     '+ analytics bars data diagram infographic measure metrics new plus statistics symbol tracking',
   AddCircle: '+ counter create new plus',
   AddCircleOutline: '+ create new plus',
@@ -141,6 +141,8 @@ const synonyms = {
     'all applications circles collection components dots grid interface squares ui ux',
   Architecture: 'art compass design drawing engineering geometric tool',
   Archive: 'inbox mail store',
+  AreaChart:
+    'analytics data diagram infographic measure metrics statistics tracking',
   ArrowBack:
     'DISABLE_IOS application components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowBackIos:
@@ -526,6 +528,8 @@ const synonyms = {
     'collide directional facing left pointing pressure push right together',
   CompassCalibration:
     'connection internet location maps network refresh service signal wifi wireless',
+  Compost:
+    'bio compostable decomposable decompose green leafs nature organic plant recycle sustainability sustainable',
   Compress: 'arrows collide pressure push together',
   Computer:
     'Android chrome desktop device hardware iOS laptop mac monitor pc web window',
@@ -607,6 +611,8 @@ const synonyms = {
     'adjustments area arrows editing frame images photos settings size turn',
   CropSquare:
     'adjustments application area components design editing expand frame images interface open photos rectangle screen settings shapes size ui ux website window',
+  CrueltyFree:
+    'animal bunny eco nature rabbit social sustainability sustainable testing',
   Css: 'alphabet brackets character code developer engineering font html letters platform symbol text type',
   CurrencyBitcoin:
     'bill blockchain card cash commerce cost credit digital dollars finance franc money online payment price shopping symbol',
@@ -634,6 +640,8 @@ const synonyms = {
   Dashboard: 'cards format grid layout rectangle shapes square view website',
   DashboardCustomize: 'cards format layout rectangle shapes square website',
   DataArray: 'brackets coder parentheses',
+  DataExploration:
+    'analytics arrow chart diagram infographic measure metrics statistics tracking',
   DataObject: 'brackets coder parentheses',
   DataSaverOff:
     'analytics bars chart diagram donut infographic measure metrics ring statistics tracking',
@@ -716,6 +724,8 @@ const synonyms = {
   DirectionsWalk: 'body human jogging maps people person route run',
   DirtyLens: 'camera photography picture splat',
   DisabledByDefault: 'box cancel clear close exit no quit remove square stop',
+  DisabledVisible:
+    'cancel close exit eye no on quit remove reveal see show stop view visibility',
   DiscFull:
     '! alert attention caution cd danger error exclamation important mark music notification storage symbol vinyl warning',
   DisplaySettings:
@@ -783,6 +793,8 @@ const synonyms = {
     'automobile cars destination direction estimate maps public transportation travel trip vehicle',
   DriveFileMove:
     'arrows data direction document folders right sheet side slide storage',
+  DriveFileMoveRtl:
+    'arrows data direction document folders left sheet side slide storage',
   DriveFileRenameOutline:
     'compose create draft editing input marker pencil write writing',
   DriveFolderUpload: 'arrow data document file sheet slide storage',
@@ -903,6 +915,16 @@ const synonyms = {
     'compass destination direction disabled east enabled location maps needle north slash south travel west',
   Exposure:
     'add brightness contrast editing effect image minus photography picture plus settings subtract',
+  ExposureNeg1:
+    'brightness contrast digit editing effect image negative numbers photography settings symbol',
+  ExposureNeg2:
+    'brightness contrast digit editing effect image negative numbers photography settings symbol',
+  ExposurePlus1:
+    'add brightness contrast digit editing effect image numbers photography settings symbol',
+  ExposurePlus2:
+    'add brightness contrast digit editing effect image numbers photography settings symbol',
+  ExposureZero:
+    '0 brightness contrast digit editing effect image numbers photography settings symbol',
   Extension: 'add-ons app extended game item jigsaw piece plugin puzzle shape',
   ExtensionOff: 'disabled enabled extended jigsaw piece puzzle shape slash',
   Face: 'account avatar emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
@@ -1150,6 +1172,9 @@ const synonyms = {
   FourteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   FreeBreakfast: 'beverage cafe coffee cup drink mug tea',
+  FreeCancellation:
+    'approve calendar check clear complete day done event exit mark month no ok remove schedule select stop tick validate verified yes',
+  FrontHand: 'fingers gesture hello palm stop',
   Fullscreen: 'adjust application components interface size ui ux view website',
   FullscreenExit: 'adjust application components interface size ui ux view website',
   Functions:
@@ -1161,6 +1186,8 @@ const synonyms = {
   GasMeter: 'droplet energy measure nest usage water',
   Gavel:
     'agreement contract court document government hammer judge law mallet official police rules terms',
+  GeneratingTokens:
+    'access api artificial automatic automation coin custom genai intelligence magic smart sparkle star',
   Gesture: 'doodle drawing finger gestures hand line motion scribble string thread',
   GetApp: 'arrows downloads export install play pointing retrieve upload',
   Gif: 'alphabet animated animation bitmap character font format graphics interchange letters symbol text type',
@@ -1202,6 +1229,8 @@ const synonyms = {
     'accounts committee face family friends humans network people persons profiles social team users',
   GroupAdd:
     'accounts committee face family friends humans increase more network people persons plus profiles social team users',
+  GroupOff:
+    'body club collaboration crowd gathering human meeting people person social teams',
   GroupRemove:
     'accounts committee face family friends humans network people persons profiles social team users',
   Groups:
@@ -1291,9 +1320,12 @@ const synonyms = {
   HomeRepairService: 'equipment fix kit mechanic repairing toolbox tools workshop',
   HomeWork:
     'architecture building estate house office place real residence residential shelter',
+  HorizontalDistribute: 'alignment format layout lines paragraph rules style text',
   HorizontalRule: 'gmail line novitas',
   HorizontalSplit: 'bars format layout lines stacked',
   Hotel: 'bed body human people person sleep stay travel trip',
+  HotelClass:
+    'achievement bookmark favorite highlight important marked ranking rate rating reward saved shape special star',
   HotTub:
     'bathing bathroom bathtub hotel human jacuzzi person shower spa steam travel water',
   HourglassBottom: 'countdown half loading minutes time waiting',
@@ -1335,6 +1367,7 @@ const synonyms = {
   ImportContacts: 'address book friends information magazine open',
   ImportExport: 'arrows direction down explort up',
   Inbox: 'archive category email incoming message',
+  IncompleteCircle: 'chart',
   IndeterminateCheckBox:
     'application button components control design form interface minus screen selected selection square toggle ui undetermined ux website',
   Info: 'about alert announcement announcment assistance bubble circle details help information service support',
@@ -1668,6 +1701,9 @@ const synonyms = {
   MotionPhotosAuto:
     'A alphabet animation automatic character circle font gif letters live symbol text type video',
   MotionPhotosOff: 'animation circle disabled enabled slash video',
+  MotionPhotosOn: 'animation circle disabled enabled off play slash video',
+  MotionPhotosPause: 'animation circle paused video',
+  MotionPhotosPaused: 'animation circle video',
   Mouse: 'click computer cursor device hardware wireless',
   MoveDown: 'arrow direction jump navigation transfer',
   MoveToInbox:
@@ -1713,6 +1749,8 @@ const synonyms = {
   NetworkWifi1Bar: 'cellular data internet mobile phone speed wireless',
   NetworkWifi2Bar: 'cellular data internet mobile phone speed wireless',
   NetworkWifi3Bar: 'cellular data internet mobile phone speed wireless',
+  NewLabel:
+    '+ add archive bookmark favorite library plus reading remember ribbon save symbol tag',
   NewReleases:
     '! alert announcement approve attention award burst caution checkmark complete danger done error exclamation important notification ok select star symbol tick verification verified warning yes',
   Newspaper:
@@ -1891,6 +1929,8 @@ const synonyms = {
   PersonAddAlt: '+ account face human people plus profile user',
   PersonAddDisabled:
     '+ account enabled face human new offline people plus profile slash symbol user',
+  PersonalInjury:
+    'accident aid arm bandage body broke cast fracture health human medical patient people sling social',
   PersonalVideo:
     'Android cam chrome desktop device hardware iOS mac monitor television tv web window',
   PersonOff: 'account avatar disabled enabled face human people profile slash user',
@@ -1965,6 +2005,8 @@ const synonyms = {
   Pin: '1 2 3 digit key login logout numbers password pattern security star symbol unlock',
   Pinch: 'arrows compress direction finger grasp hand navigation nip squeeze tweak',
   PinDrop: 'destination direction gps location maps navigation place stop',
+  PinEnd: 'action arrow dot',
+  PinInvoke: 'action arrow dot',
   Pinterest: 'brand logo social',
   PivotTableChart:
     'analytics arrows bars data diagram direction drive editing grid infographic measure metrics rotate sheet statistics tracking',
@@ -1998,6 +2040,7 @@ const synonyms = {
     'certified find glass legal look magnifying privacy private protection search security see shield verified',
   Poll: 'analytics barchart bars data diagram infographic measure metrics statistics survey tracking vote',
   Polyline: 'compose connection create design draw node vector',
+  Polymer: 'emblem logo mark',
   Pool: 'athlete athletic beach body entertainment exercise hobby human ocean people person places sea sports swimming water',
   PortableWifiOff:
     'connected connection data device disabled enabled internet network offline service signal slash usage wireless',
@@ -2024,6 +2067,7 @@ const synonyms = {
     '! alert attention caution danger error exclamation important mark notification symbol warning',
   PrivacyTip:
     'alert announcement announcment assistance certified details help information private protection security service shield support verified',
+  PrivateConnectivity: 'locked password privacy protection safety secure security',
   ProductionQuantityLimits:
     '! alert attention bill card cart cash caution coin commerce credit currency danger dollars error exclamation important mark money notification online payment shopping symbol warning',
   Propane: 'gas nest',
@@ -2075,6 +2119,8 @@ const synonyms = {
   RawOn:
     'alphabet character disabled enabled font image letters off original photography slash symbol text type',
   ReadMore: 'arrow text',
+  RealEstateAgent:
+    'architecture broker hand home house loan mortgage property residence residential sales social',
   Receipt: 'bill credit invoice paper payment sale transaction',
   ReceiptLong: 'bill check document list paperwork record store transaction',
   RecentActors:
@@ -2400,6 +2446,7 @@ const synonyms = {
   SingleBed:
     'bedroom double furniture home hotel house king night pillows queen rest sleep twin',
   Sip: 'alphabet call character dialer font initiation internet letters over phone protocol routing session symbol text type voice',
+  SixFtApart: 'body covid distance feet human people person social',
   SixK: '6000 6K alphabet character digit display font letters numbers pixels resolution symbol text type video',
   SixKPlus:
     '+ 6000 6K alphabet character digit display font letters numbers pixels resolution symbol text type video',
@@ -2786,6 +2833,7 @@ const synonyms = {
   Tv: 'device display linear living monitor room screencast stream television video wireless',
   TvOff:
     'Android chrome desktop device disabled enabled hardware iOS mac monitor slash television web window',
+  Twelve3: 'digit numbers symbol',
   TwelveMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   TwentyFourMp:
@@ -2848,6 +2896,7 @@ const synonyms = {
     'alignment arrow doc down editing editor spreadsheet text type up writing',
   VerticalAlignTop:
     'alignment arrow doc editing editor spreadsheet text type up writing',
+  VerticalDistribute: 'alignment format layout lines paragraph rules style text',
   VerticalShades: 'blinds cover curtains nest open shutter sunshade',
   VerticalShadesClosed: 'blinds cover curtains nest roller shutter sunshade',
   VerticalSplit: 'design format grid layout paragraph text website writing',
