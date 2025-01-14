@@ -44,7 +44,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [core] Remove Suspense and clock mocking from regressions and e2e tests (#44935) @DiegoAndai
 - [code-infra] Stabilize flaky pigment progressbar tests (#44969) @Janpot
 - [example] Update the CDN example to adapt React 19. (#44979) @IceOfSummer
-- [figma] Clarify that Material UI Sync plugin is experimental (#44975) @oliviertassinari
+- [figma] Clarify that Material UI Sync plugin is experimental (#44975) @oliviertassinari
 
 All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @good-jinu, @headironc, @iaziz11, @IceOfSummer, @Janpot, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siddhantantil39, @siriwatknp, @yashdev16, @ZeeshanTamboli
 
