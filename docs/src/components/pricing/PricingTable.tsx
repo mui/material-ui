@@ -65,12 +65,6 @@ export const planInfo = {
   },
 } as const;
 
-const formatter = new Intl.NumberFormat('en-US');
-
-function formatCurrency(value: number) {
-  return `$${formatter.format(value)}`;
-}
-
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme: any) {
   return {
@@ -1315,90 +1309,82 @@ export default function PricingTable({
   const renderNestedRow = (key: string) => renderMasterRow(key, nestedGridSx, plans);
 
   return (
-    <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', ...props.sx }}>
-      <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
-      {!columnHeaderHidden && (
-        <Box sx={gridSx}>
-          <Typography variant="body2" sx={{ fontWeight: 'bold', p: 2 }}>
-            Plans
-          </Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-            <PlanName plan="community" />
+    <ThemeProvider theme={transitionTheme}>
+      <Box ref={tableRef} {...props} sx={{ pt: 8, width: '100%', ...props.sx }}>
+        <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
+        {!columnHeaderHidden && (
+          <Box sx={gridSx}>
+            <Typography variant="body2" sx={{ fontWeight: 'bold', p: 2 }}>
+              Plans
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
+              <PlanName plan="community" />
+            </Box>
+            <ColumnHeadHighlight>
+              <PlanName plan="pro" />
+            </ColumnHeadHighlight>
+            <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
+              <PlanName plan="premium" />
+            </Box>
+            <ColumnHeadHighlight>
+              <PlanName plan="enterprise" />
+            </ColumnHeadHighlight>
           </Box>
-          <ColumnHeadHighlight>
-            <PlanName plan="pro" />
-          </ColumnHeadHighlight>
-          <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-            <PlanName plan="premium" />
-          </Box>
-          <ColumnHeadHighlight>
-            <PlanName plan="enterprise" />
-          </ColumnHeadHighlight>
-        </Box>
-      )}
-      <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
-        MUI Core (open-source)
-      </RowHead>
-      {renderRow('Material UI')}
-      {divider}
-      {renderRow('Joy UI')}
-      {divider}
-      {renderRow('Base UI')}
-      {divider}
-      {renderRow('MUI System')}
-      <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
-        MUI X (open-core)
-      </RowHead>
-      <Box
-        sx={{
-          position: 'relative',
-          minHeight: 58,
-          '& svg': { transition: '0.3s' },
-          '&:hover svg': { color: 'primary.main' },
-          ...gridSx,
-        }}
-      >
-        <Cell />
-        <Cell sx={{ minHeight: 60 }}>{dataGridUnfoldMore}</Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {dataGridUnfoldMore}
-        </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {dataGridUnfoldMore}
-        </Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {dataGridUnfoldMore}
-        </Cell>
-        <Button
-          fullWidth
-          onClick={() => setDataGridCollapsed((bool) => !bool)}
-          endIcon={
-            <KeyboardArrowRightRounded
-              color="primary"
-              sx={{ transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
-            />
-          }
-          sx={[
-            (theme) => ({
-              px: 1,
-              justifyContent: 'flex-start',
-              fontSize: '0.875rem',
-              fontWeight: 'medium',
-              borderRadius: '0px',
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              width: '100%',
-              height: '100%',
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primary.main, 0.06),
-                '@media (hover: none)': {
-                  bgcolor: 'initial',
-                },
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
+        )}
+        <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
+          MUI Core (open-source)
+        </RowHead>
+        {renderRow('Material UI')}
+        {divider}
+        {renderRow('Joy UI')}
+        {divider}
+        {renderRow('Base UI')}
+        {divider}
+        {renderRow('MUI System')}
+        <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
+          MUI X (open-core)
+        </RowHead>
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{dataGridUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {dataGridUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {dataGridUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {dataGridUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setDataGridCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{ transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
                   '@media (hover: none)': {
@@ -1406,6 +1392,15 @@ export default function PricingTable({
                   },
                 },
               }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                    '@media (hover: none)': {
+                      bgcolor: 'initial',
+                    },
+                  },
+                }),
               (theme) =>
                 theme.applyDarkStyles({
                   '&:hover': {
@@ -1512,61 +1507,47 @@ export default function PricingTable({
         {divider}
         {renderRow('date-picker/range')}
         {divider}
-        {renderNestedRow('data-grid/localization')}
-      </StyledCollapse>
-      {divider}
-      {renderRow('date-picker/simple')}
-      {divider}
-      {renderRow('date-picker/range')}
-      {divider}
-      <Box
-        sx={{
-          position: 'relative',
-          minHeight: 58,
-          '& svg': { transition: '0.3s' },
-          '&:hover svg': { color: 'primary.main' },
-          ...gridSx,
-        }}
-      >
-        <Cell />
-        <Cell sx={{ minHeight: 60 }}>{chartsUnfoldMore}</Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {chartsUnfoldMore}
-        </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>{chartsUnfoldMore}</Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {chartsUnfoldMore}
-        </Cell>
-        <Button
-          fullWidth
-          onClick={() => setChartsCollapsed((bool) => !bool)}
-          endIcon={
-            <KeyboardArrowRightRounded
-              color="primary"
-              sx={{ transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
-            />
-          }
-          sx={[
-            (theme) => ({
-              px: 1,
-              justifyContent: 'flex-start',
-              fontSize: '0.875rem',
-              fontWeight: 'medium',
-              borderRadius: '0px',
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              width: '100%',
-              height: '100%',
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primary.main, 0.06),
-                '@media (hover: none)': {
-                  bgcolor: 'initial',
-                },
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{chartsUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {chartsUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {chartsUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {chartsUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setChartsCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{ transform: chartsCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
                   '@media (hover: none)': {
@@ -1574,6 +1555,15 @@ export default function PricingTable({
                   },
                 },
               }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                    '@media (hover: none)': {
+                      bgcolor: 'initial',
+                    },
+                  },
+                }),
               (theme) =>
                 theme.applyDarkStyles({
                   '&:hover': {
@@ -1634,59 +1624,47 @@ export default function PricingTable({
           {renderNestedRow('charts/selection-interaction')}
         </StyledCollapse>
         {divider}
-        {renderNestedRow('charts/selection-interaction')}
-      </StyledCollapse>
-      {divider}
-      <Box
-        sx={{
-          position: 'relative',
-          minHeight: 58,
-          '& svg': { transition: '0.3s' },
-          '&:hover svg': { color: 'primary.main' },
-          ...gridSx,
-        }}
-      >
-        <Cell />
-        <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {treeViewUnfoldMore}
-        </Cell>
-        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {treeViewUnfoldMore}
-        </Cell>
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
-          {treeViewUnfoldMore}
-        </Cell>
-        <Button
-          fullWidth
-          onClick={() => setTreeViewCollapsed((bool) => !bool)}
-          endIcon={
-            <KeyboardArrowRightRounded
-              color="primary"
-              sx={{ transform: treeViewCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
-            />
-          }
-          sx={[
-            (theme) => ({
-              px: 1,
-              justifyContent: 'flex-start',
-              fontSize: '0.875rem',
-              fontWeight: 'medium',
-              borderRadius: '0px',
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              width: '100%',
-              height: '100%',
-              '&:hover': {
-                bgcolor: alpha(theme.palette.primary.main, 0.06),
-                '@media (hover: none)': {
-                  bgcolor: 'initial',
-                },
-              },
-            }),
-            (theme) =>
-              theme.applyDarkStyles({
+        <Box
+          sx={{
+            position: 'relative',
+            minHeight: 58,
+            '& svg': { transition: '0.3s' },
+            '&:hover svg': { color: 'primary.main' },
+            ...gridSx,
+          }}
+        >
+          <Cell />
+          <Cell sx={{ minHeight: 60 }}>{treeViewUnfoldMore}</Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+            {treeViewUnfoldMore}
+          </Cell>
+          <Button
+            fullWidth
+            onClick={() => setTreeViewCollapsed((bool) => !bool)}
+            endIcon={
+              <KeyboardArrowRightRounded
+                color="primary"
+                sx={{ transform: treeViewCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)' }}
+              />
+            }
+            sx={[
+              (theme) => ({
+                px: 1,
+                justifyContent: 'flex-start',
+                fontSize: '0.875rem',
+                fontWeight: 'medium',
+                borderRadius: '0px',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '100%',
+                height: '100%',
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
                   '@media (hover: none)': {
@@ -1694,6 +1672,15 @@ export default function PricingTable({
                   },
                 },
               }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                    '@media (hover: none)': {
+                      bgcolor: 'initial',
+                    },
+                  },
+                }),
               (theme) =>
                 theme.applyDarkStyles({
                   '&:hover': {
@@ -1729,7 +1716,9 @@ export default function PricingTable({
         <PricingTableDevelopment renderRow={renderRow} />
         {divider}
         {renderRow('mui-x-updates')}
-        <RowHead>Support</RowHead>
+        <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
+          Support
+        </RowHead>
         {renderRow('core-support')}
         {divider}
         {renderRow('x-support')}
@@ -1738,34 +1727,15 @@ export default function PricingTable({
         {divider}
         {renderRow('response-time')}
         {divider}
-      </StyledCollapse>
-      {divider}
-      {renderRow('mui-x-production')}
-      {divider}
-      <PricingTableDevelopment renderRow={renderRow} />
-      {divider}
-      {renderRow('mui-x-updates')}
-      <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
-        Support
-      </RowHead>
-      {renderRow('x-support')}
-      {divider}
-      {renderRow('support-duration')}
-      {divider}
-      {renderRow('priority-support')}
-      {divider}
-      {renderRow('core-support')}
-      {divider}
-      {renderRow('response-time')}
-      {divider}
-      {renderRow('pre-screening')}
-      {divider}
-      {renderRow('issue-escalation')}
-      {divider}
-      {renderRow('customer-success')}
-      {divider}
-      {renderRow('security-questionnaire')}
-      {divider}
-    </Box>
+        {renderRow('pre-screening')}
+        {divider}
+        {renderRow('issue-escalation')}
+        {divider}
+        {renderRow('customer-success')}
+        {divider}
+        {renderRow('security-questionnaire')}
+        {divider}
+      </Box>
+    </ThemeProvider>
   );
 }

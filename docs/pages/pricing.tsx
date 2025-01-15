@@ -17,7 +17,6 @@ import { PrioritySupportProvider } from 'docs/src/components/pricing/PrioritySup
 import { LicenseModelProvider } from 'docs/src/components/pricing/LicenseModelContext';
 import PricingCards from 'docs/src/components/pricing/PricingCards';
 
-
 export default function Pricing() {
   return (
     <BrandingCssVarsProvider>
