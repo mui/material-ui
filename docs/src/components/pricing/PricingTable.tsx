@@ -1396,15 +1396,6 @@ export default function PricingTable({
                 theme.applyDarkStyles({
                   '&:hover': {
                     bgcolor: alpha(theme.palette.primary.main, 0.06),
-                    '@media (hover: none)': {
-                      bgcolor: 'initial',
-                    },
-                  },
-                }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  '&:hover': {
-                    bgcolor: alpha(theme.palette.primary.main, 0.06),
                   },
                 }),
             ]}
@@ -1559,15 +1550,6 @@ export default function PricingTable({
                 theme.applyDarkStyles({
                   '&:hover': {
                     bgcolor: alpha(theme.palette.primary.main, 0.06),
-                    '@media (hover: none)': {
-                      bgcolor: 'initial',
-                    },
-                  },
-                }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  '&:hover': {
-                    bgcolor: alpha(theme.palette.primary.main, 0.06),
                   },
                 }),
             ]}
@@ -1672,15 +1654,6 @@ export default function PricingTable({
                   },
                 },
               }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  '&:hover': {
-                    bgcolor: alpha(theme.palette.primary.main, 0.06),
-                    '@media (hover: none)': {
-                      bgcolor: 'initial',
-                    },
-                  },
-                }),
               (theme) =>
                 theme.applyDarkStyles({
                   '&:hover': {
