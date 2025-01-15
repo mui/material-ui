@@ -28,6 +28,10 @@ export default function mergeSlotProps<
         ...defaultSlotPropsValue,
         ...externalSlotPropsValue,
         ...(!!className && { className }),
+        ...(defaultSlotPropsValue?.style &&
+          externalSlotPropsValue?.style && {
+            style: { ...defaultSlotPropsValue.style, ...externalSlotPropsValue.style },
+          }),
       };
     }) as U;
   }
@@ -39,5 +43,9 @@ export default function mergeSlotProps<
     ...defaultSlotProps,
     ...externalSlotProps,
     ...(!!className && { className }),
+    ...((defaultSlotProps as Record<string, any>)?.style &&
+      externalSlotProps?.style && {
+        style: { ...(defaultSlotProps as Record<string, any>).style, ...externalSlotProps.style },
+      }),
   } as U;
 }

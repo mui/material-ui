@@ -94,6 +94,7 @@ const useUtilityClasses = (ownerState) => {
     dashed: ['dashed', `dashedColor${capitalize(color)}`],
     bar1: [
       'bar',
+      'bar1',
       `barColor${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
       variant === 'determinate' && 'bar1Determinate',
@@ -101,6 +102,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     bar2: [
       'bar',
+      'bar2',
       variant !== 'buffer' && `barColor${capitalize(color)}`,
       variant === 'buffer' && `color${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
@@ -231,6 +233,7 @@ const LinearProgressBar1 = styled('span', {
 
     return [
       styles.bar,
+      styles.bar1,
       styles[`barColor${capitalize(ownerState.color)}`],
       (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
         styles.bar1Indeterminate,
@@ -307,6 +310,7 @@ const LinearProgressBar2 = styled('span', {
 
     return [
       styles.bar,
+      styles.bar2,
       styles[`barColor${capitalize(ownerState.color)}`],
       (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
         styles.bar2Indeterminate,
