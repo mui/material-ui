@@ -103,8 +103,7 @@
     "@netlify/functions": "^2.8.2",
     "@slack/bolt": "^4.2.0",
     "execa": "^9.5.2",
-    "google-auth-library": "^9.15.0",
-    "tsc-alias": "^1.8.10"
+    "google-auth-library": "^9.15.0"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.12.0",
@@ -129,9 +128,6 @@
     "@octokit/rest": "^21.0.2",
     "@pigment-css/react": "0.0.29",
     "@playwright/test": "1.48.2",
-    "@rollup/plugin-alias": "^5.1.0",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.13",
@@ -193,8 +189,6 @@
     "pretty-quick": "^4.0.0",
     "process": "^0.11.10",
     "rimraf": "^6.0.1",
-    "rollup": "^4.20.0",
-    "rollup-plugin-preserve-directives": "^0.4.0",
     "serve": "^14.2.4",
     "stylelint": "^16.12.0",
     "stylelint-config-standard": "^36.0.1",
