@@ -18,6 +18,7 @@ import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import MuiBaseDeprecation from 'docs/src/modules/components/MuiBaseDeprecation';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
@@ -182,6 +183,8 @@ export default function MarkdownDocsV2(props) {
     });
   }
 
+  const isBase = canonicalAs.startsWith('/base-ui/');
+
   const isJoy = canonicalAs.startsWith('/joy-ui/');
   const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
 
@@ -271,6 +274,12 @@ export default function MarkdownDocsV2(props) {
         )}
         <CssVarsProvider>
           {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
+          {isBase && (
+            <MuiBaseDeprecation
+              newComponentUrl={localizedDoc.headers.newUrl}
+              newComponentName={localizedDoc.headers.newName}
+            />
+          )}
           {commonElements}
           {activeTab === '' &&
             localizedDoc.rendered
