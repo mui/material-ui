@@ -254,6 +254,30 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: DrawerRoot,
+    className: clsx(classes.root, classes.modal, className),
+    shouldForwardComponentProp: true,
+    ownerState,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      ...ModalProps,
+    },
+    additionalProps: {
+      open,
+      onClose,
+      hideBackdrop,
+      slots: {
+        backdrop: externalForwardedProps.slots.backdrop,
+      },
+      slotProps: {
+        backdrop: externalForwardedProps.slotProps.backdrop,
+      },
+    },
+  });
+
   const [PaperSlot, paperSlotProps] = useSlot('paper', {
     elementType: DrawerPaper,
     shouldForwardComponentProp: true,
@@ -300,24 +324,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   }
 
   // variant === temporary
-  // `DrawerRoot` does not need `useSlot` because it is a `Modal` (composed component),
-  // pass `slots` and `slotProps` to `DrawerRoot` directly
-  return (
-    <DrawerRoot
-      className={clsx(classes.root, classes.modal, className)}
-      open={open}
-      ownerState={ownerState}
-      onClose={onClose}
-      hideBackdrop={hideBackdrop}
-      ref={ref}
-      slots={externalForwardedProps.slots}
-      slotProps={externalForwardedProps.slotProps}
-      {...other}
-      {...ModalProps}
-    >
-      {slidingDrawer}
-    </DrawerRoot>
-  );
+  return <RootSlot {...rootSlotProps}>{slidingDrawer}</RootSlot>;
 });
 
 Drawer.propTypes /* remove-proptypes */ = {

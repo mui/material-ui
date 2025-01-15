@@ -34,6 +34,7 @@ describe('<Drawer />', () => {
         root: {
           expectedClassName: classes.root,
           testWithComponent: null,
+          testWithElement: null,
         },
         paper: {
           expectedClassName: classes.paper,
