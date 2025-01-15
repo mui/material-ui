@@ -61,11 +61,7 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the container slot.
      * By default, the avaible props are based on a div element.
      */
-    container: SlotProps<
-      React.ElementType<React.HTMLAttributes<HTMLDivElement>>,
-      DialogContainerSlotPropsOverrides,
-      DialogOwnerState
-    >;
+    container: SlotProps<'div', DialogContainerSlotPropsOverrides, DialogOwnerState>;
     /**
      * Props forwarded to the transition slot.
      * By default, the avaible props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
