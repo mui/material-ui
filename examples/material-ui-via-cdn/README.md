@@ -12,7 +12,10 @@ cd material-ui-via-cdn
 Run:
 
 ```bash
+# React 19 or later
 open index.html
+# React 18
+open react-18-example.html
 ```
 
 ## The idea behind the example

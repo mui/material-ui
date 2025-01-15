@@ -1,5 +1,54 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.0
+
+<!-- generated comparing v6.3.1..master -->
+
+_Jan 13, 2025_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- Added [`loading` prop](https://mui.com/material-ui/react-button/#loading-2) to the `Button` and `IconButton` components (#44637) @siriwatknp
+
+### `@mui/material@6.4.0`
+
+- [Alert] complete `slots` and `slotProps` (#44971) @siriwatknp
+- [Autocomplete] Sync runtime and TS types for key in grouped options (#44862) @aarongarciah
+- [Button] Add `loading` prop (#44637) @siriwatknp
+- [CardHeader] Deprecate `*TypographyProps` and complete `slots`, `slotProps` (#44729) @siriwatknp
+- [CircularProgress] Improve indeterminate animation to be symmetric and smooth (#44934) @yashdev16
+- [LinearProgress] Deprecate composed classes (#44933) @headironc
+- [Link] Fix error for using custom palette with underline (#44927) @siriwatknp
+- [Select] Do not set `aria-controls` when closed (#44919) @siddhantantil39
+- [Select] Add missing root class (#44928) @sai6855
+- [Slider] Set onChangeCommitted to receive the last argument passed to onChange (#44795) @good-jinu
+- Add `mergeSlotProps` for extending components (#44809) @siriwatknp
+- Update `mergeSlotProps` to merge `style` (#44959) @siriwatknp
+- Fix slots typing for Tooltip and StepLabel (#44985) @siriwatknp
+- Remove unnecessary blank lines (#44980) @sai6855
+
+### Docs
+
+- [docs] Fix Dashboard sidenav sroll (#44876) @oliviertassinari
+- [docs] Fix broken anchor link to w3.org (c51af8e) @oliviertassinari
+- [docs] Add details on complementary Menu components (#44957) @samuelsycamore
+- [docs] Remove misleading messaging on MD3 support (#44953) @mnajdova
+- [docs] Fix code copy button obscuring on small screen sizes (#44861) @ZeeshanTamboli
+- [docs] Remove more instances of Adobe XD (#44956) @samuelsycamore
+- [docs] Remove Adobe XD chips, links, and mentions (#44909) @samuelsycamore
+- [docs] Fix incorrect rendering in Typography docs (#44937) @iaziz11
+
+### Core
+
+- [core] Remove redundant screenshots (#44877) @oliviertassinari
+- [core] Remove Suspense and clock mocking from regressions and e2e tests (#44935) @DiegoAndai
+- [code-infra] Allow react@18 on `@mui/internal-test-utils` (#45023) @LukasTy
+- [code-infra] Stabilize flaky pigment progressbar tests (#44969) @Janpot
+- [example] Update the CDN example to adapt React 19. (#44979) @IceOfSummer
+- [figma] Clarify that Material UI Sync plugin is experimental (#44975) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @good-jinu, @headironc, @iaziz11, @IceOfSummer, @Janpot, @LukasTy, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siddhantantil39, @siriwatknp, @yashdev16, @ZeeshanTamboli
+
 ## 6.3.1
 
 <!-- generated comparing v6.3.0..master -->
