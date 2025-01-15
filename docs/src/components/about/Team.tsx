@@ -243,7 +243,7 @@ const contributors = [
     title: 'Material UI, MUI X',
     src: 'https://avatars.githubusercontent.com/u/20900032',
     twitter: 'ZeeshanTamboli',
-    linkedin: '/in/zeeshantamboli',
+    linkedin: 'in/zeeshantamboli',
   },
 ];
 
