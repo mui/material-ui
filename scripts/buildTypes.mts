@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import glob from 'fast-glob';
 import * as fs from 'fs/promises';
 import path from 'path';
@@ -14,9 +13,28 @@ async function emitDeclarations(tsconfig: string) {
   await $$`tsc --build ${tsconfig}  --verbose`;
 }
 
-async function addImportExtensions(tsconfig: string) {
+async function addImportExtensions(folder: string) {
   console.log(`Adding import extensions`);
-  await $$`tsc-alias --resolve-full-paths -p ${tsconfig} --verbose`;
+  const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: folder });
+  if (dtsFiles.length === 0) {
+    throw new Error(`Unable to find declaration files in '${folder}'`);
+  }
+
+  await Promise.all(
+    dtsFiles.map(async (dtsFile) => {
+      const result = await babel.transformFileAsync(dtsFile, {
+        configFile: false,
+        plugins: [
+          ['@babel/plugin-syntax-typescript', { dts: true }],
+          ['@mui/internal-babel-plugin-resolve-imports'],
+        ],
+      });
+      if (!result?.code) {
+        throw new Error(`Failed to transform ${dtsFile}`);
+      }
+      await fs.writeFile(dtsFile, result.code);
+    }),
+  );
 }
 
 async function copyDeclarations(sourceDirectory: string, destinationDirectory: string) {
@@ -58,26 +76,7 @@ async function main() {
   await typescriptCopy({ from: srcPath, to: esmFolder });
   await emitDeclarations(tsconfigPath);
 
-  const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: esmFolder });
-  if (dtsFiles.length === 0) {
-    throw new Error(`Unable to find declaration files in '${esmFolder}'`);
-  }
-
-  await Promise.all(
-    dtsFiles.map(async (dtsFile) => {
-      const result = await babel.transformFileAsync(dtsFile, {
-        configFile: false,
-        plugins: [
-          ['@babel/plugin-syntax-typescript', { dts: true }],
-          ['@mui/internal-babel-plugin-resolve-imports'],
-        ],
-      });
-      if (!result?.code) {
-        throw new Error(`Failed to transform ${dtsFile}`);
-      }
-      await fs.writeFile(dtsFile, result.code);
-    }),
-  );
+  await addImportExtensions(esmFolder);
 
   await copyDeclarations(esmFolder, buildFolder);
   await copyDeclarations(esmFolder, modernFolder);

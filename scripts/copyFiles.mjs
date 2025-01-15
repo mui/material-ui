@@ -5,7 +5,6 @@ import {
   createPackageFile,
   includeFileInBuild,
   prepend,
-  cjsCopy,
 } from './copyFilesUtils.mjs';
 
 const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
@@ -41,9 +40,6 @@ async function addLicense(packageData) {
 async function run() {
   const extraFiles = process.argv.slice(2);
   try {
-    // cjs
-    await cjsCopy({ from: srcPath, to: buildPath });
-
     const packageData = await createPackageFile();
 
     await Promise.all(

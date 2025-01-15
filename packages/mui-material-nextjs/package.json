@@ -72,5 +72,14 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": null,
+    "./*": {
+      "mui-src": "./src/*/index.ts"
+    },
+    "./v13-pagesRouter": {
+      "mui-src": "./src/v13-pagesRouter/index.ts"
+    }
   }
 }

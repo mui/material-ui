@@ -105,7 +105,7 @@
   },
   "exports": {
     "./ButtonBase/TouchRipple": {
-      "mui-src": "./ButtonBase/TouchRipple.ts"
+      "mui-src": "./src/ButtonBase/TouchRipple.ts"
     }
   },
   "pigment-css": {

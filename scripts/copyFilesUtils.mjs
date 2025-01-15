@@ -113,7 +113,10 @@ function createExportFor(exportName, conditions) {
   if (typeof conditions === 'object') {
     const { [srcCondition]: src, ...rest } = conditions;
     if (typeof src === 'string') {
-      const baseName = src.replace(/^\.\//, '').replace(/\.tsx?$/, '');
+      if (!/\.tsx?$/.test(src)) {
+        throw new Error(`Invalid src condition for ${exportName}: ${src}`);
+      }
+      const baseName = src.replace(/^\.\/src\//, '').replace(/\.tsx?$/, '');
       return {
         [exportName]: {
           require: {
@@ -149,13 +152,17 @@ export async function createPackageFile() {
     JSON.parse(packageData);
 
   const packageExports = {
-    ...createExportFor('.', { [srcCondition]: './index.ts' }),
-    ...createExportFor('./*', { [srcCondition]: './*/index.ts' }),
+    ...createExportFor('.', { [srcCondition]: './src/index.ts' }),
+    ...createExportFor('./*', { [srcCondition]: './src/*/index.ts' }),
   };
 
   if (packageDataOther.exports) {
     for (const [exportName, conditions] of Object.entries(packageDataOther.exports)) {
-      Object.assign(packageExports, createExportFor(exportName, conditions));
+      if (conditions) {
+        Object.assign(packageExports, createExportFor(exportName, conditions));
+      } else {
+        delete packageExports[exportName];
+      }
     }
   }
 

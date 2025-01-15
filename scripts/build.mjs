@@ -3,13 +3,8 @@ import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
-import * as url from 'url';
-import { rollup } from 'rollup';
-import { babel as rollupBabel } from '@rollup/plugin-babel';
-import rollupResolve from '@rollup/plugin-node-resolve';
-import rollupPreserveDirectives from 'rollup-plugin-preserve-directives';
-import rollupAlias from '@rollup/plugin-alias';
 import * as fs from 'fs/promises';
+import { cjsCopy } from './copyFilesUtils.mjs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
@@ -101,55 +96,6 @@ async function run(argv) {
     ...(await getVersionEnvVariables()),
   };
 
-  if (argv.rollup) {
-    const entryFiles = await glob(`**/*{${extensions.join(',')}}`, { cwd: srcDir, ignore });
-
-    const entries = Object.fromEntries(
-      entryFiles.map((file) => [
-        // nested/foo.js becomes nested/foo
-        file.slice(0, file.length - path.extname(file).length),
-        // This expands the relative paths to absolute paths, so e.g.
-        // src/nested/foo becomes /project/src/nested/foo.js
-        url.fileURLToPath(new URL(file, `${url.pathToFileURL(srcDir)}/`)),
-      ]),
-    );
-
-    const rollupBundle = await rollup({
-      input: entries,
-      external: (id) => /node_modules/.test(id),
-      onwarn(warning, warn) {
-        if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') {
-          warn(warning);
-        }
-      },
-      plugins: [
-        rollupAlias({
-          // Mostly to resolve @mui/utils/formatMuiErrorMessage correctly, but generalizes to all packages.
-          entries: [{ find: packageJson.name, replacement: srcDir }],
-        }),
-        rollupResolve({ extensions }),
-        rollupBabel({
-          configFile: babelConfigPath,
-          extensions,
-          babelHelpers: 'runtime',
-          envName: bundle,
-        }),
-        rollupPreserveDirectives(),
-      ],
-    });
-
-    await rollupBundle.write({
-      preserveModules: true,
-      interop: 'auto',
-      exports: 'named',
-      dir: outDir,
-      format: bundle === 'node' ? 'commonjs' : 'es',
-      entryFileNames: `[name]${outFileExtension}`,
-    });
-
-    return;
-  }
-
   const babelArgs = [
     '--config-file',
     babelConfigPath,
@@ -182,6 +128,11 @@ async function run(argv) {
   if (stderr) {
     throw new Error(`'${command}' failed with \n${stderr}`);
   }
+
+  // cjs for reexporting from commons only modules.
+  // If we need to rely more on this we can think about setting up a separate commonjs => commonjs build for .cjs files to .cjs
+  // `--extensions-.cjs --out-file-extension .cjs`
+  await cjsCopy({ from: srcDir, to: outDir });
 
   const isEsm = bundle === 'modern' || bundle === 'stable';
   if (isEsm) {
