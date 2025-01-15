@@ -58,13 +58,13 @@ async function run(argv) {
     '**/test-cases/*.*',
   ];
 
-  let outFileExtension = {
-    node: '.js',
-    modern: '.modern.mjs',
-    stable: '.mjs',
-  }[bundle];
+  let outFileExtension = '.js';
 
-  let relativeOutDir = './';
+  let relativeOutDir = {
+    node: './',
+    modern: './modern',
+    stable: './esm',
+  }[bundle];
 
   if (!usePackageExports) {
     outFileExtension = '.js';
@@ -181,6 +181,12 @@ async function run(argv) {
   const { stderr, stdout } = await exec(command, { env: { ...process.env, ...env } });
   if (stderr) {
     throw new Error(`'${command}' failed with \n${stderr}`);
+  }
+
+  const isEsm = bundle === 'modern' || bundle === 'stable';
+  if (isEsm) {
+    const rootBundlePackageJson = path.join(outDir, 'package.json');
+    await fs.writeFile(rootBundlePackageJson, JSON.stringify({ type: 'module' }));
   }
 
   if (verbose) {

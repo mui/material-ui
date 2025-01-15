@@ -103,7 +103,8 @@
     "@netlify/functions": "^2.8.2",
     "@slack/bolt": "^4.2.0",
     "execa": "^9.5.2",
-    "google-auth-library": "^9.15.0"
+    "google-auth-library": "^9.15.0",
+    "tsc-alias": "^1.8.10"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.12.0",

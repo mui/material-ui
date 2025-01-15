@@ -5,7 +5,6 @@ import {
   createPackageFile,
   includeFileInBuild,
   prepend,
-  typescriptCopy,
   cjsCopy,
 } from './copyFilesUtils.mjs';
 
@@ -42,8 +41,6 @@ async function addLicense(packageData) {
 async function run() {
   const extraFiles = process.argv.slice(2);
   try {
-    // TypeScript
-    await typescriptCopy({ from: srcPath, to: buildPath });
     // cjs
     await cjsCopy({ from: srcPath, to: buildPath });
 

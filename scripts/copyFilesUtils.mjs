@@ -104,36 +104,69 @@ export async function cjsCopy({ from, to }) {
   return Promise.all(cmds);
 }
 
+const srcCondition = 'mui-src';
+const modernCondition = 'mui-modern';
+const polyfillLegacyModern = false;
+const legacyModernPrefix = './modern';
+
+function createExportFor(exportName, conditions) {
+  if (typeof conditions === 'object') {
+    const { [srcCondition]: src, ...rest } = conditions;
+    if (typeof src === 'string') {
+      const baseName = src.replace(/^\.\//, '').replace(/\.tsx?$/, '');
+      return {
+        [exportName]: {
+          require: {
+            types: `./${baseName}.d.ts`,
+            default: `./${baseName}.js`,
+          },
+          import: {
+            types: `./esm/${baseName}.d.ts`,
+            default: `./esm/${baseName}.js`,
+          },
+          [modernCondition]: {
+            types: `./modern/${baseName}.d.ts`,
+            default: `./modern/${baseName}.js`,
+          },
+          ...rest,
+        },
+      };
+    }
+  }
+
+  if (typeof conditions === 'string' && /\.tsx?$/.test(conditions)) {
+    return createExportFor(exportName, { [srcCondition]: conditions });
+  }
+
+  return {
+    [exportName]: conditions,
+  };
+}
+
 export async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
-  const modernCondition = 'mui-modern';
-  const legacyModernPrefix = './modern';
-
   const packageExports = {
-    '.': {
-      types: './index.d.ts',
-      import: './index.mjs',
-      [modernCondition]: './index.modern.mjs',
-      require: './index.js',
-    },
-    './*': {
-      types: './*/index.d.ts',
-      import: './*/index.mjs',
-      [modernCondition]: './*/index.modern.mjs',
-      require: './*/index.js',
-    },
-    ...packageDataOther.exports,
+    ...createExportFor('.', { [srcCondition]: './index.ts' }),
+    ...createExportFor('./*', { [srcCondition]: './*/index.ts' }),
   };
 
-  const exportedNames = new Set(Object.keys(packageExports));
-  for (const exportedName of exportedNames) {
-    const modernName = exportedName.replace(/^\./, legacyModernPrefix);
-    const modernExport = packageExports[exportedName][modernCondition] ?? null;
-    if (typeof modernExport === 'string' && !exportedNames.has(modernName)) {
-      packageExports[modernName] = modernExport;
+  if (packageDataOther.exports) {
+    for (const [exportName, conditions] of Object.entries(packageDataOther.exports)) {
+      Object.assign(packageExports, createExportFor(exportName, conditions));
+    }
+  }
+
+  if (polyfillLegacyModern) {
+    const exportedNames = new Set(Object.keys(packageExports));
+    for (const exportedName of exportedNames) {
+      const modernName = exportedName.replace(/^\./, legacyModernPrefix);
+      const modernExport = packageExports[exportedName][modernCondition] ?? null;
+      if (modernExport && !exportedNames.has(modernName)) {
+        packageExports[modernName] = modernExport;
+      }
     }
   }
 

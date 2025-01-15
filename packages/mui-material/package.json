@@ -32,7 +32,7 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
@@ -105,10 +105,7 @@
   },
   "exports": {
     "./ButtonBase/TouchRipple": {
-      "types": "./ButtonBase/TouchRipple.d.ts",
-      "import": "./ButtonBase/TouchRipple.mjs",
-      "mui-modern": "./ButtonBase/TouchRipple.modern.mjs",
-      "require": "./ButtonBase/TouchRipple.js"
+      "mui-src": "./ButtonBase/TouchRipple.ts"
     }
   },
   "pigment-css": {

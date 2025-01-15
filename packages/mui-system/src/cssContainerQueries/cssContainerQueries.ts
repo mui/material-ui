@@ -1,6 +1,6 @@
 import { Breakpoints, Breakpoint } from '../createBreakpoints/createBreakpoints';
 
-interface ContainerQueries {
+export interface ContainerQueries {
   up: Breakpoints['up'];
   down: Breakpoints['down'];
   between: Breakpoints['between'];
