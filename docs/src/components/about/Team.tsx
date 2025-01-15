@@ -235,6 +235,14 @@ const contributors = [
     locationCountry: 'ie',
     src: 'https://avatars.githubusercontent.com/u/12678455',
   },
+  {
+    name: 'Zeeshan Tamboli',
+    github: 'ZeeshanTamboli',
+    location: 'Pune, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/20900032',
+  },
 ];
 
 const emeriti = [
