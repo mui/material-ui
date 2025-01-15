@@ -14,9 +14,7 @@ export interface DialogSlots {
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  transition?: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<any, any> }
-  >;
+  transition?: React.ElementType;
   /**
    * The component that renders the paper.
    * @default Paper
