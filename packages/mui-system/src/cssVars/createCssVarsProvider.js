@@ -48,6 +48,9 @@ export default function createCssVarsProvider(options) {
 
   const useColorScheme = () => React.useContext(ColorSchemeContext) || defaultContext;
 
+  const defaultColorSchemes = {};
+  const defaultComponents = {};
+
   function CssVarsProvider(props) {
     const {
       children,
@@ -61,6 +64,7 @@ export default function createCssVarsProvider(options) {
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
       defaultMode: initialMode = 'system',
+      noSsr,
     } = props;
     const hasMounted = React.useRef(false);
     const upperTheme = muiUseTheme();
@@ -74,12 +78,12 @@ export default function createCssVarsProvider(options) {
       return typeof defaultTheme === 'function' ? defaultTheme() : defaultTheme;
     }, [themeProp]);
     const scopedTheme = initialTheme[themeId];
+    const restThemeProp = scopedTheme || initialTheme;
     const {
-      colorSchemes = {},
-      components = {},
+      colorSchemes = defaultColorSchemes,
+      components = defaultComponents,
       cssVarPrefix,
-      ...restThemeProp
-    } = scopedTheme || initialTheme;
+    } = restThemeProp;
     const joinedColorSchemes = Object.keys(colorSchemes)
       .filter((k) => !!colorSchemes[k])
       .join(',');
@@ -114,6 +118,7 @@ export default function createCssVarsProvider(options) {
       colorSchemeStorageKey,
       defaultMode,
       storageWindow,
+      noSsr,
     });
 
     let mode = stateMode;
@@ -124,42 +129,46 @@ export default function createCssVarsProvider(options) {
       colorScheme = ctx.colorScheme;
     }
 
-    // `colorScheme` is undefined on the server and hydration phase
-    const calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
+    const memoTheme = React.useMemo(() => {
+      // `colorScheme` is undefined on the server and hydration phase
+      const calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
 
-    // 2. get the `vars` object that refers to the CSS custom properties
-    const themeVars = restThemeProp.generateThemeVars?.() || restThemeProp.vars;
+      // 2. get the `vars` object that refers to the CSS custom properties
+      const themeVars = restThemeProp.generateThemeVars?.() || restThemeProp.vars;
 
-    // 3. Start composing the theme object
-    const theme = {
-      ...restThemeProp,
-      components,
-      colorSchemes,
-      cssVarPrefix,
-      vars: themeVars,
-    };
-    if (typeof theme.generateSpacing === 'function') {
-      theme.spacing = theme.generateSpacing();
-    }
-
-    // 4. Resolve the color scheme and merge it to the theme
-    if (calculatedColorScheme) {
-      const scheme = colorSchemes[calculatedColorScheme];
-      if (scheme && typeof scheme === 'object') {
-        // 4.1 Merge the selected color scheme to the theme
-        Object.keys(scheme).forEach((schemeKey) => {
-          if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
-            // shallow merge the 1st level structure of the theme.
-            theme[schemeKey] = {
-              ...theme[schemeKey],
-              ...scheme[schemeKey],
-            };
-          } else {
-            theme[schemeKey] = scheme[schemeKey];
-          }
-        });
+      // 3. Start composing the theme object
+      const theme = {
+        ...restThemeProp,
+        components,
+        colorSchemes,
+        cssVarPrefix,
+        vars: themeVars,
+      };
+      if (typeof theme.generateSpacing === 'function') {
+        theme.spacing = theme.generateSpacing();
       }
-    }
+
+      // 4. Resolve the color scheme and merge it to the theme
+      if (calculatedColorScheme) {
+        const scheme = colorSchemes[calculatedColorScheme];
+        if (scheme && typeof scheme === 'object') {
+          // 4.1 Merge the selected color scheme to the theme
+          Object.keys(scheme).forEach((schemeKey) => {
+            if (scheme[schemeKey] && typeof scheme[schemeKey] === 'object') {
+              // shallow merge the 1st level structure of the theme.
+              theme[schemeKey] = {
+                ...theme[schemeKey],
+                ...scheme[schemeKey],
+              };
+            } else {
+              theme[schemeKey] = scheme[schemeKey];
+            }
+          });
+        }
+      }
+
+      return resolveTheme ? resolveTheme(theme) : theme;
+    }, [restThemeProp, colorScheme, components, colorSchemes, cssVarPrefix]);
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
@@ -246,7 +255,7 @@ export default function createCssVarsProvider(options) {
           process.env.NODE_ENV === 'production'
             ? setMode
             : (newMode) => {
-                if (theme.colorSchemeSelector === 'media') {
+                if (memoTheme.colorSchemeSelector === 'media') {
                   console.error(
                     [
                       'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).',
@@ -268,7 +277,7 @@ export default function createCssVarsProvider(options) {
         setColorScheme,
         setMode,
         systemMode,
-        theme.colorSchemeSelector,
+        memoTheme.colorSchemeSelector,
       ],
     );
 
@@ -283,13 +292,12 @@ export default function createCssVarsProvider(options) {
 
     const element = (
       <React.Fragment>
-        <ThemeProvider
-          themeId={scopedTheme ? themeId : undefined}
-          theme={resolveTheme ? resolveTheme(theme) : theme}
-        >
+        <ThemeProvider themeId={scopedTheme ? themeId : undefined} theme={memoTheme}>
           {children}
         </ThemeProvider>
-        {shouldGenerateStyleSheet && <GlobalStyles styles={theme.generateStyleSheets?.() || []} />}
+        {shouldGenerateStyleSheet && (
+          <GlobalStyles styles={memoTheme.generateStyleSheets?.() || []} />
+        )}
       </React.Fragment>
     );
 
@@ -342,6 +350,11 @@ export default function createCssVarsProvider(options) {
      * The key in the local storage used to store current color scheme.
      */
     modeStorageKey: PropTypes.string,
+    /**
+     * If `true`, the mode will be the same value as the storage without an extra rerendering after the hydration.
+     * You should use this option in conjuction with `InitColorSchemeScript` component.
+     */
+    noSsr: PropTypes.bool,
     /**
      * The window that attaches the 'storage' event listener.
      * @default window

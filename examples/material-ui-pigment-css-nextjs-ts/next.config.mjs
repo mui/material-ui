@@ -6,7 +6,9 @@ const nextConfig = {};
 
 export default withPigment(nextConfig, {
   theme: createTheme({
-    cssVariables: true,
+    cssVariables: {
+      colorSchemeSelector: 'class',
+    },
     colorSchemes: { light: true, dark: true },
     typography: {
       fontFamily: 'var(--font-roboto)',

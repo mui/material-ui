@@ -2,7 +2,11 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
-import { PageContainer, PageContainerToolbar } from '@toolpad/core/PageContainer';
+import {
+  PageContainer,
+  PageHeader,
+  PageHeaderToolbar,
+} from '@toolpad/core/PageContainer';
 import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -39,9 +43,9 @@ const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
   content: '" "',
 }));
 
-function PageToolbar() {
+function CustomPageToolbar() {
   return (
-    <PageContainerToolbar>
+    <PageHeaderToolbar>
       <Stack direction="row" spacing={1} alignItems="center">
         <Button
           variant="outlined"
@@ -60,8 +64,12 @@ function PageToolbar() {
           Print
         </Button>
       </Stack>
-    </PageContainerToolbar>
+    </PageHeaderToolbar>
   );
+}
+
+function CustomPageHeader() {
+  return <PageHeader slots={{ toolbar: CustomPageToolbar }} />;
 }
 
 export default function PageContainerBasic(props: any) {
@@ -84,7 +92,7 @@ export default function PageContainerBasic(props: any) {
       <Paper sx={{ p: 2, width: '100%' }}>
         <PageContainer
           slots={{
-            toolbar: PageToolbar,
+            header: CustomPageHeader,
           }}
         >
           <Grid container spacing={1}>

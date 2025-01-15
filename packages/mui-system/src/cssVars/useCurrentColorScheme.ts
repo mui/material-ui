@@ -120,6 +120,7 @@ interface UseCurrentColoSchemeOptions<SupportedColorScheme extends string> {
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
   storageWindow?: Window | null;
+  noSsr?: boolean;
 }
 
 export default function useCurrentColorScheme<SupportedColorScheme extends string>(
@@ -133,6 +134,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     storageWindow = typeof window === 'undefined' ? undefined : window,
+    noSsr = false,
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
@@ -155,15 +157,10 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
       darkColorScheme,
     } as State<SupportedColorScheme>;
   });
-  // This could be improved with `React.useSyncExternalStore` in the future.
-  const [, setHasMounted] = React.useState(false);
-  const hasMounted = React.useRef(false);
+  const [isClient, setIsClient] = React.useState(noSsr || !isMultiSchemes);
   React.useEffect(() => {
-    if (isMultiSchemes) {
-      setHasMounted(true); // to rerender the component after hydration
-    }
-    hasMounted.current = true;
-  }, [isMultiSchemes]);
+    setIsClient(true); // to rerender the component after hydration
+  }, []);
 
   const colorScheme = getColorScheme(state);
 
@@ -350,9 +347,9 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
 
   return {
     ...state,
-    mode: hasMounted.current || !isMultiSchemes ? state.mode : undefined,
-    systemMode: hasMounted.current || !isMultiSchemes ? state.systemMode : undefined,
-    colorScheme: hasMounted.current || !isMultiSchemes ? colorScheme : undefined,
+    mode: isClient ? state.mode : undefined,
+    systemMode: isClient ? state.systemMode : undefined,
+    colorScheme: isClient ? colorScheme : undefined,
     setMode,
     setColorScheme,
   };

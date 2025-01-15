@@ -115,7 +115,7 @@ Use `color` prop to apply theme color palette to component.
 
 ### Loading
 
-Use `loading` prop to set icon buttons in a loading state and disable interactions.
+Starting from v6.4.0, use `loading` prop to set icon buttons in a loading state and disable interactions.
 
 {{"demo": "LoadingIconButton.js"}}
 
@@ -133,13 +133,24 @@ To create a file upload button, turn the button into a label using `component="l
 
 ## Loading
 
-Use the `loading` prop to set buttons in a loading state and disable interactions.
+Starting from v6.4.0, use the `loading` prop to set buttons in a loading state and disable interactions.
 
 {{"demo": "LoadingButtons.js"}}
 
 Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "LoadingButtonsTransition.js"}}
+
+:::warning
+When the `loading` prop is set to `boolean`, the loading wrapper is always present in the DOM to prevent a [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+
+The `loading` value should always be `null` or `boolean`. The pattern below is not recommended as it can cause the Google Translation crash:
+
+```jsx
+<Button {...(isFetching && { loading: true })}> // ❌ Don't do this
+```
+
+:::
 
 ## Customization
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -64,6 +64,30 @@ export const planInfo = {
     ],
   },
 } as const;
+
+const formatter = new Intl.NumberFormat('en-US');
+
+function formatCurrency(value: number) {
+  return `$${formatter.format(value)}`;
+}
+
+// TODO: Collapse should expose an API to customize the duration based on the height.
+function transitionTheme(theme: any) {
+  return {
+    ...theme,
+    transitions: {
+      ...theme.transitions,
+      getAutoHeightDuration: (height: number) => {
+        if (!height) {
+          return 0;
+        }
+
+        const constant = height / 80;
+        return Math.round((4 + 15 * constant ** 0.1 + constant / 6) * 10);
+      },
+    },
+  };
+}
 
 export function PlanName({
   plan,
@@ -1250,7 +1274,7 @@ export default function PricingTable({
     }
   }, [router.query]);
 
-  const tableRef = React.useRef<HTMLDivElement | null>(null);
+  const tableRef = React.useRef<HTMLDivElement>(null);
   const gridSx = {
     display: 'grid',
     gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
@@ -1377,100 +1401,116 @@ export default function PricingTable({
               theme.applyDarkStyles({
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
                 },
               }),
-          ]}
-        >
-          Data Grid
-        </Button>
-      </Box>
-      <StyledCollapse in={dataGridCollapsed} timeout={700}>
-        <RowCategory>Column features</RowCategory>
-        {renderNestedRow('data-grid/column-groups')}
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Data Grid
+          </Button>
+        </Box>
+        <StyledCollapse in={dataGridCollapsed}>
+          <RowCategory>Column features</RowCategory>
+          {renderNestedRow('data-grid/column-groups')}
+          {divider}
+          {renderNestedRow('data-grid/column-spanning')}
+          {divider}
+          {renderNestedRow('data-grid/column-resizing')}
+          {divider}
+          {renderNestedRow('data-grid/column-autosizing')}
+          {divider}
+          {renderNestedRow('data-grid/column-reorder')}
+          {divider}
+          {renderNestedRow('data-grid/column-pinning')}
+          {divider}
+          <RowCategory>Row features</RowCategory>
+          {renderNestedRow('data-grid/row-height')}
+          {divider}
+          {renderNestedRow('data-grid/row-spanning')}
+          {divider}
+          {renderNestedRow('data-grid/row-reordering')}
+          {divider}
+          {renderNestedRow('data-grid/row-pinning')}
+          {divider}
+          <RowCategory>Selection features</RowCategory>
+          {renderNestedRow('data-grid/row-selection')}
+          {divider}
+          {renderNestedRow('data-grid/row-multiselection')}
+          {divider}
+          {renderNestedRow('data-grid/row-cell-selection')}
+          {divider}
+          <RowCategory>Filtering features</RowCategory>
+          {renderNestedRow('data-grid/filter-column')}
+          {divider}
+          {renderNestedRow('data-grid/filter-quick')}
+          {divider}
+          {renderNestedRow('data-grid/header-filters')}
+          {divider}
+          {renderNestedRow('data-grid/filter-multicolumn')}
+          {divider}
+          <RowCategory>Sorting</RowCategory>
+          {renderNestedRow('data-grid/column-sorting')}
+          {divider}
+          {renderNestedRow('data-grid/multi-column-sorting')}
+          {divider}
+          <RowCategory>Pagination features</RowCategory>
+          {renderNestedRow('data-grid/pagination')}
+          {divider}
+          {renderNestedRow('data-grid/pagination-large')}
+          {divider}
+          <RowCategory>Editing features</RowCategory>
+          {renderNestedRow('data-grid/edit-row')}
+          {divider}
+          {renderNestedRow('data-grid/edit-cell')}
+          {divider}
+          <RowCategory>Import & export</RowCategory>
+          {renderNestedRow('data-grid/file-csv')}
+          {divider}
+          {renderNestedRow('data-grid/file-print')}
+          {divider}
+          {renderNestedRow('data-grid/file-clipboard-copy')}
+          {divider}
+          {renderNestedRow('data-grid/file-clipboard-paste')}
+          {divider}
+          {renderNestedRow('data-grid/file-excel')}
+          {divider}
+          <RowCategory>Rendering features</RowCategory>
+          {renderNestedRow('data-grid/customizable-components')}
+          {divider}
+          {renderNestedRow('data-grid/virtualize-column')}
+          {divider}
+          {renderNestedRow('data-grid/virtualize-row')}
+          {divider}
+          <RowCategory>Group & pivot</RowCategory>
+          {renderNestedRow('data-grid/tree-data')}
+          {divider}
+          {renderNestedRow('data-grid/master-detail')}
+          {divider}
+          {renderNestedRow('data-grid/grouping')}
+          {divider}
+          {renderNestedRow('data-grid/aggregation')}
+          {divider}
+          {renderNestedRow('data-grid/pivoting')}
+          {divider}
+          <RowCategory>Miscellaneous</RowCategory>
+          {renderNestedRow('data-grid/accessibility')}
+          {divider}
+          {renderNestedRow('data-grid/keyboard-nav')}
+          {divider}
+          {renderNestedRow('data-grid/localization')}
+        </StyledCollapse>
         {divider}
-        {renderNestedRow('data-grid/column-spanning')}
+        {renderRow('date-picker/simple')}
         {divider}
-        {renderNestedRow('data-grid/column-resizing')}
-        {divider}
-        {renderNestedRow('data-grid/column-autosizing')}
-        {divider}
-        {renderNestedRow('data-grid/column-reorder')}
-        {divider}
-        {renderNestedRow('data-grid/column-pinning')}
-        {divider}
-        <RowCategory>Row features</RowCategory>
-        {renderNestedRow('data-grid/row-height')}
-        {divider}
-        {renderNestedRow('data-grid/row-spanning')}
-        {divider}
-        {renderNestedRow('data-grid/row-reordering')}
-        {divider}
-        {renderNestedRow('data-grid/row-pinning')}
-        {divider}
-        <RowCategory>Selection features</RowCategory>
-        {renderNestedRow('data-grid/row-selection')}
-        {divider}
-        {renderNestedRow('data-grid/row-multiselection')}
-        {divider}
-        {renderNestedRow('data-grid/row-cell-selection')}
-        {divider}
-        <RowCategory>Filtering features</RowCategory>
-        {renderNestedRow('data-grid/filter-column')}
-        {divider}
-        {renderNestedRow('data-grid/filter-quick')}
-        {divider}
-        {renderNestedRow('data-grid/header-filters')}
-        {divider}
-        {renderNestedRow('data-grid/filter-multicolumn')}
-        {divider}
-        <RowCategory>Sorting</RowCategory>
-        {renderNestedRow('data-grid/column-sorting')}
-        {divider}
-        {renderNestedRow('data-grid/multi-column-sorting')}
-        {divider}
-        <RowCategory>Pagination features</RowCategory>
-        {renderNestedRow('data-grid/pagination')}
-        {divider}
-        {renderNestedRow('data-grid/pagination-large')}
-        {divider}
-        <RowCategory>Editing features</RowCategory>
-        {renderNestedRow('data-grid/edit-row')}
-        {divider}
-        {renderNestedRow('data-grid/edit-cell')}
-        {divider}
-        <RowCategory>Import & export</RowCategory>
-        {renderNestedRow('data-grid/file-csv')}
-        {divider}
-        {renderNestedRow('data-grid/file-print')}
-        {divider}
-        {renderNestedRow('data-grid/file-clipboard-copy')}
-        {divider}
-        {renderNestedRow('data-grid/file-clipboard-paste')}
-        {divider}
-        {renderNestedRow('data-grid/file-excel')}
-        {divider}
-        <RowCategory>Rendering features</RowCategory>
-        {renderNestedRow('data-grid/customizable-components')}
-        {divider}
-        {renderNestedRow('data-grid/virtualize-column')}
-        {divider}
-        {renderNestedRow('data-grid/virtualize-row')}
-        {divider}
-        <RowCategory>Group & pivot</RowCategory>
-        {renderNestedRow('data-grid/tree-data')}
-        {divider}
-        {renderNestedRow('data-grid/master-detail')}
-        {divider}
-        {renderNestedRow('data-grid/grouping')}
-        {divider}
-        {renderNestedRow('data-grid/aggregation')}
-        {divider}
-        {renderNestedRow('data-grid/pivoting')}
-        {divider}
-        <RowCategory>Miscellaneous</RowCategory>
-        {renderNestedRow('data-grid/accessibility')}
-        {divider}
-        {renderNestedRow('data-grid/keyboard-nav')}
+        {renderRow('date-picker/range')}
         {divider}
         {renderNestedRow('data-grid/localization')}
       </StyledCollapse>
@@ -1529,58 +1569,70 @@ export default function PricingTable({
               theme.applyDarkStyles({
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
                 },
               }),
-          ]}
-        >
-          Charts
-        </Button>
-      </Box>
-      <StyledCollapse in={chartsCollapsed} timeout={700}>
-        <RowCategory>Components</RowCategory>
-        {renderNestedRow('charts/line')}
-        {divider}
-        {renderNestedRow('charts/bar')}
-        {divider}
-        {renderNestedRow('charts/scatter')}
-        {divider}
-        {renderNestedRow('charts/pie')}
-        {divider}
-        {renderNestedRow('charts/sparkline')}
-        {divider}
-        {renderNestedRow('charts/gauge')}
-        {divider}
-        {renderNestedRow('charts/heatmap')}
-        {divider}
-        {renderNestedRow('charts/treemap')}
-        {divider}
-        {renderNestedRow('charts/radar')}
-        {divider}
-        {renderNestedRow('charts/funnel')}
-        {divider}
-        {renderNestedRow('charts/sankey')}
-        {divider}
-        {renderNestedRow('charts/gantt')}
-        {divider}
-        {renderNestedRow('charts/gantt-advanced')}
-        {divider}
-        {renderNestedRow('charts/candlestick')}
-        {divider}
-        {renderNestedRow('charts/large-dataset')}
-        {divider}
-        <RowCategory>Interactions</RowCategory>
-        {renderNestedRow('charts/legend')}
-        {divider}
-        {renderNestedRow('charts/tooltip')}
-        {divider}
-        {renderNestedRow('charts/zoom-and-pan')}
-        {divider}
-        {renderNestedRow('charts/export')}
-        {divider}
-        <RowCategory>Data Grid Integration</RowCategory>
-        {renderNestedRow('charts/cell-with-charts')}
-        {divider}
-        {renderNestedRow('charts/filter-interaction')}
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            Charts
+          </Button>
+        </Box>
+        <StyledCollapse in={chartsCollapsed}>
+          <RowCategory>Components</RowCategory>
+          {renderNestedRow('charts/line')}
+          {divider}
+          {renderNestedRow('charts/bar')}
+          {divider}
+          {renderNestedRow('charts/scatter')}
+          {divider}
+          {renderNestedRow('charts/pie')}
+          {divider}
+          {renderNestedRow('charts/sparkline')}
+          {divider}
+          {renderNestedRow('charts/gauge')}
+          {divider}
+          {renderNestedRow('charts/heatmap')}
+          {divider}
+          {renderNestedRow('charts/treemap')}
+          {divider}
+          {renderNestedRow('charts/radar')}
+          {divider}
+          {renderNestedRow('charts/funnel')}
+          {divider}
+          {renderNestedRow('charts/sankey')}
+          {divider}
+          {renderNestedRow('charts/gantt')}
+          {divider}
+          {renderNestedRow('charts/gantt-advanced')}
+          {divider}
+          {renderNestedRow('charts/candlestick')}
+          {divider}
+          {renderNestedRow('charts/large-dataset')}
+          {divider}
+          <RowCategory>Interactions</RowCategory>
+          {renderNestedRow('charts/legend')}
+          {divider}
+          {renderNestedRow('charts/tooltip')}
+          {divider}
+          {renderNestedRow('charts/zoom-and-pan')}
+          {divider}
+          {renderNestedRow('charts/export')}
+          {divider}
+          <RowCategory>Data Grid Integration</RowCategory>
+          {renderNestedRow('charts/cell-with-charts')}
+          {divider}
+          {renderNestedRow('charts/filter-interaction')}
+          {divider}
+          {renderNestedRow('charts/selection-interaction')}
+        </StyledCollapse>
         {divider}
         {renderNestedRow('charts/selection-interaction')}
       </StyledCollapse>
@@ -1637,29 +1689,54 @@ export default function PricingTable({
               theme.applyDarkStyles({
                 '&:hover': {
                   bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  '@media (hover: none)': {
+                    bgcolor: 'initial',
+                  },
                 },
               }),
-          ]}
-        >
-          TreeView
-        </Button>
-      </Box>
-      <StyledCollapse in={treeViewCollapsed} timeout={700}>
-        <RowCategory>Components</RowCategory>
-        {renderNestedRow('tree-view/simple-tree-view')}
+              (theme) =>
+                theme.applyDarkStyles({
+                  '&:hover': {
+                    bgcolor: alpha(theme.palette.primary.main, 0.06),
+                  },
+                }),
+            ]}
+          >
+            TreeView
+          </Button>
+        </Box>
+        <StyledCollapse in={treeViewCollapsed}>
+          <RowCategory>Components</RowCategory>
+          {renderNestedRow('tree-view/simple-tree-view')}
+          {divider}
+          {renderNestedRow('tree-view/rich-tree-view')}
+          {divider}
+          <RowCategory>Advanced features</RowCategory>
+          {renderNestedRow('tree-view/selection')}
+          {divider}
+          {renderNestedRow('tree-view/multi-selection')}
+          {divider}
+          {renderNestedRow('tree-view/inline-editing')}
+          {divider}
+          {renderNestedRow('tree-view/drag-to-reorder')}
+          {divider}
+          {renderNestedRow('tree-view/virtualization')}
+          {divider}
+        </StyledCollapse>
         {divider}
-        {renderNestedRow('tree-view/rich-tree-view')}
+        {renderRow('mui-x-production')}
         {divider}
-        <RowCategory>Advanced features</RowCategory>
-        {renderNestedRow('tree-view/selection')}
+        <PricingTableDevelopment renderRow={renderRow} />
         {divider}
-        {renderNestedRow('tree-view/multi-selection')}
+        {renderRow('mui-x-updates')}
+        <RowHead>Support</RowHead>
+        {renderRow('core-support')}
         {divider}
-        {renderNestedRow('tree-view/inline-editing')}
+        {renderRow('x-support')}
         {divider}
-        {renderNestedRow('tree-view/drag-to-reorder')}
+        {renderRow('support-duration')}
         {divider}
-        {renderNestedRow('tree-view/virtualization')}
+        {renderRow('response-time')}
         {divider}
       </StyledCollapse>
       {divider}

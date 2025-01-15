@@ -6,12 +6,12 @@ import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import { unstable_useId as useId } from '@mui/material/utils';
-import CircularProgress from '@mui/material/CircularProgress';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
+import CircularProgress from '../CircularProgress';
 import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
@@ -33,23 +33,12 @@ const useUtilityClasses = (ownerState) => {
       `color${capitalize(color)}`,
       disableElevation && 'disableElevation',
       fullWidth && 'fullWidth',
+      loading && `loadingPosition${capitalize(loadingPosition)}`,
     ],
-    startIcon: [
-      'icon',
-      'startIcon',
-      `iconSize${capitalize(size)}`,
-      loading && `startIconLoading${capitalize(loadingPosition)}`,
-    ],
-    endIcon: [
-      'icon',
-      'endIcon',
-      `iconSize${capitalize(size)}`,
-      loading && `endIconLoading${capitalize(loadingPosition)}`,
-    ],
-    loadingIndicator: [
-      'loadingIndicator',
-      loading && `loadingIndicator${capitalize(loadingPosition)}`,
-    ],
+    startIcon: ['icon', 'startIcon', `iconSize${capitalize(size)}`],
+    endIcon: ['icon', 'endIcon', `iconSize${capitalize(size)}`],
+    loadingIndicator: ['loadingIndicator'],
+    loadingWrapper: ['loadingWrapper'],
   };
 
   const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
@@ -413,7 +402,6 @@ const ButtonEndIcon = styled('span', {
       props: { loadingPosition: 'end', loading: true, fullWidth: true },
       style: {
         marginLeft: -8,
-        order: 2,
       },
     },
     ...commonIconStyles,
@@ -431,18 +419,18 @@ const ButtonLoadingIndicator = styled('span', {
   variants: [
     { props: { loading: true }, style: { display: 'flex' } },
     {
+      props: { loadingPosition: 'start' },
+      style: {
+        left: 14,
+      },
+    },
+    {
       props: {
         loadingPosition: 'start',
         size: 'small',
       },
       style: {
         left: 10,
-      },
-    },
-    {
-      props: ({ loadingPosition, size }) => loadingPosition === 'start' && size !== 'small',
-      style: {
-        left: 14,
       },
     },
     {
@@ -465,18 +453,18 @@ const ButtonLoadingIndicator = styled('span', {
       },
     },
     {
+      props: { loadingPosition: 'end' },
+      style: {
+        right: 14,
+      },
+    },
+    {
       props: {
         loadingPosition: 'end',
         size: 'small',
       },
       style: {
         right: 10,
-      },
-    },
-    {
-      props: ({ loadingPosition, size }) => loadingPosition === 'end' && size !== 'small',
-      style: {
-        right: 14,
       },
     },
     {
@@ -500,11 +488,20 @@ const ButtonLoadingIndicator = styled('span', {
       style: {
         position: 'relative',
         right: -10,
-        order: 1,
       },
     },
   ],
 }));
+
+const ButtonLoadingIconPlaceholder = styled('span', {
+  name: 'MuiButton',
+  slot: 'LoadingIconPlaceholder',
+  overridesResolver: (props, styles) => styles.loadingIconPlaceholder,
+})({
+  display: 'inline-block',
+  width: '1em',
+  height: '1em',
+});
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
@@ -524,7 +521,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     focusVisibleClassName,
     fullWidth = false,
     id: idProp,
-    loading = false,
+    loading = null,
     loadingIndicator: loadingIndicatorProp,
     loadingPosition = 'center',
     size = 'medium',
@@ -557,25 +554,41 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const startIcon = startIconProp && (
+  const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
-      {startIconProp}
+      {startIconProp || (
+        <ButtonLoadingIconPlaceholder
+          className={classes.loadingIconPlaceholder}
+          ownerState={ownerState}
+        />
+      )}
     </ButtonStartIcon>
   );
 
-  const endIcon = endIconProp && (
+  const endIcon = (endIconProp || (loading && loadingPosition === 'end')) && (
     <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
-      {endIconProp}
+      {endIconProp || (
+        <ButtonLoadingIconPlaceholder
+          className={classes.loadingIconPlaceholder}
+          ownerState={ownerState}
+        />
+      )}
     </ButtonEndIcon>
   );
 
-  const loader = (
-    <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-      {loading && loadingIndicator}
-    </ButtonLoadingIndicator>
-  );
-
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
+
+  const loader =
+    typeof loading === 'boolean' ? (
+      // use plain HTML span to minimize the runtime overhead
+      <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+        {loading && (
+          <ButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+            {loadingIndicator}
+          </ButtonLoadingIndicator>
+        )}
+      </span>
+    ) : null;
 
   return (
     <ButtonRoot
@@ -592,8 +605,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       classes={classes}
     >
       {startIcon}
-      {loader}
+      {loadingPosition !== 'end' && loader}
       {children}
+      {loadingPosition === 'end' && loader}
       {endIcon}
     </ButtonRoot>
   );
@@ -677,14 +691,15 @@ Button.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * If `true`, the loading indicator is shown and the button becomes disabled.
-   * @default false
+   * If `true`, the loading indicator is visible and the button is disabled.
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
    */
   loading: PropTypes.bool,
   /**
    * Element placed before the children if the button is in loading state.
    * The node should contain an element with `role="progressbar"` with an accessible name.
-   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * By default, it renders a `CircularProgress` that is labeled by the button itself.
    * @default <CircularProgress color="inherit" size={16} />
    */
   loadingIndicator: PropTypes.node,

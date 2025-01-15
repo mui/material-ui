@@ -176,8 +176,8 @@ The Alert's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Alert
--  componentsProps={{ closeButton: { testid: 'test-id' } }}
-+  slotProps={{ closeButton: { testid: 'test-id' } }}
+-  componentsProps={{ closeButton: { id: 'close-id' } }}
++  slotProps={{ closeButton: { id: 'close-id' } }}
  />
 ```
 
@@ -451,8 +451,8 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Backdrop
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
 ```
 
@@ -491,8 +491,8 @@ The Badge's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Badge
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  >
 ```
 
@@ -853,6 +853,36 @@ Here's how to migrate:
       },
     },
   },
+```
+
+## CardHeader
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#card-header-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/card-header-props <path>
+```
+
+### titleTypographyProps
+
+The CardHeader's `titleTypographyProps` props were deprecated in favor of `slotProps.title`:
+
+```diff
+ <CardHeader
+-  titleTypographyProps={titleTypographyProps}
++  slotProps={{ title: titleTypographyProps }}
+ />
+```
+
+### subheaderTypographyProps
+
+The CardHeader's `subheaderTypographyProps` props were deprecated in favor of `slotProps.subheader`:
+
+```diff
+ <CardHeader
+-  subheaderTypographyProps={subheaderTypographyProps}
++  slotProps={{ subheader: subheaderTypographyProps }}
+ />
 ```
 
 ## Chip
@@ -1238,8 +1268,8 @@ The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <ListItem
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
 ```
 
@@ -1247,9 +1277,23 @@ The ListItem's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 The ListItem's `ContainerComponent` prop was deprecated in favor of `slots.root` or `component` instead.
 
+```diff
+ <ListItem
+-  ContainerComponent={CustomContainer}
++  slots={{ root: CustomContainer }}
+ />
+```
+
 ### ContainerProps
 
 The ListItem's `ContainerProps` prop was deprecated in favor of `slotProps.root` instead.
+
+```diff
+ <ListItem
+-  ContainerProps={{ id: 'container-id' }}
++  slotProps={{ root: { id: 'container-id' } }}
+ />
+```
 
 ## ListItemSecondaryAction
 
@@ -1273,6 +1317,36 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
 -    </IconButton>
 -  </ListItemSecondaryAction>
  </ListItem>
+```
+
+## ListItemText
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#list-item-text-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
+### primaryTypographyProps
+
+The ListItemText's `primaryTypographyProps` props were deprecated in favor of `slotProps.primary`:
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+ />
+```
+
+### secondaryTypographyProps
+
+The ListItemText's `secondaryTypographyProps` props were deprecated in favor of `slotProps.secondary`:
+
+```diff
+ <ListItemText
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
 ```
 
 ## ImageListItemBar
@@ -1331,6 +1405,70 @@ Here's how to migrate:
  },
 ```
 
+## LinearProgress
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#linear-progress-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/linear-progress-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `variant` and `color` prop values were deprecated.
+
+Here's how to migrate:
+
+```diff
+-.MuiLinearProgress-bar1Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Determinate
++.MuiLinearProgress-determinate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar2Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar2
+-.MuiLinearProgress-bar2Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar2
+-.MuiLinearProgress-barColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-bar
+-.MuiLinearProgress-barColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-bar
+-.MuiLinearProgress-dashedColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed
+-.MuiLinearProgress-dashedColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-dashed
+```
+
+```diff
+ import { linearProgressClasses } from '@mui/material/LinearProgress';
+
+ MuiLinearProgress: {
+   styleOverrides: {
+     root: {
+-      [`&.${linearProgressClasses.bar1Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Determinate}`]: {},
++      [`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar2Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.bar2Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.barColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.barColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.dashedColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.dashed}`]: {},
+-      [`&.${linearProgressClasses.dashedColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.dashed}`]: {},
+     },
+   },
+ }
+```
+
 ## Modal
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#modal-props) below to migrate the code as described in the following sections:
@@ -1356,8 +1494,30 @@ The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Modal
--  componentsProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
-+  slotProps={{ root: { testid: 'root-id' }, backdrop: { testid: 'backdrop-id' } }}
+-  componentsProps={{ root: { id: 'root-id' }, backdrop: { id: 'backdrop-id' } }}
++  slotProps={{ root: { id: 'root-id' }, backdrop: { id: 'backdrop-id' } }}
+ >
+```
+
+### BackdropProps
+
+The Modal's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop`:
+
+```diff
+ <Modal
+-  BackdropProps={{ timeout: 500 }}
++  slotProps={{ backdrop: { timeout: 500 } }}
+ >
+```
+
+### BackdropComponent
+
+The Modal's `BackdropComponent` prop was deprecated in favor of `slots.backdrop`:
+
+```diff
+ <Modal
+-  BackdropComponent={Backdrop}
++  slots={{ backdrop: Backdrop }}
  >
 ```
 
@@ -1479,9 +1639,55 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Popper
--  componentsProps={{ root: { testid: 'test-id' } }}
-+  slotProps={{ root: { testid: 'test-id' } }}
+-  componentsProps={{ root: { id: 'root-id' } }}
++  slotProps={{ root: { id: 'root-id' } }}
  />
+```
+
+## Select
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#select-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/select-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `icon` class and `variant` prop were removed.
+
+Here's how to migrate:
+
+```diff
+- .MuiSelect-iconFilled
++ .MuiSelect-filled ~ .MuiSelect-icon
+- .MuiSelect-iconOutlined
++ .MuiSelect-outlined ~ .MuiSelect-icon
+- .MuiSelect-iconStandard
++ .MuiSelect-standard ~ .MuiSelect-icon
+```
+
+```diff
+ import { selectClasses } from '@mui/material/Select';
+
+ MuiSelect: {
+   styleOverrides: {
+     root: {
+-      [`& .${selectClasses.iconFilled}`]: {
++      [`& .${selectClasses.filled} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${selectClasses.iconOutlined}`]: {
++      [`& .${selectClasses.outlined} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+        },
+-      [`& .${selectClasses.iconStandard}`]: {
++      [`& .${selectClasses.standard} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+        },
+     },
+   },
+ },
 ```
 
 ## Slider
@@ -1509,8 +1715,8 @@ The Slider's `componentsProps` prop was deprecated in favor of `slotProps`:
 
 ```diff
  <Slider
--  componentsProps={{ track: { testid: 'test-id' } }}
-+  slotProps={{ track: { testid: 'test-id' } }}
+-  componentsProps={{ track: { id: 'track-id' } }}
++  slotProps={{ track: { id: 'track-id' } }}
  />
 ```
 
@@ -1682,8 +1888,38 @@ The Tooltip's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ```diff
  <Tooltip
--  componentsProps={{ arrow: { testid: 'test-id' } }}
-+  slotProps={{ arrow: { testid: 'test-id' } }}
+-  componentsProps={{ arrow: { id: 'arrow-id' } }}
++  slotProps={{ arrow: { id: 'arrow-id' } }}
+ />
+```
+
+### \*Component props
+
+All of the Tooltip's slot (`*Component`) props were deprecated in favor of equivalent `slots` entries:
+
+```diff
+ <Tooltip
+-  PopperComponent={CustomPopperComponent}
+-  TransitionComponent={CustomTransitionComponent}
++  slots={{
++    popper: CustomPopperComponent,
++    transition: CustomTransitionComponent,
++  }}
+ />
+```
+
+### \*Props props
+
+All of the Tooltip's slot props (`*Props`) props were deprecated in favor of equivalent `slotProps` entries:
+
+```diff
+ <Tooltip
+-  PopperProps={CustomPopperProps}
+-  TransitionProps={CustomTransitionProps}
++  slotProps={{
++    popper: CustomPopperProps,
++    transition: CustomTransitionProps,
++  }}
  />
 ```
 
@@ -1792,6 +2028,36 @@ Here's how to migrate:
      },
    },
  },
+```
+
+## StepContent
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#step-content-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
+```
+
+### TransitionComponent
+
+The StepContent's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+ />
+```
+
+### TransitionProps
+
+The StepContent's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <StepContent
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
 ```
 
 ## SpeedDial

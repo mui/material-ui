@@ -1,8 +1,14 @@
-import { GridClasses } from '@mui/system/Grid';
 import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
-export type Grid2ClassKey = keyof GridClasses;
+export interface Grid2Classes {
+  /** Styles applied to the root element. */
+  root: string;
+  /** Styles applied to the root element if `container={true}`. */
+  container: string;
+}
+
+export type Grid2ClassKey = keyof Grid2Classes;
 
 export function getGrid2UtilityClass(slot: string): string {
   return generateUtilityClass('MuiGrid2', slot);
@@ -13,11 +19,9 @@ const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'] as const;
 const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'] as const;
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 
-const grid2Classes: GridClasses = generateUtilityClasses('MuiGrid2', [
+const grid2Classes: Grid2Classes = generateUtilityClasses('MuiGrid2', [
   'root',
   'container',
-  'item',
-  'zeroMinWidth',
 
   // spacings
   ...SPACINGS.map((spacing) => `spacing-xs-${spacing}` as const),

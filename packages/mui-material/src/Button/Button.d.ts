@@ -61,14 +61,15 @@ export interface ButtonOwnProps {
    */
   href?: string;
   /**
-   * If `true`, the loading indicator is shown and the button becomes disabled.
-   * @default false
+   * If `true`, the loading indicator is visible and the button is disabled.
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
    */
-  loading?: boolean;
+  loading?: boolean | null;
   /**
    * Element placed before the children if the button is in loading state.
    * The node should contain an element with `role="progressbar"` with an accessible name.
-   * By default we render a `CircularProgress` that is labelled by the button itself.
+   * By default, it renders a `CircularProgress` that is labeled by the button itself.
    * @default <CircularProgress color="inherit" size={16} />
    */
   loadingIndicator?: React.ReactNode;

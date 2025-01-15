@@ -167,10 +167,9 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   position: relative;
-  box-shadow: 0px 2px 4px ${
+  box-shadow: 0 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
@@ -210,7 +209,7 @@ const Listbox = styled('ul')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   overflow: auto;
   outline: 0;
-  box-shadow: 0px 2px 6px ${
+  box-shadow: 0 2px 6px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.50)' : 'rgba(0,0,0, 0.05)'
   };
   `,
@@ -307,6 +306,7 @@ const SubmitButton = styled('button')(
     opacity: 0.4;
     cursor: not-allowed;
     box-shadow: none;
+
     &:hover {
       background-color: ${blue[500]};
     }

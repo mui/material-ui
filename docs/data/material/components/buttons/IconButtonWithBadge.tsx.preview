@@ -1,9 +1,4 @@
-<IconButton loading>
-  <Badge badgeContent={4} color="primary">
-    <SaveIcon />
-  </Badge>
-</IconButton>
-<IconButton loading={loading} onClick={() => setLoading(true)}>
+<IconButton>
   <ShoppingCartIcon fontSize="small" />
   <CartBadge badgeContent={2} color="primary" overlap="circular" />
 </IconButton>

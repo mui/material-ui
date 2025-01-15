@@ -1107,6 +1107,32 @@ npx @mui/codemod@latest deprecations/form-control-label-props <path>
 npx @mui/codemod@latest deprecations/list-item-props <path>
 ```
 
+#### `list-item-text-props`
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
+```
+
+```diff
+ MuiListItemText: {
+   defaultProps: {
+-  primaryTypographyProps:primaryTypographyProps
++  slotProps:{ primary: primaryTypographyProps }
+-  secondaryTypographyProps:secondaryTypographyProps
++  slotProps:{ secondary: secondaryTypographyProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
+```
+
 #### `image-list-item-bar-classes`
 
 JS transforms:
@@ -1214,6 +1240,66 @@ npx @mui/codemod@latest deprecations/input-base-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/input-props <path>
+```
+
+#### `linear-progress-classes`
+
+JS transforms:
+
+```diff
+ import { linearProgressClasses } from '@mui/material/LinearProgress';
+
+ MuiLinearProgress: {
+   styleOverrides: {
+     root: {
+-      [`&.${linearProgressClasses.bar1Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Determinate}`]: {},
++      [`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar2Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.bar2Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.barColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.barColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.dashedColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.dashed}`]: {},
+-      [`&.${linearProgressClasses.dashedColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.dashed}`]: {},
+     },
+   },
+  }
+```
+
+CSS transforms:
+
+```diff
+-.MuiLinearProgress-bar1Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Determinate
++.MuiLinearProgress-determinate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar2Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar2
+-.MuiLinearProgress-bar2Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar2
+-.MuiLinearProgress-barColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-bar
+-.MuiLinearProgress-barColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-bar
+-.MuiLinearProgress-dashedColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed
+-.MuiLinearProgress-dashedColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-dashed
+```
+
+```bash
+npx @mui/codemod@latest deprecations/linear-progress-classes <path>
 ```
 
 #### `modal-props`
@@ -1380,6 +1466,54 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
+#### `select-classes`
+
+JS transforms:
+
+```diff
+ import { selectClasses } from '@mui/material/Select';
+
+ MuiSelect: {
+   styleOverrides: {
+     root: {
+-      [`& .${selectClasses.iconFilled}`]: {
++      [`& .${selectClasses.filled} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconOutlined}`]: {
++      [`& .${selectClasses.outlined} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconStandard}`]: {
++      [`& .${selectClasses.standard} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiSelect-iconFilled
++ .MuiSelect-filled ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconOutlined
++ .MuiSelect-outlined ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconStandard
++ .MuiSelect-standard ~ .MuiSelect-icon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/select-classes <path>
+```
+
 #### `slider-props`
 
 ```diff
@@ -1412,19 +1546,43 @@ npx @mui/codemod@latest deprecations/slider-props <path>
  <Tooltip
 -  components={{ Arrow: CustomArrow }}
 -  componentsProps={{ arrow: { testid: 'test-id' } }}
-+  slots={{ arrow: CustomArrow }}
-+  slotProps={{ arrow: { testid: 'test-id' } }}
+-  PopperComponent={CustomPopperComponent}
+-  TransitionComponent={CustomTransitionComponent}
+-  PopperProps={CustomPopperProps}
+-  TransitionProps={CustomTransitionProps}
++  slots={{
++    arrow: CustomArrow,
++    popper: CustomPopperComponent,
++    transition: CustomTransitionComponent,
++  }}
++  slotProps={{
++    arrow: { testid: 'test-id' },
++    popper: CustomPopperProps,
++    transition: CustomTransitionProps,
++  }}
  />
 ```
 
 ```diff
  MuiTooltip: {
    defaultProps: {
+-    PopperComponent: CustomPopperComponent,
+-    TransitionComponent: CustomTransitionComponent,
+-    PopperProps: CustomPopperProps,
+-    TransitionProps: CustomTransitionProps,
 -    components: { Arrow: CustomArrow }
-+    slots: { arrow: CustomArrow },
++    slots: {
++      arrow: CustomArrow,
++      popper: CustomPopperComponent,
++      transition: CustomTransitionComponent,
++    },
 -    componentsProps: { arrow: { testid: 'test-id' }}
-+    slotProps: { arrow: { testid: 'test-id' } },
-  },
++    slotProps: {
++      arrow: { testid: 'test-id' },
++      popper: CustomPopperProps,
++      transition: CustomTransitionProps,
++    },
+   },
  },
 ```
 
@@ -1453,6 +1611,25 @@ JS transforms:
      },
    },
  },
+```
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
+#### `step-content-props`
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
 ```
 
 #### `step-label-props`
@@ -1638,6 +1815,13 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
  <Typography
 -  paragraph
 +  sx={{ marginBottom: '16px' }}
+ />
+```
+
+```diff
+ <Typography
+-  paragraph={isTypographyParagraph}
++  sx={isTypographyParagraph ? { marginBottom: '16px' } : undefined}
  />
 ```
 

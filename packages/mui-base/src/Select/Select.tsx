@@ -216,7 +216,9 @@ const Select = React.forwardRef(function Select<
         {renderValue(selectedOptionsMetadata) ?? placeholder ?? (
           // fall back to a zero-width space to prevent layout shift
           // from https://github.com/mui/material-ui/pull/24563
-          <span className="notranslate">&#8203;</span>
+          <span className="notranslate" aria-hidden>
+            &#8203;
+          </span>
         )}
       </Button>
       {buttonDefined && (
