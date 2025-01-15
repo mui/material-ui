@@ -3,6 +3,8 @@ productId: base-ui
 title: React Tooltip component
 githubLabel: 'component: tooltip'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+newUrl: https://base-ui.com/react/components/tooltip
+newName: Tooltip
 ---
 
 # Tooltip 🚧
