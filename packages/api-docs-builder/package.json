@@ -10,19 +10,19 @@
   "dependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
-    "@babel/traverse": "^7.26.4",
+    "@babel/traverse": "^7.26.5",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
     "doctrine": "^3.0.0",
-    "fast-glob": "^3.3.2",
+    "fast-glob": "^3.3.3",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
     "prettier": "^3.4.2",
     "react-docgen": "^5.4.3",
     "recast": "^0.23.9",
     "remark": "^15.0.1",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
