@@ -304,20 +304,23 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
 
   const [RootSlot, rootSlotProps] = useSlot('root', {
     elementType: DialogRoot,
+    shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
     className: clsx(classes.root, className),
     ref,
   });
 
-  const [BackdropSlot, { as: backdropComponent, ...backdropSlotProps }] = useSlot('backdrop', {
+  const [BackdropSlot, backdropSlotProps] = useSlot('backdrop', {
     elementType: DialogBackdrop,
+    shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
   });
 
-  const [PaperSlot, { as: paperComponent, ...paperSlotProps }] = useSlot('paper', {
+  const [PaperSlot, paperSlotProps] = useSlot('paper', {
     elementType: DialogPaper,
+    shouldForwardComponentProp: true,
     externalForwardedProps,
     ownerState,
     className: clsx(classes.paper, PaperProps.className),
@@ -350,7 +353,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
         backdrop: {
           transitionDuration,
           as: BackdropComponent,
-          component: backdropComponent,
           ...backdropSlotProps,
         },
       }}
@@ -373,7 +375,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             aria-labelledby={ariaLabelledby}
             aria-modal={ariaModal}
             {...paperSlotProps}
-            component={paperComponent}
           >
             <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </PaperSlot>
