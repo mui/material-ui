@@ -1,17 +1,19 @@
 import * as recast from 'recast';
-import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
+import { parse as docgenParse } from 'react-docgen';
+import { PropTypeDescriptor } from 'react-docgen/dist/Documentation';
 import { escapeCell, escapeEntities, joinUnionTypes } from '../buildApi';
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
+  const { raw = '' } = type;
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
-  const match = type.raw.match(marker);
-  const startIndex = type.raw.search(marker);
+  const match = raw.match(marker);
+  const startIndex = raw.search(marker);
   if (match) {
     const offset = match[0].length;
 
     return {
-      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
-      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
+      propTypes: raw.substring(startIndex + offset, raw.indexOf(',')),
+      explanation: recast.parse(raw).program.body[0].expression.arguments[1].value,
     };
   }
 
@@ -33,14 +35,14 @@ export function getChained(type: PropTypeDescriptor) {
         }
         export default Foo
       `,
-        null,
-        null,
-        // helps react-docgen pickup babel.config.js
-        { filename: './' },
-      );
+        {
+          // helps react-docgen pickup babel.config.js
+          filename: './',
+        },
+      )[0];
       return {
-        type: parsed.props.bar.type,
-        required: parsed.props.bar.required,
+        type: parsed.props?.bar?.type,
+        required: parsed.props?.bar?.required,
       };
     }
   }
@@ -57,11 +59,11 @@ function isRefType(type: PropTypeDescriptor): boolean {
 }
 
 function isIntegerType(type: PropTypeDescriptor): boolean {
-  return type.raw.startsWith('integerPropType');
+  return !!type.raw && type.raw.startsWith('integerPropType');
 }
 
 export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return /^elementAcceptingRef/.test(type.raw);
+  return !!type.raw && /^elementAcceptingRef/.test(type.raw);
 }
 
 export default function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
@@ -89,13 +91,12 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
         return generatePropTypeDescription({
-          // eslint-disable-next-line react/forbid-foreign-prop-types
           name: deprecatedInfo.propTypes,
         } as any);
       }
 
       const chained = getChained(type);
-      if (chained !== false) {
+      if (chained !== false && chained.type) {
         return generatePropTypeDescription(chained.type);
       }
 
