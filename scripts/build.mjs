@@ -7,8 +7,6 @@ import * as fs from 'fs/promises';
 import { cjsCopy } from './copyFilesUtils.mjs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
-const usePackageExports = process.env.MUI_USE_PACKAGE_EXPORTS === 'true';
-
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
@@ -60,30 +58,6 @@ async function run(argv) {
     modern: './modern',
     stable: './esm',
   }[bundle];
-
-  if (!usePackageExports) {
-    outFileExtension = '.js';
-    const topLevelNonIndexFiles = glob
-      .sync(`*{${extensions.join(',')}}`, { cwd: srcDir, ignore })
-      .filter((file) => {
-        return path.basename(file, path.extname(file)) !== 'index';
-      });
-    const topLevelPathImportsCanBePackages = topLevelNonIndexFiles.length === 0;
-
-    // We generally support top level path imports e.g.
-    // 1. `import ArrowDownIcon from '@mui/icons-material/ArrowDown'`.
-    // 2. `import Typography from '@mui/material/Typography'`.
-    // The first case resolves to a file while the second case resolves to a package first i.e. a package.json
-    // This means that only in the second case the bundler can decide whether it uses ES modules or CommonJS modules.
-    // Different extensions are not viable yet since they require additional bundler config for users and additional transpilation steps in our repo.
-    //
-    // TODO v6: Switch to `exports` field.
-    relativeOutDir = {
-      node: topLevelPathImportsCanBePackages ? './node' : './',
-      modern: './modern',
-      stable: topLevelPathImportsCanBePackages ? './' : './esm',
-    }[bundle];
-  }
 
   const outDir = path.resolve(outDirBase, relativeOutDir);
 

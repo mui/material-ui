@@ -28,9 +28,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files && pnpm build:esm-pkg",
+    "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:esm-pkg",
     "build:esm-pkg": "echo '{\"type\":\"module\"}' > build/esm/package.json",
-    "build:lib": "pnpm build:node && pnpm build:stable && rm lib/esm/package.json",
+    "build:lib": "pnpm build:node && pnpm build:stable && rm lib/esm/package.json && pnpm build:typings",
     "build:lib:clean": "rimraf lib/ && pnpm build:lib",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
@@ -98,11 +98,11 @@
     },
     "./*": {
       "import": {
-        "types": "./esm/_icon.d.ts",
+        "types": "./esm/icon.d.ts",
         "default": "./esm/*.js"
       },
       "require": {
-        "types": "./_icon.d.ts",
+        "types": "./icon.d.ts",
         "default": "./*.js"
       }
     }
