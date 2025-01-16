@@ -2,14 +2,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import FormControlContext from './FormControlContext';
 import formControlClasses, { getFormControlUtilityClass } from './formControlClasses';
-import { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
+import type { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
 import switchClasses from '../Switch/switchClasses';
 import useSlot from '../utils/useSlot';
 

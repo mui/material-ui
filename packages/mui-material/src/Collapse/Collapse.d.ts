@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
-import { TransitionProps } from '../transitions/transition';
-import { CollapseClasses } from './collapseClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { InternalStandardProps as StandardProps, Theme } from '..';
+import type { TransitionProps } from '../transitions/transition';
+import type { CollapseClasses } from './collapseClasses';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
   /**

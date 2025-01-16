@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/system';
-import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popup';
+import type { PopupProps } from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { Button as BaseButton } from '@mui/base/Button';
 import { CssAnimation } from '@mui/base/Transitions';
 

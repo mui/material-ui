@@ -3,8 +3,9 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
+import type {
+  BreadcrumbsClassKey} from '@mui/joy/Breadcrumbs';
 import Breadcrumbs, {
-  BreadcrumbsClassKey,
   breadcrumbsClasses as classes,
 } from '@mui/joy/Breadcrumbs';
 import describeConformance from '../../test/describeConformance';

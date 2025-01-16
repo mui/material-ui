@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Alert, { AlertOwnerState } from '@mui/joy/Alert';
+import type { AlertOwnerState } from '@mui/joy/Alert';
+import Alert from '@mui/joy/Alert';
 
 <Alert />;
 

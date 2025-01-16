@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { unstable_traverseBreakpoints as traverseBreakpoints } from '@mui/system/Grid';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
@@ -13,12 +13,12 @@ import { useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
 import styled from '../styles/styled';
 import { getButtonGroupUtilityClass } from './buttonGroupClasses';
-import { ButtonGroupProps, ButtonGroupOwnerState, ButtonGroupTypeMap } from './ButtonGroupProps';
+import type { ButtonGroupProps, ButtonGroupOwnerState, ButtonGroupTypeMap } from './ButtonGroupProps';
 import ButtonGroupContext from './ButtonGroupContext';
 import useSlot from '../utils/useSlot';
 import buttonClasses from '../Button/buttonClasses';
 import iconButtonClasses from '../IconButton/iconButtonClasses';
-import { DividerProps } from '../Divider';
+import type { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: ButtonGroupOwnerState) => {
   const { size, variant, color, orientation } = ownerState;

@@ -1,17 +1,18 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getOptionGroupUtilityClass } from './optionGroupClasses';
-import {
+import type {
   OptionGroupLabelSlotProps,
   OptionGroupListSlotProps,
   OptionGroupProps,
   OptionGroupRootSlotProps,
   OptionGroupTypeMap,
 } from './OptionGroup.types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function useUtilityClasses(disabled: boolean) {

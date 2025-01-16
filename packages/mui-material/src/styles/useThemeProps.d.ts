@@ -1,5 +1,5 @@
-import { Theme } from './createTheme';
-import { Components } from './components';
+import type { Theme } from './createTheme';
+import type { Components } from './components';
 
 export interface ThemeWithProps {
   components?: Components<Omit<Theme, 'components'>>;

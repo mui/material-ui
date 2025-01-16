@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import type { GridColDef } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 
 const columns: GridColDef[] = [

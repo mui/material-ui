@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '../styles';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
 
 export interface ScopedCssBaselineOwnProps {
   /**

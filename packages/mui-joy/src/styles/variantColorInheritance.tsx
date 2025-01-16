@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorPaletteProp, VariantProp } from '@mui/joy/styles/types';
+import type { ColorPaletteProp, VariantProp } from '@mui/joy/styles/types';
 
 const VariantColorContext = React.createContext<string | undefined>(undefined);
 

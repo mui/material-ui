@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { FormControlState } from '../FormControl';
+import type * as React from 'react';
+import type { FormControlState } from '../FormControl';
 
 export interface UseInputParameters {
   /**

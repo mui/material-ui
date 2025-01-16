@@ -1,20 +1,24 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Translate, useTranslate } from '@mui/docs/i18n';
-import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
+import type { Translate} from '@mui/docs/i18n';
+import { useTranslate } from '@mui/docs/i18n';
+import type { SectionTitleProps } from '@mui/docs/SectionTitle';
+import { SectionTitle } from '@mui/docs/SectionTitle';
+import type {
+  ApiDisplayOptions} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import ToggleDisplayOption, {
-  ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import PropertiesList from 'docs/src/modules/components/ApiPage/list/PropertiesList';
 import PropertiesTable from 'docs/src/modules/components/ApiPage/table/PropertiesTable';
+import type {
+  PropertyDefinition} from 'docs/src/modules/components/ApiPage/definitions/properties';
 import {
-  PropertyDefinition,
   getPropsApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/properties';
-import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
-import {
+import type { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
+import type {
   ComponentApiContent,
   PropsTableItem,
   PropsTranslations,

@@ -1,4 +1,5 @@
-import { SxConfig, unstable_defaultSxConfig } from '@mui/system';
+import type { SxConfig} from '@mui/system';
+import { unstable_defaultSxConfig } from '@mui/system';
 
 const sxConfig: SxConfig = {
   ...unstable_defaultSxConfig,

@@ -2,12 +2,12 @@
 import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
-import { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
+import type { UseTabParameters, UseTabReturnValue, UseTabRootSlotProps } from './useTab.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useCompoundItem } from '../useCompound';
 import { useListItem } from '../useList';
 import { useButton } from '../useButton';
-import { TabMetadata } from '../useTabs';
+import type { TabMetadata } from '../useTabs';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 
 function tabValueGenerator(otherTabValues: Set<string | number>) {

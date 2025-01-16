@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Simplify } from '@mui/types';
-import { FormControlState } from '../FormControl';
-import { UseInputParameters, UseInputRootSlotProps } from '../useInput';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type * as React from 'react';
+import type { Simplify } from '@mui/types';
+import type { FormControlState } from '../FormControl';
+import type { UseInputParameters, UseInputRootSlotProps } from '../useInput';
+import type { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface InputRootSlotPropsOverrides {}
 export interface InputInputSlotPropsOverrides {}

@@ -1,10 +1,11 @@
 'use client';
 import * as React from 'react';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import {
-  CompoundComponentContext,
+import type {
   CompoundComponentContextValue,
-  KeyGenerator,
+  KeyGenerator} from './useCompoundParent';
+import {
+  CompoundComponentContext
 } from './useCompoundParent';
 
 export interface UseCompoundItemReturnValue<Key> {

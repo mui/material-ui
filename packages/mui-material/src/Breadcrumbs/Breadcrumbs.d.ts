@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '../utils/types';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { BreadcrumbsClasses } from './breadcrumbsClasses';
-import SvgIcon from '../SvgIcon';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { SlotComponentProps } from '../utils/types';
+import type { Theme } from '../styles';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { BreadcrumbsClasses } from './breadcrumbsClasses';
+import type SvgIcon from '../SvgIcon';
 
 export interface BreadcrumbsCollapsedIconSlotPropsOverrides {}
 

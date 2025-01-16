@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import type { ListChildComponentProps } from 'react-window';
+import { FixedSizeList } from 'react-window';
 import { Popper } from '@mui/base/Popper';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';

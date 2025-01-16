@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { StylesProviderProps } from '../StylesProvider';
+import type * as React from 'react';
+import type { StylesProviderProps } from '../StylesProvider';
 
 declare class ServerStyleSheets {
   constructor(options?: object);

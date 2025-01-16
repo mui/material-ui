@@ -2,13 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
-import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
+import type { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
 const useUtilityClasses = (ownerState: AspectRatioOwnerState) => {
   const { variant, color } = ownerState;

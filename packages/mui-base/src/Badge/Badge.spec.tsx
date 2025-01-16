@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import { Badge, BadgeBadgeSlotProps, BadgeRootSlotProps } from '@mui/base/Badge';
+import type { BadgeBadgeSlotProps, BadgeRootSlotProps } from '@mui/base/Badge';
+import { Badge } from '@mui/base/Badge';
 
 const Root = React.forwardRef(function Root(
   props: BadgeRootSlotProps,

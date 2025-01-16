@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
-import { PropTypes, Theme } from '..';
-import { AppBarClasses } from './appBarClasses';
-import { ExtendPaperTypeMap } from '../Paper/Paper';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { OverridableStringUnion } from '@mui/types';
+import type { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import type { PropTypes, Theme } from '..';
+import type { AppBarClasses } from './appBarClasses';
+import type { ExtendPaperTypeMap } from '../Paper/Paper';
 
 export interface AppBarPropsColorOverrides {}
 

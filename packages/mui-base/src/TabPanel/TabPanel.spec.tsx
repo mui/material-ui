@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import { TabPanel, TabPanelRootSlotProps } from '@mui/base/TabPanel';
+import type { TabPanelRootSlotProps } from '@mui/base/TabPanel';
+import { TabPanel } from '@mui/base/TabPanel';
 
 function Root(props: TabPanelRootSlotProps) {
   const { ownerState, ...other } = props;

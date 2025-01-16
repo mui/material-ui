@@ -1,10 +1,11 @@
-import * as React from 'react';
-import {
+import type * as React from 'react';
+import type {
   CreateMUIStyled as CreateMUIStyledStyledEngine,
   CSSInterpolation,
 } from '@mui/styled-engine';
-import styleFunctionSx, { SxProps } from '../styleFunctionSx';
-import { Theme as DefaultTheme } from '../createTheme';
+import type { SxProps } from '../styleFunctionSx';
+import type styleFunctionSx from '../styleFunctionSx';
+import type { Theme as DefaultTheme } from '../createTheme';
 
 export function shouldForwardProp(propName: PropertyKey): boolean;
 

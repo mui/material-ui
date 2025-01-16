@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Html, Head, Main, NextScript, DocumentProps, DocumentContext } from 'next/document';
+import type { DocumentProps, DocumentContext } from 'next/document';
+import { Html, Head, Main, NextScript } from 'next/document';
+import type {
+  DocumentHeadTagsProps} from '@mui/material-nextjs/v15-pagesRouter';
 import {
   DocumentHeadTags,
-  DocumentHeadTagsProps,
   documentGetInitialProps,
 } from '@mui/material-nextjs/v15-pagesRouter';
 import theme, { roboto } from '../src/theme';

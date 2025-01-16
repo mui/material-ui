@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { SliderClasses, SliderOwnProps } from '@mui/base/Slider';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { SliderClasses, SliderOwnProps } from '@mui/base/Slider';
+import type { OverridableStringUnion, OverrideProps } from '@mui/types';
+import type { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type SliderSlot =
   | 'root'

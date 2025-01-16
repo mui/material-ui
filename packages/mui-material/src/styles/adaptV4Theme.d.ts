@@ -1,14 +1,14 @@
-import { BreakpointsOptions, ShapeOptions, SpacingOptions } from '@mui/system';
-import { MixinsOptions } from './createMixins';
-import { Palette, PaletteOptions } from './createPalette';
-import { TypographyOptions } from './createTypography';
-import { Shadows } from './shadows';
-import { TransitionsOptions } from './createTransitions';
-import { ZIndexOptions } from './zIndex';
-import { ComponentsOverrides } from './overrides';
-import { ComponentsVariants } from './variants';
-import { ComponentsProps } from './props';
-import { Theme } from './createTheme';
+import type { BreakpointsOptions, ShapeOptions, SpacingOptions } from '@mui/system';
+import type { MixinsOptions } from './createMixins';
+import type { Palette, PaletteOptions } from './createPalette';
+import type { TypographyOptions } from './createTypography';
+import type { Shadows } from './shadows';
+import type { TransitionsOptions } from './createTransitions';
+import type { ZIndexOptions } from './zIndex';
+import type { ComponentsOverrides } from './overrides';
+import type { ComponentsVariants } from './variants';
+import type { ComponentsProps } from './props';
+import type { Theme } from './createTheme';
 
 export type Direction = 'ltr' | 'rtl';
 

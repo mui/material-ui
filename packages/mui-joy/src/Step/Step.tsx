@@ -3,11 +3,11 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import stepClasses, { getStepUtilityClass } from './stepClasses';
-import { StepProps, StepOwnerState, StepTypeMap } from './StepProps';
+import type { StepProps, StepOwnerState, StepTypeMap } from './StepProps';
 import useSlot from '../utils/useSlot';
 import stepperClasses from '../Stepper/stepperClasses';
 

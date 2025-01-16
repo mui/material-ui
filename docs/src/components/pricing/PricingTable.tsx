@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { alpha, styled, ThemeProvider } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
+import type { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Collapse from '@mui/material/Collapse';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InferGetStaticPropsType } from 'next';
+import type { InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
@@ -28,7 +28,8 @@ import { Link } from '@mui/docs/Link';
 import generateRssFeed from 'docs/scripts/generateRSSFeed';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
-import { getAllBlogPosts, BlogPost } from 'docs/lib/sourcing';
+import type { BlogPost } from 'docs/lib/sourcing';
+import { getAllBlogPosts } from 'docs/lib/sourcing';
 
 export const getStaticProps = () => {
   const data = getAllBlogPosts();

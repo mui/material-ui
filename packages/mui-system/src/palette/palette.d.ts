@@ -1,4 +1,4 @@
-import { PropsFor, SimpleStyleFunction, palette } from '../Box';
+import type { PropsFor, SimpleStyleFunction, palette } from '../Box';
 
 export const color: SimpleStyleFunction<'color'>;
 export const bgcolor: SimpleStyleFunction<'bgcolor'>;

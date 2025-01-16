@@ -1,6 +1,6 @@
-import { CSSObject } from '@mui/system';
-import { DefaultColorPalette, PaletteVariant } from './types/colorSystem';
-import { VariantKey } from './types/variants';
+import type { CSSObject } from '@mui/system';
+import type { DefaultColorPalette, PaletteVariant } from './types/colorSystem';
+import type { VariantKey } from './types/variants';
 
 export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
   colorPalette &&

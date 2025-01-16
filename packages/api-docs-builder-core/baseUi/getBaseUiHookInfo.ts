@@ -2,9 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { getHeaders, getTitle } from '@mui/internal-markdown';
-import {
+import type {
   ComponentInfo,
-  HookInfo,
+  HookInfo} from '@mui-internal/api-docs-builder/buildApiUtils';
+import {
   extractPackageFile,
   fixPathname,
   getApiPath,

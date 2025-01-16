@@ -1,8 +1,8 @@
-import { CSSObject } from '@mui/styled-engine';
-import { Breakpoints } from '../createBreakpoints/createBreakpoints';
+import type { CSSObject } from '@mui/styled-engine';
+import type { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import type { Breakpoint } from '../createTheme';
-import { ResponsiveStyleValue } from '../styleFunctionSx';
-import { StyleFunction } from '../Box';
+import type { ResponsiveStyleValue } from '../styleFunctionSx';
+import type { StyleFunction } from '../Box';
 
 export interface ResolveBreakpointValuesOptions<T> {
   values: ResponsiveStyleValue<T>;

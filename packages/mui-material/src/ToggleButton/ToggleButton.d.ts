@@ -1,10 +1,10 @@
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import * as React from 'react';
-import { Theme } from '..';
-import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps } from '../OverridableComponent';
-import { ToggleButtonClasses } from './toggleButtonClasses';
+import type { SxProps } from '@mui/system';
+import type { OverridableStringUnion } from '@mui/types';
+import type * as React from 'react';
+import type { Theme } from '..';
+import type { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import type { OverrideProps } from '../OverridableComponent';
+import type { ToggleButtonClasses } from './toggleButtonClasses';
 
 export interface ToggleButtonPropsSizeOverrides {}
 

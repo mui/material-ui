@@ -2,7 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid2';
 import Section from 'docs/src/layouts/Section';
 import { InfoCard } from '@mui/docs/InfoCard';
-import { Theme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';

@@ -1,7 +1,7 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import * as React from 'react';
-import { ColorPaletteProp, FontSize, SxProps, ApplyColorInversion } from '../styles/types';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import type { OverridableStringUnion, OverrideProps } from '@mui/types';
+import type * as React from 'react';
+import type { ColorPaletteProp, FontSize, SxProps, ApplyColorInversion } from '../styles/types';
+import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type SvgIconSlot = 'root';
 

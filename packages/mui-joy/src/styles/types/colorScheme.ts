@@ -1,4 +1,4 @@
-import { OverridableStringUnion } from '@mui/types';
+import type { OverridableStringUnion } from '@mui/types';
 
 /**
  * default Joy color-schemes

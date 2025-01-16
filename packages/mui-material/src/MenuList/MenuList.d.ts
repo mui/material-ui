@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ExtendList, ExtendListTypeMap } from '../List';
-import { OverrideProps } from '../OverridableComponent';
+import type * as React from 'react';
+import type { ExtendList, ExtendListTypeMap } from '../List';
+import type { OverrideProps } from '../OverridableComponent';
 
 export interface MenuListOwnProps {
   /**

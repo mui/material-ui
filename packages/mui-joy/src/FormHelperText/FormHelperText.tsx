@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
+import type { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
 import formControlClasses from '../FormControl/formControlClasses';

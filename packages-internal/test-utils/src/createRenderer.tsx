@@ -1,16 +1,17 @@
 /* eslint-env mocha */
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
+import type {
+  RenderResult,
+  Screen} from '@testing-library/react/pure';
 import {
   buildQueries,
   cleanup,
   prettyDOM,
   queries,
-  RenderResult,
   act as rtlAct,
   fireEvent as rtlFireEvent,
   screen as rtlScreen,
-  Screen,
   render as testingLibraryRender,
   within,
 } from '@testing-library/react/pure';

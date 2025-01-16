@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Card, { cardClasses as classes, CardClassKey } from '@mui/joy/Card';
+import type { CardClassKey } from '@mui/joy/Card';
+import Card, { cardClasses as classes } from '@mui/joy/Card';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Card />', () => {

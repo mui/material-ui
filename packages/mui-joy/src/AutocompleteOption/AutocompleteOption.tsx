@@ -2,14 +2,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { getAutocompleteOptionUtilityClass } from './autocompleteOptionClasses';
-import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
+import type { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: AutocompleteOptionOwnerState) => {

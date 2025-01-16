@@ -7,7 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getIconButtonUtilityClass } from './iconButtonClasses';
-import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
+import type { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 import CircularProgress from '../CircularProgress';

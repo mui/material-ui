@@ -1,4 +1,4 @@
-import { CSSProperties } from './createTypography';
+import type { CSSProperties } from './createTypography';
 
 export function isUnitless(value: string): boolean;
 

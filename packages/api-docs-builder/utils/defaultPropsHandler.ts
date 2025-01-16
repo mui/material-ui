@@ -1,6 +1,8 @@
 import { namedTypes as types } from 'ast-types';
-import { parse as parseDoctrine, Annotation } from 'doctrine';
-import { utils as docgenUtils, NodePath, Documentation, Importer, Handler } from 'react-docgen';
+import type { Annotation } from 'doctrine';
+import { parse as parseDoctrine } from 'doctrine';
+import type { NodePath, Documentation, Importer, Handler } from 'react-docgen';
+import { utils as docgenUtils } from 'react-docgen';
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 

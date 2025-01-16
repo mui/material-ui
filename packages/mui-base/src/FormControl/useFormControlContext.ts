@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { UseFormControlContextReturnValue } from './FormControl.types';
+import type { UseFormControlContextReturnValue } from './FormControl.types';
 import { FormControlContext } from './FormControlContext';
 /**
  *

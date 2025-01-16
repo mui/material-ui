@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import {
+import type * as React from 'react';
+import type { OverridableStringUnion, OverrideProps } from '@mui/types';
+import type {
   ColorPaletteProp,
   SxProps,
   TypographySystem,
   VariantProp,
   ApplyColorInversion,
 } from '../styles/types';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type DialogTitleSlot = 'root';
 

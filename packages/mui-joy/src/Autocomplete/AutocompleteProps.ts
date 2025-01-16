@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {
+import type * as React from 'react';
+import type {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
@@ -8,10 +8,10 @@ import {
   AutocompleteValue,
   UseAutocompleteProps,
 } from '@mui/base/useAutocomplete';
-import { PopperOwnProps } from '@mui/base/Popper';
-import { OverridableStringUnion } from '@mui/types';
-import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type { PopperOwnProps } from '@mui/base/Popper';
+import type { OverridableStringUnion } from '@mui/types';
+import type { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type AutocompleteSlot =
   | 'root'

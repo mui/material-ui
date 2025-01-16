@@ -3,7 +3,8 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
-import Table, { TableProps } from '@mui/joy/Table';
+import type { TableProps } from '@mui/joy/Table';
+import Table from '@mui/joy/Table';
 
 function createData(
   name: string,

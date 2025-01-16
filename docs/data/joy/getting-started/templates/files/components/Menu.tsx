@@ -1,5 +1,6 @@
 import * as React from 'react';
-import JoyMenu, { MenuActions } from '@mui/joy/Menu';
+import type { MenuActions } from '@mui/joy/Menu';
+import JoyMenu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import { ListActionTypes } from '@mui/base/useList';
 

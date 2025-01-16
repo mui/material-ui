@@ -1,6 +1,6 @@
-import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/types';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import type { OverrideProps } from '@mui/types';
+import type { SxProps } from '../styles/types';
+import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type ScopedCssBaselineSlot = 'root';
 

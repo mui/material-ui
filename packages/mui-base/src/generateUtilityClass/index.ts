@@ -1,4 +1,5 @@
-import { globalStateClasses, GlobalStateSlot } from '@mui/utils/generateUtilityClass';
+import type { GlobalStateSlot } from '@mui/utils/generateUtilityClass';
+import { globalStateClasses } from '@mui/utils/generateUtilityClass';
 
 const GLOBAL_CLASS_PREFIX = 'base';
 

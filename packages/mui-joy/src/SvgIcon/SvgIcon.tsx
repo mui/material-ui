@@ -1,6 +1,6 @@
 'use client';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import { getSvgIconUtilityClass } from './svgIconClasses';
-import { SvgIconProps, SvgIconTypeMap, SvgIconOwnerState } from './SvgIconProps';
+import type { SvgIconProps, SvgIconTypeMap, SvgIconOwnerState } from './SvgIconProps';
 
 const useUtilityClasses = (ownerState: SvgIconOwnerState) => {
   const { color, size, fontSize } = ownerState;

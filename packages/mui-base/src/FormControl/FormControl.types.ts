@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Simplify } from '@mui/types';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type * as React from 'react';
+import type { Simplify } from '@mui/types';
+import type { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 

@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
-import { InternalStandardProps as StandardProps } from '@mui/material';
-import { TimelineDotClasses } from './timelineDotClasses';
+import type * as React from 'react';
+import type { OverridableStringUnion } from '@mui/types';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '@mui/material/styles';
+import type { InternalStandardProps as StandardProps } from '@mui/material';
+import type { TimelineDotClasses } from './timelineDotClasses';
 
 export interface TimelineDotPropsVariantOverrides {}
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { VariantProp, ColorPaletteProp } from '@mui/joy/styles';
+import type { VariantProp, ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';

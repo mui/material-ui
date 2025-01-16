@@ -1,3 +1,3 @@
-import { PropsFor, positions } from '../Box';
+import type { PropsFor, positions } from '../Box';
 
 export type PositionsProps = PropsFor<typeof positions>;

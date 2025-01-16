@@ -5,7 +5,7 @@ import Box from '@mui/joy/Box';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
-import { VariantProp } from '@mui/joy/styles';
+import type { VariantProp } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 
 export default function AlertColors() {

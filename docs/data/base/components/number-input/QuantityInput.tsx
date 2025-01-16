@@ -1,7 +1,8 @@
 import * as React from 'react';
+import type {
+  NumberInputProps} from '@mui/base/Unstable_NumberInput';
 import {
-  Unstable_NumberInput as BaseNumberInput,
-  NumberInputProps,
+  Unstable_NumberInput as BaseNumberInput
 } from '@mui/base/Unstable_NumberInput';
 import { styled } from '@mui/system';
 import RemoveIcon from '@mui/icons-material/Remove';

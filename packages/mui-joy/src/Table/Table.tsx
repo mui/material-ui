@@ -4,12 +4,12 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 
 import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
-import { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
+import type { TableProps, TableOwnerState, TableTypeMap } from './TableProps';
 import { TypographyInheritContext } from '../Typography/Typography';
 import useSlot from '../utils/useSlot';
 

@@ -1,8 +1,10 @@
 'use client';
 import * as React from 'react';
-import { ListContext, ListContextValue } from '../useList/ListContext';
-import { MenuItemMetadata } from '../useMenuItem';
-import { CompoundComponentContext, CompoundComponentContextValue } from '../useCompound';
+import type { ListContextValue } from '../useList/ListContext';
+import { ListContext } from '../useList/ListContext';
+import type { MenuItemMetadata } from '../useMenuItem';
+import type { CompoundComponentContextValue } from '../useCompound';
+import { CompoundComponentContext } from '../useCompound';
 
 export type MenuProviderValue = CompoundComponentContextValue<string, MenuItemMetadata> &
   ListContextValue<string>;

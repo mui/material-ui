@@ -1,15 +1,15 @@
-import * as React from 'react';
-import {
+import type * as React from 'react';
+import type {
   ResponsiveStyleValue,
   SxProps,
   SystemProps,
   Breakpoint,
   BreakpointOverrides,
 } from '@mui/system';
-import { IfEquals } from '@mui/types';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { GridClasses } from './gridClasses';
+import type { IfEquals } from '@mui/types';
+import type { Theme } from '../styles';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { GridClasses } from './gridClasses';
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 

@@ -2,7 +2,7 @@ import { mkdirSync } from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { writePrettifiedFile } from '../buildApiUtils';
-import { HooksTranslations, PropsTranslations } from '../types/ApiBuilder.types';
+import type { HooksTranslations, PropsTranslations } from '../types/ApiBuilder.types';
 
 interface MinimalReactAPI {
   name: string;

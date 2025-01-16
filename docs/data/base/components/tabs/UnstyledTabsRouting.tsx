@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Tabs } from '@mui/base/Tabs';
-import { Tab as BaseTab, TabRootSlotProps, tabClasses } from '@mui/base/Tab';
+import type { TabRootSlotProps} from '@mui/base/Tab';
+import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
 import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 import {
   MemoryRouter,

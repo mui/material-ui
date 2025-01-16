@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Simplify } from '@mui/types';
-import { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
-import { SlotComponentProps } from '../utils';
-import { PolymorphicProps } from '../utils/PolymorphicComponent';
+import type * as React from 'react';
+import type { Simplify } from '@mui/types';
+import type { UseButtonParameters, UseButtonRootSlotProps } from '../useButton';
+import type { SlotComponentProps } from '../utils';
+import type { PolymorphicProps } from '../utils/PolymorphicComponent';
 
 export interface ButtonActions {
   focusVisible(): void;

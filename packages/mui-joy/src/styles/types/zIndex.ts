@@ -1,4 +1,4 @@
-import { OverridableRecord } from './utils';
+import type { OverridableRecord } from './utils';
 
 /**
  * From lowest to highest value

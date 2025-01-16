@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Typography, { TypographyProps } from '@mui/material/Typography';
+import type { TypographyProps } from '@mui/material/Typography';
+import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
 

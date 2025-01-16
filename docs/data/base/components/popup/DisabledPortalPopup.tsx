@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popup';
-import { Box, styled, Theme } from '@mui/system';
+import type { PopupProps } from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+import type { Theme } from '@mui/system';
+import { Box, styled } from '@mui/system';
 
 export default function DisabledPortalPopup() {
   return (

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import {
-  TablePaginationActions,
+import type {
   TablePaginationActionsButtonSlotProps,
-  TablePaginationActionsRootSlotProps,
+  TablePaginationActionsRootSlotProps} from '@mui/base/TablePagination';
+import {
+  TablePaginationActions
 } from '@mui/base/TablePagination';
 
 function Root(props: TablePaginationActionsRootSlotProps) {

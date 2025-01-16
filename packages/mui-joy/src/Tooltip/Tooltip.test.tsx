@@ -3,9 +3,10 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, act } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { PopperProps } from '@mui/base';
+import type { PopperProps } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
-import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
+import type { TooltipClassKey } from '@mui/joy/Tooltip';
+import Tooltip, { tooltipClasses as classes } from '@mui/joy/Tooltip';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {

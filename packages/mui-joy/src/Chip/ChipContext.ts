@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChipProps } from './ChipProps';
+import type { ChipProps } from './ChipProps';
 
 const ChipColorContext = React.createContext<Pick<ChipProps, 'disabled' | 'variant' | 'color'>>({
   disabled: undefined,

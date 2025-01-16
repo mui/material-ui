@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {
-  Unstable_NumberInput as BaseNumberInput,
+import type {
   NumberInputProps,
-  NumberInputOwnerState,
+  NumberInputOwnerState} from '@mui/base/Unstable_NumberInput';
+import {
+  Unstable_NumberInput as BaseNumberInput
 } from '@mui/base/Unstable_NumberInput';
 import clsx from 'clsx';
 

@@ -1,3 +1,3 @@
-import { PropsFor, grid } from '../Box';
+import type { PropsFor, grid } from '../Box';
 
 export type CssGridProps = PropsFor<typeof grid>;

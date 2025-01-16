@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/types';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { OverridableStringUnion, OverrideProps } from '@mui/types';
+import type { SxProps } from '../styles/types';
+import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type DividerSlot = 'root';
 

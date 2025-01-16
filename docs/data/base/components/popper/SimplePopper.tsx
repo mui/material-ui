@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Popper } from '@mui/base/Popper';
-import { styled, Theme } from '@mui/system';
+import type { Theme } from '@mui/system';
+import { styled } from '@mui/system';
 
 export default function SimplePopper() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

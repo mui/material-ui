@@ -7,16 +7,17 @@ import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
-import { parse as parseDoctrine, Annotation } from 'doctrine';
+import type { Annotation } from 'doctrine';
+import { parse as parseDoctrine } from 'doctrine';
 import escapeRegExp from 'lodash/escapeRegExp';
 import { escapeEntities, renderMarkdown } from '../buildApi';
-import { ProjectSettings } from '../ProjectSettings';
+import type { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
-import { TypeScriptProject } from '../utils/createTypeScriptProject';
+import type { TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
-import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
-import { HookInfo } from '../types/utils.types';
+import type { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
+import type { HookInfo } from '../types/utils.types';
 import extractInfoFromType from '../utils/extractInfoFromType';
 
 /**

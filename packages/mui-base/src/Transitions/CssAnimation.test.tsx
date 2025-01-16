@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import { CssAnimation } from './CssAnimation';
-import { TransitionContext, TransitionContextValue } from '../useTransition';
+import type { TransitionContextValue } from '../useTransition';
+import { TransitionContext } from '../useTransition';
 
 const onExitedSpy = spy();
 

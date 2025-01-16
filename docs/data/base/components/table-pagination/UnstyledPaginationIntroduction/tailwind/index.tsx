@@ -1,7 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@mui/system';
-import { TablePagination, TablePaginationProps } from '@mui/base/TablePagination';
+import type { TablePaginationProps } from '@mui/base/TablePagination';
+import { TablePagination } from '@mui/base/TablePagination';
 import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
 import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';

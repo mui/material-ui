@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { AppType } from 'next/app';
-import { EmotionCache } from '@emotion/react';
+import type { AppType } from 'next/app';
+import type { EmotionCache } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
-import { EmotionCacheProviderProps } from './pagesRouterV13App';
+import type { DocumentContext, DocumentInitialProps } from 'next/document';
+import Document from 'next/document';
+import type { EmotionCacheProviderProps } from './pagesRouterV13App';
 import createEmotionCache from './createCache';
 
 interface Plugin {

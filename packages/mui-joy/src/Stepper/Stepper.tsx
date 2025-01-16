@@ -3,12 +3,12 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getStepperUtilityClass } from './stepperClasses';
-import { StepperProps, StepperOwnerState, StepperTypeMap } from './StepperProps';
+import type { StepperProps, StepperOwnerState, StepperTypeMap } from './StepperProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: StepperOwnerState) => {

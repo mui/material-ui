@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { DialogsProvider, useDialogs, DialogProps } from '@toolpad/core/useDialogs';
+import type { DialogProps } from '@toolpad/core/useDialogs';
+import { DialogsProvider, useDialogs } from '@toolpad/core/useDialogs';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import Alert from '@mui/material/Alert';

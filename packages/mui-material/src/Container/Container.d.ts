@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { SxProps, Breakpoint } from '@mui/system';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ContainerClasses } from './containerClasses';
+import type * as React from 'react';
+import type { SxProps, Breakpoint } from '@mui/system';
+import type { Theme } from '../styles';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { ContainerClasses } from './containerClasses';
 
 export interface ContainerOwnProps {
   children?: React.ReactNode;

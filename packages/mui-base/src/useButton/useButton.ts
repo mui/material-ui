@@ -4,15 +4,15 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_isFocusVisible as isFocusVisible,
 } from '@mui/utils';
-import {
+import type {
   UseButtonParameters,
   UseButtonReturnValue,
   UseButtonRootSlotProps,
 } from './useButton.types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 import { useRootElementName } from '../utils/useRootElementName';
-import { EventHandlers } from '../utils/types';
-import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import type { EventHandlers } from '../utils/types';
+import type { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 /**
  *
  * Demos:

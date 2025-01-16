@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import {
-  Switch,
+import type {
   SwitchRootSlotProps,
   SwitchThumbSlotProps,
   SwitchTrackSlotProps,
-  SwitchInputSlotProps,
+  SwitchInputSlotProps} from '@mui/base/Switch';
+import {
+  Switch
 } from '@mui/base/Switch';
 
 const Root = React.forwardRef(function Root(

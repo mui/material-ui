@@ -1,7 +1,7 @@
 declare module 'react-docgen' {
-  import { namedTypes } from 'ast-types';
+  import type { namedTypes } from 'ast-types';
   // `import { NodePath } from 'ast-types';` points to `const NodePath: NodePathConstructor` for unknown reasons.
-  import { NodePath as AstTypesNodePath } from 'ast-types/lib/node-path';
+  import type { NodePath as AstTypesNodePath } from 'ast-types/lib/node-path';
 
   export type Node = namedTypes.Node;
   type ASTNode = namedTypes.ASTNode;

@@ -1,17 +1,19 @@
 import * as React from 'react';
+import type {
+  DocumentProps,
+  DocumentInitialProps,
+  DocumentContext} from 'next/document';
 import {
   Html,
   Head,
   Main,
-  NextScript,
-  DocumentProps,
-  DocumentInitialProps,
-  DocumentContext,
+  NextScript
 } from 'next/document';
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
+import type {
+  DocumentHeadTagsProps} from '@mui/material-nextjs/v14-pagesRouter';
 import {
   DocumentHeadTags,
-  DocumentHeadTagsProps,
   documentGetInitialProps,
 } from '@mui/material-nextjs/v14-pagesRouter';
 import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';

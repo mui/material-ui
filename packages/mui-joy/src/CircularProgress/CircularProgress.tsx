@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { css, keyframes } from '@mui/system';
@@ -10,7 +10,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
-import {
+import type {
   CircularProgressOwnerState,
   CircularProgressProps,
   CircularProgressTypeMap,

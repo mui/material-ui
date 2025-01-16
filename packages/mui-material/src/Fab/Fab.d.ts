@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { PropTypes, Theme } from '..';
-import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps } from '../OverridableComponent';
-import { FabClasses } from './fabClasses';
+import type * as React from 'react';
+import type { OverridableStringUnion } from '@mui/types';
+import type { SxProps } from '@mui/system';
+import type { PropTypes, Theme } from '..';
+import type { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import type { OverrideProps } from '../OverridableComponent';
+import type { FabClasses } from './fabClasses';
 
 export interface FabPropsVariantOverrides {}
 

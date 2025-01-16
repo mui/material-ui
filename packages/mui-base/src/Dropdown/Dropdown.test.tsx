@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import type {
+  MuiRenderResult,
+  RenderOptions} from '@mui/internal-test-utils';
 import {
   act,
   createRenderer,
-  flushMicrotasks,
-  MuiRenderResult,
-  RenderOptions,
+  flushMicrotasks
 } from '@mui/internal-test-utils';
 import { Dropdown } from '@mui/base/Dropdown';
 import { DropdownContext } from '@mui/base/useDropdown';

@@ -2,7 +2,7 @@ import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import CircularProgress from '@mui/joy/CircularProgress';
-import { VariantProp } from '@mui/joy';
+import type { VariantProp } from '@mui/joy';
 import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';

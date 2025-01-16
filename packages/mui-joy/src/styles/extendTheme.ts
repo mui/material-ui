@@ -1,14 +1,15 @@
 import { deepmerge } from '@mui/utils';
-import {
+import type {
   BreakpointsOptions,
   SpacingOptions,
+  SxConfig} from '@mui/system';
+import {
   createBreakpoints,
   createSpacing,
   colorChannel,
   unstable_prepareCssVars as prepareCssVars,
   unstable_createGetCssVar as systemCreateGetCssVar,
-  unstable_styleFunctionSx as styleFunctionSx,
-  SxConfig,
+  unstable_styleFunctionSx as styleFunctionSx
 } from '@mui/system';
 import cssContainerQueries from '@mui/system/cssContainerQueries';
 import { unstable_applyStyles as applyStyles } from '@mui/system/createTheme';
@@ -17,16 +18,16 @@ import { createUnarySpacing } from '@mui/system/spacing';
 import defaultSxConfig from './sxConfig';
 import colors from '../colors';
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
-import { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
-import { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
-import { Focus } from './types/focus';
-import { TypographySystemOptions, FontSize } from './types/typography';
-import { Variants } from './types/variants';
-import { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
-import { Components } from './components';
+import type { DefaultColorScheme, ExtendedColorScheme, SupportedColorScheme } from './types/colorScheme';
+import type { ColorSystem, ColorPaletteProp, Palette, PaletteOptions } from './types/colorSystem';
+import type { Focus } from './types/focus';
+import type { TypographySystemOptions, FontSize } from './types/typography';
+import type { Variants } from './types/variants';
+import type { Theme, ThemeCssVar, ThemeScalesOptions, SxProps, ThemeVars } from './types';
+import type { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createVariant } from './variantUtils';
-import { MergeDefault } from './types/utils';
+import type { MergeDefault } from './types/utils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>

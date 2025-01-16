@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ModalDialogProps } from './ModalDialogProps';
+import type { ModalDialogProps } from './ModalDialogProps';
 
 const ModalDialogSizeContext = React.createContext<undefined | ModalDialogProps['size']>(undefined);
 

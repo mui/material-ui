@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '../utils/types';
-import { ButtonBaseProps } from '../ButtonBase';
-import { SvgIcon, Theme } from '..';
-import { TabScrollButtonClasses } from './tabScrollButtonClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { SlotComponentProps } from '../utils/types';
+import type { ButtonBaseProps } from '../ButtonBase';
+import type { SvgIcon, Theme } from '..';
+import type { TabScrollButtonClasses } from './tabScrollButtonClasses';
 
 export interface TabScrollButtonStartIconSlotPropsOverrides {}
 export interface TabScrollButtonEndIconSlotPropsOverrides {}

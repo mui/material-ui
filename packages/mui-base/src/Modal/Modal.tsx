@@ -2,10 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
-import { EventHandlers, useSlotProps } from '../utils';
+import type { EventHandlers} from '../utils';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type { ModalOwnerState, ModalProps, ModalTypeMap } from './Modal.types';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Portal } from '../Portal';
 import { unstable_useModal as useModal } from '../unstable_useModal';

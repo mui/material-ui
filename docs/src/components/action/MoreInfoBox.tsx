@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
-import Box, { BoxProps } from '@mui/material/Box';
+import type { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Link } from '@mui/docs/Link';
 import IconButton from '@mui/material/IconButton';

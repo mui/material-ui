@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { OverrideProps, OverridableStringUnion } from '@mui/types';
+import type { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type AutocompleteListboxSlot = 'root';
 

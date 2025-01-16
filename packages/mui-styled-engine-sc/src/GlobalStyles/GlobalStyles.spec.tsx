@@ -1,7 +1,8 @@
 import * as React from 'react';
+import type {
+  GlobalStylesProps as SCGlobalStylesProps} from '@mui/styled-engine-sc';
 import {
-  GlobalStyles as SCGlobalStyles,
-  GlobalStylesProps as SCGlobalStylesProps,
+  GlobalStyles as SCGlobalStyles
 } from '@mui/styled-engine-sc';
 
 interface Theme {

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import Link, { LinkProps } from '@mui/material/Link';
-import { ListItemProps } from '@mui/material/ListItem';
+import type { LinkProps } from '@mui/material/Link';
+import Link from '@mui/material/Link';
+import type { ListItemProps } from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
 import ListItemText from '@mui/material/ListItemText';

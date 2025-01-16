@@ -1,232 +1,232 @@
-import { GlobalStateSlot } from '@mui/utils';
-import { CSSInterpolation } from '@mui/system';
-import { AccordionProps, AccordionOwnerState, AccordionSlot } from '../Accordion/AccordionProps';
-import {
+import type { GlobalStateSlot } from '@mui/utils';
+import type { CSSInterpolation } from '@mui/system';
+import type { AccordionProps, AccordionOwnerState, AccordionSlot } from '../Accordion/AccordionProps';
+import type {
   AccordionGroupProps,
   AccordionGroupOwnerState,
   AccordionGroupSlot,
 } from '../AccordionGroup/AccordionGroupProps';
-import {
+import type {
   AccordionSummaryProps,
   AccordionSummaryOwnerState,
   AccordionSummarySlot,
 } from '../AccordionSummary/AccordionSummaryProps';
-import {
+import type {
   AccordionDetailsProps,
   AccordionDetailsOwnerState,
   AccordionDetailsSlot,
 } from '../AccordionDetails/AccordionDetailsProps';
-import {
+import type {
   AspectRatioProps,
   AspectRatioOwnerState,
   AspectRatioSlot,
 } from '../AspectRatio/AspectRatioProps';
-import {
+import type {
   AutocompleteProps,
   AutocompleteOwnerState,
   AutocompleteSlot,
 } from '../Autocomplete/AutocompleteProps';
-import {
+import type {
   AutocompleteListboxProps,
   AutocompleteListboxOwnerState,
   AutocompleteListboxSlot,
 } from '../AutocompleteListbox/AutocompleteListboxProps';
-import {
+import type {
   AutocompleteOptionProps,
   AutocompleteOptionOwnerState,
   AutocompleteOptionSlot,
 } from '../AutocompleteOption/AutocompleteOptionProps';
-import { AvatarProps, AvatarOwnerState, AvatarSlot } from '../Avatar/AvatarProps';
-import {
+import type { AvatarProps, AvatarOwnerState, AvatarSlot } from '../Avatar/AvatarProps';
+import type {
   AvatarGroupProps,
   AvatarGroupOwnerState,
   AvatarGroupSlot,
 } from '../AvatarGroup/AvatarGroupProps';
-import { BadgeProps, BadgeOwnerState, BadgeSlot } from '../Badge/BadgeProps';
-import { AlertProps, AlertOwnerState, AlertSlot } from '../Alert/AlertProps';
-import { BoxProps, BoxSlot } from '../Box/BoxProps';
-import {
+import type { BadgeProps, BadgeOwnerState, BadgeSlot } from '../Badge/BadgeProps';
+import type { AlertProps, AlertOwnerState, AlertSlot } from '../Alert/AlertProps';
+import type { BoxProps, BoxSlot } from '../Box/BoxProps';
+import type {
   BreadcrumbsProps,
   BreadcrumbsOwnerState,
   BreadcrumbsSlot,
 } from '../Breadcrumbs/BreadcrumbsProps';
-import { ButtonProps, ButtonOwnerState, ButtonSlot } from '../Button/ButtonProps';
-import {
+import type { ButtonProps, ButtonOwnerState, ButtonSlot } from '../Button/ButtonProps';
+import type {
   ButtonGroupProps,
   ButtonGroupOwnerState,
   ButtonGroupSlot,
 } from '../ButtonGroup/ButtonGroupProps';
-import { CardProps, CardOwnerState, CardSlot } from '../Card/CardProps';
-import {
+import type { CardProps, CardOwnerState, CardSlot } from '../Card/CardProps';
+import type {
   CardActionsProps,
   CardActionsOwnerState,
   CardActionsSlot,
 } from '../CardActions/CardActionsProps';
-import {
+import type {
   CardContentProps,
   CardContentOwnerState,
   CardContentSlot,
 } from '../CardContent/CardContentProps';
-import { CardCoverProps, CardCoverOwnerState, CardCoverSlot } from '../CardCover/CardCoverProps';
-import {
+import type { CardCoverProps, CardCoverOwnerState, CardCoverSlot } from '../CardCover/CardCoverProps';
+import type {
   CardOverflowProps,
   CardOverflowOwnerState,
   CardOverflowSlot,
 } from '../CardOverflow/CardOverflowProps';
-import { CheckboxProps, CheckboxOwnerState, CheckboxSlot } from '../Checkbox/CheckboxProps';
-import { ChipProps, ChipOwnerState, ChipSlot } from '../Chip/ChipProps';
-import {
+import type { CheckboxProps, CheckboxOwnerState, CheckboxSlot } from '../Checkbox/CheckboxProps';
+import type { ChipProps, ChipOwnerState, ChipSlot } from '../Chip/ChipProps';
+import type {
   ChipDeleteProps,
   ChipDeleteOwnerState,
   ChipDeleteSlot,
 } from '../ChipDelete/ChipDeleteProps';
-import {
+import type {
   CircularProgressProps,
   CircularProgressOwnerState,
   CircularProgressSlot,
 } from '../CircularProgress/CircularProgressProps';
-import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
-import {
+import type { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
+import type {
   DialogActionsProps,
   DialogActionsOwnerState,
   DialogActionsSlot,
 } from '../DialogActions/DialogActionsProps';
-import {
+import type {
   DialogContentProps,
   DialogContentOwnerState,
   DialogContentSlot,
 } from '../DialogContent/DialogContentProps';
-import {
+import type {
   DialogTitleProps,
   DialogTitleOwnerState,
   DialogTitleSlot,
 } from '../DialogTitle/DialogTitleProps';
-import { DrawerProps, DrawerOwnerState, DrawerSlot } from '../Drawer/DrawerProps';
-import {
+import type { DrawerProps, DrawerOwnerState, DrawerSlot } from '../Drawer/DrawerProps';
+import type {
   ScopedCssBaselineProps,
   ScopedCssBaselineOwnerState,
   ScopedCssBaselineSlot,
 } from '../ScopedCssBaseline/ScopedCssBaselineProps';
-import { DividerProps, DividerOwnerState, DividerSlot } from '../Divider/DividerProps';
-import {
+import type { DividerProps, DividerOwnerState, DividerSlot } from '../Divider/DividerProps';
+import type {
   FormControlProps,
   FormControlOwnerState,
   FormControlSlot,
 } from '../FormControl/FormControlProps';
-import {
+import type {
   FormHelperTextProps,
   FormHelperTextOwnerState,
   FormHelperTextSlot,
 } from '../FormHelperText/FormHelperTextProps';
-import { FormLabelProps, FormLabelOwnerState, FormLabelSlot } from '../FormLabel/FormLabelProps';
-import { GridProps, GridSlot } from '../Grid/GridProps';
-import {
+import type { FormLabelProps, FormLabelOwnerState, FormLabelSlot } from '../FormLabel/FormLabelProps';
+import type { GridProps, GridSlot } from '../Grid/GridProps';
+import type {
   IconButtonProps,
   IconButtonOwnerState,
   IconButtonSlot,
 } from '../IconButton/IconButtonProps';
-import { InputProps, InputOwnerState, InputSlot } from '../Input/InputProps';
-import {
+import type { InputProps, InputOwnerState, InputSlot } from '../Input/InputProps';
+import type {
   LinearProgressProps,
   LinearProgressOwnerState,
   LinearProgressSlot,
 } from '../LinearProgress/LinearProgressProps';
-import { LinkProps, LinkOwnerState, LinkSlot } from '../Link/LinkProps';
-import { ListProps, ListOwnerState, ListSlot } from '../List/ListProps';
-import {
+import type { LinkProps, LinkOwnerState, LinkSlot } from '../Link/LinkProps';
+import type { ListProps, ListOwnerState, ListSlot } from '../List/ListProps';
+import type {
   ListDividerProps,
   ListDividerOwnerState,
   ListDividerSlot,
 } from '../ListDivider/ListDividerProps';
-import {
+import type {
   ListSubheaderProps,
   ListSubheaderOwnerState,
   ListSubheaderSlot,
 } from '../ListSubheader/ListSubheaderProps';
-import { ListItemProps, ListItemOwnerState, ListItemSlot } from '../ListItem/ListItemProps';
-import {
+import type { ListItemProps, ListItemOwnerState, ListItemSlot } from '../ListItem/ListItemProps';
+import type {
   ListItemButtonProps,
   ListItemButtonOwnerState,
   ListItemButtonSlot,
 } from '../ListItemButton/ListItemButtonProps';
-import {
+import type {
   ListItemContentProps,
   ListItemContentOwnerState,
   ListItemContentSlot,
 } from '../ListItemContent/ListItemContentProps';
-import {
+import type {
   ListItemDecoratorOwnerState,
   ListItemDecoratorProps,
   ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
-import { MenuProps, MenuOwnerState, MenuSlot } from '../Menu/MenuProps';
+import type { MenuProps, MenuOwnerState, MenuSlot } from '../Menu/MenuProps';
 import {
   type MenuButtonOwnerState,
   type MenuButtonProps,
   type MenuButtonSlot,
 } from '../MenuButton/MenuButtonProps';
-import { MenuItemProps, MenuItemOwnerState, MenuItemSlot } from '../MenuItem/MenuItemProps';
-import { MenuListProps, MenuListOwnerState, MenuListSlot } from '../MenuList/MenuListProps';
-import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
-import {
+import type { MenuItemProps, MenuItemOwnerState, MenuItemSlot } from '../MenuItem/MenuItemProps';
+import type { MenuListProps, MenuListOwnerState, MenuListSlot } from '../MenuList/MenuListProps';
+import type { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
+import type {
   ModalCloseProps,
   ModalCloseOwnerState,
   ModalCloseSlot,
 } from '../ModalClose/ModalCloseProps';
-import {
+import type {
   ModalDialogProps,
   ModalDialogOwnerState,
   ModalDialogSlot,
 } from '../ModalDialog/ModalDialogProps';
-import {
+import type {
   ModalOverflowProps,
   ModalOverflowOwnerState,
   ModalOverflowSlot,
 } from '../ModalOverflow/ModalOverflowProps';
-import { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
-import {
+import type { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
+import type {
   RadioGroupProps,
   RadioGroupOwnerState,
   RadioGroupSlot,
 } from '../RadioGroup/RadioGroupProps';
-import { SheetProps, SheetOwnerState, SheetSlot } from '../Sheet/SheetProps';
-import { SkeletonProps, SkeletonOwnerState, SkeletonSlot } from '../Skeleton/SkeletonProps';
-import { SelectProps, SelectOwnerState, SelectSlot } from '../Select/SelectProps';
-import { OptionProps, OptionOwnerState, OptionSlot } from '../Option/OptionProps';
-import { SliderProps, SliderOwnerState, SliderSlot } from '../Slider/SliderProps';
-import { SnackbarProps, SnackbarOwnerState, SnackbarSlot } from '../Snackbar/SnackbarProps';
-import { StackProps, StackSlot } from '../Stack/StackProps';
-import { StepperProps, StepperOwnerState, StepperSlot } from '../Stepper/StepperProps';
-import { StepProps, StepOwnerState, StepSlot } from '../Step/StepProps';
-import {
+import type { SheetProps, SheetOwnerState, SheetSlot } from '../Sheet/SheetProps';
+import type { SkeletonProps, SkeletonOwnerState, SkeletonSlot } from '../Skeleton/SkeletonProps';
+import type { SelectProps, SelectOwnerState, SelectSlot } from '../Select/SelectProps';
+import type { OptionProps, OptionOwnerState, OptionSlot } from '../Option/OptionProps';
+import type { SliderProps, SliderOwnerState, SliderSlot } from '../Slider/SliderProps';
+import type { SnackbarProps, SnackbarOwnerState, SnackbarSlot } from '../Snackbar/SnackbarProps';
+import type { StackProps, StackSlot } from '../Stack/StackProps';
+import type { StepperProps, StepperOwnerState, StepperSlot } from '../Stepper/StepperProps';
+import type { StepProps, StepOwnerState, StepSlot } from '../Step/StepProps';
+import type {
   StepButtonProps,
   StepButtonOwnerState,
   StepButtonSlot,
 } from '../StepButton/StepButtonProps';
-import {
+import type {
   StepIndicatorProps,
   StepIndicatorOwnerState,
   StepIndicatorSlot,
 } from '../StepIndicator/StepIndicatorProps';
-import { SvgIconProps, SvgIconOwnerState, SvgIconSlot } from '../SvgIcon/SvgIconProps';
-import { SwitchProps, SwitchOwnerState, SwitchSlot } from '../Switch/SwitchProps';
-import {
+import type { SvgIconProps, SvgIconOwnerState, SvgIconSlot } from '../SvgIcon/SvgIconProps';
+import type { SwitchProps, SwitchOwnerState, SwitchSlot } from '../Switch/SwitchProps';
+import type {
   ToggleButtonGroupProps,
   ToggleButtonGroupOwnerState,
   ToggleButtonGroupSlot,
 } from '../ToggleButtonGroup/ToggleButtonGroupProps';
-import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
-import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
-import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
-import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
-import { TableProps, TableOwnerState, TableSlot } from '../Table/TableProps';
-import { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
-import {
+import type { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
+import type { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
+import type { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
+import type { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
+import type { TableProps, TableOwnerState, TableSlot } from '../Table/TableProps';
+import type { TooltipProps, TooltipOwnerState, TooltipSlot } from '../Tooltip/TooltipProps';
+import type {
   TypographyProps,
   TypographyOwnerState,
   TypographySlot,
 } from '../Typography/TypographyProps';
-import { TextareaProps, TextareaOwnerState, TextareaSlot } from '../Textarea/TextareaProps';
+import type { TextareaProps, TextareaOwnerState, TextareaSlot } from '../Textarea/TextareaProps';
 
 export type StyleOverrides<
   SlotName extends string = string,

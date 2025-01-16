@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { Portal } from '@mui/base/Portal';
@@ -10,7 +10,7 @@ import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getModalUtilityClass } from './modalClasses';
-import { ModalOwnerState, ModalTypeMap } from './ModalProps';
+import type { ModalOwnerState, ModalTypeMap } from './ModalProps';
 import CloseModalContext from './CloseModalContext';
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {

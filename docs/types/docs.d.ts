@@ -1,6 +1,6 @@
 declare module 'docs/src/modules/components/HighlightedCode' {
-  import * as React from 'react';
-  import { StyledComponentProps } from '@mui/material/styles';
+  import type * as React from 'react';
+  import type { StyledComponentProps } from '@mui/material/styles';
 
   type ClassKey = 'root';
   export interface Props extends StyledComponentProps<ClassKey> {

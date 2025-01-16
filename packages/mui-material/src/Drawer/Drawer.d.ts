@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
-import { ModalProps } from '../Modal';
-import { SlideProps } from '../Slide';
-import { PaperProps } from '../Paper';
-import { TransitionProps } from '../transitions/transition';
-import { DrawerClasses } from './drawerClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { InternalStandardProps as StandardProps, Theme } from '..';
+import type { ModalProps } from '../Modal';
+import type { SlideProps } from '../Slide';
+import type { PaperProps } from '../Paper';
+import type { TransitionProps } from '../transitions/transition';
+import type { DrawerClasses } from './drawerClasses';
 
 export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'children'> {
   /**

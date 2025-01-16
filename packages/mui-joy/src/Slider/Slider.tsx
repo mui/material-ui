@@ -6,13 +6,14 @@ import {
   unstable_composeClasses as composeClasses,
   unstable_capitalize as capitalize,
 } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { useSlider, valueToPercent } from '@mui/base/useSlider';
 import { isHostComponent } from '@mui/base/utils';
-import { useThemeProps, styled, Theme } from '../styles';
+import type { Theme } from '../styles';
+import { useThemeProps, styled } from '../styles';
 import useSlot from '../utils/useSlot';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
-import { SliderTypeMap, SliderOwnerState } from './SliderProps';
+import type { SliderTypeMap, SliderOwnerState } from './SliderProps';
 
 // @ts-ignore
 function Identity(x) {

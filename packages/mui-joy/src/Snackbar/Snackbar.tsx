@@ -6,14 +6,14 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import { useSnackbar } from '@mui/base/useSnackbar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { keyframes } from '@mui/system';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
 import { applySolidInversion, applySoftInversion } from '../colorInversion';
-import { SnackbarProps, SnackbarOwnerState, SnackbarTypeMap } from './SnackbarProps';
+import type { SnackbarProps, SnackbarOwnerState, SnackbarTypeMap } from './SnackbarProps';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 
 const useUtilityClasses = (ownerState: SnackbarOwnerState) => {

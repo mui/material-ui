@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 
 export default function ClickAway() {
   const [open, setOpen] = React.useState(false);

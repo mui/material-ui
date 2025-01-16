@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
-import { Instance } from '@popperjs/core';
+import type { Instance } from '@popperjs/core';
 
 export default function AnchorElTooltips() {
   const positionRef = React.useRef<{ x: number; y: number }>({

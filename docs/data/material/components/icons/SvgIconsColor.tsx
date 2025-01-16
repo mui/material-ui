@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { pink } from '@mui/material/colors';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import type { SvgIconProps } from '@mui/material/SvgIcon';
+import SvgIcon from '@mui/material/SvgIcon';
 
 function HomeIcon(props: SvgIconProps) {
   return (

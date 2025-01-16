@@ -1,12 +1,13 @@
 import * as React from 'react';
+import type {
+  ButtonTypeMap} from '@mui/base/Button';
 import {
   Button as BaseButton,
-  buttonClasses,
-  ButtonTypeMap,
+  buttonClasses
 } from '@mui/base/Button';
 import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
-import { PolymorphicComponent } from '@mui/base/utils';
+import type { PolymorphicComponent } from '@mui/base/utils';
 
 export default function UnstyledButtonsDisabledFocusCustom() {
   return (

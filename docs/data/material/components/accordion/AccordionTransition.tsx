@@ -1,6 +1,7 @@
 import * as React from 'react';
+import type {
+  AccordionSlots} from '@mui/material/Accordion';
 import Accordion, {
-  AccordionSlots,
   accordionClasses,
 } from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';

@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { SxProps, Breakpoint } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
-import { BackdropProps } from '../Backdrop';
-import { PaperProps } from '../Paper';
-import { ModalProps } from '../Modal';
-import { TransitionProps } from '../transitions/transition';
-import { DialogClasses } from './dialogClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { SxProps, Breakpoint } from '@mui/system';
+import type { InternalStandardProps as StandardProps, Theme } from '..';
+import type { BackdropProps } from '../Backdrop';
+import type { PaperProps } from '../Paper';
+import type { ModalProps } from '../Modal';
+import type { TransitionProps } from '../transitions/transition';
+import type { DialogClasses } from './dialogClasses';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface DialogSlots {
   /**

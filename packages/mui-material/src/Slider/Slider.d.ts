@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { Mark } from './useSlider.types';
-import { SlotComponentProps } from '../utils/types';
-import { Theme } from '../styles';
-import { OverrideProps, OverridableComponent } from '../OverridableComponent';
-import SliderValueLabelComponent from './SliderValueLabel';
-import { SliderClasses } from './sliderClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { OverridableStringUnion } from '@mui/types';
+import type { Mark } from './useSlider.types';
+import type { SlotComponentProps } from '../utils/types';
+import type { Theme } from '../styles';
+import type { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import type SliderValueLabelComponent from './SliderValueLabel';
+import type { SliderClasses } from './sliderClasses';
 
 export interface SliderPropsColorOverrides {}
 

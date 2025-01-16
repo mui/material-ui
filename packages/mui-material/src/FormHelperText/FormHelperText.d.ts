@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
-import { FormHelperTextClasses } from './formHelperTextClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { OverridableStringUnion } from '@mui/types';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { Theme } from '../styles';
+import type { FormHelperTextClasses } from './formHelperTextClasses';
 
 export interface FormHelperTextPropsVariantOverrides {}
 

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Breakpoint } from '@mui/system';
+import type * as React from 'react';
+import type { Breakpoint } from '@mui/system';
 
 export interface HiddenCssProps {
   lgDown?: boolean;

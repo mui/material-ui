@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, refType } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenu, MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
@@ -14,9 +14,9 @@ import GroupListContext from '../List/GroupListContext';
 import { styled, useThemeProps } from '../styles';
 import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
-import { MenuTypeMap, MenuOwnerState } from './MenuProps';
+import type { MenuTypeMap, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
-import { ListOwnerState } from '../List';
+import type { ListOwnerState } from '../List';
 
 const useUtilityClasses = (ownerState: MenuOwnerState) => {
   const { open, variant, color, size } = ownerState;

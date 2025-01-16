@@ -3,8 +3,9 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
+import type {
+  CardOverflowClassKey} from '@mui/joy/CardOverflow';
 import CardOverflow, {
-  CardOverflowClassKey,
   cardOverflowClasses as classes,
 } from '@mui/joy/CardOverflow';
 import describeConformance from '../../test/describeConformance';

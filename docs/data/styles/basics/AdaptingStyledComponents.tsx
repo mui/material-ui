@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/styles';
-import Button, { ButtonProps } from '@mui/material/Button';
+import type { ButtonProps } from '@mui/material/Button';
+import Button from '@mui/material/Button';
 
 interface MyButtonProps {
   color: 'red' | 'blue';

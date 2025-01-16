@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Select, { SelectStaticProps } from '@mui/joy/Select';
+import type { SelectStaticProps } from '@mui/joy/Select';
+import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import IconButton from '@mui/joy/IconButton';
 import CloseRounded from '@mui/icons-material/CloseRounded';

@@ -1,4 +1,4 @@
-import { SimpleStyleFunction, spacing, PropsFor } from '../Box';
+import type { SimpleStyleFunction, spacing, PropsFor } from '../Box';
 
 export type SpacingValueType = string | number | null | undefined;
 export type SpacingProps = PropsFor<typeof spacing>;

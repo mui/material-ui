@@ -3,7 +3,7 @@ import Sheet from '@mui/joy/Sheet';
 
 import MessagesPane from './MessagesPane';
 import ChatsPane from './ChatsPane';
-import { ChatProps } from '../types';
+import type { ChatProps } from '../types';
 import { chats } from '../data';
 
 export default function MyProfile() {

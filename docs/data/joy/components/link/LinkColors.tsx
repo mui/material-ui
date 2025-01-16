@@ -5,7 +5,7 @@ import Link from '@mui/joy/Link';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Typography from '@mui/joy/Typography';
-import { VariantProp } from '@mui/joy/styles';
+import type { VariantProp } from '@mui/joy/styles';
 
 export default function LinkColors() {
   const [variant, setVariant] = React.useState<VariantProp>('solid');

@@ -1,8 +1,9 @@
 import * as React from 'react';
+import type {
+  Theme,
+  ThemeOptions} from '@mui/material/styles';
 import {
   styled,
-  Theme,
-  ThemeOptions,
   alpha,
   extendTheme,
   CssVarsProvider,

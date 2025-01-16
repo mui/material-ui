@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
-import { Switch, SwitchOwnerState, switchClasses } from '@mui/base/Switch';
+import type { SwitchOwnerState} from '@mui/base/Switch';
+import { Switch, switchClasses } from '@mui/base/Switch';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Switch />', () => {

@@ -1,14 +1,16 @@
 import * as React from 'react';
+import type {
+  LinkProps as RouterLinkProps} from 'react-router';
 import {
   Link as RouterLink,
-  LinkProps as RouterLinkProps,
   MemoryRouter,
   StaticRouter,
 } from 'react-router';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Link, { LinkProps } from '@mui/material/Link';
+import type { LinkProps } from '@mui/material/Link';
+import Link from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef<
   HTMLAnchorElement,

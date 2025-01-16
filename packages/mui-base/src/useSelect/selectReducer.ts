@@ -1,13 +1,15 @@
-import {
+import type {
   ListAction,
-  ListActionContext,
+  ListActionContext} from '../useList';
+import {
   moveHighlight,
   listReducer,
   ListActionTypes,
   handleItemSelection,
 } from '../useList';
-import { ActionWithContext } from '../utils/useControllableReducer.types';
-import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
+import type { ActionWithContext } from '../utils/useControllableReducer.types';
+import type { SelectAction, SelectInternalState } from './useSelect.types';
+import { SelectActionTypes } from './useSelect.types';
 
 export function selectReducer<OptionValue>(
   state: SelectInternalState<OptionValue>,

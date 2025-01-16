@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { AvatarClasses } from './avatarClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { OverridableStringUnion } from '@mui/types';
+import type { Theme } from '../styles';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { AvatarClasses } from './avatarClasses';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface AvatarSlots {
   /**

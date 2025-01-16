@@ -5,8 +5,9 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
+import type {
+  AutocompleteCloseReason} from '@mui/material/Autocomplete';
 import Autocomplete, {
-  AutocompleteCloseReason,
   autocompleteClasses,
 } from '@mui/material/Autocomplete';
 import ButtonBase from '@mui/material/ButtonBase';

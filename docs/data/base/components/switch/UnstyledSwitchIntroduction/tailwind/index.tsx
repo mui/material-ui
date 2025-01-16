@@ -1,6 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { Switch as BaseSwitch, SwitchProps } from '@mui/base/Switch';
+import type { SwitchProps } from '@mui/base/Switch';
+import { Switch as BaseSwitch } from '@mui/base/Switch';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {

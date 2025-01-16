@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme, TypographyProps } from '..';
-import { AlertTitleClasses } from './alertTitleClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { Theme, TypographyProps } from '..';
+import type { AlertTitleClasses } from './alertTitleClasses';
 
 export interface AlertTitleProps extends TypographyProps<'div'> {
   /**

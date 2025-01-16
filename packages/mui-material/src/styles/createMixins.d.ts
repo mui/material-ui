@@ -1,5 +1,5 @@
-import * as CSS from 'csstype';
-import { Breakpoints } from '@mui/system';
+import type * as CSS from 'csstype';
+import type { Breakpoints } from '@mui/system';
 
 export type NormalCssProperties = CSS.Properties<number | string>;
 export type Fontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };

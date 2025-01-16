@@ -1,6 +1,7 @@
+import type {
+  ConformanceOptions} from '@mui/internal-test-utils';
 import {
-  describeConformance as baseDescribeConformance,
-  ConformanceOptions,
+  describeConformance as baseDescribeConformance
 } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import { createTheme } from '@mui/system';

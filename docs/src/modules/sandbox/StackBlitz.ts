@@ -4,7 +4,7 @@ import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import { CodeStyling, CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
+import type { CodeStyling, CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
 
 function openStackBlitz({
   title,

@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { GridBaseProps } from '@mui/system/Grid';
-import { SxProps, SystemProps } from '../styles/types';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { OverrideProps } from '@mui/types';
+import type { GridBaseProps } from '@mui/system/Grid';
+import type { SxProps, SystemProps } from '../styles/types';
+import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type GridSlot = 'root';
 

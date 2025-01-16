@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorPaletteProp } from '@mui/joy/styles';
+import type { ColorPaletteProp } from '@mui/joy/styles';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';

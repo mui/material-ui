@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { FadeProps } from '../Fade';
-import { TransitionProps } from '../transitions/transition';
-import { Theme } from '../styles';
-import { BackdropClasses } from './backdropClasses';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { FadeProps } from '../Fade';
+import type { TransitionProps } from '../transitions/transition';
+import type { Theme } from '../styles';
+import type { BackdropClasses } from './backdropClasses';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface BackdropSlots {
   /**

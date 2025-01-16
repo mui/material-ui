@@ -1,5 +1,5 @@
-import { OverridableStringUnion, Simplify } from '@mui/types';
-import { MergeDefault, OverridableRecord, OverridableImplicitRecord } from './utils';
+import type { OverridableStringUnion, Simplify } from '@mui/types';
+import type { MergeDefault, OverridableRecord, OverridableImplicitRecord } from './utils';
 
 /**
  * ====================================================

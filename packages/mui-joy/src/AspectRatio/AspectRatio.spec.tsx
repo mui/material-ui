@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import AspectRatio, { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
+import type { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
+import AspectRatio from '@mui/joy/AspectRatio';
 
 <AspectRatio
   slots={{

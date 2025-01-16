@@ -3,12 +3,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { resolveSxValue } from '../styles/styleUtils';
 
-import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
+import type { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';

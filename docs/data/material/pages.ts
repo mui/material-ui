@@ -1,6 +1,6 @@
 import standardNavIcons from 'docs/src/modules/components/AppNavIcons';
 import pagesApi from 'docs/data/material/pagesApi';
-import { MuiPage } from 'docs/src/MuiPage';
+import type { MuiPage } from 'docs/src/MuiPage';
 
 const pages: MuiPage[] = [
   {

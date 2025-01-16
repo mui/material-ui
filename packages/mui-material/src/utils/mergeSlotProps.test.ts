@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { expect } from 'chai';
 
 import mergeSlotProps from './mergeSlotProps';

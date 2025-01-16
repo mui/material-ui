@@ -1,17 +1,18 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { Theme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import { expectType } from '@mui/types';
+import type {
+  WithTheme,
+  WithStyles,
+  CSSProperties,
+  CreateCSSProperties,
+  PropsFunc} from '@mui/styles';
 import {
   createStyles,
   withStyles,
   withTheme,
-  WithTheme,
-  WithStyles,
-  makeStyles,
-  CSSProperties,
-  CreateCSSProperties,
-  PropsFunc,
+  makeStyles
 } from '@mui/styles';
 
 // Example 1

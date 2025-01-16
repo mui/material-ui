@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { useTabs, TabsProvider } from '@mui/base/useTabs';
 import { getPath } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
@@ -11,7 +11,7 @@ import { resolveSxValue } from '../styles/styleUtils';
 
 import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
-import { TabsOwnerState, TabsTypeMap } from './TabsProps';
+import type { TabsOwnerState, TabsTypeMap } from './TabsProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabsOwnerState) => {

@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListItemContentOwnerState, ListItemContentTypeMap } from './ListItemContentProps';
+import type { ListItemContentOwnerState, ListItemContentTypeMap } from './ListItemContentProps';
 import { getListItemContentUtilityClass } from './listItemContentClasses';
 import useSlot from '../utils/useSlot';
 

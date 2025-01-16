@@ -1,5 +1,6 @@
 import * as React from 'react';
-import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import type { ButtonBaseProps } from '@mui/material/ButtonBase';
+import ButtonBase from '@mui/material/ButtonBase';
 import { alpha } from '@mui/material/styles';
 
 export default function Highlighter({

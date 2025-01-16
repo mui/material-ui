@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Badge, { BadgeClassKey, BadgeOrigin, badgeClasses as classes } from '@mui/joy/Badge';
+import type { BadgeClassKey, BadgeOrigin} from '@mui/joy/Badge';
+import Badge, { badgeClasses as classes } from '@mui/joy/Badge';
 import describeConformance from '../../test/describeConformance';
 
 function findBadge(container: HTMLElement) {

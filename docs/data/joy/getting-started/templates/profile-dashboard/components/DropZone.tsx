@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Card, { CardProps } from '@mui/joy/Card';
+import type { CardProps } from '@mui/joy/Card';
+import Card from '@mui/joy/Card';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import AspectRatio from '@mui/joy/AspectRatio';

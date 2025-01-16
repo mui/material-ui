@@ -1,4 +1,4 @@
-import { Theme, SxProps } from './types';
+import type { Theme, SxProps } from './types';
 
 /**
  * internal utility

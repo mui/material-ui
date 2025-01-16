@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
-import { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
+import type { InputTypeMap, InputProps, InputOwnerState } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
 import { INVERTED_COLORS_ATTR } from '../colorInversion/colorInversionUtils';

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { prefixer } from 'stylis';

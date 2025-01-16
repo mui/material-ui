@@ -2,14 +2,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import { styled, useThemeProps } from '../styles';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
 import { getAutocompleteListboxUtilityClass } from './autocompleteListboxClasses';
-import {
+import type {
   AutocompleteListboxOwnerState,
   AutocompleteListboxTypeMap,
 } from './AutocompleteListboxProps';

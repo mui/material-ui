@@ -1,5 +1,5 @@
-import { ClassNameMap, Styles, WithStylesOptions } from '@mui/styles/withStyles';
-import { DefaultTheme } from '../defaultTheme';
+import type { ClassNameMap, Styles, WithStylesOptions } from '@mui/styles/withStyles';
+import type { DefaultTheme } from '../defaultTheme';
 
 export default function makeStyles<
   Theme = DefaultTheme,

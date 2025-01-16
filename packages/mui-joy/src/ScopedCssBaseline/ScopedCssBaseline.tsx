@@ -2,12 +2,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
-import { DefaultColorScheme, ColorSystem } from '../styles/types';
-import {
+import type { DefaultColorScheme, ColorSystem } from '../styles/types';
+import type {
   ScopedCssBaselineTypeMap,
   ScopedCssBaselineOwnerState,
   ScopedCssBaselineProps,

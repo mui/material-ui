@@ -1,12 +1,12 @@
 import * as ts from 'typescript';
-import { ComponentClassDefinition } from '@mui-internal/api-docs-builder';
+import type { ComponentClassDefinition } from '@mui-internal/api-docs-builder';
 import { renderMarkdown } from '../buildApi';
 import { getSymbolDescription, getSymbolJSDocTags } from '../buildApiUtils';
-import { TypeScriptProject } from './createTypeScriptProject';
+import type { TypeScriptProject } from './createTypeScriptProject';
 import { getPropsFromComponentNode } from './getPropsFromComponentNode';
 import resolveExportSpecifier from './resolveExportSpecifier';
-import { ProjectSettings } from '../ProjectSettings';
-import { Slot } from '../types/utils.types';
+import type { ProjectSettings } from '../ProjectSettings';
+import type { Slot } from '../types/utils.types';
 
 interface ClassInfo {
   description: string;

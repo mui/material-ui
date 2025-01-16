@@ -1,9 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Tabs } from '@mui/base/Tabs';
-import { TabsList as BaseTabsList, TabsListProps } from '@mui/base/TabsList';
-import { TabPanel as BaseTabPanel, TabPanelProps } from '@mui/base/TabPanel';
-import { Tab as BaseTab, TabProps } from '@mui/base/Tab';
+import type { TabsListProps } from '@mui/base/TabsList';
+import { TabsList as BaseTabsList } from '@mui/base/TabsList';
+import type { TabPanelProps } from '@mui/base/TabPanel';
+import { TabPanel as BaseTabPanel } from '@mui/base/TabPanel';
+import type { TabProps } from '@mui/base/Tab';
+import { Tab as BaseTab } from '@mui/base/Tab';
 import { useTheme } from '@mui/system';
 
 function useIsDarkMode() {

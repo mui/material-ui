@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
 import Paper from '@mui/material/Paper';
-import Grid, { GridProps } from '@mui/material/Grid';
+import type { GridProps } from '@mui/material/Grid';
+import Grid from '@mui/material/Grid';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
   function CustomComponent() {

@@ -1,4 +1,4 @@
-import { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
+import type { PropsTranslations, ComponentApiContent } from '@mui-internal/api-docs-builder';
 
 export type SlotDefinition = {
   className: string | null;

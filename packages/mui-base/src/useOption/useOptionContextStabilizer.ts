@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
-import { ListContext, ListContextValue } from '../useList';
+import type { ListContextValue } from '../useList';
+import { ListContext } from '../useList';
 
 /**
  * Stabilizes the ListContext value for the Option component, so it doesn't change when sibling Options update.

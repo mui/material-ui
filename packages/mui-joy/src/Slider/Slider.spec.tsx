@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Slider, { SliderOwnerState } from '@mui/joy/Slider';
+import type { SliderOwnerState } from '@mui/joy/Slider';
+import Slider from '@mui/joy/Slider';
 
 <Slider />;
 

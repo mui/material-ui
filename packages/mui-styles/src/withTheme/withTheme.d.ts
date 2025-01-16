@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ConsistentWith, DistributiveOmit, PropInjector } from '@mui/types';
-import { DefaultTheme } from '../defaultTheme';
+import type * as React from 'react';
+import type { ConsistentWith, DistributiveOmit, PropInjector } from '@mui/types';
+import type { DefaultTheme } from '../defaultTheme';
 
 export interface WithThemeCreatorOption<Theme = DefaultTheme> {
   defaultTheme?: Theme;

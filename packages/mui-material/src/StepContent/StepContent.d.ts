@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { CollapseProps, InternalStandardProps as StandardProps } from '..';
-import { Theme } from '../styles';
-import { TransitionProps } from '../transitions/transition';
-import { StepContentClasses } from './stepContentClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { CollapseProps, InternalStandardProps as StandardProps } from '..';
+import type { Theme } from '../styles';
+import type { TransitionProps } from '../transitions/transition';
+import type { StepContentClasses } from './stepContentClasses';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface StepContentSlots {
   /**

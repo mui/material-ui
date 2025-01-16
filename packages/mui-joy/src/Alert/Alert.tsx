@@ -3,14 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import { getAlertUtilityClass } from './alertClasses';
-import { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
+import type { AlertProps, AlertOwnerState, AlertTypeMap } from './AlertProps';
 import { resolveSxValue } from '../styles/styleUtils';
 
 const useUtilityClasses = (ownerState: AlertOwnerState) => {

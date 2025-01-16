@@ -3,10 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { DividerOwnerState, DividerTypeMap } from './DividerProps';
+import type { DividerOwnerState, DividerTypeMap } from './DividerProps';
 import { getDividerUtilityClass } from './dividerClasses';
 import useSlot from '../utils/useSlot';
 

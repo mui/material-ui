@@ -1,5 +1,5 @@
-import { Breakpoint } from '@mui/system';
-import { PropInjector } from '@mui/types';
+import type { Breakpoint } from '@mui/system';
+import type { PropInjector } from '@mui/types';
 
 export interface WithWidthOptions {
   withTheme?: boolean;

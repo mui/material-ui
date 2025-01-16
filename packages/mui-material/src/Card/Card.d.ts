@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { DistributiveOmit } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
-import { Theme } from '..';
-import { PaperOwnProps } from '../Paper';
-import { CardClasses } from './cardClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { DistributiveOmit } from '@mui/types';
+import type { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import type { Theme } from '..';
+import type { PaperOwnProps } from '../Paper';
+import type { CardClasses } from './cardClasses';
 
 // TODO: v6 remove this interface, it is not used
 export interface CardPropsColorOverrides {}

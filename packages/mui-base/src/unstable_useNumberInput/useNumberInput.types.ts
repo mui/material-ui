@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { FormControlState } from '../FormControl';
-import { NumberInputAction } from './numberInputAction.types';
-import { ActionWithContext } from '../utils/useControllableReducer.types';
+import type * as React from 'react';
+import type { FormControlState } from '../FormControl';
+import type { NumberInputAction } from './numberInputAction.types';
+import type { ActionWithContext } from '../utils/useControllableReducer.types';
 
 export type StepDirection = 'up' | 'down';
 

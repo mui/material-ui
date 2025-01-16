@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { ModalOwnProps as BaseModalOwnProps } from '@mui/base/Modal';
-import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/types';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { ModalOwnProps as BaseModalOwnProps } from '@mui/base/Modal';
+import type { OverrideProps } from '@mui/types';
+import type { SxProps } from '../styles/types';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type ModalSlot = 'root' | 'backdrop';
 

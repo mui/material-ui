@@ -1,8 +1,8 @@
-import {
+import type {
   TransitionProps as _TransitionProps,
   TransitionActions,
 } from 'react-transition-group/Transition';
-import * as React from 'react';
+import type * as React from 'react';
 
 export type TransitionHandlerKeys =
   | 'onEnter'

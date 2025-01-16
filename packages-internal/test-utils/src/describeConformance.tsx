@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import createDescribe from './createDescribe';
-import { MuiRenderResult } from './createRenderer';
+import type { MuiRenderResult } from './createRenderer';
 
 function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);

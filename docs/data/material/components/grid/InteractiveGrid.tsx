@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Grid, { GridDirection } from '@mui/material/Grid';
+import type { GridDirection } from '@mui/material/Grid';
+import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';

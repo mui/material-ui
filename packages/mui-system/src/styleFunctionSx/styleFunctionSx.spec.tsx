@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@mui/system';
+import type { SxProps } from '@mui/system';
 
 interface Theme {
   color: string;

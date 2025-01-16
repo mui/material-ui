@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
-import {
+import type {
   DialogContentProps,
   DialogContentOwnerState,
   DialogContentTypeMap,

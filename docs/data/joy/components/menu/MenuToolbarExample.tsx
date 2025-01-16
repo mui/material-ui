@@ -6,9 +6,10 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListDivider from '@mui/joy/ListDivider';
 import Typography, { typographyClasses } from '@mui/joy/Typography';
-import Dropdown, { DropdownProps } from '@mui/joy/Dropdown';
+import type { DropdownProps } from '@mui/joy/Dropdown';
+import Dropdown from '@mui/joy/Dropdown';
 import MenuButton from '@mui/joy/MenuButton';
-import { Theme } from '@mui/joy';
+import type { Theme } from '@mui/joy';
 
 type MenuBarButtonProps = Pick<DropdownProps, 'children' | 'open'> & {
   onOpen: DropdownProps['onOpenChange'];

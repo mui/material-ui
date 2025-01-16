@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Sheet, { sheetClasses as classes, SheetClassKey } from '@mui/joy/Sheet';
+import type { SheetClassKey } from '@mui/joy/Sheet';
+import Sheet, { sheetClasses as classes } from '@mui/joy/Sheet';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Sheet />', () => {

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isFocusVisible as isFocusVisible,
@@ -13,7 +13,7 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
+import type { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyNestedContext, TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: LinkOwnerState) => {

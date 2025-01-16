@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '@mui/material';
-import { Theme } from '@mui/material/styles';
-import { SxProps } from '@mui/system';
-import { TabPanelClasses } from './tabPanelClasses';
+import type * as React from 'react';
+import type { InternalStandardProps as StandardProps } from '@mui/material';
+import type { Theme } from '@mui/material/styles';
+import type { SxProps } from '@mui/system';
+import type { TabPanelClasses } from './tabPanelClasses';
 
 export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

@@ -2,18 +2,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverrideProps, DefaultComponentProps } from '@mui/types';
+import type { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import { Popper, PopperProps } from '@mui/base/Popper';
-import { useSelect, SelectProvider, SelectValue } from '@mui/base/useSelect';
-import { SelectOption } from '@mui/base/useOption';
+import type { PopperProps } from '@mui/base/Popper';
+import { Popper } from '@mui/base/Popper';
+import type { SelectValue } from '@mui/base/useSelect';
+import { useSelect, SelectProvider } from '@mui/base/useSelect';
+import type { SelectOption } from '@mui/base/useOption';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
-import {
+import type {
   SelectOwnProps,
   SelectOwnerState,
   SelectSlotsAndSlotProps,
@@ -22,7 +24,7 @@ import {
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
-import { ListOwnerState } from '../List';
+import type { ListOwnerState } from '../List';
 import FormControlContext from '../FormControl/FormControlContext';
 import { VariantColorProvider } from '../styles/variantColorInheritance';
 

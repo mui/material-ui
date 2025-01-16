@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
@@ -12,7 +12,7 @@ import { useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
-import { BreadcrumbsProps, BreadcrumbsOwnerState, BreadcrumbsTypeMap } from './BreadcrumbsProps';
+import type { BreadcrumbsProps, BreadcrumbsOwnerState, BreadcrumbsTypeMap } from './BreadcrumbsProps';
 import { TypographyInheritContext } from '../Typography/Typography';
 
 const useUtilityClasses = (ownerState: BreadcrumbsOwnerState) => {

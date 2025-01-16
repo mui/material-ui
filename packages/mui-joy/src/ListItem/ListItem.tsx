@@ -6,12 +6,12 @@ import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 
 import useSlot from '../utils/useSlot';
-import { ListItemOwnerState, ListItemProps, ListItemTypeMap } from './ListItemProps';
+import type { ListItemOwnerState, ListItemProps, ListItemTypeMap } from './ListItemProps';
 import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { FormGroupProps } from '../FormGroup';
+import type * as React from 'react';
+import type { FormGroupProps } from '../FormGroup';
 
 export interface RadioGroupProps extends Omit<FormGroupProps, 'onChange'> {
   /**

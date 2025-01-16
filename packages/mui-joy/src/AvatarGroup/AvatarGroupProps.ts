@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { ApplyColorInversion, SxProps } from '../styles/types';
-import { AvatarProps } from '../Avatar/AvatarProps';
-import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { OverrideProps } from '@mui/types';
+import type { ApplyColorInversion, SxProps } from '../styles/types';
+import type { AvatarProps } from '../Avatar/AvatarProps';
+import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type AvatarGroupSlot = 'root';
 

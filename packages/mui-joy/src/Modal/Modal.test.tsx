@@ -4,7 +4,8 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import { createRenderer, act, fireEvent, within } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import Modal, { modalClasses as classes, ModalProps } from '@mui/joy/Modal';
+import type { ModalProps } from '@mui/joy/Modal';
+import Modal, { modalClasses as classes } from '@mui/joy/Modal';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Modal />', () => {

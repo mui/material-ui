@@ -1,4 +1,4 @@
-import { DefaultTheme } from '@mui/private-theming';
+import type { DefaultTheme } from '@mui/private-theming';
 
 export interface ThemeProviderProps<Theme = DefaultTheme> {
   /**

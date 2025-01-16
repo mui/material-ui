@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '..';
-import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps } from '../OverridableComponent';
-import { TabClasses } from './tabClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '..';
+import type { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import type { OverrideProps } from '../OverridableComponent';
+import type { TabClasses } from './tabClasses';
 
 export interface TabOwnProps {
   /**

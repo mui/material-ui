@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { NumberInputState, NumberInputReducerAction } from './useNumberInput.types';
+import type { NumberInputState, NumberInputReducerAction } from './useNumberInput.types';
 import { NumberInputActionTypes } from './numberInputAction.types';
 import { numberInputReducer } from './numberInputReducer';
 import { getInputValueAsString as defaultGetInputValueAsString } from './useNumberInput';

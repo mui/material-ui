@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {
+import type {
   Breakpoint,
-  Theme,
+  Theme} from '@mui/material/styles';
+import {
   ThemeProvider,
   useTheme,
   createTheme,

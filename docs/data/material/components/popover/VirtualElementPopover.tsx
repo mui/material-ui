@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Popover, { PopoverProps } from '@mui/material/Popover';
+import type { PopoverProps } from '@mui/material/Popover';
+import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 

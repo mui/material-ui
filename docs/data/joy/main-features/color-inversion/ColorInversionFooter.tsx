@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ColorPaletteProp } from '@mui/joy/styles';
+import type { ColorPaletteProp } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';

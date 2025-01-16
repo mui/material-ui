@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { Tabs, TabsOwnProps } from '@mui/base/Tabs';
+import type { TabsOwnProps } from '@mui/base/Tabs';
+import { Tabs } from '@mui/base/Tabs';
 import { TabsList as TabsListBase } from '@mui/base/TabsList';
 import { TabPanel as TabPanelBase } from '@mui/base/TabPanel';
 import { Tab as TabBase } from '@mui/base/Tab';

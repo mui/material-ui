@@ -1,14 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, usePreviousProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
-import { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
+import type { BadgeProps, BadgeOwnerState, BadgeTypeMap } from './BadgeProps';
 
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {
   const { color, variant, size, anchorOrigin, invisible } = ownerState;

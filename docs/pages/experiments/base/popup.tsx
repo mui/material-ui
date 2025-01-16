@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Unstable_Popup as BasePopup, PopupProps } from '@mui/base/Unstable_Popup';
+import type { PopupProps } from '@mui/base/Unstable_Popup';
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import Button from '@mui/joy/Button';
 import { CssVarsProvider } from '@mui/joy/styles';
 import { styled } from '@mui/system';

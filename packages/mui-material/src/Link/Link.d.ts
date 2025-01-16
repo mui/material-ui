@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { DistributiveOmit } from '@mui/types';
-import { SxProps } from '@mui/system';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Theme } from '../styles';
-import { TypographyOwnProps } from '../Typography';
-import { LinkClasses } from './linkClasses';
+import type * as React from 'react';
+import type { DistributiveOmit } from '@mui/types';
+import type { SxProps } from '@mui/system';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { Theme } from '../styles';
+import type { TypographyOwnProps } from '../Typography';
+import type { LinkClasses } from './linkClasses';
 
 export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'> {
   /**

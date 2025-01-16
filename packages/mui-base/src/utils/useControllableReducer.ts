@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import {
+import type {
   ActionWithContext,
   ControllableReducerAction,
   ControllableReducerParameters,

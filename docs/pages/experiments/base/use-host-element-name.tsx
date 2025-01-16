@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Button as BaseButton, buttonClasses } from '@mui/base/Button';
 import { prepareForSlot } from '@mui/base/utils';
-import { styled, Theme } from '@mui/system';
+import type { Theme } from '@mui/system';
+import { styled } from '@mui/system';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
 

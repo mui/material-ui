@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize, refType } from '@mui/utils';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useMenu, MenuProvider } from '@mui/base/useMenu';
 import { ListActionTypes } from '@mui/base/useList';
@@ -10,7 +10,7 @@ import { styled, useThemeProps } from '../styles';
 import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import GroupListContext from '../List/GroupListContext';
-import { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
+import type { MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 import useSlot from '../utils/useSlot';
 

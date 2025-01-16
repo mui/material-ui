@@ -1,4 +1,4 @@
-import { TabsProviderValue } from './TabsProvider';
+import type { TabsProviderValue } from './TabsProvider';
 
 export interface UseTabsParameters {
   /**

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Radio, { RadioOwnerState } from '@mui/joy/Radio';
+import type { RadioOwnerState } from '@mui/joy/Radio';
+import Radio from '@mui/joy/Radio';
 
 <Radio id="test" name="test" />;
 

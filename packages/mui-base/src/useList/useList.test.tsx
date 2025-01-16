@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { SinonSpy, spy } from 'sinon';
+import type { SinonSpy} from 'sinon';
+import { spy } from 'sinon';
 import { createRenderer, createEvent, fireEvent } from '@mui/internal-test-utils';
 import { useList } from './useList';
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import { Popover, PaperProps } from '@mui/material';
+import type { PaperProps } from '@mui/material';
+import { Popover } from '@mui/material';
 
 const paperProps: PaperProps<'span'> = {
   component: 'span',

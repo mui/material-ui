@@ -3,11 +3,11 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardCoverUtilityClass } from './cardCoverClasses';
-import { CardCoverProps, CardCoverTypeMap } from './CardCoverProps';
+import type { CardCoverProps, CardCoverTypeMap } from './CardCoverProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {

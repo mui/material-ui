@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Slider, { SliderProps } from '@mui/material/Slider';
+import type { SliderProps } from '@mui/material/Slider';
+import Slider from '@mui/material/Slider';
 import { alpha, styled } from '@mui/material/styles';
 
 const SuccessSlider = styled(Slider)<SliderProps>(({ theme }) => ({

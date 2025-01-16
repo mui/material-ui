@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Switch, { switchClasses } from '@mui/joy/Switch';
-import { Theme } from '@mui/joy';
+import type { Theme } from '@mui/joy';
 
 export default function ExampleIosSwitch() {
   const [checked, setChecked] = React.useState<boolean>(false);

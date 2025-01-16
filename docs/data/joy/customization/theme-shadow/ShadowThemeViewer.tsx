@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { styled, extendTheme, Shadow } from '@mui/joy/styles';
+import type { Shadow } from '@mui/joy/styles';
+import { styled, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import {
-  Slider,
+import type {
   SliderInputSlotProps,
   SliderMarkLabelSlotProps,
   SliderMarkSlotProps,
@@ -9,7 +8,9 @@ import {
   SliderRootSlotProps,
   SliderThumbSlotProps,
   SliderTrackSlotProps,
-  SliderValueLabelSlotProps,
+  SliderValueLabelSlotProps} from '@mui/base/Slider';
+import {
+  Slider
 } from '@mui/base/Slider';
 
 const Root = React.forwardRef(function Root(

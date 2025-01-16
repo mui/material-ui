@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
+import type {
+  MuiRenderResult,
+  RenderOptions} from '@mui/internal-test-utils';
 import {
   createRenderer,
   fireEvent,
   act,
-  MuiRenderResult,
-  RenderOptions,
   flushMicrotasks,
 } from '@mui/internal-test-utils';
 import { Menu, menuClasses } from '@mui/base/Menu';
-import { MenuItem, MenuItemRootSlotProps } from '@mui/base/MenuItem';
-import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
+import type { MenuItemRootSlotProps } from '@mui/base/MenuItem';
+import { MenuItem } from '@mui/base/MenuItem';
+import type { DropdownContextValue } from '@mui/base/useDropdown';
+import { DropdownContext } from '@mui/base/useDropdown';
 import { Popper } from '@mui/base/Popper';
 import { MenuProvider, useMenu } from '@mui/base/useMenu';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import { CssVarsProvider, extendTheme, PaletteColorOptions } from '@mui/material/styles';
+import type { PaletteColorOptions } from '@mui/material/styles';
+import { CssVarsProvider, extendTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';

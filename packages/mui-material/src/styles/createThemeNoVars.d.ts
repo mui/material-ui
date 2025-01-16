@@ -1,18 +1,18 @@
-import {
+import type {
   ThemeOptions as SystemThemeOptions,
   Theme as SystemTheme,
   SxProps,
   CSSObject,
   SxConfig,
 } from '@mui/system';
-import { Mixins, MixinsOptions } from './createMixins';
-import { Palette, PaletteOptions } from './createPalette';
-import { Typography, TypographyOptions } from './createTypography';
-import { Shadows } from './shadows';
-import { Transitions, TransitionsOptions } from './createTransitions';
-import { ZIndex, ZIndexOptions } from './zIndex';
-import { Components } from './components';
-import { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
+import type { Mixins, MixinsOptions } from './createMixins';
+import type { Palette, PaletteOptions } from './createPalette';
+import type { Typography, TypographyOptions } from './createTypography';
+import type { Shadows } from './shadows';
+import type { Transitions, TransitionsOptions } from './createTransitions';
+import type { ZIndex, ZIndexOptions } from './zIndex';
+import type { Components } from './components';
+import type { CssVarsTheme, CssVarsPalette, ColorSystemOptions } from './createThemeWithVars';
 
 /**
  * To disable custom properties, use module augmentation

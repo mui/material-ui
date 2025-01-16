@@ -1,6 +1,6 @@
-import { OverrideProps } from '@mui/types';
-import { BoxTypeMap } from '@mui/system';
-import { Theme } from '../styles/types';
+import type { OverrideProps } from '@mui/types';
+import type { BoxTypeMap } from '@mui/system';
+import type { Theme } from '../styles/types';
 
 export type BoxSlot = 'root';
 

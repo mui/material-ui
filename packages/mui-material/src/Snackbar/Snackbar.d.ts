@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { ClickAwayListenerProps } from '../ClickAwayListener';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
-import { SnackbarContentProps } from '../SnackbarContent';
-import { TransitionProps } from '../transitions/transition';
-import { SnackbarClasses } from './snackbarClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { ClickAwayListenerProps } from '../ClickAwayListener';
+import type { Theme } from '../styles';
+import type { InternalStandardProps as StandardProps } from '..';
+import type { SnackbarContentProps } from '../SnackbarContent';
+import type { TransitionProps } from '../transitions/transition';
+import type { SnackbarClasses } from './snackbarClasses';
 
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';

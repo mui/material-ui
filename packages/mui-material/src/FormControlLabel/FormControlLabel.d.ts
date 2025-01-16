@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme, InternalStandardProps as StandardProps } from '..';
-import Typography, { TypographyProps } from '../Typography';
-import { FormControlLabelClasses } from './formControlLabelClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { Theme, InternalStandardProps as StandardProps } from '..';
+import type { TypographyProps } from '../Typography';
+import type Typography from '../Typography';
+import type { FormControlLabelClasses } from './formControlLabelClasses';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface FormControlLabelSlots {
   /**

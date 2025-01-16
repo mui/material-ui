@@ -14,12 +14,12 @@ import {
   unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
 import { Popper, unstable_composeClasses as composeClasses } from '@mui/base';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import { getTooltipUtilityClass } from './tooltipClasses';
-import { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
+import type { TooltipProps, TooltipOwnerState, TooltipTypeMap } from './TooltipProps';
 
 const useUtilityClasses = (ownerState: TooltipOwnerState) => {
   const { arrow, variant, color, size, placement, touch } = ownerState;

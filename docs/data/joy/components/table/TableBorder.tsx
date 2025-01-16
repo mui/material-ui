@@ -3,7 +3,8 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import Table, { TableProps } from '@mui/joy/Table';
+import type { TableProps } from '@mui/joy/Table';
+import Table from '@mui/joy/Table';
 
 function createData(
   name: string,

@@ -1,5 +1,5 @@
-import { OverridableStringUnion } from '@mui/types';
-import {
+import type { OverridableStringUnion } from '@mui/types';
+import type {
   Breakpoints,
   CssContainerQueries,
   Spacing,
@@ -9,13 +9,13 @@ import {
   SxConfig,
   ApplyStyles,
 } from '@mui/system';
-import { ExtractTypographyTokens } from '@mui/system/cssVars';
-import { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
-import { ColorSystem } from './colorSystem';
-import { Focus } from './focus';
-import { DefaultShadow, Shadow } from './shadow';
-import { DefaultRadius, Radius } from './radius';
-import {
+import type { ExtractTypographyTokens } from '@mui/system/cssVars';
+import type { DefaultColorScheme, ExtendedColorScheme } from './colorScheme';
+import type { ColorSystem } from './colorSystem';
+import type { Focus } from './focus';
+import type { DefaultShadow, Shadow } from './shadow';
+import type { DefaultRadius, Radius } from './radius';
+import type {
   FontFamily,
   FontSize,
   FontWeight,
@@ -26,9 +26,9 @@ import {
   DefaultFontWeight,
   DefaultLineHeight,
 } from './typography';
-import { Variants } from './variants';
-import { DefaultZIndex, ZIndex } from './zIndex';
-import { MergeDefault } from './utils';
+import type { Variants } from './variants';
+import type { DefaultZIndex, ZIndex } from './zIndex';
+import type { MergeDefault } from './utils';
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }

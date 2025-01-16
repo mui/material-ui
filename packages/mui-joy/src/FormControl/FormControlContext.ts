@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormControlProps } from './FormControlProps';
+import type { FormControlProps } from './FormControlProps';
 
 /**
  * @internal

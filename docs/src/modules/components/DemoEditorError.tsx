@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Alert, { AlertProps } from '@mui/material/Alert';
+import type { AlertProps } from '@mui/material/Alert';
+import Alert from '@mui/material/Alert';
 
 export default function DemoEditorError(props: AlertProps) {
   if (!props.children) {

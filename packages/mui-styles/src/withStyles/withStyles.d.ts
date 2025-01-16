@@ -1,7 +1,7 @@
-import { PropInjector } from '@mui/types';
-import * as CSS from 'csstype';
-import * as JSS from 'jss';
-import { DefaultTheme } from '../defaultTheme';
+import type { PropInjector } from '@mui/types';
+import type * as CSS from 'csstype';
+import type * as JSS from 'jss';
+import type { DefaultTheme } from '../defaultTheme';
 
 // Disable automatic export
 export {};

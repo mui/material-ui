@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { TransitionProps } from '../transitions/transition';
+import type * as React from 'react';
+import type { TransitionProps } from '../transitions/transition';
 
 export interface ZoomProps extends TransitionProps {
   /**

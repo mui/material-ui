@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Button, buttonClasses } from '@mui/base/Button';
 import { useButton } from '@mui/base/useButton';
-import { styled, alpha, Theme } from '@mui/system';
+import type { Theme } from '@mui/system';
+import { styled, alpha } from '@mui/system';
 import Stack from '@mui/material/Stack';
 
 function getStyles({ theme }: { theme: Theme }) {

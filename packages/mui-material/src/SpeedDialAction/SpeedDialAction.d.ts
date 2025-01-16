@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
-import { FabProps } from '../Fab';
-import { TooltipProps } from '../Tooltip';
-import { SpeedDialActionClasses } from './speedDialActionClasses';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '../styles';
+import type { InternalStandardProps as StandardProps } from '..';
+import type { FabProps } from '../Fab';
+import type { TooltipProps } from '../Tooltip';
+import type { SpeedDialActionClasses } from './speedDialActionClasses';
 
 export interface SpeedDialActionProps extends StandardProps<Partial<TooltipProps>, 'children'> {
   /**

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled, Theme } from '@mui/system';
+import type { Theme } from '@mui/system';
+import { styled } from '@mui/system';
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { useTransitionStateManager } from '@mui/base/useTransition';
 

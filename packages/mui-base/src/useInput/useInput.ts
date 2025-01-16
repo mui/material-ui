@@ -1,9 +1,10 @@
 'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { FormControlState, useFormControlContext } from '../FormControl';
+import type { FormControlState} from '../FormControl';
+import { useFormControlContext } from '../FormControl';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-import {
+import type {
   UseInputInputSlotProps,
   UseInputParameters,
   UseInputRootSlotProps,

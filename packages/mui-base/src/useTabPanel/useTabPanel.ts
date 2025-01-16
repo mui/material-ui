@@ -3,7 +3,7 @@ import * as React from 'react';
 import { unstable_useId as useId, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useTabsContext } from '../Tabs';
 import { useCompoundItem } from '../useCompound';
-import {
+import type {
   UseTabPanelParameters,
   UseTabPanelReturnValue,
   UseTabPanelRootSlotProps,

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '..';
 
 export interface NativeSelectInputProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   disabled?: boolean;

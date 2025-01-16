@@ -1,3 +1,3 @@
-import { PropsFor, display } from '../Box';
+import type { PropsFor, display } from '../Box';
 
 export type DisplayProps = PropsFor<typeof display>;

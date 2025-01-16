@@ -9,7 +9,7 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
-import { FocusTrapProps } from './FocusTrap.types';
+import type { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [

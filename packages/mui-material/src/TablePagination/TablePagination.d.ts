@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TablePaginationActionsProps, TablePaginationActionsSlots } from './TablePaginationActions';
-import { TableCellProps } from '../TableCell';
-import { IconButtonProps } from '../IconButton';
-import { SelectProps } from '../Select';
-import { TablePaginationClasses } from './tablePaginationClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import { ToolbarProps } from '../Toolbar';
-import { MenuItemProps } from '../MenuItem';
+import type * as React from 'react';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '../styles';
+import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import type { TablePaginationActionsProps, TablePaginationActionsSlots } from './TablePaginationActions';
+import type { TableCellProps } from '../TableCell';
+import type { IconButtonProps } from '../IconButton';
+import type { SelectProps } from '../Select';
+import type { TablePaginationClasses } from './tablePaginationClasses';
+import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import type { ToolbarProps } from '../Toolbar';
+import type { MenuItemProps } from '../MenuItem';
 
 export interface LabelDisplayedRowsArgs {
   from: number;

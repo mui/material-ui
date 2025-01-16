@@ -1,7 +1,8 @@
 import * as React from 'react';
-import useAutocomplete, {
+import type {
   AutocompleteGetTagProps,
 } from '@mui/material/useAutocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';

@@ -6,7 +6,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
-import { VariantProp, ColorPaletteProp } from '@mui/joy/styles';
+import type { VariantProp, ColorPaletteProp } from '@mui/joy/styles';
 
 export default function CardColors() {
   const [variant, setVariant] = React.useState<VariantProp>('plain');

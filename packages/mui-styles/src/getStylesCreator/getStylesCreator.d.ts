@@ -1,4 +1,4 @@
-import { StyleRules, Styles } from '@mui/styles/withStyles';
+import type { StyleRules, Styles } from '@mui/styles/withStyles';
 
 export interface StylesCreator<Theme, Props extends object, ClassKey extends string = string> {
   create: (theme: Theme, name?: string) => StyleRules<Props, ClassKey>;

@@ -1,11 +1,11 @@
 'use client';
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
-import { Theme } from '../styles/types/theme';
+import type { OverridableComponent } from '@mui/types';
+import type { Theme } from '../styles/types/theme';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
-import { ContainerTypeMap } from './ContainerProps';
+import type { ContainerTypeMap } from './ContainerProps';
 
 const Container = createContainer<Theme>({
   createStyledComponent: styled('div', {
