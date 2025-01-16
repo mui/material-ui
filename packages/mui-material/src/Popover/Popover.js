@@ -405,22 +405,26 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
-  const [RootSlot, { slotProps: rootSlotPropsProp, ...rootProps }] = useSlot('root', {
-    ref,
-    elementType: PopoverRoot,
-    externalForwardedProps: {
-      ...externalForwardedProps,
-      ...other,
+  const [RootSlot, { slots: rootSlots, slotProps: rootSlotPropsProp, ...rootProps }] = useSlot(
+    'root',
+    {
+      ref,
+      elementType: PopoverRoot,
+      externalForwardedProps: {
+        ...externalForwardedProps,
+        ...other,
+      },
+      shouldForwardComponentProp: true,
+      additionalProps: {
+        slots: { backdrop: slots.backdrop },
+        slotProps: { backdrop: mergeSlotProps(slotProps.backdrop, { invisible: true }) },
+        container,
+        open,
+      },
+      ownerState,
+      className: clsx(classes.root, className),
     },
-    shouldForwardComponentProp: true,
-    additionalProps: {
-      slotProps: { backdrop: mergeSlotProps(slotProps.backdrop, { invisible: true }) },
-      container,
-      open,
-    },
-    ownerState,
-    className: clsx(classes.root, className),
-  });
+  );
 
   const [PaperSlot, paperProps] = useSlot('paper', {
     ref: paperRef,
@@ -440,7 +444,11 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   return (
     <RootSlot
       {...rootProps}
-      {...(!isHostComponent(RootSlot) && { slotProps: rootSlotPropsProp, disableScrollLock })}
+      {...(!isHostComponent(RootSlot) && {
+        slots: rootSlots,
+        slotProps: rootSlotPropsProp,
+        disableScrollLock,
+      })}
     >
       <TransitionSlot {...transitionSlotProps} timeout={transitionDuration}>
         <PaperSlot {...paperProps}>{children}</PaperSlot>
