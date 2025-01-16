@@ -62,6 +62,7 @@ describe('<MobileStepper />', () => {
   }));
 
   describeConformance(<MobileStepper {...defaultProps} steps={1} variant="progress" />, () => ({
+    inheritComponent: Paper,
     render,
     slots: {
       root: {
