@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.3.1",
+  "version": "6.4.0",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -56,7 +56,7 @@
     "chai": "^4.5.0",
     "chalk": "^5.4.1",
     "cross-fetch": "^4.1.0",
-    "fast-glob": "^3.3.2",
+    "fast-glob": "^3.3.3",
     "fs-extra": "^11.2.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
