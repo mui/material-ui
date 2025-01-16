@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { SlotComponentProps } from '@mui/utils';
 import { BackdropProps, InternalStandardProps as StandardProps } from '..';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalProps } from '../Modal';
@@ -53,7 +54,7 @@ export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the transition slot.
      * By default, the avaible props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
-    transition: SlotProps<
+    transition: SlotComponentProps<
       React.ElementType<TransitionProps>,
       PopoverTransitionSlotPropsOverrides,
       PopoverOwnerState
