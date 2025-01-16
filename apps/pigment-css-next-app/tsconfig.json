@@ -22,17 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"],
-  "references": [
-    {
-      "path": "../../packages/mui-system/tsconfig.build.json"
-    },
-    {
-      "path": "../../packages/mui-base/tsconfig.build.json"
-    },
-    {
-      "path": "../../packages/mui-material/tsconfig.build.json"
-    }
-  ]
+  "include": ["next-env.d.ts", "./src/**/*.ts", "./src/**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
