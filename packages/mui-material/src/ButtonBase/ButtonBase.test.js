@@ -1,5 +1,4 @@
 // @ts-check
-'use client';
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';

@@ -1,4 +1,3 @@
-'use client';
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';

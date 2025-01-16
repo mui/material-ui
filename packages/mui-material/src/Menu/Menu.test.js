@@ -1,4 +1,3 @@
-'use client';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';

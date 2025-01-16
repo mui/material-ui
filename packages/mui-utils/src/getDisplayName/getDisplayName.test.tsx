@@ -1,5 +1,4 @@
 /* eslint-disable react/prefer-stateless-function */
-'use client';
 import * as React from 'react';
 import { expect } from 'chai';
 import getDisplayName from './getDisplayName';

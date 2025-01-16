@@ -1,4 +1,3 @@
-'use client';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';

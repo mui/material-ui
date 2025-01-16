@@ -410,7 +410,8 @@ module.exports = /** @type {Config} */ ({
     {
       files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
       excludedFiles: [
-        '*.spec.tsx',
+        '*.spec.*',
+        '*.test.*',
         // deprecated library
         '**/mui-base/**/*',
         '**/mui-joy/**/*',
