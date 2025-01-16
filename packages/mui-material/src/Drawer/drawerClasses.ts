@@ -41,7 +41,7 @@ export interface DrawerClasses {
    */
   paperAnchorDockedTop: string;
   /** Styles applied to the Paper component if `anchor="right"` and `variant` is not "temporary".
-   * @deprecated Combine the [.MuiDrawer-anchorTop](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorTop), [.MuiDrawer-docked](/material-ui/api/drawer/#drawer-classes-MuiDrawer-docked) and [.MuiDrawer-paper](/material-ui/api/drawer/#drawer-classes-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Combine the [.MuiDrawer-anchorRight](/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorRight), [.MuiDrawer-docked](/material-ui/api/drawer/#drawer-classes-MuiDrawer-docked) and [.MuiDrawer-paper](/material-ui/api/drawer/#drawer-classes-MuiDrawer-paper) classes instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   paperAnchorDockedRight: string;
   /** Styles applied to the Paper component if `anchor="bottom"` and `variant` is not "temporary".
