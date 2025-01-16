@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import type { SinonSpy} from 'sinon';
-import { spy } from 'sinon';
+import { SinonSpy, spy } from 'sinon';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import type { LinkClassKey} from '@mui/joy/Link';
-import Link, { linkClasses as classes } from '@mui/joy/Link';
+import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
-import type { TypographySystem } from '@mui/joy/styles';
-import { ThemeProvider } from '@mui/joy/styles';
+import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
 
 function focusVisible(element: HTMLAnchorElement | null) {

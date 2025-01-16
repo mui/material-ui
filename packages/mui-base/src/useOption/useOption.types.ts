@@ -1,4 +1,4 @@
-import type { UseListItemRootSlotProps } from '../useList';
+import { UseListItemRootSlotProps } from '../useList';
 
 export interface SelectOption<Value> {
   value: Value;

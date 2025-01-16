@@ -1,4 +1,4 @@
-import type { PlaywrightTestConfig } from '@playwright/test';
+import { PlaywrightTestConfig } from '@playwright/test';
 
 export type TestFixture = {};
 

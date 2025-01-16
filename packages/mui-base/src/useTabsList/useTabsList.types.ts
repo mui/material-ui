@@ -1,6 +1,6 @@
-import type * as React from 'react';
-import type { TabsListProviderValue } from './TabsListProvider';
-import type { ListAction } from '../useList';
+import * as React from 'react';
+import { TabsListProviderValue } from './TabsListProvider';
+import { ListAction } from '../useList';
 
 export interface UseTabsListParameters {
   /**

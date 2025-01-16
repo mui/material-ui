@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { RadioProps } from '../Radio/RadioProps';
+import { RadioProps } from '../Radio/RadioProps';
 
 const RadioGroupContext = React.createContext<
   | undefined

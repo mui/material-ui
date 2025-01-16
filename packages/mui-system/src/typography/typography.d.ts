@@ -1,4 +1,4 @@
-import type { PropsFor, SimpleStyleFunction, typography } from '../Box';
+import { PropsFor, SimpleStyleFunction, typography } from '../Box';
 
 export const typographyVariant: SimpleStyleFunction<'typography'>;
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;

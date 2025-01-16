@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '@mui/material/styles';
-import type { InternalStandardProps as StandardProps } from '@mui/material';
-import type { TimelineItemClasses } from './timelineItemClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '@mui/material/styles';
+import { InternalStandardProps as StandardProps } from '@mui/material';
+import { TimelineItemClasses } from './timelineItemClasses';
 
 export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

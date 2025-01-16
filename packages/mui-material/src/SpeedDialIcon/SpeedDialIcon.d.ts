@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '../styles';
-import type { InternalStandardProps as StandardProps } from '..';
-import type { SpeedDialIconClasses } from './speedDialIconClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '..';
+import { SpeedDialIconClasses } from './speedDialIconClasses';
 
 export interface SpeedDialIconProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {

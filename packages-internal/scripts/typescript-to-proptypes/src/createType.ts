@@ -1,6 +1,6 @@
-import type ts from 'typescript';
+import ts from 'typescript';
 import _ from 'lodash';
-import type {
+import {
   PropType,
   ArrayType,
   LiteralType,

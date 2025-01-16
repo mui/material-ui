@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { TabsProps } from './TabsProps';
+import { TabsProps } from './TabsProps';
 
 const SizeTabsContext = React.createContext<Exclude<TabsProps['size'], undefined>>('md');
 

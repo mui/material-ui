@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import type { ChipOwnerState } from '@mui/joy/Chip';
-import Chip from '@mui/joy/Chip';
+import Chip, { ChipOwnerState } from '@mui/joy/Chip';
 
 <Chip />;
 

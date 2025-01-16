@@ -1,10 +1,10 @@
-import type {
+import {
   PropsTableItem,
   PropsTranslations,
   HookApiContent,
   HooksTranslations,
 } from '@mui-internal/api-docs-builder';
-import type { Translate } from '@mui/docs/i18n';
+import { Translate } from '@mui/docs/i18n';
 import kebabCase from 'lodash/kebabCase';
 import type { TableOfContentsParams } from 'docs/src/modules/components/ApiPage';
 

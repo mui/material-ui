@@ -1,7 +1,7 @@
 'use client';
 import { unstable_createGetCssVar as createGetCssVar } from '@mui/system';
-import type { ColorPaletteProp, ColorSystem } from '../styles/types';
-import type { DefaultColorScheme, ExtendedColorScheme } from '../styles/types/colorScheme';
+import { ColorPaletteProp, ColorSystem } from '../styles/types';
+import { DefaultColorScheme, ExtendedColorScheme } from '../styles/types/colorScheme';
 
 interface ThemeFragment {
   cssVarPrefix?: string;

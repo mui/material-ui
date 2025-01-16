@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import type {
+import {
   UseListParameters,
   ListItemState,
   UseListRootSlotProps,
@@ -9,22 +9,21 @@ import type {
   ListActionContext,
   UseListReturnValue,
 } from './useList.types';
-import type { ListAction } from './listActions.types';
-import { ListActionTypes } from './listActions.types';
-import type { ListContextValue } from './ListContext';
+import { ListActionTypes, ListAction } from './listActions.types';
+import { ListContextValue } from './ListContext';
 import { listReducer as defaultReducer } from './listReducer';
 
 import { useControllableReducer } from '../utils/useControllableReducer';
-import type {
+import {
   ControllableReducerAction,
   StateChangeCallback,
   StateComparers,
 } from '../utils/useControllableReducer.types';
 import { areArraysEqual } from '../utils/areArraysEqual';
 import { useTextNavigation } from '../utils/useTextNavigation';
-import type { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-import type { EventHandlers } from '../utils/types';
+import { EventHandlers } from '../utils/types';
 
 const EMPTY_OBJECT = {};
 const NOOP = () => {};

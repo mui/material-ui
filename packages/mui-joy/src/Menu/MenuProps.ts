@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { OverrideProps, OverridableStringUnion } from '@mui/types';
-import type { PopperProps } from '@mui/base/Popper';
-import type { MenuActions } from '@mui/base/Menu';
-import type { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { PopperProps } from '@mui/base/Popper';
+import { MenuActions } from '@mui/base/Menu';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type MenuSlot = 'root';
 

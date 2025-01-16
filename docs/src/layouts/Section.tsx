@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
-import type { BoxProps } from '@mui/material/Box';
-import Box from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 
 interface SelectionProps extends BoxProps {

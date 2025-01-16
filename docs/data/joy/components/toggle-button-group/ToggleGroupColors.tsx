@@ -10,7 +10,7 @@ import Stack from '@mui/joy/Stack';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import type { VariantProp, ColorPaletteProp } from '@mui/joy/styles';
+import { VariantProp, ColorPaletteProp } from '@mui/joy/styles';
 
 export default function ToggleGroupColors() {
   const [variant, setVariant] = React.useState<VariantProp | null>('plain');

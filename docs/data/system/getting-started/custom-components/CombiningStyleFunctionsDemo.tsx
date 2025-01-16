@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import type { PaletteProps, SpacingProps } from '@mui/system';
-import { palette, spacing } from '@mui/system';
+import { palette, PaletteProps, spacing, SpacingProps } from '@mui/system';
 
 const Div = styled.div<PaletteProps & SpacingProps>`
   ${palette}

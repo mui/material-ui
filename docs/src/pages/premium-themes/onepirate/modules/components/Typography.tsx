@@ -1,8 +1,6 @@
 import * as React from 'react';
-import type { Theme } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
-import type { TypographyProps } from '@mui/material/Typography';
-import MuiTypography from '@mui/material/Typography';
+import { styled, Theme } from '@mui/material/styles';
+import MuiTypography, { TypographyProps } from '@mui/material/Typography';
 
 const markClassesMapping: {
   [index: string]: { [subindex: string]: string };

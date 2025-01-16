@@ -3,10 +3,9 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import type {
-  UseNumberInputParameters} from '@mui/base/unstable_useNumberInput';
 import {
-  unstable_useNumberInput as useNumberInput
+  unstable_useNumberInput as useNumberInput,
+  UseNumberInputParameters,
 } from '@mui/base/unstable_useNumberInput';
 
 // TODO v6: initialize @testing-library/user-event using userEvent.setup() instead of directly calling methods e.g. userEvent.click() for all related tests in this file

@@ -5,22 +5,20 @@ import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
 import * as yargs from 'yargs';
-import type { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';
+import { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';
 import {
   fixBabelGeneratorIssues,
   fixLineEndings,
   getUnstyledFilename,
 } from '@mui/internal-docs-utils';
-import type {
-  InjectPropTypesInFileOptions} from '@mui/internal-scripts/typescript-to-proptypes';
 import {
   getPropTypesFromFile,
-  injectPropTypesInFile
+  injectPropTypesInFile,
+  InjectPropTypesInFileOptions,
 } from '@mui/internal-scripts/typescript-to-proptypes';
-import type {
-  TypeScriptProject} from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
 import {
-  createTypeScriptProjectBuilder
+  createTypeScriptProjectBuilder,
+  TypeScriptProject,
 } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
 
 import CORE_TYPESCRIPT_PROJECTS from './coreTypeScriptProjects';

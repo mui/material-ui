@@ -1,18 +1,16 @@
 'use client';
 import * as React from 'react';
 import { useTabsContext } from '../Tabs';
-import type {
+import {
+  TabsListActionTypes,
   UseTabsListParameters,
   UseTabsListReturnValue,
   UseTabsListRootSlotProps,
-  ValueChangeAction} from './useTabsList.types';
-import {
-  TabsListActionTypes
+  ValueChangeAction,
 } from './useTabsList.types';
 import { useCompoundParent } from '../useCompound';
-import type { TabMetadata } from '../useTabs/useTabs';
-import type { ListState, UseListParameters } from '../useList';
-import { useList } from '../useList';
+import { TabMetadata } from '../useTabs/useTabs';
+import { useList, ListState, UseListParameters } from '../useList';
 import { tabsListReducer } from './tabsListReducer';
 
 /**

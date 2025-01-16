@@ -5,7 +5,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_isFocusVisible as isFocusVisible,
 } from '@mui/utils';
-import type { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
+import { UseSwitchParameters, UseSwitchReturnValue } from './useSwitch.types';
 
 /**
  * The basic building block for creating custom switches.

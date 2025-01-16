@@ -1,8 +1,7 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
-import type { CardProps } from '@mui/joy/Card';
-import Card from '@mui/joy/Card';
+import Card, { CardProps } from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import IconButton from '@mui/joy/IconButton';
 import LinearProgress from '@mui/joy/LinearProgress';

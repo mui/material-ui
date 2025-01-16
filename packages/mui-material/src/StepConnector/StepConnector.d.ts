@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { InternalStandardProps as StandardProps } from '..';
-import type { Theme } from '../styles';
-import type { StepConnectorClasses } from './stepConnectorClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { StepConnectorClasses } from './stepConnectorClasses';
 
 export type StepConnectorIcon = React.ReactElement<unknown> | string | number;
 

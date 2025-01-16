@@ -1,6 +1,6 @@
-import type * as React from 'react';
-import type * as CSS from 'csstype';
-import type { Palette } from './createPalette';
+import * as React from 'react';
+import * as CSS from 'csstype';
+import { Palette } from './createPalette';
 
 export type Variant =
   | 'h1'

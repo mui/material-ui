@@ -1,10 +1,10 @@
-import type * as React from 'react';
-import type { DistributiveOmit, OverridableStringUnion } from '@mui/types';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '../styles';
-import type { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import type { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
-import type { ButtonClasses } from './buttonClasses';
+import * as React from 'react';
+import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
 

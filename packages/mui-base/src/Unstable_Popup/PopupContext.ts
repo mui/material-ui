@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { PopupPlacement } from './Popup.types';
+import { PopupPlacement } from './Popup.types';
 
 export interface PopupContextValue {
   placement: PopupPlacement;

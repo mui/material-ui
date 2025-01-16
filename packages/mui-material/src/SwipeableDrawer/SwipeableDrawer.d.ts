@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { DrawerProps } from '../Drawer';
+import * as React from 'react';
+import { DrawerProps } from '../Drawer';
 
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
   /**

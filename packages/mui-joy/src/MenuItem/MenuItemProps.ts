@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
-import type { ApplyColorInversion } from '../styles/types';
-import type { ListItemButtonProps } from '../ListItemButton/ListItemButtonProps';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
+import { ApplyColorInversion } from '../styles/types';
+import { ListItemButtonProps } from '../ListItemButton/ListItemButtonProps';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type MenuItemSlot = 'root';
 

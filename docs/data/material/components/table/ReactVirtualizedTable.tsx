@@ -6,8 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import type { TableComponents } from 'react-virtuoso';
-import { TableVirtuoso } from 'react-virtuoso';
+import { TableVirtuoso, TableComponents } from 'react-virtuoso';
 import Chance from 'chance';
 
 interface Data {

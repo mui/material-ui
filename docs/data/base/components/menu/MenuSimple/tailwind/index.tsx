@@ -1,11 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import type { MenuProps } from '@mui/base/Menu';
-import { Menu as BaseMenu } from '@mui/base/Menu';
-import type { MenuButtonProps } from '@mui/base/MenuButton';
-import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
-import type { MenuItemProps } from '@mui/base/MenuItem';
-import { MenuItem as BaseMenuItem } from '@mui/base/MenuItem';
+import { Menu as BaseMenu, MenuProps } from '@mui/base/Menu';
+import { MenuButton as BaseMenuButton, MenuButtonProps } from '@mui/base/MenuButton';
+import { MenuItem as BaseMenuItem, MenuItemProps } from '@mui/base/MenuItem';
 import { Dropdown } from '@mui/base/Dropdown';
 import { useTheme } from '@mui/system';
 

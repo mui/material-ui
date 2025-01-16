@@ -9,32 +9,30 @@ import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
-import type { Annotation } from 'doctrine';
-import { parse as parseDoctrine } from 'doctrine';
+import { parse as parseDoctrine, Annotation } from 'doctrine';
 import escapeRegExp from 'lodash/escapeRegExp';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
-import type { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
+import { ProjectSettings, SortingStrategiesType } from '../ProjectSettings';
 import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import muiDefaultPropsHandler from '../utils/defaultPropsHandler';
 import parseTest from '../utils/parseTest';
 import generatePropTypeDescription, { getChained } from '../utils/generatePropTypeDescription';
-import type {
+import createDescribeableProp, {
   CreateDescribeablePropSettings,
   DescribeablePropDescriptor,
 } from '../utils/createDescribeableProp';
-import createDescribeableProp from '../utils/createDescribeableProp';
 import generatePropDescription from '../utils/generatePropDescription';
-import type { TypeScriptProject } from '../utils/createTypeScriptProject';
+import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import parseSlotsAndClasses from '../utils/parseSlotsAndClasses';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { sortAlphabetical } from '../utils/sortObjects';
-import type {
+import {
   AdditionalPropsInfo,
   ComponentApiContent,
   ComponentReactApi,
   ParsedProperty,
 } from '../types/ApiBuilder.types';
-import type { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
+import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
 
 const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];

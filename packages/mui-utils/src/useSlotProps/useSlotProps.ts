@@ -1,14 +1,12 @@
 'use client';
-import type * as React from 'react';
+import * as React from 'react';
 import useForkRef from '../useForkRef';
-import type { AppendOwnerStateReturnType } from '../appendOwnerState';
-import appendOwnerState from '../appendOwnerState';
-import type {
+import appendOwnerState, { AppendOwnerStateReturnType } from '../appendOwnerState';
+import mergeSlotProps, {
   MergeSlotPropsParameters,
   MergeSlotPropsResult,
   WithCommonProps,
 } from '../mergeSlotProps';
-import mergeSlotProps from '../mergeSlotProps';
 import resolveComponentProps from '../resolveComponentProps';
 
 export type UseSlotPropsParameters<

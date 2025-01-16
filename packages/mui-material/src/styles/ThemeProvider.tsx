@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
-import type { DefaultTheme } from '@mui/system';
+import { DefaultTheme } from '@mui/system';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
-import type { CssThemeVariables } from './createThemeNoVars';
+import { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
-import type { CssVarsTheme } from './createThemeWithVars';
+import { CssVarsTheme } from './createThemeWithVars';
 import THEME_ID from './identifier';
 
 type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true }

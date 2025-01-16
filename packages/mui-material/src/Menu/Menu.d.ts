@@ -1,12 +1,12 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { InternalStandardProps as StandardProps } from '..';
-import type { PaperProps } from '../Paper';
-import type { PopoverProps } from '../Popover';
-import type { MenuListProps } from '../MenuList';
-import type { Theme } from '../styles';
-import type { TransitionProps } from '../transitions/transition';
-import type { MenuClasses } from './menuClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps } from '..';
+import { PaperProps } from '../Paper';
+import { PopoverProps } from '../Popover';
+import { MenuListProps } from '../MenuList';
+import { Theme } from '../styles';
+import { TransitionProps } from '../transitions/transition';
+import { MenuClasses } from './menuClasses';
 
 export interface MenuProps extends StandardProps<PopoverProps> {
   /**

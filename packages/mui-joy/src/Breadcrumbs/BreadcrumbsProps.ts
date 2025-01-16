@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { OverridableStringUnion, OverrideProps } from '@mui/types';
-import type { SxProps } from '../styles/types';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SxProps } from '../styles/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type BreadcrumbsSlot = 'root' | 'ol' | 'li' | 'separator';
 

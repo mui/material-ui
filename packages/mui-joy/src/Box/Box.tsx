@@ -2,7 +2,7 @@
 import { createBox } from '@mui/system';
 import PropTypes from 'prop-types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
-import type { Theme } from '../styles/types';
+import { Theme } from '../styles/types';
 import defaultTheme from '../styles/defaultTheme';
 import THEME_ID from '../styles/identifier';
 import boxClasses from './boxClasses';

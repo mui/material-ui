@@ -1,5 +1,5 @@
-import type { CSSObject } from '@mui/styled-engine';
-import type { StyleFunction } from '../Box';
+import { CSSObject } from '@mui/styled-engine';
+import { StyleFunction } from '../Box';
 
 export type TransformFunction = (
   cssValue: unknown,

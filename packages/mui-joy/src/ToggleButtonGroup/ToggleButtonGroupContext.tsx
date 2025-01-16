@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import type { SupportedValue, ToggleButtonGroupProps } from './ToggleButtonGroupProps';
+import { SupportedValue, ToggleButtonGroupProps } from './ToggleButtonGroupProps';
 
 interface ToggleButtonGroupContextType {
   onClick?: (

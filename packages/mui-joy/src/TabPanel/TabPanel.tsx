@@ -3,14 +3,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { useTabPanel } from '@mui/base/useTabPanel';
 import { useTabsContext } from '@mui/base/Tabs';
 import { styled, useThemeProps } from '../styles';
 
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
-import type { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
+import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import type {
-  UseNumberInputParameters} from '@mui/base/unstable_useNumberInput';
 import {
-  unstable_useNumberInput as useNumberInput
+  unstable_useNumberInput as useNumberInput,
+  UseNumberInputParameters,
 } from '@mui/base/unstable_useNumberInput';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';

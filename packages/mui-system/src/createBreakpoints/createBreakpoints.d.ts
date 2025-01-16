@@ -1,4 +1,4 @@
-import type { OverridableStringUnion } from '@mui/types';
+import { OverridableStringUnion } from '@mui/types';
 
 export interface BreakpointOverrides {}
 

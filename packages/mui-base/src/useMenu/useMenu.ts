@@ -5,16 +5,15 @@ import {
   unstable_useId as useId,
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
-import type { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
+import { UseMenuListboxSlotProps, UseMenuParameters, UseMenuReturnValue } from './useMenu.types';
 import { menuReducer } from './menuReducer';
-import type { DropdownContextValue } from '../useDropdown/DropdownContext';
-import { DropdownContext } from '../useDropdown/DropdownContext';
+import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
 import { ListActionTypes, useList } from '../useList';
-import type { MenuItemMetadata } from '../useMenuItem';
+import { MenuItemMetadata } from '../useMenuItem';
 import { DropdownActionTypes } from '../useDropdown';
-import type { EventHandlers } from '../utils/types';
+import { EventHandlers } from '../utils/types';
 import { useCompoundParent } from '../useCompound';
-import type { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 

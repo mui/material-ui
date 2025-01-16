@@ -1,4 +1,4 @@
-import type { Breakpoints, Breakpoint } from '../createBreakpoints/createBreakpoints';
+import { Breakpoints, Breakpoint } from '../createBreakpoints/createBreakpoints';
 
 interface ContainerQueries {
   up: Breakpoints['up'];

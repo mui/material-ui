@@ -1,5 +1,5 @@
 import { test as base, expect } from '@playwright/test';
-import type { TestFixture } from './playwright.config';
+import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 

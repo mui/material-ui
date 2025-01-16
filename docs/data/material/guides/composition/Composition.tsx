@@ -1,7 +1,6 @@
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
-import type { IconProps } from '@mui/material/Icon';
-import Icon from '@mui/material/Icon';
+import Icon, { IconProps } from '@mui/material/Icon';
 
 function WrappedIcon(props: IconProps) {
   return <Icon {...props} />;

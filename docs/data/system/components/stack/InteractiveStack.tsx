@@ -6,8 +6,7 @@ import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Grid from '@mui/system/Grid';
-import type { StackProps } from '@mui/system/Stack';
-import Stack from '@mui/system/Stack';
+import Stack, { StackProps } from '@mui/system/Stack';
 import { styled } from '@mui/system';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 

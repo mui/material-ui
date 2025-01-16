@@ -1,14 +1,13 @@
 'use client';
 import * as React from 'react';
-import type { PolymorphicComponent, WithOptionalOwnerState } from '../utils';
-import { useSlotProps } from '../utils';
-import type {
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
+import {
   TablePaginationActionsButtonSlotProps,
   TablePaginationActionsProps,
   TablePaginationActionsRootSlotProps,
   TablePaginationActionsTypeMap,
 } from './TablePaginationActions.types';
-import type { ItemAriaLabelType } from './common.types';
+import { ItemAriaLabelType } from './common.types';
 
 function LastPageIconDefault() {
   return <span>{'⇾|'}</span>;

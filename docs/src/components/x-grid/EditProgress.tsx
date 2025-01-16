@@ -1,10 +1,8 @@
 import * as React from 'react';
-import type { GridRenderEditCellParams} from '@mui/x-data-grid';
-import { useGridApiContext } from '@mui/x-data-grid';
+import { GridRenderEditCellParams, useGridApiContext } from '@mui/x-data-grid';
 import { debounce } from '@mui/material/utils';
 import { alpha } from '@mui/material/styles';
-import type { SliderValueLabelProps } from '@mui/material/Slider';
-import Slider from '@mui/material/Slider';
+import Slider, { SliderValueLabelProps } from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 
 function ValueLabelComponent(props: SliderValueLabelProps) {

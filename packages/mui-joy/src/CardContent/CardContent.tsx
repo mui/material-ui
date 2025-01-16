@@ -3,12 +3,12 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardContentUtilityClass } from './cardContentClasses';
 import cardOverflowClasses from '../CardOverflow/cardOverflowClasses';
-import type { CardContentProps, CardContentTypeMap } from './CardContentProps';
+import { CardContentProps, CardContentTypeMap } from './CardContentProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = () => {

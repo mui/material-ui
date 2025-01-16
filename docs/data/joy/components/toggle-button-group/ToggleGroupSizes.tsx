@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Button from '@mui/joy/Button';
-import type {
+import ToggleButtonGroup, {
   ToggleButtonGroupStaticProps,
 } from '@mui/joy/ToggleButtonGroup';
-import ToggleButtonGroup from '@mui/joy/ToggleButtonGroup';
 
 export default function ToggleGroupSizes() {
   const [value, setValue] = React.useState<

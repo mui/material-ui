@@ -1,4 +1,4 @@
-import type { DefaultTheme } from '../defaultTheme';
+import { DefaultTheme } from '../defaultTheme';
 
 export interface ThemeProviderProps<Theme = DefaultTheme> {
   children?: React.ReactNode;

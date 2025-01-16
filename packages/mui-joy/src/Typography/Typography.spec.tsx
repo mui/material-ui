@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import type { TypographyOwnerState } from '@mui/joy/Typography';
-import Typography from '@mui/joy/Typography';
+import Typography, { TypographyOwnerState } from '@mui/joy/Typography';
 
 <Typography component="a" href="/">
   Text

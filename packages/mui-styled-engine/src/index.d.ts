@@ -1,6 +1,6 @@
-import type * as CSS from 'csstype';
-import type { StyledComponent, StyledOptions } from '@emotion/styled';
-import type { PropsOf } from '@emotion/react';
+import * as CSS from 'csstype';
+import { StyledComponent, StyledOptions } from '@emotion/styled';
+import { PropsOf } from '@emotion/react';
 
 export * from '@emotion/styled';
 export { default } from '@emotion/styled';

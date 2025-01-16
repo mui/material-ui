@@ -2,8 +2,7 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import JoyLink from '@mui/material/Link';
 import { expectType } from '@mui/types';
-import type { ButtonOwnerState } from '@mui/joy/Button';
-import Button from '@mui/joy/Button';
+import Button, { ButtonOwnerState } from '@mui/joy/Button';
 
 <Button>Button</Button>;
 

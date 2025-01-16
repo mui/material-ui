@@ -1,7 +1,7 @@
-import type { OverrideProps } from '@mui/types';
-import type * as React from 'react';
-import type { SxProps } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import { OverrideProps } from '@mui/types';
+import * as React from 'react';
+import { SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type CardCoverSlot = 'root';
 

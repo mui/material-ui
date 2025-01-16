@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { mergeSlotProps } from './mergeSlotProps';
-import type { EventHandlers } from './types';
+import { EventHandlers } from './types';
 
 describe('mergeSlotProps', () => {
   it('overrides the internal props with the external ones', () => {

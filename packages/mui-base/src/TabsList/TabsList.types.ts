@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { Simplify } from '@mui/types';
-import type { UseTabsListRootSlotProps } from '../useTabsList';
-import type { PolymorphicProps, SlotComponentProps } from '../utils';
+import * as React from 'react';
+import { Simplify } from '@mui/types';
+import { UseTabsListRootSlotProps } from '../useTabsList';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface TabsListRootSlotPropsOverrides {}
 

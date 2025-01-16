@@ -1,10 +1,9 @@
-import type {
-  Theme,
-  CssVarsTheme} from '@mui/material/styles';
 import {
   responsiveFontSizes,
   extendTheme,
-  createTheme
+  createTheme,
+  Theme,
+  CssVarsTheme,
 } from '@mui/material/styles';
 import { expectType } from '@mui/types';
 

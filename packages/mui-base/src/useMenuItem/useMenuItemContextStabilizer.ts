@@ -1,8 +1,7 @@
 'use client';
 import * as React from 'react';
 import { unstable_useId as useId } from '@mui/utils';
-import type { ListContextValue, ListItemState } from '../useList';
-import { ListContext } from '../useList';
+import { ListContext, ListContextValue, ListItemState } from '../useList';
 
 /**
  * Stabilizes the ListContext value for the MenuItem component, so it doesn't change when sibling items update.

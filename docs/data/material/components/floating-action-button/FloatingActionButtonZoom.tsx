@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import UpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
-import type { SxProps } from '@mui/system';
+import { SxProps } from '@mui/system';
 
 interface TabPanelProps {
   children?: React.ReactNode;

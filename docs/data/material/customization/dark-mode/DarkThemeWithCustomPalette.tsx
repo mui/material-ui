@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import type {
-  PaletteMode} from '@mui/material/styles';
 import {
   ThemeProvider,
   useTheme,
-  createTheme
+  createTheme,
+  PaletteMode,
 } from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
 

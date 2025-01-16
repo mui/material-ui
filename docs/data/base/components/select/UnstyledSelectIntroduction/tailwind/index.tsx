@@ -1,16 +1,14 @@
 import * as React from 'react';
-import type {
+import {
+  Select as BaseSelect,
   SelectRootSlotProps,
   SelectProps,
-  SelectListboxSlotProps} from '@mui/base/Select';
-import {
-  Select as BaseSelect
+  SelectListboxSlotProps,
 } from '@mui/base/Select';
-import type {
-  OptionProps,
-  OptionOwnerState} from '@mui/base/Option';
 import {
-  Option as BaseOption
+  Option as BaseOption,
+  OptionProps,
+  OptionOwnerState,
 } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';

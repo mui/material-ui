@@ -3,15 +3,12 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import type {
-  ButtonGroupClassKey} from '@mui/joy/ButtonGroup';
 import ButtonGroup, {
-  buttonGroupClasses as classes
+  buttonGroupClasses as classes,
+  ButtonGroupClassKey,
 } from '@mui/joy/ButtonGroup';
-import type { ButtonClassKey } from '@mui/joy/Button';
-import Button, { buttonClasses } from '@mui/joy/Button';
-import type { IconButtonClassKey } from '@mui/joy/IconButton';
-import IconButton, { iconButtonClasses } from '@mui/joy/IconButton';
+import Button, { buttonClasses, ButtonClassKey } from '@mui/joy/Button';
+import IconButton, { iconButtonClasses, IconButtonClassKey } from '@mui/joy/IconButton';
 import describeConformance from '../../test/describeConformance';
 
 describe('<ButtonGroup />', () => {

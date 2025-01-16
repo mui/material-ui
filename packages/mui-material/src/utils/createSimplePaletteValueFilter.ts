@@ -1,4 +1,4 @@
-import type { PaletteColorOptions, SimplePaletteColorOptions } from '../styles/createPalette';
+import { PaletteColorOptions, SimplePaletteColorOptions } from '../styles/createPalette';
 
 /**
  * Type guard to check if the object has a "main" property of type string.

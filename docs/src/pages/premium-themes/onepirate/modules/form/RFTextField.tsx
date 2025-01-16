@@ -1,7 +1,6 @@
 import * as React from 'react';
-import type { FieldRenderProps } from 'react-final-form';
-import type { OnePirateTextFieldProps } from '../components/TextField';
-import TextField from '../components/TextField';
+import { FieldRenderProps } from 'react-final-form';
+import TextField, { OnePirateTextFieldProps } from '../components/TextField';
 
 function RFTextField(
   props: OnePirateTextFieldProps & FieldRenderProps<string, HTMLElement>,

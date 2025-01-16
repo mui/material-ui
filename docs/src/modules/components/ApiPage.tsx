@@ -1,28 +1,25 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
+import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import exactProp from '@mui/utils/exactProp';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
-import type { TableOfContentsEntry } from '@mui/internal-markdown';
+import { TableOfContentsEntry } from '@mui/internal-markdown';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import VerifiedRoundedIcon from '@mui/icons-material/VerifiedRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import type { Translate} from '@mui/docs/i18n';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
-import type { SectionTitleProps } from '@mui/docs/SectionTitle';
-import { SectionTitle } from '@mui/docs/SectionTitle';
+import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
-import type {
-  ApiDisplayOptions} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {
+  ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {

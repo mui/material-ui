@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { MenuListboxSlotProps } from '@mui/base/Menu';
-import { Menu } from '@mui/base/Menu';
+import { Menu, MenuListboxSlotProps } from '@mui/base/Menu';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Dropdown } from '@mui/base/Dropdown';

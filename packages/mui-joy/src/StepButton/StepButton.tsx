@@ -2,13 +2,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import stepClasses from '../Step/stepClasses';
 import stepperClasses from '../Stepper/stepperClasses';
 import stepButtonClasses from './stepButtonClasses';
-import type { StepButtonProps, StepButtonOwnerState, StepButtonTypeMap } from './StepButtonProps';
+import { StepButtonProps, StepButtonOwnerState, StepButtonTypeMap } from './StepButtonProps';
 import useSlot from '../utils/useSlot';
 
 const StepButtonRoot = styled('button', {

@@ -8,7 +8,7 @@ import Box from '@mui/joy/Box';
 import Alert from '@mui/joy/Alert';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import type { ColorPaletteProp } from '@mui/joy/styles';
+import { ColorPaletteProp } from '@mui/joy/styles';
 
 export default function AlertVariousStates() {
   const items: {

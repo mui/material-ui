@@ -7,7 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base/composeClas
 import { useButton } from '@mui/base/useButton';
 import { styled, useThemeProps } from '../styles';
 
-import type {
+import {
   ListItemButtonOwnerState,
   ExtendListItemButton,
   ListItemButtonTypeMap,

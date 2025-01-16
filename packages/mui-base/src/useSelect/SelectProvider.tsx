@@ -1,10 +1,8 @@
 'use client';
 import * as React from 'react';
-import type { ListContextValue } from '../useList/ListContext';
-import { ListContext } from '../useList/ListContext';
-import type { SelectOption } from '../useOption';
-import type { CompoundComponentContextValue } from '../useCompound';
-import { CompoundComponentContext } from '../useCompound';
+import { ListContext, ListContextValue } from '../useList/ListContext';
+import { SelectOption } from '../useOption';
+import { CompoundComponentContext, CompoundComponentContextValue } from '../useCompound';
 
 export type SelectProviderValue<Value> = CompoundComponentContextValue<Value, SelectOption<Value>> &
   ListContextValue<Value>;

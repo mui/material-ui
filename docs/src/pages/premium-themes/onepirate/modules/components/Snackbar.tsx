@@ -1,14 +1,12 @@
 import * as React from 'react';
-import type { Theme} from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
-import type { SnackbarProps } from '@mui/material/Snackbar';
-import MuiSnackbar from '@mui/material/Snackbar';
+import { Theme, styled } from '@mui/material/styles';
+import MuiSnackbar, { SnackbarProps } from '@mui/material/Snackbar';
 import { snackbarContentClasses } from '@mui/material/SnackbarContent';
 import Slide from '@mui/material/Slide';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
-import type { TransitionProps } from '@mui/material/transitions';
+import { TransitionProps } from '@mui/material/transitions';
 
 const styles = ({ theme }: { theme: Theme }) =>
   ({

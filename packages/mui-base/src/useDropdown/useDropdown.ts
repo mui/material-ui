@@ -2,9 +2,8 @@
 import * as React from 'react';
 import type { DropdownContextValue } from './DropdownContext';
 import { useControllableReducer } from '../utils/useControllableReducer';
-import type { StateChangeCallback } from '../utils/useControllableReducer.types';
-import type { DropdownState, UseDropdownParameters } from './useDropdown.types';
-import { DropdownActionTypes } from './useDropdown.types';
+import { StateChangeCallback } from '../utils/useControllableReducer.types';
+import { DropdownActionTypes, DropdownState, UseDropdownParameters } from './useDropdown.types';
 import { dropdownReducer } from './dropdownReducer';
 
 /**

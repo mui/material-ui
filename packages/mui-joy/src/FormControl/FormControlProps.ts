@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { OverrideProps, OverridableStringUnion } from '@mui/types';
-import type { ApplyColorInversion, ColorPaletteProp, SxProps } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { ApplyColorInversion, ColorPaletteProp, SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type FormControlSlot = 'root';
 

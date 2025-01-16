@@ -3,8 +3,7 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import type { AlertClassKey} from '@mui/joy/Alert';
-import Alert, { alertClasses as classes } from '@mui/joy/Alert';
+import Alert, { AlertClassKey, alertClasses as classes } from '@mui/joy/Alert';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Alert />', () => {

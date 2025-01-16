@@ -1,15 +1,13 @@
-import type {
+import {
   ListState,
   ListAction,
-  ListActionContext} from '../useList';
-import {
+  ListActionContext,
   listReducer,
   ListActionTypes,
   moveHighlight,
 } from '../useList';
-import type { ActionWithContext } from '../utils/useControllableReducer.types';
-import type { ValueChangeAction } from './useTabsList.types';
-import { TabsListActionTypes } from './useTabsList.types';
+import { ActionWithContext } from '../utils/useControllableReducer.types';
+import { TabsListActionTypes, ValueChangeAction } from './useTabsList.types';
 
 export type TabsListActionContext = ListActionContext<string | number> & {
   selectionFollowsFocus: boolean;

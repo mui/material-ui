@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { DistributiveOmit } from '@mui/types';
+import * as React from 'react';
+import { DistributiveOmit } from '@mui/types';
 import { StyledComponentProps } from './styles';
 
 export { StyledComponentProps };

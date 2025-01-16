@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { PolymorphicProps, SlotComponentProps } from '../utils';
+import * as React from 'react';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface OptionGroupRootSlotPropsOverrides {}
 export interface OptionGroupLabelSlotPropsOverrides {}

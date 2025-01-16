@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import isMuiElement from '@mui/utils/isMuiElement';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
@@ -9,8 +9,7 @@ import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import useThemeSystem from '../useTheme';
 import { extendSxProp } from '../styleFunctionSx';
-import type { Breakpoint, Breakpoints } from '../createTheme';
-import createTheme from '../createTheme';
+import createTheme, { Breakpoint, Breakpoints } from '../createTheme';
 import {
   generateGridStyles,
   generateGridSizeStyles,
@@ -23,8 +22,8 @@ import {
   generateSpacingClassNames,
   generateDirectionClasses,
 } from './gridGenerator';
-import type { CreateMUIStyled } from '../createStyled';
-import type { GridTypeMap, GridOwnerState, GridProps, GridOffset, GridSize } from './GridProps';
+import { CreateMUIStyled } from '../createStyled';
+import { GridTypeMap, GridOwnerState, GridProps, GridOffset, GridSize } from './GridProps';
 
 const defaultTheme = createTheme();
 

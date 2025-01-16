@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableStringUnion } from '@mui/types';
-import type { Theme } from '../styles';
-import type { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
-import type { FormLabelClasses } from './formLabelClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
+import { Theme } from '../styles';
+import { OverridableComponent, OverrideProps, OverridableTypeMap } from '../OverridableComponent';
+import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelPropsColorOverrides {}
 

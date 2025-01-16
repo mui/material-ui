@@ -1,9 +1,8 @@
 import { expectType } from '@mui/types';
-import type {
-  FilterOptionsState,
-  AutocompleteGroupedOption} from '@mui/material/useAutocomplete';
 import {
-  useAutocomplete
+  useAutocomplete,
+  FilterOptionsState,
+  AutocompleteGroupedOption,
 } from '@mui/material/useAutocomplete';
 
 interface Person {

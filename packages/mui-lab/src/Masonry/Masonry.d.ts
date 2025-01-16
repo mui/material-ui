@@ -1,7 +1,7 @@
-import type { ResponsiveStyleValue, SxProps } from '@mui/system';
-import type { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
-import type { Theme } from '@mui/material/styles';
-import type { MasonryClasses } from './masonryClasses';
+import { ResponsiveStyleValue, SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import { Theme } from '@mui/material/styles';
+import { MasonryClasses } from './masonryClasses';
 
 export interface MasonryOwnProps {
   /**

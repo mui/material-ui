@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { TypographySystem, FontSize } from '@mui/joy/styles';
-import { extendTheme, styled } from '@mui/joy/styles';
+import { extendTheme, styled, TypographySystem, FontSize } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';

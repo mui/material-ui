@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import type { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
+import { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
 import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 import useSlot from '../utils/useSlot';

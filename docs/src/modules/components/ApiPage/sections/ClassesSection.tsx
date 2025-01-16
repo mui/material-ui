@@ -1,22 +1,19 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import type { Translate} from '@mui/docs/i18n';
-import { useTranslate } from '@mui/docs/i18n';
+import { Translate, useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
 import Box from '@mui/material/Box';
-import type {
-  ApiDisplayOptions} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import ToggleDisplayOption, {
+  ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import ClassesList from 'docs/src/modules/components/ApiPage/list/ClassesList';
 import ClassesTable from 'docs/src/modules/components/ApiPage/table/ClassesTable';
-import type {
-  ClassDefinition} from 'docs/src/modules/components/ApiPage/definitions/classes';
 import {
+  ClassDefinition,
   getClassApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import type { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
+import { PropsTranslations, ComponentClassDefinition } from '@mui-internal/api-docs-builder';
 import kebabCase from 'lodash/kebabCase';
 
 export type GetCssToCParams = {

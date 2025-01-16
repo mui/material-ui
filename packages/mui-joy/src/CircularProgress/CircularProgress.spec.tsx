@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import type { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
-import CircularProgress from '@mui/joy/CircularProgress';
+import CircularProgress, { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 
 <CircularProgress />;
 

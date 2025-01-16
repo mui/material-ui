@@ -1,5 +1,5 @@
-import type { PortalProps } from '../Portal';
-import type { EventHandlers } from '../utils';
+import { PortalProps } from '../Portal';
+import { EventHandlers } from '../utils';
 
 export interface UseModalRootSlotOwnProps {
   role: React.AriaRole;

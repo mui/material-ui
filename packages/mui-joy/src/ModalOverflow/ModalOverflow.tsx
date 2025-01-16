@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { useThemeProps, styled } from '../styles';
 import useSlot from '../utils/useSlot';
 import { getModalOverflowUtilityClass } from './modalOverflowClasses';
-import type {
+import {
   ModalOverflowProps,
   ModalOverflowOwnerState,
   ModalOverflowTypeMap,

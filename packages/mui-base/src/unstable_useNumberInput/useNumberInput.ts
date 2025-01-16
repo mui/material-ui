@@ -2,13 +2,12 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-import type { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { useControllableReducer } from '../utils/useControllableReducer';
-import type { StateChangeCallback } from '../utils/useControllableReducer.types';
-import type { EventHandlers } from '../utils/types';
-import type { FormControlState} from '../FormControl';
-import { useFormControlContext } from '../FormControl';
-import type {
+import { StateChangeCallback } from '../utils/useControllableReducer.types';
+import { EventHandlers } from '../utils/types';
+import { FormControlState, useFormControlContext } from '../FormControl';
+import {
   UseNumberInputParameters,
   UseNumberInputRootSlotProps,
   UseNumberInputInputSlotProps,
@@ -20,8 +19,7 @@ import type {
   NumberInputActionContext,
   NumberInputReducerAction,
 } from './useNumberInput.types';
-import type { NumberInputAction } from './numberInputAction.types';
-import { NumberInputActionTypes } from './numberInputAction.types';
+import { NumberInputActionTypes, NumberInputAction } from './numberInputAction.types';
 import { numberInputReducer } from './numberInputReducer';
 import { isNumber } from './utils';
 

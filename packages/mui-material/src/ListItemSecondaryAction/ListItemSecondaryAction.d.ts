@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { InternalStandardProps as StandardProps, Theme } from '..';
-import type { ListItemSecondaryActionClasses } from './listItemSecondaryActionClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { ListItemSecondaryActionClasses } from './listItemSecondaryActionClasses';
 
 export interface ListItemSecondaryActionProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {

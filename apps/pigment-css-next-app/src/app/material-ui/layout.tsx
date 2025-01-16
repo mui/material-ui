@@ -1,4 +1,4 @@
-import type * as React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material-pigment-css';
 
 const Main = styled('div')(({ theme }) => ({

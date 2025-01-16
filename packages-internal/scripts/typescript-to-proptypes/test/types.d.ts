@@ -1,4 +1,4 @@
-import type {
+import {
   InjectPropTypesInFileOptions,
   GetPropTypesFromFileOptions,
   GeneratePropTypesOptions,

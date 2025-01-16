@@ -1,6 +1,6 @@
 import path from 'path';
 import { LANGUAGES } from 'docs/config';
-import type { ProjectSettings } from '@mui-internal/api-docs-builder';
+import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
 import {
   unstable_generateUtilityClass as generateUtilityClass,

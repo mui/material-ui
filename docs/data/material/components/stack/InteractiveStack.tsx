@@ -6,8 +6,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import type { StackProps } from '@mui/material/Stack';
-import Stack from '@mui/material/Stack';
+import Stack, { StackProps } from '@mui/material/Stack';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 export default function InteractiveStack() {

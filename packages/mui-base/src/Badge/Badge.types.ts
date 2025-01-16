@@ -1,6 +1,6 @@
-import type * as React from 'react';
-import type { OverrideProps, Simplify } from '@mui/types';
-import type { SlotComponentProps } from '../utils';
+import * as React from 'react';
+import { OverrideProps, Simplify } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 export interface BadgeRootSlotPropsOverrides {}
 export interface BadgeBadgeSlotPropsOverrides {}

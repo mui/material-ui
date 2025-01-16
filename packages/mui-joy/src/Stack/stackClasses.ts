@@ -1,4 +1,4 @@
-import type { StackClasses } from '@mui/system';
+import { StackClasses } from '@mui/system';
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export type { StackClassKey } from '@mui/system';

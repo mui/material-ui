@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import type { TooltipOwnerState } from '@mui/joy/Tooltip';
-import Tooltip from '@mui/joy/Tooltip';
+import Tooltip, { TooltipOwnerState } from '@mui/joy/Tooltip';
 
 <Tooltip title="title" open component="div">
   <div />

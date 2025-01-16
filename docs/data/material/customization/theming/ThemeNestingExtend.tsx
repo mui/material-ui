@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { Theme} from '@mui/material/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox';
 import { green, orange } from '@mui/material/colors';
 

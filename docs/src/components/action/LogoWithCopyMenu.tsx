@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Slide from '@mui/material/Slide';
 import TextFieldsRoundedIcon from '@mui/icons-material/TextFieldsRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import type { RootSvgProps } from 'docs/src/icons/RootSvg';
+import { RootSvgProps } from 'docs/src/icons/RootSvg';
 import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,

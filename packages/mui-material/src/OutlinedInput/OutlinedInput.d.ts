@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { InternalStandardProps as StandardProps, Theme } from '..';
-import type { InputBaseProps } from '../InputBase';
-import type { OutlinedInputClasses } from './outlinedInputClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InputBaseProps } from '../InputBase';
+import { OutlinedInputClasses } from './outlinedInputClasses';
 
 export interface OutlinedInputProps extends StandardProps<InputBaseProps> {
   /**

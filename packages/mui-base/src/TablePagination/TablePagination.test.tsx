@@ -3,11 +3,10 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { fireEvent, createRenderer } from '@mui/internal-test-utils';
-import type {
-  LabelDisplayedRowsArgs} from '@mui/base/TablePagination';
 import {
   TablePagination,
-  tablePaginationClasses as classes
+  tablePaginationClasses as classes,
+  LabelDisplayedRowsArgs,
 } from '@mui/base/TablePagination';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 

@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { InternalStandardProps as StandardProps, Theme } from '..';
-import type { InputProps } from '../Input';
-import type { NativeSelectInputProps } from './NativeSelectInput';
-import type { NativeSelectClasses } from './nativeSelectClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InputProps } from '../Input';
+import { NativeSelectInputProps } from './NativeSelectInput';
+import { NativeSelectClasses } from './nativeSelectClasses';
 
 export interface NativeSelectProps
   extends StandardProps<InputProps, 'inputProps' | 'value' | 'onChange'> {

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import type { PopperPlacementType } from '@mui/material/Popper';
-import Popper from '@mui/material/Popper';
+import Popper, { PopperPlacementType } from '@mui/material/Popper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';

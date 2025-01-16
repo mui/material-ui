@@ -1,8 +1,6 @@
 import * as React from 'react';
-import type { StyleFunction } from 'styled-components';
-import styled, { ThemeProvider } from 'styled-components';
-import type { SxProps } from '@mui/system';
-import { unstable_styleFunctionSx } from '@mui/system';
+import styled, { ThemeProvider, StyleFunction } from 'styled-components';
+import { unstable_styleFunctionSx, SxProps } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 
 interface DivProps {

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { SxProps } from '@mui/material/styles';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, SxProps } from '@mui/material/styles';
 import { shouldForwardProp } from '@mui/system';
 
 const FlashCodeRoot = styled('div', {

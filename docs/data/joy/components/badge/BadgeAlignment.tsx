@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
-import type { BadgeProps } from '@mui/joy/Badge';
-import Badge from '@mui/joy/Badge';
+import Badge, { BadgeProps } from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import ArrowUpward from '@mui/icons-material/ArrowUpward';

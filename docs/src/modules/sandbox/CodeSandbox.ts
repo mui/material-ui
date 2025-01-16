@@ -5,7 +5,7 @@ import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import type { DemoData, CodeVariant, CodeStyling } from 'docs/src/modules/sandbox/types';
+import { DemoData, CodeVariant, CodeStyling } from 'docs/src/modules/sandbox/types';
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import type { OverridableComponent, OverrideProps } from '@mui/types';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 // @ts-ignore
 import Stack from '@mui/material-pigment-css/Stack';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
-import type { SxProps } from '@mui/system';
-import type { Breakpoint, Theme } from '../styles';
+import { SxProps } from '@mui/system';
+import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 

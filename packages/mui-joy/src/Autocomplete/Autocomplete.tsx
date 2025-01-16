@@ -9,8 +9,7 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import type { AutocompleteGroupedOption } from '@mui/base/useAutocomplete';
-import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/useAutocomplete';
 import { Popper } from '@mui/base/Popper';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
@@ -33,7 +32,7 @@ import ListProvider from '../List/ListProvider';
 import ListSubheader from '../ListSubheader';
 import ListItem from '../ListItem';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
-import type {
+import {
   AutocompleteProps,
   AutocompleteRenderGroupParams,
   AutocompleteRenderGetTagProps,

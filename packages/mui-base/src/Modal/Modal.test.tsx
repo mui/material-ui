@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import type { ModalRootSlotProps } from '@mui/base/Modal';
-import { Modal, modalClasses as classes } from '@mui/base/Modal';
+import { Modal, modalClasses as classes, ModalRootSlotProps } from '@mui/base/Modal';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Modal />', () => {

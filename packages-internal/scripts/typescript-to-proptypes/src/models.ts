@@ -1,4 +1,4 @@
-import type ts from 'typescript';
+import ts from 'typescript';
 
 export interface PropTypeDefinition {
   name: string;

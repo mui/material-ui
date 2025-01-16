@@ -4,8 +4,7 @@ import { spy } from 'sinon';
 import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import type { AvatarClassKey} from '@mui/joy/Avatar';
-import Avatar, { avatarClasses as classes } from '@mui/joy/Avatar';
+import Avatar, { AvatarClassKey, avatarClasses as classes } from '@mui/joy/Avatar';
 import PersonIcon from '../internal/svg-icons/Person';
 import describeConformance from '../../test/describeConformance';
 

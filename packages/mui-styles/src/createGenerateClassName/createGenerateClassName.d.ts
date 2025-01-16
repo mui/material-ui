@@ -1,4 +1,4 @@
-import type { GenerateId } from 'jss';
+import { GenerateId } from 'jss';
 
 export interface GenerateClassNameOptions {
   disableGlobal?: boolean;

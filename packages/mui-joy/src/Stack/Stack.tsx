@@ -1,10 +1,10 @@
 'use client';
 import { createStack } from '@mui/system';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
-import type { StackTypeMap } from './StackProps';
+import { StackTypeMap } from './StackProps';
 
 /**
  *

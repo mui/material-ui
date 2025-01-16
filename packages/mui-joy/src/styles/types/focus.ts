@@ -1,4 +1,4 @@
-import type { CSSObject } from '@mui/system';
+import { CSSObject } from '@mui/system';
 
 export interface Focus {
   thickness: string;

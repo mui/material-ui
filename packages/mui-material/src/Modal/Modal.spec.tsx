@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { ModalProps } from '@mui/material/Modal';
-import Modal from '@mui/material/Modal';
+import Modal, { ModalProps } from '@mui/material/Modal';
 
 const backdropProps: ModalProps['BackdropProps'] = {
   onEntered: () => console.log('entered'),

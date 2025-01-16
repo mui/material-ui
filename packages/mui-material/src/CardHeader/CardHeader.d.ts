@@ -1,10 +1,10 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { TypographyProps } from '../Typography';
-import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import type { Theme } from '..';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import type { CardHeaderClasses } from './cardHeaderClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { TypographyProps } from '../Typography';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CardHeaderClasses } from './cardHeaderClasses';
 
 export interface CardHeaderRootSlotPropsOverrides {}
 

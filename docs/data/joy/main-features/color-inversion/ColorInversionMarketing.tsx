@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { ColorPaletteProp, PaletteRange} from '@mui/joy/styles';
-import { useTheme } from '@mui/joy/styles';
+import { ColorPaletteProp, PaletteRange, useTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';

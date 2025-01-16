@@ -1,19 +1,19 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import type { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
+import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useSlot from '../utils/useSlot';
 import { getTypographyUtilityClass } from './typographyClasses';
-import type { TypographySystem } from '../styles/types';
+import { TypographySystem } from '../styles/types';
 
 /**
  * @internal

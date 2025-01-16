@@ -1,19 +1,18 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useBadge } from '../useBadge';
 import { getBadgeUtilityClass } from './badgeClasses';
-import type {
+import {
   BadgeProps,
   BadgeOwnerState,
   BadgeTypeMap,
   BadgeRootSlotProps,
   BadgeBadgeSlotProps,
 } from './Badge.types';
-import type { WithOptionalOwnerState} from '../utils';
-import { useSlotProps } from '../utils';
+import { WithOptionalOwnerState, useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: BadgeOwnerState) => {

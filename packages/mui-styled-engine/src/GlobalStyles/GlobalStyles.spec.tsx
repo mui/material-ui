@@ -1,8 +1,7 @@
 import * as React from 'react';
-import type {
-  GlobalStylesProps as EmGlobalStylesProps} from '@mui/styled-engine';
 import {
-  GlobalStyles as EmGlobalStyles
+  GlobalStyles as EmGlobalStyles,
+  GlobalStylesProps as EmGlobalStylesProps,
 } from '@mui/styled-engine';
 
 interface Theme {

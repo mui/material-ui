@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { InputProps } from '@mui/joy/Input';
-import Input from '@mui/joy/Input';
+import Input, { InputProps } from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import Box from '@mui/joy/Box';
 

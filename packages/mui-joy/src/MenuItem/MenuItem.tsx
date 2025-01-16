@@ -9,7 +9,7 @@ import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import type {
+import {
   MenuItemOwnerState,
   ExtendMenuItem,
   MenuItemTypeMap,

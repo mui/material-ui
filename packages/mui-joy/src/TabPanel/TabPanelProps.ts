@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { OverridableStringUnion, OverrideProps } from '@mui/types';
-import type { TabPanelOwnProps } from '@mui/base/TabPanel';
-import type { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { TabPanelOwnProps } from '@mui/base/TabPanel';
+import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type TabPanelSlot = 'root';
 

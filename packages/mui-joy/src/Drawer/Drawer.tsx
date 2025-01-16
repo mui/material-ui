@@ -7,7 +7,7 @@ import {
   unstable_useId as useId,
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import { Portal } from '@mui/base/Portal';
 import { FocusTrap } from '@mui/base/FocusTrap';
@@ -17,7 +17,7 @@ import { StyledModalBackdrop, StyledModalRoot } from '../Modal/Modal';
 import CloseModalContext from '../Modal/CloseModalContext';
 import useSlot from '../utils/useSlot';
 import { getDrawerUtilityClass } from './drawerClasses';
-import type { DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
+import { DrawerOwnerState, DrawerTypeMap } from './DrawerProps';
 import ModalDialogVariantColorContext from '../ModalDialog/ModalDialogVariantColorContext';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import dialogTitleClasses from '../DialogTitle/dialogTitleClasses';

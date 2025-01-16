@@ -1,5 +1,5 @@
-import type { CSSObject } from '@mui/system';
-import type { MergeDefault, OverridableRecord } from './utils';
+import { CSSObject } from '@mui/system';
+import { MergeDefault, OverridableRecord } from './utils';
 
 export interface DefaultFontSize {
   xs: string;

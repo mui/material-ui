@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { StyledComponentProps } from '../styles';
+import * as React from 'react';
+import { StyledComponentProps } from '../styles';
 
 export interface CssBaselineProps extends StyledComponentProps<never> {
   /**

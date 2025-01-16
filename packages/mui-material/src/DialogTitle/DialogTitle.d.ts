@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import type { Theme } from '../styles';
-import type { TypographyTypeMap } from '../Typography';
-import type { DialogTitleClasses } from './dialogTitleClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
+import { TypographyTypeMap } from '../Typography';
+import { DialogTitleClasses } from './dialogTitleClasses';
 
 export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
   /**

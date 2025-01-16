@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { WithStyles } from '@mui/styles';
-import { withStyles } from '@mui/styles';
+import { withStyles, WithStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 
 const styles = {

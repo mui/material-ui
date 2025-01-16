@@ -1,5 +1,5 @@
-import type { UseButtonRootSlotProps } from '../useButton';
-import type { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
+import { UseButtonRootSlotProps } from '../useButton';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 interface UseMenuItemRootSlotOwnProps {
   id: string | undefined;

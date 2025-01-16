@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Box, styled } from '@mui/system';
-import type {
-  NumberInputProps} from '@mui/base/Unstable_NumberInput';
 import {
   Unstable_NumberInput as BaseNumberInput,
+  NumberInputProps,
   numberInputClasses,
 } from '@mui/base/Unstable_NumberInput';
 

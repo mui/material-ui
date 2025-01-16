@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { UseAutocompleteProps } from '@mui/base/useAutocomplete';
-import { useAutocomplete } from '@mui/base/useAutocomplete';
+import { useAutocomplete, UseAutocompleteProps } from '@mui/base/useAutocomplete';
 import { Button } from '@mui/base/Button';
 import { Popper } from '@mui/base/Popper';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';

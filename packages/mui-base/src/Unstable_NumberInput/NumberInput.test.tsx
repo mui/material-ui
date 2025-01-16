@@ -3,13 +3,12 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
-import type {
-  NumberInputOwnerState,
-  NumberInputIncrementButtonSlotProps,
-  NumberInputDecrementButtonSlotProps} from '@mui/base/Unstable_NumberInput';
 import {
   Unstable_NumberInput as NumberInput,
-  numberInputClasses
+  numberInputClasses,
+  NumberInputOwnerState,
+  NumberInputIncrementButtonSlotProps,
+  NumberInputDecrementButtonSlotProps,
 } from '@mui/base/Unstable_NumberInput';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 

@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { PartiallyRequired } from '@mui/types';
+import * as React from 'react';
+import { PartiallyRequired } from '@mui/types';
 
 export interface CreateFilterOptionsConfig<Value> {
   ignoreAccents?: boolean;

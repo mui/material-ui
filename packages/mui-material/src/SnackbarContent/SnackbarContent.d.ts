@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '../styles';
-import type { InternalStandardProps as StandardProps } from '..';
-import type { PaperProps } from '../Paper';
-import type { SnackbarContentClasses } from './snackbarContentClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '..';
+import { PaperProps } from '../Paper';
+import { SnackbarContentClasses } from './snackbarContentClasses';
 
 export interface SnackbarContentProps extends StandardProps<PaperProps, 'children'> {
   /**

@@ -1,10 +1,9 @@
 import * as React from 'react';
-import type { Interpolation } from '@mui/system';
+import { Interpolation } from '@mui/system';
 import { extendSxProp } from '@mui/system/styleFunctionSx';
-import type { Theme } from '../styles/createTheme';
+import { Theme } from '../styles/createTheme';
 import useTheme from '../styles/useTheme';
-import type { GlobalStylesProps } from '../GlobalStyles';
-import GlobalStyles from '../GlobalStyles';
+import GlobalStyles, { GlobalStylesProps } from '../GlobalStyles';
 
 export { css, keyframes } from '@mui/system';
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme} from '@mui/material/styles';
-import { styled, alpha } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import { Theme, styled, alpha } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

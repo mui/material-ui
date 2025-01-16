@@ -1,11 +1,11 @@
-import type { OverridableStringUnion } from '@mui/types';
-import type { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
-import type { ExtractTypographyTokens } from '@mui/system/cssVars';
-import type { ThemeOptions, Theme } from './createThemeNoVars';
-import type { Palette, PaletteOptions } from './createPalette';
-import type { Shadows } from './shadows';
-import type { ZIndex } from './zIndex';
-import type { Components } from './components';
+import { OverridableStringUnion } from '@mui/types';
+import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
+import { ExtractTypographyTokens } from '@mui/system/cssVars';
+import { ThemeOptions, Theme } from './createThemeNoVars';
+import { Palette, PaletteOptions } from './createPalette';
+import { Shadows } from './shadows';
+import { ZIndex } from './zIndex';
+import { Components } from './components';
 
 /**
  * default MD color-schemes

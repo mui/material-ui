@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import type { SliderValueLabelProps } from './SliderValueLabel.types';
+import { SliderValueLabelProps } from './SliderValueLabel.types';
 import sliderClasses from './sliderClasses';
 
 const useValueLabelClasses = (props: SliderValueLabelProps) => {

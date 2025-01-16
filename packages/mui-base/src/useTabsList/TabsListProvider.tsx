@@ -1,10 +1,8 @@
 'use client';
 import * as React from 'react';
-import type { ListContextValue } from '../useList/ListContext';
-import { ListContext } from '../useList/ListContext';
-import type { TabMetadata } from '../useTabs';
-import type { CompoundComponentContextValue } from '../useCompound';
-import { CompoundComponentContext } from '../useCompound';
+import { ListContext, ListContextValue } from '../useList/ListContext';
+import { TabMetadata } from '../useTabs';
+import { CompoundComponentContext, CompoundComponentContextValue } from '../useCompound';
 
 export type TabsListProviderValue = CompoundComponentContextValue<string | number, TabMetadata> &
   ListContextValue<string | number>;

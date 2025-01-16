@@ -1,10 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { Interpolation } from '@mui/styled-engine';
-import { GlobalStyles as MuiGlobalStyles } from '@mui/styled-engine';
+import { GlobalStyles as MuiGlobalStyles, Interpolation } from '@mui/styled-engine';
 import useTheme from '../useTheme';
-import type { Theme as SystemTheme } from '../createTheme';
+import { Theme as SystemTheme } from '../createTheme';
 
 export interface GlobalStylesProps<Theme = SystemTheme> {
   styles: Interpolation<Theme>;

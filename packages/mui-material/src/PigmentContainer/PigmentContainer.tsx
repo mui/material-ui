@@ -1,15 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import type { OverridableComponent, OverrideProps } from '@mui/types';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 // @ts-ignore
 import Container from '@mui/material-pigment-css/Container';
 import capitalize from '@mui/utils/capitalize';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
-import type { SxProps, Breakpoint } from '@mui/system';
-import type { Theme } from '../styles';
-import type { ContainerClasses } from '../Container/containerClasses';
+import { SxProps, Breakpoint } from '@mui/system';
+import { Theme } from '../styles';
+import { ContainerClasses } from '../Container/containerClasses';
 
 export interface PigmentContainerOwnProps {
   children?: React.ReactNode;

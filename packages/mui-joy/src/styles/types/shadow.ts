@@ -1,4 +1,4 @@
-import type { OverridableRecord } from './utils';
+import { OverridableRecord } from './utils';
 
 export interface DefaultShadow {
   xs: string;

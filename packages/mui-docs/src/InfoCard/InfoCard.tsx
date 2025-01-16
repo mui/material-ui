@@ -2,10 +2,8 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import type { TypographyProps } from '@mui/material/Typography';
-import Typography from '@mui/material/Typography';
-import type { LinkProps } from '../Link';
-import { Link } from '../Link';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import { Link, LinkProps } from '../Link';
 
 interface GlowingIconContainerProps {
   icon: React.ReactNode;

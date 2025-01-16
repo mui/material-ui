@@ -1,5 +1,5 @@
 import * as doctrine from 'doctrine';
-import type { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
+import { PropDescriptor, PropTypeDescriptor } from 'react-docgen';
 
 export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;

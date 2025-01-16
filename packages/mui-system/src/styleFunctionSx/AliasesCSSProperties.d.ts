@@ -1,4 +1,4 @@
-import type { StandardCSSProperties } from './StandardCssProperties';
+import { StandardCSSProperties } from './StandardCssProperties';
 
 export interface AliasesCSSProperties {
   /**

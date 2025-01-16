@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import type { TypographyProps } from '@mui/joy/Typography';
-import Typography, { typographyClasses as classes } from '@mui/joy/Typography';
+import Typography, { typographyClasses as classes, TypographyProps } from '@mui/joy/Typography';
 import { ThemeProvider } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
 

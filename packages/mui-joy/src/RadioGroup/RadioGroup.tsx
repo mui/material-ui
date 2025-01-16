@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_useControlled as useControlled,
@@ -11,7 +11,7 @@ import {
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
-import type { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
+import { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 import FormControlContext from '../FormControl/FormControlContext';
 import useSlot from '../utils/useSlot';

@@ -1,12 +1,12 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableStringUnion } from '@mui/types';
-import type { SlotComponentProps } from '../utils/types';
-import type { Theme } from '../styles';
-import type { TabScrollButtonProps } from '../TabScrollButton';
-import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import type { TabsClasses } from './tabsClasses';
-import type SvgIcon from '../SvgIcon';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
+import { SlotComponentProps } from '../utils/types';
+import { Theme } from '../styles';
+import { TabScrollButtonProps } from '../TabScrollButton';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { TabsClasses } from './tabsClasses';
+import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
 

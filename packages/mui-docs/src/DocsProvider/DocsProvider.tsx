@@ -1,8 +1,6 @@
 import * as React from 'react';
-import type { Translations} from '../i18n';
-import { UserLanguageProvider } from '../i18n';
-import type { AdConfig} from '../Ad';
-import { AdProvider } from '../Ad';
+import { Translations, UserLanguageProvider } from '../i18n';
+import { AdConfig, AdProvider } from '../Ad';
 
 export interface DocsConfig {
   LANGUAGES: string[];

@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Fade from '@mui/material/Fade';
-import type { Theme } from '@mui/material/styles';
+import { Theme } from '@mui/material/styles';
 import { useTranslate } from '@mui/docs/i18n';
 
 export default function BackToTop() {

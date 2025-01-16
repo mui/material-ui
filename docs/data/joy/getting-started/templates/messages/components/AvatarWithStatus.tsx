@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Badge from '@mui/joy/Badge';
-import type { AvatarProps } from '@mui/joy/Avatar';
-import Avatar from '@mui/joy/Avatar';
+import Avatar, { AvatarProps } from '@mui/joy/Avatar';
 
 type AvatarWithStatusProps = AvatarProps & {
   online?: boolean;

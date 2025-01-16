@@ -1,9 +1,8 @@
 import * as babel from '@babel/core';
 import * as babelTypes from '@babel/types';
 import { v4 as uuid } from 'uuid';
-import type { GeneratePropTypesOptions } from './generatePropTypes';
-import { generatePropTypes } from './generatePropTypes';
-import type { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
+import { generatePropTypes, GeneratePropTypesOptions } from './generatePropTypes';
+import { PropTypesComponent, PropTypeDefinition, LiteralType } from './models';
 
 export interface InjectPropTypesInFileOptions
   extends Pick<

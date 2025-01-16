@@ -1,16 +1,15 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/useSwitch';
-import type { Theme } from '../styles';
-import { styled, useThemeProps } from '../styles';
+import { styled, useThemeProps, Theme } from '../styles';
 
 import useSlot from '../utils/useSlot';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-import type { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
+import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
 import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {

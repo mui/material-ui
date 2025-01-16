@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { OverridableComponent, OverrideProps } from '@mui/types';
-import type { Theme as SystemTheme } from '../createTheme';
-import type {
+import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
+import { Theme as SystemTheme } from '../createTheme';
+import {
   SxProps,
   AllSystemCSSProperties,
   ResponsiveStyleValue,

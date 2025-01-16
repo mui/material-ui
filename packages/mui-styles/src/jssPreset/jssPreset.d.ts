@@ -1,3 +1,3 @@
-import type { JssOptions } from 'jss';
+import { JssOptions } from 'jss';
 
 export default function jssPreset(): JssOptions;

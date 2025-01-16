@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTab } from '@mui/base/useTab';
@@ -9,7 +9,7 @@ import { StyledListItemButton } from '../ListItemButton/ListItemButton';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getTabUtilityClass } from './tabClasses';
-import type { TabOwnerState, TabTypeMap } from './TabProps';
+import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 import useSlot from '../utils/useSlot';

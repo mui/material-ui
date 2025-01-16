@@ -3,17 +3,15 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useTranslate } from '@mui/docs/i18n';
 import { SectionTitle } from '@mui/docs/SectionTitle';
-import type { ComponentApiContent } from '@mui-internal/api-docs-builder';
-import type {
-  ApiDisplayOptions} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
+import { ComponentApiContent } from '@mui-internal/api-docs-builder';
 import ToggleDisplayOption, {
+  ApiDisplayOptions,
   useApiPageOption,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import SlotsList from 'docs/src/modules/components/ApiPage/list/SlotsList';
 import SlotsTable from 'docs/src/modules/components/ApiPage/table/SlotsTable';
-import type {
-  SlotDefinition} from 'docs/src/modules/components/ApiPage/definitions/slots';
 import {
+  SlotDefinition,
   getSlotsApiDefinitions,
 } from 'docs/src/modules/components/ApiPage/definitions/slots';
 

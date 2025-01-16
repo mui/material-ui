@@ -1,6 +1,5 @@
 import * as recast from 'recast';
-import type { PropTypeDescriptor } from 'react-docgen';
-import { parse as docgenParse } from 'react-docgen';
+import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
 import { escapeCell, escapeEntities, joinUnionTypes } from '../buildApi';
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {

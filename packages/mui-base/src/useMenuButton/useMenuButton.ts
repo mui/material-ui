@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import type { UseMenuButtonParameters, UseMenuButtonReturnValue } from './useMenuButton.types';
+import { UseMenuButtonParameters, UseMenuButtonReturnValue } from './useMenuButton.types';
 import { DropdownContext } from '../useDropdown/DropdownContext';
 import { DropdownActionTypes } from '../useDropdown/useDropdown.types';
 import { useButton } from '../useButton/useButton';
-import type { EventHandlers } from '../utils/types';
-import type { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import { EventHandlers } from '../utils/types';
+import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { extractEventHandlers } from '../utils';
 

@@ -1,15 +1,13 @@
 import * as React from 'react';
-import type {
+import {
+  Select as BaseSelect,
   SelectProps,
-  SelectRootSlotProps} from '@mui/base/Select';
-import {
-  Select as BaseSelect
+  SelectRootSlotProps,
 } from '@mui/base/Select';
-import type {
-  OptionProps,
-  OptionOwnerState} from '@mui/base/Option';
 import {
-  Option as BaseOption
+  Option as BaseOption,
+  OptionProps,
+  OptionOwnerState,
 } from '@mui/base/Option';
 import { useTheme } from '@mui/system';
 import clsx from 'clsx';

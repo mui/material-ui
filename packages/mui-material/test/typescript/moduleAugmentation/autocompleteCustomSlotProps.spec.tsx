@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
-import type { PaperProps } from '@mui/material/Paper';
-import Paper from '@mui/material/Paper';
-import type { PopperProps } from '@mui/material/Popper';
-import Popper from '@mui/material/Popper';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Popper, { PopperProps } from '@mui/material/Popper';
 import TextField from '@mui/material/TextField';
 
 declare module '@mui/material/Autocomplete' {

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import type { Theme } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
-import type {
+import { styled, Theme } from '@mui/material/styles';
+import MuiTextField, {
   FilledTextFieldProps,
   StandardTextFieldProps,
 } from '@mui/material/TextField';
-import MuiTextField from '@mui/material/TextField';
 import { selectClasses } from '@mui/material/Select';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 

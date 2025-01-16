@@ -1,11 +1,10 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { PolymorphicComponent, WithOptionalOwnerState } from '../utils';
-import { useSlotProps } from '../utils';
+import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabsUtilityClass } from './tabsClasses';
-import type { TabsOwnerState, TabsProps, TabsRootSlotProps, TabsTypeMap } from './Tabs.types';
+import { TabsOwnerState, TabsProps, TabsRootSlotProps, TabsTypeMap } from './Tabs.types';
 import { useTabs } from '../useTabs';
 import { TabsProvider } from '../useTabs/TabsProvider';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';

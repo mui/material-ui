@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import type { ListProps } from '@mui/joy/List';
-import List from '@mui/joy/List';
+import List, { ListProps } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
 import Radio from '@mui/joy/Radio';

@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { OverrideProps } from '@mui/types';
-import type { ResponsiveStyleValue } from '@mui/system';
-import type { SxProps, SystemProps } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverrideProps } from '@mui/types';
+import { ResponsiveStyleValue } from '@mui/system';
+import { SxProps, SystemProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type StackSlot = 'root';
 

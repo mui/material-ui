@@ -1,4 +1,4 @@
-import type { SlotComponentProps } from '@mui/utils';
+import { SlotComponentProps } from '@mui/utils';
 import clsx from 'clsx';
 
 export default function mergeSlotProps<

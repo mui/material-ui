@@ -2,11 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getDialogActionsUtilityClass } from './dialogActionsClasses';
-import type { DialogActionsProps, DialogActionsTypeMap } from './DialogActionsProps';
+import { DialogActionsProps, DialogActionsTypeMap } from './DialogActionsProps';
 import useSlot from '../utils/useSlot';
 import { StyledCardActionsRoot } from '../CardActions/CardActions';
 

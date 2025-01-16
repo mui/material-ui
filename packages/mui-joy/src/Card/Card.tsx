@@ -3,7 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
@@ -12,10 +12,10 @@ import { useThemeProps } from '../styles';
 import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
-import type { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
+import { CardProps, CardOwnerState, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 import useSlot from '../utils/useSlot';
-import type { DividerProps } from '../Divider';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: CardOwnerState) => {
   const { size, variant, color, orientation } = ownerState;

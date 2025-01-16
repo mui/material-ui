@@ -1,6 +1,6 @@
 'use client';
-import type * as React from 'react';
-import type { ClassValue } from 'clsx';
+import * as React from 'react';
+import { ClassValue } from 'clsx';
 import useForkRef from '@mui/utils/useForkRef';
 import appendOwnerState from '@mui/utils/appendOwnerState';
 import resolveComponentProps from '@mui/utils/resolveComponentProps';

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { InputProps } from '@mui/base/Input';
-import { Input as BaseInput } from '@mui/base/Input';
+import { Input as BaseInput, InputProps } from '@mui/base/Input';
 import { styled } from '@mui/system';
 
 const Input = React.forwardRef(function CustomInput(

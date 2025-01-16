@@ -1,6 +1,6 @@
 import { css } from '@mui/material-pigment-css';
 import Alert from '@mui/material/Alert';
-import type { FallbackProps } from 'react-error-boundary';
+import { FallbackProps } from 'react-error-boundary';
 
 export function ErrorBoundaryFallback({ error }: FallbackProps) {
   const err = error as Error;

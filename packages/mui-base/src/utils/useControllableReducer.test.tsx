@@ -3,7 +3,7 @@ import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
 import { useControllableReducer } from './useControllableReducer';
-import type { ControllableReducerParameters } from './useControllableReducer.types';
+import { ControllableReducerParameters } from './useControllableReducer.types';
 
 interface TestState {
   make: string;

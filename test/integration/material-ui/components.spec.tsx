@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { createStyles } from '@mui/styles';
-import type { LinkProps as ReactRouterLinkProps } from 'react-router';
-import { Link as ReactRouterLink } from 'react-router';
+import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router';
 import { expectType } from '@mui/types';
 import {
   AppBar,
@@ -76,9 +75,9 @@ import {
   Typography,
   ListItemButton,
 } from '@mui/material';
-import type { Theme } from '@mui/material/styles';
-import type { ButtonBaseActions } from '@mui/material/ButtonBase';
-import type { IconButtonProps } from '@mui/material/IconButton';
+import { Theme } from '@mui/material/styles';
+import { ButtonBaseActions } from '@mui/material/ButtonBase';
+import { IconButtonProps } from '@mui/material/IconButton';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 
 const log = console.log;

@@ -4,25 +4,22 @@ import PropTypes from 'prop-types';
 import kebabCase from 'lodash/kebabCase';
 import { useRouter } from 'next/router';
 import exactProp from '@mui/utils/exactProp';
-import type { Translate} from '@mui/docs/i18n';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import type { SectionTitleProps } from '@mui/docs/SectionTitle';
-import { SectionTitle } from '@mui/docs/SectionTitle';
+import { Translate, useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { SectionTitle, SectionTitleProps } from '@mui/docs/SectionTitle';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import type { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
+import { ComponentApiContent, PropsTranslations } from '@mui-internal/api-docs-builder';
 import PropertiesSection from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import ClassesSection from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import SlotsSection from 'docs/src/modules/components/ApiPage/sections/SlotsSection';
 import { getPropsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/properties';
 import { getClassApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/classes';
-import type {
-  ApiDisplayOptions} from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import {
+  ApiDisplayOptions,
   DEFAULT_API_LAYOUT_STORAGE_KEYS,
 } from 'docs/src/modules/components/ApiPage/sections/ToggleDisplayOption';
 import { getSlotsApiDefinitions } from 'docs/src/modules/components/ApiPage/definitions/slots';
-import type { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
+import { LayoutStorageKeys } from 'docs/src/modules/components/ApiPage';
 
 function getTranslatedHeader(t: Translate, header: string, title?: string) {
   const translations: Record<string, string> = {

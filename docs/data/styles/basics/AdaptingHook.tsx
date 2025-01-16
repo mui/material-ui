@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@mui/styles';
-import type { ButtonProps as MuiButtonProps } from '@mui/material/Button';
-import Button from '@mui/material/Button';
+import Button, { ButtonProps as MuiButtonProps } from '@mui/material/Button';
 
 interface Props {
   color: 'red' | 'blue';

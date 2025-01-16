@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { getPath } from '@mui/system';
 import { useThemeProps } from '../styles';
@@ -11,7 +11,7 @@ import { applySoftInversion, applySolidInversion } from '../colorInversion';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
-import type { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
+import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: SheetOwnerState) => {

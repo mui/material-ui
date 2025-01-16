@@ -1,11 +1,11 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '../styles';
-import type { InternalStandardProps as StandardProps } from '..';
-import type { FabProps } from '../Fab';
-import type { TransitionProps } from '../transitions';
-import type { SpeedDialClasses } from './speedDialClasses';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '..';
+import { FabProps } from '../Fab';
+import { TransitionProps } from '../transitions';
+import { SpeedDialClasses } from './speedDialClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';

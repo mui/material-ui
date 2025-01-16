@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import type { TransitionContextValue } from './TransitionContext';
+import { TransitionContextValue } from './TransitionContext';
 
 /**
  * Allows child elements to be transitioned in and out.

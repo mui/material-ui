@@ -1,10 +1,9 @@
 import * as React from 'react';
-import type {
-  SelectListboxSlotProps,
-  SelectRootSlotProps} from '@mui/base/Select';
 import {
   Select,
-  selectClasses
+  selectClasses,
+  SelectListboxSlotProps,
+  SelectRootSlotProps,
 } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { useTheme } from '@mui/system';

@@ -3,8 +3,7 @@ import clsx from 'clsx';
 
 // Base UI imports
 import { Badge, badgeClasses } from '@mui/base/Badge';
-import type { InputProps } from '@mui/base/Input';
-import { Input } from '@mui/base/Input';
+import { Input, InputProps } from '@mui/base/Input';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import { MenuItem, menuItemClasses } from '@mui/base/MenuItem';
@@ -14,7 +13,7 @@ import { Option } from '@mui/base/Option';
 import { Select } from '@mui/base/Select';
 import { Slider, sliderClasses } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
-import type { SnackbarCloseReason } from '@mui/base/useSnackbar';
+import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import { Switch, switchClasses } from '@mui/base/Switch';
 import { Tab } from '@mui/base/Tab';
 import { Tabs } from '@mui/base/Tabs';

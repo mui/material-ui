@@ -1,6 +1,6 @@
-import type * as React from 'react';
-import type { OverridableStringUnion, OverrideProps } from '@mui/types';
-import type {
+import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import {
   ColorPaletteProp,
   SxProps,
   SystemProps,
@@ -9,7 +9,7 @@ import type {
   VariantProp,
   TextColor,
 } from '../styles/types';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export type LinkSlot = 'root' | 'startDecorator' | 'endDecorator';
 

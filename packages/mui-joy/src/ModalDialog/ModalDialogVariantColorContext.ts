@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { ModalDialogProps } from './ModalDialogProps';
+import { ModalDialogProps } from './ModalDialogProps';
 
 const ModalDialogVariantColorContext = React.createContext<
   | undefined

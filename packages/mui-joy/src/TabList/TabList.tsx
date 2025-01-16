@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { useTabsList, TabsListProvider } from '@mui/base/useTabsList';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -11,7 +11,7 @@ import { StyledList } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
-import type { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
+import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
 import tabClasses from '../Tab/tabClasses';
 import useSlot from '../utils/useSlot';
 

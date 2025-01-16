@@ -1,15 +1,12 @@
 import * as React from 'react';
 import NextLink from 'next/link';
-import type { Theme } from '@mui/material/styles';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
-import type { MenuListProps } from '@mui/material/MenuList';
-import MenuList from '@mui/material/MenuList';
-import type { MenuItemProps } from '@mui/material/MenuItem';
-import MenuItem from '@mui/material/MenuItem';
+import MenuList, { MenuListProps } from '@mui/material/MenuList';
+import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';

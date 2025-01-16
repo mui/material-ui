@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '../styles';
-import type { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import type { OverrideProps } from '../OverridableComponent';
-import type { MenuItemClasses } from './menuItemClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '../styles';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
+import { MenuItemClasses } from './menuItemClasses';
 
 export interface MenuItemOwnProps {
   /**

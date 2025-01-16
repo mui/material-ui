@@ -3,12 +3,11 @@ import Container from '@mui/joy/Container';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
-import type {
-  TypographySystem} from '@mui/joy/styles';
 import {
   CssVarsProvider,
   useColorScheme,
   useTheme,
+  TypographySystem,
   createGetCssVar,
 } from '@mui/joy/styles';
 

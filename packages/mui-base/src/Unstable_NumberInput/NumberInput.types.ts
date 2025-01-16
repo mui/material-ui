@@ -1,12 +1,12 @@
-import type { Simplify } from '@mui/types';
-import type { FormControlState } from '../FormControl';
-import type {
+import { Simplify } from '@mui/types';
+import { FormControlState } from '../FormControl';
+import {
   UseNumberInputParameters,
   UseNumberInputRootSlotProps,
   UseNumberInputIncrementButtonSlotProps,
   UseNumberInputDecrementButtonSlotProps,
 } from '../unstable_useNumberInput/useNumberInput.types';
-import type { PolymorphicProps, SlotComponentProps } from '../utils';
+import { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface NumberInputRootSlotPropsOverrides {}
 export interface NumberInputInputSlotPropsOverrides {}

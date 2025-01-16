@@ -1,4 +1,4 @@
-import type * as CSS from 'csstype';
+import * as CSS from 'csstype';
 
 /**
  * All non-vendor-prefixed CSS properties. (Also allows `number` in order to support CSS-in-JS libs,

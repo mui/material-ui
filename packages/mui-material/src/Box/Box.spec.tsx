@@ -1,9 +1,7 @@
 import * as React from 'react';
-import type { Box as SystemBox, BoxProps as SystemBoxProps} from '@mui/system';
-import { createBox } from '@mui/system';
+import { Box as SystemBox, BoxProps as SystemBoxProps, createBox } from '@mui/system';
 import { expectType } from '@mui/types';
-import type { BoxProps as MaterialBoxProps } from '@mui/material/Box';
-import Box from '@mui/material/Box';
+import Box, { BoxProps as MaterialBoxProps } from '@mui/material/Box';
 import { createTheme } from '@mui/material/styles';
 
 function ThemeValuesCanBeSpread() {

@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import type { OverrideProps } from '../OverridableComponent';
-import type { Theme } from '../styles';
-import type { StepButtonClasses } from './stepButtonClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
+import { StepButtonClasses } from './stepButtonClasses';
 
 /**
  * @deprecated use `StepButtonProps['icon']` instead.

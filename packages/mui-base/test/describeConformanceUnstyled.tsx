@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import type {
+import {
   MuiRenderResult,
   RenderOptions,
-  ConformanceOptions,
-  SlotTestingOptions} from '@mui/internal-test-utils';
-import {
   screen,
   createDescribe,
+  ConformanceOptions,
+  SlotTestingOptions,
   describeRef,
   randomStringValue,
   testComponentProp,

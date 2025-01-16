@@ -1,4 +1,4 @@
-import type { SxProps } from '../styles/types';
+import { SxProps } from '../styles/types';
 
 export type SlotCommonProps = {
   component?: React.ElementType;

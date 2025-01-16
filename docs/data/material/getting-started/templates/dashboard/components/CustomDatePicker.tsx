@@ -1,13 +1,12 @@
 import * as React from 'react';
-import type { Dayjs } from 'dayjs';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import Button from '@mui/material/Button';
 import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import type { UseDateFieldProps } from '@mui/x-date-pickers/DateField';
+import { UseDateFieldProps } from '@mui/x-date-pickers/DateField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import type {
+import {
   BaseSingleInputFieldProps,
   DateValidationError,
   FieldSection,

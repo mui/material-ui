@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { DistributiveOmit, OverridableTypeMap } from '@mui/types';
+import * as React from 'react';
+import { DistributiveOmit, OverridableTypeMap } from '@mui/types';
 
 /**
  * A component whose root component can be controlled explicitly with a generic type parameter.

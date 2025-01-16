@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { Theme} from '@mui/material/styles';
-import { alpha } from '@mui/material/styles';
+import { Theme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';

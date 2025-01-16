@@ -7,11 +7,11 @@ import {
   unstable_isMuiElement as isMuiElement,
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverrideProps, DefaultComponentProps } from '@mui/types';
+import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getToggleButtonGroupUtilityClass } from './toggleButtonGroupClasses';
-import type {
+import {
   ToggleButtonGroupProps,
   ToggleButtonGroupTypeMap,
   SupportedValue,
@@ -21,7 +21,7 @@ import useSlot from '../utils/useSlot';
 import { StyledButtonGroup } from '../ButtonGroup/ButtonGroup';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
-import type { DividerProps } from '../Divider';
+import { DividerProps } from '../Divider';
 
 interface InternalChangeEventHandler<Value> {
   (event: React.MouseEvent, value: Value | Array<Value> | null): void;

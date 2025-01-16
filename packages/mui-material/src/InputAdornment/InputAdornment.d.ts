@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import type { Theme } from '..';
-import type { InputAdornmentClasses } from './inputAdornmentClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
+import { InputAdornmentClasses } from './inputAdornmentClasses';
 
 export interface InputAdornmentOwnProps {
   /**

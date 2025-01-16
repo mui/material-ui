@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { Breakpoint } from '@mui/system';
-import type { OverrideProps, OverridableStringUnion } from '@mui/types';
-import type { SxProps, TypographySystem } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { Breakpoint } from '@mui/system';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { SxProps, TypographySystem } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 

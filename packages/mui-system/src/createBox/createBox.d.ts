@@ -1,6 +1,6 @@
-import type { OverridableComponent } from '@mui/types';
-import type { BoxTypeMap } from '../Box';
-import type { Theme as SystemTheme } from '../createTheme';
+import { OverridableComponent } from '@mui/types';
+import { BoxTypeMap } from '../Box';
+import { Theme as SystemTheme } from '../createTheme';
 
 export default function createBox<
   T extends object = SystemTheme,

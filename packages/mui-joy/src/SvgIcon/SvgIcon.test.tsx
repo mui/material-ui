@@ -2,11 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import type {
-  SvgIconClassKey,
-  SvgIconProps} from '@mui/joy/SvgIcon';
 import SvgIcon, {
-  svgIconClasses as classes
+  svgIconClasses as classes,
+  SvgIconClassKey,
+  SvgIconProps,
 } from '@mui/joy/SvgIcon';
 import { ThemeProvider } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';

@@ -1,8 +1,8 @@
-import type * as CSS from 'csstype';
-import type { CSSObject } from '@mui/styled-engine';
-import type { StandardCSSProperties } from './StandardCssProperties';
-import type { AliasesCSSProperties } from './AliasesCSSProperties';
-import type { OverwriteCSSProperties } from './OverwriteCSSProperties';
+import * as CSS from 'csstype';
+import { CSSObject } from '@mui/styled-engine';
+import { StandardCSSProperties } from './StandardCssProperties';
+import { AliasesCSSProperties } from './AliasesCSSProperties';
+import { OverwriteCSSProperties } from './OverwriteCSSProperties';
 
 /**
  * The `css` function accepts arrays as values for mobile-first responsive styles.

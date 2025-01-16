@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
-import type { AccordionProps } from '@mui/material/Accordion';
-import MuiAccordion from '@mui/material/Accordion';
-import type {
-  AccordionSummaryProps} from '@mui/material/AccordionSummary';
+import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
 import MuiAccordionSummary, {
+  AccordionSummaryProps,
   accordionSummaryClasses,
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';

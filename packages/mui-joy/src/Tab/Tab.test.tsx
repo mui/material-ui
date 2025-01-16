@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
-import type { TabsProps } from '@mui/base/Tabs';
+import { TabsProps } from '@mui/base/Tabs';
 import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { useTabsList, TabsListProvider as BaseTabsListProvider } from '@mui/base/useTabsList';
 import { ThemeProvider } from '@mui/joy/styles';

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import type { InputOwnerState } from '@mui/base/Input';
-import { Input, inputClasses } from '@mui/base/Input';
+import { Input, inputClasses, InputOwnerState } from '@mui/base/Input';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 
 describe('<Input />', () => {

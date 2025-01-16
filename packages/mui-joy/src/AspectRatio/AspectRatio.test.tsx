@@ -3,9 +3,8 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { ThemeProvider } from '@mui/joy/styles';
-import type {
-  AspectRatioClassKey} from '@mui/joy/AspectRatio';
 import AspectRatio, {
+  AspectRatioClassKey,
   aspectRatioClasses as classes,
 } from '@mui/joy/AspectRatio';
 import describeConformance from '../../test/describeConformance';

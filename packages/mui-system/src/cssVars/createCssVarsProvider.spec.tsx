@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { OverridableStringUnion } from '@mui/types';
+import { OverridableStringUnion } from '@mui/types';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 
 interface JoyColorSchemeOverrides {}

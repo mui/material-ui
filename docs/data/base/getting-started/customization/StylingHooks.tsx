@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import type { UseSwitchParameters } from '@mui/base/useSwitch';
-import { useSwitch } from '@mui/base/useSwitch';
+import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 import { styled } from '@mui/system';
 
 const SwitchRoot = styled('span')`

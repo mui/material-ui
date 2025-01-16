@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { BoxProps } from '@mui/material/Box';
-import Box from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 
 function Item(props: BoxProps) {
   const { sx, ...other } = props;

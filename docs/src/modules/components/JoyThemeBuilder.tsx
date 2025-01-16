@@ -6,16 +6,14 @@ import { deepmerge } from '@mui/utils';
 import { decomposeColor } from '@mui/system';
 import * as mdColors from '@mui/material/colors';
 import { useTheme as useMuiTheme } from '@mui/material/styles';
-import type {
-  ColorPaletteProp,
-  VariantProp,
-  PaletteVariant} from '@mui/joy/styles';
 import {
   CssVarsProvider,
-  extendTheme
+  extendTheme,
+  ColorPaletteProp,
+  VariantProp,
+  PaletteVariant,
 } from '@mui/joy/styles';
-import type { AutocompleteProps } from '@mui/joy/Autocomplete';
-import Autocomplete from '@mui/joy/Autocomplete';
+import Autocomplete, { AutocompleteProps } from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import Alert from '@mui/joy/Alert';
 import AspectRatio from '@mui/joy/AspectRatio';
@@ -28,8 +26,7 @@ import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
-import type { InputProps } from '@mui/joy/Input';
-import Input from '@mui/joy/Input';
+import Input, { InputProps } from '@mui/joy/Input';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
@@ -41,8 +38,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import ModalClose from '@mui/joy/ModalClose';
-import type { SheetProps } from '@mui/joy/Sheet';
-import Sheet from '@mui/joy/Sheet';
+import Sheet, { SheetProps } from '@mui/joy/Sheet';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Tabs from '@mui/joy/Tabs';
@@ -67,8 +63,7 @@ import LightMode from '@mui/icons-material/LightMode';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
-import type { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
-import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
+import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
 import generateThemeAugmentation from 'docs/src/modules/joy/generateThemeAugmentation';
 import literalToObject from 'docs/src/modules/joy/literalToObject';

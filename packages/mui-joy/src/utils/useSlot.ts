@@ -1,9 +1,9 @@
 'use client';
-import type * as React from 'react';
-import type { ClassValue } from 'clsx';
+import * as React from 'react';
+import { ClassValue } from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { appendOwnerState, resolveComponentProps, mergeSlotProps } from '@mui/base/utils';
-import type { ApplyColorInversion } from '../styles/types';
+import { ApplyColorInversion } from '../styles/types';
 
 export type WithCommonProps<T> = T & {
   className?: string;

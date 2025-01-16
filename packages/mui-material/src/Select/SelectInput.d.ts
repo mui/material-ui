@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '..';
-import type { MenuProps } from '../Menu';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '..';
+import { MenuProps } from '../Menu';
 
 /**
  * The change can be caused by different kind of events.

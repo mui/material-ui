@@ -9,8 +9,7 @@ import {
   screen,
   simulatePointerDevice,
 } from '@mui/internal-test-utils';
-import type { UseSwitchParameters } from '@mui/base/useSwitch';
-import { useSwitch } from '@mui/base/useSwitch';
+import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
 
 describe('useSwitch', () => {
   const { render } = createRenderer();

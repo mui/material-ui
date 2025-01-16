@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { FormControlState } from '@mui/base/FormControl';
-import { FormControl } from '@mui/base/FormControl';
+import { FormControl, FormControlState } from '@mui/base/FormControl';
 import { Input, inputClasses } from '@mui/base/Input';
 import { styled } from '@mui/system';
 

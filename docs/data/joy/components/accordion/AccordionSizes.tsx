@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { AccordionGroupProps } from '@mui/joy/AccordionGroup';
-import AccordionGroup from '@mui/joy/AccordionGroup';
+import AccordionGroup, { AccordionGroupProps } from '@mui/joy/AccordionGroup';
 import Accordion from '@mui/joy/Accordion';
 import AccordionDetails from '@mui/joy/AccordionDetails';
 import AccordionSummary from '@mui/joy/AccordionSummary';

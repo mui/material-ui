@@ -3,14 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useButton } from '@mui/base/useButton';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
-import type { Interpolation } from '@mui/system';
+import { Interpolation } from '@mui/system';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
-import type { Theme} from '../styles';
-import { styled, useThemeProps } from '../styles';
+import { styled, Theme, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import CircularProgress from '../CircularProgress';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
-import type { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
+import { ButtonOwnerState, ButtonTypeMap, ExtendButton } from './ButtonProps';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from '../ToggleButtonGroup/ToggleButtonGroupContext';
 

@@ -3,9 +3,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import GlobalStyles from '../GlobalStyles';
 import defaultTheme from '../styles/defaultTheme';
-import type { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';
-import type { Components } from '../styles/components';
-import type { CssBaselineProps } from './CssBaselineProps';
+import { Theme, DefaultColorScheme, ColorSystem } from '../styles/types';
+import { Components } from '../styles/components';
+import { CssBaselineProps } from './CssBaselineProps';
 
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.

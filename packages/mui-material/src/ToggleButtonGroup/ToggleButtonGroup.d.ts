@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableStringUnion } from '@mui/types';
-import type { InternalStandardProps as StandardProps } from '..';
-import type { Theme } from '../styles';
-import type { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
+import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
 
 export interface ToggleButtonGroupPropsSizeOverrides {}
 

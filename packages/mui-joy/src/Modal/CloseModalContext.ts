@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { ModalProps } from './ModalProps';
+import { ModalProps } from './ModalProps';
 
 const CloseModalContext = React.createContext<undefined | ModalProps['onClose']>(undefined);
 

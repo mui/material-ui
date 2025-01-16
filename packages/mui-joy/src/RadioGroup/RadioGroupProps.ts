@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { OverrideProps } from '@mui/types';
-import type { RadioProps } from '../Radio/RadioProps';
-import type { ApplyColorInversion, SxProps } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverrideProps } from '@mui/types';
+import { RadioProps } from '../Radio/RadioProps';
+import { ApplyColorInversion, SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type RadioGroupSlot = 'root';
 

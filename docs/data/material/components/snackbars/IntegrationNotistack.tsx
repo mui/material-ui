@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import type { VariantType} from 'notistack';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 
 function MyApp() {
   const { enqueueSnackbar } = useSnackbar();

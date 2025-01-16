@@ -10,7 +10,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_setRef as setRef,
 } from '@mui/utils';
-import type { PortalProps } from './Portal.types';
+import { PortalProps } from './Portal.types';
 
 function getContainer(container: PortalProps['container']) {
   return typeof container === 'function' ? container() : container;

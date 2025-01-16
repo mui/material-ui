@@ -1,4 +1,4 @@
-import type PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 declare const integerPropType: PropTypes.Requireable<number>;
 

@@ -1,5 +1,4 @@
-import type { Color } from '@mui/material';
-import { colors } from '@mui/material';
+import { colors, Color } from '@mui/material';
 
 const {
   amber,

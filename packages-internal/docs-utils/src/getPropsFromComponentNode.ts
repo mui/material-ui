@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import type { TypeScriptProject } from './createTypeScriptProject';
+import { TypeScriptProject } from './createTypeScriptProject';
 
 export interface ParsedProp {
   /**

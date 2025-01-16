@@ -3,8 +3,7 @@ import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
-import type { ModalDialogProps } from '@mui/joy/ModalDialog';
-import ModalDialog from '@mui/joy/ModalDialog';
+import ModalDialog, { ModalDialogProps } from '@mui/joy/ModalDialog';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
 

@@ -1,11 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
-import type { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
+import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
 import { getFormLabelUtilityClass } from './formLabelClasses';
 import FormControlContext from '../FormControl/FormControlContext';
 

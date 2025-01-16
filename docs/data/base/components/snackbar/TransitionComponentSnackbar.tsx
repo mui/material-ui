@@ -3,7 +3,7 @@ import { Transition } from 'react-transition-group';
 import { styled } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { Snackbar } from '@mui/base/Snackbar';
-import type { SnackbarCloseReason } from '@mui/base/useSnackbar';
+import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 export default function TransitionComponentSnackbar() {
   const [open, setOpen] = React.useState(false);

@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { UseButtonRootSlotProps } from '../useButton';
+import * as React from 'react';
+import { UseButtonRootSlotProps } from '../useButton';
 
 export interface UseTabParameters {
   /**

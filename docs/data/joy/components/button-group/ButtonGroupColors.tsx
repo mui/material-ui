@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { VariantProp } from '@mui/joy/styles';
+import { VariantProp } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import Stack from '@mui/joy/Stack';

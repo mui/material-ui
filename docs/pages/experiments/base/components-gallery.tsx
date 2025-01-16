@@ -13,14 +13,13 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { Popper } from '@mui/base/Popper';
 import { Unstable_Popup as Popup } from '@mui/base/Unstable_Popup';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
-import type { SelectRootSlotProps } from '@mui/base/Select';
-import { Select } from '@mui/base/Select';
+import { Select, SelectRootSlotProps } from '@mui/base/Select';
 import { Option } from '@mui/base/Option';
 import { Slider } from '@mui/base/Slider';
 import { Snackbar } from '@mui/base/Snackbar';
 // TODO: re-export from the @mui/base/Snackbar, if only using the component
 // it's not intuitive to import types from a different module
-import type { SnackbarCloseReason } from '@mui/base/useSnackbar';
+import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 import { Switch } from '@mui/base/Switch';
 import { TablePagination } from '@mui/base/TablePagination';
 import { Tabs } from '@mui/base/Tabs';

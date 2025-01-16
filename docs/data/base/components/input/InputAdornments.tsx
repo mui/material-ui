@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Box, styled } from '@mui/system';
 import { Button } from '@mui/base/Button';
-import type { InputProps} from '@mui/base/Input';
-import { Input as BaseInput, inputClasses } from '@mui/base/Input';
+import { Input as BaseInput, InputProps, inputClasses } from '@mui/base/Input';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ListItem from '@mui/material/ListItem';
 import FormLabel from '@mui/material/FormLabel';
-import type { SxProps, Theme } from '@mui/material/styles';
+import { SxProps, Theme } from '@mui/material/styles';
 
 interface ListHeaderProps {
   children: React.ReactNode;

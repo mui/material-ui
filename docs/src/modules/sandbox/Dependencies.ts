@@ -1,5 +1,5 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import type { DemoData } from './types';
+import { DemoData } from './types';
 
 const packagesWithBundledTypes = [
   'date-fns',

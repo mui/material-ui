@@ -1,4 +1,4 @@
-import type { EventHandlers } from '../types';
+import { EventHandlers } from '../types';
 
 /**
  * Extracts event handlers from a given object.

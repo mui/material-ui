@@ -1,5 +1,5 @@
-import type { Breakpoint } from '@mui/system';
-import type { Typography } from './createTypography';
+import { Breakpoint } from '@mui/system';
+import { Typography } from './createTypography';
 
 export interface ResponsiveFontSizesOptions {
   breakpoints?: Breakpoint[];

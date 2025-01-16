@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import type { Theme } from '../styles';
-import type { PaperProps } from '../Paper';
-import type { StepperClasses } from './stepperClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
+import { PaperProps } from '../Paper';
+import { StepperClasses } from './stepperClasses';
 
 export type Orientation = 'horizontal' | 'vertical';
 

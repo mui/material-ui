@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { AppBarProps } from '@mui/material/AppBar';
-import MuiAppBar from '@mui/material/AppBar';
+import MuiAppBar, { AppBarProps } from '@mui/material/AppBar';
 
 function AppBar(props: AppBarProps) {
   return <MuiAppBar elevation={0} position="fixed" {...props} />;

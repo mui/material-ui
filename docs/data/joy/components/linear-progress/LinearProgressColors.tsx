@@ -6,7 +6,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import type { VariantProp } from '@mui/joy/styles';
+import { VariantProp } from '@mui/joy/styles';
 
 export default function LinearProgressColors() {
   const [variant, setVariant] = React.useState<VariantProp>('soft');

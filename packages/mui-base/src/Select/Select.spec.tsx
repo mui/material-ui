@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import type { SelectPopupSlotProps, SelectRootSlotProps } from '@mui/base/Select';
-import { Select } from '@mui/base/Select';
+import { Select, SelectPopupSlotProps, SelectRootSlotProps } from '@mui/base/Select';
 
 const SelectSlotPropsOverridesTest = (
   <Select

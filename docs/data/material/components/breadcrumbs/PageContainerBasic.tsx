@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import type { Navigation, Router } from '@toolpad/core/AppProvider';
-import { AppProvider } from '@toolpad/core/AppProvider';
+import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
 import {
   PageContainer,
   PageHeader,

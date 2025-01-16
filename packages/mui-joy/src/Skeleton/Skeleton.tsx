@@ -5,12 +5,11 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { keyframes, css } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
-import type { Components, TypographySystem } from '../styles';
-import { useThemeProps } from '../styles';
+import { OverridableComponent } from '@mui/types';
+import { useThemeProps, Components, TypographySystem } from '../styles';
 import styled from '../styles/styled';
 import { getSkeletonUtilityClass } from './skeletonClasses';
-import type { SkeletonOwnerState, SkeletonProps, SkeletonTypeMap } from './SkeletonProps';
+import { SkeletonOwnerState, SkeletonProps, SkeletonTypeMap } from './SkeletonProps';
 import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState: SkeletonOwnerState) => {

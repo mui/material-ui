@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import useLazyRef from '@mui/utils/useLazyRef';
-import type { TouchRippleActions } from '../ButtonBase/TouchRipple';
+import { TouchRippleActions } from '../ButtonBase/TouchRipple';
 
 type ControlledPromise<T = unknown> = Promise<T> & {
   resolve: Function;

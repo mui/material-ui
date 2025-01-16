@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import type { Palette} from '@mui/joy/styles';
-import { extendTheme, styled } from '@mui/joy/styles';
+import { extendTheme, Palette, styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
 import Tooltip from '@mui/joy/Tooltip';

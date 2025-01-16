@@ -1,22 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import type {
-  MuiRenderResult,
-  RenderOptions} from '@mui/internal-test-utils';
 import {
   createRenderer,
   fireEvent,
   act,
   screen,
+  MuiRenderResult,
+  RenderOptions,
   flushMicrotasks,
 } from '@mui/internal-test-utils';
 import userEvent from '@testing-library/user-event';
-import type { SelectListboxSlotProps} from '@mui/base/Select';
-import { Select, selectClasses } from '@mui/base/Select';
-import type { SelectOption } from '@mui/base/useOption';
-import type { OptionProps, OptionRootSlotProps} from '@mui/base/Option';
-import { Option, optionClasses } from '@mui/base/Option';
+import { Select, SelectListboxSlotProps, selectClasses } from '@mui/base/Select';
+import { SelectOption } from '@mui/base/useOption';
+import { Option, OptionProps, OptionRootSlotProps, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 

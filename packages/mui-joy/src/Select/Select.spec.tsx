@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import type { SelectOwnerState } from '@mui/joy/Select';
-import Select from '@mui/joy/Select';
+import Select, { SelectOwnerState } from '@mui/joy/Select';
 
 <Select defaultListboxOpen />;
 <Select

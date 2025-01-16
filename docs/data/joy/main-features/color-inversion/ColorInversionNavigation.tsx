@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { ColorPaletteProp } from '@mui/joy/styles';
+import { ColorPaletteProp } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';

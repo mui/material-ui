@@ -1,10 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import type { LinkProps as NextLinkProps } from 'next/link';
-import NextLink from 'next/link';
-import type { LinkProps as MuiLinkProps } from '@mui/material/Link';
-import MuiLink from '@mui/material/Link';
+import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import { useUserLanguage } from '../i18n';
 import { useDocsConfig } from '../DocsProvider';

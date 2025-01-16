@@ -1,5 +1,4 @@
-import type { Palette } from '@mui/joy/styles';
-import { extendTheme } from '@mui/joy/styles';
+import { extendTheme, Palette } from '@mui/joy/styles';
 
 const defaultTheme = extendTheme();
 

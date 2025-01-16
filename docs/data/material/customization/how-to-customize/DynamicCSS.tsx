@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { alpha, styled } from '@mui/material/styles';
-import type { SliderProps } from '@mui/material/Slider';
-import Slider from '@mui/material/Slider';
+import Slider, { SliderProps } from '@mui/material/Slider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 

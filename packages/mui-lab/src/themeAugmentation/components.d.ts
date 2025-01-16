@@ -1,4 +1,4 @@
-import type {
+import {
   ComponentsProps,
   ComponentsOverrides,
   ComponentsVariants,

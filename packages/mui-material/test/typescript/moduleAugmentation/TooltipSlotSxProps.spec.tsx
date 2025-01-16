@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import type { PaletteColor } from '@mui/material/styles';
+import { PaletteColor } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {

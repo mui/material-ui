@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import type * as React from 'react';
+import * as React from 'react';
 
 let warnedOnce = false;
 

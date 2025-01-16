@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import type { ListChildComponentProps } from 'react-window';
-import { FixedSizeList } from 'react-window';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
 
 function renderRow(props: ListChildComponentProps) {
   const { index, style } = props;

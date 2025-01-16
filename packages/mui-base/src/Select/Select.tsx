@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import type {
+import {
   SelectListboxSlotProps,
   SelectOwnerState,
   SelectPopupSlotProps,
@@ -10,16 +10,14 @@ import type {
   SelectRootSlotProps,
   SelectType,
 } from './Select.types';
-import type { SelectValue } from '../useSelect';
-import { useSelect } from '../useSelect';
-import type { WithOptionalOwnerState } from '../utils';
-import { useSlotProps } from '../utils';
+import { useSelect, SelectValue } from '../useSelect';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { Popup } from '../Unstable_Popup/Popup';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSelectUtilityClass } from './selectClasses';
 import { defaultOptionStringifier } from '../useSelect/defaultOptionStringifier';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
-import type { SelectOption } from '../useOption';
+import { SelectOption } from '../useOption';
 import { SelectProvider } from '../useSelect/SelectProvider';
 
 function defaultRenderValue<OptionValue>(

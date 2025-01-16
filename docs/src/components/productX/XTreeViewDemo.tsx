@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { animated, useSpring } from '@react-spring/web';
 import { styled } from '@mui/material/styles';
-import type { TransitionProps } from '@mui/material/transitions';
+import { TransitionProps } from '@mui/material/transitions';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import Frame from 'docs/src/components/action/Frame';
 import Box from '@mui/material/Box';
@@ -16,10 +16,9 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import { treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import type {
-  UseTreeItem2Parameters} from '@mui/x-tree-view/useTreeItem2';
 import {
-  unstable_useTreeItem2 as useTreeItem2
+  unstable_useTreeItem2 as useTreeItem2,
+  UseTreeItem2Parameters,
 } from '@mui/x-tree-view/useTreeItem2';
 import {
   TreeItem2Content,
@@ -29,7 +28,7 @@ import {
 } from '@mui/x-tree-view/TreeItem2';
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
 import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
-import type { TreeViewBaseItem } from '@mui/x-tree-view/models';
+import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 
 type FileType = 'image' | 'pdf' | 'video' | 'folder';
 

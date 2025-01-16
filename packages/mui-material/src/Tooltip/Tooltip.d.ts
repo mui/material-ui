@@ -1,10 +1,10 @@
-import type * as React from 'react';
-import type { MUIStyledCommonProps, SxProps } from '@mui/system';
-import type { PopperProps } from '@mui/material/Popper';
-import type { InternalStandardProps as StandardProps, Theme } from '..';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
-import type { TransitionProps } from '../transitions/transition';
-import type { TooltipClasses } from './tooltipClasses';
+import * as React from 'react';
+import { MUIStyledCommonProps, SxProps } from '@mui/system';
+import { PopperProps } from '@mui/material/Popper';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { TransitionProps } from '../transitions/transition';
+import { TooltipClasses } from './tooltipClasses';
 
 export interface TooltipComponentsPropsOverrides {}
 

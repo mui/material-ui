@@ -6,7 +6,7 @@ import AvatarWithStatus from './AvatarWithStatus';
 import ChatBubble from './ChatBubble';
 import MessageInput from './MessageInput';
 import MessagesPaneHeader from './MessagesPaneHeader';
-import type { ChatProps, MessageProps } from '../types';
+import { ChatProps, MessageProps } from '../types';
 
 type MessagesPaneProps = {
   chat: ChatProps;

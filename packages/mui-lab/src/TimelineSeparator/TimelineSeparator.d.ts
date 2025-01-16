@@ -1,8 +1,8 @@
-import type * as React from 'react';
-import type { InternalStandardProps as StandardProps } from '@mui/material';
-import type { Theme } from '@mui/material/styles';
-import type { SxProps } from '@mui/system';
-import type { TimelineSeparatorClasses } from './timelineSeparatorClasses';
+import * as React from 'react';
+import { InternalStandardProps as StandardProps } from '@mui/material';
+import { Theme } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import { TimelineSeparatorClasses } from './timelineSeparatorClasses';
 
 export interface TimelineSeparatorProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {

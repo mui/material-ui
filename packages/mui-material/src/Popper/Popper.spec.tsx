@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Instance } from '@popperjs/core';
+import { Instance } from '@popperjs/core';
 import Tooltip from '@mui/material/Tooltip';
 
 interface Props {

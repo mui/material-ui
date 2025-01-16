@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import type { Spacing } from './createSpacing';
-import createSpacing from './createSpacing';
+import createSpacing, { Spacing } from './createSpacing';
 
 describe('createSpacing', () => {
   it('should be configurable', () => {

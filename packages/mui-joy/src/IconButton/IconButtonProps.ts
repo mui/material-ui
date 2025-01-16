@@ -1,12 +1,12 @@
-import type * as React from 'react';
-import type {
+import * as React from 'react';
+import {
   OverridableComponent,
   OverridableStringUnion,
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import type { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type IconButtonSlot = 'root' | 'loadingIndicator';
 

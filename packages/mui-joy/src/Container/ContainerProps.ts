@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { OverrideProps } from '@mui/types';
-import type { Breakpoint } from '@mui/system';
-import type { SxProps } from '../styles/types';
+import * as React from 'react';
+import { OverrideProps } from '@mui/types';
+import { Breakpoint } from '@mui/system';
+import { SxProps } from '../styles/types';
 
 export type ContainerSlot = 'root';
 

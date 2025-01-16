@@ -1,10 +1,10 @@
-import type { CSSObject } from '@mui/styled-engine';
-import type { Breakpoints, BreakpointsOptions } from '../createBreakpoints/createBreakpoints';
-import type { Shape, ShapeOptions } from './shape';
-import type { Spacing, SpacingOptions } from './createSpacing';
-import type { SxConfig, SxProps } from '../styleFunctionSx';
-import type { ApplyStyles } from './applyStyles';
-import type { CssContainerQueries } from '../cssContainerQueries';
+import { CSSObject } from '@mui/styled-engine';
+import { Breakpoints, BreakpointsOptions } from '../createBreakpoints/createBreakpoints';
+import { Shape, ShapeOptions } from './shape';
+import { Spacing, SpacingOptions } from './createSpacing';
+import { SxConfig, SxProps } from '../styleFunctionSx';
+import { ApplyStyles } from './applyStyles';
+import { CssContainerQueries } from '../cssContainerQueries';
 
 export {
   Breakpoint,

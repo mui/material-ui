@@ -4,7 +4,7 @@ import { useTheme } from '@mui/system';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import { Snackbar } from '@mui/base/Snackbar';
-import type { SnackbarCloseReason } from '@mui/base/useSnackbar';
+import { SnackbarCloseReason } from '@mui/base/useSnackbar';
 
 function useIsDarkMode() {
   const theme = useTheme();

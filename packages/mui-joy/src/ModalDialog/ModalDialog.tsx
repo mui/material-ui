@@ -3,22 +3,22 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_isMuiElement as isMuiElement,
   unstable_useId as useId,
 } from '@mui/utils';
-import type { Breakpoint } from '@mui/system';
+import { Breakpoint } from '@mui/system';
 import { styled, useThemeProps } from '../styles';
-import type { Theme } from '../styles/types/theme';
+import { Theme } from '../styles/types/theme';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
-import type { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
+import { ModalDialogProps, ModalDialogOwnerState, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 import useSlot from '../utils/useSlot';
 import { StyledCardRoot } from '../Card/Card';
-import type { DividerProps } from '../Divider';
+import { DividerProps } from '../Divider';
 
 const useUtilityClasses = (ownerState: ModalDialogOwnerState) => {
   const { variant, color, size, layout } = ownerState;

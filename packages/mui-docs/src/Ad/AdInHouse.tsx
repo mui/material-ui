@@ -1,6 +1,5 @@
 import * as React from 'react';
-import type { AdParameters } from './AdDisplay';
-import AdDisplay from './AdDisplay';
+import AdDisplay, { AdParameters } from './AdDisplay';
 
 export default function AdInHouse(props: { ad: Omit<AdParameters, 'poweredby' | 'label'> }) {
   const { ad } = props;

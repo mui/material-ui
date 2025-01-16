@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { OverrideProps, OverridableStringUnion } from '@mui/types';
-import type { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
-import type { UseSnackbarParameters } from '@mui/base/useSnackbar';
-import type { ColorPaletteProp, VariantProp, ApplyColorInversion, SxProps } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
+import { UseSnackbarParameters } from '@mui/base/useSnackbar';
+import { ColorPaletteProp, VariantProp, ApplyColorInversion, SxProps } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type SnackbarSlot = 'root' | 'startDecorator' | 'endDecorator' | 'clickAway';
 

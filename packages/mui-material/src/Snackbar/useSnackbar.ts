@@ -5,12 +5,12 @@ import {
   unstable_useTimeout as useTimeout,
 } from '@mui/utils';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
-import type {
+import {
   UseSnackbarParameters,
   SnackbarCloseReason,
   UseSnackbarReturnValue,
 } from './useSnackbar.types';
-import type { EventHandlers } from '../utils/types';
+import { EventHandlers } from '../utils/types';
 
 /**
  * The basic building block for creating custom snackbar.

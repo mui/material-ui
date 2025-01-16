@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { Theme } from '..';
-import type { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import type { OverrideProps } from '../OverridableComponent';
-import type { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { Theme } from '..';
+import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
+import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
 
 export interface BottomNavigationActionOwnProps {
   /**

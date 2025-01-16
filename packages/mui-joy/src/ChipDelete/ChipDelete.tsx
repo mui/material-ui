@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/useButton';
@@ -10,7 +10,7 @@ import styled from '../styles/styled';
 import { useVariantColor } from '../styles/variantColorInheritance';
 import Cancel from '../internal/svg-icons/Cancel';
 import { getChipDeleteUtilityClass } from './chipDeleteClasses';
-import type { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
+import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
 import useSlot from '../utils/useSlot';
 import { StyledIconButton } from '../IconButton/IconButton';

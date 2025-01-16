@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableStringUnion } from '@mui/types';
-import type { Theme } from '../styles';
-import type { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import type { IconClasses } from './iconClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
+import { Theme } from '../styles';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { IconClasses } from './iconClasses';
 
 export interface IconPropsSizeOverrides {}
 

@@ -4,7 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 import ChatRounded from '@mui/icons-material/ChatRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { styled } from '@mui/material/styles';
-import type { MarkdownHeaders } from '@mui/internal-markdown';
+import { MarkdownHeaders } from '@mui/internal-markdown';
 import SketchIcon from '../svgIcons/SketchIcon';
 import FigmaIcon from '../svgIcons/FigmaIcon';
 import BundleSizeIcon from '../svgIcons/BundleSizeIcon';

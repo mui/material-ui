@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { OverridableStringUnion, OverrideProps } from '@mui/types';
-import type { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
-import type { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import * as React from 'react';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
 
 export type StepIndicatorSlot = 'root';
 

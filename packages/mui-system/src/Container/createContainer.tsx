@@ -1,16 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import type { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
-import type { OverridableComponent } from '@mui/types';
+import { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
+import { OverridableComponent } from '@mui/types';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '@mui/utils/capitalize';
-import type { ContainerProps, ContainerTypeMap } from './ContainerProps';
+import { ContainerProps, ContainerTypeMap } from './ContainerProps';
 import useThemePropsSystem from '../useThemeProps';
 import systemStyled from '../styled';
-import type { Theme as DefaultTheme, Breakpoint } from '../createTheme';
-import createTheme from '../createTheme';
+import createTheme, { Theme as DefaultTheme, Breakpoint } from '../createTheme';
 
 interface StyleFnProps<Theme> extends ContainerProps {
   theme: Theme;

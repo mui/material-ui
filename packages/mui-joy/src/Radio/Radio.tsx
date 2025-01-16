@@ -1,14 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
 import useSlot from '../utils/useSlot';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
-import type { RadioOwnerState, RadioTypeMap } from './RadioProps';
+import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyNestedContext } from '../Typography/Typography';
 import FormControlContext from '../FormControl/FormControlContext';

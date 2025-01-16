@@ -1,5 +1,5 @@
-import type { UseMediaQueryOptions } from '@mui/system/useMediaQuery';
-import type { Theme } from '../styles/createTheme';
+import { UseMediaQueryOptions } from '@mui/system/useMediaQuery';
+import { Theme } from '../styles/createTheme';
 
 export * from '@mui/system/useMediaQuery';
 

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import type { CardProps } from '@mui/joy/Card';
-import Card from '@mui/joy/Card';
+import Card, { CardProps } from '@mui/joy/Card';
 import Checkbox from '@mui/joy/Checkbox';
 import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';

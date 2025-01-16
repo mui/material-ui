@@ -1,4 +1,4 @@
-import type { Interpolation } from '@mui/system';
+import { Interpolation } from '@mui/system';
 import { createTheme, styled } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {

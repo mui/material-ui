@@ -1,13 +1,13 @@
-import type * as React from 'react';
-import type { Simplify } from '@mui/types';
-import type { ListAction } from './listActions.types';
-import type {
+import * as React from 'react';
+import { Simplify } from '@mui/types';
+import { ListAction } from './listActions.types';
+import {
   ActionWithContext,
   ControllableReducerAction,
   StateChangeCallback,
 } from '../utils/useControllableReducer.types';
 import type { ListContextValue } from './ListContext';
-import type { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 type ListActionContextRequiredKeys =
   | 'disabledItemsFocusable'

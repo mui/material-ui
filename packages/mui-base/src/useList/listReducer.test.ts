@@ -1,7 +1,7 @@
-import type * as React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { listReducer } from './listReducer';
-import type { ListReducerAction, ListState } from './useList.types';
+import { ListReducerAction, ListState } from './useList.types';
 import { ListActionTypes } from './listActions.types';
 
 describe('listReducer', () => {

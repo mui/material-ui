@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { TabsTypeMap } from '@mui/material/Tabs';
-import type { DistributiveOmit } from '@mui/types';
-import type { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import * as React from 'react';
+import { TabsTypeMap } from '@mui/material/Tabs';
+import { DistributiveOmit } from '@mui/types';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 
 interface TabListOwnProps extends DistributiveOmit<TabsTypeMap['props'], 'children' | 'value'> {
   /**

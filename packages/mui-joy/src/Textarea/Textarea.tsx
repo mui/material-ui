@@ -2,13 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import type { OverridableComponent } from '@mui/types';
+import { OverridableComponent } from '@mui/types';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
 
 import useSlot from '../utils/useSlot';
-import type { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
+import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
 import useForwardedInput from '../Input/useForwardedInput';
 

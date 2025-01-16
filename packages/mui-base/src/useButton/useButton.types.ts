@@ -1,5 +1,5 @@
-import type * as React from 'react';
-import type { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
+import * as React from 'react';
+import { MuiCancellableEventHandler } from '../utils/MuiCancellableEvent';
 
 export interface UseButtonParameters {
   /**

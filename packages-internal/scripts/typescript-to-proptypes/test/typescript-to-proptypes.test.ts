@@ -4,12 +4,11 @@ import * as ts from 'typescript';
 import { expect } from 'chai';
 import glob from 'fast-glob';
 import prettier from 'prettier';
-import type { TypeScriptProject} from '@mui/internal-docs-utils';
-import { createTypeScriptProjectBuilder } from '@mui/internal-docs-utils';
+import { TypeScriptProject, createTypeScriptProjectBuilder } from '@mui/internal-docs-utils';
 import { generatePropTypes } from '../src/generatePropTypes';
 import { injectPropTypesInFile } from '../src/injectPropTypesInFile';
 import { getPropTypesFromFile } from '../src/getPropTypesFromFile';
-import type { TestOptions } from './types';
+import { TestOptions } from './types';
 
 const testCases = glob
   .sync('**/input.{d.ts,ts,tsx}', { absolute: true, cwd: __dirname })

@@ -1,4 +1,4 @@
-import type * as React from 'react';
+import * as React from 'react';
 
 export const reflow = (node: Element) => node.scrollTop;
 

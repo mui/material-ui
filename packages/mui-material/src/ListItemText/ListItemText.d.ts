@@ -1,9 +1,9 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { InternalStandardProps as StandardProps, Theme } from '..';
-import type { TypographyProps } from '../Typography';
-import type { ListItemTextClasses } from './listItemTextClasses';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { TypographyProps } from '../Typography';
+import { ListItemTextClasses } from './listItemTextClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface ListItemTextSlots {
   /**

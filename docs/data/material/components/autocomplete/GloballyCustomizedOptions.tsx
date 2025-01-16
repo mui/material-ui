@@ -3,8 +3,7 @@ import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import type { Theme } from '@mui/material/styles';
-import { createTheme, useTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, useTheme, ThemeProvider, Theme } from '@mui/material/styles';
 
 // Theme.ts
 const customTheme = (outerTheme: Theme) =>

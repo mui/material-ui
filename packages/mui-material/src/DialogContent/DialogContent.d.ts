@@ -1,7 +1,7 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { InternalStandardProps as StandardProps, Theme } from '..';
-import type { DialogContentClasses } from './dialogContentClasses';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { DialogContentClasses } from './dialogContentClasses';
 
 export interface DialogContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**

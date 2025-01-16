@@ -9,8 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import type { SelectChangeEvent } from '@mui/material/Select';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export default function DialogSelect() {
   const [open, setOpen] = React.useState(false);

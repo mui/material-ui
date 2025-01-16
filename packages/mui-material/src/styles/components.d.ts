@@ -1,6 +1,6 @@
-import type { ComponentsProps } from './props';
-import type { ComponentsOverrides } from './overrides';
-import type { ComponentsVariants } from './variants';
+import { ComponentsProps } from './props';
+import { ComponentsOverrides } from './overrides';
+import { ComponentsVariants } from './variants';
 
 export interface Components<Theme = unknown> {
   MuiAlert?: {

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import type {
-  SelectOptionDefinition} from '@mui/base/useSelect';
 import {
   useSelect,
+  SelectOptionDefinition,
   SelectProvider,
 } from '@mui/base/useSelect';
 import { useOption } from '@mui/base/useOption';

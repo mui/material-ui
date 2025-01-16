@@ -1,18 +1,18 @@
-import type * as React from 'react';
-import type { SxProps } from '@mui/system';
-import type { OverridableStringUnion } from '@mui/types';
-import type { InternalStandardProps as StandardProps } from '..';
-import type { FormControlProps } from '../FormControl';
-import type { FormHelperTextProps } from '../FormHelperText';
-import type { InputBaseProps } from '../InputBase';
-import type { InputProps as StandardInputProps } from '../Input';
-import type { FilledInputProps } from '../FilledInput';
-import type { OutlinedInputProps } from '../OutlinedInput';
-import type { InputLabelProps } from '../InputLabel';
-import type { SelectProps } from '../Select';
-import type { Theme } from '../styles';
-import type { TextFieldClasses } from './textFieldClasses';
-import type { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import * as React from 'react';
+import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
+import { InternalStandardProps as StandardProps } from '..';
+import { FormControlProps } from '../FormControl';
+import { FormHelperTextProps } from '../FormHelperText';
+import { InputBaseProps } from '../InputBase';
+import { InputProps as StandardInputProps } from '../Input';
+import { FilledInputProps } from '../FilledInput';
+import { OutlinedInputProps } from '../OutlinedInput';
+import { InputLabelProps } from '../InputLabel';
+import { SelectProps } from '../Select';
+import { Theme } from '../styles';
+import { TextFieldClasses } from './textFieldClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface TextFieldPropsColorOverrides {}
 export interface TextFieldPropsSizeOverrides {}

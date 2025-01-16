@@ -3,8 +3,7 @@ import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import type { SnackbarProps } from '@mui/joy/Snackbar';
-import Snackbar from '@mui/joy/Snackbar';
+import Snackbar, { SnackbarProps } from '@mui/joy/Snackbar';
 
 export default function SnackbarColors() {
   const [open, setOpen] = React.useState(false);

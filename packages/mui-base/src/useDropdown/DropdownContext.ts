@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { DropdownAction, DropdownState } from './useDropdown.types';
+import { DropdownAction, DropdownState } from './useDropdown.types';
 
 export interface DropdownContextValue {
   dispatch: React.Dispatch<DropdownAction>;
