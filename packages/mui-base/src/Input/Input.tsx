@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { isHostComponent } from '../utils/isHostComponent';
 import { getInputUtilityClass } from './inputClasses';
-import {
+import type {
   InputInputSlotProps,
   InputOwnerState,
   InputProps,
@@ -12,7 +12,8 @@ import {
   InputTypeMap,
 } from './Input.types';
 import { useInput } from '../useInput';
-import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { EventHandlers, WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 

@@ -2,12 +2,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { isHostComponent } from '../utils/isHostComponent';
 import { TablePaginationActions } from './TablePaginationActions';
 import { getTablePaginationUtilityClass } from './tablePaginationClasses';
-import {
+import type {
   TablePaginationProps,
   LabelDisplayedRowsArgs,
   TablePaginationTypeMap,
@@ -20,7 +21,7 @@ import {
   TablePaginationToolbarSlotProps,
   TablePaginationSpacerSlotProps,
 } from './TablePagination.types';
-import { ItemAriaLabelType } from './common.types';
+import type { ItemAriaLabelType } from './common.types';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {

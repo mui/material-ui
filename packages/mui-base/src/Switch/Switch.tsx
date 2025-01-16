@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useSwitch } from '../useSwitch';
-import {
+import type {
   SwitchProps,
   SwitchOwnerState,
   SwitchInputSlotProps,
@@ -13,7 +13,8 @@ import {
   SwitchTrackSlotProps,
   SwitchTypeMap,
 } from './Switch.types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getSwitchUtilityClass } from './switchClasses';
 

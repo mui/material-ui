@@ -1,12 +1,12 @@
-import {
+import type {
   Middleware as PopupMiddleware,
   OffsetOptions as PopupOffsetOptions,
   Placement as PopupPlacement,
   Strategy as PopupStrategy,
   VirtualElement as PopupVirtualElement,
 } from '@floating-ui/react-dom';
-import { PortalProps } from '../Portal';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type { PortalProps } from '../Portal';
+import type { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export type {
   PopupPlacement,

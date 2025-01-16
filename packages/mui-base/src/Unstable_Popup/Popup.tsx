@@ -1,13 +1,14 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import type {
+  VirtualElement} from '@floating-ui/react-dom';
 import {
   autoUpdate,
   flip,
   offset,
   shift,
-  useFloating,
-  VirtualElement,
+  useFloating
 } from '@floating-ui/react-dom';
 import {
   HTMLElementType,
@@ -16,12 +17,14 @@ import {
 } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { Portal } from '../Portal';
-import { useSlotProps, WithOptionalOwnerState, PolymorphicComponent } from '../utils';
+import type { WithOptionalOwnerState, PolymorphicComponent } from '../utils';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 import { getPopupUtilityClass } from './popupClasses';
-import { PopupOwnerState, PopupProps, PopupRootSlotProps, PopupTypeMap } from './Popup.types';
+import type { PopupOwnerState, PopupProps, PopupRootSlotProps, PopupTypeMap } from './Popup.types';
 import { useTransitionTrigger, TransitionContext } from '../useTransition';
-import { PopupContext, PopupContextValue } from './PopupContext';
+import type { PopupContextValue } from './PopupContext';
+import { PopupContext } from './PopupContext';
 
 function useUtilityClasses(ownerState: PopupOwnerState) {
   const { open } = ownerState;

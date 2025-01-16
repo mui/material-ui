@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Simplify } from '@mui/types';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from '../useMenu';
-import { ListAction } from '../useList';
-import { PopupProps } from '../Unstable_Popup';
+import type * as React from 'react';
+import type { Simplify } from '@mui/types';
+import type { PolymorphicProps, SlotComponentProps } from '../utils';
+import type { UseMenuListboxSlotProps } from '../useMenu';
+import type { ListAction } from '../useList';
+import type { PopupProps } from '../Unstable_Popup';
 
 export interface MenuRootSlotPropsOverrides {}
 export interface MenuListboxSlotPropsOverrides {}

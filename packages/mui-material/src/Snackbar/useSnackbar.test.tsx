@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { fireEvent, createRenderer } from '@mui/internal-test-utils';
 import useSnackbar from './useSnackbar';
-import { UseSnackbarParameters } from './useSnackbar.types';
+import type { UseSnackbarParameters } from './useSnackbar.types';
 
 describe('useSnackbar', () => {
   const { render } = createRenderer();

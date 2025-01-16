@@ -1,4 +1,4 @@
-import { SlotComponentProps } from '../utils/types';
+import type { SlotComponentProps } from '../utils/types';
 
 export interface MenuButtonRootSlotPropsOverrides {}
 

@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import { selectReducer } from './selectReducer';
-import { SelectAction, SelectActionTypes, SelectInternalState } from './useSelect.types';
-import { ActionWithContext } from '../utils/useControllableReducer.types';
-import { ListActionContext } from '../useList';
+import type { SelectAction, SelectInternalState } from './useSelect.types';
+import { SelectActionTypes } from './useSelect.types';
+import type { ActionWithContext } from '../utils/useControllableReducer.types';
+import type { ListActionContext } from '../useList';
 
 describe('selectReducer', () => {
   const irrelevantConfig = {

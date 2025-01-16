@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormControlState } from './FormControl.types';
+import type { FormControlState } from './FormControl.types';
 
 /**
  * @ignore - internal component.

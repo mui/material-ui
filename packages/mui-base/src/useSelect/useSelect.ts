@@ -7,28 +7,30 @@ import {
   visuallyHidden as visuallyHiddenStyle,
 } from '@mui/utils';
 import { useButton } from '../useButton';
-import {
+import type {
   ButtonClickAction,
   SelectAction,
-  SelectActionTypes,
   SelectInternalState,
   SelectValue,
   UseSelectButtonSlotProps,
   UseSelectHiddenInputSlotProps,
   UseSelectListboxSlotProps,
   UseSelectParameters,
-  UseSelectReturnValue,
+  UseSelectReturnValue} from './useSelect.types';
+import {
+  SelectActionTypes
 } from './useSelect.types';
-import { ListActionTypes, useList, UseListParameters } from '../useList';
-import { EventHandlers } from '../utils/types';
+import type { UseListParameters } from '../useList';
+import { ListActionTypes, useList } from '../useList';
+import type { EventHandlers } from '../utils/types';
 import { defaultOptionStringifier } from './defaultOptionStringifier';
-import { SelectProviderValue } from './SelectProvider';
+import type { SelectProviderValue } from './SelectProvider';
 import { useCompoundParent } from '../useCompound';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-import { SelectOption } from '../useOption/useOption.types';
+import type { SelectOption } from '../useOption/useOption.types';
 import { selectReducer } from './selectReducer';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
-import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import type { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
 
 function defaultFormValueProvider<OptionValue>(
   selectedOption: SelectOption<OptionValue> | SelectOption<OptionValue>[] | null,

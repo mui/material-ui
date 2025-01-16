@@ -1,5 +1,5 @@
 import { ListActionTypes } from './listActions.types';
-import { ListState, ListReducerAction, ListActionContext, SelectionMode } from './useList.types';
+import type { ListState, ListReducerAction, ListActionContext, SelectionMode } from './useList.types';
 
 type ItemPredicate<ItemValue> = (item: ItemValue, index: number) => boolean;
 

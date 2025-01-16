@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getTabUtilityClass } from './tabClasses';
-import { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
+import type { TabProps, TabTypeMap, TabRootSlotProps, TabOwnerState } from './Tab.types';
 import { useTab } from '../useTab';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {

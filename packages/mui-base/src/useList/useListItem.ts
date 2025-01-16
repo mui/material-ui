@@ -1,8 +1,8 @@
 'use client';
 import * as React from 'react';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
-import { EventHandlers } from '../utils/types';
-import { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
+import type { EventHandlers } from '../utils/types';
+import type { UseListItemParameters, UseListItemReturnValue } from './useListItem.types';
 import { ListActionTypes } from './listActions.types';
 import { ListContext } from './ListContext';
 

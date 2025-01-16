@@ -8,15 +8,16 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
-import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import type { Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
+import { createPopper } from '@popperjs/core';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import Portal from '../Portal';
 import { getPopperUtilityClass } from './popperClasses';
-import { WithOptionalOwnerState } from '../utils/types';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
-import {
+import type { WithOptionalOwnerState } from '../utils/types';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type {
   PopperPlacementType,
   PopperTooltipProps,
   PopperTooltipTypeMap,

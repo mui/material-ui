@@ -2,9 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { getTabsListUtilityClass } from './tabsListClasses';
-import {
+import type {
   TabsListOwnerState,
   TabsListProps,
   TabsListRootSlotProps,

@@ -3,7 +3,7 @@ import { act, createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { useInput } from './useInput';
-import { UseInputParameters } from './useInput.types';
+import type { UseInputParameters } from './useInput.types';
 
 describe('useInput', () => {
   const { render } = createRenderer();

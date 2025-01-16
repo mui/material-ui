@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Simplify } from '@mui/types';
-import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
-import { SelectOption } from '../useOption';
-import { PopupProps } from '../Unstable_Popup';
-import { PolymorphicProps, SlotComponentProps } from '../utils';
+import type * as React from 'react';
+import type { Simplify } from '@mui/types';
+import type { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from '../useSelect';
+import type { SelectOption } from '../useOption';
+import type { PopupProps } from '../Unstable_Popup';
+import type { PolymorphicProps, SlotComponentProps } from '../utils';
 
 export interface SelectRootSlotPropsOverrides {}
 export interface SelectListboxSlotPropsOverrides {}

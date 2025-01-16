@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useControlled from '@mui/utils/useControlled';
-import { PolymorphicComponent } from '../utils/PolymorphicComponent';
+import type { PolymorphicComponent } from '../utils/PolymorphicComponent';
 import { FormControlContext } from './FormControlContext';
 import { getFormControlUtilityClass } from './formControlClasses';
-import {
+import type {
   FormControlProps,
   NativeFormControlElement,
   FormControlTypeMap,
@@ -13,7 +13,8 @@ import {
   FormControlState,
   FormControlRootSlotProps,
 } from './FormControl.types';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 

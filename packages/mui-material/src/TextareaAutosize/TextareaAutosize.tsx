@@ -7,7 +7,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
-import { TextareaAutosizeProps } from './TextareaAutosize.types';
+import type { TextareaAutosizeProps } from './TextareaAutosize.types';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;

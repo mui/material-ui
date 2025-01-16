@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Breakpoint } from '@mui/system';
+import type { Breakpoint } from '@mui/system';
 // @ts-ignore
 import Hidden from '@mui/material-pigment-css/Hidden';
 import capitalize from '@mui/utils/capitalize';

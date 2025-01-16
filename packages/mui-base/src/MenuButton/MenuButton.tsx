@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
+import type { MenuButtonOwnerState, MenuButtonProps } from './MenuButton.types';
 import { useSlotProps } from '../utils';
 import { useMenuButton } from '../useMenuButton';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';

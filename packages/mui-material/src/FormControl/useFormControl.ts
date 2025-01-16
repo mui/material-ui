@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
-import FormControlContext, { FormControlState } from './FormControlContext';
+import type { FormControlState } from './FormControlContext';
+import FormControlContext from './FormControlContext';
 
 export default function useFormControl(): FormControlState | undefined {
   return React.useContext(FormControlContext);

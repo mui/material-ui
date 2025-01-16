@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ClickAwayListener } from '../ClickAwayListener';
-import {
+import type {
   SnackbarOwnerState,
   SnackbarProps,
   SnackbarRootSlotProps,
@@ -12,7 +12,8 @@ import {
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 import { useSnackbar } from '../useSnackbar';
-import { PolymorphicComponent, useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { PolymorphicComponent, WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = () => {

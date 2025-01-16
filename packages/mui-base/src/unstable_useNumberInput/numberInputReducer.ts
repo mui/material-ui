@@ -1,4 +1,4 @@
-import {
+import type {
   NumberInputActionContext,
   NumberInputReducerAction,
   NumberInputState,

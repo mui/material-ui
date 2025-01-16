@@ -10,7 +10,7 @@ import {
   unstable_setRef as setRef,
   unstable_getReactElementRef as getReactElementRef,
 } from '@mui/utils';
-import { PortalProps } from './Portal.types';
+import type { PortalProps } from './Portal.types';
 
 function getContainer(container: PortalProps['container']) {
   return typeof container === 'function' ? container() : container;

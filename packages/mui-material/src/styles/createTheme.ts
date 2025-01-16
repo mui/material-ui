@@ -1,10 +1,12 @@
 import createPalette from './createPalette';
-import createThemeWithVars, {
+import type {
   CssVarsThemeOptions,
   ColorSystem,
   DefaultColorScheme,
 } from './createThemeWithVars';
-import createThemeNoVars, { Theme, ThemeOptions } from './createThemeNoVars';
+import createThemeWithVars from './createThemeWithVars';
+import type { Theme, ThemeOptions } from './createThemeNoVars';
+import createThemeNoVars from './createThemeNoVars';
 
 export { createMuiTheme } from './createThemeNoVars';
 export type { ThemeOptions, Theme, CssThemeVariables } from './createThemeNoVars';

@@ -10,11 +10,12 @@ import type {
 } from './useMenuItem.types';
 import { useListItem } from '../useList';
 import { DropdownActionTypes } from '../useDropdown';
-import { DropdownContext, DropdownContextValue } from '../useDropdown/DropdownContext';
+import type { DropdownContextValue } from '../useDropdown/DropdownContext';
+import { DropdownContext } from '../useDropdown/DropdownContext';
 import { combineHooksSlotProps } from '../utils/combineHooksSlotProps';
 import { useCompoundItem } from '../useCompound';
-import { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
-import { EventHandlers } from '../utils/types';
+import type { MuiCancellableEvent } from '../utils/MuiCancellableEvent';
+import type { EventHandlers } from '../utils/types';
 import { extractEventHandlers } from '../utils/extractEventHandlers';
 
 function idGenerator(existingKeys: Set<string>) {

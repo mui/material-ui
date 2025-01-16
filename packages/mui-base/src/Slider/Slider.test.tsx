@@ -2,11 +2,12 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { spy, stub } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import type {
+  SliderRootSlotProps,
+  SliderValueLabelSlotProps} from '@mui/base/Slider';
 import {
   Slider,
-  sliderClasses as classes,
-  SliderRootSlotProps,
-  SliderValueLabelSlotProps,
+  sliderClasses as classes
 } from '@mui/base/Slider';
 import { describeConformanceUnstyled } from '../../test/describeConformanceUnstyled';
 

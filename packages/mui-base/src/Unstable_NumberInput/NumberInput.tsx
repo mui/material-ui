@@ -1,10 +1,10 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
+import type { OverridableComponent } from '@mui/types';
 import { getNumberInputUtilityClass } from './numberInputClasses';
 import { unstable_useNumberInput as useNumberInput } from '../unstable_useNumberInput';
-import {
+import type {
   NumberInputOwnerState,
   NumberInputProps,
   NumberInputRootSlotProps,
@@ -14,7 +14,8 @@ import {
   NumberInputTypeMap,
 } from './NumberInput.types';
 import { unstable_composeClasses as composeClasses } from '../composeClasses';
-import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
+import type { EventHandlers, WithOptionalOwnerState } from '../utils';
+import { useSlotProps } from '../utils';
 import { useClassNamesOverride } from '../utils/ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: NumberInputOwnerState) => {

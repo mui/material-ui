@@ -2,7 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer } from '@mui/internal-test-utils';
-import { Portal, PortalProps } from '@mui/base/Portal';
+import type { PortalProps } from '@mui/base/Portal';
+import { Portal } from '@mui/base/Portal';
 
 describe('<Portal />', () => {
   const { render, renderToString } = createRenderer();

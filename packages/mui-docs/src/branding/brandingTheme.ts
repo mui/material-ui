@@ -1,7 +1,8 @@
 import type { CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
-import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+import type { ThemeOptions } from '@mui/material/styles';
+import { createTheme, alpha, Theme } from '@mui/material/styles';
 
 interface ApplyDarkStyles {
   (scheme: CSSObject): CSSObject;

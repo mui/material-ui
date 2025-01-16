@@ -1,8 +1,9 @@
 'use client';
 import * as React from 'react';
 import styleFunctionSx from '@mui/system/styleFunctionSx';
-import { unstable_createCssVarsProvider as createCssVarsProvider, SxProps } from '@mui/system';
-import { SupportedColorScheme, CssVarsTheme } from './createThemeWithVars';
+import type { SxProps } from '@mui/system';
+import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import type { SupportedColorScheme, CssVarsTheme } from './createThemeWithVars';
 import createTheme from './createTheme';
 import createTypography from './createTypography';
 import THEME_ID from './identifier';
