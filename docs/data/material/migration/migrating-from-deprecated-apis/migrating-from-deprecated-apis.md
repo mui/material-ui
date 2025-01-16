@@ -1578,6 +1578,28 @@ The Modal's `componentsProps` prop was deprecated in favor of `slotProps`:
  >
 ```
 
+### BackdropProps
+
+The Modal's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop`:
+
+```diff
+ <Modal
+-  BackdropProps={{ timeout: 500 }}
++  slotProps={{ backdrop: { timeout: 500 } }}
+ >
+```
+
+### BackdropComponent
+
+The Modal's `BackdropComponent` prop was deprecated in favor of `slots.backdrop`:
+
+```diff
+ <Modal
+-  BackdropComponent={Backdrop}
++  slots={{ backdrop: Backdrop }}
+ >
+```
+
 ## OutlinedInput
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#outlined-input-props) below to migrate the code as described in the following sections:
