@@ -9,7 +9,7 @@ const TARGET_DIR_ESM = path.resolve(currentDirectory, '../build/esm');
 async function run() {
   await fs.writeFile(
     path.resolve(TARGET_DIR_ESM, 'package.json'),
-    JSON.stringify({ type: 'module' }),
+    JSON.stringify({ type: 'module', sideEffects: false }),
     'utf8',
   );
 }

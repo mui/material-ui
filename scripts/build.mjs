@@ -51,9 +51,9 @@ async function run(argv) {
     '**/test-cases/*.*',
   ];
 
-  let outFileExtension = '.js';
+  const outFileExtension = '.js';
 
-  let relativeOutDir = {
+  const relativeOutDir = {
     node: './',
     modern: './modern',
     stable: './esm',
@@ -111,7 +111,10 @@ async function run(argv) {
   const isEsm = bundle === 'modern' || bundle === 'stable';
   if (isEsm) {
     const rootBundlePackageJson = path.join(outDir, 'package.json');
-    await fs.writeFile(rootBundlePackageJson, JSON.stringify({ type: 'module' }));
+    await fs.writeFile(
+      rootBundlePackageJson,
+      JSON.stringify({ type: 'module', sideEffects: false }),
+    );
   }
 
   if (verbose) {
