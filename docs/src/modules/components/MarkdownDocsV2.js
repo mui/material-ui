@@ -18,7 +18,7 @@ import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import MuiBaseDeprecation from 'docs/src/modules/components/MuiBaseDeprecation';
+import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();

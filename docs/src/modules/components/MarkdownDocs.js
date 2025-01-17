@@ -10,7 +10,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
 import { BrandingProvider } from '@mui/docs/branding';
-import MuiBaseDeprecation from 'docs/src/modules/components/MuiBaseDeprecation';
+import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
 
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
