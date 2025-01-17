@@ -340,7 +340,7 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-
 
 +const theme = createTheme({
 +  typography: {
-+    fontFamily: var(--font-roboto),
++    fontFamily: 'var(--font-roboto)',
 +  },
 +});
 
