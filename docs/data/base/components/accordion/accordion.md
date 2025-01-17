@@ -7,10 +7,8 @@ newUrl: https://base-ui.com/react/components/accordion
 newName: Accordion
 ---
 
-# Accordion 🚧
+# Accordion
 
 <p class="description">Accordions let users show and hide sections of related content on a page.</p>
 
-:::warning
-The Base UI Accordion component isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/base-ui/issues/25) to see it arrive sooner.
-:::
+{{"component": "components/productBaseUI/MuiBaseDeprecation", "newComponentName": "Accordion", "newComponentUrl": "https://base-ui.com/react/components/accordion"}}

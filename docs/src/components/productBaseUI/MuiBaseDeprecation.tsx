@@ -10,17 +10,21 @@ export default function MuiBaseDeprecation(props: {
   if (props.newComponentUrl && props.newComponentName) {
     return (
       <Alert severity="error">
-        <code>@mui/base</code> has been deprecated and has been replaced by Base UI. Please use the
-        Base UI <Link href={props.newComponentUrl}>{props.newComponentName} Component</Link>{' '}
+        @mui/base has been deprecated and has been replaced by Base UI. Please use the Base UI{' '}
+        <Link href={props.newComponentUrl} color="error.800" underline="always">
+          {props.newComponentName} Component
+        </Link>{' '}
         instead.
       </Alert>
     );
   }
   return (
     <Alert severity="error">
-      <code>@mui/base</code> has been deprecated and has been replaced by{' '}
-      <Link href="https://www.base-ui.com">Base UI</Link>. We strongly advise using the new package
-      instead.
+      @mui/base has been deprecated and has been replaced by{' '}
+      <Link href="https://www.base-ui.com" color="error.800" underline="always">
+        Base UI
+      </Link>
+      . We strongly advise using the new package instead.
     </Alert>
   );
 }

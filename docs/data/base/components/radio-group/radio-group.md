@@ -7,10 +7,8 @@ newUrl: https://base-ui.com/react/components/radio
 newName: Radio
 ---
 
-# Radio Group 🚧
+# Radio Group
 
 <p class="description">Radio buttons enable the user to select one option from a set.</p>
 
-:::warning
-The Base UI Radio Group component isn't available yet, but you can upvote [this GitHub issue](https://github.com/mui/base-ui/issues/26) to see it arrive sooner.
-:::
+{{"component": "components/productBaseUI/MuiBaseDeprecation", "newComponentName": "Radio", "newComponentUrl": "https://base-ui.com/react/components/radio"}}
