@@ -8,9 +8,9 @@ import { typescriptCopy } from './copyFilesUtils.mjs';
 
 const $$ = $({ stdio: 'inherit' });
 
-async function emitDeclarations(tsconfig: string) {
+async function emitDeclarations(tsconfig: string, outDir: string) {
   console.log(`Building types for ${path.resolve(tsconfig)}`);
-  await $$`tsc -p ${tsconfig} --declarationDir build/esm --declaration --emitDeclarationOnly`;
+  await $$`tsc -p ${tsconfig} --outDir ${outDir} --declaration --emitDeclarationOnly`;
 }
 
 async function addImportExtensions(folder: string) {
@@ -74,7 +74,7 @@ async function main() {
   const modernFolder = path.join(buildFolder, 'modern');
 
   await typescriptCopy({ from: srcPath, to: esmFolder });
-  await emitDeclarations(tsconfigPath);
+  await emitDeclarations(tsconfigPath, esmFolder);
 
   await addImportExtensions(esmFolder);
 
