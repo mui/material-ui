@@ -10,6 +10,6 @@
     "outDir": "build/esm",
     "rootDir": "./src"
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*.ts*", "./src/**/*.cjs"],
   "exclude": ["src/**/*.spec.*", "src/**/*.test.*"]
 }

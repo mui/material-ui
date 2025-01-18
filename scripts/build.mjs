@@ -139,11 +139,6 @@ yargs(process.argv.slice(2))
           describe: 'Set to `true` if you know you are transpiling large files.',
         })
         .option('out-dir', { default: './build', type: 'string' })
-        .option('rollup', {
-          default: false,
-          type: 'boolean',
-          describe: '(Experiment) Use rollup to build the files.',
-        })
         .option('verbose', { type: 'boolean' });
     },
     handler: run,

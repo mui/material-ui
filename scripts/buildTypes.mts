@@ -10,7 +10,7 @@ const $$ = $({ stdio: 'inherit' });
 
 async function emitDeclarations(tsconfig: string) {
   console.log(`Building types for ${path.resolve(tsconfig)}`);
-  await $$`tsc --build ${tsconfig}  --verbose`;
+  await $$`tsc -p ${tsconfig}`;
 }
 
 async function addImportExtensions(folder: string) {
