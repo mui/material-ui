@@ -61,7 +61,7 @@ function createData(
 }
 
 const rows = [
-  createData('Bharat', 'IN', 1324171354, 3287263),
+  createData('India', 'IN', 1324171354, 3287263),
   createData('China', 'CN', 1403500365, 9596961),
   createData('Italy', 'IT', 60483973, 301340),
   createData('United States', 'US', 327167434, 9833520),
