@@ -29,10 +29,12 @@ async function addImportExtensions(folder: string) {
           ['@mui/internal-babel-plugin-resolve-imports'],
         ],
       });
-      if (!result?.code) {
-        throw new Error(`Failed to transform ${dtsFile}`);
+
+      if (typeof result?.code === 'string') {
+        await fs.writeFile(dtsFile, result.code);
+      } else {
+        console.error('failed to transform', dtsFile);
       }
-      await fs.writeFile(dtsFile, result.code);
     }),
   );
 }
