@@ -3,9 +3,12 @@ import {
   unstable_ownerDocument as ownerDocument,
   unstable_getScrollbarSize as getScrollbarSize,
 } from '@mui/utils';
+import { PortalProps } from '../Portal';
 
 export interface ManagedModalProps {
   disableScrollLock?: boolean;
+  disablePortal?: boolean;
+  container?: PortalProps['container'];
 }
 
 // Is a vertical scrollbar displayed on body?
@@ -120,7 +123,16 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     el: HTMLElement | SVGElement;
     value: string;
   }> = [];
-  const container = containerInfo.container;
+  // Implement workaround according to
+  // https://github.com/mui/material-ui/pull/43318#issuecomment-2553509176
+  // Technically applying scrollLock to the container does nothing, but
+  // we preserve the original buggy behavior because fixing it would be
+  // a breaking change.
+  // Original behavior: Apply scroll lock to container if it's set,
+  // otherwise apply to the body element. Because disablePortal
+  // passes in the correct `containerInfo.container`, the easiest way to
+  // make it apply to the correct element is to do this.
+  const container = props.container ? containerInfo.container : document.body;
 
   if (!props.disableScrollLock) {
     if (isOverflowing(container)) {
