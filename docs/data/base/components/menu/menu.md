@@ -19,7 +19,7 @@ newName: Menu
 
 ## Introduction
 
-The Base UI Dropdown Menu is implemented using a collection of related components:
+The MUI Base Dropdown Menu is implemented using a collection of related components:
 
 - Dropdown - The outermost container that houses all Menu components.
 - Menu Button - The button that toggles the visibility of the Menu.
