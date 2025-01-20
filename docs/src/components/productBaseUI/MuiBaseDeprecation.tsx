@@ -1,7 +1,7 @@
 /* eslint-disable no-irregular-whitespace */
 import * as React from 'react';
-import Alert from '@mui/material/Alert';
-import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 export default function MuiBaseDeprecation(props: {
   newComponentName?: string;
@@ -9,22 +9,42 @@ export default function MuiBaseDeprecation(props: {
 }) {
   if (props.newComponentUrl && props.newComponentName) {
     return (
-      <Alert severity="error">
-        @mui/base has been deprecated and has been replaced by Base UI. Please use the Base UI{' '}
-        <Link href={props.newComponentUrl} color="error.800" underline="always">
-          {props.newComponentName} component
-        </Link>{' '}
-        instead.
-      </Alert>
+      <MarkdownElement>
+        <Box component="aside" className="MuiCallout-root MuiCallout-error">
+          <Icon />
+          <Box className="MuiCallout-content">
+            @mui/base has been deprecated and has been replaced by Base UI. Please use the Base UI{' '}
+            <a href={props.newComponentUrl}>{props.newComponentName} component</a> instead.
+          </Box>
+        </Box>
+      </MarkdownElement>
     );
   }
   return (
-    <Alert severity="error">
-      @mui/base has been deprecated and has been replaced by{' '}
-      <Link href="https://www.base-ui.com" color="error.800" underline="always">
-        Base UI
-      </Link>
-      . We strongly advise using the new package instead.
-    </Alert>
+    <MarkdownElement>
+      <Box component="aside" className="MuiCallout-root MuiCallout-error">
+        <Icon />
+        <Box className="MuiCallout-content">
+          @mui/base has been deprecated and has been replaced by{' '}
+          <a href="https://www.base-ui.com">Base UI</a>. We strongly advise using the new package
+          instead.
+        </Box>
+      </Box>
+    </MarkdownElement>
+  );
+}
+
+function Icon() {
+  return (
+    <Box className="MuiCallout-icon-container">
+      <svg
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ContentCopyRoundedIcon"
+      >
+        <use className="MuiCode-copied-icon" xlinkHref="#error-icon" />
+      </svg>
+    </Box>
   );
 }
