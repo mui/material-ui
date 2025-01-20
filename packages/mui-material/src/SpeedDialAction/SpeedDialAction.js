@@ -157,7 +157,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     tooltipPlacement = 'left',
     tooltipTitle,
     slots = {},
-    slotsProps = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -178,13 +178,32 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 
   const externalForwardedProps = {
     slots,
-    slotsProps,
+    slotProps: {
+      fab: FabProps,
+      ...slotProps,
+    },
   };
+
+  const [FabSlot, fabSlotProps] = useSlot('fab', {
+    elementType: SpeedDialActionFab,
+    externalForwardedProps,
+    ownerState,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.fab, className),
+    additionalProps: {
+      style: {
+        ...transitionStyle,
+        ...FabProps.style,
+      },
+      tabIndex: -1,
+      role: 'menuitem',
+      size: 'small',
+    },
+  });
 
   const [TooltipSlot, tooltipSlotProps] = useSlot('tooltip', {
     elementType: Tooltip,
     externalForwardedProps,
-    ownerState,
     shouldForwardComponentProp: true,
     ref,
     additionalProps: {
@@ -198,22 +217,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     },
   });
 
-  const fab = (
-    <SpeedDialActionFab
-      size="small"
-      className={clsx(classes.fab, className)}
-      tabIndex={-1}
-      role="menuitem"
-      ownerState={ownerState}
-      {...FabProps}
-      style={{
-        ...transitionStyle,
-        ...FabProps.style,
-      }}
-    >
-      {icon}
-    </SpeedDialActionFab>
-  );
+  const fab = <FabSlot {...fabSlotProps}>{icon}</FabSlot>;
 
   if (tooltipOpenProp) {
     return (

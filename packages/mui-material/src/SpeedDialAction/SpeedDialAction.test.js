@@ -7,6 +7,10 @@ import { fabClasses } from '@mui/material/Fab';
 import SpeedDialAction, { speedDialActionClasses as classes } from '@mui/material/SpeedDialAction';
 import describeConformance from '../../test/describeConformance';
 
+const CustomButton = React.forwardRef(({ ownerState, ...props }, ref) => (
+  <button ref={ref} {...props} data-testid="custom" />
+));
+
 describe('<SpeedDialAction />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -21,6 +25,13 @@ describe('<SpeedDialAction />', () => {
       testRootOverrides: { slotName: 'fab' },
       testVariantProps: { tooltipPlacement: 'right' },
       skip: ['componentProp', 'componentsProp'],
+      slots: {
+        fab: {
+          expectedClassName: classes.fab,
+          testWithElement: 'button',
+          testWithComponent: CustomButton,
+        },
+      },
     }),
   );
 

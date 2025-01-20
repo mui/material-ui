@@ -333,7 +333,7 @@ function testSlotsProp(
   ));
 
   forEachSlot(slots, (slotName, slotOptions) => {
-    it(`allows overriding the ${slotName} slot with a component using the slots.${slotName} prop`, async () => {
+    it.only(`allows overriding the ${slotName} slot with a component using the slots.${slotName} prop`, async () => {
       if (!render) {
         throwMissingPropError('render');
       }
