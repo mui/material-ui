@@ -45,7 +45,7 @@ describe('<SpeedDialAction />', () => {
       muiName: 'MuiSpeedDialAction',
       testRootOverrides: { slotName: 'fab' },
       testVariantProps: { tooltipPlacement: 'right' },
-      skip: ['componentProp', 'componentsProp', 'classesRoot'],
+      skip: ['componentProp', 'componentsProp', 'mergeClassName'],
       slots: {
         staticTooltip: {
           expectedClassName: classes.staticTooltip,
