@@ -82,6 +82,14 @@ export default function useSlot<
      * e.g. Autocomplete's listbox uses Popper + StyledComponent
      */
     internalForwardedProps?: any;
+    /**
+     * Set to true if the `elementType` is a styled component of another Material UI component.
+     *
+     * For example, the AlertRoot is a styled component of the Paper component.
+     * This flag is used to forward the `component` and `slotProps.root.component` to the Paper component.
+     * Otherwise, the `component` prop will be converted to `as` prop which replaces the Paper component (the paper styles are gone).
+     */
+    shouldForwardComponentProp?: boolean;
   },
 ) {
   const {
@@ -90,6 +98,7 @@ export default function useSlot<
     ownerState,
     externalForwardedProps,
     internalForwardedProps,
+    shouldForwardComponentProp = false,
     ...useSlotPropsParams
   } = parameters;
   const {
@@ -127,9 +136,14 @@ export default function useSlot<
       ...(name === 'root' && !rootComponent && !slots[name] && internalForwardedProps),
       ...(name !== 'root' && !slots[name] && internalForwardedProps),
       ...mergedProps,
-      ...(LeafComponent && {
-        as: LeafComponent,
-      }),
+      ...(LeafComponent &&
+        !shouldForwardComponentProp && {
+          as: LeafComponent,
+        }),
+      ...(LeafComponent &&
+        shouldForwardComponentProp && {
+          component: LeafComponent,
+        }),
       ref,
     },
     ownerState,
