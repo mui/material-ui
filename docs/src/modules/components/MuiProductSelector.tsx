@@ -141,7 +141,7 @@ const coreProducts = [
   },
   {
     id: 'base-ui',
-    name: 'Base UI',
+    name: 'MUI Base',
     description: 'Unstyled components and hooks.',
     icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.baseDocs,

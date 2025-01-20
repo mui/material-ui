@@ -77,7 +77,7 @@ export default function AppFooter(props: AppFooterProps) {
               Material UI
             </Link>
             <Link prefetch={false} href={ROUTES.productBase}>
-              Base UI
+              MUI Base
             </Link>
             <Link prefetch={false} href={ROUTES.productAdvanced}>
               MUI X

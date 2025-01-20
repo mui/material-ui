@@ -37,14 +37,14 @@ export default function BaseUIEnd() {
             }
             description={
               <React.Fragment>
-                Base UI wouldn&apos;t be possible without our global community of contributors. Join
-                us today to get help when you need it, and lend a hand when you can.
+                MUI Base wouldn&apos;t be possible without our global community of contributors.
+                Join us today to get help when you need it, and lend a hand when you can.
               </React.Fragment>
             }
           />
           <GetStartedButtons
             primaryUrl={ROUTES.baseDocs}
-            secondaryLabel="Learn Base UI"
+            secondaryLabel="Learn MUI Base"
             secondaryUrl={ROUTES.baseQuickstart}
             altInstallation="npm install @mui/base"
           />
@@ -55,10 +55,10 @@ export default function BaseUIEnd() {
               <GlowingIconContainer icon={<CompareIcon color="primary" />} />
               <div>
                 <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
-                  Base UI vs. Material UI
+                  MUI Base vs. Material UI
                 </Typography>
                 <Typography>
-                  Base UI features many of the same components as Material UI, but without the
+                  MUI Base features many of the same components as Material UI, but without the
                   Material Design implementation.
                 </Typography>
               </div>
@@ -70,7 +70,7 @@ export default function BaseUIEnd() {
                   Does it come with styles?
                 </Typography>
                 <Typography>
-                  Base UI <i>is not packaged</i> with any default theme or built-in style engine.
+                  MUI Base <i>is not packaged</i> with any default theme or built-in style engine.
                   This makes it a great choice if you need complete control over how your app&apos;s
                   CSS is implemented.
                 </Typography>

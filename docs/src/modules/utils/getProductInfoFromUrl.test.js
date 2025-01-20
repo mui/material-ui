@@ -22,7 +22,7 @@ describe('getProductInfoFromUrl', () => {
     });
   });
 
-  it('should handle Base UI', () => {
+  it('should handle MUI Base', () => {
     expect(getProductInfoFromUrl('/base-ui/react-button/')).to.deep.equal({
       productCategoryId: 'core',
       productId: 'base-ui',

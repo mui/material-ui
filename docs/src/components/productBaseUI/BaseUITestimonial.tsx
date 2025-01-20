@@ -44,13 +44,13 @@ export default function BaseUITestimonial() {
               component="img"
               src="/static/branding/base-ui/nhost-screenshot.png"
               srcSet="/static/branding/base-ui/nhost-screenshot-2x.png 2x"
-              alt="Screenshot displaying part of the Nhost dashboard that used Base UI to be built."
+              alt="Screenshot displaying part of the Nhost dashboard that used MUI Base to be built."
               loading="lazy"
               sx={{ backgroundColor: '#fff', width: 510, height: 210 }}
             />
           </Box>
           <Typography variant="body2" sx={{ mt: 2 }}>
-            Nhost&apos;s new dashboard, powered by Base UI &nbsp;&nbsp;
+            Nhost&apos;s new dashboard, powered by MUI Base &nbsp;&nbsp;
             <Typography
               component="span"
               variant="inherit"
@@ -67,7 +67,7 @@ export default function BaseUITestimonial() {
         <Grid sx={{ display: 'flex', flexDirection: 'column', gap: 3 }} size={{ xs: 12, sm: 6 }}>
           <Typography>
             “After considering various options, we decided to migrate our custom components to
-            Material UI, and that&apos;s when we discovered Base UI. As a set of headless
+            Material UI, and that&apos;s when we discovered MUI Base. As a set of headless
             components, it offered exactly what we needed to implement our design system while
             maintaining full customizability. The focus on accessibility was also a big plus, as it
             ensured that our dashboard was usable by everyone. Low-level component hooks were just

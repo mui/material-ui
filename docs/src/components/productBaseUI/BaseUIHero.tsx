@@ -62,7 +62,7 @@ export default function BaseUIHero() {
               /
             </Typography>
             <Typography component="span" variant="inherit" sx={{ color: 'text.primary' }}>
-              Base UI
+              MUI Base
             </Typography>
           </Typography>
 
@@ -80,13 +80,13 @@ export default function BaseUIHero() {
             total flexibility
           </Typography>
           <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 500 }}>
-            Base UI gives you a set of foundational &quot;headless&quot; components that you can
+            MUI Base gives you a set of foundational &quot;headless&quot; components that you can
             build with using any styling solution you choose—no need to override any default style
             engine or theme.
           </Typography>
           <GetStartedButtons
             primaryUrl={ROUTES.baseDocs}
-            secondaryLabel="Learn Base UI"
+            secondaryLabel="Learn MUI Base"
             secondaryUrl={ROUTES.baseQuickstart}
             altInstallation="npm install @mui/base"
           />
