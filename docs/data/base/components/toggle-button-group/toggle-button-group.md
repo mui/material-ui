@@ -9,5 +9,3 @@ newName: Toggle Group
 # Toggle Button Group
 
 <p class="description">Toggle Button Groups house sets of buttons with mutually exclusive actions.</p>
-
-{{"component": "components/productBaseUI/MuiBaseDeprecation", "newComponentName": "Toggle Group", "newComponentUrl": "https://base-ui.com/react/components/toggle-group"}}
