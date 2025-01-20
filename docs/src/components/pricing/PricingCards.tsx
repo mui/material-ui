@@ -291,8 +291,9 @@ export default function PricingCards() {
             borderColor: 'divider',
             borderRadius: 1,
             flexDirection: 'column',
-            p: 2,
-            pt: 1.5,
+            gap: 3,
+            py: 3,
+            px: 2,
             flex: '1 1 0px',
           }}
         >
@@ -300,13 +301,21 @@ export default function PricingCards() {
             <PlanName plan="community" disableDescription={false} />
             <PlanPrice plan="community" />
           </Box>
-          <Divider sx={{ my: 2 }} />
+          <Divider />
           <Box textAlign="left">
             {planInfo.community.features.map((feature, index) => (
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
+                sx={{
+                  display: 'flex',
+                  color: 'text.secondary',
+                  alignItems: 'center',
+                  mb: 2,
+                  '&:last-child': {
+                    mb: 0,
+                  },
+                }}
               >
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
                 {feature}
@@ -322,8 +331,9 @@ export default function PricingCards() {
             borderColor: 'divider',
             borderRadius: 1,
             flexDirection: 'column',
-            p: 2,
-            pt: 1.5,
+            gap: 3,
+            py: 3,
+            px: 2,
             flex: '1 1 0px',
           }}
         >
@@ -332,13 +342,21 @@ export default function PricingCards() {
             <PlanPrice plan="pro" />
           </Box>
           {/* <PricingTableBuyPro /> */}
-          <Divider sx={{ my: 2 }} />
+          <Divider />
           <Box textAlign="left">
             {planInfo.pro.features.map((feature, index) => (
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
+                sx={{
+                  display: 'flex',
+                  color: 'text.secondary',
+                  alignItems: 'center',
+                  mb: 2,
+                  '&:last-child': {
+                    mb: 0,
+                  },
+                }}
               >
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
                 {feature}
@@ -348,37 +366,43 @@ export default function PricingCards() {
         </Box>
 
         <Box
-          sx={[
-            () => ({
-              display: 'flex',
-              border: '1px solid',
-              borderRadius: 1,
-              flexDirection: 'column',
-              p: 2,
-              pt: 1.5,
-              flex: '1 1 0px',
-              borderColor: 'primary.light',
-              background:
-                'linear-gradient(0deg, rgba(250, 250, 250, 1)  0%, rgba(255,255,255,0) 100%)',
+          sx={(theme) => ({
+            display: 'flex',
+            border: '1px solid',
+            borderColor: 'primary.200',
+            borderRadius: 1,
+            flexDirection: 'column',
+            gap: 3,
+            py: 3,
+            px: 2,
+            flex: '1 1 0px',
+            background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
+            boxShadow: '0px 2px 12px 0px rgba(234, 237, 241, 0.3) inset',
+            ...theme.applyDarkStyles({
+              borderColor: `${alpha(theme.palette.primary[700], 0.4)}`,
+              boxShadow: '0px 2px 12px 0px rgba(0, 0, 0, 0.25) inset',
             }),
-            (theme) =>
-              theme.applyDarkStyles({
-                borderColor: 'primaryDark.700',
-                background: alpha(theme.palette.primaryDark[700], 0.3),
-              }),
-          ]}
+          })}
         >
           <Box sx={{ height: 'fit-content' }}>
             <PlanName plan="premium" disableDescription={false} />
             <PlanPrice plan="premium" />
           </Box>
           {/* <PricingTableBuyPremium />  */}
-          <Box textAlign="left" sx={{ my: 2 }}>
+          <Box textAlign="left">
             {planInfo.premium.features.map((feature, index) => (
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
+                sx={{
+                  display: 'flex',
+                  color: 'text.secondary',
+                  alignItems: 'center',
+                  mb: 2,
+                  '&:last-child': {
+                    mb: 0,
+                  },
+                }}
               >
                 {/* <CheckCircleIcon color="success" fontSize="small" sx={{ mr: 1 }} /> */}
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
@@ -395,8 +419,9 @@ export default function PricingCards() {
             borderColor: 'divider',
             borderRadius: 1,
             flexDirection: 'column',
-            p: 2,
-            pt: 1.5,
+            gap: 3,
+            py: 3,
+            px: 2,
             flex: '1 1 0px',
           }}
         >
@@ -405,13 +430,21 @@ export default function PricingCards() {
             <PlanPrice plan="enterprise" />
           </Box>
           {/* <PricingTableBuyEnterprise /> */}
-          <Divider sx={{ my: 2 }} />
+          <Divider />
           <Box textAlign="left">
             {planInfo.enterprise.features.map((feature, index) => (
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ display: 'flex', color: 'text.secondary', alignItems: 'center', mb: 1 }}
+                sx={{
+                  display: 'flex',
+                  color: 'text.secondary',
+                  alignItems: 'center',
+                  mb: 2,
+                  '&:last-child': {
+                    mb: 0,
+                  },
+                }}
               >
                 <IconImage name="pricing/yes" sx={{ mr: 1 }} />
                 {feature}

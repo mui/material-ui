@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -32,12 +33,15 @@ export default function PrioritySupportSwitch() {
 
   return (
     <Box
-      sx={{
-        border: '1px dashed',
-        borderColor: 'primary.dark',
+      sx={(theme) => ({
+        border: '1px solid',
+        borderColor: 'primary.100',
         borderRadius: 1,
         padding: 2,
-      }}
+        ...theme.applyDarkStyles({
+          borderColor: `${alpha(theme.palette.primary[700], 0.4)}`,
+        }),
+      })}
     >
       <FormGroup>
         <FormControlLabel
@@ -45,9 +49,10 @@ export default function PrioritySupportSwitch() {
           label={
             <Tooltip title={prioritySupportDescription} {...tooltipProps}>
               <Typography
-                variant="body1"
+                fontWeight="semiBold"
+                color="text.primary"
+                variant="body2"
                 sx={{
-                  color: 'text.secondary',
                   textAlign: 'left',
                   whiteSpace: 'nowrap',
                 }}
