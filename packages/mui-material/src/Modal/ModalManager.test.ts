@@ -150,8 +150,8 @@ describe('ModalManager', () => {
       fixedNode.style.paddingRight = '14px';
 
       // Should behave exactly like the test above
-      const dummyModal = document.createElement("div");
-      const dummyMount = document.createElement("div");
+      const dummyModal = document.createElement('div');
+      const dummyMount = document.createElement('div');
       dummyMount.appendChild(dummyModal);
       container1.appendChild(dummyMount);
       const modal = { modalRef: dummyModal, mount: dummyMount };
@@ -171,8 +171,8 @@ describe('ModalManager', () => {
       fixedNode.style.paddingRight = '14px';
 
       // Should apply scroll lock to dummyMount in this case
-      const dummyModal = document.createElement("div");
-      const dummyMount = document.createElement("div");
+      const dummyModal = document.createElement('div');
+      const dummyMount = document.createElement('div');
       dummyMount.appendChild(dummyModal);
       container1.appendChild(dummyMount);
 
