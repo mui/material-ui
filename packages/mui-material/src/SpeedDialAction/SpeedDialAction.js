@@ -185,6 +185,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     elementType: Tooltip,
     externalForwardedProps,
     ownerState,
+    shouldForwardComponentProp: true,
     ref,
     additionalProps: {
       title: tooltipTitle,
@@ -242,7 +243,11 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     setTooltipOpen(false);
   }
 
-  return <TooltipSlot {...tooltipSlotProps} {...other}>{fab}</TooltipSlot>;
+  return (
+    <TooltipSlot {...tooltipSlotProps} {...other}>
+      {fab}
+    </TooltipSlot>
+  );
 });
 
 SpeedDialAction.propTypes /* remove-proptypes */ = {
