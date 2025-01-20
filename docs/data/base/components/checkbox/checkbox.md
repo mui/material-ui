@@ -10,5 +10,3 @@ newName: Checkbox
 # Checkbox
 
 <p class="description">Checkboxes give users binary choices when presented with multiple options in a series.</p>
-
-{{"component": "components/productBaseUI/MuiBaseDeprecation", "newComponentName": "Checkbox", "newComponentUrl": "https://base-ui.com/react/components/checkbox"}}

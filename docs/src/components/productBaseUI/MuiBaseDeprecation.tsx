@@ -13,8 +13,9 @@ export default function MuiBaseDeprecation(props: {
         <Box component="aside" className="MuiCallout-root MuiCallout-error">
           <Icon />
           <Box className="MuiCallout-content">
-            @mui/base has been deprecated and has been replaced by Base UI. Please use the Base UI{' '}
-            <a href={props.newComponentUrl}>{props.newComponentName} component</a> instead.
+            @mui/base has been deprecated and has been replaced by Base UI. We strongly recommend
+            using the Base UI <a href={props.newComponentUrl}>{props.newComponentName} component</a>{' '}
+            instead.
           </Box>
         </Box>
       </MarkdownElement>
@@ -26,7 +27,7 @@ export default function MuiBaseDeprecation(props: {
         <Icon />
         <Box className="MuiCallout-content">
           @mui/base has been deprecated and has been replaced by{' '}
-          <a href="https://www.base-ui.com">Base UI</a>. We strongly advise using the new package
+          <a href="https://www.base-ui.com">Base UI</a>. We strongly recommend using the new package
           instead.
         </Box>
       </Box>
