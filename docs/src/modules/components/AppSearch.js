@@ -134,7 +134,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'Base UI',
+        name: 'MUI Base',
       },
       items: [
         {
@@ -270,7 +270,7 @@ function NewStartScreen() {
 const productNameProductId = {
   'material-ui': 'Material UI',
   'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
+  'base-ui': 'MUI Base',
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
