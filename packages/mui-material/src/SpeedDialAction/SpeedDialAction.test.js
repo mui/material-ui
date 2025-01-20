@@ -50,6 +50,9 @@ describe('<SpeedDialAction />', () => {
         staticTooltip: {
           expectedClassName: classes.staticTooltip,
         },
+        staticTooltipLabel: {
+          expectedClassName: classes.staticTooltipLabel,
+        },
       },
     }),
   );

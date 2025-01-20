@@ -228,21 +228,25 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     },
   });
 
-  const fab = <FabSlot {...fabSlotProps}>{icon}</FabSlot>;
+  const [StaticTooltipLabelSlot, staticTooltipLabelSlotProps] = useSlot('staticTooltipLabel', {
+    elementType: SpeedDialActionStaticTooltipLabel,
+    externalForwardedProps,
+    ownerState,
+    className: classes.staticTooltipLabel,
+    additionalProps: {
+      style: transitionStyle,
+      id: `${id}-label`,
+    },
+  });
 
-  console.log(staticTooltipSlotProps.ref);
+  const fab = <FabSlot {...fabSlotProps}>{icon}</FabSlot>;
 
   if (tooltipOpenProp) {
     return (
       <StaticTooltipSlot {...staticTooltipSlotProps} {...other}>
-        <SpeedDialActionStaticTooltipLabel
-          style={transitionStyle}
-          id={`${id}-label`}
-          className={classes.staticTooltipLabel}
-          ownerState={ownerState}
-        >
+        <StaticTooltipLabelSlot {...staticTooltipLabelSlotProps}>
           {tooltipTitle}
-        </SpeedDialActionStaticTooltipLabel>
+        </StaticTooltipLabelSlot>
         {React.cloneElement(fab, {
           'aria-labelledby': `${id}-label`,
         })}
@@ -297,6 +301,26 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    * If `true`, the component is shown.
    */
   open: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    fab: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    staticTooltip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    staticTooltipLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    tooltip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    fab: PropTypes.elementType,
+    staticTooltip: PropTypes.elementType,
+    staticTooltipLabel: PropTypes.elementType,
+    tooltip: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
