@@ -17,7 +17,7 @@ export default function BaseUI() {
     <BrandingCssVarsProvider>
       <Head
         title="MUI Base: Unstyled React components and low-level hooks"
-        description={`MUI Base is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.`}
+        description='MUI Base is a library of headless ("unstyled") React components and low-level hooks. You gain complete control over your app&apos;s CSS and accessibility features.'
         card="/static/social-previews/baseui-preview.jpg"
       >
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
