@@ -11,7 +11,7 @@
     "./loader": "./loader.mjs",
     "./prism": {
       "types": "./prism.d.mts",
-      "require": null,
+      "require": "./prism.cjs",
       "import": "./prism.mjs"
     }
   },
