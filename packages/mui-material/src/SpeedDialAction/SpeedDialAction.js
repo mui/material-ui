@@ -195,7 +195,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       <SpeedDialActionStaticTooltip
         id={id}
         ref={ref}
-        className={classes.staticTooltip}
+        className={clsx(classes.staticTooltip, className)}
         ownerState={ownerState}
         {...other}
       >

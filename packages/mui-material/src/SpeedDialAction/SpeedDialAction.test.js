@@ -77,4 +77,16 @@ describe('<SpeedDialAction />', () => {
     expect(container.querySelector('button')).to.have.class(classes.fab);
     expect(container.querySelector('button')).to.have.class(classes.fabClosed);
   });
+
+  it('should propagate className to the SpeedDialActionStaticTooltip if tooltipOpen is true', () => {
+    const { container } = render(
+      <SpeedDialAction
+        tooltipOpen
+        icon={<Icon>add</Icon>}
+        tooltipTitle="placeholder"
+        className="foo"
+      />,
+    );
+    expect(container.querySelector('span')).to.have.class('foo');
+  });
 });
