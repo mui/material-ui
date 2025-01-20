@@ -12,7 +12,7 @@ export default function MuiBaseDeprecation(props: {
       <Alert severity="error">
         @mui/base has been deprecated and has been replaced by Base UI. Please use the Base UI{' '}
         <Link href={props.newComponentUrl} color="error.800" underline="always">
-          {props.newComponentName} Component
+          {props.newComponentName} component
         </Link>{' '}
         instead.
       </Alert>
