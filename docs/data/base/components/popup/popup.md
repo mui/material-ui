@@ -4,6 +4,8 @@ title: React Popup component
 components: Popup
 githubLabel: 'component: popup'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+newUrl: https://base-ui.com/react/components/popover
+newName: Popover
 ---
 
 # Popup
