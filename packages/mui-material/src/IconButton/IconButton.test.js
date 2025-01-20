@@ -163,6 +163,14 @@ describe('<IconButton />', () => {
   });
 
   describe('prop: loading', () => {
+    it('does not render the wrapper by default', () => {
+      render(<IconButton />);
+
+      const button = screen.getByRole('button');
+      expect(button).to.have.property('disabled', false);
+      expect(button.firstChild).to.equal(null);
+    });
+
     it('disables the button', () => {
       render(<IconButton loading />);
 
