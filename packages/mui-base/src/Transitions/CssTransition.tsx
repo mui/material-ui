@@ -27,7 +27,7 @@ export interface CssTransitionProps {
 }
 
 /**
- * A utility component that hooks up to the Base UI transitions API and
+ * A utility component that hooks up to the MUI Base transitions API and
  * applies a CSS transition to its children when necessary.
  *
  * Demos:

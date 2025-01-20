@@ -343,6 +343,7 @@ module.exports = /** @type {Config} */ ({
             patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
           },
         ],
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
     {
@@ -519,6 +520,7 @@ module.exports = /** @type {Config} */ ({
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
         'react-compiler/react-compiler': 'off',
+        'no-irregular-whitespace': ['error', { skipComments: true }],
       },
     },
     {
@@ -544,6 +546,7 @@ module.exports = /** @type {Config} */ ({
         // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
         'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
         'react/prop-types': 'off',
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
     {
