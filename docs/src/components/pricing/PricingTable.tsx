@@ -429,9 +429,9 @@ function RowHead({
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'MUI Base': (
     <ColumnHead
-      label="MUI Base"
+      label="MUI Base"
       tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
@@ -737,7 +737,7 @@ const toBeDefined = (
 
 const communityData: Record<string, React.ReactNode> = {
   // Core open-source libraries
-  'MUI Base': yes,
+  'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -840,7 +840,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -944,7 +944,7 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -1369,7 +1369,7 @@ export default function PricingTable({
         {divider}
         {renderRow('Joy UI')}
         {divider}
-        {renderRow('MUI Base')}
+        {renderRow('MUI Base')}
         {divider}
         {renderRow('MUI System')}
         <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>

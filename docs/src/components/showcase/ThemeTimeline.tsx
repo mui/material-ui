@@ -111,7 +111,7 @@ export default function BasicTimeline() {
                 <TimelineDot />
                 <TimelineConnector />
               </TimelineSeparator>
-              <TimelineContent>MUI Base</TimelineContent>
+              <TimelineContent>MUI Base</TimelineContent>
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>

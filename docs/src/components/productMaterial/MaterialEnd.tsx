@@ -88,10 +88,10 @@ export default function MaterialEnd({ noFaq }: MaterialEndProps) {
                 <GlowingIconContainer icon={<CompareIcon color="primary" />} />
                 <div>
                   <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
-                    Material UI vs. MUI Base
+                    Material UI vs. MUI Base
                   </Typography>
                   <Typography>
-                    Material UI implements Google&apos;s Material Design whereas MUI Base features
+                    Material UI implements Google&apos;s Material Design whereas MUI Base features
                     many of the same components, but without the Material Design implementation.
                   </Typography>
                 </div>

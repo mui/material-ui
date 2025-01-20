@@ -226,7 +226,7 @@ function AppWrapper(props) {
     if (productId === 'base-ui') {
       return {
         metadata: '',
-        name: 'MUI Base',
+        name: 'MUI Base',
         logo: SvgBaseUiLogo,
         logoSvg: baseSvgLogoString,
         wordmarkSvg: baseSvgWordmarkString,
