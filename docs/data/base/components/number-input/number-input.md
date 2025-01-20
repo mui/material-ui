@@ -4,6 +4,8 @@ title: React Number Input component and hook
 components: NumberInput
 hooks: useNumberInput
 githubLabel: 'component: number input'
+newUrl: https://base-ui.com/react/components/number-field
+newName: Number Field
 ---
 
 # Number Input

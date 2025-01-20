@@ -10,7 +10,7 @@
       "description": "If true, the <code>color</code> prop is applied in dark mode."
     },
     "position": {
-      "description": "The positioning type. The behavior of the different options is described <a href=\"https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning\">in the MDN web docs</a>. Note: <code>sticky</code> is not universally supported and will fall back to <code>static</code> when unavailable."
+      "description": "The positioning type. The behavior of the different options is described <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/position\">in the MDN web docs</a>. Note: <code>sticky</code> is not universally supported and will fall back to <code>static</code> when unavailable."
     },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."

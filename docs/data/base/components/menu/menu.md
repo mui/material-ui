@@ -5,6 +5,8 @@ components: Menu, MenuItem, MenuButton, Dropdown
 hooks: useMenu, useMenuItem, useMenuButton, useDropdown, useMenuItemContextStabilizer
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+newUrl: https://base-ui.com/react/components/menu
+newName: Menu
 ---
 
 # Menu

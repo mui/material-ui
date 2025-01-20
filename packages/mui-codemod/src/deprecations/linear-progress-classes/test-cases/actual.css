@@ -1,0 +1,35 @@
+.MuiLinearProgress-root .MuiLinearProgress-bar1Buffer {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-bar1Determinate {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-bar1Indeterminate {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-bar2Buffer {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-bar2Indeterminate {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-barColorPrimary {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-barColorSecondary {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-dashedColorPrimary {
+  color: red;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-dashedColorSecondary {
+  color: red;
+}

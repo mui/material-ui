@@ -245,7 +245,8 @@
     "title": "Talent & Culture Partner",
     "location": "Novi Sad, Serbia",
     "locationCountry": "rs",
-    "about": "🧠 Psychology geek, 🏂 amateur snowboarder, and 𐃡 pottery enthusiast."
+    "about": "🧠 Psychology geek, 🏂 amateur snowboarder, and 𐃡 pottery enthusiast.",
+    "github": "nadjakovacev"
   },
   {
     "name": "James Nelson",
@@ -272,14 +273,6 @@
     "locationCountry": "nl",
     "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
     "github": "JCQuintas"
-  },
-  {
-    "name": "Arthur Balduini",
-    "title": "React Engineer - X",
-    "location": "Paris, France",
-    "locationCountry": "fr",
-    "about": "Cooking 🍳, plant caring 🪴 and literature 📖.",
-    "github": "arthurbalduini"
   },
   {
     "name": "Kenan Yusuf",
