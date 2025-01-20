@@ -12,6 +12,7 @@ import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { open, tooltipPlacement, classes } = ownerState;
@@ -155,6 +156,8 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     tooltipOpen: tooltipOpenProp = false,
     tooltipPlacement = 'left',
     tooltipTitle,
+    slots = {},
+    slotsProps = {},
     ...other
   } = props;
 
@@ -172,6 +175,27 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   };
 
   const transitionStyle = { transitionDelay: `${delay}ms` };
+
+  const externalForwardedProps = {
+    slots,
+    slotsProps,
+  };
+
+  const [TooltipSlot, tooltipSlotProps] = useSlot('tooltip', {
+    elementType: Tooltip,
+    externalForwardedProps,
+    ownerState,
+    ref,
+    additionalProps: {
+      title: tooltipTitle,
+      placement: tooltipPlacement,
+      onClose: handleTooltipClose,
+      onOpen: handleTooltipOpen,
+      open: open && tooltipOpen,
+      classes: TooltipClasses,
+      id,
+    },
+  });
 
   const fab = (
     <SpeedDialActionFab
@@ -218,21 +242,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     setTooltipOpen(false);
   }
 
-  return (
-    <Tooltip
-      id={id}
-      ref={ref}
-      title={tooltipTitle}
-      placement={tooltipPlacement}
-      onClose={handleTooltipClose}
-      onOpen={handleTooltipOpen}
-      open={open && tooltipOpen}
-      classes={TooltipClasses}
-      {...other}
-    >
-      {fab}
-    </Tooltip>
-  );
+  return <TooltipSlot {...tooltipSlotProps} {...other}>{fab}</TooltipSlot>;
 });
 
 SpeedDialAction.propTypes /* remove-proptypes */ = {
