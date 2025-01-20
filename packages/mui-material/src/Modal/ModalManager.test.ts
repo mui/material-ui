@@ -115,7 +115,7 @@ describe('ModalManager', () => {
     let fixedNode: HTMLDivElement;
 
     beforeEach(() => {
-      document.body.style.paddingRight = '20px';
+      container1.style.paddingRight = '20px';
 
       fixedNode = document.createElement('div');
       fixedNode.classList.add('mui-fixed');
@@ -126,23 +126,20 @@ describe('ModalManager', () => {
     afterEach(() => {
       document.body.removeChild(fixedNode);
       window.innerWidth -= 1;
-      document.body.style.paddingRight = '';
-      document.body.style.overflow = '';
     });
 
     it('should handle the scroll', () => {
       fixedNode.style.paddingRight = '14px';
 
       const modal = getDummyModal();
-      const body = document.body;
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-      expect(body.style.overflow).to.equal('hidden');
-      expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(container1.style.overflow).to.equal('hidden');
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
       expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
       modalManager.remove(modal);
-      expect(body.style.overflow).to.equal('');
-      expect(body.style.paddingRight).to.equal('20px');
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('14px');
     });
 
@@ -150,14 +147,12 @@ describe('ModalManager', () => {
       const modal = getDummyModal();
       modalManager.add(modal, container1);
       modalManager.mount(modal, {});
-
-      const body = document.body;
-      expect(body.style.overflow).to.equal('hidden');
-      expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
+      expect(container1.style.overflow).to.equal('hidden');
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
       expect(fixedNode.style.paddingRight).to.equal(`${getScrollbarSize(window)}px`);
       modalManager.remove(modal);
-      expect(body.style.overflow).to.equal('');
-      expect(body.style.paddingRight).to.equal('20px');
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('');
     });
 
@@ -208,37 +203,53 @@ describe('ModalManager', () => {
       it('should restore styles correctly if overflow existed before', () => {
         const modal = getDummyModal();
 
-        const body = document.body;
-        body.style.overflow = 'scroll';
+        container2.style.overflow = 'scroll';
+
+        Object.defineProperty(container2, 'scrollHeight', {
+          value: 100,
+          writable: false,
+        });
+        Object.defineProperty(container2, 'clientHeight', {
+          value: 90,
+          writable: false,
+        });
 
         document.body.appendChild(container2);
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
 
-        expect(body.style.overflow).to.equal('hidden');
+        expect(container2.style.overflow).to.equal('hidden');
         modalManager.remove(modal);
 
-        expect(body.style.overflow).to.equal('scroll');
+        expect(container2.style.overflow).to.equal('scroll');
         expect(fixedNode.style.paddingRight).to.equal('');
       });
 
       it('should restore styles correctly if overflow-x existed before', () => {
         const modal = getDummyModal();
 
-        const body = document.body;
-        body.style.overflowX = 'hidden';
+        container2.style.overflowX = 'hidden';
+
+        Object.defineProperty(container2, 'scrollHeight', {
+          value: 100,
+          writable: false,
+        });
+        Object.defineProperty(container2, 'clientHeight', {
+          value: 90,
+          writable: false,
+        });
 
         document.body.appendChild(container2);
 
         modalManager.add(modal, container2);
         modalManager.mount(modal, {});
 
-        expect(body.style.overflow).to.equal('hidden');
+        expect(container2.style.overflow).to.equal('hidden');
 
         modalManager.remove(modal);
 
-        expect(body.style.overflow).to.equal('');
-        expect(body.style.overflowX).to.equal('hidden');
+        expect(container2.style.overflow).to.equal('');
+        expect(container2.style.overflowX).to.equal('hidden');
       });
     });
   });

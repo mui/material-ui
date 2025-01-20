@@ -9,8 +9,14 @@ export interface ManagedModalProps {
 }
 
 // Is a vertical scrollbar displayed on body?
-function isBodyOverflowing(body: HTMLElement): boolean {
-  return ownerWindow(body).innerWidth > ownerDocument(body).documentElement.clientWidth;
+function isOverflowing(container: Element): boolean {
+  const doc = ownerDocument(container);
+
+  if (doc.body === container) {
+    return ownerWindow(container).innerWidth > doc.documentElement.clientWidth;
+  }
+
+  return container.scrollHeight > container.clientHeight;
 }
 
 export function ariaHidden(element: Element, hide: boolean): void {
@@ -114,27 +120,23 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
     el: HTMLElement | SVGElement;
     value: string;
   }> = [];
-
-  // We always try to apply the scrollLock to body in case disablePortal was used
-  // on the modal and container is deeply nested. This method seems to block
-  // scrolling on all containers so it still works with disablePortal
-  const body = ownerDocument(containerInfo.container).body;
+  const container = containerInfo.container;
 
   if (!props.disableScrollLock) {
-    if (isBodyOverflowing(body)) {
+    if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
-      const scrollbarSize = getScrollbarSize(ownerWindow(body));
+      const scrollbarSize = getScrollbarSize(ownerWindow(container));
 
       restoreStyle.push({
-        value: body.style.paddingRight,
+        value: container.style.paddingRight,
         property: 'padding-right',
-        el: body,
+        el: container,
       });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      body.style.paddingRight = `${getPaddingRight(body) + scrollbarSize}px`;
+      container.style.paddingRight = `${getPaddingRight(container) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
-      const fixedElements = ownerDocument(body).querySelectorAll('.mui-fixed');
+      const fixedElements = ownerDocument(container).querySelectorAll('.mui-fixed');
       [].forEach.call(fixedElements, (element: HTMLElement | SVGElement) => {
         restoreStyle.push({
           value: element.style.paddingRight,
@@ -145,12 +147,21 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
       });
     }
 
-    // Support html overflow-y: auto for scroll stability between pages
-    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-    const html = document.documentElement;
-    const containerWindow = ownerWindow(body);
-    const scrollContainer =
-      containerWindow.getComputedStyle(html).overflowY === 'scroll' ? html : body;
+    let scrollContainer: HTMLElement;
+
+    if (container.parentNode instanceof DocumentFragment) {
+      scrollContainer = ownerDocument(container).body;
+    } else {
+      // Support html overflow-y: auto for scroll stability between pages
+      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+      const parent = container.parentElement;
+      const containerWindow = ownerWindow(container);
+      scrollContainer =
+        parent?.nodeName === 'HTML' &&
+        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
+          ? parent
+          : container;
+    }
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard
     // screensize shrink.
