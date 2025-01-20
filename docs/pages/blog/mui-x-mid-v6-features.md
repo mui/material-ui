@@ -8,7 +8,7 @@ tags: ['MUI X', 'Product']
 ---
 
 <a href="https://github.com/mui/mui-x/releases/tag/v6.11.0">
-  <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="open release page" width="1384" height="346" style="margin-bottom: 16px;" />
+  <img src="/static/blog/mui-x-mid-v6-features/intro.png" alt="open release page" width="1384" height="346" />
 </a>
 
 Since the first v6 stable release, we've continuously rolled out new major features.
@@ -34,7 +34,7 @@ No more hassle displaying dates in the time zones of your choice. 🌎
 
 You can effortlessly display and select dates and times in different time zones, without worrying about conversion logic or maintaining consistency with your backend.
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop>
+<video autoplay muted loop width="1548" height="628">
   <source src="/static/blog/mui-x-mid-v6-features/timezone.mp4" type="video/mp4">
 </video>
 
@@ -58,7 +58,7 @@ The original proposal was mainly focused on mobile devices, whereas the new inte
 This new addition makes our Date Pickers even more versatile and user-friendly than before.
 It's available as the default variant for desktops on both the [Time Picker](https://mui.com/x/react-date-pickers/time-picker/) and the [Date Time Picker](https://mui.com/x/react-date-pickers/date-time-picker/).
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop>
+<video autoplay muted loop width="1588" height="760">
   <source src="/static/blog/mui-x-mid-v6-features/digital_clock.mov" type="video/mp4">
 </video>
 
@@ -74,7 +74,7 @@ Use the `unstable_headerFilters` prop to activate this feature.
 The new filter fields are displayed below the headers, and are synchronized with the filter panel.
 If you prefer more simplicity, you can disable the default filter panel using the `disableColumnFilter` prop, and set filters to use only the default operator.
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
+<video autoplay muted loop playsinline width="832" height="418">
   <source src="/static/blog/mui-x-mid-v6-features/header_filter.mp4" type="video/mp4">
 </video>
 
@@ -86,7 +86,7 @@ After setting the `experimentalFeatures={{ clipboardPaste: true }}` prop, you ca
 
 This new feature is extremely versatile, and you can exchange data from other fields, other grids, and even directly to and from the spreadsheet tool of your choice.
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
+<video autoplay muted loop playsinline width="1642" height="1136">
   <source src="/static/blog/mui-x-mid-v6-features/copy_paste.mov" type="video/mp4">
 </video>
 
@@ -106,7 +106,7 @@ And it ships with gorgeous palettes that were specially crafted by our designers
 
 Check out the video below, highlighting some of our Charts:
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
+<video autoplay muted loop playsinline width="1432" height="1080">
   <source src="/static/blog/mui-x-mid-v6-features/charts_final_v1.mov" type="video/mp4">
 </video>
 
@@ -125,7 +125,7 @@ Tree View is being migrated from the [lab](https://mui.com/material-ui/about-the
 The Tree View is a component that represents hierarchical in a tree-like format.
 Think of a file system navigator displaying folders and files or a navigation list.
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop playsinline>
+<video autoplay muted loop playsinline width="1500" height="554">
   <source src="/static/blog/mui-x-mid-v6-features/treeview.mov" type="video/mp4">
 </video>
 

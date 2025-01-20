@@ -97,7 +97,6 @@ const TriggerButton = styled('button')(
   line-height: 1.5;
   padding: 8px 16px;
   border-radius: 8px;
-  color: white;
   transition: all 150ms ease;
   cursor: pointer;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
@@ -111,6 +110,7 @@ const TriggerButton = styled('button')(
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
+
   &:active {
     background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
   }

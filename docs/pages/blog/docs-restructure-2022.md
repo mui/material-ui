@@ -28,7 +28,7 @@ We currently offer two main product lines:
 All MUI products still live under the [mui.com](https://mui.com) domain, but each of them now has its own respective URL and documentation.
 We added an identifier and menu to the upper-left corner of the docs for improved navigation:
 
-<img src="/static/blog/docs-restructure-2022/docs-separation.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of the product identifier menu" />
+<img src="/static/blog/docs-restructure-2022/docs-separation.png" width="1200" height="620" loading="lazy" alt="Screenshot of the product identifier menu" />
 
 As for the URLs, this is how they look now:
 
@@ -52,15 +52,15 @@ For example, if you are looking at Material UI documentation, when you press <k
 
 We have also added product labels for Material UI and Base UI in case it's unclear which library the search results refer to.
 
-<img src="/static/blog/docs-restructure-2022/docs-product-label.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of the search results displaying product labels per result" />
+<img src="/static/blog/docs-restructure-2022/docs-product-label.png" width="1200" height="620" loading="lazy" alt="Screenshot of the search results displaying product labels per result" />
 
 As a side benefit of the documentation restructuring, we have seen a huge improvement in the quality of search results related to MUI X. Data Grid users can now see comprehensive results when searching for features. Previously a search for pagination returned results for the Material UI pagination component, followed by those for the data grid:
 
-<img src="/static/blog/docs-restructure-2022/docs-search-before.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of search results for pagination before the documentation restructuring, returning at first results for the Material UI pagination component followed by those for the data grid" />
+<img src="/static/blog/docs-restructure-2022/docs-search-before.png" width="1200" height="681" loading="lazy" alt="Screenshot of search results for pagination before the documentation restructuring, returning at first results for the Material UI pagination component followed by those for the data grid" />
 
 Now when viewing the MUI X section, only results related to the data grid pagination feature are returned:
 
-<img src="/static/blog/docs-restructure-2022/docs-search-after.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of search results for pagination after the documentation restructuring. Now when viewing the MUI X section, only results related to the data grid pagination feature are returned." />
+<img src="/static/blog/docs-restructure-2022/docs-search-after.png" width="1200" height="681" loading="lazy" alt="Screenshot of search results for pagination after the documentation restructuring. Now when viewing the MUI X section, only results related to the data grid pagination feature are returned." />
 
 ## Moving forward
 

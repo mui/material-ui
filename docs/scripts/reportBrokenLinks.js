@@ -15,7 +15,7 @@ function getPageLinks(markdown) {
       hrefs.push(href);
     }
   };
-  marked(markdown, { mangle: false, headerIds: false, renderer });
+  marked(markdown, { renderer });
   return hrefs;
 }
 
@@ -64,13 +64,9 @@ function cleanLink(link) {
 }
 
 function getLinksAndAnchors(fileName) {
-  const toc = [];
   const headingHashes = {};
-  const userLanguage = 'en';
   const render = createRender({
     headingHashes,
-    toc,
-    userLanguage,
     options: {
       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
       env: {

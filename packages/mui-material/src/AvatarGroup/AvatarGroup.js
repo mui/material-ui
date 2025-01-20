@@ -31,10 +31,9 @@ const useUtilityClasses = (ownerState) => {
 const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
-  overridesResolver: (props, styles) => ({
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-    ...styles.root,
-  }),
+  overridesResolver: (props, styles) => {
+    return [{ [`& .${avatarGroupClasses.avatar}`]: styles.avatar }, styles.root];
+  },
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
@@ -130,10 +129,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     ownerState,
     additionalProps: {
       variant,
-      style: {
-        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
-        ...other.style,
-      },
     },
   });
 
@@ -144,6 +139,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      style={{
+        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
+        ...other.style,
+      }}
     >
       {extraAvatars ? <SurplusSlot {...surplusProps}>{extraAvatarsElement}</SurplusSlot> : null}
       {children

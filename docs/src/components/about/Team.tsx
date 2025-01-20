@@ -20,7 +20,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
 /**
- * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/nSwYn51
+ * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/muicomabout
 
 curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
   -H 'content-type: application/json' \
@@ -234,6 +234,16 @@ const contributors = [
     location: 'Ireland',
     locationCountry: 'ie',
     src: 'https://avatars.githubusercontent.com/u/12678455',
+  },
+  {
+    name: 'Zeeshan Tamboli',
+    github: 'ZeeshanTamboli',
+    location: 'Pune, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/20900032',
+    twitter: 'ZeeshanTamboli',
+    linkedin: 'in/zeeshantamboli',
   },
 ];
 

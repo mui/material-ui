@@ -20,7 +20,7 @@ export function useDropdown(parameters: UseDropdownParameters = {}) {
   const { defaultOpen, onOpenChange, open: openProp, componentName = 'useDropdown' } = parameters;
   const [popupId, setPopupId] = React.useState<string>('');
   const [triggerElement, setTriggerElement] = React.useState<HTMLElement | null>(null);
-  const lastActionType = React.useRef<string | null>(null);
+  const lastActionType = React.useRef<string>(null);
 
   const handleStateChange: StateChangeCallback<DropdownState> = React.useCallback(
     (event, field, value, reason) => {

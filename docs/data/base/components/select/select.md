@@ -5,6 +5,8 @@ components: Select, Option, OptionGroup
 hooks: useSelect, useOption, useOptionContextStabilizer
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+newUrl: https://base-ui.com/react/components/select
+newName: Select
 ---
 
 # Select

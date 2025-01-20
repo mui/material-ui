@@ -4,13 +4,13 @@ import { Tab as BaseTab, TabRootSlotProps, tabClasses } from '@mui/base/Tab';
 import { TabsList as BaseTabsList } from '@mui/base/TabsList';
 import {
   MemoryRouter,
+  StaticRouter,
   Route,
   Routes,
   Link,
   matchPath,
   useLocation,
-} from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+} from 'react-router';
 import { styled } from '@mui/system';
 
 function Router(props: { children?: React.ReactNode }) {
@@ -161,8 +161,7 @@ const TabsList = styled(BaseTabsList)(
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  align-content: space-between;
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
+  place-content: space-between center;
+  box-shadow: 0 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link as ReactRouterLink, LinkProps } from 'react-router-dom';
+import { Link as ReactRouterLink, LinkProps } from 'react-router';
 import { expectType } from '@mui/types';
 import Button, { ButtonProps } from '@mui/material/Button';
 import MaterialUiLink, { LinkProps as MaterialUiLinkProps } from '@mui/material/Link';
@@ -145,3 +145,17 @@ const ReactRouterLinkTest = () => {
     </Button>
   );
 };
+
+function ClassesTest() {
+  return (
+    <Button
+      classes={{
+        outlined: 'extra-outlined',
+        loadingIndicator: 'extra-loading-indicator',
+        disabled: 'extra-disabled',
+      }}
+    >
+      Button
+    </Button>
+  );
+}

@@ -18,20 +18,6 @@ const GOLDs = [
     href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/251374?s=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/251374?s=120 3x',
-    name: 'Spotify',
-    description: 'Music service for accessing millions of songs.',
-    href: 'https://open.spotify.com?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
-    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/120.png 3x',
-    name: 'Icons8',
-    description: 'API for icons, photos, illustrations, and music.',
-    href: 'https://icons8.com?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://rxdb.info/files/logo/logo_text.svg',
     name: 'RxDB',
     description: 'Local-first JavaScript database.',
@@ -52,13 +38,6 @@ const GOLDs = [
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/copycopterai/e167216/logo/40.png',
-    srcSet: 'https://images.opencollective.com/copycopterai/e167216/logo/120.png 3x',
-    name: 'Copycopter.ai',
-    description: 'Turn prompts into videos at ultra speed.',
-    href: 'https://copycopter.ai/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/route4me/71fb6fa/avatar/40.png',
     srcSet: 'https://images.opencollective.com/route4me/71fb6fa/avatar/120.png 3x',
     name: 'Route4Me',
@@ -67,11 +46,6 @@ const GOLDs = [
   },
 ];
 const BACKLINKs = [
-  {
-    name: 'MegaFamous',
-    description: 'Buy Instagram followers and likes.',
-    href: 'https://megafamous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
   {
     name: 'Goread.io',
     description: 'Instagram followers, likes, views, and comments.',
@@ -91,6 +65,11 @@ const BACKLINKs = [
     name: 'Views4You',
     description: 'Social media growth services.',
     href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Poprey',
+    description: 'Buy Instagram likes with crypto.',
+    href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 

@@ -4,6 +4,8 @@ title: React Popper component
 components: Popper
 githubLabel: 'component: Popper'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
+newUrl: https://base-ui.com/react/components/popover
+newName: Popover
 ---
 
 # Popper

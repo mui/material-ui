@@ -137,8 +137,8 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
 export default function HeaderNavBar() {
   const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
-  const navRef = React.useRef<HTMLUListElement | null>(null);
-  const productSelectorRef = React.useRef<HTMLDivElement | null>(null);
+  const navRef = React.useRef<HTMLUListElement>(null);
+  const productSelectorRef = React.useRef<HTMLDivElement>(null);
   const productsMenuRef = React.useRef<HTMLButtonElement>(null);
   const docsMenuRef = React.useRef<HTMLButtonElement>(null);
 

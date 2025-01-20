@@ -9,6 +9,17 @@
     },
     "hideSortIcon": { "type": { "name": "bool" }, "default": "false" },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDownwardIcon" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ icon?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ icon?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -21,6 +32,20 @@
   "imports": [
     "import TableSortLabel from '@mui/material/TableSortLabel';",
     "import { TableSortLabel } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "span",
+      "class": "MuiTableSortLabel-root"
+    },
+    {
+      "name": "icon",
+      "description": "The component that renders the icon slot.",
+      "default": "ArrowDownwardIcon",
+      "class": "MuiTableSortLabel-icon"
+    }
   ],
   "classes": [
     {
@@ -42,12 +67,6 @@
       "isGlobal": false
     },
     {
-      "key": "icon",
-      "className": "MuiTableSortLabel-icon",
-      "description": "Styles applied to the icon component.",
-      "isGlobal": false
-    },
-    {
       "key": "iconDirectionAsc",
       "className": "MuiTableSortLabel-iconDirectionAsc",
       "description": "Styles applied to the icon component if `direction=\"asc\"`.",
@@ -60,12 +79,6 @@
       "description": "Styles applied to the icon component if `direction=\"desc\"`.",
       "isGlobal": false,
       "isDeprecated": true
-    },
-    {
-      "key": "root",
-      "className": "MuiTableSortLabel-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     }
   ],
   "spread": true,
