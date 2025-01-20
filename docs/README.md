@@ -1,6 +1,6 @@
 # Docs
 
-This is the website of the company (MUI), the documentation of Material UI, Base UI, MUI System, and Joy UI.
+This is the website of the company (MUI), the documentation of Material UI, MUI Base, MUI System, and Joy UI.
 
 To start the docs site in development mode, from the project root, run:
 
