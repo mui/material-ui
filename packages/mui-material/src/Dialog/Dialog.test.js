@@ -74,7 +74,7 @@ describe('<Dialog />', () => {
         },
         paper: {
           expectedClassName: classes.paper,
-          testWithElement: <div tabIndex={-1}/>,
+          testWithElement: <div tabIndex={-1} />,
         },
       },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
