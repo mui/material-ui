@@ -4,20 +4,20 @@ import { Select, SelectOption, Slider } from './components';
 
 function Heading(props: { children: React.ReactNode }) {
   return (
-    <h2 className="font-bold text-gray-400 uppercase text-base mt-3 mb-2">{props.children}</h2>
+    <h2 className="mb-2 mt-3 text-base font-bold uppercase text-gray-400">{props.children}</h2>
   );
 }
 
 function Section(props: { children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-3 grid-rows-[40px] gap-x-16 items-center min-h-[40px] py-1.5 border-t-[1px] border-solid border-gray-700">
+    <div className="grid min-h-[40px] grid-cols-3 grid-rows-[40px] items-center gap-x-16 border-t-[1px] border-solid border-gray-700 py-1.5">
       {props.children}
     </div>
   );
 }
 
 function Label(props: { children: React.ReactNode }) {
-  return <h3 className="font-medium leading-none text-gray-300 col-span-2">{props.children}</h3>;
+  return <h3 className="col-span-2 font-medium leading-none text-gray-300">{props.children}</h3>;
 }
 
 const HOURS = [
@@ -49,8 +49,8 @@ const HOURS = [
 
 export default function Home() {
   return (
-    <main className="flex justify-center items-center w-full h-screen">
-      <div className="bg-[rgb(14,20,27)] rounded-lg p-6">
+    <main className="flex h-screen w-full items-center justify-center">
+      <div className="rounded-lg bg-[rgb(14,20,27)] p-6">
         <Heading>Night Mode</Heading>
         <Section>
           <Label>Schedule Night Mode</Label>
@@ -86,7 +86,7 @@ export default function Home() {
                 </SelectOption>
               ))}
             </Select>
-            <span className="text-gray-300 text-sm text-medium mx-2">and</span>
+            <span className="text-medium mx-2 text-sm text-gray-300">and</span>
             <Select defaultValue="6AM">
               {HOURS.map((hour) => (
                 <SelectOption key={`to-${hour}`} value={hour}>

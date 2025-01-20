@@ -103,7 +103,7 @@ const MenuButton = React.forwardRef((props, ref) => {
     <BaseMenuButton
       ref={ref}
       className={clsx(
-        'cursor-pointer text-sm font-sans box-border rounded-lg font-semibold px-4 py-2 bg-white dark:bg-slate-900 border border-solid border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-200 hover:bg-slate-50 hover:dark:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 focus-visible:shadow-[0_0_0_4px_#ddd6fe] dark:focus-visible:shadow-[0_0_0_4px_#a78bfa] focus-visible:outline-none shadow-sm',
+        'box-border cursor-pointer rounded-lg border border-solid border-slate-200 bg-white px-4 py-2 font-sans text-sm font-semibold text-slate-900 shadow-sm hover:border-slate-300 hover:bg-slate-50 focus-visible:shadow-[0_0_0_4px_#ddd6fe] focus-visible:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-600 hover:dark:bg-slate-800 dark:focus-visible:shadow-[0_0_0_4px_#a78bfa]',
         className,
       )}
       {...other}
@@ -124,7 +124,7 @@ const MenuItem = React.forwardRef((props, ref) => {
     <BaseMenuItem
       ref={ref}
       className={clsx(
-        'list-none p-2 rounded-lg cursor-default select-none last-of-type:border-b-0 focus:shadow-outline-purple focus:outline-0 focus:bg-slate-100 focus:dark:bg-slate-800 focus:text-slate-900 focus:dark:text-slate-300 disabled:text-slate-400 disabled:dark:text-slate-700 disabled:hover:text-slate-400 disabled:hover:dark:text-slate-700',
+        'focus:shadow-outline-purple cursor-default select-none list-none rounded-lg p-2 last-of-type:border-b-0 focus:bg-slate-100 focus:text-slate-900 focus:outline-0 disabled:text-slate-400 disabled:hover:text-slate-400 focus:dark:bg-slate-800 focus:dark:text-slate-300 disabled:dark:text-slate-700 disabled:hover:dark:text-slate-700',
         className,
       )}
       {...other}

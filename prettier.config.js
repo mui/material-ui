@@ -1,7 +1,20 @@
+const plugins = [];
+
+// Not all projects in the org have docs for Tailwind CSS.
+try {
+  // eslint-disable-next-line
+  require('tailwindcss');
+  // must be loaded last: https://github.com/tailwindlabs/prettier-plugin-tailwindcss?tab=readme-ov-file#compatibility-with-other-prettier-plugins
+  plugins.push('prettier-plugin-tailwindcss');
+} catch (err) {
+  // continue regardless of error
+}
+
 module.exports = {
   printWidth: 100,
   singleQuote: true,
   trailingComma: 'all',
+  plugins: [...plugins],
   overrides: [
     {
       files: ['docs/**/*.md', 'docs/src/pages/**/*.{js,tsx}', 'docs/data/**/*.{js,tsx}'],

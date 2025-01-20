@@ -4,7 +4,7 @@
 
 @layer components {
   .card {
-    @apply max-w-[70ch] rounded-lg border border-gray-400 p-6 mb-6;
+    @apply mb-6 max-w-[70ch] rounded-lg border border-gray-400 p-6;
   }
 
   .link {

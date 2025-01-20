@@ -22,7 +22,7 @@
     }
 
     &.Mui-disabled {
-      @apply opacity-40 cursor-not-allowed;
+      @apply cursor-not-allowed opacity-40;
     }
   }
 }

@@ -282,6 +282,9 @@ importers:
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
+      prettier-plugin-tailwindcss:
+        specifier: ^0.6.9
+        version: 0.6.9(prettier@3.4.2)
       pretty-quick:
         specifier: ^4.0.0
         version: 4.0.0(prettier@3.4.2)
@@ -923,8 +926,8 @@ importers:
         specifier: ^7.18.3
         version: 7.18.3
       babel-plugin-tester:
-        specifier: ^11.0.4
-        version: 11.0.4(@babel/core@7.26.0)
+        specifier: ^12.0.0-canary.1
+        version: 12.0.0-canary.1(@babel/core@7.26.0)
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -6223,11 +6226,15 @@ packages:
   babel-plugin-react-remove-properties@0.3.0:
     resolution: {integrity: sha512-vbxegtXGyVcUkCvayLzftU95vuvpYFV85pRpeMpohMHeEY46Qe0VNWfkVVcCbaZ12CXHzDFOj0esumATcW83ng==}
 
-  babel-plugin-tester@11.0.4:
-    resolution: {integrity: sha512-cqswtpSPo0e++rZB0l/54EG17LL25l9gLgh59yXfnmNxX+2lZTIOpx2zt4YI9QIClVXc8xf63J6yWwKkzy0jNg==}
-    engines: {node: ^14.20.0 || ^16.16.0 || >=18.5.0}
+  babel-plugin-tester@12.0.0-canary.1:
+    resolution: {integrity: sha512-Tfa4ojSEUD9vVk+eC/jIE/f5J0w73CO5ynPzmAXFSyxJ/8eTv1AzxEucnRdEvEZr2nXxZ2+3lTQH7a/NQuTugg==}
+    engines: {node: ^18.19.0 || ^20.10.0 || >=21.3.0}
     peerDependencies:
       '@babel/core': ^7.26.0
+      jest: '>=30 || >=30.0.0-alpha.2'
+    peerDependenciesMeta:
+      jest:
+        optional: true
 
   babel-plugin-transform-flow-enums@0.0.2:
     resolution: {integrity: sha512-g4aaCrDDOsWjbm0PUUeVnkcVd6AKJsVc/MbnPhEotEpkeJQP6b8nzewohQi7+QS8UyPehOhGWn0nOwjvWpmMvQ==}
@@ -6912,8 +6919,8 @@ packages:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
 
-  core-js@3.32.1:
-    resolution: {integrity: sha512-lqufgNn9NLnESg5mQeYsxQP5w7wrViSj0jr/kv6ECQiByzQkrn1MKvV0L3acttpDqfQrHLwr2KCMgX5b8X+lyQ==}
+  core-js@3.39.0:
+    resolution: {integrity: sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -10886,10 +10893,60 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
+  prettier-plugin-tailwindcss@0.6.9:
+    resolution: {integrity: sha512-r0i3uhaZAXYP0At5xGfJH876W3HHGHDp+LCRUJrs57PBeQ6mYHMwr25KH8NPX44F2yGTvdnH7OqCshlQx183Eg==}
+    engines: {node: '>=14.21.3'}
+    peerDependencies:
+      '@ianvs/prettier-plugin-sort-imports': '*'
+      '@prettier/plugin-pug': '*'
+      '@shopify/prettier-plugin-liquid': '*'
+      '@trivago/prettier-plugin-sort-imports': '*'
+      '@zackad/prettier-plugin-twig-melody': '*'
+      prettier: ^3.0
+      prettier-plugin-astro: '*'
+      prettier-plugin-css-order: '*'
+      prettier-plugin-import-sort: '*'
+      prettier-plugin-jsdoc: '*'
+      prettier-plugin-marko: '*'
+      prettier-plugin-multiline-arrays: '*'
+      prettier-plugin-organize-attributes: '*'
+      prettier-plugin-organize-imports: '*'
+      prettier-plugin-sort-imports: '*'
+      prettier-plugin-style-order: '*'
+      prettier-plugin-svelte: '*'
+    peerDependenciesMeta:
+      '@ianvs/prettier-plugin-sort-imports':
+        optional: true
+      '@prettier/plugin-pug':
+        optional: true
+      '@shopify/prettier-plugin-liquid':
+        optional: true
+      '@trivago/prettier-plugin-sort-imports':
+        optional: true
+      '@zackad/prettier-plugin-twig-melody':
+        optional: true
+      prettier-plugin-astro:
+        optional: true
+      prettier-plugin-css-order:
+        optional: true
+      prettier-plugin-import-sort:
+        optional: true
+      prettier-plugin-jsdoc:
+        optional: true
+      prettier-plugin-marko:
+        optional: true
+      prettier-plugin-multiline-arrays:
+        optional: true
+      prettier-plugin-organize-attributes:
+        optional: true
+      prettier-plugin-organize-imports:
+        optional: true
+      prettier-plugin-sort-imports:
+        optional: true
+      prettier-plugin-style-order:
+        optional: true
+      prettier-plugin-svelte:
+        optional: true
 
   prettier@3.3.3:
     resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
@@ -13533,7 +13590,7 @@ snapshots:
       '@babel/core': 7.26.0
       '@babel/register': 7.25.9(@babel/core@7.26.0)
       commander: 6.2.1
-      core-js: 3.32.1
+      core-js: 3.39.0
       node-environment-flags: 1.0.6
       regenerator-runtime: 0.14.0
       v8flags: 3.2.0
@@ -17848,13 +17905,13 @@ snapshots:
 
   babel-plugin-react-remove-properties@0.3.0: {}
 
-  babel-plugin-tester@11.0.4(@babel/core@7.26.0):
+  babel-plugin-tester@12.0.0-canary.1(@babel/core@7.26.0):
     dependencies:
       '@babel/core': 7.26.0
-      core-js: 3.32.1
+      core-js: 3.39.0
       debug: 4.3.7(supports-color@8.1.1)
       lodash.mergewith: 4.6.2
-      prettier: 2.8.8
+      prettier: 3.4.2
       strip-indent: 3.0.0
     transitivePeerDependencies:
       - supports-color
@@ -18640,7 +18697,7 @@ snapshots:
 
   core-js@2.6.12: {}
 
-  core-js@3.32.1: {}
+  core-js@3.39.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -18908,7 +18965,7 @@ snapshots:
       async-retry: 1.2.3
       chalk: 2.4.2
       commander: 2.20.3
-      core-js: 3.32.1
+      core-js: 3.39.0
       debug: 4.3.7(supports-color@8.1.1)
       fast-json-patch: 3.1.1
       get-stdin: 6.0.0
@@ -23694,7 +23751,9 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@2.8.8: {}
+  prettier-plugin-tailwindcss@0.6.9(prettier@3.4.2):
+    dependencies:
+      prettier: 3.4.2
 
   prettier@3.3.3: {}
 

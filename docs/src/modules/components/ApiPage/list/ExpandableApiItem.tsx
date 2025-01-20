@@ -188,6 +188,8 @@ export default function ExpandableApiItem(props: ExpandableApiItemProps) {
       ownerState={{ type }}
       {...other}
       className={clsx(
+        // TODO remove once https://github.com/tailwindlabs/prettier-plugin-tailwindcss/issues/337 is fixed
+        // prettier-ignore
         `MuiApi-item-root${isExtendable ? ' MuiApi-item-header-extendable' : ''}`,
         className,
       )}

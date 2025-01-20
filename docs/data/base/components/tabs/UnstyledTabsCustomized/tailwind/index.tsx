@@ -7,7 +7,7 @@ import { Tab } from '@mui/base/Tab';
 export default function UnstyledTabsCustomized() {
   return (
     <Tabs defaultValue={1}>
-      <TabsList className="mb-4 rounded-xl bg-purple-500 flex font-sans items-center justify-center content-between min-w-tabs-list shadow-lg">
+      <TabsList className="min-w-tabs-list mb-4 flex content-between items-center justify-center rounded-xl bg-purple-500 font-sans shadow-lg">
         <Tab
           slotProps={{
             root: ({ selected, disabled }) => ({
