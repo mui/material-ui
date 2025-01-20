@@ -35,6 +35,25 @@ describe('<SpeedDialAction />', () => {
     }),
   );
 
+  describeConformance(
+    <SpeedDialAction tooltipOpen icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
+    () => ({
+      classes,
+      inheritComponent: 'span',
+      render,
+      refInstanceof: window.HTMLSpanElement,
+      muiName: 'MuiSpeedDialAction',
+      testRootOverrides: { slotName: 'fab' },
+      testVariantProps: { tooltipPlacement: 'right' },
+      skip: ['componentProp', 'componentsProp'],
+      slots: {
+        staticTooltip: {
+          expectedClassName: classes.staticTooltip,
+        },
+      },
+    }),
+  );
+
   it('should be able to change the Tooltip classes', () => {
     const { getByText, container } = render(
       <SpeedDialAction

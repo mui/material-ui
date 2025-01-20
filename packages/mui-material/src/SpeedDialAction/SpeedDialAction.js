@@ -217,17 +217,24 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     },
   });
 
+  const [StaticTooltipSlot, staticTooltipSlotProps] = useSlot('staticTooltip', {
+    elementType: SpeedDialActionStaticTooltip,
+    externalForwardedProps,
+    ownerState,
+    ref,
+    className: classes.staticTooltip,
+    additionalProps: {
+      id,
+    },
+  });
+
   const fab = <FabSlot {...fabSlotProps}>{icon}</FabSlot>;
+
+  console.log(staticTooltipSlotProps.ref);
 
   if (tooltipOpenProp) {
     return (
-      <SpeedDialActionStaticTooltip
-        id={id}
-        ref={ref}
-        className={classes.staticTooltip}
-        ownerState={ownerState}
-        {...other}
-      >
+      <StaticTooltipSlot {...staticTooltipSlotProps} {...other}>
         <SpeedDialActionStaticTooltipLabel
           style={transitionStyle}
           id={`${id}-label`}
@@ -239,7 +246,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
         {React.cloneElement(fab, {
           'aria-labelledby': `${id}-label`,
         })}
-      </SpeedDialActionStaticTooltip>
+      </StaticTooltipSlot>
     );
   }
 
