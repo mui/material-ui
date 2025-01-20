@@ -28,7 +28,7 @@ describe('<SpeedDialAction />', () => {
       slots: {
         fab: {
           expectedClassName: classes.fab,
-          testWithElement: 'button',
+          testWithElement: null,
           testWithComponent: CustomButton,
         },
       },
