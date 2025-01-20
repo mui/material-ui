@@ -43,7 +43,7 @@ describe('<SpeedDialAction />', () => {
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiSpeedDialAction',
-      testRootOverrides: { slotName: 'fab' },
+      testRootOverrides: { slotName: 'staticTooltip' },
       testVariantProps: { tooltipPlacement: 'right' },
       skip: ['componentProp', 'componentsProp', 'mergeClassName'],
       slots: {
