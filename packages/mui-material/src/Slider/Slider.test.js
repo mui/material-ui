@@ -1198,7 +1198,7 @@ describe('<Slider />', () => {
 
     it('stops at the max value with custom marks', () => {
       const handleChange = stub();
-      const { getByRole } = render(
+      render(
         <Slider
           marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
           step={null}
@@ -1207,7 +1207,7 @@ describe('<Slider />', () => {
         />,
       );
 
-      const slider = getByRole('slider');
+      const slider = screen.getByRole('slider');
       expect(slider).to.have.attribute('aria-valuenow', '30');
 
       act(() => {
@@ -1220,18 +1220,18 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', '30');
     });
 
-    it(`stops at the min value with custom marks`, () => {
-      const handleChange = stub().callsFake((_event, value) => value);
-      const { getByRole } = render(
+    it('stops at the min value with custom marks', () => {
+      const handleChange = stub();
+      render(
         <Slider
-          marks={[10, 20, 30].map((value) => ({ value }))}
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
           step={null}
           value={10}
           onChange={handleChange}
         />,
       );
 
-      const slider = getByRole('slider');
+      const slider = screen.getByRole('slider');
       expect(slider).to.have.attribute('aria-valuenow', '10');
 
       act(() => {
