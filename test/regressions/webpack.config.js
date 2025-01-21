@@ -36,7 +36,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          // cacheDirectory: true,
+          cacheDirectory: true,
           configFile: path.resolve(__dirname, '../../babel.config.js'),
           envName: 'regressions',
         },
