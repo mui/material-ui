@@ -3,6 +3,7 @@ import type * as dangerModule from 'danger';
 import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
 // eslint-disable-next-line import/no-relative-packages
 import QRCode from 'qrcode';
+// eslint-disable-next-line import/no-relative-packages
 import { loadComparison } from 'size-snapshot';
 
 declare const danger: (typeof dangerModule)['danger'];
@@ -189,6 +190,8 @@ async function reportBundleSize() {
 }
 
 async function addDeployPreviewUrls() {
+  const netlifyPreview = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app/`;
+
   /**
    * The incoming path from danger does not start with `/`
    * e.g. ['docs/data/joy/components/button/button.md']
@@ -213,10 +216,14 @@ async function addDeployPreviewUrls() {
         .replace('components/', 'react-');
     }
 
-    return url;
+    return new URL(url, netlifyPreview);
   }
 
-  const netlifyPreview = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app/`;
+  async function formatMdLinkWithQrCode(path: string) {
+    const url = String(formatFileToLink(path));
+    const qrDataUrl = await QRCode.toDataURL(url, {});
+    return `<details><summary>[${path}](${url})</summary>![${path}](${qrDataUrl})</details>`;
+  }
 
   const files = [...danger.git.created_files, ...danger.git.modified_files];
 
@@ -225,19 +232,12 @@ async function addDeployPreviewUrls() {
     .filter((file) => file.startsWith('docs/data') && file.endsWith('.md'))
     .slice(0, 5);
 
-  const docsMdLines = await Promise.all(
-    docs.map(async (path) => {
-      const formattedUrl = formatFileToLink(path);
-      const url = `${netlifyPreview}${formattedUrl}`;
-      const qrDataUrl = await QRCode.toDataURL(url, {});
-      return `<details><summary>[${path}](${url})</summary>![${url}](${qrDataUrl})</details>`;
-    }),
-  );
+  const docsMdLines = await Promise.all(docs.map(formatMdLinkWithQrCode));
 
   markdown(`
 ## Netlify deploy preview
 
-${docsMdLines.length ? docsMdLines.join('\n') : netlifyPreview}
+${docsMdLines.length ? docsMdLines.join('\n') : await formatMdLinkWithQrCode('/')}
 `);
 }
 
