@@ -3,25 +3,74 @@ import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
+// Styled wrapper for tags
+const StyledTagsContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: theme.spacing(0.5),
+  width: '100%',
+  '& .MuiChip-root': {
+    margin: 0,
+    flexGrow: 0,
+  },
+}));
 
 export default function Tags() {
   return (
     <Stack spacing={3} sx={{ width: 500 }}>
+      {/* Standard Autocomplete */}
       <Autocomplete
         multiple
         id="tags-standard"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
+        renderTags={(tagValue, getTagProps) => (
+          <StyledTagsContainer>
+            {tagValue.map((option, index) => (
+              <Chip
+                {...getTagProps({ index })}
+                key={index}
+                label={option.title}
+                size="small"
+                sx={{
+                  maxWidth: 'calc(100% - 8px)',
+                  '.MuiChip-label': {
+                    whiteSpace: 'normal',
+                  },
+                }}
+              />
+            ))}
+          </StyledTagsContainer>
+        )}
+        slotProps={{
+          paper: {
+            sx: { width: 'auto' },
+          },
+        }}
         renderInput={(params) => (
           <TextField
             {...params}
             variant="standard"
             label="Multiple values"
             placeholder="Favorites"
+            multiline
+            sx={{
+              '& .MuiInputBase-root': {
+                flexWrap: 'wrap',
+                gap: 0.5,
+                '& .MuiInputBase-input': {
+                  width: '100%',
+                },
+              },
+            }}
           />
         )}
       />
+
+      {/* Outlined Autocomplete */}
       <Autocomplete
         multiple
         id="tags-outlined"
@@ -29,37 +78,94 @@ export default function Tags() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
         filterSelectedOptions
+        renderTags={(value, getTagProps) => (
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'flex-start',
+              gap: '4px',
+              width: '100%',
+            }}
+          >
+            {value.map((option, index) => (
+              <Chip {...getTagProps({ index })} key={index} label={option.title} />
+            ))}
+          </div>
+        )}
         renderInput={(params) => (
           <TextField
             {...params}
             label="filterSelectedOptions"
             placeholder="Favorites"
+            multiline
+            sx={{
+              '& .MuiInputBase-root': {
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '8px',
+                '& .MuiInputBase-input': {
+                  order: 2,
+                  width: '100%',
+                  padding: '0px',
+                  marginTop: '8px',
+                },
+              },
+            }}
           />
         )}
       />
+
+      {/* Free Solo Autocomplete */}
       <Autocomplete
         multiple
         id="tags-filled"
         options={top100Films.map((option) => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo
-        renderTags={(value, getTagProps) =>
-          value.map((option, index) => {
-            const { key, ...tagProps } = getTagProps({ index });
-            return (
-              <Chip variant="outlined" label={option} key={key} {...tagProps} />
-            );
-          })
-        }
+        renderTags={(value, getTagProps) => (
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '4px',
+              alignItems: 'flex-start',
+              width: '100%',
+            }}
+          >
+            {value.map((option, index) => {
+              const { key, ...tagProps } = getTagProps({ index });
+              return (
+                <Chip variant="outlined" label={option} key={key} {...tagProps} />
+              );
+            })}
+          </div>
+        )}
         renderInput={(params) => (
           <TextField
             {...params}
             variant="filled"
             label="freeSolo"
             placeholder="Favorites"
+            multiline
+            sx={{
+              '& .MuiInputBase-root': {
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '8px',
+                '& .MuiInputBase-input': {
+                  order: 2,
+                  width: '100%',
+                  padding: '0px',
+                  marginTop: '8px',
+                },
+              },
+            }}
           />
         )}
       />
+
+      {/* Read-Only Autocomplete */}
       <Autocomplete
         multiple
         id="tags-readOnly"
@@ -73,6 +179,7 @@ export default function Tags() {
     </Stack>
   );
 }
+
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
