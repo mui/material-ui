@@ -4,6 +4,8 @@ title: React Form Control component and hook
 components: FormControl
 hooks: useFormControlContext
 githubLabel: 'component: FormControl'
+newUrl: https://base-ui.com/react/components/field
+newName: Field
 ---
 
 # Form Control

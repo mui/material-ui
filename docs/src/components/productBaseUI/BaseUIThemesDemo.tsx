@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-// Base UI imports
+// @mui/base imports
 import { Badge, badgeClasses } from '@mui/base/Badge';
 import { Input, InputProps } from '@mui/base/Input';
 import { Dropdown } from '@mui/base/Dropdown';
@@ -819,7 +819,7 @@ export default function BaseUIThemesDemo() {
               <StyledBadge badgeContent={5}>
                 <Box
                   component="img"
-                  alt="Michał Dudak, the leading engineer for Base UI."
+                  alt="Michał Dudak, the leading engineer for MUI Base."
                   src="/static/branding/about/michał-dudak.png"
                   sx={{
                     display: 'inline-block',
@@ -1003,14 +1003,14 @@ export default function BaseUIThemesDemo() {
                 id="unstyled-modal-title"
                 sx={{ mt: 1, mb: 0.5, textWrap: 'balance' }}
               >
-                Oh, hey, this is a Base UI modal.
+                Oh, hey, this is a MUI Base modal.
               </Box>
               <Box
                 component="p"
                 id="unstyled-modal-description"
                 sx={{ m: 0, mb: 4, color: 'text.secondary', textWrap: 'balance' }}
               >
-                Base UI modals manages modal stacking when more than one is needed, creates a
+                MUI Base modals manages modal stacking when more than one is needed, creates a
                 backdrop to disable interaction with the rest of the app, and a lot more.
               </Box>
               <StyledButton onClick={handleCloseModal}>Close</StyledButton>
@@ -1022,7 +1022,7 @@ export default function BaseUIThemesDemo() {
           <StyledSnackbar open={openSnackbar} autoHideDuration={5000} onClose={handleCloseSnackbar}>
             <CheckCircleRoundedIcon fontSize="small" />
             <div>
-              <div data-title>This is a Base UI snackbar.</div>
+              <div data-title>This is a MUI Base snackbar.</div>
               <div data-description>Free to design as you want it.</div>
             </div>
           </StyledSnackbar>
