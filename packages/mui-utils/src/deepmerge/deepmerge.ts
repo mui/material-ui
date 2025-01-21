@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { isValidElementType } from 'react-is';
 
 // https://github.com/sindresorhus/is-plain-obj/blob/main/index.js
 export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
@@ -21,7 +22,7 @@ export interface DeepmergeOptions {
 }
 
 function deepClone<T>(source: T): T | Record<keyof any, unknown> {
-  if (React.isValidElement(source) || !isPlainObject(source)) {
+  if (React.isValidElement(source) || isValidElementType(source) || !isPlainObject(source)) {
     return source;
   }
 
@@ -61,7 +62,7 @@ export default function deepmerge<T>(
 
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
-      if (React.isValidElement(source[key])) {
+      if (React.isValidElement(source[key]) || isValidElementType(source[key])) {
         (output as Record<keyof any, unknown>)[key] = source[key];
       } else if (
         isPlainObject(source[key]) &&
