@@ -2,7 +2,8 @@ import { exec } from 'child_process';
 import type * as dangerModule from 'danger';
 import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
 // eslint-disable-next-line import/no-relative-packages
-import { loadComparison } from './scripts/sizeSnapshot';
+import QRCode from 'qrcode';
+import { loadComparison } from 'size-snapshot';
 
 declare const danger: (typeof dangerModule)['danger'];
 declare const markdown: (typeof dangerModule)['markdown'];
@@ -232,7 +233,9 @@ ${
     ? docs
         .map((path) => {
           const formattedUrl = formatFileToLink(path);
-          return `- [${path}](${netlifyPreview}${formattedUrl})`;
+          const url = `${netlifyPreview}${formattedUrl}`;
+          const qrDataUrl = QRCode.toDataURL(url, {});
+          return `<details><summary>[${path}](${url})</summary>![${url}](${qrDataUrl})</details>`;
         })
         .join('\n')
     : netlifyPreview

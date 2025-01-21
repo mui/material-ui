@@ -102,7 +102,8 @@
     "@netlify/functions": "^3.0.0",
     "@slack/bolt": "^4.2.0",
     "execa": "^9.5.2",
-    "google-auth-library": "^9.15.0"
+    "google-auth-library": "^9.15.0",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "@argos-ci/core": "^2.12.0",
