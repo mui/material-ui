@@ -221,8 +221,8 @@ async function addDeployPreviewUrls() {
 
   async function formatMdLinkWithQrCode(path: string) {
     const url = String(formatFileToLink(path));
-    const qrDataUrl = await QRCode.toDataURL(url, {});
-    return `<details><summary>[${path}](${url})</summary>![${path}](${qrDataUrl})</details>`;
+    const qr = `${netlifyPreview}edge-functions/qr-code?text=${encodeURIComponent(url)}`;
+    return `<details><summary><a href="${url}">${path}</a></summary><img src="${qr}" alt="QR code" /></details>`;
   }
 
   const files = [...danger.git.created_files, ...danger.git.modified_files];
