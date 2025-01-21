@@ -21,7 +21,7 @@ newName: Select
 
 A select is a UI element that gives users a list of options to choose from.
 
-Base UI's Select component replaces the native HTML `<select>` tag.
+MUI Base's Select component replaces the native HTML `<select>` tag.
 It also includes the Option component for creating the options in the list, and Option Group for grouping those options.
 
 {{"demo": "UnstyledSelectIntroduction", "defaultCodeOpen": false, "bg": "gradient"}}
@@ -95,9 +95,9 @@ The uncontrolled component accepts the `defaultValue` that can be used to set th
 To deselect all values, pass `null` to the respective prop.
 
 :::warning
-This pattern is where Base UI's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
+This pattern is where MUI Base's Select differs from the equivalent [Material UI component](/material-ui/react-select/).
 The Material UI Select takes an empty string to deselect all values.
-In Base UI, you must use `null` to achieve this.
+In MUI Base, you must use `null` to achieve this.
 :::
 
 ### Object values

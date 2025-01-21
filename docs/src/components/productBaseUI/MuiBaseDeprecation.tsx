@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
