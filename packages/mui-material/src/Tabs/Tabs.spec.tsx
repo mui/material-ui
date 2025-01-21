@@ -66,7 +66,7 @@ function SampleIcon() {
     flexContainer: 'div',
     scrollbar: 'div',
     indicator: 'div',
-    scrollButton: 'div',
+    scrollButtons: 'div',
     startScrollButtonIcon: 'div',
     endScrollButtonIcon: 'div',
   }}
@@ -82,7 +82,7 @@ const CustomComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
     flexContainer: CustomComponent,
     scrollbar: CustomComponent,
     indicator: CustomComponent,
-    scrollButton: CustomComponent,
+    scrollButtons: CustomComponent,
     startScrollButtonIcon: CustomComponent,
     endScrollButtonIcon: CustomComponent,
   }}
@@ -109,7 +109,7 @@ const CustomComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
       },
       style: { backgroundColor: 'green' },
     },
-    scrollButton: {
+    scrollButtons: {
       className: 'flex',
       disableRipple: true,
     },
