@@ -188,7 +188,7 @@ async function reportBundleSize() {
   }
 }
 
-function addDeployPreviewUrls() {
+async function addDeployPreviewUrls() {
   /**
    * The incoming path from danger does not start with `/`
    * e.g. ['docs/data/joy/components/button/button.md']
@@ -225,26 +225,24 @@ function addDeployPreviewUrls() {
     .filter((file) => file.startsWith('docs/data') && file.endsWith('.md'))
     .slice(0, 5);
 
+  const docsMdLines = await Promise.all(
+    docs.map(async (path) => {
+      const formattedUrl = formatFileToLink(path);
+      const url = `${netlifyPreview}${formattedUrl}`;
+      const qrDataUrl = await QRCode.toDataURL(url, {});
+      return `<details><summary>[${path}](${url})</summary>![${url}](${qrDataUrl})</details>`;
+    }),
+  );
+
   markdown(`
 ## Netlify deploy preview
 
-${
-  docs.length
-    ? docs
-        .map((path) => {
-          const formattedUrl = formatFileToLink(path);
-          const url = `${netlifyPreview}${formattedUrl}`;
-          const qrDataUrl = QRCode.toDataURL(url, {});
-          return `<details><summary>[${path}](${url})</summary>![${url}](${qrDataUrl})</details>`;
-        })
-        .join('\n')
-    : netlifyPreview
-}
+${docsMdLines.length ? docsMdLines.join('\n') : netlifyPreview}
 `);
 }
 
 async function run() {
-  addDeployPreviewUrls();
+  await addDeployPreviewUrls();
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
