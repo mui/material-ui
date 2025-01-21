@@ -11,7 +11,7 @@ export interface ManagedModalProps {
   container?: PortalProps['container'];
 }
 
-// Is a vertical scrollbar displayed on body?
+// Is a vertical scrollbar displayed?
 function isOverflowing(container: Element): boolean {
   const doc = ownerDocument(container);
 

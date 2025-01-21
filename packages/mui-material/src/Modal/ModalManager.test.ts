@@ -181,7 +181,7 @@ describe('ModalManager', () => {
       modalManager.mount(modal, { container: dummyMount });
       expect(dummyMount.style.overflow).to.equal('hidden');
       // There is no need to apply extra padding because fixedNode is not a descendant
-      expect(dummyMount.style.paddingRight).to.equal(``);
+      expect(dummyMount.style.paddingRight).to.equal('');
       expect(fixedNode.style.paddingRight).to.equal(`14px`);
       modalManager.remove(modal);
       expect(dummyMount.style.overflow).to.equal('');
