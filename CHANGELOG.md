@@ -1,5 +1,46 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.1
+
+<!-- generated comparing v6.4.0..master -->
+
+_Jan 21, 2025_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.4.1`
+
+- [ButtonBase] Export types used in ButtonBase props (#43530) @Janpot
+- [Dialog] Add slots and slotProps (#44792) @sai6855
+- [Drawer] Deprecate composed classes (#44870) @yash49
+- [IconButton] Set default loading to `null` (#45057) @siriwatknp
+- [ListItem] Add codemod for deprecated props (#45022) @sai6855
+- [Modal] Add migration guide and codemod for deprecated props (#45021) @sai6855
+- [TextField] Fix filled state to be synced with autofill (#44135) @DiegoAndai
+
+### `@mui/system@6.4.1`
+
+- Fix dark mode flicker using `useEnhancedEffect` (#44812) @siriwatknp
+
+### `@mui/utils@6.4.1`
+
+- Do not deep merge React component (#45058) @siriwatknp
+
+### Docs
+
+- [docs] Fix typo (#45070) @Fullchee
+- [docs] Improve Toolpad templates section (#44914) @bharatkashyap
+- [docs] Fix expand / collapse icons orientation (#44989) @zanivan
+- [docs] Rename "Base UI" to "MUI Base" in all text (#45060) @mj12albert
+- [docs] Add @mui/base deprecation callout (#45030) @mj12albert
+- [docs] Update @mui/base deprecation message (#45064) @mj12albert
+
+### Core
+
+- [docs] 301 redirect `/base-ui` to `base-ui.com` (#45061) @mj12albert
+
+All contributors of this release in alphabetical order: @bharatkashyap, @DiegoAndai, @Fullchee, @Janpot, @mj12albert, @sai6855, @siriwatknp, @yash49, @zanivan
+
 ## 6.4.0
 
 <!-- generated comparing v6.3.1..master -->
