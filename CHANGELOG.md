@@ -37,6 +37,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Core
 
+- [code-infra] Add "use client" directive to files with React APIs (#45036) @Janpot
 - [docs] 301 redirect `/base-ui` to `base-ui.com` (#45061) @mj12albert
 
 All contributors of this release in alphabetical order: @bharatkashyap, @DiegoAndai, @Fullchee, @Janpot, @mj12albert, @sai6855, @siriwatknp, @yash49, @zanivan
