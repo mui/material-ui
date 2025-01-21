@@ -15,7 +15,7 @@ export interface TabsScrollerSlotPropsOverrides {}
 export interface TabsFlexContainerSlotPropsOverrides {}
 export interface TabsScrollbarSlotPropsOverrides {}
 export interface TabsIndicatorSlotPropsOverrides {}
-export interface TabsScrollButtonSlotPropsOverrides {}
+export interface TabsScrollButtonsSlotPropsOverrides {}
 export interface TabsStartScrollButtonIconSlotPropsOverrides {}
 export interface TabsEndScrollButtonIconSlotPropsOverrides {}
 
@@ -49,7 +49,7 @@ export interface TabsSlots {
    * The component used for the scroll button.
    * @default TabScrollButton
    */
-  scrollButton: React.ElementType;
+  scrollButtons: React.ElementType;
   /**
    * The component used for the start scroll button icon.
    * @default KeyboardArrowLeft
@@ -94,9 +94,9 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the scrollButton slot.
      * By default, the avaible props are based on the [TabScrollButton](https://mui.com/material-ui/api/tab-scroll-button/#props) component.
      */
-    scrollButton: SlotProps<
+    scrollButtons: SlotProps<
       typeof TabScrollButton,
-      TabsScrollButtonSlotPropsOverrides,
+      TabsScrollButtonsSlotPropsOverrides,
       TabsOwnerState
     >;
     /**

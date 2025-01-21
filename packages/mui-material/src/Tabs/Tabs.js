@@ -561,7 +561,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     },
   });
 
-  const [ScrollButtonSlot, scrollButtonSlotProps] = useSlot('scrollButton', {
+  const [ScrollButtonsSlot, scrollButtonSlotProps] = useSlot('scrollButtons', {
     className: clsx(classes.scrollButtons, TabScrollButtonProps.className),
     elementType: TabScrollButton,
     externalForwardedProps,
@@ -593,7 +593,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       scrollable && ((scrollButtons === 'auto' && scrollButtonsActive) || scrollButtons === true);
 
     conditionalElements.scrollButtonStart = showScrollButtons ? (
-      <ScrollButtonSlot
+      <ScrollButtonsSlot
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
         disabled={!displayStartScroll}
@@ -602,7 +602,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     ) : null;
 
     conditionalElements.scrollButtonEnd = showScrollButtons ? (
-      <ScrollButtonSlot
+      <ScrollButtonsSlot
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
         disabled={!displayEndScroll}
@@ -1017,7 +1017,7 @@ Tabs.propTypes /* remove-proptypes */ = {
     indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     scrollbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    scrollButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    scrollButtons: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     scroller: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     startScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
@@ -1032,7 +1032,7 @@ Tabs.propTypes /* remove-proptypes */ = {
     indicator: PropTypes.elementType,
     root: PropTypes.elementType,
     scrollbar: PropTypes.elementType,
-    scrollButton: PropTypes.elementType,
+    scrollButtons: PropTypes.elementType,
     scroller: PropTypes.elementType,
     startScrollButtonIcon: PropTypes.elementType,
     StartScrollButtonIcon: PropTypes.elementType,

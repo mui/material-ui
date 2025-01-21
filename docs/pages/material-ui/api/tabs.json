@@ -40,14 +40,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, flexContainer?: func<br>&#124;&nbsp;object, indicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrollbar?: func<br>&#124;&nbsp;object, scrollButton?: func<br>&#124;&nbsp;object, scroller?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, flexContainer?: func<br>&#124;&nbsp;object, indicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrollbar?: func<br>&#124;&nbsp;object, scrollButtons?: func<br>&#124;&nbsp;object, scroller?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ endScrollButtonIcon?: elementType, EndScrollButtonIcon?: elementType, flexContainer?: elementType, indicator?: elementType, root?: elementType, scrollbar?: elementType, scrollButton?: elementType, scroller?: elementType, startScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
+        "description": "{ endScrollButtonIcon?: elementType, EndScrollButtonIcon?: elementType, flexContainer?: elementType, indicator?: elementType, root?: elementType, scrollbar?: elementType, scrollButtons?: elementType, scroller?: elementType, startScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
       },
       "default": "{}"
     },
@@ -121,10 +121,10 @@
       "class": "MuiTabs-indicator"
     },
     {
-      "name": "scrollButton",
+      "name": "scrollButtons",
       "description": "The component used for the scroll button.",
       "default": "TabScrollButton",
-      "class": null
+      "class": "MuiTabs-scrollButtons"
     },
     {
       "name": "startScrollButtonIcon",
@@ -174,12 +174,6 @@
       "key": "scrollableY",
       "className": "MuiTabs-scrollableY",
       "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `orientation=\"vertical\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "scrollButtons",
-      "className": "MuiTabs-scrollButtons",
-      "description": "Styles applied to the ScrollButtonComponent component.",
       "isGlobal": false
     },
     {

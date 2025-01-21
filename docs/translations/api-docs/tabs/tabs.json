@@ -86,10 +86,6 @@
       "nodeName": "the tablist element",
       "conditions": "<code>variant=\"scrollable\"</code> and <code>orientation=\"vertical\"</code>"
     },
-    "scrollButtons": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the ScrollButtonComponent component"
-    },
     "scrollButtonsHideMobile": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the ScrollButtonComponent component",
@@ -107,7 +103,7 @@
     "indicator": "The component used for the tab indicator.",
     "root": "The component used for the popper.",
     "scrollbar": "The component used for the scroller.",
-    "scrollButton": "The component used for the scroll button.",
+    "scrollButtons": "The component used for the scroll button.",
     "scroller": "The component used for the scroller.",
     "startScrollButtonIcon": "The component used for the start scroll button icon."
   }

@@ -1463,7 +1463,7 @@ describe('<Tabs />', () => {
           variant="scrollable"
           scrollButtons
           slotProps={{
-            scrollButton: { 'data-testid': 'scroll-button', className: 'foo' },
+            scrollButtons: { 'data-testid': 'scroll-button', className: 'foo' },
           }}
         />,
       );
@@ -1484,10 +1484,10 @@ describe('<Tabs />', () => {
           variant="scrollable"
           scrollButtons
           slots={{
-            scrollButton: CustomButton,
+            scrollButtons: CustomButton,
           }}
           slotProps={{
-            scrollButton: { 'data-testid': 'scroll-button', className: 'foo' },
+            scrollButtons: { 'data-testid': 'scroll-button', className: 'foo' },
           }}
         />,
       );
@@ -1496,6 +1496,23 @@ describe('<Tabs />', () => {
       expect(screen.getAllByTestId('scroll-button')[0]).to.have.class('foo');
       expect(screen.getAllByTestId('scroll-button')[1]).to.have.class(classes.scrollButtons);
       expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
+    });
+
+    it('should render a start and end scroll button icons', () => {
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slotProps={{
+            startScrollButtonIcon: { 'data-testid': 'start-scroll-button-icon', className: 'foo' },
+            endScrollButtonIcon: { 'data-testid': 'end-scroll-button-icon', className: 'bar' },
+          }}
+        />,
+      );
+
+      expect(screen.getByTestId('start-scroll-button-icon')).to.have.class('foo');
+      expect(screen.getByTestId('end-scroll-button-icon')).to.have.class('bar');
     });
   });
 });
