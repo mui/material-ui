@@ -1,43 +1,56 @@
-module.exports = {
+/// @ts-check
+
+const REACT_CLIENT_APIS = new Set([
+  'useState',
+  'useEffect',
+  'useLayoutEffect',
+  'useReducer',
+  'useTransition',
+  'createContext',
+]);
+
+/**
+ * @param {import('eslint').AST.Program} ast
+ * @param {string} directive
+ * @returns
+ */
+function hasDirective(ast, directive) {
+  return ast.body.some(
+    (statement) =>
+      statement.type === 'ExpressionStatement' &&
+      statement.expression.type === 'Literal' &&
+      statement.expression.value === directive,
+  );
+}
+
+module.exports = /** @type {import('eslint').Rule.RuleModule} */ ({
   create(context) {
     let hasUseClientDirective = false;
-    const apis = new Set([
-      'useState',
-      'useEffect',
-      'useLayoutEffect',
-      'useReducer',
-      'useTransition',
-      'createContext',
-    ]);
+    let hasUseServerDirective = false;
     return {
+      /** @param {import('eslint').AST.Program} node */
       Program(node) {
-        hasUseClientDirective = node.body.some(
-          (statement) =>
-            statement.type === 'ExpressionStatement' &&
-            statement.expression.type === 'Literal' &&
-            statement.expression.value === 'use client',
-        );
+        hasUseServerDirective = hasDirective(node, 'use server');
+        hasUseClientDirective = hasDirective(node, 'use client');
       },
       CallExpression(node) {
         if (
           !hasUseClientDirective &&
           node.callee.type === 'MemberExpression' &&
+          node.callee.object.type === 'Identifier' &&
           node.callee.object.name === 'React' &&
-          apis.has(node.callee.property.name)
+          node.callee.property.type === 'Identifier' &&
+          REACT_CLIENT_APIS.has(node.callee.property.name)
         ) {
           context.report({
             node,
             message: `Using 'React.${node.callee.property.name}' is forbidden if the file doesn't have a 'use client' directive.`,
             fix(fixer) {
-              const sourceCode = context.getSourceCode();
-              if (
-                sourceCode.text.includes('"use server"') ||
-                sourceCode.text.includes("'use server'")
-              ) {
+              if (hasUseServerDirective) {
                 return null;
               }
 
-              const firstToken = sourceCode.ast.body[0];
+              const firstToken = context.sourceCode.ast.body[0];
               return fixer.insertTextBefore(firstToken, "'use client';\n");
             },
           });
@@ -48,4 +61,4 @@ module.exports = {
   meta: {
     fixable: 'code',
   },
-};
+});

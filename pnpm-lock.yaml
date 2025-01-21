@@ -2209,22 +2209,6 @@ importers:
         specifier: 0.14.2
         version: 0.14.2
 
-  packages/rsc-builder:
-    dependencies:
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
-      yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
-    devDependencies:
-      '@types/mocha':
-        specifier: ^10.0.10
-        version: 10.0.10
-      '@types/node':
-        specifier: ^20.17.12
-        version: 20.17.12
-
   packages/waterfall: {}
 
   scripts/sizeSnapshot:
