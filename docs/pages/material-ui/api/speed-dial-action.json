@@ -98,7 +98,7 @@
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiSpeedDialAction",
-  "forwardsRefTo": "HTMLSpanElement",
+  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js",
   "inheritance": { "component": "Tooltip", "pathname": "/material-ui/api/tooltip/" },
   "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed Dial</a></li></ul>",
