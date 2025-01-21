@@ -31,7 +31,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [docs] Fix typo (#45070) @Fullchee
 - [docs] Improve Toolpad templates section (#44914) @bharatkashyap
 - [docs] Fix expand / collapse icons orientation (#44989) @zanivan
-- [docs] Rename "Base UI" to "MUI Base" in all text (#45060) @mj12albert
+- [docs] Rename "Base UI" to "MUI Base" in all text (#45060) @mj12albert
 - [docs] Add @mui/base deprecation callout (#45030) @mj12albert
 - [docs] Update @mui/base deprecation message (#45064) @mj12albert
 
