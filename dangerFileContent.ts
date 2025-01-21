@@ -1,8 +1,7 @@
 import { exec } from 'child_process';
 import type * as dangerModule from 'danger';
 import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
-// eslint-disable-next-line import/no-relative-packages
-import { loadComparison } from './scripts/sizeSnapshot';
+import { loadComparison } from 'size-snapshot';
 
 declare const danger: (typeof dangerModule)['danger'];
 declare const markdown: (typeof dangerModule)['markdown'];
@@ -187,7 +186,9 @@ async function reportBundleSize() {
   }
 }
 
-function addDeployPreviewUrls() {
+async function addDeployPreviewUrls() {
+  const netlifyPreview = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app/`;
+
   /**
    * The incoming path from danger does not start with `/`
    * e.g. ['docs/data/joy/components/button/button.md']
@@ -212,10 +213,14 @@ function addDeployPreviewUrls() {
         .replace('components/', 'react-');
     }
 
-    return url;
+    return new URL(url, netlifyPreview);
   }
 
-  const netlifyPreview = `https://deploy-preview-${danger.github.pr.number}--material-ui.netlify.app/`;
+  async function formatMdLinkWithQrCode(path: string) {
+    const url = String(formatFileToLink(path));
+    const qr = `${netlifyPreview}edge-functions/qr-code?text=${encodeURIComponent(url)}`;
+    return `<details><summary>page <a href="${url}">${path}</a></summary><img src="${qr}" alt="QR code" /></details>`;
+  }
 
   const files = [...danger.git.created_files, ...danger.git.modified_files];
 
@@ -224,24 +229,17 @@ function addDeployPreviewUrls() {
     .filter((file) => file.startsWith('docs/data') && file.endsWith('.md'))
     .slice(0, 5);
 
+  const docsMdLines = await Promise.all(docs.map(formatMdLinkWithQrCode));
+
   markdown(`
 ## Netlify deploy preview
 
-${
-  docs.length
-    ? docs
-        .map((path) => {
-          const formattedUrl = formatFileToLink(path);
-          return `- [${path}](${netlifyPreview}${formattedUrl})`;
-        })
-        .join('\n')
-    : netlifyPreview
-}
+${docsMdLines.length ? docsMdLines.join('\n') : await formatMdLinkWithQrCode('/')}
 `);
 }
 
 async function run() {
-  addDeployPreviewUrls();
+  await addDeployPreviewUrls();
 
   switch (dangerCommand) {
     case 'prepareBundleSizeReport':
