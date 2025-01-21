@@ -1,8 +1,8 @@
-# Customizing Base UI components
+# Customizing MUI Base components
 
-<p class="description">There are several ways to customize Base UI components, from applying custom CSS rules to building fully custom components using hooks.</p>
+<p class="description">There are several ways to customize MUI Base components, from applying custom CSS rules to building fully custom components using hooks.</p>
 
-With Base UI, you have the freedom to decide how much you want to customize a component's structure and style.
+With MUI Base, you have the freedom to decide how much you want to customize a component's structure and style.
 
 ## Styling the components
 
@@ -10,12 +10,12 @@ This section reviews several methods of customization that are available: applyi
 
 ### Which option to choose?
 
-The multitude of options can be overwhelming, especially if you're new to Base UI.
+The multitude of options can be overwhelming, especially if you're new to MUI Base.
 How to decide which one to use, then?
 
 The first decision to make is whether to use unstyled components or hooks.
 Hooks are better suited for making component libraries that can be further customized.
-For example, our own Joy UI is implemented using hooks from Base UI.
+For example, our own Joy UI is implemented using hooks from MUI Base.
 Hooks also serve as the basis for several Material UI components, and future versions of the library will use them even more extensively.
 
 If you don't need to make your component library customizable (for instance, by exposing `slotProps`), then the unstyled components may be a better option thanks to their simplicity.
@@ -83,7 +83,7 @@ export default function Switch(props) {
 }
 ```
 
-See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating Base UI and Tailwind CSS.
+See our [Working with Tailwind CSS guide](/base-ui/guides/working-with-tailwind-css/) for more information about integrating MUI Base and Tailwind CSS.
 
 #### Styled components
 
