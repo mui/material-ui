@@ -15,7 +15,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root', variant, colorDefault && 'colorDefault'],
-    img: ['img'],
+    img: ['img'],x
     fallback: ['fallback'],
   };
 
