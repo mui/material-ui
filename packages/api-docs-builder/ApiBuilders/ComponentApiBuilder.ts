@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
@@ -8,7 +7,7 @@ import kebabCase from 'lodash/kebabCase';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
 import type { Link } from 'mdast';
-import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import { defaultHandlers, parse as docgenParse, FileState } from 'react-docgen';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
 import escapeRegExp from 'lodash/escapeRegExp';
 import { renderCodeTags, renderMarkdown } from '../buildApi';
@@ -45,7 +44,7 @@ const cssComponents = ['Box', 'Grid', 'Typography', 'Stack'];
  * this method.
  */
 export async function computeApiDescription(
-  api: { description: ComponentReactApi['description'] },
+  api: Pick<ComponentReactApi, 'description'>,
   options: { host: string },
 ): Promise<string> {
   const { host } = options;
@@ -417,7 +416,7 @@ const attachTranslations = (
   settings?: CreateDescribeablePropSettings,
 ) => {
   const translations: ComponentReactApi['translations'] = {
-    componentDescription: reactApi.description,
+    componentDescription: reactApi.description!,
     deprecationInfo: deprecationInfo ? renderMarkdown(deprecationInfo) : undefined,
     propDescriptions: {},
     classDescriptions: {},
@@ -528,7 +527,7 @@ const attachPropsTable = (
         return [] as any;
       }
 
-      const defaultValue = propDescriptor.jsdocDefaultValue?.value;
+      const defaultValue = propDescriptor.defaultValue;
 
       const {
         signature: signatureType,
@@ -536,7 +535,8 @@ const attachPropsTable = (
         signatureReturn,
         seeMore,
       } = generatePropDescription(prop, propName);
-      const propTypeDescription = generatePropTypeDescription(propDescriptor.type);
+      const propTypeDescription =
+        propDescriptor.type && generatePropTypeDescription(propDescriptor.type);
       const chainedPropType = getChained(prop.type);
 
       const requiredProp =
@@ -583,11 +583,11 @@ const attachPropsTable = (
         propName,
         {
           type: {
-            name: propDescriptor.type.name,
+            name: propDescriptor.type!.name,
             description:
-              propTypeDescription !== propDescriptor.type.name ? propTypeDescription : undefined,
+              propTypeDescription !== propDescriptor.type!.name ? propTypeDescription : undefined,
           },
-          default: defaultValue,
+          default: defaultValue?.value,
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
           deprecated: !!deprecation || undefined,
@@ -732,58 +732,57 @@ export default async function generateComponentApi(
   }
 
   const filename = componentInfo.filename;
-  let reactApi: ComponentReactApi;
+  let reactApi;
 
   try {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+    reactApi = docgenParse(src, {
+      handlers: defaultHandlers, // .concat(muiDefaultPropsHandler),
       filename,
-    });
+    })[0];
+    reactApi.filename = filename;
   } catch (error) {
     // fallback to default logic if there is no `create*` definition.
     if ((error as Error).message === 'No suitable component definition found.') {
-      reactApi = docgenParse(
-        src,
-        (ast) => {
+      reactApi = docgenParse(src, {
+        resolver: (file: FileState) => {
           let node;
           // TODO migrate to react-docgen v6, using Babel AST now
-          astTypes.visit(ast, {
-            visitFunctionDeclaration: (functionPath) => {
+          file.traverse({
+            FunctionDeclaration(functionPath) {
               // @ts-ignore
               if (functionPath.node.params[0].name === 'props') {
                 node = functionPath;
               }
-              return false;
+              functionPath.skip();
             },
-            visitVariableDeclaration: (variablePath) => {
-              const definitions: any[] = [];
+            VariableDeclaration(variablePath) {
+              const definitions: babel.NodePath<babel.types.Expression | null | undefined>[] = [];
               if (variablePath.node.declarations) {
                 variablePath
                   .get('declarations')
-                  .each((declarator: any) => definitions.push(declarator.get('init')));
+                  .forEach((declarator) => definitions.push(declarator.get('init')));
               }
               definitions.forEach((definition) => {
                 // definition.value.expression is defined when the source is in TypeScript.
-                const expression = definition.value?.expression
+                const expression = definition.isExpression()
                   ? definition.get('expression')
                   : definition;
-                if (expression.value?.callee) {
-                  const definitionName = expression.value.callee.name;
+                if (typeof expression === 'object' && expression.isCallExpression?.()) {
+                  const definitionName = expression.callee.name;
                   if (definitionName === `create${componentInfo.name}`) {
                     node = expression;
                   }
                 }
               });
-              return false;
+              variablePath.skip();
             },
           });
 
-          return node;
+          return node ? [node] : [];
         },
-        defaultHandlers.concat(muiDefaultPropsHandler),
-        {
-          filename,
-        },
-      );
+        handlers: defaultHandlers, // .concat(muiDefaultPropsHandler),
+        filename,
+      })[0];
     } else {
       throw error;
     }
@@ -794,7 +793,7 @@ export default async function generateComponentApi(
   }
 
   const { getComponentImports = defaultGetComponentImports } = projectSettings;
-  const componentJsdoc = parseDoctrine(reactApi.description);
+  const componentJsdoc = parseDoctrine(reactApi.description ?? '');
 
   // We override `reactApi.description` with `componentJsdoc.description` because
   // the former can include JSDoc tags that we don't want to render in the docs.

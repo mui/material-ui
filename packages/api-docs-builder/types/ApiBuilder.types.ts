@@ -1,4 +1,4 @@
-import { ReactDocgenApi } from 'react-docgen';
+import { Documentation as ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
 import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
@@ -19,7 +19,6 @@ interface CommonReactApi extends ReactDocgenApi {
   EOL: string;
   filename: string;
   apiPathname: string;
-  description: string;
   /**
    * Different ways to import components
    */
@@ -76,7 +75,7 @@ interface ClassDescription {
   deprecationInfo?: string;
 }
 
-export interface ComponentReactApi extends CommonReactApi {
+export interface ComponentReactApi extends ReactDocgenApi {
   forwardsRefTo: string | undefined;
   inheritance: ReturnType<ComponentInfo['getInheritance']>;
   /**
@@ -98,6 +97,7 @@ export interface ComponentReactApi extends CommonReactApi {
   dataAttributes: { [key: string]: ApiItemDescription };
   propsTable: _.Dictionary<PropsTableItem>;
   translations: PropsTranslations;
+  apiPathname: string;
 }
 
 export interface ComponentApiContent {
@@ -128,7 +128,7 @@ export interface ParsedProperty {
 }
 
 export interface HooksTranslations {
-  hookDescription: string;
+  hookDescription?: string;
   deprecationInfo: string | undefined;
   parametersDescriptions: {
     [key: string]: {
