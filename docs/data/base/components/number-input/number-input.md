@@ -139,7 +139,7 @@ If you only define one or the other, the opposite end of the range will be open-
 
 ```
 
-The demo below shows a Number Input with a an accepted range of 1 to 99:
+The demo below shows a Number Input with an accepted range of 1 to 99:
 
 {{"demo": "QuantityInput.js", "defaultCodeOpen": false}}
 

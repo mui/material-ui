@@ -132,6 +132,17 @@ describe('deepmerge', () => {
     expect(result.element).to.equal(element2);
   });
 
+  it('should not deep clone React component', () => {
+    // most 3rd-party components use `forwardRef`
+    const Link = React.forwardRef((props, ref) => React.createElement('a', { ref, ...props }));
+    const result = deepmerge(
+      { defaultProps: { component: 'a' } },
+      { defaultProps: { component: Link } },
+    );
+
+    expect(result.defaultProps.component).to.equal(Link);
+  });
+
   it('should deep clone example correctly', () => {
     const result = deepmerge({ a: { b: 1 }, d: 2 }, { a: { c: 2 }, d: 4 });
 
