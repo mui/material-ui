@@ -4153,16 +4153,6 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/utils@6.4.0':
-    resolution: {integrity: sha512-woOTATWNsTNR3YBh2Ixkj3l5RaxSiGoC9G8gOpYoFw1mZM77LWJeuMHFax7iIW4ahK0Cr35TF9DKtrafJmOmNQ==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
   '@mui/utils@6.4.1':
     resolution: {integrity: sha512-iQUDUeYh87SvR4lVojaRaYnQix8BbRV51MxaV6MBmqthecQoxwSbS5e2wnbDJUeFxY2ppV505CiqPLtd0OWkqw==}
     engines: {node: '>=14.0.0'}
@@ -15092,7 +15082,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@floating-ui/react-dom': 2.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/types': 7.2.21(@types/react@19.0.6)
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@popperjs/core': 2.11.8
       clsx: 2.1.1
       prop-types: 15.8.1
@@ -15141,7 +15131,7 @@ snapshots:
       '@mui/material': link:packages/mui-material/build
       '@mui/system': 6.4.0(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0)
       '@mui/types': 7.2.21(@types/react@19.0.6)
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.0.0
@@ -15197,7 +15187,7 @@ snapshots:
   '@mui/private-theming@6.4.0(@types/react@19.0.6)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       prop-types: 15.8.1
       react: 19.0.0
     optionalDependencies:
@@ -15249,7 +15239,7 @@ snapshots:
       '@mui/private-theming': 6.4.0(@types/react@19.0.6)(react@19.0.0)
       '@mui/styled-engine': 6.4.0(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0))(react@19.0.0)
       '@mui/types': 7.2.21(@types/react@19.0.6)
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       clsx: 2.1.1
       csstype: 3.1.3
       prop-types: 15.8.1
@@ -15276,18 +15266,6 @@ snapshots:
       '@types/react': 19.0.6
 
   '@mui/utils@6.3.1(@types/react@19.0.6)(react@19.0.0)':
-    dependencies:
-      '@babel/runtime': 7.26.0
-      '@mui/types': 7.2.21(@types/react@19.0.6)
-      '@types/prop-types': 15.7.14
-      clsx: 2.1.1
-      prop-types: 15.8.1
-      react: 19.0.0
-      react-is: 19.0.0
-    optionalDependencies:
-      '@types/react': 19.0.6
-
-  '@mui/utils@6.4.0(@types/react@19.0.6)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
       '@mui/types': 7.2.21(@types/react@19.0.6)
@@ -15334,7 +15312,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-charts-vendor': 7.20.0
       '@mui/x-internals': 7.23.6(@types/react@19.0.6)(react@19.0.0)
       '@react-spring/rafz': 9.7.5
@@ -15372,7 +15350,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-data-grid': 7.23.6(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.0.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/x-data-grid-pro': 7.23.6(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.0.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/x-internals': 7.23.6(@types/react@19.0.6)(react@19.0.0)
@@ -15395,7 +15373,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-data-grid': 7.23.6(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.0.6)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/x-internals': 7.23.6(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-license': 7.23.6(@types/react@19.0.6)(react@19.0.0)
@@ -15416,7 +15394,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-internals': 7.23.6(@types/react@19.0.6)(react@19.0.0)
       clsx: 2.1.1
       prop-types: 15.8.1
@@ -15434,7 +15412,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-date-pickers': 7.23.6(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.0.6)(date-fns@2.30.0)(dayjs@1.11.13)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/x-internals': 7.23.6(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-license': 7.23.6(@types/react@19.0.6)(react@19.0.0)
@@ -15456,7 +15434,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-internals': 7.23.6(@types/react@19.0.6)(react@19.0.0)
       '@types/react-transition-group': 4.4.12(@types/react@19.0.6)
       clsx: 2.1.1
@@ -15475,7 +15453,7 @@ snapshots:
   '@mui/x-internals@7.23.6(@types/react@19.0.6)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       react: 19.0.0
     transitivePeerDependencies:
       - '@types/react'
@@ -15483,7 +15461,7 @@ snapshots:
   '@mui/x-license@7.23.6(@types/react@19.0.6)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       react: 19.0.0
     transitivePeerDependencies:
       - '@types/react'
@@ -15493,7 +15471,7 @@ snapshots:
       '@babel/runtime': 7.26.0
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@mui/x-internals': 7.23.6(@types/react@19.0.6)(react@19.0.0)
       '@types/react-transition-group': 4.4.12(@types/react@19.0.6)
       clsx: 2.1.1
@@ -16078,7 +16056,7 @@ snapshots:
       '@emotion/serialize': 1.3.3
       '@emotion/styled': 11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0)
       '@mui/system': 6.4.0(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0))(@types/react@19.0.6)(react@19.0.0)
-      '@mui/utils': 6.4.0(@types/react@19.0.6)(react@19.0.0)
+      '@mui/utils': 6.4.1(@types/react@19.0.6)(react@19.0.0)
       '@wyw-in-js/processor-utils': 0.5.5
       '@wyw-in-js/shared': 0.5.5
       '@wyw-in-js/transform': 0.5.5
