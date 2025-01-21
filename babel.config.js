@@ -149,7 +149,7 @@ module.exports = function getBabelConfig(api) {
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
     overrides: [
       {
-        exclude: /\.test\.(js|ts|tsx)$/,
+        exclude: /\.test\.(m?js|ts|tsx)$/,
         plugins: ['@babel/plugin-transform-react-constant-elements'],
       },
       {
