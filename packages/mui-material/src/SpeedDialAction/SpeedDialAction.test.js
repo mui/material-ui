@@ -35,28 +35,6 @@ describe('<SpeedDialAction />', () => {
     }),
   );
 
-  describeConformance(
-    <SpeedDialAction tooltipOpen icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
-    () => ({
-      classes,
-      inheritComponent: 'span',
-      render,
-      refInstanceof: window.HTMLSpanElement,
-      muiName: 'MuiSpeedDialAction',
-      testRootOverrides: { slotName: 'staticTooltip' },
-      testVariantProps: { tooltipPlacement: 'right' },
-      skip: ['componentProp', 'componentsProp', 'mergeClassName'],
-      slots: {
-        staticTooltip: {
-          expectedClassName: classes.staticTooltip,
-        },
-        staticTooltipLabel: {
-          expectedClassName: classes.staticTooltipLabel,
-        },
-      },
-    }),
-  );
-
   it('should be able to change the Tooltip classes', () => {
     const { getByText, container } = render(
       <SpeedDialAction
@@ -109,5 +87,46 @@ describe('<SpeedDialAction />', () => {
     );
     expect(container.querySelector('button')).to.have.class(classes.fab);
     expect(container.querySelector('button')).to.have.class(classes.fabClosed);
+  });
+
+  it('should have staticTooltip class if tooltipOpen is true', () => {
+    const { container } = render(
+      <SpeedDialAction tooltipOpen icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
+    );
+    const [staticToolTip, staticToolTipLabel] = container.querySelectorAll('span');
+    expect(staticToolTip).to.have.class(classes.staticTooltip);
+    expect(staticToolTipLabel).to.have.class(classes.staticTooltipLabel);
+  });
+
+  it('should have staticToolTip and staticToolTipLabel classes if tooltipOpen is true and custom slots are provided', () => {
+    const CustomStaticTooltip = React.forwardRef(({ ownerState, ...props }, ref) => (
+      <div {...props} ref={ref}>
+        {props.children}
+      </div>
+    ));
+    const CustomStaticTooltipLabel = React.forwardRef(({ ownerState, ...props }, ref) => (
+      <div {...props} ref={ref}>
+        {props.children}
+      </div>
+    ));
+
+    const { container } = render(
+      <SpeedDialAction
+        tooltipOpen
+        icon={<Icon>add</Icon>}
+        tooltipTitle="placeholder"
+        slots={{
+          staticTooltip: CustomStaticTooltip,
+          staticTooltipLabel: CustomStaticTooltipLabel,
+        }}
+      />,
+    );
+
+    const [staticToolTip, staticToolTipLabel] = container.querySelectorAll('div');
+
+    expect(staticToolTip).to.have.class(classes.staticTooltip);
+
+    expect(staticToolTip).to.have.class(classes.staticTooltip);
+    expect(staticToolTipLabel).to.have.class(classes.staticTooltipLabel);
   });
 });
