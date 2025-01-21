@@ -1196,11 +1196,11 @@ describe('<Slider />', () => {
       });
     });
 
-    it(`stops at the max value with custom marks`, () => {
-      const handleChange = stub().callsFake((_event, value) => value);
+    it('stops at the max value with custom marks', () => {
+      const handleChange = stub();
       const { getByRole } = render(
         <Slider
-          marks={[10, 20, 30].map((value) => ({ value }))}
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
           step={null}
           value={30}
           onChange={handleChange}
