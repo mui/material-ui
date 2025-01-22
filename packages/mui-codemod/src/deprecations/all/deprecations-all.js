@@ -10,6 +10,7 @@ import transformButtonGroupClasses from '../button-group-classes';
 import transformChipClasses from '../chip-classes';
 import transformCircularProgressClasses from '../circular-progress-classes';
 import transformDividerProps from '../divider-props';
+import transformDrawerClasses from '../drawer-classes';
 import transformFilledInputProps from '../filled-input-props';
 import transformFormControlLabelProps from '../form-control-label-props';
 import transformImageListItemBarClasses from '../image-list-item-bar-classes';
@@ -51,6 +52,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformChipClasses(file, api, options);
   file.source = transformCircularProgressClasses(file, api, options);
   file.source = transformDividerProps(file, api, options);
+  file.source = transformDrawerClasses(file, api, options);
   file.source = transformFilledInputProps(file, api, options);
   file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformImageListItemBarClasses(file, api, options);
