@@ -36,13 +36,6 @@ const content = [
     link: '/joy-ui/getting-started/',
   },
   {
-    icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
-    title: 'Base UI',
-    description:
-      'Unstyled UI components for building accessible web apps and design systems, focusing on accessibility, performance, and developer experience.',
-    link: 'https://base-ui.com',
-  },
-  {
     icon: <StyleRoundedIcon sx={iconStyles} />,
     title: 'MUI System',
     description:
