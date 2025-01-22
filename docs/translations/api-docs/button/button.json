@@ -24,6 +24,15 @@
     "href": {
       "description": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node."
     },
+    "loading": {
+      "description": "If <code>true</code>, the loading indicator is visible and the button is disabled. If <code>true \\| false</code>, the loading wrapper is always rendered before the children to prevent <a href=\"https://github.com/mui/material-ui/issues/27853\">Google Translation Crash</a>."
+    },
+    "loadingIndicator": {
+      "description": "Element placed before the children if the button is in loading state. The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default, it renders a <code>CircularProgress</code> that is labeled by the button itself."
+    },
+    "loadingPosition": {
+      "description": "The loading indicator can be positioned on the start, end, or the center of the button."
+    },
     "size": {
       "description": "The size of the component. <code>small</code> is equivalent to the dense button styling."
     },
@@ -177,6 +186,38 @@
       "nodeName": "the icon element",
       "conditions": "supplied and <code>size=\"small\"</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/button/#button-classes-icon\">.MuiButton-icon</a> and <a href=\"/material-ui/api/button/#button-classes-sizeSmall\">.MuiButtonSizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "loading": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>loading={true}</code>"
+    },
+    "loadingIconPlaceholder": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingIconPlaceholder element"
+    },
+    "loadingIndicator": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingIndicator element"
+    },
+    "loadingPositionCenter": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>loadingPosition=\"center\"</code>"
+    },
+    "loadingPositionEnd": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>loadingPosition=\"end\"</code>"
+    },
+    "loadingPositionStart": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>loadingPosition=\"start\"</code>"
+    },
+    "loadingWrapper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the loadingWrapper element"
     },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

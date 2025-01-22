@@ -1,5 +1,338 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.1
+
+<!-- generated comparing v6.4.0..master -->
+
+_Jan 21, 2025_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.4.1`
+
+- [ButtonBase] Export types used in ButtonBase props (#43530) @Janpot
+- [Dialog] Add slots and slotProps (#44792) @sai6855
+- [Drawer] Deprecate composed classes (#44870) @yash49
+- [IconButton] Set default loading to `null` (#45057) @siriwatknp
+- [ListItem] Add codemod for deprecated props (#45022) @sai6855
+- [Modal] Add migration guide and codemod for deprecated props (#45021) @sai6855
+- [TextField] Fix filled state to be synced with autofill (#44135) @DiegoAndai
+
+### `@mui/system@6.4.1`
+
+- Fix dark mode flicker using `useEnhancedEffect` (#44812) @siriwatknp
+
+### `@mui/utils@6.4.1`
+
+- Do not deep merge React component (#45058) @siriwatknp
+
+### Docs
+
+- Fix typo (#45070) @Fullchee
+- Improve Toolpad templates section (#44914) @bharatkashyap
+- Fix expand / collapse icons orientation (#44989) @zanivan
+- Rename "Base UI" to "MUI Base" in all text (#45060) @mj12albert
+- Add @mui/base deprecation callout (#45030) @mj12albert
+- Update @mui/base deprecation message (#45064) @mj12albert
+
+### Core
+
+- [code-infra] Add "use client" directive to files with React APIs (#45036) @Janpot
+- [docs] 301 redirect `/base-ui` to `base-ui.com` (#45061) @mj12albert
+
+All contributors of this release in alphabetical order: @bharatkashyap, @DiegoAndai, @Fullchee, @Janpot, @mj12albert, @sai6855, @siriwatknp, @yash49, @zanivan
+
+## 6.4.0
+
+<!-- generated comparing v6.3.1..master -->
+
+_Jan 13, 2025_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- Added [`loading` prop](https://mui.com/material-ui/react-button/#loading-2) to the `Button` and `IconButton` components (#44637) @siriwatknp
+
+### `@mui/material@6.4.0`
+
+- [Alert] complete `slots` and `slotProps` (#44971) @siriwatknp
+- [Autocomplete] Sync runtime and TS types for key in grouped options (#44862) @aarongarciah
+- [Button] Add `loading` prop (#44637) @siriwatknp
+- [CardHeader] Deprecate `*TypographyProps` and complete `slots`, `slotProps` (#44729) @siriwatknp
+- [CircularProgress] Improve indeterminate animation to be symmetric and smooth (#44934) @yashdev16
+- [LinearProgress] Deprecate composed classes (#44933) @headironc
+- [Link] Fix error for using custom palette with underline (#44927) @siriwatknp
+- [Select] Do not set `aria-controls` when closed (#44919) @siddhantantil39
+- [Select] Add missing root class (#44928) @sai6855
+- [Slider] Set onChangeCommitted to receive the last argument passed to onChange (#44795) @good-jinu
+- Add `mergeSlotProps` for extending components (#44809) @siriwatknp
+- Update `mergeSlotProps` to merge `style` (#44959) @siriwatknp
+- Fix slots typing for Tooltip and StepLabel (#44985) @siriwatknp
+- Remove unnecessary blank lines (#44980) @sai6855
+
+### Docs
+
+- [docs] Fix Dashboard sidenav sroll (#44876) @oliviertassinari
+- [docs] Fix broken anchor link to w3.org (c51af8e) @oliviertassinari
+- [docs] Add details on complementary Menu components (#44957) @samuelsycamore
+- [docs] Remove misleading messaging on MD3 support (#44953) @mnajdova
+- [docs] Fix code copy button obscuring on small screen sizes (#44861) @ZeeshanTamboli
+- [docs] Remove more instances of Adobe XD (#44956) @samuelsycamore
+- [docs] Remove Adobe XD chips, links, and mentions (#44909) @samuelsycamore
+- [docs] Fix incorrect rendering in Typography docs (#44937) @iaziz11
+
+### Core
+
+- [core] Remove redundant screenshots (#44877) @oliviertassinari
+- [core] Remove Suspense and clock mocking from regressions and e2e tests (#44935) @DiegoAndai
+- [code-infra] Allow react@18 on `@mui/internal-test-utils` (#45023) @LukasTy
+- [code-infra] Stabilize flaky pigment progressbar tests (#44969) @Janpot
+- [example] Update the CDN example to adapt React 19. (#44979) @IceOfSummer
+- [figma] Clarify that Material UI Sync plugin is experimental (#44975) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @good-jinu, @headironc, @iaziz11, @IceOfSummer, @Janpot, @LukasTy, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siddhantantil39, @siriwatknp, @yashdev16, @ZeeshanTamboli
+
+## 6.3.1
+
+<!-- generated comparing v6.3.0..master -->
+
+_Jan 3, 2025_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@6.3.1`
+
+- [Autocomplete] Revert: Fix options list rendering in freeSolo mode (#44858) @ZeeshanTamboli
+- [Tooltip] Warn instead of error when trigger is disabled (#44846) @yash49
+- [TableSortLabel] Add slots and slotProps (#44728) @sai6855
+- [Select] Deprecate composed classes (#44925) @sai6855
+
+### Docs
+
+- [material-ui][Accordion] Update `Anatomy` section in Accordion docs (#44849) @ZeeshanTamboli
+- [material-ui][CardActionArea] Added demo in docs of cards for adding props to CardActionArea (#44789) @siddhantantil39
+- [material-ui][Grid2] Add interactive demo for Grid v2 (#44820) @yash49
+- [material-ui][Select] Update docs to reflect the omission of placeholder prop (#44856) @adityaparab
+- [joy-ui] Fix Color mode button on Theme builder (#44864) @komkanit
+- Fix 301 redirections @oliviertassinari
+
+### Core
+
+- [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
+- [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
+- [docs-infra] Add vale coverage for App Router and Page Router (060c55c) @oliviertassinari
+- Sync with other repos (1b9300f) @oliviertassinari
+- Fix docs:build to work in docs folder too (6b923a4) @oliviertassinari
+- Setup React 18 CI tests (#44868) @DiegoAndai
+- Update test to use public API (#44875) @oliviertassinari
+
+All contributors of this release in alphabetical order: @adityaparab, @DiegoAndai, @komkanit, @oliviertassinari, @sai6855, @siddhantantil39, @yash49, @ZeeshanTamboli
+
+## 6.3.0
+
+<!-- generated comparing v6.2.1..master -->
+
+_Dec 23, 2024_
+
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- Fix invalid HTML structure in the Accordion component (#44408) @ZeeshanTamboli
+  The HTML elements of the Accordion summary have been updated:
+  - the root element is now button (previously div).
+  - summary content and the icon wrapper are now span (previously div).
+    This will only impact you if you used the HTML element as selectors in your styles.
+
+### `@mui/material@6.3.0`
+
+- [Accordion] Fix invalid HTML inside heading (#44408) @ZeeshanTamboli
+- [useAutocomplete] Improve TS typing of `groupedOptions` prop (#44657) @lewxdev
+- Prevent `ownerState` propagation for transition slots (#44401) @ZeeshanTamboli
+- [StepContent] Add slots and slotProps (#44742) @sai6855
+- [TablePagination] Add the rest of `slots` and `slotProps`. (#44570) @siriwatknp
+
+### `@mui/system@6.3.0`
+
+- Set `before` directly without using prepend for global styles (#44648) @siriwatknp
+
+### Docs
+
+- [material-ui] Improve `theme.applyStyles()` docs (#44658) @DiegoAndai
+- [material-ui] Update MD callout (#43958) @aarongarciah
+
+### Core
+
+- Remove unnecessary conditional around `.muiName =` (#44071) @Janpot
+- [blog] Material UI: 2024 EOY updates blog post (#44722) @alelthomas
+- Fix quickstart command in pigment docs (#44806) @yash49
+- [docs-infra] Remove Next.js production profiler (#44823) @romgrk
+- [docs-infra] Remove no longer support `optimizeFonts` Next.js option (#44802) @LukasTy
+
+All contributors of this release in alphabetical order: @aarongarciah, @alelthomas, @DiegoAndai, @Janpot, @lewxdev, @LukasTy, @romgrk, @sai6855, @siriwatknp, @yash49, @ZeeshanTamboli
+
+## 6.2.1
+
+<!-- generated comparing v6.2.0..master -->
+
+_Dec 17, 2024_
+
+A big thanks to the 10 contributors who made this release possible.
+
+### `@mui/material@6.2.1`
+
+- Update `overridesResolver` return from object to array of styles (#44752) @siddhantantil39
+- [Pagination] Use correct `aria-current` value (#44753) @jacklaurencegaray
+- [Select] Set `aria-required` & `aria-invalid` on `combobox` instead of hidden input (#44731) @ben-pomelo
+
+### `@mui/system@6.2.1`
+
+- Warns if the hex color contains trailing space (#44538) @siriwatknp
+
+### Docs
+
+- [material-ui][Dialog] Fix crashing of DraggableDialog demo (#44747) @sai6855
+- [material-ui][TextField] Update `react-number-format` demo to use the recommended prop (#44743) @siriwatknp
+- [material-ui][TextField] Add size default prop to api docs (#44714) @sai6855
+- [material-ui][TextField] Add suffix shrink demo (#44744) @siriwatknp
+
+### Core
+
+- [api-docs-builder] Preserve multiline prop descriptions with `rawDescriptions` option (#44737) @vladmoroz
+- Fix running mocha related scripts on Windows locally (#44664) @ChristopherJamesL
+- Update `eslint-plugin-jsx-a11y` (#44701) @ZeeshanTamboli
+- Add documentation to `useThemeProps`, `deepmerge` and `composeClasses` functions (#44703) @JCQuintas
+- [examples] Add Theme Mode Switch to Next.js TS example (#43576) @TurtIeSocks
+
+All contributors of this release in alphabetical order: @ben-pomelo, @ChristopherJamesL, @jacklaurencegaray, @JCQuintas, @sai6855, @siddhantantil39, @siriwatknp, @TurtIeSocks, @vladmoroz, @ZeeshanTamboli
+
+## 6.2.0
+
+<!-- generated comparing v6.1.10..master -->
+
+_Dec 10, 2024_
+
+A big thanks to the 9 contributors who made this release possible. Here are some highlights ✨:
+
+- Material UI is now compatible with React 19 (#44672) @DiegoAndai
+- Fixed incorrect `aria-orientation` for vertical sliders. <kbd>ArrowRight</kbd> now increases the value and <kbd>ArrowLeft</kbd> decreases the value in vertical sliders; they were reversed in prior versions. (#44537) @mj12albert
+
+### `@mui/material@6.2.0`
+
+- [Box] Add missing `component` to `BoxProps` type (#44643) @DiegoAndai
+- [Grid] Fix spacing when using css variables (#44663) @DiegoAndai
+- [ListItemText] Add `slots` and `slotProps` (#44571) @sai6855
+
+### Docs
+
+- Add Toolpad Core template link (#44415) @bharatkashyap
+
+### Core
+
+- [docs-infra] Allow custom annotations (#44707) @vladmoroz
+- [Box] Fix `component` prop test (#44651) @DiegoAndai
+- React 19 useRef cleanup (#44704) @DiegoAndai
+- Remove obselete lerna options (#44676) @ZeeshanTamboli
+- Fix Regular Expression Denial of Service (ReDoS) vulnerabilities (#44627) @SuperMaxine
+- Fix number of contributors (#44650) @aarongarciah
+- [docs-infra] Add support for data attributes in the API generation (#44709) @mnajdova
+- [docs-infra] Fix RTL dark mode (#41803) @alexfauquette
+- [Grid] Remove deeply nested imports (#43605) @Janpot
+
+All contributors of this release in alphabetical order: @aarongarciah, @alexfauquette, @bharatkashyap, @DiegoAndai, @Janpot, @mj12albert, @mnajdova, @sai6855, @SuperMaxine, @vladmoroz, @ZeeshanTamboli
+
+## 6.1.10
+
+<!-- generated comparing v6.1.9..master -->
+
+_Dec 3, 2024_
+
+A big thanks to the 11 contributors who made this release possible.
+
+### `@mui/material@6.1.10`
+
+- [Avatar] Fix `slotProps.img` not spread to hook (#44536) @siriwatknp
+- [FilledInput] Use `slotProps` instead of `componentsProps` (#44552) @siriwatknp
+- [Grid2] Fix theme scoping error (#44599) @siriwatknp
+- [Grid2] Add container styles from styleOverrides (#44598) @sai6855
+- Skip `tonalOffset` from setting color channel (#44585) @siriwatknp
+- Remove few more React.ReactElement<any> types (#44290) @sai6855
+- [Tabs] Fix `ScrollbarSize` ref being overriden (#44593) @DiegoAndai
+- [Select][TextField] Fix screen reader from saying `&ZeroWidthSpace` (#44631) @arishoham
+
+### `@mui/system@6.1.10`
+
+- [ThemeProvider] Optimize `theme` changes when enabling CSS theme variables (#44588) @siriwatknp
+
+### Docs
+
+- Notification for the MUI X v8 alpha zero announcement blog post (#44629) @joserodolfofreitas
+- Bump React Router to ^7.0.1 (#44531) @oliviertassinari
+- [material-ui] Replace testid with id in migration guide (#44636) @sai6855
+- [material-ui][TextField] Update usage of `InputLabelProps` in docs (#44634) @sai6855
+- [material-ui][ListItem] Add missing diffs in migration guide (#44638) @sai6855
+- [examples] Use Next.js 14 on examples (#44486) @DiegoAndai
+- Update links and sidebar nav for Base UI components in Material UI (#44581) @samuelsycamore
+
+### Core
+
+- Remove `getSlotOwnerState` from `useSlot` util (#44403) @ZeeshanTamboli
+- Extract useRippleHandler outside of ButtonBase (#44591) @albarv340
+- Update eslint config (#44586) @MBilalShafi
+- [core-infra] Remove useless fragments (#44516) @oliviertassinari
+- [docs-infra] Fix Banner CLS (#44632) @oliviertassinari
+- [docs-infra] Change CSS vars generation to be extracted from Enum (#44587) @mnajdova
+- [docs-infra] Automatically hide Black Friday banner (#44630) @oliviertassinari
+- [docs-infra] Fix TOC RTL padding regression (#44535) @oliviertassinari
+- [test-utils] Remove leftover React.ReactElement<any> from describeConformance.tsx (#44639) @sai6855
+
+All contributors of this release in alphabetical order: @albarv340, @arishoham, @DiegoAndai, @joserodolfofreitas, @MBilalShafi, @mnajdova, @oliviertassinari, @sai6855, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 6.1.9
+
+<!-- generated comparing v6.1.8..master -->
+
+_Nov 27, 2024_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@6.1.9`
+
+- [Select] Omit `placeholder` from props (#44502) @Juneezee
+- [Grid2] Add container class to `Grid2Classes` (#44562) @sai6855
+
+### `@mui/system@6.1.9`
+
+- Add ThemeProvider `noSsr` to prevent double rendering (#44451) @siriwatknp
+
+### `@mui/codemod@6.1.9`
+
+- [codemod] Fix handling of computed `paragraph` props (#44195) @joshkel
+
+### `@mui/material-pigment-css@6.1.9`
+
+- Make @pigment-css/react as peer dependency (#44498) @brijeshb42
+
+### Docs
+
+- [material-ui] Add missing required dependencies in dashboard template README (#44476) @mesqueeb
+- [material-ui] Add missing Roboto import to Next.js integration docs (#44462) @StaceyD22
+- [material-ui][Dialog] Fix padding in SimpleDialog demo (#44467) @oliviertassinari
+- Fix template page issues (#44466) @oliviertassinari
+- [examples] Add dark mode example for Material UI + Pigment CSS (#44480) @mnajdova
+
+### Core
+
+- Remove TODO line in the changelog (#44484) @mnajdova
+- Polish image display (418e888) @oliviertassinari
+- [core-infra] Add no-relative-packages (#44489) @oliviertassinari
+- [docs-infra] Support CSS variables API info (#44559) @mnajdova
+- [docs-infra] Fix display when ad-block triggers (#44567) @oliviertassinari
+- [docs-infra] Improve locator finding using visible option (#44541) @siriwatknp
+- [docs-infra] Correctly flatten the pages tree (#44514) @oliviertassinari
+- [docs-infra] Fix Sponsor design regression (#44515) @oliviertassinari
+- [test] Remove React.ReactElement<any> from describeConformance.tsx (#44318) @sai6855
+- [test] Do not enforce the presence of `ownerState.className` in `describeConformance` (#44479) @flaviendelangle
+
+All contributors of this release in alphabetical order: @brijeshb42, @flaviendelangle, @joshkel, @Juneezee, @mesqueeb, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @StaceyD22
+
 ## v6.1.8
 
 <!-- generated comparing v6.1.7..master -->

@@ -3070,7 +3070,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - [docs-infra] Simplify product id handling (#37593) @oliviertassinari
 - [changelog] Add missing release date for v5.13.5 @oliviertassinari
 - [examples] Shell command fix in the readme file of material-next-ts example (#37675) @bablukpik
-- [examples] Next.js v13 app router with Material UI (#37315) @smo043
+- [examples] Next.js v13 App Router with Material UI (#37315) @smo043
 
 ### Core
 
@@ -3151,7 +3151,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [docs][base] Remove usage of `component` prop in docs (#37462) @sai6855
 - [docs] Fix docs redirections @oliviertassinari
 - [docs] Fix Fluent -> Fluent UI @oliviertassinari
-- [docs] Fix MUI Base -> Base UI @oliviertassinari
+- [docs] Fix MUI Base -> Base UI @oliviertassinari
 - [docs] Add base-vite-tailwind example repo (#36994) @mj12albert
 - [docs] Fix search bar layout shift (#37460) @oliviertassinari
 - [docs] Tweak Material UI's "Showcase" page design (#37259) @danilo-leal
@@ -3366,7 +3366,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ### Core
 
-- [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
+- [blog] Fix images using "MUI Base" instead of "Base UI" (#37044) @danilo-leal
 - [core] Add VS Code extensions recommendations (#37166) @michaldudak
 - [test] `e2e-website` related minor fixes (#37204) @ZeeshanTamboli
 
@@ -3671,7 +3671,7 @@ A big thanks to the 9 contributors who made this release possible. Here are some
 ### Core
 
 - [core] Increase margin to scroll @oliviertassinari
-- [core] Replace MUI Base with Base UI (#36716) @mnajdova
+- [core] Replace MUI Base with Base UI (#36716) @mnajdova
 
 All contributors of this release in alphabetical order: @alirezahekmati, @danilo-leal, @hbjORbj, @Lioness100, @mnajdova, @oliviertassinari, @sai6855, @siriwatknp, @ZeeshanTamboli
 
@@ -3711,7 +3711,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [docs][base] Move styles to the bottom of demos code for `Menu` (#36582) @gitstart
 - [docs][base] Move styles code to bottom in the `Button` demos (#36590) @sai6855
 - [docs][base] Show components & hooks API on the components page (#35938) @mnajdova
-- [docs] Describe slotProps in MUI Base customization doc (#36206) @michaldudak
+- [docs] Describe slotProps in MUI Base customization doc (#36206) @michaldudak
 - [docs] Fix double API page redirection (#36743) @oliviertassinari
 - [docs] Remove hash property and leverage pathname (#36764) @siriwatknp
 - [docs] Introduce markdown permalink to source (#36729) @oliviertassinari

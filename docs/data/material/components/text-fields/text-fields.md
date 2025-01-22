@@ -44,8 +44,8 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 ## Multiline
 
-The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element.
-Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)).
+The `multiline` prop transforms the Text Field into a [MUI Base Textarea Autosize](/base-ui/react-textarea-autosize/) element.
+Unless the `rows` prop is set, the height of the text field dynamically matches its content.
 You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
@@ -69,6 +69,13 @@ This can be used to add a prefix, a suffix, or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "InputAdornments.js"}}
+
+#### Customizing adornments
+
+You can apply custom styles to adornments, and trigger changes to one based on attributes from another.
+For example, the demo below uses the label's `[data-shrink=true]` attribute to make the suffix visible (via opacity) when the label is in its shrunken state.
+
+{{"demo": "InputSuffixShrink.js"}}
 
 ## Sizes
 
@@ -242,7 +249,7 @@ In some circumstances, we can't determine the "shrink" state (number input, date
 To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
-<TextField InputLabelProps={{ shrink: true }} />
+<TextField slotProps={{ inputLabel: { shrink: true } }} />
 ```
 
 or
@@ -268,7 +275,7 @@ We do not recommend using `type="number"` with a Text Field due to potential usa
 
   :::
 
-If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
+If you need a text field with number validation, you can use MUI Base's [Number Input](/base-ui/react-number-input/) instead.
 
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 

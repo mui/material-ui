@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@5.1.1
+  aws-cli: circleci/aws-cli@5.1.2
   aws-s3: circleci/aws-s3@4.1.0
 
 parameters:
@@ -257,12 +257,6 @@ jobs:
           command: pnpm proptypes
       - run:
           name: '`pnpm proptypes` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: 'Write "use client" directive'
-          command: pnpm rsc:build
-      - run:
-          name: '`pnpm rsc:build` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Generate the documentation
@@ -896,6 +890,57 @@ workflows:
   #         <<: *default-context
   #         react-version: ^17.0.0
   #         name: test_e2e-react@17
+
+  # This workflow can be triggered manually on the PR
+  react-18:
+    when:
+      equal: [react-18, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_unit-react@18
+      - test_browser:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_browser-react@18
+      - test_regressions:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_regressions-react@18
+      - test_e2e:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_e2e-react@18
+
+  # This workflow is identical to react-18, but scheduled
+  react-18-cron:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
+                - next
+                - v5.x
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_unit-react@18
+      - test_browser:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_browser-react@18
+      - test_regressions:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_regressions-react@18
+      - test_e2e:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_e2e-react@18
 
   # This workflow can be triggered manually on the PR
   react-next:

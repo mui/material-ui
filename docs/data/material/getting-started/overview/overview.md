@@ -14,8 +14,7 @@ It includes a comprehensive collection of prebuilt components that are ready for
 
 :::info
 Material UI v6 supports Material Design 2.
-Adoption of Material Design 3 is tentatively planned for Material UI v7—see [the announcement blog post](/blog/2023-material-ui-v6-and-beyond/) for more details.
-You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future design-related updates.
 :::
 
 ## Advantages of Material UI
@@ -31,13 +30,13 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
   It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
   You can count on the community's support for years to come (for example [Stack Overflow](https://trends.stackoverflow.co/?tags=material-ui)).
 
-### Material UI vs. Base UI
+### Material UI vs. MUI Base
 
-Material UI and [Base UI](/base-ui/) feature many of the same UI components, but Base UI comes without any default styles or styling solutions.
+Material UI and MUI Base feature many of the same UI components, but MUI Base comes without any default styles or styling solutions.
 
 Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [Emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/)).
 
-Base UI, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, future versions of Material UI will use Base UI components and hooks for its foundational structure.
+MUI Base, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, future versions of Material UI will use MUI Base components and hooks for its foundational structure.
 
 ## Start now
 

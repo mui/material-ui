@@ -4,7 +4,7 @@ title: React Select component
 components: Select, Option
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base-ui/react-select/
+unstyled: https://base-ui.com/react/components/select
 ---
 
 # Select
