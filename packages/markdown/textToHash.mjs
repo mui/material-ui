@@ -14,7 +14,7 @@ function makeUnique(hash, unique, i = 1) {
  * @param {Record<string, boolean>} [unique] - Ensures that each output is unique in `unique`
  * @returns {string} that is safe to use in fragment links
  */
-function textToHash(text, unique = {}) {
+export default function textToHash(text, unique = {}) {
   return makeUnique(
     encodeURI(
       text
@@ -32,5 +32,3 @@ function textToHash(text, unique = {}) {
     unique,
   );
 }
-
-module.exports = textToHash;

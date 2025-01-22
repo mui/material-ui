@@ -259,12 +259,6 @@ jobs:
           name: '`pnpm proptypes` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
-          name: 'Write "use client" directive'
-          command: pnpm rsc:build
-      - run:
-          name: '`pnpm rsc:build` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
           name: Generate the documentation
           command: pnpm docs:api
       - run:
