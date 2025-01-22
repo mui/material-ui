@@ -541,25 +541,29 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     moveTabsScroll(getScrollSize());
   };
 
+  const [ScrollbarSlot, { onChange: scrollbarOnChange, ...scrollbarSlotProps }] = useSlot(
+    'scrollbar',
+    {
+      className: clsx(classes.scrollableX, classes.hideScrollbar),
+      elementType: TabsScrollbarSize,
+      shouldForwardComponentProp: true,
+      externalForwardedProps,
+      ownerState,
+    },
+  );
+
   // TODO Remove <ScrollbarSize /> as browser support for hiding the scrollbar
   // with CSS improves.
-  const handleScrollbarSizeChange = React.useCallback((scrollbarWidth) => {
-    setScrollerStyle({
-      overflow: null,
-      scrollbarWidth,
-    });
-  }, []);
-
-  const [ScrollbarSlot, scrollbarSlotProps] = useSlot('scrollbar', {
-    className: clsx(classes.scrollableX, classes.hideScrollbar),
-    elementType: TabsScrollbarSize,
-    shouldForwardComponentProp: true,
-    externalForwardedProps,
-    ownerState,
-    additionalProps: {
-      onChange: handleScrollbarSizeChange,
+  const handleScrollbarSizeChange = React.useCallback(
+    (scrollbarWidth) => {
+      scrollbarOnChange?.(scrollbarWidth);
+      setScrollerStyle({
+        overflow: null,
+        scrollbarWidth,
+      });
     },
-  });
+    [scrollbarOnChange],
+  );
 
   const [ScrollButtonsSlot, scrollButtonSlotProps] = useSlot('scrollButtons', {
     className: clsx(classes.scrollButtons, TabScrollButtonProps.className),
@@ -585,7 +589,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     const conditionalElements = {};
 
     conditionalElements.scrollbarSizeListener = scrollable ? (
-      <ScrollbarSlot {...scrollbarSlotProps} />
+      <ScrollbarSlot {...scrollbarSlotProps} onChange={handleScrollbarSizeChange} />
     ) : null;
 
     const scrollButtonsActive = displayStartScroll || displayEndScroll;

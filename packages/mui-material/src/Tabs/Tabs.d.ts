@@ -84,7 +84,11 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the scrollbar slot.
      * By default, the avaible props are based on the div element.
      */
-    scrollbar: SlotProps<'div', TabsScrollbarSlotPropsOverrides, TabsOwnerState>;
+    scrollbar: SlotProps<
+      'div',
+      { onChange?: (scrollbarWidth: undefined | number) => void } & TabsScrollbarSlotPropsOverrides,
+      TabsOwnerState
+    >;
     /**
      * Props forwarded to the indicator slot.
      * By default, the avaible props are based on the span element.
