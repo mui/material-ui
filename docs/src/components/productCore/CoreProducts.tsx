@@ -37,10 +37,10 @@ const content = [
   },
   {
     icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
-    title: 'MUI Base',
+    title: 'Base UI',
     description:
-      "A library of unstyled React components and low-level hooks. With MUI Base, you gain complete control over your app's CSS and accessibility features.",
-    link: '/base-ui/',
+      'Unstyled UI components for building accessible web apps and design systems, focusing on accessibility, performance, and developer experience.',
+    link: 'https://base-ui.com',
   },
   {
     icon: <StyleRoundedIcon sx={iconStyles} />,
