@@ -1,7 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '@mui/styled-engine';
 import { useTheme as muiUseTheme } from '@mui/private-theming';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import ThemeProvider from '../ThemeProvider';
 import InitColorSchemeScript, {
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -173,7 +175,7 @@ export default function createCssVarsProvider(options) {
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
     const colorSchemeSelector = restThemeProp.colorSchemeSelector;
-    React.useEffect(() => {
+    useEnhancedEffect(() => {
       if (
         colorScheme &&
         colorSchemeNode &&

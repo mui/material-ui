@@ -65,6 +65,10 @@ If you added another `className` via the `slotProps` prop on the Custom Tooltip�
 The popper slot in the original example would now have both classes applied to it, in addition to any others that may be present: `"[…] custom-tooltip-popper foo"`.
 :::
 
+:::info
+`style` object are shallow merged rather than replacing one another. The style keys from the first argument have higher priority.
+:::
+
 ## Component prop
 
 Material UI allows you to change the root element that will be rendered via a prop called `component`.
