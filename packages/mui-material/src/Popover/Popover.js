@@ -369,8 +369,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     },
     slotProps: {
       transition: TransitionProps,
+      paper: PaperPropsProp,
       ...slotProps,
-      paper: externalPaperSlotProps,
     },
   };
 
@@ -428,15 +428,13 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
   const [PaperSlot, paperProps] = useSlot('paper', {
     ref: paperRef,
+    className: classes.paper,
     elementType: PopoverPaper,
     externalForwardedProps,
     shouldForwardComponentProp: true,
     additionalProps: {
       elevation,
-      className: clsx(classes.paper, externalPaperSlotProps?.className),
-      style: isPositioned
-        ? externalPaperSlotProps.style
-        : { ...externalPaperSlotProps.style, opacity: 0 },
+      style: isPositioned ? undefined : { opacity: 0 },
     },
     ownerState,
   });
@@ -543,8 +541,7 @@ Popover.propTypes /* remove-proptypes */ = {
   anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `slotProps.backdrop` instead. While this prop currently works, it will be removed in the next major version.
-   * Use the `slotProps.backdrop` prop to make your application ready for the next version of Material UI.
+   * @deprecated Use `slots.backdrop` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -558,7 +555,7 @@ Popover.propTypes /* remove-proptypes */ = {
   BackdropComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-   * @deprecated Use `slotProps.backdrop` instead.
+   * @deprecated Use `slotProps.backdrop` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   BackdropProps: PropTypes.object,
   /**

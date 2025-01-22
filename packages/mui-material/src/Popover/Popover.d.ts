@@ -137,8 +137,7 @@ export interface PopoverProps
   anchorReference?: PopoverReference;
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `slotProps.backdrop` instead. While this prop currently works, it will be removed in the next major version.
-   * Use the `slotProps.backdrop` prop to make your application ready for the next version of Material UI.
+   * @deprecated Use `slots.backdrop` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -152,7 +151,7 @@ export interface PopoverProps
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-   * @deprecated Use `slotProps.backdrop` instead.
+   * @deprecated Use `slotProps.backdrop` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   BackdropProps?: Partial<BackdropProps>;
   /**
