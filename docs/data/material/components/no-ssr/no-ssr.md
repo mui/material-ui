@@ -13,6 +13,6 @@ components: NoSsr
 :::warning
 Please refer to the [No-SSR](/base-ui/react-no-ssr/) component page in the MUI Base docs for demos and details on usage.
 
-No-SSR is a part of the standalone [MUI Base](/base-ui/) component library.
+No-SSR is a part of the standalone MUI Base component library.
 It is currently re-exported from `@mui/material` for your convenience, but it will be removed from this package in a future major version after MUI Base gets a stable release.
 :::
