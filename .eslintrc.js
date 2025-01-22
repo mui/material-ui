@@ -41,11 +41,13 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
     group: [
       '@mui/*/*/*',
       '@pigment-css/*/*/*',
-      '@base_ui/*/*/*',
+      '@base-ui/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      // TODO delete, @mui/docs should be @mui/internal-docs
-      '!@mui/docs/**',
+      // TODO delete
+      '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
+      '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
+      '!@mui/docs/**', // @mui/docs should be @mui/internal-docs
     ],
     message: OneLevelImportMessage,
   },
@@ -341,6 +343,7 @@ module.exports = /** @type {Config} */ ({
             patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
           },
         ],
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
     {
@@ -403,6 +406,21 @@ module.exports = /** @type {Config} */ ({
       excludedFiles: '*.spec.tsx',
       rules: {
         'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: [
+        '*.spec.*',
+        '*.test.*',
+        // deprecated library
+        '**/mui-base/**/*',
+        '**/mui-joy/**/*',
+        // used internally, not used on app router yet
+        '**/mui-docs/**/*',
+      ],
+      rules: {
+        'material-ui/disallow-react-api-in-server-components': 'error',
       },
     },
     {
@@ -517,6 +535,7 @@ module.exports = /** @type {Config} */ ({
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
         'react-compiler/react-compiler': 'off',
+        'no-irregular-whitespace': ['error', { skipComments: true }],
       },
     },
     {
@@ -542,6 +561,7 @@ module.exports = /** @type {Config} */ ({
         // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
         'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
         'react/prop-types': 'off',
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
     {

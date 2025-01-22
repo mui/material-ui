@@ -395,4 +395,24 @@ describe('useAutocomplete', () => {
       fireEvent.click(button);
     }).not.to.throw();
   });
+
+  describe('prop: defaultValue', () => {
+    it('should not trigger onInputChange when defaultValue is provided', () => {
+      const onInputChange = spy();
+      const defaultValue = 'foo';
+
+      function Test() {
+        const { getInputProps } = useAutocomplete({
+          defaultValue,
+          onInputChange,
+          options: ['foo', 'bar'],
+        });
+
+        return <input {...getInputProps()} />;
+      }
+
+      render(<Test />);
+      expect(onInputChange.callCount).to.equal(0);
+    });
+  });
 });
