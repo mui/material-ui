@@ -183,7 +183,7 @@ function SlideDemo() {
       <Slider
         aria-labelledby="temperature-slider"
         value={value}
-        onChange={(_, newValue) => setValue(newValue as number[])}
+        onChange={(_, newValue) => setValue(newValue)}
       />
       <LocalFireDepartment
         fontSize="small"
