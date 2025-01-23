@@ -53,7 +53,7 @@ module.exports = function getBabelConfig(api) {
       '@babel/preset-env',
       {
         bugfixes: true,
-        browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
+        browserslistEnv: api.env() || process.env.NODE_ENV,
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
         modules: useESModules ? false : 'commonjs',
         shippedProposals: api.env('modern'),
