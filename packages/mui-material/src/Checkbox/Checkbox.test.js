@@ -12,7 +12,7 @@ import * as ripple from '../../test/ripple';
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
 
-  function CustomRoot({ checkedIcon, ownerState, disableRipple, slotProps, ...props }) {
+  function CustomRoot({ checkedIcon, ownerState, disableRipple, slots, slotProps, ...props }) {
     return <div {...props} />;
   }
 
