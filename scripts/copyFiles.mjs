@@ -4,7 +4,6 @@ import { createPackageFile, includeFileInBuild, prepend } from './copyFilesUtils
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
-const srcPath = path.join(packagePath, './src');
 
 async function addLicense(packageData) {
   const license = `/**
@@ -33,7 +32,7 @@ async function addLicense(packageData) {
 async function run() {
   const extraFiles = process.argv.slice(2);
   try {
-    const packageData = await createPackageFile();
+    const packageData = await createPackageFile(true);
 
     await Promise.all(
       ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
