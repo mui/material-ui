@@ -12,6 +12,7 @@ import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 import { getSnackbarUtilityClass } from './snackbarClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, anchorOrigin } = ownerState;
@@ -107,8 +108,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     autoHideDuration = null,
     children,
     className,
-    ClickAwayListenerProps,
-    ContentProps,
+    ClickAwayListenerProps: ClickAwayListenerPropsProp,
+    ContentProps: ContentPropsProp,
     disableWindowBlurListener = false,
     message,
     onBlur,
@@ -118,9 +119,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     onMouseLeave,
     open,
     resumeHideDuration,
-    TransitionComponent = Grow,
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp,
     transitionDuration = defaultTransitionDuration,
-    TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
+    TransitionProps: { onEnter, onExited, ...TransitionPropsProp } = {},
     ...other
   } = props;
 
@@ -129,7 +132,6 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     anchorOrigin: { vertical, horizontal },
     autoHideDuration,
     disableWindowBlurListener,
-    TransitionComponent,
     transitionDuration,
   };
 
@@ -138,17 +140,6 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
 
   const [exited, setExited] = React.useState(true);
-
-  const rootProps = useSlotProps({
-    elementType: SnackbarRoot,
-    getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
-    },
-    className: [classes.root, className],
-  });
 
   const handleExited = (node) => {
     setExited(true);
@@ -166,25 +157,76 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     }
   };
 
+  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
+  const backwardCompatibleSlotProps = {
+    content: ContentPropsProp,
+    clickAwayListener: ClickAwayListenerPropsProp,
+    transition: TransitionPropsProp,
+    ...slotProps,
+  };
+
+  const rootProps = useSlotProps({
+    elementType: SnackbarRoot,
+    getSlotProps: getRootProps,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+    },
+    className: [classes.root, className],
+  });
+
+  const clickAwayListenerProps = useSlotProps({
+    elementType: ClickAwayListener,
+    externalSlotProps: backwardCompatibleSlotProps.clickAwayListener,
+    additionalProps: {
+      onClickAway,
+    },
+    ownerState,
+  });
+
+  const snackbarContentProps = useSlotProps({
+    elementType: SnackbarContent,
+    externalSlotProps: backwardCompatibleSlotProps.content,
+    additionalProps: {
+      message,
+      action,
+    },
+    ownerState,
+  });
+
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps: {
+      slots: backwardCompatibleSlots,
+      slotProps: backwardCompatibleSlotProps,
+    },
+    additionalProps: {
+      appear: true,
+      in: open,
+      timeout: transitionDuration,
+      direction: vertical === 'top' ? 'down' : 'up',
+      onEnter: handleEnter,
+      onExited: handleExited,
+    },
+    ownerState,
+  });
+
+  delete transitionProps.ownerState;
+  delete snackbarContentProps.ownerState;
+  delete clickAwayListenerProps.ownerState;
+
   // So we only render active snackbars.
   if (!open && exited) {
     return null;
   }
 
   return (
-    <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
+    <ClickAwayListener {...clickAwayListenerProps}>
       <SnackbarRoot {...rootProps}>
-        <TransitionComponent
-          appear
-          in={open}
-          timeout={transitionDuration}
-          direction={vertical === 'top' ? 'down' : 'up'}
-          onEnter={handleEnter}
-          onExited={handleExited}
-          {...TransitionProps}
-        >
-          {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
-        </TransitionComponent>
+        <TransitionSlot {...transitionProps}>
+          {children || <SnackbarContent {...snackbarContentProps} />}
+        </TransitionSlot>
       </SnackbarRoot>
     </ClickAwayListener>
   );
@@ -291,6 +333,79 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * we default to `autoHideDuration / 2` ms.
    */
   resumeHideDuration: PropTypes.number,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clickAwayListener: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+      PropTypes.shape({
+        children: PropTypes.element.isRequired,
+        component: PropTypes.elementType,
+        disableReactTree: PropTypes.bool,
+        mouseEvent: PropTypes.oneOf([
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onPointerDown',
+          'onPointerUp',
+          false,
+        ]),
+        onClickAway: PropTypes.func,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+      }),
+      PropTypes.shape({
+        children: PropTypes.element.isRequired,
+        component: PropTypes.elementType,
+        disableReactTree: PropTypes.bool,
+        key: PropTypes.oneOfType([
+          PropTypes.number,
+          PropTypes.shape({
+            '__@toStringTag@9561': PropTypes.oneOf(['BigInt']).isRequired,
+            toLocaleString: PropTypes.func.isRequired,
+            toString: PropTypes.func.isRequired,
+            valueOf: PropTypes.func.isRequired,
+          }),
+          PropTypes.string,
+        ]),
+        mouseEvent: PropTypes.oneOf([
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onPointerDown',
+          'onPointerUp',
+          false,
+        ]),
+        onClickAway: PropTypes.func,
+        sx: PropTypes.oneOfType([
+          PropTypes.arrayOf(
+            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
+          ),
+          PropTypes.func,
+          PropTypes.object,
+        ]),
+        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+      }),
+    ]),
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    transition: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

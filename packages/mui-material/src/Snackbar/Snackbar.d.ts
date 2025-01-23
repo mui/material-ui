@@ -6,6 +6,53 @@ import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
 import { SnackbarClasses } from './snackbarClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface SnackbarSlots {
+  /**
+   * The component that renders the transition.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @default Grow
+   */
+  transition?: React.JSXElementConstructor<
+    TransitionProps & { children: React.ReactElement<any, any> }
+  >;
+}
+
+export interface SnackbarTransitionSlotPropsOverrides {}
+export interface ClickAwayListenerSlotPropsOverrides {}
+export interface ContentTransitionSlotPropsOverrides {}
+
+export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SnackbarSlots,
+  {
+    /**
+     * Props applied to the `ClickAwayListener` element.
+     */
+    clickAwayListener?: SlotProps<
+      React.ElementType<Partial<ClickAwayListenerProps>>,
+      ClickAwayListenerSlotPropsOverrides,
+      SnackbarOwnerState
+    >;
+    /**
+     * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
+     */
+    content?: SlotProps<
+      React.ElementType<Partial<SnackbarContentProps>>,
+      ContentTransitionSlotPropsOverrides,
+      SnackbarOwnerState
+    >;
+    /**
+     * Props applied to the transition element.
+     * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+     */
+    transition: SlotProps<
+      React.ElementType<TransitionProps>,
+      SnackbarTransitionSlotPropsOverrides,
+      SnackbarOwnerState
+    >;
+  }
+>;
 
 export interface SnackbarOrigin {
   vertical: 'top' | 'bottom';
@@ -14,7 +61,9 @@ export interface SnackbarOrigin {
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
-export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface SnackbarProps
+  extends Omit<StandardProps<React.HTMLAttributes<HTMLDivElement>>, 'slots' | 'slotProps'>,
+    SnackbarSlotsAndSlotProps {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
@@ -128,3 +177,5 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
  * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
+
+export interface SnackbarOwnerState extends Omit<SnackbarProps, 'slots' | 'slotProps'> {}
