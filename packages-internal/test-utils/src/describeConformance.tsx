@@ -644,7 +644,7 @@ function testSlotPropsCallbackWithPropsAsOwnerState(
       const { queryByTestId } = await render(
         React.cloneElement(element, { slotProps, className: 'custom' }),
       );
-      const slotComponent = queryByTestId('custom', { exact: false });
+      const slotComponent = queryByTestId('custom');
       expect(slotComponent).not.to.equal(null);
     });
   });

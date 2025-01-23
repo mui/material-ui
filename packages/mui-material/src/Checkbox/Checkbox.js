@@ -141,6 +141,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalInputProps = slotProps.input ?? inputProps;
+
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
     elementType: CheckboxRoot,
@@ -163,9 +165,14 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       disableRipple,
       slots,
       slotProps: {
-        input: mergeSlotProps(slotProps.input ?? inputProps, {
-          'data-indeterminate': indeterminate,
-        }),
+        input: mergeSlotProps(
+          typeof externalInputProps === 'function'
+            ? externalInputProps(ownerState)
+            : externalInputProps,
+          {
+            'data-indeterminate': indeterminate,
+          },
+        ),
       },
     },
   });
