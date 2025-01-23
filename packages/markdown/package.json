@@ -3,12 +3,17 @@
   "version": "1.0.25",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./index.mjs",
+  "browser": "./index.mjs",
+  "types": "./index.d.mts",
   "exports": {
-    ".": "./index.js",
-    "./loader": "./loader.js",
-    "./prism": "./prism.js"
+    ".": "./index.mjs",
+    "./loader": "./loader.mjs",
+    "./prism": {
+      "types": "./prism.d.mts",
+      "require": "./prism.cjs",
+      "import": "./prism.mjs"
+    }
   },
   "repository": {
     "type": "git",

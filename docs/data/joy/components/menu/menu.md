@@ -4,7 +4,7 @@ title: React Menu component
 components: Menu, MenuItem, MenuList, MenuButton
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-unstyled: /base-ui/react-menu/
+unstyled: https://base-ui.com/react/components/menu
 ---
 
 # Menu

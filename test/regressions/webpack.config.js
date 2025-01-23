@@ -32,9 +32,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|ts|tsx)$/,
-        // prism.js blocks @mui/internal-markdown/prism from being interpreted as ESM in this build.
-        exclude: /node_modules|prism\.js/,
+        test: /\.(js|mjs|ts|tsx)$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
