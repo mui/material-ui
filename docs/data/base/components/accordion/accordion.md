@@ -10,5 +10,3 @@ newName: Accordion
 # Accordion
 
 <p class="description">Accordions let users show and hide sections of related content on a page.</p>
-
-{{"component": "components/productBaseUI/MuiBaseDeprecation", "newComponentName": "Accordion", "newComponentUrl": "https://base-ui.com/react/components/accordion"}}

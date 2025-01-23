@@ -10,5 +10,3 @@ newName: Radio
 # Radio Group
 
 <p class="description">Radio buttons enable the user to select one option from a set.</p>
-
-{{"component": "components/productBaseUI/MuiBaseDeprecation", "newComponentName": "Radio", "newComponentUrl": "https://base-ui.com/react/components/radio"}}

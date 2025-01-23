@@ -10,5 +10,3 @@ newName: Tooltip
 # Tooltip
 
 <p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
-
-{{"component": "components/productBaseUI/MuiBaseDeprecation", "newComponentName": "Tooltip", "newComponentUrl": "https://base-ui.com/react/components/tooltip"}}

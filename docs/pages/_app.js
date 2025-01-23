@@ -39,7 +39,7 @@ import SvgBaseUiLogo, {
 } from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
-import config from '../config';
+import * as config from '../config';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -226,7 +226,7 @@ function AppWrapper(props) {
     if (productId === 'base-ui') {
       return {
         metadata: '',
-        name: 'Base UI',
+        name: 'MUI Base',
         logo: SvgBaseUiLogo,
         logoSvg: baseSvgLogoString,
         wordmarkSvg: baseSvgWordmarkString,
