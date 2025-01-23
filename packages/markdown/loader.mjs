@@ -1,7 +1,7 @@
-const { promises: fs, readdirSync, statSync } = require('fs');
-const path = require('path');
-const prepareMarkdown = require('./prepareMarkdown');
-const extractImports = require('./extractImports');
+import { promises as fs, readdirSync, statSync } from 'fs';
+import path from 'path';
+import prepareMarkdown from './prepareMarkdown.mjs';
+import extractImports from './extractImports.mjs';
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
@@ -59,7 +59,7 @@ function findComponents(packages) {
 /**
  * @type {import('webpack').loader.Loader}
  */
-module.exports = async function demoLoader() {
+export default async function demoLoader() {
   const englishFilepath = this.resourcePath;
   const options = this.getOptions();
 
@@ -636,4 +636,4 @@ ${Array.from(componentModuleIDs)
 `;
 
   return transformed;
-};
+}
