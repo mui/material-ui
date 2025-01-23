@@ -107,7 +107,7 @@ const classes = [
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace deperecated Chip classes with new classes`,
+    postcssPlugin: `Replace deprecated Chip classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 

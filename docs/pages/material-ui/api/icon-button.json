@@ -19,7 +19,7 @@
       },
       "default": "false"
     },
-    "loading": { "type": { "name": "bool" }, "default": "false" },
+    "loading": { "type": { "name": "bool" }, "default": "null" },
     "loadingIndicator": {
       "type": { "name": "node" },
       "default": "<CircularProgress color=\"inherit\" size={16} />"
@@ -115,6 +115,12 @@
       "key": "loadingIndicator",
       "className": "MuiIconButton-loadingIndicator",
       "description": "Styles applied to the loadingIndicator element.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingWrapper",
+      "className": "MuiIconButton-loadingWrapper",
+      "description": "Styles applied to the loadingWrapper element.",
       "isGlobal": false
     },
     {
