@@ -72,6 +72,21 @@ export default function StickyHeadTable() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <Table stickyHeader aria-label="sticky table">
+        <TableHead>
+          <TableRow>
+            {columns.map((column) => (
+              <TableCell
+                key={column.id}
+                align={column.align}
+                style={{ minWidth: column.minWidth }}
+              >
+                {column.label}
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+      </Table>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
