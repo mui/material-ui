@@ -18,7 +18,7 @@ export default defineConfig({
         if (!/.*\.js$/.test(id)) {
           return null;
         }
-        if (/\.prism.js/.test(id)) {
+        if (id.startsWith('\0')) {
           return null;
         }
         // Use the exposed transform from vite, instead of directly
