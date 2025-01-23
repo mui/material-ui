@@ -32,6 +32,17 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -43,6 +54,20 @@
   },
   "name": "Radio",
   "imports": ["import Radio from '@mui/material/Radio';", "import { Radio } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "SwitchBase",
+      "class": "MuiRadio-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input slot.",
+      "default": "SwitchBase's input",
+      "class": null
+    }
+  ],
   "classes": [
     {
       "key": "checked",
@@ -67,12 +92,6 @@
       "className": "Mui-disabled",
       "description": "State class applied to the root element if `disabled={true}`.",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "MuiRadio-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "sizeSmall",
