@@ -1,6 +1,6 @@
-const path = require('path');
-const fse = require('fs-extra');
-const playwright = require('playwright');
+import * as path from 'path';
+import * as fse from 'fs-extra';
+import * as playwright from 'playwright';
 
 async function main() {
   const baseUrl = 'http://localhost:5001';
