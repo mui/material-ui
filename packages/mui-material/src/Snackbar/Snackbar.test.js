@@ -31,6 +31,12 @@ describe('<Snackbar />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: null,
+      },
+    },
   }));
 
   describe('prop: onClose', () => {
