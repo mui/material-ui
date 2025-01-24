@@ -125,8 +125,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     ...other
   } = props;
 
-  const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
-
   const paperRef = React.useRef();
 
   const ownerState = {
@@ -135,7 +133,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     anchorReference,
     elevation,
     marginThreshold,
-    externalPaperSlotProps,
     transformOrigin,
     TransitionComponent,
     transitionDuration: transitionDurationProp,
@@ -405,7 +402,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
-  const [RootSlot, { slots: rootSlots, slotProps: rootSlotPropsProp, ...rootProps }] = useSlot(
+  const [RootSlot, { slots: rootSlotsProp, slotProps: rootSlotPropsProp, ...rootProps }] = useSlot(
     'root',
     {
       ref,
@@ -417,7 +414,14 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       shouldForwardComponentProp: true,
       additionalProps: {
         slots: { backdrop: slots.backdrop },
-        slotProps: { backdrop: mergeSlotProps(slotProps.backdrop, { invisible: true }) },
+        slotProps: {
+          backdrop: mergeSlotProps(
+            typeof slotProps.backdrop === 'function'
+              ? slotProps.backdrop(ownerState)
+              : slotProps.backdrop,
+            { invisible: true },
+          ),
+        },
         container,
         open,
       },
@@ -443,7 +447,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     <RootSlot
       {...rootProps}
       {...(!isHostComponent(RootSlot) && {
-        slots: rootSlots,
+        slots: rootSlotsProp,
         slotProps: rootSlotPropsProp,
         disableScrollLock,
       })}

@@ -43,6 +43,18 @@ const ReplacementPaper = styled(Paper, {
   backgroundColor: 'red',
 });
 
+function CustomTransition({
+  in: inProp,
+  appear,
+  onEnter,
+  onEntering,
+  onExited,
+  ownerState,
+  ...props
+}) {
+  return <div data-testid="custom" {...props} />;
+}
+
 describe('<Popover />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -68,6 +80,11 @@ describe('<Popover />', () => {
         testWithElement: React.forwardRef(({ invisible, ownerState, ...props }, ref) => (
           <i ref={ref} {...props} />
         )),
+      },
+      transition: {
+        expectedClassName: null,
+        testWithComponent: CustomTransition,
+        testWithElement: CustomTransition,
       },
     },
     skip: [

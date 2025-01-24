@@ -55,6 +55,7 @@ export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the avaible props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotComponentProps<
+      // use SlotComponentProps because transition slot does not support `component` and `sx` prop
       React.ElementType<TransitionProps>,
       PopoverTransitionSlotPropsOverrides,
       PopoverOwnerState
