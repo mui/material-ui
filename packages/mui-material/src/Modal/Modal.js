@@ -144,9 +144,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const childProps = {};
-  if (children.props.tabIndex === undefined) {
-    childProps.tabIndex = '-1';
-  }
 
   // It's a Transition like component
   if (hasTransition) {
@@ -338,6 +335,16 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableEscapeKeyDown: PropTypes.bool,
+  /**
+   * By default the dialog content element is focused when opened.
+   *
+   * Set the property to `true` to disable this behavior and focus will be
+   * placed on the first focusable element respecting `tabIndex` order,
+   * including elements explicitly marked with `tabIndex={-1}`.
+   *
+   * @default false
+   */
+  disableInitialContentFocus: PropTypes.bool,
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false

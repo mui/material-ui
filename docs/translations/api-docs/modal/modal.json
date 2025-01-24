@@ -31,6 +31,9 @@
     "disableEscapeKeyDown": {
       "description": "If <code>true</code>, hitting escape will not fire the <code>onClose</code> callback."
     },
+    "disableInitialContentFocus": {
+      "description": "By default the dialog content element is focused when opened.<br>Set the property to <code>true</code> to disable this behavior and focus will be placed on the first focusable element respecting <code>tabIndex</code> order, including elements explicitly marked with <code>tabIndex={-1}</code>."
+    },
     "disablePortal": {
       "description": "The <code>children</code> will be under the DOM hierarchy of the parent component."
     },
