@@ -1037,7 +1037,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * @param {Event} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
   onChange: PropTypes.func,
@@ -1045,7 +1045,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    */
   onChangeCommitted: PropTypes.func,
   /**
