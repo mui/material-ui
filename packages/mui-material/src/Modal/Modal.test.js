@@ -36,7 +36,7 @@ describe('<Modal />', () => {
       testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
-        backdrop: {},
+        backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'rootClass', // portal, can't determine the root
