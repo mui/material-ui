@@ -32,8 +32,7 @@ describe('<Snackbar />', () => {
     muiName: 'MuiSnackbar',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
     slots: {
-      root: {
-        expectedClassName: classes.root,
+      transition: {
         testWithElement: null,
       },
     },

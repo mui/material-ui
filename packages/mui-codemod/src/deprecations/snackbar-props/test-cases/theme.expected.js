@@ -1,19 +1,21 @@
 fn({
-  MuiSpeedDial: {
+  MuiSnackbar: {
     defaultProps: {
       slots: {
         transition: CustomTransition
       },
 
       slotProps: {
-        transition: CustomTransitionProps
+        transition: CustomTransitionProps,
+        content: CustomContentProps,
+        clickAwayListener: CustomListenerProps
       }
     },
   },
 });
 
 fn({
-  MuiSpeedDial: {
+  MuiSnackbar: {
     defaultProps: {
       slots: {
         root: 'div',
@@ -21,14 +23,16 @@ fn({
       },
 
       slotProps: {
-        transition: CustomTransitionProps
+        transition: CustomTransitionProps,
+        content: CustomContentProps,
+        clickAwayListener: CustomListenerProps
       }
     },
   },
 });
 
 fn({
-  MuiSpeedDial: {
+  MuiSnackbar: {
     defaultProps: {
       slots: {
         root: 'div',
@@ -36,7 +40,9 @@ fn({
       },
 
       slotProps: {
-        transition: CustomTransitionProps
+        transition: CustomTransitionProps,
+        content: CustomContentProps,
+        clickAwayListener: CustomListenerProps
       }
     },
   },
