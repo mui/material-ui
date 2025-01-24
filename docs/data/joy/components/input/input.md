@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Input component
 components: FormControl, FormHelperText, FormLabel, Input
-unstyled: /base-ui/react-input/
+unstyled: https://base-ui.com/react/components/input
 ---
 
 # Input
