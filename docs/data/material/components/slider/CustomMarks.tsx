@@ -18,8 +18,8 @@ const marks = [
 
 export default function CustomMarks() {
   const [val, setVal] = React.useState<number>(MIN);
-  const handleChange = (_: Event, newValue: number | number[]) => {
-    setVal(newValue as number);
+  const handleChange = (_: Event, newValue: number) => {
+    setVal(newValue);
   };
 
   return (

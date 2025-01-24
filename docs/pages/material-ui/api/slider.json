@@ -58,14 +58,14 @@
     "onChange": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: Event, value: number | Array<number>, activeThumb: number) => void",
+        "type": "function(event: Event, value: Value, activeThumb: number) => void",
         "describedArgs": ["event", "value", "activeThumb"]
       }
     },
     "onChangeCommitted": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(event: React.SyntheticEvent | Event, value: number | Array<number>) => void",
+        "type": "function(event: React.SyntheticEvent | Event, value: Value) => void",
         "describedArgs": ["event", "value"]
       }
     },
