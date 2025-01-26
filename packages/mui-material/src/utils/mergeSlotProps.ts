@@ -32,20 +32,38 @@ export default function mergeSlotProps<
           externalSlotPropsValue?.style && {
             style: { ...defaultSlotPropsValue.style, ...externalSlotPropsValue.style },
           }),
+        ...(defaultSlotPropsValue?.sx &&
+          externalSlotPropsValue?.sx && {
+            sx: [
+              ...(Array.isArray(defaultSlotPropsValue.sx)
+                ? defaultSlotPropsValue.sx
+                : [defaultSlotPropsValue.sx]),
+              ...(Array.isArray(externalSlotPropsValue.sx)
+                ? externalSlotPropsValue.sx
+                : [externalSlotPropsValue.sx]),
+            ],
+          }),
       };
     }) as U;
   }
-  const className = clsx(
-    (defaultSlotProps as Record<string, any>)?.className,
-    externalSlotProps?.className,
-  );
+  const typedDefaultSlotProps = defaultSlotProps as Record<string, any>;
+  const className = clsx(typedDefaultSlotProps?.className, externalSlotProps?.className);
   return {
     ...defaultSlotProps,
     ...externalSlotProps,
     ...(!!className && { className }),
-    ...((defaultSlotProps as Record<string, any>)?.style &&
+    ...(typedDefaultSlotProps?.style &&
       externalSlotProps?.style && {
-        style: { ...(defaultSlotProps as Record<string, any>).style, ...externalSlotProps.style },
+        style: { ...typedDefaultSlotProps.style, ...externalSlotProps.style },
+      }),
+    ...(typedDefaultSlotProps?.sx &&
+      externalSlotProps?.sx && {
+        sx: [
+          ...(Array.isArray(typedDefaultSlotProps.sx)
+            ? typedDefaultSlotProps.sx
+            : [typedDefaultSlotProps.sx]),
+          ...(Array.isArray(externalSlotProps.sx) ? externalSlotProps.sx : [externalSlotProps.sx]),
+        ],
       }),
   } as U;
 }
