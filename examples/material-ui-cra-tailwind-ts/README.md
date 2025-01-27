@@ -7,7 +7,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra-tailwind-ts
+curl https://codeload.github.com/mui/material-ui/tar.gz/v6.x | tar -xz --strip=2 material-ui-v6.x/examples/material-ui-cra-tailwind-ts
 cd material-ui-cra-tailwind-ts
 ```
 
@@ -22,7 +22,7 @@ or:
 
 <!-- #default-branch-switch -->
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/v6.x/examples/material-ui-cra-tailwind-ts)
 
 ## The idea behind the example
 
