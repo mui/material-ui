@@ -1057,8 +1057,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       chai-dom:
-        specifier: ^1.12.0
-        version: 1.12.0(chai@4.5.0)
+        specifier: ^1.12.1
+        version: 1.12.1(chai@4.5.0)
       dom-accessibility-api:
         specifier: ^0.7.0
         version: 0.7.0
@@ -6487,8 +6487,8 @@ packages:
   caniuse-lite@1.0.30001667:
     resolution: {integrity: sha512-7LTwJjcRkzKFmtqGsibMeuXmvFDfZq/nzIjnmgCGzKKRVzjD72selLDK1oPF/Oxzmt4fNcPvTDvGqSDG4tCALw==}
 
-  chai-dom@1.12.0:
-    resolution: {integrity: sha512-pLP8h6IBR8z1AdeQ+EMcJ7dXPdsax/1Q7gdGZjsnAmSBl3/gItQUYSCo32br1qOy4SlcBjvqId7ilAf3uJ2K1w==}
+  chai-dom@1.12.1:
+    resolution: {integrity: sha512-tvz+D0PJue2VHXRec3udgP/OeeXBiePU3VH6JhEnHQJYzvNzR2nUvEykA9dXVS76JvaUENSOYH8Ufr0kZSnlCQ==}
     engines: {node: '>= 0.12.0'}
     peerDependencies:
       chai: '>= 3'
@@ -18207,7 +18207,7 @@ snapshots:
 
   caniuse-lite@1.0.30001667: {}
 
-  chai-dom@1.12.0(chai@4.5.0):
+  chai-dom@1.12.1(chai@4.5.0):
     dependencies:
       chai: 4.5.0
 
