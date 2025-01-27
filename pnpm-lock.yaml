@@ -277,8 +277,8 @@ importers:
         specifier: ^4.8.0
         version: 4.8.0
       postcss-styled-syntax:
-        specifier: ^0.7.0
-        version: 0.7.0(postcss@8.4.49)
+        specifier: ^0.7.1
+        version: 0.7.1(postcss@8.4.49)
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -10858,11 +10858,11 @@ packages:
     resolution: {integrity: sha512-9RbEr1Y7FFfptd/1eEdntyjMwLeghW1bHX9GWjXo19vx4ytPQhANltvVxDggzJl7mnWM+dX28kb6cyS/4iQjlQ==}
     engines: {node: '>=4'}
 
-  postcss-styled-syntax@0.7.0:
-    resolution: {integrity: sha512-OeStzPkHJ1/WDGRKm/JuVK8UdJbjt3U7AFC+zUc9omJ79SaXSxWoy+PXxJz7t8vOO8HcUgCLndNEQfLvZ74TuQ==}
+  postcss-styled-syntax@0.7.1:
+    resolution: {integrity: sha512-V5Iy8JztqXOKnTojdytF8IJ3zDXyVR927XftBPinJa3TnKdChGvGzUNEYlNuDtR+iqpuFkwJMgZdaJarYfGFCg==}
     engines: {node: '>=14.17'}
     peerDependencies:
-      postcss: ^8.4.21
+      postcss: ^8.5.1
 
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
@@ -23677,7 +23677,7 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-styled-syntax@0.7.0(postcss@8.4.49):
+  postcss-styled-syntax@0.7.1(postcss@8.4.49):
     dependencies:
       postcss: 8.4.49
       typescript: 5.7.3
