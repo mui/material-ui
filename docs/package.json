@@ -19,9 +19,9 @@
     "link-check": "tsx ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/runtime": "^7.26.0",
-    "@babel/runtime-corejs2": "^7.26.0",
+    "@babel/core": "^7.26.7",
+    "@babel/runtime": "^7.26.7",
+    "@babel/runtime-corejs2": "^7.26.7",
     "@docsearch/react": "^3.8.3",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
