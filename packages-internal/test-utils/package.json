@@ -43,7 +43,7 @@
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
     "chai": "^4.5.0",
-    "chai-dom": "^1.12.0",
+    "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.2.0",
@@ -59,7 +59,7 @@
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.6",
+    "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.2",
     "@types/sinon": "^17.0.3",
     "typescript": "^5.7.3"
