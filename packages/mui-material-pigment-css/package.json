@@ -43,7 +43,7 @@
     "@mui/system": "workspace:*"
   },
   "peerDependencies": {
-    "@pigment-css/react": "^0.0.29 || ^0.0.30"
+    "@pigment-css/react": "^0.0.30"
   },
   "sideEffects": false,
   "publishConfig": {
