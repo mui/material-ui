@@ -21,7 +21,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^5.0.0",
-    "react-router-dom": "^6.28.1",
+    "react-router-dom": "^6.28.2",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
