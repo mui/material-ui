@@ -1693,6 +1693,69 @@ The PaginationItems's `components` prop was deprecated in favor of `slots`:
  />
 ```
 
+## Popover
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popover-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/popover-props <path>
+```
+
+### BackdropComponent
+
+The Popover's `BackdropComponent` prop was deprecated in favor of `slots.backdrop`:
+
+```diff
+ <Popover
+-  BackdropComponent={Backdrop}
++  slots={{ backdrop: Backdrop }}
+ >
+```
+
+### BackdropProps
+
+The Popover's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop`:
+
+```diff
+ <Popover
+-  BackdropProps={{ timeout: 500 }}
++  slotProps={{ backdrop: { timeout: 500 } }}
+ >
+```
+
+### PaperProps
+
+The Popover's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
+
+```diff
+ <Popover
+-  PaperProps={{ id: 'paper-id' }}
++  slotProps={{ paper: { id: 'paper-id' } }}
+ >
+```
+
+### TransitionComponent
+
+The Popover's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Popover
+-  TransitionComponent={Transition}
++  slots={{ transition: Transition }}
+ >
+```
+
+### TransitionProps
+
+The Popover's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Popover
+-  TransitionProps={{ timeout: 500 }}
++  slotProps={{ transition: { timeout: 500 } }}
+ >
+```
+
 ## Popper
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popper-props) below to migrate the code as described in the following sections:
