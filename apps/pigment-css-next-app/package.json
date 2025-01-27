@@ -23,7 +23,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "0.0.29",
+    "@pigment-css/nextjs-plugin": "0.0.30",
     "@types/node": "^20.17.16",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
