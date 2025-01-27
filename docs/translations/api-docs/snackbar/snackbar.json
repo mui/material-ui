@@ -81,10 +81,12 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
   },
   "slotDescriptions": {
+    "clickAwayListener": "The component that renders the content slot.",
+    "content": "The component that renders the content slot.",
+    "root": "The component that renders the root slot.",
     "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

@@ -284,10 +284,12 @@ Snackbar.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `ClickAwayListener` element.
+   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
    * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
+   * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContentProps: PropTypes.object,
   /**
@@ -354,7 +356,6 @@ Snackbar.propTypes /* remove-proptypes */ = {
       PropTypes.object,
       PropTypes.shape({
         children: PropTypes.element.isRequired,
-        component: PropTypes.elementType,
         disableReactTree: PropTypes.bool,
         mouseEvent: PropTypes.oneOf([
           'onClick',
@@ -365,23 +366,15 @@ Snackbar.propTypes /* remove-proptypes */ = {
           false,
         ]),
         onClickAway: PropTypes.func,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
         touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
       }),
       PropTypes.shape({
         children: PropTypes.element.isRequired,
-        component: PropTypes.elementType,
         disableReactTree: PropTypes.bool,
         key: PropTypes.oneOfType([
           PropTypes.number,
           PropTypes.shape({
-            '__@toStringTag@9059': PropTypes.oneOf(['BigInt']).isRequired,
+            '__@toStringTag@9640': PropTypes.oneOf(['BigInt']).isRequired,
             toLocaleString: PropTypes.func.isRequired,
             toString: PropTypes.func.isRequired,
             valueOf: PropTypes.func.isRequired,
@@ -397,17 +390,11 @@ Snackbar.propTypes /* remove-proptypes */ = {
           false,
         ]),
         onClickAway: PropTypes.func,
-        sx: PropTypes.oneOfType([
-          PropTypes.arrayOf(
-            PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-          ),
-          PropTypes.func,
-          PropTypes.object,
-        ]),
         touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
       }),
     ]),
     content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -415,6 +402,9 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
+    clickAwayListener: PropTypes.elementType,
+    content: PropTypes.elementType,
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
@@ -428,6 +418,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -450,6 +441,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps: PropTypes.object,
