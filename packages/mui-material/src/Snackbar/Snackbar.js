@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
-import useSlotProps from '@mui/utils/useSlotProps';
 import useSnackbar from './useSnackbar';
 import ClickAwayListener from '../ClickAwayListener';
 import { styled, useTheme } from '../zero-styled';
@@ -132,6 +131,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     anchorOrigin: { vertical, horizontal },
     autoHideDuration,
     disableWindowBlurListener,
+    TransitionComponent: TransitionComponentProp,
     transitionDuration,
   };
 
@@ -157,37 +157,47 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     }
   };
 
-  const backwardCompatibleSlots = { transition: TransitionComponentProp, ...slots };
-  const backwardCompatibleSlotProps = {
-    content: ContentPropsProp,
-    clickAwayListener: ClickAwayListenerPropsProp,
-    transition: TransitionPropsProp,
-    ...slotProps,
+  const externalForwardedProps = {
+    slots: {
+      transition: TransitionComponentProp,
+      ...slots,
+    },
+    slotProps: {
+      content: ContentPropsProp,
+      clickAwayListener: ClickAwayListenerPropsProp,
+      transition: TransitionPropsProp,
+      ...slotProps,
+    },
   };
 
-  const rootProps = useSlotProps({
+  const [Root, rootProps] = useSlot('root', {
+    ref,
+    className: [classes.root, className],
     elementType: SnackbarRoot,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
     },
-    className: [classes.root, className],
+    ownerState,
   });
 
-  const clickAwayListenerProps = useSlotProps({
+  const [ClickAwaySlot, clickAwayListenerProps] = useSlot('clickAwayListener', {
     elementType: ClickAwayListener,
-    externalSlotProps: backwardCompatibleSlotProps.clickAwayListener,
-    additionalProps: {
-      onClickAway,
-    },
+    externalForwardedProps,
+    getSlotProps: (handlers) => ({
+      onClickAway: (...params) => {
+        handlers.onClickAway?.(...params);
+        onClickAway(...params);
+      },
+    }),
     ownerState,
   });
 
-  const snackbarContentProps = useSlotProps({
+  const [ContentSlot, contentSlotProps] = useSlot('content', {
     elementType: SnackbarContent,
-    externalSlotProps: backwardCompatibleSlotProps.content,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
     additionalProps: {
       message,
       action,
@@ -197,24 +207,25 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
 
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Grow,
-    externalForwardedProps: {
-      slots: backwardCompatibleSlots,
-      slotProps: backwardCompatibleSlotProps,
-    },
+    externalForwardedProps,
+    getSlotProps: (handlers) => ({
+      onEnter: (...params) => {
+        handlers.onEnter?.(...params);
+        handleEnter(...params);
+      },
+      onExited: (...params) => {
+        handlers.onExited?.(...params);
+        handleExited(...params);
+      },
+    }),
     additionalProps: {
       appear: true,
       in: open,
       timeout: transitionDuration,
       direction: vertical === 'top' ? 'down' : 'up',
-      onEnter: handleEnter,
-      onExited: handleExited,
     },
     ownerState,
   });
-
-  delete transitionProps.ownerState;
-  delete snackbarContentProps.ownerState;
-  delete clickAwayListenerProps.ownerState;
 
   // So we only render active snackbars.
   if (!open && exited) {
@@ -222,13 +233,13 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   }
 
   return (
-    <ClickAwayListener {...clickAwayListenerProps}>
-      <SnackbarRoot {...rootProps}>
+    <ClickAwaySlot {...clickAwayListenerProps}>
+      <Root {...rootProps}>
         <TransitionSlot {...transitionProps}>
-          {children || <SnackbarContent {...snackbarContentProps} />}
+          {children || <ContentSlot {...contentSlotProps} />}
         </TransitionSlot>
-      </SnackbarRoot>
-    </ClickAwayListener>
+      </Root>
+    </ClickAwaySlot>
   );
 });
 

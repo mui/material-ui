@@ -1,8 +1,10 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
+import { snackbarContentClasses } from '@mui/material/SnackbarContent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
@@ -24,6 +26,16 @@ describe('<Snackbar />', () => {
     return result;
   }
 
+  function CustomContent({ ownerState, className, ...props }) {
+    return (
+      <div
+        className={clsx(snackbarContentClasses.root, className)}
+        data-testid="custom"
+        {...props}
+      />
+    );
+  }
+
   describeConformance(<Snackbar open message="message" />, () => ({
     classes,
     inheritComponent: 'div',
@@ -32,9 +44,18 @@ describe('<Snackbar />', () => {
     muiName: 'MuiSnackbar',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
     slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      content: {
+        expectedClassName: snackbarContentClasses.root,
+        testWithComponent: CustomContent,
+        testWithElement: CustomContent,
+      },
       transition: {
         testWithElement: null,
       },
+      // skip `clickAwayListener` because it does not have any element.
     },
   }));
 
