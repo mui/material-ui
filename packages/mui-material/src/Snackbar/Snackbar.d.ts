@@ -20,7 +20,7 @@ export interface SnackbarSlots {
    */
   content: React.ElementType;
   /**
-   * The component that renders the content slot.
+   * The component that renders the clickAwayListener slot.
    * @default ClickAwayListener
    */
   clickAwayListener: React.ElementType;

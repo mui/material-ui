@@ -374,7 +374,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
         key: PropTypes.oneOfType([
           PropTypes.number,
           PropTypes.shape({
-            '__@toStringTag@9640': PropTypes.oneOf(['BigInt']).isRequired,
+            '__@toStringTag@9059': PropTypes.oneOf(['BigInt']).isRequired,
             toLocaleString: PropTypes.func.isRequired,
             toString: PropTypes.func.isRequired,
             valueOf: PropTypes.func.isRequired,
