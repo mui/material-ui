@@ -109,11 +109,11 @@ async function run(argv) {
   await cjsCopy({ from: srcDir, to: outDir });
 
   const isEsm = bundle === 'modern' || bundle === 'stable';
-  if (isEsm) {
+  if (isEsm && !argv.skipEsmPkg) {
     const rootBundlePackageJson = path.join(outDir, 'package.json');
     await fs.writeFile(
       rootBundlePackageJson,
-      JSON.stringify({ type: 'module', sideEffects: false }),
+      JSON.stringify({ type: 'module', sideEffects: packageJson.sideEffects }),
     );
   }
 
@@ -137,6 +137,12 @@ yargs(process.argv.slice(2))
           type: 'boolean',
           default: false,
           describe: 'Set to `true` if you know you are transpiling large files.',
+        })
+        .option('skipEsmPkg', {
+          type: 'boolean',
+          default: false,
+          describe:
+            "Set to `true` if you don't want to generate a package.json file inthe /esm folder.",
         })
         .option('out-dir', { default: './build', type: 'string' })
         .option('verbose', { type: 'boolean' });
