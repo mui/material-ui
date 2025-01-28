@@ -89,6 +89,7 @@ const ChipRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       height: 32,
+      lineHeight: 'normal',
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
       borderRadius: 32 / 2,
@@ -103,20 +104,6 @@ const ChipRoot = styled('div', {
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
       boxSizing: 'border-box',
-
-      // gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-      '& > *': {
-        cursor: 'inherit', // Inherit cursor from parent
-      },
-      '&.clickable': {
-        cursor: 'pointer',
-        userSelect: 'none',
-        WebkitTapHighlightColor: 'transparent',
-      },
-      '&.clickable > *': {
-        pointerEvents: 'none', // Prevent nested elements from capturing pointer events
-      },
-      // gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
       [`&.${chipClasses.disabled}`]: {
         opacity: (theme.vars || theme).palette.action.disabledOpacity,
         pointerEvents: 'none',
@@ -242,6 +229,9 @@ const ChipRoot = styled('div', {
         {
           props: { clickable: true },
           style: {
+            userSelect: 'none',
+            WebkitTapHighlightColor: 'transparent',
+            cursor: 'pointer',
             '&:hover': {
               backgroundColor: theme.vars
                 ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
@@ -517,7 +507,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   return (
     <ChipRoot
       as={component}
-      className={clsx(classes.root, className, clickable ? 'clickable' : '')}
+      className={clsx(classes.root, className)}
       disabled={clickable && disabled ? true : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}
