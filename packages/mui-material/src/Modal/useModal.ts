@@ -76,7 +76,7 @@ function useModal(parameters: UseModalParameters): UseModalReturnValue {
   };
 
   const handleMounted = () => {
-    manager.mount(getModal(), { disableScrollLock, disablePortal, container });
+    manager.mount(getModal(), { disableScrollLock, container });
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     if (modalRef.current) {

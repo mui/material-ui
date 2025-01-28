@@ -7,7 +7,6 @@ import { PortalProps } from '../Portal';
 
 export interface ManagedModalProps {
   disableScrollLock?: boolean;
-  disablePortal?: boolean;
   container?: PortalProps['container'];
 }
 
