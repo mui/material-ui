@@ -58,5 +58,10 @@
     }
   },
   "classDescriptions": {},
-  "slotDescriptions": { "paper": "", "root": "" }
+  "slotDescriptions": {
+    "backdrop": "The component used for the backdrop slot.",
+    "paper": "The component used for the paper slot.",
+    "root": "The component used for the root slot.",
+    "transition": "The component used for the transition slot."
+  }
 }
