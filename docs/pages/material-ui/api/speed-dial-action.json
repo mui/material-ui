@@ -2,7 +2,12 @@
   "props": {
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "delay": { "type": { "name": "number" }, "default": "0" },
-    "FabProps": { "type": { "name": "object" }, "default": "{}" },
+    "FabProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.fab</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "icon": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
     "open": { "type": { "name": "bool" } },
@@ -27,16 +32,31 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TooltipClasses": { "type": { "name": "object" } },
-    "tooltipOpen": { "type": { "name": "bool" }, "default": "false" },
+    "TooltipClasses": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>tooltipProps.classes</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "tooltipOpen": {
+      "type": { "name": "bool" },
+      "default": "false",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>tooltipProps.open</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "tooltipPlacement": {
       "type": {
         "name": "enum",
         "description": "'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'"
       },
-      "default": "'left'"
+      "default": "'left'",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>tooltipProps.placement</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
-    "tooltipTitle": { "type": { "name": "node" } }
+    "tooltipTitle": {
+      "type": { "name": "node" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>tooltipProps.title</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    }
   },
   "name": "SpeedDialAction",
   "imports": [
