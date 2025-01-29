@@ -10,9 +10,10 @@ function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) 
 
   if (propIndex !== -1) {
     const removedAttr = element.openingElement.attributes.splice(propIndex, 1)[0];
-    const removedValue = removedAttr.value.type === 'StringLiteral'
-      ? j.literal(removedAttr.value.value)
-      : removedAttr.value.expression;
+    const removedValue =
+      removedAttr.value.type === 'StringLiteral'
+        ? j.literal(removedAttr.value.value)
+        : removedAttr.value.expression;
 
     let hasSlotProps = false;
     element.openingElement.attributes.forEach((attr) => {
@@ -24,9 +25,7 @@ function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) 
         if (slotIndex === -1) {
           // Create new slot
           const slotValue = slotPropName
-            ? j.objectExpression([
-                j.objectProperty(j.identifier(slotPropName), removedValue)
-              ])
+            ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
             : removedValue;
 
           assignObject(j, {
@@ -40,11 +39,11 @@ function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) 
           if (slotPropName) {
             if (existingSlot.type === 'ObjectExpression') {
               existingSlot.properties.push(
-                j.objectProperty(j.identifier(slotPropName), removedValue)
+                j.objectProperty(j.identifier(slotPropName), removedValue),
               );
             } else {
               slots.properties[slotIndex].value = j.objectExpression([
-                j.objectProperty(j.identifier(slotPropName), removedValue)
+                j.objectProperty(j.identifier(slotPropName), removedValue),
               ]);
             }
           } else {
@@ -60,23 +59,25 @@ function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) 
     if (!hasSlotProps) {
       // Create new slotProps
       const slotValue = slotPropName
-        ? j.objectExpression([
-            j.objectProperty(j.identifier(slotPropName), removedValue)
-          ])
+        ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
         : removedValue;
 
       appendAttribute(j, {
         target: element,
         attributeName: 'slotProps',
-        expression: j.objectExpression([
-          j.objectProperty(j.identifier(slotName), slotValue)
-        ]),
+        expression: j.objectExpression([j.objectProperty(j.identifier(slotName), slotValue)]),
       });
     }
   }
 }
 
-function moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propName, slotName, slotPropName) {
+function moveDefaultPropsPropIntoslotProps(
+  j,
+  defaultPropsPathCollection,
+  propName,
+  slotName,
+  slotPropName,
+) {
   defaultPropsPathCollection.find(j.ObjectProperty, { key: { name: propName } }).forEach((path) => {
     const removedValue = path.value.value;
     const defaultProps = path.parent.value;
@@ -91,25 +92,21 @@ function moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propNa
         if (slotIndex === -1) {
           // Create new slot
           const slotValue = slotPropName
-            ? j.objectExpression([
-                j.objectProperty(j.identifier(slotPropName), removedValue)
-              ])
+            ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
             : removedValue;
 
-          property.value.properties.push(
-            j.objectProperty(j.identifier(slotName), slotValue)
-          );
+          property.value.properties.push(j.objectProperty(j.identifier(slotName), slotValue));
         } else {
           // Add property to existing slot
           const existingSlot = property.value.properties[slotIndex].value;
           if (slotPropName) {
             if (existingSlot.type === 'ObjectExpression') {
               existingSlot.properties.push(
-                j.objectProperty(j.identifier(slotPropName), removedValue)
+                j.objectProperty(j.identifier(slotPropName), removedValue),
               );
             } else {
               property.value.properties[slotIndex].value = j.objectExpression([
-                j.objectProperty(j.identifier(slotPropName), removedValue)
+                j.objectProperty(j.identifier(slotPropName), removedValue),
               ]);
             }
           } else {
@@ -125,18 +122,14 @@ function moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propNa
     if (!hasSlotProps) {
       // Create new slotProps
       const slotValue = slotPropName
-        ? j.objectExpression([
-            j.objectProperty(j.identifier(slotPropName), removedValue)
-          ])
+        ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
         : removedValue;
 
       defaultProps.properties.push(
         j.objectProperty(
           j.identifier('slotProps'),
-          j.objectExpression([
-            j.objectProperty(j.identifier(slotName), slotValue)
-          ])
-        )
+          j.objectExpression([j.objectProperty(j.identifier(slotName), slotValue)]),
+        ),
       );
     }
 
@@ -164,5 +157,11 @@ export default function movePropIntoSlotProps(j, options) {
 
   const defaultPropsPathCollection = findComponentDefaultProps(j, { root, componentName });
 
-  moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propName, slotName, slotPropName);
+  moveDefaultPropsPropIntoslotProps(
+    j,
+    defaultPropsPathCollection,
+    propName,
+    slotName,
+    slotPropName,
+  );
 }
