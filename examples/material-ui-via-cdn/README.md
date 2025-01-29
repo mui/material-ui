@@ -4,8 +4,10 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
+<!-- #repo-reference -->
+
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-via-cdn
+curl https://codeload.github.com/mui/material-ui/tar.gz/v6.x | tar -xz --strip=2  material-ui-v6.x/examples/material-ui-via-cdn
 cd material-ui-via-cdn
 ```
 
