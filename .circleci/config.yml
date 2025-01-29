@@ -921,9 +921,10 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
                 - v5.x
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -971,8 +972,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -998,8 +1000,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_types_next:
           <<: *default-context
