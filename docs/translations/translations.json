@@ -262,6 +262,8 @@
     "/material-ui/migration": "Migration",
     "/material-ui/migration/migration-grid-v2": "Migrating to Grid v2",
     "/material-ui/migration/pickers-migration": "Migration from @material-ui/pickers",
+    "Upgrade to v7": "Upgrade to v7",
+    "/material-ui/migration/upgrade-to-v7": "Upgrade to v7: getting started",
     "Upgrade to v6": "Upgrade to v6",
     "/material-ui/migration/upgrade-to-v6": "Upgrade to v6: getting started",
     "/material-ui/migration/migrating-from-deprecated-apis": "Migrating from deprecated APIs",
