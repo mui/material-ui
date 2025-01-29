@@ -1,5 +1,32 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.2
+
+<!-- generated comparing v6.4.1..v6.x -->
+
+_Jan 29, 2025_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@6.4.2`
+
+- [Autocomplete] Prevent shrink animation in uncontrolled Autocomplete when default value is set (#44873) @ZeeshanTamboli
+- [Slider] Fix arrow keys past the end for Slider with custom marks (#45050) @joshkel
+- [TextareaAutosize] Temporarily disconnect ResizeObserver to avoid loop error (#44540) @mj12albert
+
+### Core
+
+- [code-infra] a few fixes uncovered during ESM updates (@Janpot) (#45100) @Janpot
+- [code-infra] Remove rsc-builder (#45079) @Janpot
+- [code-infra] Remove commonjs imports in docs (#44976) @Janpot
+- Prepare stable release from the `v6.x` branch (#45133) @DiegoAndai
+
+### Docs
+
+- Fix `/base-ui` redirect and prune links (#45083) @mj12albert
+
+All contributors of this release in alphabetical order: @DiegoAndai, @Janpot, @joshkel, @mj12albert, @ZeeshanTamboli
+
 ## 6.4.1
 
 <!-- generated comparing v6.4.0..master -->
