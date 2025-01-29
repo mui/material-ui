@@ -49,9 +49,10 @@ export interface IconButtonOwnProps {
   edge?: 'start' | 'end' | false;
   /**
    * If `true`, the loading indicator is visible and the button is disabled.
-   * @default false
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
    */
-  loading?: boolean;
+  loading?: boolean | null;
   /**
    * Element placed before the children if the button is in loading state.
    * The node should contain an element with `role="progressbar"` with an accessible name.
@@ -80,17 +81,17 @@ export type IconButtonTypeMap<
 }>;
 
 /**
- * Refer to the [Icons](https://mui.com/material-ui/icons/) section of the documentation
+ * Refer to the [Icons](https://next.mui.com/material-ui/icons/) section of the documentation
  * regarding the available icon options.
  *
  * Demos:
  *
- * - [Button](https://mui.com/material-ui/react-button/)
+ * - [Button](https://next.mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [IconButton API](https://mui.com/material-ui/api/icon-button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [IconButton API](https://next.mui.com/material-ui/api/icon-button/)
+ * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
  */
 declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 
