@@ -101,7 +101,7 @@ theme.getColorSchemeSelector = (colorScheme) => {
  */
 const pigmentOptions = {
   theme,
-  sourceMap: true,
+  sourceMap: false,
   displayName: true,
 };
 
