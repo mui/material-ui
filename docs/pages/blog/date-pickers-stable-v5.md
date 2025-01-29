@@ -16,7 +16,7 @@ We have focused on improving stability and developer experience since then, and 
 - Dozens of bugs have been fixed since the first alpha.
 - DX and overall API consistency have been improved.
 - Improved customizability.
-- Follow the [installation instructions](https://mui.com/x/react-date-pickers/quickstart) and the [migration guide](https://mui.com/x/migration/migration-pickers-lab/).
+- Follow the [installation instructions](https://mui.com/x/react-date-pickers/quickstart/) and the [migration guide](https://mui.com/x/migration/migration-pickers-lab/).
 
 ## What's changed?
 
