@@ -164,7 +164,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   const ownerState = { ...props, tooltipPlacement };
   const classes = useUtilityClasses(ownerState);
 
-  const [tooltipOpen, setTooltipOpen] = React.useState(tooltipOpenProp);
+  const [tooltipOpen, setTooltipOpen] = React.useState(slotProps.tooltip?.open ?? tooltipOpenProp);
 
   const handleTooltipClose = () => {
     setTooltipOpen(false);
@@ -183,7 +183,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       ...slotProps,
       tooltip: {
         title: tooltipTitle,
-        open: tooltipOpen,
+        open: tooltipOpenProp,
         placement: tooltipPlacement,
         classes: TooltipClasses,
         ...slotProps.tooltip,
@@ -249,11 +249,11 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 
   const fab = <FabSlot {...fabSlotProps}>{icon}</FabSlot>;
 
-  if (tooltipOpenProp) {
+  if (tooltipSlotProps.open) {
     return (
       <StaticTooltipSlot {...staticTooltipSlotProps} {...other}>
         <StaticTooltipLabelSlot {...staticTooltipLabelSlotProps}>
-          {tooltipTitle}
+          {tooltipSlotProps.title}
         </StaticTooltipLabelSlot>
         {React.cloneElement(fab, {
           'aria-labelledby': `${id}-label`,
@@ -270,7 +270,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     <TooltipSlot
       {...tooltipSlotProps}
       title={tooltipSlotProps.title}
-      open={open && tooltipSlotProps.open}
+      open={open && tooltipOpen}
       placement={tooltipSlotProps.placement}
       classes={tooltipSlotProps.classes}
       {...other}
