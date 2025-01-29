@@ -7,7 +7,7 @@
 _Jan 29, 2025_
 
 A big thanks to the 8 contributors who made this release possible.
-This is the first alpha release of Material UI v7 🎉.
+This is the first alpha release of Material UI v7 🎉.
 
 ### `@mui/material@7.0.0-alpha.0`
 
