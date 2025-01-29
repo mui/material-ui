@@ -41,8 +41,8 @@ const ROUTES = {
   // Data Grid doc pages
   dataGridOverview: '/x/react-data-grid/',
   dataGridDocs: '/x/react-data-grid/quickstart/',
-  dataGridFeatures: '/x/react-data-grid/demo/',
-  dataGridFeaturesComparison: '/x/react-data-grid/demo/',
+  dataGridFeatures: '/x/react-data-grid/features/',
+  dataGridFeaturesComparison: '/x/react-data-grid/features/',
   // Date and Time Pickers doc pages
   datePickersOverview: '/x/react-date-pickers/',
   // Charts doc pages

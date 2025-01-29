@@ -63,7 +63,7 @@ appealing.
 
 👉 [Get started with MUI X Charts now](/x/react-charts/)!
 
-### Tree view
+### Tree View
 
 After an extensive period of development and refinement in the lab and pre-release packages, and with the invaluable feedback we've received from you and the community, we're happy to share that the package is now officially stable!
 
@@ -71,7 +71,7 @@ After an extensive period of development and refinement in the lab and pre-relea
   <source src="/static/blog/mui-x-end-v6-features/tree-view-gmail.mp4" type="video/mp4">
 </video>
 
-👉 [Get started with MUI X Tree View now](/x/react-tree-view/getting-started/)!
+👉 [Get started with MUI X Tree View now](/x/react-tree-view/)!
 
 ## Date Pickers
 
