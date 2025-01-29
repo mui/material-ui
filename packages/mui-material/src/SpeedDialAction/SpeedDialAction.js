@@ -191,10 +191,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     shouldForwardComponentProp: true,
     className: clsx(classes.fab, className),
     additionalProps: {
-      style: {
-        ...transitionStyle,
-        ...FabProps.style,
-      },
+      style: transitionStyle,
       tabIndex: -1,
       role: 'menuitem',
       size: 'small',
@@ -209,12 +206,20 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     additionalProps: {
       title: tooltipTitle,
       placement: tooltipPlacement,
-      onClose: handleTooltipClose,
-      onOpen: handleTooltipOpen,
       open: open && tooltipOpen,
       classes: TooltipClasses,
       id,
     },
+    getSlotProps: (handlers) => ({
+      onClose: () => {
+        handlers.onClose?.();
+        handleTooltipClose();
+      },
+      onOpen: () => {
+        handlers.onOpen?.();
+        handleTooltipOpen();
+      },
+    }),
   });
 
   const [StaticTooltipSlot, staticTooltipSlotProps] = useSlot('staticTooltip', {
