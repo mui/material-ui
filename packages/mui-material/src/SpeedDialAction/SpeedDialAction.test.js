@@ -11,6 +11,10 @@ const CustomButton = React.forwardRef(({ ownerState, ...props }, ref) => (
   <button ref={ref} {...props} data-testid="custom" />
 ));
 
+const CustomTooltip = React.forwardRef(({ onOpen,  onClose,ownerState, ...props }, ref) => (
+  <div ref={ref} {...props} data-testid="custom" />
+));
+
 describe('<SpeedDialAction />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -30,6 +34,11 @@ describe('<SpeedDialAction />', () => {
           expectedClassName: classes.fab,
           testWithElement: null,
           testWithComponent: CustomButton,
+        },
+        tooltip: {
+          expectedClassName: classes.tooltip,
+          testWithElement: null,
+          testWithComponent: CustomTooltip,
         },
       },
     }),

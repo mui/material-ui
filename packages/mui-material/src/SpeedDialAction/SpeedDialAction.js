@@ -13,6 +13,7 @@ import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
 import useSlot from '../utils/useSlot';
+import { mergeSlotProps } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, tooltipPlacement, classes } = ownerState;
@@ -181,13 +182,12 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     slotProps: {
       fab: FabProps,
       ...slotProps,
-      tooltip: {
+      tooltip: mergeSlotProps(slotProps.tooltip, {
         title: tooltipTitle,
         open: tooltipOpenProp,
         placement: tooltipPlacement,
         classes: TooltipClasses,
-        ...slotProps.tooltip,
-      },
+      }),
     },
   };
 
@@ -213,6 +213,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     additionalProps: {
       id,
     },
+    ownerState,
     getSlotProps: (handlers) => ({
       onClose: () => {
         handlers.onClose?.();
