@@ -11,7 +11,7 @@ const CustomButton = React.forwardRef(({ ownerState, ...props }, ref) => (
   <button ref={ref} {...props} data-testid="custom" />
 ));
 
-const CustomTooltip = React.forwardRef(({ onOpen,  onClose,ownerState, ...props }, ref) => (
+const CustomTooltip = React.forwardRef(({ onOpen, onClose, ownerState, ...props }, ref) => (
   <div ref={ref} {...props} data-testid="custom" />
 ));
 
