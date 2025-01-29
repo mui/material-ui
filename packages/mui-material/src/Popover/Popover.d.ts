@@ -108,9 +108,8 @@ export interface PopoverProps
   anchorEl?:
     | null
     | Element
-    | (() => Element | null)
     | PopoverVirtualElement
-    | (() => PopoverVirtualElement | null);
+    | (() => Element | PopoverVirtualElement | null);
   /**
    * This is the point on the anchor where the popover's
    * `anchorEl` will attach to. This is not used when the
