@@ -158,7 +158,7 @@ You can start using Material UI right away with minimal front-end infrastructur
 
 <!-- #default-branch-switch -->
 
-Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn) to get started.
+Follow [this CDN example](https://github.com/mui/material-ui/tree/v6.x/examples/material-ui-via-cdn) to get started.
 
 :::error
 We do _not_ recommend using this approach in production.

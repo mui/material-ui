@@ -215,7 +215,7 @@ yargs(process.argv.slice(2))
         })
         .option('release', {
           // #default-branch-switch
-          default: 'master',
+          default: 'v6.x',
           describe: 'Ref which we want to release',
           type: 'string',
         })

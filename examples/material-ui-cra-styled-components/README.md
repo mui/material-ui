@@ -7,7 +7,7 @@ Download the example [or clone the repo](https://github.com/mui/material-ui):
 <!-- #default-branch-switch -->
 
 ```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra-styled-components
+curl https://codeload.github.com/mui/material-ui/tar.gz/v6.x | tar -xz --strip=2 material-ui-v6.x/examples/material-ui-cra-styled-components
 cd material-ui-cra-styled-components
 ```
 
@@ -22,7 +22,7 @@ npm start
 
 <!-- #default-branch-switch -->
 
-Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-cra-styled-components).
+Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/v6.x/examples/material-ui-cra-styled-components).
 
 The following link leverages this demo: https://mui.com/material-ui/integrations/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
 
