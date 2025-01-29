@@ -105,24 +105,24 @@ export interface SpeedDialActionProps
   sx?: SxProps<Theme>;
   /**
    * `classes` prop applied to the [`Tooltip`](https://mui.com/material-ui/api/tooltip/) element.
-   * @deprecated Use `tooltipProps.classes` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.classes` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TooltipClasses?: TooltipProps['classes'];
   /**
    * Placement of the tooltip.
    * @default 'left'
-   * @deprecated Use `tooltipProps.placement` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.placement` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipPlacement?: TooltipProps['placement'];
   /**
    * Label to display in the tooltip.
-   * @deprecated Use `tooltipProps.title` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.title` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipTitle?: React.ReactNode;
   /**
    * Make the tooltip always visible when the SpeedDial is open.
    * @default false
-   * @deprecated Use `tooltipProps.open` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.tooltip.open` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipOpen?: boolean;
 }
