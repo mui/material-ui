@@ -51,6 +51,26 @@ describe('<SpeedDialAction />', () => {
     expect(getByText('placeholder')).to.have.class('bar');
   });
 
+  it('should be able to change the slotProps.tooltip.classes', () => {
+    const { getByText, container } = render(
+      <SpeedDialAction
+        icon={<Icon>add</Icon>}
+        open
+        slotProps={{
+          tooltip: {
+            classes: { tooltip: 'bar' },
+            title: 'placeholder',
+          },
+        }}
+      />,
+    );
+
+    fireEvent.mouseOver(container.querySelector('button'));
+    clock.tick(100);
+
+    expect(getByText('placeholder')).to.have.class('bar');
+  });
+
   it('should render a Fab', () => {
     const { container } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
@@ -66,9 +86,28 @@ describe('<SpeedDialAction />', () => {
     expect(target).toHaveAccessibleName('placeholder');
   });
 
+  it('should have accessible name if slotProps.tooltip.tooltipOpen is true', () => {
+    const { getByRole } = render(
+      <SpeedDialAction
+        icon={<Icon>add</Icon>}
+        slotProps={{ tooltip: { open: true, title: 'placeholder' } }}
+      />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
+  });
+
   it('should have accessible name if tooltipOpen={false}', () => {
     const { getByRole } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
+  });
+
+  it('should have accessible name if slotProps.tooltip.tooltipOpen is false', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} slotProps={{ tooltip: { title: 'placeholder' } }} />,
     );
     const target = getByRole('menuitem');
     expect(target).toHaveAccessibleName('placeholder');

@@ -181,6 +181,13 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     slotProps: {
       fab: FabProps,
       ...slotProps,
+      tooltip: {
+        title: tooltipTitle,
+        open: tooltipOpen,
+        placement: tooltipPlacement,
+        classes: TooltipClasses,
+        ...slotProps.tooltip,
+      },
     },
   };
 
@@ -204,10 +211,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     shouldForwardComponentProp: true,
     ref,
     additionalProps: {
-      title: tooltipTitle,
-      placement: tooltipPlacement,
-      open: open && tooltipOpen,
-      classes: TooltipClasses,
       id,
     },
     getSlotProps: (handlers) => ({
@@ -264,7 +267,14 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   }
 
   return (
-    <TooltipSlot {...tooltipSlotProps} {...other}>
+    <TooltipSlot
+      {...tooltipSlotProps}
+      title={tooltipSlotProps.title}
+      open={open && tooltipSlotProps.open}
+      placement={tooltipSlotProps.placement}
+      classes={tooltipSlotProps.classes}
+      {...other}
+    >
       {fab}
     </TooltipSlot>
   );
