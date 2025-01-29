@@ -61,7 +61,7 @@ Check out [the Bar Chart layout documentation](/x/react-charts/bars/#layout) for
 Customize the legend text to your heart's content, making your charts more readable and visually
 appealing.
 
-👉 [Get started with MUI X Charts now](/x/react-charts/getting-started/)!
+👉 [Get started with MUI X Charts now](/x/react-charts/)!
 
 ### Tree view
 
@@ -144,7 +144,7 @@ Most notably:
   - Improved accessibility on date and time fields
 - [Data Grid](/x/react-data-grid/) iterations:
   - New UI for column management
-  - Pivoting for the [Premium](/x/react-data-grid/#premium-plan) version
+  - Pivoting for the Premium version
 
 We'll continue to expand our portfolio of Charts, including [Heatmap](/x/react-charts/heatmap/), [Funnel](/x/react-charts/funnel/), and [Gantt](/x/react-charts/gantt/); and explore virtualization and other advanced use cases for the Tree View component.
 
