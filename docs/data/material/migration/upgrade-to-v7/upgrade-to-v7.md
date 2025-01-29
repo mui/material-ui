@@ -11,7 +11,7 @@ In the `package.json` file, change the package version from `latest` to `next`.
 +"@mui/material": "next",
 ```
 
-Using `next` ensures your project always uses the latest v7 release.
+Using `next` ensures your project always uses the latest v7 pre-releases.
 Alternatively, you can also target and fix it to a specific version, for example, `7.0.0-alpha.0`.
 
 ## Breaking changes
@@ -21,5 +21,5 @@ The steps you need to take to migrate from Material UI v6 to v7 are described 
 
 :::info
 This list is a work in progress.
-It will be updated as new breaking changes are introduced.
+Expect updates as new breaking changes are introduced.
 :::
