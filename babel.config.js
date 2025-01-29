@@ -53,7 +53,7 @@ module.exports = function getBabelConfig(api) {
       '@babel/preset-env',
       {
         bugfixes: true,
-        browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
+        browserslistEnv: api.env() || process.env.NODE_ENV,
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
         modules: useESModules ? false : 'commonjs',
         shippedProposals: api.env('modern'),
@@ -149,7 +149,7 @@ module.exports = function getBabelConfig(api) {
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
     overrides: [
       {
-        exclude: /\.test\.(js|ts|tsx)$/,
+        exclude: /\.test\.(m?js|ts|tsx)$/,
         plugins: ['@babel/plugin-transform-react-constant-elements'],
       },
       {
