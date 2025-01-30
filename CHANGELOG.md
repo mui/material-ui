@@ -4,7 +4,7 @@
 
 <!-- generated comparing v6.4.1..master -->
 
-_Jan 29, 2025_
+_Jan 30, 2025_
 
 A big thanks to the 8 contributors who made this release possible.
 This is the first alpha release of Material UI v7 🎉.
@@ -31,6 +31,7 @@ This is the first alpha release of Material UI v7 🎉.
 - Fix MUI Base vale rule (#45140) @oliviertassinari
 - Fix missing store contributor renaming (b3d1be0) @oliviertassinari
 - Prepare libraries for first v7 alpha release (#45132) @DiegoAndai
+- Fix CHANGELOG vale failure (#45151) @DiegoAndai
 
 ### Docs
 
