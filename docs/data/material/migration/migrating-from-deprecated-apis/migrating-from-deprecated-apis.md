@@ -1134,6 +1134,85 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
  />
 ```
 
+## Drawer
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/drawer-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the following props were deprecated:
+
+- `paper` and `anchor`
+- `paper`, `anchor` and `docked`
+
+Here's how to migrate:
+
+```diff
+-.MuiDrawer-paperAnchorBottom
++.MuiDrawer-anchorBottom > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorLeft
++.MuiDrawer-anchorLeft > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorRight
++.MuiDrawer-anchorRight > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorTop
++.MuiDrawer-anchorTop > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedBottom
++.MuiDrawer-docked.MuiDrawer-anchorBottom > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedLeft
++.MuiDrawer-docked.MuiDrawer-anchorLeft > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedRight
++.MuiDrawer-docked.MuiDrawer-anchorRight > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedTop
++.MuiDrawer-docked.MuiDrawer-anchorTop > .MuiDrawer-paper
+```
+
+```diff
+ import { drawerClasses } from '@mui/material/Drawer';
+
+ MuiDrawer: {
+   styleOverrides: {
+     root: {
+-      [`.${drawerClasses.paperAnchorBottom}`]: {
++      [`&.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorLeft}`]: {
++      [`&.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorRight}`]: {
++      [`&.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorTop}`]: {
++      [`&.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedBottom}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedLeft}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedRight}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedTop}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
 ## FilledInput
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#filled-input-props) below to migrate the code as described in the following sections:
@@ -1612,6 +1691,69 @@ The PaginationItems's `components` prop was deprecated in favor of `slots`:
 -  components={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
 +  slots={{ first: FirstIcon, last: LastIcon, previous: PreviousIcons, next: NextIcon }}
  />
+```
+
+## Popover
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#popover-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/popover-props <path>
+```
+
+### BackdropComponent
+
+The Popover's `BackdropComponent` prop was deprecated in favor of `slots.backdrop`:
+
+```diff
+ <Popover
+-  BackdropComponent={Backdrop}
++  slots={{ backdrop: Backdrop }}
+ >
+```
+
+### BackdropProps
+
+The Popover's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop`:
+
+```diff
+ <Popover
+-  BackdropProps={{ timeout: 500 }}
++  slotProps={{ backdrop: { timeout: 500 } }}
+ >
+```
+
+### PaperProps
+
+The Popover's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
+
+```diff
+ <Popover
+-  PaperProps={{ id: 'paper-id' }}
++  slotProps={{ paper: { id: 'paper-id' } }}
+ >
+```
+
+### TransitionComponent
+
+The Popover's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Popover
+-  TransitionComponent={Transition}
++  slots={{ transition: Transition }}
+ >
+```
+
+### TransitionProps
+
+The Popover's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Popover
+-  TransitionProps={{ timeout: 500 }}
++  slotProps={{ transition: { timeout: 500 } }}
+ >
 ```
 
 ## Popper

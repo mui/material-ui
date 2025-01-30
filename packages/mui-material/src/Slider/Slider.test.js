@@ -1195,6 +1195,54 @@ describe('<Slider />', () => {
         });
       });
     });
+
+    it('stops at the max value with custom marks', () => {
+      const handleChange = stub();
+      render(
+        <Slider
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
+          step={null}
+          value={30}
+          onChange={handleChange}
+        />,
+      );
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-valuenow', '30');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowRight' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(slider).to.have.attribute('aria-valuenow', '30');
+    });
+
+    it('stops at the min value with custom marks', () => {
+      const handleChange = stub();
+      render(
+        <Slider
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
+          step={null}
+          value={10}
+          onChange={handleChange}
+        />,
+      );
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-valuenow', '10');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(slider).to.have.attribute('aria-valuenow', '10');
+    });
   });
 
   describe('warnings', () => {

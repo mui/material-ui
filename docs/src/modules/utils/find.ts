@@ -7,27 +7,26 @@ const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const pageRegex = /(\.js|\.tsx)$/;
 const blackList = ['/.eslintrc', '/_document', '/_app'];
 
-/**
- * @typedef {object} NextJSPage
- * @property {string} pathname
- * @property {NextJSPage[]} [children]
- */
+interface NextJSPage {
+  pathname: string;
+  children?: NextJSPage[];
+}
+
+interface FindPagesOptions {
+  front?: boolean;
+}
 
 /**
  * Returns the Next.js pages available in a nested format.
  * The output is in the next.js format.
  * Each pathname is a route you can navigate to.
- * @param {{ front: true }} [options]
- * @param {string} [directory]
- * @param {NextJSPage[]} pages
- * @returns {NextJSPage[]}
  */
 // eslint-disable-next-line import/prefer-default-export
 export function findPages(
-  options = {},
-  directory = path.resolve(currentDirectory, '../../../pages'),
-  pages = [],
-) {
+  options: FindPagesOptions = {},
+  directory: string = path.resolve(currentDirectory, '../../../pages'),
+  pages: NextJSPage[] = [],
+): NextJSPage[] {
   fs.readdirSync(directory).forEach((item) => {
     const itemPath = path.resolve(directory, item);
     const pathname = itemPath
@@ -47,7 +46,7 @@ export function findPages(
     }
 
     if (fs.statSync(itemPath).isDirectory()) {
-      const children = [];
+      const children: NextJSPage[] = [];
       pages.push({
         pathname,
         children,

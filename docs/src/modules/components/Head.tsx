@@ -8,7 +8,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 // #default-branch-switch
 const HOST = process.env.PULL_REQUEST_ID
   ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
-  : 'https://mui.com';
+  : 'https://next.mui.com';
 
 interface HeadProps {
   card?: string;
@@ -44,14 +44,12 @@ export default function Head(props: HeadProps) {
       <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
       {/* https://x.com/MUI_hq */}
       <meta name="twitter:site" content="@MUI_hq" />
-      {/* #default-branch-switch */}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={preview} />
       {/* Facebook */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
-      {/* #default-branch-switch */}
       <meta property="og:url" content={`${HOST}${router.asPath}`} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={preview} />
@@ -66,7 +64,7 @@ export default function Head(props: HeadProps) {
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://mui.com${
+              href={`https://next.mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
               }${canonicalAs}`}
               hrefLang={userLanguage2}
