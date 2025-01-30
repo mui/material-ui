@@ -215,12 +215,12 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     },
     ownerState,
     getSlotProps: (handlers) => ({
-      onClose: () => {
-        handlers.onClose?.();
+      onClose: (event) => {
+        handlers.onClose?.(event);
         handleTooltipClose();
       },
-      onOpen: () => {
-        handlers.onOpen?.();
+      onOpen: (event) => {
+        handlers.onOpen?.(event);
         handleTooltipOpen();
       },
     }),
