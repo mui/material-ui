@@ -78,8 +78,12 @@ describe('<Tabs />', () => {
       scroller: {
         expectedClassName: classes.scroller,
       },
+      // TODO: deprecated in v6, remove in v7
       flexContainer: {
         expectedClassName: classes.flexContainer,
+      },
+      list: {
+        expectedClassName: classes.list,
       },
       indicator: {
         expectedClassName: classes.indicator,

@@ -88,7 +88,13 @@ const useUtilityClasses = (ownerState) => {
       scrollableX && 'scrollableX',
       scrollableY && 'scrollableY',
     ],
-    flexContainer: ['flexContainer', vertical && 'flexContainerVertical', centered && 'centered'],
+    list: [
+      'list',
+      'flexContainer',
+      vertical && 'flexContainerVertical',
+      vertical && 'vertical',
+      centered && 'centered',
+    ],
     indicator: ['indicator'],
     scrollButtons: ['scrollButtons', scrollButtonsHideMobile && 'scrollButtonsHideMobile'],
     scrollableX: [scrollableX && 'scrollableX'],
@@ -195,12 +201,13 @@ const TabsScroller = styled('div', {
   ],
 });
 
-const FlexContainer = styled('div', {
+const List = styled('div', {
   name: 'MuiTabs',
-  slot: 'FlexContainer',
+  slot: 'List',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [
+      styles.list,
       styles.flexContainer,
       ownerState.vertical && styles.flexContainerVertical,
       ownerState.centered && styles.centered,
@@ -374,10 +381,14 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const tabListRef = React.useRef(null);
 
   const externalForwardedProps = {
-    slots,
+    slots: {
+      list: slots.flexContainer,
+      ...slots,
+    },
     slotProps: {
       indicator: TabIndicatorProps,
       scrollButton: TabScrollButtonProps,
+      list: slotProps.flexContainer,
       ...slotProps,
     },
   };
@@ -880,10 +891,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     },
   });
 
-  const [FlexContainerSlot, flexContainerSlotProps] = useSlot('flexContainer', {
+  const [ListSlot, listSlotProps] = useSlot('list', {
     ref: tabListRef,
-    className: classes.flexContainer,
-    elementType: FlexContainer,
+    className: clsx(classes.list, classes.flexContainer),
+    elementType: List,
     externalForwardedProps,
     ownerState,
     getSlotProps: (handlers) => ({
@@ -901,15 +912,15 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       {conditionalElements.scrollbarSizeListener}
       <ScrollerSlot {...scrollerSlotProps}>
         {/* The tablist isn't interactive but the tabs are */}
-        <FlexContainerSlot
+        <ListSlot
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
           aria-orientation={orientation === 'vertical' ? 'vertical' : null}
           role="tablist"
-          {...flexContainerSlotProps}
+          {...listSlotProps}
         >
           {children}
-        </FlexContainerSlot>
+        </ListSlot>
         {mounted && indicator}
       </ScrollerSlot>
       {conditionalElements.scrollButtonEnd}
