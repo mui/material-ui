@@ -28,7 +28,7 @@ This is the first alpha release of Material UI v7 🎉.
 - [code-infra] Remove rsc-builder (#45079) @Janpot
 - [code-infra] Remove commonjs imports in docs (#44976) @Janpot
 - [docs-infra] Move Ukraine banner to the bottom (#45135) @oliviertassinari
-- Fix MUI Base vale rule (#45140) @oliviertassinari
+- Fix MUI Base vale rule (#45140) @oliviertassinari
 - Fix missing store contributor renaming (b3d1be0) @oliviertassinari
 - Prepare libraries for first v7 alpha release (#45132) @DiegoAndai
 
