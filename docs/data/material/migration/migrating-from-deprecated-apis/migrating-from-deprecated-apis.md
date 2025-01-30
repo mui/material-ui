@@ -1907,7 +1907,40 @@ Here's how to migrate:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following sections:
 
 ```bash
+npx @mui/codemod@latest deprecations/tabs-classes <path>
 npx @mui/codemod@latest deprecations/tabs-props <path>
+```
+
+### Composed CSS classes
+
+The class `flexContainer` has been deprecated in favor of `list`. The CSS classes composing the `vertical` prop value and `flexContainer` CSS class have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiTabs-flexContainer
++.MuiTabs-list
+-.MuiTabs-flexContainerVertical
++.MuiTabs-list.MuiTabs-vertical
+```
+
+```diff
+ import { tabsClasses } from '@mui/material/Tabs';
+
+ MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${tabsClasses.flexContainer}`]: {
++      [`& .${tabsClasses.list}`]: {
+          color: 'red',
+        },
+-      [`& .${tabsClasses.flexContainerVertical}`]: {
++      [`& .${tabsClasses.list}.${tabsClasses.vertical}`]: {
+          color: 'red',
+       },
+     },
+   },
+ },
 ```
 
 ### ScrollButtonComponent
