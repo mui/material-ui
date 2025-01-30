@@ -1,1 +1,1 @@
-export { default } from './chip-classes';
+export { default } from './tabs-classes';
