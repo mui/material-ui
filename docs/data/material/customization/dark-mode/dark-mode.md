@@ -342,3 +342,57 @@ For applications that need to support light and dark mode using CSS media `prefe
 
 But if you want to be able to toggle between modes manually, avoiding the flicker requires a combination of CSS variables and the `InitColorSchemeScript` component.
 Check out the [Preventing SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering) section for more details.
+
+## Storage manager
+
+The default approach of the [built-in support](#built-in-support) uses the browser's `localStorage` API to store the mode and color scheme preference.
+
+To use a different storage manager, create a custom function with this signature:
+
+```ts
+type Unsubscribe = () => void;
+
+function storageManager(params: { key: string }): {
+  get: (defaultValue: any) => any;
+  set: (value: any) => void;
+  subscribe: (handler: (value: any) => void) => Unsubscribe;
+};
+```
+
+Then pass it to the `storageManager` prop of the `ThemeProvider` component:
+
+```tsx
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import type { StorageManager } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: {
+    dark: true,
+  },
+});
+
+function storageManager(): StorageManager {
+  return {
+    get: (defaultValue) => {
+      // Your implementation
+    },
+    set: (value) => {
+      // Your implementation
+    },
+    subscribe: (handler) => {
+      // Your implementation
+      return () => {
+        // cleanup
+      };
+    },
+  };
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme} storageManager={storageManager}>
+      ...
+    </ThemeProvider>
+  );
+}
+```

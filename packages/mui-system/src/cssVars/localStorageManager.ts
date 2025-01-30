@@ -4,7 +4,6 @@ export interface StorageManager {
      * Function to get the value from the storage
      * @param defaultValue The default value to be returned if the key is not found
      * @returns The value from the storage or the default value
-     * @example
      */
     get(defaultValue: any): any;
     /**
@@ -31,7 +30,10 @@ export interface StorageManager {
 
 function noop() {}
 
-const localStorageManager: StorageManager = ({ key, storageWindow = window }) => {
+const localStorageManager: StorageManager = ({ key, storageWindow }) => {
+  if (!storageWindow && typeof window !== 'undefined') {
+    storageWindow = window;
+  }
   return {
     get(defaultValue) {
       if (typeof window === 'undefined') {
