@@ -40,14 +40,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, flexContainer?: func<br>&#124;&nbsp;object, indicator?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrollbar?: func<br>&#124;&nbsp;object, scrollButtons?: func<br>&#124;&nbsp;object, scroller?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, indicator?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrollbar?: func<br>&#124;&nbsp;object, scrollButtons?: func<br>&#124;&nbsp;object, scroller?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ endScrollButtonIcon?: elementType, EndScrollButtonIcon?: elementType, flexContainer?: elementType, indicator?: elementType, root?: elementType, scrollbar?: elementType, scrollButtons?: elementType, scroller?: elementType, startScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
+        "description": "{ endScrollButtonIcon?: elementType, EndScrollButtonIcon?: elementType, indicator?: elementType, list?: elementType, root?: elementType, scrollbar?: elementType, scrollButtons?: elementType, scroller?: elementType, startScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
       },
       "default": "{}"
     },
@@ -103,10 +103,10 @@
       "class": "MuiTabs-scroller"
     },
     {
-      "name": "flexContainer",
+      "name": "list",
       "description": "The component used for the flex container.",
       "default": "div",
-      "class": "MuiTabs-flexContainer"
+      "class": "MuiTabs-list"
     },
     {
       "name": "scrollbar",
@@ -153,10 +153,18 @@
       "isGlobal": false
     },
     {
+      "key": "flexContainer",
+      "className": "MuiTabs-flexContainer",
+      "description": "",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
       "key": "flexContainerVertical",
       "className": "MuiTabs-flexContainerVertical",
-      "description": "Styles applied to the flex container element if `orientation=\"vertical\"`.",
-      "isGlobal": false
+      "description": "",
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "hideScrollbar",

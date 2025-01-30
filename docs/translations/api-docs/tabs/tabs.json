@@ -66,10 +66,10 @@
       "nodeName": "the tablist element",
       "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
     },
+    "flexContainer": { "description": "", "deprecationInfo": "use <code>list</code> instead" },
     "flexContainerVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the flex container element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "",
+      "deprecationInfo": "use a combination of <code>list</code> and <code>vertical</code> instead"
     },
     "hideScrollbar": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -99,8 +99,8 @@
   },
   "slotDescriptions": {
     "endScrollButtonIcon": "The component used for the end scroll button icon.",
-    "flexContainer": "The component used for the flex container.",
     "indicator": "The component used for the tab indicator.",
+    "list": "The component used for the flex container.",
     "root": "The component used for the popper.",
     "scrollbar": "The component used for the scroller.",
     "scrollButtons": "The component used for the scroll button.",

@@ -1028,8 +1028,8 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     endScrollButtonIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    flexContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     scrollbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     scrollButtons: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -1043,8 +1043,8 @@ Tabs.propTypes /* remove-proptypes */ = {
   slots: PropTypes.shape({
     endScrollButtonIcon: PropTypes.elementType,
     EndScrollButtonIcon: PropTypes.elementType,
-    flexContainer: PropTypes.elementType,
     indicator: PropTypes.elementType,
+    list: PropTypes.elementType,
     root: PropTypes.elementType,
     scrollbar: PropTypes.elementType,
     scrollButtons: PropTypes.elementType,

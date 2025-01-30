@@ -12,7 +12,7 @@ export interface TabsPropsIndicatorColorOverrides {}
 
 export interface TabsRootSlotPropsOverrides {}
 export interface TabsScrollerSlotPropsOverrides {}
-export interface TabsFlexContainerSlotPropsOverrides {}
+export interface TabsListSlotPropsOverrides {}
 export interface TabsScrollbarSlotPropsOverrides {}
 export interface TabsIndicatorSlotPropsOverrides {}
 export interface TabsScrollButtonsSlotPropsOverrides {}
@@ -34,7 +34,7 @@ export interface TabsSlots {
    * The component used for the flex container.
    * @default div
    */
-  flexContainer: React.ElementType;
+  list: React.ElementType;
   /**
    * The component used for the scroller.
    * @default ScrollbarSize
@@ -76,10 +76,10 @@ export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     scroller: SlotProps<'div', TabsScrollerSlotPropsOverrides, TabsOwnerState>;
     /**
-     * Props forwarded to the flexContainer slot.
+     * Props forwarded to the list slot.
      * By default, the avaible props are based on the div element.
      */
-    flexContainer: SlotProps<'div', TabsFlexContainerSlotPropsOverrides, TabsOwnerState>;
+    list: SlotProps<'div', TabsListSlotPropsOverrides, TabsOwnerState>;
     /**
      * Props forwarded to the scrollbar slot.
      * By default, the avaible props are based on the div element.

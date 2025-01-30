@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
+import { createTheme } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -63,7 +64,7 @@ function SampleIcon() {
   slots={{
     root: 'div',
     scroller: 'div',
-    flexContainer: 'div',
+    list: 'div',
     scrollbar: 'div',
     indicator: 'div',
     scrollButtons: 'div',
@@ -79,7 +80,7 @@ const CustomComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
   slots={{
     root: CustomComponent,
     scroller: CustomComponent,
-    flexContainer: CustomComponent,
+    list: CustomComponent,
     scrollbar: CustomComponent,
     indicator: CustomComponent,
     scrollButtons: CustomComponent,
@@ -96,7 +97,7 @@ const CustomComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
     scroller: {
       className: 'flex',
     },
-    flexContainer: {
+    list: {
       className: 'flex',
     },
     scrollbar: {
