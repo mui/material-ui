@@ -56,12 +56,12 @@ export type ExtendList<TypeMap extends OverridableTypeMap> = OverridableComponen
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
- * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
+ * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [List API](https://mui.com/material-ui/api/list/)
+ * - [List API](https://next.mui.com/material-ui/api/list/)
  */
 declare const List: ExtendList<ListTypeMap>;
 

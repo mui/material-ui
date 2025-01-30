@@ -47,8 +47,8 @@ Object.keys(usedLinks)
     //
     // <!-- #default-branch-switch -->
     //
-    write(`- https://mui.com${linkKey}`);
-    console.log(`https://mui.com${linkKey}`);
+    write(`- https://next.mui.com${linkKey}`);
+    console.log(`https://next.mui.com${linkKey}`);
 
     console.log(`used in`);
     usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));
