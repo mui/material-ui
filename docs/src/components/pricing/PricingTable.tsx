@@ -580,7 +580,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       {...{
         label: 'Priority support',
-        tooltip: 'Option to buy priority support as an add-on.',
+        tooltip: 'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.',
       }}
     />
   ),
@@ -1692,6 +1692,8 @@ export default function PricingTable({
         <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
           Support
         </RowHead>
+        {renderRow('priority-support')}	
+        {divider}
         {renderRow('core-support')}
         {divider}
         {renderRow('x-support')}

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function PrioritySupportSwitch() {
   const { prioritySupport, setPrioritySupport } = usePrioritySupport();
@@ -47,7 +48,7 @@ export default function PrioritySupportSwitch() {
         <FormControlLabel
           control={<Switch checked={prioritySupport} onChange={handleChange} />}
           label={
-            <Tooltip title={prioritySupportDescription} {...tooltipProps}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Typography
                 fontWeight="semiBold"
                 color="text.primary"
@@ -59,7 +60,10 @@ export default function PrioritySupportSwitch() {
               >
                 Priority support
               </Typography>
-            </Tooltip>
+              <Tooltip title={prioritySupportDescription} {...tooltipProps}>
+                <InfoOutlinedIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+              </Tooltip>
+            </Box>
           }
           sx={{
             mb: 0.5,
@@ -67,6 +71,10 @@ export default function PrioritySupportSwitch() {
             mr: 0,
             display: 'flex',
             justifyContent: 'space-between',
+            width: '100%',
+            '& .MuiFormControlLabel-label': {
+              marginRight: 'auto'
+            }
           }}
           labelPlacement="start"
         />
