@@ -1,9 +1,9 @@
-import Box from '@mui/material-pigment-css/Box';
-import Grid from '@mui/material-pigment-css/Grid';
-import { styled } from '@mui/material-pigment-css';
-import GridDemo3 from './demo3';
+'use client';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
+import { styled } from '@mui/material';
 
-const Item = styled.div`
+const Item = styled('div')`
   background-color: #fff;
   border: 1px solid #ced7e0;
   padding: 8px;
@@ -230,7 +230,6 @@ function GridDemo10() {
 const demos = [
   { id: '1', component: GridDemo1 },
   { id: '2', component: GridDemo2 },
-  { id: '3', component: GridDemo3 },
   { id: '4', component: GridDemo4 },
   { id: '5', component: GridDemo5 },
   { id: '6', component: GridDemo6 },
