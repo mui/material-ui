@@ -170,12 +170,15 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     slotProps: {
       fab: FabProps,
       ...slotProps,
-      tooltip: mergeSlotProps(slotProps.tooltip, {
-        title: tooltipTitle,
-        open: tooltipOpenProp,
-        placement: tooltipPlacement,
-        classes: TooltipClasses,
-      }),
+      tooltip: mergeSlotProps(
+        typeof slotProps.tooltip === 'function' ? slotProps.tooltip(ownerState) : slotProps.tooltip,
+        {
+          title: tooltipTitle,
+          open: tooltipOpenProp,
+          placement: tooltipPlacement,
+          classes: TooltipClasses,
+        },
+      ),
     },
   };
 
