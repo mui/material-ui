@@ -106,6 +106,30 @@
   ],
   "classes": [
     {
+      "key": "anchorBottom",
+      "className": "MuiDrawer-anchorBottom",
+      "description": "Styles applied to the root element if `anchor=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorLeft",
+      "className": "MuiDrawer-anchorLeft",
+      "description": "Styles applied to the root element if `anchor=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorRight",
+      "className": "MuiDrawer-anchorRight",
+      "description": "Styles applied to the root element if `anchor=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorTop",
+      "className": "MuiDrawer-anchorTop",
+      "description": "Styles applied to the root element if `anchor=\"top\"`.",
+      "isGlobal": false
+    },
+    {
       "key": "modal",
       "className": "MuiDrawer-modal",
       "description": "Styles applied to the Modal component.",
@@ -164,7 +188,8 @@
       "key": "paperAnchorTop",
       "className": "MuiDrawer-paperAnchorTop",
       "description": "Styles applied to the Paper component if `anchor=\"top\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     }
   ],
   "spread": true,
