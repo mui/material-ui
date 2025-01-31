@@ -95,7 +95,7 @@ describe('<SpeedDialAction />', () => {
     expect(target).toHaveAccessibleName('placeholder');
   });
 
-  it('should have accessible name if slotProps.tooltip.tooltipOpen is true', () => {
+  it('should have accessible name if slotProps.tooltip.open is true', () => {
     const { getByRole } = render(
       <SpeedDialAction
         icon={<Icon>add</Icon>}
@@ -114,7 +114,7 @@ describe('<SpeedDialAction />', () => {
     expect(target).toHaveAccessibleName('placeholder');
   });
 
-  it('should have accessible name if slotProps.tooltip.tooltipOpen is false', () => {
+  it('should have accessible name if slotProps.tooltip.open is false', () => {
     const { getByRole } = render(
       <SpeedDialAction icon={<Icon>add</Icon>} slotProps={{ tooltip: { title: 'placeholder' } }} />,
     );
