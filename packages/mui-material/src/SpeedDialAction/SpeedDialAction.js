@@ -165,18 +165,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   const ownerState = { ...props, tooltipPlacement };
   const classes = useUtilityClasses(ownerState);
 
-  const [tooltipOpen, setTooltipOpen] = React.useState(slotProps.tooltip?.open ?? tooltipOpenProp);
-
-  const handleTooltipClose = () => {
-    setTooltipOpen(false);
-  };
-
-  const handleTooltipOpen = () => {
-    setTooltipOpen(true);
-  };
-
-  const transitionStyle = { transitionDelay: `${delay}ms` };
-
   const externalForwardedProps = {
     slots,
     slotProps: {
@@ -190,6 +178,20 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
       }),
     },
   };
+
+  const [tooltipOpen, setTooltipOpen] = React.useState(
+    externalForwardedProps.slotProps.tooltip?.open,
+  );
+
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setTooltipOpen(true);
+  };
+
+  const transitionStyle = { transitionDelay: `${delay}ms` };
 
   const [FabSlot, fabSlotProps] = useSlot('fab', {
     elementType: SpeedDialActionFab,
