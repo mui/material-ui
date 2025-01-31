@@ -6,6 +6,8 @@ import { LinearProgressClasses } from './linearProgressClasses';
 
 export interface LinearProgressPropsColorOverrides {}
 
+export interface LinearProgressPropsVariantOverrides {}
+
 export interface LinearProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
   /**
@@ -41,7 +43,10 @@ export interface LinearProgressProps
    * Use indeterminate or query when there is no progress value.
    * @default 'indeterminate'
    */
-  variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
+  variant?: OverridableStringUnion<
+    'determinate' | 'indeterminate' | 'buffer' | 'query',
+    LinearProgressPropsVariantOverrides
+  >;
 }
 
 /**
