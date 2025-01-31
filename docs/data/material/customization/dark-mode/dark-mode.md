@@ -371,7 +371,7 @@ const theme = createTheme({
   },
 });
 
-function storageManager(): StorageManager {
+function storageManager(params): StorageManager {
   return {
     get: (defaultValue) => {
       // Your implementation
