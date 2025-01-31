@@ -1,14 +1,19 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./index.mjs",
+  "browser": "./index.mjs",
+  "types": "./index.d.mts",
   "exports": {
-    ".": "./index.js",
-    "./loader": "./loader.js",
-    "./prism": "./prism.js"
+    ".": "./index.mjs",
+    "./loader": "./loader.mjs",
+    "./prism": {
+      "types": "./prism.d.mts",
+      "require": "./prism.cjs",
+      "import": "./prism.mjs"
+    }
   },
   "repository": {
     "type": "git",
@@ -20,7 +25,7 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.0",
+    "@babel/runtime": "^7.26.7",
     "lodash": "^4.17.21",
     "marked": "^15.0.6",
     "prismjs": "^1.29.0"

@@ -354,4 +354,25 @@ describe('<Drawer />', () => {
       });
     });
   });
+
+  describe('prop: anchor', () => {
+    it('should set correct class name on the root element', () => {
+      const { setProps } = render(
+        <Drawer open anchor="left">
+          <div />
+        </Drawer>,
+      );
+
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorLeft);
+
+      setProps({ anchor: 'right' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorRight);
+
+      setProps({ anchor: 'top' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorTop);
+
+      setProps({ anchor: 'bottom' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorBottom);
+    });
+  });
 });

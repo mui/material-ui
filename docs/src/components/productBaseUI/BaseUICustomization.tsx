@@ -244,14 +244,14 @@ export default function BaseUICustomization() {
                 <br /> with a lightweight API
               </Typography>
             }
-            description="With Base UI, you have the freedom to decide how much you want to customize a component's structure and style."
+            description="With MUI Base, you have the freedom to decide how much you want to customize a component's structure and style."
           />
           <Group sx={{ m: -2, p: 2 }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
                 icon={<SvgTwinkle />}
                 title="Applying custom CSS rules"
-                description="Your CSS, your rules. With Base UI there are no styles to override, so you can start with a clean slate."
+                description="Your CSS, your rules. With MUI Base there are no styles to override, so you can start with a clean slate."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
@@ -265,7 +265,7 @@ export default function BaseUICustomization() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Creating custom components using hooks"
-                description="Base UI includes low-level hooks for adding functionality to your own fully custom-built components."
+                description="MUI Base includes low-level hooks for adding functionality to your own fully custom-built components."
               />
             </Highlighter>
           </Group>

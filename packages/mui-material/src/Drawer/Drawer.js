@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState) => {
   const { classes, anchor, variant } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root: ['root', `anchor${capitalize(anchor)}`],
     docked: [(variant === 'permanent' || variant === 'persistent') && 'docked'],
     modal: ['modal'],
     paper: [
