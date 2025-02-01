@@ -29,6 +29,10 @@ curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
 */
 
 interface Profile {
+  /**
+   * The display name of the person.
+   * This is different from the full name (legal name).
+   */
   name: string;
   /**
    * Role, what are you working on?
