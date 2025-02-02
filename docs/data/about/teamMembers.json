@@ -317,5 +317,13 @@
     "locationCountry": "us",
     "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛.",
     "github": "alelthomas"
+  },
+  {
+    "name": "Bernardo Belchior",
+    "title": "React Engineer - X",
+    "location": "Berlin, Germany",
+    "locationCountry": "de",
+    "about": "Soccer ⚽ and coding 💻.",
+    "github": "bernardobelchior"
   }
 ]
