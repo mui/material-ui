@@ -226,8 +226,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       globby:
         specifier: ^14.0.2
         version: 14.0.2
@@ -507,8 +507,8 @@ importers:
         specifier: ^4.21.2
         version: 4.21.2
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       jss:
         specifier: ^10.10.0
         version: 10.10.0
@@ -717,8 +717,8 @@ importers:
         specifier: ^0.7.43
         version: 0.7.43
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       json2mq:
         specifier: ^0.2.0
         version: 0.2.0
@@ -1066,8 +1066,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       jsdom:
         specifier: ^25.0.1
         version: 25.0.1
@@ -1145,8 +1145,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1476,8 +1476,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
 
   packages/mui-envinfo/test:
     dependencies:
@@ -1541,8 +1541,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1793,8 +1793,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2200,8 +2200,8 @@ importers:
   packages/netlify-plugin-cache-docs:
     dependencies:
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
 
   packages/react-docgen-types:
     devDependencies:
@@ -2305,8 +2305,8 @@ importers:
         specifier: ^3.3.3
         version: 3.3.3
       fs-extra:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^11.3.0
+        version: 11.3.0
       html-webpack-plugin:
         specifier: ^5.6.3
         version: 5.6.3(webpack@5.97.1(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.97.1)))
@@ -8073,8 +8073,8 @@ packages:
     resolution: {integrity: sha512-cR/vflFyPZtrN6b38ZyWxpWdhlXrzZEBawlpBQMq7033xVY7/kg0GDMBK5jg8lDYQckdJ5x/YC88lM3C7VMsLg==}
     engines: {node: '>=0.10.0'}
 
-  fs-extra@11.2.0:
-    resolution: {integrity: sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==}
+  fs-extra@11.3.0:
+    resolution: {integrity: sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==}
     engines: {node: '>=14.14'}
 
   fs-extra@6.0.1:
@@ -14939,7 +14939,7 @@ snapshots:
       cosmiconfig: 9.0.0(typescript@5.7.3)
       dedent: 1.5.3(babel-plugin-macros@3.1.0)
       execa: 5.0.0
-      fs-extra: 11.2.0
+      fs-extra: 11.3.0
       get-stream: 6.0.0
       git-url-parse: 14.0.0
       glob-parent: 6.0.2
@@ -20190,7 +20190,7 @@ snapshots:
 
   fs-exists-sync@0.1.0: {}
 
-  fs-extra@11.2.0:
+  fs-extra@11.3.0:
     dependencies:
       graceful-fs: 4.2.11
       jsonfile: 6.1.0
@@ -21698,7 +21698,7 @@ snapshots:
       dedent: 1.5.3(babel-plugin-macros@3.1.0)
       envinfo: 7.13.0
       execa: 5.0.0
-      fs-extra: 11.2.0
+      fs-extra: 11.3.0
       get-port: 5.1.1
       get-stream: 6.0.0
       git-url-parse: 14.0.0
@@ -23582,7 +23582,7 @@ snapshots:
     dependencies:
       chokidar: 3.6.0
       dependency-graph: 0.11.0
-      fs-extra: 11.2.0
+      fs-extra: 11.3.0
       get-stdin: 9.0.0
       globby: 14.0.2
       picocolors: 1.1.1
