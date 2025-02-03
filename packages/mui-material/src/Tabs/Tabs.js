@@ -381,14 +381,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const tabListRef = React.useRef(null);
 
   const externalForwardedProps = {
-    slots: {
-      list: slots.flexContainer,
-      ...slots,
-    },
+    slots,
     slotProps: {
       indicator: TabIndicatorProps,
       scrollButton: TabScrollButtonProps,
-      list: slotProps.flexContainer,
       ...slotProps,
     },
   };
@@ -581,7 +577,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     elementType: TabScrollButton,
     externalForwardedProps,
     ownerState,
-    internalForwardedProps: {
+    additionalProps: {
+      orientation,
       slots: {
         StartScrollButtonIcon: slots.startScrollButtonIcon || slots.StartScrollButtonIcon,
         EndScrollButtonIcon: slots.endScrollButtonIcon || slots.EndScrollButtonIcon,
@@ -590,9 +587,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         startScrollButtonIcon: startScrollButtonIconProps,
         endScrollButtonIcon: endScrollButtonIconProps,
       },
-    },
-    additionalProps: {
-      orientation,
     },
   });
 

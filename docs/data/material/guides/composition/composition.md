@@ -66,7 +66,7 @@ The popper slot in the original example would now have both classes applied to i
 :::
 
 :::info
-`style` object and `sx` are shallow merged rather than replacing one another. Those values from the first argument have higher priority.
+`style` object are shallow merged rather than replacing one another. The style keys from the first argument have higher priority.
 :::
 
 ## Component prop

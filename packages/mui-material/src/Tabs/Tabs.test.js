@@ -78,10 +78,6 @@ describe('<Tabs />', () => {
       scroller: {
         expectedClassName: classes.scroller,
       },
-      // TODO: deprecated in v6, remove in v7
-      flexContainer: {
-        expectedClassName: classes.flexContainer,
-      },
       list: {
         expectedClassName: classes.list,
       },
@@ -1478,9 +1474,9 @@ describe('<Tabs />', () => {
       expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
     });
 
-    it('should render a customer scroll button', () => {
-      function CustomButton({ ownerState, ...props }) {
-        return <button {...props} />;
+    it('should render a custom scroll button', () => {
+      function CustomButton({ ownerState, slots, slotProps, ...props }) {
+        return <button data-testid="scroll-button" {...props} />;
       }
       render(
         <Tabs
@@ -1491,7 +1487,7 @@ describe('<Tabs />', () => {
             scrollButtons: CustomButton,
           }}
           slotProps={{
-            scrollButtons: { 'data-testid': 'scroll-button', className: 'foo' },
+            scrollButtons: { className: 'foo' },
           }}
         />,
       );
