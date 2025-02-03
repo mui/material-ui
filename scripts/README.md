@@ -57,6 +57,12 @@ deploying all the changes that have been merged into the main branch
 since the previous release (for example publishing a blog post or releasing
 urgent docs updates).
 
+**Note:** The instructions below are for deploying to the `latest` branch of the `material-ui-docs` repository, which points to `https://mui.com/`. If you need to deploy to a different subdomain, replace `latest` with the appropriate branch name:
+
+- `latest`: `https://mui.com/`
+- `next`: `https://next.mui.com/`
+- `v*.x`: `https://v*.mui.com/`
+
 To do so, follow these steps:
 
 1. Add the `material-ui-docs` remote if you haven't done this already:
