@@ -5,6 +5,7 @@ import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
 import describeConformance from '../../test/describeConformance';
 
 /**
@@ -33,6 +34,10 @@ function clickBackdrop(view) {
   userClick(findBackdrop(view));
 }
 
+const CustomFade = React.forwardRef(function CustomFade(props, ref) {
+  return <Fade {...props} ref={ref} data-testid="custom" />;
+});
+
 describe('<Dialog />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -48,6 +53,30 @@ describe('<Dialog />', () => {
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
+      slots: {
+        transition: {
+          expectedClassName: classes.transition,
+          testWithComponent: CustomFade,
+          testWithElement: null,
+        },
+        root: {
+          expectedClassName: classes.root,
+          testWithElement: null,
+        },
+        backdrop: {
+          expectedClassName: classes.backdrop,
+          testWithElement: null,
+        },
+        container: {
+          expectedClassName: classes.container,
+          testWithElement: null,
+          testWithComponent: CustomFade,
+        },
+        paper: {
+          expectedClassName: classes.paper,
+          testWithElement: null,
+        },
+      },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
@@ -375,6 +404,20 @@ describe('<Dialog />', () => {
       expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
       const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
       expect(label).to.have.text('Choose either one');
+    });
+
+    it('should add the aria-modal="true" by default', function test() {
+      const { getByRole } = render(<Dialog open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'true');
+    });
+
+    it('should render the custom aria-modal prop if provided', function test() {
+      const { getByRole } = render(<Dialog aria-modal="false" open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'false');
     });
   });
 

@@ -5,6 +5,8 @@ components: Switch
 hooks: useSwitch
 githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
+newUrl: https://base-ui.com/react/components/switch
+newName: Switch
 ---
 
 # Switch

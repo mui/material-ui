@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { getDynamicStyles } from 'jss';
 import mergeClasses from '../mergeClasses';

@@ -11,15 +11,15 @@ Run one of the following commands to add Material UI to your project:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/material @emotion/react @emotion/styled
+pnpm add @mui/material@next @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/material @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 </codeblock>
@@ -32,8 +32,8 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 
 ```json
 "peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0",
-  "react-dom": "^17.0.0 || ^18.0.0"
+  "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
 },
 ```
 

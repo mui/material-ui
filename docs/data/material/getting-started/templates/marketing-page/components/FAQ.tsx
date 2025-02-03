@@ -6,15 +6,18 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function FAQ() {
-  const [expanded, setExpanded] = React.useState<string | false>(false);
+  const [expanded, setExpanded] = React.useState<string[]>([]);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
+      setExpanded(
+        isExpanded
+          ? [...expanded, panel]
+          : expanded.filter((item) => item !== panel),
+      );
     };
 
   return (
@@ -43,7 +46,7 @@ export default function FAQ() {
       </Typography>
       <Box sx={{ width: '100%' }}>
         <Accordion
-          expanded={expanded === 'panel1'}
+          expanded={expanded.includes('panel1')}
           onChange={handleChange('panel1')}
         >
           <AccordionSummary
@@ -51,7 +54,7 @@ export default function FAQ() {
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="span" variant="subtitle2">
               How do I contact customer support if I have a question or issue?
             </Typography>
           </AccordionSummary>
@@ -61,15 +64,15 @@ export default function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              You can reach our customer support team by emailing
-              <Link> support@email.com </Link>
-              or calling our toll-free number. We&apos;re here to assist you
+              You can reach our customer support team by emailing&nbsp;
+              <Link href="mailto:support@email.com">support@email.com</Link>
+              &nbsp;or calling our toll-free number. We&apos;re here to assist you
               promptly.
             </Typography>
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded === 'panel2'}
+          expanded={expanded.includes('panel2')}
           onChange={handleChange('panel2')}
         >
           <AccordionSummary
@@ -77,7 +80,7 @@ export default function FAQ() {
             aria-controls="panel2d-content"
             id="panel2d-header"
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="span" variant="subtitle2">
               Can I return the product if it doesn&apos;t meet my expectations?
             </Typography>
           </AccordionSummary>
@@ -94,7 +97,7 @@ export default function FAQ() {
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded === 'panel3'}
+          expanded={expanded.includes('panel3')}
           onChange={handleChange('panel3')}
         >
           <AccordionSummary
@@ -102,7 +105,7 @@ export default function FAQ() {
             aria-controls="panel3d-content"
             id="panel3d-header"
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="span" variant="subtitle2">
               What makes your product stand out from others in the market?
             </Typography>
           </AccordionSummary>
@@ -119,7 +122,7 @@ export default function FAQ() {
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded === 'panel4'}
+          expanded={expanded.includes('panel4')}
           onChange={handleChange('panel4')}
         >
           <AccordionSummary
@@ -127,7 +130,7 @@ export default function FAQ() {
             aria-controls="panel4d-content"
             id="panel4d-header"
           >
-            <Typography component="h3" variant="subtitle2">
+            <Typography component="span" variant="subtitle2">
               Is there a warranty on the product, and what does it cover?
             </Typography>
           </AccordionSummary>

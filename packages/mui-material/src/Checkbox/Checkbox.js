@@ -15,7 +15,6 @@ import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
@@ -155,6 +154,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       className={clsx(classes.root, className)}
+      disableRipple={disableRipple}
       {...other}
       classes={classes}
     />

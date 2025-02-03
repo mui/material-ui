@@ -8,6 +8,15 @@ import {
 } from '@mui/utils';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
+const generateClassName = (componentName: string, slot: string, globalStatePrefix = 'Mui') => {
+  if (componentName === 'MuiSwipeableDrawer') {
+    // SwipeableDrawer uses Drawer classes without modifying them
+    return generateUtilityClass('MuiDrawer', slot, globalStatePrefix);
+  }
+
+  return generateUtilityClass(componentName, slot, globalStatePrefix);
+};
+
 export const projectSettings: ProjectSettings = {
   output: {
     apiManifestPath: path.join(process.cwd(), 'docs/data/material/pagesApi.js'),
@@ -41,8 +50,8 @@ export const projectSettings: ProjectSettings = {
     );
   },
   translationPagesDirectory: 'docs/translations/api-docs',
-  generateClassName: generateUtilityClass,
+  generateClassName,
   isGlobalClassName: isGlobalState,
   // #default-branch-switch
-  baseApiUrl: 'https://mui.com',
+  baseApiUrl: 'https://next.mui.com',
 };

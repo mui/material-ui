@@ -35,11 +35,11 @@ If you're using yarn, you can configure it using a package resolution:
 ```diff title="package.json"
  {
    "dependencies": {
--    "@mui/styled-engine": "latest"
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+-    "@mui/styled-engine": "next"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
    },
 +  "resolutions": {
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
 +  },
  }
 ```
@@ -47,7 +47,7 @@ If you're using yarn, you can configure it using a package resolution:
 ### With npm
 
 Because package resolutions aren't available with npm, you must update your bundler's config to add this alias.
-The example below shows how to do this with Webpack:
+The example below shows how to do this with webpack:
 
 ```diff title="webpack.config.js"
  module.exports = {

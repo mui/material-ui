@@ -4,6 +4,8 @@ title: React Input component and hook
 components: Input
 hooks: useInput
 githubLabel: 'component: input'
+newUrl: https://base-ui.com/react/components/input
+newName: Input
 ---
 
 # Input

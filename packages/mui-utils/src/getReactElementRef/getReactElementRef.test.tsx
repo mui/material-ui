@@ -5,15 +5,15 @@ import * as React from 'react';
 describe('getReactElementRef', () => {
   it('should return undefined when not used correctly', () => {
     // @ts-expect-error
-    expect(getReactElementRef(false)).to.equal(undefined);
+    expect(getReactElementRef(false)).to.equal(null);
     // @ts-expect-error
-    expect(getReactElementRef()).to.equal(undefined);
+    expect(getReactElementRef()).to.equal(null);
     // @ts-expect-error
-    expect(getReactElementRef(1)).to.equal(undefined);
+    expect(getReactElementRef(1)).to.equal(null);
 
     const children = [<div key="1" />, <div key="2" />];
     // @ts-expect-error
-    expect(getReactElementRef(children)).to.equal(undefined);
+    expect(getReactElementRef(children)).to.equal(null);
   });
 
   it('should return the ref of a React element', () => {

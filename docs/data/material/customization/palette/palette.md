@@ -150,7 +150,7 @@ const theme = createTheme({
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
 If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this.
-The following example uses the `alpha` and `getContrastRatio` utilities to define tokens using opacity:
+The following example uses the `alpha()` and `getContrastRatio()` utilities to define tokens using opacity:
 
 ```jsx
 import { createTheme, alpha, getContrastRatio } from '@mui/material/styles';
@@ -303,7 +303,7 @@ const theme = createTheme({
 
 :::warning
 The `contrastThreshold` parameter can produce counterproductive results.\
-Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/sle13GMW2Brp) this new algorithm).
+Please verify that the [APCA](https://contrast.tools/?tab=apca) color contrast is improved (WCAG 3 [will use](https://typefully.com/DanHollick/wcag-3-and-apca-sle13GMW2Brp) this new algorithm).
 :::
 
 ## Picking colors

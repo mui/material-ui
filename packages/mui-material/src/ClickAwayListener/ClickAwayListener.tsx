@@ -65,12 +65,12 @@ export interface ClickAwayListenerProps {
  *
  * Demos:
  *
- * - [Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/)
- * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Click-Away Listener](https://next.mui.com/material-ui/react-click-away-listener/)
+ * - [Menu](https://next.mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [ClickAwayListener API](https://mui.com/material-ui/api/click-away-listener/)
+ * - [ClickAwayListener API](https://next.mui.com/material-ui/api/click-away-listener/)
  */
 function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
   const {
@@ -210,7 +210,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
     return undefined;
   }, [handleClickAway, mouseEvent]);
 
-  return <React.Fragment>{React.cloneElement(children, childrenProps)}</React.Fragment>;
+  return React.cloneElement(children, childrenProps);
 }
 
 ClickAwayListener.propTypes /* remove-proptypes */ = {

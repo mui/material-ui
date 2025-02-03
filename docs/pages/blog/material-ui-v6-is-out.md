@@ -243,7 +243,7 @@ It also works with the `sx` prop:
 
 ### New method of applying styles
 
-The new API `theme.applyStyles` has been added for creating specific mode styles.
+The new API `theme.applyStyles()` has been added for creating specific mode styles.
 It's designed to replace the `theme.palette.mode === 'dark'` condition to fix the SSR flickering issue when combined with the CSS theme variables feature.
 
 <codeblock>
@@ -372,7 +372,7 @@ This means you no longer have to clutter the DOM with wrappers like Box or Stack
 ## React 19 support
 
 Material UI v6 is ready for React 19.
-We've been testing Material UI with the latest [React 19 RC](https://react.dev/blog/2024/04/25/react-19) versions to ensure compatibility once the stable release of React 19 is out.
+We've been testing Material UI with the latest [React 19 RC](https://react.dev/blog/2024/12/05/react-19) versions to ensure compatibility once the stable release of React 19 is out.
 
 We're also working on backporting React 19 support to Material UI v5—stay tuned.
 

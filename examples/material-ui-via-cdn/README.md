@@ -12,7 +12,10 @@ cd material-ui-via-cdn
 Run:
 
 ```bash
+# React 19 or later
 open index.html
+# React 18
+open react-18-example.html
 ```
 
 ## The idea behind the example
@@ -27,7 +30,7 @@ The client has to download the entire library, regardless of which components ar
 
 ## What's next?
 
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
-
 <!-- #default-branch-switch -->
+
+You now have a working example project.
+You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.

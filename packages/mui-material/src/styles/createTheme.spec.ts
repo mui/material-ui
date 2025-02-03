@@ -155,6 +155,16 @@ const theme = createTheme();
           },
         },
       },
+      MuiGrid2: {
+        styleOverrides: {
+          root: {
+            justifyContent: 'space-between',
+          },
+          container: {
+            justifyContent: 'space-between',
+          },
+        },
+      },
     },
   });
 }

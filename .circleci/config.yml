@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@4.2.3
-  aws-s3: circleci/aws-s3@4.0
+  aws-cli: circleci/aws-cli@5.1.2
+  aws-s3: circleci/aws-s3@4.1.0
 
 parameters:
   browserstack-force:
@@ -42,6 +42,7 @@ default-job: &default-job
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+    DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
   docker:
     - image: cimg/node:20.17
@@ -258,12 +259,6 @@ jobs:
           name: '`pnpm proptypes` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
-          name: 'Write "use client" directive'
-          command: pnpm rsc:build
-      - run:
-          name: '`pnpm rsc:build` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
           name: Generate the documentation
           command: pnpm docs:api
       - run:
@@ -379,7 +374,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     steps:
       - checkout
       - install_js:
@@ -407,7 +402,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     steps:
       - checkout
       - install_js:
@@ -419,7 +414,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     steps:
       - checkout
       - install_js:
@@ -432,7 +427,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     steps:
       - checkout
       - install_js:
@@ -457,7 +452,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     steps:
       - checkout
       - install_js:
@@ -524,7 +519,7 @@ jobs:
   test_bundling_next_webpack4:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -542,7 +537,7 @@ jobs:
   test_bundling_next_webpack5:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -560,7 +555,7 @@ jobs:
   test_bundling_create_react_app:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -578,7 +573,7 @@ jobs:
   test_bundling_snowpack:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -596,7 +591,7 @@ jobs:
   test_bundling_vite:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -614,7 +609,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -632,7 +627,7 @@ jobs:
   test_bundling_gatsby:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
         environment:
           GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
@@ -733,7 +728,7 @@ jobs:
   test_benchmark:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.2-focal
+      - image: mcr.microsoft.com/playwright:v1.48.2-focal
     steps:
       - checkout
       - install_js:
@@ -867,7 +862,59 @@ workflows:
           name: test_e2e-react@17
 
   # This workflow is identical to react-17, but scheduled
-  react-17-cron:
+  # TODO: The v17 tests have deteriorated to the point of no return. Fix for v18 once we
+  #       deprecate v17, and reenable this workflow.
+  # react-17-cron:
+  #   triggers:
+  #     - schedule:
+  #         cron: '0 0 * * *'
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - next
+  #   jobs:
+  #     - test_unit:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_unit-react@17
+  #     - test_browser:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_browser-react@17
+  #     - test_regressions:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_regressions-react@17
+  #     - test_e2e:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_e2e-react@17
+
+  # This workflow can be triggered manually on the PR
+  react-18:
+    when:
+      equal: [react-18, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_unit-react@18
+      - test_browser:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_browser-react@18
+      - test_regressions:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_regressions-react@18
+      - test_e2e:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_e2e-react@18
+
+  # This workflow is identical to react-18, but scheduled
+  react-18-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -876,23 +923,24 @@ workflows:
               only:
                 - master
                 - next
+                - v5.x
     jobs:
       - test_unit:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_unit-react@17
+          react-version: ^18.0.0
+          name: test_unit-react@18
       - test_browser:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_browser-react@17
+          react-version: ^18.0.0
+          name: test_browser-react@18
       - test_regressions:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_regressions-react@17
+          react-version: ^18.0.0
+          name: test_regressions-react@18
       - test_e2e:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_e2e-react@17
+          react-version: ^18.0.0
+          name: test_e2e-react@18
 
   # This workflow can be triggered manually on the PR
   react-next:

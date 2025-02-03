@@ -13,9 +13,13 @@ export interface ApplyStyles<K extends string> {
  *
  * Tips: Use an array over object spread and place `theme.applyStyles()` last.
  *
+ * With the styled function:
  * ✅ [{ background: '#e5e5e5' }, theme.applyStyles('dark', { background: '#1c1c1c' })]
- *
  * 🚫 { background: '#e5e5e5', ...theme.applyStyles('dark', { background: '#1c1c1c' })}
+ *
+ * With the sx prop:
+ * ✅ [{ background: '#e5e5e5' }, theme => theme.applyStyles('dark', { background: '#1c1c1c' })]
+ * 🚫 { background: '#e5e5e5', ...theme => theme.applyStyles('dark', { background: '#1c1c1c' })}
  *
  * @example
  * 1. using with `styled`:
@@ -32,9 +36,9 @@ export interface ApplyStyles<K extends string> {
  * @example
  * 2. using with `sx` prop:
  * ```jsx
- *   <Box sx={theme => [
+ *   <Box sx={[
  *     { background: '#e5e5e5' },
- *     theme.applyStyles('dark', {
+ *     theme => theme.applyStyles('dark', {
  *        background: '#1c1c1c',
  *        color: '#fff',
  *      }),

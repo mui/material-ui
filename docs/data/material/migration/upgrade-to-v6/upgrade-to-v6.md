@@ -132,6 +132,8 @@ For alternative installation methods, refer to the [CDN documentation](/material
 
 ### Accordion
 
+#### Summary wrapped in a heading
+
 To meet the [W3C Accordion Pattern standard](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/), the Accordion Summary is now wrapped with a default `<h3>` heading element.
 This change may affect customizations relying on the previous DOM structure and CSS specificity.
 Additionally, the default heading element might conflict with existing heading structures on your page.
@@ -154,6 +156,13 @@ If the default heading element conflicts with your existing structure, you can c
   </AccordionDetails>
 </Accordion>
 ```
+
+#### Summary as a button (from v6.3.0)
+
+- The Accordion Summary HTML structure has been updated to fix invalid HTML introduced by wrapping it with a heading shown above:
+  - The root element is now a `button`.
+  - Summary content and the icon wrapper are rendered as `span`.
+- Developers using the previous `div` element for styling in the `AccordionSummary` should update their styling. Additionally, those using `Typography` for text, which defaults to rendering a `p` tag, should replace it with a `span`. You can use the `component` prop to replace the HTML tag (`<Typography component="span" />`), as shown in the [Accordion demos](https://mui.com/material-ui/react-accordion/).
 
 ### Autocomplete
 
@@ -356,9 +365,21 @@ As the `ListItem` no longer supports these props, the class names related to the
 +listItemButtonClasses.selected
 ```
 
-### Loading Button
+### Button with Loading State
 
-In v6, the `children` prop passed to the Loading Button component is now wrapped in a `<span>` tag to avoid [issues](https://github.com/mui/material-ui/issues/27853) when using tools to translate websites.
+As of `@mui/material` **v6.4.0**, the `LoadingButton` from Lab has been removed. Loading functionality is now part of the standard `Button` component. Update your import as follows:
+
+```diff
+-import { LoadingButton } from '@mui/lab';
++import { Button } from '@mui/material';
+```
+
+```diff
+-import LoadingButton from '@mui/lab/LoadingButton';
++import Button from '@mui/material/Button';
+```
+
+For more details, see the [Loading section](/material-ui/react-button/#loading-2) in the [Material UI `Button` documentation](/material-ui/react-button/).
 
 ### Typography
 
@@ -450,7 +471,7 @@ See [CSS theme variables](/material-ui/customization/css-theme-variables/overvie
 
 ### Color mode theme utility
 
-Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles`, designed to replace `theme.palette.mode` when applying light or dark styles:
+Material UI v6 introduces a new utility for adding styles to specific color modes called `theme.applyStyles()`, designed to replace `theme.palette.mode` when applying light or dark styles:
 
 ```diff
  const MyComponent = styled('button')(({ theme }) => ({
@@ -464,7 +485,7 @@ Material UI v6 introduces a new utility for adding styles to specific color mod
  }))
 ```
 
-Use these codemods to migrate your project to `theme.applyStyles`:
+Use these codemods to migrate your project to `theme.applyStyles()`:
 
 ```bash
 npx @mui/codemod@latest v6.0.0/styled <path/to/folder-or-file>

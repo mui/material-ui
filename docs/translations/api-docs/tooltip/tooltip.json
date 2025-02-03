@@ -52,12 +52,8 @@
     "PopperProps": {
       "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/popper/\"><code>Popper</code></a> element."
     },
-    "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones.<br>This prop is an alias for the <code>componentsProps</code> prop, which will be deprecated in the future."
-    },
-    "slots": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -72,11 +68,6 @@
     }
   },
   "classDescriptions": {
-    "arrow": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the arrow element" },
-    "popper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Popper component"
-    },
     "popperArrow": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Popper component",
@@ -91,10 +82,6 @@
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the Popper component",
       "conditions": "<code>disableInteractive={true}</code>"
-    },
-    "tooltip": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the tooltip (label wrapper) element"
     },
     "tooltipArrow": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -126,5 +113,11 @@
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "the tooltip is opened by touch"
     }
+  },
+  "slotDescriptions": {
+    "arrow": "The component used for the arrow.",
+    "popper": "The component used for the popper.",
+    "tooltip": "The component used for the tooltip.",
+    "transition": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

@@ -10,7 +10,7 @@ function FavoriteRounded(props) {
   );
 }
 
-export default function SvgIconsColor() {
+export default function CustomColorSvgIcon() {
   const theme = createTheme({
     palette: {
       custom: { main: '#ec407a' },

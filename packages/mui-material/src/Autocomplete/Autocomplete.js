@@ -250,10 +250,11 @@ const AutocompleteClearIndicator = styled(IconButton, {
 const AutocompletePopupIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
-  overridesResolver: ({ ownerState }, styles) => ({
-    ...styles.popupIndicator,
-    ...(ownerState.popupOpen && styles.popupIndicatorOpen),
-  }),
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.popupIndicator, ownerState.popupOpen && styles.popupIndicatorOpen];
+  },
 })({
   padding: 2,
   marginRight: -2,
@@ -326,7 +327,7 @@ const AutocompleteNoOptions = styled('div', {
   })),
 );
 
-const AutocompleteListbox = styled('div', {
+const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
@@ -544,7 +545,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const externalForwardedProps = {
     slots: {
-      listbox: ListboxComponentProp,
       paper: PaperComponentProp,
       popper: PopperComponentProp,
       ...slots,
@@ -558,7 +558,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   };
 
   const [ListboxSlot, listboxProps] = useSlot('listbox', {
-    elementType: 'ul',
+    elementType: AutocompleteListbox,
     externalForwardedProps,
     ownerState,
     className: classes.listbox,
@@ -671,54 +671,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
   const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
 
-  const renderAutocompletePopperChildren = (children) => (
-    <AutocompletePopper as={PopperSlot} {...popperProps}>
-      <AutocompletePaper as={PaperSlot} {...paperProps}>
-        {children}
-      </AutocompletePaper>
-    </AutocompletePopper>
-  );
-
-  let autocompletePopper = null;
-  if (groupedOptions.length > 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteListbox as={ListboxSlot} {...listboxProps}>
-        {groupedOptions.map((option, index) => {
-          if (groupBy) {
-            return renderGroup({
-              key: option.key,
-              group: option.group,
-              children: option.options.map((option2, index2) =>
-                renderListOption(option2, option.index + index2),
-              ),
-            });
-          }
-          return renderListOption(option, index);
-        })}
-      </AutocompleteListbox>,
-    );
-  } else if (loading && groupedOptions.length === 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-        {loadingText}
-      </AutocompleteLoading>,
-    );
-  } else if (groupedOptions.length === 0 && !freeSolo && !loading) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteNoOptions
-        className={classes.noOptions}
-        ownerState={ownerState}
-        role="presentation"
-        onMouseDown={(event) => {
-          // Prevent input blur when interacting with the "no options" content
-          event.preventDefault();
-        }}
-      >
-        {noOptionsText}
-      </AutocompleteNoOptions>,
-    );
-  }
-
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -737,7 +689,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
-            onMouseDown: (event) => handleInputMouseDown(event),
+            onMouseDown: (event) => {
+              if (event.target === event.currentTarget) {
+                handleInputMouseDown(event);
+              }
+            },
             ...((hasClearIcon || hasPopupIcon) && {
               endAdornment: (
                 <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
@@ -779,7 +735,46 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl ? autocompletePopper : null}
+      {anchorEl ? (
+        <AutocompletePopper as={PopperSlot} {...popperProps}>
+          <AutocompletePaper as={PaperSlot} {...paperProps}>
+            {loading && groupedOptions.length === 0 ? (
+              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                {loadingText}
+              </AutocompleteLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <AutocompleteNoOptions
+                className={classes.noOptions}
+                ownerState={ownerState}
+                role="presentation"
+                onMouseDown={(event) => {
+                  // Prevent input blur when interacting with the "no options" content
+                  event.preventDefault();
+                }}
+              >
+                {noOptionsText}
+              </AutocompleteNoOptions>
+            ) : null}
+            {groupedOptions.length > 0 ? (
+              <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
+                {groupedOptions.map((option, index) => {
+                  if (groupBy) {
+                    return renderGroup({
+                      key: option.key,
+                      group: option.group,
+                      children: option.options.map((option2, index2) =>
+                        renderListOption(option2, option.index + index2),
+                      ),
+                    });
+                  }
+                  return renderListOption(option, index);
+                })}
+              </ListboxSlot>
+            ) : null}
+          </AutocompletePaper>
+        </AutocompletePopper>
+      ) : null}
     </React.Fragment>
   );
 });
@@ -823,6 +818,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
    * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
+   * @deprecated Use `slotProps.chip` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps: PropTypes.object,
   /**
@@ -987,7 +983,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -1030,10 +1026,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the listbox.
    * @default 'ul'
+   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent: PropTypes.elementType,
   /**
    * Props applied to the Listbox element.
+   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps: PropTypes.object,
   /**
@@ -1128,11 +1126,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the body of the popup.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent: PropTypes.elementType,
   /**
    * The component used to position the popup.
    * @default Popper
+   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent: PropTypes.elementType,
   /**

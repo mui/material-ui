@@ -149,7 +149,9 @@ export default function removeSystemProps(file, api, options) {
       matcher: (key, val) =>
         key !== 'color' ||
         (val.value?.includes('.') && val.value !== 'inherit') ||
-        val.value === 'divider',
+        val.value === 'divider' ||
+        val.value.startsWith('#') ||
+        val.value.match(/\(.*\)/),
     },
     Link: {
       matcher: (key) => key !== 'color',
@@ -162,8 +164,12 @@ export default function removeSystemProps(file, api, options) {
     .forEach((decl) => {
       decl.node.specifiers.forEach((spec) => {
         if (spec.type === 'ImportSpecifier') {
-          if (components.includes(spec.imported.name)) {
+          const name = spec.imported.name;
+          if (components.includes(name)) {
             deprecatedElements.push(spec.local.name);
+            if (customReplacement[name]) {
+              elementReplacement[spec.local.name] = customReplacement[name];
+            }
           }
         }
         if (spec.type === 'ImportDefaultSpecifier') {
