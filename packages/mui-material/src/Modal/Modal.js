@@ -189,7 +189,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     externalForwardedProps,
     shouldForwardComponentProp: true,
     additionalProps: BackdropProps,
-    shouldForwardComponentProp: true,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
