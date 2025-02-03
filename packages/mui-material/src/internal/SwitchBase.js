@@ -212,6 +212,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     className: classes.input,
     externalForwardedProps,
     getSlotProps: (handlers) => ({
+      ...handlers,
       onChange: (event) => {
         handlers.onChange?.(event);
         handleInputChange(event);
