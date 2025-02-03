@@ -10,7 +10,7 @@ This package contains Google's [Material Icons](https://fonts.google.com/icons?i
 
 The Material Icons package depends on Material UI—install both with the following command:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react

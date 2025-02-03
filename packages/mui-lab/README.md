@@ -6,7 +6,7 @@ This package hosts the incubator components that are not yet ready to move to `c
 
 Install the package in your project directory with:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npm install @mui/lab@next
@@ -15,7 +15,7 @@ npm install @mui/lab@next
 The lab has peer dependencies on the Material Design components and on the Emotion library.
 If you are not already using them in your project, you can install with:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npm install @mui/material@next @emotion/react @emotion/styled

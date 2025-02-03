@@ -6,7 +6,7 @@
 
 Run one of the following commands to add Material UI to your project:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 

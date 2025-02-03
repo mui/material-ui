@@ -30,7 +30,7 @@ To use styled-components, you need to configure your bundler to replace it with 
 
 If you're using yarn, you can configure it using a package resolution:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```diff title="package.json"
  {

@@ -11,10 +11,10 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 
 ## Setup & run
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest <codemod> <paths...>
+npx @mui/codemod@next <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -2441,7 +2441,7 @@ Renames `Autocomplete`'s `closeIcon` prop to `clearIcon`.
 +<Autocomplete clearIcon={defaultClearIcon} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/autocomplete-rename-closeicon  <path>
@@ -2460,7 +2460,7 @@ Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
  />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/autocomplete-rename-option  <path>
@@ -2479,7 +2479,7 @@ Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circu
 +<Avatar classes={{ circular: 'className' }} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/avatar-circle-circular <path>
@@ -2514,7 +2514,7 @@ Renames the badge's props.
  }}>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/badge-overlap-value <path>
@@ -2538,7 +2538,7 @@ This change only affects Base UI components.
  />;
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/base-rename-components-to-slots <path>
@@ -2557,7 +2557,7 @@ Updates the Box API from separate system props to `sx`.
 +<Box borderRadius="16px">
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/box-borderradius-values <path>
@@ -2593,7 +2593,7 @@ Renames the Box `grid*Gap` props.
 +<Box rowGap={4}>Item 5</Box>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/box-rename-gap <path>
@@ -2610,7 +2610,7 @@ Removes the outdated `color` prop values.
 +<Button>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/button-color-prop <path>
@@ -2627,7 +2627,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 +<Chip>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/chip-variant-prop <path>
@@ -2644,7 +2644,7 @@ Renames the CircularProgress `static` variant to `determinate`.
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/circularprogress-variant <path>
@@ -2663,7 +2663,7 @@ Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 +<Collapse classes={{ root: 'collapse' }} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/collapse-rename-collapsedheight <path>
@@ -2682,7 +2682,7 @@ A generic codemod to rename any component prop.
 +<Component newProp />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
@@ -2794,7 +2794,7 @@ Renames the `fade` style utility import and calls to `alpha()`.
 +const foo = alpha('#aaa');
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/fade-rename-alpha <path>
@@ -2811,7 +2811,7 @@ Renames `Grid`'s `justify` prop to `justifyContent`.
 +<Grid item justifyContent="left">Item</Grid>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/grid-justify-justifycontent <path>
@@ -3095,7 +3095,7 @@ or
 +import { SpeedDial } from '@material-ui/core';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/moved-lab-modules <path>
@@ -3139,7 +3139,7 @@ Fix private import paths.
 +import { createTheme } from '@material-ui/core/styles';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/optimal-imports <path>
@@ -3268,7 +3268,7 @@ Updates breakpoint values to match new logic. ⚠️ This mod is not idempotent,
 +theme.breakpoints.between('sm', 'lg')
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/theme-breakpoints <path>
@@ -3342,7 +3342,7 @@ Removes the 'px' suffix from some template strings.
 +`${theme.spacing(2)} ${theme.spacing(4)}`
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/theme-spacing <path>
@@ -3375,7 +3375,7 @@ Converts all `@mui/material` submodule imports to the root module:
 +import { List, Grid } from '@mui/material';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/top-level-imports <path>
@@ -3427,7 +3427,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
  />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/use-transitionprops <path>
@@ -3457,7 +3457,7 @@ The diff should look like this:
 +<FormControl value="Standard" variant="standard" />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/variant-prop <path>
@@ -3568,7 +3568,7 @@ The diff should look like this:
 +const spacing = theme.spacing(1);
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v4.0.0/theme-spacing-api <path>
@@ -3595,7 +3595,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 +import { withStyles, createTheme } from '@material-ui/core/styles';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v4.0.0/optimal-imports <path>
@@ -3613,7 +3613,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 +import { List, withStyles } from '@material-ui/core';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v4.0.0/top-level-imports <path>
@@ -3634,7 +3634,7 @@ The diff should look like this:
 +import MenuItem from '@material-ui/core/MenuItem';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/import-path <path>
@@ -3661,7 +3661,7 @@ The diff should look like this:
 +const teal500 = teal['500'];
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/color-imports <path>
@@ -3669,7 +3669,7 @@ npx @mui/codemod@latest v1.0.0/color-imports <path>
 
 **additional options**
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
@@ -3687,7 +3687,7 @@ The diff should look like this:
 +import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/svg-icon-imports <path>
@@ -3705,7 +3705,7 @@ The diff should look like this:
 +<MenuItem>{"Profile" + "!"}</MenuItem>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/menu-item-primary-text <path>
@@ -3729,7 +3729,7 @@ The diff should look like this:
 +import RaisedButton from 'material-ui/RaisedButton';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v0.15.0/import-path <path>
