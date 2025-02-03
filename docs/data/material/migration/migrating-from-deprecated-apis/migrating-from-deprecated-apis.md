@@ -1911,7 +1911,7 @@ npx @mui/codemod@latest deprecations/tabs-classes <path>
 npx @mui/codemod@latest deprecations/tabs-props <path>
 ```
 
-### Composed CSS classes
+### flexContainer and flexContainerVertical classes
 
 The class `flexContainer` has been deprecated in favor of `list`. The CSS classes composing the `vertical` prop value and `flexContainer` CSS class have been removed.
 

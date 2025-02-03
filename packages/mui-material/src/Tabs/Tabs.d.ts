@@ -205,7 +205,7 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
   orientation?: 'horizontal' | 'vertical';
   /**
    * The component used to render the scroll buttons.
-   * @deprecated use the `slots.scrollButton` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots.scrollButtons` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default TabScrollButton
    */
   ScrollButtonComponent?: React.ElementType;
@@ -236,7 +236,7 @@ export interface TabsOwnProps extends TabsSlotsAndSlotProps {
   };
   /**
    * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
-   * @deprecated use the `slotProps.scrollButton` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.scrollButtons` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TabScrollButtonProps?: Partial<TabScrollButtonProps>;
