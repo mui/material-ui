@@ -25,27 +25,27 @@ Additionally, keep these in mind when using them together:
 
 ## Set up the providers
 
-Render Joy UI's `CssVarsProvider` inside Material UI's provider and use `THEME_ID` to separate the themes from each other.
+Render Joy UI's `CssVarsProvider` inside Material UI's `ThemeProvider` and use `THEME_ID` to separate the themes from each other.
 
 ```js
 import {
-  extendTheme as materialExtendTheme,
-  CssVarsProvider as MaterialCssVarsProvider,
+  createTheme,
+  ThemeProvider,
   THEME_ID as MATERIAL_THEME_ID,
 } from '@mui/material/styles';
 import { CssVarsProvider as JoyCssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-const materialTheme = materialExtendTheme();
+const materialTheme = createTheme();
 
 export default function App() {
   return (
-    <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
+    <ThemeProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
       <JoyCssVarsProvider>
         <CssBaseline enableColorScheme />
         ...Material UI and Joy UI components
       </JoyCssVarsProvider>
-    </MaterialCssVarsProvider>
+    </ThemeProvider>
   );
 }
 ```
