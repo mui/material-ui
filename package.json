@@ -165,7 +165,7 @@
     "eslint-plugin-react-compiler": "0.0.0-experimental-75b9fd4-20240912",
     "eslint-plugin-react-hooks": "^5.0.0",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.2.0",
+    "fs-extra": "^11.3.0",
     "globby": "^14.0.2",
     "karma": "^6.4.4",
     "karma-browserstack-launcher": "~1.6.0",
