@@ -24,7 +24,6 @@ import { css, styled, keyframes } from '@mui/system';
 
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
-
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import SmartButtonRounded from '@mui/icons-material/SmartButtonRounded';
@@ -40,7 +39,6 @@ import TabRounded from '@mui/icons-material/TabRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import InterestsRoundedIcon from '@mui/icons-material/InterestsRounded';
 import RadioRoundedIcon from '@mui/icons-material/RadioRounded';
-
 import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
 import heroVariables from 'docs/src/components/productBaseUI/heroVariables';
