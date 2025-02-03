@@ -18,52 +18,7 @@ import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import { PrioritySupportSwitch2 } from 'docs/src/components/pricing/PrioritySupportSwitch';
 import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
-
-export const planInfo = {
-  community: {
-    iconName: 'pricing/x-plan-community',
-    title: 'Community',
-    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
-    features: ['+40 free components', 'Community support'],
-  },
-  pro: {
-    iconName: 'pricing/x-plan-pro',
-    title: 'Pro',
-    description: 'Best for professional developers or startups building data-rich applications.',
-    features: [
-      'All Community features and...',
-      'MUI X Pro access',
-      '10+ Pro features',
-      'Pro support',
-    ],
-  },
-  premium: {
-    iconName: 'pricing/x-plan-premium',
-    title: 'Premium',
-    description:
-      'The most advanced features for data-rich applications along with standard support.',
-    features: [
-      'All Pro features and...',
-      'MUI X Premium access',
-      '5+ Premium features',
-      'Premium support',
-    ],
-  },
-  enterprise: {
-    iconName: 'pricing/x-plan-enterprise',
-    title: 'Enterprise',
-    description:
-      'All features of Premium coupled with enterprise-grade support and customer success.',
-    features: [
-      'All Premium features and...',
-      'Technical support for all libraries',
-      'Guaranteed response time',
-      'Pre-screening',
-      'Issue escalation',
-      'Customer success manager',
-    ],
-  },
-} as const;
+import { PlanName, planInfo } from './PricingCards';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
 function transitionTheme(theme: any) {
@@ -83,11 +38,13 @@ function transitionTheme(theme: any) {
   };
 }
 
-export function PlanName({
+export type PlanName2 = 'community' | 'pro' | 'premium' | 'enterprise';
+
+export function PlanName2({
   plan,
   disableDescription = true,
 }: {
-  plan: 'community' | 'pro' | 'premium' | 'enterprise';
+  plan: PlanName;
   disableDescription?: boolean;
 }) {
   const { title, iconName, description } = planInfo[plan];
@@ -124,6 +81,7 @@ export function PlanName({
     </React.Fragment>
   );
 }
+
 
 function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { value, metadata } = props;
@@ -1182,7 +1140,7 @@ function StickyHead({
         </Typography>
         {(['community', 'pro', 'premium', 'enterprise'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName plan={plan} disableDescription />
+            <PlanName2 plan={plan} disableDescription />
           </Box>
         ))}
       </Container>
@@ -1318,16 +1276,16 @@ export default function PricingTable({
               Plans
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-              <PlanName plan="community" />
+              <PlanName2 plan="community" />
             </Box>
             <ColumnHeadHighlight>
-              <PlanName plan="pro" />
+              <PlanName2 plan="pro" />
             </ColumnHeadHighlight>
             <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-              <PlanName plan="premium" />
+              <PlanName2 plan="premium" />
             </Box>
             <ColumnHeadHighlight>
-              <PlanName plan="enterprise" />
+              <PlanName2 plan="enterprise" />
             </ColumnHeadHighlight>
           </Box>
         )}

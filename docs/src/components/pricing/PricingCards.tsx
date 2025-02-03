@@ -4,15 +4,96 @@ import { alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-// import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
 import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
-import IconImage from 'docs/src/components/icon/IconImage';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
-import { PlanName, planInfo } from 'docs/src/components/pricing/PricingTable';
+import { CommunitySupportIcon, ProSupportIcon, PremiumSupportIcon, CommunitySupportText, ProSupportText, PremiumSupportText, PrioritySupportIcon, 
+  PrioritySupportText } from 'docs/src/components/pricing/SupportIcons';
+
+export interface Feature {
+  text?: string;
+  highlight?: string;
+  text2?: string;
+  icon?: 'support' | 'check' ; 
+  supportType?: 'community' | 'pro' | 'premium' | 'priority';
+}
+
+export type PlanName = 'community' | 'pro' | 'premium' | 'enterprise';
+
+export const planInfo: Record<
+  PlanName,
+  {
+    iconName: string;
+    title: string;
+    description: string;
+    features: Feature[];
+  }
+> = {
+  community: {
+    iconName: 'pricing/x-plan-community',
+    title: 'Community',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
+    features: [
+      { text: '+40 free components', icon: 'check' },
+      {
+        icon: 'support',
+        supportType: 'community',
+      },
+    ],
+  },
+  pro: {
+    iconName: 'pricing/x-plan-pro',
+    title: 'Pro',
+    description: 'Best for professional developers or startups building data-rich applications.',
+    features: [
+      { text: 'All Community features and...', icon: 'check' },
+      { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
+      { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
+      {
+        
+        icon: 'support',
+        supportType: 'pro',
+      },
+    ],
+  },
+  premium: {
+    iconName: 'pricing/x-plan-premium',
+    title: 'Premium',
+    description:
+      'The most advanced features for data-rich applications along with standard support.',
+    features: [
+      { text: 'All Pro', text2: 'features and...', icon: 'check' },
+      { text: 'MUI X', highlight: 'Premium', text2: 'access', icon: 'check' },
+      { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
+      {
+        icon: 'support',
+        supportType: 'premium',
+      },
+    ],
+  },
+  enterprise: {
+    iconName: 'pricing/x-plan-enterprise',
+    title: 'Enterprise',
+    description:
+      'All features of Premium coupled with enterprise-grade support and customer success.',
+    features: [
+      { text: 'All', highlight: 'Premium', text2: 'features and...', icon: 'check' },
+      { text: 'Technical support for all libraries', icon: 'check' },
+      { text: 'Guaranteed response time', icon: 'check' },
+      { text: 'Pre-screening', icon: 'check' },
+      { text: 'Issue escalation', icon: 'check' },
+      { text: 'Customer success manager', icon: 'check' },
+      {
+        icon: 'support',
+        supportType: 'priority',
+      },
+    ],
+  },
+};
 
 const formatter = new Intl.NumberFormat('en-US');
 
@@ -242,7 +323,6 @@ export function PlanPrice(props: PlanPriceProps) {
           mt: 2,
         }}
       >
-        {/* <BusinessIcon sx={{ fontSize: 65, color: 'text.tertiary' }} /> */}
       </Box>
       <Typography
         variant="h5"
@@ -279,6 +359,122 @@ export function PlanPrice(props: PlanPriceProps) {
   );
 }
 
+export function FeatureItem({ feature }: { feature: Feature }) {
+  return (
+    <Box sx={{ 
+      display: 'flex', 
+      alignItems: 'center',
+      gap: 1,
+    }}>
+      {feature.icon === 'check' && <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main', ml: 0.4}} />}
+      {feature.icon === 'support' && feature.supportType === 'community'
+        ? <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 0.6
+          }}>
+            <CommunitySupportIcon /> 
+            <CommunitySupportText />
+          </Box>
+        : feature.supportType === 'pro'
+          ? <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 0.6
+          }}>
+            <ProSupportIcon /> 
+            <ProSupportText />
+          </Box>
+          : feature.supportType === 'premium'
+            ? <Box sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 0.6
+            }}>
+              <PremiumSupportIcon /> 
+              <PremiumSupportText />
+            </Box>
+            : feature.supportType === 'priority'
+              ? <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 0.6 
+              }}>
+                <PrioritySupportIcon /> 
+                <PrioritySupportText />
+              </Box>
+              : null
+      }
+      <Typography
+        component="span"
+        variant="body2"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 0.5,
+        }}
+      >
+        {feature.text}
+        {feature.highlight && (
+          <Typography
+            variant="body2"
+            component="span"
+            sx={{
+              color: 'primary.main',
+              fontWeight: 500,
+            }}
+          >
+            {feature.highlight}
+          </Typography>
+        )}
+        {feature.text2 && ` ${feature.text2}`}
+      </Typography>
+    </Box>
+  );
+}
+
+export function PlanName({
+  plan,
+  disableDescription = true,
+}: {
+  plan: keyof typeof planInfo;
+  disableDescription?: boolean;
+}) {
+  const { title, iconName, description } = planInfo[plan];
+  return (
+    <React.Fragment>
+      <Typography
+        variant="body2"
+        sx={{
+          fontWeight: 'bold',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          pr: 0.5,
+        }}
+      >
+        <IconImage name={iconName} mode="" loading="eager" sx={{ mr: 1 }} /> {title}
+      </Typography>
+      {!disableDescription && (
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+            display: 'flex',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'baseline',
+            mt: 1,
+            minHeight: { md: 63 },
+          }}
+        >
+          {description}
+        </Typography>
+      )}
+    </React.Fragment>
+  );
+}
+
 export default function PricingCards() {
   return (
     <React.Fragment>
@@ -304,22 +500,17 @@ export default function PricingCards() {
           <Divider />
           <Box textAlign="left">
             {planInfo.community.features.map((feature, index) => (
-              <Typography
+              <Box
                 key={index}
-                variant="body2"
                 sx={{
-                  display: 'flex',
-                  color: 'text.secondary',
-                  alignItems: 'center',
                   mb: 2,
                   '&:last-child': {
                     mb: 0,
                   },
                 }}
               >
-                <IconImage name="pricing/yes" sx={{ mr: 1 }} />
-                {feature}
-              </Typography>
+                <FeatureItem feature={feature} />
+              </Box>
             ))}
           </Box>
         </Box>
@@ -345,22 +536,17 @@ export default function PricingCards() {
           <Divider />
           <Box textAlign="left">
             {planInfo.pro.features.map((feature, index) => (
-              <Typography
+              <Box
                 key={index}
-                variant="body2"
                 sx={{
-                  display: 'flex',
-                  color: 'text.secondary',
-                  alignItems: 'center',
                   mb: 2,
                   '&:last-child': {
                     mb: 0,
                   },
                 }}
               >
-                <IconImage name="pricing/yes" sx={{ mr: 1 }} />
-                {feature}
-              </Typography>
+                <FeatureItem feature={feature} />
+              </Box>
             ))}
           </Box>
         </Box>
@@ -391,23 +577,17 @@ export default function PricingCards() {
           {/* <PricingTableBuyPremium />  */}
           <Box textAlign="left">
             {planInfo.premium.features.map((feature, index) => (
-              <Typography
+              <Box
                 key={index}
-                variant="body2"
                 sx={{
-                  display: 'flex',
-                  color: 'text.secondary',
-                  alignItems: 'center',
                   mb: 2,
                   '&:last-child': {
                     mb: 0,
                   },
                 }}
               >
-                {/* <CheckCircleIcon color="success" fontSize="small" sx={{ mr: 1 }} /> */}
-                <IconImage name="pricing/yes" sx={{ mr: 1 }} />
-                {feature}
-              </Typography>
+                <FeatureItem feature={feature} />
+              </Box>
             ))}
           </Box>
         </Box>
@@ -433,22 +613,17 @@ export default function PricingCards() {
           <Divider />
           <Box textAlign="left">
             {planInfo.enterprise.features.map((feature, index) => (
-              <Typography
+              <Box
                 key={index}
-                variant="body2"
                 sx={{
-                  display: 'flex',
-                  color: 'text.secondary',
-                  alignItems: 'center',
                   mb: 2,
                   '&:last-child': {
                     mb: 0,
                   },
                 }}
               >
-                <IconImage name="pricing/yes" sx={{ mr: 1 }} />
-                {feature}
-              </Typography>
+                <FeatureItem feature={feature} />
+              </Box>
             ))}
           </Box>
         </Box>

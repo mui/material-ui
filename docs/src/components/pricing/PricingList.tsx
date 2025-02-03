@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Paper, { PaperProps } from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import PricingTable, { PlanName, planInfo } from 'docs/src/components/pricing/PricingTable';
-import { PlanPrice } from 'docs/src/components/pricing/PricingCards';
+import PricingTable from 'docs/src/components/pricing/PricingTable';
+import { PlanPrice, PlanName, planInfo, FeatureItem } from 'docs/src/components/pricing/PricingCards';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 
 const Plan = React.forwardRef<
@@ -18,8 +16,6 @@ const Plan = React.forwardRef<
     unavailable?: boolean;
   } & PaperProps
 >(function Plan({ plan, unavailable, sx, ...props }, ref) {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
 
   const { features } = planInfo[plan];
 
@@ -37,26 +33,15 @@ const Plan = React.forwardRef<
       </Box>
       {features.map((feature, index) => (
         <Box
+          key={index}
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
+            mt: 1,
           }}
         >
-          <Box
-            key={index}
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              mt: 1,
-            }}
-          >
-            <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />
-            <Typography variant="body2" sx={{ color: 'text.secondary', ml: 1 }}>
-              {feature}
-            </Typography>
-          </Box>
+          <FeatureItem feature={feature} />
         </Box>
       ))}
     </Paper>

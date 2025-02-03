@@ -37,7 +37,7 @@ export default function Pricing() {
             <Divider />
             {/* Mobile, Tablet */}
             <Container sx={{ display: { xs: 'block', md: 'none' }, pb: 3, mt: '-1px' }}>
-              <PricingList />
+               <PricingList /> 
             </Container>
             {/* Desktop */}
             <Container sx={{ display: { xs: 'none', md: 'block' } }}>
