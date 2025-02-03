@@ -4,7 +4,7 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra-styled-components
@@ -20,7 +20,7 @@ npm start
 
 ## CodeSandbox
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-cra-styled-components).
 

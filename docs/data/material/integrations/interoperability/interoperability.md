@@ -272,7 +272,7 @@ export default function GlobalCssSliderDeep() {
 By default, Material UI components come with Emotion as their style engine.
 If, however, you would like to use styled-components, you can configure your app by following the [styled-components guide](/material-ui/integrations/styled-components/) or starting with one of the example projects:
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 - [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
 - [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
