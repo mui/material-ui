@@ -5,7 +5,6 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { LinearProgressClasses } from './linearProgressClasses';
 
 export interface LinearProgressPropsColorOverrides {}
-
 export interface LinearProgressPropsVariantOverrides {}
 
 export interface LinearProgressProps
