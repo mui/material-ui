@@ -26,15 +26,19 @@ describe('<Snackbar />', () => {
     return result;
   }
 
-  function CustomContent({ ownerState, className, ...props }) {
+  const CustomContent = React.forwardRef(function CustomContent(
+    { className, ownerState, ...props },
+    ref,
+  ) {
     return (
       <div
         className={clsx(snackbarContentClasses.root, className)}
         data-testid="custom"
+        ref={ref}
         {...props}
       />
     );
-  }
+  });
 
   describeConformance(<Snackbar open message="message" />, () => ({
     classes,
