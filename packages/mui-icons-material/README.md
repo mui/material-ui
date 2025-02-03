@@ -1,6 +1,6 @@
 # @mui/icons-material
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 This package contains Google's [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to Material UI [SVG Icon](https://next.mui.com/material-ui/icons/#svgicon) components.
 
@@ -18,7 +18,7 @@ npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 - Learn more about Material UI's [SVG Icon component](https://next.mui.com/material-ui/icons/#svgicon).
 - Browse the available icons on the [Material Icons page](https://next.mui.com/material-ui/material-icons/).

@@ -33,7 +33,7 @@ It includes `@mui/material` and [Pigment CSS](https://github.com/mui/pigment-cs
 
 ## What's next?
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 You now have a working example project.
 You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.

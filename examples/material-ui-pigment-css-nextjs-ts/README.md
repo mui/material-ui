@@ -34,14 +34,14 @@ or:
 
 To learn more about this example:
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 - [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Customizing Material UI](https://next.mui.com/material-ui/customization/how-to-customize/) - approaches to customizing Material UI.
 
 ## What's next?
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 You now have a working example project.
 You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.

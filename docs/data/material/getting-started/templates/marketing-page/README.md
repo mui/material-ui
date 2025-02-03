@@ -10,6 +10,6 @@
 
 ## Demo
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 View the demo at https://next.mui.com/material-ui/getting-started/templates/marketing-page/.

@@ -28,7 +28,7 @@ or:
 
 ## The idea behind the example
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 This is the reference implementation of the [Server Rendering tutorial](https://next.mui.com/material-ui/guides/server-rendering/).
 
@@ -37,7 +37,7 @@ If you prefer, you can [use styled-components instead](https://next.mui.com/mate
 
 ## What's next?
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 You now have a working example project.
 You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.

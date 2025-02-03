@@ -23,6 +23,6 @@ npm install @mui/material@next @emotion/react @emotion/styled
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 Visit [https://next.mui.com/material-ui/about-the-lab/](https://next.mui.com/material-ui/about-the-lab/) to view the full documentation.
