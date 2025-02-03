@@ -21,7 +21,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^5.0.0",
-    "react-router-dom": "^6.28.2",
+    "react-router-dom": "^6.29.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "postcss": "^8.4.49",
     "postcss-combine-media-query": "^1.0.1",
-    "vite": "5.4.12",
+    "vite": "5.4.14",
     "vite-plugin-node-polyfills": "0.22.0",
     "vite-plugin-pages": "^0.32.4"
   },
