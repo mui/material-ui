@@ -189,7 +189,7 @@ export default withDocsInfra({
     // docs-infra
     LIB_VERSION: pkg.version,
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'master', // #default-branch-switch
+    SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
     GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
