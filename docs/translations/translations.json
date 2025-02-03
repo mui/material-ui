@@ -220,6 +220,7 @@
     "/material-ui/react-timeline": "Timeline",
     "/material-ui/customization": "Customization",
     "/material-ui/customization/how-to-customize": "How to customize",
+    "/material-ui/customization/overriding-component-structure": "Overriding component structure",
     "/material-ui/customization/dark-mode": "Dark mode",
     "/material-ui/customization/color": "Color",
     "/material-ui/customization/right-to-left": "Right-to-left",
