@@ -182,17 +182,18 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ownerState,
   });
 
-  const [ClickAwaySlot, clickAwayListenerProps] = useSlot('clickAwayListener', {
-    elementType: ClickAwayListener,
-    externalForwardedProps,
-    getSlotProps: (handlers) => ({
-      onClickAway: (...params) => {
-        handlers.onClickAway?.(...params);
-        onClickAway(...params);
-      },
-    }),
-    ownerState,
-  });
+  const [ClickAwaySlot, { ownerState: clickAwayOwnerStateProp, ...clickAwayListenerProps }] =
+    useSlot('clickAwayListener', {
+      elementType: ClickAwayListener,
+      externalForwardedProps,
+      getSlotProps: (handlers) => ({
+        onClickAway: (...params) => {
+          handlers.onClickAway?.(...params);
+          onClickAway(...params);
+        },
+      }),
+      ownerState,
+    });
 
   const [ContentSlot, contentSlotProps] = useSlot('content', {
     elementType: SnackbarContent,
@@ -233,7 +234,10 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   }
 
   return (
-    <ClickAwaySlot {...clickAwayListenerProps}>
+    <ClickAwaySlot
+      {...clickAwayListenerProps}
+      {...(slots.clickAwayListener && { ownerState: clickAwayOwnerStateProp })}
+    >
       <Root {...rootProps}>
         <TransitionSlot {...transitionProps}>
           {children || <ContentSlot {...contentSlotProps} />}
