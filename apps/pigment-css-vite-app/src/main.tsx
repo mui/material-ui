@@ -1,6 +1,6 @@
 import * as ReactDOMClient from 'react-dom/client';
 import * as React from 'react';
-import { BrowserRouter as Router, useLocation, useRoutes } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation, useRoutes } from 'react-router';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
 import CssBaseline from '@mui/material/CssBaseline';

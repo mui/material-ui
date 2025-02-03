@@ -424,9 +424,9 @@ importers:
       react-error-boundary:
         specifier: ^5.0.0
         version: 5.0.0(react@19.0.0)
-      react-router-dom:
-        specifier: ^6.28.2
-        version: 6.28.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-router:
+        specifier: ^7.1.3
+        version: 7.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -446,6 +446,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.3
         version: 19.0.3(@types/react@19.0.8)
+      '@types/react-router':
+        specifier: ^5.1.20
+        version: 5.1.20
       '@types/webfontloader':
         specifier: ^1.6.38
         version: 1.6.38
@@ -466,7 +469,7 @@ importers:
         version: 0.22.0(rollup@4.21.1)(vite@5.4.12(@types/node@20.17.16)(terser@5.37.0))
       vite-plugin-pages:
         specifier: ^0.32.4
-        version: 0.32.4(vite@5.4.12(@types/node@20.17.16)(terser@5.37.0))
+        version: 0.32.4(react-router@7.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(vite@5.4.12(@types/node@20.17.16)(terser@5.37.0))
 
   benchmark:
     dependencies:
@@ -5021,10 +5024,6 @@ packages:
       react-native:
         optional: true
 
-  '@remix-run/router@1.21.1':
-    resolution: {integrity: sha512-KeBYSwohb8g4/wCcnksvKTYlg69O62sQeLynn2YE+5z7JWEj95if27kclW9QqbrlsQ2DINI8fjbV3zyuKfwjKg==}
-    engines: {node: '>=14.0.0'}
-
   '@rollup/plugin-inject@5.0.5':
     resolution: {integrity: sha512-2+DEJbNBoPROPkgTDNe8/1YXWcqxbN5DTjASVIOx8HS+pITXushyNiBV56RB08zuptzz8gT3YfkqriTBVycepg==}
     engines: {node: '>=14.0.0'}
@@ -5453,6 +5452,9 @@ packages:
   '@types/gtag.js@0.0.20':
     resolution: {integrity: sha512-wwAbk3SA2QeU67unN7zPxjEHmPmlXwZXZvQEpbEUQuMCRGgKyE1m6XDuTUA9b6pCGb/GqJmdfMOY5LuDjJSbbg==}
 
+  '@types/history@4.7.11':
+    resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
+
   '@types/hoist-non-react-statics@3.3.6':
     resolution: {integrity: sha512-lPByRJUer/iN/xa4qpyL0qmL11DqNW81iU/IG1S3uvRUq4oKagz8VCxZjiWkumgt66YT3vOdDgZ0o32sGKtCEw==}
 
@@ -5538,6 +5540,9 @@ packages:
 
   '@types/react-reconciler@0.28.8':
     resolution: {integrity: sha512-SN9c4kxXZonFhbX4hJrZy37yw9e7EIxcpHCxQv5JUS18wDE5ovkQKlqQEkufdJCCMfuI9BnjUJvhYeJ9x5Ra7g==}
+
+  '@types/react-router@5.1.20':
+    resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
 
   '@types/react-swipeable-views@0.13.6':
     resolution: {integrity: sha512-Pe9TxRRo098Lxi59YQ8KWVuyBOvt9nJK5AtAqGiRsnl+6PXLknuiLhg0+mGuM9Bn+nun+Ed65Kb1Yl171vCdyA==}
@@ -11245,19 +11250,6 @@ packages:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
 
-  react-router-dom@6.28.2:
-    resolution: {integrity: sha512-O81EWqNJWqvlN/a7eTudAdQm0TbI7hw+WIi7OwwMcTn5JMyZ0ibTFNGz+t+Lju0df4LcqowCegcrK22lB1q9Kw==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-
-  react-router@6.28.2:
-    resolution: {integrity: sha512-BgFY7+wEGVjHCiqaj2XiUBQ1kkzfg6UoKYwEe0wv+FF+HNPCxtS/MVPvLAPH++EsuCMReZl9RYVGqcHLk5ms3A==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-
   react-router@7.1.3:
     resolution: {integrity: sha512-EezYymLY6Guk/zLQ2vRA8WvdUhWFEj5fcE3RfWihhxXBW7+cd1LsIiA3lmx+KCmneAGQuyBv820o44L2+TtkSA==}
     engines: {node: '>=20.0.0'}
@@ -16443,8 +16435,6 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
       react-native: 0.75.4(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@19.0.8)(encoding@0.1.13)(react@19.0.0)(typescript@5.7.3)
 
-  '@remix-run/router@1.21.1': {}
-
   '@rollup/plugin-inject@5.0.5(rollup@4.21.1)':
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.21.1)
@@ -16927,6 +16917,8 @@ snapshots:
 
   '@types/gtag.js@0.0.20': {}
 
+  '@types/history@4.7.11': {}
+
   '@types/hoist-non-react-statics@3.3.6':
     dependencies:
       '@types/react': 19.0.8
@@ -17011,6 +17003,11 @@ snapshots:
 
   '@types/react-reconciler@0.28.8':
     dependencies:
+      '@types/react': 19.0.8
+
+  '@types/react-router@5.1.20':
+    dependencies:
+      '@types/history': 4.7.11
       '@types/react': 19.0.8
 
   '@types/react-swipeable-views@0.13.6':
@@ -24116,18 +24113,6 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
-  react-router-dom@6.28.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
-    dependencies:
-      '@remix-run/router': 1.21.1
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-router: 6.28.2(react@19.0.0)
-
-  react-router@6.28.2(react@19.0.0):
-    dependencies:
-      '@remix-run/router': 1.21.1
-      react: 19.0.0
-
   react-router@7.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@types/cookie': 0.6.0
@@ -25935,7 +25920,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  vite-plugin-pages@0.32.4(vite@5.4.12(@types/node@20.17.16)(terser@5.37.0)):
+  vite-plugin-pages@0.32.4(react-router@7.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(vite@5.4.12(@types/node@20.17.16)(terser@5.37.0)):
     dependencies:
       '@types/debug': 4.1.12
       debug: 4.3.7(supports-color@8.1.1)
@@ -25947,6 +25932,8 @@ snapshots:
       picocolors: 1.1.1
       vite: 5.4.12(@types/node@20.17.16)(terser@5.37.0)
       yaml: 2.6.1
+    optionalDependencies:
+      react-router: 7.1.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     transitivePeerDependencies:
       - supports-color
 
