@@ -10,7 +10,7 @@ export interface TabsClasses {
   /** @deprecated use `list` instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details. */
   flexContainer: string;
   /** Styles applied to the flex container element if `orientation="vertical"`. */
-  /** @deprecated use a combination of `list` and `vertical` instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details. */ 
+  /** @deprecated use a combination of `list` and `vertical` instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details. */
   flexContainerVertical: string;
   /** Styles applied to the list element. */
   list: string;
