@@ -44,7 +44,7 @@
     {
       "key": "list",
       "className": "MuiTabList-list",
-      "description": "Styles applied to the list element, previously flexContainer.",
+      "description": "Styles applied to the list element.",
       "isGlobal": false
     },
     {
