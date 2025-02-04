@@ -1,5 +1,5 @@
 {
-  "name": "@app/vite-app",
+  "name": "@app/pigment-css-vite-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
