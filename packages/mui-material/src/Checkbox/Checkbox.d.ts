@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import {
-  CreateSlotsAndSlotProps,
-  SlotProps,
-  InternalStandardProps as StandardProps,
-  Theme,
-} from '..';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { CheckboxClasses } from './checkboxClasses';
 
@@ -14,36 +9,8 @@ export interface CheckboxPropsSizeOverrides {}
 
 export interface CheckboxPropsColorOverrides {}
 
-export interface CheckboxRootSlotPropsOverrides {}
-
-export interface CheckboxSlots {
-  /**
-   * The component that renders the root slot.
-   * @default SwitchBase
-   */
-  root: React.ElementType;
-}
-
-export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
-  CheckboxSlots,
-  {
-    /**
-     * Props forwarded to the root slot.
-     * By default, the available props are based on the SwitchBase.
-     */
-    root: SlotProps<
-      React.ElementType<SwitchBaseProps>,
-      CheckboxRootSlotPropsOverrides,
-      CheckboxOwnerState
-    >;
-  }
->;
-
-export interface CheckboxOwnerState extends CheckboxProps {}
-
 export interface CheckboxProps
-  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'>,
-    CheckboxSlotsAndSlotProps {
+  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
   /**
    * If `true`, the component is checked.
    */
