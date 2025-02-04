@@ -17,7 +17,6 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
-import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, color, size } = ownerState;
@@ -125,8 +124,6 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     className,
     disabled: disabledProp,
     disableRipple = false,
-    slots = {},
-    slotProps = {},
     ...other
   } = props;
 
@@ -166,33 +163,22 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     }
   }
 
-  const externalForwardedProps = {
-    ...other,
-    slots,
-    slotProps,
-  };
-
-  const [RootSlot, rootProps] = useSlot('root', {
-    elementType: RadioRoot,
-    ref,
-    className: clsx(classes.root, className),
-    ownerState,
-    externalForwardedProps,
-  });
-
   return (
-    <RootSlot
+    <RadioRoot
       type="radio"
       icon={React.cloneElement(icon, { fontSize: defaultIcon.props.fontSize ?? size })}
       checkedIcon={React.cloneElement(checkedIcon, {
         fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
       disabled={disabled}
+      ownerState={ownerState}
       classes={classes}
       name={name}
       checked={checked}
       onChange={onChange}
-      {...rootProps}
+      ref={ref}
+      className={clsx(classes.root, className)}
+      {...other}
     />
   );
 });
@@ -281,20 +267,6 @@ Radio.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
-  /**
-   * The props used for each slot inside.
-   * @default {}
-   */
-  slotProps: PropTypes.shape({
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * The components used for each slot inside.
-   * @default {}
-   */
-  slots: PropTypes.shape({
-    root: PropTypes.elementType,
-  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
