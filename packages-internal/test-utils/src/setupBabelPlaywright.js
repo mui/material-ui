@@ -5,6 +5,9 @@
 require('@babel/register')({
   configFile: false,
   extensions: ['.js', '.ts', '.tsx'],
-  presets: [require.resolve('@babel/preset-typescript'), require.resolve('@babel/preset-env')],
-  plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
+  presets: [require.resolve('@babel/preset-typescript')],
+  plugins: [
+    require.resolve('@babel/plugin-transform-modules-commonjs'),
+    require.resolve('babel-plugin-transform-import-meta'),
+  ],
 });
