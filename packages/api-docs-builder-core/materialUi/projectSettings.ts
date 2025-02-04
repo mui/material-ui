@@ -52,6 +52,6 @@ export const projectSettings: ProjectSettings = {
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName,
   isGlobalClassName: isGlobalState,
-  // #default-branch-switch
+  // #host-reference
   baseApiUrl: 'https://next.mui.com',
 };

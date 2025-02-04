@@ -70,7 +70,7 @@ cd material-ui
 git remote add upstream https://github.com/mui/material-ui.git
 ```
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 3. Synchronize your local `master` branch with the upstream one:
 
@@ -144,7 +144,7 @@ If any of these checks fail, refer to [Checks and how to fix them](#checks-and-h
 
 Make sure the following is true:
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 - The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
