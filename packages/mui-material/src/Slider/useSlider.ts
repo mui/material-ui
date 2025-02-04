@@ -311,9 +311,9 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     let newValue: number | number[] = valueInput;
     if (marks && step == null) {
       const maxMarksValue = marksValues[marksValues.length - 1];
-      if (newValue > maxMarksValue) {
+      if (newValue >= maxMarksValue) {
         newValue = maxMarksValue;
-      } else if (newValue < marksValues[0]) {
+      } else if (newValue <= marksValues[0]) {
         newValue = marksValues[0];
       } else {
         newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];

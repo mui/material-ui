@@ -43,7 +43,7 @@ export function useMenuItemContextStabilizer(id: string | undefined) {
       if (itemValue !== itemId) {
         throw new Error(
           [
-            'Base UI MenuItem: Tried to access the state of another MenuItem.',
+            'MUI Base MenuItem: Tried to access the state of another MenuItem.',
             `itemValue: ${itemValue} | id: ${itemId}`,
             'This is unsupported when the MenuItem uses the MenuItemContextStabilizer as a performance optimization.',
           ].join('/n'),

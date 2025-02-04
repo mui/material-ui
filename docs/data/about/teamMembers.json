@@ -275,14 +275,6 @@
     "github": "JCQuintas"
   },
   {
-    "name": "Arthur Balduini",
-    "title": "React Engineer - X",
-    "location": "Paris, France",
-    "locationCountry": "fr",
-    "about": "Cooking 🍳, plant caring 🪴 and literature 📖.",
-    "github": "arthurbalduini"
-  },
-  {
     "name": "Kenan Yusuf",
     "title": "Design Engineer - X",
     "location": "London, UK",
@@ -314,5 +306,13 @@
     "locationCountry": "us",
     "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛.",
     "github": "alelthomas"
+  },
+  {
+    "name": "Bernardo Belchior",
+    "title": "React Engineer - X",
+    "location": "Berlin, Germany",
+    "locationCountry": "de",
+    "about": "Soccer ⚽ and coding 💻.",
+    "github": "bernardobelchior"
   }
 ]

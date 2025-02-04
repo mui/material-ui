@@ -15,7 +15,7 @@ export interface StepLabelSlots {
   /**
    * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
    */
-  stepIcon: React.ElementType<StepIconProps>;
+  stepIcon: React.ElementType;
 }
 
 export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -86,11 +86,11 @@ export type StepLabelClasskey = keyof NonNullable<StepLabelProps['classes']>;
  *
  * Demos:
  *
- * - [Stepper](https://mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepLabel API](https://mui.com/material-ui/api/step-label/)
+ * - [StepLabel API](https://next.mui.com/material-ui/api/step-label/)
  */
 declare const StepLabel: ((props: StepLabelProps) => React.JSX.Element) & {
   muiName: string;

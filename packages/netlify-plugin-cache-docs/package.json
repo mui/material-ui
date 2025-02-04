@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.3.0"
   },
   "engines": {
     "node": ">=14.0.0"
