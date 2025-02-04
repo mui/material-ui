@@ -11,8 +11,6 @@ githubLabel: 'component: Portal'
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
-{{"component": "modules/components/ComponentPageTabs.js"}}
-
 ## Introduction
 
 Portal is a utility component built around [React's `createPortal()` API](https://react.dev/reference/react-dom/createPortal).

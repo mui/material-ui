@@ -11,8 +11,6 @@ githubLabel: 'component: TextareaAutosize'
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
-{{"component": "modules/components/ComponentPageTabs.js"}}
-
 ## Introduction
 
 Textarea Autosize is a utility component that replaces the native `<textarea>` HTML.

@@ -10,8 +10,6 @@ components: NoSsr
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
-{{"component": "modules/components/ComponentPageTabs.js"}}
-
 ## Introduction
 
 No-SSR is a utility component that prevents its children from being rendered on the server.
