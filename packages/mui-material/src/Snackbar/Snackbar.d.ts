@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { ClickAwayListenerProps } from '../ClickAwayListener';
+import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
@@ -51,7 +51,7 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the avaible props are based on the [SnackbarContent](https://mui.com/material-ui/api/snackbar-content/#props) component.
      */
     content: SlotProps<
-      React.ElementType<Partial<SnackbarContentProps>>,
+      React.ElementType<SnackbarContentProps>,
       SnackbarContentSlotPropsOverrides,
       SnackbarOwnerState
     >;
@@ -60,7 +60,7 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the avaible props are based on the [ClickAwayListener](https://mui.com/material-ui/api/click-away-listener/#props) component.
      */
     clickAwayListener: SlotComponentProps<
-      React.ElementType<Partial<ClickAwayListenerProps>>,
+      typeof ClickAwayListener,
       SnackbarClickAwayListenerSlotPropsOverrides,
       SnackbarOwnerState
     >;

@@ -353,34 +353,9 @@ Snackbar.propTypes /* remove-proptypes */ = {
   slotProps: PropTypes.shape({
     clickAwayListener: PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.object,
       PropTypes.shape({
         children: PropTypes.element.isRequired,
         disableReactTree: PropTypes.bool,
-        mouseEvent: PropTypes.oneOf([
-          'onClick',
-          'onMouseDown',
-          'onMouseUp',
-          'onPointerDown',
-          'onPointerUp',
-          false,
-        ]),
-        onClickAway: PropTypes.func,
-        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
-      }),
-      PropTypes.shape({
-        children: PropTypes.element.isRequired,
-        disableReactTree: PropTypes.bool,
-        key: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.shape({
-            '__@toStringTag@9059': PropTypes.oneOf(['BigInt']).isRequired,
-            toLocaleString: PropTypes.func.isRequired,
-            toString: PropTypes.func.isRequired,
-            valueOf: PropTypes.func.isRequired,
-          }),
-          PropTypes.string,
-        ]),
         mouseEvent: PropTypes.oneOf([
           'onClick',
           'onMouseDown',
