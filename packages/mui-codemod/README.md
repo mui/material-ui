@@ -1640,7 +1640,7 @@ JS transforms:
 ```diff
  import { sliderClasses } from '@mui/material/Slider';
 
-MuiSlider: {
+ MuiSlider: {
    styleOverrides: {
      root: {
 -      [`&.${sliderClasses.thumbSizeSmall}`]: {
