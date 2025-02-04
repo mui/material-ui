@@ -1,5 +1,24 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.3
+
+<!-- generated comparing v6.4.2..v6.x -->
+
+_Feb 4, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@6.4.3`
+
+- [LinearProgress][CircularProgress] Add variant overrides for module augmentation (#45191) @ZeeshanTamboli
+- [TextField] Remove deprecated props from documentation (#45200) @sai6855
+
+### Core
+
+- Fix corepack and pnpm installation in CircleCI (#45194) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @sai6855, @ZeeshanTamboli
+
 ## 6.4.2
 
 <!-- generated comparing v6.4.1..v6.x -->
