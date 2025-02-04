@@ -139,13 +139,8 @@ importers:
         specifier: ^7.18.0
         version: 7.18.0(eslint@8.57.1)(typescript@5.7.3)
       '@vitest/browser':
-<<<<<<< HEAD
-        specifier: ^2.1.8
-        version: 2.1.8(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
-=======
         specifier: ^3.0.5
-        version: 3.0.5(@types/node@20.17.16)(playwright@1.48.2)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
->>>>>>> master
+        version: 3.0.5(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
       '@vitest/coverage-v8':
         specifier: ^3.0.5
         version: 3.0.5(@vitest/browser@3.0.5)(vitest@2.1.8)
@@ -11099,7 +11094,6 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
-
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qjobs@1.2.0:
@@ -17224,11 +17218,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-<<<<<<< HEAD
-  '@vitest/browser@2.1.8(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)':
-=======
-  '@vitest/browser@3.0.5(@types/node@20.17.16)(playwright@1.48.2)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)':
->>>>>>> master
+  '@vitest/browser@3.0.5(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)':
     dependencies:
       '@testing-library/dom': 10.4.0
       '@testing-library/user-event': 14.6.1(@testing-library/dom@10.4.0)
@@ -17265,11 +17255,7 @@ snapshots:
       tinyrainbow: 2.0.0
       vitest: 2.1.8(@types/node@20.17.16)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.7.0(@types/node@20.17.16)(typescript@5.7.3))(terser@5.37.0)
     optionalDependencies:
-<<<<<<< HEAD
-      '@vitest/browser': 2.1.8(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
-=======
-      '@vitest/browser': 3.0.5(@types/node@20.17.16)(playwright@1.48.2)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
->>>>>>> master
+      '@vitest/browser': 3.0.5(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
     transitivePeerDependencies:
       - supports-color
 
@@ -26086,11 +26072,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 20.17.16
-<<<<<<< HEAD
-      '@vitest/browser': 2.1.8(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
-=======
-      '@vitest/browser': 3.0.5(@types/node@20.17.16)(playwright@1.48.2)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
->>>>>>> master
+      '@vitest/browser': 3.0.5(@types/node@20.17.16)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
       happy-dom: 15.11.6
       jsdom: 25.0.1
     transitivePeerDependencies:
