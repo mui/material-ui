@@ -139,8 +139,8 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5(@types/node@20.17.16)(playwright@1.48.2)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
       '@vitest/coverage-v8':
-        specifier: ^2.1.8
-        version: 2.1.8(@vitest/browser@3.0.5)(vitest@2.1.8)
+        specifier: ^3.0.5
+        version: 3.0.5(@vitest/browser@3.0.5)(vitest@2.1.8)
       babel-loader:
         specifier: ^9.2.1
         version: 9.2.1(@babel/core@7.26.7)(webpack@5.97.1)
@@ -3126,6 +3126,10 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
+  '@bcoe/v8-coverage@1.0.2':
+    resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
+    engines: {node: '>=18'}
+
   '@bundled-es-modules/cookie@2.0.1':
     resolution: {integrity: sha512-8o+5fRPLNbjbdGRRmJj3h6Hh1AQJf2dk3qQ/5ZFb+PXkRNiSoMGGUKlsgLfrxneb72axVJyIYji64E2+nNfYyw==}
 
@@ -5692,11 +5696,11 @@ packages:
       webdriverio:
         optional: true
 
-  '@vitest/coverage-v8@2.1.8':
-    resolution: {integrity: sha512-2Y7BPlKH18mAZYAW1tYByudlCYrQyl5RGvnnDYJKW5tCiO5qg3KSAy3XAxcxKz900a0ZXxWtKrMuZLe3lKBpJw==}
+  '@vitest/coverage-v8@3.0.5':
+    resolution: {integrity: sha512-zOOWIsj5fHh3jjGwQg+P+J1FW3s4jBu1Zqga0qW60yutsBtqEqNEJKWYh7cYn1yGD+1bdPsPdC/eL4eVK56xMg==}
     peerDependencies:
-      '@vitest/browser': 2.1.8
-      vitest: 2.1.8
+      '@vitest/browser': 3.0.5
+      vitest: 3.0.5
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -14259,6 +14263,8 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
+  '@bcoe/v8-coverage@1.0.2': {}
+
   '@bundled-es-modules/cookie@2.0.1':
     dependencies:
       cookie: 0.7.2
@@ -17226,10 +17232,10 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/coverage-v8@2.1.8(@vitest/browser@3.0.5)(vitest@2.1.8)':
+  '@vitest/coverage-v8@3.0.5(@vitest/browser@3.0.5)(vitest@2.1.8)':
     dependencies:
       '@ampproject/remapping': 2.3.0
-      '@bcoe/v8-coverage': 0.2.3
+      '@bcoe/v8-coverage': 1.0.2
       debug: 4.4.0(supports-color@8.1.1)
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-report: 3.0.1
@@ -17239,7 +17245,7 @@ snapshots:
       magicast: 0.3.5
       std-env: 3.8.0
       test-exclude: 7.0.1
-      tinyrainbow: 1.2.0
+      tinyrainbow: 2.0.0
       vitest: 2.1.8(@types/node@20.17.16)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.7.0(@types/node@20.17.16)(typescript@5.7.3))(terser@5.37.0)
     optionalDependencies:
       '@vitest/browser': 3.0.5(@types/node@20.17.16)(playwright@1.48.2)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.16)(terser@5.37.0))(vitest@2.1.8)
