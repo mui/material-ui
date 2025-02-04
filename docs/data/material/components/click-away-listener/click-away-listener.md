@@ -16,27 +16,29 @@ githubLabel: 'component: ClickAwayListener'
 Click-Away Listener is a utility component that listens for click events outside of its child.
 (Note that it only accepts _one_ child element.)
 
-This is useful for components like the [Popper](/base-ui/react-popper/) which should close when the user clicks anywhere else in the document.
+This is useful for components like the [Popper](/material-ui/react-popper/) which should close when the user clicks anywhere else in the document.
 
-Click-Away Listener also supports the [Portal](/base-ui/react-portal/) component.
+Click-Away Listener also supports the [Portal](/material-ui/react-portal/) component.
 
-## Component
+## Basics
+
+### Import
 
 ```jsx
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 ```
 
 The demo below shows how to hide a menu dropdown when users click anywhere else on the page:
 
 {{"demo": "ClickAway.js"}}
 
-### Usage with Portal
+## Customization
 
-The following demo uses the [Portal](/base-ui/react-portal/) component to render the dropdown into a new subtree outside of the current DOM hierarchy:
+### Use with Portal
+
+The following demo uses the [Portal](/material-ui/react-portal/) component to render the dropdown into a new subtree outside of the current DOM hierarchy:
 
 {{"demo": "PortalClickAway.js"}}
-
-## Customization
 
 ### Listening for leading events
 
@@ -65,4 +67,4 @@ To prevent this behavior, add `role="presentation"` to the child element:
 </ClickAwayListener>
 ```
 
-This is also required to fix a known issue in NVDA when using Firefox that prevents the announcement of alert messages—see [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080) for details.
+This is also required to fix a known issue in NVDA when using Firefox that prevents the announcement of alert messages—see [this GitHub issue](https://github.com/mui/material-ui/issues/29080) for details.
