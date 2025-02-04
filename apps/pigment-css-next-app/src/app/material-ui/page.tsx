@@ -3,6 +3,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import fs from 'fs/promises';
 import path from 'path';
+import { css } from '@mui/material-pigment-css';
 
 export default async function MaterialUIPage() {
   const rootPaths = (await fs.readdir(path.join(process.cwd(), `src/app/material-ui`))).filter(
@@ -27,7 +28,15 @@ export default async function MaterialUIPage() {
             .filter((item) => !item.match(/\.(js|tsx)$/))
             .map((file) => (
               <li key={file}>
-                <Link href={`/material-ui/${file.replace(/\.[jt]sx?$/, '')}`}>{file}</Link>
+                <Link
+                  href={`/material-ui/${file.replace(/\.[jt]sx?$/, '')}`}
+                  className={css({
+                    textDecoration: 'underline',
+                    fontSize: '17px',
+                  })}
+                >
+                  {file}
+                </Link>
               </li>
             ))}
         </ul>

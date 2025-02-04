@@ -1,4 +1,4 @@
-import type { ExtendTheme } from '@mui/material';
+import type { ExtendTheme } from '@mui/material-pigment-css';
 
 interface ThemeTokens {
   'max-width': string;
@@ -29,7 +29,7 @@ type CustomTheme = ExtendTheme<{
   tokens: ThemeTokens;
 }>;
 
-declare module '@mui/material/theme' {
+declare module '@mui/material-pigment-css/theme' {
   interface ThemeArgs {
     theme: CustomTheme;
   }
