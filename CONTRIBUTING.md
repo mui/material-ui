@@ -140,7 +140,7 @@ The new playground will be accessible at: `http://localhost:3000/playground/<fil
 
 Continuous Integration (CI) automatically runs a series of checks when a PR is opened.
 If you're unsure whether your changes will pass, you can always open a PR, and the GitHub UI will display a summary of the results.
-If any of these checks fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
+If any of these checks fail, refer to [CI checks and how to fix them](#ci-checks-and-how-to-fix-them).
 
 Make sure the following is true:
 
