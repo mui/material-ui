@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
+import { modalClasses } from '@mui/material/Modal';
 import { getAnchor, isHorizontal } from './Drawer';
 import describeConformance from '../../test/describeConformance';
 
@@ -17,6 +18,10 @@ describe('<Drawer />', () => {
       </i>
     ),
   );
+
+  const CustomBackdrop = React.forwardRef(({ transitionDuration, ownerState, ...props }, ref) => (
+    <i ref={ref} data-testid="custom" {...props} />
+  ));
 
   describeConformance(
     <Drawer open disablePortal>
@@ -41,8 +46,30 @@ describe('<Drawer />', () => {
           testWithComponent: CustomPaper,
           testWithElement: null, // already tested with CustomPaper
         },
+        backdrop: { expectedClassName: modalClasses.backdrop, testWithElement: CustomBackdrop },
       },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    }),
+  );
+
+  // For `permanent` variant, the root is a div instead of a Modal.
+  describeConformance(
+    <Drawer variant="permanent">
+      <div />
+    </Drawer>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      muiName: 'MuiDrawer',
+      testDeepOverrides: { slotName: 'docked', slotClassName: classes.docked },
+      refInstanceof: window.HTMLDivElement,
+      slots: {
+        docked: {
+          expectedClassName: classes.docked,
+        },
+      },
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 
