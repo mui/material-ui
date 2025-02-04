@@ -16,28 +16,31 @@ githubLabel: 'component: Portal'
 Portal is a utility component built around [React's `createPortal()` API](https://react.dev/reference/react-dom/createPortal).
 It gives you the functionality of `createPortal()` in a convenient component form.
 
-The Portal component is used internally by the [Modal](/base-ui/react-modal/) and [Popper](/base-ui/react-popper/) components.
-
-## Component
-
-```jsx
-import { Portal } from '@mui/base/Portal';
-```
-
-Normally, children of a component are rendered within that component's DOM tree.
-But sometimes it's necessary to mount a child at a different location in the DOM.
-
 :::info
 According to [the React docs](https://react.dev/reference/react-dom/createPortal), portals are useful when "you need the child element to visually 'break out' of its container"—for instance, modals and tooltips, which need to exist outside of the normal flow of the document.
 :::
 
+The Portal component is used internally by the [Modal](/base-ui/react-modal/) and [Popper](/base-ui/react-popper/) components.
+
+Normally, children of a component are rendered within that component's DOM tree.
+But sometimes it's necessary to mount a child at a different location in the DOM.
 The Portal component accepts a `container` prop that passes a `ref` to the DOM node where its children will be mounted.
 
 The following demo shows how a `<span>` nested within a Portal can be appended to a node outside of the Portal's DOM hierarchy—click **Mount children** to see how it behaves:
 
 {{"demo": "SimplePortal.js"}}
 
-### Server-side
+## Basics
+
+### Import
+
+```jsx
+import Portal from '@mui/material/Portal';
+```
+
+## Customization
+
+### Server-side Portals
 
 The DOM API isn't available on the server, so you need to use the `container` prop callback.
 This callback is called during a React layout effect:

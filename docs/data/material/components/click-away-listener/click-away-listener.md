@@ -15,10 +15,12 @@ githubLabel: 'component: ClickAwayListener'
 
 Click-Away Listener is a utility component that listens for click events outside of its child.
 (Note that it only accepts _one_ child element.)
-
 This is useful for components like the [Popper](/material-ui/react-popper/) which should close when the user clicks anywhere else in the document.
-
 Click-Away Listener also supports the [Portal](/material-ui/react-portal/) component.
+
+The demo below shows how to hide a menu dropdown when users click anywhere else on the page:
+
+{{"demo": "ClickAway.js"}}
 
 ## Basics
 
@@ -27,10 +29,6 @@ Click-Away Listener also supports the [Portal](/material-ui/react-portal/) compo
 ```jsx
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 ```
-
-The demo below shows how to hide a menu dropdown when users click anywhere else on the page:
-
-{{"demo": "ClickAway.js"}}
 
 ## Customization
 
