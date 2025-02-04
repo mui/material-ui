@@ -124,5 +124,6 @@
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorTop\">.MuiDrawer-anchorTop</a> and <a href=\"/material-ui/api/drawer/#drawer-classes-MuiDrawer-paper\">.MuiDrawer-paper</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "root": { "description": "Styles applied to the root element." }
-  }
+  },
+  "slotDescriptions": { "swipeArea": "The component used for the swipeArea slot." }
 }

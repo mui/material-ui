@@ -22,7 +22,7 @@ export interface DrawerBackdropSlotPropsOverrides {}
 export interface DrawerSlots {
   /**
    * The component used for the Modal root.
-   * @default div
+   * @default Modal
    */
   root: React.ElementType;
   /**
@@ -70,11 +70,7 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the docked slot.
      * By default, the avaible props are based on a div element.
      */
-    docked: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLDivElement>>,
-      DrawerDockedSlotPropsOverrides,
-      DrawerOwnerState
-    >;
+    docked: SlotProps<'div', DrawerDockedSlotPropsOverrides, DrawerOwnerState>;
     /**
      * Props forwarded to the paper slot.
      * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.

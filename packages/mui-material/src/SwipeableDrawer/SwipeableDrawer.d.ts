@@ -1,22 +1,28 @@
 import * as React from 'react';
-import { DrawerProps, DrawerSlotsAndSlotProps } from '../Drawer';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { DrawerProps, DrawerOwnerState, DrawerSlotsAndSlotProps } from '../Drawer';
 
-type SwipeableDrawerSlotsAndSlotProps = DrawerSlotsAndSlotProps & {
-  slots?: {
-    /**
-     * The component used for the swipeArea slot.
-     * @default div
-     */
-    swipeArea?: React.ElementType;
-  };
-  slotProps?: {
-    /**
-     * Props forwarded to the swipeArea slot.
-     * By default, the avaible props are based on a div.
-     */
-    swipeArea?: React.HTMLProps<HTMLDivElement>;
-  };
-};
+export interface SwipeableDrawerSwipeAreaSlotPropsOverrides {}
+
+export interface SwipeableDrawerSlots {
+  /**
+   * The component used for the swipeArea slot.
+   * @default div
+   */
+  swipeArea?: React.ElementType;
+}
+
+type SwipeableDrawerSlotsAndSlotProps = DrawerSlotsAndSlotProps &
+  CreateSlotsAndSlotProps<
+    SwipeableDrawerSlots,
+    {
+      /**
+       * Props forwarded to the docked slot.
+       * By default, the avaible props are based on a div element.
+       */
+      swipeArea: SlotProps<'div', SwipeableDrawerSwipeAreaSlotPropsOverrides, DrawerOwnerState>;
+    }
+  >;
 
 export interface SwipeableDrawerProps
   extends Omit<DrawerProps, 'onClose' | 'open' | 'slots' | 'slotProps'>,

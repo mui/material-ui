@@ -33,7 +33,7 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: func<br>&#124;&nbsp;object, docked?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, swipeArea?: object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, docked?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, swipeArea?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
@@ -62,6 +62,14 @@
   "imports": [
     "import SwipeableDrawer from '@mui/material/SwipeableDrawer';",
     "import { SwipeableDrawer } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "swipeArea",
+      "description": "The component used for the swipeArea slot.",
+      "default": "div",
+      "class": null
+    }
   ],
   "classes": [
     {
