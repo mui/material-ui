@@ -35,6 +35,7 @@ import transformTablePaginationProps from '../table-pagination-props';
 import transformCardHeaderProps from '../card-header-props';
 import transformPopoverProps from '../popover-props';
 import transformSnackbarProps from '../snackbar-props';
+import transformSliderClasses from '../slider-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -78,6 +79,6 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformCardHeaderProps(file, api, options);
   file.source = transformPopoverProps(file, api, options);
   file.source = transformSnackbarProps(file, api, options);
-
+  file.source = transformSliderClasses(file, api, options);
   return file.source;
 }

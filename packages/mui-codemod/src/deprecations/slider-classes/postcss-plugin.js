@@ -35,7 +35,7 @@ const classes = [
 
 const plugin = () => {
   return {
-    postcssPlugin: `Replace deprecated Button classes with new classes`,
+    postcssPlugin: `Replace deprecated Slider classes with new classes`,
     Rule(rule) {
       const { selector } = rule;
 
