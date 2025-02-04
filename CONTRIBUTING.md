@@ -153,7 +153,7 @@ Make sure the following is true:
 - If adding new features or modifying existing ones, you've included tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, you've updated the TypeScript declarations.
 - If submitting a new component, you've added it to the [lab](https://github.com/mui/material-ui/tree/HEAD/packages/mui-lab).
-- The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
+- The branch is not [behind its target branch](https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/keeping-your-pull-request-in-sync-with-the-base-branch).
 
 We will only merge a PR when all tests pass.
 The following statements must be true:
