@@ -142,7 +142,7 @@ yargs(process.argv.slice(2))
           type: 'boolean',
           default: false,
           describe:
-            "Set to `true` if you don't want to generate a package.json file inthe /esm folder.",
+            "Set to `true` if you don't want to generate a package.json file in the /esm folder.",
         })
         .option('out-dir', { default: './build', type: 'string' })
         .option('verbose', { type: 'boolean' });
