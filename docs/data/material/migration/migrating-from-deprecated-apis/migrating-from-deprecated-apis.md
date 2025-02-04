@@ -1990,6 +1990,102 @@ Here's how to migrate:
  },
 ```
 
+## Tabs
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/tabs-classes <path>
+npx @mui/codemod@latest deprecations/tabs-props <path>
+```
+
+### flexContainer and flexContainerVertical classes
+
+The class `flexContainer` has been deprecated in favor of `list`. The CSS classes composing the `vertical` prop value and `flexContainer` CSS class have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiTabs-flexContainer
++.MuiTabs-list
+-.MuiTabs-flexContainerVertical
++.MuiTabs-list.MuiTabs-vertical
+```
+
+```diff
+ import { tabsClasses } from '@mui/material/Tabs';
+
+ MuiButtonGroup: {
+   styleOverrides: {
+     root: {
+-      [`& .${tabsClasses.flexContainer}`]: {
++      [`& .${tabsClasses.list}`]: {
+          color: 'red',
+        },
+-      [`& .${tabsClasses.flexContainerVertical}`]: {
++      [`& .${tabsClasses.list}.${tabsClasses.vertical}`]: {
+          color: 'red',
+       },
+     },
+   },
+ },
+```
+
+### ScrollButtonComponent
+
+The Tabs's `ScrollButtonComponent` prop was deprecated in favor of `slots.scrollButton`:
+
+```diff
+ <Tabs
+-  ScrollButtonComponent={ScrollButtonComponent}
++  slots={{ scrollButton: ScrollButtonComponent }}
+ />
+```
+
+### TabScrollButtonProps
+
+The Tabs's `TabScrollButtonProps` prop was deprecated in favor of `slotProps.scrollButton`:
+
+```diff
+ <Tabs
+-  TabScrollButtonProps={TabScrollButtonProps}
++  slotProps={{ scrollButton: TabScrollButtonProps }}
+ />
+```
+
+### TabIndicatorProps
+
+The Tabs's `TabIndicatorProps` prop was deprecated in favor of `slotProps.indicator`:
+
+```diff
+ <Tabs
+-  TabIndicatorProps={TabIndicatorProps}
++  slotProps={{ indicator: TabIndicatorProps }}
+ />
+```
+
+### slots.StartScrollButtonIcon
+
+The Tabs's `slots.StartScrollButtonIcon` prop was deprecated in favor of `slots.startScrollButtonIcon` (camelCase):
+
+```diff
+ <Tabs
+-  slots={{ StartScrollButtonIcon: StartScrollButtonIcon }}
++  slots={{ startScrollButtonIcon: StartScrollButtonIcon }}
+ />
+```
+
+### slots.EndScrollButtonIcon
+
+The Tabs's `slots.EndScrollButtonIcon` prop was deprecated in favor of `slots.endScrollButtonIcon` (camelCase):
+
+```diff
+ <Tabs
+-  slots={{ EndScrollButtonIcon: EndScrollButtonIcon }}
++  slots={{ endScrollButtonIcon: EndScrollButtonIcon }}
+ />
+```
+
 ## Tab
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tab-classes) below to migrate the code as described in the following sections:
