@@ -23,7 +23,6 @@
     "inputProps": {
       "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element."
     },
-    "inputRef": { "description": "Pass a ref to the <code>input</code> element." },
     "onChange": {
       "description": "Callback fired when the state is changed.",
       "typeDescriptions": {
@@ -82,5 +81,8 @@
       "conditions": "<code>size=\"small\"</code>"
     }
   },
-  "slotDescriptions": { "root": "The component that renders the root slot." }
+  "slotDescriptions": {
+    "input": "The component that renders the input slot.",
+    "root": "The component that renders the root slot."
+  }
 }

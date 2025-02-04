@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { CheckboxClasses } from './checkboxClasses';
 
@@ -9,8 +10,49 @@ export interface CheckboxPropsSizeOverrides {}
 
 export interface CheckboxPropsColorOverrides {}
 
+export interface CheckboxRootSlotPropsOverrides {}
+
+export interface CheckboxInputSlotPropsOverrides {}
+
+export interface CheckboxSlots {
+  /**
+   * The component that renders the root slot.
+   * @default SwitchBase
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the input slot.
+   * @default SwitchBase's input
+   */
+  input: React.ElementType;
+}
+
+export type CheckboxSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  CheckboxSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the div element.
+     */
+    root: SlotProps<
+      React.ElementType<SwitchBaseProps>,
+      CheckboxRootSlotPropsOverrides,
+      CheckboxOwnerState
+    >;
+    /**
+     * Props forwarded to the input slot.
+     * By default, the avaible props are based on the input element.
+     */
+    input: SlotProps<'input', CheckboxInputSlotPropsOverrides, CheckboxOwnerState>;
+  }
+>;
+
 export interface CheckboxProps
-  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
+  extends StandardProps<
+      SwitchBaseProps,
+      'checkedIcon' | 'color' | 'icon' | 'type' | 'slots' | 'slotProps'
+    >,
+    CheckboxSlotsAndSlotProps {
   /**
    * If `true`, the component is checked.
    */
@@ -67,14 +109,6 @@ export interface CheckboxProps
    */
   indeterminateIcon?: React.ReactNode;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   */
-  inputProps?: SwitchBaseProps['inputProps'];
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef?: React.Ref<HTMLInputElement>;
-  /**
    * Callback fired when the state is changed.
    *
    * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
@@ -102,6 +136,8 @@ export interface CheckboxProps
    */
   value?: SwitchBaseProps['value'];
 }
+
+export interface CheckboxOwnerState extends Omit<CheckboxProps, 'slots' | 'slotProps'> {}
 
 /**
  *
