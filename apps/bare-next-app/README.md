@@ -1,41 +1,7 @@
-# Pigment CSS with Next.js - Demo app
+# bare next app
 
-This is a Pigment CSS and [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/HEAD/packages/create-next-app).
+_date: 2025-02-04_
 
-## Getting started
+This is a copy of `apps/pigment-css-next-app` which currently suffers from heavy slow down in github actions on MacOs for its `build` command. This copy removes pigment css but keeps the rest of the app intact to serve as an integration test during `pnpm build:ci`.
 
-First, build all the packages in the workspace at least once. Run
-
-```bash
-pnpm build
-```
-
-Then start the Next.js development server:
-
-```bash
-pnpm run --filter=@app/next-app dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the app running live.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-If you encounter an error that says "package `@pigment-css/react` not found," add it as a peer dependency in the `package.json` for `@mui/material`, then run `pnpm build` and `pnpm install` again. Make sure to not push this change to git.
-
-### Note
-
-If you're testing changes in Pigment CSS-related packages while also running this demo app, run the watch command in a separate terminal to watch and build Pigment CSS package files as they change:
-
-```bash
-pnpm watch:zero
-```
-
-You might have to restart the Next.js server.
-
-## Build
-
-To build the project, run the `build` command in this package:
-
-```bash
-pnpm run --filter=@app/next-app build
-```
+Feel free to remove once the pigmenbt version works in predictable time again on MacOs github actions.
