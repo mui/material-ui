@@ -39,7 +39,7 @@ import SvgBaseUiLogo, {
 } from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
-import config from '../config';
+import * as config from '../config';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -178,6 +178,7 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
+          { text: `v6`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
           {
             text: 'v5',
             href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
@@ -214,6 +215,8 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v6', href: `https://mui.com${languagePrefix}/system/getting-started/` },
+          { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',

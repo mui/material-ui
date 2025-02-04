@@ -3,7 +3,6 @@ productId: joy-ui
 title: React Textarea component
 components: Textarea
 githubLabel: 'component: TextareaAutosize'
-unstyled: /base-ui/react-textarea-autosize/
 ---
 
 # Textarea

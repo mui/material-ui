@@ -33,6 +33,10 @@ import transformToggleButtonGroupClasses from '../toggle-button-group-classes';
 import transformTooltipProps from '../tooltip-props';
 import transformTablePaginationProps from '../table-pagination-props';
 import transformCardHeaderProps from '../card-header-props';
+import transformPopoverProps from '../popover-props';
+import transformSnackbarProps from '../snackbar-props';
+import transformerTabsProps from '../tabs-props';
+import transformerTabsClasses from '../tabs-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -74,6 +78,10 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformTooltipProps(file, api, options);
   file.source = transformTablePaginationProps(file, api, options);
   file.source = transformCardHeaderProps(file, api, options);
+  file.source = transformPopoverProps(file, api, options);
+  file.source = transformSnackbarProps(file, api, options);
+  file.source = transformerTabsProps(file, api, options);
+  file.source = transformerTabsClasses(file, api, options);
 
   return file.source;
 }
