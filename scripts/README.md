@@ -57,6 +57,12 @@ deploying all the changes that have been merged into the main branch
 since the previous release (for example publishing a blog post or releasing
 urgent docs updates).
 
+**Note:** The instructions below are for deploying to the `latest` branch of the `material-ui-docs` repository, which points to `https://mui.com/`. If you need to deploy to a different subdomain, replace `latest` with the appropriate branch name:
+
+- `latest`: `https://mui.com/`
+- `next`: `https://next.mui.com/`
+- `v*.x`: `https://v*.mui.com/`
+
 To do so, follow these steps:
 
 1. Add the `material-ui-docs` remote if you haven't done this already:
@@ -88,7 +94,7 @@ To do so, follow these steps:
    In case of conflicts you will need to resolve them and commit the changes manually.
 
    If this command fails with the message 'bad revision', it means that the commit doesn't exist on your local repository.
-   The commit might have been created on a remote branch, probably when merging into `master` or `next`.
+   The commit might have been created on a remote branch, probably when merging into `master` or `v*.x`.
    In this case, you'll have to fetch the latest changes of the corresponding remote branch and then try again.
 
 5. Push the changes to the `material-ui-docs` remote:

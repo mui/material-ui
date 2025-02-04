@@ -71,6 +71,20 @@ describe('<Tabs />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      scroller: {
+        expectedClassName: classes.scroller,
+      },
+      list: {
+        expectedClassName: classes.list,
+      },
+      indicator: {
+        expectedClassName: classes.indicator,
+      },
+    },
     skip: ['componentsProp', 'themeVariants'],
   }));
 
@@ -178,8 +192,8 @@ describe('<Tabs />', () => {
         scrollButtons
         textColor="secondary"
         slots={{
-          StartScrollButtonIcon: ArrowBackIcon,
-          EndScrollButtonIcon: ArrowForwardIcon,
+          startScrollButtonIcon: ArrowBackIcon,
+          endScrollButtonIcon: ArrowForwardIcon,
         }}
         slotProps={{
           endScrollButtonIcon: (ownerState) => ({
@@ -1438,6 +1452,67 @@ describe('<Tabs />', () => {
       fireEvent.click(deleteButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
+    });
+  });
+
+  describe('scrollButton slot', () => {
+    it('should render start and end scroll buttons', () => {
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slotProps={{
+            scrollButtons: { 'data-testid': 'scroll-button', className: 'foo' },
+          }}
+        />,
+      );
+      expect(screen.getAllByTestId('scroll-button')).to.have.length(2);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class('foo');
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
+    });
+
+    it('should render a custom scroll button', () => {
+      function CustomButton({ ownerState, slots, slotProps, ...props }) {
+        return <button data-testid="scroll-button" {...props} />;
+      }
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slots={{
+            scrollButtons: CustomButton,
+          }}
+          slotProps={{
+            scrollButtons: { className: 'foo' },
+          }}
+        />,
+      );
+      expect(screen.getAllByTestId('scroll-button')).to.have.length(2);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class('foo');
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
+    });
+
+    it('should render a start and end scroll button icons', () => {
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slotProps={{
+            startScrollButtonIcon: { 'data-testid': 'start-scroll-button-icon', className: 'foo' },
+            endScrollButtonIcon: { 'data-testid': 'end-scroll-button-icon', className: 'bar' },
+          }}
+        />,
+      );
+
+      expect(screen.getByTestId('start-scroll-button-icon')).to.have.class('foo');
+      expect(screen.getByTestId('end-scroll-button-icon')).to.have.class('bar');
     });
   });
 });

@@ -68,6 +68,11 @@ commands:
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
     steps:
+      - run:
+          name: Set npm registry public signing keys
+          command: |
+            echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
+
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -128,7 +133,7 @@ jobs:
             - run:
                 name: '`pnpm dedupe` was run?'
                 command: |
-                  # #default-branch-switch
+                  # #target-branch-reference
                   if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
                   then
                       echo "No changes to dependencies detected. Skipping..."
@@ -921,9 +926,10 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
                 - v5.x
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -971,8 +977,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -998,8 +1005,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_types_next:
           <<: *default-context

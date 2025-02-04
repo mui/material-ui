@@ -1,6 +1,7 @@
+<!-- #host-reference -->
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
+  <a href="https://next.mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
 </p>
 
 <h1 align="center">Material UI</h1>
@@ -106,6 +107,8 @@ See the full list of [our backers](https://mui.com/material-ui/discover-more/bac
 For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/) instead of GitHub issues.
 
 ## Examples
+
+<!-- #repo-reference -->
 
 Our documentation features [a collection of example projects](https://github.com/mui/material-ui/tree/master/examples).
 
