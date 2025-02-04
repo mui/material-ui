@@ -1705,7 +1705,6 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/button-classes <path>
 ```
 
-
 #### `tooltip-props`
 
 ```diff
