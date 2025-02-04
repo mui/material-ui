@@ -38,7 +38,6 @@ describe('<Drawer />', () => {
       inheritComponent: 'div',
       render,
       muiName: 'MuiDrawer',
-      testVariantProps: { variant: 'persistent' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
       slots: {
@@ -73,7 +72,7 @@ describe('<Drawer />', () => {
       inheritComponent: 'div',
       render,
       muiName: 'MuiDrawer',
-      testDeepOverrides: { slotName: 'docked', slotClassName: classes.docked },
+      testVariantProps: { variant: 'persistent' },
       refInstanceof: window.HTMLDivElement,
       slots: {
         docked: {
