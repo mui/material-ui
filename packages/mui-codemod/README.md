@@ -1612,6 +1612,27 @@ npx @mui/codemod@latest deprecations/select-classes <path>
 npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
+#### `snackbar-props`
+
+```diff
+ <Snackbar
+-    ClickAwayListenerProps={CustomClickAwayListenerProps}
+-    ContentProps={CustomContentProps}
+-    TransitionComponent={CustomTransition}
+-    TransitionProps={CustomTransitionProps}
++    slots={{ transition: CustomTransition }}
++    slotProps={{
++        clickAwayListener: CustomClickAwayListenerProps,
++        content: CustomContentProps,
++        transition: CustomTransitionProps
++    }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/snackbar-props <path>
+```
+
 #### `tooltip-props`
 
 ```diff
