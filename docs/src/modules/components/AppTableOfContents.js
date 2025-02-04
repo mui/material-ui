@@ -263,7 +263,6 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
-      <TableOfContentsBanner />
       <NoSsr>
         {showJobAd && (
           <Link
@@ -344,6 +343,7 @@ export default function AppTableOfContents(props) {
         </React.Fragment>
       ) : null}
       <DiamondSponsors />
+      <TableOfContentsBanner />
     </Nav>
   );
 }

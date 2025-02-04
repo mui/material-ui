@@ -67,7 +67,6 @@ module.exports = [
   { pathname: '/api-docs/list-item-secondary-action' },
   { pathname: '/api-docs/list-item-text' },
   { pathname: '/api-docs/list-subheader' },
-  { pathname: '/api-docs/loading-button' },
   { pathname: '/api-docs/masonry' },
   { pathname: '/api-docs/menu' },
   { pathname: '/api-docs/menu-item' },

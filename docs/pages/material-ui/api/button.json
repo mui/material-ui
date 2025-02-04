@@ -17,6 +17,18 @@
     "endIcon": { "type": { "name": "node" } },
     "fullWidth": { "type": { "name": "bool" }, "default": "false" },
     "href": { "type": { "name": "string" } },
+    "loading": { "type": { "name": "bool" }, "default": "null" },
+    "loadingIndicator": {
+      "type": { "name": "node" },
+      "default": "<CircularProgress color=\"inherit\" size={16} />"
+    },
+    "loadingPosition": {
+      "type": {
+        "name": "enum",
+        "description": "'center'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'"
+      },
+      "default": "'center'"
+    },
     "size": {
       "type": {
         "name": "union",
@@ -220,6 +232,48 @@
       "description": "Styles applied to the icon element if supplied and `size=\"small\"`.",
       "isGlobal": false,
       "isDeprecated": true
+    },
+    {
+      "key": "loading",
+      "className": "MuiButton-loading",
+      "description": "Styles applied to the root element if `loading={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIconPlaceholder",
+      "className": "MuiButton-loadingIconPlaceholder",
+      "description": "Styles applied to the loadingIconPlaceholder element.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingIndicator",
+      "className": "MuiButton-loadingIndicator",
+      "description": "Styles applied to the loadingIndicator element.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingPositionCenter",
+      "className": "MuiButton-loadingPositionCenter",
+      "description": "Styles applied to the root element if `loadingPosition=\"center\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingPositionEnd",
+      "className": "MuiButton-loadingPositionEnd",
+      "description": "Styles applied to the root element if `loadingPosition=\"end\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingPositionStart",
+      "className": "MuiButton-loadingPositionStart",
+      "description": "Styles applied to the root element if `loadingPosition=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "loadingWrapper",
+      "className": "MuiButton-loadingWrapper",
+      "description": "Styles applied to the loadingWrapper element.",
+      "isGlobal": false
     },
     {
       "key": "outlined",

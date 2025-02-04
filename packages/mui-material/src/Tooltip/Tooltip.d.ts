@@ -21,7 +21,7 @@ export interface TooltipSlots {
    * The component used for the popper.
    * @default Popper
    */
-  popper: React.ElementType<PopperProps>;
+  popper: React.ElementType;
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
@@ -250,10 +250,10 @@ export interface TooltipOwnerState extends TooltipProps {}
  *
  * Demos:
  *
- * - [Tooltip](https://mui.com/material-ui/react-tooltip/)
+ * - [Tooltip](https://next.mui.com/material-ui/react-tooltip/)
  *
  * API:
  *
- * - [Tooltip API](https://mui.com/material-ui/api/tooltip/)
+ * - [Tooltip API](https://next.mui.com/material-ui/api/tooltip/)
  */
 export default function Tooltip(props: TooltipProps): React.JSX.Element;

@@ -5,6 +5,8 @@ components: Slider
 hooks: useSlider
 githubLabel: 'component: slider'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slider-multithumb/
+newUrl: https://base-ui.com/react/components/slider
+newName: Slider
 ---
 
 # Slider

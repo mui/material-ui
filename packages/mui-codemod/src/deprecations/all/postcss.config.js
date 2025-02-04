@@ -5,6 +5,7 @@ const { plugin: alertClassesPlugin } = require('../alert-classes/postcss-plugin'
 const { plugin: buttonClassesPlugin } = require('../button-classes/postcss-plugin');
 const { plugin: buttonGroupClassesPlugin } = require('../button-group-classes/postcss-plugin');
 const { plugin: chipClassesPlugin } = require('../chip-classes/postcss-plugin');
+const { plugin: drawerClassesPlugin } = require('../drawer-classes/postcss-plugin');
 const {
   plugin: paginationItemClassesPlugin,
 } = require('../pagination-item-classes/postcss-plugin');
@@ -15,6 +16,9 @@ const {
 const {
   plugin: circularProgressClassesPlugin,
 } = require('../circular-progress-classes/postcss-plugin');
+const {
+  plugin: linearProgressClassesPlugin,
+} = require('../linear-progress-classes/postcss-plugin');
 const { plugin: tabClassesPlugin } = require('../tab-classes/postcss-plugin');
 const {
   plugin: tableSortLabelClassesPlugin,
@@ -29,6 +33,8 @@ module.exports = {
     buttonGroupClassesPlugin,
     chipClassesPlugin,
     circularProgressClassesPlugin,
+    linearProgressClassesPlugin,
+    drawerClassesPlugin,
     paginationItemClassesPlugin,
     stepConnectorClassesPlugin,
     toggleButtonGroupClassesPlugin,
