@@ -4,7 +4,7 @@
 
 ## Minimum configuration
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 Material UI requires a minimum version of TypeScript 4.7. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-ts) example.
 
