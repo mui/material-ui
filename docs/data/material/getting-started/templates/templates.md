@@ -7,8 +7,6 @@ title: New Free React Templates
 
 <p class="description">Browse our collection of free React templates to get started building your app with Material UI, including a React dashboard, React marketing page, and more.</p>
 
-<!-- #default-branch-switch -->
-
 ## Free templates
 
 Our curated collection of free Material UI templates includes a dashboard, a marketing page, a checkout flow, sign-in and sign-up pages, and a blog.

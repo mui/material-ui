@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
@@ -82,7 +81,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     autoFocus,
     checked: checkedProp,
     checkedIcon,
-    className,
     defaultChecked,
     disabled: disabledProp,
     disableFocusRipple = false,
@@ -180,7 +178,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
     elementType: SwitchBaseRoot,
-    className: clsx(classes.root, className),
+    className: classes.root,
     shouldForwardComponentProp: true,
     externalForwardedProps: {
       ...externalForwardedProps,
