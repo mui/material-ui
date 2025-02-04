@@ -128,7 +128,7 @@ and [`FormHelperText`](/material-ui/api/form-helper-text/)
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
 This is on purpose.
 The component takes care of the most used properties.
-Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `slotProps.htmlInput` (and `slotProps.input`, `slotProps.inputLabel` properties) if you want to avoid some boilerplate.
 
 {{"demo": "ComposedTextField.js"}}
 
