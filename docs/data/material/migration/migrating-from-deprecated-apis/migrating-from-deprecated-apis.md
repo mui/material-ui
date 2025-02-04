@@ -1168,16 +1168,18 @@ The Drawer's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
 
 The Drawer's `SlideProps` prop was deprecated in favor of `slotProps.transition`:
 
-````diff
+```diff
  <Drawer
 -  SlideProps={slideProps}
 +  slotProps={{ transition: slideProps }}
  />
+```
+
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-classes) below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/drawer-classes <path>
-````
+```
 
 ### Composed CSS classes
 
