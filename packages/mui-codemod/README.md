@@ -1683,72 +1683,22 @@ MuiSlider: {
 CSS transforms:
 
 ```diff
--.MuiButton-textInherit
-+.MuiButton-text.MuiButton-colorInherit
--.MuiButton-textPrimary
-+.MuiButton-text.MuiButton-colorPrimary
--.MuiButton-textSecondary
-+.MuiButton-text.MuiButton-colorSecondary
--.MuiButton-textSuccess
-+.MuiButton-text.MuiButton-colorSuccess
--.MuiButton-textError
-+.MuiButton-text.MuiButton-colorError
--.MuiButton-textInfo
-+.MuiButton-text.MuiButton-colorInfo
--.MuiButton-textWarning
-+.MuiButton-text.MuiButton-colorWarning
--.MuiButton-outlinedInherit
-+.MuiButton-outlined.MuiButton-colorInherit
--.MuiButton-outlinedPrimary
-+.MuiButton-outlined.MuiButton-colorPrimary
--.MuiButton-outlinedSecondary
-+.MuiButton-outlined.MuiButton-colorSecondary
--.MuiButton-outlinedSuccess
-+.MuiButton-outlined.MuiButton-colorSuccess
--.MuiButton-outlinedError
-+.MuiButton-outlined.MuiButton-colorError
--.MuiButton-outlinedInfo
-+.MuiButton-outlined.MuiButton-colorInfo
--.MuiButton-outlinedWarning
-+.MuiButton-outlined.MuiButton-colorWarning
--.MuiButton-containedInherit
-+.MuiButton-contained.MuiButton-colorInherit
--.MuiButton-containedPrimary
-+.MuiButton-contained.MuiButton-colorPrimary
--.MuiButton-containedSecondary
-+.MuiButton-contained.MuiButton-colorSecondary
--.MuiButton-containedSuccess
-+.MuiButton-contained.MuiButton-colorSuccess
--.MuiButton-containedError
-+.MuiButton-contained.MuiButton-colorError
--.MuiButton-containedInfo
-+.MuiButton-contained.MuiButton-colorInfo
--.MuiButton-containedWarning
-+.MuiButton-contained.MuiButton-colorWarning
--.MuiButton-textSizeSmall
-+.MuiButton-text.MuiButton-sizeSmall
--.MuiButton-textSizeMedium
-+.MuiButton-text.MuiButton-sizeMedium
--.MuiButton-textSizeLarge
-+.MuiButton-text.MuiButton-sizeLarge
--.MuiButton-outlinedSizeSmall
-+.MuiButton-outlined.MuiButton-sizeSmall
--.MuiButton-outlinedSizeMedium
-+.MuiButton-outlined.MuiButton-sizeMedium
--.MuiButton-outlinedSizeLarge
-+.MuiButton-outlined.MuiButton-sizeLarge
--.MuiButton-containedSizeSmall
-+.MuiButton-contained.MuiButton-sizeSmall
--.MuiButton-containedSizeMedium
-+.MuiButton-contained.MuiButton-sizeMedium
--.MuiButton-containedSizeLarge
-+.MuiButton-contained.MuiButton-sizeLarge
--.MuiButton-root .MuiButton-iconSizeSmall
-+.MuiButton-root.MuiButton-sizeSmall > .MuiButton-icon
--.MuiButton-root .MuiButton-iconSizeMedium
-+.MuiButton-root.MuiButton-sizeMedium > .MuiButton-icon
--.MuiButton-root .MuiButton-iconSizeLarge
-+.MuiButton-root.MuiButton-sizeLarge > .MuiButton-icon
+-.MuiSlider-root .MuiSlider-thumbSizeSmall
++.MuiSlider-root.MuiSlider-sizeSmall > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbSizeMedium
++.MuiSlider-root.MuiSlider-sizeMedium > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorPrimary
++.MuiSlider-root.MuiSlider-colorPrimary > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorSecondary
++.MuiSlider-root.MuiSlider-colorSecondary > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorError
++.MuiSlider-root.MuiSlider-colorError > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorInfo
++.MuiSlider-root.MuiSlider-colorInfo > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorSuccess
++.MuiSlider-root.MuiSlider-colorSuccess > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorWarning
++.MuiSlider-root.MuiSlider-colorWarning > .MuiSlider-thumb
 ```
 
 ```bash
