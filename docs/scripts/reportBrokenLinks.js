@@ -45,7 +45,7 @@ Object.keys(usedLinks)
   .sort()
   .forEach((linkKey) => {
     //
-    // <!-- #default-branch-switch -->
+    // <!-- #host-reference -->
     //
     write(`- https://next.mui.com${linkKey}`);
     console.log(`https://next.mui.com${linkKey}`);

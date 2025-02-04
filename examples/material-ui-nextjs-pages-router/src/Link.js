@@ -3,23 +3,9 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@mui/material/Link';
-import { styled } from '@mui/material/styles';
-
-// Add support for the sx prop for consistency with the other branches.
-const Anchor = styled('a')({});
 
 export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
-  const {
-    to,
-    linkAs,
-    replace,
-    scroll,
-    shallow,
-    prefetch,
-    legacyBehavior = true,
-    locale,
-    ...other
-  } = props;
+  const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
   return (
     <NextLink
@@ -30,11 +16,10 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props
       scroll={scroll}
       shallow={shallow}
       passHref
-      legacyBehavior={legacyBehavior}
       locale={locale}
-    >
-      <Anchor ref={ref} {...other} />
-    </NextLink>
+      ref={ref}
+      {...other}
+    />
   );
 });
 
@@ -46,7 +31,6 @@ const Link = React.forwardRef(function Link(props, ref) {
     as,
     className: classNameProps,
     href,
-    legacyBehavior,
     linkAs: linkAsProp,
     locale,
     noLinkStyle,
@@ -72,7 +56,6 @@ const Link = React.forwardRef(function Link(props, ref) {
     scroll,
     shallow,
     prefetch,
-    legacyBehavior,
     locale,
   };
 
