@@ -23,6 +23,12 @@ describe('<Drawer />', () => {
     <i ref={ref} data-testid="custom" {...props} />
   ));
 
+  const CustomTransition = React.forwardRef(
+    ({ onEnter, onExit, onExited, appear, in: inProp, ownerState, ...props }, ref) => (
+      <i ref={ref} data-testid="custom" {...props} />
+    ),
+  );
+
   describeConformance(
     <Drawer open disablePortal>
       <div />
@@ -47,6 +53,11 @@ describe('<Drawer />', () => {
           testWithElement: null, // already tested with CustomPaper
         },
         backdrop: { expectedClassName: modalClasses.backdrop, testWithElement: CustomBackdrop },
+        transition: {
+          expectedClassName: null,
+          testWithComponent: CustomTransition,
+          testWithElement: CustomTransition,
+        },
       },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
