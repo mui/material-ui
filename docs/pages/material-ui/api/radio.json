@@ -33,11 +33,14 @@
       "default": "'medium'"
     },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
       "default": "{}"
     },
     "sx": {
@@ -57,6 +60,12 @@
       "description": "The component that renders the root slot.",
       "default": "SwitchBase",
       "class": "MuiRadio-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input slot.",
+      "default": "SwitchBase's input",
+      "class": null
     }
   ],
   "classes": [
