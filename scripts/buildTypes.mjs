@@ -1,3 +1,5 @@
+// Keeping this around for backwards compatibility for X. TODO: remove once X is on an alpha that implements ESM layout.
+
 import chalk from 'chalk';
 import glob from 'fast-glob';
 import fse from 'fs-extra';

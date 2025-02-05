@@ -28,7 +28,7 @@ All credits go to the Tailwind Labs team for designing this component, found on 
 ## Setting up the project
 
 We'll use [`create-react-app` with TypeScript](https://create-react-app.dev/docs/adding-typescript/#installation) for this guide.
-After you have created the project, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app) in order to configure `tailwind`.
+After you have created the project, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/installation/framework-guides) in order to configure `tailwind`.
 Next, install `@mui/base` in the project:
 
 ```bash
