@@ -35,7 +35,7 @@ Deep imports with more than one level are no longer allowed. For example:
 + import { createTheme } from '@mui/material/styles';
 ```
 
-This was never officially supported, but will now be restricted by bundlers and runtimes.
+This was never officially supported, but now it will be restricted by bundlers and runtimes.
 
 To use the modern bundle (which excludes legacy browser support for smaller bundle size), you'll need to configure your bundler to use the "mui-modern" exports condition:
 
