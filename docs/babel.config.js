@@ -1,7 +1,4 @@
-const path = require('path');
 const fse = require('fs-extra');
-
-const errorCodesPath = path.resolve(__dirname, './public/static/error-codes.json');
 
 const { version: transformRuntimeVersion } = fse.readJSONSync(
   require.resolve('@babel/runtime-corejs2/package.json'),
@@ -22,17 +19,7 @@ module.exports = {
       },
     ],
   ],
-  plugins: [
-    [
-      'babel-plugin-macros',
-      {
-        muiError: {
-          errorCodesPath,
-        },
-      },
-    ],
-    'babel-plugin-optimize-clsx',
-  ],
+  plugins: ['babel-plugin-optimize-clsx'],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {
     production: {
