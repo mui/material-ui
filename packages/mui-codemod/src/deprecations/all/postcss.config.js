@@ -24,6 +24,7 @@ const {
   plugin: tableSortLabelClassesPlugin,
 } = require('../table-sort-label-classes/postcss-plugin');
 const { plugin: selectClassesPlugin } = require('../select-classes/postcss-plugin');
+const { plugin: sliderClassesPlugin } = require('../slider-classes/postcss-plugin');
 
 module.exports = {
   plugins: [
@@ -41,5 +42,6 @@ module.exports = {
     tabClassesPlugin,
     tableSortLabelClassesPlugin,
     selectClassesPlugin,
+    sliderClassesPlugin,
   ],
 };
