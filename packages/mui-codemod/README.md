@@ -1612,6 +1612,78 @@ npx @mui/codemod@latest deprecations/select-classes <path>
 npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
+#### `slider-classes`
+
+JS transforms:
+
+```diff
+ import { sliderClasses } from '@mui/material/Slider';
+
+ MuiSlider: {
+   styleOverrides: {
+     root: {
+-      [`&.${sliderClasses.thumbSizeSmall}`]: {
++      [`&.${sliderClasses.sizeSmall} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbSizeMedium}`]: {
++      [`&.${sliderClasses.sizeMedium} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorPrimary}`]: {
++      [`&.${sliderClasses.colorPrimary} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorSecondary}`]: {
++      [`&.${sliderClasses.colorSecondary} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorError}`]: {
++      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClrsses.thumbColorInfo}`]: {
++      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorSuccess}`]: {
++      [`&.${sliderClasses.colorSuccess} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorWarning}`]: {
++      [`&.${sliderClasses.colorWarning} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiSlider-root .MuiSlider-thumbSizeSmall
++.MuiSlider-root.MuiSlider-sizeSmall > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbSizeMedium
++.MuiSlider-root.MuiSlider-sizeMedium > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorPrimary
++.MuiSlider-root.MuiSlider-colorPrimary > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorSecondary
++.MuiSlider-root.MuiSlider-colorSecondary > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorError
++.MuiSlider-root.MuiSlider-colorError > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorInfo
++.MuiSlider-root.MuiSlider-colorInfo > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorSuccess
++.MuiSlider-root.MuiSlider-colorSuccess > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorWarning
++.MuiSlider-root.MuiSlider-colorWarning > .MuiSlider-thumb
+```
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
 #### `tooltip-props`
 
 ```diff
