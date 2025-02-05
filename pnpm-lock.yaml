@@ -156,9 +156,6 @@ importers:
       babel-plugin-optimize-clsx:
         specifier: ^2.6.2
         version: 2.6.2
-      babel-plugin-react-remove-properties:
-        specifier: ^0.3.0
-        version: 0.3.0
       babel-plugin-transform-inline-environment-variables:
         specifier: ^0.4.4
         version: 0.4.4
@@ -6243,9 +6240,6 @@ packages:
     resolution: {integrity: sha512-JfTApdE++cgcTWjsiCQlLyFBMbTUft9ja17saCc93lgV33h4tuCVj7tlvu//qpLwaG+3yEz7/KhahGrUMkVq9g==}
     peerDependencies:
       '@babel/core': ^7.26.7
-
-  babel-plugin-react-remove-properties@0.3.0:
-    resolution: {integrity: sha512-vbxegtXGyVcUkCvayLzftU95vuvpYFV85pRpeMpohMHeEY46Qe0VNWfkVVcCbaZ12CXHzDFOj0esumATcW83ng==}
 
   babel-plugin-tester@11.0.4:
     resolution: {integrity: sha512-cqswtpSPo0e++rZB0l/54EG17LL25l9gLgh59yXfnmNxX+2lZTIOpx2zt4YI9QIClVXc8xf63J6yWwKkzy0jNg==}
@@ -17949,8 +17943,6 @@ snapshots:
       '@babel/helper-define-polyfill-provider': 0.6.2(@babel/core@7.26.7)
     transitivePeerDependencies:
       - supports-color
-
-  babel-plugin-react-remove-properties@0.3.0: {}
 
   babel-plugin-tester@11.0.4(@babel/core@7.26.7):
     dependencies:
