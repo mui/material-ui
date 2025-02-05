@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 <Tooltip title="Hello">
   <button type="button">Hover or touch me</button>
@@ -51,3 +51,27 @@ const SlotComponentRef = React.forwardRef<HTMLDivElement>((props, ref) => {
 >
   <button type="button">Hover or touch me</button>
 </Tooltip>;
+
+function Custom(props: TooltipProps) {
+  const { slotProps, ...dialogProps } = props;
+  return (
+    <Tooltip
+      slotProps={{
+        ...slotProps,
+        transition: (ownerState) => {
+          const transitionProps =
+            typeof slotProps?.transition === 'function'
+              ? slotProps.transition(ownerState)
+              : slotProps?.transition;
+          return {
+            ...transitionProps,
+            onExited: (node) => {
+              transitionProps?.onExited?.(node);
+            },
+          };
+        },
+      }}
+      {...dialogProps}
+    />
+  );
+}
