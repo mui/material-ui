@@ -58,13 +58,13 @@ To use the modern bundle (which excludes legacy browser support for smaller bund
 If you were using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
 
 ```diff
-// vite.config.js
-  resolve: {
-    alias: [
--     {
--       find: /^@mui\/icons-material\/(.*)/,
--       replacement: "@mui/icons-material/esm/$1",
--     },
-    ],
-  },
+ // vite.config.js
+   resolve: {
+     alias: [
+-      {
+-        find: /^@mui\/icons-material\/(.*)/,
+-        replacement: "@mui/icons-material/esm/$1",
+-      },
+     ],
+   },
 ```
