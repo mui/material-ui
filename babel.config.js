@@ -17,9 +17,6 @@ function resolveAliasPath(relativeToBabelConf) {
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
-/** @type {babel.PluginItem[]} */
-const productionPlugins = ['babel-plugin-react-remove-properties'];
-
 /** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['regressions', 'modern', 'stable']);
@@ -125,9 +122,6 @@ module.exports = function getBabelConfig(api) {
       : []),
   ];
 
-  if (process.env.NODE_ENV === 'production') {
-    plugins.push(...productionPlugins);
-  }
   if (process.env.NODE_ENV === 'test') {
     plugins.push([
       'babel-plugin-module-resolver',
@@ -196,7 +190,6 @@ module.exports = function getBabelConfig(api) {
       },
       benchmark: {
         plugins: [
-          ...productionPlugins,
           [
             'babel-plugin-module-resolver',
             {
