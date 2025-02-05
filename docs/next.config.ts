@@ -29,6 +29,9 @@ export default withDocsInfra({
   experimental: {
     forceSwcTransforms: true,
   },
+  compiler: {
+    reactRemoveProperties: true,
+  },
   webpack: (config: NextConfig, options): NextConfig => {
     const plugins = config.plugins.slice();
 
