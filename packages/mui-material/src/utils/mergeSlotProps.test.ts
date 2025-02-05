@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { SxProps } from '@mui/material/styles';
 
 import mergeSlotProps from './mergeSlotProps';
 
@@ -41,6 +42,31 @@ describe('utils/index.js', () => {
         ),
       ).to.deep.equal({
         style: { backgroundColor: 'red' },
+      });
+    });
+
+    it('merge sx', () => {
+      expect(
+        mergeSlotProps<{ sx: SxProps }>(
+          { sx: { color: 'red' } },
+          { sx: { backgroundColor: 'blue' } },
+        ),
+      ).to.deep.equal({
+        sx: [{ backgroundColor: 'blue' }, { color: 'red' }],
+      });
+    });
+
+    it('merge sx array', () => {
+      expect(
+        mergeSlotProps<{ sx: SxProps }>(
+          { sx: [{ color: 'red', '&.Mui-disabled': { opacity: 0 } }] },
+          { sx: [{ backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } }] },
+        ),
+      ).to.deep.equal({
+        sx: [
+          { backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } },
+          { color: 'red', '&.Mui-disabled': { opacity: 0 } },
+        ],
       });
     });
 
@@ -127,6 +153,35 @@ describe('utils/index.js', () => {
         )(),
       ).to.deep.equal({
         style: { backgroundColor: 'red' },
+      });
+    });
+
+    it('merge sx for callback', () => {
+      expect(
+        mergeSlotProps(
+          () => ({
+            sx: { color: 'red' },
+          }),
+          () => ({
+            sx: { backgroundColor: 'blue' },
+          }),
+        )(),
+      ).to.deep.equal({
+        sx: [{ backgroundColor: 'blue' }, { color: 'red' }],
+      });
+    });
+
+    it('merge sx array for callback', () => {
+      expect(
+        mergeSlotProps(
+          () => ({ sx: [{ color: 'red', '&.Mui-disabled': { opacity: 0 } }] }),
+          () => ({ sx: [{ backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } }] }),
+        )(),
+      ).to.deep.equal({
+        sx: [
+          { backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } },
+          { color: 'red', '&.Mui-disabled': { opacity: 0 } },
+        ],
       });
     });
 
