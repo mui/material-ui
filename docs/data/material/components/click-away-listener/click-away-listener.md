@@ -44,15 +44,15 @@ By default, the Click-Away Listener component responds to **trailing events**—
 
 You can set the component to listen for **leading events** (the start of a click or touch) using the `mouseEvent` and `touchEvent` props, as shown in the following demo:
 
-{{"demo": "LeadingClickAway.js"}}
-
 :::warning
 When the component is set to listen for leading events, interactions with the scrollbar are ignored.
 :::
 
+{{"demo": "LeadingClickAway.js"}}
+
 ## Accessibility
 
-By default, Click-Away Listener will add an `onClick` handler to its child.
+By default, Click-Away Listener adds an `onClick` handler to its child.
 This can result in screen readers announcing that the child is clickable, even though this `onClick` handler has no effect on the child itself.
 
 To prevent this behavior, add `role="presentation"` to the child element:

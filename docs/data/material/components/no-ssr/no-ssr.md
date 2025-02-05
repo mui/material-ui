@@ -12,17 +12,18 @@ components: NoSsr
 
 ## Introduction
 
-No-SSR is a utility component that prevents its children from being rendered on the server, deferring their rendering to the client instead, as shown in the following demo:
-
-{{"demo": "SimpleNoSsr.js"}}
-
-This can be useful in a variety of situations:
+No-SSR is a utility component that prevents its children from being rendered on the server, deferring their rendering to the client instead.
+This can be useful in a variety of situations, including:
 
 - To create an escape hatch for broken dependencies that don't support server-side rendering (SSR)
 - To improve the time to first paint by only rendering above the fold
 - To reduce the rendering time on the server
 - To turn on service degradation when the server load is too heavy
 - To improve the Time to Interactive (TTI) by only rendering what's important (using the `defer` prop)
+
+The demo below illustrates how this component works:
+
+{{"demo": "SimpleNoSsr.js"}}
 
 ## Basics
 

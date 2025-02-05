@@ -15,12 +15,11 @@ githubLabel: 'component: Portal'
 
 Portal is a utility component built around [React's `createPortal()` API](https://react.dev/reference/react-dom/createPortal).
 It gives you the functionality of `createPortal()` in a convenient component form.
+It's used internally by the [Modal](/base-ui/react-modal/) and [Popper](/base-ui/react-popper/) components.
 
 :::info
 According to [the React docs](https://react.dev/reference/react-dom/createPortal), portals are useful when "you need the child element to visually 'break out' of its container"—for instance, modals and tooltips, which need to exist outside of the normal flow of the document.
 :::
-
-The Portal component is used internally by the [Modal](/base-ui/react-modal/) and [Popper](/base-ui/react-popper/) components.
 
 Normally, children of a component are rendered within that component's DOM tree.
 But sometimes it's necessary to mount a child at a different location in the DOM.
@@ -53,7 +52,6 @@ This callback is called during a React layout effect:
 
 :::error
 The Portal component cannot be used to render child elements on the server—client-side hydration is necessary.
-
 This is because React doesn't support the [`createPortal()` API](https://react.dev/reference/react-dom/createPortal) on the server.
 See [this GitHub issue](https://github.com/facebook/react/issues/13097) for details.
 :::

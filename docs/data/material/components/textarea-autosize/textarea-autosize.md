@@ -14,7 +14,7 @@ githubLabel: 'component: TextareaAutosize'
 ## Introduction
 
 Textarea Autosize is a utility component that replaces the native `<textarea>` HTML.
-The height of the Textarea Autosize component automatically adjusts as a response to keyboard inputs and window resizing events.
+Its height automatically adjusts as a response to keyboard inputs and window resizing events.
 
 By default, an empty Textarea Autosize component renders as a single row, as shown in the following demo:
 
