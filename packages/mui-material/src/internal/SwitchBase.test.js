@@ -479,4 +479,31 @@ describe('<SwitchBase />', () => {
       expect(getByRole('checkbox')).to.have.property('value', 'red');
     });
   });
+
+  it('should call event handlers in slotProps when provided', () => {
+    const rootOnClick = spy();
+    const inputOnClick = spy();
+    const { getByRole } = render(
+      <SwitchBase
+        icon="unchecked"
+        checkedIcon="checked"
+        type="checkbox"
+        slotProps={{
+          root: {
+            onClick: rootOnClick,
+          },
+          input: {
+            onClick: inputOnClick,
+          },
+        }}
+      />,
+    );
+
+    act(() => {
+      getByRole('checkbox').click();
+    });
+
+    expect(rootOnClick.callCount).to.equal(1);
+    expect(inputOnClick.callCount).to.equal(1);
+  });
 });
