@@ -91,4 +91,3 @@ If you did the same with `slots.root`, you would need to place this attribute on
 
 Be mindful of your rendered DOM structure when overriding the slots of more complex components.
 You can easily break the rules of semantic and accessible HTML if you deviate too far from the default structure—for instance, by unintentionally nesting block-level elements inside of inline elements.
-Material UI components automatically correct semantically incorrect HTML—see [Automatic adjustment](/material-ui/main-features/automatic-adjustment/) for details.
