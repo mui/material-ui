@@ -18,12 +18,6 @@ const GOLDs = [
     href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
-    src: 'https://rxdb.info/files/logo/logo_text.svg',
-    name: 'RxDB',
-    description: 'Local-first JavaScript database.',
-    href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
-  },
-  {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
     srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=120 3x',
     name: 'Text-em-all',
@@ -65,11 +59,6 @@ const BACKLINKs = [
     name: 'Views4You',
     description: 'Social media growth services.',
     href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    name: 'Poprey',
-    description: 'Buy Instagram likes with crypto.',
-    href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
