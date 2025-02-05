@@ -115,7 +115,7 @@
   },
   {
     "name": "Sam Sycamore",
-    "title": "Developer Advocate",
+    "title": "Head of Documentation",
     "location": "Washington state, US",
     "locationCountry": "us",
     "about": "Musician and edible wild plant enthusiast 🌱.",
@@ -183,7 +183,7 @@
   },
   {
     "name": "Diego Andai",
-    "title": "Software Engineer — Core",
+    "title": "Engineering Manager — Core",
     "location": "Santiago, Chile",
     "locationCountry": "cl",
     "about": "I love tennis 🎾 and cats 🐈.",
@@ -270,7 +270,7 @@
   },
   {
     "name": "Jose Quintas",
-    "title": "React Engineer — xCharts",
+    "title": "Software Engineer — xCharts",
     "location": "Amsterdam, Netherlands",
     "locationCountry": "nl",
     "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
@@ -304,26 +304,19 @@
   },
   {
     "name": "Armin Mehinović",
-    "title": "React Engineer — xGrid",
+    "title": "Software Engineer — xGrid",
     "location": "Amsterdam, Netherlands",
     "locationCountry": "nl",
     "about": "♟️ Chess, 🛠️ Small DIY projects and learning about space 🌌.",
     "github": "arminmeh"
   },
   {
-    "name": "Alejandra Thomas",
-    "title": "Content Engineer",
-    "location": "New York, US",
-    "locationCountry": "us",
-    "about": "Books 📚, long coffee walks ☕️, and my cat 🐈‍⬛.",
-    "github": "alelthomas"
-  },
-  {
     "name": "Bernardo Belchior",
-    "title": "React Engineer - X",
+    "title": "Software Engineer — xCharts",
     "location": "Berlin, Germany",
     "locationCountry": "de",
-    "about": "Soccer ⚽ and coding 💻.",
+    "about": "Soccer ⚽️ and coding 💻.",
+    "twitter": "bernardobelchi1",
     "github": "bernardobelchior"
   }
 ]
