@@ -85,8 +85,8 @@ export type DrawerSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the avaible props are based on the [Slide](https://mui.com/material-ui/api/slide/#props) component.
      */
     transition: SlotProps<
-      React.ElementType<TransitionProps>,
-      DrawerTransitionSlotPropsOverrides,
+      React.ElementType,
+      TransitionProps & DrawerTransitionSlotPropsOverrides,
       DrawerOwnerState
     >;
   }

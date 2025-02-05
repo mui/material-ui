@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
-import Drawer from '@mui/material/Drawer';
+import Drawer, { DrawerProps } from '@mui/material/Drawer';
 import Grow from '@mui/material/Grow';
 import { PaperProps } from '@mui/material/Paper';
 
@@ -51,3 +51,29 @@ function Noop() {
     transition: Grow,
   }}
 />;
+
+function Custom(props: DrawerProps) {
+  const { slotProps, ...dialogProps } = props;
+  return (
+    <Drawer
+      slotProps={{
+        ...slotProps,
+        transition: (ownerState) => {
+          const transitionProps =
+            typeof slotProps?.transition === 'function'
+              ? slotProps.transition(ownerState)
+              : slotProps?.transition;
+          return {
+            ...transitionProps,
+            onExited: (node) => {
+              transitionProps?.onExited?.(node);
+            },
+          };
+        },
+      }}
+      {...dialogProps}
+    >
+      test
+    </Drawer>
+  );
+}
