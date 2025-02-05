@@ -61,7 +61,7 @@ default-context: &default-context
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
 commands:
-  setup_corepack:
+  setup_environment:
     parameters:
       browsers:
         type: boolean
@@ -69,24 +69,12 @@ commands:
         description: 'Set to true if you intend to any browser (for example with playwright).'
     steps:
       - run:
-          name: Set npm registry public signing keys
-          command: |
-            echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
+          name: View installed pnpm
+          command: which pnpm
 
-      - when:
-          condition: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install pnpm package manager
-                command: corepack enable
-      - when:
-          condition:
-            not: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install pnpm package manager
-                # See https://stackoverflow.com/a/73411601
-                command: corepack enable --install-directory ~/bin
+      - run:
+          name: Install pnpm
+          command: npm install -g pnpm@9.15.4
 
       - run:
           name: View install environment
@@ -102,7 +90,7 @@ commands:
         description: 'Set to true if you intend to any browser (for example with playwright).'
 
     steps:
-      - setup_corepack:
+      - setup_environment:
           browsers: << parameters.browsers >>
 
       - run:
@@ -498,7 +486,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack
+      - setup_environment
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
@@ -513,7 +501,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack
+      - setup_environment
       - run:
           name: Install dependencies
           command: pnpm install --ignore-workspace
@@ -531,7 +519,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
+      - setup_environment:
           browsers: true
       - run:
           name: Install dependencies
@@ -549,7 +537,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
+      - setup_environment:
           browsers: true
       - run:
           name: Install dependencies
@@ -567,7 +555,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
+      - setup_environment:
           browsers: true
       - run:
           name: Install dependencies
@@ -585,7 +573,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
+      - setup_environment:
           browsers: true
       - run:
           name: Install dependencies
@@ -603,7 +591,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
+      - setup_environment:
           browsers: true
       - run:
           name: Install dependencies
@@ -621,7 +609,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
+      - setup_environment:
           browsers: true
       - run:
           name: Install dependencies
@@ -641,7 +629,7 @@ jobs:
           path: /tmp/material-ui
       - attach_workspace:
           at: /tmp/material-ui/packed
-      - setup_corepack:
+      - setup_environment:
           browsers: true
       - run:
           name: Install dependencies
@@ -660,7 +648,7 @@ jobs:
           command: pnpm danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
-      - setup_corepack
+      - setup_environment
       - run:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
