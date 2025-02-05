@@ -70,7 +70,9 @@ commands:
     steps:
       - run:
           name: View installed pnpm
-          command: which pnpm
+          command: |
+            which pnpm
+            pnpm --version
 
       - run:
           name: Install pnpm
