@@ -88,7 +88,7 @@ To do so, follow these steps:
    In case of conflicts you will need to resolve them and commit the changes manually.
 
    If this command fails with the message 'bad revision', it means that the commit doesn't exist on your local repository.
-   The commit might have been created on a remote branch, probably when merging into `master` or `next`.
+   The commit might have been created on a remote branch, probably when merging into `master` or `v*.x`.
    In this case, you'll have to fetch the latest changes of the corresponding remote branch and then try again.
 
 5. Push the changes to the `material-ui-docs` remote:
