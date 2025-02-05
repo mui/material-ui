@@ -1,10 +1,13 @@
+import * as url from 'url';
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as playwright from 'playwright';
 
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+
 async function main() {
   const baseUrl = 'http://localhost:5001';
-  const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
+  const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
     args: ['--font-render-hinting=none'],
