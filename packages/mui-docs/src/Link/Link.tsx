@@ -3,20 +3,15 @@ import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
-import { styled } from '@mui/material/styles';
 import { useUserLanguage } from '../i18n';
 import { useDocsConfig } from '../DocsProvider';
 
 /**
  * File to keep in sync with:
  *
- * - /docs/src/modules/components/Link.tsx
  * - /examples/material-ui-nextjs-pages-router/src/Link.js
  * - /examples/material-ui-nextjs-pages-router-ts/src/Link.tsx
  */
-
-// Add support for the sx prop for consistency with the other branches.
-const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
@@ -27,17 +22,7 @@ interface NextLinkComposedProps
 
 const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
-    const {
-      to,
-      linkAs,
-      replace,
-      scroll,
-      shallow,
-      prefetch,
-      legacyBehavior = true,
-      locale,
-      ...other
-    } = props;
+    const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
     return (
       <NextLink
@@ -49,10 +34,10 @@ const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedPro
         shallow={shallow}
         passHref
         locale={locale}
-        legacyBehavior={legacyBehavior}
-      >
-        <Anchor data-no-markdown-link="true" ref={ref} {...other} />
-      </NextLink>
+        data-no-markdown-link="true"
+        ref={ref}
+        {...other}
+      />
     );
   },
 );
@@ -74,7 +59,6 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link
     as,
     className: classNameProps,
     href,
-    legacyBehavior,
     linkAs: linkAsProp,
     locale,
     noLinkStyle,
@@ -116,7 +100,6 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link
     replace,
     scroll,
     shallow,
-    legacyBehavior,
     prefetch,
     locale,
   };

@@ -54,7 +54,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
       if (['joy', 'base'].includes(packageName)) {
         return 'latest';
       }
-      // #default-branch-switch
+      // #npm-tag-reference
       return 'next';
     }
     const shortSha = commitRef.slice(0, 8);
