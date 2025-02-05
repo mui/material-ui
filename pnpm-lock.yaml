@@ -677,6 +677,9 @@ importers:
       babel-plugin-optimize-clsx:
         specifier: ^2.6.2
         version: 2.6.2
+      babel-plugin-react-remove-properties:
+        specifier: ^0.3.0
+        version: 0.3.0
       babel-plugin-transform-react-remove-prop-types:
         specifier: ^0.4.24
         version: 0.4.24

@@ -26,9 +26,6 @@ const pkgContent = fs.readFileSync(path.resolve(workspaceRoot, 'package.json'), 
 const pkg = JSON.parse(pkgContent);
 
 export default withDocsInfra({
-  compiler: {
-    reactRemoveProperties: true,
-  },
   webpack: (config: NextConfig, options): NextConfig => {
     const plugins = config.plugins.slice();
 
