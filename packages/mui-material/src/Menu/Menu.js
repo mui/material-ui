@@ -80,7 +80,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    TransitionProps = {},
+    TransitionProps: { onEntering, ...TransitionProps } = {},
     variant = 'selectedMenu',
     slots = {},
     slotProps = {},
@@ -88,8 +88,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   } = props;
 
   const isRtl = useRtl();
-
-  const { onEntering, ...transitionProps } = slotProps.transition ?? TransitionProps;
 
   const ownerState = {
     ...props,
@@ -167,11 +165,13 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const externalForwardedProps = {
     slots,
-    slotProps: { list: MenuListProps, ...slotProps },
+    slotProps: {
+      list: MenuListProps,
+      transition: TransitionProps,
+      paper: PaperProps,
+      ...slotProps,
+    },
   };
-
-  const PaperSlot = slots.paper ?? MenuPaper;
-  const paperExternalSlotProps = slotProps.paper ?? PaperProps;
 
   const rootSlotProps = useSlotProps({
     elementType: slots.root,
@@ -180,18 +180,27 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     className: [classes.root, className],
   });
 
-  const paperSlotProps = useSlotProps({
-    elementType: PaperSlot,
-    externalSlotProps: paperExternalSlotProps,
-    ownerState,
+  const [PaperSlot, paperSlotProps] = useSlot('paper', {
     className: classes.paper,
+    elementType: MenuPaper,
+    externalForwardedProps,
+    shouldForwardComponentProp: true,
+    ownerState,
   });
 
   const [ListSlot, listSlotProps] = useSlot('list', {
-    elementType: MenuMenuList,
-    externalForwardedProps,
-    ownerState,
     className: clsx(classes.list, MenuListProps.className),
+    elementType: MenuMenuList,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onKeyDown: (event) => {
+        handleListKeyDown(event);
+        handlers.onKeyDown?.(event);
+      },
+    }),
+    ownerState,
   });
 
   return (
@@ -203,24 +212,37 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       }}
       transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       slots={{
-        paper: PaperSlot,
         root: slots.root,
+        paper: PaperSlot,
+        backdrop: slots.backdrop,
+        transition: slots.transition,
       }}
       slotProps={{
         root: rootSlotProps,
         paper: paperSlotProps,
+        backdrop: slotProps.backdrop,
+        transition: (innerState) => {
+          const transitionProps =
+            typeof slotProps.transition === 'function'
+              ? slotProps.transition(innerState)
+              : slotProps.transition;
+          return {
+            ...transitionProps,
+            onEntering: (...args) => {
+              handleEntering(...args);
+              transitionProps?.onEntering?.(...args);
+            },
+          };
+        },
       }}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
-      TransitionProps={{ onEntering: handleEntering, ...transitionProps }}
       ownerState={ownerState}
       {...other}
-      TransitionComponent={slots.transition ?? other.TransitionComponent}
       classes={PopoverClasses}
     >
       <ListSlot
-        onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
         autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
         autoFocusItem={autoFocusItem}
@@ -305,6 +327,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -315,6 +338,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     backdrop: PropTypes.elementType,
+    list: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
     transition: PropTypes.elementType,
@@ -327,12 +351,6 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * The component used for the transition.
-   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Grow
-   */
-  TransitionComponent: PropTypes.elementType,
   /**
    * The length of the transition in `ms`, or 'auto'
    * @default 'auto'

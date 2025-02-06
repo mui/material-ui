@@ -23,14 +23,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ backdrop?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
+        "description": "{ backdrop?: elementType, list?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
       },
       "default": "{}"
     },
@@ -41,7 +41,6 @@
       },
       "additionalInfo": { "sx": true }
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -76,16 +75,22 @@
       "class": "MuiMenu-paper"
     },
     {
-      "name": "transition",
-      "description": "The component used for the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
-      "default": "Grow",
-      "class": null
-    },
-    {
       "name": "list",
       "description": "The component used for the list.",
       "default": "MenuList",
       "class": "MuiMenu-list"
+    },
+    {
+      "name": "transition",
+      "description": "The component used for the transition slot.",
+      "default": "Grow",
+      "class": null
+    },
+    {
+      "name": "backdrop",
+      "description": "The component used for the backdrop slot.",
+      "default": "Backdrop",
+      "class": null
     }
   ],
   "classes": [],
