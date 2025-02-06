@@ -180,14 +180,14 @@ export default function CareersFaq() {
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
-                Got any questions unanswered or need more help?
+                Still have questions?
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
-              We&apos;re here to help you with any other question you have about our hiring process.
+              Feel free to reach out with any other questions you might have about our hiring process.
             </Typography>
             <Link href="mailto:job@mui.com" variant="body2">
-              Contact us <KeyboardArrowRightRounded fontSize="small" />
+              Email us <KeyboardArrowRightRounded fontSize="small" />
             </Link>
           </Paper>
         </Grid>
