@@ -60,3 +60,7 @@ Use this codemod to automatically update the imports:
 ```bash
 npx @mui/codemod@next v7.0.0/lab-removed-components <path/to/folder>
 ```
+
+:::warning
+The codemod doesn't cover type imports associated with the components.
+:::
