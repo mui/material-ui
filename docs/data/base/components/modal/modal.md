@@ -5,6 +5,8 @@ components: Modal
 hooks: useModal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+newUrl: https://base-ui.com/react/components/dialog
+newName: Dialog
 ---
 
 # Modal
