@@ -21,7 +21,7 @@ export interface DrawerBackdropSlotPropsOverrides {}
 
 export interface DrawerSlots {
   /**
-   * The component used for the Modal root.
+   * The component used for the root when the variant is `temporary`.
    * @default Modal
    */
   root: React.ElementType;
@@ -31,8 +31,7 @@ export interface DrawerSlots {
    */
   backdrop: React.ElementType;
   /**
-   * The component used for the docked.
-   * It's also a root slot when variant is `permanent` or `persistent`.
+   * The component used for the root element when the variant is `permanent` or `persistent`.
    * @default div
    */
   docked: React.ElementType;
