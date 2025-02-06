@@ -203,6 +203,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ownerState,
   });
 
+  const resolvedTransitionProps =
+    typeof externalForwardedProps.slotProps.transition === 'function'
+      ? externalForwardedProps.slotProps.transition(ownerState)
+      : externalForwardedProps.slotProps.transition;
+
   return (
     <MenuRoot
       onClose={onClose}
@@ -220,19 +225,16 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       slotProps={{
         root: rootSlotProps,
         paper: paperSlotProps,
-        backdrop: slotProps.backdrop,
-        transition: (innerState) => {
-          const transitionProps =
-            typeof slotProps.transition === 'function'
-              ? slotProps.transition(innerState)
-              : slotProps.transition;
-          return {
-            ...transitionProps,
-            onEntering: (...args) => {
-              handleEntering(...args);
-              transitionProps?.onEntering?.(...args);
-            },
-          };
+        backdrop:
+          typeof slotProps.backdrop === 'function'
+            ? slotProps.backdrop(ownerState)
+            : slotProps.backdrop,
+        transition: {
+          ...resolvedTransitionProps,
+          onEntering: (...args) => {
+            handleEntering(...args);
+            resolvedTransitionProps?.onEntering?.(...args);
+          },
         },
       }}
       open={open}

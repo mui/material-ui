@@ -2,13 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
-import {
-  PopoverProps,
-  PopoverSlots,
-  PopoverOwnerState,
-  PopoverBackdropSlotPropsOverrides,
-  PopoverTransitionSlotPropsOverrides,
-} from '../Popover';
+import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
@@ -27,7 +21,7 @@ export interface MenuListSlotPropsOverrides {}
 
 export interface MenuBackdropSlotPropsOverrides {}
 
-export interface MenuSlots extends Pick<PopoverSlots, 'backdrop' | 'transition'> {
+export interface MenuSlots {
   /**
    * The component used for the popper.
    * @default Modal
@@ -43,6 +37,16 @@ export interface MenuSlots extends Pick<PopoverSlots, 'backdrop' | 'transition'>
    * @default MenuList
    */
   list: React.ElementType;
+  /**
+   * The component used for the transition slot.
+   * @default Grow
+   */
+  transition: React.ElementType;
+  /**
+   * The component used for the backdrop slot.
+   * @default Backdrop
+   */
+  backdrop: React.ElementType;
 }
 
 export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -69,9 +73,9 @@ export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     transition: SlotComponentProps<
       // use SlotComponentProps because transition slot does not support `component` and `sx` prop
-      React.ElementType<TransitionProps>,
-      PopoverTransitionSlotPropsOverrides,
-      PopoverOwnerState
+      React.ElementType,
+      TransitionProps & MenuTransitionSlotPropsOverrides,
+      MenuOwnerState
     >;
     /**
      * Props forwarded to the backdrop slot.
@@ -79,8 +83,8 @@ export type MenuSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     backdrop: SlotProps<
       React.ElementType<BackdropProps>,
-      PopoverBackdropSlotPropsOverrides,
-      PopoverOwnerState
+      MenuBackdropSlotPropsOverrides,
+      MenuOwnerState
     >;
   }
 >;

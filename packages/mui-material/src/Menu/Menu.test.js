@@ -10,9 +10,17 @@ import {
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
+import { modalClasses } from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import { paperClasses } from '../Paper';
+
+const CustomTransition = React.forwardRef(function CustomTransition(
+  { in: inProp, appear, onEnter, onEntering, onExited, ownerState, ...props },
+  ref,
+) {
+  return <div data-testid="custom" ref={ref} {...props} />;
+});
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -33,6 +41,17 @@ describe('<Menu />', () => {
       list: {
         expectedClassName: classes.list,
         testWithElement: null, // already tested with `testWithComponent`
+      },
+      backdrop: {
+        expectedClassName: modalClasses.backdrop,
+        testWithElement: React.forwardRef(({ invisible, ownerState, ...props }, ref) => (
+          <i ref={ref} {...props} />
+        )),
+      },
+      transition: {
+        expectedClassName: null,
+        testWithComponent: CustomTransition,
+        testWithElement: CustomTransition,
       },
     },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
