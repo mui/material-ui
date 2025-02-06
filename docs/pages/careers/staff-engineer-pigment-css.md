@@ -1,6 +1,6 @@
 # Staff Engineer — Pigment CSS
 
-<p class="description">Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.</p>
+<p class="description">You will research, document, and help build our next-gen zero-runtime CSS-in-JS library, with a focus on performance and great developer experience.</p>
 
 ## Details of the role
 
