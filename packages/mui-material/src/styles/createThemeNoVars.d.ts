@@ -44,7 +44,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   unstable_sxConfig?: SxConfig;
 }
 
-interface BaseTheme extends SystemTheme {
+export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;

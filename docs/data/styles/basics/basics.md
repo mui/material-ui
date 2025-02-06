@@ -16,10 +16,10 @@ See the [v5 migration docs](/material-ui/migration/migrating-from-jss/) for deta
 
 To install and save in your `package.json` dependencies, run:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/styles
+npm install @mui/styles@next
 ```
 
 ## Getting started

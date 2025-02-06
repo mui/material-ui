@@ -304,7 +304,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
-    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
@@ -314,7 +314,7 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slots: PropTypes.shape({
-    list: PropTypes.elementType,
+    backdrop: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
     transition: PropTypes.elementType,
