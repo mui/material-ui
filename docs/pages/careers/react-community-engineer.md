@@ -1,6 +1,6 @@
 # React Community Engineer — X (future role)
 
-<p class="description">You will work with the advanced components team to provide support and guidance to the community and help resolve user issues.</p>
+<p class="description">You will work with the advanced components team to provide guidance to the community and help resolve user issues.</p>
 
 ## Details of the role
 

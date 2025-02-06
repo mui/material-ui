@@ -77,7 +77,7 @@ const nextRolesData = [
       {
         title: 'React Community Engineer — X',
         description:
-          'You will work with the advanced components team to provide support and guidance to the community and help resolve user issues.',
+          'You will work with the advanced components team to provide guidance to the community and help resolve user issues.',
         url: '/careers/react-community-engineer/',
       },
       {
