@@ -35,6 +35,7 @@
     "docs:typescript": "pnpm docs:typescript:formatted --watch",
     "docs:typescript:check": "pnpm --filter docs typescript",
     "docs:typescript:formatted": "tsx ./docs/scripts/formattedTSDemos",
+    "docs:sync-team": "tsx ./docs/scripts/syncTeamMembers.ts && pnpm prettier",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./docs/scripts/updateIconSynonyms && pnpm prettier",
     "docs:zipRules": "cd docs && rm mui-vale.zip && zip -r mui-vale.zip mui-vale && cd ../ && vale sync",
     "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --concurrency 1 build:modern",
