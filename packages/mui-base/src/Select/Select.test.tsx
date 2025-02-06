@@ -1006,7 +1006,7 @@ describe('<Select />', () => {
       );
 
       const select = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         select.click();
       });
 
@@ -1022,7 +1022,7 @@ describe('<Select />', () => {
 
       const select = screen.getByRole('combobox');
 
-      act(() => {
+      await act(async () => {
         select.click();
       });
 
@@ -1041,7 +1041,7 @@ describe('<Select />', () => {
       );
 
       const select = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         select.click();
       });
 
@@ -1253,11 +1253,11 @@ describe('<Select />', () => {
     const updateButton = getByTestId('update-externally');
     const selectButton = getByTestId('select');
 
-    act(() => updateButton.click());
-    act(() => selectButton.click());
+    await act(async () => updateButton.click());
+    await act(async () => selectButton.click());
 
     const option2 = getByText('2');
-    act(() => option2.click());
+    await act(async () => option2.click());
 
     expect(selectButton).to.have.text('1, 2');
   });

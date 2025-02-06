@@ -2,7 +2,6 @@ const ROUTES = {
   // Marketing pages
   productCore: '/core/',
   productMaterial: '/material-ui/',
-  productBase: '/base-ui/',
   productAdvanced: '/x/',
   productToolpad: '/toolpad/',
   productTemplates: '/templates/',

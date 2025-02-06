@@ -15,9 +15,10 @@ import PrintIcon from '@mui/icons-material/Print';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const NAVIGATION = [
+  { segment: 'inbox', title: 'Inbox' },
   {
-    segment: 'orders',
-    title: 'Orders',
+    segment: 'inbox/all',
+    title: 'All',
     icon: <DashboardIcon />,
   },
 ];
@@ -74,7 +75,7 @@ function CustomPageHeader() {
 
 export default function PageContainerBasic(props) {
   const { window } = props;
-  const router = useDemoRouter('/orders');
+  const router = useDemoRouter('/inbox/all');
   const theme = useTheme();
   // Remove this const when copying and pasting into your project.
   const demoWindow = window ? window() : undefined;
