@@ -14,17 +14,17 @@ import ROUTES from 'docs/src/route';
 const companyInfo = [
   {
     title: 'About us',
-    description: 'Meet the team and a little bit of our history.',
+    description: 'Learn about the team and our history.',
     routeUrl: ROUTES.about,
   },
   {
     title: 'Handbook',
-    description: 'Learn everything about how MUI as a company.',
+    description: 'Find out how we function as a company.',
     routeUrl: ROUTES.handbook,
   },
   {
     title: 'Blog',
-    description: 'Learn about our products and team.',
+    description: 'Check out the latest product updates.',
     routeUrl: ROUTES.blog,
   },
 ];
@@ -44,7 +44,7 @@ function CardContentBlock({ title, description }: CardContentBlockProps) {
         {description}
       </Typography>
       <Typography variant="body2" color="primary" sx={{ fontWeight: 'bold', mt: 'auto' }}>
-        Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+        Read more <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
       </Typography>
     </React.Fragment>
   );

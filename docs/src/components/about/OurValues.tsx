@@ -22,7 +22,7 @@ const values = [
   },
   {
     title: 'Avoid bureaucracy 🚫',
-    description: "We're so not corporate — and we like it that way.",
+    description: "We're so not corporate—and we like it that way.",
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',
     width: 81,
@@ -56,7 +56,7 @@ export default function OurValues() {
             The MUI <GradientText>team pact</GradientText>
           </Typography>
         }
-        description="The MUI team pact describes the values we embody as a company, which help guide us toward the experiences and results we aim to achieve."
+        description="The MUI team pact describes the values we embody as a company, which help guide us toward the experiences and results we aim to deliver."
       />
       <Button
         component={Link}
