@@ -107,8 +107,8 @@ const faqData = [
 
   - **seek accuracy over complacency.** People who enjoy discovering the truth more than being right. People who appreciate debate, embrace confusion, and reason carefully.
   - **aim for clarity of thought.** People who take the time to understand the problem before solving it. People who can explain complex ideas in simple terms, and know how to tailor their communication to their audience.
-  - **possess self-determination.** People who don't stop when things get tough—on the contrary, that's when the work starts to get really interesting.
-  - **view challenges as opportunities.** People who are optimistic about the future and enjoy helping the people around them.
+  - **possess self-determination.** People who are motivated to set their own goals and work towards them. People who can manage their own time and priorities.
+  - **view challenges as opportunities.** People who don't stop when things get tough—on the contrary, that's when the work starts to get really interesting.
 
   See [company culture](https://www.notion.so/Company-culture-8c295a7b95564f2da03aca6759413391?pvs=21) in our handbook to learn more.
 `,
@@ -184,7 +184,8 @@ export default function CareersFaq() {
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ color: 'text.secondary', my: 1, textAlign: 'left' }}>
-              Feel free to reach out with any other questions you might have about our hiring process.
+              Feel free to reach out with any other questions you might have about our hiring
+              process.
             </Typography>
             <Link href="mailto:job@mui.com" variant="body2">
               Email us <KeyboardArrowRightRounded fontSize="small" />
