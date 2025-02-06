@@ -94,7 +94,7 @@ const faqData = [
 
   - We favor candidates working normal hours in the UTC-6 to UTC+5 timezone range. This isn't a hard requirement, but it greatly simplifies communication and collaboration.
   - We can't hire fiscal residents of Russia due to legal and ethical constraints.
-  `,
+`,
   },
   {
     summary: 'Does MUI offer visa sponsorship?',
@@ -115,7 +115,11 @@ const faqData = [
   },
   {
     summary: 'Can I use AI during the hiring process?',
-    detail: `When testing candidates, we aim to simulate the actual conditions they would work in. You may use generative AI tools during the hiring process in the same way you might use them in your day-to-day work—for example, to speed up the process of writing boilerplate code. However, we ask that you don't use AI to generate solutions to technical challenges, nor to replace your own decision-making. We need to see your thought process and problem-solving skills—not the output of a machine learning model.`,
+    detail: `
+  When testing candidates, we aim to simulate the actual conditions they would work in. You may use generative AI tools during the hiring process in the same way you might use them in your day-to-day work—for example, to speed up the process of writing boilerplate code. 
+    
+  However, we ask that you don't use AI to generate complete solutions to technical challenges, nor to replace your own decision-making. We need to see your thought process and problem-solving skills—not the output of a machine learning model.
+`,
   },
 ];
 
