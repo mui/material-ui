@@ -1136,6 +1136,45 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
 
 ## Drawer
 
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/drawer-props <path>
+```
+
+### BackdropProps
+
+The Drawer's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop`:
+
+```diff
+ <Drawer
+-  BackdropProps={backdropProps}
++  slotProps={{ backdrop: backdropProps }}
+ />
+```
+
+### PaperProps
+
+The Drawer's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
+
+```diff
+ <Drawer
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+ />
+```
+
+### SlideProps
+
+The Drawer's `SlideProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Drawer
+-  SlideProps={slideProps}
++  slotProps={{ transition: slideProps }}
+ />
+```
+
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-classes) below to migrate the code as described in the following sections:
 
 ```bash
@@ -1928,6 +1967,47 @@ The Slider's `componentsProps` prop was deprecated in favor of `slotProps`:
  <Slider
 -  componentsProps={{ track: { id: 'track-id' } }}
 +  slotProps={{ track: { id: 'track-id' } }}
+ />
+```
+
+## SwipeableDrawer
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/drawer-props <path>
+```
+
+### BackdropProps
+
+The SwipeableDrawer's `BackdropProps` prop was deprecated in favor of `slotProps.backdrop`:
+
+```diff
+ <SwipeableDrawer
+-  BackdropProps={backdropProps}
++  slotProps={{ backdrop: backdropProps }}
+ />
+```
+
+### PaperProps
+
+The SwipeableDrawer's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
+
+```diff
+ <SwipeableDrawer
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+ />
+```
+
+### SlideProps
+
+The SwipeableDrawer's `SlideProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <SwipeableDrawer
+-  SlideProps={slideProps}
++  slotProps={{ transition: slideProps }}
  />
 ```
 
