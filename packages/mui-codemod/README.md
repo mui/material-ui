@@ -2014,7 +2014,7 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 npx @mui/codemod@next v7.0.0/lab-removed-components <path>
 ```
 
-Update the import of the following components moved from `@mui/lab` to `@mui/material`:
+Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
 
 - Alert
 - AlertTitle
@@ -2029,6 +2029,7 @@ Update the import of the following components moved from `@mui/lab` to `@mui/mat
 - SpeedDialIcon
 - ToggleButton
 - ToggleButtonGroup
+- usePagination
 
 It updates barrel file imports:
 

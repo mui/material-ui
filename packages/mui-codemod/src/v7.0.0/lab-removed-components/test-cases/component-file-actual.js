@@ -11,6 +11,7 @@ import SpeedDialAction from '@mui/lab/SpeedDialAction';
 import SpeedDialIcon from '@mui/lab/SpeedDialIcon';
 import ToggleButton from '@mui/lab/ToggleButton';
 import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
+import usePagination from '@mui/lab/usePagination';
 
 <Alert />;
 <AlertTitle />;
@@ -25,3 +26,4 @@ import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
 <SpeedDialIcon />;
 <ToggleButton />;
 <ToggleButtonGroup />;
+usePagination();

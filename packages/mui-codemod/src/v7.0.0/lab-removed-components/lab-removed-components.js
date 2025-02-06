@@ -1,4 +1,4 @@
-const REMOVED_COMPONENTS = [
+const REMOVED_EXPORTS = [
   'Alert',
   'AlertTitle',
   'Autocomplete',
@@ -12,15 +12,16 @@ const REMOVED_COMPONENTS = [
   'SpeedDial',
   'ToggleButton',
   'ToggleButtonGroup',
+  'usePagination',
 ];
 
-function replaceComponentFileImports(j, root, componentName) {
+function replaceComponentFileImports(j, root, exportName) {
   root
     .find(j.ImportDeclaration)
-    .filter((path) => path.node.source.value === `@mui/lab/${componentName}`)
+    .filter((path) => path.node.source.value === `@mui/lab/${exportName}`)
     .forEach((path) => {
       j(path).replaceWith(
-        j.importDeclaration(path.node.specifiers, j.literal(`@mui/material/${componentName}`)),
+        j.importDeclaration(path.node.specifiers, j.literal(`@mui/material/${exportName}`)),
       );
     });
 }
@@ -57,7 +58,7 @@ function replaceBarrelFileImports(j, root) {
     // find all specifiers that need to be moved
     j(labBarrelImport)
       .find(j.ImportSpecifier)
-      .filter((specifier) => REMOVED_COMPONENTS.includes(specifier.node.imported.name))
+      .filter((specifier) => REMOVED_EXPORTS.includes(specifier.node.imported.name))
       .forEach((specifier) => {
         specifiersToMove.push(specifier);
       });
@@ -87,8 +88,8 @@ export default function transformer(file, api) {
 
   replaceBarrelFileImports(j, root);
 
-  REMOVED_COMPONENTS.forEach((componentName) => {
-    replaceComponentFileImports(j, root, componentName);
+  REMOVED_EXPORTS.forEach((exportName) => {
+    replaceComponentFileImports(j, root, exportName);
   });
 
   return root.toSource();

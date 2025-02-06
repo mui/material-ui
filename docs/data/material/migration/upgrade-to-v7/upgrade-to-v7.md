@@ -26,7 +26,7 @@ Expect updates as new breaking changes are introduced.
 
 ### Lab components moved to the main package
 
-The following `@mui/lab` components have been moved to the main package:
+The following `@mui/lab` components and hook have been moved to the main package:
 
 - Alert
 - AlertTitle
@@ -41,8 +41,9 @@ The following `@mui/lab` components have been moved to the main package:
 - SpeedDialIcon
 - ToggleButton
 - ToggleButtonGroup
+- usePagination
 
-To keep using these components, import them from `@mui/material` instead of `@mui/lab`.
+To keep using these components and hook, import them from `@mui/material` instead of `@mui/lab`.
 
 ```diff
 -import Alert from '@mui/lab/Alert';

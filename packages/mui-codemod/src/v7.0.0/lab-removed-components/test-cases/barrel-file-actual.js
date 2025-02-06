@@ -12,6 +12,7 @@ import {
   SpeedDialIcon,
   ToggleButton,
   ToggleButtonGroup,
+  usePagination,
 } from '@mui/lab';
 
 <Alert />;
@@ -27,3 +28,4 @@ import {
 <SpeedDialIcon />;
 <ToggleButton />;
 <ToggleButtonGroup />;
+usePagination();
