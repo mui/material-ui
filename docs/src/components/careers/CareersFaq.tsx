@@ -69,12 +69,12 @@ const faqData = [
   {
     summary: 'Does MUI do whiteboarding during interviews?',
     detail:
-      'No. We ask applicants to complete challenges that are close to their future day-to-day contributions.',
+      'No. We ask applicants to complete challenges that resemble the kinds of contributions we would expect from the role.',
   },
   {
     summary: 'Would I be hired as an employee or contractor?',
     detail: `
-  New team members can choose whether to join as an employee or a contractor. The legal requirements of both may vary significantly from country to country, but we've designed our compensation and benefits so that there are as few differences as possible between each type of contract. You can also switch between the two statuses if and when your circumstances change.
+  New team members can choose whether to join as an employee or a contractor. The legal requirements may vary significantly between countries, but we've designed our compensation packages to minimize the differences between each type of contract. You can also switch between the two statuses if and when your circumstances change.
 
   For those who choose to join as employees:
 
@@ -85,10 +85,10 @@ const faqData = [
   {
     summary: 'Which countries does MUI hire from?',
     detail: `
-  As a general rule, we can hire from any country where we can legally compensate you. This includes:
+  As a general rule, we can hire from any country where we can legally compensate you. This includes countries where:
 
-  - [Countries we can send money to with our Wise account](https://wise.com/help/articles/2571942/what-countries-can-i-send-to)
-  - [Countries we can use Deel in](https://help.letsdeel.com/hc/en-gb/articles/4407737728273-Where-Is-Deel-Available)
+  - [we can send money via Wise](https://wise.com/help/articles/2571942/what-countries-can-i-send-to)
+  - [we can use Deel as an EOR](https://help.letsdeel.com/hc/en-gb/articles/4407737728273-Where-Is-Deel-Available)
 
   Beyond that, we do have some limitations:
 
@@ -103,21 +103,19 @@ const faqData = [
   {
     summary: 'How would you describe the company culture?',
     detail: `
-    We aim to build a team of people who:
+  We aim to build a team of people who:
 
-  - **seek accuracy over complacency.** People who enjoy discovering the truth more than being right. People who enjoy debate, embrace confusion, and reason with probabilistic models.
-  - **aim for clarity of thought.** This is the foundation for great teamwork.
-  - **possess self-determination.** They don't stop when it becomes hard, on the contrary, it's when things start to be interesting for them.
-  - **view challenges as opportunities.** We are optimistic about the future, and we enjoy helping the people around us.
+  - **seek accuracy over complacency.** People who enjoy discovering the truth more than being right. People who appreciate debate, embrace confusion, and reason carefully.
+  - **aim for clarity of thought.** People who take the time to understand the problem before solving it. People who can explain complex ideas in simple terms, and know how to tailor their communication to their audience.
+  - **possess self-determination.** People who don't stop when things get tough—on the contrary, that's when the work starts to get really interesting.
+  - **view challenges as opportunities.** People who are optimistic about the future and enjoy helping the people around them.
 
   See [company culture](https://www.notion.so/Company-culture-8c295a7b95564f2da03aca6759413391?pvs=21) in our handbook to learn more.
 `,
   },
   {
     summary: 'Can I use AI during the hiring process?',
-    detail: `
-    When testing candidates, we aim to simulate the actual conditions they would work in. You may use generative AI tools during the hiring process in the same way you might use them in your day-to-day work—for example, to speed up the process of writing boilerplate code. However, we ask that you don't use AI to generate solutions to the challenges themselves, nor to replace your own decision-making. We need to see your thought process and problem-solving skills—not the output of a machine learning model.
-    `,
+    detail: `When testing candidates, we aim to simulate the actual conditions they would work in. You may use generative AI tools during the hiring process in the same way you might use them in your day-to-day work—for example, to speed up the process of writing boilerplate code. However, we ask that you don't use AI to generate solutions to technical challenges, nor to replace your own decision-making. We need to see your thought process and problem-solving skills—not the output of a machine learning model.`,
   },
 ];
 
