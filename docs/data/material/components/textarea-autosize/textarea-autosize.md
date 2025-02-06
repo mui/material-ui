@@ -18,7 +18,7 @@ Its height automatically adjusts as a response to keyboard inputs and window res
 
 By default, an empty Textarea Autosize component renders as a single row, as shown in the following demo:
 
-{{"demo": "UnstyledTextarea", "defaultCodeOpen": false}}
+{{"demo": "EmptyTextarea.js", "defaultCodeOpen": false}}
 
 ## Basics
 
