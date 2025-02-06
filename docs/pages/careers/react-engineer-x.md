@@ -1,6 +1,6 @@
 # React Engineer — X
 
-<p class="description">You will strengthen the MUI X product by building ambitious and complex new features, working on strategic problems, and helping to drive adoption.</p>
+<p class="description">You will strengthen the MUI X product by building ambitious and complex new features, working on strategic problems, and helping to drive adoption.</p>
 
 ## Details of the role
 
