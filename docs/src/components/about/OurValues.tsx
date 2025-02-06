@@ -56,7 +56,7 @@ export default function OurValues() {
             The MUI <GradientText>team pact</GradientText>
           </Typography>
         }
-        description="They explain the behaviors and mindsets we actively encourage, discourage, and why. They serve as a guide toward better decision-making, results, and experiences at work."
+        description="The MUI team pact describes the values we embody as a company, which help guide us toward the experiences and results we aim to achieve."
       />
       <Button
         component={Link}
