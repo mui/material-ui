@@ -62,6 +62,7 @@ npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quo
 ## Included scripts
 
 - [Deprecations](#deprecations)
+- [v7](#v700)
 - [v6](#v600)
 - [v5](#v500)
 - [v4](#v400)
@@ -2001,6 +2002,46 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+### v7.0.0
+
+#### `lab-removed-components`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+```
+
+Update the import of the following components moved from `@mui/lab` to `@mui/material`:
+
+- Alert
+- AlertTitle
+- Autocomplete
+- AvatarGroup
+- Pagination
+- PaginationItem
+- Rating
+- Skeleton
+- SpeedDial
+- SpeedDialAction
+- SpeedDialIcon
+- ToggleButton
+- ToggleButtonGroup
+
+It updates barrel file imports:
+
+```diff
+- import { Alert } from '@mui/lab';
++ import { Alert } from '@mui/material';
+```
+
+As well as component file imports
+
+```diff
+- import Alert from '@mui/lab/Alert';
++ import Alert from '@mui/material/Alert';
 ```
 
 ### v6.0.0
