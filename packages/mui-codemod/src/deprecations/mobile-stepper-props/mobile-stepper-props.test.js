@@ -7,7 +7,10 @@ describe('@mui/codemod', () => {
       transform,
       transformName: 'mobile-stepper-props',
       dirname: __dirname,
-      testCases: [{ actual: '/test-cases/actual.js', expected: '/test-cases/expected.js' }],
+      testCases: [
+        { actual: '/test-cases/actual.js', expected: '/test-cases/expected.js' },
+        { actual: '/test-cases/theme.actual.js', expected: '/test-cases/theme.expected.js' },
+      ],
     });
   });
 });
