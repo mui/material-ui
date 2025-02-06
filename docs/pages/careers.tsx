@@ -195,9 +195,9 @@ export default function Careers() {
                 }
                 description={
                   <React.Fragment>
-                    We're not actively hiring for these roles yet, but you're welcome to apply for
-                    future consideration. If none of these roles match your profile, you can apply
-                    to{' '}
+                    We&apos;re not actively hiring for these roles yet, but you&apos;re welcome to
+                    apply for future consideration. If none of these roles match your profile, you
+                    can apply to{' '}
                     <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                       the dream job
                     </Link>{' '}
