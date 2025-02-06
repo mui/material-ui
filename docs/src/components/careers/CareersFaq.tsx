@@ -107,7 +107,7 @@ const faqData = [
 
   - **seek accuracy over complacency.** People who enjoy discovering the truth more than being right. People who appreciate debate, embrace confusion, and reason carefully.
   - **aim for clarity of thought.** People who take the time to understand the problem before solving it. People who can explain complex ideas in simple terms, and know how to tailor their communication to their audience.
-  - **possess self-determination.** People who are motivated to set their own goals and work towards them. People who can manage their own time and priorities.
+  - **possess self-determination.** People who are motivated to set their own goals and work towards them. People who can manage their own time and priorities, and don't wait to be told what to do.
   - **view challenges as opportunities.** People who don't stop when things get tough—on the contrary, that's when the work starts to get really interesting.
 
   See [company culture](https://www.notion.so/Company-culture-8c295a7b95564f2da03aca6759413391?pvs=21) in our handbook to learn more.
