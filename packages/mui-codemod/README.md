@@ -1401,6 +1401,19 @@ npx @mui/codemod@latest deprecations/linear-progress-classes <path>
 npx @mui/codemod@latest deprecations/modal-props <path>
 ```
 
+#### `mobile-stepper-props`
+
+```diff
+ <MobileStepper
+-  LinearProgressProps={{ color: 'primary' }}
++  slotProps={{ progress: { color: 'primary' } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/mobile-stepper-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
