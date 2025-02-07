@@ -11,14 +11,22 @@ import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSw
 import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
-import { CommunitySupportIcon, ProSupportIcon, PremiumSupportIcon, CommunitySupportText, ProSupportText, PremiumSupportText, PrioritySupportIcon, 
-  PrioritySupportText } from 'docs/src/components/pricing/SupportIcons';
+import {
+  CommunitySupportIcon,
+  ProSupportIcon,
+  PremiumSupportIcon,
+  CommunitySupportText,
+  ProSupportText,
+  PremiumSupportText,
+  PrioritySupportIcon,
+  PrioritySupportText,
+} from 'docs/src/components/pricing/SupportIcons';
 
 export interface Feature {
   text?: string;
   highlight?: string;
   text2?: string;
-  icon?: 'support' | 'check' ; 
+  icon?: 'support' | 'check';
   supportType?: 'community' | 'pro' | 'premium' | 'priority';
 }
 
@@ -54,7 +62,6 @@ export const planInfo: Record<
       { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
       { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
       {
-        
         icon: 'support',
         supportType: 'pro',
       },
@@ -135,7 +142,10 @@ export function PlanPrice(props: PlanPriceProps) {
             minHeight: planPriceMinHeight,
           }}
         >
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', minHeight: 38, }}>
+          <Typography
+            variant="body2"
+            sx={{ color: 'text.secondary', textAlign: 'center', minHeight: 38 }}
+          >
             Free forever!
           </Typography>
         </Box>
@@ -199,7 +209,12 @@ export function PlanPrice(props: PlanPriceProps) {
           {
             <Typography
               variant="body2"
-              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem', minHeight: 38, }}
+              sx={{
+                color: 'text.secondary',
+                textAlign: 'center',
+                fontSize: '0.8125rem',
+                minHeight: 38,
+              }}
             >
               {priceExplanation}
             </Typography>
@@ -285,7 +300,12 @@ export function PlanPrice(props: PlanPriceProps) {
           {
             <Typography
               variant="body2"
-              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem', minHeight: 38,  }}
+              sx={{
+                color: 'text.secondary',
+                textAlign: 'center',
+                fontSize: '0.8125rem',
+                minHeight: 38,
+              }}
             >
               {priceExplanation}
             </Typography>
@@ -323,14 +343,20 @@ export function PlanPrice(props: PlanPriceProps) {
           mt: 2,
         }}
       >
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{
+            fontWeight: 'bold',
+            fontSize: '1.40rem',
+            color: 'primary.main',
+            textAlign: 'center',
+            mt: 1,
+          }}
+        >
+          Custom pricing
+        </Typography>
       </Box>
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{ fontWeight: 'bold', fontSize: '1.40rem' , color: 'primary.main', textAlign: 'center', mt: 1 }}
-      >
-        Custom pricing
-      </Typography>
       <Box
         sx={{
           display: 'flex',
@@ -340,7 +366,14 @@ export function PlanPrice(props: PlanPriceProps) {
           minHeight: planPriceMinHeight,
         }}
       >
-        <Typography sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem', minHeight: 38, }}>
+        <Typography
+          sx={{
+            color: 'text.secondary',
+            textAlign: 'center',
+            fontSize: '0.8125rem',
+            minHeight: 38,
+          }}
+        >
           Got a bigger team? Request a quote!
         </Typography>
       </Box>
@@ -359,52 +392,63 @@ export function PlanPrice(props: PlanPriceProps) {
   );
 }
 
-export function FeatureItem({ feature }: { feature: Feature }) {
+export function FeatureItem({ feature, idPrefix }: { feature: Feature, idPrefix?: string }) {
   return (
-    <Box sx={{ 
-      display: 'flex', 
-      alignItems: 'center',
-      gap: 1,
-    }}>
-      {feature.icon === 'check' && <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main', ml: 0.4}} />}
-      {feature.icon === 'support' && feature.supportType === 'community'
-        ? <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 0.6
-          }}>
-            <CommunitySupportIcon /> 
-            <CommunitySupportText />
-          </Box>
-        : feature.supportType === 'pro'
-          ? <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 0.6
-          }}>
-            <ProSupportIcon /> 
-            <ProSupportText />
-          </Box>
-          : feature.supportType === 'premium'
-            ? <Box sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: 0.6
-            }}>
-              <PremiumSupportIcon /> 
-              <PremiumSupportText />
-            </Box>
-            : feature.supportType === 'priority'
-              ? <Box sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: 0.6 
-              }}>
-                <PrioritySupportIcon /> 
-                <PrioritySupportText />
-              </Box>
-              : null
-      }
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1,
+      }}
+    >
+      {feature.icon === 'check' && (
+        <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main', ml: 0.4 }} />
+      )}
+      {feature.icon === 'support' && (
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 0.6,
+          }}
+        >
+          {(() => {
+            if (feature.supportType === 'community') {
+              return (
+                <React.Fragment >
+                  <CommunitySupportIcon idPrefix={idPrefix} />
+                  <CommunitySupportText />
+                </React.Fragment>
+              );
+            }
+            if (feature.supportType === 'pro') {
+              return (
+                <React.Fragment>
+                  <ProSupportIcon idPrefix={idPrefix}/>
+                  <ProSupportText />
+                </React.Fragment>
+              );
+            }
+            if (feature.supportType === 'premium') {
+              return (
+                <React.Fragment>
+                  <PremiumSupportIcon idPrefix={idPrefix} />
+                  <PremiumSupportText />
+                </React.Fragment>
+              );
+            }
+            if (feature.supportType === 'priority') {
+              return (
+                <React.Fragment>
+                  <PrioritySupportIcon idPrefix={idPrefix} />
+                  <PrioritySupportText />
+                </React.Fragment>
+              );
+            }
+            return null;
+          })()}
+        </Box>
+      )}
       <Typography
         component="span"
         variant="body2"
@@ -433,7 +477,7 @@ export function FeatureItem({ feature }: { feature: Feature }) {
   );
 }
 
-export function PlanName({
+export function PlanNameDisplay({
   plan,
   disableDescription = true,
 }: {
@@ -481,16 +525,17 @@ export default function PricingCards() {
   return (
     <React.Fragment>
       <LicenseModelSwitch />
-      <Box sx={{ 
-        display: 'flex', 
-        flexDirection: { xs: 'column', md: 'row' },
-        mt: 3, 
-        mb: 8, 
-        gap: 2,
-        mx: 'auto',
-        maxWidth: '100%',
- 
-      }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          mt: 3,
+          mb: 8,
+          gap: 2,
+          mx: 'auto',
+          maxWidth: '100%',
+        }}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -505,7 +550,7 @@ export default function PricingCards() {
           }}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="community" disableDescription={false} />
+            <PlanNameDisplay plan="community" disableDescription={false} />
             <PlanPrice plan="community" />
           </Box>
           <Divider />
@@ -540,7 +585,7 @@ export default function PricingCards() {
           }}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="pro" disableDescription={false} />
+            <PlanNameDisplay plan="pro" disableDescription={false} />
             <PlanPrice plan="pro" />
           </Box>
           {/* <PricingTableBuyPro /> */}
@@ -582,7 +627,7 @@ export default function PricingCards() {
           })}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="premium" disableDescription={false} />
+            <PlanNameDisplay plan="premium" disableDescription={false} />
             <PlanPrice plan="premium" />
           </Box>
           {/* <PricingTableBuyPremium />  */}
@@ -617,7 +662,7 @@ export default function PricingCards() {
           }}
         >
           <Box sx={{ height: 'fit-content' }}>
-            <PlanName plan="enterprise" disableDescription={false} />
+            <PlanNameDisplay plan="enterprise" disableDescription={false} />
             <PlanPrice plan="enterprise" />
           </Box>
           {/* <PricingTableBuyEnterprise /> */}

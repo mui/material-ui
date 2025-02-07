@@ -5,7 +5,7 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PricingTable from 'docs/src/components/pricing/PricingTable';
-import { PlanPrice, PlanName, planInfo, FeatureItem } from 'docs/src/components/pricing/PricingCards';
+import { PlanPrice, PlanNameDisplay, planInfo, FeatureItem } from 'docs/src/components/pricing/PricingCards';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 
 const Plan = React.forwardRef<
@@ -26,7 +26,7 @@ const Plan = React.forwardRef<
       sx={{ p: 2, ...(unavailable && { '& .MuiTypography-root': { opacity: 0.5 } }), ...sx }}
       {...props}
     >
-      <PlanName plan={plan} disableDescription={false} />
+      <PlanNameDisplay plan={plan} disableDescription={false} />
       <Box sx={{ mb: 2 }}>
         {(plan === 'pro' || plan === 'premium') && <LicenseModelSwitch />}
         <PlanPrice plan={plan} />
@@ -41,7 +41,7 @@ const Plan = React.forwardRef<
             mt: 1,
           }}
         >
-          <FeatureItem feature={feature} />
+          <FeatureItem feature={feature} idPrefix={plan} />
         </Box>
       ))}
     </Paper>
