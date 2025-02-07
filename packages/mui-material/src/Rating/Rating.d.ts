@@ -43,11 +43,6 @@ export interface RatingSlots {
    * @default 'span'
    */
   decimal: React.ElementType;
-  /**
-   * The component used for the input slot.
-   * @default 'input'
-   */
-  input: React.ElementType;
 }
 
 export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -73,11 +68,6 @@ export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * By default, the avaible props are based on the span element.
      */
     decimal: SlotProps<'span', RatingDecimalSlotPropsOverrides, RatingOwnerState>;
-    /**
-     * Props forwarded to the input slot.
-     * By default, the avaible props are based on the input element.
-     */
-    input: SlotProps<'input', RatingInputSlotPropsOverrides, RatingOwnerState>;
   }
 >;
 
@@ -130,6 +120,7 @@ export interface RatingOwnProps extends RatingSlotsAndSlotProps {
   icon?: React.ReactNode;
   /**
    * The component containing the icon.
+   * @deprecated Use `slotProps.icon.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default function IconContainer(props) {
    *   const { value, ...other } = props;
    *   return <span {...other} />;
