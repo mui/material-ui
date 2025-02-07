@@ -38,9 +38,7 @@ function transitionTheme(theme: any) {
   };
 }
 
-export type PlanName2 = 'community' | 'pro' | 'premium' | 'enterprise';
-
-export function PlanName2({
+export function PlanNameTable({
   plan,
   disableDescription = true,
 }: {
@@ -81,7 +79,6 @@ export function PlanName2({
     </React.Fragment>
   );
 }
-
 
 function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { value, metadata } = props;
@@ -538,7 +535,8 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       {...{
         label: 'Priority support',
-        tooltip: 'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.',
+        tooltip:
+          'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.',
       }}
     />
   ),
@@ -1140,7 +1138,7 @@ function StickyHead({
         </Typography>
         {(['community', 'pro', 'premium', 'enterprise'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName2 plan={plan} disableDescription />
+            <PlanNameTable plan={plan} disableDescription />
           </Box>
         ))}
       </Container>
@@ -1237,11 +1235,11 @@ export default function PricingTable({
       }, 1fr))`,
       lg: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
         columnHeaderHidden ? '0px' : '200px'
-      }, 1fr))`
+      }, 1fr))`,
     },
     width: '100%',
     maxWidth: '100%',
-    overflow: 'auto'
+    overflow: 'auto',
   };
   const nestedGridSx = {
     ...gridSx,
@@ -1286,16 +1284,16 @@ export default function PricingTable({
               Plans
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-              <PlanName2 plan="community" />
+              <PlanNameTable plan="community" />
             </Box>
             <ColumnHeadHighlight>
-              <PlanName2 plan="pro" />
+              <PlanNameTable plan="pro" />
             </ColumnHeadHighlight>
             <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, pt: 1.5 }}>
-              <PlanName2 plan="premium" />
+              <PlanNameTable plan="premium" />
             </Box>
             <ColumnHeadHighlight>
-              <PlanName2 plan="enterprise" />
+              <PlanNameTable plan="enterprise" />
             </ColumnHeadHighlight>
           </Box>
         )}
@@ -1660,7 +1658,7 @@ export default function PricingTable({
         <RowHead startIcon={<SupportAgentIcon color="primary" width={28} height={28} />}>
           Support
         </RowHead>
-        {renderRow('priority-support')}	
+        {renderRow('priority-support')}
         {divider}
         {renderRow('core-support')}
         {divider}

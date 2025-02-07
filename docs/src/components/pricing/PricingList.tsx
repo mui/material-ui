@@ -5,7 +5,12 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PricingTable from 'docs/src/components/pricing/PricingTable';
-import { PlanPrice, PlanNameDisplay, planInfo, FeatureItem } from 'docs/src/components/pricing/PricingCards';
+import {
+  PlanPrice,
+  PlanNameDisplay,
+  planInfo,
+  FeatureItem,
+} from 'docs/src/components/pricing/PricingCards';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 
 const Plan = React.forwardRef<
@@ -16,7 +21,6 @@ const Plan = React.forwardRef<
     unavailable?: boolean;
   } & PaperProps
 >(function Plan({ plan, unavailable, sx, ...props }, ref) {
-
   const { features } = planInfo[plan];
 
   return (

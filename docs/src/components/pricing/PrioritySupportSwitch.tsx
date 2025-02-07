@@ -73,8 +73,8 @@ export default function PrioritySupportSwitch() {
             justifyContent: 'space-between',
             width: '100%',
             '& .MuiFormControlLabel-label': {
-              marginRight: 'auto'
-            }
+              marginRight: 'auto',
+            },
           }}
           labelPlacement="start"
         />

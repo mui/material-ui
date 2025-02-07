@@ -392,7 +392,7 @@ export function PlanPrice(props: PlanPriceProps) {
   );
 }
 
-export function FeatureItem({ feature, idPrefix }: { feature: Feature, idPrefix?: string }) {
+export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?: string }) {
   return (
     <Box
       sx={{
@@ -415,7 +415,7 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature, idPrefix?
           {(() => {
             if (feature.supportType === 'community') {
               return (
-                <React.Fragment >
+                <React.Fragment>
                   <CommunitySupportIcon idPrefix={idPrefix} />
                   <CommunitySupportText />
                 </React.Fragment>
@@ -424,7 +424,7 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature, idPrefix?
             if (feature.supportType === 'pro') {
               return (
                 <React.Fragment>
-                  <ProSupportIcon idPrefix={idPrefix}/>
+                  <ProSupportIcon idPrefix={idPrefix} />
                   <ProSupportText />
                 </React.Fragment>
               );
