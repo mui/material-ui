@@ -181,9 +181,8 @@
     {
       "key": "inputTypeSearch",
       "className": "MuiInputBase-inputTypeSearch",
-      "description": "Styles applied to the input element if `type=\"search\"`.",
-      "isGlobal": false,
-      "isDeprecated": true
+      "description": "",
+      "isGlobal": false
     },
     {
       "key": "multiline",

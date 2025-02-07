@@ -170,12 +170,7 @@
       "conditions": "<code>size=\"small\"</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/input-base/#inputbase-classes-input\">.MuiInputBase-input</a> and <a href=\"/material-ui/api/input-base/#inputbase-classes-sizeSmall\">.MuiInputBase-sizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
-    "inputTypeSearch": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "<code>type=\"search\"</code>",
-      "deprecationInfo": "Combine the <a href=\"/material-ui/api/input-base/#inputbase-classes-input\">.MuiInputBase-input</a> and <a href=\"/material-ui/api/input-base/#inputbase-classes-inputTypeSearch\">.MuiInputBase-inputTypeSearch</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
-    },
+    "inputTypeSearch": { "description": "" },
     "multiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
