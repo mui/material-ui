@@ -1349,8 +1349,6 @@ Here's how to migrate:
 ```diff
 -.MuiInputBase-root .MuiInputBase-inputSizeSmall
 +.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
--.MuiInputBase-root .MuiInputBase-inputTypeSearch
-+.MuiInputBase-root.MuiInputBase-typeSearch > .MuiInputBase-input
 -.MuiInputBase-root .MuiInputBase-inputMultiline
 +.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
 -.MuiInputBase-root .MuiInputBase-inputAdornedStart
@@ -1373,10 +1371,6 @@ Here's how to migrate:
        },
 -      [`& .${inputBaseClasses.inputMultiline}`]: {
 +      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
-         color: 'red',
-       },
--      [`& .${inputBaseClasses.inputTypeSearch}`]: {
-+      [`&.${inputBaseClasses.inputTypeSearch} > .${inputBaseClasses.input}`]: {
          color: 'red',
        },
 -      [`& .${inputBaseClasses.inputAdornedStart}`]: {

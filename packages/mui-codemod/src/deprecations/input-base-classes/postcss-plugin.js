@@ -8,10 +8,6 @@ const classes = [
     replacementSelector: '.MuiInputBase-multiline > .MuiInputBase-input',
   },
   {
-    deprecatedClass: ' .MuiInputBase-inputTypeSearch',
-    replacementSelector: '.MuiInputBase-inputTypeSearch > .MuiInputBase-input',
-  },
-  {
     deprecatedClass: ' .MuiInputBase-inputAdornedStart',
     replacementSelector: '.MuiInputBase-adornedStart > .MuiInputBase-input',
   },

@@ -1306,10 +1306,6 @@ JS transforms:
 +      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
          color: 'red',
        },
--      [`& .${inputBaseClasses.inputTypeSearch}`]: {
-+      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
-         color: 'red',
-       },
 -      [`& .${inputBaseClasses.inputAdornedStart}`]: {
 +      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
          color: 'red',
@@ -1334,8 +1330,6 @@ CSS transforms:
 +.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
 -.MuiInputBase-root .MuiInputBase-inputMultiline
 +.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
--.MuiInputBase-root .MuiInputBase-inputTypeSearch
-+.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
 -.MuiInputBase-root .MuiInputBase-inputAdornedStart
 +.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
 -.MuiInputBase-root .MuiInputBase-inputAdornedEnd

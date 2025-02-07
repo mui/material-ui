@@ -38,9 +38,6 @@ export interface InputBaseClasses {
    * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#inputbase-classes-input) and [.MuiInputBase-multiline](/material-ui/api/input-base/#inputbase-classes-multiline) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputMultiline: string;
-  /** Styles applied to the input element if `type="search"`.
-   * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#inputbase-classes-input) and [.MuiInputBase-inputTypeSearch](/material-ui/api/input-base/#inputbase-classes-inputTypeSearch) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
-   */
   inputTypeSearch: string;
   /** Styles applied to the input element if `startAdornment` is provided.
    * @deprecated Combine the [.MuiInputBase-input](/material-ui/api/input-base/#inputbase-classes-input) and [.MuiInputBase-adornedStart](/material-ui/api/input-base/#inputbase-classes-adornedStart) classes instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
