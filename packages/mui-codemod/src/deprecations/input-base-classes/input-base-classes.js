@@ -15,7 +15,10 @@ export default function transformer(file, api, options) {
       .filter((path) => path.node.source.value.match(/^@mui\/material\/Slider$/))
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
-          if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'inputBaseClasses') {
+          if (
+            specifier.type === 'ImportSpecifier' &&
+            specifier.imported.name === 'inputBaseClasses'
+          ) {
             const deprecatedAtomicClass = deprecatedClass.replace(
               `${deprecatedClass.split('-')[0]}-`,
               '',
