@@ -16,20 +16,38 @@ export interface RatingIconContainerSlotPropsOverrides {}
 
 export interface RatingPropsSizeOverrides {}
 
+export interface RatingRootSlotPropsOverrides {}
+export interface RatingLabelSlotPropsOverrides {}
+export interface RatingIconSlotPropsOverrides {}
+export interface RatingDecimalSlotPropsOverrides {}
+export interface RatingInputSlotPropsOverrides {}
+
 export interface RatingSlots {
   /**
-   * The root component used for rating.
-   * @default Rating
+   * The component used for the root slot.
+   * @default 'span'
    */
   root: React.ElementType;
   /**
-   * The component containing the icon.
-   * @default function IconContainer(props) {
-   *   const { value, ...other } = props;
-   *   return <span {...other} />;
-   * }
+   * The component used for the label slot.
+   * @default 'label'
    */
-  iconContainer: React.ElementType;
+  label: React.ElementType;
+  /**
+   * The component used for the icon slot.
+   * @default 'span'
+   */
+  icon: React.ElementType;
+  /**
+   * The component used fo r the decimal slot.
+   * @default 'span'
+   */
+  decimal: React.ElementType;
+  /**
+   * The component used for the input slot.
+   * @default 'input'
+   */
+  input: React.ElementType;
 }
 
 export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
@@ -37,22 +55,33 @@ export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the available props are based on the [rating](https://mui.com/material-ui/api/rating/#props) component.
+     * By default, the avaible props are based on the span element.
      */
-    root: SlotProps<React.ElementType<RatingProps>, RatingRootSlotPropsOverrides, RatingOwnerState>;
+    root: SlotProps<'span', RatingRootSlotPropsOverrides, RatingOwnerState>;
     /**
-     * Props forwarded to the iconContainer slot.
-     * By default, the available props are based on the [rating](https://mui.com/material-ui/api/rating/#props) component.
+     * Props forwarded to the label slot.
+     * By default, the avaible props are based on the label element.
      */
-    iconContainer: SlotProps<
-      React.ElementType<IconContainerProps>,
-      RatingIconContainerSlotPropsOverrides,
-      RatingOwnerState
-    >;
+    label: SlotProps<'label', RatingLabelSlotPropsOverrides, RatingOwnerState>;
+    /**
+     * Props forwarded to the icon slot.
+     * By default, the avaible props are based on the span element.
+     */
+    icon: SlotProps<'span', RatingIconSlotPropsOverrides, RatingOwnerState>;
+    /**
+     * Props forwarded to the decimal slot.
+     * By default, the avaible props are based on the span element.
+     */
+    decimal: SlotProps<'span', RatingDecimalSlotPropsOverrides, RatingOwnerState>;
+    /**
+     * Props forwarded to the input slot.
+     * By default, the avaible props are based on the input element.
+     */
+    input: SlotProps<'input', RatingInputSlotPropsOverrides, RatingOwnerState>;
   }
 >;
 
-export interface RatingOwnProps {
+export interface RatingOwnProps extends RatingSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -155,6 +184,8 @@ export interface RatingOwnProps {
    */
   value?: number | null;
 }
+
+export interface RatingOwnerState extends Omit<RatingProps, 'slots' | 'slotProps'> {}
 
 export type RatingTypeMap<
   AdditionalProps = {},
