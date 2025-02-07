@@ -81,7 +81,7 @@ export const planInfo: Record<
     description:
       'All features of Premium coupled with enterprise-grade support and customer success.',
     features: [
-      { text: 'All', highlight: 'Premium', text2: 'features and...', icon: 'check' },
+      { text: 'All Premium', text2: 'features and...', icon: 'check' },
       { text: 'Technical support for all libraries', icon: 'check' },
       { text: 'Guaranteed response time', icon: 'check' },
       { text: 'Pre-screening', icon: 'check' },
@@ -135,7 +135,7 @@ export function PlanPrice(props: PlanPriceProps) {
             minHeight: planPriceMinHeight,
           }}
         >
-          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', minHeight: 38, }}>
             Free forever!
           </Typography>
         </Box>
@@ -199,7 +199,7 @@ export function PlanPrice(props: PlanPriceProps) {
           {
             <Typography
               variant="body2"
-              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem' }}
+              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem', minHeight: 38, }}
             >
               {priceExplanation}
             </Typography>
@@ -285,7 +285,7 @@ export function PlanPrice(props: PlanPriceProps) {
           {
             <Typography
               variant="body2"
-              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem' }}
+              sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem', minHeight: 38,  }}
             >
               {priceExplanation}
             </Typography>
@@ -327,7 +327,7 @@ export function PlanPrice(props: PlanPriceProps) {
       <Typography
         variant="h5"
         component="div"
-        sx={{ fontWeight: 'bold', color: 'primary.main', textAlign: 'center', mt: 1 }}
+        sx={{ fontWeight: 'bold', fontSize: '1.40rem' , color: 'primary.main', textAlign: 'center', mt: 1 }}
       >
         Custom pricing
       </Typography>
@@ -340,7 +340,7 @@ export function PlanPrice(props: PlanPriceProps) {
           minHeight: planPriceMinHeight,
         }}
       >
-        <Typography sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem' }}>
+        <Typography sx={{ color: 'text.secondary', textAlign: 'center', fontSize: '0.8125rem', minHeight: 38, }}>
           Got a bigger team? Request a quote!
         </Typography>
       </Box>
@@ -465,7 +465,9 @@ export function PlanName({
             justifyContent: 'center',
             alignItems: 'baseline',
             mt: 1,
-            minHeight: { md: 63 },
+            minHeight: 96,
+            height: 48,
+            lineHeight: '24px',
           }}
         >
           {description}
@@ -479,7 +481,16 @@ export default function PricingCards() {
   return (
     <React.Fragment>
       <LicenseModelSwitch />
-      <Box sx={{ display: 'flex', flexDirection: 'row', mt: 3, mb: 8, gap: 2 }}>
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: { xs: 'column', md: 'row' },
+        mt: 3, 
+        mb: 8, 
+        gap: 2,
+        mx: 'auto',
+        maxWidth: '100%',
+ 
+      }}>
         <Box
           sx={{
             display: 'flex',

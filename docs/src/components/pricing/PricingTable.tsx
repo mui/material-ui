@@ -1229,9 +1229,19 @@ export default function PricingTable({
   const tableRef = React.useRef<HTMLDivElement>(null);
   const gridSx = {
     display: 'grid',
-    gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
-      columnHeaderHidden ? '0px' : '240px'
-    }, 1fr))`,
+    gridTemplateColumns: {
+      xs: `minmax(120px, 0.8fr) repeat(${plans.length}, minmax(160px, 1fr))`,
+      sm: `minmax(140px, 0.8fr) repeat(${plans.length}, minmax(180px, 1fr))`,
+      md: `minmax(140px, 0.7fr) repeat(${plans.length}, minmax(${
+        columnHeaderHidden ? '0px' : '160px'
+      }, 1fr))`,
+      lg: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
+        columnHeaderHidden ? '0px' : '200px'
+      }, 1fr))`
+    },
+    width: '100%',
+    maxWidth: '100%',
+    overflow: 'auto'
   };
   const nestedGridSx = {
     ...gridSx,
