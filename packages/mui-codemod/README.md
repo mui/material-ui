@@ -2031,18 +2031,18 @@ Update the import of the following components and hook moved from `@mui/lab` to 
 - ToggleButtonGroup
 - usePagination
 
-It updates barrel file imports:
+It updates named imports from top-level `@mui/lab`:
 
 ```diff
 - import { Alert } from '@mui/lab';
 + import { Alert } from '@mui/material';
 ```
 
-As well as component file imports
+As well as default and named imports from component-level files:
 
 ```diff
-- import Alert from '@mui/lab/Alert';
-+ import Alert from '@mui/material/Alert';
+- import Alert, { alertClasses } from '@mui/lab/Alert';
++ import Alert, { alertClasses } from '@mui/material/Alert';
 ```
 
 ### v6.0.0
