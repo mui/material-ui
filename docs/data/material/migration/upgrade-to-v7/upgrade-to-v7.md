@@ -26,7 +26,7 @@ Expect updates as new breaking changes are introduced.
 
 ### Lab components moved to the main package
 
-The following `@mui/lab` components and hook have been moved to the main package:
+The following `@mui/lab` components and hook have been moved to `@mui/material`:
 
 - Alert
 - AlertTitle
