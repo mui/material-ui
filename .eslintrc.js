@@ -156,17 +156,9 @@ module.exports = /** @type {Config} */ ({
       },
     ],
     'no-use-before-define': 'off',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/dot-notation': 'off',
     'dot-notation': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/no-implied-eval': 'off',
     'no-implied-eval': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/only-throw-error': 'off',
     'no-throw-literal': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/return-await': 'off',
     'no-return-await': 'error',
     camelcase: 'off',
     // The `@typescript-eslint/naming-convention` rule allows `leadingUnderscore` and `trailingUnderscore` settings. However, the existing `no-underscore-dangle` rule already takes care of this.
