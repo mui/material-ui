@@ -108,6 +108,7 @@ module.exports = /** @type {Config} */ ({
   rules: {
     'consistent-this': ['error', 'self'],
     curly: ['error', 'all'],
+    'dot-notation': 'error',
     // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
@@ -128,14 +129,18 @@ module.exports = /** @type {Config} */ ({
     ],
     'no-continue': 'off',
     'no-constant-condition': 'error',
+    'no-implied-eval': 'error',
+    'no-throw-literal': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
+    'no-return-await': 'error',
     'no-underscore-dangle': 'error',
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
 
+    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
       {
@@ -155,11 +160,6 @@ module.exports = /** @type {Config} */ ({
         caughtErrors: 'none',
       },
     ],
-    'no-use-before-define': 'off',
-    'dot-notation': 'error',
-    'no-implied-eval': 'error',
-    'no-throw-literal': 'error',
-    'no-return-await': 'error',
     camelcase: 'off',
     // The `@typescript-eslint/naming-convention` rule allows `leadingUnderscore` and `trailingUnderscore` settings. However, the existing `no-underscore-dangle` rule already takes care of this.
     '@typescript-eslint/naming-convention': [
