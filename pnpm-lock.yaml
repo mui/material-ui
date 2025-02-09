@@ -15,7 +15,7 @@ overrides:
   '@definitelytyped/header-parser': ^0.2.16
   '@definitelytyped/typescript-versions': ^0.1.6
   '@definitelytyped/utils': ^0.1.8
-  '@types/node': ^20.17.16
+  '@types/node': ^20.17.17
   cross-fetch: ^4.1.0
   '@pigment-css/react': 0.0.30
   '@pigment-css/unplugin': 0.0.30
@@ -124,7 +124,7 @@ importers:
         specifier: ^10.0.10
         version: 10.0.10
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/react':
         specifier: ^19.0.8
@@ -374,7 +374,7 @@ importers:
         specifier: 0.0.30
         version: 0.0.30(@types/react@19.0.8)(next@15.1.6(@babel/core@7.26.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.49.0)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(webpack-sources@3.2.3)
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/react':
         specifier: ^19.0.8
@@ -432,7 +432,7 @@ importers:
         specifier: 0.0.30
         version: 0.0.30(@types/react@19.0.8)(next@15.1.6(@babel/core@7.26.8)(@opentelemetry/api@1.8.0)(@playwright/test@1.49.0)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(webpack-sources@3.2.3)
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/react':
         specifier: ^19.0.8
@@ -926,7 +926,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/prop-types':
         specifier: ^15.7.14
@@ -1064,7 +1064,7 @@ importers:
         specifier: ^4.17.15
         version: 4.17.15
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/react':
         specifier: ^19.0.8
@@ -1249,7 +1249,7 @@ importers:
         specifier: ^10.0.10
         version: 10.0.10
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/react-docgen':
         specifier: workspace:*
@@ -1286,7 +1286,7 @@ importers:
         specifier: ^10.0.10
         version: 10.0.10
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/sinon':
         specifier: ^17.0.3
@@ -1508,7 +1508,7 @@ importers:
         specifier: ^0.0.20
         version: 0.0.20
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/prop-types':
         specifier: ^15.7.14
@@ -2230,7 +2230,7 @@ importers:
         specifier: ^10.0.10
         version: 10.0.10
       '@types/node':
-        specifier: ^20.17.16
+        specifier: ^20.17.17
         version: 20.17.17
       '@types/react':
         specifier: ^19.0.8
@@ -3893,7 +3893,7 @@ packages:
     resolution: {integrity: sha512-6ycMm7k7NUApiMGfVc32yIPp28iPKxhGRMqoNDiUjq2RyTAkbs5Fx0TdzBqhabcKvniDdAAvHCmsRjnNfTsogw==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.17.16
+      '@types/node': ^20.17.17
 
   '@inquirer/core@10.0.1':
     resolution: {integrity: sha512-KKTgjViBQUi3AAssqjUFMnMO3CM3qwCHvePV9EW+zTKGKafFGFF01sc1yOIYjLJ7QU52G/FbzKc+c01WLzXmVQ==}
@@ -3907,7 +3907,7 @@ packages:
     resolution: {integrity: sha512-YYykfbw/lefC7yKj7nanzQXILM7r3suIvyFlCcMskc99axmsSewXWkAfXKwMbgxL76iAFVmRwmYdwNZNc8gjog==}
     engines: {node: '>=18'}
     peerDependencies:
-      '@types/node': ^20.17.16
+      '@types/node': ^20.17.17
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -12910,7 +12910,7 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^20.17.16
+      '@types/node': ^20.17.17
       less: '*'
       lightningcss: ^1.21.0
       sass: '*'
@@ -12948,7 +12948,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@edge-runtime/vm': '*'
-      '@types/node': ^20.17.16
+      '@types/node': ^20.17.17
       '@vitest/browser': 2.1.9
       '@vitest/ui': 2.1.9
       happy-dom: '*'
