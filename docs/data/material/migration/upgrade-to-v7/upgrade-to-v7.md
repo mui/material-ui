@@ -67,7 +67,7 @@ The codemod doesn't cover type imports associated with the components.
 
 ### InputLabel
 
-The `size` prop for `InputLabel` now follows the standard naming convention used across Material UI. `'normal'` has been replaced with `'medium'` for consistency.
+The `size` prop for `InputLabel` now follows the standard naming convention used across Material UI. `'normal'` has been replaced with `'medium'` for consistency.
 
 If you were using `size="normal"`, update it to `size="medium"`:
 
