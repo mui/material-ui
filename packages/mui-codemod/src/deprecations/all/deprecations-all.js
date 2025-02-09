@@ -39,6 +39,7 @@ import transformSliderClasses from '../slider-classes';
 import transformerTabsProps from '../tabs-props';
 import transformerTabsClasses from '../tabs-classes';
 import transformDrawerProps from '../drawer-props';
+import transformMobileStepperProps from '../mobile-stepper-props';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -86,6 +87,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformerTabsProps(file, api, options);
   file.source = transformerTabsClasses(file, api, options);
   file.source = transformDrawerProps(file, api, options);
+  file.source = transformMobileStepperProps(file, api, options);
 
   return file.source;
 }
