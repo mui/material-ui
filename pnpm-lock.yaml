@@ -601,8 +601,8 @@ importers:
         specifier: ^6.1.6
         version: 6.1.6
       styled-components:
-        specifier: ^6.1.14
-        version: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^6.1.15
+        version: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       styled-system:
         specifier: ^5.1.5
         version: 5.1.5
@@ -874,8 +874,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       styled-components:
-        specifier: ^6.1.14
-        version: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^6.1.15
+        version: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -2028,8 +2028,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0
       styled-components:
-        specifier: ^6.1.14
-        version: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^6.1.15
+        version: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     publishDirectory: build
 
   packages/mui-styles:
@@ -2185,8 +2185,8 @@ importers:
         specifier: ^19.0.2
         version: 19.0.2
       styled-components:
-        specifier: ^6.1.14
-        version: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^6.1.15
+        version: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     publishDirectory: build
 
   packages/mui-types:
@@ -2399,8 +2399,8 @@ importers:
         specifier: ^19.0.2
         version: 19.0.2
       styled-components:
-        specifier: ^6.1.14
-        version: 6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^6.1.15
+        version: 6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -11007,8 +11007,8 @@ packages:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.4.38:
-    resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
+  postcss@8.4.49:
+    resolution: {integrity: sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==}
     engines: {node: ^10 || ^12 || >=14}
 
   postcss@8.5.1:
@@ -12208,8 +12208,8 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  styled-components@6.1.14:
-    resolution: {integrity: sha512-KtfwhU5jw7UoxdM0g6XU9VZQFV4do+KrM8idiVCH5h4v49W+3p3yMe0icYwJgZQZepa5DbH04Qv8P0/RdcLcgg==}
+  styled-components@6.1.15:
+    resolution: {integrity: sha512-PpOTEztW87Ua2xbmLa7yssjNyUF9vE7wdldRfn1I2E6RTkqknkBYpj771OxM/xrvRGinLy2oysa7GOd7NcZZIA==}
     engines: {node: '>= 16'}
     peerDependencies:
       react: '>= 16.8.0'
@@ -23913,7 +23913,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postcss@8.4.38:
+  postcss@8.4.49:
     dependencies:
       nanoid: 3.3.8
       picocolors: 1.1.1
@@ -25387,14 +25387,14 @@ snapshots:
       minimist: 1.2.8
       through: 2.3.8
 
-  styled-components@6.1.14(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/unitless': 0.8.1
       '@types/stylis': 4.2.5
       css-to-react-native: 3.2.0
       csstype: 3.1.3
-      postcss: 8.4.38
+      postcss: 8.4.49
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       shallowequal: 1.1.0
