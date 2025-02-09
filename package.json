@@ -196,7 +196,7 @@
     "terser-webpack-plugin": "^5.3.11",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
-    "vitest": "^2.1.8",
+    "vitest": "^2.1.9",
     "vitest-fail-on-console": "^0.7.1",
     "webpack": "^5.97.1",
     "webpack-bundle-analyzer": "^4.10.2",
