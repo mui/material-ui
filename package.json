@@ -214,7 +214,6 @@
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
     "@babel/runtime": "^7.26.7",
-    "@babel/types": "^7.26.8",
     "@definitelytyped/header-parser": "^0.2.16",
     "@definitelytyped/typescript-versions": "^0.1.6",
     "@definitelytyped/utils": "^0.1.8",
