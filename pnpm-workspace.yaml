@@ -6,3 +6,4 @@ packages:
   - 'docs'
   - 'test'
   - 'apps/*'
+  - 'scripts/sizeSnapshot'

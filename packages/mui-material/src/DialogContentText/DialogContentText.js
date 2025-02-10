@@ -40,7 +40,7 @@ const DialogContentText = React.forwardRef(function DialogContentText(inProps, r
     <DialogContentTextRoot
       component="p"
       variant="body1"
-      color="text.secondary"
+      color="textSecondary"
       ref={ref}
       ownerState={ownerState}
       className={clsx(classes.root, className)}

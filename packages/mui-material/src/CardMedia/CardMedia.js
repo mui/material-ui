@@ -55,7 +55,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiCardMedia' });
   const { children, className, component = 'div', image, src, style, ...other } = props;
 
-  const isMediaComponent = MEDIA_COMPONENTS.indexOf(component) !== -1;
+  const isMediaComponent = MEDIA_COMPONENTS.includes(component);
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url("${image}")`, ...style } : style;
 
@@ -63,7 +63,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
     ...props,
     component,
     isMediaComponent,
-    isImageComponent: IMAGE_COMPONENTS.indexOf(component) !== -1,
+    isImageComponent: IMAGE_COMPONENTS.includes(component),
   };
 
   const classes = useUtilityClasses(ownerState);

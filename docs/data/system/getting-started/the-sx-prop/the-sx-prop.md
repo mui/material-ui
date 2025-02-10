@@ -209,7 +209,7 @@ Please use the callback as the entire value instead.
 You can migrate the code using our codemod:
 
 ```bash
-npx @mui/codemod@next v6.0.0/sx-prop path/to/file-or-folder
+npx @mui/codemod@latest v6.0.0/sx-prop path/to/file-or-folder
 ```
 
 :::

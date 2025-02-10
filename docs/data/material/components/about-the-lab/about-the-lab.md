@@ -19,11 +19,7 @@ For a component to be ready to move to the core, the following criteria are cons
 
 To install and save in your `package.json` dependencies, run one of the following commands:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 
@@ -31,12 +27,12 @@ The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Re
 npm install @mui/lab@next @mui/material@next
 ```
 
-```bash yarn
-yarn add @mui/lab@next @mui/material@next
-```
-
 ```bash pnpm
 pnpm add @mui/lab@next @mui/material@next
+```
+
+```bash yarn
+yarn add @mui/lab@next @mui/material@next
 ```
 
 </codeblock>
@@ -48,10 +44,7 @@ Note that the lab has a peer dependency on the Material UI components.
 In order to benefit from the [CSS overrides](/material-ui/customization/theme-components/#theme-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#theme-default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
-// When using TypeScript 4.x and above
 import type {} from '@mui/lab/themeAugmentation';
-// When using TypeScript 3.x and below
-import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

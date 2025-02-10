@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { PartiallyRequired } from '@mui/types';
 
 export interface CreateFilterOptionsConfig<Value> {
   ignoreAccents?: boolean;
@@ -49,7 +50,7 @@ export interface UseAutocompleteProps<
    * Temporary for Joy UI because the parent listbox is the document object
    * TODO v6: Normalize the logic and remove this param.
    */
-  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
+  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement | null>) => boolean;
   /**
    * If `true`, the portion of the selected suggestion that the user hasn't typed,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -178,7 +179,7 @@ export interface UseAutocompleteProps<
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy?: (option: Value) => string;
@@ -281,7 +282,7 @@ export interface UseAutocompleteProps<
    */
   openOnFocus?: boolean;
   /**
-   * Array of options.
+   * A list of options that will be shown in the Autocomplete.
    */
   options: ReadonlyArray<Value>;
   /**
@@ -347,11 +348,11 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * Demos:
  *
- * - [Autocomplete](https://next.mui.com/base-ui/react-autocomplete/#hook)
+ * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
  *
  * API:
  *
- * - [useAutocomplete API](https://next.mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
+ * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
 export function useAutocomplete<
   Value,
@@ -359,8 +360,19 @@ export function useAutocomplete<
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
 >(
-  props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
-): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo>;
+  props: PartiallyRequired<
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
+    'groupBy'
+  >,
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true>;
+export function useAutocomplete<
+  Value,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+>(
+  props: Omit<UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>, 'groupBy'>,
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>;
 
 export interface UseAutocompleteRenderedOption<Value> {
   option: Value;
@@ -372,6 +384,7 @@ export interface UseAutocompleteReturnValue<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
+  HasGroupBy extends boolean = false,
 > {
   /**
    * Resolver for the root slot's props.
@@ -460,9 +473,11 @@ export interface UseAutocompleteReturnValue<
    */
   focusedTag: number;
   /**
-   * The options to render. It's either `Value[]` or `AutocompleteGroupedOption<Value>[]` if the groupBy prop is provided.
+   * The options to render.
+   * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.
+   * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
-  groupedOptions: Value[] | Array<AutocompleteGroupedOption<Value>>;
+  groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Value>[] : Value[];
 }
 
 export default useAutocomplete;

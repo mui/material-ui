@@ -4,6 +4,7 @@ title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 githubLabel: 'component: stepper'
 materialDesign: https://m1.material.io/components/steppers.html
+githubSource: packages/mui-material/src/Stepper
 ---
 
 # Stepper

@@ -47,7 +47,7 @@ export interface BreadcrumbsOwnProps {
   /**
    * Override the default label for the expand button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Show path'
    */
   expandText?: string;

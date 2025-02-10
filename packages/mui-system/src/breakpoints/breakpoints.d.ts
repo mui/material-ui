@@ -1,5 +1,5 @@
 import { CSSObject } from '@mui/styled-engine';
-import { Breakpoints } from '../createTheme/createBreakpoints';
+import { Breakpoints } from '../createBreakpoints/createBreakpoints';
 import type { Breakpoint } from '../createTheme';
 import { ResponsiveStyleValue } from '../styleFunctionSx';
 import { StyleFunction } from '../Box';

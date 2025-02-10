@@ -2,6 +2,7 @@
 productId: material-ui
 components: CssBaseline, ScopedCssBaseline
 githubLabel: 'component: CssBaseline'
+githubSource: packages/mui-material/src/CssBaseline
 ---
 
 # CSS Baseline

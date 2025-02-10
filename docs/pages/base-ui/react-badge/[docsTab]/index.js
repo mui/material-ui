@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const BadgeApiDescriptions = mapApiPageTranslations(BadgeApiReq);
 
   const useBadgeApiReq = require.context(
-    'docs/translations/api-docs/use-badge',
+    'docs/translations/api-docs-base/use-badge',
     false,
     /use-badge.*.json$/,
   );

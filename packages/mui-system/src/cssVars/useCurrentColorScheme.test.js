@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act, screen, reactMajor } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -18,10 +18,15 @@ describe('useCurrentColorScheme', () => {
 
   const createMatchMedia = (matches) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: (listener) => {
       trigger = listener;
     },
+    addEventListener: (listener) => {
+      trigger = listener;
+    },
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   before(() => {
@@ -56,6 +61,69 @@ describe('useCurrentColorScheme', () => {
 
   afterEach(() => {
     window.matchMedia = originalMatchmedia;
+  });
+
+  it('does not trigger a re-render for a single color scheme', () => {
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        defaultMode: 'dark',
+        supportedColorSchemes: ['dark'],
+      });
+      const count = React.useRef(0);
+      React.useEffect(() => {
+        count.current += 1;
+      });
+      return (
+        <div>
+          {mode}:{count.current}
+        </div>
+      );
+    }
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('dark:0');
+  });
+
+  it('trigger a re-render for a multi color schemes', () => {
+    let effectRunCount = 0;
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        supportedColorSchemes: ['light', 'dark'],
+        defaultLightColorScheme: 'light',
+        defaultDarkColorScheme: 'dark',
+      });
+      React.useEffect(() => {
+        effectRunCount += 1;
+      });
+      return <div>{mode}</div>;
+    }
+
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('light');
+    expect(effectRunCount).to.equal(reactMajor >= 19 ? 2 : 3);
+  });
+
+  it('[noSsr] does not trigger a re-render', () => {
+    function Data() {
+      const { mode } = useCurrentColorScheme({
+        defaultMode: 'dark',
+        supportedColorSchemes: ['light', 'dark'],
+        noSsr: true,
+      });
+      const count = React.useRef(0);
+      React.useEffect(() => {
+        count.current += 1;
+      });
+      return (
+        <div>
+          {mode}:{count.current}
+        </div>
+      );
+    }
+    const { container } = render(<Data />);
+
+    expect(container.firstChild.textContent).to.equal('dark:0');
   });
 
   describe('getColorScheme', () => {

@@ -21,6 +21,7 @@ import useSlot from '../utils/useSlot';
 import { StyledButtonGroup } from '../ButtonGroup/ButtonGroup';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
+import { DividerProps } from '../Divider';
 
 interface InternalChangeEventHandler<Value> {
   (event: React.MouseEvent, value: Value | Array<Value> | null): void;
@@ -161,11 +162,11 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup<
             }
             const extraProps: Record<string, any> = {};
             if (isMuiElement(child, ['Divider'])) {
-              extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+              const childProps = child.props as DividerProps;
+              extraProps.inset = childProps?.inset ?? 'context';
 
               const dividerOrientation = orientation === 'vertical' ? 'horizontal' : 'vertical';
-              extraProps.orientation =
-                'orientation' in child.props ? child.props.orientation : dividerOrientation;
+              extraProps.orientation = childProps?.orientation ?? dividerOrientation;
               extraProps.role = 'presentation';
               extraProps.component = 'span';
             }

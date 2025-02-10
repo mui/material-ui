@@ -13,7 +13,7 @@ hooks: useTransitionTrigger, useTransitionStateManager
 
 ## Introduction
 
-Base UI offers higher-level components and low-level hooks that can be used to add animations to components as they enter and exit the screen.
+MUI Base offers higher-level components and low-level hooks that can be used to add animations to components as they enter and exit the screen.
 
 :::info
 The [Popup](/base-ui/react-popup/) is currently the only component that supports this API; [Select](/base-ui/react-select/) and [Menu](/base-ui/react-menu/) support will be added next.
@@ -21,7 +21,7 @@ The [Popup](/base-ui/react-popup/) is currently the only component that supports
 
 ## Components
 
-Base UI offers two components to cover the majority of use cases using [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions) and [animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations).
+MUI Base offers two components to cover the majority of use cases using [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions) and [animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations).
 
 ### CSS Transition
 
@@ -68,12 +68,12 @@ See the examples below.
 
 ### Material UI (React Transition Group)
 
-You can use any of the [transitions from Material UI](https://mui.com/material-ui/transitions/), or custom transitions built with React Transition Group, using an adapter shown in the following demo.
+You can use any of the [transitions from Material UI](/material-ui/transitions/), or custom transitions built with React Transition Group, using an adapter shown in the following demo.
 
 {{"demo": "ReactTransitionGroup.js"}}
 
 ### React Spring
 
-React Spring, another popular animation library, also can be used with the Base UI transitions API.
+React Spring, another popular animation library, also can be used with the MUI Base transitions API.
 
 {{"demo": "ReactSpring.js"}}

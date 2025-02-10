@@ -19,6 +19,7 @@ import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
@@ -249,10 +250,11 @@ const AutocompleteClearIndicator = styled(IconButton, {
 const AutocompletePopupIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
-  overridesResolver: ({ ownerState }, styles) => ({
-    ...styles.popupIndicator,
-    ...(ownerState.popupOpen && styles.popupIndicatorOpen),
-  }),
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.popupIndicator, ownerState.popupOpen && styles.popupIndicatorOpen];
+  },
 })({
   padding: 2,
   marginRight: -2,
@@ -278,123 +280,135 @@ const AutocompletePopper = styled(Popper, {
       ownerState.disablePortal && styles.popperDisablePortal,
     ];
   },
-})(({ theme }) => ({
-  zIndex: (theme.vars || theme).zIndex.modal,
-  variants: [
-    {
-      props: { disablePortal: true },
-      style: {
-        position: 'absolute',
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.modal,
+    variants: [
+      {
+        props: { disablePortal: true },
+        style: {
+          position: 'absolute',
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
-})(({ theme }) => ({
-  ...theme.typography.body1,
-  overflow: 'auto',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body1,
+    overflow: 'auto',
+  })),
+);
 
 const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  padding: '14px 16px',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    padding: '14px 16px',
+  })),
+);
 
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  padding: '14px 16px',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    padding: '14px 16px',
+  })),
+);
 
-const AutocompleteListbox = styled('div', {
+const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})(({ theme }) => ({
-  listStyle: 'none',
-  margin: 0,
-  padding: '8px 0',
-  maxHeight: '40vh',
-  overflow: 'auto',
-  position: 'relative',
-  [`& .${autocompleteClasses.option}`]: {
-    minHeight: 48,
-    display: 'flex',
-    overflow: 'hidden',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    cursor: 'pointer',
-    paddingTop: 6,
-    boxSizing: 'border-box',
-    outline: '0',
-    WebkitTapHighlightColor: 'transparent',
-    paddingBottom: 6,
-    paddingLeft: 16,
-    paddingRight: 16,
-    [theme.breakpoints.up('sm')]: {
-      minHeight: 'auto',
-    },
-    [`&.${autocompleteClasses.focused}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.hover,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+})(
+  memoTheme(({ theme }) => ({
+    listStyle: 'none',
+    margin: 0,
+    padding: '8px 0',
+    maxHeight: '40vh',
+    overflow: 'auto',
+    position: 'relative',
+    [`& .${autocompleteClasses.option}`]: {
+      minHeight: 48,
+      display: 'flex',
+      overflow: 'hidden',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      cursor: 'pointer',
+      paddingTop: 6,
+      boxSizing: 'border-box',
+      outline: '0',
+      WebkitTapHighlightColor: 'transparent',
+      paddingBottom: 6,
+      paddingLeft: 16,
+      paddingRight: 16,
+      [theme.breakpoints.up('sm')]: {
+        minHeight: 'auto',
       },
-    },
-    '&[aria-disabled="true"]': {
-      opacity: (theme.vars || theme).palette.action.disabledOpacity,
-      pointerEvents: 'none',
-    },
-    [`&.${autocompleteClasses.focusVisible}`]: {
-      backgroundColor: (theme.vars || theme).palette.action.focus,
-    },
-    '&[aria-selected="true"]': {
-      backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${autocompleteClasses.focused}`]: {
-        backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-            ),
+        backgroundColor: (theme.vars || theme).palette.action.hover,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: (theme.vars || theme).palette.action.selected,
+          backgroundColor: 'transparent',
         },
       },
+      '&[aria-disabled="true"]': {
+        opacity: (theme.vars || theme).palette.action.disabledOpacity,
+        pointerEvents: 'none',
+      },
       [`&.${autocompleteClasses.focusVisible}`]: {
+        backgroundColor: (theme.vars || theme).palette.action.focus,
+      },
+      '&[aria-selected="true"]': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-          : alpha(
-              theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-            ),
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        [`&.${autocompleteClasses.focused}`]: {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+              ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: (theme.vars || theme).palette.action.selected,
+          },
+        },
+        [`&.${autocompleteClasses.focusVisible}`]: {
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+            : alpha(
+                theme.palette.primary.main,
+                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+              ),
+        },
       },
     },
-  },
-}));
+  })),
+);
 
 const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
-})(({ theme }) => ({
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  top: -8,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    top: -8,
+  })),
+);
 
 const AutocompleteGroupUl = styled('ul', {
   name: 'MuiAutocomplete',
@@ -531,7 +545,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const externalForwardedProps = {
     slots: {
-      listbox: ListboxComponentProp,
       paper: PaperComponentProp,
       popper: PopperComponentProp,
       ...slots,
@@ -545,7 +558,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   };
 
   const [ListboxSlot, listboxProps] = useSlot('listbox', {
-    elementType: 'ul',
+    elementType: AutocompleteListbox,
     externalForwardedProps,
     ownerState,
     className: classes.listbox,
@@ -658,54 +671,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
   const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
 
-  const renderAutocompletePopperChildren = (children) => (
-    <AutocompletePopper as={PopperSlot} {...popperProps}>
-      <AutocompletePaper as={PaperSlot} {...paperProps}>
-        {children}
-      </AutocompletePaper>
-    </AutocompletePopper>
-  );
-
-  let autocompletePopper = null;
-  if (groupedOptions.length > 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteListbox as={ListboxSlot} {...listboxProps}>
-        {groupedOptions.map((option, index) => {
-          if (groupBy) {
-            return renderGroup({
-              key: option.key,
-              group: option.group,
-              children: option.options.map((option2, index2) =>
-                renderListOption(option2, option.index + index2),
-              ),
-            });
-          }
-          return renderListOption(option, index);
-        })}
-      </AutocompleteListbox>,
-    );
-  } else if (loading && groupedOptions.length === 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-        {loadingText}
-      </AutocompleteLoading>,
-    );
-  } else if (groupedOptions.length === 0 && !freeSolo && !loading) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteNoOptions
-        className={classes.noOptions}
-        ownerState={ownerState}
-        role="presentation"
-        onMouseDown={(event) => {
-          // Prevent input blur when interacting with the "no options" content
-          event.preventDefault();
-        }}
-      >
-        {noOptionsText}
-      </AutocompleteNoOptions>,
-    );
-  }
-
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -724,7 +689,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
-            onClick: (event) => {
+            onMouseDown: (event) => {
               if (event.target === event.currentTarget) {
                 handleInputMouseDown(event);
               }
@@ -770,7 +735,46 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl ? autocompletePopper : null}
+      {anchorEl ? (
+        <AutocompletePopper as={PopperSlot} {...popperProps}>
+          <AutocompletePaper as={PaperSlot} {...paperProps}>
+            {loading && groupedOptions.length === 0 ? (
+              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                {loadingText}
+              </AutocompleteLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <AutocompleteNoOptions
+                className={classes.noOptions}
+                ownerState={ownerState}
+                role="presentation"
+                onMouseDown={(event) => {
+                  // Prevent input blur when interacting with the "no options" content
+                  event.preventDefault();
+                }}
+              >
+                {noOptionsText}
+              </AutocompleteNoOptions>
+            ) : null}
+            {groupedOptions.length > 0 ? (
+              <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
+                {groupedOptions.map((option, index) => {
+                  if (groupBy) {
+                    return renderGroup({
+                      key: option.key,
+                      group: option.group,
+                      children: option.options.map((option2, index2) =>
+                        renderListOption(option2, option.index + index2),
+                      ),
+                    });
+                  }
+                  return renderListOption(option, index);
+                })}
+              </ListboxSlot>
+            ) : null}
+          </AutocompletePaper>
+        </AutocompletePopper>
+      ) : null}
     </React.Fragment>
   );
 });
@@ -813,7 +817,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
-   * Props applied to the [`Chip`](/material-ui/api/chip/) element.
+   * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
+   * @deprecated Use `slotProps.chip` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps: PropTypes.object,
   /**
@@ -845,20 +850,20 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText: PropTypes.string,
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
   /**
    * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
@@ -978,7 +983,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -1021,10 +1026,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the listbox.
    * @default 'ul'
+   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent: PropTypes.elementType,
   /**
    * Props applied to the Listbox element.
+   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps: PropTypes.object,
   /**
@@ -1036,7 +1043,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText: PropTypes.node,
@@ -1048,7 +1055,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText: PropTypes.node,
@@ -1108,22 +1115,24 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText: PropTypes.string,
   /**
-   * Array of options.
+   * A list of options that will be shown in the Autocomplete.
    */
   options: PropTypes.array.isRequired,
   /**
    * The component used to render the body of the popup.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent: PropTypes.elementType,
   /**
    * The component used to position the popup.
    * @default Popper
+   * @deprecated Use `slots.popper` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent: PropTypes.elementType,
   /**

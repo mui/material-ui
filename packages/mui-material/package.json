@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "6.0.0-beta.2",
+  "version": "7.0.0-alpha.0",
   "private": false,
   "author": "MUI Team",
   "description": "Material UI is an open-source React component library that implements Google's Material Design. It's comprehensive and can be used in production out of the box.",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui/material-ui.git",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-material"
   },
   "license": "MIT",
@@ -32,55 +32,54 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.8",
+    "@babel/runtime": "^7.26.7",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",
-    "@types/react-transition-group": "^4.4.10",
+    "@types/react-transition-group": "^4.4.12",
     "clsx": "^2.1.1",
     "csstype": "^3.1.3",
     "prop-types": "^15.8.1",
-    "react-is": "^18.3.1",
+    "react-is": "^19.0.0",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@mui/internal-babel-macros": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
-    "@testing-library/dom": "^10.3.1",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/chai": "^4.3.16",
-    "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/chai": "^4.3.20",
+    "@types/prop-types": "^15.7.14",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "@types/sinon": "^17.0.3",
-    "chai": "^4.4.1",
+    "chai": "^4.5.0",
     "css-mediaquery": "^0.1.2",
-    "fast-glob": "^3.3.2",
-    "fs-extra": "^11.2.0",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.0",
     "lodash": "^4.17.21",
-    "playwright": "^1.45.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.24.1",
-    "sinon": "^16.1.3"
+    "playwright": "^1.49.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.1.5",
+    "sinon": "^19.0.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@mui/material-pigment-css": "workspace:^",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "@mui/material-pigment-css": "workspace:*",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -102,7 +101,12 @@
     "directory": "build"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
+  },
+  "exports": {
+    "./ButtonBase/TouchRipple": {
+      "mui-src": "./src/ButtonBase/TouchRipple.ts"
+    }
   },
   "pigment-css": {
     "vite": {

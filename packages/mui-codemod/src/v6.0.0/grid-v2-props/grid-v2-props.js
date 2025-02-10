@@ -1,11 +1,7 @@
-const possibleDefaultImports = [
-  '@mui/material/Unstable_Grid2',
-  '@mui/system/Unstable_Grid',
-  '@mui/joy/Grid',
-];
+const possibleDefaultImports = ['@mui/material/Grid2', '@mui/system/Grid', '@mui/joy/Grid'];
 const possibleNamedImports = {
-  '@mui/material': 'Unstable_Grid2',
-  '@mui/system': 'Unstable_Grid',
+  '@mui/material': 'Grid2',
+  '@mui/system': 'Grid',
   '@mui/joy': 'Grid',
 };
 
@@ -196,6 +192,26 @@ export default function gridV2Props(file, api, options) {
       el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
         (attr) => !attributesToPrune.includes(attr),
       );
+
+      const itemProp = el.node.openingElement.attributes.find(
+        (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'item',
+      );
+
+      if (itemProp) {
+        el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
+          (attr) => attr.type === 'JSXAttribute' && attr.name.name !== 'item',
+        );
+      }
+
+      const zeroMinWidthProp = el.node.openingElement.attributes.find(
+        (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'zeroMinWidth',
+      );
+
+      if (zeroMinWidthProp) {
+        el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
+          (attr) => attr.type === 'JSXAttribute' && attr.name.name !== 'zeroMinWidth',
+        );
+      }
     });
 
   return root.toSource(printOptions);

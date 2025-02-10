@@ -118,7 +118,7 @@ function ColorTool() {
       isValidColor = true;
     } else if (isHex(color)) {
       isValidColor = true;
-      if (color.indexOf('#') === -1) {
+      if (!color.includes('#')) {
         color = `#${color}`;
       }
     }
@@ -237,7 +237,7 @@ function ColorTool() {
             onChange={handleChangeShade(intent)}
             aria-labelledby={`${intent}ShadeSliderLabel`}
           />
-          <Typography>{shades[intentShade]}</Typography>
+          <Typography minWidth={40}>{shades[intentShade]}</Typography>
         </Box>
         <Box sx={{ width: 192 }}>
           {hues.map((hue) => {

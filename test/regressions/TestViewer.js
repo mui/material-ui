@@ -1,13 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useFakeTimers } from 'sinon';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import JoyBox from '@mui/joy/Box';
 import { CssVarsProvider } from '@mui/joy/styles';
 
 function TestViewer(props) {
-  const { children } = props;
+  const { children, path } = props;
 
   // We're simulating `act(() => ReactDOM.render(children))`
   // In the end children passive effects should've been flushed.
@@ -29,13 +28,6 @@ function TestViewer(props) {
     document.fonts.addEventListener('loading', handleFontsEvent);
     document.fonts.addEventListener('loadingdone', handleFontsEvent);
 
-    // Use a "real timestamp" so that we see a useful date instead of "00:00"
-    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useFakeTimers is not a React hook
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- not a React hook
-    const clock = useFakeTimers({
-      now: new Date('Mon Aug 18 14:11:54 2014 -0500'),
-      toFake: ['Date'],
-    });
     // In case the child triggered font fetching we're not ready yet.
     // The fonts event handler will mark the test as ready on `loadingdone`
     if (document.fonts.status === 'loaded') {
@@ -45,9 +37,13 @@ function TestViewer(props) {
     return () => {
       document.fonts.removeEventListener('loading', handleFontsEvent);
       document.fonts.removeEventListener('loadingdone', handleFontsEvent);
-      clock.restore();
     };
   }, []);
+
+  const viewerBoxSx = {
+    display: 'block',
+    p: 1,
+  };
 
   return (
     <React.Fragment>
@@ -71,33 +67,34 @@ function TestViewer(props) {
           },
         }}
       />
-      <React.Suspense fallback={<div aria-busy />}>
-        {window.location.pathname.startsWith('/docs-joy') ? (
-          <CssVarsProvider>
-            <JoyBox
-              aria-busy={!ready}
-              data-testid="testcase"
-              sx={{ bgcolor: 'background.body', display: 'inline-block', p: 1 }}
-            >
-              {children}
-            </JoyBox>
-          </CssVarsProvider>
-        ) : (
-          <Box
+      {window.location.pathname.startsWith('/docs-joy') ? (
+        <CssVarsProvider>
+          <JoyBox
             aria-busy={!ready}
             data-testid="testcase"
-            sx={{ bgcolor: 'background.default', display: 'inline-block', p: 1 }}
+            data-testpath={path}
+            sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
           >
             {children}
-          </Box>
-        )}
-      </React.Suspense>
+          </JoyBox>
+        </CssVarsProvider>
+      ) : (
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          data-testpath={path}
+          sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+        >
+          {children}
+        </Box>
+      )}
     </React.Fragment>
   );
 }
 
 TestViewer.propTypes = {
   children: PropTypes.node.isRequired,
+  path: PropTypes.string.isRequired,
 };
 
 export default TestViewer;

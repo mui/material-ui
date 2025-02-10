@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Badge from '@mui/material/Badge';
+import Badge, { badgeClasses } from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 
 function MenuButton({ showBadge = false, ...props }) {
@@ -9,7 +9,7 @@ function MenuButton({ showBadge = false, ...props }) {
       color="error"
       variant="dot"
       invisible={!showBadge}
-      sx={{ '& .MuiBadge-badge': { right: 2, top: 2 } }}
+      sx={{ [`& .${badgeClasses.badge}`]: { right: 2, top: 2 } }}
     >
       <IconButton size="small" {...props} />
     </Badge>

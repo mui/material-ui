@@ -18,6 +18,8 @@ declare const Box: OverridableComponent<BoxTypeMap<{}, 'div', MaterialTheme>>;
 export type BoxProps<
   RootComponent extends React.ElementType = BoxTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent, MaterialTheme>, RootComponent>;
+> = OverrideProps<BoxTypeMap<AdditionalProps, RootComponent, MaterialTheme>, RootComponent> & {
+  component?: React.ElementType;
+};
 
 export default Box;

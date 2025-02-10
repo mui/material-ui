@@ -260,7 +260,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Props applied to the [`MenuList`](/material-ui/api/menu-list/) element.
+   * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
    * @default {}
    */
   MenuListProps: PropTypes.object,
@@ -280,7 +280,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` prop applied to the [`Popover`](/material-ui/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](https://mui.com/material-ui/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
   /**
@@ -288,16 +288,20 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
+    transition: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

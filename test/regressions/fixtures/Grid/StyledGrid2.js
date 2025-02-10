@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import { styled } from '@mui/material/styles';
 
 // styled(Grid) should work with nested grids.
 const StyledGrid = styled(Grid)({});
 
-export default function StressNestedGrid2() {
+export default function StyledGrid2() {
   return (
     <Box sx={{ p: 3, width: 600 }}>
       <Grid container spacing={4}>

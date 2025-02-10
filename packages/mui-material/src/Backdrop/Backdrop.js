@@ -97,8 +97,6 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     ownerState,
   });
 
-  delete transitionProps.ownerState;
-
   return (
     <TransitionSlot in={open} timeout={transitionDuration} {...other} {...transitionProps}>
       <RootSlot aria-hidden {...rootProps} classes={classes} ref={ref}>
@@ -133,7 +131,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -144,7 +142,7 @@ Backdrop.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -187,8 +185,9 @@ Backdrop.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**

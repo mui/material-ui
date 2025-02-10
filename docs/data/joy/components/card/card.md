@@ -9,6 +9,8 @@ githubLabel: 'component: card'
 
 <p class="description">A card is a generic container for grouping related UI elements and content.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 The Joy UI Card component includes several complementary utility components to handle various use cases:

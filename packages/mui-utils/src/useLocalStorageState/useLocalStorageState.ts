@@ -35,20 +35,20 @@ function emitCurrentTabStorageChange(key: string) {
   }
 }
 
-function subscribe(area: Storage, key: string | null, callbark: () => void): () => void {
+function subscribe(area: Storage, key: string | null, callback: () => void): () => void {
   if (!key) {
     return () => {};
   }
   const storageHandler = (event: StorageEvent) => {
     if (event.storageArea === area && event.key === key) {
-      callbark();
+      callback();
     }
   };
   window.addEventListener('storage', storageHandler);
-  onCurrentTabStorageChange(key, callbark);
+  onCurrentTabStorageChange(key, callback);
   return () => {
     window.removeEventListener('storage', storageHandler);
-    offCurrentTabStorageChange(key, callbark);
+    offCurrentTabStorageChange(key, callback);
   };
 }
 
@@ -111,7 +111,7 @@ function useLocalStorageStateBrowser(
   const [initialValue] = React.useState(initializer);
   const area = window.localStorage;
   const subscribeKey = React.useCallback(
-    (callbark: () => void) => subscribe(area, key, callbark),
+    (callback: () => void) => subscribe(area, key, callback),
     [area, key],
   );
   const getKeySnapshot = React.useCallback(

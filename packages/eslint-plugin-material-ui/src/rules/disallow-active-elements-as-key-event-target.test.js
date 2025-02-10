@@ -8,7 +8,7 @@ const ruleTester = new eslint.RuleTester({
 ruleTester.run('disallow-active-element-as-key-event-target', rule, {
   valid: [
     "import { fireEvent } from '@mui/internal-test-utils';\nfireEvent.keyDown(getByRole('button'), { key: ' ' })",
-    "import { fireEvent } from '@mui/internal-test-utils';\nfireEvent.keyDown(document.body, { key: 'Esc' })",
+    "import { fireEvent } from '@mui/internal-test-utils';\nfireEvent.keyDown(document.body, { key: 'Escape' })",
     "import { fireEvent } from '@mui/internal-test-utils';\nfireEvent.keyUp(document.body, { key: 'Tab' })",
   ],
   invalid: [

@@ -4,7 +4,7 @@ import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
+import Divider, { dividerClasses } from '@mui/material/Divider';
 
 export default function VerticalDividers() {
   return (
@@ -20,7 +20,7 @@ export default function VerticalDividers() {
         '& svg': {
           m: 1,
         },
-        '& hr': {
+        [`& .${dividerClasses.root}`]: {
           mx: 0.5,
         },
       }}

@@ -18,8 +18,9 @@
         "imports": {
           "react": "https://esm.sh/react@latest",
           "react-dom": "https://esm.sh/react-dom@latest",
+          "react-dom/client": "https://esm.sh/react-dom@latest/client",
           "react/jsx-runtime": "https://esm.sh/react@latest/jsx-runtime",
-          "@mui/material": "https://esm.sh/@mui/material@latest?external=react"
+          "@mui/material": "https://esm.sh/@mui/material@latest?external=react,react-dom"
         }
       }
     </script>
@@ -31,7 +32,7 @@
     <!-- Usage -->
     <script type="text/babel" data-type="module">
       import * as React from 'react';
-      import { createRoot } from 'react-dom';
+      import { createRoot } from 'react-dom/client';
       import {
         colors,
         CssBaseline,
@@ -46,6 +47,7 @@
 
       // Create a theme instance.
       const theme = createTheme({
+        cssVariables: true,
         palette: {
           primary: {
             main: '#556cd6',

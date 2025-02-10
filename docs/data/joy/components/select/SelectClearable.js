@@ -12,7 +12,7 @@ export default function SelectClearable() {
       action={action}
       value={value}
       placeholder="Favorite pet…"
-      onChange={(e, newValue) => setValue(newValue)}
+      onChange={(event, newValue) => setValue(newValue)}
       {...(value && {
         // display the button and remove select indicator
         // when user has selected a value

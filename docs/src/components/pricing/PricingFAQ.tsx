@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -83,17 +83,6 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why are you calling it "early access"?',
-    detail: (
-      <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
-      </React.Fragment>
-    ),
-  },
-  {
     summary: 'Do developers have to be named?',
     detail: (
       <React.Fragment>
@@ -138,9 +127,9 @@ const faqData = [
           </li>
           <li>
             Modules/components that DO NOT add significant primary functionality. Example: a theme
-            for a set of components that is sold as a separate product and includes the XGrid
-            components. In such cases, we offer reseller arrangements so that everyone has an
-            incentive to enter into a relationship.
+            for a set of components that is sold as a separate product and includes the MUI X Data
+            Grid Pro components. In such cases, we offer reseller arrangements so that everyone has
+            an incentive to enter into a relationship.
           </li>
         </ul>
         If your desired use falls under any of the three categories listed above, please{' '}

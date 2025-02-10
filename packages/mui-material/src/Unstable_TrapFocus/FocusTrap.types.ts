@@ -10,7 +10,7 @@ export interface FocusTrapProps {
    * For instance, you can provide the "tabbable" npm dependency.
    * @param {HTMLElement} root
    */
-  getTabbable?: (root: HTMLElement) => ReadonlyArray<string>;
+  getTabbable?: (root: HTMLElement) => ReadonlyArray<HTMLElement>;
   /**
    * This prop extends the `open` prop.
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
@@ -24,7 +24,10 @@ export interface FocusTrapProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any>;
+  children: React.ReactElement<{
+    onFocus?: React.FocusEventHandler;
+    ref?: React.RefCallback<any> | null;
+  }>;
   /**
    * If `true`, the focus trap will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.

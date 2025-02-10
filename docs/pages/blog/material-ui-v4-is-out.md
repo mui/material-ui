@@ -15,7 +15,7 @@ Material UI v4 has finally arrived. We are so excited about this release, as it
 
 ![TypeScript switch](/static/blog/material-ui-v4-is-out/banner.png)
 
-<p class="blog-description">https://mui.com/</p>
+<p class="blog-description">https://material-ui.com/</p>
 
 ## Summary
 

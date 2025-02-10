@@ -51,15 +51,15 @@ const useRovingIndex = (options) => {
       }
     },
     tabIndex: activeIndex === index ? 0 : -1,
-    onKeyDown: (e) => {
+    onKeyDown: (event) => {
       if (Number.isInteger(activeIndex)) {
-        if (e.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
+        if (event.key === (vertical ? 'ArrowDown' : 'ArrowRight')) {
           focusNext();
         }
-        if (e.key === (vertical ? 'ArrowUp' : 'ArrowLeft')) {
+        if (event.key === (vertical ? 'ArrowUp' : 'ArrowLeft')) {
           focusPrevious();
         }
-        handlers.onKeyDown?.(e, { setActiveIndex });
+        handlers.onKeyDown?.(event, { setActiveIndex });
       }
     },
     onClick: () => {

@@ -41,7 +41,7 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0 1px 3px rgba(31,35,40,0.12), 0 8px 24px rgba(66,74,83,0.12);
+  box-shadow: 0 1px 3px rgba(31 35 40 0.12), 0 8px 24px rgba(66 74 83 0.12);
   z-index: 1;
   `,
 );
@@ -54,6 +54,7 @@ const StyledMenuItem = styled(MenuItem)(
   border-radius: 8px;
   cursor: default;
   user-select: none;
+
   &:last-of-type {
     border-bottom: none;
   }
@@ -87,10 +88,12 @@ const StyledMenuButton = styled(MenuButton)(
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
+
   &:hover {
     background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
     border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
+
   &:focus {
     border-color: ${blue[400]};
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};

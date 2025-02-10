@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CssVarsProvider } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';

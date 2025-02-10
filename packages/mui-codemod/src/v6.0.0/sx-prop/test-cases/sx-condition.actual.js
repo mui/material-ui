@@ -30,8 +30,8 @@
       transition: 'all 200ms ease-in-out !important',
     },
   }}
-  onClick={(ev) => {
-    ev.preventDefault();
+  onClick={(event) => {
+    event.preventDefault();
     navigate(href);
   }}
 >

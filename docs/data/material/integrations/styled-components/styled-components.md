@@ -30,7 +30,7 @@ To use styled-components, you need to configure your bundler to replace it with 
 
 If you're using yarn, you can configure it using a package resolution:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```diff title="package.json"
  {
@@ -47,7 +47,7 @@ If you're using yarn, you can configure it using a package resolution:
 ### With npm
 
 Because package resolutions aren't available with npm, you must update your bundler's config to add this alias.
-The example below shows how to do this with Webpack:
+The example below shows how to do this with webpack:
 
 ```diff title="webpack.config.js"
  module.exports = {
@@ -100,10 +100,10 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 
 We provide boilerplate examples of Create React App with Material UI and styled-components in both JavaScript and TypeScript:
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
-- [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components)
-- [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/next/examples/material-ui-cra-styled-components-ts)
+- [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
+- [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
 
 :::warning
 `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself.

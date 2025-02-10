@@ -44,9 +44,7 @@ export function createFilterOptions(config = {}) {
             candidate = stripDiacritics(candidate);
           }
 
-          return matchFrom === 'start'
-            ? candidate.indexOf(input) === 0
-            : candidate.indexOf(input) > -1;
+          return matchFrom === 'start' ? candidate.startsWith(input) : candidate.includes(input);
         });
 
     return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
@@ -61,6 +59,16 @@ const pageSize = 5;
 const defaultIsActiveElementInListbox = (listboxRef) =>
   listboxRef.current !== null && listboxRef.current.parentElement?.contains(document.activeElement);
 
+const MULTIPLE_DEFAULT_VALUE = [];
+
+function getInputValue(value, multiple, getOptionLabel) {
+  if (multiple || value == null) {
+    return '';
+  }
+  const optionLabel = getOptionLabel(value);
+  return typeof optionLabel === 'string' ? optionLabel : '';
+}
+
 function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -74,7 +82,7 @@ function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
-    defaultValue = props.multiple ? [] : null,
+    defaultValue = props.multiple ? MULTIPLE_DEFAULT_VALUE : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled: disabledProp,
@@ -137,6 +145,12 @@ function useAutocomplete(props) {
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
+  // Calculate the initial inputValue on mount only.
+  // Using useRef since defaultValue doesn't need to update inputValue dynamically.
+  const initialInputValue = React.useRef(
+    getInputValue(defaultValue, multiple, getOptionLabel),
+  ).current;
+
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -144,7 +158,7 @@ function useAutocomplete(props) {
   });
   const [inputValue, setInputValueState] = useControlled({
     controlled: inputValueProp,
-    default: '',
+    default: initialInputValue,
     name: componentName,
     state: 'inputValue',
   });
@@ -159,15 +173,7 @@ function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
-      let newInputValue;
-      if (multiple) {
-        newInputValue = '';
-      } else if (newValue == null) {
-        newInputValue = '';
-      } else {
-        const optionLabel = getOptionLabel(newValue);
-        newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
-      }
+      const newInputValue = getInputValue(newValue, multiple, getOptionLabel);
 
       if (inputValue === newInputValue) {
         return;
@@ -240,28 +246,6 @@ function useAutocomplete(props) {
   }, [value, resetInputValue, focused, previousProps.value, freeSolo]);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (value !== null && !freeSolo && options.length > 0) {
-      const missingValue = (multiple ? value : [value]).filter(
-        (value2) => !options.some((option) => isOptionEqualToValue(option, value2)),
-      );
-
-      if (missingValue.length > 0) {
-        console.warn(
-          [
-            `MUI: The value provided to ${componentName} is invalid.`,
-            `None of the options match with \`${
-              missingValue.length > 1
-                ? JSON.stringify(missingValue)
-                : JSON.stringify(missingValue[0])
-            }\`.`,
-            'You can use the `isOptionEqualToValue` prop to customize the equality test.',
-          ].join('\n'),
-        );
-      }
-    }
-  }
 
   const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {
@@ -782,7 +766,7 @@ function useAutocomplete(props) {
       return;
     }
 
-    if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
+    if (focusedTag !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
       setFocusedTag(-1);
       focusTag(-1);
     }

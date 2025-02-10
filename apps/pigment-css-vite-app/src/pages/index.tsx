@@ -4,7 +4,7 @@ export default function App() {
   return (
     <div>
       <p>
-        See Material UI components in <Link to="/material-ui">action</Link>!
+        See Material UI components in <Link to="/fixtures">action</Link>!
       </p>
     </div>
   );

@@ -18,6 +18,7 @@ const { palette: darkPalette } = getDesignTokens('dark');
 
 const theme = extendTheme({
   cssVarPrefix: 'muidocs',
+  colorSchemeSelector: 'data-mui-color-scheme',
   colorSchemes: {
     light: {
       palette: lightPalette,
@@ -50,7 +51,7 @@ const theme = extendTheme({
 export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
-    <CssVarsProvider theme={theme} defaultMode="system" disableTransitionOnChange>
+    <CssVarsProvider theme={theme} disableTransitionOnChange>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />

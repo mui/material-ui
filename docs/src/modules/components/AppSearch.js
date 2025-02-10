@@ -134,7 +134,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'Base UI',
+        name: 'MUI Base',
       },
       items: [
         {
@@ -270,7 +270,7 @@ function NewStartScreen() {
 const productNameProductId = {
   'material-ui': 'Material UI',
   'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
+  'base-ui': 'MUI Base',
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
@@ -342,9 +342,10 @@ export default function AppSearch(props) {
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [initialQuery, setInitialQuery] = React.useState(undefined);
-  const facetFilterLanguage =
-    LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
-  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage)
+    ? `language:${userLanguage}`
+    : `language:en`;
+  const macOS = window.navigator.platform.toUpperCase().includes('MAC');
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
@@ -458,7 +459,6 @@ export default function AppSearch(props) {
                 'hierarchy.lvl3',
                 'hierarchy.lvl4',
                 'hierarchy.lvl5',
-                'hierarchy.lvl6',
                 'content',
                 'type',
                 'url',

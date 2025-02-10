@@ -1,0 +1,41 @@
+{
+  "name": "@mui/internal-babel-plugin-minify-errors",
+  "version": "2.0.0",
+  "author": "MUI Team",
+  "description": "This is an internal package not meant for general use.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-babel-plugin-minify-errors"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages-internal/babel-plugin-minify-errors/**/*.test.?(c|m)[jt]s?(x)'"
+  },
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.25.9"
+  },
+  "devDependencies": {
+    "@types/babel__helper-module-imports": "^7.18.3",
+    "babel-plugin-tester": "^11.0.4",
+    "chai": "^4.5.0"
+  },
+  "sideEffects": false,
+  "type": "commonjs",
+  "exports": {
+    ".": "./index.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

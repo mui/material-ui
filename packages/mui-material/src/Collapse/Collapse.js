@@ -7,6 +7,7 @@ import useTimeout from '@mui/utils/useTimeout';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { duration } from '../styles/createTransitions';
 import { getTransitionProps } from '../transitions/utils';
@@ -43,48 +44,50 @@ const CollapseRoot = styled('div', {
         styles.hidden,
     ];
   },
-})(({ theme }) => ({
-  height: 0,
-  overflow: 'hidden',
-  transition: theme.transitions.create('height'),
-  variants: [
-    {
-      props: {
-        orientation: 'horizontal',
+})(
+  memoTheme(({ theme }) => ({
+    height: 0,
+    overflow: 'hidden',
+    transition: theme.transitions.create('height'),
+    variants: [
+      {
+        props: {
+          orientation: 'horizontal',
+        },
+        style: {
+          height: 'auto',
+          width: 0,
+          transition: theme.transitions.create('width'),
+        },
       },
-      style: {
-        height: 'auto',
-        width: 0,
-        transition: theme.transitions.create('width'),
+      {
+        props: {
+          state: 'entered',
+        },
+        style: {
+          height: 'auto',
+          overflow: 'visible',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
+      {
+        props: {
+          state: 'entered',
+          orientation: 'horizontal',
+        },
+        style: {
+          width: 'auto',
+        },
       },
-      style: {
-        height: 'auto',
-        overflow: 'visible',
+      {
+        props: ({ ownerState }) =>
+          ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
+        style: {
+          visibility: 'hidden',
+        },
       },
-    },
-    {
-      props: {
-        state: 'entered',
-        orientation: 'horizontal',
-      },
-      style: {
-        width: 'auto',
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.state === 'exited' && !ownerState.in && ownerState.collapsedSize === '0px',
-      style: {
-        visibility: 'hidden',
-      },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
@@ -305,7 +308,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {(state, childProps) => (
+      {/* Destructure child props to prevent the component's "ownerState" from being overridden by incomingOwnerState. */}
+      {(state, { ownerState: incomingOwnerState, ...restChildProps }) => (
         <CollapseRoot
           as={component}
           className={clsx(
@@ -321,10 +325,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             ...style,
           }}
           ref={handleRef}
-          {...childProps}
-          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
-          // that might have been forwarded from the Transition component.
           ownerState={{ ...ownerState, state }}
+          {...restChildProps}
         >
           <CollapseWrapper
             ownerState={{ ...ownerState, state }}

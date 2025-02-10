@@ -62,7 +62,7 @@ export type TabOwnerState = Simplify<
 export type TabRootSlotProps = Simplify<
   UseTabRootSlotProps & {
     className?: string;
-    ref: React.Ref<any>;
+    ref?: React.Ref<any>;
     ownerState: TabOwnerState;
   }
 >;

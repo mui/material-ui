@@ -8,7 +8,7 @@ import {
 import { useDemoData } from '@mui/x-data-grid-generator';
 import { CssVarsProvider } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Section from 'docs/src/layouts/Section';

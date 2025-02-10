@@ -8,8 +8,7 @@
   command = "pnpm docs:build"
 
 [build.environment]
-  NODE_VERSION = "18"
-  PNPM_FLAGS = "--shamefully-hoist"
+  NODE_VERSION = "20"
 
 [[plugins]]
   package = "./packages/netlify-plugin-cache-docs"

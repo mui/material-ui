@@ -3,7 +3,7 @@ import * as React from 'react';
 export default function App() {
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-semibold mb-4">Base UI + Vite.js + Tailwind CSS</h1>
+      <h1 className="text-3xl font-semibold mb-4">MUI Base + Vite.js + Tailwind CSS</h1>
       <ul>
         <li className="card">
           <a href="https://mui.com/base-ui/" className="link">
@@ -12,7 +12,7 @@ export default function App() {
           is a library of unstyled React UI components and hooks.
         </li>
         <li className="card">
-          <a href="https://vitejs.dev/" className="link">
+          <a href="https://vite.dev/" className="link">
             Vite
           </a>{' '}
           is a build tool that aims to provide a faster and leaner development experience for modern

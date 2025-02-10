@@ -13,9 +13,13 @@ export interface ApplyStyles<K extends string> {
  *
  * Tips: Use an array over object spread and place `theme.applyStyles()` last.
  *
+ * With the styled function:
  * ✅ [{ background: '#e5e5e5' }, theme.applyStyles('dark', { background: '#1c1c1c' })]
- *
  * 🚫 { background: '#e5e5e5', ...theme.applyStyles('dark', { background: '#1c1c1c' })}
+ *
+ * With the sx prop:
+ * ✅ [{ background: '#e5e5e5' }, theme => theme.applyStyles('dark', { background: '#1c1c1c' })]
+ * 🚫 { background: '#e5e5e5', ...theme => theme.applyStyles('dark', { background: '#1c1c1c' })}
  *
  * @example
  * 1. using with `styled`:
@@ -32,9 +36,9 @@ export interface ApplyStyles<K extends string> {
  * @example
  * 2. using with `sx` prop:
  * ```jsx
- *   <Box sx={theme => [
+ *   <Box sx={[
  *     { background: '#e5e5e5' },
- *     theme.applyStyles('dark', {
+ *     theme => theme.applyStyles('dark', {
  *        background: '#1c1c1c',
  *        color: '#fff',
  *      }),
@@ -67,12 +71,22 @@ export default function applyStyles<K extends string>(key: K, styles: CSSObject)
   const theme = this as {
     palette: { mode: 'light' | 'dark' };
     vars?: any;
+    colorSchemes?: Record<K, any>;
     getColorSchemeSelector?: (scheme: string) => string;
   };
-  if (theme.vars && typeof theme.getColorSchemeSelector === 'function') {
-    // If CssVarsProvider is used as a provider,
-    // returns '* :where([data-mui-color-scheme="light|dark"]) &'
-    const selector = theme.getColorSchemeSelector(key).replace(/(\[[^\]]+\])/, '*:where($1)');
+  if (theme.vars) {
+    if (!theme.colorSchemes?.[key] || typeof theme.getColorSchemeSelector !== 'function') {
+      return {};
+    }
+    // If CssVarsProvider is used as a provider, returns '*:where({selector}) &'
+    let selector = theme.getColorSchemeSelector(key);
+    if (selector === '&') {
+      return styles;
+    }
+    if (selector.includes('data-') || selector.includes('.')) {
+      // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
+      selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
+    }
     return {
       [selector]: styles,
     };

@@ -188,9 +188,12 @@ Add `useColorScheme` to your import from `@mui/joy/styles`:
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 ```
 
-Next, create a light/dark mode toggle button by adding the following code snippet in between your imports and your `App()`:
+Next, create a light/dark mode switcher by adding the following code snippet in between your imports and your `App()`:
 
 ```jsx
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+
 function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -205,14 +208,17 @@ function ModeToggle() {
   }
 
   return (
-    <Button
-      variant="outlined"
-      onClick={() => {
-        setMode(mode === 'light' ? 'dark' : 'light');
+    <Select
+      value={mode}
+      onChange={(event, newMode) => {
+        setMode(newMode);
       }}
+      sx={{ width: 'max-content' }}
     >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
-    </Button>
+      <Option value="system">System</Option>
+      <Option value="light">Light</Option>
+      <Option value="dark">Dark</Option>
+    </Select>
   );
 }
 ```
