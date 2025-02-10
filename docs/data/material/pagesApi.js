@@ -83,7 +83,6 @@ module.exports = [
   { pathname: '/material-ui/api/paper' },
   { pathname: '/material-ui/api/pigment-container' },
   { pathname: '/material-ui/api/pigment-grid' },
-  { pathname: '/material-ui/api/pigment-hidden' },
   { pathname: '/material-ui/api/pigment-stack' },
   { pathname: '/material-ui/api/popover' },
   { pathname: '/material-ui/api/popper' },
