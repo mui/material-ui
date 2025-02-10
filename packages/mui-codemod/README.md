@@ -62,6 +62,7 @@ npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quo
 ## Included scripts
 
 - [Deprecations](#deprecations)
+- [v7](#v700)
 - [v6](#v600)
 - [v5](#v500)
 - [v4](#v400)
@@ -1400,6 +1401,19 @@ npx @mui/codemod@latest deprecations/linear-progress-classes <path>
 npx @mui/codemod@latest deprecations/modal-props <path>
 ```
 
+#### `mobile-stepper-props`
+
+```diff
+ <MobileStepper
+-  LinearProgressProps={{ color: 'primary' }}
++  slotProps={{ progress: { color: 'primary' } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/mobile-stepper-props <path>
+```
+
 #### `pagination-item-classes`
 
 JS transforms:
@@ -2001,6 +2015,47 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+### v7.0.0
+
+#### `lab-removed-components`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+```
+
+Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
+
+- Alert
+- AlertTitle
+- Autocomplete
+- AvatarGroup
+- Pagination
+- PaginationItem
+- Rating
+- Skeleton
+- SpeedDial
+- SpeedDialAction
+- SpeedDialIcon
+- ToggleButton
+- ToggleButtonGroup
+- usePagination
+
+It updates named imports from top-level `@mui/lab`:
+
+```diff
+- import { Alert } from '@mui/lab';
++ import { Alert } from '@mui/material';
+```
+
+As well as default and named imports from component-level files:
+
+```diff
+- import Alert, { alertClasses } from '@mui/lab/Alert';
++ import Alert, { alertClasses } from '@mui/material/Alert';
 ```
 
 ### v6.0.0
