@@ -31,7 +31,7 @@ These new features will only be available under the updated pricing: moving forw
 
 We value our loyal customers and want to ensure a smooth transition: current customers will be grandfathered into their existing plans.
 
-This means you can renew your licenses, purchase additional licenses, under the legacy pricing for as long as you wish.
+This means you will be able to renew your licenses or purchase additional ones under the legacy plan for as long as you wish.
 However, the legacy pricing only covers the previously released components: Data Grid and Date Pickers.
 
 :::info
