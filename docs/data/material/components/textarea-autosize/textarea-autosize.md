@@ -7,13 +7,35 @@ githubLabel: 'component: TextareaAutosize'
 
 # Textarea Autosize
 
-<p class="description">The Textarea Autosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
+<p class="description">The Textarea Autosize component automatically adjusts its height to match the length of the content within.</p>
 
-## This document has moved
+{{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
 
-:::warning
-Please refer to the [Textarea Autosize](/base-ui/react-textarea-autosize/) component page in the MUI Base docs for demos and details on usage.
+## Introduction
 
-Textarea Autosize is a part of the standalone [MUI Base](/base-ui/) component library.
-It is currently re-exported from `@mui/material` for your convenience, but it will be removed from this package in a future major version after MUI Base gets a stable release.
-:::
+Textarea Autosize is a utility component that replaces the native `<textarea>` HTML.
+Its height automatically adjusts as a response to keyboard inputs and window resizing events.
+
+By default, an empty Textarea Autosize component renders as a single row, as shown in the following demo:
+
+{{"demo": "EmptyTextarea.js", "defaultCodeOpen": false}}
+
+## Basics
+
+### Import
+
+```jsx
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+```
+
+### Minimum height
+
+Use the `minRows` prop to define the minimum height of the component:
+
+{{"demo": "MinHeightTextarea.js"}}
+
+### Maximum height
+
+Use the `maxRows` prop to define the maximum height of the component:
+
+{{"demo": "MaxHeightTextarea.js"}}

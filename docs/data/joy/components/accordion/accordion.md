@@ -4,6 +4,7 @@ title: React Accordion component
 components: Accordion, AccordionDetails, AccordionGroup, AccordionSummary
 githubLabel: 'component: accordion'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+unstyled: https://base-ui.com/react/components/accordion
 ---
 
 # Accordion

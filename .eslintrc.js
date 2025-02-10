@@ -409,6 +409,21 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
+      files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: [
+        '*.spec.*',
+        '*.test.*',
+        // deprecated library
+        '**/mui-base/**/*',
+        '**/mui-joy/**/*',
+        // used internally, not used on app router yet
+        '**/mui-docs/**/*',
+      ],
+      rules: {
+        'material-ui/disallow-react-api-in-server-components': 'error',
+      },
+    },
+    {
       files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
       excludedFiles: '*.spec.*',
       rules: {

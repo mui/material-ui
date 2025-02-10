@@ -3,23 +3,22 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 import { Link } from '@mui/docs/Link';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 export default function TableOfContentsBanner() {
-  return FEATURE_TOGGLE.enable_toc_banner ? (
+  return (
     <Link
       href="https://war.ukraine.ua/support-ukraine/"
       target="_blank"
       sx={[
         (theme) => ({
-          mb: 2,
+          mt: 2,
           mx: 0.5,
+          mb: 2,
           p: 1,
           pl: '10px',
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          backgroundColor: alpha(theme.palette.grey[50], 0.4),
           border: '1px solid',
           borderColor: (theme.vars || theme).palette.divider,
           borderRadius: 1,
@@ -53,5 +52,5 @@ export default function TableOfContentsBanner() {
         MUI stands in solidarity with Ukraine.
       </Typography>
     </Link>
-  ) : null;
+  );
 }
