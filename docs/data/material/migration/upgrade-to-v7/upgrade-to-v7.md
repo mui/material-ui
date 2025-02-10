@@ -24,6 +24,30 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
+### Hidden and PigmentHidden components removed
+
+The deprecated `Hidden` and `PigmentHidden` components have been removed.
+
+Use the `sx` prop to replace `implementation="css"`:
+
+```diff
+-<Hidden implementation="css" xlUp><Paper /></Hidden>
++<Paper sx={{ display: { xl: 'none', xs: 'block' } }} />
+```
+
+```diff
+-<Hidden implementation="css" mdDown><Paper /></Hidden>
++<Paper sx={{ display: { xs: 'none', md: 'block' } }} />
+```
+
+Use the `useMediaQuery` hook to replace `implementation="js"`:
+
+```diff
+-<Hidden implementation="js" xlUp><Paper /></Hidden>
++const hidden = useMediaQuery(theme => theme.breakpoints.up('xl'));
++return hidden ? null : <Paper />;
+```
+
 ### Lab components moved to the main package
 
 The following `@mui/lab` components and hook have been moved to `@mui/material`:
