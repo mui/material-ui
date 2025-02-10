@@ -1,6 +1,6 @@
-# Base UI - Create React App example in JavaScript
+# MUI Base - Create React App example in JavaScript
 
-[Base UI](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
+[MUI Base](https://mui.com/base-ui/) is a library of unstyled React UI components and hooks.
 
 [Create React App](https://create-react-app.dev/) is a framework for quickly creating a new React project without the need to configure complex build tools or development environments.
 
@@ -8,7 +8,7 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/base-ui-cra
@@ -24,7 +24,7 @@ npm start
 
 or:
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/base-ui-cra)
 

@@ -9,6 +9,7 @@ import formControlState from '../FormControl/formControlState';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
 import InputBase, {
@@ -50,12 +51,20 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
         borderColor: (theme.vars || theme).palette.text.primary,
       },
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+          borderColor: theme.vars
+            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            : borderColor,
+        },
+      },
       [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
         borderWidth: 2,
       },
       variants: [
         ...Object.entries(theme.palette)
-          .filter(([, value]) => value && value.main)
+          .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { color },
             style: {
@@ -67,14 +76,6 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
         {
           props: {}, // to overide the above style
           style: {
-            // Reset on touch devices, it doesn't add specificity
-            '@media (hover: none)': {
-              [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-                borderColor: theme.vars
-                  ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
-                  : borderColor,
-              },
-            },
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,
             },
@@ -437,8 +438,6 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 };
 
-if (OutlinedInput) {
-  OutlinedInput.muiName = 'Input';
-}
+OutlinedInput.muiName = 'Input';
 
 export default OutlinedInput;

@@ -1,7 +1,32 @@
 import * as React from 'react';
-import { DrawerProps } from '../Drawer';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { DrawerProps, DrawerOwnerState, DrawerSlotsAndSlotProps } from '../Drawer';
 
-export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
+export interface SwipeableDrawerSwipeAreaSlotPropsOverrides {}
+
+export interface SwipeableDrawerSlots {
+  /**
+   * The component used for the swipeArea slot.
+   * @default div
+   */
+  swipeArea?: React.ElementType;
+}
+
+type SwipeableDrawerSlotsAndSlotProps = DrawerSlotsAndSlotProps &
+  CreateSlotsAndSlotProps<
+    SwipeableDrawerSlots,
+    {
+      /**
+       * Props forwarded to the docked slot.
+       * By default, the avaible props are based on a div element.
+       */
+      swipeArea: SlotProps<'div', SwipeableDrawerSwipeAreaSlotPropsOverrides, DrawerOwnerState>;
+    }
+  >;
+
+export interface SwipeableDrawerProps
+  extends Omit<DrawerProps, 'onClose' | 'open' | 'slots' | 'slotProps'>,
+    SwipeableDrawerSlotsAndSlotProps {
   /**
    * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.
    * This can be useful in scenarios where the drawer is partially visible.
@@ -16,7 +41,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    */
   allowSwipeInChildren?:
     | boolean
-    | ((e: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
+    | ((event: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
   /**
    * Disable the backdrop transition.
    * This can improve the FPS on low-end devices.
@@ -67,6 +92,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   open?: boolean;
   /**
    * The element is used to intercept the touch events on the edge.
+   * @deprecated use the `slotProps.swipeArea` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SwipeAreaProps?: object;
   /**
@@ -81,12 +107,12 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
  *
  * Demos:
  *
- * - [Drawer](https://mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://next.mui.com/material-ui/react-drawer/)
  *
  * API:
  *
- * - [SwipeableDrawer API](https://mui.com/material-ui/api/swipeable-drawer/)
- * - inherits [Drawer API](https://mui.com/material-ui/api/drawer/)
+ * - [SwipeableDrawer API](https://next.mui.com/material-ui/api/swipeable-drawer/)
+ * - inherits [Drawer API](https://next.mui.com/material-ui/api/drawer/)
  */
 declare const SwipeableDrawer: React.JSXElementConstructor<SwipeableDrawerProps>;
 

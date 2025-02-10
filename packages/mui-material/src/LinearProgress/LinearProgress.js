@@ -7,6 +7,7 @@ import { darken, lighten } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import { getLinearProgressUtilityClass } from './linearProgressClasses';
@@ -93,6 +94,7 @@ const useUtilityClasses = (ownerState) => {
     dashed: ['dashed', `dashedColor${capitalize(color)}`],
     bar1: [
       'bar',
+      'bar1',
       `barColor${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar1Indeterminate',
       variant === 'determinate' && 'bar1Determinate',
@@ -100,6 +102,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     bar2: [
       'bar',
+      'bar2',
       variant !== 'buffer' && `barColor${capitalize(color)}`,
       variant === 'buffer' && `color${capitalize(color)}`,
       (variant === 'indeterminate' || variant === 'query') && 'bar2Indeterminate',
@@ -144,7 +147,7 @@ const LinearProgressRoot = styled('span', {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -204,7 +207,7 @@ const LinearProgressDashed = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => {
           const backgroundColor = getColorShade(theme, color);
           return {
@@ -230,6 +233,7 @@ const LinearProgressBar1 = styled('span', {
 
     return [
       styles.bar,
+      styles.bar1,
       styles[`barColor${capitalize(ownerState.color)}`],
       (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
         styles.bar1Indeterminate,
@@ -256,7 +260,7 @@ const LinearProgressBar1 = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -306,6 +310,7 @@ const LinearProgressBar2 = styled('span', {
 
     return [
       styles.bar,
+      styles.bar2,
       styles[`barColor${capitalize(ownerState.color)}`],
       (ownerState.variant === 'indeterminate' || ownerState.variant === 'query') &&
         styles.bar2Indeterminate,
@@ -323,7 +328,7 @@ const LinearProgressBar2 = styled('span', {
     transformOrigin: 'left',
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -338,6 +343,13 @@ const LinearProgressBar2 = styled('span', {
         },
       },
       {
+        props: ({ ownerState }) =>
+          ownerState.variant !== 'buffer' && ownerState.color === 'inherit',
+        style: {
+          backgroundColor: 'currentColor',
+        },
+      },
+      {
         props: {
           color: 'inherit',
         },
@@ -346,7 +358,7 @@ const LinearProgressBar2 = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color, variant: 'buffer' },
           style: {

@@ -12,7 +12,7 @@ export interface AvatarSlots {
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  img?: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
+  img: React.JSXElementConstructor<React.ImgHTMLAttributes<HTMLImageElement>>;
 }
 
 export interface AvatarPropsVariantOverrides {}
@@ -46,6 +46,7 @@ export interface AvatarOwnProps {
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
+   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement> & {
     sx?: SxProps<Theme>;
@@ -86,11 +87,11 @@ export interface AvatarTypeMap<
  *
  * Demos:
  *
- * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://next.mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [Avatar API](https://mui.com/material-ui/api/avatar/)
+ * - [Avatar API](https://next.mui.com/material-ui/api/avatar/)
  */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 

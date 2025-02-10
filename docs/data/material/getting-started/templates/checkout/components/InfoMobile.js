@@ -1,14 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-
 import Info from './Info';
 
 function InfoMobile({ totalPrice }) {
@@ -39,7 +36,18 @@ function InfoMobile({ totalPrice }) {
       >
         View details
       </Button>
-      <Drawer open={open} anchor="top" onClose={toggleDrawer(false)}>
+      <Drawer
+        open={open}
+        anchor="top"
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: {
+            top: 'var(--template-frame-height, 0px)',
+            backgroundImage: 'none',
+            backgroundColor: 'background.paper',
+          },
+        }}
+      >
         {DrawerList}
       </Drawer>
     </div>

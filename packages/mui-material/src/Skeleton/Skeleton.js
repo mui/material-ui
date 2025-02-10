@@ -68,7 +68,9 @@ const pulseAnimation =
 const waveAnimation =
   typeof waveKeyframe !== 'string'
     ? css`
-        animation: ${waveKeyframe} 2s linear 0.5s infinite;
+        &::after {
+          animation: ${waveKeyframe} 2s linear 0.5s infinite;
+        }
       `
     : null;
 
@@ -192,8 +194,8 @@ const SkeletonRoot = styled('span', {
           props: {
             animation: 'wave',
           },
-          style: {
-            '&::after': waveAnimation || {
+          style: waveAnimation || {
+            '&::after': {
               animation: `${waveKeyframe} 2s linear 0.5s infinite`,
             },
           },

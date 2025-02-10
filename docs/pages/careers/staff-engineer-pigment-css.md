@@ -6,14 +6,14 @@
 
 - **Location**: Remote (preference for UTC-6 to UTC+5).
 - **Type of work**: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501#494af1f358794028beb4b7697b5d3102)).
-- **Level**: [5 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
+- **Level**: [IC5 or above](https://mui-org.notion.site/Engineering-levels-25b2fba9dd1f4b43a1b28f47f0170f23).
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
 ## The company
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -48,9 +48,15 @@ This is just the beginning, though.
 There's so much to do to make Pigment CSS a reliable and mature option for the future of Material UI and for many developers looking for a next-generation CSS-in-JS styling engine.
 We're well-positioned to make this happen, so we're looking for a talented engineer to join the team and help us get further beyond!
 
+### Why this is interesting
+
+If the team is successful, we believe that over 1/3 of the JavaScript community would use Pigment CSS to style their application, making the mission both extreamly challenging and impactful.
+
 ## The role
 
 ### Key responsibilities
+
+Depending on the day, you'll:
 
 - **Build**. You will help Pigment CSS mature by integrating it with various bundlers and frameworks, building new features, and improving DX.
 - **Nurture community contributions**. You will provide guidance and direction to unlock the contributions of the community.

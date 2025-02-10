@@ -15,6 +15,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import BaseSliderValueLabel from './SliderValueLabel';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
@@ -62,7 +63,7 @@ export const SliderRoot = styled('span', {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -206,7 +207,7 @@ export const SliderTrack = styled('span', {
           },
         },
         ...Object.entries(theme.palette)
-          .filter(([, palette]) => palette && palette.main)
+          .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
             props: { color, track: 'inverted' },
             style: {
@@ -308,7 +309,7 @@ export const SliderThumb = styled('span', {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {
@@ -339,7 +340,7 @@ export const SliderThumb = styled('span', {
   })),
 );
 
-export const SliderValueLabel = styled(BaseSliderValueLabel, {
+const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -420,6 +421,31 @@ export const SliderValueLabel = styled(BaseSliderValueLabel, {
     ],
   })),
 );
+
+SliderValueLabel.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  children: PropTypes.element.isRequired,
+  /**
+   * @ignore
+   */
+  index: PropTypes.number.isRequired,
+  /**
+   * @ignore
+   */
+  open: PropTypes.bool.isRequired,
+  /**
+   * @ignore
+   */
+  value: PropTypes.node,
+};
+
+export { SliderValueLabel };
 
 export const SliderMark = styled('span', {
   name: 'MuiSlider',
@@ -940,7 +966,7 @@ Slider.propTypes /* remove-proptypes */ = {
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.number,
+        value: PropTypes.node,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
     ]),
@@ -1011,7 +1037,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * @param {Event} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
   onChange: PropTypes.func,
@@ -1019,7 +1045,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    */
   onChangeCommitted: PropTypes.func,
   /**
@@ -1068,7 +1094,7 @@ Slider.propTypes /* remove-proptypes */ = {
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.number,
+        value: PropTypes.node,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
     ]),

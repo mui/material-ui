@@ -175,6 +175,8 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
+- 📦 [4.6 kB gzipped](https://bundlephobia.com/package/@mui/material).
+
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
 ### Customized hook
@@ -213,14 +215,14 @@ overriding the `filterOptions` prop:
 A customized UI for Google Maps Places Autocomplete.
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
-:::info
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
-:::
-
 {{"demo": "GoogleMaps.js"}}
 
+The demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+
 :::error
-Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+
+This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
 
 ## Multiple values
@@ -376,7 +378,7 @@ Browsers have heuristics to help the user fill in form inputs.
 However, this can harm the UX of the component.
 
 By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
-Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
+Google Chrome does not currently support this attribute setting ([Issue 41239842](https://issues.chromium.org/issues/41239842)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).

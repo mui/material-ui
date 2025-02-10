@@ -16,9 +16,9 @@ import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 const Avatar = styled(MuiAvatar)(({ theme }) => ({
   width: 28,
   height: 28,
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.text.secondary,
-  border: `1px solid ${theme.palette.divider}`,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
+  color: (theme.vars || theme).palette.text.secondary,
+  border: `1px solid ${(theme.vars || theme).palette.divider}`,
 }));
 
 const ListItemAvatar = styled(MuiListItemAvatar)({

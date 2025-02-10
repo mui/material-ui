@@ -8,6 +8,7 @@ import useSlotProps from '@mui/utils/useSlotProps';
 import useBadge from './useBadge';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
@@ -91,7 +92,7 @@ const BadgeBadge = styled('span', {
     }),
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main && palette.contrastText)
+        .filter(createSimplePaletteValueFilter(['contrastText']))
         .map(([color]) => ({
           props: { color },
           style: {
@@ -241,13 +242,17 @@ const BadgeBadge = styled('span', {
   })),
 );
 
+function getAnchorOrigin(anchorOrigin) {
+  return {
+    vertical: anchorOrigin?.vertical ?? 'top',
+    horizontal: anchorOrigin?.horizontal ?? 'right',
+  };
+}
+
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
+    anchorOrigin: anchorOriginProp,
     className,
     classes: classesProp,
     component,
@@ -279,7 +284,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   });
 
   const prevProps = usePreviousProps({
-    anchorOrigin: anchorOriginProp,
+    anchorOrigin: getAnchorOrigin(anchorOriginProp),
     color: colorProp,
     overlap: overlapProp,
     variant: variantProp,
@@ -291,10 +296,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const {
     color = colorProp,
     overlap = overlapProp,
-    anchorOrigin = anchorOriginProp,
+    anchorOrigin: anchorOriginPropProp,
     variant = variantProp,
   } = invisible ? prevProps : props;
 
+  const anchorOrigin = getAnchorOrigin(anchorOriginPropProp);
   const displayValue = variant !== 'dot' ? displayValueFromHook : undefined;
 
   const ownerState = {
@@ -359,8 +365,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * }
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
+    horizontal: PropTypes.oneOf(['left', 'right']),
+    vertical: PropTypes.oneOf(['bottom', 'top']),
   }),
   /**
    * The content rendered within the badge.

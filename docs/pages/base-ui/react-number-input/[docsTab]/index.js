@@ -31,7 +31,7 @@ export const getStaticProps = () => {
   const NumberInputApiDescriptions = mapApiPageTranslations(NumberInputApiReq);
 
   const useNumberInputApiReq = require.context(
-    'docs/translations/api-docs/use-number-input',
+    'docs/translations/api-docs-base/use-number-input',
     false,
     /use-number-input.*.json$/,
   );

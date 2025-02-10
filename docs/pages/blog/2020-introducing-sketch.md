@@ -11,7 +11,7 @@ Today, we're excited to introduce the Sketch symbols 💎 for Material UI.
 
 [![preview](/static/blog/2020-introducing-sketch/product-preview.png)](https://mui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch)
 
-<p class="blog-description">Available on our <a href="https://mui.com/store/items/sketch-react">store</a></p>
+<p class="blog-description">Available on our <a href="https://mui.com/store/items/sketch-react/">store</a></p>
 
 The UI kit contains all the Material UI components with states and variations which gives 1,500+ unique elements. All components are designed with the most up to date release.
 

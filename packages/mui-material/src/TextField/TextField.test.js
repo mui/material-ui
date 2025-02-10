@@ -60,7 +60,12 @@ describe('<TextField />', () => {
           testWithElement: null,
         },
       },
-      only: ['slotsProp', 'slotPropsProp', 'slotPropsCallback'],
+      only: [
+        'slotsProp',
+        'slotPropsProp',
+        'slotPropsCallback', // not supported yet
+        'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
+      ],
     }),
   );
 
@@ -296,6 +301,30 @@ describe('<TextField />', () => {
       const { getByRole } = render(<TextField inputProps={{ 'data-testid': 'input-element' }} />);
 
       expect(getByRole('textbox')).to.have.attribute('data-testid', 'input-element');
+    });
+  });
+
+  describe('autofill', () => {
+    it('should be filled after auto fill event', () => {
+      function AutoFillComponentTest() {
+        const [value, setValue] = React.useState('');
+        return (
+          <TextField
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            label="test"
+            variant="standard"
+            slotProps={{
+              htmlInput: { 'data-testid': 'htmlInput' },
+              inputLabel: { 'data-testid': 'label' },
+            }}
+          />
+        );
+      }
+
+      const { getByTestId } = render(<AutoFillComponentTest />);
+      fireEvent.animationStart(getByTestId('htmlInput'), { animationName: 'mui-auto-fill' });
+      expect(getByTestId('label').getAttribute('data-shrink')).to.equal('true');
     });
   });
 });

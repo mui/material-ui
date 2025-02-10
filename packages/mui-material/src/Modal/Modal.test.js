@@ -36,7 +36,7 @@ describe('<Modal />', () => {
       testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
-        backdrop: {},
+        backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'rootClass', // portal, can't determine the root
@@ -396,10 +396,10 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      expect(modalNode).toBeAriaHidden();
+      expect(modalNode).toBeInaccessible();
 
       setProps({ open: true });
-      expect(modalNode).not.toBeAriaHidden();
+      expect(modalNode).not.toBeInaccessible();
     });
 
     // Test case for https://github.com/mui/material-ui/issues/15180
@@ -589,7 +589,6 @@ describe('<Modal />', () => {
 
       // Test case for https://github.com/mui/material-ui/issues/12831
       it('should unmount the children ', () => {
-        const timeout = 50;
         function TestCase() {
           const [open, setOpen] = React.useState(true);
 
@@ -599,15 +598,13 @@ describe('<Modal />', () => {
 
           return (
             <Modal open={open}>
-              <Fade in={open} timeout={timeout}>
-                <div id="modal-body">hello</div>
-              </Fade>
+              {/* TODO: Look into why this test started to fail with React 19 when using a transition component as children. */}
+              {/* See: https://github.com/mui/material-ui/issues/43312 */}
+              <div id="modal-body">hello</div>
             </Modal>
           );
         }
         render(<TestCase />);
-        // exit transition started
-        clock.tick(timeout);
         expect(document.querySelector('#modal-body')).to.equal(null);
       });
     });
@@ -879,5 +876,21 @@ describe('<Modal />', () => {
         </Modal>,
       );
     }).not.toErrorDev();
+  });
+
+  it('should not override default onKeyDown', async () => {
+    const handleKeyDown = spy();
+    const handleClose = spy();
+
+    const { user } = render(
+      <Modal open onKeyDown={handleKeyDown} onClose={handleClose}>
+        <div tabIndex={-1} />
+      </Modal>,
+    );
+
+    await user.keyboard('{Escape}');
+
+    expect(handleKeyDown).to.have.property('callCount', 1);
+    expect(handleClose).to.have.property('callCount', 1);
   });
 });

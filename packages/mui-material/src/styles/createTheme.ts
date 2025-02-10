@@ -43,6 +43,7 @@ export default function createTheme(
         | Pick<
             CssVarsThemeOptions,
             | 'colorSchemeSelector'
+            | 'rootSelector'
             | 'disableCssColorScheme'
             | 'cssVarPrefix'
             | 'shouldSkipGeneratingVar'

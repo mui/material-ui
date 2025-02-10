@@ -33,10 +33,10 @@ You can browse the documentation, find an example close to your use case, and th
 
 <a href="/material-ui/react-button/#basic-button">
 <span class="only-light-mode">
-<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 <span class="only-dark-mode">
-<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 </a>
 
@@ -74,6 +74,7 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 | Material UI version | Release    | Supported                                                           |
 | ------------------: | :--------- | :------------------------------------------------------------------ |
+|              ^7.0.0 | March 2025 | 🚧 Pre release (Continuous support)                                 |
 |              ^6.0.0 | 2024-08-26 | ✅ Stable major (Continuous support)                                |
 |              ^5.0.0 | 2021-09-16 | ⚠️ Long-term support (Support for security issues and regressions). |
 |              ^4.0.0 | 2019-06-23 | ❌                                                                  |

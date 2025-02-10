@@ -29,7 +29,7 @@ To make that happen, we decided to engage the whole company in a series of disco
 
 This way, any changes to the company values—along with the language used to express them—would accurately reflect the values shared by our team. Here's how we did it! 👇
 
-<img alt="A collage of slides from the values discovery exercise kickoff." src="/static/blog/2023-mui-values/good-values.png" width="1200" height="840" loading="lazy" />
+<img alt="A collage of slides from the values discovery exercise kickoff." src="/static/blog/2023-mui-values/good-values.png" width="2400" height="1680" loading="lazy" />
 
 ## Stage one: discovery questions
 
@@ -40,12 +40,12 @@ It was also to give people an opportunity to express what they felt may be _miss
 
 We asked people to reflect on how accurately they felt each value described our internal culture; what they felt our company cared deeply about and why; what is utterly unique about us as a team; and more. 🤔💭
 
-<img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey.png" width="1200" height="1170" loading="lazy" style="margin-bottom: 16px;" />
+<img alt="A screenshot of the intro page to our discovery survey." src="/static/blog/2023-mui-values/values-survey.png" width="2400" height="2340" loading="lazy" />
 
 Then, using keyword and sentiment analysis, we captured clear themes in experience and common language used to describe our culture.
 I presented this back to the team via recorded video presentation, inviting reactions and further dialogue in the open of our Slack workspace.
 
-<img alt="A screenshot of a video message in our internal Slack revealing themes from the survey." src="/static/blog/2023-mui-values/themes-video.png" width="1200" height="750" loading="lazy" />
+<img alt="A screenshot of a video message in our internal Slack revealing themes from the survey." src="/static/blog/2023-mui-values/themes-video.png" width="2400" height="1500" loading="lazy" />
 
 ## Stage two: workshop
 
@@ -69,13 +69,11 @@ Finally, we organized all of these cards into little clusters based on relatedne
 
 We came up with a list of words that we felt best encapsulated each cluster. This became our values "shortlist."
 
-<img alt="description" src="/static/blog/2023-mui-values/figjam-board.png" width="1200" height="500" loading="lazy" />
+<img alt="description" src="/static/blog/2023-mui-values/figjam-board.png" width="2400" height="1000" loading="lazy" />
 
 ## Stage three: transforming the shortlist
 
-36.
-
-That's how many words surfaced in our workshop as potential values—or at least, as words to inspire the copywriting process.
+36\. That's how many words surfaced in our workshop as potential values—or at least, as words to inspire the copywriting process.
 
 Narrowing down the shortlist gave us a chance to both find _and_ stress-test the strongest recurring themes. 🧪
 
@@ -144,7 +142,7 @@ To delve deeper into the meaning of each value and what it looks like in practic
 
 In it, we offer concrete examples of each core value and explicitly address tensions folks may encounter in trying to live them out.
 
-<img alt="description" src="/static/blog/2023-mui-values/notion-values-page.png" width="1200" height="1170" loading="lazy" />
+<img alt="description" src="/static/blog/2023-mui-values/notion-values-page.png" width="2400" height="2340" loading="lazy" />
 
 ## What do they mean?
 
@@ -222,7 +220,7 @@ As a fun way to reinforce values and show team gratitude, we've also created #Th
 Our design team even created custom illustrations and Slack emojis to make highlighting values-driven moments as simple as just a few clicks.
 (Thank you Gerda, Victor, and Danilo!) 🙏
 
-<img alt="Custom-designed illustrations for each MUI company value." src="/static/blog/2023-mui-values/values-illustrations.png" width="1200" height="500" loading="lazy" />
+<img alt="Custom-designed illustrations for each MUI company value." src="/static/blog/2023-mui-values/values-illustrations.png" width="2400" height="1000" loading="lazy" />
 
 ## When might the values change again?
 

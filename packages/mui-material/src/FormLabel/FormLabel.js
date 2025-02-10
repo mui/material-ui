@@ -8,6 +8,7 @@ import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
@@ -32,12 +33,13 @@ const useUtilityClasses = (ownerState) => {
 export const FormLabelRoot = styled('label', {
   name: 'MuiFormLabel',
   slot: 'Root',
-  overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...(ownerState.color === 'secondary' && styles.colorSecondary),
-      ...(ownerState.filled && styles.filled),
-    };
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [
+      styles.root,
+      ownerState.color === 'secondary' && styles.colorSecondary,
+      ownerState.filled && styles.filled,
+    ];
   },
 })(
   memoTheme(({ theme }) => ({
@@ -48,7 +50,7 @@ export const FormLabelRoot = styled('label', {
     position: 'relative',
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main)
+        .filter(createSimplePaletteValueFilter())
         .map(([color]) => ({
           props: { color },
           style: {

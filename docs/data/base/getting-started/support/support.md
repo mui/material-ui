@@ -1,6 +1,6 @@
 # Support
 
-<p class="description">Learn how to get support for Base UI components, including feature requests, bug fixes, and technical support from the team.</p>
+<p class="description">Learn how to get support for MUI Base components, including feature requests, bug fixes, and technical support from the team.</p>
 
 ## GitHub
 
@@ -10,7 +10,7 @@ If you think you've found a bug, or you have a new feature idea:
 
 1. Please start by [making sure it hasn't already been reported or fixed](https://github.com/mui/base-ui/issues?q=is%3Aopen+is%3Aclosed).
    You can search through existing issues and pull requests to see if someone has reported one similar to yours.
-2. Then, if no duplicates exist, [open an issue](https://github.com/mui/base-ui/issues/new/choose) in the Base UI repository.
+2. Then, if no duplicates exist, [open an issue](https://github.com/mui/base-ui/issues/new/choose) in the MUI Base repository.
 
 ### New issue guidelines
 
@@ -33,10 +33,10 @@ You can browse the documentation, find an example close to your use case, and th
 
 <a href="/base-ui/react-button/#introduction">
 <span class="only-light-mode">
-<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628"  height="700" style="display: block; max-width: 774px;">
 </span>
 <span class="only-dark-mode">
-<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 </a>
 
@@ -46,7 +46,7 @@ You can use a starter React template to build a reproduction case with [JavaScri
 
 ## Stack Overflow
 
-We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the Base UI community as well as Base UI maintainers.
+We use Stack Overflow for how-to questions. Answers are crowdsourced from expert developers in the MUI Base community as well as MUI Base maintainers.
 
 You can search through existing questions and answers to see if someone has asked a similar question using the [base-ui tags](https://stackoverflow.com/questions/tagged/base-ui):
 
@@ -54,7 +54,7 @@ If you can't find your answer, [ask a new question](https://stackoverflow.com/qu
 
 ## Technical support
 
-We do _not_ offer paid support for Core libraries like Base UI.
+We do _not_ offer paid support for Core libraries like MUI Base.
 
 But you might want to read the [technical support offered](https://mui.com/x/introduction/support/#technical-support) on MUI X components.
 
@@ -67,23 +67,23 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Supported versions
 
-- Base UI v5: ⚠️ Beta version.
-- Base UI v4 🅧 Never existed.
-- Base UI v3 🅧 Never existed.
-- Base UI v2: 🅧 Never existed.
-- Base UI v1: 🅧 Never existed.
-- Base UI v0.x: 🅧 Never existed.
+- MUI Base v5: ⚠️ Beta version.
+- MUI Base v4 🅧 Never existed.
+- MUI Base v3 🅧 Never existed.
+- MUI Base v2: 🅧 Never existed.
+- MUI Base v1: 🅧 Never existed.
+- MUI Base v0.x: 🅧 Never existed.
 
 ## Community
 
 ### Social media
 
-The Base UI community is active on both [X/Twitter](https://x.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
+The MUI Base community is active on both [X/Twitter](https://x.com/MUI_hq) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 ### Discord
 
-We have a [Discord Server](https://mui.com/r/discord/) to bring the Base UI community together.
+We have a [Discord Server](https://mui.com/r/discord/) to bring the MUI Base community together.
 Our tools are used by thousands of developers and teams all around the world, many of whom actively engage with the community.
 
 You can join Discord to engage in lively discussions, share your projects, and interact with developers just like you from all around the world. We'd love for you to join us!
@@ -94,9 +94,9 @@ How-to questions are not accepted on Discord, they should be asked on [Stack Ov
 
 ## Custom work
 
-If your team gets stuck and needs help getting unblocked, Base UI's engineers may be available on a contract basis.
+If your team gets stuck and needs help getting unblocked, MUI Base's engineers may be available on a contract basis.
 
-Keep in mind that the work must be directly related to Base UI's products—we don't accept general web development or React work.
+Keep in mind that the work must be directly related to MUI Base's products—we don't accept general web development or React work.
 
 Our contracting price starts at $200/hour or $1,500/day.
 

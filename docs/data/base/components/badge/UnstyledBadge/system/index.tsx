@@ -73,7 +73,7 @@ const Badge = styled(BaseBadge)(
     text-align: center;
     border-radius: 12px;
     background: ${blue[500]};
-    box-shadow: 0px 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
+    box-shadow: 0 4px 8px ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
     transform: translate(50%, -50%);
     transform-origin: 100% 0;
   }

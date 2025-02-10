@@ -7,6 +7,7 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import SwitchBase from '../internal/SwitchBase';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -150,7 +151,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value && value.main && value.light) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter(['light'])) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {
@@ -314,10 +315,12 @@ Switch.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
   /**
    * Pass a ref to the `input` element.
+   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputRef: refType,
   /**

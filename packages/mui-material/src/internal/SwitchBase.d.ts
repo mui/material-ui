@@ -2,9 +2,39 @@ import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
 import { ButtonBaseProps } from '../ButtonBase';
 import { SwitchBaseClasses } from './switchBaseClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+interface SwitchBaseSlots {
+  /**
+   * The component that renders the root slot.
+   * @default ButtonBase
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the input slot.
+   * @default 'input'
+   */
+  input: React.ElementType;
+}
+
+type SwitchBaseSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SwitchBaseSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
+     */
+    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, SwitchBaseOwnerState>;
+    /**
+     * Props forwarded to the input slot.
+     */
+    input: SlotProps<'input', {}, SwitchBaseOwnerState>;
+  }
+>;
 
 export interface SwitchBaseProps
-  extends StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'> {
+  extends StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'>,
+    SwitchBaseSlotsAndSlotProps {
   autoFocus?: boolean;
   /**
    * If `true`, the component is checked.
@@ -48,10 +78,12 @@ export interface SwitchBaseProps
   id?: string;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   /**
    * Pass a ref to the `input` element.
+   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputRef?: React.Ref<any>;
   /**
@@ -79,6 +111,8 @@ export interface SwitchBaseProps
    */
   value?: unknown;
 }
+
+export interface SwitchBaseOwnerState extends Omit<SwitchBaseProps, 'slots' | 'slotProps'> {}
 
 declare const SwitchBase: React.JSXElementConstructor<SwitchBaseProps>;
 

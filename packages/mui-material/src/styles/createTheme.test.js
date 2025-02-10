@@ -221,6 +221,22 @@ describe('createTheme', () => {
       expect(theme.colorSchemes.dark).to.not.equal(undefined);
     });
 
+    it('should be able to customize tonal offset', () => {
+      const theme = createTheme({
+        cssVariables: true,
+        palette: {
+          primary: {
+            main: green[500],
+          },
+          tonalOffset: {
+            light: 0.1,
+            dark: 0.9,
+          },
+        },
+      });
+      expect(theme.palette.primary.main).to.equal('#4caf50');
+    });
+
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });
@@ -503,6 +519,12 @@ describe('createTheme', () => {
     });
   });
 
+  it('should return the styles directly when using applyStyles if the selector is `&`', function test() {
+    const theme = createTheme({ cssVariables: true, palette: { mode: 'dark' } });
+
+    expect(theme.applyStyles('dark', { color: 'red' })).to.deep.equal({ color: 'red' });
+  });
+
   it('Throw an informative error when the key `vars` is passed as part of `options` passed', () => {
     try {
       createTheme({
@@ -510,11 +532,57 @@ describe('createTheme', () => {
           primary: '#EF14E2',
         },
       });
-    } catch (e) {
-      expect(e.message).to.equal(
+    } catch (error) {
+      expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
           'Please use another name.',
       );
     }
+  });
+
+  it('should create a new object', () => {
+    const defaultTheme = createTheme({
+      cssVariables: {
+        colorSchemeSelector: 'data-mui-color-scheme',
+      },
+      colorSchemes: { dark: true },
+    });
+
+    expect(
+      defaultTheme.generateStyleSheets()[2]['[data-mui-color-scheme="dark"]'][
+        '--mui-palette-background-defaultChannel'
+      ],
+    ).to.equal('18 18 18');
+
+    const theme = createTheme({
+      cssVariables: {
+        colorSchemeSelector: 'data-mui-color-scheme',
+        cssVarPrefix: 'template',
+      },
+      colorSchemes: {
+        dark: {
+          palette: {
+            background: {
+              default: 'hsl(220, 35%, 3%)',
+              paper: 'hsl(220, 30%, 7%)',
+            },
+          },
+        },
+      },
+    });
+
+    expect(
+      theme.generateStyleSheets()[2]['[data-mui-color-scheme="dark"]'][
+        '--template-palette-background-defaultChannel'
+      ],
+    ).to.equal('5 7 10');
+  });
+
+  it('should have `toRuntimeSource` for integrating with Pigment CSS', () => {
+    const theme = createTheme();
+    expect(typeof theme.toRuntimeSource).to.equal('function');
+
+    const themeCssVars = createTheme({ cssVariables: true });
+    expect(typeof themeCssVars.toRuntimeSource).to.equal('function');
   });
 });

@@ -20,7 +20,7 @@ Alternatively, to skip this configuration, you can set `skipLibCheck: true` in y
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra-styled-components-ts
@@ -36,11 +36,13 @@ npm start
 
 ## CodeSandbox
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts).
 
-The following link leverages this demo: https://mui.com/material-ui/integrations/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
+<!-- #host-reference -->
+
+The following link leverages this demo: https://next.mui.com/material-ui/integrations/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/styled-components-interoperability-w9z9d)
 
@@ -54,7 +56,7 @@ Note, the version 5 of `@mui/styled-engine-sc` is compatible with version 5 of `
 
 ## What's next?
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.

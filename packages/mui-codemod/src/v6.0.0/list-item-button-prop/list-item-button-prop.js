@@ -81,7 +81,7 @@ export default function transformer(file, api, options) {
     .filter((path) => {
       path.node.specifiers.forEach((specifier) => {
         if (specifier.type === 'ImportDefaultSpecifier') {
-          if (importsToRemove.indexOf(specifier.local.name) >= 0) {
+          if (importsToRemove.includes(specifier.local.name)) {
             path.node.specifiers = path.node.specifiers.filter((spec) => spec !== specifier);
           }
         }
@@ -101,7 +101,7 @@ export default function transformer(file, api, options) {
         if (
           specifier.type === 'ImportSpecifier' &&
           specifier.imported.name === 'ListItem' &&
-          importsToRemove.indexOf(specifier.local.name) >= 0
+          importsToRemove.includes(specifier.local.name)
         ) {
           path.node.specifiers = path.node.specifiers.filter((spec) => spec !== specifier);
         }

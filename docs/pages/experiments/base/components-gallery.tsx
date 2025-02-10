@@ -66,7 +66,7 @@ const hslPickerLinearGradient = [...new Array(36)]
 const ColorPickerSlider = styled(Slider)(
   ({ theme }) => `
     width: 100%;
-    background: -webkit-linear-gradient(left, ${hslPickerLinearGradient});
+    background: linear-gradient(to left, ${hslPickerLinearGradient});
     margin: 16px 0;
     height: 8px;
     border-radius: 8px;
@@ -94,8 +94,8 @@ const ColorPickerSlider = styled(Slider)(
           theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'
         };
         transform: scale(1.2);
-      },
-    },
+      }
+    }
     `,
 );
 
@@ -233,7 +233,7 @@ export default function ComponentsGallery() {
   const settingsOpen = Boolean(settingsAnchor);
   const settingsId = settingsOpen ? 'settings-popup' : undefined;
 
-  const colorPickerSliderChangeHandler = (e: Event, value: number | number[]) => {
+  const colorPickerSliderChangeHandler = (event: Event, value: number | number[]) => {
     setRootStyles(`
 :root {
   --primary-50: ${value}, 90%, 97%;

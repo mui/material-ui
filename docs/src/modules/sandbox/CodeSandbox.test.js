@@ -33,7 +33,8 @@ describe('CodeSandbox', () => {
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
             react: 'latest',
-            '@mui/material': 'latest',
+            // #npm-tag-reference
+            '@mui/material': 'next',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -61,7 +62,7 @@ describe('CodeSandbox', () => {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -123,7 +124,8 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {
             react: 'latest',
-            '@mui/material': 'latest',
+            // #npm-tag-reference
+            '@mui/material': 'next',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -155,7 +157,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     />
     <!-- Icons to support Material Design -->
     <link
@@ -230,7 +232,8 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
     expect(result.dependencies).to.deep.equal({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'latest',
+      // #npm-tag-reference
+      '@mui/material': 'next',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
       react: 'latest',

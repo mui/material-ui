@@ -1,5 +1,5 @@
 {
-  "name": "@app/next-app",
+  "name": "@app/pigment-css-next-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,26 +9,26 @@
     "clean": "rimraf .next"
   },
   "dependencies": {
-    "@mui/material-pigment-css": "workspace:^",
-    "@mui/utils": "workspace:^",
+    "@emotion/cache": "latest",
     "@mui/base": "workspace:^",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
     "@mui/material-nextjs": "workspace:^",
+    "@mui/material-pigment-css": "workspace:^",
     "@mui/system": "workspace:^",
-    "@emotion/cache": "latest",
+    "@mui/utils": "workspace:^",
     "next": "latest",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "0.0.21",
-    "@types/node": "^20.14.8",
-    "@types/react": "^18.3.4",
-    "@types/react-dom": "^18.3.0",
-    "eslint": "^8.57.0",
-    "typescript": "^5.5.4"
+    "@pigment-css/nextjs-plugin": "0.0.30",
+    "@types/node": "^20.17.17",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "eslint": "^8.57.1",
+    "typescript": "^5.7.3"
   },
   "nx": {
     "targets": {

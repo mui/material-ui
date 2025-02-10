@@ -20,7 +20,7 @@ The previous generation of pickers, whose text input is based on a [mask approac
 
 For example, watch what happens when we edit the month on this masked input:
 
-<video style="width: 608px;" autoplay muted loop playsinline>
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="310">
   <source src="/static/blog/v6-beta-pickers/masked-input-bad-ux.mp4" type="video/mp4" />
 </video>
 
@@ -29,7 +29,7 @@ As you can notice, the day and year leak to the previous sections of the date, p
 In contrast, the new fields are specialized in editing date and time values.
 They recognize the values on the input (day, month, year, etc.) and respond accordingly.
 
-<video style="width: 608px;" autoplay muted loop playsinline>
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="310">
   <source src="/static/blog/v6-beta-pickers/basic-date-field.mp4" type="video/mp4" />
 </video>
 
@@ -55,19 +55,19 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 With the new Fields, the keyboard interaction is a first-class experience.
 Not only can you type the date as text, but you can also use arrow keys to navigate and edit date and time values.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline>
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="310">
   <source src="/static/blog/v6-beta-pickers/date-field-navigation.mp4" type="video/mp4" />
 </video>
 
 For a quick comparison, let's check out how the old and new approaches behave in typical scenarios.
 
-<video style="margin-bottom:24px" autoplay muted loop playsinline >
+<video autoplay muted loop playsinline width="1920" height="1080">
   <source src="/static/blog/v6-beta-pickers/quick-comparison-fields.mp4" type="video/mp4" />
 </video>
 
 Moreover, notice in the following example that as we edit the day, the component automatically navigates only in valid values.
 
-<video style="margin-bottom: 5px; width: 608px;" autoplay muted loop playsinline >
+<video style="width: 608px;" autoplay muted loop playsinline width="1216" height="274">
   <source src="/static/blog/v6-beta-pickers/smart-field-stable.mp4" type="video/mp4" />
 </video>
 
@@ -118,12 +118,12 @@ Now that you've seen what's fundamentally changed with the Pickers, let's briefl
 
 - **Drag to edit**\
   Editing a date range is even easier now with the new drag-and-drop interface. Change `start` and `end` dates at will.
-  <video style="margin-bottom: 24px; max-height: 398px;" autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline width="1488" height="796">
     <source src="/static/blog/v6-beta-pickers/edit-drag.mp4" type="video/mp4" />
   </video>
 - **Range shortcuts** (available from v6.0.0-beta.1)\
   Add quick and customizable shortcuts for your users. Choose to display them on the left, right, bottom or top.
-  <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" style="width: 692px; margin-bottom: 24px;" loading="lazy" alt="Date Range shortcuts." />
+  <img src="/static/blog/v6-beta-pickers/date-range-shortcuts.png" loading="lazy" alt="Date Range shortcuts." width="2222" height="1402" />
 
 ## Should we retire the masked inputs?
 

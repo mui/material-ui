@@ -130,6 +130,34 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should not throw error when accessing ownerState in styleOverrides', () => {
+    const theme = createTheme({
+      components: {
+        MuiAutocomplete: {
+          styleOverrides: {
+            root: ({ ownerState }) => {
+              return {
+                outlineColor: ownerState.size === 'small' ? 'magenta' : 'crimson',
+              };
+            },
+          },
+        },
+      },
+    });
+
+    expect(() => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Autocomplete
+            open
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </ThemeProvider>,
+      );
+    }).not.to.throw();
+  });
+
   describe('combobox', () => {
     it('should clear the input when blur', () => {
       const { getByRole } = render(
@@ -831,6 +859,49 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(4);
   });
 
+  it('should not open the autocomplete popup when deleting chips', async () => {
+    const { queryByRole, queryByText, user } = render(
+      <Autocomplete
+        multiple
+        options={['one', 'two', 'three']}
+        defaultValue={['one']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    expect(queryByRole('listbox')).to.equal(null);
+
+    const chip = queryByText('one').parentElement;
+    expect(chip).not.to.equal(null);
+
+    // Delete the chip
+    await user.click(chip.getElementsByClassName(chipClasses.deleteIcon)[0]);
+
+    expect(queryByText('one')).to.equal(null);
+    expect(queryByRole('listbox')).to.equal(null);
+  });
+
+  it('should toggle the autocomplete popup when clicking the popup indicator', async () => {
+    const { queryByRole, getByRole, user } = render(
+      <Autocomplete
+        multiple
+        options={['One', 'Two', 'Three']}
+        renderInput={(params) => <TextField {...params} autoFocus />}
+      />,
+    );
+
+    expect(queryByRole('listbox')).to.equal(null);
+
+    const popupIndicator = getByRole('button', { name: 'Open' });
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).not.to.equal(null);
+
+    await user.click(popupIndicator);
+
+    expect(queryByRole('listbox')).to.equal(null);
+  });
+
   describe('prop: getOptionDisabled', () => {
     it('should prevent the disabled option to trigger actions but allow focus with disabledItemsFocusable', () => {
       const handleSubmit = spy();
@@ -998,6 +1069,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'true');
 
       const listbox = getByRole('listbox');
+      expect(listbox.tagName.toLowerCase()).to.equal('ul');
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
       expect(textbox, 'no option is focused when opened').not.to.have.attribute(
         'aria-activedescendant',
@@ -1110,7 +1182,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.click(ref.current);
+      fireEvent.mouseDown(ref.current);
       expect(handleOpen.callCount).to.equal(1);
     });
 
@@ -2368,22 +2440,6 @@ describe('<Autocomplete />', () => {
 
       expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
     });
-
-    it('should not render popper when there are no options', () => {
-      render(
-        <Autocomplete
-          open
-          freeSolo
-          options={[]}
-          renderInput={(params) => <TextField {...params} />}
-          slotProps={{
-            popper: { 'data-testid': 'popperRoot' },
-          }}
-        />,
-      );
-      const popper = screen.queryByTestId('popperRoot');
-      expect(popper).to.equal(null);
-    });
   });
 
   describe('prop: onChange', () => {
@@ -2842,10 +2898,10 @@ describe('<Autocomplete />', () => {
     );
     expect(handleHighlightChange.callCount).to.equal(
       // FIXME: highlighted index implementation should be implemented using React not the DOM.
-      reactMajor >= 18 ? 2 : 1,
+      reactMajor > 18 ? 2 : 1,
     );
     expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-    if (reactMajor >= 18) {
+    if (reactMajor > 18) {
       expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
     }
   });
@@ -2865,10 +2921,10 @@ describe('<Autocomplete />', () => {
       );
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 2 : 1,
+        reactMajor > 18 ? 2 : 1,
       );
       expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (reactMajor >= 18) {
+      if (reactMajor > 18) {
         expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
       }
     });

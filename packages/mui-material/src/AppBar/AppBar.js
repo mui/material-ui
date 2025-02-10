@@ -7,6 +7,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
 
@@ -116,7 +117,7 @@ const AppBarRoot = styled(Paper, {
         },
       },
       ...Object.entries(theme.palette)
-        .filter(([, palette]) => palette && palette.main && palette.contrastText)
+        .filter(createSimplePaletteValueFilter(['contrastText']))
         .map(([color]) => ({
           props: { color },
           style: {
@@ -246,7 +247,7 @@ AppBar.propTypes /* remove-proptypes */ = {
   enableColorOnDark: PropTypes.bool,
   /**
    * The positioning type. The behavior of the different options is described
-   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
+   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Web/CSS/position).
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    * @default 'fixed'
    */
