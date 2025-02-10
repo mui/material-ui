@@ -169,7 +169,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
-    "globby": "^14.0.2",
+    "globby": "^14.1.0",
     "karma": "^6.4.4",
     "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.2.0",
