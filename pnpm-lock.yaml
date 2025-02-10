@@ -313,7 +313,7 @@ importers:
         version: 5.7.3
       vitest:
         specifier: ^2.1.9
-        version: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
+        version: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@26.0.0)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
       vitest-fail-on-console:
         specifier: ^0.7.1
         version: 0.7.1(vite@5.4.14(@types/node@20.17.17)(terser@5.37.0))(vitest@2.1.9)
@@ -1129,8 +1129,8 @@ importers:
         specifier: ^11.3.0
         version: 11.3.0
       jsdom:
-        specifier: ^25.0.1
-        version: 25.0.1
+        specifier: ^26.0.0
+        version: 26.0.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2514,6 +2514,9 @@ packages:
     resolution: {integrity: sha512-tkxnCpaj7yN9nCFzo9MX0FJ5YjUepEOGYfdvF8COQqp+EdY1qubOPpc4Z0l1B60BlC8YtjQv/oRxHSh1XzxWFg==}
     engines: {node: '>=18.0.0'}
 
+  '@asamuzakjp/css-color@2.8.3':
+    resolution: {integrity: sha512-GIc76d9UI1hCvOATjZPyHFmE5qhRccp3/zGfMPapK3jBi+yocEzp6BBB0UnfRYP9NP4FANqUZYb0hnfs3TM3hw==}
+
   '@babel/cli@7.26.4':
     resolution: {integrity: sha512-+mORf3ezU3p3qr+82WvJSnQNE1GAYeoCfEv4fik6B5/2cvKZ75AX8oawWQdXtM9MmndooQj15Jr9kelRFWsuRw==}
     engines: {node: '>=6.9.0'}
@@ -3252,6 +3255,24 @@ packages:
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+
+  '@csstools/color-helpers@5.0.1':
+    resolution: {integrity: sha512-MKtmkA0BX87PKaO1NFRTFH+UnkgnmySQOvNxJubsadusqPEC2aJ9MOQiMceZJJ6oitUl/i0L6u0M1IrmAOmgBA==}
+    engines: {node: '>=18'}
+
+  '@csstools/css-calc@2.1.1':
+    resolution: {integrity: sha512-rL7kaUnTkL9K+Cvo2pnCieqNpTKgQzy5f+N+5Iuko9HAoasP+xgprVh7KN/MaJVvVL1l0EzQq2MoqBHKSrDrag==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@csstools/css-parser-algorithms': ^3.0.4
+      '@csstools/css-tokenizer': ^3.0.3
+
+  '@csstools/css-color-parser@3.0.7':
+    resolution: {integrity: sha512-nkMp2mTICw32uE5NN+EsJ4f5N+IGFeCFu4bGpiKgb2Pq/7J/MpyLBeQ5ry4KKtRFZaYs6sTmcMYrSRIyj5DFKA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@csstools/css-parser-algorithms': ^3.0.4
+      '@csstools/css-tokenizer': ^3.0.3
 
   '@csstools/css-parser-algorithms@3.0.4':
     resolution: {integrity: sha512-Up7rBoV77rv29d3uKHUIVubz1BTcgyUK72IvCQAbfbMv584xHcGKCKbWh7i8hPrRJ7qU4Y8IO3IY9m+iTB7P3A==}
@@ -7167,8 +7188,8 @@ packages:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
 
-  cssstyle@4.1.0:
-    resolution: {integrity: sha512-h66W1URKpBS5YMI/V8PyXvTMFT8SupJ1IzoIV8IeBC/ji8WVmrO8dGlTi+2dh6whmdk6BiKJLD/ZBkhWbcg6nA==}
+  cssstyle@4.2.1:
+    resolution: {integrity: sha512-9+vem03dMXG7gDmZ62uqmRiMRNtinIZ9ZyuF6BdxzfOD+FdN5hretzynkn0ReS2DO2GSw76RWHs0UmJPI2zUjw==}
     engines: {node: '>=18'}
 
   csstype@3.1.3:
@@ -8151,8 +8172,8 @@ packages:
     resolution: {integrity: sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==}
     engines: {node: '>=14'}
 
-  form-data@4.0.0:
-    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+  form-data@4.0.1:
+    resolution: {integrity: sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==}
     engines: {node: '>= 6'}
 
   format-util@1.0.5:
@@ -9232,11 +9253,11 @@ packages:
       '@babel/preset-env':
         optional: true
 
-  jsdom@25.0.1:
-    resolution: {integrity: sha512-8i7LzZj7BF8uplX+ZyOlIz86V6TAsSs+np6m1kpW9u0JWi4z/1t+FzcK1aek+ybTnAC4KhBL4uXCNT0wcUIeCw==}
+  jsdom@26.0.0:
+    resolution: {integrity: sha512-BZYDGVAIriBWTpIxYzrXjv3E/4u8+/pSG5bQdIYCbNCGOvsPkDQfTVLAIXAf9ETdCpduCVTkDe2NNZ8NIwUVzw==}
     engines: {node: '>=18'}
     peerDependencies:
-      canvas: ^2.11.2
+      canvas: ^3.0.0
     peerDependenciesMeta:
       canvas:
         optional: true
@@ -10400,8 +10421,8 @@ packages:
   nullthrows@1.1.1:
     resolution: {integrity: sha512-2vPPEi+Z7WqML2jZYddDIfy5Dqb0r2fze2zTxNNknZaFpVHU3mFB3R+DWeJWGVx0ecvttSGlJTI+WG+8Z4cDWw==}
 
-  nwsapi@2.2.13:
-    resolution: {integrity: sha512-cTGB9ptp9dY9A5VbMSe7fQBcl/tt22Vcqdq8+eN93rblOuE0aCFu4aZ2vMwct/2t+lFnosm8RkQW1I0Omb1UtQ==}
+  nwsapi@2.2.16:
+    resolution: {integrity: sha512-F1I/bimDpj3ncaNDhfyMWuFqmQDBwDB0Fogc2qpL3BWvkQteFD/8BzWuIRl83rq0DXfm8SGt/HFhLXZyljTXcQ==}
 
   nx@19.8.14:
     resolution: {integrity: sha512-yprBOWV16eQntz5h5SShYHMVeN50fUb6yHfzsqNiFneCJeyVjyJ585m+2TuVbE11vT1amU0xCjHcSGfJBBnm8g==}
@@ -10741,8 +10762,8 @@ packages:
   parse-url@8.1.0:
     resolution: {integrity: sha512-xDvOoLU5XRrcOZvnI6b8zA6n9O9ejNk/GExuz1yBuWUGn9KA97GI6HTs6u02wKara1CeVmZhH+0TZFdWScR89w==}
 
-  parse5@7.1.2:
-    resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
+  parse5@7.2.1:
+    resolution: {integrity: sha512-BuBYQYlv1ckiPdQi/ohiivi9Sagc9JG+Ozs0r7b/0iK3sKmrb0b9FdWdBbOdx6hBCM/F9Ir82ofnBhtZOjCRPQ==}
 
   parseurl@1.3.3:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
@@ -11738,8 +11759,8 @@ packages:
     resolution: {integrity: sha512-dIM5zVoG8xhC6rnSN8uoAgFARwTE7BQs8YwHEvK0VCmfxQXMaOuA1uiR1IPwsW7JyK5iTt7Od/TC9StasS2NPQ==}
     engines: {node: '>= 0.10'}
 
-  rrweb-cssom@0.7.1:
-    resolution: {integrity: sha512-TrEMa7JGdVm0UThDJSx7ddw5nVm3UJS9o9CCIZ72B1vSyEZoziDqBYP3XIoi/12lKrJR8rE3jeFHMok2F/Mnsg==}
+  rrweb-cssom@0.8.0:
+    resolution: {integrity: sha512-guoltQEx+9aMf2gDZ0s62EcV8lsXR+0w8915TC3ITdn2YueuNjdAYh/levpU9nFaoChh9RUS5ZdQMrKfVEN9tw==}
 
   rtl-css-js@1.16.0:
     resolution: {integrity: sha512-Oc7PnzwIEU4M0K1J4h/7qUUaljXhQ0kCObRsZjxs2HjkpKsnoTMvSmvJ4sqgJZd0zBoEfAyTdnK/jMIYvrjySQ==}
@@ -13071,8 +13092,8 @@ packages:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}
     engines: {node: '>=18'}
 
-  whatwg-url@14.0.0:
-    resolution: {integrity: sha512-1lfMEm2IEr7RIV+f4lUNPOqfFL+pO+Xw3fJSqmjX9AbXcXcYOkCe1P6+9VBZB6n94af16NfZf+sSk0JCBZC9aw==}
+  whatwg-url@14.1.0:
+    resolution: {integrity: sha512-jlf/foYIKywAt3x/XWKZ/3rz8OSJPiWktjmk891alJUEjiVxKX9LEO92qH3hv4aJ0mN3MWPvGMCy8jQi95xK4w==}
     engines: {node: '>=18'}
 
   whatwg-url@5.0.0:
@@ -13495,6 +13516,14 @@ snapshots:
       - supports-color
 
   '@argos-ci/util@2.3.0': {}
+
+  '@asamuzakjp/css-color@2.8.3':
+    dependencies:
+      '@csstools/css-calc': 2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-color-parser': 3.0.7(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-tokenizer': 3.0.3
+      lru-cache: 10.4.3
 
   '@babel/cli@7.26.4(@babel/core@7.26.8)':
     dependencies:
@@ -14443,6 +14472,20 @@ snapshots:
       lodash.mergewith: 4.6.2
 
   '@colors/colors@1.5.0': {}
+
+  '@csstools/color-helpers@5.0.1': {}
+
+  '@csstools/css-calc@2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
+    dependencies:
+      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-tokenizer': 3.0.3
+
+  '@csstools/css-color-parser@3.0.7(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
+    dependencies:
+      '@csstools/color-helpers': 5.0.1
+      '@csstools/css-calc': 2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-tokenizer': 3.0.3
 
   '@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3)':
     dependencies:
@@ -16783,7 +16826,7 @@ snapshots:
       '@types/retry': 0.12.0
       axios: 1.7.9(debug@4.4.0)
       eventemitter3: 5.0.1
-      form-data: 4.0.0
+      form-data: 4.0.1
       is-electron: 2.2.2
       is-stream: 2.0.1
       p-queue: 6.6.2
@@ -17331,7 +17374,7 @@ snapshots:
       msw: 2.7.0(@types/node@20.17.17)(typescript@5.7.3)
       sirv: 3.0.0
       tinyrainbow: 2.0.0
-      vitest: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
+      vitest: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@26.0.0)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
       ws: 8.18.0
     optionalDependencies:
       playwright: 1.49.0
@@ -17356,7 +17399,7 @@ snapshots:
       std-env: 3.8.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
+      vitest: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@26.0.0)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
     optionalDependencies:
       '@vitest/browser': 3.0.5(@types/node@20.17.17)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.17)(terser@5.37.0))(vitest@2.1.9)
     transitivePeerDependencies:
@@ -17948,7 +17991,7 @@ snapshots:
   axios@1.7.9(debug@4.4.0):
     dependencies:
       follow-redirects: 1.15.6(debug@4.4.0)
-      form-data: 4.0.0
+      form-data: 4.0.1
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -19063,9 +19106,10 @@ snapshots:
     dependencies:
       css-tree: 2.2.1
 
-  cssstyle@4.1.0:
+  cssstyle@4.2.1:
     dependencies:
-      rrweb-cssom: 0.7.1
+      '@asamuzakjp/css-color': 2.8.3
+      rrweb-cssom: 0.8.0
 
   csstype@3.1.3: {}
 
@@ -19167,7 +19211,7 @@ snapshots:
   data-urls@5.0.0:
     dependencies:
       whatwg-mimetype: 4.0.0
-      whatwg-url: 14.0.0
+      whatwg-url: 14.1.0
 
   data-view-buffer@1.0.2:
     dependencies:
@@ -20380,7 +20424,7 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  form-data@4.0.0:
+  form-data@4.0.1:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -21591,19 +21635,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jsdom@25.0.1:
+  jsdom@26.0.0:
     dependencies:
-      cssstyle: 4.1.0
+      cssstyle: 4.2.1
       data-urls: 5.0.0
       decimal.js: 10.4.3
-      form-data: 4.0.0
+      form-data: 4.0.1
       html-encoding-sniffer: 4.0.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       is-potential-custom-element-name: 1.0.1
-      nwsapi: 2.2.13
-      parse5: 7.1.2
-      rrweb-cssom: 0.7.1
+      nwsapi: 2.2.16
+      parse5: 7.2.1
+      rrweb-cssom: 0.8.0
       saxes: 6.0.0
       symbol-tree: 3.2.4
       tough-cookie: 5.0.0
@@ -21611,7 +21655,7 @@ snapshots:
       webidl-conversions: 7.0.0
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
-      whatwg-url: 14.0.0
+      whatwg-url: 14.1.0
       ws: 8.18.0
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
@@ -23256,7 +23300,7 @@ snapshots:
 
   nullthrows@1.1.1: {}
 
-  nwsapi@2.2.13: {}
+  nwsapi@2.2.16: {}
 
   nx@19.8.14:
     dependencies:
@@ -23704,7 +23748,7 @@ snapshots:
     dependencies:
       parse-path: 7.0.0
 
-  parse5@7.1.2:
+  parse5@7.2.1:
     dependencies:
       entities: 4.5.0
 
@@ -24799,7 +24843,7 @@ snapshots:
       setprototypeof: 1.2.0
       utils-merge: 1.0.1
 
-  rrweb-cssom@0.7.1: {}
+  rrweb-cssom@0.8.0: {}
 
   rtl-css-js@1.16.0:
     dependencies:
@@ -26201,9 +26245,9 @@ snapshots:
     dependencies:
       chalk: 5.3.0
       vite: 5.4.14(@types/node@20.17.17)(terser@5.37.0)
-      vitest: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
+      vitest: 2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@26.0.0)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0)
 
-  vitest@2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@25.0.1)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0):
+  vitest@2.1.9(@types/node@20.17.17)(@vitest/browser@3.0.5)(happy-dom@15.11.6)(jsdom@26.0.0)(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(terser@5.37.0):
     dependencies:
       '@vitest/expect': 2.1.9
       '@vitest/mocker': 2.1.9(msw@2.7.0(@types/node@20.17.17)(typescript@5.7.3))(vite@5.4.14(@types/node@20.17.17)(terser@5.37.0))
@@ -26229,7 +26273,7 @@ snapshots:
       '@types/node': 20.17.17
       '@vitest/browser': 3.0.5(@types/node@20.17.17)(playwright@1.49.0)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.17)(terser@5.37.0))(vitest@2.1.9)
       happy-dom: 15.11.6
-      jsdom: 25.0.1
+      jsdom: 26.0.0
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -26369,7 +26413,7 @@ snapshots:
 
   whatwg-mimetype@4.0.0: {}
 
-  whatwg-url@14.0.0:
+  whatwg-url@14.1.0:
     dependencies:
       tr46: 5.0.0
       webidl-conversions: 7.0.0
