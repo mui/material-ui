@@ -67,7 +67,7 @@ We consider the product mature and battle-tested enough and as a result, the ear
 However, we want to ensure that our valued early customers continue to enjoy the benefits of an earlier purchase.
 Current customers will still benefit from a 20% renewal discount (vs. 25% early bird discount before).
 
-This means you will be able to renew your licenses, purchase additional licenses at a 7% price increase compare to before while gaining access to new features.
+This means you will be able to renew your licenses or purchase additional licenses at a 7% price increase while gaining access to new features.
 You'll receive the discount via email, or you can also request it by contacting our [sales team](mailto:sales@mui.com).
 
 ## Effective date
