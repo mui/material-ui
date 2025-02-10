@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import ListSubheader from '@mui/material/ListSubheader';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
 
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,14 +34,12 @@ export default function GroupedMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuList role="group">
-          <ListSubheader>Category 1</ListSubheader>
-          <MenuItem onClick={handleClose}>Option 1</MenuItem>
-          <MenuItem onClick={handleClose}>Option 2</MenuItem>
-          <ListSubheader>Category 2</ListSubheader>
-          <MenuItem onClick={handleClose}>Option 3</MenuItem>
-          <MenuItem onClick={handleClose}>Option 4</MenuItem>
-        </MenuList>
+        <ListSubheader>Category 1</ListSubheader>
+        <MenuItem onClick={handleClose}>Option 1</MenuItem>
+        <MenuItem onClick={handleClose}>Option 2</MenuItem>
+        <ListSubheader>Category 2</ListSubheader>
+        <MenuItem onClick={handleClose}>Option 3</MenuItem>
+        <MenuItem onClick={handleClose}>Option 4</MenuItem>
       </Menu>
     </div>
   );
