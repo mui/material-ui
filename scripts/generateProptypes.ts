@@ -141,7 +141,6 @@ const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions']
   component,
   propType,
 ) => {
-
   if (propType.name === 'size') {
     return sortSizeByScaleAscending;
   }
