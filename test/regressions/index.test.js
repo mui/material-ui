@@ -1,10 +1,13 @@
+import * as url from 'url';
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as playwright from 'playwright';
 
+const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
+
 async function main() {
   const baseUrl = 'http://localhost:5001';
-  const screenshotDir = path.resolve(__dirname, './screenshots/chrome');
+  const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
   const browser = await playwright.chromium.launch({
     args: ['--font-render-hinting=none'],
@@ -129,6 +132,30 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating2' });
         await page.keyboard.press('ArrowRight');
         await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating3' });
+      });
+    });
+
+    describe('Autocomplete', () => {
+      it('should not close immediately when textbox expands', async () => {
+        const testcase = await renderFixture(
+          '/regression-Autocomplete/TextboxExpandsOnListboxOpen',
+        );
+        await page.getByRole('combobox').click();
+        await page.waitForTimeout(10);
+        await takeScreenshot({
+          testcase,
+          route: '/regression-Autocomplete/TextboxExpandsOnListboxOpen2',
+        });
+      });
+
+      it('should style virtualized listbox correctly', async () => {
+        const testcase = await renderFixture('/regression-Autocomplete/Virtualize');
+        await page.getByRole('combobox').click();
+        await takeScreenshot({ testcase, route: '/regression-Autocomplete/Virtualize2' });
+        await page.hover('[role="option"]');
+        await takeScreenshot({ testcase, route: '/regression-Autocomplete/Virtualize3' });
+        await page.click('[role="option"]');
+        await takeScreenshot({ testcase, route: '/regression-Autocomplete/Virtualize4' });
       });
     });
   });

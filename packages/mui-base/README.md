@@ -17,7 +17,7 @@ npm install @mui/base
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 Visit [https://mui.com/base-ui/](https://mui.com/base-ui/) to view the full documentation.
 

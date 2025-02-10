@@ -84,9 +84,8 @@ const TabsList = styled(BaseTabsList)(
   margin-bottom: 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  align-content: space-between;
-  box-shadow: 0px 4px 6px ${
+  place-content: space-between center;
+  box-shadow: 0 4px 6px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.4)' : 'rgba(0,0,0, 0.2)'
   };
   `,

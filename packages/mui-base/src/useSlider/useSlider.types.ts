@@ -114,7 +114,7 @@ export interface Mark {
 
 export type UseSliderRootSlotOwnProps = {
   onMouseDown: React.MouseEventHandler;
-  ref: React.RefCallback<Element> | null;
+  ref?: React.RefCallback<Element> | null;
 };
 
 export type UseSliderRootSlotProps<ExternalProps = {}> = Omit<

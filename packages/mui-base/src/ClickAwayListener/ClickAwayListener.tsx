@@ -209,7 +209,7 @@ function ClickAwayListener(props: ClickAwayListenerProps): React.JSX.Element {
     return undefined;
   }, [handleClickAway, mouseEvent]);
 
-  return <React.Fragment>{React.cloneElement(children, childrenProps)}</React.Fragment>;
+  return React.cloneElement(children, childrenProps);
 }
 
 ClickAwayListener.propTypes /* remove-proptypes */ = {

@@ -4,6 +4,8 @@ title: React Number Input component and hook
 components: NumberInput
 hooks: useNumberInput
 githubLabel: 'component: number input'
+newUrl: https://base-ui.com/react/components/number-field
+newName: Number Field
 ---
 
 # Number Input
@@ -17,7 +19,7 @@ githubLabel: 'component: number input'
 ## Introduction
 
 A number input is a UI element that accepts numeric values from the user.
-Base UI's Number Input component is a customizable replacement for the native HTML `<input type="number">` that solves common usability issues of its native counterpart, such as:
+MUI Base's Number Input component is a customizable replacement for the native HTML `<input type="number">` that solves common usability issues of its native counterpart, such as:
 
 - Inconsistencies across browsers in the appearance and behavior of the stepper buttons
 - Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others
@@ -41,7 +43,7 @@ The following demo shows how to create a Number Input component, apply some styl
 
 ### Anatomy
 
-The Base UI Number Input component consists of four slots:
+The MUI Base Number Input component consists of four slots:
 
 - `root`: an outer `<div>` containing the other interior slots
 - `input`: an `<input>` element
@@ -137,7 +139,7 @@ If you only define one or the other, the opposite end of the range will be open-
 
 ```
 
-The demo below shows a Number Input with a an accepted range of 1 to 99:
+The demo below shows a Number Input with an accepted range of 1 to 99:
 
 {{"demo": "QuantityInput.js", "defaultCodeOpen": false}}
 

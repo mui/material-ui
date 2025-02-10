@@ -64,7 +64,7 @@ const StyledInputRoot = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
+  box-shadow: 0 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
   display: grid;
@@ -83,7 +83,7 @@ const StyledInputRoot = styled('div')(
     border-color: ${blue[400]};
   }
 
-  // firefox
+  /* firefox */
   &:focus-visible {
     outline: 0;
   }
@@ -129,9 +129,10 @@ const StyledButton = styled('button')(
   transition-duration: 120ms;
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
     cursor: pointer;
+    color: #FFF;
+    background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
+    border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
   }
 
   &.${numberInputClasses.incrementButton} {
@@ -162,17 +163,6 @@ const StyledButton = styled('button')(
     border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
     background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
     color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
-  }
-
-  &:hover {
-    cursor: pointer;
-    color: #FFF;
-    background: ${theme.palette.mode === 'dark' ? blue[600] : blue[500]};
-    border-color: ${theme.palette.mode === 'dark' ? blue[400] : blue[600]};
-  }
-
-  & .arrow {
-    transform: translateY(-1px);
   }
 
   & .arrow {

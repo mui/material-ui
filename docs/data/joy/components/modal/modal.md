@@ -4,6 +4,7 @@ title: React Modal component
 components: Modal, ModalClose, ModalDialog, ModalOverflow, DialogTitle, DialogContent, DialogActions
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+unstyled: https://base-ui.com/react/components/dialog
 ---
 
 # Modal
@@ -226,7 +227,7 @@ Use `sx` prop with `theme.breakpoints.only('xs')` to customize the styles of the
 
 ### Focus trap
 
-Base UI `Modal` moves the focus back to the body of the component if the focus tries to escape it.
+MUI Base `Modal` moves the focus back to the body of the component if the focus tries to escape it.
 
 This is done for accessibility purposes, but it can potentially create issues for your users.
 

@@ -35,3 +35,14 @@ fn({
     },
   },
 });
+
+fn({
+  MuiModal: {
+    defaultProps: {
+      BackdropProps: {
+        timeout: 500,
+      },
+      BackdropComponent: Backdrop,
+    },
+  },
+});

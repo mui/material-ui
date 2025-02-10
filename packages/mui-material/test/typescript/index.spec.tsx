@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 
 function TestStandardPropsCallbackRefUsage() {
-  const contentRef = React.useRef<HTMLDivElement | null>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
 
   const setContentRef = React.useCallback((node: HTMLDivElement | null) => {
     contentRef.current = node;
@@ -23,7 +23,7 @@ function TestStandardPropsCallbackRefUsage() {
 }
 
 function TestStandardPropsObjectRefUsage() {
-  const contentRef = React.useRef<HTMLDivElement | null>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
 
   return (
     <Dialog open>

@@ -110,21 +110,27 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
-          { pathname: '/material-ui/react-hidden' },
+          { pathname: '/material-ui/react-hidden', deprecated: true },
         ],
       },
       {
         pathname: '/material-ui/components/utils',
         subheader: 'utils',
         children: [
-          { pathname: '/material-ui/react-click-away-listener', title: 'Click-Away Listener' },
+          {
+            pathname: '/material-ui/react-click-away-listener',
+            title: 'Click-Away Listener',
+          },
           { pathname: '/material-ui/react-css-baseline', title: 'CSS Baseline' },
           { pathname: '/material-ui/react-modal' },
           { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },
           { pathname: '/material-ui/react-popover' },
           { pathname: '/material-ui/react-popper' },
           { pathname: '/material-ui/react-portal' },
-          { pathname: '/material-ui/react-textarea-autosize', title: 'Textarea Autosize' },
+          {
+            pathname: '/material-ui/react-textarea-autosize',
+            title: 'Textarea Autosize',
+          },
           { pathname: '/material-ui/transitions' },
           { pathname: '/material-ui/react-use-media-query', title: 'useMediaQuery' },
         ],
@@ -134,7 +140,7 @@ const pages: MuiPage[] = [
         subheader: 'MUI X',
         children: [
           { pathname: '/x/react-data-grid', title: 'Data Grid' },
-          { pathname: '/x/react-date-pickers', title: 'Date & Time Pickers' },
+          { pathname: '/x/react-date-pickers', title: 'Date and Time Pickers' },
           { pathname: '/x/react-charts' },
           { pathname: '/x/react-tree-view', title: 'Tree View' },
         ],
@@ -142,10 +148,17 @@ const pages: MuiPage[] = [
       {
         pathname: '/toolpad', // the pathname does not matter here because the links to Toolpad are outbound.
         subheader: 'Toolpad Core',
-        newFeature: true,
         children: [
-          { pathname: '/toolpad/core/react-dashboard-layout/', title: 'Dashboard Layout' },
-          { pathname: '/toolpad/core/react-sign-in-page/', title: 'Sign-in Page' },
+          {
+            pathname: '/toolpad/core/react-dashboard-layout/',
+            title: 'Dashboard Layout',
+            newFeature: true,
+          },
+          {
+            pathname: '/toolpad/core/react-sign-in-page/',
+            title: 'Sign-in Page',
+            newFeature: true,
+          },
         ],
       },
       {
@@ -283,6 +296,16 @@ const pages: MuiPage[] = [
         title: 'Migration from @material-ui/pickers',
       },
       {
+        pathname: '/material-ui/migration/v7',
+        subheader: 'Upgrade to v7',
+        children: [
+          {
+            pathname: '/material-ui/migration/upgrade-to-v7',
+            title: 'Upgrade to v7: getting started',
+          },
+        ],
+      },
+      {
         pathname: '/material-ui/migration/v6',
         subheader: 'Upgrade to v6',
         children: [
@@ -358,7 +381,7 @@ const pages: MuiPage[] = [
       {
         pathname: '/material-ui/design-resources/material-ui-sync',
         title: 'Figma Sync plugin',
-        beta: true,
+        unstable: true,
       },
     ],
   },

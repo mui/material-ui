@@ -1,4 +1,7 @@
 import * as React from 'react';
+import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import MaterialUILayout from '../../Layout';
 import CircularColor from '../../../../../docs/data/material/components/progress/CircularColor.tsx';
 import CircularDeterminate from '../../../../../docs/data/material/components/progress/CircularDeterminate.tsx';
@@ -8,11 +11,24 @@ import CircularUnderLoad from '../../../../../docs/data/material/components/prog
 import CircularWithValueLabel from '../../../../../docs/data/material/components/progress/CircularWithValueLabel.tsx';
 import CustomizedProgressBars from '../../../../../docs/data/material/components/progress/CustomizedProgressBars.tsx';
 import DelayingAppearance from '../../../../../docs/data/material/components/progress/DelayingAppearance.tsx';
-import LinearBuffer from '../../../../../docs/data/material/components/progress/LinearBuffer.tsx';
 import LinearColor from '../../../../../docs/data/material/components/progress/LinearColor.tsx';
-import LinearDeterminate from '../../../../../docs/data/material/components/progress/LinearDeterminate.tsx';
 import LinearIndeterminate from '../../../../../docs/data/material/components/progress/LinearIndeterminate.tsx';
-import LinearWithValueLabel from '../../../../../docs/data/material/components/progress/LinearWithValueLabel.tsx';
+
+function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ width: '100%', mr: 1 }}>
+        <LinearProgress variant="determinate" {...props} />
+      </Box>
+      <Box sx={{ minWidth: 35 }}>
+        <Typography
+          variant="body2"
+          sx={{ color: 'text.secondary' }}
+        >{`${Math.round(props.value)}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
 
 export default function Progress() {
   return (
@@ -69,7 +85,9 @@ export default function Progress() {
       <section>
         <h2> Linear Buffer</h2>
         <div className="demo-container">
-          <LinearBuffer />
+          <Box sx={{ width: '100%' }}>
+            <LinearProgress variant="buffer" value={10} valueBuffer={30} />
+          </Box>
         </div>
       </section>
       <section>
@@ -81,7 +99,9 @@ export default function Progress() {
       <section>
         <h2> Linear Determinate</h2>
         <div className="demo-container">
-          <LinearDeterminate />
+          <Box sx={{ width: '100%' }}>
+            <LinearProgress variant="determinate" value={10} />
+          </Box>
         </div>
       </section>
       <section>
@@ -93,7 +113,9 @@ export default function Progress() {
       <section>
         <h2> Linear With Value Label</h2>
         <div className="demo-container">
-          <LinearWithValueLabel />
+          <Box sx={{ width: '100%' }}>
+            <LinearProgressWithLabel value={10} />
+          </Box>
         </div>
       </section>
     </MaterialUILayout>

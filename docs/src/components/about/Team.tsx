@@ -20,15 +20,14 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
 /**
- * The teamMembers data can be imported from: https://tools-public.mui.com/prod/pages/nSwYn51
-
-curl 'https://tools-public.mui.com/prod/api/data/muicomabout/queryAbout' \
-  -H 'content-type: application/json' \
-  --data-raw '{}' \
-  --compressed
-*/
+ * The teamMembers.json file should be synced with `pnpm docs:sync-team`.
+ */
 
 interface Profile {
+  /**
+   * The display name of the person.
+   * This is different from the full name (legal name).
+   */
   name: string;
   /**
    * Role, what are you working on?
@@ -234,6 +233,16 @@ const contributors = [
     location: 'Ireland',
     locationCountry: 'ie',
     src: 'https://avatars.githubusercontent.com/u/12678455',
+  },
+  {
+    name: 'Zeeshan Tamboli',
+    github: 'ZeeshanTamboli',
+    location: 'Pune, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/20900032',
+    twitter: 'ZeeshanTamboli',
+    linkedin: 'in/zeeshantamboli',
   },
 ];
 

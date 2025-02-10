@@ -21,12 +21,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
-    "vite": "3.2.11"
+    "vite": "4.5.6"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.47.2",
-    "serve": "14.0.1"
+    "playwright": "1.49.0",
+    "serve": "14.2.4"
   },
   "pnpm": {
     "overrides": {

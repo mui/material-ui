@@ -11,10 +11,10 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 
 ## Setup & run
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@latest <codemod> <paths...>
+npx @mui/codemod@next <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -62,6 +62,7 @@ npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quo
 ## Included scripts
 
 - [Deprecations](#deprecations)
+- [v7](#v700)
 - [v6](#v600)
 - [v5](#v500)
 - [v4](#v400)
@@ -275,12 +276,14 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 -  }}
 +  slots={{
 +    paper: CustomPaper,
-+    popper: CustomPopper,
-+    listbox: CustomListbox,
++    popper: CustomPopper
 +  }}
 +  slotProps={{
 +    chip: { height: 10 },
-+    listbox: { height: 12 },
++    listbox: {
++        component: CustomListbox,
++        ...{ height: 12 },
++    },
 +    clearIndicator: { width: 10 },
 +    paper: { width: 12 },
 +    popper: { width: 14 },
@@ -306,11 +309,13 @@ npx @mui/codemod@latest deprecations/alert-props <path>
 +    slots: {
 +      paper: CustomPaper,
 +      popper: CustomPopper,
-+      listbox: CustomListbox,
 +    },
 +    slotProps: {
 +      chip: { height: 10 },
-+      listbox: { height: 12 },
++      listbox: {
++        component: CustomListbox,
++        ...{ height: 12 },
++      },
 +      clearIndicator: { width: 10 },
 +      paper: { width: 12 },
 +      popper: { width: 14 },
@@ -1028,6 +1033,78 @@ npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
+#### `drawer-classes`
+
+JS transforms:
+
+```diff
+ import { drawerClasses } from '@mui/material/Drawer';
+
+ MuiDrawer: {
+   styleOverrides: {
+     root: {
+-      [`.${drawerClasses.paperAnchorBottom}`]: {
++      [`&.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorLeft}`]: {
++      [`&.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorRight}`]: {
++      [`&.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorTop}`]: {
++      [`&.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedBottom}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorBottom} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedLeft}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorLeft} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedRight}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorRight} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`.${drawerClasses.paperAnchorDockedTop}`]: {
++      [`&.${drawerClasses.docked}.${drawerClasses.anchorTop} > .${drawerClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiDrawer-paperAnchorBottom
++.MuiDrawer-anchorBottom > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorLeft
++.MuiDrawer-anchorLeft > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorRight
++.MuiDrawer-anchorRight > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorTop
++.MuiDrawer-anchorTop > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedBottom
++.MuiDrawer-docked.MuiDrawer-anchorBottom > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedLeft
++.MuiDrawer-docked.MuiDrawer-anchorLeft > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedRight
++.MuiDrawer-docked.MuiDrawer-anchorRight > .MuiDrawer-paper
+-.MuiDrawer-paperAnchorDockedTop
++.MuiDrawer-docked.MuiDrawer-anchorTop > .MuiDrawer-paper
+```
+
+```bash
+npx @mui/codemod@latest deprecations/drawer-classes <path>
+```
+
 #### `filled-input-props`
 
 ```diff
@@ -1101,6 +1178,32 @@ npx @mui/codemod@latest deprecations/form-control-label-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/list-item-props <path>
+```
+
+#### `list-item-text-props`
+
+```diff
+ <ListItemText
+-  primaryTypographyProps={primaryTypographyProps}
++  slotProps={{ primary: primaryTypographyProps }}
+-  secondaryTypographyProps={secondaryTypographyProps}
++  slotProps={{ secondary: secondaryTypographyProps }}
+ />
+```
+
+```diff
+ MuiListItemText: {
+   defaultProps: {
+-  primaryTypographyProps:primaryTypographyProps
++  slotProps:{ primary: primaryTypographyProps }
+-  secondaryTypographyProps:secondaryTypographyProps
++  slotProps:{ secondary: secondaryTypographyProps }
+  },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/list-item-text-props <path>
 ```
 
 #### `image-list-item-bar-classes`
@@ -1212,6 +1315,66 @@ npx @mui/codemod@latest deprecations/input-base-props <path>
 npx @mui/codemod@latest deprecations/input-props <path>
 ```
 
+#### `linear-progress-classes`
+
+JS transforms:
+
+```diff
+ import { linearProgressClasses } from '@mui/material/LinearProgress';
+
+ MuiLinearProgress: {
+   styleOverrides: {
+     root: {
+-      [`&.${linearProgressClasses.bar1Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Determinate}`]: {},
++      [`&.${linearProgressClasses.determinate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar1Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar1}`]: {},
+-      [`&.${linearProgressClasses.bar2Buffer}`]: {},
++      [`&.${linearProgressClasses.buffer} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.bar2Indeterminate}`]: {},
++      [`&.${linearProgressClasses.indeterminate} > .${linearProgressClasses.bar2}`]: {},
+-      [`&.${linearProgressClasses.barColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.barColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.bar}`]: {},
+-      [`&.${linearProgressClasses.dashedColorPrimary}`]: {},
++      [`&.${linearProgressClasses.colorPrimary} > .${linearProgressClasses.dashed}`]: {},
+-      [`&.${linearProgressClasses.dashedColorSecondary}`]: {},
++      [`&.${linearProgressClasses.colorSecondary} > .${linearProgressClasses.dashed}`]: {},
+     },
+   },
+  }
+```
+
+CSS transforms:
+
+```diff
+-.MuiLinearProgress-bar1Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Determinate
++.MuiLinearProgress-determinate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar1Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar1
+-.MuiLinearProgress-bar2Buffer
++.MuiLinearProgress-buffer > .MuiLinearProgress-bar2
+-.MuiLinearProgress-bar2Indeterminate
++.MuiLinearProgress-indeterminate > .MuiLinearProgress-bar2
+-.MuiLinearProgress-barColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-bar
+-.MuiLinearProgress-barColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-bar
+-.MuiLinearProgress-dashedColorPrimary
++.MuiLinearProgress-colorPrimary > .MuiLinearProgress-dashed
+-.MuiLinearProgress-dashedColorSecondary
++.MuiLinearProgress-colorSecondary > .MuiLinearProgress-dashed
+```
+
+```bash
+npx @mui/codemod@latest deprecations/linear-progress-classes <path>
+```
+
 #### `modal-props`
 
 ```diff
@@ -1236,6 +1399,19 @@ npx @mui/codemod@latest deprecations/input-props <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/modal-props <path>
+```
+
+#### `mobile-stepper-props`
+
+```diff
+ <MobileStepper
+-  LinearProgressProps={{ color: 'primary' }}
++  slotProps={{ progress: { color: 'primary' } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/mobile-stepper-props <path>
 ```
 
 #### `pagination-item-classes`
@@ -1376,6 +1552,54 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
+#### `select-classes`
+
+JS transforms:
+
+```diff
+ import { selectClasses } from '@mui/material/Select';
+
+ MuiSelect: {
+   styleOverrides: {
+     root: {
+-      [`& .${selectClasses.iconFilled}`]: {
++      [`& .${selectClasses.filled} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconOutlined}`]: {
++      [`& .${selectClasses.outlined} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+-      [`& .${selectClasses.iconStandard}`]: {
++      [`& .${selectClasses.standard} ~ .${selectClasses.icon}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+- .MuiSelect-iconFilled
++ .MuiSelect-filled ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconOutlined
++ .MuiSelect-outlined ~ .MuiSelect-icon
+```
+
+```diff
+- .MuiSelect-iconStandard
++ .MuiSelect-standard ~ .MuiSelect-icon
+```
+
+```bash
+npx @mui/codemod@latest deprecations/select-classes <path>
+```
+
 #### `slider-props`
 
 ```diff
@@ -1402,25 +1626,142 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
+#### `snackbar-props`
+
+```diff
+ <Snackbar
+-    ClickAwayListenerProps={CustomClickAwayListenerProps}
+-    ContentProps={CustomContentProps}
+-    TransitionComponent={CustomTransition}
+-    TransitionProps={CustomTransitionProps}
++    slots={{ transition: CustomTransition }}
++    slotProps={{
++        clickAwayListener: CustomClickAwayListenerProps,
++        content: CustomContentProps,
++        transition: CustomTransitionProps
++    }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/snackbar-props <path>
+```
+
+#### `slider-classes`
+
+JS transforms:
+
+```diff
+ import { sliderClasses } from '@mui/material/Slider';
+
+ MuiSlider: {
+   styleOverrides: {
+     root: {
+-      [`&.${sliderClasses.thumbSizeSmall}`]: {
++      [`&.${sliderClasses.sizeSmall} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbSizeMedium}`]: {
++      [`&.${sliderClasses.sizeMedium} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorPrimary}`]: {
++      [`&.${sliderClasses.colorPrimary} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorSecondary}`]: {
++      [`&.${sliderClasses.colorSecondary} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorError}`]: {
++      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClrsses.thumbColorInfo}`]: {
++      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorSuccess}`]: {
++      [`&.${sliderClasses.colorSuccess} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+-      [`&.${sliderClasses.thumbColorWarning}`]: {
++      [`&.${sliderClasses.colorWarning} > .${sliderClasses.thumb}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiSlider-root .MuiSlider-thumbSizeSmall
++.MuiSlider-root.MuiSlider-sizeSmall > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbSizeMedium
++.MuiSlider-root.MuiSlider-sizeMedium > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorPrimary
++.MuiSlider-root.MuiSlider-colorPrimary > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorSecondary
++.MuiSlider-root.MuiSlider-colorSecondary > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorError
++.MuiSlider-root.MuiSlider-colorError > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorInfo
++.MuiSlider-root.MuiSlider-colorInfo > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorSuccess
++.MuiSlider-root.MuiSlider-colorSuccess > .MuiSlider-thumb
+-.MuiSlider-root .MuiSlider-thumbColorWarning
++.MuiSlider-root.MuiSlider-colorWarning > .MuiSlider-thumb
+```
+
+```bash
+npx @mui/codemod@latest deprecations/button-classes <path>
+```
+
 #### `tooltip-props`
 
 ```diff
  <Tooltip
 -  components={{ Arrow: CustomArrow }}
 -  componentsProps={{ arrow: { testid: 'test-id' } }}
-+  slots={{ arrow: CustomArrow }}
-+  slotProps={{ arrow: { testid: 'test-id' } }}
+-  PopperComponent={CustomPopperComponent}
+-  TransitionComponent={CustomTransitionComponent}
+-  PopperProps={CustomPopperProps}
+-  TransitionProps={CustomTransitionProps}
++  slots={{
++    arrow: CustomArrow,
++    popper: CustomPopperComponent,
++    transition: CustomTransitionComponent,
++  }}
++  slotProps={{
++    arrow: { testid: 'test-id' },
++    popper: CustomPopperProps,
++    transition: CustomTransitionProps,
++  }}
  />
 ```
 
 ```diff
  MuiTooltip: {
    defaultProps: {
+-    PopperComponent: CustomPopperComponent,
+-    TransitionComponent: CustomTransitionComponent,
+-    PopperProps: CustomPopperProps,
+-    TransitionProps: CustomTransitionProps,
 -    components: { Arrow: CustomArrow }
-+    slots: { arrow: CustomArrow },
++    slots: {
++      arrow: CustomArrow,
++      popper: CustomPopperComponent,
++      transition: CustomTransitionComponent,
++    },
 -    componentsProps: { arrow: { testid: 'test-id' }}
-+    slotProps: { arrow: { testid: 'test-id' } },
-  },
++    slotProps: {
++      arrow: { testid: 'test-id' },
++      popper: CustomPopperProps,
++      transition: CustomTransitionProps,
++    },
+   },
  },
 ```
 
@@ -1449,6 +1790,25 @@ JS transforms:
      },
    },
  },
+```
+
+```bash
+npx @mui/codemod@next deprecations/step-connector-classes <path>
+```
+
+#### `step-content-props`
+
+```diff
+ <StepContent
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/step-content-props <path>
 ```
 
 #### `step-label-props`
@@ -1638,6 +1998,13 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 ```
 
 ```diff
+ <Typography
+-  paragraph={isTypographyParagraph}
++  sx={isTypographyParagraph ? { marginBottom: '16px' } : undefined}
+ />
+```
+
+```diff
  MuiTypography: {
    defaultProps: {
 -    paragraph: true
@@ -1648,6 +2015,47 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/typography-props <path>
+```
+
+### v7.0.0
+
+#### `lab-removed-components`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+```
+
+Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
+
+- Alert
+- AlertTitle
+- Autocomplete
+- AvatarGroup
+- Pagination
+- PaginationItem
+- Rating
+- Skeleton
+- SpeedDial
+- SpeedDialAction
+- SpeedDialIcon
+- ToggleButton
+- ToggleButtonGroup
+- usePagination
+
+It updates named imports from top-level `@mui/lab`:
+
+```diff
+- import { Alert } from '@mui/lab';
++ import { Alert } from '@mui/material';
+```
+
+As well as default and named imports from component-level files:
+
+```diff
+- import Alert, { alertClasses } from '@mui/lab/Alert';
++ import Alert, { alertClasses } from '@mui/material/Alert';
 ```
 
 ### v6.0.0
@@ -2136,7 +2544,7 @@ The list includes these transformers
 
 #### `adapter-v4`
 
-Imports and inserts `adaptV4Theme` into `createTheme` (or `createMuiTheme`)
+Imports and inserts `adaptV4Theme` into `createTheme()` (or `createMuiTheme`)
 
 ```diff
 +import { adaptV4Theme } from '@material-ui/core/styles';
@@ -2160,7 +2568,7 @@ Renames `Autocomplete`'s `closeIcon` prop to `clearIcon`.
 +<Autocomplete clearIcon={defaultClearIcon} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/autocomplete-rename-closeicon  <path>
@@ -2179,7 +2587,7 @@ Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
  />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/autocomplete-rename-option  <path>
@@ -2198,7 +2606,7 @@ Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circu
 +<Avatar classes={{ circular: 'className' }} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/avatar-circle-circular <path>
@@ -2233,7 +2641,7 @@ Renames the badge's props.
  }}>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/badge-overlap-value <path>
@@ -2257,7 +2665,7 @@ This change only affects Base UI components.
  />;
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/base-rename-components-to-slots <path>
@@ -2276,7 +2684,7 @@ Updates the Box API from separate system props to `sx`.
 +<Box borderRadius="16px">
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/box-borderradius-values <path>
@@ -2312,7 +2720,7 @@ Renames the Box `grid*Gap` props.
 +<Box rowGap={4}>Item 5</Box>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/box-rename-gap <path>
@@ -2329,7 +2737,7 @@ Removes the outdated `color` prop values.
 +<Button>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/button-color-prop <path>
@@ -2346,7 +2754,7 @@ Removes the Chip `variant` prop if the value is `"default"`.
 +<Chip>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/chip-variant-prop <path>
@@ -2363,7 +2771,7 @@ Renames the CircularProgress `static` variant to `determinate`.
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/circularprogress-variant <path>
@@ -2382,7 +2790,7 @@ Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 +<Collapse classes={{ root: 'collapse' }} />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/collapse-rename-collapsedheight <path>
@@ -2401,7 +2809,7 @@ A generic codemod to rename any component prop.
 +<Component newProp />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
@@ -2422,7 +2830,7 @@ npx @mui/codemod@latest v5.0.0/core-styles-import <path>
 
 #### `create-theme`
 
-Renames the function `createMuiTheme` to `createTheme`
+Renames the function `createMuiTheme()` to `createTheme()`
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -2503,7 +2911,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `fade-rename-alpha`
 
-Renames the `fade` style utility import and calls to `alpha`.
+Renames the `fade` style utility import and calls to `alpha()`.
 
 ```diff
 -import { fade, lighten } from '@material-ui/core/styles';
@@ -2513,7 +2921,7 @@ Renames the `fade` style utility import and calls to `alpha`.
 +const foo = alpha('#aaa');
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/fade-rename-alpha <path>
@@ -2530,7 +2938,7 @@ Renames `Grid`'s `justify` prop to `justifyContent`.
 +<Grid item justifyContent="left">Item</Grid>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/grid-justify-justifycontent <path>
@@ -2814,7 +3222,7 @@ or
 +import { SpeedDial } from '@material-ui/core';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/moved-lab-modules <path>
@@ -2858,7 +3266,7 @@ Fix private import paths.
 +import { createTheme } from '@material-ui/core/styles';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/optimal-imports <path>
@@ -2987,7 +3395,7 @@ Updates breakpoint values to match new logic. ⚠️ This mod is not idempotent,
 +theme.breakpoints.between('sm', 'lg')
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/theme-breakpoints <path>
@@ -3061,7 +3469,7 @@ Removes the 'px' suffix from some template strings.
 +`${theme.spacing(2)} ${theme.spacing(4)}`
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/theme-spacing <path>
@@ -3094,7 +3502,7 @@ Converts all `@mui/material` submodule imports to the root module:
 +import { List, Grid } from '@mui/material';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/top-level-imports <path>
@@ -3146,7 +3554,7 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
  />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/use-transitionprops <path>
@@ -3176,7 +3584,7 @@ The diff should look like this:
 +<FormControl value="Standard" variant="standard" />
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v5.0.0/variant-prop <path>
@@ -3287,7 +3695,7 @@ The diff should look like this:
 +const spacing = theme.spacing(1);
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v4.0.0/theme-spacing-api <path>
@@ -3314,7 +3722,7 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 +import { withStyles, createTheme } from '@material-ui/core/styles';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v4.0.0/optimal-imports <path>
@@ -3332,7 +3740,7 @@ Converts all `@material-ui/core` submodule imports to the root module:
 +import { List, withStyles } from '@material-ui/core';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v4.0.0/top-level-imports <path>
@@ -3353,7 +3761,7 @@ The diff should look like this:
 +import MenuItem from '@material-ui/core/MenuItem';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/import-path <path>
@@ -3380,7 +3788,7 @@ The diff should look like this:
 +const teal500 = teal['500'];
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/color-imports <path>
@@ -3388,7 +3796,7 @@ npx @mui/codemod@latest v1.0.0/color-imports <path>
 
 **additional options**
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
@@ -3406,7 +3814,7 @@ The diff should look like this:
 +import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/svg-icon-imports <path>
@@ -3424,7 +3832,7 @@ The diff should look like this:
 +<MenuItem>{"Profile" + "!"}</MenuItem>
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v1.0.0/menu-item-primary-text <path>
@@ -3448,7 +3856,7 @@ The diff should look like this:
 +import RaisedButton from 'material-ui/RaisedButton';
 ```
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npx @mui/codemod@latest v0.15.0/import-path <path>

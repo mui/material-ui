@@ -163,17 +163,23 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   let children = null;
 
-  // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({ ...imgProps, src, srcSet });
-  const hasImg = src || srcSet;
-  const hasImgNotFailing = hasImg && loaded !== 'error';
-
   const ownerState = {
     ...props,
-    colorDefault: !hasImgNotFailing,
     component,
     variant,
   };
+
+  // Use a hook instead of onError on the img element to support server-side rendering.
+  const loaded = useLoaded({
+    ...imgProps,
+    ...(typeof slotProps.img === 'function' ? slotProps.img(ownerState) : slotProps.img),
+    src,
+    srcSet,
+  });
+  const hasImg = src || srcSet;
+  const hasImgNotFailing = hasImg && loaded !== 'error';
+
+  ownerState.colorDefault = !hasImgNotFailing;
   // This issue explains why this is required: https://github.com/mui/material-ui/issues/42184
   delete ownerState.ownerState;
 
@@ -246,6 +252,7 @@ Avatar.propTypes /* remove-proptypes */ = {
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
+   * @deprecated Use `slotProps.img` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   imgProps: PropTypes.object,
   /**

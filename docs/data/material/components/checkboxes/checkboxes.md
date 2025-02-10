@@ -56,6 +56,8 @@ A checkbox input can only have two states in a form: checked or unchecked.
 It either submits its value or doesn't.
 Visually, there are **three** states a checkbox can be in: checked, unchecked, or indeterminate.
 
+You can change the indeterminate icon using the `indeterminateIcon` prop.
+
 {{"demo": "IndeterminateCheckbox.js"}}
 
 :::warning
