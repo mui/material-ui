@@ -2,7 +2,7 @@ import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './input-label-size-normal-medium';
-import readFile from '../util/readFile';
+import readFile from '../../util/readFile';
 
 function read(fileName) {
   return readFile(path.join(__dirname, fileName));
