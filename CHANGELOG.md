@@ -36,10 +36,12 @@ A big thanks to the 11 contributors who made this release possible.
 
 - [Autocomplete] Improve Google Maps search example (#44708) @oliviertassinari
 - [Dialog] Removes deprecated PaperProps from docs (#45195) @sai6855
+- [Menu] Add Grouped Menu demo (#45241) @noobDev31
 - [material] Add disableInteractive on colorTool grid Tooltips (#37800) @Janpot
 - [blog] Consistent Base UI terminology (#45264) @oliviertassinari
 - A quick first step to update docs for Tailwind v4 (#45147) @oliviertassinari
 - Fix `element.ref` accessing warning on docs (#45155) @DiegoAndai
+- Mention Toolpad as experimental (#45273) @prakhargupta1
 - [joy-ui] Update "Set up providers" section of integration with Material UI (#45183) @mateuseap
 
 ### Core
@@ -47,15 +49,17 @@ A big thanks to the 11 contributors who made this release possible.
 - Update branch switch tags (#45198) @DiegoAndai
 - Fix double redirection to Base UI (#45146) @oliviertassinari
 - Fix corepack and pnpm installation in CircleCI (#45185) @mj12albert
+- Fix typo on Netlify script (#45278) @maximevtush
 - [code-infra] Fix testing library resolution with custom react (#44061) @Janpot
 - [code-infra] Update package layout for better ESM support (#43264) @Janpot
+- Update `@typescript-eslint/*` packages and remove deprecated `eslint-config-airbnb-typescript` package (#45245) @ZeeshanTamboli
 - [docs] Restore utility component docs from MUI Base to Material UI (#45213) @mapache-salvaje
 - [docs] Sync active sponsors (#45204) @oliviertassinari
 - [docs] Fix links in CONTRIBUTING.md (#45202) @bernardobelchior
 - [docs-infra] Point to MUI X next docs (#45207) @cherniavskii
 - [test] Fix React 18 tests (#45161) @DiegoAndai
 
-All contributors of this release in alphabetical order: @bernardobelchior, @cherniavskii, @DiegoAndai, @Janpot, @kingflamez, @mapache-salvaje, @mateuseap, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp
+All contributors of this release in alphabetical order: @bernardobelchior, @cherniavskii, @DiegoAndai, @Janpot, @kingflamez, @mapache-salvaje, @mateuseap, @maximevtush, @mj12albert, @noobDev31, @oliviertassinari, @prakhargupta1, @sai6855, @siriwatknp, @ZeeshanTamboli
 
 ## 7.0.0-alpha.0
 
