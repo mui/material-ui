@@ -213,9 +213,7 @@ export const handler: Handler = async (event, context, callback) => {
         `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
         `>${comment.split('\n').join('\n>')}`,
         `sent from ${currentLocationURL}${
-          commentSectionTitle
-            ? ` (from section <${commentSectionURL}|${commentSectionTitle})>`
-            : ''
+          commentSectionTitle ? ` (from section <${commentSectionURL}|${commentSectionTitle})>` : ''
         }`,
       ].join('\n\n');
 
