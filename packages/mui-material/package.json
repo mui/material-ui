@@ -32,7 +32,7 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
@@ -56,7 +56,7 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.14",
     "@types/react": "^19.0.8",
@@ -67,10 +67,10 @@
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
     "lodash": "^4.17.21",
-    "playwright": "^1.48.2",
+    "playwright": "^1.50.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.1.3",
+    "react-router": "^7.1.5",
     "sinon": "^19.0.2"
   },
   "peerDependencies": {
@@ -102,6 +102,11 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    "./ButtonBase/TouchRipple": {
+      "mui-src": "./src/ButtonBase/TouchRipple.ts"
+    }
   },
   "pigment-css": {
     "vite": {

@@ -3,50 +3,81 @@ import findComponentDefaultProps from '../../util/findComponentDefaultProps';
 import assignObject from '../../util/assignObject';
 import appendAttribute from '../../util/appendAttribute';
 
-function moveJsxPropIntoSlotProps(j, element, propName, slotName) {
+function moveJsxPropIntoSlotProps(j, element, propName, slotName, slotPropName) {
   const propIndex = element.openingElement.attributes.findIndex(
     (attr) => attr.type === 'JSXAttribute' && attr.name.name === propName,
   );
 
   if (propIndex !== -1) {
-    const removedValue = element.openingElement.attributes.splice(propIndex, 1)[0].value.expression;
+    const removedAttr = element.openingElement.attributes.splice(propIndex, 1)[0];
+    const removedValue =
+      removedAttr.value.type === 'StringLiteral'
+        ? j.literal(removedAttr.value.value)
+        : removedAttr.value.expression;
+
     let hasSlotProps = false;
     element.openingElement.attributes.forEach((attr) => {
       if (attr.name?.name === 'slotProps') {
         hasSlotProps = true;
         const slots = attr.value.expression;
         const slotIndex = slots.properties.findIndex((prop) => prop?.key?.name === slotName);
+
         if (slotIndex === -1) {
+          // Create new slot
+          const slotValue = slotPropName
+            ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
+            : removedValue;
+
           assignObject(j, {
             target: attr,
             key: slotName,
-            expression: removedValue,
+            expression: slotValue,
           });
         } else {
-          const slotPropsSlotValue = slots.properties.splice(slotIndex, 1)[0].value;
-          assignObject(j, {
-            target: attr,
-            key: slotName,
-            expression: j.objectExpression([
+          // Add property to existing slot
+          const existingSlot = slots.properties[slotIndex].value;
+          if (slotPropName) {
+            if (existingSlot.type === 'ObjectExpression') {
+              existingSlot.properties.push(
+                j.objectProperty(j.identifier(slotPropName), removedValue),
+              );
+            } else {
+              slots.properties[slotIndex].value = j.objectExpression([
+                j.objectProperty(j.identifier(slotPropName), removedValue),
+              ]);
+            }
+          } else {
+            slots.properties[slotIndex].value = j.objectExpression([
               j.spreadElement(removedValue),
-              j.spreadElement(slotPropsSlotValue),
-            ]),
-          });
+              j.spreadElement(existingSlot),
+            ]);
+          }
         }
       }
     });
 
     if (!hasSlotProps) {
+      // Create new slotProps
+      const slotValue = slotPropName
+        ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
+        : removedValue;
+
       appendAttribute(j, {
         target: element,
         attributeName: 'slotProps',
-        expression: j.objectExpression([j.objectProperty(j.identifier(slotName), removedValue)]),
+        expression: j.objectExpression([j.objectProperty(j.identifier(slotName), slotValue)]),
       });
     }
   }
 }
 
-function moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propName, slotName) {
+function moveDefaultPropsPropIntoslotProps(
+  j,
+  defaultPropsPathCollection,
+  propName,
+  slotName,
+  slotPropName,
+) {
   defaultPropsPathCollection.find(j.ObjectProperty, { key: { name: propName } }).forEach((path) => {
     const removedValue = path.value.value;
     const defaultProps = path.parent.value;
@@ -59,27 +90,45 @@ function moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propNa
           (prop) => prop?.key?.name === slotName,
         );
         if (slotIndex === -1) {
-          property.value.properties.push(j.objectProperty(j.identifier(slotName), removedValue));
+          // Create new slot
+          const slotValue = slotPropName
+            ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
+            : removedValue;
+
+          property.value.properties.push(j.objectProperty(j.identifier(slotName), slotValue));
         } else {
-          const slotPropsSlotValue = property.value.properties.splice(slotIndex, 1)[0].value;
-          property.value.properties.push(
-            j.objectProperty(
-              j.identifier(slotName),
-              j.objectExpression([
-                j.spreadElement(removedValue),
-                j.spreadElement(slotPropsSlotValue),
-              ]),
-            ),
-          );
+          // Add property to existing slot
+          const existingSlot = property.value.properties[slotIndex].value;
+          if (slotPropName) {
+            if (existingSlot.type === 'ObjectExpression') {
+              existingSlot.properties.push(
+                j.objectProperty(j.identifier(slotPropName), removedValue),
+              );
+            } else {
+              property.value.properties[slotIndex].value = j.objectExpression([
+                j.objectProperty(j.identifier(slotPropName), removedValue),
+              ]);
+            }
+          } else {
+            property.value.properties[slotIndex].value = j.objectExpression([
+              j.spreadElement(removedValue),
+              j.spreadElement(existingSlot),
+            ]);
+          }
         }
       }
     });
 
     if (!hasSlotProps) {
+      // Create new slotProps
+      const slotValue = slotPropName
+        ? j.objectExpression([j.objectProperty(j.identifier(slotPropName), removedValue)])
+        : removedValue;
+
       defaultProps.properties.push(
         j.objectProperty(
           j.identifier('slotProps'),
-          j.objectExpression([j.objectProperty(j.identifier(slotName), removedValue)]),
+          j.objectExpression([j.objectProperty(j.identifier(slotName), slotValue)]),
         ),
       );
     }
@@ -94,18 +143,25 @@ function moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propNa
  * If there are duplicated values, the values will be spread.
  *
  * @param {import('jscodeshift')} j
- * @param {{ root: import('jscodeshift').Collection; componentName: string, propName: string, slotName: string }} options
+ * @param {{ root: import('jscodeshift').Collection; componentName: string, propName: string, slotName: string, slotPropName?: string }} options
  *
  * @example <Component TransitionProps={value} /> => <Component slotProps={{ transition: value }} />
+ * @example <Component tooltipClasses={classes} /> => <Component slotProps={{ tooltip: { classes: classes } }} />
  */
 export default function movePropIntoSlotProps(j, options) {
-  const { root, componentName, propName, slotName } = options;
+  const { root, componentName, propName, slotName, slotPropName } = options;
 
   findComponentJSX(j, { root, componentName }, (elementPath) => {
-    moveJsxPropIntoSlotProps(j, elementPath.node, propName, slotName);
+    moveJsxPropIntoSlotProps(j, elementPath.node, propName, slotName, slotPropName);
   });
 
   const defaultPropsPathCollection = findComponentDefaultProps(j, { root, componentName });
 
-  moveDefaultPropsPropIntoslotProps(j, defaultPropsPathCollection, propName, slotName);
+  moveDefaultPropsPropIntoslotProps(
+    j,
+    defaultPropsPathCollection,
+    propName,
+    slotName,
+    slotPropName,
+  );
 }

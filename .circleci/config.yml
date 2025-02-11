@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@5.1.2
-  aws-s3: circleci/aws-s3@4.1.0
+  aws-s3: circleci/aws-s3@4.1.1
 
 parameters:
   browserstack-force:
@@ -133,7 +133,7 @@ jobs:
             - run:
                 name: '`pnpm dedupe` was run?'
                 command: |
-                  # #default-branch-switch
+                  # #target-branch-reference
                   if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
                   then
                       echo "No changes to dependencies detected. Skipping..."
@@ -315,7 +315,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:types
+            pnpm -r build:stable && pnpm -r build:types  
             git --no-pager diff
       - run:
           name: Any defect declaration files?
@@ -379,7 +379,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     steps:
       - checkout
       - install_js:
@@ -407,7 +407,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     steps:
       - checkout
       - install_js:
@@ -419,7 +419,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     steps:
       - checkout
       - install_js:
@@ -432,7 +432,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     steps:
       - checkout
       - install_js:
@@ -457,7 +457,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     steps:
       - checkout
       - install_js:
@@ -524,7 +524,7 @@ jobs:
   test_bundling_next_webpack4:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -542,7 +542,7 @@ jobs:
   test_bundling_next_webpack5:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -560,7 +560,7 @@ jobs:
   test_bundling_create_react_app:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -578,7 +578,7 @@ jobs:
   test_bundling_snowpack:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -596,7 +596,7 @@ jobs:
   test_bundling_vite:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -614,7 +614,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -632,7 +632,7 @@ jobs:
   test_bundling_gatsby:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
         environment:
           GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
@@ -733,7 +733,7 @@ jobs:
   test_benchmark:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.50.1-noble
     steps:
       - checkout
       - install_js:
@@ -926,9 +926,10 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
                 - v5.x
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -976,8 +977,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -1003,8 +1005,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_types_next:
           <<: *default-context

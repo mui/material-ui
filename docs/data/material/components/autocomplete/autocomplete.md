@@ -215,14 +215,14 @@ overriding the `filterOptions` prop:
 A customized UI for Google Maps Places Autocomplete.
 For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
 
-:::info
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
-:::
-
 {{"demo": "GoogleMaps.js"}}
 
+The demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+
 :::error
-Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+Before you can start using the Google Maps JavaScript API and Places API, you need to get your own [API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+
+This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
 
 ## Multiple values

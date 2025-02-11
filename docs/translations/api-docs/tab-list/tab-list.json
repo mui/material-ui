@@ -15,13 +15,12 @@
       "conditions": "<code>!variant=\"scrollable\"</code>\b\b\b"
     },
     "flexContainer": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the flex container element"
+      "description": "",
+      "deprecationInfo": "use <code>list</code> instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "flexContainerVertical": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the flex container element",
-      "conditions": "<code>orientation=\"vertical\"</code>"
+      "description": "",
+      "deprecationInfo": "use a combination of <code>list</code> and <code>vertical</code> instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "hideScrollbar": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -32,6 +31,7 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the TabIndicator component"
     },
+    "list": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the list element" },
     "root": { "description": "Styles applied to the root element." },
     "scrollableX": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
