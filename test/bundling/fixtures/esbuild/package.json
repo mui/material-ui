@@ -19,7 +19,7 @@
     "@mui/styles": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "esbuild": "0.15.7",
+    "esbuild": "0.25.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
