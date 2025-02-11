@@ -108,5 +108,14 @@ pluginTester({
         };
       },
     },
+    {
+      title: 'uses custom runtime module',
+      pluginOptions: {
+        errorCodesPath: path.join(fixturePath, 'custom-runtime', 'error-codes.json'),
+        runtimeModule: '@custom/error-formatter',
+      },
+      fixture: path.join(fixturePath, 'custom-runtime', 'input.js'),
+      output: readOutputFixtureSync('custom-runtime', 'output.js'),
+    },
   ],
 });

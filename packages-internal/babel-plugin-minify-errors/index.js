@@ -10,9 +10,9 @@ const COMMENT_MARKER = 'minify-error';
  */
 
 /**
- * @typedef {{updatedErrorCodes?: boolean, formatMuiErrorMessageIdentifier?: babel.types.Identifier}} PluginState
+ * @typedef {{updatedErrorCodes?: boolean, formatErrorMessageIdentifier?: babel.types.Identifier}} PluginState
  * @typedef {'annotate' | 'throw' | 'write'} MissingError
- * @typedef {{ errorCodesPath: string, missingError: MissingError }} Options
+ * @typedef {{ errorCodesPath: string, missingError: MissingError, runtimeModule?: string }} Options
  */
 
 /**
@@ -91,7 +91,10 @@ function handleUnminifyable(missingError, path) {
  * @param {Options} options
  * @returns {babel.PluginObj<PluginState>}
  */
-module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 'annotate' }) {
+module.exports = function plugin(
+  { types: t },
+  { errorCodesPath, missingError = 'annotate', runtimeModule = '@mui/utils/formatMuiErrorMessage' },
+) {
   if (!errorCodesPath) {
     throw new Error('errorCodesPath is required.');
   }
@@ -170,13 +173,13 @@ module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 
           }
         }
 
-        if (!state.formatMuiErrorMessageIdentifier) {
+        if (!state.formatErrorMessageIdentifier) {
           // Outputs:
-          // import { formatMuiErrorMessage } from '@mui/utils';
-          state.formatMuiErrorMessageIdentifier = helperModuleImports.addDefault(
+          // import { formatErrorMessage } from '@mui/utils';
+          state.formatErrorMessageIdentifier = helperModuleImports.addDefault(
             newExpressionPath,
-            '@mui/utils/formatMuiErrorMessage',
-            { nameHint: '_formatMuiErrorMessage' },
+            runtimeModule,
+            { nameHint: '_formatErrorMessage' },
           );
         }
 
@@ -185,9 +188,9 @@ module.exports = function plugin({ types: t }, { errorCodesPath, missingError = 
         const devMessage = messageNode;
 
         // Outputs:
-        // formatMuiErrorMessage(ERROR_CODE, adj, noun)
+        // formatErrorMessage(ERROR_CODE, adj, noun)
         const prodMessage = t.callExpression(
-          t.cloneNode(state.formatMuiErrorMessageIdentifier, true),
+          t.cloneNode(state.formatErrorMessageIdentifier, true),
           [t.numericLiteral(errorCode), ...message.expressions],
         );
 
