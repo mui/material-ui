@@ -1,5 +1,35 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.4
+
+<!-- generated comparing v6.4.3..v6.x -->
+
+_Feb 11, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@6.4.4`
+
+- [MobileStepper] deprecate `LinearProgressProps` and complete `slots`, `slotProps` (@siriwatknp) (#45242) @siriwatknp
+- [Slider] Deprecate composed classes (@sai6855) (#45223) @sai6855
+- [utils] Merge `sx` instead of override when using `mergeSlotProps` (#45129) @siriwatknp
+
+### Docs
+
+- [Autocomplete] Improve Google Maps search example (#44708) @oliviertassinari
+- [Dialog] Removes deprecated PaperProps from docs (#45217) @sai6855
+- A quick first step to update docs for Tailwind v4 (#45221) @oliviertassinari
+
+### Core
+
+- Fix missing store contributor renaming (527222d) @oliviertassinari
+- Fix MUI Base vale rule (#45140) @oliviertassinari
+- Fix 404 errors (#45137) @oliviertassinari
+- [docs] Sync active sponsors (#45204) @oliviertassinari
+- [docs-infra] Move Ukraine banner to the bottom (#45135) @oliviertassinari
+
+All contributors of this release in alphabetical order: @oliviertassinari, @sai6855, @siriwatknp
+
 ## 6.4.3
 
 <!-- generated comparing v6.4.2..v6.x -->
