@@ -87,6 +87,83 @@ function handleUnminifyable(missingError, path) {
 }
 
 /**
+ * @param {babel.types} t
+ * @param {babel.NodePath} path
+ * @param {babel.types.Expression} messageNode
+ * @param {PluginState} state
+ * @param {Map<string, number>} errorCodesLookup
+ * @param {MissingError} missingError
+ * @param {string} runtimeModule
+ * @returns {babel.types.Expression | null}
+ */
+function transformErrorMessage(
+  t,
+  path,
+  messageNode,
+  state,
+  errorCodesLookup,
+  missingError,
+  runtimeModule,
+) {
+  const message = extractMessageFromExpression(t, messageNode);
+  if (!message) {
+    handleUnminifyable(missingError, path);
+    return null;
+  }
+
+  let errorCode = errorCodesLookup.get(message.message);
+  if (errorCode === undefined) {
+    switch (missingError) {
+      case 'annotate': {
+        path.addComment(
+          'leading',
+          ' FIXME (minify-errors-in-prod): Unminified error message in production build! ',
+        );
+        return null;
+      }
+      case 'throw': {
+        throw new Error(
+          `Missing error code for message '${message.message}'. Did you forget to run \`pnpm extract-error-codes\` first?`,
+        );
+      }
+      case 'write': {
+        errorCode = errorCodesLookup.size + 1;
+        errorCodesLookup.set(message.message, errorCode);
+        state.updatedErrorCodes = true;
+        break;
+      }
+      default: {
+        throw new Error(`Unknown missingError option: ${missingError}`);
+      }
+    }
+  }
+
+  if (!state.formatErrorMessageIdentifier) {
+    state.formatErrorMessageIdentifier = helperModuleImports.addDefault(path, runtimeModule, {
+      nameHint: '_formatErrorMessage',
+    });
+  }
+
+  // Return a conditional expression that uses the original message in development
+  // and the minified version in production
+  return t.conditionalExpression(
+    t.binaryExpression(
+      '!==',
+      t.memberExpression(
+        t.memberExpression(t.identifier('process'), t.identifier('env')),
+        t.identifier('NODE_ENV'),
+      ),
+      t.stringLiteral('production'),
+    ),
+    messageNode,
+    t.callExpression(t.cloneNode(state.formatErrorMessageIdentifier, true), [
+      t.numericLiteral(errorCode),
+      ...message.expressions,
+    ]),
+  );
+}
+
+/**
  * @param {babel} file
  * @param {Options} options
  * @returns {babel.PluginObj<PluginState>}
@@ -140,84 +217,52 @@ module.exports = function plugin(
           return;
         }
 
-        const message = extractMessageFromExpression(t, messageNode);
-
-        if (!message) {
-          handleUnminifyable(missingError, newExpressionPath);
+        const transformedMessage = transformErrorMessage(
+          t,
+          newExpressionPath,
+          messageNode,
+          state,
+          errorCodesLookup,
+          missingError,
+          runtimeModule,
+        );
+        if (transformedMessage) {
+          messagePath.replaceWith(transformedMessage);
+        }
+      },
+      TaggedTemplateExpression(path, state) {
+        // Get the tag function
+        const tag = path.get('tag');
+        if (!tag.isIdentifier()) {
           return;
         }
 
-        let errorCode = errorCodesLookup.get(message.message);
-        if (errorCode === undefined) {
-          switch (missingError) {
-            case 'annotate': {
-              // Outputs:
-              // /* FIXME (minify-errors-in-prod): Unminified error message in production build! */
-              // throw new Error(`A message with ${interpolation}`)
-              newExpressionPath.addComment(
-                'leading',
-                ' FIXME (minify-errors-in-prod): Unminified error message in production build! ',
-              );
-              return;
-            }
-            case 'throw': {
-              throw new Error(
-                `Missing error code for message '${message.message}'. Did you forget to run \`pnpm extract-error-codes\` first?`,
-              );
-            }
-            case 'write': {
-              errorCode = errorCodesLookup.size + 1;
-              errorCodesLookup.set(message.message, errorCode);
-              state.updatedErrorCodes = true;
-              break;
-            }
-            default: {
-              throw new Error(`Unknown missingError option: ${missingError}`);
-            }
-          }
+        // Check if the tag is imported from our package
+        const binding = path.scope.getBinding(tag.node.name);
+        if (!binding?.path.isImportDefaultSpecifier()) {
+          return;
+        }
+        const importPath = binding.path.parentPath;
+        if (!importPath.isImportDeclaration()) {
+          return;
+        }
+        if (!importPath.node.source.value.endsWith('/tag')) {
+          return;
         }
 
-        if (!state.formatErrorMessageIdentifier) {
-          // Outputs:
-          // import { formatErrorMessage } from '@mui/utils';
-          state.formatErrorMessageIdentifier = helperModuleImports.addDefault(
-            newExpressionPath,
-            runtimeModule,
-            { nameHint: '_formatErrorMessage' },
-          );
+        const transformedMessage = transformErrorMessage(
+          t,
+          path,
+          path.node.quasi,
+          state,
+          errorCodesLookup,
+          missingError,
+          runtimeModule,
+        );
+        if (transformedMessage) {
+          path.replaceWith(transformedMessage);
+          importPath.remove();
         }
-
-        // Outputs:
-        //   `A ${adj} message that contains ${noun}`;
-        const devMessage = messageNode;
-
-        // Outputs:
-        // formatErrorMessage(ERROR_CODE, adj, noun)
-        const prodMessage = t.callExpression(
-          t.cloneNode(state.formatErrorMessageIdentifier, true),
-          [t.numericLiteral(errorCode), ...message.expressions],
-        );
-
-        // Outputs:
-        // new Error(
-        //   process.env.NODE_ENV !== "production"
-        //     ? `A message with ${interpolation}`
-        //     : formatProdError('A message with %s', interpolation)
-        // )
-        messagePath.replaceWith(
-          t.conditionalExpression(
-            t.binaryExpression(
-              '!==',
-              t.memberExpression(
-                t.memberExpression(t.identifier('process'), t.identifier('env')),
-                t.identifier('NODE_ENV'),
-              ),
-              t.stringLiteral('production'),
-            ),
-            devMessage,
-            prodMessage,
-          ),
-        );
       },
     },
     post() {
