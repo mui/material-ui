@@ -23,6 +23,7 @@ pluginTester({
       title: 'literal',
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'literal', 'error-codes.json'),
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
       fixture: path.join(fixturePath, 'literal', 'input.js'),
       output: readOutputFixtureSync('literal', 'output.js'),
@@ -31,6 +32,7 @@ pluginTester({
       title: 'interpolation',
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'interpolation', 'error-codes.json'),
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
       fixture: path.join(fixturePath, 'interpolation', 'input.js'),
       output: readOutputFixtureSync('interpolation', 'output.js'),
@@ -39,6 +41,7 @@ pluginTester({
       title: 'annotates missing error codes',
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'no-error-code-annotation', 'error-codes.json'),
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
       fixture: path.join(fixturePath, 'no-error-code-annotation', 'input.js'),
       output: readOutputFixtureSync('no-error-code-annotation', 'output.js'),
@@ -53,12 +56,14 @@ pluginTester({
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'no-error-code-throw', 'error-codes.json'),
         missingError: 'throw',
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
     },
     {
       title: 'annotates unminifyable errors',
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'unminifyable-annotation', 'error-codes.json'),
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
       fixture: path.join(fixturePath, 'unminifyable-annotation', 'input.js'),
       output: readOutputFixtureSync('unminifyable-annotation', 'output.js'),
@@ -73,15 +78,16 @@ pluginTester({
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'unminifyable-throw', 'error-codes.json'),
         missingError: 'throw',
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
     },
     {
       title: 'can extract errors',
-
       fixture: path.join(fixturePath, 'error-code-extraction', 'input.js'),
       pluginOptions: {
         errorCodesPath: temporaryErrorCodesPath,
         missingError: 'write',
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
       output: readOutputFixtureSync('error-code-extraction', 'output.js'),
       setup() {
@@ -116,6 +122,14 @@ pluginTester({
       },
       fixture: path.join(fixturePath, 'custom-runtime', 'input.js'),
       output: readOutputFixtureSync('custom-runtime', 'output.js'),
+    },
+    {
+      title: 'throws when runtimeModule is not provided',
+      error: /runtimeModule is required/,
+      pluginOptions: {
+        errorCodesPath: path.join(fixturePath, 'literal', 'error-codes.json'),
+      },
+      fixture: path.join(fixturePath, 'literal', 'input.js'),
     },
   ],
 });

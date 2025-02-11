@@ -93,10 +93,14 @@ function handleUnminifyable(missingError, path) {
  */
 module.exports = function plugin(
   { types: t },
-  { errorCodesPath, missingError = 'annotate', runtimeModule = '@mui/utils/formatMuiErrorMessage' },
+  { errorCodesPath, missingError = 'annotate', runtimeModule },
 ) {
   if (!errorCodesPath) {
     throw new Error('errorCodesPath is required.');
+  }
+
+  if (!runtimeModule) {
+    throw new Error('runtimeModule is required.');
   }
 
   const errorCodesContent = fs.readFileSync(errorCodesPath, 'utf8');
