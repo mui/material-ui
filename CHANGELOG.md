@@ -22,9 +22,9 @@ A big thanks to the 3 contributors who made this release possible.
 
 ### Core
 
-- [core] Fix missing store contributor renaming (527222d) @oliviertassinari
-- [core] Fix MUI Base vale rule (#45140) @oliviertassinari
-- [core] Fix 404 errors (#45137) @oliviertassinari
+- Fix missing store contributor renaming (527222d) @oliviertassinari
+- Fix MUI Base vale rule (#45140) @oliviertassinari
+- Fix 404 errors (#45137) @oliviertassinari
 - [docs] Sync active sponsors (#45204) @oliviertassinari
 - [docs-infra] Move Ukraine banner to the bottom (#45135) @oliviertassinari
 
