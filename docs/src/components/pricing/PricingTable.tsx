@@ -16,7 +16,7 @@ import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import { PrioritySupportSwitch2 } from 'docs/src/components/pricing/PrioritySupportSwitch';
+import { PrioritySupportSwitchTable } from 'docs/src/components/pricing/PrioritySupportSwitch';
 import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
 import { PlanName, planInfo } from './PricingCards';
 
@@ -924,7 +924,7 @@ const premiumData: Record<string, React.ReactNode> = {
   // Support
   'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
-  'priority-support': <PrioritySupportSwitch2 />,
+  'priority-support': <PrioritySupportSwitchTable />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <InfoPrioritySupport value={yes} metadata="24 hours" value2={no} />,

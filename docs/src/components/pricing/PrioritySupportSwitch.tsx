@@ -86,7 +86,7 @@ export default function PrioritySupportSwitch() {
   );
 }
 
-export function PrioritySupportSwitch2() {
+export function PrioritySupportSwitchTable() {
   const { prioritySupport, setPrioritySupport } = usePrioritySupport();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrioritySupport(event.target.checked);

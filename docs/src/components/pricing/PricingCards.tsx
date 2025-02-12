@@ -588,7 +588,6 @@ export default function PricingCards() {
             <PlanNameDisplay plan="pro" disableDescription={false} />
             <PlanPrice plan="pro" />
           </Box>
-          {/* <PricingTableBuyPro /> */}
           <Divider />
           <Box textAlign="left">
             {planInfo.pro.features.map((feature, index) => (
@@ -630,7 +629,6 @@ export default function PricingCards() {
             <PlanNameDisplay plan="premium" disableDescription={false} />
             <PlanPrice plan="premium" />
           </Box>
-          {/* <PricingTableBuyPremium />  */}
           <Box textAlign="left">
             {planInfo.premium.features.map((feature, index) => (
               <Box
@@ -665,7 +663,6 @@ export default function PricingCards() {
             <PlanNameDisplay plan="enterprise" disableDescription={false} />
             <PlanPrice plan="enterprise" />
           </Box>
-          {/* <PricingTableBuyEnterprise /> */}
           <Divider />
           <Box textAlign="left">
             {planInfo.enterprise.features.map((feature, index) => (
