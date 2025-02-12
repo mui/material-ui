@@ -48,6 +48,10 @@ Use the `useMediaQuery` hook to replace `implementation="js"`:
 +return hidden ? null : <Paper />;
 ```
 
+:::warning
+There's no codemod available for this change, as each project's setup will heavily influence the migration.
+:::
+
 ### Lab components moved to the main package
 
 The following `@mui/lab` components and hook have been moved to `@mui/material`:
