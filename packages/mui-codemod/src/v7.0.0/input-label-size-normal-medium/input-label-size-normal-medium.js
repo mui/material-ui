@@ -7,7 +7,7 @@ export default function transformer(file, api, options) {
 
   const printOptions = options.printOptions;
 
-  const source = j(file.source)
+  return j(file.source)
     .findJSXElements('InputLabel')
     .forEach((path) => {
       path.node.openingElement.attributes.forEach((node) => {
@@ -21,5 +21,4 @@ export default function transformer(file, api, options) {
       });
     })
     .toSource(printOptions);
-  return source.replace(/\.MuiInputLabel-normal/gm, '.MuiInputLabel-medium');
 }
