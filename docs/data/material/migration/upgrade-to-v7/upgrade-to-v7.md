@@ -77,3 +77,11 @@ If you were using `size="normal"`, update it to `size="medium"`:
 ```
 
 The default behavior remains unchanged, so no updates are needed unless you explicitly set `size="normal"`.
+
+Use this codemod to automatically update the `size` value:
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
+```
