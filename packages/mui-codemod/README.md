@@ -2058,6 +2058,25 @@ As well as default and named imports from component-level files:
 + import Alert, { alertClasses } from '@mui/material/Alert';
 ```
 
+#### `input-label-size-normal-medium`
+
+Updates the `InputLabel`'s `size` value from `normal` to `medium`.
+
+```diff
+-<InputLabel size="normal">Label</InputLabel>
++<InputLabel size="medium">Label</InputLabel>
+```
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path>
+```
+
+<!-- #host-reference -->
+
+You can find more details about this breaking change in [the migration guide](https://next.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
+
 ### v6.0.0
 
 #### `sx-prop`
