@@ -4,14 +4,54 @@ import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '..';
 import { RatingClasses } from './ratingClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
 }
 
-export interface RatingPropsSizeOverrides {}
+export interface RatingRootSlotPropsOverrides {}
 
-export interface RatingOwnProps {
+export interface RatingIconContainerSlotPropsOverrides {}
+
+export interface RatingPropsSizeOverrides {}
+export interface RatingSlots {
+  /**
+   * The root component used for rating.
+   * @default Rating
+   */
+  root: React.ElementType;
+  /**
+   * The component containing the icon.
+   * @default function IconContainer(props) {
+   *   const { value, ...other } = props;
+   *   return <span {...other} />;
+   * }
+   */
+  iconContainer: React.ElementType;
+}
+
+export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  RatingSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the available props are based on the [rating](https://mui.com/material-ui/api/rating/#props) component.
+     */
+    root: SlotProps<React.ElementType<RatingProps>, RatingRootSlotPropsOverrides, RatingOwnerState>;
+    /**
+     * Props forwarded to the iconContainer slot.
+     * By default, the available props are based on the [rating](https://mui.com/material-ui/api/rating/#props) component.
+     */
+    iconContainer: SlotProps<
+      React.ElementType<IconContainerProps>,
+      RatingIconContainerSlotPropsOverrides,
+      RatingOwnerState
+    >;
+  }
+>;
+
+export interface RatingOwnProps extends RatingSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -64,6 +104,7 @@ export interface RatingOwnProps {
    *   const { value, ...other } = props;
    *   return <span {...other} />;
    * }
+   * @deprecated use the `slotProps.iconContainer` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   IconContainerComponent?: React.ElementType<IconContainerProps>;
   /**
@@ -140,5 +181,7 @@ export type RatingProps<
 > = OverrideProps<RatingTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
+
+export interface RatingOwnerState extends Omit<RatingProps, 'slots' | 'slotProps'> {}
 
 export default Rating;
