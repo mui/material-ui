@@ -28,10 +28,9 @@
     "chai": "^4.5.0"
   },
   "sideEffects": false,
-  "type": "module",
+  "type": "commonjs",
   "exports": {
-    ".": "./index.js",
-    "./tag": "./tag.js"
+    ".": "./index.js"
   },
   "engines": {
     "node": ">=14.0.0"

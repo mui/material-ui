@@ -1,7 +1,7 @@
 // @ts-check
 
-import * as helperModuleImports from '@babel/helper-module-imports';
-import * as fs from 'fs';
+const helperModuleImports = require('@babel/helper-module-imports');
+const fs = require('fs');
 
 const COMMENT_MARKER = 'minify-error';
 
@@ -168,7 +168,7 @@ function transformErrorMessage(
  * @param {Options} options
  * @returns {babel.PluginObj<PluginState>}
  */
-export default function plugin(
+module.exports = function plugin(
   { types: t },
   { errorCodesPath, missingError = 'annotate', runtimeModule },
 ) {
@@ -283,4 +283,4 @@ export default function plugin(
       }
     },
   };
-}
+};
