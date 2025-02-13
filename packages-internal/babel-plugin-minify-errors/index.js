@@ -187,7 +187,10 @@ module.exports = function plugin(
     Object.entries(errorCodes).map(([key, value]) => [value, Number(key)]),
   );
 
+  const importPaths = new Set();
+
   return {
+    name: '@mui/internal-babel-plugin-minify-errors',
     visitor: {
       NewExpression(newExpressionPath, state) {
         if (!newExpressionPath.get('callee').isIdentifier({ name: 'Error' })) {
@@ -226,6 +229,7 @@ module.exports = function plugin(
           missingError,
           runtimeModule,
         );
+
         if (transformedMessage) {
           messagePath.replaceWith(transformedMessage);
         }
@@ -246,7 +250,7 @@ module.exports = function plugin(
         if (!importPath.isImportDeclaration()) {
           return;
         }
-        if (!importPath.node.source.value.endsWith('/tag')) {
+        if (importPath.node.source.value !== '@mui/internal-babel-plugin-minify-errors/tag') {
           return;
         }
 
@@ -259,13 +263,18 @@ module.exports = function plugin(
           missingError,
           runtimeModule,
         );
+
         if (transformedMessage) {
           path.replaceWith(transformedMessage);
-          importPath.remove();
+          importPaths.add(importPath);
         }
       },
     },
     post() {
+      for (const importPath of importPaths) {
+        importPath.remove();
+      }
+
       if (missingError === 'write' && this.updatedErrorCodes) {
         const invertedErrorCodes = Object.fromEntries(
           Array.from(errorCodesLookup, ([key, value]) => [value, key]),
