@@ -600,7 +600,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      id={id}
+      id={loadingIndicator ? id : undefined}
       {...other}
       classes={classes}
     >
