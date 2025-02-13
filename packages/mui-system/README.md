@@ -1,23 +1,19 @@
-# @mui/system
+# MUI System
 
-CSS utilities for rapidly laying out custom designs.
+MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.
 
 ## Installation
 
 Install the package in your project directory with:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
-```sh
-// with npm
-npm install @mui/system @emotion/react @emotion/styled
-
-// with yarn
-yarn add @mui/system @emotion/react @emotion/styled
+```bash
+npm install @mui/system@next @emotion/react @emotion/styled
 ```
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
-[The documentation](https://mui.com/system/basics/)
+Visit [https://next.mui.com/system/getting-started/](https://next.mui.com/system/getting-started/) to view the full documentation.

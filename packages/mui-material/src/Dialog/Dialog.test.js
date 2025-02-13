@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
+import describeConformance from '../../test/describeConformance';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -18,18 +21,22 @@ function userClick(element) {
 }
 
 /**
- * @param {typeof import('test/utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function findBackdrop(view) {
   return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {typeof import('test/utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function clickBackdrop(view) {
   userClick(findBackdrop(view));
 }
+
+const CustomFade = React.forwardRef(function CustomFade(props, ref) {
+  return <Fade {...props} ref={ref} data-testid="custom" />;
+});
 
 describe('<Dialog />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -46,13 +53,31 @@ describe('<Dialog />', () => {
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
-      ],
+      slots: {
+        transition: {
+          expectedClassName: classes.transition,
+          testWithComponent: CustomFade,
+          testWithElement: null,
+        },
+        root: {
+          expectedClassName: classes.root,
+          testWithElement: null,
+        },
+        backdrop: {
+          expectedClassName: classes.backdrop,
+          testWithElement: null,
+        },
+        container: {
+          expectedClassName: classes.container,
+          testWithElement: null,
+          testWithComponent: CustomFade,
+        },
+        paper: {
+          expectedClassName: classes.paper,
+          testWithElement: null,
+        },
+      },
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 
@@ -92,12 +117,30 @@ describe('<Dialog />', () => {
 
     // keyDown not targetted at anything specific
     // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
     clock.tick(100);
 
     expect(queryByRole('dialog')).to.equal(null);
+  });
+
+  it('should not close until the IME is cancelled', () => {
+    const onClose = spy();
+    const { getByRole } = render(
+      <Dialog open transitionDuration={0} onClose={onClose}>
+        <input type="text" autoFocus />
+      </Dialog>,
+    );
+    const textbox = getByRole('textbox');
+
+    // Actual Behavior when "あ" (Japanese) is entered and press the Esc for IME cancellation.
+    fireEvent.change(textbox, { target: { value: 'あ' } });
+    fireEvent.keyDown(textbox, { key: 'Escape', keyCode: 229 });
+    expect(onClose.callCount).to.equal(0);
+
+    fireEvent.keyDown(textbox, { key: 'Escape' });
+    expect(onClose.callCount).to.equal(1);
   });
 
   it('can ignore backdrop click and Esc keydown', () => {
@@ -129,7 +172,7 @@ describe('<Dialog />', () => {
       dialog.click();
       // keyDown is not targetted at anything specific.
       // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-      fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     });
 
     expect(onClose.callCount).to.equal(0);
@@ -149,7 +192,15 @@ describe('<Dialog />', () => {
       const onBackdropClick = spy();
       const onClose = spy();
       render(
-        <Dialog onBackdropClick={onBackdropClick} onClose={onClose} open>
+        <Dialog
+          onClose={(event, reason) => {
+            onClose();
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
           foo
         </Dialog>,
       );
@@ -159,10 +210,39 @@ describe('<Dialog />', () => {
       expect(onClose.callCount).to.equal(1);
     });
 
+    it('calls onBackdropClick when onClick callback also exists', () => {
+      const onBackdropClick = spy();
+      const onClick = spy();
+      render(
+        <Dialog
+          onClick={onClick}
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
+          foo
+        </Dialog>,
+      );
+
+      clickBackdrop(screen);
+      expect(onBackdropClick.callCount).to.equal(1);
+      expect(onClick.callCount).to.equal(1);
+    });
+
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       const onBackdropClick = spy();
       const { getByRole } = render(
-        <Dialog onBackdropClick={onBackdropClick} open>
+        <Dialog
+          onClose={(event, reason) => {
+            if (reason === 'backdropClick') {
+              onBackdropClick();
+            }
+          }}
+          open
+        >
           <div tabIndex={-1}>
             <h2>my dialog</h2>
           </div>
@@ -206,6 +286,27 @@ describe('<Dialog />', () => {
       );
       expect(getByTestId('paper')).to.have.class(classes.paperWidthXs);
     });
+
+    it('should use the right className when maxWidth={false}', () => {
+      render(
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+      expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthFalse);
+    });
+
+    it('should apply the correct max-width styles when maxWidth={false}', () => {
+      render(
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+
+      expect(screen.getByTestId('paper')).toHaveComputedStyle({
+        maxWidth: 'calc(100% - 64px)',
+      });
+    });
   });
 
   describe('prop: fullWidth', () => {
@@ -246,6 +347,35 @@ describe('<Dialog />', () => {
       );
       expect(getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
+
+    it('scrolls if overflown on the Y axis', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const ITEM_HEIGHT = 100;
+      const ITEM_COUNT = 10;
+
+      const { getByTestId } = render(
+        <Dialog
+          open
+          fullScreen
+          PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
+        >
+          {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
+            <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
+              {item}
+            </div>
+          ))}
+        </Dialog>,
+      );
+      const paperElement = getByTestId('paper');
+      expect(paperElement.scrollTop).to.equal(0);
+      expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
+      expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
+      fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
+      expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
+    });
   });
 
   describe('prop: PaperProps.className', () => {
@@ -274,6 +404,72 @@ describe('<Dialog />', () => {
       expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
       const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
       expect(label).to.have.text('Choose either one');
+    });
+
+    it('should add the aria-modal="true" by default', function test() {
+      const { getByRole } = render(<Dialog open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'true');
+    });
+
+    it('should render the custom aria-modal prop if provided', function test() {
+      const { getByRole } = render(<Dialog aria-modal="false" open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'false');
+    });
+  });
+
+  describe('prop: transitionDuration', () => {
+    it('should render the default theme values by default', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      render(<Dialog open />);
+
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it('should render the custom theme values', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Dialog open />
+        </ThemeProvider>,
+      );
+
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('should render the values provided via prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      render(<Dialog open transitionDuration={{ enter: 1 }} />);
+
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({
+        transitionDuration: '0.001s',
+      });
     });
   });
 });

@@ -1,0 +1,21 @@
+{
+  "props": {
+    "enterAnimationName": { "type": { "name": "string" } },
+    "enterClassName": { "type": { "name": "string" } },
+    "exitAnimationName": { "type": { "name": "string" } },
+    "exitClassName": { "type": { "name": "string" } }
+  },
+  "name": "CssAnimation",
+  "imports": [
+    "import { CssAnimation } from '@mui/base/Transitions';",
+    "import { CssAnimation } from '@mui/base';"
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "CssAnimation",
+  "filename": "/packages/mui-base/src/Transitions/CssAnimation.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-transitions/\">Transitions</a></li></ul>",
+  "cssComponent": false
+}

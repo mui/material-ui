@@ -1,3 +1,4 @@
+'use client';
 // A grid component using the following libs as inspiration.
 //
 // For the implementation:
@@ -8,92 +9,96 @@
 //
 // Follow this flexbox Guide to better understand the underlying model:
 // - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  unstable_extendSxProp as extendSxProp,
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { extendSxProp } from '@mui/system/styleFunctionSx';
+import composeClasses from '@mui/utils/composeClasses';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import useTheme from '../styles/useTheme';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
-function getOffset(val) {
-  const parse = parseFloat(val);
-  return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
-}
+export function generateGrid({ theme, ownerState }) {
+  let size;
 
-function generateGrid(globalStyles, theme, breakpoint, ownerState) {
-  const size = ownerState[breakpoint];
-
-  if (!size) {
-    return;
-  }
-
-  let styles = {};
-
-  if (size === true) {
-    // For the auto layouting
-    styles = {
-      flexBasis: 0,
-      flexGrow: 1,
-      maxWidth: '100%',
-    };
-  } else if (size === 'auto') {
-    styles = {
-      flexBasis: 'auto',
-      flexGrow: 0,
-      flexShrink: 0,
-      maxWidth: 'none',
-      width: 'auto',
-    };
-  } else {
-    const columnsBreakpointValues = resolveBreakpointValues({
-      values: ownerState.columns,
-      breakpoints: theme.breakpoints.values,
-    });
-
-    const columnValue =
-      typeof columnsBreakpointValues === 'object'
-        ? columnsBreakpointValues[breakpoint]
-        : columnsBreakpointValues;
-    // Keep 7 significant numbers.
-    const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
-    let more = {};
-
-    if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
-      const themeSpacing = theme.spacing(ownerState.columnSpacing);
-      if (themeSpacing !== '0px') {
-        const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
-        more = {
-          flexBasis: fullWidth,
-          maxWidth: fullWidth,
-        };
-      }
+  return theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
+    // Use side effect over immutability for better performance.
+    let styles = {};
+    if (ownerState[breakpoint]) {
+      size = ownerState[breakpoint];
+    }
+    if (!size) {
+      return globalStyles;
     }
 
-    // Close to the bootstrap implementation:
-    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
-    styles = {
-      flexBasis: width,
-      flexGrow: 0,
-      maxWidth: width,
-      ...more,
-    };
-  }
+    if (size === true) {
+      // For the auto layouting
+      styles = {
+        flexBasis: 0,
+        flexGrow: 1,
+        maxWidth: '100%',
+      };
+    } else if (size === 'auto') {
+      styles = {
+        flexBasis: 'auto',
+        flexGrow: 0,
+        flexShrink: 0,
+        maxWidth: 'none',
+        width: 'auto',
+      };
+    } else {
+      const columnsBreakpointValues = resolveBreakpointValues({
+        values: ownerState.columns,
+        breakpoints: theme.breakpoints.values,
+      });
 
-  // No need for a media query for the first size.
-  if (theme.breakpoints.values[breakpoint] === 0) {
-    Object.assign(globalStyles, styles);
-  } else {
-    globalStyles[theme.breakpoints.up(breakpoint)] = styles;
-  }
+      const columnValue =
+        typeof columnsBreakpointValues === 'object'
+          ? columnsBreakpointValues[breakpoint]
+          : columnsBreakpointValues;
+      if (columnValue === undefined || columnValue === null) {
+        return globalStyles;
+      }
+      // Keep 7 significant numbers.
+      const width = `${Math.round((size / columnValue) * 10e7) / 10e5}%`;
+      let more = {};
+
+      if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
+        const themeSpacing = theme.spacing(ownerState.columnSpacing);
+        if (themeSpacing !== '0px') {
+          const fullWidth = `calc(${width} + ${themeSpacing})`;
+          more = {
+            flexBasis: fullWidth,
+            maxWidth: fullWidth,
+          };
+        }
+      }
+
+      // Close to the bootstrap implementation:
+      // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
+      styles = {
+        flexBasis: width,
+        flexGrow: 0,
+        maxWidth: width,
+        ...more,
+      };
+    }
+
+    // No need for a media query for the first size.
+    if (theme.breakpoints.values[breakpoint] === 0) {
+      Object.assign(globalStyles, styles);
+    } else {
+      globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+    }
+    return globalStyles;
+  }, {});
 }
 
 export function generateDirection({ theme, ownerState }) {
@@ -107,7 +112,7 @@ export function generateDirection({ theme, ownerState }) {
       flexDirection: propValue,
     };
 
-    if (propValue.indexOf('column') === 0) {
+    if (propValue.startsWith('column')) {
       output[`& > .${gridClasses.item}`] = {
         maxWidth: 'none',
       };
@@ -115,6 +120,31 @@ export function generateDirection({ theme, ownerState }) {
 
     return output;
   });
+}
+
+/**
+ * Extracts zero value breakpoint keys before a non-zero value breakpoint key.
+ * @example { xs: 0, sm: 0, md: 2, lg: 0, xl: 0 } or [0, 0, 2, 0, 0]
+ * @returns [xs, sm]
+ */
+function extractZeroValueBreakpointKeys({ breakpoints, values }) {
+  let nonZeroKey = '';
+
+  Object.keys(values).forEach((key) => {
+    if (nonZeroKey !== '') {
+      return;
+    }
+
+    if (values[key] !== 0) {
+      nonZeroKey = key;
+    }
+  });
+
+  const sortedBreakpointKeysByValue = Object.keys(breakpoints).sort((a, b) => {
+    return breakpoints[a] - breakpoints[b];
+  });
+
+  return sortedBreakpointKeysByValue.slice(0, sortedBreakpointKeysByValue.indexOf(nonZeroKey));
 }
 
 export function generateRowGap({ theme, ownerState }) {
@@ -127,19 +157,36 @@ export function generateRowGap({ theme, ownerState }) {
       breakpoints: theme.breakpoints.values,
     });
 
-    styles = handleBreakpoints({ theme }, rowSpacingValues, (propValue) => {
+    let zeroValueBreakpointKeys;
+    if (typeof rowSpacingValues === 'object') {
+      zeroValueBreakpointKeys = extractZeroValueBreakpointKeys({
+        breakpoints: theme.breakpoints.values,
+        values: rowSpacingValues,
+      });
+    }
+
+    styles = handleBreakpoints({ theme }, rowSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
 
       if (themeSpacing !== '0px') {
         return {
-          marginTop: `-${getOffset(themeSpacing)}`,
+          marginTop: `calc(-1 * ${themeSpacing})`,
           [`& > .${gridClasses.item}`]: {
-            paddingTop: getOffset(themeSpacing),
+            paddingTop: themeSpacing,
           },
         };
       }
 
-      return {};
+      if (zeroValueBreakpointKeys?.includes(breakpoint)) {
+        return {};
+      }
+
+      return {
+        marginTop: 0,
+        [`& > .${gridClasses.item}`]: {
+          paddingTop: 0,
+        },
+      };
     });
   }
 
@@ -156,28 +203,47 @@ export function generateColumnGap({ theme, ownerState }) {
       breakpoints: theme.breakpoints.values,
     });
 
-    styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue) => {
+    let zeroValueBreakpointKeys;
+    if (typeof columnSpacingValues === 'object') {
+      zeroValueBreakpointKeys = extractZeroValueBreakpointKeys({
+        breakpoints: theme.breakpoints.values,
+        values: columnSpacingValues,
+      });
+    }
+
+    styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
+        const negativeValue = `calc(-1 * ${themeSpacing})`;
         return {
-          width: `calc(100% + ${getOffset(themeSpacing)})`,
-          marginLeft: `-${getOffset(themeSpacing)}`,
+          width: `calc(100% + ${themeSpacing})`,
+          marginLeft: negativeValue,
           [`& > .${gridClasses.item}`]: {
-            paddingLeft: getOffset(themeSpacing),
+            paddingLeft: themeSpacing,
           },
         };
       }
 
-      return {};
+      if (zeroValueBreakpointKeys?.includes(breakpoint)) {
+        return {};
+      }
+
+      return {
+        width: '100%',
+        marginLeft: 0,
+        [`& > .${gridClasses.item}`]: {
+          paddingLeft: 0,
+        },
+      };
     });
   }
 
   return styles;
 }
 
-export function resolveSpacingClasses(spacing, container, styles = {}) {
-  // in case of grid item or undefined/null or `spacing` <= 0
-  if (!container || !spacing || spacing <= 0) {
+export function resolveSpacingStyles(spacing, breakpoints, styles = {}) {
+  // undefined/null or `spacing` <= 0
+  if (!spacing || spacing <= 0) {
     return [];
   }
   // in case of string/number `spacing`
@@ -185,18 +251,20 @@ export function resolveSpacingClasses(spacing, container, styles = {}) {
     (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
     typeof spacing === 'number'
   ) {
-    return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+    return [styles[`spacing-xs-${String(spacing)}`]];
   }
   // in case of object `spacing`
-  const { xs, sm, md, lg, xl } = spacing;
+  const spacingStyles = [];
 
-  return [
-    Number(xs) > 0 && (styles[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
-    Number(sm) > 0 && (styles[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
-    Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
-    Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
-    Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
-  ];
+  breakpoints.forEach((breakpoint) => {
+    const value = spacing[breakpoint];
+
+    if (Number(value) > 0) {
+      spacingStyles.push(styles[`spacing-${breakpoint}-${String(value)}`]);
+    }
+  });
+
+  return spacingStyles;
 }
 
 // Default CSS values
@@ -209,25 +277,39 @@ const GridRoot = styled('div', {
   name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
-      props.ownerState;
+    const { ownerState } = props;
+    const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } = ownerState;
+
+    let spacingStyles = [];
+
+    // in case of grid item
+    if (container) {
+      spacingStyles = resolveSpacingStyles(spacing, breakpoints, styles);
+    }
+
+    const breakpointsStyles = [];
+
+    breakpoints.forEach((breakpoint) => {
+      const value = ownerState[breakpoint];
+
+      if (value) {
+        breakpointsStyles.push(styles[`grid-${breakpoint}-${String(value)}`]);
+      }
+    });
 
     return [
       styles.root,
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      ...resolveSpacingClasses(spacing, container, styles),
+      ...spacingStyles,
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
       wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
-      xs !== false && styles[`grid-xs-${String(xs)}`],
-      sm !== false && styles[`grid-sm-${String(sm)}`],
-      md !== false && styles[`grid-md-${String(md)}`],
-      lg !== false && styles[`grid-lg-${String(lg)}`],
-      xl !== false && styles[`grid-xl-${String(xl)}`],
+      ...breakpointsStyles,
     ];
   },
 })(
+  // FIXME(romgrk): Can't use memoTheme here
   ({ ownerState }) => ({
     boxSizing: 'border-box',
     ...(ownerState.container && {
@@ -241,27 +323,64 @@ const GridRoot = styled('div', {
     ...(ownerState.zeroMinWidth && {
       minWidth: 0,
     }),
-    ...(ownerState.wrap === 'nowrap' && {
-      flexWrap: 'nowrap',
-    }),
-    ...(ownerState.wrap === 'reverse' && {
-      flexWrap: 'wrap-reverse',
+    ...(ownerState.wrap !== 'wrap' && {
+      flexWrap: ownerState.wrap,
     }),
   }),
   generateDirection,
   generateRowGap,
   generateColumnGap,
-  ({ theme, ownerState }) =>
-    theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
-      // Use side effect over immutability for better performance.
-      generateGrid(globalStyles, theme, breakpoint, ownerState);
-      return globalStyles;
-    }, {}),
+  generateGrid,
 );
 
+export function resolveSpacingClasses(spacing, breakpoints) {
+  // undefined/null or `spacing` <= 0
+  if (!spacing || spacing <= 0) {
+    return [];
+  }
+  // in case of string/number `spacing`
+  if (
+    (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
+    typeof spacing === 'number'
+  ) {
+    return [`spacing-xs-${String(spacing)}`];
+  }
+  // in case of object `spacing`
+  const classes = [];
+
+  breakpoints.forEach((breakpoint) => {
+    const value = spacing[breakpoint];
+
+    if (Number(value) > 0) {
+      const className = `spacing-${breakpoint}-${String(value)}`;
+
+      classes.push(className);
+    }
+  });
+
+  return classes;
+}
+
 const useUtilityClasses = (ownerState) => {
-  const { classes, container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
+  const { classes, container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
     ownerState;
+
+  let spacingClasses = [];
+
+  // in case of grid item
+  if (container) {
+    spacingClasses = resolveSpacingClasses(spacing, breakpoints);
+  }
+
+  const breakpointsClasses = [];
+
+  breakpoints.forEach((breakpoint) => {
+    const value = ownerState[breakpoint];
+
+    if (value) {
+      breakpointsClasses.push(`grid-${breakpoint}-${String(value)}`);
+    }
+  });
 
   const slots = {
     root: [
@@ -269,22 +388,23 @@ const useUtilityClasses = (ownerState) => {
       container && 'container',
       item && 'item',
       zeroMinWidth && 'zeroMinWidth',
-      ...resolveSpacingClasses(spacing, container),
+      ...spacingClasses,
       direction !== 'row' && `direction-xs-${String(direction)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
-      xs !== false && `grid-xs-${String(xs)}`,
-      sm !== false && `grid-sm-${String(sm)}`,
-      md !== false && `grid-md-${String(md)}`,
-      lg !== false && `grid-lg-${String(lg)}`,
-      xl !== false && `grid-xl-${String(xl)}`,
+      ...breakpointsClasses,
     ],
   };
 
   return composeClasses(slots, getGridUtilityClass, classes);
 };
 
+/**
+ * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ */
 const Grid = React.forwardRef(function Grid(inProps, ref) {
-  const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
+  const themeProps = useDefaultProps({ props: inProps, name: 'MuiGrid' });
+  const { breakpoints } = useTheme();
+
   const props = extendSxProp(themeProps);
   const {
     className,
@@ -294,14 +414,9 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     container = false,
     direction = 'row',
     item = false,
-    lg = false,
-    md = false,
     rowSpacing: rowSpacingProp,
-    sm = false,
     spacing = 0,
     wrap = 'wrap',
-    xl = false,
-    xs = false,
     zeroMinWidth = false,
     ...other
   } = props;
@@ -311,9 +426,18 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const columnsContext = React.useContext(GridContext);
 
-  // setting prop before context to accomodate nesting
-  // colums set with default breakpoint unit of 12
-  const columns = columnsProp || columnsContext || 12;
+  // columns set with default breakpoint unit of 12
+  const columns = container ? columnsProp || 12 : columnsContext;
+
+  const breakpointsValues = {};
+  const otherFiltered = { ...other };
+
+  breakpoints.keys.forEach((breakpoint) => {
+    if (other[breakpoint] != null) {
+      breakpointsValues[breakpoint] = other[breakpoint];
+      delete otherFiltered[breakpoint];
+    }
+  });
 
   const ownerState = {
     ...props,
@@ -321,42 +445,35 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     container,
     direction,
     item,
-    lg,
-    md,
-    sm,
     rowSpacing,
     columnSpacing,
     wrap,
-    xl,
-    xs,
     zeroMinWidth,
+    spacing,
+    ...breakpointsValues,
+    breakpoints: breakpoints.keys,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const wrapChild = (element) =>
-    columns !== 12 ? (
-      <GridContext.Provider value={columns}>{element}</GridContext.Provider>
-    ) : (
-      element
-    );
-
-  return wrapChild(
-    <GridRoot
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      as={component}
-      ref={ref}
-      {...other}
-    />,
+  return (
+    <GridContext.Provider value={columns}>
+      <GridRoot
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        as={component}
+        ref={ref}
+        {...otherFiltered}
+      />
+    </GridContext.Provider>
   );
 });
 
 Grid.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

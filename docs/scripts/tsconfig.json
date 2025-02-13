@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["../types/react-docgen.d.ts", "buildApi.ts", "i18n.js"],
+  "include": ["*.ts"],
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,
@@ -10,6 +10,5 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "types": ["node"]
-  },
-  "exclude": ["node_modules"]
+  }
 }

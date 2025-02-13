@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { Theme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
@@ -13,10 +14,12 @@ import { visuallyHidden } from '@mui/utils';
 import Folder from '@mui/icons-material/Folder';
 
 const data = [
-  { name: 'Fonts', size: 125600 },
-  { name: 'Libs', size: 134000000 },
-  { name: 'Source', size: 200000000 },
+  { name: 'Typography', size: 125600 },
+  { name: 'Pictures & videos', size: 134000000 },
+  { name: 'Source files', size: 200000000 },
   { name: 'Dependencies', size: 44000000 },
+  { name: 'Assets & illustrations', size: 21000000 },
+  { name: 'Components', size: 11000 },
 ];
 
 type Data = typeof data extends Array<infer T> ? T : never;
@@ -42,117 +45,15 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// This method is created for cross-browser compatibility, if you don't
-// need to support IE11, you can use Array.prototype.sort() directly
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
-  const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 function formatSize(size: number) {
   const kb = size / 1000;
   if (kb < 1000) {
-    return `${kb.toFixed(1)} KB`;
+    return `${kb.toFixed(1)} kB`;
   }
   return `${(kb / 1000).toFixed(0)} MB`;
 }
 
-const primary = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#80BFFF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  main: '#007FFF',
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
-};
-const primaryDark = {
-  50: '#E2EDF8',
-  100: '#CEE0F3',
-  200: '#91B9E3',
-  300: '#5090D3',
-  400: '#265D97',
-  500: '#1E4976',
-  600: '#173A5E',
-  700: '#132F4C',
-  800: '#001E3C',
-  900: '#0A1929',
-};
-const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5',
-  800: '#5A6978',
-  900: '#3D4752',
-};
-
 export default function BasicTable() {
-  /*
-   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
-   *
-   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
-   */
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          primary,
-          grey,
-          ...(mode === 'light' && {
-            text: {
-              primary: grey[800],
-              secondary: grey[600],
-            },
-          }),
-          divider: mode === 'dark' ? primaryDark[500] : grey[200],
-          success: {
-            main: mode === 'dark' ? '#1AA251' : '#178D46',
-          },
-          background: {
-            paper: mode === 'dark' ? primaryDark[800] : '#fff',
-          },
-        },
-        typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
-        },
-        shape: {
-          borderRadius: 10,
-        },
-        components: {
-          MuiTableCell: {
-            styleOverrides: {
-              root: {
-                borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
-              },
-              sizeSmall: {
-                padding: '0.625rem 1rem',
-              },
-            },
-          },
-        },
-      }),
-    [mode],
-  );
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
@@ -164,59 +65,96 @@ export default function BasicTable() {
     handleRequestSort(event, property);
   };
   const headCells = [
-    { id: 'name', label: 'Folder Name', TableCellProps: {} },
+    { id: 'name', label: 'Name', TableCellProps: {} },
     { id: 'size', label: 'Size', TableCellProps: { align: 'right' } },
   ] as const;
   return (
-    <ThemeProvider theme={theme}>
-      <TableContainer component={Paper} variant="outlined" sx={{ maxWidth: 260 }}>
-        <Table aria-label="folder table" size="small">
-          <TableHead>
-            <TableRow>
-              {headCells.map((headCell) => (
-                <TableCell
-                  key={headCell.id}
-                  sortDirection={orderBy === headCell.id ? order : false}
-                  {...headCell.TableCellProps}
+    <TableContainer
+      component={Paper}
+      variant="outlined"
+      sx={[
+        {
+          maxWidth: 260,
+          borderColor: 'grey.200',
+          boxShadow: (theme) => `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
+          [`& .${tableCellClasses.root}`]: {
+            borderColor: 'grey.200',
+          },
+          [`& .${tableCellClasses.sizeSmall}`]: {
+            padding: '0.625rem 1rem',
+          },
+        },
+        (theme) =>
+          theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+            [`& .${tableCellClasses.root}`]: {
+              borderColor: 'primaryDark.700',
+            },
+          }),
+      ]}
+    >
+      <Table aria-label="folder table" size="small">
+        <TableHead>
+          <TableRow>
+            {headCells.map((headCell) => (
+              <TableCell
+                key={headCell.id}
+                sortDirection={orderBy === headCell.id ? order : false}
+                {...headCell.TableCellProps}
+              >
+                <TableSortLabel
+                  active={orderBy === headCell.id}
+                  direction={orderBy === headCell.id ? order : 'asc'}
+                  onClick={createSortHandler(headCell.id)}
+                  sx={{ fontSize: '0.75rem', color: 'text.secondary' }}
                 >
-                  <TableSortLabel
-                    active={orderBy === headCell.id}
-                    direction={orderBy === headCell.id ? order : 'asc'}
-                    onClick={createSortHandler(headCell.id)}
-                    sx={{ fontSize: '0.75rem' }}
-                  >
-                    {headCell.label}
-                    {orderBy === headCell.id ? (
-                      <Box component="span" sx={visuallyHidden}>
-                        {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                      </Box>
-                    ) : null}
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {stableSort(data, getComparator(order, orderBy)).map((row) => (
-              <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Folder
-                      sx={{ mr: 1 }}
-                      fontSize="small"
-                      htmlColor={mode === 'dark' ? primary[700] : grey[300]}
-                    />{' '}
-                    {row.name}
-                  </Box>
-                </TableCell>
-                <TableCell align="right" sx={{ color: 'success.main' }}>
-                  {formatSize(row.size)}
-                </TableCell>
-              </TableRow>
+                  {headCell.label}
+                  {orderBy === headCell.id ? (
+                    <Box component="span" sx={visuallyHidden}>
+                      {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                    </Box>
+                  ) : null}
+                </TableSortLabel>
+              </TableCell>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </ThemeProvider>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {[...data].sort(getComparator(order, orderBy)).map((row) => (
+            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableCell component="th" scope="row">
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Folder fontSize="small" sx={{ color: 'primary.400' }} />
+                  <Typography sx={{ fontSize: 13, fontWeight: 500, color: 'text.primary' }}>
+                    {row.name}
+                  </Typography>
+                </Box>
+              </TableCell>
+              <TableCell align="right">
+                <Typography
+                  sx={[
+                    {
+                      fontSize: 13,
+                      fontWeight: 'bold',
+                    },
+                    (theme: Theme) => ({
+                      mr: 1,
+                      color: 'success.800',
+                      ...theme.applyDarkStyles({
+                        color: 'success.500',
+                      }),
+                    }),
+                  ]}
+                >
+                  {formatSize(row.size)}
+                </Typography>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }

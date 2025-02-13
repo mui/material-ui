@@ -3,26 +3,39 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn gatsby build && concurrently --success first --kill-others \"yarn gatsby serve\" \"node testGatsbyIntegration\""
+    "prestart": "node ../../scripts/createFixture.js gatsby",
+    "start": "pnpm gatsby build && concurrently --success first --kill-others \"pnpm gatsby serve\" \"node testGatsbyIntegration\""
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.4.0",
-    "@emotion/styled": "11.3.0",
-    "@mui/material": "5.0.0-alpha.34",
-    "@mui/icons-material": "5.0.0-alpha.34",
-    "@mui/lab": "5.0.0-alpha.34",
-    "@mui/styled-engine": "5.0.0-alpha.34",
-    "@mui/styles": "5.0.0-alpha.33",
-    "@mui/system": "5.0.0-alpha.34",
-    "@mui/utils": "5.0.0-alpha.33",
-    "gatsby": "3.4.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-is": "17.0.2"
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
+    "@mui/material": "workspace:*",
+    "@mui/icons-material": "workspace:*",
+    "@mui/lab": "workspace:*",
+    "@mui/styled-engine": "workspace:*",
+    "@mui/styles": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "gatsby": "5.13.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "6.1.0",
-    "playwright": "1.11.0"
+    "concurrently": "7.4.0",
+    "playwright": "1.50.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/base": "file:../../../../packed/@mui/base.tgz",
+      "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
+      "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
+      "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
+      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
+      "@mui/system": "file:../../../../packed/@mui/system.tgz",
+      "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
+    }
   }
 }

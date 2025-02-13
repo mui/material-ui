@@ -3,28 +3,41 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn vite build && concurrently --success first --kill-others \"yarn server\" \"node testViteIntegration\"",
-    "server": "serve -s build"
+    "prestart": "node ../../scripts/createFixture.js vite",
+    "start": "pnpm vite build && concurrently --success first --kill-others \"pnpm server\" \"node testViteIntegration\"",
+    "server": "serve -p 5001 -s build"
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.4.0",
-    "@emotion/styled": "11.3.0",
-    "@mui/material": "5.0.0-alpha.34",
-    "@mui/icons-material": "5.0.0-alpha.34",
-    "@mui/lab": "5.0.0-alpha.34",
-    "@mui/styled-engine": "5.0.0-alpha.34",
-    "@mui/styles": "5.0.0-alpha.33",
-    "@mui/system": "5.0.0-alpha.34",
-    "@mui/utils": "5.0.0-alpha.33",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-is": "17.0.2",
-    "vite": "2.3.3"
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
+    "@mui/material": "workspace:*",
+    "@mui/icons-material": "workspace:*",
+    "@mui/lab": "workspace:*",
+    "@mui/styled-engine": "workspace:*",
+    "@mui/styles": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-is": "18.2.0",
+    "vite": "4.5.6"
   },
   "devDependencies": {
-    "concurrently": "6.1.0",
-    "playwright": "1.11.0",
-    "serve": "11.3.2"
+    "concurrently": "7.4.0",
+    "playwright": "1.50.1",
+    "serve": "14.2.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "@mui/base": "file:../../../../packed/@mui/base.tgz",
+      "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
+      "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
+      "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
+      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
+      "@mui/system": "file:../../../../packed/@mui/system.tgz",
+      "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
+    }
   }
 }

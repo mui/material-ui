@@ -13,7 +13,7 @@ export default function styled(tag, options) {
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    return (...styles) => {
+    const fn = (...styles) => {
       const component = typeof tag === 'string' ? `"${tag}"` : 'component';
       if (styles.length === 0) {
         console.error(
@@ -29,9 +29,35 @@ export default function styled(tag, options) {
       }
       return stylesFactory(...styles);
     };
+    fn.withConfig = stylesFactory.withConfig;
+    return fn;
   }
 
-  return (...styles) => stylesFactory(...styles);
+  return stylesFactory;
+}
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_mutateStyles(tag, processor) {
+  // Styled-components attaches an instance to `componentStyle`.
+  // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/StyledComponent.ts#L257
+  //
+  // The instance contains `rules` (the styles)
+  // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/ComponentStyle.ts#L23
+  if (tag.componentStyle) {
+    tag.componentStyle.rules = processor(tag.componentStyle.rules);
+  }
+}
+
+// Not needed anymore, but fixes https://github.com/mui/material-ui/issues/44112
+// TODO: Remove it in v7
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_processStyles(tag, processor) {
+  return internal_mutateStyles(tag, processor);
+}
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles(styles) {
+  return styles;
 }
 
 export { ThemeContext, keyframes, css } from 'styled-components';

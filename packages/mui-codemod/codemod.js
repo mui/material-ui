@@ -5,32 +5,47 @@ const { promises: fs } = require('fs');
 const path = require('path');
 const yargs = require('yargs');
 const jscodeshiftPackage = require('jscodeshift/package.json');
+const postcssCliPackage = require('postcss-cli/package.json');
 
 const jscodeshiftDirectory = path.dirname(require.resolve('jscodeshift'));
 const jscodeshiftExecutable = path.join(jscodeshiftDirectory, jscodeshiftPackage.bin.jscodeshift);
 
-async function runTransform(transform, files, flags, codemodFlags) {
-  const transformerSrcPath = path.resolve(__dirname, './src', `${transform}.js`);
-  const transformerBuildPath = path.resolve(__dirname, './node', `${transform}.js`);
+const postcssCliDirectory = path.dirname(require.resolve('postcss-cli'));
+const postcssExecutable = path.join(postcssCliDirectory, postcssCliPackage.bin.postcss);
+
+async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
+  const paths = [
+    path.resolve(__dirname, './src', `${transform}/index.js`),
+    path.resolve(__dirname, './src', `${transform}.js`),
+    path.resolve(__dirname, './node', `${transform}/index.js`),
+    path.resolve(__dirname, './node', `${transform}.js`),
+  ];
+
   let transformerPath;
-  try {
-    await fs.stat(transformerSrcPath);
-    transformerPath = transformerSrcPath;
-  } catch (srcPathError) {
+  let error;
+  for (const item of paths) {
     try {
-      await fs.stat(transformerBuildPath);
-      transformerPath = transformerBuildPath;
-    } catch (buildPathError) {
-      if (buildPathError.code === 'ENOENT') {
-        throw new Error(
-          `Transform '${transform}' not found. Check out ${path.resolve(
-            __dirname,
-            './README.md for a list of available codemods.',
-          )}`,
-        );
-      }
-      throw buildPathError;
+      // eslint-disable-next-line no-await-in-loop
+      await fs.stat(item);
+      error = undefined;
+      transformerPath = item;
+      break;
+    } catch (srcPathError) {
+      error = srcPathError;
+      continue;
     }
+  }
+
+  if (error) {
+    if (error?.code === 'ENOENT') {
+      throw new Error(
+        `Transform '${transform}' not found. Check out ${path.resolve(
+          __dirname,
+          './README.md for a list of available codemods.',
+        )}`,
+      );
+    }
+    throw error;
   }
 
   const args = [
@@ -40,11 +55,13 @@ async function runTransform(transform, files, flags, codemodFlags) {
     transformerPath,
     ...codemodFlags,
     '--extensions',
-    'js,ts,jsx,tsx',
+    'js,ts,jsx,tsx,json',
     '--parser',
     flags.parser || 'tsx',
     '--ignore-pattern',
     '**/node_modules/**',
+    '--ignore-pattern',
+    '**/*.css',
   ];
 
   if (flags.dry) {
@@ -68,15 +85,81 @@ async function runTransform(transform, files, flags, codemodFlags) {
   }
 }
 
+const parseCssFilePaths = async (files) => {
+  const cssFiles = await Promise.all(
+    files.map(async (filePath) => {
+      const stat = await fs.stat(filePath);
+      if (stat.isDirectory()) {
+        return `${filePath}/**/*.css`;
+      }
+      if (filePath.endsWith('.css')) {
+        return filePath;
+      }
+
+      return null;
+    }),
+  );
+
+  return cssFiles.filter(Boolean);
+};
+
+async function runPostcssTransform(transform, files) {
+  // local postcss plugins are loaded through config files https://github.com/postcss/postcss-load-config/issues/17#issuecomment-253125559
+  const paths = [
+    path.resolve(__dirname, './src', `${transform}/postcss.config.js`),
+    path.resolve(__dirname, './node', `${transform}/postcss.config.js`),
+  ];
+
+  let configPath;
+  let error;
+  for (const item of paths) {
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await fs.stat(item);
+      error = undefined;
+      configPath = item;
+      break;
+    } catch (srcPathError) {
+      error = srcPathError;
+      continue;
+    }
+  }
+
+  if (error) {
+    // don't throw if the file is not found, postcss transform is optional
+    if (error?.code !== 'ENOENT') {
+      throw error;
+    }
+  } else {
+    const cssPaths = await parseCssFilePaths(files);
+
+    if (cssPaths.length > 0) {
+      const args = [
+        postcssExecutable,
+        ...cssPaths,
+        '--config',
+        configPath,
+        '--replace',
+        '--verbose',
+      ];
+
+      // eslint-disable-next-line no-console -- debug information
+      console.log(`Executing command: postcss ${args.join(' ')}`);
+      const postcssProcess = childProcess.spawnSync('node', args, { stdio: 'inherit' });
+
+      if (postcssProcess.error) {
+        throw postcssProcess.error;
+      }
+    }
+  }
+}
+
 function run(argv) {
   const { codemod, paths, ...flags } = argv;
+  const files = paths.map((filePath) => path.resolve(filePath));
 
-  return runTransform(
-    codemod,
-    paths.map((filePath) => path.resolve(filePath)),
-    flags,
-    argv._,
-  );
+  runJscodeshiftTransform(codemod, files, flags, argv._);
+  runPostcssTransform(codemod, files);
 }
 
 yargs

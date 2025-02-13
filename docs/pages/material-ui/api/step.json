@@ -1,0 +1,62 @@
+{
+  "props": {
+    "active": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "completed": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "expanded": { "type": { "name": "bool" }, "default": "false" },
+    "index": { "type": { "name": "custom", "description": "integer" } },
+    "last": { "type": { "name": "bool" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Step",
+  "imports": ["import Step from '@mui/material/Step';", "import { Step } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "alternativeLabel",
+      "className": "MuiStep-alternativeLabel",
+      "description": "Styles applied to the root element if `alternativeLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "completed",
+      "className": "Mui-completed",
+      "description": "State class applied to the root element if `completed={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStep-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStep-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStep-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStep",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Step/Step.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
+  "cssComponent": false
+}

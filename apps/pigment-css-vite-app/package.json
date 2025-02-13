@@ -1,0 +1,55 @@
+{
+  "name": "@app/pigment-css-vite-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "vite preview",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@mui/base": "workspace:^",
+    "@mui/icons-material": "workspace:^",
+    "@mui/lab": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/material-pigment-css": "workspace:^",
+    "@mui/system": "workspace:^",
+    "@mui/utils": "workspace:^",
+    "clsx": "^2.1.1",
+    "playwright": "^1.50.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-error-boundary": "^5.0.0",
+    "react-router-dom": "^6.29.0",
+    "webfontloader": "^1.6.28"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "@pigment-css/vite-plugin": "0.0.30",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/webfontloader": "^1.6.38",
+    "@vitejs/plugin-react": "^4.3.4",
+    "postcss": "^8.5.1",
+    "postcss-combine-media-query": "^1.0.1",
+    "vite": "5.4.14",
+    "vite-plugin-node-polyfills": "0.23.0",
+    "vite-plugin-pages": "^0.32.4"
+  },
+  "nx": {
+    "targets": {
+      "preview": {
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "dev": {
+        "dependsOn": [
+          "^build"
+        ]
+      }
+    }
+  }
+}

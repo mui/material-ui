@@ -1,0 +1,46 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "CardActionArea",
+  "imports": [
+    "import CardActionArea from '@mui/material/CardActionArea';",
+    "import { CardActionArea } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "focusHighlight",
+      "className": "MuiCardActionArea-focusHighlight",
+      "description": "Styles applied to the overlay that covers the action area when it is keyboard focused.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the ButtonBase root element if the action area is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiCardActionArea-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCardActionArea",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/CardActionArea/CardActionArea.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>",
+  "cssComponent": false
+}

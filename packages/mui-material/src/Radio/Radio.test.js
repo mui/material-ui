@@ -1,12 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import switchBaseClasses from '../internal/switchBaseClasses';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Radio />', () => {
   const { render } = createRenderer();
+
+  function CustomRoot({ checkedIcon, ownerState, disableRipple, slots, slotProps, ...props }) {
+    return <div {...props} />;
+  }
 
   describeConformance(<Radio />, () => ({
     classes,
@@ -15,6 +22,15 @@ describe('<Radio />', () => {
     muiName: 'MuiRadio',
     testVariantProps: { color: 'secondary' },
     refInstanceof: window.HTMLSpanElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomRoot,
+      },
+      input: {
+        expectedClassName: switchBaseClasses.input,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 
@@ -37,6 +53,15 @@ describe('<Radio />', () => {
     it('should render a checked icon', () => {
       const { getAllByTestId } = render(<Radio checked />);
       expect(getAllByTestId('RadioButtonCheckedIcon').length).to.equal(1);
+    });
+  });
+
+  describe('prop: size', () => {
+    it('add sizeSmall class to the root element when the size prop equals "small"', () => {
+      const { getByRole } = render(<Radio size="small" />);
+      const radio = getByRole('radio');
+      const root = radio.parentElement;
+      expect(root).to.have.class(classes.sizeSmall);
     });
   });
 
@@ -82,6 +107,38 @@ describe('<Radio />', () => {
         );
 
         expect(getByRole('radio')).not.to.have.attribute('disabled');
+      });
+    });
+  });
+
+  describe('theme: customization', () => {
+    it('should be customizable in the theme using the size prop.', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        components: {
+          MuiRadio: {
+            styleOverrides: {
+              sizeSmall: {
+                marginLeft: -40,
+                paddingRight: 2,
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Radio size="small" />
+        </ThemeProvider>,
+      );
+
+      expect(container.querySelector(`.${classes.sizeSmall}`)).toHaveComputedStyle({
+        marginLeft: '-40px',
+        paddingRight: '2px',
       });
     });
   });

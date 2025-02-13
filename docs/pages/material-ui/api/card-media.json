@@ -1,0 +1,49 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "image": { "type": { "name": "string" } },
+    "src": { "type": { "name": "string" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "CardMedia",
+  "imports": [
+    "import CardMedia from '@mui/material/CardMedia';",
+    "import { CardMedia } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "img",
+      "className": "MuiCardMedia-img",
+      "description": "Styles applied to the root element if `component=\"picture or img\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "media",
+      "className": "MuiCardMedia-media",
+      "description": "Styles applied to the root element if `component=\"video, audio, picture, iframe, or img\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCardMedia-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCardMedia",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/CardMedia/CardMedia.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>",
+  "cssComponent": false
+}

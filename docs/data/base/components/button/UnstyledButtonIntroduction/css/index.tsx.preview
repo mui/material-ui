@@ -1,0 +1,9 @@
+<React.Fragment>
+  <Stack spacing={2} direction="row">
+    <Button className="IntroductionButton">Button</Button>
+    <Button className="IntroductionButton" disabled>
+      Disabled
+    </Button>
+  </Stack>
+  <Styles />
+</React.Fragment>

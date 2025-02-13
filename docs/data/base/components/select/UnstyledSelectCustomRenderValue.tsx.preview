@@ -1,0 +1,14 @@
+<Select
+  defaultValue={10}
+  renderValue={(option: SelectOption<number> | null) => {
+    if (option == null || option.value === 0) {
+      return 'Select an option…';
+    }
+    return `${option.label} (${option.value})`;
+  }}
+>
+  <Option value={0}>None</Option>
+  <Option value={10}>Ten</Option>
+  <Option value={20}>Twenty</Option>
+  <Option value={30}>Thirty</Option>
+</Select>

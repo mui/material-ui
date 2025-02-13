@@ -1,0 +1,67 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "cols": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "component": { "type": { "name": "elementType" } },
+    "rows": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ImageListItem",
+  "imports": [
+    "import ImageListItem from '@mui/material/ImageListItem';",
+    "import { ImageListItem } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "img",
+      "className": "MuiImageListItem-img",
+      "description": "Styles applied to an `img` element to ensure it covers the item.",
+      "isGlobal": false
+    },
+    {
+      "key": "masonry",
+      "className": "MuiImageListItem-masonry",
+      "description": "Styles applied to the root element if `variant=\"masonry\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "quilted",
+      "className": "MuiImageListItem-quilted",
+      "description": "Styles applied to the root element if `variant=\"quilted\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiImageListItem-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiImageListItem-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "woven",
+      "className": "MuiImageListItem-woven",
+      "description": "Styles applied to the root element if `variant=\"woven\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageListItem",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-material/src/ImageListItem/ImageListItem.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image List</a></li></ul>",
+  "cssComponent": false
+}

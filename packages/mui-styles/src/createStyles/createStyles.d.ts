@@ -8,7 +8,7 @@ import { StyleRules } from '@mui/styles/withStyles';
  * @returns the same styles that were passed in
  */
 // For TypeScript v3.5 Props has to extend {} instead of object
-// See https://github.com/mui-org/material-ui/issues/15942
+// See https://github.com/mui/material-ui/issues/15942
 // and https://github.com/microsoft/TypeScript/issues/31735
 export default function createStyles<ClassKey extends string, Props extends {}>(
   styles: StyleRules<Props, ClassKey>,

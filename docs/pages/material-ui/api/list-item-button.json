@@ -1,0 +1,88 @@
+{
+  "props": {
+    "alignItems": {
+      "type": { "name": "enum", "description": "'center'<br>&#124;&nbsp;'flex-start'" },
+      "default": "'center'"
+    },
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
+    "focusVisibleClassName": { "type": { "name": "string" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ListItemButton",
+  "imports": [
+    "import ListItemButton from '@mui/material/ListItemButton';",
+    "import { ListItemButton } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "alignItemsFlexStart",
+      "className": "MuiListItemButton-alignItemsFlexStart",
+      "description": "Styles applied to the component element if `alignItems=\"flex-start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "dense",
+      "className": "MuiListItemButton-dense",
+      "description": "Styles applied to the component element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the inner `component` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "divider",
+      "className": "MuiListItemButton-divider",
+      "description": "Styles applied to the inner `component` element if `divider={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the `component`'s `focusVisibleClassName` prop.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiListItemButton-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemButton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemButton",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ListItemButton/ListItemButton.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false
+}

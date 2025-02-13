@@ -1,0 +1,55 @@
+{
+  "props": {
+    "actions": { "type": { "name": "custom", "description": "ref" } },
+    "anchor": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "onItemsChange": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ listbox?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ listbox?: elementType, root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "Menu",
+  "imports": ["import { Menu } from '@mui/base/Menu';", "import { Menu } from '@mui/base';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the popup element.",
+      "default": "'div'",
+      "class": "base-Menu-root"
+    },
+    {
+      "name": "listbox",
+      "description": "The component that renders the listbox.",
+      "default": "'ul'",
+      "class": "base-Menu-listbox"
+    }
+  ],
+  "classes": [
+    {
+      "key": "expanded",
+      "className": "base--expanded",
+      "description": "State class applied to the root element if `open={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "Menu",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Menu/Menu.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

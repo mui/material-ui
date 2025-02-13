@@ -1,0 +1,46 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "addEndListener": { "type": { "name": "func" } },
+    "appear": { "type": { "name": "bool" }, "default": "true" },
+    "container": {
+      "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" }
+    },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
+      },
+      "default": "'down'"
+    },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      },
+      "default": "{\n  enter: theme.transitions.easing.easeOut,\n  exit: theme.transitions.easing.sharp,\n}"
+    },
+    "in": { "type": { "name": "bool" } },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+    }
+  },
+  "name": "Slide",
+  "imports": ["import Slide from '@mui/material/Slide';", "import { Slide } from '@mui/material';"],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiSlide",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Slide/Slide.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
+  },
+  "demos": "<ul><li><a href=\"/material-ui/react-dialog/\">Dialog</a></li>\n<li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
+  "cssComponent": false
+}

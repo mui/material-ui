@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
 
 export interface TimelineSeparatorClasses {
   /** Styles applied to the root element. */

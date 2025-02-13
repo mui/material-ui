@@ -1,19 +1,28 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import ListItemText, { listItemTextClasses as classes } from '@mui/material/ListItemText';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ListItemText />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItemText>Conformance?</ListItemText>, () => ({
+  describeConformance(<ListItemText primary="Primary" secondary="Secondary" />, () => ({
     classes,
     inheritComponent: 'div',
     render,
     muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      primary: {
+        expectedClassName: classes.primary,
+      },
+      secondary: {
+        expectedClassName: classes.secondary,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 
@@ -153,6 +162,27 @@ describe('<ListItemText />', () => {
     expect(texts).to.have.length(2);
     expect(texts[0]).to.have.text('This is the primary text');
     expect(texts[1]).have.text('This is the secondary text');
+  });
+
+  it('should use variant if provided', () => {
+    const { getByText } = render(
+      <ListItemText
+        primary="This is the primary text"
+        primaryTypographyProps={{ variant: 'h3' }}
+        secondary="This is the secondary text"
+        secondaryTypographyProps={{ variant: 'h4' }}
+      />,
+    );
+    expect(getByText('This is the primary text')).to.have.tagName('h3');
+    expect(getByText('This is the secondary text')).to.have.tagName('h4');
+  });
+
+  it('should fall back to the default tag name if no variant provided', () => {
+    const { getByText } = render(
+      <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
+    );
+    expect(getByText('This is the primary text')).to.have.tagName('span');
+    expect(getByText('This is the secondary text')).to.have.tagName('p');
   });
 
   it('should pass primaryTypographyProps to primary Typography component', () => {

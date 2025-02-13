@@ -5,52 +5,103 @@ import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
 import CheckRounded from '@mui/icons-material/CheckRounded';
-import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
+import NpmCopyButton from 'docs/src/components/action/NpmCopyButton';
 
-export default function GetStartedButtons({
-  installation = 'npm install @mui/material',
-  to = ROUTES.documentation,
-  ...props
-}: { installation?: string; to?: string } & BoxProps) {
+interface GetStartedButtonsProps extends BoxProps {
+  primaryLabel?: string;
+  primaryUrl: string;
+  primaryUrlTarget?: string;
+  secondaryLabel?: string;
+  secondaryUrl?: string;
+  secondaryUrlTarget?: string;
+  installation?: string;
+  altInstallation?: string;
+}
+
+export default function GetStartedButtons(props: GetStartedButtonsProps) {
   const [copied, setCopied] = React.useState(false);
+  const {
+    primaryLabel = 'Get started',
+    primaryUrl,
+    primaryUrlTarget = '_self',
+    secondaryLabel,
+    secondaryUrl,
+    secondaryUrlTarget = '_self',
+    installation,
+    altInstallation,
+    ...other
+  } = props;
+
   const handleCopy = () => {
     setCopied(true);
-    copy(installation).then(() => {
+    copy(installation!).then(() => {
       setTimeout(() => setCopied(false), 2000);
     });
   };
+
   return (
-    <Box
-      {...props}
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        '&& > *': { minWidth: 'clamp(0px, (492px - 100%) * 999 ,100%)' },
-        ...props.sx,
-      }}
-    >
-      <Button
-        href={to}
-        component={Link}
-        noLinkStyle
-        size="large"
-        variant="contained"
-        endIcon={<KeyboardArrowRightRounded />}
+    <React.Fragment>
+      <Box
+        {...other}
+        sx={{
+          display: 'flex',
+          flexWrap: { xs: 'wrap', md: 'nowrap' },
+          gap: 1.5,
+          '&& > *': {
+            minWidth: { xs: '100%', md: '0%' },
+          },
+          ...other.sx,
+        }}
       >
-        Get started
-      </Button>
-      <Box sx={{ width: 16, height: 16 }} />
-      <Button
-        size="large"
-        // @ts-expect-error
-        variant="code"
-        startIcon="$"
-        endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
-        onClick={handleCopy}
-      >
-        {installation}
-      </Button>
-    </Box>
+        <Button
+          href={primaryUrl}
+          component={Link}
+          target={primaryUrlTarget}
+          rel={primaryUrlTarget ? 'noopener' : ''}
+          noLinkStyle
+          variant="contained"
+          endIcon={<KeyboardArrowRightRounded />}
+          sx={{ flexShrink: 0 }}
+        >
+          {primaryLabel}
+        </Button>
+        {installation ? (
+          <Button
+            // @ts-expect-error
+            variant="codeOutlined"
+            endIcon={copied ? <CheckRounded color="primary" /> : <ContentCopyRounded />}
+            onClick={handleCopy}
+            sx={{
+              maxWidth: '324px',
+              display: 'inline-block',
+              justifyContent: 'start',
+              overflowX: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              position: 'relative',
+              pr: 5,
+            }}
+          >
+            {installation}
+          </Button>
+        ) : null}
+        {secondaryLabel ? (
+          <Button
+            href={secondaryUrl}
+            component={Link}
+            target={secondaryUrlTarget}
+            rel={secondaryUrlTarget ? 'noopener' : ''}
+            noLinkStyle
+            variant="outlined"
+            color="secondary"
+            endIcon={<KeyboardArrowRightRounded />}
+          >
+            {secondaryLabel}
+          </Button>
+        ) : null}
+      </Box>
+      {altInstallation && <NpmCopyButton installation={altInstallation} sx={{ mt: 2 }} />}
+    </React.Fragment>
   );
 }

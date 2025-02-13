@@ -32,7 +32,7 @@ const rule = {
         } = node;
         const isFireKeyboardEvent =
           callee.type === 'MemberExpression' &&
-          keyboardEventDispatchers.indexOf(callee.property.name) !== -1 &&
+          keyboardEventDispatchers.includes(callee.property.name) &&
           callee.object.name === 'fireEvent';
         const targetsDocumentActiveElement =
           firstArgument !== undefined &&

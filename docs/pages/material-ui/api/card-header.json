@@ -1,0 +1,94 @@
+{
+  "props": {
+    "action": { "type": { "name": "node" } },
+    "avatar": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: func<br>&#124;&nbsp;object, avatar?: func<br>&#124;&nbsp;object, content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, subheader?: func<br>&#124;&nbsp;object, title?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ action?: elementType, avatar?: elementType, content?: elementType, root?: elementType, subheader?: elementType, title?: elementType }"
+      },
+      "default": "{}"
+    },
+    "subheader": { "type": { "name": "node" } },
+    "subheaderTypographyProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.subheader</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "title": { "type": { "name": "node" } },
+    "titleTypographyProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.title</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    }
+  },
+  "name": "CardHeader",
+  "imports": [
+    "import CardHeader from '@mui/material/CardHeader';",
+    "import { CardHeader } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "'div'",
+      "class": "MuiCardHeader-root"
+    },
+    {
+      "name": "avatar",
+      "description": "The component that renders the avatar slot.",
+      "default": "'div'",
+      "class": "MuiCardHeader-avatar"
+    },
+    {
+      "name": "action",
+      "description": "The component that renders the action slot.",
+      "default": "'div'",
+      "class": "MuiCardHeader-action"
+    },
+    {
+      "name": "content",
+      "description": "The component that renders the content slot.",
+      "default": "'div'",
+      "class": "MuiCardHeader-content"
+    },
+    {
+      "name": "title",
+      "description": "The component that renders the title slot (as long as disableTypography is not `true`).\n[Follow this guide](https://mui.com/material-ui/api/typography/#props) to learn more about the requirements for this component.",
+      "default": "Typography",
+      "class": "MuiCardHeader-title"
+    },
+    {
+      "name": "subheader",
+      "description": "The component that renders the subheader slot (as long as disableTypography is not `true`).\n[Follow this guide](https://mui.com/material-ui/api/typography/#props) to learn more about the requirements for this component.",
+      "default": "Typography",
+      "class": "MuiCardHeader-subheader"
+    }
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCardHeader",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/CardHeader/CardHeader.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li></ul>",
+  "cssComponent": false
+}

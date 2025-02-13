@@ -1,0 +1,34 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "TimelineConnector",
+  "imports": [
+    "import TimelineConnector from '@mui/lab/TimelineConnector';",
+    "import { TimelineConnector } from '@mui/lab';"
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTimelineConnector-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimelineConnector",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-lab/src/TimelineConnector/TimelineConnector.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,0 +1,12 @@
+<FocusTrap open={open} disableRestoreFocus disableAutoFocus>
+  <Stack spacing={2} sx={{ alignItems: 'center' }}>
+    <button type="button" onClick={() => setOpen(!open)}>
+      {open ? 'Close' : 'Open'}
+    </button>
+    {open && (
+      <label>
+        First name: <input type="text" />
+      </label>
+    )}
+  </Stack>
+</FocusTrap>

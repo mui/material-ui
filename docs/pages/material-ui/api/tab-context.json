@@ -1,0 +1,22 @@
+{
+  "props": {
+    "value": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "required": true
+    },
+    "children": { "type": { "name": "node" } }
+  },
+  "name": "TabContext",
+  "imports": [
+    "import TabContext from '@mui/lab/TabContext';",
+    "import { TabContext } from '@mui/lab';"
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiTabContext",
+  "filename": "/packages/mui-lab/src/TabContext/TabContext.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

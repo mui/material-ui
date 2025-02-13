@@ -1,24 +1,16 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha } from '@mui/system';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
-import useTheme from '../styles/useTheme';
+import integerPropType from '@mui/utils/integerPropType';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import getOverlayAlpha from '../styles/getOverlayAlpha';
 import { getPaperUtilityClass } from './paperClasses';
-
-// Inspired by https://github.com/material-components/material-components-ios/blob/bca36107405594d5b7b16265a5b0ed698f85a5ee/components/Elevation/src/UIColor%2BMaterialElevation.m#L61
-const getOverlayAlpha = (elevation) => {
-  let alphaValue;
-  if (elevation < 1) {
-    alphaValue = 5.11916 * elevation ** 2;
-  } else {
-    alphaValue = 4.5 * Math.log(elevation + 1) + 2;
-  }
-  return (alphaValue / 100).toFixed(2);
-};
 
 const useUtilityClasses = (ownerState) => {
   const { square, elevation, variant, classes } = ownerState;
@@ -48,29 +40,42 @@ const PaperRoot = styled('div', {
       ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})(({ theme, ownerState }) => ({
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.text.primary,
-  transition: theme.transitions.create('box-shadow'),
-  ...(!ownerState.square && {
-    borderRadius: theme.shape.borderRadius,
-  }),
-  ...(ownerState.variant === 'outlined' && {
-    border: `1px solid ${theme.palette.divider}`,
-  }),
-  ...(ownerState.variant === 'elevation' && {
-    boxShadow: theme.shadows[ownerState.elevation],
-    ...(theme.palette.mode === 'dark' && {
-      backgroundImage: `linear-gradient(${alpha(
-        '#fff',
-        getOverlayAlpha(ownerState.elevation),
-      )}, ${alpha('#fff', getOverlayAlpha(ownerState.elevation))})`,
-    }),
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    color: (theme.vars || theme).palette.text.primary,
+    transition: theme.transitions.create('box-shadow'),
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.square,
+        style: {
+          borderRadius: theme.shape.borderRadius,
+        },
+      },
+      {
+        props: {
+          variant: 'outlined',
+        },
+        style: {
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        },
+      },
+      {
+        props: {
+          variant: 'elevation',
+        },
+        style: {
+          boxShadow: 'var(--Paper-shadow)',
+          backgroundImage: 'var(--Paper-overlay)',
+        },
+      },
+    ],
+  })),
+);
 
 const Paper = React.forwardRef(function Paper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiPaper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiPaper' });
+  const theme = useTheme();
 
   const {
     className,
@@ -92,8 +97,6 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const theme = useTheme();
     if (theme.shadows[elevation] === undefined) {
       console.error(
         [
@@ -111,15 +114,31 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      style={{
+        ...(variant === 'elevation' && {
+          '--Paper-shadow': (theme.vars || theme).shadows[elevation],
+          ...(theme.vars && {
+            '--Paper-overlay': theme.vars.overlays?.[elevation],
+          }),
+          ...(!theme.vars &&
+            theme.palette.mode === 'dark' && {
+              '--Paper-overlay': `linear-gradient(${alpha(
+                '#fff',
+                getOverlayAlpha(elevation),
+              )}, ${alpha('#fff', getOverlayAlpha(elevation))})`,
+            }),
+        }),
+        ...other.style,
+      }}
     />
   );
 });
 
 Paper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -157,6 +176,10 @@ Paper.propTypes /* remove-proptypes */ = {
    * @default false
    */
   square: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

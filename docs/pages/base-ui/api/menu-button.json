@@ -1,0 +1,57 @@
+{
+  "props": {
+    "className": { "type": { "name": "string" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "focusableWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "label": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "MenuButton",
+  "imports": [
+    "import { MenuButton } from '@mui/base/MenuButton';",
+    "import { MenuButton } from '@mui/base';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": "base-MenuButton-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "active",
+      "className": "base--active",
+      "description": "State class applied to the root element if `active={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "base--expanded",
+      "description": "State class applied to the root element if the associated menu is open.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "MenuButton",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/MenuButton/MenuButton.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

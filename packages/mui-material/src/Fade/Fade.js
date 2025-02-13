@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementAcceptingRef } from '@mui/utils';
-import { duration } from '../styles/createTransitions';
-import useTheme from '../styles/useTheme';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
+import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
 
@@ -16,16 +17,17 @@ const styles = {
   },
 };
 
-const defaultTimeout = {
-  enter: duration.enteringScreen,
-  exit: duration.leavingScreen,
-};
-
 /**
- * The Fade transition is used by the [Modal](/components/modal/) component.
+ * The Fade transition is used by the [Modal](/material-ui/react-modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Fade = React.forwardRef(function Fade(props, ref) {
+  const theme = useTheme();
+  const defaultTimeout = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     addEndListener,
     appear = true,
@@ -44,12 +46,10 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     TransitionComponent = Transition,
     ...other
   } = props;
-  const theme = useTheme();
 
   const enableStrictModeCompat = true;
   const nodeRef = React.useRef(null);
-  const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(nodeRef, foreignRef);
+  const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
@@ -128,7 +128,8 @@ const Fade = React.forwardRef(function Fade(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             opacity: 0,
@@ -138,7 +139,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>
@@ -146,10 +147,10 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 });
 
 Fade.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger. Called with the transitioning DOM
    * node and a done callback. Allows for more fine grained transition end
@@ -213,8 +214,8 @@ Fade.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout: PropTypes.oneOfType([

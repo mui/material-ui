@@ -1,0 +1,36 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "enableColorScheme": { "type": { "name": "bool" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ScopedCssBaseline",
+  "imports": [
+    "import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';",
+    "import { ScopedCssBaseline } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiScopedCssBaseline-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiScopedCssBaseline",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ScopedCssBaseline/ScopedCssBaseline.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-css-baseline/\">CSS Baseline</a></li></ul>",
+  "cssComponent": false
+}

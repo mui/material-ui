@@ -1,0 +1,4 @@
+<CircularProgress variant="solid" />
+<CircularProgress variant="soft" />
+<CircularProgress variant="outlined" />
+<CircularProgress variant="plain" />

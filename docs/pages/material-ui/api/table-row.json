@@ -1,0 +1,61 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "hover": { "type": { "name": "bool" }, "default": "false" },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "TableRow",
+  "imports": [
+    "import TableRow from '@mui/material/TableRow';",
+    "import { TableRow } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "footer",
+      "className": "MuiTableRow-footer",
+      "description": "Styles applied to the root element if table variant=\"footer\".",
+      "isGlobal": false
+    },
+    {
+      "key": "head",
+      "className": "MuiTableRow-head",
+      "description": "Styles applied to the root element if table variant=\"head\".",
+      "isGlobal": false
+    },
+    {
+      "key": "hover",
+      "className": "MuiTableRow-hover",
+      "description": "State class applied to the root element if `hover={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTableRow-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTableRow",
+  "forwardsRefTo": "HTMLTableRowElement",
+  "filename": "/packages/mui-material/src/TableRow/TableRow.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
+  "cssComponent": false
+}

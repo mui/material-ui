@@ -1,0 +1,268 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableElevation": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "fullWidth": { "type": { "name": "bool" }, "default": "false" },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'contained'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
+      },
+      "default": "'outlined'"
+    }
+  },
+  "name": "ButtonGroup",
+  "imports": [
+    "import ButtonGroup from '@mui/material/ButtonGroup';",
+    "import { ButtonGroup } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "colorPrimary",
+      "className": "MuiButtonGroup-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiButtonGroup-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`",
+      "isGlobal": false
+    },
+    {
+      "key": "contained",
+      "className": "MuiButtonGroup-contained",
+      "description": "Styles applied to the root element if `variant=\"contained\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the child elements if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "disableElevation",
+      "className": "MuiButtonGroup-disableElevation",
+      "description": "Styles applied to the root element if `disableElevation={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "firstButton",
+      "className": "MuiButtonGroup-firstButton",
+      "description": "Styles applied to the first button in the button group.",
+      "isGlobal": false
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiButtonGroup-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "grouped",
+      "className": "MuiButtonGroup-grouped",
+      "description": "Styles applied to the children.",
+      "isGlobal": false
+    },
+    {
+      "key": "groupedContained",
+      "className": "MuiButtonGroup-groupedContained",
+      "description": "Styles applied to the children if `variant=\"contained\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedContainedHorizontal",
+      "className": "MuiButtonGroup-groupedContainedHorizontal",
+      "description": "Styles applied to the children if `variant=\"contained\"` and `orientation=\"horizontal\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedContainedPrimary",
+      "className": "MuiButtonGroup-groupedContainedPrimary",
+      "description": "Styles applied to the children if `variant=\"contained\"` and `color=\"primary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedContainedSecondary",
+      "className": "MuiButtonGroup-groupedContainedSecondary",
+      "description": "Styles applied to the children if `variant=\"contained\"` and `color=\"secondary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedContainedVertical",
+      "className": "MuiButtonGroup-groupedContainedVertical",
+      "description": "Styles applied to the children if `variant=\"contained\"` and `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedHorizontal",
+      "className": "MuiButtonGroup-groupedHorizontal",
+      "description": "Styles applied to the children if `orientation=\"horizontal\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedOutlined",
+      "className": "MuiButtonGroup-groupedOutlined",
+      "description": "Styles applied to the children if `variant=\"outlined\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedOutlinedHorizontal",
+      "className": "MuiButtonGroup-groupedOutlinedHorizontal",
+      "description": "Styles applied to the children if `variant=\"outlined\"` and `orientation=\"horizontal\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedOutlinedPrimary",
+      "className": "MuiButtonGroup-groupedOutlinedPrimary",
+      "description": "Styles applied to the children if `variant=\"outlined\"` and `color=\"primary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedOutlinedSecondary",
+      "className": "MuiButtonGroup-groupedOutlinedSecondary",
+      "description": "Styles applied to the children if `variant=\"outlined\"` and `color=\"secondary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedOutlinedVertical",
+      "className": "MuiButtonGroup-groupedOutlinedVertical",
+      "description": "Styles applied to the children if `variant=\"outlined\"` and `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedText",
+      "className": "MuiButtonGroup-groupedText",
+      "description": "Styles applied to the children if `variant=\"text\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedTextHorizontal",
+      "className": "MuiButtonGroup-groupedTextHorizontal",
+      "description": "Styles applied to the children if `variant=\"text\"` and `orientation=\"horizontal\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedTextPrimary",
+      "className": "MuiButtonGroup-groupedTextPrimary",
+      "description": "Styles applied to the children if `variant=\"text\"` and `color=\"primary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedTextSecondary",
+      "className": "MuiButtonGroup-groupedTextSecondary",
+      "description": "Styles applied to the children if `variant=\"text\"` and `color=\"secondary\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedTextVertical",
+      "className": "MuiButtonGroup-groupedTextVertical",
+      "description": "Styles applied to the children if `variant=\"text\"` and `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "groupedVertical",
+      "className": "MuiButtonGroup-groupedVertical",
+      "description": "Styles applied to the children if `orientation=\"vertical\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiButtonGroup-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "lastButton",
+      "className": "MuiButtonGroup-lastButton",
+      "description": "Styles applied to the last button in the button group.",
+      "isGlobal": false
+    },
+    {
+      "key": "middleButton",
+      "className": "MuiButtonGroup-middleButton",
+      "description": "Styles applied to buttons in the middle of the button group.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiButtonGroup-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiButtonGroup-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "text",
+      "className": "MuiButtonGroup-text",
+      "description": "Styles applied to the root element if `variant=\"text\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiButtonGroup-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiButtonGroup",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ButtonGroup/ButtonGroup.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-button-group/\">Button Group</a></li></ul>",
+  "cssComponent": false
+}

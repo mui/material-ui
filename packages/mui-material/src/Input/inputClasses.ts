@@ -1,4 +1,6 @@
-import { generateUtilityClasses, generateUtilityClass } from '@mui/base';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import { inputBaseClasses } from '../InputBase';
 
 export interface InputClasses {
   /** Styles applied to the root element. */
@@ -27,6 +29,10 @@ export interface InputClasses {
   inputSizeSmall: string;
   /** Styles applied to the input element if `multiline={true}`. */
   inputMultiline: string;
+  /** Styles applied to the input element if `startAdornment` is provided. */
+  inputAdornedStart: string;
+  /** Styles applied to the input element if `endAdornment` is provided. */
+  inputAdornedEnd: string;
   /** Styles applied to the input element if `type="search"`. */
   inputTypeSearch: string;
 }
@@ -37,21 +43,9 @@ export function getInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiInput', slot);
 }
 
-const inputClasses: InputClasses = generateUtilityClasses('MuiInput', [
-  'root',
-  'formControl',
-  'focused',
-  'disabled',
-  'colorSecondary',
-  'underline',
-  'error',
-  'sizeSmall',
-  'multiline',
-  'fullWidth',
-  'input',
-  'inputSizeSmall',
-  'inputMultiline',
-  'inputTypeSearch',
-]);
+const inputClasses: InputClasses = {
+  ...inputBaseClasses,
+  ...generateUtilityClasses('MuiInput', ['root', 'underline', 'input']),
+};
 
 export default inputClasses;

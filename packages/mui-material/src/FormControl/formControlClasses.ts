@@ -1,4 +1,5 @@
-import { generateUtilityClasses, generateUtilityClass } from '@mui/base';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface FormControlClasses {
   /** Styles applied to the root element. */

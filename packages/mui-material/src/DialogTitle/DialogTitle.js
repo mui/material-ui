@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
-import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import DialogContext from '../Dialog/DialogContext';
 
@@ -28,7 +29,7 @@ const DialogTitleRoot = styled(Typography, {
 });
 
 const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiDialogTitle',
   });
@@ -37,7 +38,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
-  const { titleId: id = idProp } = React.useContext(DialogContext);
+  const { titleId = idProp } = React.useContext(DialogContext);
 
   return (
     <DialogTitleRoot
@@ -46,17 +47,17 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       variant="h6"
-      id={id}
+      id={idProp ?? titleId}
       {...other}
     />
   );
 });
 
 DialogTitle.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */

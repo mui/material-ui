@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import NotchedOutline from './NotchedOutline';
 
@@ -52,6 +52,17 @@ describe('<NotchedOutline />', () => {
     );
     expect(container2.querySelector('fieldset')).toHaveComputedStyle({
       paddingRight: '8px',
+    });
+  });
+
+  it('should not set padding (notch) for empty, null or undefined label props', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+    const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
+    ['', undefined, null].forEach((prop) => {
+      const { container: container1 } = render(<NotchedOutline {...defaultProps} label={prop} />);
+      expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
     });
   });
 });

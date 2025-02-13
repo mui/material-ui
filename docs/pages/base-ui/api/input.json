@@ -1,0 +1,129 @@
+{
+  "props": {
+    "autoComplete": { "type": { "name": "string" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "className": { "type": { "name": "string" } },
+    "defaultValue": { "type": { "name": "any" } },
+    "disabled": { "type": { "name": "bool" } },
+    "endAdornment": { "type": { "name": "node" } },
+    "error": { "type": { "name": "bool" } },
+    "id": { "type": { "name": "string" } },
+    "maxRows": { "type": { "name": "number" } },
+    "minRows": { "type": { "name": "number" } },
+    "multiline": { "type": { "name": "bool" }, "default": "false" },
+    "name": { "type": { "name": "string" } },
+    "placeholder": { "type": { "name": "string" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
+    "rows": { "type": { "name": "number" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, root?: elementType, textarea?: elementType }"
+      },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "startAdornment": { "type": { "name": "node" } },
+    "type": {
+      "type": {
+        "name": "enum",
+        "description": "'button'<br>&#124;&nbsp;'checkbox'<br>&#124;&nbsp;'color'<br>&#124;&nbsp;'date'<br>&#124;&nbsp;'datetime-local'<br>&#124;&nbsp;'email'<br>&#124;&nbsp;'file'<br>&#124;&nbsp;'hidden'<br>&#124;&nbsp;'image'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'number'<br>&#124;&nbsp;'password'<br>&#124;&nbsp;'radio'<br>&#124;&nbsp;'range'<br>&#124;&nbsp;'reset'<br>&#124;&nbsp;'search'<br>&#124;&nbsp;'submit'<br>&#124;&nbsp;'tel'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;'time'<br>&#124;&nbsp;'url'<br>&#124;&nbsp;'week'"
+      },
+      "default": "'text'"
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "Input",
+  "imports": ["import { Input } from '@mui/base/Input';", "import { Input } from '@mui/base';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-Input-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input.",
+      "default": "'input'",
+      "class": "base-Input-input"
+    },
+    {
+      "name": "textarea",
+      "description": "The component that renders the textarea.",
+      "default": "'textarea'",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "adornedEnd",
+      "className": "base-Input-adornedEnd",
+      "description": "Class name applied to the root element if `endAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "adornedStart",
+      "className": "base-Input-adornedStart",
+      "description": "Class name applied to the root element if `startAdornment` is provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "base--error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focused",
+      "className": "base--focused",
+      "description": "State class applied to the root element if the component is focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "base-Input-formControl",
+      "description": "Class name applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputMultiline",
+      "className": "base-Input-inputMultiline",
+      "description": "Class name applied to the input element if `multiline={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inputTypeSearch",
+      "className": "base-Input-inputTypeSearch",
+      "description": "Class name applied to the input element if `type=\"search\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiline",
+      "className": "base-Input-multiline",
+      "description": "Class name applied to the root element if `multiline={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "muiName": "Input",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Input/Input.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-input/\">Input</a></li></ul>",
+  "cssComponent": false
+}

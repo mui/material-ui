@@ -1,6 +1,6 @@
-import * as colors from '@mui/material/colors';
-import * as fse from 'fs-extra';
 import * as path from 'path';
+import * as fse from 'fs-extra';
+import * as colors from '@mui/material/colors';
 
 // use netlify deploy preview if you want to test changes
 const HOST = 'https://mui.com/';
@@ -12,7 +12,7 @@ function getColorHref(name, variant) {
 function buildColorType(name, variants) {
   const typesFilename = path.resolve(__dirname, `../packages/mui-material/src/colors/${name}.d.ts`);
 
-  const typescript = `/* tslint:disable max-line-length */
+  const typescript = `
 /**
  * ${Object.entries(variants)
    .map((entry) => {

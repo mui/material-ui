@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import createTheme from './createTheme';
 import styled from './styled';
 import ThemeProvider from './ThemeProvider';
@@ -168,10 +168,10 @@ describe('styled', () => {
         },
       });
 
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       Test = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
@@ -429,10 +429,10 @@ describe('styled', () => {
     });
 
     it('should respect the skipSx option', () => {
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       const TestNoSx = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
@@ -514,8 +514,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-slot$`);
-      const regExpSC = new RegExp(`MuiComponent-slot-.*`);
+      const regExp = /.*-MuiComponent-slot$/;
+      const regExpSC = /MuiComponent-slot-.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {
@@ -539,8 +539,8 @@ describe('styled', () => {
       const { container } = render(<Component>Test</Component>);
 
       const classList = Array.from(container.firstChild.classList);
-      const regExp = new RegExp(`.*-MuiComponent-root$`);
-      const regExpSC = new RegExp(`MuiComponent-root.*`);
+      const regExp = /.*-MuiComponent-root$/;
+      const regExpSC = /MuiComponent-root.*/;
       let containsValidClass = false;
 
       classList.forEach((className) => {
@@ -620,7 +620,7 @@ describe('styled', () => {
     });
 
     it('classes props should be correctly applied to root and slot elements', () => {
-      const Child = (props) => {
+      function Child(props) {
         const { classes = {}, className, ...other } = props;
 
         return (
@@ -630,12 +630,12 @@ describe('styled', () => {
             {...other}
           />
         );
-      };
+      }
 
       const ParentRoot = styled('div', { name: 'MuiParent', slot: 'Root' })``;
       const ParentSlot = styled(Child, { name: 'MuiChild', slot: 'Slot' })``;
 
-      const Parent = (props) => {
+      function Parent(props) {
         const { classes = {}, className, ...other } = props;
 
         return (
@@ -648,7 +648,7 @@ describe('styled', () => {
             <ParentSlot classes={{ root: classes.slot }} />
           </ParentRoot>
         );
-      };
+      }
 
       const { container } = render(<Parent classes={{ root: 'root', slot: 'slot' }} />);
 

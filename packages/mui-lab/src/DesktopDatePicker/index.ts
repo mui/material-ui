@@ -1,2 +1,2 @@
-export * from './DesktopDatePicker';
 export { default } from './DesktopDatePicker';
+export * from './DesktopDatePicker';

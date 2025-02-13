@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, act, fireEvent } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Fab, { fabClasses as classes } from '@mui/material/Fab';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import Icon from '@mui/material/Icon';
+import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<Fab />', () => {
   const { render, renderToString } = createRenderer();
@@ -60,6 +62,16 @@ describe('<Fab />', () => {
     expect(button).not.to.have.class(classes.primary);
     expect(button).to.have.class(classes.secondary);
   });
+  ['info', 'error', 'warning', 'success'].forEach((color) => {
+    it(`should render a ${color} floating action button`, () => {
+      const { getByRole } = render(<Fab color={color}>Fab</Fab>);
+      const button = getByRole('button');
+
+      expect(button).to.have.class(classes.root);
+      expect(button).not.to.have.class(classes.primary);
+      expect(button).to.have.class(classes[color]);
+    });
+  });
 
   it('should render a small floating action button', () => {
     const { getByRole } = render(<Fab size="small">Fab</Fab>);
@@ -79,19 +91,24 @@ describe('<Fab />', () => {
     expect(button).to.have.class(classes.sizeMedium);
   });
 
-  it('should have a ripple by default', () => {
-    const { container } = render(<Fab>Fab</Fab>);
-
+  it('should have a ripple', async () => {
+    const { container, getByRole } = render(<Fab>Fab</Fab>);
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector(`.${touchRippleClasses.root}`)).not.to.equal(null);
   });
 
-  it('should pass disableRipple to ButtonBase', () => {
-    const { container } = render(<Fab disableRipple>Fab</Fab>);
-
+  it('should pass disableRipple to ButtonBase', async () => {
+    const { container, getByRole } = render(<Fab disableRipple>Fab</Fab>);
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple by default', async () => {
+  it('should have a focusRipple', async function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const { getByRole } = render(
       <Fab
         TouchRippleProps={{
@@ -103,10 +120,7 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
-      button.focus();
-    });
+    await ripple.startFocus(button);
 
     expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
   });
@@ -124,12 +138,16 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
-      button.focus();
-    });
+    await ripple.startFocus(button);
 
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
+  });
+
+  it('should pass disabled class to ButtonBase', () => {
+    const disabledClassName = 'testDisabledClassName';
+    const { container } = render(<Fab disabled classes={{ disabled: disabledClassName }} />);
+
+    expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 
   it('should render Icon children with right classes', () => {

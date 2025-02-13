@@ -1,0 +1,38 @@
+{
+  "name": "material-ui-preact",
+  "version": "5.0.0",
+  "private": true,
+  "dependencies": {
+    "@babel/helper-builder-react-jsx": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "next",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "preact": "latest",
+    "react-scripts": "^5.0.0"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "customize-cra": "latest",
+    "react-app-rewired": "latest"
+  }
+}

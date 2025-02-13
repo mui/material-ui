@@ -5,11 +5,10 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
-import VersionsContext from './VersionsContext';
+import { Link } from '@mui/docs/Link';
+import VersionsContext from 'docs/src/pages/versions/VersionsContext';
 
-const GITHUB_RELEASE_BASE_URL =
-  'https://github.com/mui-org/material-ui/releases/tag/';
+const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui/material-ui/releases/tag/';
 
 function ReleasedVersions() {
   const versions = React.useContext(VersionsContext);
@@ -27,21 +26,14 @@ function ReleasedVersions() {
                 </Typography>
               </TableCell>
               <TableCell>
-                <Link
-                  variant="body2"
-                  color="secondary"
-                  rel="nofollow"
-                  href={doc.url}
-                >
+                <Link variant="body2" rel="nofollow" href={doc.url}>
                   Documentation
                 </Link>
               </TableCell>
               <TableCell>
-                {doc.version.length >= 6 &&
-                doc.version.indexOf('pre-release') === -1 ? (
+                {doc.version.length >= 6 && !doc.version.includes('pre-release') ? (
                   <Link
                     variant="body2"
-                    color="secondary"
                     rel="nofollow"
                     href={`${GITHUB_RELEASE_BASE_URL}${doc.version}`}
                   >

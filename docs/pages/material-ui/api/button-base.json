@@ -1,0 +1,63 @@
+{
+  "props": {
+    "action": { "type": { "name": "custom", "description": "ref" } },
+    "centerRipple": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "custom", "description": "element type" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableTouchRipple": { "type": { "name": "bool" }, "default": "false" },
+    "focusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "focusVisibleClassName": { "type": { "name": "string" } },
+    "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
+    "onFocusVisible": { "type": { "name": "func" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "TouchRippleProps": { "type": { "name": "object" } },
+    "touchRippleRef": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
+      }
+    }
+  },
+  "name": "ButtonBase",
+  "imports": [
+    "import ButtonBase from '@mui/material/ButtonBase';",
+    "import { ButtonBase } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiButtonBase-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiButtonBase",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/ButtonBase/ButtonBase.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Button</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
-import { ThemeProvider, createTheme } from '@mui/system';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { ThemeProvider } from '@mui/system';
+import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
 import Popper from '@mui/material/Popper';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Popper />', () => {
   let rtlTheme;
@@ -23,15 +25,20 @@ describe('<Popper />', () => {
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'div',
+    render,
     refInstanceof: window.HTMLDivElement,
+    testLegacyComponentsProp: true,
+    slots: {
+      root: {},
+    },
     skip: [
       'componentProp',
       'componentsProp',
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
-      // https://github.com/facebook/react/issues/11565
-      'reactTestRenderer',
+      'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 
@@ -108,9 +115,7 @@ describe('<Popper />', () => {
       );
       expect(screen.getByTestId('placement')).to.have.text('bottom');
 
-      await act(async () => {
-        await popperRef.current.setOptions({ placement: 'top' });
-      });
+      await popperRef.current.setOptions({ placement: 'top' });
 
       expect(screen.getByTestId('placement')).to.have.text('bottom');
     });
@@ -160,7 +165,7 @@ describe('<Popper />', () => {
     });
 
     describe('by default', () => {
-      // Test case for https://github.com/mui-org/material-ui/issues/15180
+      // Test case for https://github.com/mui/material-ui/issues/15180
       it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
         const children = <p>Hello World</p>;
 
@@ -282,6 +287,22 @@ describe('<Popper />', () => {
       setProps({ open: false });
       clock.tick(0);
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+    });
+  });
+
+  describe('default props', () => {
+    it('should consume theme default props', () => {
+      const container = document.createElement('div');
+      const theme = createTheme({ components: { MuiPopper: { defaultProps: { container } } } });
+      render(
+        <ThemeProvider theme={theme}>
+          <Popper {...defaultProps} open>
+            <p id="content">Hello World</p>
+          </Popper>
+        </ThemeProvider>,
+      );
+
+      expect(container).to.have.text('Hello World');
     });
   });
 });

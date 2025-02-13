@@ -11,7 +11,7 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
@@ -26,24 +26,24 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout?: TransitionProps['timeout'];
 }
 
 /**
- * The Fade transition is used by the [Modal](https://mui.com/components/modal/) component.
+ * The Fade transition is used by the [Modal](https://next.mui.com/material-ui/react-modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *
- * - [Transitions](https://mui.com/components/transitions/)
+ * - [Transitions](https://next.mui.com/material-ui/transitions/)
  *
  * API:
  *
- * - [Fade API](https://mui.com/api/fade/)
- * - inherits [Transition API](http://reactcommunity.org/react-transition-group/transition/#Transition-props)
+ * - [Fade API](https://next.mui.com/material-ui/api/fade/)
+ * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export default function Fade(props: FadeProps): JSX.Element;
+export default function Fade(props: FadeProps): React.JSX.Element;

@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Button from '@mui/material/Button';
+import { Theme } from '@mui/material/styles';
+import { expectType } from '@mui/types';
 import {
   createStyles,
   withStyles,
@@ -10,9 +13,6 @@ import {
   CreateCSSProperties,
   PropsFunc,
 } from '@mui/styles';
-import Button from '@mui/material/Button';
-import { Theme } from '@mui/material/styles';
-import { expectType } from '@mui/types';
 
 // Example 1
 const simpleStyles = ({ palette, spacing }: Theme) => ({
@@ -36,7 +36,9 @@ const StyledExampleOne = withStyles(simpleStyles)(({ classes, text }: SimpleComp
 // Example 2
 const SimpleComponent: React.FunctionComponent<
   SimpleComponentProps & WithStyles<typeof simpleStyles>
-> = ({ classes, text }) => <div className={classes.root}>{text}</div>;
+> = function SimpleComponent({ classes, text }) {
+  return <div className={classes.root}>{text}</div>;
+};
 
 const StyledExampleTwo = withStyles(simpleStyles)(SimpleComponent);
 <StyledExampleTwo text="I am styled!" />;
@@ -51,10 +53,11 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof simpleStyles>> = ({
-  classes,
-  children,
-}) => <div className={classes.root}>{children}</div>;
+const ComponentWithChildren: React.FunctionComponent<
+  WithStyles<typeof simpleStyles> & { children?: React.ReactNode }
+> = function ComponentWithChildren({ classes, children }) {
+  return <div className={classes.root}>{children}</div>;
+};
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
@@ -160,7 +163,7 @@ withStyles((theme) =>
 
 {
   // allow top level media queries
-  // https://github.com/mui-org/material-ui/issues/12277
+  // https://github.com/mui/material-ui/issues/12277
 
   // typescript thinks `content` is the CSS property not a classname
   const ambiguousStyles = createStyles({
@@ -212,7 +215,7 @@ withStyles((theme) =>
     });
 
   interface ListItemContentProps extends WithStyles<typeof styles> {
-    children?: React.ReactElement;
+    children?: React.ReactElement<unknown>;
     inset?: boolean;
     row?: boolean;
   }
@@ -236,7 +239,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/11109
+  // https://github.com/mui/material-ui/issues/11109
   // The real test here is with "strictFunctionTypes": false,
   // but we don't have a way currently to test under varying
   // TypeScript configurations.
@@ -272,7 +275,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/11191
+  // https://github.com/mui/material-ui/issues/11191
   const styles = (theme: Theme) =>
     createStyles({
       main: {},
@@ -294,7 +297,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/11312
+  // https://github.com/mui/material-ui/issues/11312
   withStyles(simpleStyles, { name: 'MyComponent', index: 0 })(() => <div />);
 }
 
@@ -321,10 +324,14 @@ withStyles((theme) =>
 
   // explicit not but with "Property 'children' is missing in type 'ValidationMap<Props>'".
   // which is not helpful
-  const StatelessComponent: React.FunctionComponent<Props> = (props) => null;
+  const StatelessComponent: React.FunctionComponent<Props> = function StatelessComponent(props) {
+    return null;
+  };
   const StatelessComponentWithStyles: React.FunctionComponent<
     Props & WithStyles<typeof simpleStyles>
-  > = (props) => null;
+  > = function StatelessComponentWithStyles(props) {
+    return null;
+  };
   // @ts-expect-error
   withStyles(simpleStyles)(StatelessComponent);
   // @ts-expect-error
@@ -332,7 +339,7 @@ withStyles((theme) =>
 }
 
 {
-  // https://github.com/mui-org/material-ui/issues/12670
+  // https://github.com/mui/material-ui/issues/12670
   interface Props {
     nonDefaulted: string;
     defaulted: number;
@@ -432,7 +439,7 @@ function ForwardRefTest() {
 }
 
 {
-  // https://github.com/mui-org/material-ui/pull/15546
+  // https://github.com/mui/material-ui/pull/15546
   // Update type definition to let CSS properties be functions
   interface TestProps {
     foo: boolean;
@@ -454,7 +461,7 @@ function ForwardRefTest() {
 
 {
   // If there are no props, use the definition that doesn't accept them
-  // https://github.com/mui-org/material-ui/issues/16198
+  // https://github.com/mui/material-ui/issues/16198
 
   const styles = createStyles({
     root: {

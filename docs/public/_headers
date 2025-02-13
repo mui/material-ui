@@ -7,5 +7,21 @@
 /favicon.ico
   Content-Type: image/x-icon
 
+/performance/*
+  X-Robots-Tag: noindex
+
+/experiments/*
+  X-Robots-Tag: noindex
+
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  # Block usage in iframes.
+  X-Frame-Options: SAMEORIGIN
+  # Force the browser to trust the Content-Type header
+  # https://stackoverflow.com/questions/18337630/what-is-x-content-type-options-nosniff
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  # TODO: progressively reduce the CSP scopes
+  # Start with a wildcard, using https://github.com/mui/toolpad/blob/f4c4eb046b352e4fc00729c3bed605e671b040c4/packages/toolpad-studio/src/server/index.ts#L241
+  Content-Security-Policy: default-src * data: mediastream: blob: filesystem: about: ws: wss: 'unsafe-eval' 'wasm-unsafe-eval' 'unsafe-inline'; script-src * data: blob: 'unsafe-inline' 'unsafe-eval'; script-src-elem * data: blob: 'unsafe-inline'; connect-src * data: blob: 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; media-src * data: blob: 'unsafe-inline'; frame-src * data: blob: ; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline'; frame-ancestors *;

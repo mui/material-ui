@@ -1,12 +1,15 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -30,42 +33,61 @@ const useUtilityClasses = (ownerState) => {
 export const FormLabelRoot = styled('label', {
   name: 'MuiFormLabel',
   slot: 'Root',
-  overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...(ownerState.color === 'secondary' && styles.colorSecondary),
-      ...(ownerState.filled && styles.filled),
-    };
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [
+      styles.root,
+      ownerState.color === 'secondary' && styles.colorSecondary,
+      ownerState.filled && styles.filled,
+    ];
   },
-})(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
-  ...theme.typography.body1,
-  lineHeight: '1.4375em',
-  padding: 0,
-  position: 'relative',
-  [`&.${formLabelClasses.focused}`]: {
-    color: theme.palette[ownerState.color].main,
-  },
-  [`&.${formLabelClasses.disabled}`]: {
-    color: theme.palette.text.disabled,
-  },
-  [`&.${formLabelClasses.error}`]: {
-    color: theme.palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    ...theme.typography.body1,
+    lineHeight: '1.4375em',
+    padding: 0,
+    position: 'relative',
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${formLabelClasses.focused}`]: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+          },
+        })),
+      {
+        props: {},
+        style: {
+          [`&.${formLabelClasses.disabled}`]: {
+            color: (theme.vars || theme).palette.text.disabled,
+          },
+          [`&.${formLabelClasses.error}`]: {
+            color: (theme.vars || theme).palette.error.main,
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const AsteriskComponent = styled('span', {
   name: 'MuiFormLabel',
   slot: 'Asterisk',
   overridesResolver: (props, styles) => styles.asterisk,
-})(({ theme }) => ({
-  [`&.${formLabelClasses.error}`]: {
-    color: theme.palette.error.main,
-  },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    [`&.${formLabelClasses.error}`]: {
+      color: (theme.vars || theme).palette.error.main,
+    },
+  })),
+);
 
 const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
     className,
@@ -118,10 +140,10 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
 });
 
 FormLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -135,7 +157,9 @@ FormLabel.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),

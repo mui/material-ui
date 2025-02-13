@@ -1,0 +1,8 @@
+<React.Fragment>
+  <Input
+    slotProps={{ input: { className: 'CustomInputIntroduction' } }}
+    aria-label="Demo input"
+    placeholder="Type something…"
+  />
+  <Styles />
+</React.Fragment>

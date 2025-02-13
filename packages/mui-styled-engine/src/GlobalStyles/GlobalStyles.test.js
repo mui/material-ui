@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import styled from '..';
 import GlobalStyles from './GlobalStyles';
@@ -70,7 +70,7 @@ describe('GlobalStyles', () => {
     ).not.to.throw();
   });
 
-  it('should give presedence to styled()', function test() {
+  it('should give precedence to styled()', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
@@ -91,7 +91,7 @@ describe('GlobalStyles', () => {
     });
   });
 
-  it('should give presedence to styled() using JS syntax', function test() {
+  it('should give precedence to styled() using JS syntax', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }

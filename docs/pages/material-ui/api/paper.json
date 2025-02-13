@@ -1,0 +1,209 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "square": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'elevation'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
+      },
+      "default": "'elevation'"
+    }
+  },
+  "name": "Paper",
+  "imports": ["import Paper from '@mui/material/Paper';", "import { Paper } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "elevation",
+      "className": "MuiPaper-elevation",
+      "description": "Styles applied to the root element if `variant=\"elevation\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation0",
+      "className": "MuiPaper-elevation0",
+      "description": "Styles applied to the root element if `elevation={0}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation1",
+      "className": "MuiPaper-elevation1",
+      "description": "Styles applied to the root element if `elevation={1}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation10",
+      "className": "MuiPaper-elevation10",
+      "description": "Styles applied to the root element if `elevation={10}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation11",
+      "className": "MuiPaper-elevation11",
+      "description": "Styles applied to the root element if `elevation={11}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation12",
+      "className": "MuiPaper-elevation12",
+      "description": "Styles applied to the root element if `elevation={12}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation13",
+      "className": "MuiPaper-elevation13",
+      "description": "Styles applied to the root element if `elevation={13}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation14",
+      "className": "MuiPaper-elevation14",
+      "description": "Styles applied to the root element if `elevation={14}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation15",
+      "className": "MuiPaper-elevation15",
+      "description": "Styles applied to the root element if `elevation={15}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation16",
+      "className": "MuiPaper-elevation16",
+      "description": "Styles applied to the root element if `elevation={16}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation17",
+      "className": "MuiPaper-elevation17",
+      "description": "Styles applied to the root element if `elevation={17}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation18",
+      "className": "MuiPaper-elevation18",
+      "description": "Styles applied to the root element if `elevation={18}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation19",
+      "className": "MuiPaper-elevation19",
+      "description": "Styles applied to the root element if `elevation={19}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation2",
+      "className": "MuiPaper-elevation2",
+      "description": "Styles applied to the root element if `elevation={2}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation20",
+      "className": "MuiPaper-elevation20",
+      "description": "Styles applied to the root element if `elevation={20}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation21",
+      "className": "MuiPaper-elevation21",
+      "description": "Styles applied to the root element if `elevation={21}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation22",
+      "className": "MuiPaper-elevation22",
+      "description": "Styles applied to the root element if `elevation={22}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation23",
+      "className": "MuiPaper-elevation23",
+      "description": "Styles applied to the root element if `elevation={23}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation24",
+      "className": "MuiPaper-elevation24",
+      "description": "Styles applied to the root element if `elevation={24}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation3",
+      "className": "MuiPaper-elevation3",
+      "description": "Styles applied to the root element if `elevation={3}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation4",
+      "className": "MuiPaper-elevation4",
+      "description": "Styles applied to the root element if `elevation={4}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation5",
+      "className": "MuiPaper-elevation5",
+      "description": "Styles applied to the root element if `elevation={5}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation6",
+      "className": "MuiPaper-elevation6",
+      "description": "Styles applied to the root element if `elevation={6}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation7",
+      "className": "MuiPaper-elevation7",
+      "description": "Styles applied to the root element if `elevation={7}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation8",
+      "className": "MuiPaper-elevation8",
+      "description": "Styles applied to the root element if `elevation={8}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "elevation9",
+      "className": "MuiPaper-elevation9",
+      "description": "Styles applied to the root element if `elevation={9}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiPaper-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiPaper-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiPaper-rounded",
+      "description": "Styles applied to the root element unless `square={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiPaper",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Paper/Paper.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-card/\">Card</a></li>\n<li><a href=\"/material-ui/react-paper/\">Paper</a></li></ul>",
+  "cssComponent": false
+}

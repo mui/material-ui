@@ -15,7 +15,7 @@ const Root = styled('div')({
 const MyComponent = (props) => {
   const { } = props;
 
-  return <Root {...props} className={classes.root} />;
+  return (<Root {...props} className={classes.root} />);
 };
 
 export default (MyComponent);

@@ -27,7 +27,7 @@ export default function Header(props: HeaderProps) {
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
-          <Grid container spacing={1} alignItems="center">
+          <Grid container spacing={1} sx={{ alignItems: 'center' }}>
             <Grid sx={{ display: { sm: 'none', xs: 'block' } }} item>
               <IconButton
                 color="inherit"
@@ -79,7 +79,7 @@ export default function Header(props: HeaderProps) {
         sx={{ zIndex: 0 }}
       >
         <Toolbar>
-          <Grid container alignItems="center" spacing={1}>
+          <Grid container spacing={1} sx={{ alignItems: 'center' }}>
             <Grid item xs>
               <Typography color="inherit" variant="h5" component="h1">
                 Authentication

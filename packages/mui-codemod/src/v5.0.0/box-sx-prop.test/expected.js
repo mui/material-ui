@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 export default function BoxComponent(props) {
   return (
-    <Box
+    (<Box
       sx={{
         m: 2,
         border: "1px dashed grey",
@@ -25,6 +25,6 @@ export default function BoxComponent(props) {
         sx={{
           p: [1, 2, 4]
         }} />
-    </Box>
+    </Box>)
   );
 }

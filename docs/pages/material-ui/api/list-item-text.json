@@ -1,0 +1,94 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
+    "primary": { "type": { "name": "node" } },
+    "primaryTypographyProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.primary</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "secondary": { "type": { "name": "node" } },
+    "secondaryTypographyProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.secondary</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ primary?: func<br>&#124;&nbsp;object, secondary?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ primary?: elementType, secondary?: elementType }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ListItemText",
+  "imports": [
+    "import ListItemText from '@mui/material/ListItemText';",
+    "import { ListItemText } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "primary",
+      "description": "The component that renders the primary slot.",
+      "default": "Typography",
+      "class": "MuiListItemText-primary"
+    },
+    {
+      "name": "secondary",
+      "description": "The component that renders the secondary slot.",
+      "default": "Typography",
+      "class": "MuiListItemText-secondary"
+    }
+  ],
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiListItemText-dense",
+      "description": "Styles applied to the Typography component if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiListItemText-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiline",
+      "className": "MuiListItemText-multiline",
+      "description": "Styles applied to the Typography component if primary and secondary are set.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemText-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemText",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ListItemText/ListItemText.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false
+}

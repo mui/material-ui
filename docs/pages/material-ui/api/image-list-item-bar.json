@@ -1,0 +1,129 @@
+{
+  "props": {
+    "actionIcon": { "type": { "name": "node" } },
+    "actionPosition": {
+      "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" },
+      "default": "'right'"
+    },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "position": {
+      "type": {
+        "name": "enum",
+        "description": "'below'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'bottom'"
+    },
+    "subtitle": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "title": { "type": { "name": "node" } }
+  },
+  "name": "ImageListItemBar",
+  "imports": [
+    "import ImageListItemBar from '@mui/material/ImageListItemBar';",
+    "import { ImageListItemBar } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "actionIcon",
+      "className": "MuiImageListItemBar-actionIcon",
+      "description": "Styles applied to the actionIcon if supplied.",
+      "isGlobal": false
+    },
+    {
+      "key": "actionIconActionPosLeft",
+      "className": "MuiImageListItemBar-actionIconActionPosLeft",
+      "description": "Styles applied to the actionIcon if `actionPosition=\"left\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "actionPositionLeft",
+      "className": "MuiImageListItemBar-actionPositionLeft",
+      "description": "Styles applied to the action container element if `actionPosition=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "actionPositionRight",
+      "className": "MuiImageListItemBar-actionPositionRight",
+      "description": "Styles applied to the action container element if `actionPosition=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionBelow",
+      "className": "MuiImageListItemBar-positionBelow",
+      "description": "Styles applied to the root element if `position=\"below\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionBottom",
+      "className": "MuiImageListItemBar-positionBottom",
+      "description": "Styles applied to the root element if `position=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionTop",
+      "className": "MuiImageListItemBar-positionTop",
+      "description": "Styles applied to the root element if `position=\"top\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiImageListItemBar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "subtitle",
+      "className": "MuiImageListItemBar-subtitle",
+      "description": "Styles applied to the subtitle container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "title",
+      "className": "MuiImageListItemBar-title",
+      "description": "Styles applied to the title container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "titleWrap",
+      "className": "MuiImageListItemBar-titleWrap",
+      "description": "Styles applied to the title and subtitle container element.",
+      "isGlobal": false
+    },
+    {
+      "key": "titleWrapActionPosLeft",
+      "className": "MuiImageListItemBar-titleWrapActionPosLeft",
+      "description": "Styles applied to the container element if `actionPosition=\"left\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "titleWrapActionPosRight",
+      "className": "MuiImageListItemBar-titleWrapActionPosRight",
+      "description": "Styles applied to the container element if `actionPosition=\"right\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "titleWrapBelow",
+      "className": "MuiImageListItemBar-titleWrapBelow",
+      "description": "Styles applied to the title and subtitle container element if `position=\"below\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageListItemBar",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ImageListItemBar/ImageListItemBar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image List</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,17 +1,17 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
-import styled from '../styles/styled';
-import useTheme from '../styles/useTheme';
-import useThemeProps from '../styles/useThemeProps';
-import { duration } from '../styles/createTransitions';
-import useEventCallback from '../utils/useEventCallback';
+import composeClasses from '@mui/utils/composeClasses';
+import useSnackbar from './useSnackbar';
+import ClickAwayListener from '../ClickAwayListener';
+import { styled, useTheme } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 import { getSnackbarUtilityClass } from './snackbarClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, anchorOrigin } = ownerState;
@@ -41,68 +41,74 @@ const SnackbarRoot = styled('div', {
       ],
     ];
   },
-})(({ theme, ownerState }) => {
-  const center = {
-    ...(!ownerState.isRtl && {
-      left: '50%',
-      right: 'auto',
-      transform: 'translateX(-50%)',
-    }),
-    ...(ownerState.isRtl && {
-      right: '50%',
-      left: 'auto',
-      transform: 'translateX(50%)',
-    }),
-  };
-
-  return {
-    zIndex: theme.zIndex.snackbar,
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: (theme.vars || theme).zIndex.snackbar,
     position: 'fixed',
     display: 'flex',
     left: 8,
     right: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-    ...(ownerState.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
-    ...(ownerState.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
-    [theme.breakpoints.up('sm')]: {
-      ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
-      ...(ownerState.anchorOrigin.horizontal === 'center' && center),
-      ...(ownerState.anchorOrigin.horizontal === 'left' && {
-        ...(!ownerState.isRtl && {
-          left: 24,
-          right: 'auto',
-        }),
-        ...(ownerState.isRtl && {
-          right: 24,
-          left: 'auto',
-        }),
-      }),
-      ...(ownerState.anchorOrigin.horizontal === 'right' && {
-        ...(!ownerState.isRtl && {
-          right: 24,
-          left: 'auto',
-        }),
-        ...(ownerState.isRtl && {
-          left: 24,
-          right: 'auto',
-        }),
-      }),
-    },
-  };
-});
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical === 'top',
+        style: { top: 8, [theme.breakpoints.up('sm')]: { top: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.vertical !== 'top',
+        style: { bottom: 8, [theme.breakpoints.up('sm')]: { bottom: 24 } },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'left',
+        style: {
+          justifyContent: 'flex-start',
+          [theme.breakpoints.up('sm')]: {
+            left: 24,
+            right: 'auto',
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'right',
+        style: {
+          justifyContent: 'flex-end',
+          [theme.breakpoints.up('sm')]: {
+            right: 24,
+            left: 'auto',
+          },
+        },
+      },
+      {
+        props: ({ ownerState }) => ownerState.anchorOrigin.horizontal === 'center',
+        style: {
+          [theme.breakpoints.up('sm')]: {
+            left: '50%',
+            right: 'auto',
+            transform: 'translateX(-50%)',
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSnackbar' });
+  const theme = useTheme();
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     autoHideDuration = null,
     children,
     className,
-    ClickAwayListenerProps,
-    ContentProps,
+    ClickAwayListenerProps: ClickAwayListenerPropsProp,
+    ContentProps: ContentPropsProp,
     disableWindowBlurListener = false,
     message,
     onBlur,
@@ -112,96 +118,28 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     onMouseLeave,
     open,
     resumeHideDuration,
-    TransitionComponent = Grow,
-    transitionDuration = {
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    },
-    TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
+    slots = {},
+    slotProps = {},
+    TransitionComponent: TransitionComponentProp,
+    transitionDuration = defaultTransitionDuration,
+    TransitionProps: { onEnter, onExited, ...TransitionPropsProp } = {},
     ...other
   } = props;
 
-  const theme = useTheme();
-  const isRtl = theme.direction === 'rtl';
+  const ownerState = {
+    ...props,
+    anchorOrigin: { vertical, horizontal },
+    autoHideDuration,
+    disableWindowBlurListener,
+    TransitionComponent: TransitionComponentProp,
+    transitionDuration,
+  };
 
-  const ownerState = { ...props, anchorOrigin: { vertical, horizontal }, isRtl };
   const classes = useUtilityClasses(ownerState);
 
-  const timerAutoHide = React.useRef();
+  const { getRootProps, onClickAway } = useSnackbar({ ...ownerState });
+
   const [exited, setExited] = React.useState(true);
-
-  const handleClose = useEventCallback((...args) => {
-    if (onClose) {
-      onClose(...args);
-    }
-  });
-
-  const setAutoHideTimer = useEventCallback((autoHideDurationParam) => {
-    if (!onClose || autoHideDurationParam == null) {
-      return;
-    }
-
-    clearTimeout(timerAutoHide.current);
-    timerAutoHide.current = setTimeout(() => {
-      handleClose(null, 'timeout');
-    }, autoHideDurationParam);
-  });
-
-  React.useEffect(() => {
-    if (open) {
-      setAutoHideTimer(autoHideDuration);
-    }
-
-    return () => {
-      clearTimeout(timerAutoHide.current);
-    };
-  }, [open, autoHideDuration, setAutoHideTimer]);
-
-  // Pause the timer when the user is interacting with the Snackbar
-  // or when the user hide the window.
-  const handlePause = () => {
-    clearTimeout(timerAutoHide.current);
-  };
-
-  // Restart the timer when the user is no longer interacting with the Snackbar
-  // or when the window is shown back.
-  const handleResume = React.useCallback(() => {
-    if (autoHideDuration != null) {
-      setAutoHideTimer(resumeHideDuration != null ? resumeHideDuration : autoHideDuration * 0.5);
-    }
-  }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
-
-  const handleFocus = (event) => {
-    if (onFocus) {
-      onFocus(event);
-    }
-    handlePause();
-  };
-  const handleMouseEnter = (event) => {
-    if (onMouseEnter) {
-      onMouseEnter(event);
-    }
-    handlePause();
-  };
-
-  const handleBlur = (event) => {
-    if (onBlur) {
-      onBlur(event);
-    }
-    handleResume();
-  };
-  const handleMouseLeave = (event) => {
-    if (onMouseLeave) {
-      onMouseLeave(event);
-    }
-    handleResume();
-  };
-
-  const handleClickAway = (event) => {
-    if (onClose) {
-      onClose(event, 'clickaway');
-    }
-  };
 
   const handleExited = (node) => {
     setExited(true);
@@ -219,47 +157,76 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     }
   };
 
-  React.useEffect(() => {
-    // TODO: window global should be refactored here
-    if (!disableWindowBlurListener && open) {
-      window.addEventListener('focus', handleResume);
-      window.addEventListener('blur', handlePause);
+  const externalForwardedProps = {
+    slots: {
+      transition: TransitionComponentProp,
+      ...slots,
+    },
+    slotProps: {
+      content: ContentPropsProp,
+      clickAwayListener: ClickAwayListenerPropsProp,
+      transition: TransitionPropsProp,
+      ...slotProps,
+    },
+  };
 
-      return () => {
-        window.removeEventListener('focus', handleResume);
-        window.removeEventListener('blur', handlePause);
-      };
-    }
+  const [Root, rootProps] = useSlot('root', {
+    ref,
+    className: [classes.root, className],
+    elementType: SnackbarRoot,
+    getSlotProps: getRootProps,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+  });
 
-    return undefined;
-  }, [disableWindowBlurListener, handleResume, open]);
+  const [ClickAwaySlot, { ownerState: clickAwayOwnerStateProp, ...clickAwayListenerProps }] =
+    useSlot('clickAwayListener', {
+      elementType: ClickAwayListener,
+      externalForwardedProps,
+      getSlotProps: (handlers) => ({
+        onClickAway: (...params) => {
+          handlers.onClickAway?.(...params);
+          onClickAway(...params);
+        },
+      }),
+      ownerState,
+    });
 
-  React.useEffect(() => {
-    if (!open) {
-      return undefined;
-    }
+  const [ContentSlot, contentSlotProps] = useSlot('content', {
+    elementType: SnackbarContent,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    additionalProps: {
+      message,
+      action,
+    },
+    ownerState,
+  });
 
-    /**
-     * @param {KeyboardEvent} nativeEvent
-     */
-    function handleKeyDown(nativeEvent) {
-      if (!nativeEvent.defaultPrevented) {
-        // IE11, Edge (prior to using Bink?) use 'Esc'
-        if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
-          // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
-          if (onClose) {
-            onClose(nativeEvent, 'escapeKeyDown');
-          }
-        }
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [exited, open, onClose]);
+  const [TransitionSlot, transitionProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps,
+    getSlotProps: (handlers) => ({
+      onEnter: (...params) => {
+        handlers.onEnter?.(...params);
+        handleEnter(...params);
+      },
+      onExited: (...params) => {
+        handlers.onExited?.(...params);
+        handleExited(...params);
+      },
+    }),
+    additionalProps: {
+      appear: true,
+      in: open,
+      timeout: transitionDuration,
+      direction: vertical === 'top' ? 'down' : 'up',
+    },
+    ownerState,
+  });
 
   // So we only render active snackbars.
   if (!open && exited) {
@@ -267,38 +234,24 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
   }
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
-      <SnackbarRoot
-        className={clsx(classes.root, className)}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        ownerState={ownerState}
-        ref={ref}
-        {...other}
-      >
-        <TransitionComponent
-          appear
-          in={open}
-          timeout={transitionDuration}
-          direction={vertical === 'top' ? 'down' : 'up'}
-          onEnter={handleEnter}
-          onExited={handleExited}
-          {...TransitionProps}
-        >
-          {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
-        </TransitionComponent>
-      </SnackbarRoot>
-    </ClickAwayListener>
+    <ClickAwaySlot
+      {...clickAwayListenerProps}
+      {...(slots.clickAwayListener && { ownerState: clickAwayOwnerStateProp })}
+    >
+      <Root {...rootProps}>
+        <TransitionSlot {...transitionProps}>
+          {children || <ContentSlot {...contentSlotProps} />}
+        </TransitionSlot>
+      </Root>
+    </ClickAwaySlot>
   );
 });
 
 Snackbar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
@@ -335,10 +288,12 @@ Snackbar.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `ClickAwayListener` element.
+   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
+   * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContentProps: PropTypes.object,
   /**
@@ -347,10 +302,10 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   disableWindowBlurListener: PropTypes.bool,
   /**
-   * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key prop to ensure independent treatment of each message.
-   * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
-   * features such as autoHideDuration may be canceled.
+   * When displaying multiple consecutive snackbars using a single parent-rendered
+   * `<Snackbar/>`, add the `key` prop to ensure independent treatment of each message.
+   * For instance, use `<Snackbar key={message} />`. Otherwise, messages might update
+   * in place, and features like `autoHideDuration` could be affected.
    */
   key: () => null,
   /**
@@ -396,6 +351,42 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   resumeHideDuration: PropTypes.number,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    clickAwayListener: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element.isRequired,
+        disableReactTree: PropTypes.bool,
+        mouseEvent: PropTypes.oneOf([
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onPointerDown',
+          'onPointerUp',
+          false,
+        ]),
+        onClickAway: PropTypes.func,
+        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+      }),
+    ]),
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    clickAwayListener: PropTypes.elementType,
+    content: PropTypes.elementType,
+    root: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -405,7 +396,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -413,8 +405,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration: PropTypes.oneOfType([
@@ -427,7 +419,8 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps: PropTypes.object,

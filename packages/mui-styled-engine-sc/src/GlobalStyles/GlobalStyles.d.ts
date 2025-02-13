@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { CSSObject, InterpolationFunction } from 'styled-components';
+import { CSSObject, StyleFunction } from 'styled-components';
 
-export interface GlobalStylesProps {
+export interface GlobalStylesProps<Theme extends object = {}> {
   defaultTheme?: object;
-  styles: string | CSSObject | InterpolationFunction<any>;
+  styles: string | CSSObject | StyleFunction<Theme>;
 }
 
-export default function Global(props: GlobalStylesProps): React.ReactElement;
+export default function Global<Theme extends object = {}>(
+  props: GlobalStylesProps<Theme>,
+): React.JSX.Element;

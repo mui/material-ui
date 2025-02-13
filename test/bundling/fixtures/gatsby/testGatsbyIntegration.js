@@ -4,9 +4,11 @@ const playwright = require('playwright');
  * @param {number} timeoutMS
  * @returns {Promise<void>}
  */
-function sleep(timeoutMS) {
+function sleep(duration) {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(), timeoutMS);
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
 }
 

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from 'test/utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import MobileStepper, { mobileStepperClasses as classes } from '@mui/material/MobileStepper';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import describeConformance from '../../test/describeConformance';
 
 describe('<MobileStepper />', () => {
   const { render } = createRenderer();
@@ -25,7 +26,15 @@ describe('<MobileStepper />', () => {
     ),
   };
 
-  describeConformance(<MobileStepper {...defaultProps} />, () => ({
+  function CustomPaper({ square, ownerState, ...other }) {
+    return <i data-testid="custom" {...other} />;
+  }
+
+  function CustomDot({ dotActive, ownerState, ...other }) {
+    return <i data-testid="custom" {...other} />;
+  }
+
+  describeConformance(<MobileStepper {...defaultProps} steps={1} />, () => ({
     classes,
     inheritComponent: Paper,
     render,
@@ -34,7 +43,43 @@ describe('<MobileStepper />', () => {
     testDeepOverrides: { slotName: 'dot', slotClassName: classes.dot },
     testStateOverrides: { prop: 'position', value: 'static', styleKey: 'positionStatic' },
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithComponent: CustomPaper,
+        testWithElement: CustomPaper,
+      },
+      dots: {
+        expectedClassName: classes.dots,
+      },
+      dot: {
+        expectedClassName: classes.dot,
+        testWithComponent: CustomDot,
+        testWithElement: CustomDot,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
+  }));
+
+  describeConformance(<MobileStepper {...defaultProps} steps={1} variant="progress" />, () => ({
+    inheritComponent: Paper,
+    render,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithComponent: CustomPaper,
+        testWithElement: CustomPaper,
+      },
+      progress: {
+        expectedClassName: classes.progress,
+      },
+    },
+    only: [
+      'slotPropsProp',
+      'slotPropsCallback',
+      'slotPropsCallbackWithPropsAsOwnerState',
+      'slotsProp',
+    ],
   }));
 
   it('should render a Paper with 0 elevation', () => {
@@ -110,5 +155,25 @@ describe('<MobileStepper />', () => {
     expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('50');
     rerender(<MobileStepper {...defaultProps} variant="progress" steps={3} activeStep={2} />);
     expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).to.equal('100');
+  });
+
+  it('should set value correctly when steps is set to 1', () => {
+    const { getByRole } = render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
+    const progressBar = screen.getByRole('progressbar');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
+    fireEvent.click(getByRole('button', { name: 'next' }));
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
+    fireEvent.click(getByRole('button', { name: 'back' }));
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
+  });
+
+  it('should set value correctly when steps is updated between 1 & 2', () => {
+    const { rerender } = render(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
+    const progressBar = screen.getByRole('progressbar');
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
+    rerender(<MobileStepper {...defaultProps} variant="progress" steps={2} />);
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('0');
+    rerender(<MobileStepper {...defaultProps} variant="progress" steps={1} />);
+    expect(progressBar.getAttribute('aria-valuenow')).to.equal('100');
   });
 });

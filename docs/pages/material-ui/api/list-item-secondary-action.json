@@ -1,0 +1,41 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ListItemSecondaryAction",
+  "imports": [
+    "import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';",
+    "import { ListItemSecondaryAction } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "disableGutters",
+      "className": "MuiListItemSecondaryAction-disableGutters",
+      "description": "Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListItemSecondaryAction-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListItemSecondaryAction",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false,
+  "deprecated": true
+}

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineOppositeContent, {
   timelineOppositeContentClasses as classes,
 } from '@mui/lab/TimelineOppositeContent';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TimelineOppositeContent />', () => {
   const { render } = createRenderer();

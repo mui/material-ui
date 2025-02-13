@@ -1,0 +1,23 @@
+{
+  "props": {
+    "styles": {
+      "type": {
+        "name": "union",
+        "description": "array<br>&#124;&nbsp;func<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string<br>&#124;&nbsp;bool"
+      }
+    }
+  },
+  "name": "GlobalStyles",
+  "imports": [
+    "import GlobalStyles from '@mui/material/GlobalStyles';",
+    "import { GlobalStyles } from '@mui/material';"
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiGlobalStyles",
+  "filename": "/packages/mui-material/src/GlobalStyles/GlobalStyles.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/customization/how-to-customize/\">How to customize</a></li></ul>",
+  "cssComponent": false
+}

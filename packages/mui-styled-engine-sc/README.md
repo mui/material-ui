@@ -5,6 +5,6 @@ It's designed for developers who would like to use `styled-components` as the ma
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
-[The documentation](https://mui.com/guides/styled-engine/)
+Visit [https://next.mui.com/material-ui/integrations/styled-components/](https://next.mui.com/material-ui/integrations/styled-components/) to view the full documentation.

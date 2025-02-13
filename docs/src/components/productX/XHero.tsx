@@ -1,52 +1,114 @@
 import * as React from 'react';
-import { DataGridPro } from '@mui/x-data-grid-pro';
-import { useDemoData } from '@mui/x-data-grid-generator';
-import { red } from '@mui/material/colors';
+import { red, green, yellow, blue } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/lab/DateRangePicker';
-import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { alpha } from '@mui/material/styles';
+import {
+  DataGridPremium,
+  useGridApiRef,
+  useKeepGroupedColumnsHidden,
+} from '@mui/x-data-grid-premium';
+import { useDemoData } from '@mui/x-data-grid-generator';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
+import dayjs from 'dayjs';
 
-const startDate = new Date();
-startDate.setDate(10);
-const endDate = new Date();
-endDate.setDate(endDate.getDate() + 28);
+const startDate = dayjs();
+startDate.date(10);
+const endDate = dayjs();
+endDate.date(endDate.date() + 28);
+
+const visibleFields = [
+  'commodity',
+  'unitPrice',
+  'feeRate',
+  'quantity',
+  'filledQuantity',
+  'isFilled',
+  'traderName',
+  'status',
+  'totalPrice',
+];
 
 export default function XHero() {
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 10000,
-    maxColumns: 40,
     editable: true,
+    visibleFields,
   });
-  const [value, setValue] = React.useState<DateRange<Date>>([startDate, endDate]);
+  const apiRef = useGridApiRef();
+
+  const sortedColumns = React.useMemo(() => {
+    return [...data.columns].sort((a, b) => {
+      return visibleFields.indexOf(a.field) - visibleFields.indexOf(b.field);
+    });
+  }, [data.columns]);
+
+  const initialState = useKeepGroupedColumnsHidden({
+    apiRef,
+    initialState: {
+      ...data.initialState,
+      rowGrouping: {
+        model: ['commodity'],
+      },
+      aggregation: {
+        model: {
+          quantity: 'sum',
+          unitPrice: 'avg',
+          feeRate: 'min',
+          totalPrice: 'max',
+        },
+      },
+    },
+  });
+
+  const groupingColDef = React.useMemo(
+    () => ({
+      headerClassName: 'grouping-column-header',
+    }),
+    [],
+  );
+
+  const rowGroupingCounterRef = React.useRef(0);
+  const isGroupExpandedByDefault = React.useCallback(() => {
+    rowGroupingCounterRef.current += 1;
+    return rowGroupingCounterRef.current === 3;
+  }, []);
+
   return (
     <HeroContainer
+      linearGradient
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
-            fontWeight="bold"
             variant="body2"
-            color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'flex-start' },
-              '& > *': { mr: 1, width: 28, height: 28 },
-            }}
+            sx={[
+              {
+                fontWeight: 'bold',
+              },
+              (theme) => ({
+                color: 'primary.600',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                '& > *': { mr: 1 },
+                ...theme.applyDarkStyles({
+                  color: 'primary.400',
+                }),
+              }),
+            ]}
           >
-            <IconImage name="product-advanced" /> MUI X
+            <IconImage width={28} height={28} loading="eager" name="product-advanced" /> MUI X
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Performant
@@ -54,82 +116,148 @@ export default function XHero() {
             <GradientText>advanced</GradientText>
             <br /> components
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 500 }}>
             Build complex and data-rich applications using a growing list of advanced React
-            components. We&apos;re kicking it off with the most powerful Data Grid on the market.
+            components, like the Data Grid, Date and Time Pickers, Charts, and more!
           </Typography>
           <GetStartedButtons
-            installation="npm install @mui/x-data-grid"
-            to={ROUTES.dataGridDocs}
-            sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
+            primaryUrl={ROUTES.xIntro}
+            secondaryLabel="Learn about licensing"
+            secondaryUrl={ROUTES.xLicensing}
           />
         </Box>
       }
       rightSx={{
         p: { md: 2, lg: 3, xl: 4 },
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <React.Fragment>
-          <Paper sx={{ mb: { md: 2, lg: 3, xl: 4 } }}>
-            <Box
-              sx={{
-                textAlign: 'center',
-                py: 1,
-                position: 'relative',
-                borderBottom: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-              }}
+          <Paper
+            variant="outlined"
+            sx={(theme) => ({
+              backgroundColor: '#fff',
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
+              mb: { md: 2, lg: 3, xl: 4 },
+              overflow: 'hidden',
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.700',
+                backgroundColor: 'primaryDark.900',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+              }),
+            })}
+          >
+            <Typography
+              variant="body2"
+              sx={{ fontWeight: 'semiBold', textAlign: 'center', py: 1.5 }}
             >
-              <Typography color="primary.main" fontWeight={700}>
-                Trades, October 2020
-              </Typography>
-            </Box>
+              Trades, March 2023
+            </Typography>
+            <Divider />
             <Box
-              sx={{
-                height: { md: 300, xl: 370 },
-                '& .MuiDataGrid-root': {
-                  '& .MuiCheckbox-root': {
-                    p: 0.5,
-                    '& > svg': {
-                      fontSize: '1.25rem',
+              sx={[
+                {
+                  height: { md: 300, xl: 370 },
+                  '& .MuiDataGrid-root': {
+                    border: 0,
+                    color: 'text.secondary',
+                    '--DataGrid-rowBorderColor': (theme) => theme.palette.grey[200],
+                    '& .MuiCheckbox-root': {
+                      p: 0.5,
+                      '& > svg': {
+                        fontSize: '1.25rem',
+                      },
                     },
-                  },
-                  '& .MuiDataGrid-columnHeaderTitleContainer': {
-                    padding: 0,
-                  },
-                  '& .MuiDataGrid-columnHeaderTitle': {
-                    flexGrow: 1,
-                    fontSize: '0.875rem',
-                  },
-                  '& button, & button > svg': {
-                    fontSize: 16,
-                  },
-                  '& .MuiDataGrid-viewport': {
-                    '& .MuiDataGrid-cell': {
+                    [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
+                      {
+                        outline: 'none',
+                      },
+                    '& .MuiDataGrid-columnHeaderTitleContainer': {
+                      padding: 0,
+                      color: 'text.primary',
+                    },
+                    '& .MuiDataGrid-columnHeaderTitle': {
+                      flexGrow: 1,
                       fontSize: '0.875rem',
+                    },
+                    '& button, & button > svg': {
+                      fontSize: 16,
+                    },
+                    '& .MuiChip-root.Rejected': {
+                      color: red[800],
+                      backgroundColor: red[50],
+                      borderColor: red[100],
+                    },
+                    '& .MuiChip-root.Filled': {
+                      color: green[800],
+                      backgroundColor: green[50],
+                      borderColor: green[100],
+                    },
+                    '& .MuiChip-root.Open': {
+                      color: blue[800],
+                      backgroundColor: blue[50],
+                      borderColor: blue[100],
+                    },
+                    '& .MuiChip-root.PartiallyFilled': {
                       color: 'text.secondary',
+                      backgroundColor: yellow[50],
+                      borderColor: yellow[600],
                     },
-                    '& .MuiInputBase-input': {
-                      fontSize: '0.875rem',
-                      px: 0.5,
-                    },
-                  },
-                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
-                    '& .MuiChip-root': {
-                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
+                    '& .grouping-column-header': {
+                      pl: 6,
                     },
                   },
                 },
-              }}
+                (theme) =>
+                  theme.applyDarkStyles({
+                    '& .MuiDataGrid-root': {
+                      '--DataGrid-rowBorderColor': alpha(theme.palette.primaryDark[600], 0.5),
+                      '& .MuiChip-root.Rejected': {
+                        color: red[200],
+                        backgroundColor: alpha(red[900], 0.2),
+                        borderColor: alpha(red[700], 0.5),
+                      },
+                      '& .MuiChip-root.Filled': {
+                        color: green[200],
+                        backgroundColor: alpha(green[900], 0.2),
+                        borderColor: alpha(green[700], 0.5),
+                      },
+                      '& .MuiChip-root.Open': {
+                        color: blue[200],
+                        backgroundColor: alpha(blue[900], 0.2),
+                        borderColor: alpha(blue[700], 0.5),
+                      },
+                      '& .MuiChip-root.PartiallyFilled': {
+                        color: yellow[200],
+                        backgroundColor: alpha(yellow[900], 0.2),
+                        borderColor: alpha(yellow[700], 0.2),
+                      },
+                      '& .MuiDataGrid-pinnedRows': {
+                        backgroundColor: alpha(theme.palette.primaryDark[800], 1),
+                        backgroundImage: 'none',
+                        boxShadow: '0px -6px 12px rgba(0 0 0 /  0.5)',
+                        '& .MuiDataGrid-footerCell': {
+                          color: 'primary.light',
+                        },
+                      },
+                    },
+                  }),
+              ]}
             >
-              <DataGridPro
+              <DataGridPremium
                 {...data}
-                disableSelectionOnClick
-                checkboxSelection
+                columns={sortedColumns}
+                apiRef={apiRef}
+                initialState={initialState}
+                disableRowSelectionOnClick
+                groupingColDef={groupingColDef}
+                rowHeight={36}
+                columnHeaderHeight={48}
                 hideFooter
                 loading={loading}
-                density="compact"
+                isGroupExpandedByDefault={isGroupExpandedByDefault}
               />
             </Box>
           </Paper>
@@ -141,55 +269,87 @@ export default function XHero() {
               p: { md: 2, lg: 3, xl: 0 },
             }}
           >
-            <Paper sx={{ minWidth: 300, mr: { md: 2, lg: 3, xl: 4 }, flexGrow: 1 }}>
-              <Box sx={{ p: 2 }}>
-                <Typography fontWeight={500}>Cool Project</Typography>
-              </Box>
+            <Paper
+              variant="outlined"
+              sx={(theme) => ({
+                minWidth: 300,
+                mr: { md: 2, lg: 3, xl: 4 },
+                flexGrow: 1,
+                backgroundColor: '#fff',
+                borderColor: 'divider',
+                boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.700',
+                  backgroundColor: 'primaryDark.900',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+                }),
+              })}
+            >
+              <Typography variant="body2" sx={{ fontWeight: 'semiBold', p: 2 }}>
+                Cool UI project
+              </Typography>
               <Divider />
               <FolderTreeView />
             </Paper>
             <Paper
-              sx={{
-                '& > div': { borderRadius: 1, overflow: 'auto', bgcolor: 'transparent' },
-                '& .MuiTypography-subtitle1': {
-                  fontSize: '0.875rem',
+              variant="outlined"
+              sx={[
+                {
+                  borderColor: 'divider',
+                  boxShadow: (theme) => `0px 4px 12px ${alpha(theme.palette.grey[200], 0.6)}`,
+                  '& > div': {
+                    borderRadius: 1,
+                    overflow: 'auto',
+                    backgroundColor: 'initial',
+                  },
+                  '& .MuiTypography-subtitle1': {
+                    fontSize: '0.875rem',
+                  },
+                  '& .MuiTypography-caption': {
+                    width: { xs: 28, xl: 32 },
+                    height: 32,
+                  },
+                  '& .MuiPickersSlideTransition-root': {
+                    minWidth: { xs: 268, xl: 300 },
+                    minHeight: { xs: 238, xl: 288 },
+                  },
+                  '& [role="row"]': {
+                    margin: { xs: '4px 0', xl: '6px 0' },
+                  },
+                  '& .MuiPickersArrowSwitcher-root': {
+                    padding: 1,
+                  },
+                  '& .MuiDateRangePickerDay-root': {
+                    lineHeight: 0,
+                    margin: 0,
+                  },
+                  '& .MuiPickersDay-root': {
+                    width: { xs: 28, xl: 32 },
+                    height: { xs: 28, xl: 32 },
+                    fontWeight: 400,
+                  },
+                  '& .MuiDateRangePickerDay-day.Mui-selected': {
+                    fontWeight: 600,
+                  },
+                  '& .MuiDateRangePickerDay-day:not(.Mui-selected)': {
+                    borderColor: 'primary.300',
+                  },
                 },
-                '& .MuiTypography-caption': {
-                  width: { xs: 28, xl: 32 },
-                  height: 32,
-                },
-                '& .PrivatePickersSlideTransition-root': {
-                  minWidth: { xs: 268, xl: 300 },
-                  minHeight: { xs: 238, xl: 288 },
-                },
-                '& [role="row"]': {
-                  margin: { xs: '4px 0', xl: '6px 0' },
-                },
-                '& .MuiDateRangePickerDay-root': {
-                  lineHeight: 0,
-                  margin: 0,
-                },
-                '& .MuiPickersDay-root': {
-                  width: { xs: 28, xl: 32 },
-                  height: { xs: 28, xl: 32 },
-                  fontWeight: 400,
-                },
-              }}
+                (theme) =>
+                  theme.applyDarkStyles({
+                    borderColor: 'primaryDark.700',
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+                    backgroundColor: 'primaryDark.900',
+                    '& .MuiDateRangePickerDay-day.Mui-selected': {
+                      color: '#FFF',
+                    },
+                  }),
+              ]}
             >
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
-                  }}
-                  renderInput={(startProps, endProps) => (
-                    <React.Fragment>
-                      <TextField {...startProps} />
-                      <Box sx={{ mx: 2 }}> to </Box>
-                      <TextField {...endProps} />
-                    </React.Fragment>
-                  )}
+                  value={[startDate, endDate]}
                 />
               </LocalizationProvider>
             </Paper>

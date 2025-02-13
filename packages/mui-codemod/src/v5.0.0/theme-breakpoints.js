@@ -22,7 +22,10 @@ export default function transformer(file, api, options) {
     })
     .forEach((path) => {
       path.node.arguments.forEach((node) => {
-        node.value = map[node.value];
+        const replacementValue = map[node.value];
+        if (replacementValue !== undefined) {
+          node.value = replacementValue;
+        }
       });
     });
 
@@ -36,7 +39,10 @@ export default function transformer(file, api, options) {
     })
     .forEach((path) => {
       const node = path.node.arguments[1];
-      node.value = map[node.value];
+      const replacementValue = map[node.value];
+      if (replacementValue !== undefined) {
+        node.value = replacementValue;
+      }
     });
 
   return root.toSource(printOptions);

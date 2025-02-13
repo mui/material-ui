@@ -9,9 +9,11 @@ declare module 'docs/src/modules/components/HighlightedCode' {
      * plain string
      */
     code: string;
+    copyButtonHidden?: boolean;
+    copyButtonProps?: React.JSX.IntrinsicElements['button'];
     /**
      * short identifier of the code language
-     * see @mui/markdown/prism for possible languages
+     * see @mui/internal-markdown/prism for possible languages
      */
     language: string;
     /**
@@ -19,10 +21,9 @@ declare module 'docs/src/modules/components/HighlightedCode' {
      * @default MarkdownElement
      */
     component?: React.ElementType;
+    sx?: object;
   }
-  export default function HighlightedCode(props: Props): React.ReactElement;
+  export default function HighlightedCode(props: Props): React.ReactElement<unknown>;
 }
-
-declare module '@trendmicro/react-interpolate';
 
 declare module 'react-imask';

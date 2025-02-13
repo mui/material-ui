@@ -1,0 +1,88 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      }
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "filled": { "type": { "name": "bool" } },
+    "focused": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "FormLabel",
+  "imports": [
+    "import FormLabel from '@mui/material/FormLabel';",
+    "import { FormLabel } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "asterisk",
+      "className": "MuiFormLabel-asterisk",
+      "description": "Styles applied to the asterisk element.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiFormLabel-colorSecondary",
+      "description": "Styles applied to the root element if the color is secondary.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "MuiFormLabel-filled",
+      "description": "State class applied to the root element if `filled={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "State class applied to the root element if `focused={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "required",
+      "className": "Mui-required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiFormLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormLabel",
+  "forwardsRefTo": "HTMLLabelElement",
+  "filename": "/packages/mui-material/src/FormLabel/FormLabel.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Group</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li></ul>",
+  "cssComponent": false
+}

@@ -11,57 +11,39 @@ export { StyledComponentProps };
  * @deprecated will be removed in v5 for internal usage only
  */
 export type StandardProps<
-  C,
+  ComponentProps,
   ClassKey extends string,
-  Removals extends keyof C = never,
-> = DistributiveOmit<C, 'classes' | Removals> &
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
   StyledComponentProps<ClassKey> & {
     className?: string;
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     style?: React.CSSProperties;
   };
 
 /**
  * @internal
- * ONLY USE FROM WITHIN mui-org/material-ui
+ * ONLY USE FROM WITHIN mui/material-ui
  *
  * Internal helper type for conform (describeConformance) components
  * However, we don't declare classes on this type.
  * It is recommended to declare them manually with an interface so that each class can have a separate JSDoc.
  */
-export type InternalStandardProps<C, Removals extends keyof C = never> = DistributiveOmit<
-  C,
-  'classes' | Removals
-> &
+export type InternalStandardProps<
+  ComponentProps,
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
   // each component declares it's classes in a separate interface for proper JSDoc
   StyledComponentProps<never> & {
-    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     // TODO: Remove implicit props. Up to each component.
     className?: string;
     style?: React.CSSProperties;
   };
 
-export type PaletteMode = 'light' | 'dark';
-export interface Color {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-  A100: string;
-  A200: string;
-  A400: string;
-  A700: string;
-}
-
 export namespace PropTypes {
   // keeping the type structure for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-shadow, @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
@@ -73,8 +55,6 @@ export { colors };
 export * from './styles';
 
 export * from './utils';
-
-export * from '@mui/base';
 
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
@@ -224,13 +204,13 @@ export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
 export { default as Grid } from './Grid';
-export * from './Grid';
+export { GridProps, GridTypeMap } from './Grid';
+
+export { default as Grid2 } from './Grid2';
+export * from './Grid2';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
-
-export { default as Hidden } from './Hidden';
-export * from './Hidden';
 
 export { default as Icon } from './Icon';
 export * from './Icon';
@@ -327,6 +307,9 @@ export * from './Popover';
 
 export { default as Popper } from './Popper';
 export * from './Popper';
+
+export { default as Portal } from './Portal';
+export * from './Portal';
 
 export { default as Radio } from './Radio';
 export * from './Radio';
@@ -472,7 +455,19 @@ export * from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+export * from './version';
+
 /**
  * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
  */
 export { StyledEngineProvider } from './styles';
+
+export { unstable_composeClasses } from '@mui/utils';
+
+export { default as generateUtilityClass } from './generateUtilityClass';
+export * from './generateUtilityClass';
+
+export { default as generateUtilityClasses } from './generateUtilityClasses';
+
+export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
+export * from './Unstable_TrapFocus';

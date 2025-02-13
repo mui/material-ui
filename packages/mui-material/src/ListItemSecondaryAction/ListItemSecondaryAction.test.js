@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import ListItem from '@mui/material/ListItem';
 import ListItemSecondaryAction, {
   listItemSecondaryActionClasses as classes,
 } from '@mui/material/ListItemSecondaryAction';
+import describeConformance from '../../test/describeConformance';
 
 describe('<ListItemSecondaryAction />', () => {
   const { render } = createRenderer();

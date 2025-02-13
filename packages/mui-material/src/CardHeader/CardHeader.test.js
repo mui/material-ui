@@ -1,23 +1,49 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { typographyClasses } from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
 import CardHeader, { cardHeaderClasses as classes } from '@mui/material/CardHeader';
+import describeConformance from '../../test/describeConformance';
 
 describe('<CardHeader />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<CardHeader />, () => ({
-    classes,
-    inheritComponent: 'div',
-    render,
-    muiName: 'MuiCardHeader',
-    refInstanceof: window.HTMLDivElement,
-    testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
-    testComponentPropWith: 'span',
-    testVariantProps: { variant: 'foo' },
-    skip: ['componentsProp'],
-  }));
+  describeConformance(
+    <CardHeader title="title" subheader="subheader" avatar={<Avatar />} action={<IconButton />} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      muiName: 'MuiCardHeader',
+      refInstanceof: window.HTMLDivElement,
+      testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
+      testComponentPropWith: 'span',
+      testVariantProps: { variant: 'foo' },
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+        avatar: {
+          expectedClassName: classes.avatar,
+        },
+        action: {
+          expectedClassName: classes.action,
+        },
+        content: {
+          expectedClassName: classes.content,
+        },
+        title: {
+          expectedClassName: classes.title,
+        },
+        subheader: {
+          expectedClassName: classes.subheader,
+        },
+      },
+      skip: ['componentsProp'],
+    }),
+  );
 
   describe('without an avatar', () => {
     it('should render the title as headline text', () => {

@@ -1,0 +1,47 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "row": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "FormGroup",
+  "imports": [
+    "import FormGroup from '@mui/material/FormGroup';",
+    "import { FormGroup } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiFormGroup-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "row",
+      "className": "MuiFormGroup-row",
+      "description": "Styles applied to the root element if `row={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormGroup",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/FormGroup/FormGroup.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkbox</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switch</a></li></ul>",
+  "cssComponent": false
+}

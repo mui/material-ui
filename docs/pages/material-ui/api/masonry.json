@@ -1,0 +1,50 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" }, "required": true },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "columns": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      },
+      "default": "4"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "defaultColumns": { "type": { "name": "number" } },
+    "defaultHeight": { "type": { "name": "number" } },
+    "defaultSpacing": { "type": { "name": "number" } },
+    "sequential": { "type": { "name": "bool" }, "default": "false" },
+    "spacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      },
+      "default": "1"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Masonry",
+  "imports": ["import Masonry from '@mui/lab/Masonry';", "import { Masonry } from '@mui/lab';"],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiMasonry-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMasonry",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-lab/src/Masonry/Masonry.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-masonry/\">Masonry</a></li></ul>",
+  "cssComponent": false
+}

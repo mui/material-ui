@@ -1,46 +1,63 @@
 import * as React from 'react';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 const data = [
-  { title: '2.3M', metadata: 'Weekly downloads on npm' },
-  { title: '72.7k', metadata: 'Stars on GitHub' },
-  { title: '2.2k', metadata: 'Open-source contributors' },
-  { title: '15.8k', metadata: 'Followers on Twitter' },
+  { title: '5.8M', metadata: 'Weekly downloads on npm' },
+  { title: '93.9k', metadata: 'Stars on GitHub' },
+  { title: '3.0k', metadata: 'Open-source contributors' },
+  { title: '19.2k', metadata: 'Followers on X' },
 ];
 
 export default function MuiStatistics() {
   return (
-    <Grid item xs={12} md={6} container spacing={2}>
+    <Box
+      data-mui-color-scheme="dark"
+      sx={(theme) => ({
+        pt: { xs: 1, sm: 2.5 },
+        pb: { xs: 2, sm: 3 },
+        pl: { xs: 2, sm: 0 },
+        pr: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: { xs: 0, sm: 1 },
+        width: '100%',
+        flexWrap: 'wrap',
+        background: `linear-gradient(180deg, ${alpha(
+          theme.palette.primary[900],
+          0.1,
+        )} 2%, transparent 80%)`,
+      })}
+    >
       {data.map((item) => (
-        <Grid key={item.title} item xs={6}>
-          <Box
-            sx={{
-              height: '100%',
-              p: 1,
-              pl: 2,
-              borderLeft: '4px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'primary.100',
-            }}
+        <Box key={item.title} sx={{ width: { xs: '50%', sm: 200 }, p: { xs: 1, sm: 0 } }}>
+          <Typography
+            variant="h4"
+            component="h3"
+            sx={[
+              {
+                fontWeight: 'semiBold',
+              },
+              (theme) => ({
+                textAlign: { xs: 'left', sm: 'center' },
+                color: 'primary.main',
+                ...theme.applyDarkStyles({
+                  color: 'primary.200',
+                }),
+              }),
+            ]}
           >
-            <Typography
-              component="div"
-              variant="h3"
-              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.200' : 'primary.main')}
-              fontWeight="bold"
-            >
-              {item.title}
-            </Typography>
-            <Typography
-              color={(theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800')}
-            >
-              {item.metadata}
-            </Typography>
-          </Box>
-        </Grid>
+            {item.title}
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{ color: 'text.secondary', textAlign: { xs: 'left', sm: 'center' } }}
+          >
+            {item.metadata}
+          </Typography>
+        </Box>
       ))}
-    </Grid>
+    </Box>
   );
 }

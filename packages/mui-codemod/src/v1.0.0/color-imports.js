@@ -1,5 +1,5 @@
 // This codemod attempts to fix the color imports breaking change introduced in
-// https://github.com/mui-org/material-ui/releases/tag/v1.0.0-alpha.21
+// https://github.com/mui/material-ui/releases/tag/v1.0.0-alpha.21
 
 // List of colors that are in the `common` module
 const commonColors = [
@@ -22,7 +22,7 @@ const commonColors = [
  * @param {string} colorIdentifier
  */
 function colorAccent(colorIdentifier) {
-  const [, palette, hue] = colorIdentifier.match(/([A-za-z]+?)(A?\d+)?$/);
+  const [, palette, hue] = colorIdentifier.match(/([A-Za-z]+?)(A?\d+)?$/);
   return { palette, hue };
 }
 
@@ -31,7 +31,7 @@ function colorAccent(colorIdentifier) {
  * @param {string} colorPalette
  */
 function colorImportPath(colorPalette) {
-  return commonColors.indexOf(colorPalette) !== -1 ? 'common' : colorPalette;
+  return commonColors.includes(colorPalette) ? 'common' : colorPalette;
 }
 
 /**
@@ -89,7 +89,7 @@ function transformMemberImports(j, root, importPath, targetPath) {
           const colorIdentifier = j.identifier(colorModuleName);
 
           // import color module (if not already imported)
-          if (importDeclarations.map((p) => p.source.value).indexOf(modulePath) === -1) {
+          if (!importDeclarations.map((p) => p.source.value).includes(modulePath)) {
             importDeclarations.push(
               j.importDeclaration(
                 [j.importDefaultSpecifier(colorIdentifier)],

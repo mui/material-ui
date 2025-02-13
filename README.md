@@ -1,179 +1,180 @@
+<!-- #host-reference -->
+<!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="https://mui.com/static/logo.svg" alt="MUI logo"></a></p>
+  <a href="https://next.mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
 </p>
 
-<h1 align="center">MUI</h1>
+<h1 align="center">Material UI</h1>
 
 <div align="center">
 
-Quickly build beautiful [React](https://reactjs.org/) apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with [Material Design](https://material.io/design/introduction/).
-
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui-org/material-ui/blob/HEAD/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
 [![npm next package](https://img.shields.io/npm/v/@mui/material/next.svg)](https://www.npmjs.com/package/@mui/material)
 [![npm downloads](https://img.shields.io/npm/dm/@mui/material.svg)](https://www.npmjs.com/package/@mui/material)
-[![CircleCI](https://circleci.com/gh/mui-org/material-ui/tree/master.svg?style=shield)](https://app.circleci.com/pipelines/github/mui-org/material-ui?branch=master)
-[![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
-[![Follow on Twitter](https://img.shields.io/twitter/follow/MaterialUI.svg?label=follow+Material-UI)](https://twitter.com/MaterialUI)
-[![Renovate status](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://github.com/mui-org/material-ui/issues/27062)
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](https://isitmaintained.com/project/mui-org/material-ui 'Average time to resolve an issue')
-[![Crowdin](https://badges.crowdin.net/material-ui-docs/localized.svg)](https://translate.mui.com/project/material-ui-docs)
-[![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/material-ui)](https://opencollective.com/mui)
+[![GitHub branch status](https://img.shields.io/github/checks-status/mui/material-ui/HEAD)](https://github.com/mui/material-ui/commits/HEAD/)
+[![Coverage Status](https://img.shields.io/codecov/c/github/mui/material-ui.svg)](https://app.codecov.io/gh/mui/material-ui/)
+[![Follow on X](https://img.shields.io/twitter/follow/MaterialUI.svg?label=follow+Material+UI)](https://x.com/MaterialUI)
+[![Renovate status](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://github.com/mui/material-ui/issues/27062)
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mui/material-ui.svg)](https://isitmaintained.com/project/mui/material-ui 'Average time to resolve an issue')
+[![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/mui-org)](https://opencollective.com/mui-org)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/1320/badge)](https://www.bestpractices.dev/projects/1320)
 
 </div>
 
-## Installation
+[Material UI](https://mui.com/material-ui/) is a comprehensive library of React components that features our independent implementation of Google's [Material Design](https://m2.material.io/design/introduction/) system.
+It's trusted by some of the world's greatest product teams because it's been rigorously battle-tested through more than a decade of development by thousands of open-source contributors.
 
-MUI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+Material UI's core functionality is extended by [MUI X](https://github.com/mui/mui-x), a suite of complex components for advanced use cases.
+[Toolpad](https://github.com/mui/toolpad) builds on top of Material UI to provide full-stack components and a low-code internal tool builder.
 
-**[Stable channel v5](https://mui.com/)**
+## Documentation
 
-```sh
-// with npm
-npm install @mui/material @emotion/react @emotion/styled
-
-// with yarn
-yarn add @mui/material @emotion/react @emotion/styled
-```
+Get started in the [Material UI documentation](https://mui.com/material-ui/getting-started/).
 
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/guides/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/guides/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/guides/migration-v0x/))
+- **[v5.x](https://v5.mui.com/)** ([Upgrading from v5 to v6](https://mui.com/material-ui/migration/upgrade-to-v6/))
+- **[v4.x](https://v4.mui.com/)** ([Upgrading from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Upgrading from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Upgrading to v1](https://mui.com/material-ui/migration/migration-v0x/))
 
 </details>
 
-Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
+**Note:** `@next` points to pre-releases.
+Use `@latest` for the latest stable release.
 
-## Who sponsors MUI?
+## Joy UI
+
+This repository also contains Joy UI, an experimental component library that implements our own in-house Joy Design.
+Joy UI is in beta and _development is currently on hold_.
+When starting a new project from scratch, we recommend Material UI over Joy UI because we can guarantee ongoing support.
+
+Keep in mind that the maintainers are primarily focused on other projects and may not be able to respond in a timely manner to issues or pull requests related to Joy UI.
+
+View the [Joy UI documentation](https://mui.com/joy-ui/getting-started/).
+
+## Sponsors
 
 ### Diamond 💎
 
-<p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="octopus" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=256" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="aptugo" href="https://www.aptugo.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://www.aptugo.com/img/favicon.png" alt="aptugo" title="Augmented Software Development Platform" loading="lazy" /></a>
+<p>
+  <a href="https://octopus.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/octopus-square.svg" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
+  <a href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://mui.com/static/sponsors/doit-square.svg" alt="doit" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
 </p>
 
-Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
+Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
 
 ### Gold 🏆
 
-via [Patreon](https://www.patreon.com/oliviertassinari)
+via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
-<p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/tidelift.png?size=192" alt="tidelift" title="Enterprise-ready open-source software" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=192" alt="bitsrc" title="The fastest way to share code" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="movavi" href="https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/13365608?s=192" alt="Next gen digital product studio." loading="lazy" /></a>
+<p>
+  <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
+  &nbsp;
+  <a href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
+  &nbsp;
+  <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
+  &nbsp;
+  <a href="https://route4me.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/route4me/71fb6fa/avatar/288.png" alt="Route4Me" title="Route4Me: Trusted last mile route planning and route optimization." loading="lazy" /></a>
+  &nbsp;
 </p>
 
-via [OpenCollective](https://opencollective.com/mui)
-
-<p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="textemall" href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/192.png" alt="call-em-all" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="hoodiebees" href="https://hoodiebees.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/hoodiebees1/617b451/logo/192.png" alt="hoodiebees" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="movavi" href="https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/movavi-software/a1d0167/logo/192.png" alt="Screen recorder for Mac" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sunmatosoft" href="https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/192.png" alt="We help companies to digitalize their businesses" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="topaussiecasinos.com" href="https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png" alt="Aussie Gambling Guide" loading="lazy" /></a>
+<p>
+  <a href="https://goread.io/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="23" src="https://images.opencollective.com/goread_io/eb6337d/logo/78.png" alt="goread.io" title="Goread.io: Instagram followers, likes, views, and comments." loading="lazy" />Goread.io</a>
+  &nbsp;
+  <a href="https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buzzoidz/d23d9bb/logo/78.png" alt="buzzoid.com" title="Buzzoid: Instant delivery Instagram followers." loading="lazy" />Buzzoid</a>
+  &nbsp;
+  <a href="https://twicsy.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="30" src="https://images.opencollective.com/twicsy/7af290f/logo/78.png" alt="twicsy.com" title="Twicsy: Instant delivery Instagram followers." loading="lazy" />Twicsy</a>
+  &nbsp;
+  <a href="https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/buy-instagram-followers-v4y/6364714/logo/78.png" alt="views4you.com" title="Views4you: Social media growth services." loading="lazy" />Views4You</a>
+  &nbsp;
 </p>
 
-Direct
+Gold sponsors are those who have pledged \$500/month or more to MUI.
 
-<p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://mui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artists, music news, culture, and style" height="57" width="191" loading="lazy"></a>
-</p>
+### More backers
 
-Gold Sponsors are those who have pledged \$500/month or more to MUI.
-
-### There is more!
-
-See the full list of [our backers](https://mui.com/discover-more/backers/).
-
-## Usage
-
-Here is a quick example to get you started, **it's all you need**:
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
-
-function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'));
-```
-
-Yes, it's really all you need to get started as you can see in this live and interactive demo:
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
+See the full list of [our backers](https://mui.com/material-ui/discover-more/backers/).
 
 ## Questions
 
-For _how-to_ questions and other non-issues,
-please use [StackOverflow](https://stackoverflow.com/questions/tagged/mui) instead of GitHub issues.
-There is a StackOverflow tag called "material-ui" that you can use to tag your questions.
+For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/) instead of GitHub issues.
 
 ## Examples
 
-Are you looking for an example project to get started?
-[We host some](https://mui.com/getting-started/example-projects/).
+<!-- #repo-reference -->
 
-## Documentation
+Our documentation features [a collection of example projects](https://github.com/mui/material-ui/tree/master/examples).
 
-Check out our [documentation website](https://mui.com/).
+## Premium templates
 
-## Premium Themes
-
-You can find complete templates & themes in the [MUI Store](https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
+You can find complete templates and themes in the [MUI Store](https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=readme-store).
 
 ## Contributing
 
-Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to MUI.
+Read the [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.
 
-Notice that contributions go far beyond pull requests and commits.
-Although we love giving you the opportunity to put your stamp on MUI, we also are thrilled to receive a variety of [other contributions](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project).
+Contributing is about more than just issues and pull requests!
+There are many other ways to [support Material UI](https://mui.com/material-ui/getting-started/faq/#mui-is-an-awesome-organization-how-can-i-support-it) beyond contributing to the code base.
 
 ## Changelog
 
-If you have recently updated, please read the [changelog](https://github.com/mui-org/material-ui/releases) for details of what has changed.
+The [changelog](https://github.com/mui/material-ui/releases) is regularly updated to reflect what's changed in each new release.
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [roadmap](https://mui.com/discover-more/roadmap/) file.
+Future plans and high-priority features and enhancements can be found in the [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
 
 ## License
 
-This project is licensed under the terms of the
-[MIT license](/LICENSE).
+This project is licensed under the terms of the [MIT license](/LICENSE).
+
+## Security
+
+For details on supported versions and contact information for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
 
 ## Sponsoring services
 
 These great services sponsor MUI's core infrastructure:
 
-[<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
+<div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/github-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/github-lightmode.svg">
+  <img alt="GitHub logo" src="https://mui.com/static/readme/github-lightmode.svg" width="80" height="43">
+</picture>
 
-GitHub allows us to host the Git repository and coordinate contributions.
+[GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
-[<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
+</div>
 
-Netlify allows us to distribute the documentation.
+<div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/netlify-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/netlify-lightmode.svg">
+  <img alt="Netlify logo" src="https://mui.com/static/readme/netlify-lightmode.svg" width="100" height="27">
+</picture>
 
-[<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
+[Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
-CrowdIn allows us to translate the documentation.
+</div>
 
-[<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
+<div>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://mui.com/static/readme/browserstack-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://mui.com/static/readme/browserstack-lightmode.svg">
+  <img alt="BrowserStack logo" src="https://mui.com/static/readme/browserstack-lightmode.svg" width="140" height="25">
+</picture>
 
-BrowserStack allows us to test in real browsers.
+[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-[<img loading="lazy" alt="CodeCov" src="https://github.com/codecov.png?size=70" width="35" height="35">](https://codecov.io/)
+</div>
 
-CodeCov allows us to monitor the test coverage.
+<div>
+<img loading="lazy" alt="CodeCov logo" src="https://avatars.githubusercontent.com/u/8226205?s=105" width="35" height="35">
+
+[CodeCov](https://about.codecov.io/) lets us monitor test coverage.
+
+</div>

@@ -1,0 +1,67 @@
+{
+  "props": {
+    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
+    "alternativeLabel": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "connector": { "type": { "name": "element" }, "default": "<StepConnector />" },
+    "nonLinear": { "type": { "name": "bool" }, "default": "false" },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Stepper",
+  "imports": [
+    "import Stepper from '@mui/material/Stepper';",
+    "import { Stepper } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "alternativeLabel",
+      "className": "MuiStepper-alternativeLabel",
+      "description": "Styles applied to the root element if `alternativeLabel={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "horizontal",
+      "className": "MuiStepper-horizontal",
+      "description": "Styles applied to the root element if `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "nonLinear",
+      "className": "MuiStepper-nonLinear",
+      "description": "Styles applied to the root element if `nonLinear={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiStepper-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiStepper-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiStepper",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Stepper/Stepper.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
+  "cssComponent": false
+}

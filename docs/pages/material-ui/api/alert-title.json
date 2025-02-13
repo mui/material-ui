@@ -1,0 +1,34 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "AlertTitle",
+  "imports": [
+    "import AlertTitle from '@mui/material/AlertTitle';",
+    "import { AlertTitle } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiAlertTitle-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiAlertTitle",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.js",
+  "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-alert/\">Alert</a></li></ul>",
+  "cssComponent": false
+}

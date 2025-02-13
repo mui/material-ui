@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import styled from '@mui/styled-engine-sc';
 
 describe('styled', () => {
@@ -37,5 +37,10 @@ describe('styled', () => {
 
   it("should not allow styled-components's APIs: .attrs", () => {
     expect(typeof styled('span').attrs).to.equal('undefined');
+  });
+
+  // The babel-plugin-styled-components depends on the withConfig option to be defined
+  it("should allow styled-components's APIs: .withConfig", () => {
+    expect(typeof styled('span').withConfig).to.equal('function');
   });
 });

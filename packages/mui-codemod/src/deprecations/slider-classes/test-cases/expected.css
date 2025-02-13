@@ -1,0 +1,31 @@
+.MuiSlider-root.MuiSlider-sizeSmall > .MuiSlider-thumb {
+  color: red;
+}
+
+.MuiSlider-root.MuiSlider-sizeMedium > .MuiSlider-thumb {
+  color: red;
+}
+
+.MuiSlider-root.MuiSlider-colorPrimary > .MuiSlider-thumb {
+  color: red;
+}
+
+.MuiSlider-root.MuiSlider-colorSecondary > .MuiSlider-thumb {
+  color: red;
+}
+
+.MuiSlider-root.MuiSlider-colorError > .MuiSlider-thumb {
+  color: red;
+}
+
+.MuiSlider-root.MuiSlider-colorInfo > .MuiSlider-thumb {
+  color: red;
+}
+
+.MuiSlider-root.MuiSlider-colorSuccess > .MuiSlider-thumb {
+  color: red;
+}
+
+.MuiSlider-root.MuiSlider-colorWarning > .MuiSlider-thumb {
+  color: red;
+}

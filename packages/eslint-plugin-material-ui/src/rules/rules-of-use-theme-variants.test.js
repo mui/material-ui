@@ -100,7 +100,7 @@ ruleTester.run('rules-of-use-theme-variants', rule, {
         },
       ],
     },
-    // this is valid code but not analyzeable by this rule
+    // this is valid code but not analyzable by this rule
     {
       code: `
 {

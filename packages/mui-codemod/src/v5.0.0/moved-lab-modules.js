@@ -24,8 +24,8 @@ export default function transformer(file, api, options) {
   return j(file.source)
     .find(j.ImportDeclaration)
     .forEach((path) => {
-      const importSouce = path.node.source.value;
-      const subPackageImportMatch = importSouce.match(/@material-ui\/lab\/(.*)/);
+      const importSource = path.node.source.value;
+      const subPackageImportMatch = importSource.match(/@material-ui\/lab\/(.*)/);
       if (subPackageImportMatch !== null) {
         const componentName = subPackageImportMatch[1];
 
@@ -36,7 +36,7 @@ export default function transformer(file, api, options) {
           const sourcePath = path.get('source');
           sourcePath.replace(j.stringLiteral(`@material-ui/core/${componentName}`));
         }
-      } else if (importSouce === '@material-ui/lab') {
+      } else if (importSource === '@material-ui/lab') {
         // Sieve import specifiers into /core and /lab
         const labImportSpecifiers = [];
         const coreImportSpecifiers = [];

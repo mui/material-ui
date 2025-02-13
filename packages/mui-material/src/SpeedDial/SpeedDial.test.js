@@ -7,18 +7,21 @@ import {
   fireEvent,
   fireDiscreteEvent,
   screen,
-  describeConformance,
-} from 'test/utils';
+} from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { tooltipClasses } from '@mui/material/Tooltip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDial />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
   const icon = <Icon>font_icon</Icon>;
-  const FakeAction = () => <div />;
+  function FakeAction() {
+    return <div />;
+  }
   const defaultProps = {
     open: true,
     icon,
@@ -32,10 +35,10 @@ describe('<SpeedDial />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSpeedDial',
     testVariantProps: { direction: 'right' },
+    slots: { transition: { testWithElement: null } },
     skip: [
       'componentProp', // react-transition-group issue
       'componentsProp',
-      'reactTestRenderer',
     ],
   }));
 
@@ -112,7 +115,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('prop: onKeyDown', () => {
-    it('should be called when a key is pressed', () => {
+    it('should be called when a key is pressed', async () => {
       const handleKeyDown = spy();
       const { getByRole } = render(
         <SpeedDial {...defaultProps} onKeyDown={handleKeyDown}>
@@ -120,11 +123,15 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const buttonWrapper = getByRole('button', { expanded: true });
-      act(() => {
-        fireEvent.keyDown(document.body, { key: 'TAB' });
+
+      fireEvent.keyDown(document.body, { key: 'TAB' });
+
+      await act(async () => {
         buttonWrapper.focus();
       });
+
       fireEvent.keyDown(buttonWrapper, { key: ' ' });
+
       expect(handleKeyDown.callCount).to.equal(1);
       expect(handleKeyDown.args[0][0]).to.have.property('key', ' ');
     });
@@ -170,7 +177,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('keyboard', () => {
-    it('should open the speed dial and move to the first action without closing', () => {
+    it('should open the speed dial and move to the first action without closing', async () => {
       const handleOpen = spy();
       const { getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
@@ -179,7 +186,7 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const fab = getByRole('button');
-      act(() => {
+      await act(async () => {
         fab.focus();
       });
       clock.tick();
@@ -192,7 +199,12 @@ describe('<SpeedDial />', () => {
       expect(fab).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+    it('should reset the state of the tooltip when the speed dial is closed while it is open', async function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // JSDOM doesn't support :focus-visible
+        this.skip();
+      }
+
       const handleOpen = spy();
       const { queryByRole, getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
@@ -203,7 +215,7 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       const actions = getAllByRole('menuitem');
 
-      act(() => {
+      await act(async () => {
         fab.focus();
       });
       clock.runAll();
@@ -242,7 +254,7 @@ describe('<SpeedDial />', () => {
       return children;
     }
 
-    const renderSpeedDial = (direction = 'up', actionCount = 4) => {
+    const renderSpeedDial = async (direction = 'up', actionCount = 4) => {
       actionButtons = [];
       fabButton = undefined;
 
@@ -272,7 +284,7 @@ describe('<SpeedDial />', () => {
           ))}
         </SpeedDial>,
       );
-      act(() => {
+      await act(async () => {
         fabButton.focus();
       });
     };
@@ -296,14 +308,14 @@ describe('<SpeedDial />', () => {
       return expectedFocusedElement === document.activeElement;
     };
 
-    it('displays the actions on focus gain', () => {
-      renderSpeedDial();
+    it('displays the actions on focus gain', async () => {
+      await renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
       expect(fabButton).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('considers arrow keys with the same initial orientation', () => {
-      renderSpeedDial();
+    it('considers arrow keys with the same initial orientation', async () => {
+      await renderSpeedDial();
       fireEvent.keyDown(fabButton, { key: 'left' });
       expect(isActionFocused(0)).to.equal(true);
       fireEvent.keyDown(getActionButton(0), { key: 'up' });
@@ -319,11 +331,11 @@ describe('<SpeedDial />', () => {
        * tests a combination of arrow keys on a focused SpeedDial
        */
       const itTestCombination = (dialDirection, keys, expected) => {
-        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, () => {
+        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, async () => {
           const [firstKey, ...combination] = keys;
           const [firstFocusedAction, ...foci] = expected;
 
-          renderSpeedDial(dialDirection);
+          await renderSpeedDial(dialDirection);
 
           fireEvent.keyDown(fabButton, { key: firstKey });
           expect(isActionFocused(firstFocusedAction)).to.equal(
@@ -331,7 +343,8 @@ describe('<SpeedDial />', () => {
             `focused action initial ${firstKey} should be ${firstFocusedAction}`,
           );
 
-          combination.forEach((arrowKey, i) => {
+          for (let i = 0; i < combination.length; i += 1) {
+            const arrowKey = combination[i];
             const previousFocusedAction = foci[i - 1] || firstFocusedAction;
             const expectedFocusedAction = foci[i];
             const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
@@ -345,7 +358,7 @@ describe('<SpeedDial />', () => {
                 ',',
               )} should be ${expectedFocusedAction}`,
             );
-          });
+          }
         });
       };
 
@@ -408,6 +421,59 @@ describe('<SpeedDial />', () => {
           [0, -1, -1, 0],
         );
       });
+    });
+  });
+
+  describe('prop: transitionDuration', () => {
+    it('should render the default theme values by default', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      const { getByTestId } = render(<SpeedDial data-testid="speedDial" {...defaultProps} />);
+
+      const child = getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it('should render the custom theme values', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial data-testid="speedDial" {...defaultProps} />,
+        </ThemeProvider>,
+      );
+
+      const child = getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('should render the values provided via prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByTestId } = render(
+        <SpeedDial data-testid="speedDial" {...defaultProps} transitionDuration={1} />,
+      );
+
+      const child = getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
 });

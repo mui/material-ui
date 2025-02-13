@@ -1,0 +1,133 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'transparent'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "enableColorOnDark": { "type": { "name": "bool" }, "default": "false" },
+    "position": {
+      "type": {
+        "name": "enum",
+        "description": "'absolute'<br>&#124;&nbsp;'fixed'<br>&#124;&nbsp;'relative'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'sticky'"
+      },
+      "default": "'fixed'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "AppBar",
+  "imports": [
+    "import AppBar from '@mui/material/AppBar';",
+    "import { AppBar } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "colorDefault",
+      "className": "MuiAppBar-colorDefault",
+      "description": "Styles applied to the root element if `color=\"default\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorError",
+      "className": "MuiAppBar-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInfo",
+      "className": "MuiAppBar-colorInfo",
+      "description": "Styles applied to the root element if `color=\"info\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInherit",
+      "className": "MuiAppBar-colorInherit",
+      "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiAppBar-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiAppBar-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSuccess",
+      "className": "MuiAppBar-colorSuccess",
+      "description": "Styles applied to the root element if `color=\"success\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorTransparent",
+      "className": "MuiAppBar-colorTransparent",
+      "description": "Styles applied to the root element if `color=\"transparent\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorWarning",
+      "className": "MuiAppBar-colorWarning",
+      "description": "Styles applied to the root element if `color=\"warning\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionAbsolute",
+      "className": "MuiAppBar-positionAbsolute",
+      "description": "Styles applied to the root element if `position=\"absolute\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionFixed",
+      "className": "MuiAppBar-positionFixed",
+      "description": "Styles applied to the root element if `position=\"fixed\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionRelative",
+      "className": "MuiAppBar-positionRelative",
+      "description": "Styles applied to the root element if `position=\"relative\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionStatic",
+      "className": "MuiAppBar-positionStatic",
+      "description": "Styles applied to the root element if `position=\"static\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionSticky",
+      "className": "MuiAppBar-positionSticky",
+      "description": "Styles applied to the root element if `position=\"sticky\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAppBar-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAppBar",
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/mui-material/src/AppBar/AppBar.js",
+  "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App Bar</a></li></ul>",
+  "cssComponent": false
+}

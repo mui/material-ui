@@ -6,6 +6,7 @@ export interface ZIndex {
   modal: number;
   snackbar: number;
   tooltip: number;
+  fab: number;
 }
 
 export type ZIndexOptions = Partial<ZIndex>;

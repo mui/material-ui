@@ -1,0 +1,8 @@
+<FormControl defaultValue="" required>
+  {({ filled, focused }: FormControlState) => (
+    <React.Fragment>
+      <StyledInput className={filled ? 'filled' : ''} />
+      {filled && !focused && <OkMark>✔</OkMark>}
+    </React.Fragment>
+  )}
+</FormControl>

@@ -1,7 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useThemeProps from '../styles/useThemeProps';
-import GlobalStyles from '../GlobalStyles';
+import { globalCss } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
+
+// to determine if the global styles are static or dynamic
+const isDynamicSupport = typeof globalCss({}) === 'function';
 
 export const html = (theme, enableColorScheme) => ({
   WebkitFontSmoothing: 'antialiased', // Antialiasing.
@@ -11,20 +15,44 @@ export const html = (theme, enableColorScheme) => ({
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-  ...(enableColorScheme && { colorScheme: theme.palette.mode }),
+  // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
+  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
 });
 
 export const body = (theme) => ({
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   ...theme.typography.body1,
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: (theme.vars || theme).palette.background.default,
   '@media print': {
     // Save printer ink.
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: (theme.vars || theme).palette.common.white,
   },
 });
 
 export const styles = (theme, enableColorScheme = false) => {
+  const colorSchemeStyles = {};
+  if (
+    enableColorScheme &&
+    theme.colorSchemes &&
+    typeof theme.getColorSchemeSelector === 'function'
+  ) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        // for @media (prefers-color-scheme), we need to target :root
+        colorSchemeStyles[selector] = {
+          ':root': {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      } else {
+        // else, it's likely that the selector already target an element with a class or data attribute
+        colorSchemeStyles[selector.replace(/\s*&/, '')] = {
+          colorScheme: scheme.palette?.mode,
+        };
+      }
+    });
+  }
   let defaultStyles = {
     html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
@@ -39,9 +67,10 @@ export const styles = (theme, enableColorScheme = false) => {
       // Add support for document.body.requestFullScreen().
       // Other elements, if background transparent, are not supported.
       '&::backdrop': {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
+    ...colorSchemeStyles,
   };
 
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
@@ -52,25 +81,69 @@ export const styles = (theme, enableColorScheme = false) => {
   return defaultStyles;
 };
 
+// `ecs` stands for enableColorScheme. This is internal logic to make it work with Pigment CSS, so shorter is better.
+const SELECTOR = 'mui-ecs';
+const staticStyles = (theme) => {
+  const result = styles(theme, false);
+  const baseStyles = Array.isArray(result) ? result[0] : result;
+  if (!theme.vars && baseStyles) {
+    baseStyles.html[`:root:has(${SELECTOR})`] = { colorScheme: theme.palette.mode };
+  }
+  if (theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      const selector = theme.getColorSchemeSelector(key);
+      if (selector.startsWith('@')) {
+        // for @media (prefers-color-scheme), we need to target :root
+        baseStyles[selector] = {
+          [`:root:not(:has(.${SELECTOR}))`]: {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      } else {
+        // else, it's likely that the selector already target an element with a class or data attribute
+        baseStyles[selector.replace(/\s*&/, '')] = {
+          [`&:not(:has(.${SELECTOR}))`]: {
+            colorScheme: scheme.palette?.mode,
+          },
+        };
+      }
+    });
+  }
+  return result;
+};
+
+const GlobalStyles = globalCss(
+  isDynamicSupport
+    ? ({ theme, enableColorScheme }) => styles(theme, enableColorScheme)
+    : ({ theme }) => staticStyles(theme),
+);
+
 /**
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(inProps) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCssBaseline' });
   const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>
-      <GlobalStyles styles={(theme) => styles(theme, enableColorScheme)} />
+      {/* Emotion */}
+      {isDynamicSupport && <GlobalStyles enableColorScheme={enableColorScheme} />}
+
+      {/* Pigment CSS */}
+      {!isDynamicSupport && !enableColorScheme && (
+        <span className={SELECTOR} style={{ display: 'none' }} />
+      )}
+
       {children}
     </React.Fragment>
   );
 }
 
 CssBaseline.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * You can wrap a node.
    */

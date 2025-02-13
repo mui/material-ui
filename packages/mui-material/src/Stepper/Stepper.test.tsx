@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Step, { StepProps, stepClasses } from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import StepContent, { stepContentClasses } from '@mui/material/StepContent';
 import Stepper, { stepperClasses as classes } from '@mui/material/Stepper';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Stepper />', () => {
   const { render } = createRenderer();
@@ -22,7 +23,7 @@ describe('<Stepper />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { variant: 'foo' },
       testStateOverrides: { prop: 'alternativeLabel', value: true, styleKey: 'alternativeLabel' },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentsProp'],
     }),
   );
 
@@ -111,7 +112,9 @@ describe('<Stepper />', () => {
     });
 
     it('passes index down correctly when rendering children containing arrays', () => {
-      const CustomStep = ({ index }: StepProps) => <div data-index={index} data-testid="step" />;
+      function CustomStep({ index }: StepProps) {
+        return <div data-index={index} data-testid="step" />;
+      }
 
       const { getAllByTestId } = render(
         <Stepper nonLinear>
@@ -143,7 +146,9 @@ describe('<Stepper />', () => {
     });
 
     it('should allow the developer to specify a custom step connector', () => {
-      const CustomConnector = () => <div className="CustomConnector" />;
+      function CustomConnector() {
+        return <div className="CustomConnector" />;
+      }
       const { container } = render(
         <Stepper connector={<CustomConnector />}>
           <Step />
@@ -252,5 +257,18 @@ describe('<Stepper />', () => {
 
     expect(stepContent[0]).not.to.have.class(stepContentClasses.last);
     expect(stepContent[1]).to.have.class(stepContentClasses.last);
+  });
+
+  it('should apply non-linear class', () => {
+    const { container } = render(
+      <Stepper nonLinear activeStep={0}>
+        <Step />
+        <Step />
+        <Step />
+      </Stepper>,
+    );
+
+    const stepper = container.querySelector(`.${classes.root}`);
+    expect(stepper).to.have.class(classes.nonLinear);
   });
 });

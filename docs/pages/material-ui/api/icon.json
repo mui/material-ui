@@ -1,0 +1,95 @@
+{
+  "props": {
+    "baseClassName": { "type": { "name": "string" }, "default": "'material-icons'" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'inherit'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "fontSize": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Icon",
+  "imports": ["import Icon from '@mui/material/Icon';", "import { Icon } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "colorAction",
+      "className": "MuiIcon-colorAction",
+      "description": "Styles applied to the root element if `color=\"action\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDisabled",
+      "className": "MuiIcon-colorDisabled",
+      "description": "Styles applied to the root element if `color=\"disabled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorError",
+      "className": "MuiIcon-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiIcon-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiIcon-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeInherit",
+      "className": "MuiIcon-fontSizeInherit",
+      "description": "Styles applied to the root element if `fontSize=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeLarge",
+      "className": "MuiIcon-fontSizeLarge",
+      "description": "Styles applied to the root element if `fontSize=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeSmall",
+      "className": "MuiIcon-fontSizeSmall",
+      "description": "Styles applied to the root element if `fontSize=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiIcon-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiIcon",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-material/src/Icon/Icon.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/icons/\">Icons</a></li>\n<li><a href=\"/material-ui/material-icons/\">Material Icons</a></li></ul>",
+  "cssComponent": false
+}

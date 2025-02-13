@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
+import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
-import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -13,14 +13,14 @@ import createCache from '@emotion/cache';
 // Create rtl cache
 const cacheRtl = createCache({
   key: 'muirtl',
-  stylisPlugins: [rtlPlugin],
+  stylisPlugins: [prefixer, rtlPlugin],
 });
 
 const theme = createTheme({ direction: 'rtl' });
 
-export default function PositionedTooltips() {
+export default function PositionedTooltipsRtl() {
   return (
-    <StyleSheetManager stylisPlugins={[rtlPluginSc]}>
+    <StyleSheetManager stylisPlugins={[rtlPlugin]}>
       <CacheProvider value={cacheRtl}>
         <ThemeProvider theme={theme}>
           <Box sx={{ width: 500, margin: 10 }} dir="rtl">

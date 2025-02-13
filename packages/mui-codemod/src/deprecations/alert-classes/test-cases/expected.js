@@ -1,0 +1,26 @@
+import { alertClasses } from '@mui/material/Alert';
+
+('&.MuiAlert-standard.MuiAlert-colorSuccess');
+('&.MuiAlert-standard.MuiAlert-colorInfo');
+('&.MuiAlert-standard.MuiAlert-colorWarning');
+('&.MuiAlert-standard.MuiAlert-colorError');
+('&.MuiAlert-outlined.MuiAlert-colorSuccess');
+('&.MuiAlert-outlined.MuiAlert-colorInfo');
+('&.MuiAlert-outlined.MuiAlert-colorWarning');
+('&.MuiAlert-outlined.MuiAlert-colorError');
+('&.MuiAlert-filled.MuiAlert-colorSuccess');
+('&.MuiAlert-filled.MuiAlert-colorInfo');
+('&.MuiAlert-filled.MuiAlert-colorWarning');
+('&.MuiAlert-filled.MuiAlert-colorError');
+`&.${alertClasses.standard}.${alertClasses.colorSuccess}`;
+`&.${alertClasses.standard}.${alertClasses.colorInfo}`;
+`&.${alertClasses.standard}.${alertClasses.colorWarning}`;
+`&.${alertClasses.standard}.${alertClasses.colorError}`;
+`&.${alertClasses.outlined}.${alertClasses.colorSuccess}`;
+`&.${alertClasses.outlined}.${alertClasses.colorInfo}`;
+`&.${alertClasses.outlined}.${alertClasses.colorWarning}`;
+`&.${alertClasses.outlined}.${alertClasses.colorError}`;
+`&.${alertClasses.filled}.${alertClasses.colorSuccess}`;
+`&.${alertClasses.filled}.${alertClasses.colorInfo}`;
+`&.${alertClasses.filled}.${alertClasses.colorWarning}`;
+`&.${alertClasses.filled}.${alertClasses.colorError}`;

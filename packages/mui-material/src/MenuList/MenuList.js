@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
@@ -6,6 +7,7 @@ import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
+import { ownerWindow } from '../utils';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
@@ -43,7 +45,7 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   if (textCriteria.repeating) {
     return text[0] === textCriteria.keys[0];
   }
-  return text.indexOf(textCriteria.keys.join('')) === 0;
+  return text.startsWith(textCriteria.keys.join(''));
 }
 
 function moveFocus(
@@ -87,8 +89,8 @@ function moveFocus(
 }
 
 /**
- * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton.
- * It's exposed to help customization of the [`Menu`](/api/menu/) component if you
+ * A permanently displayed menu following https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/.
+ * It's exposed to help customization of the [`Menu`](/material-ui/api/menu/) component if you
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.
  */
@@ -124,13 +126,13 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   React.useImperativeHandle(
     actions,
     () => ({
-      adjustStyleForScrollbar: (containerElement, theme) => {
+      adjustStyleForScrollbar: (containerElement, { direction }) => {
         // Let's ignore that piece of logic if users are already overriding the width
         // of the menu.
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
-          const scrollbarSize = `${getScrollbarSize(ownerDocument(containerElement))}px`;
-          listRef.current.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
+          const scrollbarSize = `${getScrollbarSize(ownerWindow(containerElement))}px`;
+          listRef.current.style[direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] =
             scrollbarSize;
           listRef.current.style.width = `calc(100% + ${scrollbarSize})`;
         }
@@ -143,6 +145,16 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   const handleKeyDown = (event) => {
     const list = listRef.current;
     const key = event.key;
+    const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
+
+    if (isModifierKeyPressed) {
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+
+      return;
+    }
+
     /**
      * @type {Element} - will always be defined since we are in a keydown handler
      * attached to an element. A keydown event is either dispatched to the activeElement
@@ -211,6 +223,13 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   // item and use the first valid item as a fallback
   React.Children.forEach(children, (child, index) => {
     if (!React.isValidElement(child)) {
+      if (activeItemIndex === index) {
+        activeItemIndex += 1;
+        if (activeItemIndex >= children.length) {
+          // there are no focusable items within the list.
+          activeItemIndex = -1;
+        }
+      }
       return;
     }
 
@@ -232,6 +251,17 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
         activeItemIndex = index;
       }
     }
+
+    if (
+      activeItemIndex === index &&
+      (child.props.disabled || child.props.muiSkipListHighlight || child.type.muiSkipListHighlight)
+    ) {
+      activeItemIndex += 1;
+      if (activeItemIndex >= children.length) {
+        // there are no focusable items within the list.
+        activeItemIndex = -1;
+      }
+    }
   });
 
   const items = React.Children.map(children, (child, index) => {
@@ -240,6 +270,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
+
       if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
         newChildProps.tabIndex = 0;
       }
@@ -265,10 +296,10 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
 });
 
 MenuList.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, will focus the `[role="menu"]` container and move into tab order.
    * @default false

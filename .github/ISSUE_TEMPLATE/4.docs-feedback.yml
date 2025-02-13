@@ -1,0 +1,50 @@
+name: Docs feedback
+description: Improve documentation about Material UI, MUI System, or Joy UI.
+labels: ['status: waiting for maintainer', 'support: docs-feedback']
+title: '[docs] '
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for contributing by creating an issue! ❤️ Please provide a searchable summary of the issue in the title above ⬆️.
+  - type: input
+    attributes:
+      label: Search keywords
+      description: |
+        Your issue may have already been reported! First search for duplicates among the [existing issues](https://github.com/mui/material-ui/issues?q=is%3Aopen+is%3Aclosed).
+        If your issue isn't a duplicate, great! Please list the keywords you used so people in the future can find this one more easily:
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: Related page
+      description: Which page of the documentation is this about?
+      placeholder: https://mui.com/material-ui/
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Kind of issue
+      description: What kind of problem are you facing?
+      options:
+        - Unclear explanations
+        - Missing information
+        - Broken demo
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Issue description
+      description: |
+        Let us know what went wrong when you were using this documentation and what we could do to improve it.
+  - type: textarea
+    attributes:
+      label: Context
+      description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
+  - type: markdown
+    attributes:
+      value: |
+        ## :heart: Love Material UI?
+
+        Consider donating $10 to sustain our open-source work: [https://opencollective.com/mui-org](https://opencollective.com/mui-org).

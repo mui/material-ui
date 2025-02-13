@@ -1,16 +1,20 @@
+'use client';
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@mui/utils';
-import { useThemeProps } from '@mui/system';
-import { NoSsr } from '@mui/base';
+import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
+import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
+import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import { duration } from '../styles/createTransitions';
-import useTheme from '../styles/useTheme';
+import { useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionProps } from '../transitions/utils';
+import { mergeSlotProps } from '../utils';
+import useSlot from '../utils/useSlot';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
@@ -131,11 +135,14 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
 }
 
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
-const transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiSwipeableDrawer', props: inProps });
+  const props = useDefaultProps({ name: 'MuiSwipeableDrawer', props: inProps });
   const theme = useTheme();
+  const transitionDurationDefault = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
   const {
     anchor = 'left',
     disableBackdropTransition = false,
@@ -143,16 +150,19 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     disableSwipeToOpen = iOS,
     hideBackdrop,
     hysteresis = 0.52,
+    allowSwipeInChildren = false,
     minFlingVelocity = 450,
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
     onOpen,
-    open,
+    open = false,
     PaperProps = {},
     SwipeAreaProps,
     swipeAreaWidth = 20,
     transitionDuration = transitionDurationDefault,
     variant = 'temporary', // Mobile first.
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -164,6 +174,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
   const swipeAreaRef = React.useRef();
   const backdropRef = React.useRef();
   const paperRef = React.useRef();
+
+  const handleRef = useForkRef(PaperProps.ref, paperRef);
 
   const touchDetected = React.useRef(false);
 
@@ -180,7 +192,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const { mode = null, changeTransition = true } = options;
 
       const anchorRtl = getAnchor(theme, anchor);
-      const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchorRtl) !== -1 ? 1 : -1;
+      const rtlTranslateMultiplier = ['right', 'bottom'].includes(anchorRtl) ? 1 : -1;
       const horizontalSwipe = isHorizontal(anchor);
 
       const transform = horizontalSwipe
@@ -230,9 +242,12 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     if (!touchDetected.current) {
       return;
     }
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- claimedSwipeInstance is a singleton
     claimedSwipeInstance = null;
     touchDetected.current = false;
-    setMaybeSwiping(false);
+    ReactDOM.flushSync(() => {
+      setMaybeSwiping(false);
+    });
 
     // The swipe wasn't started.
     if (!swipeInstance.current.isSwiping) {
@@ -293,6 +308,39 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   });
 
+  const startMaybeSwiping = (force = false) => {
+    if (!maybeSwiping) {
+      // on Safari Mobile, if you want to be able to have the 'click' event fired on child elements, nothing in the DOM can be changed.
+      // this is because Safari Mobile will not fire any mouse events (still fires touch though) if the DOM changes during mousemove.
+      // so do this change on first touchmove instead of touchstart
+      if (force || !(disableDiscovery && allowSwipeInChildren)) {
+        ReactDOM.flushSync(() => {
+          setMaybeSwiping(true);
+        });
+      }
+
+      const horizontalSwipe = isHorizontal(anchor);
+
+      if (!open && paperRef.current) {
+        // The ref may be null when a parent component updates while swiping.
+        setPosition(
+          getMaxTranslate(horizontalSwipe, paperRef.current) +
+            (disableDiscovery ? 15 : -DRAG_STARTED_SIGNAL),
+          {
+            changeTransition: false,
+          },
+        );
+      }
+
+      swipeInstance.current.velocity = 0;
+      swipeInstance.current.lastTime = null;
+      swipeInstance.current.lastTranslate = null;
+      swipeInstance.current.paperHit = false;
+
+      touchDetected.current = true;
+    }
+  };
+
   const handleBodyTouchMove = useEventCallback((nativeEvent) => {
     // the ref may be null when a parent component updates while swiping
     if (!paperRef.current || !touchDetected.current) {
@@ -303,6 +351,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     if (claimedSwipeInstance !== null && claimedSwipeInstance !== swipeInstance.current) {
       return;
     }
+
+    startMaybeSwiping(true);
 
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
@@ -469,7 +519,20 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     );
 
     if (!open) {
-      if (disableSwipeToOpen || nativeEvent.target !== swipeAreaRef.current) {
+      // logic for if swipe should be ignored:
+      // if disableSwipeToOpen
+      // if target != swipeArea, and target is not a child of paper ref
+      // if is a child of paper ref, and `allowSwipeInChildren` does not allow it
+      if (
+        disableSwipeToOpen ||
+        !(
+          nativeEvent.target === swipeAreaRef.current ||
+          (paperRef.current?.contains(nativeEvent.target) &&
+            (typeof allowSwipeInChildren === 'function'
+              ? allowSwipeInChildren(nativeEvent, swipeAreaRef.current, paperRef.current)
+              : allowSwipeInChildren))
+        )
+      ) {
         return;
       }
       if (horizontalSwipe) {
@@ -486,24 +549,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     swipeInstance.current.startX = currentX;
     swipeInstance.current.startY = currentY;
 
-    setMaybeSwiping(true);
-    if (!open && paperRef.current) {
-      // The ref may be null when a parent component updates while swiping.
-      setPosition(
-        getMaxTranslate(horizontalSwipe, paperRef.current) +
-          (disableDiscovery ? 15 : -DRAG_STARTED_SIGNAL),
-        {
-          changeTransition: false,
-        },
-      );
-    }
-
-    swipeInstance.current.velocity = 0;
-    swipeInstance.current.lastTime = null;
-    swipeInstance.current.lastTranslate = null;
-    swipeInstance.current.paperHit = false;
-
-    touchDetected.current = true;
+    startMaybeSwiping();
   });
 
   React.useEffect(() => {
@@ -542,6 +588,23 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   }, [open]);
 
+  const [SwipeAreaSlot, swipeAreaSlotProps] = useSlot('swipeArea', {
+    ref: swipeAreaRef,
+    elementType: SwipeArea,
+    ownerState: props,
+    externalForwardedProps: {
+      slots,
+      slotProps: {
+        swipeArea: SwipeAreaProps,
+        ...slotProps,
+      },
+    },
+    additionalProps: {
+      width: swipeAreaWidth,
+      anchor,
+    },
+  });
+
   return (
     <React.Fragment>
       <Drawer
@@ -552,31 +615,37 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
             ...BackdropProps,
             ref: backdropRef,
           },
+          // Ensures that paperRef.current will be defined inside the touch start event handler
+          // See https://github.com/mui/material-ui/issues/30414 for more information
+          ...(variant === 'temporary' && {
+            keepMounted: true,
+          }),
           ...ModalPropsProp,
         }}
         hideBackdrop={hideBackdrop}
-        PaperProps={{
-          ...PaperProps,
-          style: {
-            pointerEvents: variant === 'temporary' && !open ? 'none' : '',
-            ...PaperProps.style,
-          },
-          ref: paperRef,
-        }}
         anchor={anchor}
         transitionDuration={calculatedDurationRef.current || transitionDuration}
         onClose={onClose}
         ref={ref}
+        slots={slots}
+        slotProps={{
+          ...slotProps,
+          backdrop: mergeSlotProps(slotProps.backdrop ?? BackdropProps, {
+            ref: backdropRef,
+          }),
+          paper: mergeSlotProps(slotProps.paper ?? PaperProps, {
+            style: {
+              pointerEvents:
+                variant === 'temporary' && !open && !allowSwipeInChildren ? 'none' : '',
+            },
+            ref: handleRef,
+          }),
+        }}
         {...other}
       />
       {!disableSwipeToOpen && variant === 'temporary' && (
         <NoSsr>
-          <SwipeArea
-            anchor={anchor}
-            ref={swipeAreaRef}
-            width={swipeAreaWidth}
-            {...SwipeAreaProps}
-          />
+          <SwipeAreaSlot {...swipeAreaSlotProps} />
         </NoSsr>
       )}
     </React.Fragment>
@@ -584,10 +653,23 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
 });
 
 SwipeableDrawer.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.
+   * This can be useful in scenarios where the drawer is partially visible.
+   * You can customize it further with a callback that determines which children the user can drag over to open the drawer
+   * (for example, to ignore other elements that handle touch move events, like sliders).
+   *
+   * @param {TouchEvent} event The 'touchstart' event
+   * @param {HTMLDivElement} swipeArea The swipe area element
+   * @param {HTMLDivElement} paper The drawer's paper element
+   *
+   * @default false
+   */
+  allowSwipeInChildren: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   /**
    * @ignore
    */
@@ -642,19 +724,20 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onClose: PropTypes.func.isRequired,
   /**
    * Callback fired when the component requests to be opened.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onOpen: PropTypes.func.isRequired,
   /**
    * If `true`, the component is shown.
+   * @default false
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * @ignore
    */
@@ -663,7 +746,32 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
     style: PropTypes.object,
   }),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    docked: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    swipeArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    docked: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+    swipeArea: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The element is used to intercept the touch events on the edge.
+   * @deprecated use the `slotProps.swipeArea` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SwipeAreaProps: PropTypes.object,
   /**
@@ -675,7 +783,10 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
+   * @default {
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
+   * }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,

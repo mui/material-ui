@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createRenderer, describeConformance, screen } from 'test/utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import CardMedia, { cardMediaClasses as classes } from '@mui/material/CardMedia';
+import describeConformance from '../../test/describeConformance';
 
 describe('<CardMedia />', () => {
   const { render } = createRenderer();

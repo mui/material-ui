@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementAcceptingRef } from '@mui/utils';
-import { duration } from '../styles/createTransitions';
-import useTheme from '../styles/useTheme';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
+import { useTheme } from '../zero-styled';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
 
@@ -16,17 +17,18 @@ const styles = {
   },
 };
 
-const defaultTimeout = {
-  enter: duration.enteringScreen,
-  exit: duration.leavingScreen,
-};
-
 /**
  * The Zoom transition can be used for the floating variant of the
- * [Button](/components/buttons/#floating-action-buttons) component.
+ * [Button](/material-ui/react-button/#floating-action-buttons) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Zoom = React.forwardRef(function Zoom(props, ref) {
+  const theme = useTheme();
+  const defaultTimeout = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     addEndListener,
     appear = true,
@@ -46,11 +48,8 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
-
   const nodeRef = React.useRef(null);
-  const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(nodeRef, foreignRef);
+  const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
@@ -129,7 +128,8 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
       timeout={timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             transform: 'scale(0)',
@@ -139,7 +139,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>
@@ -147,10 +147,10 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 });
 
 Zoom.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger. Called with the transitioning DOM
    * node and a done callback. Allows for more fine grained transition end
@@ -214,8 +214,8 @@ Zoom.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   timeout: PropTypes.oneOfType([

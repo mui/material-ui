@@ -1,0 +1,2 @@
+<DemoPaper variant="elevation">default variant</DemoPaper>
+<DemoPaper variant="outlined">outlined variant</DemoPaper>

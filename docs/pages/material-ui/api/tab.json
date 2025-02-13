@@ -1,0 +1,106 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "unsupportedProp" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" }, "default": "false" },
+    "icon": { "type": { "name": "union", "description": "element<br>&#124;&nbsp;string" } },
+    "iconPosition": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'top'"
+    },
+    "label": { "type": { "name": "node" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "any" } },
+    "wrapped": { "type": { "name": "bool" }, "default": "false" }
+  },
+  "name": "Tab",
+  "imports": ["import Tab from '@mui/material/Tab';", "import { Tab } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}` (controlled by the Tabs component).",
+      "isGlobal": true
+    },
+    {
+      "key": "fullWidth",
+      "className": "MuiTab-fullWidth",
+      "description": "Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).",
+      "isGlobal": false
+    },
+    {
+      "key": "icon",
+      "className": "MuiTab-icon",
+      "description": "Styles applied to the `icon` HTML element if both `icon` and `label` are provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconWrapper",
+      "className": "MuiTab-iconWrapper",
+      "description": "Styles applied to the `icon` HTML element if both `icon` and `label` are provided.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "labelIcon",
+      "className": "MuiTab-labelIcon",
+      "description": "Styles applied to the root element if both `icon` and `label` are provided.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTab-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}` (controlled by the Tabs component).",
+      "isGlobal": true
+    },
+    {
+      "key": "textColorInherit",
+      "className": "MuiTab-textColorInherit",
+      "description": "Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "textColorPrimary",
+      "className": "MuiTab-textColorPrimary",
+      "description": "Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "textColorSecondary",
+      "className": "MuiTab-textColorSecondary",
+      "description": "Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "wrapped",
+      "className": "MuiTab-wrapped",
+      "description": "Styles applied to the root element if `wrapped={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTab",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/Tab/Tab.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

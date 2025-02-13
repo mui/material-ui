@@ -1,14 +1,18 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import integerPropType from '@mui/utils/integerPropType';
+import composeClasses from '@mui/utils/composeClasses';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
-import useThemeProps from '../styles/useThemeProps';
-import styled, { slotShouldForwardProp } from '../styles/styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, position } = ownerState;
@@ -32,39 +36,51 @@ const MobileStepperRoot = styled(Paper, {
 
     return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ theme, ownerState }) => ({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  background: theme.palette.background.default,
-  padding: 8,
-  ...(ownerState.position === 'bottom' && {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: theme.zIndex.mobileStepper,
-  }),
-  ...(ownerState.position === 'top' && {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: theme.zIndex.mobileStepper,
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    background: (theme.vars || theme).palette.background.default,
+    padding: 8,
+    variants: [
+      {
+        props: ({ position }) => position === 'top' || position === 'bottom',
+        style: {
+          position: 'fixed',
+          left: 0,
+          right: 0,
+          zIndex: (theme.vars || theme).zIndex.mobileStepper,
+        },
+      },
+      {
+        props: { position: 'top' },
+        style: { top: 0 },
+      },
+      {
+        props: { position: 'bottom' },
+        style: { bottom: 0 },
+      },
+    ],
+  })),
+);
 
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
   overridesResolver: (props, styles) => styles.dots,
-})(({ ownerState }) => ({
-  ...(ownerState.variant === 'dots' && {
-    display: 'flex',
-    flexDirection: 'row',
-  }),
-}));
+})({
+  variants: [
+    {
+      props: { variant: 'dots' },
+      style: {
+        display: 'flex',
+        flexDirection: 'row',
+      },
+    },
+  ],
+});
 
 const MobileStepperDot = styled('div', {
   name: 'MuiMobileStepper',
@@ -75,34 +91,49 @@ const MobileStepperDot = styled('div', {
 
     return [styles.dot, dotActive && styles.dotActive];
   },
-})(({ theme, ownerState, dotActive }) => ({
-  ...(ownerState.variant === 'dots' && {
-    transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    backgroundColor: theme.palette.action.disabled,
-    borderRadius: '50%',
-    width: 8,
-    height: 8,
-    margin: '0 2px',
-    ...(dotActive && {
-      backgroundColor: theme.palette.primary.main,
-    }),
-  }),
-}));
+})(
+  memoTheme(({ theme }) => ({
+    variants: [
+      {
+        props: { variant: 'dots' },
+        style: {
+          transition: theme.transitions.create('background-color', {
+            duration: theme.transitions.duration.shortest,
+          }),
+          backgroundColor: (theme.vars || theme).palette.action.disabled,
+          borderRadius: '50%',
+          width: 8,
+          height: 8,
+          margin: '0 2px',
+        },
+      },
+      {
+        props: { variant: 'dots', dotActive: true },
+        style: {
+          backgroundColor: (theme.vars || theme).palette.primary.main,
+        },
+      },
+    ],
+  })),
+);
 
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
   overridesResolver: (props, styles) => styles.progress,
-})(({ ownerState }) => ({
-  ...(ownerState.variant === 'progress' && {
-    width: '50%',
-  }),
-}));
+})({
+  variants: [
+    {
+      props: { variant: 'progress' },
+      style: {
+        width: '50%',
+      },
+    },
+  ],
+});
 
 const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiMobileStepper' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiMobileStepper' });
   const {
     activeStep = 0,
     backButton,
@@ -112,6 +143,8 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     position = 'bottom',
     steps,
     variant = 'dots',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -122,17 +155,68 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     variant,
   };
 
+  let value;
+  if (variant === 'progress') {
+    if (steps === 1) {
+      value = 100;
+    } else {
+      value = Math.ceil((activeStep / (steps - 1)) * 100);
+    }
+  }
+
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      progress: LinearProgressProps,
+      ...slotProps,
+    },
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: MobileStepperRoot,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.root, className),
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      square: true,
+      elevation: 0,
+    },
+  });
+
+  const [DotsSlot, dotsSlotProps] = useSlot('dots', {
+    className: classes.dots,
+    elementType: MobileStepperDots,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [DotSlot, dotSlotProps] = useSlot('dot', {
+    elementType: MobileStepperDot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ProgressSlot, progressSlotProps] = useSlot('progress', {
+    className: classes.progress,
+    elementType: MobileStepperProgress,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      value,
+      variant: 'determinate',
+    },
+  });
+
   return (
-    <MobileStepperRoot
-      square
-      elevation={0}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {backButton}
       {variant === 'text' && (
         <React.Fragment>
@@ -141,38 +225,34 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
       )}
 
       {variant === 'dots' && (
-        <MobileStepperDots ownerState={ownerState} className={classes.dots}>
+        <DotsSlot {...dotsSlotProps}>
           {[...new Array(steps)].map((_, index) => (
-            <MobileStepperDot
+            <DotSlot
               key={index}
-              className={clsx(classes.dot, { [classes.dotActive]: index === activeStep })}
-              ownerState={ownerState}
+              {...dotSlotProps}
+              className={clsx(
+                classes.dot,
+                { [classes.dotActive]: index === activeStep },
+                dotSlotProps.className,
+              )}
               dotActive={index === activeStep}
             />
           ))}
-        </MobileStepperDots>
+        </DotsSlot>
       )}
 
-      {variant === 'progress' && (
-        <MobileStepperProgress
-          ownerState={ownerState}
-          className={classes.progress}
-          variant="determinate"
-          value={Math.ceil((activeStep / (steps - 1)) * 100)}
-          {...LinearProgressProps}
-        />
-      )}
+      {variant === 'progress' && <ProgressSlot {...progressSlotProps} />}
 
       {nextButton}
-    </MobileStepperRoot>
+    </RootSlot>
   );
 });
 
 MobileStepper.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Set the active step (zero based index).
    * Defines which dot is highlighted when the variant is 'dots'.
@@ -193,6 +273,7 @@ MobileStepper.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `LinearProgress` element.
+   * @deprecated Use `slotProps.progress` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   LinearProgressProps: PropTypes.object,
   /**
@@ -204,6 +285,26 @@ MobileStepper.propTypes /* remove-proptypes */ = {
    * @default 'bottom'
    */
   position: PropTypes.oneOf(['bottom', 'static', 'top']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    dot: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    dots: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    dot: PropTypes.elementType,
+    dots: PropTypes.elementType,
+    progress: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The total steps.
    */

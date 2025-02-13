@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 
 function LatestVersions() {
   return (
@@ -19,7 +19,6 @@ function LatestVersions() {
             <TableCell>
               <Link
                 variant="body2"
-                color="secondary"
                 rel="nofollow"
                 href="https://material-ui.netlify.app/"
               >
@@ -29,8 +28,7 @@ function LatestVersions() {
             <TableCell>
               <Link
                 variant="body2"
-                color="secondary"
-                href="https://github.com/mui-org/material-ui/tree/master"
+                href="https://github.com/mui/material-ui/tree/master"
               >
                 Source code
               </Link>
@@ -43,7 +41,6 @@ function LatestVersions() {
             <TableCell>
               <Link
                 variant="body2"
-                color="secondary"
                 rel="nofollow"
                 href="https://next--material-ui.netlify.app/"
               >
@@ -53,8 +50,7 @@ function LatestVersions() {
             <TableCell>
               <Link
                 variant="body2"
-                color="secondary"
-                href="https://github.com/mui-org/material-ui/tree/next"
+                href="https://github.com/mui/material-ui/tree/next"
               >
                 Source code
               </Link>

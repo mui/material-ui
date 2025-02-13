@@ -1,35 +1,35 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { useInView } from 'react-intersection-observer';
-import { ThemeProvider } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
-import MuiStatistics from 'docs/src/components/home/MuiStatistics';
+import Typography from '@mui/material/Typography';
+import Section from 'docs/src/layouts/Section';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
+import GradientText from 'docs/src/components/typography/GradientText';
 
 const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 
-const Testimonials = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0,
-    rootMargin: '500px',
-  });
+export default function Testimonials() {
   return (
-    <ThemeProvider theme={brandingDarkTheme}>
-      <Box ref={ref} sx={{ bgcolor: 'primaryDark.700' }}>
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
-          <Grid container spacing={3} alignItems="center">
-            <Grid item xs={12} md={6} sx={{ zIndex: 1, minHeight: { xs: 400, sm: 307, lg: 355 } }}>
-              {inView && <UserFeedbacks />}
-            </Grid>
-            <MuiStatistics />
-          </Grid>
-        </Container>
-      </Box>
-    </ThemeProvider>
+    <Box
+      data-mui-color-scheme="dark"
+      sx={(theme) => ({
+        background: `linear-gradient(180deg, ${alpha(theme.palette.primaryDark[800], 0.8)}2%, ${
+          theme.palette.primaryDark[900]
+        } 80%), ${theme.palette.primaryDark[900]}`,
+      })}
+    >
+      <Section bg="transparent" cozy>
+        <SectionHeadline
+          overline="Join the community"
+          title={
+            <Typography variant="h2" component="h2">
+              Supported by thousands of <GradientText>developers and designers</GradientText>
+            </Typography>
+          }
+        />
+        <UserFeedbacks />
+      </Section>
+    </Box>
   );
-};
-
-export default Testimonials;
+}

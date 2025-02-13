@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import styleFunctionSx from './styleFunctionSx';
+import cssContainerQueries from '../cssContainerQueries';
 
 describe('styleFunctionSx', () => {
   const breakpointsValues = {
@@ -12,16 +13,16 @@ describe('styleFunctionSx', () => {
 
   const round = (value) => Math.round(value * 1e5) / 1e5;
 
-  const theme = {
+  const theme = cssContainerQueries({
     spacing: (val) => `${val * 10}px`,
     breakpoints: {
       keys: ['xs', 'sm', 'md', 'lg', 'xl'],
       values: breakpointsValues,
+      unit: 'px',
       up: (key) => {
         return `@media (min-width:${breakpointsValues[key]}px)`;
       },
     },
-    unit: 'px',
     palette: {
       primary: {
         main: 'rgb(0, 0, 255)',
@@ -49,7 +50,7 @@ describe('styleFunctionSx', () => {
         lineHeight: 1.43,
       },
     },
-  };
+  });
 
   describe('system', () => {
     it('resolves system ', () => {
@@ -58,6 +59,8 @@ describe('styleFunctionSx', () => {
         sx: {
           color: 'primary.main',
           bgcolor: 'secondary.main',
+          outline: 1,
+          outlineColor: 'secondary.main',
           m: 2,
           p: 1,
           fontFamily: 'default',
@@ -72,6 +75,8 @@ describe('styleFunctionSx', () => {
       expect(result).to.deep.equal({
         color: 'rgb(0, 0, 255)',
         backgroundColor: 'rgb(0, 255, 0)',
+        outline: '1px solid',
+        outlineColor: 'rgb(0, 255, 0)',
         margin: '20px',
         padding: '10px',
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -239,6 +244,79 @@ describe('styleFunctionSx', () => {
     });
   });
 
+  describe('container queries', () => {
+    const queriesExpectedResult = {
+      '@container (min-width:0px)': { border: '1px solid' },
+      '@container (min-width:600px)': { border: '2px solid' },
+      '@container (min-width:960px)': { border: '3px solid' },
+      '@container (min-width:1280px)': { border: '4px solid' },
+      '@container (min-width:1920px)': { border: '5px solid' },
+    };
+
+    it('resolves queries object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          border: {
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
+            '@lg': 4,
+            '@xl': 5,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal(queriesExpectedResult);
+    });
+
+    it('merges multiple queries object', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: {
+          m: {
+            '@xs': 1,
+            '@sm': 2,
+            '@md': 3,
+          },
+          p: {
+            '@xs': 5,
+            '@sm': 6,
+            '@md': 7,
+          },
+        },
+      });
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { padding: '50px', margin: '10px' },
+        '@container (min-width:600px)': { padding: '60px', margin: '20px' },
+        '@container (min-width:960px)': { padding: '70px', margin: '30px' },
+      });
+    });
+
+    it('writes queries in correct order', () => {
+      const result = styleFunctionSx({
+        theme,
+        sx: { m: { '@md': 1, '@lg': 2 }, p: { '@xs': 0, '@sm': 1, '@md': 2 } },
+      });
+
+      // Test the order
+      expect(Object.keys(result)).to.deep.equal([
+        '@container (min-width:0px)',
+        '@container (min-width:600px)',
+        '@container (min-width:960px)',
+        '@container (min-width:1280px)',
+      ]);
+
+      expect(result).to.deep.equal({
+        '@container (min-width:0px)': { padding: '0px' },
+        '@container (min-width:600px)': { padding: '10px' },
+        '@container (min-width:960px)': { padding: '20px', margin: '10px' },
+        '@container (min-width:1280px)': { margin: '20px' },
+      });
+    });
+  });
+
   describe('theme callback', () => {
     it('works on CSS properties', () => {
       const result = styleFunctionSx({
@@ -256,12 +334,12 @@ describe('styleFunctionSx', () => {
       const result = styleFunctionSx({
         theme,
         sx: {
-          ':hover': (t) => ({ background: t.palette.primary.main }),
+          '&:hover': (t) => ({ background: t.palette.primary.main }),
         },
       });
 
       // Test the order
-      expect(result).to.deep.equal({ ':hover': { background: 'rgb(0, 0, 255)' } });
+      expect(result).to.deep.equal({ '&:hover': { background: 'rgb(0, 0, 255)' } });
     });
 
     it('works on nested selectors', () => {
@@ -388,6 +466,15 @@ describe('styleFunctionSx', () => {
           '@media (min-width:960px)': { padding: '70px', margin: '30px' },
         },
       ]);
+    });
+
+    it('does not crash if the result is undefined', () => {
+      expect(() =>
+        styleFunctionSx({
+          theme,
+          sx: [(t) => t.typography.unknown],
+        }),
+      ).not.to.throw();
     });
   });
 });

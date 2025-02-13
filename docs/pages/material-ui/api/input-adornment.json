@@ -1,0 +1,95 @@
+{
+  "props": {
+    "position": {
+      "type": { "name": "enum", "description": "'end'<br>&#124;&nbsp;'start'" },
+      "required": true
+    },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "disablePointerEvents": { "type": { "name": "bool" }, "default": "false" },
+    "disableTypography": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      }
+    }
+  },
+  "name": "InputAdornment",
+  "imports": [
+    "import InputAdornment from '@mui/material/InputAdornment';",
+    "import { InputAdornment } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "disablePointerEvents",
+      "className": "MuiInputAdornment-disablePointerEvents",
+      "description": "Styles applied to the root element if `disablePointerEvents={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filled",
+      "className": "MuiInputAdornment-filled",
+      "description": "Styles applied to the root element if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "hiddenLabel",
+      "className": "MuiInputAdornment-hiddenLabel",
+      "description": "Styles applied if the adornment is used inside <FormControl hiddenLabel />.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiInputAdornment-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionEnd",
+      "className": "MuiInputAdornment-positionEnd",
+      "description": "Styles applied to the root element if `position=\"end\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionStart",
+      "className": "MuiInputAdornment-positionStart",
+      "description": "Styles applied to the root element if `position=\"start\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiInputAdornment-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiInputAdornment-sizeSmall",
+      "description": "Styles applied if the adornment is used inside <FormControl size=\"small\" />.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiInputAdornment-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInputAdornment",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/InputAdornment/InputAdornment.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
+  "cssComponent": false
+}

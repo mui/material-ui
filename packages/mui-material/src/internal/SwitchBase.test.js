@@ -1,14 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer } from 'test/utils';
+import { act, createRenderer, reactMajor } from '@mui/internal-test-utils';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import ButtonBase from '../ButtonBase';
 import classes from './switchBaseClasses';
+import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<SwitchBase />', () => {
   const { render } = createRenderer();
+
+  function CustomRoot({ centerRipple, focusRipple, ownerState, ...props }) {
+    return <div {...props} />;
+  }
 
   describeConformance(
     <SwitchBase checkedIcon="checked" icon="unchecked" type="checkbox" />,
@@ -19,6 +25,15 @@ describe('<SwitchBase />', () => {
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
       testVariantProps: { disabled: true },
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+          testWithElement: CustomRoot,
+        },
+        input: {
+          expectedClassName: classes.input,
+        },
+      },
       skip: ['componentsProp', 'themeDefaultProps', 'themeStyleOverrides', 'themeVariants'],
     }),
   );
@@ -42,8 +57,8 @@ describe('<SwitchBase />', () => {
     expect(buttonInside.childNodes[1]).to.have.text('unchecked');
   });
 
-  it('should have a ripple by default', () => {
-    const { getByTestId } = render(
+  it('should have a ripple', async () => {
+    const { container, getByTestId } = render(
       <SwitchBase
         checkedIcon="checked"
         icon="unchecked"
@@ -51,6 +66,8 @@ describe('<SwitchBase />', () => {
         TouchRippleProps={{ 'data-testid': 'TouchRipple' }}
       />,
     );
+
+    await ripple.startTouch(container.querySelector('input'));
 
     expect(getByTestId('TouchRipple')).not.to.equal(null);
   });
@@ -63,8 +80,8 @@ describe('<SwitchBase />', () => {
     expect(container.firstChild).to.have.class(classes.edgeStart);
   });
 
-  it('can disable the ripple ', () => {
-    const { queryByTestId } = render(
+  it('can disable the ripple ', async () => {
+    const { container, queryByTestId } = render(
       <SwitchBase
         checkedIcon="checked"
         icon="unchecked"
@@ -73,6 +90,8 @@ describe('<SwitchBase />', () => {
         TouchRippleProps={{ 'data-testid': 'TouchRipple' }}
       />,
     );
+
+    await ripple.startTouch(container.querySelector('input'));
 
     expect(queryByTestId('TouchRipple')).to.equal(null);
   });
@@ -254,6 +273,7 @@ describe('<SwitchBase />', () => {
 
     describe('prop: inputProps', () => {
       it('should be able to add aria', () => {
+        // TODO: remove this test in v7 because `inputProps` is deprecated
         const { getByRole } = render(
           <SwitchBase
             icon="unchecked"
@@ -404,9 +424,12 @@ describe('<SwitchBase />', () => {
         setProps({ checked: true });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        React.version.startsWith('16')
-          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
-          : 'Warning: A component is changing an uncontrolled input to be controlled.',
+        reactMajor === 16 &&
+          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        reactMajor >= 19 && 'A component is changing an uncontrolled input to be controlled.',
+        reactMajor < 19 &&
+          reactMajor !== 16 &&
+          'Warning: A component is changing an uncontrolled input to be controlled.',
         'MUI: A component is changing the uncontrolled checked state of SwitchBase to be controlled.',
       ]);
     });
@@ -427,9 +450,12 @@ describe('<SwitchBase />', () => {
         setProps({ checked: undefined });
         global.didWarnControlledToUncontrolled = true;
       }).toErrorDev([
-        React.version.startsWith('16')
-          ? 'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.'
-          : 'Warning: A component is changing an uncontrolled input to be controlled.',
+        reactMajor === 16 &&
+          'Warning: A component is changing an uncontrolled input of type checkbox to be controlled.',
+        reactMajor >= 19 && 'A component is changing an uncontrolled input to be controlled.',
+        reactMajor < 19 &&
+          reactMajor !== 16 &&
+          'Warning: A component is changing an uncontrolled input to be controlled.',
         'MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.',
       ]);
     });
@@ -452,5 +478,32 @@ describe('<SwitchBase />', () => {
 
       expect(getByRole('checkbox')).to.have.property('value', 'red');
     });
+  });
+
+  it('should call event handlers in slotProps when provided', () => {
+    const rootOnClick = spy();
+    const inputOnClick = spy();
+    const { getByRole } = render(
+      <SwitchBase
+        icon="unchecked"
+        checkedIcon="checked"
+        type="checkbox"
+        slotProps={{
+          root: {
+            onClick: rootOnClick,
+          },
+          input: {
+            onClick: inputOnClick,
+          },
+        }}
+      />,
+    );
+
+    act(() => {
+      getByRole('checkbox').click();
+    });
+
+    expect(rootOnClick.callCount).to.equal(1);
+    expect(inputOnClick.callCount).to.equal(1);
   });
 });

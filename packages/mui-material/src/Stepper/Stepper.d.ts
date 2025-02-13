@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { StepperClasses } from './stepperClasses';
 
 export type Orientation = 'horizontal' | 'vertical';
 
-export interface StepperProps extends StandardProps<PaperProps> {
+export interface StepperOwnProps extends Pick<PaperProps, 'elevation' | 'square' | 'variant'> {
   /**
    * Set the active step (zero based index).
    * Set to -1 to disable all the steps.
@@ -32,7 +32,7 @@ export interface StepperProps extends StandardProps<PaperProps> {
    * An element to be placed between each step.
    * @default <StepConnector />
    */
-  connector?: React.ReactElement<any, any> | null;
+  connector?: React.ReactElement<unknown, any> | null;
   /**
    * If set the `Stepper` will not assist in controlling steps for linear flow.
    * @default false
@@ -49,16 +49,33 @@ export interface StepperProps extends StandardProps<PaperProps> {
   sx?: SxProps<Theme>;
 }
 
+export interface StepperTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps & StepperOwnProps;
+  defaultComponent: RootComponent;
+}
+
+export type StepperProps<
+  RootComponent extends React.ElementType = StepperTypeMap['defaultComponent'],
+  AdditionalProps = { component?: React.ElementType },
+> = OverrideProps<StepperTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
+  component?: React.ElementType;
+};
+
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
 
 /**
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/components/steppers/)
+ * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [Stepper API](https://mui.com/api/stepper/)
+ * - [Stepper API](https://next.mui.com/material-ui/api/stepper/)
  */
-export default function Stepper(props: StepperProps): JSX.Element;
+declare const Stepper: OverridableComponent<StepperTypeMap>;
+
+export default Stepper;

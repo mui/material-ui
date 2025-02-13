@@ -1,4 +1,0 @@
-<FormControl sx={{ width: '25ch' }}>
-  <OutlinedInput placeholder="Please enter text" />
-  <MyFormHelperText />
-</FormControl>

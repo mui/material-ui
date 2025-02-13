@@ -26,7 +26,7 @@ export interface NativeSelectProps
    * An `Input` element; does not have to be a material-ui specific `Input`.
    * @default <Input />
    */
-  input?: React.ReactElement<any, any>;
+  input?: React.ReactElement<unknown, any>;
   /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes) applied to the `select` element.
    */
@@ -57,13 +57,13 @@ export interface NativeSelectProps
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://next.mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [NativeSelect API](https://mui.com/api/native-select/)
- * - inherits [Input API](https://mui.com/api/input/)
+ * - [NativeSelect API](https://next.mui.com/material-ui/api/native-select/)
+ * - inherits [Input API](https://next.mui.com/material-ui/api/input/)
  */
-declare const NativeSelect: ((props: NativeSelectProps) => JSX.Element) & { muiName: string };
+declare const NativeSelect: ((props: NativeSelectProps) => React.JSX.Element) & { muiName: string };
 
 export default NativeSelect;

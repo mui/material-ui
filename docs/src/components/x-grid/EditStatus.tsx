@@ -1,6 +1,12 @@
 import * as React from 'react';
-import { GridRenderEditCellParams } from '@mui/x-data-grid';
-import Select from '@mui/material/Select';
+import {
+  GridRenderEditCellParams,
+  useGridRootProps,
+  useGridApiContext,
+  GridEditModes,
+} from '@mui/x-data-grid';
+import Select, { SelectProps } from '@mui/material/Select';
+import { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -12,19 +18,21 @@ import DoneIcon from '@mui/icons-material/Done';
 const STATUS_OPTIONS = ['Open', 'PartiallyFilled', 'Filled', 'Rejected'];
 
 export default function EditStatus(props: GridRenderEditCellParams) {
-  const { id, value, api, field } = props;
+  const { id, value, field } = props;
+  const rootProps = useGridRootProps();
+  const apiRef = useGridApiContext();
 
-  const handleChange = (event: any) => {
-    api.setEditCellValue({ id, field, value: event.target.value }, event);
-    if (!event.key) {
-      api.commitCellChange({ id, field });
-      api.setCellMode(id, field, 'view');
+  const handleChange: SelectProps['onChange'] = async (event) => {
+    const isValid = await apiRef.current.setEditCellValue({ id, field, value: event.target.value });
+
+    if (isValid && rootProps.editMode === GridEditModes.Cell) {
+      apiRef.current.stopCellEditMode({ id, field, cellToFocusAfter: 'below' });
     }
   };
 
-  const handleClose = (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => {
+  const handleClose: MenuProps['onClose'] = (event, reason) => {
     if (reason === 'backdropClick') {
-      api.setCellMode(id, field, 'view');
+      apiRef.current.stopCellEditMode({ id, field, ignoreModifications: true });
     }
   };
 

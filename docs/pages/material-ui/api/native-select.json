@@ -1,0 +1,133 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "additionalInfo": { "cssApi": true }
+    },
+    "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
+    "input": { "type": { "name": "element" }, "default": "<Input />" },
+    "inputProps": { "type": { "name": "object" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLSelectElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      }
+    }
+  },
+  "name": "NativeSelect",
+  "imports": [
+    "import NativeSelect from '@mui/material/NativeSelect';",
+    "import { NativeSelect } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the select component `disabled` class.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the select component `error` class.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "MuiNativeSelect-filled",
+      "description": "Styles applied to the select component if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "icon",
+      "className": "MuiNativeSelect-icon",
+      "description": "Styles applied to the icon component.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconFilled",
+      "className": "MuiNativeSelect-iconFilled",
+      "description": "Styles applied to the icon component if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconOpen",
+      "className": "MuiNativeSelect-iconOpen",
+      "description": "Styles applied to the icon component if the popup is open.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconOutlined",
+      "className": "MuiNativeSelect-iconOutlined",
+      "description": "Styles applied to the icon component if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "iconStandard",
+      "className": "MuiNativeSelect-iconStandard",
+      "description": "Styles applied to the icon component if `variant=\"standard\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "multiple",
+      "className": "MuiNativeSelect-multiple",
+      "description": "Styles applied to the select component if `multiple={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "nativeInput",
+      "className": "MuiNativeSelect-nativeInput",
+      "description": "Styles applied to the underlying native input component.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiNativeSelect-outlined",
+      "description": "Styles applied to the select component if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiNativeSelect-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "select",
+      "className": "MuiNativeSelect-select",
+      "description": "Styles applied to the select component `select` class.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiNativeSelect-standard",
+      "description": "Styles applied to the select component if `variant=\"standard\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiNativeSelect",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/NativeSelect/NativeSelect.js",
+  "inheritance": { "component": "Input", "pathname": "/material-ui/api/input/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-select/\">Select</a></li></ul>",
+  "cssComponent": false
+}

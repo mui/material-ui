@@ -19,20 +19,26 @@ type NestedRecord<V = any> = {
  * assignNestedKeys(source, ['palette', 'secondary'], 'var(--palette-secondary)')
  * console.log(source) // { palette: { primary: 'var(--palette-primary)', secondary: 'var(--palette-secondary)' } }
  */
-export const assignNestedKeys = <Object = NestedRecord, Value = any>(
-  obj: Object,
+export const assignNestedKeys = <
+  T extends Record<string, any> | null | undefined | string = NestedRecord,
+  Value = any,
+>(
+  obj: T,
   keys: Array<string>,
   value: Value,
+  arrayKeys: Array<string> = [],
 ) => {
-  let temp: Record<string, any> = obj;
+  let temp: T = obj;
   keys.forEach((k, index) => {
     if (index === keys.length - 1) {
-      if (temp && typeof temp === 'object') {
+      if (Array.isArray(temp)) {
+        temp[Number(k)] = value;
+      } else if (temp && typeof temp === 'object') {
         temp[k] = value;
       }
     } else if (temp && typeof temp === 'object') {
       if (!temp[k]) {
-        temp[k] = {};
+        temp[k] = arrayKeys.includes(k) ? [] : {};
       }
       temp = temp[k];
     }
@@ -52,17 +58,21 @@ export const assignNestedKeys = <Object = NestedRecord, Value = any>(
  */
 export const walkObjectDeep = <Value, T = Record<string, any>>(
   obj: T,
-  callback: (keys: Array<string>, value: Value, scope: Record<string, string | number>) => void,
+  callback: (keys: Array<string>, value: Value, arrayKeys: Array<string>) => void,
   shouldSkipPaths?: (keys: Array<string>) => boolean,
 ) => {
-  function recurse(object: any, parentKeys: Array<string> = []) {
+  function recurse(object: any, parentKeys: Array<string> = [], arrayKeys: Array<string> = []) {
     Object.entries(object).forEach(([key, value]: [string, any]) => {
       if (!shouldSkipPaths || (shouldSkipPaths && !shouldSkipPaths([...parentKeys, key]))) {
         if (value !== undefined && value !== null) {
           if (typeof value === 'object' && Object.keys(value).length > 0) {
-            recurse(value, [...parentKeys, key]);
+            recurse(
+              value,
+              [...parentKeys, key],
+              Array.isArray(value) ? [...arrayKeys, key] : arrayKeys,
+            );
           } else {
-            callback([...parentKeys, key], value, object);
+            callback([...parentKeys, key], value, arrayKeys);
           }
         }
       }
@@ -77,6 +87,11 @@ const getCssValue = (keys: string[], value: string | number) => {
       // CSS property that are unitless
       return value;
     }
+    const lastKey = keys[keys.length - 1];
+    if (lastKey.toLowerCase().includes('opacity')) {
+      // opacity values are unitless
+      return value;
+    }
     return `${value}px`;
   }
   return value;
@@ -88,71 +103,51 @@ const getCssValue = (keys: string[], value: string | number) => {
  * @param {Object} theme
  * @param {{
  *  prefix?: string,
- *  basePrefix?: string,
  *  shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean
  * }} options.
- *  `basePrefix`: defined by design system.
- *  `prefix`: defined by application
+ *  `prefix`: The prefix of the generated CSS variables. This function does not change the value.
  *
- *   This function also mutate the string value of theme input by replacing `basePrefix` (if existed) with `prefix`
- *
- * @returns {{ css: Object, vars: Object }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme)
+ * @returns {{ css: Object, vars: Object }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme).
  *
  * @example
  * const { css, vars } = parser({
  *   fontSize: 12,
  *   lineHeight: 1.2,
- *   palette: { primary: { 500: '#000000' } }
- * })
+ *   palette: { primary: { 500: 'var(--color)' } }
+ * }, { prefix: 'foo' })
  *
- * console.log(css) // { '--fontSize': '12px', '--lineHeight': 1.2, '--palette-primary-500': '#000000' }
- * console.log(vars) // { fontSize: '--fontSize', lineHeight: '--lineHeight', palette: { primary: { 500: 'var(--palette-primary-500)' } } }
+ * console.log(css) // { '--foo-fontSize': '12px', '--foo-lineHeight': 1.2, '--foo-palette-primary-500': 'var(--color)' }
+ * console.log(vars) // { fontSize: 'var(--foo-fontSize)', lineHeight: 'var(--foo-lineHeight)', palette: { primary: { 500: 'var(--foo-palette-primary-500)' } } }
  */
-export default function cssVarsParser(
+export default function cssVarsParser<T extends Record<string, any>>(
   theme: Record<string, any>,
   options?: {
     prefix?: string;
-    basePrefix?: string;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
   },
 ) {
-  const { prefix, basePrefix = '', shouldSkipGeneratingVar } = options || {};
-  const css = {} as NestedRecord<string>;
-  const vars = {} as NestedRecord<string>;
+  const { prefix, shouldSkipGeneratingVar } = options || {};
+  const css = {} as Record<string, string | number>;
+  const vars = {} as T;
+  const varsWithDefaults = {};
 
   walkObjectDeep(
     theme,
-    (keys, val, scope) => {
-      if (typeof val === 'string' || typeof val === 'number') {
-        let value = val;
-        if (typeof value === 'string' && value.startsWith('var')) {
-          // replace the value of the `scope` object with the prefix or remove basePrefix from the value
-          if (!basePrefix && prefix) {
-            value = value.replace(/var\(--/g, `var(--${prefix}-`);
-          } else {
-            value = prefix
-              ? value.replace(new RegExp(basePrefix, 'g'), prefix)
-              : value.replace(new RegExp(`${basePrefix}-`, 'g'), '');
-          }
-
-          // scope is the deepest object in the tree, keys is the theme path keys
-          scope[keys.slice(-1)[0]] = value;
-        }
-
-        if (
-          !shouldSkipGeneratingVar ||
-          (shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value))
-        ) {
+    (keys, value: string | number | object, arrayKeys) => {
+      if (typeof value === 'string' || typeof value === 'number') {
+        if (!shouldSkipGeneratingVar || !shouldSkipGeneratingVar(keys, value)) {
           // only create css & var if `shouldSkipGeneratingVar` return false
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
-          Object.assign(css, { [cssVar]: getCssValue(keys, value) });
+          const resolvedValue = getCssValue(keys, value);
+          Object.assign(css, { [cssVar]: resolvedValue });
 
-          assignNestedKeys(vars, keys, `var(${cssVar})`);
+          assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
+          assignNestedKeys(varsWithDefaults, keys, `var(${cssVar}, ${resolvedValue})`, arrayKeys);
         }
       }
     },
     (keys) => keys[0] === 'vars', // skip 'vars/*' paths
   );
 
-  return { css, vars };
+  return { css, vars, varsWithDefaults };
 }

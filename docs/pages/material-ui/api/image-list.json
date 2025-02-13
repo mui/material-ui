@@ -1,0 +1,72 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" }, "required": true },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "cols": { "type": { "name": "custom", "description": "integer" }, "default": "2" },
+    "component": { "type": { "name": "elementType" } },
+    "gap": { "type": { "name": "number" }, "default": "4" },
+    "rowHeight": {
+      "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" },
+      "default": "'auto'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'masonry'<br>&#124;&nbsp;'quilted'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'woven'<br>&#124;&nbsp;string"
+      },
+      "default": "'standard'"
+    }
+  },
+  "name": "ImageList",
+  "imports": [
+    "import ImageList from '@mui/material/ImageList';",
+    "import { ImageList } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "masonry",
+      "className": "MuiImageList-masonry",
+      "description": "Styles applied to the root element if `variant=\"masonry\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "quilted",
+      "className": "MuiImageList-quilted",
+      "description": "Styles applied to the root element if `variant=\"quilted\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiImageList-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiImageList-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "woven",
+      "className": "MuiImageList-woven",
+      "description": "Styles applied to the root element if `variant=\"woven\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiImageList",
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/mui-material/src/ImageList/ImageList.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-image-list/\">Image List</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,16 +1,21 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { refType, deepmerge } from '@mui/utils';
+import composeClasses from '@mui/utils/composeClasses';
+import deepmerge from '@mui/utils/deepmerge';
+import refType from '@mui/utils/refType';
 import InputBase from '../InputBase';
-import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import rootShouldForwardProp from '../styles/rootShouldForwardProp';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import {
   rootOverridesResolver as inputBaseRootOverridesResolver,
   inputOverridesResolver as inputBaseInputOverridesResolver,
   InputBaseRoot,
-  InputBaseComponent as InputBaseInput,
+  InputBaseInput,
 } from '../InputBase/InputBase';
 
 const useUtilityClasses = (ownerState) => {
@@ -41,65 +46,88 @@ const InputRoot = styled(InputBaseRoot, {
       !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, ownerState }) => {
-  const light = theme.palette.mode === 'light';
-  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
-  return {
-    position: 'relative',
-    ...(ownerState.formControl && {
-      'label + &': {
-        marginTop: 16,
-      },
-    }),
-    ...(!ownerState.disableUnderline && {
-      '&:after': {
-        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '""',
-        position: 'absolute',
-        right: 0,
-        transform: 'scaleX(0)',
-        transition: theme.transitions.create('transform', {
-          duration: theme.transitions.duration.shorter,
-          easing: theme.transitions.easing.easeOut,
-        }),
-        pointerEvents: 'none', // Transparent to the hover style.
-      },
-      [`&.${inputClasses.focused}:after`]: {
-        transform: 'scaleX(1)',
-      },
-      [`&.${inputClasses.error}:after`]: {
-        borderBottomColor: theme.palette.error.main,
-        transform: 'scaleX(1)', // error is always underlined in red
-      },
-      '&:before': {
-        borderBottom: `1px solid ${bottomLineColor}`,
-        left: 0,
-        bottom: 0,
-        // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
-        content: '"\\00a0"',
-        position: 'absolute',
-        right: 0,
-        transition: theme.transitions.create('border-bottom-color', {
-          duration: theme.transitions.duration.shorter,
-        }),
-        pointerEvents: 'none', // Transparent to the hover style.
-      },
-      [`&:hover:not(.${inputClasses.disabled}):before`]: {
-        borderBottom: `2px solid ${theme.palette.text.primary}`,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          borderBottom: `1px solid ${bottomLineColor}`,
+})(
+  memoTheme(({ theme }) => {
+    const light = theme.palette.mode === 'light';
+    let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+    if (theme.vars) {
+      bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
+    }
+    return {
+      position: 'relative',
+      variants: [
+        {
+          props: ({ ownerState }) => ownerState.formControl,
+          style: {
+            'label + &': {
+              marginTop: 16,
+            },
+          },
         },
-      },
-      [`&.${inputClasses.disabled}:before`]: {
-        borderBottomStyle: 'dotted',
-      },
-    }),
-  };
-});
+        {
+          props: ({ ownerState }) => !ownerState.disableUnderline,
+          style: {
+            '&::after': {
+              left: 0,
+              bottom: 0,
+              content: '""',
+              position: 'absolute',
+              right: 0,
+              transform: 'scaleX(0)',
+              transition: theme.transitions.create('transform', {
+                duration: theme.transitions.duration.shorter,
+                easing: theme.transitions.easing.easeOut,
+              }),
+              pointerEvents: 'none', // Transparent to the hover style.
+            },
+            [`&.${inputClasses.focused}:after`]: {
+              // translateX(0) is a workaround for Safari transform scale bug
+              // See https://github.com/mui/material-ui/issues/31766
+              transform: 'scaleX(1) translateX(0)',
+            },
+            [`&.${inputClasses.error}`]: {
+              '&::before, &::after': {
+                borderBottomColor: (theme.vars || theme).palette.error.main,
+              },
+            },
+            '&::before': {
+              borderBottom: `1px solid ${bottomLineColor}`,
+              left: 0,
+              bottom: 0,
+              content: '"\\00a0"',
+              position: 'absolute',
+              right: 0,
+              transition: theme.transitions.create('border-bottom-color', {
+                duration: theme.transitions.duration.shorter,
+              }),
+              pointerEvents: 'none', // Transparent to the hover style.
+            },
+            [`&:hover:not(.${inputClasses.disabled}, .${inputClasses.error}):before`]: {
+              borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
+              // Reset on touch devices, it doesn't add specificity
+              '@media (hover: none)': {
+                borderBottom: `1px solid ${bottomLineColor}`,
+              },
+            },
+            [`&.${inputClasses.disabled}:before`]: {
+              borderBottomStyle: 'dotted',
+            },
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color, disableUnderline: false },
+            style: {
+              '&::after': {
+                borderBottom: `2px solid ${(theme.vars || theme).palette[color].main}`,
+              },
+            },
+          })),
+      ],
+    };
+  }),
+);
 
 const InputInput = styled(InputBaseInput, {
   name: 'MuiInput',
@@ -108,14 +136,16 @@ const InputInput = styled(InputBaseInput, {
 })({});
 
 const Input = React.forwardRef(function Input(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiInput' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiInput' });
   const {
-    disableUnderline,
+    disableUnderline = false,
     components = {},
     componentsProps: componentsPropsProp,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
+    slotProps,
+    slots = {},
     type = 'text',
     ...other
   } = props;
@@ -125,14 +155,18 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const ownerState = { disableUnderline };
   const inputComponentsProps = { root: { ownerState } };
 
-  const componentsProps = componentsPropsProp
-    ? deepmerge(componentsPropsProp, inputComponentsProps)
-    : inputComponentsProps;
+  const componentsProps =
+    (slotProps ?? componentsPropsProp)
+      ? deepmerge(slotProps ?? componentsPropsProp, inputComponentsProps)
+      : inputComponentsProps;
+
+  const RootSlot = slots.root ?? components.Root ?? InputRoot;
+  const InputSlot = slots.input ?? components.Input ?? InputInput;
 
   return (
     <InputBase
-      components={{ Root: InputRoot, Input: InputInput, ...components }}
-      componentsProps={componentsProps}
+      slots={{ root: RootSlot, input: InputSlot }}
+      slotProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
@@ -145,10 +179,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 });
 
 Input.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
@@ -164,7 +198,9 @@ Input.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -172,8 +208,10 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The components used for each slot inside the InputBase.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   *
    * @default {}
    */
   components: PropTypes.shape({
@@ -181,10 +219,17 @@ Input.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   *
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -196,6 +241,7 @@ Input.propTypes /* remove-proptypes */ = {
   disabled: PropTypes.bool,
   /**
    * If `true`, the `input` will not have an underline.
+   * @default false
    */
   disableUnderline: PropTypes.bool,
   /**
@@ -246,7 +292,7 @@ Input.propTypes /* remove-proptypes */ = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a `textarea` element is rendered.
+   * If `true`, a [TextareaAutosize](https://mui.com/material-ui/react-textarea-autosize/) element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -279,6 +325,29 @@ Input.propTypes /* remove-proptypes */ = {
    * Number of rows to display when multiline option is set to true.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * The components used for each slot inside.
+   *
+   * This prop is an alias for the `components` prop, which will be deprecated in the future.
+   *
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * Start `InputAdornment` for this component.
    */

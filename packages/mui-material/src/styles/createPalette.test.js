@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { darken, lighten } from '@mui/system';
+import { darken, lighten } from '@mui/system/colorManipulator';
 import { deepOrange, blue, purple, indigo } from '../colors';
 import createPalette, { dark, light } from './createPalette';
 
@@ -91,7 +91,20 @@ describe('createPalette()', () => {
     expect(palette.secondary.main, 'should use purple as the default secondary color').to.equal(
       purple[200],
     );
-    expect(palette.text, 'should use dark theme text').to.equal(dark.text);
+    expect(palette.text, 'should use dark theme text').to.deep.equal(dark.text);
+  });
+
+  it('should create independent object', () => {
+    const palette1 = createPalette({});
+    const palette2 = createPalette({});
+
+    expect(palette1.background.default).to.equal('#fff');
+    expect(palette2.background.default).to.equal('#fff');
+
+    palette1.background.default = '#000';
+
+    expect(palette1.background.default).to.equal('#000');
+    expect(palette2.background.default).to.equal('#fff');
   });
 
   describe('augmentColor', () => {

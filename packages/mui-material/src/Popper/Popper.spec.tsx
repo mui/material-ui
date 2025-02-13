@@ -1,16 +1,16 @@
 import * as React from 'react';
-import Tooltip from '@mui/material/Tooltip';
 import { Instance } from '@popperjs/core';
+import Tooltip from '@mui/material/Tooltip';
 
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactElement<unknown>;
   value: number;
 }
 
 export default function ValueLabelComponent(props: Props) {
   const { children, value } = props;
 
-  const popperRef = React.useRef<Instance | null>(null);
+  const popperRef = React.useRef<Instance>(null);
   React.useEffect(() => {
     if (popperRef.current) {
       popperRef.current.update();

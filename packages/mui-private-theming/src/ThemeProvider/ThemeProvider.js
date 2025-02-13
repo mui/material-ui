@@ -52,7 +52,8 @@ function ThemeProvider(props) {
   }
 
   const theme = React.useMemo(() => {
-    const output = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);
+    const output =
+      outerTheme === null ? { ...localTheme } : mergeOuterLocalTheme(outerTheme, localTheme);
 
     if (output != null) {
       output[nested] = outerTheme !== null;

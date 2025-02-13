@@ -1,5 +1,5 @@
 {
   "componentDescription": "",
-  "propDescriptions": { "styles": "The styles you want to apply globally." },
+  "propDescriptions": { "styles": { "description": "The styles you want to apply globally." } },
   "classDescriptions": {}
 }

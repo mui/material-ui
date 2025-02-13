@@ -1,0 +1,111 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'default'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "disableFocusRipple": { "type": { "name": "bool" }, "default": "false" },
+    "disableRipple": { "type": { "name": "bool" } },
+    "href": { "type": { "name": "string" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
+      },
+      "default": "'large'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'circular'<br>&#124;&nbsp;'extended'<br>&#124;&nbsp;string"
+      },
+      "default": "'circular'"
+    }
+  },
+  "name": "Fab",
+  "imports": ["import Fab from '@mui/material/Fab';", "import { Fab } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "circular",
+      "className": "MuiFab-circular",
+      "description": "Styles applied to the root element if `variant=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorInherit",
+      "className": "MuiFab-colorInherit",
+      "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "extended",
+      "className": "MuiFab-extended",
+      "description": "Styles applied to the root element if `variant=\"extended\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "primary",
+      "className": "MuiFab-primary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiFab-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "secondary",
+      "className": "MuiFab-secondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeMedium",
+      "className": "MuiFab-sizeMedium",
+      "description": "Styles applied to the root element if `size=\"medium\"``.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiFab-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"``.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFab",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-material/src/Fab/Fab.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-floating-action-button/\">Floating Action Button</a></li></ul>",
+  "cssComponent": false
+}

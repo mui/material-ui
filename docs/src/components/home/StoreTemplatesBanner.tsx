@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { styled, alpha, useTheme } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import ROUTES from 'docs/src/route';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
 const ratio = 900 / 494;
+
+// 'transparent' is interpreted as transparent black in Safari
+// See https://css-tricks.com/thing-know-gradients-transparent-black/
+const transparent = 'rgba(255,255,255,0)';
 
 const Image = styled('img')(({ theme }) => ({
   display: 'block',
@@ -21,14 +24,16 @@ const Image = styled('img')(({ theme }) => ({
     width: 450,
     height: 450 / ratio,
   },
-  border: '6px solid',
-  borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
-  borderRadius: theme.shape.borderRadius,
+  border: '4px solid',
+  borderColor: (theme.vars || theme).palette.grey[400],
+  borderRadius: (theme.vars || theme).shape.borderRadius,
   objectFit: 'cover',
-  boxShadow:
-    theme.palette.mode === 'dark'
-      ? '0px 4px 20px rgba(0, 0, 0, 0.6)'
-      : '0px 4px 20px rgba(61, 71, 82, 0.25)',
+  objectPosition: 'top',
+  boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
+  ...theme.applyDarkStyles({
+    borderColor: (theme.vars || theme).palette.grey[800],
+    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.6)',
+  }),
 }));
 
 const Anchor = styled('a')({
@@ -43,16 +48,16 @@ const Anchor = styled('a')({
 });
 
 const linkMapping = {
-  'minimal-dashboard': ROUTES.storeTemplateMinimalDashboard,
-  theFront: ROUTES.storeTheFront,
-  'material-app': ROUTES.storeTemplateMaterialApp,
-  flexy: ROUTES.storeFlexy,
-  berry: ROUTES.storeTemplateBerry,
-  webbee: ROUTES.storeTemplateWebbee,
+  minimal: 'https://mui.com/store/items/minimal-dashboard/',
+  theFront: 'https://mui.com/store/items/the-front-landing-page/',
+  miro: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
+  devias: 'https://mui.com/store/items/devias-kit-pro/',
+  berry: 'https://mui.com/store/items/berry-react-material-admin/',
+  webbee: 'https://mui.com/store/items/webbee-landing-page/',
 };
 const brands = Object.keys(linkMapping) as Array<keyof typeof linkMapping>;
 
-type TemplateBrand = typeof brands[number];
+type TemplateBrand = (typeof brands)[number];
 
 const StoreTemplateLink = React.forwardRef<
   HTMLAnchorElement,
@@ -64,7 +69,7 @@ const StoreTemplateLink = React.forwardRef<
     <Anchor
       ref={ref}
       aria-label="Go to MUI Store"
-      href={linkMapping[brand]}
+      href={`${linkMapping[brand]}?utm_source=marketing&utm_medium=referral&utm_campaign=home-cta`}
       target="_blank"
       {...props}
     >
@@ -86,7 +91,7 @@ const StoreTemplateLink = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography fontWeight="bold">Go to store</Typography>
+        <Typography sx={{ fontWeight: 'bold' }}>Go to store</Typography>
         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
       </Box>
     </Anchor>
@@ -95,29 +100,35 @@ const StoreTemplateLink = React.forwardRef<
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
-  { brand: TemplateBrand } & Omit<JSX.IntrinsicElements['img'], 'ref'>
+  { brand: TemplateBrand } & Omit<React.JSX.IntrinsicElements['img'], 'ref'>
 >(function StoreTemplateImage({ brand, ...props }, ref) {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <Image
       ref={ref}
-      src={`/static/branding/store-templates/template-${mode}${
+      src={`/static/branding/store-templates/template-${
         Object.keys(linkMapping).indexOf(brand) + 1
-      }.jpeg`}
+      }light.jpg`}
       alt=""
+      loading="lazy"
+      sx={(theme) =>
+        theme.applyDarkStyles({
+          content: `url(/static/branding/store-templates/template-${
+            Object.keys(linkMapping).indexOf(brand) + 1
+          }dark.jpg)`,
+        })
+      }
       {...props}
     />
   );
 });
 
-export const PrefetchStoreTemplateImages = () => {
+export function PrefetchStoreTemplateImages() {
   function makeImg(mode: string, num: number) {
     return {
       loading: 'lazy' as const,
       width: '900',
       height: '494',
-      src: `/static/branding/store-templates/template-${mode}${num}.jpeg`,
+      src: `/static/branding/store-templates/template-${num}${mode}.jpg`,
     };
   }
   return (
@@ -141,7 +152,7 @@ export const PrefetchStoreTemplateImages = () => {
       ))}
     </Box>
   );
-};
+}
 
 const defaultSlideDown = {
   '0%': {
@@ -212,15 +223,15 @@ export default function StoreTemplatesBanner() {
     <Box
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
-        my: { md: -8 },
-        height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
+        my: { md: -18 },
+        height: { xs: 300, sm: 360, md: 'calc(100% + 320px)' },
         overflow: 'hidden',
         position: 'relative',
         width: { xs: '100vw', md: '50vw' },
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           display: { xs: 'block', md: 'none' },
           position: 'absolute',
           top: 0,
@@ -228,26 +239,16 @@ export default function StoreTemplatesBanner() {
           width: '100%',
           height: '100%',
           pointerEvents: 'none',
-          background: (theme) =>
-            `linear-gradient(to bottom, ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[50]
-            } 0%, ${
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primaryDark[900], 0)
-                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-            } 30%, ${
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primaryDark[900], 0)
-                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
-            } 70%, ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[50]
-            } 100%)`,
           zIndex: 2,
-        }}
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(to bottom, ${
+              (theme.vars || theme).palette.primaryDark[900]
+            } 0%, ${alpha(theme.palette.primaryDark[900], 0)} 30%, ${alpha(
+              theme.palette.primaryDark[900],
+              0,
+            )} 70%, ${(theme.vars || theme).palette.primaryDark[900]} 100%)`,
+          }),
+        })}
       />
       <Box
         sx={{
@@ -272,7 +273,7 @@ export default function StoreTemplatesBanner() {
         </Box>
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           display: { xs: 'none', md: 'block' },
           position: 'absolute',
           top: 0,
@@ -280,18 +281,16 @@ export default function StoreTemplatesBanner() {
           width: 400,
           height: '150%',
           pointerEvents: 'none',
-          background: (theme) =>
-            `linear-gradient(to right, ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[50]
-            }, ${
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primaryDark[900], 0)
-                : 'rgba(255,255,255,0)'
-            })`,
           zIndex: 10,
-        }}
+          background: `linear-gradient(to right, ${
+            (theme.vars || theme).palette.primary[50]
+          }, ${transparent})`,
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(to right, ${
+              (theme.vars || theme).palette.primaryDark[900]
+            }, ${alpha(theme.palette.primary[900], 0)})`,
+          }),
+        })}
       />
     </Box>
   );

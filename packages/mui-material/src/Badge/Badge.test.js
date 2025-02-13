@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { BadgeUnstyled } from '@mui/base';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
+import describeConformance from '../../test/describeConformance';
+
+function findBadgeRoot(container) {
+  return container.firstChild;
+}
 
 function findBadge(container) {
-  return container.firstChild.querySelector('span');
+  return findBadgeRoot(container).querySelector('span');
 }
 
 describe('<Badge />', () => {
@@ -26,7 +30,7 @@ describe('<Badge />', () => {
     </Badge>,
     () => ({
       classes,
-      inheritComponent: BadgeUnstyled,
+      inheritComponent: 'span',
       render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
@@ -42,10 +46,37 @@ describe('<Badge />', () => {
     expect(container.firstChild).to.contain(getByTestId('badge'));
   });
 
-  it('renders children and overwrite badge class', () => {
-    const badgeClassName = 'testBadgeClassName';
-    const { container } = render(<Badge {...defaultProps} classes={{ badge: badgeClassName }} />);
-    expect(findBadge(container)).to.have.class(badgeClassName);
+  it('applies customized classes', () => {
+    const customClasses = {
+      root: 'test-root',
+      anchorOriginTopRight: 'test-anchorOriginTopRight',
+      anchorOriginTopRightCircular: 'test-anchorOriginTopRightCircular',
+      badge: 'test-badge',
+      colorSecondary: 'test-colorSecondary',
+      dot: 'test-dot',
+      invisible: 'test-invisible',
+      overlapCircular: 'test-overlapCircular',
+    };
+
+    const { container } = render(
+      <Badge
+        {...defaultProps}
+        variant="dot"
+        overlap="circular"
+        invisible
+        color="secondary"
+        classes={customClasses}
+      />,
+    );
+
+    expect(findBadgeRoot(container)).to.have.class(customClasses.root);
+    expect(findBadge(container)).to.have.class(customClasses.anchorOriginTopRight);
+    expect(findBadge(container)).to.have.class(customClasses.anchorOriginTopRightCircular);
+    expect(findBadge(container)).to.have.class(customClasses.badge);
+    expect(findBadge(container)).to.have.class(customClasses.colorSecondary);
+    expect(findBadge(container)).to.have.class(customClasses.dot);
+    expect(findBadge(container)).to.have.class(customClasses.invisible);
+    expect(findBadge(container)).to.have.class(customClasses.overlapCircular);
   });
 
   it('renders children', () => {
@@ -98,6 +129,18 @@ describe('<Badge />', () => {
         <Badge {...defaultProps} badgeContent={undefined} variant="dot" />,
       ).container;
       expect(findBadge(container)).not.to.have.class(classes.invisible);
+    });
+
+    it('should render with invisible class when invisible and showZero are set to false and content is 0', () => {
+      const { container } = render(<Badge badgeContent={0} showZero={false} invisible={false} />);
+      expect(findBadge(container)).to.have.class(classes.invisible);
+      expect(findBadge(container)).to.have.text('');
+    });
+
+    it('should not render with invisible class when invisible and showZero are set to false and content is not 0', () => {
+      const { container } = render(<Badge badgeContent={1} showZero={false} invisible={false} />);
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
+      expect(findBadge(container)).to.have.text('1');
     });
   });
 
@@ -163,6 +206,176 @@ describe('<Badge />', () => {
     it('should not cap if badgeContent is lower than max', () => {
       const { container } = render(<Badge {...defaultProps} badgeContent={50} max={1000} />);
       expect(findBadge(container)).to.have.text('50');
+    });
+  });
+
+  describe('prop: anchorOrigin', () => {
+    it('should apply style for top left rectangular', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ horizontal: 'left', vertical: 'top' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeftRectangular);
+    });
+
+    it('should apply style for top right rectangular', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ horizontal: 'right', vertical: 'top' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightRectangular);
+    });
+
+    it('should apply style for bottom left rectangular', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomLeftRectangular);
+    });
+
+    it('should apply style for bottom right rectangular', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightRectangular);
+    });
+
+    it('should apply style for bottom right rectangular when only vertical is specified', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ vertical: 'bottom' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightRectangular);
+    });
+
+    it('should apply style for top left rectangular when only horizontal is specified', () => {
+      const { container } = render(
+        <Badge {...defaultProps} anchorOrigin={{ horizontal: 'left' }} />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeftRectangular);
+    });
+
+    it('should apply style for top left circular', () => {
+      const { container } = render(
+        <Badge
+          {...defaultProps}
+          anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+          overlap="circular"
+        />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopLeftCircular);
+    });
+
+    it('should apply style for top right circular', () => {
+      const { container } = render(
+        <Badge
+          {...defaultProps}
+          anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+          overlap="circular"
+        />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginTopRightCircular);
+    });
+
+    it('should apply style for bottom left circular', () => {
+      const { container } = render(
+        <Badge
+          {...defaultProps}
+          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+          overlap="circular"
+        />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomLeftCircular);
+    });
+
+    it('should apply style for bottom right circular', () => {
+      const { container } = render(
+        <Badge
+          {...defaultProps}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          overlap="circular"
+        />,
+      );
+      expect(findBadge(container)).to.have.class(classes.anchorOriginBottomRightCircular);
+    });
+  });
+
+  describe('prop: components / slots', () => {
+    it('allows overriding the slots using the components prop', () => {
+      const CustomRoot = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-root" />;
+      });
+
+      const CustomBadge = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-badge" />;
+      });
+
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          components={{ Root: CustomRoot, Badge: CustomBadge }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
+    });
+
+    it('allows overriding the slots using the slots prop', () => {
+      const CustomRoot = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-root" />;
+      });
+
+      const CustomBadge = React.forwardRef((props, ref) => {
+        const { ownerState, ...other } = props;
+        return <span {...other} ref={ref} data-testid="custom-badge" />;
+      });
+
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          slots={{ root: CustomRoot, badge: CustomBadge }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
+    });
+  });
+
+  describe('prop: componentsProps / slotProps', () => {
+    it('allows modifying slots props using the componentsProps prop', () => {
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          componentsProps={{
+            root: { 'data-testid': 'custom-root' },
+            badge: { 'data-testid': 'custom-badge' },
+          }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
+    });
+
+    it('allows modifying slots props using the slotProps prop', () => {
+      const { getByTestId } = render(
+        <Badge
+          {...defaultProps}
+          badgeContent={1}
+          slotProps={{
+            root: { 'data-testid': 'custom-root' },
+            badge: { 'data-testid': 'custom-badge' },
+          }}
+        />,
+      );
+
+      getByTestId('custom-root');
+      getByTestId('custom-badge');
     });
   });
 

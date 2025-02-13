@@ -1,0 +1,107 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "disableShrink": { "type": { "name": "custom", "description": "bool" }, "default": "false" },
+    "size": {
+      "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
+      "default": "40"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "thickness": { "type": { "name": "number" }, "default": "3.6" },
+    "value": { "type": { "name": "number" }, "default": "0" },
+    "variant": {
+      "type": { "name": "enum", "description": "'determinate'<br>&#124;&nbsp;'indeterminate'" },
+      "default": "'indeterminate'"
+    }
+  },
+  "name": "CircularProgress",
+  "imports": [
+    "import CircularProgress from '@mui/material/CircularProgress';",
+    "import { CircularProgress } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "circle",
+      "className": "MuiCircularProgress-circle",
+      "description": "Styles applied to the `circle` svg path.",
+      "isGlobal": false
+    },
+    {
+      "key": "circleDeterminate",
+      "className": "MuiCircularProgress-circleDeterminate",
+      "description": "Styles applied to the `circle` svg path if `variant=\"determinate\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "circleDisableShrink",
+      "className": "MuiCircularProgress-circleDisableShrink",
+      "description": "Styles applied to the `circle` svg path if `disableShrink={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "circleIndeterminate",
+      "className": "MuiCircularProgress-circleIndeterminate",
+      "description": "Styles applied to the `circle` svg path if `variant=\"indeterminate\"`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiCircularProgress-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiCircularProgress-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "determinate",
+      "className": "MuiCircularProgress-determinate",
+      "description": "Styles applied to the root element if `variant=\"determinate\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "indeterminate",
+      "className": "MuiCircularProgress-indeterminate",
+      "description": "Styles applied to the root element if `variant=\"indeterminate\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiCircularProgress-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "svg",
+      "className": "MuiCircularProgress-svg",
+      "description": "Styles applied to the svg element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiCircularProgress",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-material/src/CircularProgress/CircularProgress.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-progress/\">Progress</a></li></ul>",
+  "cssComponent": false
+}

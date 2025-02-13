@@ -1,0 +1,105 @@
+{
+  "props": {
+    "animation": {
+      "type": {
+        "name": "enum",
+        "description": "'pulse'<br>&#124;&nbsp;'wave'<br>&#124;&nbsp;false"
+      },
+      "default": "'pulse'"
+    },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "height": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'circular'<br>&#124;&nbsp;'rectangular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
+      },
+      "default": "'text'"
+    },
+    "width": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+  },
+  "name": "Skeleton",
+  "imports": [
+    "import Skeleton from '@mui/material/Skeleton';",
+    "import { Skeleton } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "circular",
+      "className": "MuiSkeleton-circular",
+      "description": "Styles applied to the root element if `variant=\"circular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fitContent",
+      "className": "MuiSkeleton-fitContent",
+      "description": "Styles applied when the component is passed children and no width.",
+      "isGlobal": false
+    },
+    {
+      "key": "heightAuto",
+      "className": "MuiSkeleton-heightAuto",
+      "description": "Styles applied when the component is passed children and no height.",
+      "isGlobal": false
+    },
+    {
+      "key": "pulse",
+      "className": "MuiSkeleton-pulse",
+      "description": "Styles applied to the root element if `animation=\"pulse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "rectangular",
+      "className": "MuiSkeleton-rectangular",
+      "description": "Styles applied to the root element if `variant=\"rectangular\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSkeleton-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "rounded",
+      "className": "MuiSkeleton-rounded",
+      "description": "Styles applied to the root element if `variant=\"rounded\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "text",
+      "className": "MuiSkeleton-text",
+      "description": "Styles applied to the root element if `variant=\"text\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "wave",
+      "className": "MuiSkeleton-wave",
+      "description": "Styles applied to the root element if `animation=\"wave\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "withChildren",
+      "className": "MuiSkeleton-withChildren",
+      "description": "Styles applied when the component is passed children.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSkeleton",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-material/src/Skeleton/Skeleton.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-skeleton/\">Skeleton</a></li></ul>",
+  "cssComponent": false
+}

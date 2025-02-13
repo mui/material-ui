@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { exactProp } from '@mui/utils';
@@ -6,23 +7,24 @@ import createGenerateClassName from '../createGenerateClassName';
 import jssPreset from '../jssPreset';
 
 // Default JSS instance.
-const jss = create(jssPreset());
+const defaultJSS = create(jssPreset());
 
 // Use a singleton or the provided one by the context.
 //
 // The counter-based approach doesn't tolerate any mistake.
 // It's much safer to use the same counter everywhere.
-const generateClassName = createGenerateClassName();
+const defaultGenerateClassName = createGenerateClassName();
 
+const defaultSheetsManager = new Map();
 // Exported for test purposes
-export const sheetsManager = new Map();
+export { defaultSheetsManager as sheetsManager };
 
 const defaultOptions = {
   disableGeneration: false,
-  generateClassName,
-  jss,
+  generateClassName: defaultGenerateClassName,
+  jss: defaultJSS,
   sheetsCache: null,
-  sheetsManager,
+  sheetsManager: defaultSheetsManager,
   sheetsRegistry: null,
 };
 
@@ -38,21 +40,14 @@ export default function StylesProvider(props) {
   const { children, injectFirst = false, disableGeneration = false, ...localOptions } = props;
 
   const outerOptions = React.useContext(StylesContext);
-  const context = { ...outerOptions, disableGeneration, ...localOptions };
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (typeof window === 'undefined' && !context.sheetsManager) {
-      console.error('MUI: You need to use the ServerStyleSheets API when rendering on the server.');
-    }
-  }
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (context.jss.options.insertionPoint && injectFirst) {
-      console.error(
-        'MUI: You cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
-      );
-    }
-  }
+  const {
+    generateClassName,
+    jss,
+    serverGenerateClassName,
+    sheetsCache,
+    sheetsManager,
+    sheetsRegistry,
+  } = { ...outerOptions, ...localOptions };
 
   if (process.env.NODE_ENV !== 'production') {
     if (injectFirst && localOptions.jss) {
@@ -60,17 +55,57 @@ export default function StylesProvider(props) {
     }
   }
 
-  if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
-    if (!injectFirstNode) {
-      const head = document.head;
-      injectFirstNode = document.createComment('mui-inject-first');
-      head.insertBefore(injectFirstNode, head.firstChild);
+  const value = React.useMemo(() => {
+    const context = {
+      disableGeneration,
+      generateClassName,
+      jss,
+      serverGenerateClassName,
+      sheetsCache,
+      sheetsManager,
+      sheetsRegistry,
+    };
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (typeof window === 'undefined' && !context.sheetsManager) {
+        console.error(
+          'MUI: You need to use the ServerStyleSheets API when rendering on the server.',
+        );
+      }
     }
 
-    context.jss = create({ plugins: jssPreset().plugins, insertionPoint: injectFirstNode });
-  }
+    if (process.env.NODE_ENV !== 'production') {
+      if (context.jss.options.insertionPoint && injectFirst) {
+        console.error(
+          'MUI: You cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
+        );
+      }
+    }
 
-  return <StylesContext.Provider value={context}>{children}</StylesContext.Provider>;
+    if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
+      if (!injectFirstNode) {
+        const head = document.head;
+        // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- injectFirstNode is called inside callback
+        injectFirstNode = document.createComment('mui-inject-first');
+        head.insertBefore(injectFirstNode, head.firstChild);
+      }
+
+      context.jss = create({ plugins: jssPreset().plugins, insertionPoint: injectFirstNode });
+    }
+
+    return context;
+  }, [
+    injectFirst,
+    disableGeneration,
+    generateClassName,
+    jss,
+    serverGenerateClassName,
+    sheetsCache,
+    sheetsManager,
+    sheetsRegistry,
+  ]);
+
+  return <StylesContext.Provider value={value}>{children}</StylesContext.Provider>;
 }
 
 StylesProvider.propTypes = {

@@ -1,13 +1,14 @@
+'use client';
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import NativeSelectInput from './NativeSelectInput';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import Input from '../Input';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -25,7 +26,7 @@ const defaultInput = <Input />;
  * An alternative to `<Select native />` with a much smaller bundle size footprint.
  */
 const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiNativeSelect', props: inProps });
+  const props = useDefaultProps({ name: 'MuiNativeSelect', props: inProps });
   const {
     className,
     children,
@@ -48,30 +49,34 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
   const { root, ...otherClasses } = classesProp;
 
-  return React.cloneElement(input, {
-    // Most of the logic is implemented in `NativeSelectInput`.
-    // The `Select` component is a simple API wrapper to expose something better to play with.
-    inputComponent: NativeSelectInput,
-    inputProps: {
-      children,
-      classes: otherClasses,
-      IconComponent,
-      variant: fcs.variant,
-      type: undefined, // We render a select. We can ignore the type provided by the `Input`.
-      ...inputProps,
-      ...(input ? input.props.inputProps : {}),
-    },
-    ref,
-    ...other,
-    className: clsx(classes.root, input.props.className, className),
-  });
+  return (
+    <React.Fragment>
+      {React.cloneElement(input, {
+        // Most of the logic is implemented in `NativeSelectInput`.
+        // The `Select` component is a simple API wrapper to expose something better to play with.
+        inputComponent: NativeSelectInput,
+        inputProps: {
+          children,
+          classes: otherClasses,
+          IconComponent,
+          variant: fcs.variant,
+          type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+          ...inputProps,
+          ...(input ? input.props.inputProps : {}),
+        },
+        ref,
+        ...other,
+        className: clsx(classes.root, input.props.className, className),
+      })}
+    </React.Fragment>
+  );
 });
 
 NativeSelect.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The option elements to populate the select with.
    * Can be some `<option>` elements.

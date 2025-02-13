@@ -1,71 +1,46 @@
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  BreakpointsOptions,
-  SpacingOptions,
-} from '@mui/system';
-import defaultTheme, {
-  ThemeScales,
-  lightColorSystem,
-  darkColorSystem,
-  TypographySystem,
-  Focus,
-} from './defaultTheme';
-import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { Variants } from './types/variants';
-import { ColorSystem } from './types/colorSystem';
+'use client';
+// do not remove the following import (https://github.com/microsoft/TypeScript/issues/29808#issuecomment-1320713018)
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// @ts-ignore
+import * as React from 'react';
+import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import defaultTheme from './defaultTheme';
+import type { SupportedColorScheme } from './types';
+import THEME_ID from './identifier';
+import { defaultConfig } from '../InitColorSchemeScript/InitColorSchemeScript';
 
-type PartialDeep<T> = {
-  [K in keyof T]?: PartialDeep<T[K]>;
-};
-
-type PartialNested<T> = {
-  [K in keyof T]?: {
-    [J in keyof T[K]]?: T[K][J];
-  };
-};
-
-// Use PartialNested instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-type ThemeInput = PartialNested<
-  ThemeScales & {
-    focus: Focus;
-    typography: TypographySystem;
-    variants: Variants;
-  }
-> & {
-  breakpoints?: BreakpointsOptions;
-  spacing?: SpacingOptions;
-};
-
-type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<DefaultColorScheme, PartialDeep<ColorSystem>>;
-};
-
-type ApplicationThemeInput = ThemeInput & {
-  colorSchemes: Record<ExtendedColorScheme, PartialDeep<ColorSystem>>;
-};
-
-const { palette, ...rest } = defaultTheme;
-
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  JoyThemeInput,
-  DefaultColorScheme,
-  ApplicationThemeInput,
-  ExtendedColorScheme
->({
-  theme: {
-    ...rest,
-    colorSchemes: {
-      light: lightColorSystem,
-      dark: darkColorSystem,
-    },
-  },
+const {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript: deprecatedGetInitColorSchemeScript,
+} = createCssVarsProvider<SupportedColorScheme, typeof THEME_ID>({
+  themeId: THEME_ID,
+  theme: defaultTheme,
+  attribute: defaultConfig.attribute,
+  modeStorageKey: defaultConfig.modeStorageKey,
+  colorSchemeStorageKey: defaultConfig.colorSchemeStorageKey,
   defaultColorScheme: {
-    light: 'light',
-    dark: 'dark',
+    light: defaultConfig.defaultLightColorScheme,
+    dark: defaultConfig.defaultDarkColorScheme,
   },
-  prefix: 'joy',
-  shouldSkipGeneratingVar: (keys) =>
-    keys[0] === 'typography' || keys[0] === 'variants' || keys[0] === 'focus',
 });
+
+let warnedInitScriptOnce = false;
+
+const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (params) => {
+  if (!warnedInitScriptOnce) {
+    console.warn(
+      [
+        'MUI: The getInitColorSchemeScript function has been deprecated.',
+        '',
+        "You should use `import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript'`",
+        'and replace the function call with `<InitColorSchemeScript />` instead.',
+      ].join('\n'),
+    );
+
+    warnedInitScriptOnce = true;
+  }
+  return deprecatedGetInitColorSchemeScript(params);
+};
 
 export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };

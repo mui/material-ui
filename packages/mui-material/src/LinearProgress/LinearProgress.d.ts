@@ -5,6 +5,7 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { LinearProgressClasses } from './linearProgressClasses';
 
 export interface LinearProgressPropsColorOverrides {}
+export interface LinearProgressPropsVariantOverrides {}
 
 export interface LinearProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -13,7 +14,9 @@ export interface LinearProgressProps
    */
   classes?: Partial<LinearProgressClasses>;
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color?: OverridableStringUnion<
@@ -39,7 +42,10 @@ export interface LinearProgressProps
    * Use indeterminate or query when there is no progress value.
    * @default 'indeterminate'
    */
-  variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
+  variant?: OverridableStringUnion<
+    'determinate' | 'indeterminate' | 'buffer' | 'query',
+    LinearProgressPropsVariantOverrides
+  >;
 }
 
 /**
@@ -51,10 +57,10 @@ export interface LinearProgressProps
  *
  * Demos:
  *
- * - [Progress](https://mui.com/components/progress/)
+ * - [Progress](https://next.mui.com/material-ui/react-progress/)
  *
  * API:
  *
- * - [LinearProgress API](https://mui.com/api/linear-progress/)
+ * - [LinearProgress API](https://next.mui.com/material-ui/api/linear-progress/)
  */
-export default function LinearProgress(props: LinearProgressProps): JSX.Element;
+export default function LinearProgress(props: LinearProgressProps): React.JSX.Element;

@@ -1,8 +1,8 @@
 import { createStyled } from '@mui/system';
-import defaultTheme, { JoyTheme } from './defaultTheme';
+import { Theme } from './types';
+import defaultTheme from './defaultTheme';
+import THEME_ID from './identifier';
 
-const styled = createStyled<JoyTheme>({ defaultTheme } as {
-  defaultTheme: JoyTheme;
-});
+const styled = createStyled<Theme>({ defaultTheme, themeId: THEME_ID });
 
 export default styled;

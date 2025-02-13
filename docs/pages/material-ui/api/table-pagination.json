@@ -1,0 +1,164 @@
+{
+  "props": {
+    "count": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "onPageChange": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": {
+        "type": "function(event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void",
+        "describedArgs": ["event", "page"]
+      }
+    },
+    "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
+    "backIconButtonProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.actions.previousButton</code> instead."
+    },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "getItemAriaLabel": {
+      "type": { "name": "func" },
+      "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}",
+      "signature": { "type": "function(type: string) => string", "describedArgs": ["type"] }
+    },
+    "labelDisplayedRows": {
+      "type": { "name": "func" },
+      "default": "function defaultLabelDisplayedRows({ from, to, count }) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
+    },
+    "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
+    "nextIconButtonProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.actions.nextButton</code> instead."
+    },
+    "onRowsPerPageChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void",
+        "describedArgs": ["event"]
+      }
+    },
+    "rowsPerPageOptions": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;"
+      },
+      "default": "[10, 25, 50, 100]"
+    },
+    "SelectProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.select</code> instead."
+    },
+    "showFirstButton": { "type": { "name": "bool" }, "default": "false" },
+    "showLastButton": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ actions?: { firstButton?: object, firstButtonIcon?: object, lastButton?: object, lastButtonIcon?: object, nextButton?: object, nextButtonIcon?: object, previousButton?: object, previousButtonIcon?: object }, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ actions?: { firstButton?: elementType, firstButtonIcon?: elementType, lastButton?: elementType, lastButtonIcon?: elementType, nextButton?: elementType, nextButtonIcon?: elementType, previousButton?: elementType, previousButtonIcon?: elementType }, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "TablePagination",
+  "imports": [
+    "import TablePagination from '@mui/material/TablePagination';",
+    "import { TablePagination } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.\n[Follow this guide](https://mui.com/material-ui/api/table-cell/#props) to learn more about the requirements for this component.",
+      "default": "TableCell",
+      "class": "MuiTablePagination-root"
+    },
+    {
+      "name": "toolbar",
+      "description": "The component that renders the toolbar slot.\n[Follow this guide](https://mui.com/material-ui/api/toolbar/#props) to learn more about the requirements for this component.",
+      "default": "Toolbar",
+      "class": "MuiTablePagination-toolbar"
+    },
+    {
+      "name": "spacer",
+      "description": "The tag that renders the spacer slot.",
+      "default": "'div'",
+      "class": "MuiTablePagination-spacer"
+    },
+    {
+      "name": "selectLabel",
+      "description": "The tag that renders the selectLabel slot.",
+      "default": "'p'",
+      "class": "MuiTablePagination-selectLabel"
+    },
+    {
+      "name": "select",
+      "description": "The component that renders the select slot.\n[Follow this guide](https://mui.com/material-ui/api/select/#props) to learn more about the requirements for this component.",
+      "default": "Select",
+      "class": "MuiTablePagination-select"
+    },
+    {
+      "name": "menuItem",
+      "description": "The component that renders the select slot.\n[Follow this guide](https://mui.com/material-ui/api/menu-item/#props) to learn more about the requirements for this component.",
+      "default": "MenuItem",
+      "class": "MuiTablePagination-menuItem"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The tag that renders the displayedRows slot.",
+      "default": "'p'",
+      "class": "MuiTablePagination-displayedRows"
+    },
+    {
+      "name": "actions",
+      "description": "The slots that passed to the actions slot.",
+      "class": "MuiTablePagination-actions"
+    }
+  ],
+  "classes": [
+    {
+      "key": "input",
+      "className": "MuiTablePagination-input",
+      "description": "Styles applied to the Select component `root` element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selectIcon",
+      "className": "MuiTablePagination-selectIcon",
+      "description": "Styles applied to the Select component `icon` class.",
+      "isGlobal": false
+    },
+    {
+      "key": "selectRoot",
+      "className": "MuiTablePagination-selectRoot",
+      "description": "Styles applied to the Select component `root` element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTablePagination",
+  "forwardsRefTo": "HTMLTableCellElement",
+  "filename": "/packages/mui-material/src/TablePagination/TablePagination.js",
+  "inheritance": { "component": "TableCell", "pathname": "/material-ui/api/table-cell/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-pagination/\">Pagination</a></li>\n<li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
+  "cssComponent": false
+}

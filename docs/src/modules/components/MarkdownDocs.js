@@ -1,95 +1,102 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Demo from 'docs/src/modules/components/Demo';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { useRouter } from 'next/router';
+import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
+import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { Ad, AdGuest } from '@mui/docs/Ad';
+import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { useUserLanguage } from '@mui/docs/i18n';
+import { BrandingProvider } from '@mui/docs/branding';
+import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
 
-// TODO: Only import on demand via @mui/markdown/loader
-const markdownComponents = {
-  'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
-};
-
-function noComponent(moduleID) {
-  return function NoComponent() {
-    throw new Error(`No demo component provided for '${moduleID}'`);
-  };
+function JoyModeObserver({ mode }) {
+  const { setMode } = useColorScheme();
+  React.useEffect(() => {
+    setMode(mode);
+  }, [mode, setMode]);
+  return null;
 }
 
-function MarkdownDocs(props) {
-  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
+JoyModeObserver.propTypes = {
+  mode: PropTypes.oneOf(['light', 'dark']),
+};
+
+export default function MarkdownDocs(props) {
+  const theme = useTheme();
+  const router = useRouter();
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const {
+    disableAd = false,
+    disableToc = false,
+    /**
+     * Some pages, for example Joy theme builder, should not be a nested CssVarsProvider to control its own state.
+     * This config will skip the CssVarsProvider at the root of the page.
+     */
+    disableCssVarsProvider = false,
+    demos = {},
+    docs,
+    demoComponents,
+    srcComponents,
+  } = props;
 
   const userLanguage = useUserLanguage();
-  const t = useTranslate();
+  const localizedDoc = docs[userLanguage] || docs.en;
 
-  const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
+  const isBase = canonicalAs.startsWith('/base-ui/');
+
+  const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
+  const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
+  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
+  const wrapperProps = {
+    ...(isJoy && { mode: theme.palette.mode }),
+  };
 
   return (
     <AppLayoutDocs
-      description={description}
+      cardOptions={{
+        description: localizedDoc.headers.cardDescription,
+        title: localizedDoc.headers.cardTitle,
+      }}
+      description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
-      location={location}
-      title={title}
-      toc={toc}
+      location={localizedDoc.location}
+      title={localizedDoc.title}
+      toc={localizedDoc.toc}
     >
-      {rendered.map((renderedMarkdownOrDemo, index) => {
-        if (typeof renderedMarkdownOrDemo === 'string') {
-          return <MarkdownElement key={index} renderedMarkdown={renderedMarkdownOrDemo} />;
-        }
-
-        if (renderedMarkdownOrDemo.component) {
-          const Component = markdownComponents[renderedMarkdownOrDemo.component];
-          return <Component key={index} headers={headers} options={renderedMarkdownOrDemo} />;
-        }
-
-        const name = renderedMarkdownOrDemo.demo;
-        const demo = demos?.[name];
-        if (demo === undefined) {
-          const errorMessage = [
-            `Missing demo: ${name}. You can use one of the following:`,
-            Object.keys(demos),
-          ].join('\n');
-
-          if (userLanguage === 'en') {
-            throw new Error(errorMessage);
-          }
-
-          if (process.env.NODE_ENV !== 'production') {
-            console.error(errorMessage);
-          }
-
-          const warnIcon = (
-            <span role="img" aria-label={t('emojiWarning')}>
-              ⚠️
-            </span>
-          );
-          return (
-            <div key={index}>
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              {warnIcon} Missing demo `{name}` {warnIcon}
-            </div>
-          );
-        }
-
-        return (
-          <Demo
-            key={index}
-            demo={{
-              raw: demo.raw,
-              js: demoComponents[demo.module] ?? noComponent(demo.module),
-              jsxPreview: demo.jsxPreview,
-              rawTS: demo.rawTS,
-              tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
-            }}
-            disableAd={disableAd}
-            demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
+      {disableAd ? null : (
+        <BrandingProvider>
+          <AdGuest>
+            <Ad />
+          </AdGuest>
+        </BrandingProvider>
+      )}
+      <CssVarsProvider>
+        {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
+        {isBase && (
+          <MuiBaseDeprecation
+            newComponentUrl={localizedDoc.headers.newUrl}
+            newComponentName={localizedDoc.headers.newName}
           />
-        );
-      })}
+        )}
+        {localizedDoc.rendered.map((renderedMarkdownOrDemo, index) => (
+          <RichMarkdownElement
+            key={`demos-section-${index}`}
+            demoComponents={demoComponents}
+            demos={demos}
+            disableAd={disableAd}
+            localizedDoc={localizedDoc}
+            renderedMarkdownOrDemo={renderedMarkdownOrDemo}
+            srcComponents={srcComponents}
+            theme={theme}
+            WrapperComponent={Wrapper}
+            wrapperProps={wrapperProps}
+          />
+        ))}
+      </CssVarsProvider>
     </AppLayoutDocs>
   );
 }
@@ -98,12 +105,12 @@ MarkdownDocs.propTypes = {
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
+  disableCssVarsProvider: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  srcComponents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {
   MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
 }
-
-export default MarkdownDocs;

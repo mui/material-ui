@@ -1,0 +1,4 @@
+<Autocomplete
+  options={top100Films}
+  isOptionEqualToValue={(option, value) => option.label === value.label}
+/>

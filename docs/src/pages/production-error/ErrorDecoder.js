@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { renderInline as renderInlineMarkdown } from '@mui/markdown';
+import { renderMarkdown } from '@mui/internal-markdown';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
@@ -86,7 +86,7 @@ export default function ErrorDecoder() {
       return div.innerHTML;
     });
 
-    return renderInlineMarkdown(readableMessage);
+    return renderMarkdown(readableMessage);
   }, [args, code, data.errorCodes]);
 
   if (data.state === 'loading') {
@@ -97,9 +97,9 @@ export default function ErrorDecoder() {
     return (
       <Typography color="error">
         Seems like we&apos;re having some issues loading the original message. Try
-        reloading the page. If the error persists please report this isse on our{' '}
+        reloading the page. If the error persists please report this issue on our{' '}
         <Link
-          href="https://github.com/mui-org/material-ui/issues/new?template=1.bug.md"
+          href="https://github.com/mui/material-ui/issues/new?template=1.bug.md"
           target="_blank"
         >
           issue tracker

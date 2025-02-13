@@ -1,0 +1,208 @@
+{
+  "props": {
+    "action": { "type": { "name": "custom", "description": "ref" } },
+    "allowScrollButtonsMobile": { "type": { "name": "bool" }, "default": "false" },
+    "aria-label": { "type": { "name": "string" } },
+    "aria-labelledby": { "type": { "name": "string" } },
+    "centered": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "indicatorColor": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
+      "default": "'primary'"
+    },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: any) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "ScrollButtonComponent": {
+      "type": { "name": "elementType" },
+      "default": "TabScrollButton",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots.scrollButtons</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "scrollButtons": {
+      "type": { "name": "enum", "description": "'auto'<br>&#124;&nbsp;false<br>&#124;&nbsp;true" },
+      "default": "'auto'"
+    },
+    "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ endScrollButtonIcon?: func<br>&#124;&nbsp;object, indicator?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, scrollbar?: func<br>&#124;&nbsp;object, scrollButtons?: func<br>&#124;&nbsp;object, scroller?: func<br>&#124;&nbsp;object, startScrollButtonIcon?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ endScrollButtonIcon?: elementType, EndScrollButtonIcon?: elementType, indicator?: elementType, list?: elementType, root?: elementType, scrollbar?: elementType, scrollButtons?: elementType, scroller?: elementType, startScrollButtonIcon?: elementType, StartScrollButtonIcon?: elementType }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "TabIndicatorProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps.indicator</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "TabScrollButtonProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps.scrollButtons</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "textColor": {
+      "type": {
+        "name": "enum",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+      },
+      "default": "'primary'"
+    },
+    "value": { "type": { "name": "any" } },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'fullWidth'<br>&#124;&nbsp;'scrollable'<br>&#124;&nbsp;'standard'"
+      },
+      "default": "'standard'"
+    },
+    "visibleScrollbar": { "type": { "name": "bool" }, "default": "false" }
+  },
+  "name": "Tabs",
+  "imports": ["import Tabs from '@mui/material/Tabs';", "import { Tabs } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component used for the popper.",
+      "default": "div",
+      "class": "MuiTabs-root"
+    },
+    {
+      "name": "scroller",
+      "description": "The component used for the scroller.",
+      "default": "div",
+      "class": "MuiTabs-scroller"
+    },
+    {
+      "name": "list",
+      "description": "The component used for the flex container.",
+      "default": "div",
+      "class": "MuiTabs-list"
+    },
+    {
+      "name": "scrollbar",
+      "description": "The component used for the scroller.",
+      "default": "ScrollbarSize",
+      "class": null
+    },
+    {
+      "name": "indicator",
+      "description": "The component used for the tab indicator.",
+      "default": "span",
+      "class": "MuiTabs-indicator"
+    },
+    {
+      "name": "scrollButtons",
+      "description": "The component used for the scroll button.",
+      "default": "TabScrollButton",
+      "class": "MuiTabs-scrollButtons"
+    },
+    {
+      "name": "startScrollButtonIcon",
+      "description": "The component used for the start scroll button icon.",
+      "default": "KeyboardArrowLeft",
+      "class": null
+    },
+    {
+      "name": "endScrollButtonIcon",
+      "description": "The component used for the end scroll button icon.",
+      "default": "KeyboardArrowRight",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "centered",
+      "className": "MuiTabs-centered",
+      "description": "Styles applied to the flex container element if `centered={true}` & `!variant=\"scrollable\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fixed",
+      "className": "MuiTabs-fixed",
+      "description": "Styles applied to the tablist element if `!variant=\"scrollable\"`\b\b\b.",
+      "isGlobal": false
+    },
+    {
+      "key": "flexContainer",
+      "className": "MuiTabs-flexContainer",
+      "description": "",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "flexContainerVertical",
+      "className": "MuiTabs-flexContainerVertical",
+      "description": "",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "hideScrollbar",
+      "className": "MuiTabs-hideScrollbar",
+      "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `visibleScrollbar={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollableX",
+      "className": "MuiTabs-scrollableX",
+      "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `orientation=\"horizontal\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollableY",
+      "className": "MuiTabs-scrollableY",
+      "description": "Styles applied to the tablist element if `variant=\"scrollable\"` and `orientation=\"vertical\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "scrollButtonsHideMobile",
+      "className": "MuiTabs-scrollButtonsHideMobile",
+      "description": "Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "MuiTabs-vertical",
+      "description": "Styles applied to the root element if `orientation=\"vertical\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTabs",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Tabs/Tabs.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

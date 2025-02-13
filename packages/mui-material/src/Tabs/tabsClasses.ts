@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface TabsClasses {
   /** Styles applied to the root element. */
@@ -6,9 +7,13 @@ export interface TabsClasses {
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
   /** Styles applied to the flex container element. */
+  /** @deprecated use `list` instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details. */
   flexContainer: string;
   /** Styles applied to the flex container element if `orientation="vertical"`. */
+  /** @deprecated use a combination of `list` and `vertical` instead. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details. */
   flexContainerVertical: string;
+  /** Styles applied to the list element. */
+  list: string;
   /** Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`. */
   centered: string;
   /** Styles applied to the tablist element. */
@@ -38,6 +43,7 @@ export function getTabsUtilityClass(slot: string): string {
 const tabsClasses: TabsClasses = generateUtilityClasses('MuiTabs', [
   'root',
   'vertical',
+  'list',
   'flexContainer',
   'flexContainerVertical',
   'centered',

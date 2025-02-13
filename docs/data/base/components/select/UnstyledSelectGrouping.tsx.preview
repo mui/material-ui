@@ -1,0 +1,12 @@
+<Select placeholder="Choose a character…">
+  <OptionGroup label="Hobbits">
+    <Option value="Frodo">Frodo</Option>
+    <Option value="Sam">Sam</Option>
+    <Option value="Merry">Merry</Option>
+    <Option value="Pippin">Pippin</Option>
+  </OptionGroup>
+  <OptionGroup label="Elves">
+    <Option value="Galadriel">Galadriel</Option>
+    <Option value="Legolas">Legolas</Option>
+  </OptionGroup>
+</Select>

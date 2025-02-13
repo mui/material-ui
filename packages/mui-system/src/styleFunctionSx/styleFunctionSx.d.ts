@@ -1,4 +1,5 @@
 import * as CSS from 'csstype';
+import { CSSObject } from '@mui/styled-engine';
 import { StandardCSSProperties } from './StandardCssProperties';
 import { AliasesCSSProperties } from './AliasesCSSProperties';
 import { OverwriteCSSProperties } from './OverwriteCSSProperties';
@@ -8,7 +9,7 @@ import { OverwriteCSSProperties } from './OverwriteCSSProperties';
  * Note that this extends to non-theme values also. For example `display=['none', 'block']`
  * will also works.
  */
-export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
+export type ResponsiveStyleValue<T> = T | ReadonlyArray<T | null> | { [key: string]: T | null };
 
 /**
  * Map of all CSS pseudo selectors (`:hover`, `:focus`, ...).
@@ -22,6 +23,18 @@ export type CSSPseudoSelectorProps<Theme extends object = {}> = {
  */
 export interface CSSSelectorObject<Theme extends object = {}> {
   [cssSelector: string]: ((theme: Theme) => SystemStyleObject<Theme>) | SystemStyleObject<Theme>;
+}
+
+type CssVariableType = string | number;
+
+/**
+ * Map all nested selectors and CSS variables.
+ */
+export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
+  [cssSelectorOrVariable: string]:
+    | ((theme: Theme) => SystemStyleObject<Theme> | string | number)
+    | SystemStyleObject<Theme>
+    | CssVariableType;
 }
 
 /**
@@ -38,7 +51,7 @@ export type SystemCssProperties<Theme extends object = {}> = {
   [K in keyof AllSystemCSSProperties]:
     | ResponsiveStyleValue<AllSystemCSSProperties[K]>
     | ((theme: Theme) => ResponsiveStyleValue<AllSystemCSSProperties[K]>)
-    | SystemStyleObject<Theme>;
+    | null;
 };
 
 /**
@@ -48,7 +61,7 @@ export type SystemCssProperties<Theme extends object = {}> = {
 export type SystemStyleObject<Theme extends object = {}> =
   | SystemCssProperties<Theme>
   | CSSPseudoSelectorProps<Theme>
-  | CSSSelectorObject<Theme>
+  | CSSSelectorObjectOrCssVariables<Theme>
   | null;
 
 /**
@@ -57,7 +70,20 @@ export type SystemStyleObject<Theme extends object = {}> =
 export type SxProps<Theme extends object = {}> =
   | SystemStyleObject<Theme>
   | ((theme: Theme) => SystemStyleObject<Theme>)
-  | Array<boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)>;
+  | ReadonlyArray<
+      boolean | SystemStyleObject<Theme> | ((theme: Theme) => SystemStyleObject<Theme>)
+    >;
+
+export interface StyleFunctionSx {
+  (props: object): CSSObject;
+  filterProps?: string[];
+}
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export default function unstable_styleFunctionSx(props: object): object;
+export function unstable_createStyleFunctionSx(
+  styleFunctionMapping: Record<string, StyleFunctionSx>,
+): StyleFunctionSx;
+
+declare const styleFunctionSx: StyleFunctionSx;
+
+export default styleFunctionSx;

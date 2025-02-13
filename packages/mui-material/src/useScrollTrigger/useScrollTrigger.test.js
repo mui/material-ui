@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer, RenderCounter, screen } from 'test/utils';
+import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -12,14 +12,14 @@ describe('useScrollTrigger', () => {
   describe('defaultTrigger', () => {
     it('should be false by default', () => {
       const getRenderCountRef = React.createRef();
-      const TestDefault = () => {
+      function TestDefault() {
         const trigger = useScrollTrigger();
         return (
           <RenderCounter ref={getRenderCountRef}>
             <span data-testid="trigger">{`${trigger}`}</span>
           </RenderCounter>
         );
-      };
+      }
 
       render(<TestDefault />);
 
@@ -30,7 +30,7 @@ describe('useScrollTrigger', () => {
     it('should be false by default when using ref', () => {
       const getRenderCountRef = React.createRef();
       const triggerRef = React.createRef();
-      const TestDefaultWithRef = () => {
+      function TestDefaultWithRef() {
         const [container, setContainer] = React.useState();
         const trigger = useScrollTrigger({
           target: container,
@@ -41,7 +41,7 @@ describe('useScrollTrigger', () => {
             <span ref={setContainer} />
           </RenderCounter>
         );
-      };
+      }
       render(<TestDefaultWithRef />);
       expect(triggerRef.current.textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(2);

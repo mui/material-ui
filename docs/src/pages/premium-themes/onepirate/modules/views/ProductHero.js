@@ -4,7 +4,7 @@ import Typography from '../components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 
 const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400&q=80';
+  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400';
 
 export default function ProductHero() {
   return (
@@ -28,7 +28,7 @@ export default function ProductHero() {
         color="inherit"
         align="center"
         variant="h5"
-        sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
+        sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
       >
         Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
       </Typography>

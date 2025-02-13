@@ -1,0 +1,44 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent, value: any) => void",
+        "describedArgs": ["event", "value"]
+      }
+    },
+    "showLabels": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "value": { "type": { "name": "any" } }
+  },
+  "name": "BottomNavigation",
+  "imports": [
+    "import BottomNavigation from '@mui/material/BottomNavigation';",
+    "import { BottomNavigation } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiBottomNavigation-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiBottomNavigation",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/BottomNavigation/BottomNavigation.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-bottom-navigation/\">Bottom Navigation</a></li></ul>",
+  "cssComponent": false
+}

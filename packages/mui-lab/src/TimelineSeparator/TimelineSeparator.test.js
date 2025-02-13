@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TimelineSeparator, { timelineSeparatorClasses as classes } from '@mui/lab/TimelineSeparator';
+import describeConformance from '../../test/describeConformance';
 
 describe('<TimelineSeparator />', () => {
   const { render } = createRenderer();

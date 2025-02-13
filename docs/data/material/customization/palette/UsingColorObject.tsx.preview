@@ -1,0 +1,6 @@
+<ThemeProvider theme={theme}>
+  <Button variant="contained">Primary</Button>
+  <Button variant="contained" color="secondary" sx={{ ml: 2 }}>
+    Secondary
+  </Button>
+</ThemeProvider>

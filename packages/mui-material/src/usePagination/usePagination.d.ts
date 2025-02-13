@@ -43,7 +43,7 @@ export interface UsePaginationProps {
    */
   onChange?: (event: React.ChangeEvent<unknown>, page: number) => void;
   /**
-   * The current page.
+   * The current page. Unlike `TablePagination`, which starts numbering from `0`, this pagination starts from `1`.
    */
   page?: number;
   /**
@@ -66,7 +66,7 @@ export interface UsePaginationProps {
 export interface UsePaginationItem {
   onClick: React.ReactEventHandler;
   type: 'page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis';
-  page: number;
+  page: number | null;
   selected: boolean;
   disabled: boolean;
 }

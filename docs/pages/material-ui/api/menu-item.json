@@ -1,0 +1,77 @@
+{
+  "props": {
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "dense": { "type": { "name": "bool" }, "default": "false" },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "divider": { "type": { "name": "bool" }, "default": "false" },
+    "focusVisibleClassName": { "type": { "name": "string" } },
+    "selected": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "MenuItem",
+  "imports": [
+    "import MenuItem from '@mui/material/MenuItem';",
+    "import { MenuItem } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiMenuItem-dense",
+      "description": "Styles applied to the root element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "divider",
+      "className": "MuiMenuItem-divider",
+      "description": "Styles applied to the root element if `divider={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the root element if keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiMenuItem-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiMenuItem-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMenuItem",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-material/src/MenuItem/MenuItem.js",
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, describeConformance } from 'test/utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CancelIcon from '../internal/svg-icons/Cancel';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Avatar />', () => {
   const { render } = createRenderer();
@@ -45,11 +47,34 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should pass slots.img to `useLoaded` hook', () => {
+      const originalImage = global.Image;
+      const image = {};
+      global.Image = function Image() {
+        return image;
+      };
+
+      render(<Avatar src="/fake.png" slotProps={{ img: { crossOrigin: 'anonymous' } }} />);
+
+      expect(image.crossOrigin).to.equal('anonymous');
+
+      global.Image = originalImage;
     });
   });
 
@@ -63,8 +88,17 @@ describe('<Avatar />', () => {
     });
 
     it('should be able to add more props to the image', () => {
+      // TODO: remove this test in v7
       const onError = spy();
       const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const img = container.querySelector('img');
+      fireEvent.error(img);
+      expect(onError.callCount).to.equal(1);
+    });
+
+    it('should be able to add more props to the img slot', () => {
+      const onError = spy();
+      const { container } = render(<Avatar src="/fake.png" slotProps={{ img: { onError } }} />);
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -211,5 +245,43 @@ describe('<Avatar />', () => {
 
       expect(avatar).to.have.class(classes.colorDefault);
     });
+
+    it('should fallback if children is empty string', () => {
+      const container = render(<Avatar>{''}</Avatar>).container;
+      const avatar = container.firstChild;
+
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+    });
+
+    it('should fallback if children is false', () => {
+      const container = render(<Avatar>{false}</Avatar>).container;
+      const avatar = container.firstChild;
+
+      expect(avatar.firstChild).to.have.attribute('data-testid', 'PersonIcon');
+    });
+  });
+
+  it('should not throw error when ownerState is used in styleOverrides', () => {
+    const theme = createTheme({
+      components: {
+        MuiAvatar: {
+          styleOverrides: {
+            root: ({ ownerState }) => ({
+              ...(ownerState.variant === 'rounded' && {
+                color: 'red',
+              }),
+            }),
+          },
+        },
+      },
+    });
+
+    expect(() =>
+      render(
+        <ThemeProvider theme={theme}>
+          <Avatar variant="rounded" />
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 });

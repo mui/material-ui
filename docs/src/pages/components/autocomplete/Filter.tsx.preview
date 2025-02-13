@@ -1,8 +1,0 @@
-<Autocomplete
-  id="filter-demo"
-  options={top100Films}
-  getOptionLabel={(option) => option.title}
-  filterOptions={filterOptions}
-  sx={{ width: 300 }}
-  renderInput={(params) => <TextField {...params} label="Custom filter" />}
-/>

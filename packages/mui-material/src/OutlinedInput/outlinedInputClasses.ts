@@ -1,4 +1,6 @@
-import { generateUtilityClasses, generateUtilityClass } from '@mui/base';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
+import { inputBaseClasses } from '../InputBase';
 
 export interface OutlinedInputClasses {
   /** Styles applied to the root element. */
@@ -31,6 +33,8 @@ export interface OutlinedInputClasses {
   inputAdornedStart: string;
   /** Styles applied to the input element if `endAdornment` is provided. */
   inputAdornedEnd: string;
+  /** Styles applied to the input element if `type="search"`. */
+  inputTypeSearch: string;
 }
 
 export type OutlinedInputClassKey = keyof OutlinedInputClasses;
@@ -39,22 +43,9 @@ export function getOutlinedInputUtilityClass(slot: string): string {
   return generateUtilityClass('MuiOutlinedInput', slot);
 }
 
-const outlinedInputClasses: OutlinedInputClasses = generateUtilityClasses('MuiOutlinedInput', [
-  'root',
-  'colorSecondary',
-  'focused',
-  'disabled',
-  'adornedStart',
-  'adornedEnd',
-  'error',
-  'sizeSmall',
-  'multiline',
-  'notchedOutline',
-  'input',
-  'inputSizeSmall',
-  'inputMultiline',
-  'inputAdornedStart',
-  'inputAdornedEnd',
-]);
+const outlinedInputClasses: OutlinedInputClasses = {
+  ...inputBaseClasses,
+  ...generateUtilityClasses('MuiOutlinedInput', ['root', 'notchedOutline', 'input']),
+};
 
 export default outlinedInputClasses;

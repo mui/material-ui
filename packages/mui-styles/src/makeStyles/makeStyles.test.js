@@ -2,8 +2,13 @@ import { expect } from 'chai';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
-import { act } from 'react-dom/test-utils';
-import { createMount } from 'test/utils';
+import {
+  createRenderer,
+  screen,
+  renderHook,
+  fireEvent,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { createTheme } from '@mui/material/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import makeStyles from './makeStyles';
@@ -13,28 +18,7 @@ import ThemeProvider from '../ThemeProvider';
 
 describe('makeStyles', () => {
   // StrictModeViolation: uses `useSynchronousEffect`
-  const mount = createMount({ strict: null });
-
-  /**
-   * returns a function that given the props for the styles object will return
-   * the css classes
-   * @param {object} styles argument for `makeStyles`
-   */
-  function createGetClasses(styles) {
-    const useStyles = makeStyles(styles);
-    const output = {};
-
-    function TestComponent(props) {
-      output.classes = useStyles(props);
-      return <div />;
-    }
-
-    return function mountWithProps(props) {
-      const wrapper = mount(<TestComponent {...props} />);
-      output.wrapper = wrapper;
-      return output;
-    };
-  }
+  const { render } = createRenderer({ strict: false });
 
   let generateClassName;
 
@@ -44,90 +28,99 @@ describe('makeStyles', () => {
 
   it('should accept a classes prop', () => {
     const styles = { root: {} };
-    const mountWithProps = createGetClasses(styles);
-    const output = mountWithProps();
-    const baseClasses = output.classes;
-    output.wrapper.setProps({
-      classes: { root: 'h1' },
-    });
-    const extendedClasses = output.classes;
+    const useStyles = makeStyles(styles);
+
+    const { result, rerender } = renderHook((props) => useStyles(props));
+    const baseClasses = result.current;
+    rerender({ classes: { root: 'h1' } });
+    const extendedClasses = result.current;
+
     expect(extendedClasses.root).to.equal(`${baseClasses.root} h1`);
   });
 
   it('should ignore undefined prop', () => {
     const styles = { root: {} };
-    const mountWithProps = createGetClasses(styles);
-    const output = mountWithProps();
-    const baseClasses = output.classes;
-    output.wrapper.setProps({
-      classes: { root: undefined },
-    });
-    const extendedClasses = output.classes;
+    const useStyles = makeStyles(styles);
+
+    const { result, rerender } = renderHook((props) => useStyles(props));
+    const baseClasses = result.current;
+    rerender({ classes: { root: undefined } });
+    const extendedClasses = result.current;
+
     expect(extendedClasses.root).to.equal(baseClasses.root);
   });
 
   describe('warnings', () => {
-    const mountWithProps = createGetClasses({ root: {} });
+    const useStyles = makeStyles({ root: {} });
 
     it('should warn if providing a unknown key', () => {
-      const output = mountWithProps();
+      let baseClasses;
+      let extendedClasses;
 
       expect(() => {
-        output.wrapper.setProps({ classes: { bar: 'foo' } });
+        const { result } = renderHook(() => useStyles({ classes: { bar: 'foo' } }));
+        baseClasses = result.current;
+        extendedClasses = result.current;
       }).toErrorDev('MUI: The key `bar` provided to the classes prop is not implemented');
-
-      const baseClasses = output.classes;
-      const extendedClasses = output.classes;
       expect(extendedClasses).to.deep.equal({ root: baseClasses.root, bar: 'undefined foo' });
     });
 
     it('should warn if providing a string', () => {
-      const output = mountWithProps();
-
       expect(() => {
-        output.wrapper.setProps({ classes: 'foo' });
+        renderHook(() => useStyles({ classes: 'foo' }));
       }).toErrorDev(['You might want to use the className prop instead']);
     });
 
     it('should warn if providing a non string', () => {
-      const output = mountWithProps();
-      const baseClasses = output.classes;
+      const { result, rerender } = renderHook((props) => useStyles(props));
+      const baseClasses = result.current;
 
       expect(() => {
-        output.wrapper.setProps({ classes: { root: {} } });
+        rerender({ classes: { root: {} } });
       }).toErrorDev('MUI: The key `root` provided to the classes prop is not valid');
 
-      const extendedClasses = output.classes;
+      const extendedClasses = result.current;
+
       expect(extendedClasses).to.deep.equal({ root: `${baseClasses.root} [object Object]` });
     });
 
     it('should warn if missing theme', () => {
-      const styles = (theme) => ({ root: { padding: theme.spacing(2) } });
-      const mountWithProps2 = createGetClasses(styles);
+      const useStyles2 = makeStyles((theme) => ({ root: { padding: theme.spacing(2) } }));
+
+      const muiErrorMessage =
+        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.';
+      const nodeErrorMessage = 'TypeError: theme.spacing is not a function';
+
+      let devErrorMessages = [muiErrorMessage, muiErrorMessage];
+
+      if (reactMajor < 19) {
+        devErrorMessages = [
+          ...devErrorMessages,
+          nodeErrorMessage,
+          muiErrorMessage,
+          muiErrorMessage,
+          nodeErrorMessage,
+          'The above error occurred in the <TestComponent> component',
+        ];
+      }
 
       expect(() => {
         expect(() => {
-          mountWithProps2({});
+          renderHook(() => useStyles2({}));
         }).to.throw('theme.spacing is not a function');
-      }).toErrorDev([
-        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-        'MUI: The `styles` argument provided is invalid.\nYou are providing a function without a theme in the context.',
-        'Uncaught [TypeError: theme.spacing is not a function',
-        'The above error occurred in the <TestComponent> component',
-      ]);
+      }).toErrorDev(devErrorMessages);
     });
 
     it('should warn but not throw if providing an invalid styles type', () => {
-      let mountWithProps2;
+      let useStyles2;
 
       expect(() => {
-        mountWithProps2 = createGetClasses(undefined);
+        useStyles2 = makeStyles(undefined);
       }).toErrorDev(
         'MUI: The `styles` argument provided is invalid.\nYou need to provide a function generating the styles or a styles object.',
       );
-
       expect(() => {
-        mountWithProps2({});
+        renderHook(() => useStyles2({}));
       }).not.to.throw();
     });
 
@@ -143,15 +136,14 @@ describe('makeStyles', () => {
           },
         },
       };
-
-      const useStyles = makeStyles({ root: { margin: 5, padding: 3 } }, { name: 'Test' });
+      const useStyles2 = makeStyles({ root: { margin: 5, padding: 3 } }, { name: 'Test' });
       function Test() {
-        const classes = useStyles();
+        const classes = useStyles2();
         return <div className={classes.root} />;
       }
 
       expect(() => {
-        mount(
+        render(
           <ThemeProvider theme={theme}>
             <Test />
           </ThemeProvider>,
@@ -164,45 +156,47 @@ describe('makeStyles', () => {
   });
 
   describe('classes memoization', () => {
-    let mountWithProps;
+    let useStyles;
 
     before(() => {
       const styles = { root: {} };
-      mountWithProps = createGetClasses(styles);
+      useStyles = makeStyles(styles);
     });
 
     it('should recycle with no classes prop', () => {
-      const output = mountWithProps();
-      const classes1 = output.classes;
-      output.wrapper.update();
-      const classes2 = output.classes;
+      const { result, rerender } = renderHook(() => useStyles());
+      const classes1 = result.current;
+      rerender();
+      const classes2 = result.current;
+
       expect(classes1).to.equal(classes2);
     });
 
     it('should recycle even when a classes prop is provided', () => {
       const inputClasses = { root: 'foo' };
-      const output = mountWithProps({ classes: inputClasses });
-      const classes1 = output.classes;
-      output.wrapper.setProps({
-        classes: inputClasses,
-      });
-      const classes2 = output.classes;
+      const { result, rerender } = renderHook(() => useStyles({ classes: inputClasses }));
+      const classes1 = result.current;
+      rerender();
+      const classes2 = result.current;
+
       expect(classes1).to.equal(classes2);
     });
 
     it('should invalidate the cache', () => {
-      const output = mountWithProps();
-      const classes = output.classes;
-      output.wrapper.setProps({ classes: { root: 'foo' } });
-      const classes1 = output.classes;
+      const { result, rerender } = renderHook((props) => useStyles(props));
+      const classes = result.current;
+      rerender({ classes: { root: 'foo' } });
+      const classes1 = result.current;
+
       expect(classes1).to.deep.equal({
         root: `${classes.root} foo`,
       });
 
-      output.wrapper.setProps({
+      rerender({
         classes: { root: 'bar' },
       });
-      const classes2 = output.classes;
+      const classes2 = result.current;
+
       expect(classes1).not.to.equal(classes2);
       expect(classes2).to.deep.equal({
         root: `${classes.root} bar`,
@@ -219,13 +213,14 @@ describe('makeStyles', () => {
 
     it('should run lifecycles with no theme', () => {
       const useStyles = makeStyles({ root: { display: 'flex' } });
-      const StyledComponent = () => {
+      const initialTheme = createTheme();
+      function StyledComponent() {
         useStyles();
         return <div />;
-      };
+      }
 
-      const wrapper = mount(
-        <ThemeProvider theme={createTheme()}>
+      const { setProps, unmount } = render(
+        <ThemeProvider theme={initialTheme}>
           <StylesProvider
             sheetsRegistry={sheetsRegistry}
             sheetsCache={new Map()}
@@ -235,16 +230,22 @@ describe('makeStyles', () => {
           </StylesProvider>
         </ThemeProvider>,
       );
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
-      wrapper.update();
+
+      setProps();
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
-      wrapper.setProps({ theme: createTheme() });
+
+      setProps({ theme: createTheme() });
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
 
-      wrapper.unmount();
+      unmount();
+
       expect(sheetsRegistry.registry.length).to.equal(0);
     });
 
@@ -252,12 +253,12 @@ describe('makeStyles', () => {
       const useStyles = makeStyles((theme) => ({ root: { padding: theme.spacing(1) } }), {
         name: 'MuiTextField',
       });
-      const StyledComponent = () => {
+      function StyledComponent() {
         useStyles();
         return <div />;
-      };
+      }
 
-      const wrapper = mount(
+      const { setProps } = render(
         <ThemeProvider theme={createTheme()}>
           <StylesProvider
             sheetsRegistry={sheetsRegistry}
@@ -268,10 +269,12 @@ describe('makeStyles', () => {
           </StylesProvider>
         </ThemeProvider>,
       );
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
 
-      wrapper.setProps({ theme: createTheme({ foo: 'bar' }) });
+      setProps({ theme: createTheme({ foo: 'bar' }) });
+
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
@@ -289,12 +292,12 @@ describe('makeStyles', () => {
             name: 'MuiTextField',
           },
         );
-        const StyledComponent = () => {
+        function StyledComponent() {
           useStyles();
           return <div />;
-        };
+        }
 
-        mount(
+        render(
           <ThemeProvider
             theme={createTheme({
               components: {
@@ -314,6 +317,7 @@ describe('makeStyles', () => {
             </StylesProvider>
           </ThemeProvider>,
         );
+
         expect(sheetsRegistry.registry.length).to.equal(1);
         expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
           root: { padding: 9, margin: [2, 2, 3] },
@@ -332,14 +336,13 @@ describe('makeStyles', () => {
             },
           },
         };
-
         const useStyles = makeStyles({ root: { margin: 5, padding: 3 } }, { name: 'Test' });
         function Test() {
           const classes = useStyles();
           return <div className={classes.root} />;
         }
 
-        mount(
+        render(
           <ThemeProvider theme={theme}>
             <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
               <Test />
@@ -354,26 +357,28 @@ describe('makeStyles', () => {
       });
     });
 
-    it('should handle dynamic props', () => {
+    it('should handle dynamic props', async () => {
       const useStyles = makeStyles({
         root: (props) => ({ margin: 8, padding: props.padding || 8 }),
       });
-      const StyledComponent = (props) => {
+      function StyledComponent(props) {
         const classes = useStyles(props);
         return <div className={classes.root} />;
-      };
+      }
+      function Test(props) {
+        return (
+          <StylesProvider
+            sheetsRegistry={sheetsRegistry}
+            sheetsCache={new Map()}
+            generateClassName={generateClassName}
+          >
+            <StyledComponent {...props} />
+          </StylesProvider>
+        );
+      }
 
-      const Test = (props) => (
-        <StylesProvider
-          sheetsRegistry={sheetsRegistry}
-          sheetsCache={new Map()}
-          generateClassName={generateClassName}
-        >
-          <StyledComponent {...props} />
-        </StylesProvider>
-      );
+      const { setProps } = render(<Test />);
 
-      const wrapper = mount(<Test />);
       expect(sheetsRegistry.registry.length).to.equal(2);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       expect(sheetsRegistry.registry[1].classes).to.deep.equal({ root: 'makeStyles-root-2' });
@@ -382,7 +387,8 @@ describe('makeStyles', () => {
         padding: '8px',
       });
 
-      wrapper.setProps({ padding: 4 });
+      setProps({ padding: 4 });
+
       expect(sheetsRegistry.registry.length).to.equal(2);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
       expect(sheetsRegistry.registry[1].classes).to.deep.equal({ root: 'makeStyles-root-2' });
@@ -396,62 +402,31 @@ describe('makeStyles', () => {
   describe('options: disableGeneration', () => {
     it('should not generate the styles', () => {
       const sheetsRegistry = new SheetsRegistry();
-      const Empty = () => <div />;
       const useStyles = makeStyles({ root: { padding: 8 } });
-      const StyledComponent = () => {
-        const classes = useStyles();
-        return <Empty classes={classes} />;
-      };
+      let classes;
+      function Empty(props) {
+        React.useEffect(() => {
+          classes = props.classes;
+        }, [props.classes]);
+        return <div />;
+      }
+      function StyledComponent() {
+        const classes2 = useStyles();
+        return <Empty classes={classes2} />;
+      }
 
-      const wrapper = mount(
+      const { unmount } = render(
         <StylesProvider sheetsRegistry={sheetsRegistry} disableGeneration sheetsCache={new Map()}>
           <StyledComponent />
         </StylesProvider>,
       );
+
       expect(sheetsRegistry.registry.length).to.equal(0);
-      expect(wrapper.find(Empty).props().classes).to.deep.equal({});
-      wrapper.unmount();
+      expect(classes).to.deep.equal({});
+
+      unmount();
+
       expect(sheetsRegistry.registry.length).to.equal(0);
-    });
-  });
-
-  describe('react-hot-loader', () => {
-    it('should take the new stylesCreator into account', () => {
-      const useStyles1 = makeStyles({ root: { padding: 8 } });
-      const useStyles2 = makeStyles({ root: { padding: 4 } });
-
-      let hmr = false;
-
-      const StyledComponent = () => {
-        // Simulate react-hot-loader behavior
-        /* eslint-disable react-hooks/rules-of-hooks */
-        if (hmr) {
-          useStyles2();
-        } else {
-          useStyles1();
-        }
-        /* eslint-enable react-hooks/rules-of-hooks */
-
-        return <div />;
-      };
-
-      const sheetsRegistry = new SheetsRegistry();
-      const wrapper = mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
-          <StyledComponent />
-        </StylesProvider>,
-      );
-      expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
-        root: { padding: 8 },
-      });
-
-      hmr = true;
-      wrapper.setProps({});
-      expect(sheetsRegistry.registry.length).to.equal(1);
-      expect(sheetsRegistry.registry[0].rules.raw).to.deep.equal({
-        root: { padding: 4 },
-      });
     });
   });
 
@@ -464,23 +439,24 @@ describe('makeStyles', () => {
 
     it('should use the displayName', () => {
       const useStyles1 = makeStyles({ root: { padding: 8 } });
-      const StyledComponent1 = () => {
+      function StyledComponent1() {
         useStyles1();
         return <div />;
-      };
+      }
 
       const useStyles2 = makeStyles({ root: { padding: 8 } }, { name: 'Fooo' });
-      const StyledComponent2 = () => {
+      function StyledComponent2() {
         useStyles2();
         return <div />;
-      };
+      }
 
-      mount(
+      render(
         <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
           <StyledComponent1 />
           <StyledComponent2 />
         </StylesProvider>,
       );
+
       expect(sheetsRegistry.registry[0].options.classNamePrefix).to.equal('makeStyles');
       expect(sheetsRegistry.registry[0].options.name).to.equal(undefined);
       expect(sheetsRegistry.registry[1].options.classNamePrefix).to.equal('Fooo');
@@ -523,7 +499,7 @@ describe('makeStyles', () => {
         backgroundColor: PropTypes.string.isRequired,
       };
 
-      StressTest = () => {
+      StressTest = function StressTestComponent() {
         const [backgroundColor, setBackgroundColor] = React.useState('black');
         const handleBackgroundColorChange = (event) => {
           setBackgroundColor(event.target.value);
@@ -558,7 +534,7 @@ describe('makeStyles', () => {
     it('should update like expected', () => {
       const sheetsRegistry = new SheetsRegistry();
 
-      const wrapper = mount(
+      render(
         <StylesProvider
           sheetsRegistry={sheetsRegistry}
           sheetsCache={new Map()}
@@ -567,24 +543,26 @@ describe('makeStyles', () => {
           <StressTest />
         </StylesProvider>,
       );
+
       expect(sheetsRegistry.registry.length).to.equal(2);
       expect(sheetsRegistry.toString()).to.equal(`.makeStyles-root-2 {
   color: white;
   background-color: black;
 }`);
 
-      act(() => {
-        wrapper.find('#color').simulate('change', { target: { value: 'blue' } });
-      });
+      fireEvent.change(screen.getByLabelText('color'), { target: { value: 'blue' } });
+
       expect(sheetsRegistry.toString()).to.equal(
         `.makeStyles-root-4 {
   color: blue;
   background-color: black;
 }`,
       );
-      act(() => {
-        wrapper.find('#background-color').simulate('change', { target: { value: 'green' } });
+
+      fireEvent.change(screen.getByLabelText('background-color'), {
+        target: { value: 'green' },
       });
+
       expect(sheetsRegistry.toString()).to.equal(
         `.makeStyles-root-4 {
   color: blue;

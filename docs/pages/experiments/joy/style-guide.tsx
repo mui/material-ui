@@ -1,15 +1,17 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
+import Container from '@mui/joy/Container';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Typography from '@mui/joy/Typography';
 import {
   CssVarsProvider,
   useColorScheme,
   useTheme,
-  styled,
-  ColorPaletteProp,
   TypographySystem,
+  createGetCssVar,
 } from '@mui/joy/styles';
+
+const getCssVar = createGetCssVar();
 
 const rgb2hex = (rgb: string) =>
   `#${(rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/) || [])
@@ -17,17 +19,7 @@ const rgb2hex = (rgb: string) =>
     .map((n) => parseInt(n, 10).toString(16).padStart(2, '0'))
     .join('')}`;
 
-const Typography = styled('p', {
-  shouldForwardProp: (prop) => prop !== 'color' && prop !== 'level' && prop !== 'sx',
-})<{ color?: ColorPaletteProp; level?: keyof TypographySystem }>(
-  ({ theme, level = 'body1', color }) => [
-    { margin: 0 },
-    theme.typography[level],
-    color && { color: `var(--joy-palette-${color}-textColor)` },
-  ],
-);
-
-const ColorSchemePicker = () => {
+function ColorSchemePicker() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -44,7 +36,7 @@ const ColorSchemePicker = () => {
         display: 'inline-flex',
         alignItems: 'center',
         border: '1px solid',
-        borderRadius: '24px',
+        borderRadius: theme.vars.radius.md,
         ...theme.variants.outlined.neutral,
       })}
     >
@@ -53,8 +45,8 @@ const ColorSchemePicker = () => {
           return (
             <Button
               key={modeId}
-              size="small"
-              variant={mode === modeId ? 'contained' : 'text'}
+              size="sm"
+              variant={mode === modeId ? 'solid' : 'plain'}
               onClick={() => {
                 setMode(modeId);
               }}
@@ -66,11 +58,11 @@ const ColorSchemePicker = () => {
       </Box>
     </Box>
   );
-};
+}
 
-const ColorToken = ({ name, value }: { name: string; value: string }) => {
+function ColorToken({ name, value }: { name: string; value: string }) {
   const [color, setColor] = React.useState('');
-  const ref = React.useRef<HTMLDivElement | null>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     if (ref.current && typeof window !== 'undefined') {
       const style = window.getComputedStyle(ref.current);
@@ -78,36 +70,34 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
     }
   }, []);
   return (
-    <Box>
+    <div>
       <Box
         ref={ref}
-        sx={{
-          borderRadius: 'calc(var(--joy-borderRadius-default) / 2)',
-          bgcolor: value,
-          width: 64,
-          height: 64,
-          mb: 1,
-          boxShadow: 'var(--joy-elevation-sm)',
-        }}
+        sx={{ borderRadius: 'sm', bgcolor: value, width: 64, height: 64, mb: 1, boxShadow: 'sm' }}
       />
-      <Typography level="body3">{name}</Typography>
-      <Typography level="body3">{color}</Typography>
-    </Box>
+      <Typography level="body-xs">{name}</Typography>
+      <Typography level="body-xs">{color}</Typography>
+    </div>
   );
-};
+}
 
-const PaletteTokens = () => {
+function PaletteTokens() {
   const { colorScheme } = useColorScheme();
   const { palette } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <React.Fragment>
-      <Typography level="h5" sx={{ mb: 1 }}>
-        Palette ({colorScheme})
-      </Typography>
-
-      <Box>
+      {mounted && (
+        <Typography level="title-md" sx={{ mb: 1 }}>
+          Palette ({colorScheme})
+        </Typography>
+      )}
+      <div>
         {Object.entries(palette).map(([key, nestedObj]) => {
-          if (typeof nestedObj === 'string') {
+          if (typeof nestedObj === 'string' && mounted) {
             return <ColorToken key={key} name={key} value={nestedObj} />;
           }
           return (
@@ -115,37 +105,39 @@ const PaletteTokens = () => {
               <summary
                 style={{
                   marginBottom: '0.5rem',
-                  fontFamily: 'var(--joy-fontFamily-default)',
+                  fontFamily: getCssVar('fontFamily-body'),
                   cursor: 'pointer',
                 }}
               >
                 {key}
               </summary>
 
-              <Box
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-                  gap: 2,
-                }}
-              >
-                {Object.entries(nestedObj).map(([nestedKey, value]) => (
-                  <ColorToken key={nestedKey} name={nestedKey} value={value as string} />
-                ))}
-              </Box>
+              {key !== 'mode' && key !== 'colorScheme' && (
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+                    gap: 2,
+                  }}
+                >
+                  {Object.entries(nestedObj).map(([nestedKey, value]) => (
+                    <ColorToken key={nestedKey} name={nestedKey} value={value as string} />
+                  ))}
+                </Box>
+              )}
             </details>
           );
         })}
-      </Box>
+      </div>
     </React.Fragment>
   );
-};
+}
 
-const TypographyScale = () => {
+function TypographyScale() {
   const { typography } = useTheme();
   return (
     <React.Fragment>
-      <Typography level="h5" sx={{ mb: 1 }}>
+      <Typography level="title-md" sx={{ mb: 1 }}>
         Typography
       </Typography>
 
@@ -158,11 +150,11 @@ const TypographyScale = () => {
       })}
     </React.Fragment>
   );
-};
+}
 
 export default function JoyStyleGuide() {
   return (
-    <CssVarsProvider defaultMode="system">
+    <CssVarsProvider>
       <Container>
         <Box
           sx={{
@@ -174,7 +166,7 @@ export default function JoyStyleGuide() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            bgcolor: 'background.default',
+            bgcolor: 'background.body',
           }}
         >
           <ColorSchemePicker />
@@ -186,36 +178,36 @@ export default function JoyStyleGuide() {
           <Box sx={{ minWidth: 300 }}>
             <TypographyScale />
           </Box>
-          <Box>
-            <Typography level="h5" sx={{ mb: 1 }}>
+          <div>
+            <Typography level="title-md" sx={{ mb: 1 }}>
               UI Patterns
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Box sx={{ width: 48, height: 48, bgcolor: 'background.level2' }} />
-              <Box>
+              <div>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
-              </Box>
+                <Typography level="body-sm">Secondary text.</Typography>
+              </div>
             </Box>
             <hr />
             <Box sx={{ display: 'flex', gap: 2, minWidth: 300 }}>
               <Box sx={{ width: 48, height: 48, bgcolor: 'background.level2' }} />
               <Box sx={{ flexGrow: 1 }}>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
+                <Typography level="body-sm">Secondary text.</Typography>
               </Box>
-              <Typography level="body3">metadata</Typography>
+              <Typography level="body-xs">metadata</Typography>
             </Box>
             <hr />
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Box sx={{ width: 64, height: 64, bgcolor: 'background.level2' }} />
               <Box sx={{ flexGrow: 1 }}>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
-                <Typography level="body3">metadata</Typography>
+                <Typography level="body-sm">Secondary text.</Typography>
+                <Typography level="body-xs">metadata</Typography>
               </Box>
             </Box>
-          </Box>
+          </div>
         </Box>
       </Container>
     </CssVarsProvider>

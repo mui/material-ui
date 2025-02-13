@@ -1,0 +1,132 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      }
+    },
+    "disableAnimation": { "type": { "name": "bool" }, "default": "false" },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "focused": { "type": { "name": "bool" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'" } },
+    "required": { "type": { "name": "bool" } },
+    "shrink": { "type": { "name": "bool" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+      }
+    }
+  },
+  "name": "InputLabel",
+  "imports": [
+    "import InputLabel from '@mui/material/InputLabel';",
+    "import { InputLabel } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "animated",
+      "className": "MuiInputLabel-animated",
+      "description": "Styles applied to the input element unless `disableAnimation={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "asterisk",
+      "className": "MuiInputLabel-asterisk",
+      "description": "State class applied to the asterisk element.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "MuiInputLabel-filled",
+      "description": "Styles applied to the root element if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "State class applied to the root element if `focused={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "formControl",
+      "className": "MuiInputLabel-formControl",
+      "description": "Styles applied to the root element if the component is a descendant of `FormControl`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiInputLabel-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "required",
+      "className": "Mui-required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiInputLabel-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "shrink",
+      "className": "MuiInputLabel-shrink",
+      "description": "Styles applied to the input element if `shrink={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiInputLabel-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "standard",
+      "className": "MuiInputLabel-standard",
+      "description": "Styles applied to the root element if `variant=\"standard\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiInputLabel",
+  "forwardsRefTo": "HTMLLabelElement",
+  "filename": "/packages/mui-material/src/InputLabel/InputLabel.js",
+  "inheritance": { "component": "FormLabel", "pathname": "/material-ui/api/form-label/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
+  "cssComponent": false
+}

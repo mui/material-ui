@@ -6,6 +6,7 @@ Custom eslint rules for MUI.
 
 - `disallow-active-element-as-key-event-target`
 - `docgen-ignore-before-comment`
+- `mui-name-matches-component-name`
 - `no-hardcoded-labels`
 - `rules-of-use-theme-variants`
 - ~~`restricted-path-imports`~~
@@ -14,16 +15,20 @@ Custom eslint rules for MUI.
 
 Prevent `fireEvent.keyDown(document.activeElement)`. The implementation
 we use already verifies that the passed target can be the target of a
-`keydown` event. Passing the target explicitly (e.g. `fireEvent.keyDown(getByRole('tab', { selected: true }))`) makes the test more readable.
+`keydown` event. Passing the target explicitly (for example `fireEvent.keyDown(getByRole('tab', { selected: true }))`) makes the test more readable.
 
 ### docgen-ignore-before-comment
 
 Enforce correct usage of `@ignore` in the prop-types block comments.
 
+### mui-name-matches-component-name
+
+Enforce that the name passed to the `useThemeProps` and `useDefaultProps` hooks matches the component name.
+
 ### no-hardcoded-labels
 
 Prevent the usage of hardcoded labels.
-The docs are translated via crowdin, we prefer to use `t` from the redux store.
+The docs are translated via Crowdin, we prefer to use `t` from the redux store.
 
 ### rules-of-use-theme-variants
 
@@ -32,7 +37,7 @@ as their resolved default values.
 
 ### ~~restricted-path-imports~~
 
-Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports) using the following configuration:
+Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/latest/rules/no-restricted-imports) using the following configuration:
 
 ```json
 {
@@ -40,7 +45,7 @@ Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-r
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@mui/*/*/*"]
       }
     ]
   }

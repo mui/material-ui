@@ -1,0 +1,15 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "children": { "description": "The content of the component." },
+    "direction": {
+      "description": "Defines the <code>flex-direction</code> style property. It is applied for all screen sizes."
+    },
+    "divider": { "description": "Add an element between each child." },
+    "spacing": { "description": "Defines the space between immediate children." },
+    "sx": {
+      "description": "The system prop, which allows defining system overrides as well as additional CSS styles."
+    }
+  },
+  "classDescriptions": {}
+}

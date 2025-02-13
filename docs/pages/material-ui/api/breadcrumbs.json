@@ -1,0 +1,72 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "expandText": { "type": { "name": "string" }, "default": "'Show path'" },
+    "itemsAfterCollapse": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "1"
+    },
+    "itemsBeforeCollapse": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "1"
+    },
+    "maxItems": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
+    "separator": { "type": { "name": "node" }, "default": "'/'" },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ collapsedIcon?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ CollapsedIcon?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Breadcrumbs",
+  "imports": [
+    "import Breadcrumbs from '@mui/material/Breadcrumbs';",
+    "import { Breadcrumbs } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "li",
+      "className": "MuiBreadcrumbs-li",
+      "description": "Styles applied to the li element.",
+      "isGlobal": false
+    },
+    {
+      "key": "ol",
+      "className": "MuiBreadcrumbs-ol",
+      "description": "Styles applied to the ol element.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiBreadcrumbs-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "separator",
+      "className": "MuiBreadcrumbs-separator",
+      "description": "Styles applied to the separator element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiBreadcrumbs",
+  "forwardsRefTo": "HTMLElement",
+  "filename": "/packages/mui-material/src/Breadcrumbs/Breadcrumbs.js",
+  "inheritance": { "component": "Typography", "pathname": "/material-ui/api/typography/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-breadcrumbs/\">Breadcrumbs</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,0 +1,113 @@
+{
+  "props": {
+    "steps": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
+    "backButton": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "LinearProgressProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.progress</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "nextButton": { "type": { "name": "node" } },
+    "position": {
+      "type": {
+        "name": "enum",
+        "description": "'bottom'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'top'"
+      },
+      "default": "'bottom'"
+    },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ dot?: func<br>&#124;&nbsp;object, dots?: func<br>&#124;&nbsp;object, progress?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ dot?: elementType, dots?: elementType, progress?: elementType, root?: elementType }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "enum",
+        "description": "'dots'<br>&#124;&nbsp;'progress'<br>&#124;&nbsp;'text'"
+      },
+      "default": "'dots'"
+    }
+  },
+  "name": "MobileStepper",
+  "imports": [
+    "import MobileStepper from '@mui/material/MobileStepper';",
+    "import { MobileStepper } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "Paper",
+      "class": "MuiMobileStepper-root"
+    },
+    {
+      "name": "progress",
+      "description": "The component that renders the progress slot.",
+      "default": "LinearProgress",
+      "class": "MuiMobileStepper-progress"
+    },
+    {
+      "name": "dots",
+      "description": "The component that renders the dots slot.",
+      "default": "'div'",
+      "class": "MuiMobileStepper-dots"
+    },
+    {
+      "name": "dot",
+      "description": "The component that renders the dot slot.",
+      "default": "'div'",
+      "class": "MuiMobileStepper-dot"
+    }
+  ],
+  "classes": [
+    {
+      "key": "dotActive",
+      "className": "MuiMobileStepper-dotActive",
+      "description": "Styles applied to a dot if `variant=\"dots\"` and this is the active step.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionBottom",
+      "className": "MuiMobileStepper-positionBottom",
+      "description": "Styles applied to the root element if `position=\"bottom\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionStatic",
+      "className": "MuiMobileStepper-positionStatic",
+      "description": "Styles applied to the root element if `position=\"static\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionTop",
+      "className": "MuiMobileStepper-positionTop",
+      "description": "Styles applied to the root element if `position=\"top\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiMobileStepper",
+  "filename": "/packages/mui-material/src/MobileStepper/MobileStepper.js",
+  "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
+  "cssComponent": false
+}

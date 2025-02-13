@@ -1,4 +1,5 @@
-import { generateUtilityClasses, generateUtilityClass } from '@mui/base';
+import generateUtilityClasses from '@mui/utils/generateUtilityClasses';
+import generateUtilityClass from '@mui/utils/generateUtilityClass';
 
 export interface FormControlLabelClasses {
   /** Styles applied to the root element. */
@@ -13,6 +14,12 @@ export interface FormControlLabelClasses {
   disabled: string;
   /** Styles applied to the label's Typography component. */
   label: string;
+  /** State class applied to the root element if `error={true}`. */
+  error: string;
+  /** State class applied to the root element if `required={true}`. */
+  required: string;
+  /** Styles applied to the asterisk element. */
+  asterisk: string;
 }
 
 export type FormControlLabelClassKey = keyof FormControlLabelClasses;
@@ -23,7 +30,17 @@ export function getFormControlLabelUtilityClasses(slot: string): string {
 
 const formControlLabelClasses: FormControlLabelClasses = generateUtilityClasses(
   'MuiFormControlLabel',
-  ['root', 'labelPlacementStart', 'labelPlacementTop', 'labelPlacementBottom', 'disabled', 'label'],
+  [
+    'root',
+    'labelPlacementStart',
+    'labelPlacementTop',
+    'labelPlacementBottom',
+    'disabled',
+    'label',
+    'error',
+    'required',
+    'asterisk',
+  ],
 );
 
 export default formControlLabelClasses;

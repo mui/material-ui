@@ -11,7 +11,7 @@ function read(fileName) {
 describe('@mui/codemod', () => {
   describe('v5.0.0', () => {
     describe('moved-lab-modules', () => {
-      it('transforms props as needed', () => {
+      it('transforms exports as needed', () => {
         const actual = transform(
           {
             source: read('./moved-lab-modules.test/actual.js'),

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Table, { tableClasses as classes } from '@mui/material/Table';
 import TableContext from './TableContext';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Table />', () => {
   const { render } = createRenderer();

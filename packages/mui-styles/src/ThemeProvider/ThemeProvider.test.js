@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import ThemeProvider from '@mui/private-theming/ThemeProvider';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import makeStyles from '../makeStyles';
 
 describe('ThemeProvider', () => {

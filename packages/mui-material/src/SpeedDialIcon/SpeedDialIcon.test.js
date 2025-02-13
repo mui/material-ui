@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDialIcon, { speedDialIconClasses as classes } from '@mui/material/SpeedDialIcon';
+import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDialIcon />', () => {
   const { render } = createRenderer();

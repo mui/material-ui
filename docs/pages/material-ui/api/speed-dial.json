@@ -1,0 +1,137 @@
+{
+  "props": {
+    "ariaLabel": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "direction": {
+      "type": {
+        "name": "enum",
+        "description": "'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'"
+      },
+      "default": "'up'"
+    },
+    "FabProps": { "type": { "name": "object" }, "default": "{}" },
+    "hidden": { "type": { "name": "bool" }, "default": "false" },
+    "icon": { "type": { "name": "node" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "onOpen": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: object, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "open": { "type": { "name": "bool" } },
+    "openIcon": { "type": { "name": "node" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Zoom\n* @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+    },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+    }
+  },
+  "name": "SpeedDial",
+  "imports": [
+    "import SpeedDial from '@mui/material/SpeedDial';",
+    "import { SpeedDial } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "{}",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "actions",
+      "className": "MuiSpeedDial-actions",
+      "description": "Styles applied to the actions (`children` wrapper) element.",
+      "isGlobal": false
+    },
+    {
+      "key": "actionsClosed",
+      "className": "MuiSpeedDial-actionsClosed",
+      "description": "Styles applied to the actions (`children` wrapper) element if `open={false}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "directionDown",
+      "className": "MuiSpeedDial-directionDown",
+      "description": "Styles applied to the root element if direction=\"down\"",
+      "isGlobal": false
+    },
+    {
+      "key": "directionLeft",
+      "className": "MuiSpeedDial-directionLeft",
+      "description": "Styles applied to the root element if direction=\"left\"",
+      "isGlobal": false
+    },
+    {
+      "key": "directionRight",
+      "className": "MuiSpeedDial-directionRight",
+      "description": "Styles applied to the root element if direction=\"right\"",
+      "isGlobal": false
+    },
+    {
+      "key": "directionUp",
+      "className": "MuiSpeedDial-directionUp",
+      "description": "Styles applied to the root element if direction=\"up\"",
+      "isGlobal": false
+    },
+    {
+      "key": "fab",
+      "className": "MuiSpeedDial-fab",
+      "description": "Styles applied to the Fab component.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiSpeedDial-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSpeedDial",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/SpeedDial/SpeedDial.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed Dial</a></li></ul>",
+  "cssComponent": false
+}

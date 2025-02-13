@@ -1,0 +1,75 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "enum",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'"
+      },
+      "default": "'default'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "disableSticky": { "type": { "name": "bool" }, "default": "false" },
+    "inset": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "ListSubheader",
+  "imports": [
+    "import ListSubheader from '@mui/material/ListSubheader';",
+    "import { ListSubheader } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "colorInherit",
+      "className": "MuiListSubheader-colorInherit",
+      "description": "Styles applied to the root element if `color=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiListSubheader-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "gutters",
+      "className": "MuiListSubheader-gutters",
+      "description": "Styles applied to the inner `component` element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "inset",
+      "className": "MuiListSubheader-inset",
+      "description": "Styles applied to the root element if `inset={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiListSubheader-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sticky",
+      "className": "MuiListSubheader-sticky",
+      "description": "Styles applied to the root element unless `disableSticky={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiListSubheader",
+  "forwardsRefTo": "HTMLLIElement",
+  "filename": "/packages/mui-material/src/ListSubheader/ListSubheader.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-list/\">Lists</a></li></ul>",
+  "cssComponent": false
+}

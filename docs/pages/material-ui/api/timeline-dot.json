@@ -1,0 +1,96 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'error'<br>&#124;&nbsp;'grey'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'grey'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;string"
+      },
+      "default": "'filled'"
+    }
+  },
+  "name": "TimelineDot",
+  "imports": [
+    "import TimelineDot from '@mui/lab/TimelineDot';",
+    "import { TimelineDot } from '@mui/lab';"
+  ],
+  "classes": [
+    {
+      "key": "filled",
+      "className": "MuiTimelineDot-filled",
+      "description": "Styles applied to the root element if `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledGrey",
+      "className": "MuiTimelineDot-filledGrey",
+      "description": "Styles applied to the root element if `color=\"grey\"` and `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledPrimary",
+      "className": "MuiTimelineDot-filledPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"` and `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "filledSecondary",
+      "className": "MuiTimelineDot-filledSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"` and `variant=\"filled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlined",
+      "className": "MuiTimelineDot-outlined",
+      "description": "Styles applied to the root element if `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedGrey",
+      "className": "MuiTimelineDot-outlinedGrey",
+      "description": "Styles applied to the root element if `color=\"grey\"` and `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedPrimary",
+      "className": "MuiTimelineDot-outlinedPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"` and `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "outlinedSecondary",
+      "className": "MuiTimelineDot-outlinedSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"` and `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTimelineDot-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimelineDot",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-lab/src/TimelineDot/TimelineDot.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",
+  "cssComponent": false
+}

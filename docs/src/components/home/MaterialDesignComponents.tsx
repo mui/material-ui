@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { deepmerge } from '@mui/utils';
 import {
   styled,
-  createTheme,
-  ThemeProvider,
-  useTheme,
   Theme,
   ThemeOptions,
+  alpha,
+  extendTheme,
+  CssVarsProvider,
 } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import Alert from '@mui/material/Alert';
@@ -34,86 +33,89 @@ import MailRounded from '@mui/icons-material/MailRounded';
 import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
+import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 
-const Grid = styled('div')(({ theme }) => ({
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor:
-    theme.palette.mode === 'dark' ? theme.palette.background.paper : theme.palette.grey[50],
-  display: 'grid',
-  gridTemplateColumns: '1fr',
-  gridAutoRows: 240,
-  [theme.breakpoints.up('sm')]: {
-    gridAutoRows: 260,
-    paddingTop: 1,
-    gridTemplateColumns: '1fr 1fr',
-  },
-  [theme.breakpoints.up('md')]: {
-    gridAutoRows: 280,
-    gridTemplateColumns: '1fr 1fr 1fr',
-  },
-  '& > div': {
-    padding: theme.spacing(2),
-    alignSelf: 'stretch',
-    border: '1px solid',
-    borderColor: theme.palette.divider,
-    '&:last-of-type': {
-      backgroundColor: theme.palette.background.default,
-    },
-    [theme.breakpoints.only('xs')]: {
-      '&:first-of-type': {
-        borderTopLeftRadius: theme.shape.borderRadius,
-        borderTopRightRadius: theme.shape.borderRadius,
-      },
-      '&:last-of-type': {
-        borderBottomLeftRadius: theme.shape.borderRadius,
-        borderBottomRightRadius: theme.shape.borderRadius,
-        borderStyle: 'dashed',
-      },
-      '&:not(:first-of-type)': {
-        marginTop: -1,
-      },
-    },
-    [theme.breakpoints.only('sm')]: {
-      marginTop: -1,
-      '&:first-of-type': {
-        borderTopLeftRadius: theme.shape.borderRadius,
-      },
-      '&:last-of-type': {
-        borderBottomRightRadius: theme.shape.borderRadius,
-        borderStyle: 'dashed',
-      },
-      '&:nth-of-type(even)': {
-        marginLeft: -1,
-      },
-      '&:nth-last-of-type(2)': {
-        borderBottomLeftRadius: theme.shape.borderRadius,
-      },
-      '&:nth-of-type(2)': {
-        borderTopRightRadius: theme.shape.borderRadius,
-      },
+const Grid = styled('div')(({ theme }) => [
+  {
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    backgroundColor: alpha(theme.palette.grey[50], 0.4),
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gridAutoRows: 240,
+    [theme.breakpoints.up('sm')]: {
+      gridAutoRows: 260,
+      paddingTop: 1,
+      gridTemplateColumns: '1fr 1fr',
     },
     [theme.breakpoints.up('md')]: {
-      marginTop: -1,
-      '&:not(:nth-of-type(3n + 1))': {
-        marginLeft: -1,
+      gridAutoRows: 280,
+      gridTemplateColumns: '1fr 1fr 1fr',
+    },
+    '& > div': {
+      padding: theme.spacing(2),
+      alignSelf: 'stretch',
+      border: '1px solid',
+      borderColor: (theme.vars || theme).palette.grey[200],
+      [theme.breakpoints.only('xs')]: {
+        '&:first-of-type': {
+          borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+          borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+        },
+        '&:last-of-type': {
+          borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+          borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+        },
+        '&:not(:first-of-type)': {
+          marginTop: -1,
+        },
       },
-      '&:first-of-type': {
-        borderTopLeftRadius: theme.shape.borderRadius,
+      [theme.breakpoints.only('sm')]: {
+        marginTop: -1,
+        '&:first-of-type': {
+          borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+        },
+        '&:last-of-type': {
+          borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+          borderStyle: 'dashed',
+        },
+        '&:nth-of-type(even)': {
+          marginLeft: -1,
+        },
+        '&:nth-last-of-type(2)': {
+          borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+        },
+        '&:nth-of-type(2)': {
+          borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+        },
       },
-      '&:last-of-type': {
-        borderBottomRightRadius: theme.shape.borderRadius,
-        borderStyle: 'dashed',
-      },
-      '&:nth-last-of-type(3)': {
-        borderBottomLeftRadius: theme.shape.borderRadius,
-      },
-      '&:nth-of-type(3)': {
-        borderTopRightRadius: theme.shape.borderRadius,
+      [theme.breakpoints.up('md')]: {
+        marginTop: -1,
+        '&:not(:nth-of-type(3n + 1))': {
+          marginLeft: -1,
+        },
+        '&:first-of-type': {
+          borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+        },
+        '&:last-of-type': {
+          borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+        },
+        '&:nth-last-of-type(3)': {
+          borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+        },
+        '&:nth-of-type(3)': {
+          borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+        },
       },
     },
   },
-}));
+  theme.applyDarkStyles({
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    '& > div': {
+      borderColor: alpha(theme.palette.primaryDark[600], 0.3),
+    },
+  }),
+]);
 
 function Demo({
   name,
@@ -122,8 +124,8 @@ function Demo({
   ...props
 }: {
   name: string;
-  theme: Theme;
-  children: React.ReactElement;
+  theme: Theme | undefined;
+  children: React.ReactElement<unknown>;
   control?: { prop: string; values: Array<string>; defaultValue?: string };
 }) {
   const [propValue, setPropValue] = React.useState(
@@ -140,7 +142,7 @@ function Demo({
               minHeight: 'initial',
               '& .MuiTabs-indicator': {
                 bgcolor: 'transparent',
-                '&:before': {
+                '&::before': {
                   height: '100%',
                   content: '""',
                   display: 'block',
@@ -166,72 +168,49 @@ function Demo({
           </Tabs>
         </Box>
       ) : null}
-      <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <ThemeProvider theme={props.theme}>
+      <Box
+        className="mui-default-theme"
+        sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <CssVarsProvider theme={props.theme}>
           {React.cloneElement(children, {
             ...(control && {
               [control.prop]: propValue,
             }),
           })}
-        </ThemeProvider>
+        </CssVarsProvider>
       </Box>
-      <Typography fontWeight="bold" variant="body2">
+      <Typography variant="body2" sx={{ fontWeight: 'semiBold' }}>
         {name}
       </Typography>
     </Box>
   );
 }
 
-const StyledChip = styled(Chip)(({ theme }) => ({
-  fontWeight: 700,
-  transition: 'none',
-  '&.MuiChip-outlined': {
-    border: 'none',
-    color: theme.palette.text.secondary,
+const StyledChip = styled(Chip)(({ theme }) => [
+  {
+    fontWeight: 700,
+    '&.MuiChip-outlined': {
+      color: (theme.vars || theme).palette.text.secondary,
+    },
+    '&.MuiChip-filled': {
+      borderColor: (theme.vars || theme).palette.primary[300],
+      backgroundColor: alpha(theme.palette.primary[100], 0.5),
+      color: (theme.vars || theme).palette.primary[600],
+    },
   },
-  '&.MuiChip-clickable:active': {
-    boxShadow: 'none',
-  },
-  '&.MuiChip-filled': {
-    border: '1px solid',
-    borderColor: theme.palette.primary[300],
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primary[700] : theme.palette.primary[500],
-    color: '#fff',
-  },
-}));
+  theme.applyDarkStyles({
+    '&.MuiChip-filled': {
+      borderColor: (theme.vars || theme).palette.primary[500],
+      backgroundColor: (theme.vars || theme).palette.primary[800],
+      color: (theme.vars || theme).palette.primary[100],
+    },
+  }),
+]);
 
-export function buildTheme(theme: Theme): ThemeOptions {
+const themedComponents = getThemedComponents();
+export function buildTheme(): ThemeOptions {
   return {
-    palette: {
-      ...theme.palette,
-      primary: {
-        ...theme.palette.primaryDark,
-        main:
-          theme.palette.mode === 'dark'
-            ? theme.palette.primaryDark[500]
-            : theme.palette.primaryDark[800],
-      },
-      grey: theme.palette.grey,
-      info: {
-        main: theme.palette.primaryDark[600],
-      },
-      background: {
-        paper: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
-      },
-    },
-    shape: {
-      borderRadius: 10,
-    },
-    spacing: 10,
-    typography: {
-      ...theme.typography,
-      button: {
-        ...theme.typography.button,
-        fontSize: '1rem',
-        lineHeight: 24 / 16,
-      },
-    },
     components: {
       MuiButtonBase: {
         defaultProps: {
@@ -243,20 +222,48 @@ export function buildTheme(theme: Theme): ThemeOptions {
           disableElevation: true,
         },
         styleOverrides: {
-          text: {
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[200]
-                : theme.palette.primaryDark[700],
-          },
-          sizeMedium: {
-            padding: theme.spacing(1, 2),
-          },
-          sizeLarge: {
-            padding: theme.spacing(1.5, 2.5),
-            fontSize: '1rem',
+          root: {
+            borderRadius: '99px',
+            fontWeight: 500,
+            fontSize: '0.875rem',
             lineHeight: 24 / 16,
+            textTransform: 'none',
           },
+          sizeSmall: ({ theme }) => ({
+            padding: theme.spacing(0.5, 1),
+          }),
+          sizeMedium: ({ theme }) => ({
+            padding: theme.spacing(0.8, 2),
+          }),
+          sizeLarge: ({ theme }) => ({
+            padding: theme.spacing(1, 2),
+            fontSize: '1rem',
+          }),
+          text: ({ theme }) => ({
+            color: (theme.vars || theme).palette.primary[600],
+            ...theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.primary[300],
+            }),
+          }),
+          contained: ({ theme }) => ({
+            color: (theme.vars || theme).palette.primaryDark[50],
+            backgroundColor: (theme.vars || theme).palette.primary[600],
+            boxShadow: '0 2px 0 rgba(255,255,255,0.1) inset, 0 -1px 0 rgba(0,0,0,0.1) inset',
+            border: '1px solid',
+            borderColor: (theme.vars || theme).palette.primary[600],
+            ...theme.applyDarkStyles({
+              backgroundColor: (theme.vars || theme).palette.primary[600],
+              borderColor: (theme.vars || theme).palette.primary[800],
+            }),
+          }),
+          outlined: ({ theme }) => ({
+            borderColor: (theme.vars || theme).palette.primary[300],
+            ...theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.primary[300],
+              backgroundColor: alpha(theme.palette.primary[900], 0.1),
+              borderColor: alpha(theme.palette.primary[300], 0.5),
+            }),
+          }),
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
               fontSize: '0.875rem',
@@ -264,18 +271,13 @@ export function buildTheme(theme: Theme): ThemeOptions {
           },
           iconSizeMedium: {
             '& > *:nth-of-type(1)': {
-              fontSize: '1rem',
+              fontSize: '0.875rem',
             },
           },
-          outlined: {
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[200]
-                : theme.palette.primaryDark[700],
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[200]
-                : theme.palette.primaryDark[700],
+          iconSizeLarge: {
+            '& > *:nth-of-type(1)': {
+              fontSize: '1rem',
+            },
           },
         },
       },
@@ -284,35 +286,70 @@ export function buildTheme(theme: Theme): ThemeOptions {
           icon: <CheckCircleRounded />,
         },
         styleOverrides: {
-          root: {
-            padding: theme.spacing(2),
-            '& .MuiAlert-icon': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[100]
-                  : theme.palette.primaryDark[800],
+          root: ({ theme }) => [
+            {
+              padding: theme.spacing(1.5),
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.primaryDark[800],
+              },
             },
-          },
-          filled: {
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[800]
-                : theme.palette.primaryDark[700],
+            theme.applyDarkStyles({
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.primaryDark[100],
+              },
+            }),
+          ],
+          filled: ({ theme }) => ({
+            color: (theme.vars || theme).palette.primary[50],
+            backgroundColor: (theme.vars || theme).palette.primary[600],
             '& .MuiAlert-icon': {
-              color: theme.palette.primary[100],
+              color: '#fff',
             },
-          },
+            ...theme.applyDarkStyles({
+              backgroundColor: (theme.vars || theme).palette.primary[600],
+            }),
+          }),
+          outlined: ({ theme }) => [
+            {
+              color: (theme.vars || theme).palette.primaryDark[700],
+              backgroundColor: '#fff',
+              borderColor: (theme.vars || theme).palette.primary[100],
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.primary[500],
+              },
+            },
+            theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.primaryDark[50],
+              backgroundColor: 'transparent',
+              borderColor: (theme.vars || theme).palette.primaryDark[600],
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.primaryDark[100],
+              },
+            }),
+          ],
           message: {
             padding: 0,
-            fontWeight: 700,
+            fontWeight: 500,
           },
-          standardInfo: {
-            backgroundColor: theme.palette.primaryDark[100],
-            color: theme.palette.primaryDark[600],
-            '& .MuiAlert-icon': {
-              color: theme.palette.primaryDark[600],
+          standardInfo: ({ theme }) => [
+            {
+              backgroundColor: (theme.vars || theme).palette.primary[50],
+              color: (theme.vars || theme).palette.primary[600],
+              border: '1px solid',
+              borderColor: alpha(theme.palette.primaryDark[100], 0.5),
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.primary[500],
+              },
             },
-          },
+            theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+              color: (theme.vars || theme).palette.primaryDark[50],
+              borderColor: alpha(theme.palette.primaryDark[500], 0.2),
+              '& .MuiAlert-icon': {
+                color: (theme.vars || theme).palette.primaryDark[50],
+              },
+            }),
+          ],
           icon: {
             paddingTop: 1,
             paddingBottom: 0,
@@ -324,139 +361,201 @@ export function buildTheme(theme: Theme): ThemeOptions {
       },
       MuiTextField: {
         styleOverrides: {
-          root: {
-            '& .MuiInputLabel-outlined.Mui-focused': {
-              color:
-                theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
-            },
-            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[500]
-                  : theme.palette.primaryDark[800],
-            },
-            '& .MuiOutlinedInput-input': {
-              backgroundColor:
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
-              borderRadius: theme.spacing(1),
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[400]
-                  : theme.palette.grey[300],
-            },
-            '& .MuiInputBase-input': {
-              fontWeight: 700,
-            },
-            '& .MuiFilledInput-root': {
-              backgroundColor:
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : '#fff',
-              '&:after': {
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[500]
-                    : theme.palette.primaryDark[800],
+          root: ({ theme }) => [
+            {
+              '& .MuiInputLabel-outlined.Mui-focused': {
+                color: (theme.vars || theme).palette.grey[800],
               },
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#fff',
+              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                background: 'transparent',
+                borderColor: (theme.vars || theme).palette.primary[400],
               },
-            },
-            '& .MuiInputLabel-filled.Mui-focused': {
-              color:
-                theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
-            },
-            '& .MuiInput-root.Mui-focused': {
-              '&:after': {
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[500]
-                    : theme.palette.primaryDark[800],
+              '& .MuiOutlinedInput-root': {
+                backgroundColor: 'transparent',
+                borderColor: (theme.vars || theme).palette.grey[50],
+              },
+              '& .MuiInputBase-root': {
+                fontWeight: 700,
+                '&::before': {
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                },
+              },
+              '& .MuiFilledInput-root': {
+                backgroundColor: '#fff',
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[100],
+                '&::before': {
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                },
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primary[400],
+                },
+                '&:hover': {
+                  borderColor: (theme.vars || theme).palette.grey[200],
+                },
+              },
+              '& .MuiInputLabel-filled.Mui-focused': {
+                color: (theme.vars || theme).palette.grey[800],
+              },
+              '& .MuiInput-root.Mui-focused': {
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primary[400],
+                },
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: (theme.vars || theme).palette.grey[800],
               },
             },
-            '& .MuiInputLabel-root.Mui-focused': {
-              color:
-                theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
-            },
-          },
+            theme.applyDarkStyles({
+              '& .MuiInputBase-root': {
+                '&::before': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[500],
+                },
+              },
+              '& .MuiInputLabel-outlined.Mui-focused': {
+                color: (theme.vars || theme).palette.primary[300],
+              },
+              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: (theme.vars || theme).palette.primary[300],
+              },
+              '& .MuiOutlinedInput-input': {
+                borderRadius: 'inherit',
+                backgroundColor: (theme.vars || theme).palette.primaryDark[800],
+              },
+              '& .MuiFilledInput-root': {
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                backgroundColor: alpha(theme.palette.primaryDark[900], 0.5),
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primary[300],
+                },
+                '&:hover': {
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.8),
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+              },
+              '& .MuiInputLabel-filled.Mui-focused': {
+                color: (theme.vars || theme).palette.grey[500],
+              },
+              '& .MuiInput-root.Mui-focused': {
+                '&::after': {
+                  borderColor: (theme.vars || theme).palette.primaryDark[400],
+                },
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: (theme.vars || theme).palette.grey[500],
+              },
+            }),
+          ],
         },
       },
-      MuiTooltip: theme.components?.MuiTooltip,
-      MuiPaper: theme.components?.MuiPaper,
-      MuiTableCell: deepmerge(theme.components?.MuiTableCell, {
+      MuiTooltip: themedComponents.components?.MuiTooltip,
+      MuiPaper: themedComponents.components?.MuiPaper,
+      MuiTableHead: {
         styleOverrides: {
-          root: {
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[400]
-                : theme.palette.divider,
-          },
+          root: ({ theme }) => ({
+            padding: 8,
+            backgroundColor: alpha(theme.palette.grey[50], 0.5),
+            borderColor: (theme.vars || theme).palette.divider,
+            ...theme.applyDarkStyles({
+              backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+            }),
+          }),
         },
-      }),
+      },
+      MuiTableCell: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            padding: 8,
+            borderColor: (theme.vars || theme).palette.divider,
+          }),
+        },
+      },
       MuiPopover: {
         styleOverrides: {
-          paper: {
-            boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.1)',
-          },
+          paper: ({ theme }) => ({
+            boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+            ...theme.applyDarkStyles({
+              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
+            }),
+          }),
         },
       },
       MuiMenu: {
         styleOverrides: {
           list: {
-            padding: theme.spacing(1, 0),
+            padding: 0,
           },
         },
       },
       MuiMenuItem: {
         styleOverrides: {
-          root: {
-            padding: theme.spacing(1, 2),
-            '& svg': {
-              fontSize: '1.125rem',
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primaryDark[400],
+          root: ({ theme }) => [
+            {
+              margin: theme.spacing(1),
+              padding: '4px 8px',
+              borderRadius: '8px',
+              '& .MuiListItemIcon-root': {
+                minWidth: '24px',
+              },
+              '& svg': {
+                fontSize: '1rem',
+                color: (theme.vars || theme).palette.grey[500],
+              },
             },
-          },
+            theme.applyDarkStyles({
+              '& svg': {
+                color: (theme.vars || theme).palette.grey[400],
+              },
+            }),
+          ],
         },
       },
     },
   };
 }
 
+const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
+const { palette: darkPalette } = getDesignTokens('dark');
+const defaultTheme = extendTheme({
+  colorSchemes: { light: true, dark: true },
+  colorSchemeSelector: 'data-mui-color-scheme',
+});
+export const customTheme = extendTheme({
+  cssVarPrefix: 'muidocs',
+  colorSchemeSelector: 'data-mui-color-scheme',
+  colorSchemes: {
+    light: {
+      palette: lightPalette,
+    },
+    dark: {
+      palette: darkPalette,
+    },
+  },
+  ...designTokens,
+  ...buildTheme(),
+});
+
 export default function MaterialDesignComponents() {
   const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
   const [customized, setCustomized] = React.useState(false);
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  const [theme, setTheme] = React.useState(createTheme({ palette: { mode } }));
-  React.useEffect(() => {
-    setTheme(createTheme(customized ? buildTheme(globalTheme) : { palette: { mode } }));
-  }, [mode, customized, globalTheme]);
+  const theme = customized ? customTheme : defaultTheme;
   return (
     <div>
-      <Box
-        sx={{
-          mt: { xs: 2, md: 4 },
-          mb: 2,
-          display: 'flex',
-          justifyContent: { xs: 'flex-start', sm: 'flex-end' },
-        }}
-      >
+      <Box sx={{ mt: { xs: 2, md: 2 }, mb: 4, display: 'flex', justifyContent: 'center' }}>
         <StyledChip
-          color="primary"
-          label="Material Design"
           size="small"
-          variant={!customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(false)}
+          label="Custom theme"
+          variant={customized ? 'filled' : 'outlined'}
+          color={customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(true)}
+          sx={{ mr: 1 }}
         />
         <StyledChip
-          color="primary"
-          label="Custom Theme"
           size="small"
-          variant={customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(true)}
-          sx={{ ml: 1 }}
+          label="Material Design"
+          variant={!customized ? 'filled' : 'outlined'}
+          color={!customized ? 'primary' : 'secondary'}
+          onClick={() => setCustomized(false)}
         />
       </Box>
       <Grid>
@@ -499,7 +598,7 @@ export default function MaterialDesignComponents() {
                 open={Boolean(anchor)}
                 anchorEl={anchor}
                 onClose={() => setAnchor(null)}
-                PaperProps={{ variant: 'outlined' }}
+                PaperProps={{ variant: 'outlined', elevation: 0 }}
               >
                 <MenuItem>
                   <ListItemIcon>
@@ -564,15 +663,14 @@ export default function MaterialDesignComponents() {
             alignItems: 'center',
           }}
         >
-          <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-            Need more components?
+          <Typography variant="body2" sx={{ fontWeight: 'bold', mb: 0.5 }}>
+            Want to see more?
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
-            sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
+            sx={{ color: 'text.secondary', mb: 0.5, maxWidth: 250, mx: 'auto' }}
           >
-            Check the documentation to see the details of every component!
+            Check out the docs for details of the complete library.
           </Typography>
           <Button
             component={Link}
@@ -580,7 +678,7 @@ export default function MaterialDesignComponents() {
             href={ROUTES.documentation}
             endIcon={<KeyboardArrowRightRounded />}
           >
-            Get started
+            Learn more
           </Button>
         </Box>
       </Grid>

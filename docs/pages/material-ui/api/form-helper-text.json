@@ -1,0 +1,89 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "filled": { "type": { "name": "bool" } },
+    "focused": { "type": { "name": "bool" } },
+    "margin": { "type": { "name": "enum", "description": "'dense'" } },
+    "required": { "type": { "name": "bool" } },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "variant": {
+      "type": {
+        "name": "union",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
+      }
+    }
+  },
+  "name": "FormHelperText",
+  "imports": [
+    "import FormHelperText from '@mui/material/FormHelperText';",
+    "import { FormHelperText } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "contained",
+      "className": "MuiFormHelperText-contained",
+      "description": "Styles applied to the root element if `variant=\"filled\"` or `variant=\"outlined\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "error",
+      "className": "Mui-error",
+      "description": "State class applied to the root element if `error={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "filled",
+      "className": "MuiFormHelperText-filled",
+      "description": "State class applied to the root element if `filled={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "focused",
+      "className": "Mui-focused",
+      "description": "State class applied to the root element if `focused={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "required",
+      "className": "Mui-required",
+      "description": "State class applied to the root element if `required={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "root",
+      "className": "MuiFormHelperText-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "sizeSmall",
+      "className": "MuiFormHelperText-sizeSmall",
+      "description": "Styles applied to the root element if `size=\"small\"`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiFormHelperText",
+  "forwardsRefTo": "HTMLParagraphElement",
+  "filename": "/packages/mui-material/src/FormHelperText/FormHelperText.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-text-field/\">Text Field</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,2 +1,2 @@
-export * from './StaticTimePicker';
 export { default } from './StaticTimePicker';
+export * from './StaticTimePicker';

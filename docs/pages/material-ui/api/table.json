@@ -1,0 +1,53 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "component": { "type": { "name": "elementType" } },
+    "padding": {
+      "type": {
+        "name": "enum",
+        "description": "'checkbox'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
+      },
+      "default": "'normal'"
+    },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "stickyHeader": { "type": { "name": "bool" }, "default": "false" },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Table",
+  "imports": ["import Table from '@mui/material/Table';", "import { Table } from '@mui/material';"],
+  "classes": [
+    {
+      "key": "root",
+      "className": "MuiTable-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "stickyHeader",
+      "className": "MuiTable-stickyHeader",
+      "description": "Styles applied to the root element if `stickyHeader={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTable",
+  "forwardsRefTo": "HTMLTableElement",
+  "filename": "/packages/mui-material/src/Table/Table.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
+  "cssComponent": false
+}

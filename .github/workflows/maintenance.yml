@@ -1,18 +1,23 @@
-name: 'Maintenance'
+name: Maintenance
+
 on:
   # So that PRs touching the same files as the push are updated
   push:
     branches:
+      # #target-branch-reference
       - master
-      - next
+      - v6.x
   # So that the `dirtyLabel` is removed if conflicts are resolved
   # Could put too much strain on rate limit
   # If we hit the rate limit too often remove this event
   pull_request_target:
     branches:
+      # #target-branch-reference
       - master
-      - next
+      - v6.x
     types: [synchronize]
+
+permissions: {}
 
 jobs:
   main:
@@ -20,10 +25,13 @@ jobs:
     # We rely on other pushes to mark these branches as outdated.
     if: ${{ github.actor != 'l10nbot' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - run: echo "${{ github.actor }}"
       - name: check if prs are dirty
-        uses: eps1lon/actions-label-merge-conflict@releases/2.x
+        uses: eps1lon/actions-label-merge-conflict@1df065ebe6e3310545d4f4c4e862e43bdca146f0 # v3.0.3
         with:
           dirtyLabel: 'PR: out-of-date'
           removeOnDirtyLabel: 'PR: ready to ship'

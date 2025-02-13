@@ -1,7 +1,0 @@
-<ToggleButtonGroup size="small" {...control}>
-  {children}
-</ToggleButtonGroup>
-<ToggleButtonGroup {...control}>{children}</ToggleButtonGroup>
-<ToggleButtonGroup size="large" {...control}>
-  {children}
-</ToggleButtonGroup>

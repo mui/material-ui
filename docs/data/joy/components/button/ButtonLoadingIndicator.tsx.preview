@@ -1,0 +1,4 @@
+<Button loading>Default</Button>
+<Button loading loadingIndicator="Loading…">
+  Custom
+</Button>

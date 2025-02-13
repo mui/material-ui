@@ -1,7 +1,11 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import CardHeader, { CardHeaderProps, CardHeaderTypeMap } from '@mui/material/CardHeader';
 
-const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
+  function CustomComponent() {
+    return <div />;
+  };
 
 type DefaultComponent = CardHeaderTypeMap['defaultComponent'];
 
@@ -9,18 +13,18 @@ interface ComponentProp {
   component?: React.ElementType;
 }
 
+<CardHeader component={CustomComponent} stringProp="s" numberProp={2} />;
+
 function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader);
   React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
     component: 'div',
   });
-  // ExpectError: type system should be demanding the required props of "CustomComponent"
-  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
+  // @ts-expect-error required props are missing
+  React.createElement<CardHeaderProps<typeof CustomComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
   });
-  // @ts-expect-error
-  React.createElement<CardHeaderProps<DefaultComponent, ComponentProp>>(CardHeader, {
-    // This test shouldn't fail but does; stringProp & numberProp are required props of CustomComponent
+  React.createElement<CardHeaderProps<typeof CustomComponent, ComponentProp>>(CardHeader, {
     component: CustomComponent,
     stringProp: '',
     numberProp: 0,
@@ -28,20 +32,20 @@ function createElementBasePropMixedTest() {
   React.createElement<CardHeaderProps>(CardHeader, {
     disableTypography: true,
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
+    // @ts-expect-error CardHeader does not accept unknownProp
     unknownProp: 'shouldNotWork',
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
+    // @ts-expect-error disableTypography does not accept strings
     disableTypography: 'hello',
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
+    // @ts-expect-error disableTypography does not accept numbers
     disableTypography: 1,
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps<any, ComponentProp>>(CardHeader, {
+    // @ts-expect-error `component` is not a valid element
     component: 'incorrectElement',
   });
 }
@@ -52,9 +56,9 @@ function createElementTypographyTest() {
       align: 'center',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     titleTypographyProps: {
+      // @ts-expect-error
       align: 'incorrectAlign',
     },
   });
@@ -63,9 +67,9 @@ function createElementTypographyTest() {
       variant: 'body1',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
     titleTypographyProps: {
+      // @ts-expect-error
       variant: 123,
     },
   });
@@ -102,14 +106,14 @@ function createElementTypographyTest() {
       unknownProp: 'shouldNotWork',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps<DefaultComponent, {}, React.ElementType>>(CardHeader, {
     titleTypographyProps: {
+      // @ts-expect-error
       component: 'incorrectComponent',
     },
   });
-  // @ts-expect-error
   React.createElement<CardHeaderProps>(CardHeader, {
+    // @ts-expect-error
     titleTypographyProps: true,
   });
 }
@@ -216,8 +220,8 @@ function titleTypographyPropsTest() {
       propThatDoesntExist: 'shouldNotWork',
     }}
   />;
-  // Regression test for https://github.com/mui-org/material-ui/issues/21583
-  // which was probably fixed in https://github.com/mui-org/material-ui/pull/21552.
+  // Regression test for https://github.com/mui/material-ui/issues/21583
+  // which was probably fixed in https://github.com/mui/material-ui/pull/21552.
   <CardHeader
     title={<strong>Contemplative Reptile</strong>}
     titleTypographyProps={{ component: 'h2' }}
@@ -303,3 +307,49 @@ function mixedTypographyPropsTest() {
     subheaderTypographyProps={{ component: CustomComponent, numberProp: 2 }}
   />;
 }
+
+<CardHeader
+  slotProps={{
+    root: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    action: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    avatar: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    content: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    title: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    subheader: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+  }}
+/>;
+const CustomSlot = styled('div')({});
+<CardHeader
+  slots={{
+    action: CustomSlot,
+    avatar: CustomSlot,
+    content: CustomSlot,
+    root: CustomSlot,
+    subheader: CustomSlot,
+    title: CustomSlot,
+  }}
+/>;

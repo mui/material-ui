@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 export default function getThemeProps(params) {
   const { theme, name, props } = params;
 

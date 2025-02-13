@@ -1,0 +1,52 @@
+{
+  "props": {
+    "badgeContent": { "type": { "name": "node" } },
+    "children": { "type": { "name": "node" } },
+    "invisible": { "type": { "name": "bool" }, "default": "false" },
+    "max": { "type": { "name": "number" }, "default": "99" },
+    "showZero": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ badge?: elementType, root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    }
+  },
+  "name": "Badge",
+  "imports": ["import { Badge } from '@mui/base/Badge';", "import { Badge } from '@mui/base';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'span'",
+      "class": "base-Badge-root"
+    },
+    {
+      "name": "badge",
+      "description": "The component that renders the badge.",
+      "default": "'span'",
+      "class": "base-Badge-badge"
+    }
+  ],
+  "classes": [
+    {
+      "key": "invisible",
+      "className": "base-Badge-invisible",
+      "description": "State class applied to the badge `span` element if `invisible={true}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "muiName": "Badge",
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/mui-base/src/Badge/Badge.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-badge/\">Badge</a></li></ul>",
+  "cssComponent": false
+}

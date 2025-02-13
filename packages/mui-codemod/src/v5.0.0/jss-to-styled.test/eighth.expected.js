@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Typography from '@material-ui/core/Typography';
 import MuiLink from '@material-ui/core/Link';
@@ -115,7 +115,7 @@ export default function Cart() {
     });
   };
   return (
-    <Root>
+    (<Root>
       <Head title="View cart">
         <meta name="robots" content="noindex,nofollow" />
       </Head>
@@ -208,6 +208,6 @@ export default function Cart() {
         </OrderBody>
       </Container>
       <AppFooter />
-    </Root>
+    </Root>)
   );
 }

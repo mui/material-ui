@@ -1,0 +1,12 @@
+<Button loading variant="solid">
+  Solid
+</Button>
+<Button loading variant="soft">
+  Soft
+</Button>
+<Button loading variant="outlined">
+  Outlined
+</Button>
+<Button loading variant="plain">
+  Plain
+</Button>

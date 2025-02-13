@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { expectType } from '@mui/types';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 
 interface MyOverrideProps {
   className: string;
@@ -75,9 +75,9 @@ declare const Foo: OverridableComponent<{
   ref={(elem) => {
     expectType<HTMLButtonElement | null, typeof elem>(elem);
   }}
-  onClick={(e) => {
-    expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
-    e.currentTarget.checkValidity();
+  onClick={(event) => {
+    expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof event>(event);
+    event.currentTarget.checkValidity();
   }}
 />;
 
@@ -118,8 +118,9 @@ declare const Foo: OverridableComponent<{
 
 <Foo
   component={MyOverrideComponent}
-  // @ts-expect-error
-  myCallback={(n) => console.log(n)} // n has type any
+  myCallback={(n) => {
+    expectType<number, typeof n>(n);
+  }}
   numberProp={3}
 />;
 
@@ -148,3 +149,23 @@ declare const Foo: OverridableComponent<{
   // @ts-expect-error
   onClick={(event: React.MouseEvent<HTMLButtonElement>) => event.currentTarget.checkValidity()}
 />;
+
+// Typical polymorphic component from @mui/material
+interface BarTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & {
+    numberProp: number;
+    callbackProp?(b: boolean): void;
+  };
+  defaultComponent: D;
+}
+
+declare const Bar: OverridableComponent<BarTypeMap>;
+
+type BarProps<D extends React.ElementType = BarTypeMap['defaultComponent'], P = {}> = OverrideProps<
+  BarTypeMap<P, D>,
+  D
+>;
+
+const Header = React.forwardRef<HTMLElement, BarProps>((props, ref) => (
+  <Bar ref={ref} component="header" {...props} />
+));

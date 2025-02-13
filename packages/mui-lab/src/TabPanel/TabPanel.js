@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -7,10 +8,10 @@ import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { getPanelId, getTabId, useTabContext } from '../TabContext';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes } = ownerState;
+  const { classes, hidden } = ownerState;
 
   const slots = {
-    root: ['root'],
+    root: ['root', hidden && 'hidden'],
   };
 
   return composeClasses(slots, getTabPanelUtilityClass, classes);
@@ -27,7 +28,7 @@ const TabPanelRoot = styled('div', {
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTabPanel' });
 
-  const { children, className, value, ...other } = props;
+  const { children, className, value, keepMounted = false, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -53,16 +54,16 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      {value === context.value && children}
+      {(keepMounted || value === context.value) && children}
     </TabPanelRoot>
   );
 });
 
 TabPanel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -76,6 +77,11 @@ TabPanel.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
+   * Always keep the children in the DOM.
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -87,7 +93,7 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * The `value` of the corresponding `Tab`. Must use the index of the `Tab` when
    * no `value` was passed to `Tab`.
    */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 export default TabPanel;

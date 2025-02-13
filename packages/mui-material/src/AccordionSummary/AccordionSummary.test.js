@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
 } from '@mui/material/AccordionSummary';
 import Accordion from '@mui/material/Accordion';
 import ButtonBase from '@mui/material/ButtonBase';
+import describeConformance from '../../test/describeConformance';
 
 describe('<AccordionSummary />', () => {
   const { render } = createRenderer();
@@ -15,7 +16,7 @@ describe('<AccordionSummary />', () => {
     classes,
     inheritComponent: ButtonBase,
     render,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiAccordionSummary',
     testVariantProps: { disabled: true },
     testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
@@ -97,7 +98,12 @@ describe('<AccordionSummary />', () => {
     expect(handleChange.callCount).to.equal(1);
   });
 
-  it('calls onFocusVisible if focused visibly', () => {
+  it('calls onFocusVisible if focused visibly', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const handleFocusVisible = spy();
     const { getByRole } = render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
     // simulate pointer device

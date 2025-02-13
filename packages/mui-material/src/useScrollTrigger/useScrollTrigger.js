@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 
 function defaultTrigger(store, options) {
@@ -24,18 +25,18 @@ export default function useScrollTrigger(options = {}) {
   const { getTrigger = defaultTrigger, target = defaultTarget, ...other } = options;
   const store = React.useRef();
   const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
-
   React.useEffect(() => {
     const handleScroll = () => {
       setTrigger(getTrigger(store, { target, ...other }));
     };
 
     handleScroll(); // Re-evaluate trigger when dependencies change
-    target.addEventListener('scroll', handleScroll);
+    target.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      target.removeEventListener('scroll', handleScroll);
+      target.removeEventListener('scroll', handleScroll, { passive: true });
     };
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target, getTrigger, JSON.stringify(other)]);
 

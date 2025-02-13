@@ -1,0 +1,154 @@
+{
+  "props": {
+    "action": { "type": { "name": "node" } },
+    "anchorOrigin": {
+      "type": {
+        "name": "shape",
+        "description": "{ horizontal: 'center'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
+      },
+      "default": "{ vertical: 'bottom', horizontal: 'left' }"
+    },
+    "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
+    "children": { "type": { "name": "element" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "ClickAwayListenerProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.clickAwayListener</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "ContentProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.content</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "disableWindowBlurListener": { "type": { "name": "bool" }, "default": "false" },
+    "key": { "type": { "name": "custom", "description": "any" } },
+    "message": { "type": { "name": "node" } },
+    "onClose": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(event: React.SyntheticEvent<any> | Event, reason: string) => void",
+        "describedArgs": ["event", "reason"]
+      }
+    },
+    "open": { "type": { "name": "bool" } },
+    "resumeHideDuration": { "type": { "name": "number" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ clickAwayListener?: func<br>&#124;&nbsp;{ children: element, disableReactTree?: bool, mouseEvent?: 'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false, onClickAway?: func, touchEvent?: 'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false }, content?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ clickAwayListener?: elementType, content?: elementType, root?: elementType, transition?: elementType }"
+      },
+      "default": "{}"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Grow",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "transitionDuration": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+    },
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    }
+  },
+  "name": "Snackbar",
+  "imports": [
+    "import Snackbar from '@mui/material/Snackbar';",
+    "import { Snackbar } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "'div'",
+      "class": "MuiSnackbar-root"
+    },
+    {
+      "name": "content",
+      "description": "The component that renders the content slot.",
+      "default": "SnackbarContent",
+      "class": null
+    },
+    {
+      "name": "clickAwayListener",
+      "description": "The component that renders the clickAwayListener slot.",
+      "default": "ClickAwayListener",
+      "class": null
+    },
+    {
+      "name": "transition",
+      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Grow",
+      "class": null
+    }
+  ],
+  "classes": [
+    {
+      "key": "anchorOriginBottomCenter",
+      "className": "MuiSnackbar-anchorOriginBottomCenter",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomLeft",
+      "className": "MuiSnackbar-anchorOriginBottomLeft",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginBottomRight",
+      "className": "MuiSnackbar-anchorOriginBottomRight",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopCenter",
+      "className": "MuiSnackbar-anchorOriginTopCenter",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopLeft",
+      "className": "MuiSnackbar-anchorOriginTopLeft",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "anchorOriginTopRight",
+      "className": "MuiSnackbar-anchorOriginTopRight",
+      "description": "Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiSnackbar",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Snackbar/Snackbar.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,0 +1,63 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "className": { "type": { "name": "string" } },
+    "position": {
+      "type": {
+        "name": "enum",
+        "description": "'alternate-reverse'<br>&#124;&nbsp;'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
+      },
+      "default": "'right'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "Timeline",
+  "imports": ["import Timeline from '@mui/lab/Timeline';", "import { Timeline } from '@mui/lab';"],
+  "classes": [
+    {
+      "key": "positionAlternate",
+      "className": "MuiTimeline-positionAlternate",
+      "description": "Styles applied to the root element if `position=\"alternate\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionAlternateReverse",
+      "className": "MuiTimeline-positionAlternateReverse",
+      "description": "Styles applied to the root element if `position=\"alternate-reverse\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionLeft",
+      "className": "MuiTimeline-positionLeft",
+      "description": "Styles applied to the root element if `position=\"left\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "positionRight",
+      "className": "MuiTimeline-positionRight",
+      "description": "Styles applied to the root element if `position=\"right\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiTimeline-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiTimeline",
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/mui-lab/src/Timeline/Timeline.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-timeline/\">Timeline</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer } from 'test/utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Pagination, { paginationClasses as classes } from '@mui/material/Pagination';
 import { paginationItemClasses } from '@mui/material/PaginationItem';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Pagination />', () => {
   const { render } = createRenderer();
@@ -32,7 +33,7 @@ describe('<Pagination />', () => {
 
     // previous, page 1
     const [, page1] = getAllByRole('button');
-    expect(page1).to.have.attribute('aria-current', 'true');
+    expect(page1).to.have.attribute('aria-current', 'page');
     // verifying no regression from previous bug where `page` wasn't intercepted
     expect(container.querySelector('[page]')).to.equal(null);
   });

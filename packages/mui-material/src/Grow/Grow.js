@@ -1,9 +1,12 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementAcceptingRef } from '@mui/utils';
+import useTimeout from '@mui/utils/useTimeout';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getReactElementRef from '@mui/utils/getReactElementRef';
 import { Transition } from 'react-transition-group';
-import useTheme from '../styles/useTheme';
-import { reflow, getTransitionProps } from '../transitions/utils';
+import { useTheme } from '../zero-styled';
+import { getTransitionProps, reflow } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
 
 function getScale(value) {
@@ -21,9 +24,18 @@ const styles = {
   },
 };
 
+/*
+ TODO v6: remove
+ Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
+ */
+const isWebKit154 =
+  typeof navigator !== 'undefined' &&
+  /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) &&
+  /(os |version\/)15(.|_)4/i.test(navigator.userAgent);
+
 /**
- * The Grow transition is used by the [Tooltip](/components/tooltips/) and
- * [Popover](/components/popover/) components.
+ * The Grow transition is used by the [Tooltip](/material-ui/react-tooltip/) and
+ * [Popover](/material-ui/react-popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
@@ -45,13 +57,12 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     TransitionComponent = Transition,
     ...other
   } = props;
-  const timer = React.useRef();
+  const timer = useTimeout();
   const autoTimeout = React.useRef();
   const theme = useTheme();
 
   const nodeRef = React.useRef(null);
-  const foreignRef = useForkRef(children.ref, ref);
-  const handleRef = useForkRef(nodeRef, foreignRef);
+  const handleRef = useForkRef(nodeRef, getReactElementRef(children), ref);
 
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
@@ -96,7 +107,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: duration * 0.666,
+        duration: isWebKit154 ? duration : duration * 0.666,
         delay,
         easing: transitionTimingFunction,
       }),
@@ -137,13 +148,13 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: duration * 0.666,
-        delay: delay || duration * 0.333,
+        duration: isWebKit154 ? duration : duration * 0.666,
+        delay: isWebKit154 ? delay : delay || duration * 0.333,
         easing: transitionTimingFunction,
       }),
     ].join(',');
 
-    node.style.opacity = '0';
+    node.style.opacity = 0;
     node.style.transform = getScale(0.75);
 
     if (onExit) {
@@ -155,19 +166,13 @@ const Grow = React.forwardRef(function Grow(props, ref) {
 
   const handleAddEndListener = (next) => {
     if (timeout === 'auto') {
-      timer.current = setTimeout(next, autoTimeout.current || 0);
+      timer.start(autoTimeout.current || 0, next);
     }
     if (addEndListener) {
       // Old call signature before `react-transition-group` implemented `nodeRef`
       addEndListener(nodeRef.current, next);
     }
   };
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
 
   return (
     <TransitionComponent
@@ -184,7 +189,8 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {(state, childProps) => {
+      {/* Ensure "ownerState" is not forwarded to the child DOM element when a direct HTML element is used. This avoids unexpected behavior since "ownerState" is intended for internal styling, component props and not as a DOM attribute. */}
+      {(state, { ownerState, ...restChildProps }) => {
         return React.cloneElement(children, {
           style: {
             opacity: 0,
@@ -195,7 +201,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
             ...children.props.style,
           },
           ref: handleRef,
-          ...childProps,
+          ...restChildProps,
         });
       }}
     </TransitionComponent>
@@ -203,10 +209,10 @@ const Grow = React.forwardRef(function Grow(props, ref) {
 });
 
 Grow.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Add a custom transition end trigger. Called with the transitioning DOM
    * node and a done callback. Allows for more fine grained transition end
@@ -284,6 +290,8 @@ Grow.propTypes /* remove-proptypes */ = {
   ]),
 };
 
-Grow.muiSupportAuto = true;
+if (Grow) {
+  Grow.muiSupportAuto = true;
+}
 
 export default Grow;

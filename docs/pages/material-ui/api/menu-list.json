@@ -1,0 +1,52 @@
+{
+  "props": {
+    "autoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "autoFocusItem": { "type": { "name": "bool" }, "default": "false" },
+    "children": { "type": { "name": "node" } },
+    "disabledItemsFocusable": { "type": { "name": "bool" }, "default": "false" },
+    "disableListWrap": { "type": { "name": "bool" }, "default": "false" },
+    "variant": {
+      "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
+      "default": "'selectedMenu'"
+    }
+  },
+  "name": "MenuList",
+  "imports": [
+    "import MenuList from '@mui/material/MenuList';",
+    "import { MenuList } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "dense",
+      "className": "MuiMenuList-dense",
+      "description": "Styles applied to the root element if dense.",
+      "isGlobal": false
+    },
+    {
+      "key": "padding",
+      "className": "MuiMenuList-padding",
+      "description": "Styles applied to the root element unless `disablePadding={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiMenuList-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    },
+    {
+      "key": "subheader",
+      "className": "MuiMenuList-subheader",
+      "description": "Styles applied to the root element if a `subheader` is provided.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiMenuList",
+  "forwardsRefTo": "HTMLUListElement",
+  "filename": "/packages/mui-material/src/MenuList/MenuList.js",
+  "inheritance": { "component": "List", "pathname": "/material-ui/api/list/" },
+  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

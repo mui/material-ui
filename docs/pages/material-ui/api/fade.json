@@ -1,0 +1,35 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "addEndListener": { "type": { "name": "func" } },
+    "appear": { "type": { "name": "bool" }, "default": "true" },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      }
+    },
+    "in": { "type": { "name": "bool" } },
+    "timeout": {
+      "type": {
+        "name": "union",
+        "description": "number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }"
+      },
+      "default": "{\n  enter: theme.transitions.duration.enteringScreen,\n  exit: theme.transitions.duration.leavingScreen,\n}"
+    }
+  },
+  "name": "Fade",
+  "imports": ["import Fade from '@mui/material/Fade';", "import { Fade } from '@mui/material';"],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": false,
+  "muiName": "MuiFade",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-material/src/Fade/Fade.js",
+  "inheritance": {
+    "component": "Transition",
+    "pathname": "https://reactcommunity.org/react-transition-group/transition/#Transition-props"
+  },
+  "demos": "<ul><li><a href=\"/material-ui/transitions/\">Transitions</a></li></ul>",
+  "cssComponent": false
+}

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { DialogContentText } from '@mui/material';
 
-const DialogContentTextTest = () => {
-  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
+const dialogContentTextTest = () => {
+  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
+    return <div />;
+  };
   return (
     <div>
       <DialogContentText />
@@ -14,7 +16,7 @@ const DialogContentTextTest = () => {
       <DialogContentText align="right" color="primary" display="initial" />
       <DialogContentText align="justify" color="secondary" display="initial" />
       <DialogContentText align="inherit" color="text.primary" />
-      <DialogContentText align="inherit" color="text.secondary" />
+      <DialogContentText align="inherit" color="textSecondary" />
       <DialogContentText align="inherit" color="error" />
       {/* TODO: system props did not catch this error. Add @ts-expect-error after it is fixed. */}
       <DialogContentText display="incorrectValue" />

@@ -1,0 +1,3 @@
+<Badge>
+  <Typography sx={{ fontSize: 'xl' }}>🛒</Typography>
+</Badge>

@@ -1,196 +1,127 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-import InfoOutlined from '@mui/icons-material/InfoOutlined';
-
-const primary = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#80BFFF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
-  1000: '#132F4C',
-};
-const primaryDark = {
-  50: '#E2EDF8',
-  100: '#CEE0F3',
-  200: '#91B9E3',
-  300: '#5090D3',
-  400: '#265D97',
-  500: '#1E4976',
-  600: '#173A5E',
-  700: '#132F4C',
-  800: '#001E3C',
-  900: '#0A1929',
-};
-const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5',
-  800: '#5A6978',
-  900: '#3D4752',
-};
+import TimelineConnector, { timelineConnectorClasses } from '@mui/lab/TimelineConnector';
+import TimelineContent, { timelineContentClasses } from '@mui/lab/TimelineContent';
+import TimelineDot, { timelineDotClasses } from '@mui/lab/TimelineDot';
 
 export default function BasicTimeline() {
-  /*
-   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
-   *
-   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
-   */
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          primary,
-          ...(mode === 'light' && {
-            text: {
-              primary: grey[900],
-              secondary: grey[800],
-            },
-          }),
-          ...(mode === 'dark' && {
-            text: {
-              primary: '#fff',
-              secondary: grey[500],
-            },
-          }),
-          divider: mode === 'dark' ? primaryDark[500] : grey[200],
-          background: {
-            paper: mode === 'dark' ? primaryDark[800] : '#fff',
-          },
-        },
-        shape: {
-          borderRadius: 10,
-        },
-        spacing: 10,
-        typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
-          fontWeightRegular: 500,
-        },
-        components: {
-          // @ts-ignore
-          MuiTimelineItem: {
-            styleOverrides: {
-              root: {
-                minHeight: 36,
-              },
-            },
-          },
-          MuiTimelineDot: {
-            styleOverrides: {
-              root: {
-                zIndex: 1,
-                padding: 3,
-                boxShadow: 'none',
-                margin: '15px 0',
-                border: 'none',
-                backgroundColor: primary[500],
-              },
-            },
-          },
-          MuiTimelineConnector: {
-            styleOverrides: {
-              root: {
-                margin: '-15px 0',
-                backgroundColor: mode === 'dark' ? primaryDark[700] : primary[50],
-              },
-            },
-          },
-          MuiTimelineContent: {
-            styleOverrides: {
-              root: {
-                fontSize: '0.875rem',
-                color: mode === 'dark' ? grey[100] : grey[800],
-              },
-            },
-          },
-        },
-      }),
-    [mode],
-  );
   return (
-    <ThemeProvider theme={theme}>
-      <Fade in timeout={700}>
-        <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
-          <Box
-            sx={{
-              p: 0.5,
-              borderRadius: 0.5,
-              minWidth: 28,
-              textAlign: 'center',
-              bgcolor: mode === 'dark' ? 'primary.700' : 'primary.50',
-              color: mode === 'dark' ? '#fff' : 'primary.main',
-              typography: 'body2',
-            }}
-          >
-            1
-          </Box>
-          <Box sx={{ ml: 2, flex: 1 }}>
-            <Box sx={{ display: 'flex' }}>
-              <Typography
-                color={mode === 'dark' ? 'grey.400' : 'text.secondary'}
-                variant="body2"
-                sx={{ mb: 1 }}
-              >
-                Use the sx prop to add these properties:
-              </Typography>
-              <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
-            </Box>
-            <Timeline
-              sx={{
+    <Fade in timeout={700}>
+      <Card
+        variant="outlined"
+        sx={(theme) => ({
+          p: 2,
+          pb: 1,
+          display: 'flex',
+          alignItems: 'flex-start',
+          borderColor: 'grey.200',
+          boxShadow: `0px 4px 8px ${alpha(theme.palette.grey[200], 0.6)}`,
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.900',
+            borderColor: 'primaryDark.700',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+          }),
+        })}
+      >
+        <Box
+          sx={(theme) => ({
+            height: 24,
+            width: 24,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            borderRadius: 0.3,
+            bgcolor: 'primary.50',
+            color: 'primary.600',
+            border: '1px solid',
+            borderColor: 'primary.100',
+            ...theme.applyDarkStyles({
+              bgcolor: 'primary.900',
+              color: 'primary.50',
+              borderColor: 'primary.800',
+            }),
+          })}
+        >
+          1
+        </Box>
+        <Box sx={{ ml: 2, flex: 1 }}>
+          <Typography variant="body2" gutterBottom sx={{ color: 'text.primary' }}>
+            Install one of our production-ready libraries to get your next app started inevitably
+            successful:
+          </Typography>
+          <Timeline
+            sx={[
+              {
                 pl: 0,
                 py: 0,
                 my: 0,
-                '& .MuiTimelineItem-root:before': { display: 'none' },
-              }}
-            >
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Margin Top</TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Padding Bottom</TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                </TimelineSeparator>
-                <TimelineContent>Flexbox</TimelineContent>
-              </TimelineItem>
-            </Timeline>
-          </Box>
-        </Card>
-      </Fade>
-    </ThemeProvider>
+                [`& .${timelineItemClasses.root}`]: {
+                  minHeight: 24,
+                  '&::before': {
+                    display: 'none',
+                  },
+                },
+                [`& .${timelineDotClasses.root}`]: {
+                  zIndex: 1,
+                  padding: '3px',
+                  boxShadow: 'none',
+                  margin: '15px 0',
+                  border: 'none',
+                  bgcolor: 'primary.500',
+                },
+                [`& .${timelineConnectorClasses.root}`]: {
+                  margin: '-8px 0',
+                  bgcolor: 'primary.100',
+                },
+                [`& .${timelineContentClasses.root}`]: {
+                  fontSize: '0.875rem',
+                  color: 'grey.800',
+                },
+              },
+              (theme) =>
+                theme.applyDarkStyles({
+                  [`& .${timelineConnectorClasses.root}`]: {
+                    bgcolor: 'primary.900',
+                  },
+                  [`& .${timelineContentClasses.root}`]: {
+                    color: 'grey.100',
+                  },
+                }),
+            ]}
+          >
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Material UI</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>MUI Base</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+              </TimelineSeparator>
+              <TimelineContent>Joy UI</TimelineContent>
+            </TimelineItem>
+          </Timeline>
+        </Box>
+      </Card>
+    </Fade>
   );
 }
