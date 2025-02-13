@@ -531,9 +531,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
 
-  const id = useId(idProp);
+  const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+    <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
   );
 
   const ownerState = {
@@ -578,8 +578,11 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
-  const loader =
-    typeof loading === 'boolean' ? (
+  let loader = null;
+  let computedId = idProp;
+
+  if (typeof loading === 'boolean') {
+    loader = (
       // use plain HTML span to minimize the runtime overhead
       <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
         {loading && (
@@ -588,7 +591,10 @@ const Button = React.forwardRef(function Button(inProps, ref) {
           </ButtonLoadingIndicator>
         )}
       </span>
-    ) : null;
+    );
+
+    computedId = loadingId;
+  }
 
   return (
     <ButtonRoot
@@ -600,7 +606,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      id={loadingIndicator ? id : undefined}
+      id={computedId}
       {...other}
       classes={classes}
     >
