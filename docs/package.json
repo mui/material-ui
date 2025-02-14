@@ -54,6 +54,7 @@
     "@mui/x-tree-view": "7.26.0",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^9.7.5",
+    "@tanstack/react-virtual": "^3.13.0",
     "@toolpad/core": "^0.12.0",
     "autoprefixer": "^10.4.20",
     "autosuggest-highlight": "^3.3.4",
