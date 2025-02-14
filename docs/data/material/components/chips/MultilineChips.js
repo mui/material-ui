@@ -8,6 +8,7 @@ export default function MultilineChips() {
       <Chip
         sx={{
           height: 'auto',
+          lineHeight: 1.5,
           '& .MuiChip-label': {
             display: 'block',
             whiteSpace: 'normal',
