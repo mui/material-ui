@@ -26,7 +26,7 @@ export default function MuiBaseDeprecation(props: {
         <Icon />
         <Box className="MuiCallout-content">
           @mui/base has been deprecated and has been replaced by{' '}
-          <a href="https://www.base-ui.com">Base UI</a>. We strongly recommend using the new package
+          <a href="https://base-ui.com">Base UI</a>. We strongly recommend using the new package
           instead.
         </Box>
       </Box>

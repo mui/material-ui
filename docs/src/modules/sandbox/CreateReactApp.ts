@@ -33,7 +33,7 @@ export const getHtml = ({
     />${
       codeStyling === 'Tailwind'
         ? `
-    <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation -->
+    <!-- Check the Tailwind CSS's installation guide for setting up tailwind: https://tailwindcss.com/docs/installation/framework-guides -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {

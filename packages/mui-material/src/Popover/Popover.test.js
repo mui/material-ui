@@ -43,17 +43,12 @@ const ReplacementPaper = styled(Paper, {
   backgroundColor: 'red',
 });
 
-function CustomTransition({
-  in: inProp,
-  appear,
-  onEnter,
-  onEntering,
-  onExited,
-  ownerState,
-  ...props
-}) {
-  return <div data-testid="custom" {...props} />;
-}
+const CustomTransition = React.forwardRef(function CustomTransition(
+  { in: inProp, appear, onEnter, onEntering, onExited, ownerState, ...props },
+  ref,
+) {
+  return <div data-testid="custom" ref={ref} {...props} />;
+});
 
 describe('<Popover />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
