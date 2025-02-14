@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -19,7 +18,7 @@ const Noflip = styled('div')`
 
 const rtlCache = createCache({
   key: 'muirtl',
-  stylisPlugins: [prefixer, rtlPlugin],
+  stylisPlugins: [rtlPlugin],
 });
 
 const ltrCache = createCache({

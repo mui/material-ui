@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
@@ -41,16 +40,19 @@ function FramedDemo(props) {
     };
   }, [document]);
 
-  const cache = React.useMemo(
-    () =>
-      createCache({
-        key: `iframe-demo-${theme.direction}`,
-        prepend: true,
-        container: document.head,
-        stylisPlugins: theme.direction === 'rtl' ? [prefixer, rtlPlugin] : [prefixer],
-      }),
-    [document, theme.direction],
-  );
+  const cache = React.useMemo(() => {
+    const cacheOptions = {
+      key: `iframe-demo-${theme.direction}`,
+      prepend: true,
+      container: document.head,
+    };
+
+    if (theme.direction === 'rtl') {
+      cacheOptions.stylisPlugins = [rtlPlugin];
+    }
+
+    return createCache(cacheOptions);
+  }, [document, theme.direction]);
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 

@@ -85,13 +85,12 @@ If you're using Emotion, use the [CacheProvider](https://emotion.sh/docs/cache-p
 ```jsx
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 
 // Create rtl cache
 const rtlCache = createCache({
   key: 'muirtl',
-  stylisPlugins: [prefixer, rtlPlugin],
+  stylisPlugins: [rtlPlugin],
 });
 
 function Rtl(props) {

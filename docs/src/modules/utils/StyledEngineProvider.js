@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { useTheme } from '@mui/material/styles';
 import globalSelector from './globalSelector';
@@ -12,7 +11,7 @@ import globalSelector from './globalSelector';
 const cacheRtl = createCache({
   key: 'rtl',
   prepend: true,
-  stylisPlugins: [prefixer, rtlPlugin, globalSelector],
+  stylisPlugins: [rtlPlugin, globalSelector],
 });
 
 export default function StyledEngineProvider(props) {

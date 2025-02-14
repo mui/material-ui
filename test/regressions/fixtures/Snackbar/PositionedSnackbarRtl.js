@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
@@ -11,7 +10,7 @@ import Snackbar from '@mui/material/Snackbar';
 // Create rtl cache
 const cacheRtl = createCache({
   key: 'muirtl',
-  stylisPlugins: [prefixer, rtlPlugin],
+  stylisPlugins: [rtlPlugin],
 });
 
 const theme = createTheme({ direction: 'rtl' });
