@@ -6,7 +6,7 @@ const getLegacyGridWarning = (propName: 'item' | 'zeroMinWidth' | Breakpoint) =>
   }
 
   // #host-reference
-  return `The \`${propName}\` prop has been removed. To migrate please visit https://mui.com/material-ui/migration/migration-grid-v2/.`;
+  return `The \`${propName}\` prop has been removed. To migrate please visit https://mui.com/material-ui/migration/upgrade-to-grid-v2/.`;
 };
 
 const warnedAboutProps: string[] = [];

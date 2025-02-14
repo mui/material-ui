@@ -33,7 +33,7 @@ This is the same as the `Grid` in Material UI v4.
 
 :::info
 We believe that the migration from Grid v1 to v2 will be smooth for most users.
-To get started right away, head over to the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
+To get started right away, head over to the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/).
 :::
 
 ### 🚀 New features
@@ -140,7 +140,7 @@ Since the `Grid` has been rewritten from scratch for v2, it is currently conside
 We will make it stable and deprecate v1 in the next major release of Material UI.
 
 Ready to make the jump?
-Check out the [Grid v2 documentation](/material-ui/react-grid2/) and the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
+Check out the [Grid v2 documentation](/material-ui/react-grid2/) and the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/).
 
 <hr />
 
