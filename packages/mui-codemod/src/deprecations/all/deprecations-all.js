@@ -15,6 +15,7 @@ import transformFilledInputProps from '../filled-input-props';
 import transformFormControlLabelProps from '../form-control-label-props';
 import transformImageListItemBarClasses from '../image-list-item-bar-classes';
 import transformInputBaseProps from '../input-base-props';
+import transformInputBaseClasses from '../input-base-classes';
 import transformInputProps from '../input-props';
 import transformListItemTextProps from '../list-item-text-props';
 import transformLinearProgressClasses from '../linear-progress-classes';
@@ -63,6 +64,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformFormControlLabelProps(file, api, options);
   file.source = transformImageListItemBarClasses(file, api, options);
   file.source = transformInputBaseProps(file, api, options);
+  file.source = transformInputBaseClasses(file, api, options);
   file.source = transformInputProps(file, api, options);
   file.source = transformListItemTextProps(file, api, options);
   file.source = transformLinearProgressClasses(file, api, options);
