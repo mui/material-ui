@@ -1,0 +1,139 @@
+---
+title: Migrating MUI X to React 19
+description: How we migrated to React 19 while maintaining backward compatibility.
+date: 2024-02-12
+authors: ['arminmeh', 'alexfauquette']
+tags: ['MUI X', 'React']
+---
+
+[React 19 is out](https://react.dev/blog/2024/12/05/react-19) for some time now and we have finished migrating our codebase to it. If you are still having this migration in your backlog or you are interested in the details of the migration, read on.
+
+## The migration strategy 
+
+It was crucial for us to keep supporting older React versions, so we approached the migration in two phases:
+
+1. First, we added React 19 compatibility while keeping the codebase on React 18
+2. Then, we moved the entire codebase to React 19 while maintaining compatibility with previous React versions
+
+This approach allowed early adopters of React 19 to use our packages while we were still finishing our own migration.
+
+### Phase 1: Adding React 19 compatibility
+
+First stop, checking the [list of breaking changes](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#breaking-changes).
+
+We were lucky that we didn't had to change much in the source code, but a lot of changes had to be done in the tests because of the changes related to [strict mode](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#strict-mode-improvements) and [error reporting](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#errors-in-render-are-not-re-thrown).
+These changes caused different call count for our spies and different console outputs, so we had to expect different values based on the React major.
+
+```typescript
+const errorMessage1 = 'MUI X: Could not find the animation ref context.';
+const errorMessage2 =
+  'It looks like you rendered your component outside of a ChartsContainer parent component.';
+const errorMessage3 = 'The above error occurred in the <UseSkipAnimation> component:';
+const expextedError =
+  reactMajor < 19
+    ? [errorMessage1, errorMessage2, errorMessage3]
+    : `${errorMessage1}\n${errorMessage2}`;
+```
+
+```typescript
+// Spy call count
+//   1x during state initialization
+// + 1x during state initialization (StrictMode)
+// + 1x when sortedRowsSet is fired
+// + 1x when sortedRowsSet is fired (StrictMode) = 4x
+
+// Because of https://react.dev/blog/2024/04/25/react-19-upgrade-guide#strict-mode-improvements
+// from React 19 it is:
+//   1x during state initialization
+// + 1x when sortedRowsSet is fired
+const expectedCallCount = reactMajor >= 19 ? 2 : 4;
+```
+
+### Performance issue
+
+In React 19, you can access `ref` as a prop for function components and `forwardRef` is not longer needed.
+
+This created an [issue](https://github.com/mui/mui-x/issues/15770) for us, which was spotted by our community member.
+
+Because `ref` is now also a prop, spreading props after the ref prop could potentially override the ref.
+
+The existance of `ref` prop on a `ForwardRef` component, even if `undefined`, makes the component props referentially unstable, breaking the downstream memoizations.
+
+To address this, a `forwardRef` shim was added that enforces correct prop ordering at the type level.
+
+```tsx
+// Compatibility shim that ensures stable props object for forwardRef components
+// Fixes https://github.com/facebook/react/issues/31613
+// We ensure that the ref is always present in the props object (even if that's not the case for older versions of React) to avoid the footgun of spreading props over the ref in the newer versions of React.
+// Footgun: <Component ref={ref} {...props} /> will break past React 19, but the types will now warn us that we should use <Component {...props} ref={ref} /> instead.
+export const forwardRef = <T, P = {}>(
+  render: React.ForwardRefRenderFunction<T, P & { ref: React.Ref<T> }>,
+) => {
+  if (reactMajor >= 19) {
+    const Component = (props: any) => render(props, props.ref ?? null);
+    Component.displayName = render.displayName ?? render.name;
+    return Component as React.ForwardRefExoticComponent<P>;
+  }
+  return React.forwardRef(render as React.ForwardRefRenderFunction<T, React.PropsWithoutRef<P>>);
+};
+```
+
+The shim provides two key benefits:
+
+1. Type safety - TypeScript will warn if props are spread incorrectly
+2. Forward compatibility - Components using the shim will work correctly in all supported React versions
+
+The code was updated as follows:
+
+```tsx
+// Before
+const GridRoot = forwardRef((props, ref) => {
+  const state = useGridState();
+  return <div ref={ref} {...props} {...state} />;
+});
+
+// After
+const GridRoot = forwardRefShim((props, ref) => {
+  const state = useGridState();
+  return <div {...props} {...state} ref={ref} />;
+});
+```
+
+
+## Phase 2: Moving to React 19
+
+After ensuring compatibility, we started working on migrating the codebase to React 19. This involved:
+
+1. Updating all package dependencies to their React 19 compatible versions
+2. Migrating test utilities to work with React 19
+3. Ensuring all components work with the new React 19 features
+4. Updating CI to run tests with React 18
+5. Type references with `RefObject` for React 19 and with `MutableRefObject` for earlier versions.
+
+Biggest change in this phase was arround the `useRef()` hook [update](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#useref-requires-argument).
+
+In few places we had to add `null` as the first argument to `useRef()` or add explicitly the type of the referece.
+We also moved to NextJS 15 for our documentation website.
+
+### Our own `RefObject`
+
+We used the fact that `useRef()` requires a param for React 19 to create a custom `RefObject` type that is compatible with both React 18 and 19.
+
+```typescript
+// in React 19 useRef requires a parameter, so () => infer R will not match anymore
+export type RefObject<T> = typeof React.useRef extends () => any
+  ? React.MutableRefObject<T>
+  : React.RefObject<T>;
+```
+
+It was crucial for us to keep the type the same for the users still on React 18 since that change could break their existing build process.
+
+## Conclusion
+
+The migration to React 19 was a significant undertaking that required careful planning and execution. By breaking it down into two phases we were able to provide React 19 compatibility for our users faster while keeping working on our own migration.
+
+The migration has also helped us identify areas where we can further improve our components' type safety and performance.
+
+It is worth noting that a big chunk of our own migration was done in the core team as they added support for React 19 to both Material UI v5 and v6. Additionally, they have provided necessary updated to the internal tools that both of our repositories are using for building and testing the components.
+
+Hopefully our experience can be useful and shorten the time needed for your own migration to React 19.
