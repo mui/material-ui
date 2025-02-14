@@ -15,6 +15,7 @@ export interface RatingRootSlotPropsOverrides {}
 export interface RatingIconContainerSlotPropsOverrides {}
 
 export interface RatingPropsSizeOverrides {}
+
 export interface RatingSlots {
   /**
    * The root component used for rating.
@@ -51,7 +52,7 @@ export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface RatingOwnProps extends RatingSlotsAndSlotProps {
+export interface RatingOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -159,7 +160,7 @@ export type RatingTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'span',
 > = {
-  props: AdditionalProps & RatingOwnProps;
+  props: AdditionalProps & RatingOwnProps & RatingSlotsAndSlotProps;
   defaultComponent: RootComponent;
 };
 
@@ -182,6 +183,6 @@ export type RatingProps<
   component?: React.ElementType;
 };
 
-export interface RatingOwnerState extends Omit<RatingProps, 'slots' | 'slotProps'> {}
+export interface RatingOwnerState extends RatingProps {}
 
 export default Rating;
