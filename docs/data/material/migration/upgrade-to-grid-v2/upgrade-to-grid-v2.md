@@ -4,8 +4,8 @@
 
 ## About naming
 
-The names of both versions of grid components have changed over time, which makes referencing them a bit confusing.
-On this document we refer to them as follows:
+The names of both versions of the grid components have changed over time, which makes referencing them somewhat confusing.
+This document refers to them in the following way:
 
 - **Updated Grid**: The new component named `Grid2`.
 - **Legacy Grid**: The original component named `Grid`.
@@ -30,7 +30,7 @@ Before you start:
 
 ### 1. Update the import
 
-Depending on the Material UI version you are using, you will need to update the import as follows:
+Depending on the Material UI version you are using, you must update the import as follows:
 
 <codeblock storageKey="material-ui-version">
 
@@ -111,7 +111,7 @@ npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder>
 ```
 
 :::warning
-The codemod will only work if you already completed the [Update the import](#update-the-import) step.
+The codemod requires [updating the imports](#update-the-import) beforehand.
 :::
 
 ### 4. Opt-in to legacy negative margins
