@@ -19,7 +19,7 @@ The updated Grid component has several new features and improvements over the le
 - All grids are considered items without specifying the `item` prop.
 - The [offset feature](/material-ui/react-grid2/#offset) gives you more flexibility for positioning.
 - [Nested grids](/material-ui/react-grid2/#nested-grid) now have no depth limitation.
-- Its implementation doesn't use negative margins so it doesn't [overflow like the legacy grid](/material-ui/components/react-grid/#negative-margin).
+- Its implementation doesn't use negative margins so it doesn't [overflow like the legacy grid](/material-ui/react-grid/#negative-margin).
 
 ## How to upgrade
 
@@ -74,13 +74,13 @@ You can safely remove them:
 ### 3. Update the size props
 
 :::warning
-Skip this step if you're using Material UI v5.
+Skip this step if you're using Material UI v5.
 :::
 
 In the legacy Grid, the size props were named to correspond with the theme's breakpoints.
 For the default theme, these were: `xs`, `sm`, `md`, `lg`, `xl`
 
-Starting from Material UI v6, these props are renamed to `size` on the updated Grid:
+Starting from Material UI v6, these props are renamed to `size` on the updated Grid:
 
 ```diff
  <Grid
@@ -117,10 +117,10 @@ The codemod will only work if you already completed the [Update the import](#upd
 ### 4. Opt-in to legacy negative margins
 
 :::warning
-Skip this step if you're using Material UI v6 or v7.
+Skip this step if you're using Material UI v6 or v7.
 :::
 
-If you're using Material UI v5 and want to apply the negative margins similar to the legacy Grid, specify `disableEqualOverflow={true}` on the grid container.
+If you're using Material UI v5 and want to apply the negative margins similar to the legacy Grid, specify `disableEqualOverflow={true}` on the grid container.
 To apply to all grids, add the default props to the theme:
 
 ```js

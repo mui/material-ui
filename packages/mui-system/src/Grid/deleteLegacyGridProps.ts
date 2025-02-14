@@ -47,7 +47,7 @@ export default function deleteLegacyGridProps(
     propsToWarn.forEach((prop) => {
       if (!warnedAboutProps.includes(prop)) {
         warnedAboutProps.push(prop);
-        console.warn(`MUI Grid: ${getLegacyGridWarning(prop)}\n`);
+        console.warn(`MUI Grid v2: ${getLegacyGridWarning(prop)}\n`);
       }
     });
   }
