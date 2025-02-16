@@ -180,8 +180,8 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       danger:
-        specifier: ^12.3.3
-        version: 12.3.3(encoding@0.1.13)
+        specifier: ^12.3.4
+        version: 12.3.4(encoding@0.1.13)
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -7230,8 +7230,8 @@ packages:
   damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
 
-  danger@12.3.3:
-    resolution: {integrity: sha512-nZKzpgXN21rr4dwa6bFhM7G2JEa79dZRJiT3RVRSyi4yk1/hgZ2f8HDGoa7tMladTmu8WjJFyE3LpBIihh+aDw==}
+  danger@12.3.4:
+    resolution: {integrity: sha512-esr6iowAryWjWkMzOKyOmMRkamPkDRhC6OAj2tO48i0oobObdP0d8I/YE+qSj9m+/RRcrhaKnysvPL51eW1m3w==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -19136,7 +19136,7 @@ snapshots:
 
   damerau-levenshtein@1.0.8: {}
 
-  danger@12.3.3(encoding@0.1.13):
+  danger@12.3.4(encoding@0.1.13):
     dependencies:
       '@gitbeaker/rest': 38.12.1
       '@octokit/rest': 18.12.0(encoding@0.1.13)
