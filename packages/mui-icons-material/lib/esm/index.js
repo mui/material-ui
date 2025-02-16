@@ -3269,11 +3269,19 @@ export { default as FaceRetouchingOffTwoTone } from "./FaceRetouchingOffTwoTone.
 export { default as FaceRounded } from "./FaceRounded.js";
 export { default as FaceSharp } from "./FaceSharp.js";
 export { default as FaceTwoTone } from "./FaceTwoTone.js";
+
 export { default as Facebook } from "./Facebook.js";
 export { default as FacebookOutlined } from "./FacebookOutlined.js";
 export { default as FacebookRounded } from "./FacebookRounded.js";
 export { default as FacebookSharp } from "./FacebookSharp.js";
 export { default as FacebookTwoTone } from "./FacebookTwoTone.js";
+
+export { default as Bluesky } from "./Bluesky.js";
+export { default as BlueskyOutlined } from "./BlueskyOutlined.js";
+export { default as BlueskyRounded } from "./BlueskyRounded.js";
+export { default as BlueskySharp } from "./BlueskySharp.js";
+export { default as BlueskyTwoTone } from "./BlueskyTwoTone.js";
+
 export { default as FactCheck } from "./FactCheck.js";
 export { default as FactCheckOutlined } from "./FactCheckOutlined.js";
 export { default as FactCheckRounded } from "./FactCheckRounded.js";

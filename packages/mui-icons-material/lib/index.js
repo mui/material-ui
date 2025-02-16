@@ -19630,6 +19630,7 @@ Object.defineProperty(exports, "FaceTwoTone", {
     return _FaceTwoTone.default;
   }
 });
+
 Object.defineProperty(exports, "Facebook", {
   enumerable: true,
   get: function () {
@@ -19660,6 +19661,39 @@ Object.defineProperty(exports, "FacebookTwoTone", {
     return _FacebookTwoTone.default;
   }
 });
+
+
+Object.defineProperty(exports, "Bluesky", {
+  enumerable: true,
+  get: function () {
+    return _Bluesky.default;
+  }
+});
+Object.defineProperty(exports, "BlueskyOutlined", {
+  enumerable: true,
+  get: function () {
+    return _BlueskyOutlined.default;
+  }
+});
+Object.defineProperty(exports, "BlueskyRounded", {
+  enumerable: true,
+  get: function () {
+    return _BlueskyRounded.default;
+  }
+});
+Object.defineProperty(exports, "BlueskySharp", {
+  enumerable: true,
+  get: function () {
+    return _BlueskySharp.default;
+  }
+});
+Object.defineProperty(exports, "BlueskyTwoTone", {
+  enumerable: true,
+  get: function () {
+    return _BlueskyTwoTone.default;
+  }
+});
+
 Object.defineProperty(exports, "FactCheck", {
   enumerable: true,
   get: function () {
@@ -66971,11 +67005,19 @@ var _FaceRetouchingOffTwoTone = _interopRequireDefault(require("./FaceRetouching
 var _FaceRounded = _interopRequireDefault(require("./FaceRounded"));
 var _FaceSharp = _interopRequireDefault(require("./FaceSharp"));
 var _FaceTwoTone = _interopRequireDefault(require("./FaceTwoTone"));
+
 var _Facebook = _interopRequireDefault(require("./Facebook"));
 var _FacebookOutlined = _interopRequireDefault(require("./FacebookOutlined"));
 var _FacebookRounded = _interopRequireDefault(require("./FacebookRounded"));
 var _FacebookSharp = _interopRequireDefault(require("./FacebookSharp"));
 var _FacebookTwoTone = _interopRequireDefault(require("./FacebookTwoTone"));
+
+var _Bluesky = _interopRequireDefault(require("./Bluesky"));
+var _BlueskyOutlined = _interopRequireDefault(require("./BlueskyOutlined"));
+var _BlueskyRounded = _interopRequireDefault(require("./BlueskyRounded"));
+var _BlueskySharp = _interopRequireDefault(require("./BlueskySharp"));
+var _BlueskyTwoTone = _interopRequireDefault(require("./BlueskyTwoTone"));
+
 var _FactCheck = _interopRequireDefault(require("./FactCheck"));
 var _FactCheckOutlined = _interopRequireDefault(require("./FactCheckOutlined"));
 var _FactCheckRounded = _interopRequireDefault(require("./FactCheckRounded"));

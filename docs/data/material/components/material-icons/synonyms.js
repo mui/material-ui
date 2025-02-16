@@ -3011,6 +3011,7 @@ const synonyms = {
   X: 'brand logo social twitter',
   Yard: 'backyard flower garden home house nature pettle plants',
   YouTube: 'brand logo social video',
+  Bluesky:"brand log social media bluesky",
   YoutubeSearchedFor:
     'arrow backwards find glass history inprogress loading look magnifying refresh renew restore reverse rotate see yt',
   ZoomIn:
