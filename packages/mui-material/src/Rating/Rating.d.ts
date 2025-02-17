@@ -10,17 +10,12 @@ export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement
   value: number;
 }
 
-export interface RatingRootSlotPropsOverrides {}
-
-export interface RatingIconContainerSlotPropsOverrides {}
-
 export interface RatingPropsSizeOverrides {}
 
 export interface RatingRootSlotPropsOverrides {}
 export interface RatingLabelSlotPropsOverrides {}
 export interface RatingIconSlotPropsOverrides {}
 export interface RatingDecimalSlotPropsOverrides {}
-export interface RatingInputSlotPropsOverrides {}
 
 export interface RatingSlots {
   /**
@@ -181,7 +176,7 @@ export type RatingTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'span',
 > = {
-  props: AdditionalProps & RatingOwnProps & RatingSlotsAndSlotProps;
+  props: AdditionalProps & RatingOwnProps;
   defaultComponent: RootComponent;
 };
 
@@ -203,7 +198,5 @@ export type RatingProps<
 > = OverrideProps<RatingTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
-
-export interface RatingOwnerState extends RatingProps {}
 
 export default Rating;
