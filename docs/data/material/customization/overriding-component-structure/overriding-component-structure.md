@@ -94,14 +94,14 @@ You can easily break the rules of semantic and accessible HTML if you deviate to
 
 ## History of the pattern
 
-Prior to Material UI v6, majority of the components lacked the ability to override their structure.
+Prior to Material UI v6, majority of the components lacked the ability to override their structure.
 Some components had `*Props` props that allowed you to pass props to a specific slot, but this was not a consistent pattern across the library.
 
 In v6, those props were deprecated in favor of the `slots` and `slotProps` props, which allow for more granular control over the structure of a component and make the API more consistent across the library.
 
 The summary of the benefits of the new pattern is as follows:
 
-- The `slotProps` provided to theme default props are merged with the instance `slotProps` prop. This is useful for building custom themes or use Material UI as a design system component library.
+- The `slotProps` provided to theme default props are merged with the instance `slotProps` prop. This is useful for building custom themes or use Material UI as a design system component library.
 - Most components have a `slots` prop that allows developers to replace the entire slot with a custom one. For example, developers can remove the popper behavior from the Autocomplete component by replacing `popper` slot with a `div`.
 - Integrate better with Tailwind CSS because developers can provide utility classes to the slots through `slotProps.*.className`.
 
