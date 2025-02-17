@@ -171,7 +171,7 @@ import HomeIcon from '@mui/icons-material/Home';
 <HomeIcon />;
 ```
 
-You should update it to:
+And you relied on [`.getByTestid`](https://testing-library.com/docs/queries/bytestid/), then you should update it to:
 
 ```jsx
 import HomeIcon from '@mui/icons-material/Home';
