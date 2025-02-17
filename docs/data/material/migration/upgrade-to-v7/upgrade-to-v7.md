@@ -161,7 +161,7 @@ npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 
 ### Removal of `data-testid` prop from `SvgIcon`
 
-The default `data-testid` prop has been removed from the `SvgIcon` component, and therefore also from all icons in `@mui/icons-material`. If you need to use `data-testid` for testing purposes, you can manually add it to your `SvgIcon` components.
+The default `data-testid` prop has been removed from the icons in `@mui/icons-material`. If you need to use `data-testid` for testing purposes, you can manually add it to your `SvgIcon` components.
 
 For example, if you were using:
 
