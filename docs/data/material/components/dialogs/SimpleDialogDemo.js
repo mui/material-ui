@@ -32,7 +32,7 @@ function SimpleDialog(props) {
       <DialogTitle>Set backup account</DialogTitle>
       <List sx={{ pt: 0 }}>
         {emails.map((email) => (
-          <ListItem disableGutters key={email}>
+          <ListItem disablePadding key={email}>
             <ListItemButton onClick={() => handleListItemClick(email)}>
               <ListItemAvatar>
                 <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
@@ -43,7 +43,7 @@ function SimpleDialog(props) {
             </ListItemButton>
           </ListItem>
         ))}
-        <ListItem disableGutters>
+        <ListItem disablePadding>
           <ListItemButton
             autoFocus
             onClick={() => handleListItemClick('addAccount')}

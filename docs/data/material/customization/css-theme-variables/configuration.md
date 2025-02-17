@@ -128,7 +128,7 @@ For SSR (server-side rendering) applications, Material UI can not detected user
 
 To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
 
-If you have such a condition, replace it with the [`theme.applyStyles()`](#appling-dark-styles) function:
+If you have such a condition, replace it with the [`theme.applyStyles()` function](/material-ui/customization/dark-mode/#styling-in-dark-mode):
 
 ```diff
  import Card from '@mui/material/Card';
@@ -136,22 +136,27 @@ If you have such a condition, replace it with the [`theme.applyStyles()`](#appli
  function App() {
    return (
      <Card
-       sx={(theme) => ({
+-      sx={(theme) => ({
 -        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
 -        '&:hover': {
 -          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
 -        },
-+        backgroundColor: '#fff',
-+        '&:hover': {
-+          backgroundColor: '#f5f5f5',
-+          ...theme.applyStyles('dark', {
-+            backgroundColor: '#333',
-+          }),
+-      })}
++      sx={[
++        {
++          backgroundColor: '#fff',
++          '&:hover': {
++            backgroundColor: '#f5f5f5',
++          },
 +        },
-+        ...theme.applyStyles('dark', {
-+          backgroundColor: '#000',
-+        }),
-       })}
++        (theme) =>
++          theme.applyStyles('dark', {
++            backgroundColor: '#000',
++            '&:hover': {
++              backgroundColor: '#333',
++            },
++          }),
++      ]}
      />
    );
  }
@@ -176,7 +181,7 @@ createTheme({
 
 ### Next.js App Router
 
-Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
+Add the following code to the [root layout](https://nextjs.org/docs/app/api-reference/file-conventions/layout#root-layouts) file:
 
 ```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';

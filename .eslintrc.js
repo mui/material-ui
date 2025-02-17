@@ -5,6 +5,12 @@
  */
 
 const path = require('path');
+const a11yBase = require('eslint-config-airbnb/rules/react-a11y');
+
+const controlHasAssociatedLabelConfig = a11yBase.rules['jsx-a11y/control-has-associated-label'];
+
+const controlHasAssociatedLabelOptions =
+  typeof controlHasAssociatedLabelConfig[1] === 'object' ? controlHasAssociatedLabelConfig[1] : {};
 
 const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
@@ -35,11 +41,13 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
     group: [
       '@mui/*/*/*',
       '@pigment-css/*/*/*',
-      '@base_ui/*/*/*',
+      '@base-ui/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      // TODO delete, @mui/docs should be @mui/internal-docs
-      '!@mui/docs/**',
+      // TODO delete
+      '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
+      '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
+      '!@mui/docs/**', // @mui/docs should be @mui/internal-docs
     ],
     message: OneLevelImportMessage,
   },
@@ -48,7 +56,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
-    es6: true,
+    es2020: true,
     browser: true,
     node: true,
   },
@@ -56,7 +64,7 @@ module.exports = /** @type {Config} */ ({
     'plugin:eslint-plugin-import/recommended',
     'plugin:eslint-plugin-import/typescript',
     'eslint-config-airbnb',
-    'eslint-config-airbnb-typescript',
+    './eslint/config-airbnb-typescript.js',
     'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -66,7 +74,7 @@ module.exports = /** @type {Config} */ ({
   plugins: [
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
-    '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint',
     'eslint-plugin-filenames',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
@@ -84,6 +92,7 @@ module.exports = /** @type {Config} */ ({
   rules: {
     'consistent-this': ['error', 'self'],
     curly: ['error', 'all'],
+    'dot-notation': 'error',
     // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
@@ -104,14 +113,18 @@ module.exports = /** @type {Config} */ ({
     ],
     'no-continue': 'off',
     'no-constant-condition': 'error',
+    'no-implied-eval': 'error',
+    'no-throw-literal': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
+    'no-return-await': 'error',
     'no-underscore-dangle': 'error',
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
 
+    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
       {
@@ -120,20 +133,17 @@ module.exports = /** @type {Config} */ ({
         variables: true,
       },
     ],
-    'no-use-before-define': 'off',
-
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/dot-notation': 'off',
-    'dot-notation': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/no-implied-eval': 'off',
-    'no-implied-eval': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/no-throw-literal': 'off',
-    'no-throw-literal': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/return-await': 'off',
-    'no-return-await': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        caughtErrors: 'none',
+      },
+    ],
 
     // Not sure why it doesn't work
     'import/named': 'off',
@@ -154,6 +164,16 @@ module.exports = /** @type {Config} */ ({
     ],
     // We are a library, we need to support it too
     'jsx-a11y/no-autofocus': 'off',
+    // Remove when issues are fixed
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/959
+    // https://github.com/airbnb/javascript/issues/3069
+    'jsx-a11y/control-has-associated-label': [
+      'error',
+      {
+        ...controlHasAssociatedLabelOptions,
+        ignoreElements: [...(controlHasAssociatedLabelOptions.ignoreElements || []), 'th', 'td'],
+      },
+    ],
 
     'material-ui/docgen-ignore-before-comment': 'error',
     'material-ui/rules-of-use-theme-variants': 'error',
@@ -242,8 +262,6 @@ module.exports = /** @type {Config} */ ({
 
     // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved
     'no-restricted-exports': 'off',
-    // Some of these occurences are deliberate and fixing them will break things in repos that use @monorepo dependency
-    'import/no-relative-packages': 'off',
     // Avoid accidental auto-"fixes" https://github.com/jsx-eslint/eslint-plugin-react/issues/3458
     'react/no-invalid-html-attribute': 'off',
 
@@ -304,15 +322,6 @@ module.exports = /** @type {Config} */ ({
         'react/no-unused-prop-types': 'off',
       },
     },
-    {
-      files: ['docs/src/modules/components/**/*.js'],
-      rules: {
-        'material-ui/no-hardcoded-labels': [
-          'error',
-          { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
-        ],
-      },
-    },
     // Next.js plugin
     {
       files: ['docs/**/*'],
@@ -325,18 +334,28 @@ module.exports = /** @type {Config} */ ({
       rules: {
         // We're not using the Image component at the moment
         '@next/next/no-img-element': 'off',
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
+          },
+        ],
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
-    // Next.js entry points pages
     {
-      files: ['docs/pages/**/*.?(c|m)[jt]s?(x)'],
+      files: ['docs/src/modules/components/**/*'],
       rules: {
-        'react/prop-types': 'off',
+        'material-ui/no-hardcoded-labels': [
+          'error',
+          { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
+        ],
       },
     },
     // demos
     {
-      files: ['docs/src/pages/**/*.?(c|m)[jt]s?(x)', 'docs/data/**/*.?(c|m)[jt]s?(x)'],
+      files: ['docs/src/pages/**/*', 'docs/data/**/*'],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
@@ -346,8 +365,15 @@ module.exports = /** @type {Config} */ ({
         'no-console': 'off',
       },
     },
+    // Next.js entry points pages
     {
-      files: ['docs/data/**/*.?(c|m)[jt]s?(x)'],
+      files: ['docs/pages/**/*'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['docs/data/**/*'],
       excludedFiles: [
         // filenames/match-exported sees filename as 'file-name.d'
         // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
@@ -357,6 +383,14 @@ module.exports = /** @type {Config} */ ({
       ],
       rules: {
         'filenames/match-exported': ['error'],
+      },
+    },
+    {
+      files: ['docs/data/material/getting-started/templates/**/*'],
+      rules: {
+        // So we can use # to improve the page UX
+        // and so developer get eslint warning to remind them to fix the links
+        'jsx-a11y/anchor-is-valid': 'off',
       },
     },
     {
@@ -370,6 +404,21 @@ module.exports = /** @type {Config} */ ({
       excludedFiles: '*.spec.tsx',
       rules: {
         'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: [
+        '*.spec.*',
+        '*.test.*',
+        // deprecated library
+        '**/mui-base/**/*',
+        '**/mui-joy/**/*',
+        // used internally, not used on app router yet
+        '**/mui-docs/**/*',
+      ],
+      rules: {
+        'material-ui/disallow-react-api-in-server-components': 'error',
       },
     },
     {
@@ -443,18 +492,6 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['docs/**/*.?(c|m)[jt]s?(x)'],
-      rules: {
-        'no-restricted-imports': [
-          'error',
-          {
-            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
-            patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
-          },
-        ],
-      },
-    },
-    {
       files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
       excludedFiles: ['*.d.ts', '*.spec.*'],
       rules: {
@@ -496,6 +533,7 @@ module.exports = /** @type {Config} */ ({
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
         'react-compiler/react-compiler': 'off',
+        'no-irregular-whitespace': ['error', { skipComments: true }],
       },
     },
     {
@@ -520,6 +558,8 @@ module.exports = /** @type {Config} */ ({
         'import/order': 'off',
         // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
         'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
+        'react/prop-types': 'off',
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
     {
@@ -527,6 +567,12 @@ module.exports = /** @type {Config} */ ({
       files: ['examples/pigment-css-remix-ts/**/*'],
       rules: {
         'react/react-in-jsx-scope': 'off',
+      },
+    },
+    {
+      files: ['apps/**/*'],
+      rules: {
+        'import/no-relative-packages': 'off',
       },
     },
   ],

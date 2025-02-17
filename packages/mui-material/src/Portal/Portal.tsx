@@ -22,11 +22,11 @@ function getContainer(container: PortalProps['container']) {
  *
  * Demos:
  *
- * - [Portal](https://mui.com/material-ui/react-portal/)
+ * - [Portal](https://next.mui.com/material-ui/react-portal/)
  *
  * API:
  *
- * - [Portal API](https://mui.com/material-ui/api/portal/)
+ * - [Portal API](https://next.mui.com/material-ui/api/portal/)
  */
 const Portal = React.forwardRef(function Portal(
   props: PortalProps,
@@ -64,14 +64,10 @@ const Portal = React.forwardRef(function Portal(
       };
       return React.cloneElement(children, newProps);
     }
-    return <React.Fragment>{children}</React.Fragment>;
+    return children;
   }
 
-  return (
-    <React.Fragment>
-      {mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode}
-    </React.Fragment>
-  );
+  return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;
 }) as React.ForwardRefExoticComponent<PortalProps & React.RefAttributes<Element>>;
 
 Portal.propTypes /* remove-proptypes */ = {

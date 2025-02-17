@@ -19,20 +19,20 @@ For a component to be ready to move to the core, the following criteria are cons
 
 To install and save in your `package.json` dependencies, run one of the following commands:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/lab @mui/material
+npm install @mui/lab@next @mui/material@next
 ```
 
 ```bash pnpm
-pnpm add @mui/lab @mui/material
+pnpm add @mui/lab@next @mui/material@next
 ```
 
 ```bash yarn
-yarn add @mui/lab @mui/material
+yarn add @mui/lab@next @mui/material@next
 ```
 
 </codeblock>

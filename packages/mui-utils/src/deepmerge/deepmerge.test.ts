@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { runInNewContext } from 'vm';
 import deepmerge from './deepmerge';
@@ -121,5 +122,30 @@ describe('deepmerge', () => {
 
     expect(result).to.deep.equal({ foo: { baz: 'new test' } });
     expect(foo).to.deep.equal({ foo: { baz: 'test' } });
+  });
+
+  it('should not deep clone React element', () => {
+    const element = React.createElement('div', {}, React.createElement('span'));
+    const element2 = React.createElement('a');
+    const result = deepmerge({ element }, { element: element2 });
+
+    expect(result.element).to.equal(element2);
+  });
+
+  it('should not deep clone React component', () => {
+    // most 3rd-party components use `forwardRef`
+    const Link = React.forwardRef((props, ref) => React.createElement('a', { ref, ...props }));
+    const result = deepmerge(
+      { defaultProps: { component: 'a' } },
+      { defaultProps: { component: Link } },
+    );
+
+    expect(result.defaultProps.component).to.equal(Link);
+  });
+
+  it('should deep clone example correctly', () => {
+    const result = deepmerge({ a: { b: 1 }, d: 2 }, { a: { c: 2 }, d: 4 });
+
+    expect(result).to.deep.equal({ a: { b: 1, c: 2 }, d: 4 });
   });
 });

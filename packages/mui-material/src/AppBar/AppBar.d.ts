@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { PropTypes, Theme } from '..';
 import { AppBarClasses } from './appBarClasses';
 import { ExtendPaperTypeMap } from '../Paper/Paper';
@@ -30,7 +30,7 @@ export interface AppBarOwnProps {
   enableColorOnDark?: boolean;
   /**
    * The positioning type. The behavior of the different options is described
-   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
+   * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Web/CSS/position).
    * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    * @default 'fixed'
    */
@@ -56,12 +56,12 @@ export type AppBarTypeMap<
  *
  * Demos:
  *
- * - [App Bar](https://mui.com/material-ui/react-app-bar/)
+ * - [App Bar](https://next.mui.com/material-ui/react-app-bar/)
  *
  * API:
  *
- * - [AppBar API](https://mui.com/material-ui/api/app-bar/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
+ * - [AppBar API](https://next.mui.com/material-ui/api/app-bar/)
+ * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
  */
 
 declare const AppBar: OverridableComponent<AppBarTypeMap>;

@@ -92,11 +92,12 @@ export default function SlotsTable(props: SlotsTableProps) {
             const { description, className, name, defaultValue, hash } = params;
 
             return (
-              <tr key={className} id={hash}>
+              <tr key={`${className}-${hash}`} id={hash}>
                 <td className="slot-name" style={{ fontWeight: '600' }}>
                   {name}
                 </td>
                 <td className="MuiApi-table-class-name">
+                  {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
                   {className && <span className="class-name">{`.${className}`}</span>}
                 </td>
                 <td>{defaultValue && <code className="item-default">{defaultValue}</code>}</td>

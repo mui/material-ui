@@ -44,7 +44,7 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack direction="column" sx={{ mt: 2 }}>
+    <Stack direction="column" sx={{ mt: 2, mx: 0.5 }}>
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
@@ -94,33 +94,6 @@ export default function DiamondSponsors() {
             (theme) =>
               theme.applyDarkStyles({
                 content: `url(/static/sponsors/doit-dark.svg)`,
-              }),
-          ]}
-        />
-      </NativeLink>
-      <Divider />
-      <NativeLink
-        data-ga-event-category="sponsor"
-        data-ga-event-action="docs-premium"
-        data-ga-event-label="marblism.com"
-        href="https://www.marblism.com/?utm_source=mui.com&utm_medium=referral"
-        rel="noopener sponsored"
-        target="_blank"
-      >
-        <Box
-          component="img"
-          src="/static/sponsors/marblism-light.svg"
-          alt="marblism"
-          title="AI web app generation"
-          loading="lazy"
-          sx={[
-            {
-              height: '27px',
-              width: '90px',
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/marblism-dark.svg)`,
               }),
           ]}
         />

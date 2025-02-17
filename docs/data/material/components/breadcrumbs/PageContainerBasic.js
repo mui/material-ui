@@ -2,7 +2,11 @@ import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { AppProvider } from '@toolpad/core/AppProvider';
-import { PageContainer, PageContainerToolbar } from '@toolpad/core/PageContainer';
+import {
+  PageContainer,
+  PageHeader,
+  PageHeaderToolbar,
+} from '@toolpad/core/PageContainer';
 import Grid from '@mui/material/Grid2';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -11,9 +15,10 @@ import PrintIcon from '@mui/icons-material/Print';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const NAVIGATION = [
+  { segment: 'inbox', title: 'Inbox' },
   {
-    segment: 'orders',
-    title: 'Orders',
+    segment: 'inbox/all',
+    title: 'All',
     icon: <DashboardIcon />,
   },
 ];
@@ -39,9 +44,9 @@ const Skeleton = styled('div')(({ theme, height }) => ({
   content: '" "',
 }));
 
-function PageToolbar() {
+function CustomPageToolbar() {
   return (
-    <PageContainerToolbar>
+    <PageHeaderToolbar>
       <Stack direction="row" spacing={1} alignItems="center">
         <Button
           variant="outlined"
@@ -60,13 +65,17 @@ function PageToolbar() {
           Print
         </Button>
       </Stack>
-    </PageContainerToolbar>
+    </PageHeaderToolbar>
   );
+}
+
+function CustomPageHeader() {
+  return <PageHeader slots={{ toolbar: CustomPageToolbar }} />;
 }
 
 export default function PageContainerBasic(props) {
   const { window } = props;
-  const router = useDemoRouter('/orders');
+  const router = useDemoRouter('/inbox/all');
   const theme = useTheme();
   // Remove this const when copying and pasting into your project.
   const demoWindow = window ? window() : undefined;
@@ -84,7 +93,7 @@ export default function PageContainerBasic(props) {
       <Paper sx={{ p: 2, width: '100%' }}>
         <PageContainer
           slots={{
-            toolbar: PageToolbar,
+            header: CustomPageHeader,
           }}
         >
           <Grid container spacing={1}>

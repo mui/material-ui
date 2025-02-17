@@ -153,7 +153,7 @@ Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
-## Complementary projects
+## Supplementary projects
 
 For more advanced use cases you might be able to take advantage of:
 
@@ -168,7 +168,7 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
 
-## Toolpad (Beta)
+## Experimental APIs - Toolpad
 
 ### useDialogs
 
