@@ -1610,15 +1610,16 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 
 ```diff
  <Snackbar
--    IconContainerComponent={CustomContainer}
-+    slots={{  iconContainer: CustomContainer,}}
+-  IconContainerComponent={CustomContainer}
++  slots={{
++    icon: { component: CustomContainer }
++  }}
  />
 ```
 
 ```bash
 npx @mui/codemod@next deprecations/snackbar-props <path>
 ```
-
 
 #### `select-classes`
 
