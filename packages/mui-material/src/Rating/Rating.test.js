@@ -31,6 +31,7 @@ describe('<Rating />', () => {
 
   describeConformance(<Rating max={1} />, () => ({
     render,
+    refInstanceof: window.HTMLSpanElement,
     slots: {
       icon: {
         expectedClassName: classes.icon,
@@ -50,6 +51,7 @@ describe('<Rating />', () => {
 
   describeConformance(<Rating max={1} precision={0.5} />, () => ({
     render,
+    refInstanceof: window.HTMLSpanElement,
     slots: {
       decimal: {
         expectedClassName: classes.decimal,
