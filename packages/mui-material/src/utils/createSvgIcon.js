@@ -9,7 +9,8 @@ export default function createSvgIcon(path, displayName) {
   function Component(props, ref) {
     return (
       <SvgIcon
-        data-testid={process.env.NODE_ENV !== 'production' ? `${displayName}Icon` : undefined}
+        /* data-testid is used for internal testing. It will be removed in production bundles */
+        data-testid={`${displayName}Icon`}
         ref={ref}
         {...props}
       >

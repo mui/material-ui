@@ -19,7 +19,7 @@ function resolveAliasPath(relativeToBabelConf) {
 
 /** @type {babel.PluginItem[]} */
 const productionPlugins = [
-  ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
+  'babel-plugin-react-remove-properties'
 ];
 
 /** @type {babel.ConfigFunction} */
