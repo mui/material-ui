@@ -25,3 +25,9 @@ function Test() {
     },
   }}
 />;
+
+function TestAnchorElementFunctionReturnType() {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  return <Popover open anchorEl={() => buttonRef.current} />;
+}
