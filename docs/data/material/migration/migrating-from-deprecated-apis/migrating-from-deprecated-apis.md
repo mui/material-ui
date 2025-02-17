@@ -1337,6 +1337,57 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 
 ```bash
 npx @mui/codemod@latest deprecations/input-base-props <path>
+npx @mui/codemod@latest deprecations/input-base-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `input` class with other props `size`, `type`, `multiline`, `adornedStart`, `adornedEnd`, and `hiddenLabel` have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiInputBase-root .MuiInputBase-inputSizeSmall
++.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputMultiline
++.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedStart
++.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedEnd
++.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputHiddenLabel
++.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input
+```
+
+```diff
+ import { inputBaseClasses } from '@mui/material/InputBase';
+
+ MuiInputBase: {
+   styleOverrides: {
+     root: {
+-      [`& .${inputBaseClasses.inputSizeSmall}`]: {
++      [`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputMultiline}`]: {
++      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedStart}`]: {
++      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedEnd}`]: {
++      [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputHiddenLabel}`]: {
++      [`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
 ```
 
 ### components
@@ -1615,6 +1666,25 @@ The Menu's `TransitionProps` prop was deprecated in favor of `slotProps.transiti
 -  TransitionProps={transitionProps}
 +  slotProps={{ transition: transitionProps }}
  >
+```
+
+## MobileStepper
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#mobile-stepper-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/mobile-stepper-props <path>
+```
+
+### LinearProgressProps
+
+The MobileStepper's `LinearProgressProps` prop was deprecated in favor of `slotProps.progress`:
+
+```diff
+ <MobileStepper
+-  LinearProgressProps={{ color: 'primary' }}
++  slotProps={{ progress: { color: 'primary' } }}
+ />
 ```
 
 ## Modal
@@ -2503,5 +2573,67 @@ The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.tra
  <SpeedDial
 -  TransitionProps={{ unmountOnExit: true }}
 +  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+## SpeedDialAction
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-action-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/speed-dial-action-props <path>
+```
+
+### FabProps
+
+The SpeedDialAction's `FabProps` prop was deprecated in favor of `slotProps.fab`:
+
+```diff
+ <SpeedDialAction
+-  FabProps={CustomFabProps}
++  slotProps={{ fab: CustomFabProps }}
+```
+
+### TooltipClasses
+
+The SpeedDialAction's `TooltipClasses` prop was deprecated in favor of `slotProps.tooltip.classes`:
+
+```diff
+ <SpeedDialAction
+-  TooltipClasses={{ tooltip: 'foo' }}
++  slotProps={{ tooltip: { classes: { tooltip: 'foo' } } }}
+ />
+```
+
+### tooltipPlacement
+
+The SpeedDialAction's `tooltipPlacement` prop was deprecated in favor of `slotProps.tooltip.placement`:
+
+```diff
+ <SpeedDialAction
+-  tooltipPlacement="top"
++  slotProps={{ tooltip: { placement: 'top' } }}
+ />
+```
+
+### tooltipTitle
+
+The SpeedDialAction's `tooltipTitle` prop was deprecated in favor of `slotProps.tooltip.title`:
+
+```diff
+ <SpeedDialAction
+-  tooltipTitle="foo"
++  slotProps={{ tooltip: { title: 'foo' } }}
+ />
+```
+
+### tooltipOpen
+
+The SpeedDialAction's `tooltipOpen` prop was deprecated in favor of `slotProps.tooltip.open`:
+
+```diff
+ <SpeedDialAction
+-  tooltipOpen
++  slotProps={{ tooltip: { open: true } }}
  />
 ```

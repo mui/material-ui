@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState) => {
       formControl && 'formControl',
       !disableAnimation && 'animated',
       shrink && 'shrink',
-      size && size !== 'normal' && `size${capitalize(size)}`,
+      size && size !== 'medium' && `size${capitalize(size)}`,
       variant,
     ],
     asterisk: [required && 'asterisk'],
@@ -280,10 +280,10 @@ InputLabel.propTypes /* remove-proptypes */ = {
   shrink: PropTypes.bool,
   /**
    * The size of the component.
-   * @default 'normal'
+   * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['normal', 'small']),
+    PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
   /**
