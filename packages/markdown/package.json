@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/runtime": "^7.26.9",
     "lodash": "^4.17.21",
-    "marked": "^15.0.6",
+    "marked": "^15.0.7",
     "prismjs": "^1.29.0"
   },
   "devDependencies": {

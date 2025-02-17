@@ -958,8 +958,8 @@ importers:
         specifier: ^1.25.0
         version: 1.25.0
       marked:
-        specifier: ^15.0.6
-        version: 15.0.6
+        specifier: ^15.0.7
+        version: 15.0.7
       playwright:
         specifier: ^1.50.1
         version: 1.50.1
@@ -1342,8 +1342,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       marked:
-        specifier: ^15.0.6
-        version: 15.0.6
+        specifier: ^15.0.7
+        version: 15.0.7
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
@@ -9749,8 +9749,8 @@ packages:
     resolution: {integrity: sha512-u00joA/syf3VhWh6/ybVFkib5Zpj2e5KB/cfCei8fkSRuums6nyisTWGqjTWIOFoFwuXoTBQQiqlB4qFKp8ncQ==}
     engines: {node: '>=18'}
 
-  marked@15.0.6:
-    resolution: {integrity: sha512-Y07CUOE+HQXbVDCGl3LXggqJDbXDP2pArc2C1N1RRMN0ONiShoSsIInMd5Gsxupe7fKLpgimTV+HOJ9r7bA+pg==}
+  marked@15.0.7:
+    resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -22318,7 +22318,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  marked@15.0.6: {}
+  marked@15.0.7: {}
 
   marky@1.2.5: {}
 
