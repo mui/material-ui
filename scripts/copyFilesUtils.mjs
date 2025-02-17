@@ -109,7 +109,7 @@ const polyfillLegacyModern = false;
 const legacyModernPrefix = './modern';
 
 function createExportFor(exportName, conditions) {
-  if (typeof conditions === 'object') {
+  if (typeof conditions === 'object' && conditions) {
     const { [srcCondition]: src, ...rest } = conditions;
     if (typeof src === 'string') {
       if (!/\.tsx?$/.test(src)) {
@@ -156,13 +156,18 @@ export async function createPackageFile(useEsmExports = false) {
     ...createExportFor('./*', { [srcCondition]: './src/*/index.ts' }),
   };
 
+  if (!packageDataOther.exports?.['./*']) {
+    // From the default wildcard we should exclude the esm and modern builds.
+    // If you override the wildcard, you're on your own
+    Object.assign(packageExports, {
+      ...createExportFor('./esm', null),
+      ...createExportFor('./modern', null),
+    });
+  }
+
   if (packageDataOther.exports) {
     for (const [exportName, conditions] of Object.entries(packageDataOther.exports)) {
-      if (conditions) {
-        Object.assign(packageExports, createExportFor(exportName, conditions));
-      } else {
-        delete packageExports[exportName];
-      }
+      Object.assign(packageExports, createExportFor(exportName, conditions));
     }
   }
 
