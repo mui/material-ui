@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
+import { mergeSlotProps } from '@mui/material/utils';
 import Accordion, { AccordionProps } from '@mui/material/Accordion';
 
 function testOnChange() {
@@ -58,7 +59,7 @@ const AccordionComponentTest = () => {
 </Accordion>;
 
 function Custom(props: AccordionProps) {
-  const { slotProps, ...dialogProps } = props;
+  const { slotProps, ...other } = props;
   return (
     <Accordion
       slotProps={{
@@ -76,7 +77,26 @@ function Custom(props: AccordionProps) {
           };
         },
       }}
-      {...dialogProps}
+      {...other}
+    >
+      test
+    </Accordion>
+  );
+}
+
+function Custom2(props: AccordionProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <Accordion
+      slotProps={{
+        ...slotProps,
+        transition: mergeSlotProps(slotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...other}
     >
       test
     </Accordion>

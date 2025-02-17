@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
+import { mergeSlotProps } from '@mui/material/utils';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
 
 <Tooltip title="Hello">
@@ -53,7 +55,7 @@ const SlotComponentRef = React.forwardRef<HTMLDivElement>((props, ref) => {
 </Tooltip>;
 
 function Custom(props: TooltipProps) {
-  const { slotProps, ...dialogProps } = props;
+  const { slotProps, ...other } = props;
   return (
     <Tooltip
       slotProps={{
@@ -71,7 +73,24 @@ function Custom(props: TooltipProps) {
           };
         },
       }}
-      {...dialogProps}
+      {...other}
+    />
+  );
+}
+
+function Custom2(props: TooltipProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <Tooltip
+      slotProps={{
+        ...slotProps,
+        transition: mergeSlotProps(slotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...other}
     />
   );
 }

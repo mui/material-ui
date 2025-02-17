@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
+import { mergeSlotProps } from '@mui/material/utils';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
 import { PaperProps } from '@mui/material/Paper';
 
@@ -19,7 +20,7 @@ function Test() {
 }
 
 function Custom(props: DialogProps) {
-  const { slotProps, ...dialogProps } = props;
+  const { slotProps, ...other } = props;
   return (
     <Dialog
       slotProps={{
@@ -37,7 +38,26 @@ function Custom(props: DialogProps) {
           };
         },
       }}
-      {...dialogProps}
+      {...other}
+    >
+      test
+    </Dialog>
+  );
+}
+
+function Custom2(props: DialogProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <Dialog
+      slotProps={{
+        ...slotProps,
+        transition: mergeSlotProps(slotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...other}
     >
       test
     </Dialog>

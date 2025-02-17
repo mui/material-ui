@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
+import { mergeSlotProps } from '@mui/material/utils';
 import { Popover, PaperProps, PopoverProps } from '@mui/material';
 
 const paperProps: PaperProps<'span'> = {
@@ -27,7 +28,7 @@ function Test() {
 />;
 
 function Custom(props: PopoverProps) {
-  const { slotProps, ...dialogProps } = props;
+  const { slotProps, ...other } = props;
   return (
     <Popover
       slotProps={{
@@ -45,7 +46,26 @@ function Custom(props: PopoverProps) {
           };
         },
       }}
-      {...dialogProps}
+      {...other}
+    >
+      test
+    </Popover>
+  );
+}
+
+function Custom2(props: PopoverProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <Popover
+      slotProps={{
+        ...slotProps,
+        transition: mergeSlotProps(slotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...other}
     >
       test
     </Popover>

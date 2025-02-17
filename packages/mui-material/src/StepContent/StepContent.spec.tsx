@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { expectType } from '@mui/types';
+import { mergeSlotProps } from '@mui/material/utils';
 import StepContent, { StepContentProps } from '@mui/material/StepContent';
 import Fade from '@mui/material/Fade';
 import Collapse from '@mui/material/Collapse';
@@ -13,7 +15,7 @@ import Zoom from '@mui/material/Zoom';
 <StepContent TransitionComponent={Zoom}>Step Content</StepContent>;
 
 function Custom(props: StepContentProps) {
-  const { slotProps, ...dialogProps } = props;
+  const { slotProps, ...other } = props;
   return (
     <StepContent
       slotProps={{
@@ -31,7 +33,26 @@ function Custom(props: StepContentProps) {
           };
         },
       }}
-      {...dialogProps}
+      {...other}
+    >
+      test
+    </StepContent>
+  );
+}
+
+function Custom2(props: StepContentProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <StepContent
+      slotProps={{
+        ...slotProps,
+        transition: mergeSlotProps(slotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...other}
     >
       test
     </StepContent>

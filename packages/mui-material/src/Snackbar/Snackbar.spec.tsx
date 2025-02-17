@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { mergeSlotProps } from '@mui/material/utils';
 import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
 import { expectType } from '@mui/types';
 
@@ -38,7 +39,7 @@ import { expectType } from '@mui/types';
 />;
 
 function Custom(props: SnackbarProps) {
-  const { slotProps, ...dialogProps } = props;
+  const { slotProps, ...other } = props;
   return (
     <Snackbar
       slotProps={{
@@ -56,7 +57,24 @@ function Custom(props: SnackbarProps) {
           };
         },
       }}
-      {...dialogProps}
+      {...other}
+    />
+  );
+}
+
+function Custom2(props: SnackbarProps) {
+  const { slotProps, ...other } = props;
+  return (
+    <Snackbar
+      slotProps={{
+        ...slotProps,
+        transition: mergeSlotProps(slotProps?.transition, {
+          onExited: (node) => {
+            expectType<HTMLElement, typeof node>(node);
+          },
+        }),
+      }}
+      {...other}
     />
   );
 }
