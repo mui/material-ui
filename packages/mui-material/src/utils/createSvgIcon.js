@@ -9,7 +9,7 @@ export default function createSvgIcon(path, displayName) {
   function Component(props, ref) {
     return (
       <SvgIcon
-        /* data-testid is used for internal testing. It will be removed in production bundles */
+        /* data-testid is used for internal testing. It will be removed in published packages. */
         data-testid={`${displayName}Icon`}
         ref={ref}
         {...props}
