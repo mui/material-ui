@@ -1,8 +1,24 @@
 fn({
   MuiRating: {
     defaultProps: {
-      slots: {
-        iconContainer: CustomContainer
+      slotProps: {
+        icon: {
+          component: CustomContainer
+        }
+      },
+    },
+  },
+});
+
+fn({
+  MuiRating: {
+    defaultProps: {
+      slotProps: {
+        root: {},
+
+        icon: {
+          component: CustomContainer
+        }
       }
     },
   },
@@ -11,23 +27,12 @@ fn({
 fn({
   MuiRating: {
     defaultProps: {
-      slots: {
-        root: 'div',
-        iconContainer: CustomContainer
+      slotProps: {
+        icon: {
+          id: 'my-rating-icon',
+          component: CustomContainer
+        },
       }
     },
   },
 });
-
-fn({
-  MuiRating: {
-    defaultProps: {
-      slots: {
-        root: 'div',
-        iconContainer: SlotContainer
-      }
-    },
-  },
-});
-
-

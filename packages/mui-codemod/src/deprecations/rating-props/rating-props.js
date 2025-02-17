@@ -1,4 +1,4 @@
-import movePropIntoSlots from '../utils/movePropIntoSlots';
+import movePropIntoSlotProps from '../utils/movePropIntoSlotProps';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -9,11 +9,12 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  movePropIntoSlots(j, {
+  movePropIntoSlotProps(j, {
     root,
     componentName: 'Rating',
     propName: 'IconContainerComponent',
-    slotName: 'iconContainer',
+    slotName: 'icon',
+    slotPropName: 'component',
   });
 
   return root.toSource(printOptions);

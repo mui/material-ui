@@ -125,7 +125,6 @@ export interface RatingOwnProps extends RatingSlotsAndSlotProps {
    *   const { value, ...other } = props;
    *   return <span {...other} />;
    * }
-   * @deprecated use the `slotProps.iconContainer` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   IconContainerComponent?: React.ElementType<IconContainerProps>;
   /**

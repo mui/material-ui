@@ -10,8 +10,8 @@ fn({
   MuiRating: {
     defaultProps: {
       IconContainerComponent: CustomContainer,
-      slots: {
-        root: 'div',
+      slotProps: {
+        root: {},
       },
     },
   },
@@ -21,12 +21,11 @@ fn({
   MuiRating: {
     defaultProps: {
       IconContainerComponent: CustomContainer,
-      slots: {
-        root: 'div',
-        iconContainer: SlotContainer
+      slotProps: {
+        icon: {
+          id: 'my-rating-icon',
+        },
       },
     },
   },
 });
-
-

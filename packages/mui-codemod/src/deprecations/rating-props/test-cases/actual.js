@@ -1,12 +1,8 @@
 import Rating from '@mui/material/Rating';
 import { Rating as MyRating } from '@mui/material';
 
-<Rating
-  IconContainerComponent={CustomIconContainer}
-/>;
-<MyRating
-  IconContainerComponent={CustomIconContainer}
-/>;
+<Rating IconContainerComponent={CustomIconContainer} />;
+<MyRating IconContainerComponent={CustomIconContainer} />;
 <Rating
   IconContainerComponent={CustomIconContainer}
   slots={{
@@ -21,13 +17,12 @@ import { Rating as MyRating } from '@mui/material';
 />;
 <Rating
   IconContainerComponent={CustomIconContainer}
-  slots={{
-    root: 'div',
-    iconContainer: SlotContainer,
+  slotProps={{
+    icon: {
+      id: 'my-rating-icon',
+    },
   }}
 />;
 
 // should skip non MUI components
-<NonMuiRating
-  IconContainerComponent={CustomIconContainer}
-/>;
+<NonMuiRating IconContainerComponent={CustomIconContainer} />;
