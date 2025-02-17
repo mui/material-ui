@@ -5,7 +5,7 @@ import { LANGUAGES_SSR } from 'docs/config';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-// #default-branch-switch
+// #host-reference
 const HOST = process.env.PULL_REQUEST_ID
   ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
   : 'https://next.mui.com';
@@ -56,7 +56,7 @@ export default function Head(props: HeadProps) {
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
-      {/* #default-branch-switch */}
+      {/* #host-reference */}
       <meta name="docsearch:version" content="master" />
       {disableAlternateLocale
         ? null

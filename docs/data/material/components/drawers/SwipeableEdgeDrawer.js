@@ -73,9 +73,7 @@ function SwipeableEdgeDrawer(props) {
         onOpen={toggleDrawer(true)}
         swipeAreaWidth={drawerBleeding}
         disableSwipeToOpen={false}
-        ModalProps={{
-          keepMounted: true,
-        }}
+        keepMounted
       >
         <StyledBox
           sx={{

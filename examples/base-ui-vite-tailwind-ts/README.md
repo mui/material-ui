@@ -24,7 +24,7 @@ npm start
 
 or:
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/base-ui-vite-tailwind-ts)
 
