@@ -220,7 +220,10 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
         root: slots.root,
         paper: PaperSlot,
         backdrop: slots.backdrop,
-        transition: slots.transition,
+        ...(slots.transition && {
+          // TODO: pass `slots.transition` directly once `TransitionComponent` is removed from Popover
+          transition: slots.transition,
+        }),
       }}
       slotProps={{
         root: rootSlotProps,
