@@ -278,6 +278,7 @@ function RatingItem(props) {
       value: itemValue,
     },
     internalForwardedProps: {
+      // TODO: remove this in v7 because `IconContainerComponent` is deprecated
       // only forward if `slots.icon` is NOT provided
       as: IconContainerComponent,
     },
