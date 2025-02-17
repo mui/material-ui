@@ -22,12 +22,7 @@ export default function OverridingInternalSlot() {
     >
       <Autocomplete
         open
-        options={[
-          { label: '🆘 Need help' },
-          { label: '✨ Improvement' },
-          { label: '🚀 New feature' },
-          { label: '🐛 Bug fix' },
-        ]}
+        options={['🆘 Need help', '✨ Improvement', '🚀 New feature', '🐛 Bug fix']}
         renderInput={(params) => <TextField {...params} />}
         slots={{
           popper: PopperComponent,
