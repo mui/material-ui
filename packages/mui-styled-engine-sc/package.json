@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -49,7 +49,7 @@
     "@types/react": "^19.0.8",
     "chai": "^4.5.0",
     "react": "^19.0.0",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.15"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

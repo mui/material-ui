@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -31,7 +31,7 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.?(c|m)[jt]s?(x)'",
@@ -62,7 +62,7 @@
     "lodash": "^4.17.21",
     "react": "^19.0.0",
     "sinon": "^19.0.2",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.15"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
