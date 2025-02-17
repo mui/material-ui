@@ -64,7 +64,7 @@ module.exports = /** @type {Config} */ ({
     'plugin:eslint-plugin-import/recommended',
     'plugin:eslint-plugin-import/typescript',
     'eslint-config-airbnb',
-    'eslint-config-airbnb-typescript',
+    './eslint/config-airbnb-typescript.js',
     'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -74,7 +74,7 @@ module.exports = /** @type {Config} */ ({
   plugins: [
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
-    '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint',
     'eslint-plugin-filenames',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
@@ -92,6 +92,7 @@ module.exports = /** @type {Config} */ ({
   rules: {
     'consistent-this': ['error', 'self'],
     curly: ['error', 'all'],
+    'dot-notation': 'error',
     // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
@@ -112,14 +113,18 @@ module.exports = /** @type {Config} */ ({
     ],
     'no-continue': 'off',
     'no-constant-condition': 'error',
+    'no-implied-eval': 'error',
+    'no-throw-literal': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
+    'no-return-await': 'error',
     'no-underscore-dangle': 'error',
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
 
+    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
       {
@@ -128,24 +133,17 @@ module.exports = /** @type {Config} */ ({
         variables: true,
       },
     ],
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
-      { vars: 'all', args: 'after-used', ignoreRestSiblings: true, argsIgnorePattern: '^_' },
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        caughtErrors: 'none',
+      },
     ],
-    'no-use-before-define': 'off',
-
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/dot-notation': 'off',
-    'dot-notation': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/no-implied-eval': 'off',
-    'no-implied-eval': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/no-throw-literal': 'off',
-    'no-throw-literal': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/return-await': 'off',
-    'no-return-await': 'error',
 
     // Not sure why it doesn't work
     'import/named': 'off',

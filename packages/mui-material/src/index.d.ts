@@ -212,9 +212,6 @@ export * from './Grid2';
 export { default as Grow } from './Grow';
 export * from './Grow';
 
-export { default as Hidden } from './Hidden';
-export * from './Hidden';
-
 export { default as Icon } from './Icon';
 export * from './Icon';
 
