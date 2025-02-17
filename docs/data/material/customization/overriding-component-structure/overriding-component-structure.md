@@ -101,7 +101,7 @@ In v6, those props were deprecated in favor of the `slots` and `slotProps` props
 
 The summary of the benefits of the new pattern is as follows:
 
-- The `slotProps` provided to [theme default props](/customization/theme-components/#theme-default-props) are merged with the instance `slotProps` prop. This is useful for building custom themes or use Material UI as a design system component library.
+- The `slotProps` provided to [theme default props](/material-ui/customization/theme-components/#theme-default-props) are merged with the instance `slotProps` prop. This is useful for building custom themes or use Material UI as a design system component library.
 - Most components have a `slots` prop that allows developers to replace the entire slot with a custom one. For example, developers can remove the popper behavior from the Autocomplete component by replacing `popper` slot with a `div` as [shown above](#the-slots-prop).
 - Integrate better with [Tailwind CSS](https://tailwindcss.com/) because developers can provide utility classes to the slots through `slotProps.*.className`.
 
