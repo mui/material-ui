@@ -26,10 +26,13 @@ function createThemeNoVars(options = {}, ...args) {
 
   if (
     options.vars &&
-    options.generateThemeVars === undefined // check for `generateThemeVars` (created internally) to handle nested theme
+    // The error should throw only for the root theme creation because user is not allowed to use a custom node `vars`.
+    // `generateThemeVars` is the closest identifier for checking that the `options` is a result of `createTheme` with CSS variables so that user can create new theme for nested ThemeProvider.
+    options.generateThemeVars === undefined
   ) {
     throw /* minify-error */ new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
+        // #host-reference
         'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
     );
   }
