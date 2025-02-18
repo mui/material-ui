@@ -26,6 +26,7 @@ function createThemeNoVars(options = {}, ...args) {
 
   if (
     options.vars &&
+    // check for both `cssVariables` (user provided) and `generateThemeVars` (created internally) to handle nested theme
     options.cssVariables === undefined &&
     options.generateThemeVars === undefined
   ) {
