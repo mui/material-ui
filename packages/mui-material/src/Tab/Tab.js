@@ -254,6 +254,12 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.altKey && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+      event.stopPropagation();
+    }
+  };
+
   return (
     <TabRoot
       focusRipple={!disableFocusRipple}
@@ -264,6 +270,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       disabled={disabled}
       onClick={handleClick}
       onFocus={handleFocus}
+      onKeyDown={handleKeyDown}
       ownerState={ownerState}
       tabIndex={selected ? 0 : -1}
       {...other}
