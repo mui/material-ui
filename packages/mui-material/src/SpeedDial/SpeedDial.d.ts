@@ -5,7 +5,7 @@ import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
@@ -14,17 +14,19 @@ export interface SpeedDialSlots {
   /**
    * The component that renders the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default {}
+   * @default Zoom
    */
-  transition: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<unknown, any> }
-  >;
+  transition: React.ElementType;
 }
 
 export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   SpeedDialSlots,
   {
-    transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, SpeedDialOwnerState>;
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
+     */
+    transition: SlotComponentProps<React.ElementType, TransitionProps, SpeedDialOwnerState>;
   }
 >;
 
