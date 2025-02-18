@@ -56,21 +56,22 @@ export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 export interface ArrayCSSInterpolation extends ReadonlyArray<CSSInterpolation> {}
 
 export interface CSSOthersObjectForCSSObject {
+  variants?: never;
   [propertiesName: string]: CSSInterpolation;
 }
 
 export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
-export type CSSObjectWithVariants<Props> =
-  | CSSObject
-  | {
-      variants: Array<{
-        props: Partial<Props> | ((props: Props) => boolean);
-        style:
-          | CSSObject
-          | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
-      }>;
-    };
+export type CSSObjectWithVariants<Props> = CSSPropertiesWithMultiValues &
+  CSSPseudos & {
+    variants: Array<{
+      props: Partial<Props> | ((props: Props) => boolean);
+      style:
+        | CSSObject
+        | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
+    }>;
+    [propertiesName: string]: unknown | CSSInterpolation;
+  };
 
 export interface ComponentSelector {
   __emotion_styles: any;
