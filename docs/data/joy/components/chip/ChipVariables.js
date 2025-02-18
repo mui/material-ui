@@ -1,9 +1,9 @@
 import * as React from 'react';
-import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
+import JoyVariablesDemo from 'docs/src/modules/components/JoyVariablesDemo';
 
 export default function ChipVariables() {
   return (
@@ -30,7 +30,7 @@ export default function ChipVariables() {
           defaultValue: '12px',
         },
         {
-          var: '--Chip-decorator-childHeight',
+          var: '--Chip-decoratorChildHeight',
           defaultValue: '24px',
         },
       ]}
@@ -43,6 +43,9 @@ export default function ChipVariables() {
             gap: 1,
           }}
         >
+          <Chip variant="soft" color="danger" sx={sx}>
+            Some text
+          </Chip>
           <Chip
             startDecorator={<Avatar src="/static/images/avatar/1.jpg" />}
             endDecorator={<ChipDelete />}

@@ -4,12 +4,20 @@ import createGetCssVar from './createGetCssVar';
 describe('createGetCssVar', () => {
   describe('default without prefix', () => {
     const getThemeVar = createGetCssVar();
+
     it('should return correct CSS var with default prefix', () => {
       expect(getThemeVar('palette-primary-500')).to.equal('var(--palette-primary-500)');
     });
 
     it('should return correct CSS var with prefix', () => {
       expect(getThemeVar('palette-primary-500')).to.equal('var(--palette-primary-500)');
+    });
+
+    it('should return correct CSS var with comma', () => {
+      expect(getThemeVar('fontFamily-body, JetBrains Mono')).to.equal(
+        'var(--fontFamily-body, JetBrains Mono)',
+      );
+      expect(getThemeVar('fontSize-xl, ')).to.equal('var(--fontSize-xl, )'); // this is a valid CSS.
     });
 
     it('support default value', () => {

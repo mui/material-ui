@@ -32,7 +32,7 @@ export type BordersProps = PropsFor<typeof borders>;
 
 // breakpoints.js
 type DefaultBreakPoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export { handleBreakpoints } from './breakpoints';
+export { handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 
 /**
  * @returns An enhanced stylefunction that considers breakpoints
@@ -40,12 +40,6 @@ export { handleBreakpoints } from './breakpoints';
 export function breakpoints<Props, Breakpoints extends string = DefaultBreakPoints>(
   styleFunction: StyleFunction<Props>,
 ): StyleFunction<Partial<Record<Breakpoints, Props>> & Props>;
-
-// restructures the breakpoints in the in the correct order and merges all styles args
-export function mergeBreakpointsInOrder(
-  breakpointsInput: { keys: string[]; up: (key: string) => string },
-  ...styles: object[]
-): object;
 
 export function compose<T extends Array<StyleFunction<any>>>(...args: T): ComposedStyleFunction<T>;
 
@@ -104,13 +98,13 @@ export { DefaultTheme } from '@mui/private-theming';
 export {
   css,
   keyframes,
-  GlobalStyles,
-  GlobalStylesProps,
   StyledEngineProvider,
   Interpolation,
   CSSInterpolation,
   CSSObject,
 } from '@mui/styled-engine';
+export { default as GlobalStyles } from './GlobalStyles';
+export type { GlobalStylesProps } from './GlobalStyles';
 
 export * from './style';
 export * from './spacing';
@@ -119,10 +113,13 @@ export {
   default as unstable_styleFunctionSx,
   unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
+  unstable_defaultSxConfig,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
 
-export { default as experimental_sx } from './sx';
+// TODO: Remove this function in v6.
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function experimental_sx(): any;
 
 export { default as Box } from './Box';
 export * from './Box';
@@ -156,6 +153,9 @@ export * from './useTheme';
 export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export * from './useThemeWithoutDefault';
 
+export { default as useMediaQuery } from './useMediaQuery';
+export * from './useMediaQuery';
+
 export * from './colorManipulator';
 
 export { default as ThemeProvider } from './ThemeProvider';
@@ -163,7 +163,12 @@ export * from './ThemeProvider';
 
 export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
+export { default as unstable_prepareCssVars } from './cssVars/prepareCssVars';
+export { default as unstable_createCssVarsTheme } from './cssVars/createCssVarsTheme';
 export * from './cssVars';
+
+export { default as responsivePropType } from './responsivePropType';
 
 export { default as createContainer } from './Container/createContainer';
 export * from './Container/createContainer';
@@ -176,3 +181,5 @@ export * from './Unstable_Grid';
 
 export { default as Stack } from './Stack';
 export * from './Stack';
+
+export * from './version';

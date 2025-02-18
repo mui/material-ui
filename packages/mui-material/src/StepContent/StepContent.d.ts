@@ -36,7 +36,7 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps?: TransitionProps;
 }
@@ -53,4 +53,4 @@ export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>
  *
  * - [StepContent API](https://mui.com/material-ui/api/step-content/)
  */
-export default function StepContent(props: StepContentProps): JSX.Element;
+export default function StepContent(props: StepContentProps): React.JSX.Element;

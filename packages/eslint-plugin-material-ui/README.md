@@ -14,7 +14,7 @@ Custom eslint rules for MUI.
 
 Prevent `fireEvent.keyDown(document.activeElement)`. The implementation
 we use already verifies that the passed target can be the target of a
-`keydown` event. Passing the target explicitly (e.g. `fireEvent.keyDown(getByRole('tab', { selected: true }))`) makes the test more readable.
+`keydown` event. Passing the target explicitly (for example `fireEvent.keyDown(getByRole('tab', { selected: true }))`) makes the test more readable.
 
 ### docgen-ignore-before-comment
 
@@ -23,7 +23,7 @@ Enforce correct usage of `@ignore` in the prop-types block comments.
 ### no-hardcoded-labels
 
 Prevent the usage of hardcoded labels.
-The docs are translated via crowdin, we prefer to use `t` from the redux store.
+The docs are translated via Crowdin, we prefer to use `t` from the redux store.
 
 ### rules-of-use-theme-variants
 
@@ -40,7 +40,7 @@ Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/latest/rul
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@mui/*/*/*"]
       }
     ]
   }

@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -95,21 +96,29 @@ const DividerRoot = styled('div', {
       height: 'auto',
     }),
   }),
-  ({ theme, ownerState }) => ({
+  ({ ownerState }) => ({
     ...(ownerState.children && {
       display: 'flex',
       whiteSpace: 'nowrap',
       textAlign: 'center',
       border: 0,
+      borderTopStyle: 'solid',
+      borderLeftStyle: 'solid',
       '&::before, &::after': {
-        position: 'relative',
-        width: '100%',
-        borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
-        top: '50%',
         content: '""',
-        transform: 'translateY(50%)',
+        alignSelf: 'center',
       },
     }),
+  }),
+  ({ theme, ownerState }) => ({
+    ...(ownerState.children &&
+      ownerState.orientation !== 'vertical' && {
+        '&::before, &::after': {
+          width: '100%',
+          borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
+          borderTopStyle: 'inherit',
+        },
+      }),
   }),
   ({ theme, ownerState }) => ({
     ...(ownerState.children &&
@@ -117,11 +126,8 @@ const DividerRoot = styled('div', {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
-          top: '0%',
-          left: '50%',
-          borderTop: 0,
           borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
-          transform: 'translateX(0%)',
+          borderLeftStyle: 'inherit',
         },
       }),
   }),
@@ -166,7 +172,7 @@ const DividerWrapper = styled('span', {
 }));
 
 const Divider = React.forwardRef(function Divider(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
     children,
@@ -213,11 +219,17 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
   );
 });
 
+/**
+ * The following flag is used to ensure that this component isn't tabbable i.e.
+ * does not get highlight/focus inside of MUI List.
+ */
+Divider.muiSkipListHighlight = true;
+
 Divider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Absolutely position the element.
    * @default false
@@ -249,6 +261,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the divider will have a lighter color.
    * @default false
+   * @deprecated Use <Divider sx={{ opacity: 0.6 }} /> (or any opacity or color) instead. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   light: PropTypes.bool,
   /**

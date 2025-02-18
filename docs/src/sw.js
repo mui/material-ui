@@ -1,29 +1,22 @@
 /* eslint-env serviceworker */
 // https://github.com/airbnb/javascript/issues/1632
 /* eslint-disable no-restricted-globals */
-/* global workbox */
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.0.0-alpha.0/workbox-sw.js');
 
-workbox.core.setCacheNameDetails({
-  // This allows you to work on multiple projects using
-  // the same localhost port number without mixing up the caches.
-  prefix: 'mui',
+// See https://developer.chrome.com/docs/workbox/remove-buggy-service-workers/
+self.addEventListener('install', () => {
+  // Skip over the "waiting" lifecycle state, to ensure that our
+  // new service worker is activated immediately, even if there's
+  // another tab open controlled by our older service worker code.
+  self.skipWaiting();
 });
-
-workbox.routing.registerRoute(/(\/|\.js)$/, workbox.strategies.staleWhileRevalidate());
-
-self.addEventListener('message', (event) => {
-  switch (event.data) {
-    case 'skipWaiting':
-      // console.log('self.skipWaiting()');
-      self.skipWaiting();
-      // We don't call claim as it would be too strong.
-      // Instead of controlling the page after it was loaded.
-      // We wait for the activated event to reload the page and have the
-      // activated service worker control it.
-      // self.clients.claim();
-      break;
-    default:
-      break;
-  }
+self.addEventListener('message', () => {
+  // Optional: Get a list of all the current open windows/tabs under
+  // our service worker's control, and force them to reload.
+  // This can "unbreak" any open windows/tabs as soon as the new
+  // service worker activates, rather than users having to manually reload.
+  self.clients.matchAll({ type: 'window' }).then((windowClients) => {
+    windowClients.forEach((windowClient) => {
+      windowClient.navigate(windowClient.url);
+    });
+  });
 });

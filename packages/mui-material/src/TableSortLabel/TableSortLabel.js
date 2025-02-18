@@ -1,11 +1,12 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+'use client';
+import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
 
@@ -81,7 +82,7 @@ const TableSortLabelIcon = styled('span', {
  * A button based label for placing inside `TableCell` for column sorting.
  */
 const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTableSortLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiTableSortLabel' });
   const {
     active = false,
     children,
@@ -124,10 +125,10 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
 });
 
 TableSortLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the label will have the active styling (should be true for the sorted column).
    * @default false

@@ -1,11 +1,12 @@
 import * as React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import {
-  demos,
-  docs,
-  demoComponents,
-} from 'docs/data/joy/components/button/button.md?@mui/markdown';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
+import AppFrame from 'docs/src/modules/components/AppFrame';
+import * as pageProps from 'docs/data/joy/components/button/button.md?muiMarkdown';
 
 export default function Page() {
-  return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
+  return <MarkdownDocs {...pageProps} />;
 }
+
+Page.getLayout = (page) => {
+  return <AppFrame>{page}</AppFrame>;
+};

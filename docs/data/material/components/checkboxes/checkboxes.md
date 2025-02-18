@@ -1,8 +1,8 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
-materialDesign: https://material.io/components/selection-controls#checkboxes
+materialDesign: https://m2.material.io/components/selection-controls#checkboxes
 githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
@@ -58,7 +58,7 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 {{"demo": "IndeterminateCheckbox.js"}}
 
 :::warning
-⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
+When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
 It has no accessibility or UX implications.
 :::
 
@@ -81,7 +81,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedCheckbox.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/checkbox/).
+🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/?path=/docs/checkbox-introduction--docs).
 
 ## When to use
 
@@ -94,7 +94,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
-  In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.
+  In this case, you can apply the additional attribute (for example `aria-label`, `aria-labelledby`, `title`) via the `inputProps` prop.
 
 ```jsx
 <Checkbox

@@ -19,14 +19,14 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+import { SliderUnstyled } from '@mui/base/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  formContro
+  formControl
 `;
 
   it('should handle @ dependencies', () => {
@@ -102,7 +102,6 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/styled': 'latest',
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
-      'date-fns': 'latest',
     });
   });
 
@@ -130,7 +129,6 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
-      'date-fns': 'latest',
       exceljs: 'latest',
     });
   });
@@ -152,6 +150,24 @@ import 'exceljs';
       '@mui/base': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
+      '@types/react-dom': 'latest',
+      '@types/react': 'latest',
+      typescript: 'latest',
+    });
+  });
+
+  it('should handle @types correctly', () => {
+    const { dependencies } = SandboxDependencies({
+      raw: `import utils from '../utils';`,
+      codeVariant: 'TS',
+    });
+
+    expect(dependencies).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@mui/material': 'latest',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
       typescript: 'latest',
@@ -181,7 +197,6 @@ import {
       '@emotion/styled': 'latest',
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
-      'date-fns': 'latest',
     });
   });
 
@@ -240,64 +255,6 @@ import * as Utils from '@mui/utils';
     });
   });
 
-  it('should date adapters', () => {
-    const source = `
-import * as React from 'react';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import AdapterDayjs from '@mui/lab/AdapterDayjs';
-import AdapterLuxon from '@mui/lab/AdapterLuxon';
-import AdapterMoment from '@mui/lab/AdapterMoment';
-    `;
-
-    const { dependencies } = SandboxDependencies({
-      raw: source,
-      codeVariant: 'JS',
-    });
-
-    expect(dependencies).to.deep.equal({
-      react: 'latest',
-      'react-dom': 'latest',
-      '@emotion/react': 'latest',
-      '@emotion/styled': 'latest',
-      '@mui/material': 'latest',
-      '@mui/lab': 'latest',
-      'date-fns': 'latest',
-      dayjs: 'latest',
-      luxon: 'latest',
-      moment: 'latest',
-    });
-  });
-
-  it('should handle dependencies for @mui/x-date-pickers', () => {
-    const source = `
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';`;
-
-    const { dependencies } = SandboxDependencies({
-      raw: source,
-      codeVariant: 'JS',
-    });
-
-    expect(dependencies).to.deep.equal({
-      react: 'latest',
-      'react-dom': 'latest',
-      '@emotion/react': 'latest',
-      '@emotion/styled': 'latest',
-      '@mui/material': 'latest',
-      '@mui/x-date-pickers': 'latest',
-      'date-fns': 'latest',
-      dayjs: 'latest',
-      luxon: 'latest',
-      moment: 'latest',
-    });
-  });
-
   it('should not have . as a dependency', () => {
     const source = `import * as React from 'react';
 import Box, { BoxProps } from '@mui/joy/Box';
@@ -338,7 +295,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import TextField from '@mui/joy/TextField';
+import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 
 // Icons import
@@ -383,7 +340,7 @@ const ColorSchemeToggle = () => {
     </IconButton>
   );
 };
-    
+
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
@@ -435,7 +392,7 @@ export default function EmailExample() {
             </IconButton>
             <Typography fontWeight={700}>Email</Typography>
           </Box>
-          <TextField
+          <Input
             size="sm"
             placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
@@ -505,7 +462,7 @@ export default function EmailExample() {
           <Box sx={{ py: 10 }}>
             <Typography
               textColor="text.tertiary"
-              level="body2"
+              level="body-sm"
               sx={{ textAlign: 'center' }}
             >
               You&apos;ve read all messages in your inbox.

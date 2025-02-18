@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Link from 'docs/src/modules/components/Link';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import { alpha } from '@mui/material/styles';
+import { Link } from '@mui/docs/Link';
 
 export default function EarlyBird() {
   return (
@@ -18,13 +18,15 @@ export default function EarlyBird() {
       id="early-bird"
     >
       <Stack
-        sx={{
+        sx={(theme) => ({
           borderRadius: 1,
-          p: 2,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.50'),
+          px: 2,
+          py: 3,
+          background: `linear-gradient(180deg, ${alpha(theme.palette.primary[50], 0.2)}  50%, 
+          ${(theme.vars || theme).palette.primary[50]} 100%)
+          `,
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100',
+          borderColor: 'grey.100',
           display: 'flex',
           flexDirection: {
             xs: 'column',
@@ -35,9 +37,15 @@ export default function EarlyBird() {
             xs: 'flex-start',
             sm: 'center',
           },
-        }}
+          ...theme.applyDarkStyles({
+            background: `linear-gradient(180deg, ${alpha(theme.palette.primary[900], 0.4)}  50%, 
+            ${alpha(theme.palette.primary[800], 0.6)} 100%)
+            `,
+            borderColor: 'primaryDark.600',
+          }),
+        })}
       >
-        <Box>
+        <div>
           <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
             🐦&nbsp;&nbsp;Early bird special!
           </Typography>
@@ -46,7 +54,7 @@ export default function EarlyBird() {
             added opportunity to influence its development. The early bird special is available for
             a limited time, so don&apos;t miss this opportunity!
           </Typography>
-        </Box>
+        </div>
         <Button
           component={Link}
           noLinkStyle
@@ -56,9 +64,10 @@ export default function EarlyBird() {
           endIcon={<KeyboardArrowRightRounded />}
           sx={{
             py: 1,
+            flexShrink: 0,
             ml: { xs: 0, sm: 2 },
             mt: { xs: 3, sm: 0 },
-            width: { xs: '100%', sm: '50%', md: '15%' },
+            width: { xs: '100%', sm: '50%', md: 'fit-content' },
           }}
         >
           Buy now

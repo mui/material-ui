@@ -4,6 +4,7 @@ description: Here are the most significant improvements in December.
 date: 2020-01-07T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Here are the most significant improvements in December:
@@ -34,15 +35,15 @@ But this summary is just scratching the surface. We have accepted 168 commits fr
 
 _(We'll do our best, no guarantee!)_
 
-- 💄 We will keep working on a new [pagination](https://github.com/mui/material-ui/pull/19049) component. You can already [preview it](https://deploy-preview-19049--material-ui.netlify.app/components/pagination/) (lead by [**@mbrookes**](https://github.com/mbrookes)).
+- 💄 We will keep working on a new [pagination](https://github.com/mui/material-ui/pull/19049) component. You can already [preview it](https://deploy-preview-19049--material-ui.netlify.app/components/pagination/) (lead by **[@mbrookes](https://github.com/mbrookes)**).
 
   ![Pagination](/static/blog/december-2019-update/pagination.png)
 
-- 📅 We will keep working on a major upgrade of the [date/time picker](https://github.com/mui/material-ui-pickers/issues/1293) components. We are working on desktop and range support (lead by [**@dmtrKovalenko**](https://github.com/dmtrKovalenko)).
+- 📅 We will keep working on a major upgrade of the [date/time picker](https://github.com/mui/material-ui-pickers/issues/1293) components. We are working on desktop and range support (lead by **[@dmtrKovalenko](https://github.com/dmtrKovalenko)**).
 
   ![Date picker](/static/blog/december-2019-update/date-picker.png)
 
-- 🧮 We will keep working on a new [data grid](https://github.com/mui/material-ui/pull/18872) component. You can already [preview it](https://deploy-preview-18872--material-ui.netlify.app/components/data-grid/) (lead by [**@oliviertassinari**](https://github.com/oliviertassinari)).
+- 🧮 We will keep working on a new [data grid](https://github.com/mui/material-ui/pull/18872) component. You can already [preview it](https://deploy-preview-18872--material-ui.netlify.app/components/data-grid/) (lead by **[@oliviertassinari](https://github.com/oliviertassinari)**).
 
   ![Data grid](/static/blog/december-2019-update/data-grid.png)
 

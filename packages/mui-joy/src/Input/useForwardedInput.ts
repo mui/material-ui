@@ -1,9 +1,13 @@
-import { useInput } from '@mui/base/InputUnstyled';
+'use client';
+import * as React from 'react';
+import { useInput } from '@mui/base/useInput';
+import FormControlContext, { FormControlContextValue } from '../FormControl/FormControlContext';
 
 export default function useForwardedInput<Output>(
   props: any,
   classes: { disabled: string; error: string; focused: string; formControl: string },
 ) {
+  const formControl = React.useContext(FormControlContext);
   const {
     'aria-describedby': ariaDescribedby,
     'aria-label': ariaLabel,
@@ -13,6 +17,7 @@ export default function useForwardedInput<Output>(
     className,
     defaultValue,
     disabled: disabledProp,
+    disabledInProp,
     error: errorProp,
     id,
     name,
@@ -30,15 +35,15 @@ export default function useForwardedInput<Output>(
     ...other
   } = props;
 
-  const { getRootProps, getInputProps, focused, formControlContext, error, disabled } = useInput({
-    disabled: disabledProp,
+  const { getRootProps, getInputProps, focused, error, disabled } = useInput({
+    disabled: disabledInProp ?? formControl?.disabled ?? disabledProp,
     defaultValue,
     error: errorProp,
     onBlur,
     onClick,
     onChange,
     onFocus,
-    required,
+    required: required ?? formControl?.required,
     value,
   });
 
@@ -46,7 +51,7 @@ export default function useForwardedInput<Output>(
     [classes.disabled]: disabled,
     [classes.error]: error,
     [classes.focused]: focused,
-    [classes.formControl]: Boolean(formControlContext),
+    [classes.formControl]: Boolean(formControl),
     [className!]: className,
   };
 
@@ -60,6 +65,7 @@ export default function useForwardedInput<Output>(
     'aria-labelledby': ariaLabelledby,
     autoComplete,
     autoFocus,
+    disabled,
     id,
     onKeyDown,
     onKeyUp,
@@ -69,13 +75,13 @@ export default function useForwardedInput<Output>(
     type,
   };
   return {
+    formControl,
     propsToForward,
     rootStateClasses,
     inputStateClasses,
     getRootProps,
     getInputProps,
     focused,
-    formControlContext,
     error,
     disabled,
     ...other,
@@ -84,5 +90,5 @@ export default function useForwardedInput<Output>(
     rootStateClasses: Record<string, any>;
     inputStateClasses: Record<string, any>;
   } & ReturnType<typeof useInput> &
-    Output;
+    Output & { formControl: FormControlContextValue };
 }

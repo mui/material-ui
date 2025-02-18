@@ -5,63 +5,73 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '..';
 import { CardHeaderClasses } from './cardHeaderClasses';
 
-export interface CardHeaderTypeMap<
-  Props = {},
-  DefaultComponent extends React.ElementType = 'div',
+export interface CardHeaderOwnProps<
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > {
-  props: Props & {
-    /**
-     * The action to display in the card header.
-     */
-    action?: React.ReactNode;
-    /**
-     * The Avatar element to display.
-     */
-    avatar?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<CardHeaderClasses>;
-    /**
-     * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
-     * This can be useful to render an alternative Typography variant by wrapping
-     * the `title` text, and optional `subheader` text
-     * with the Typography component.
-     * @default false
-     */
-    disableTypography?: boolean;
-    /**
-     * The content of the component.
-     */
-    subheader?: React.ReactNode;
-    /**
-     * These props will be forwarded to the subheader
-     * (as long as disableTypography is not `true`).
-     */
-    subheaderTypographyProps?: TypographyProps<
-      SubheaderTypographyComponent,
-      { component?: SubheaderTypographyComponent }
-    >;
-    /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
-     */
-    sx?: SxProps<Theme>;
-    /**
-     * The content of the component.
-     */
-    title?: React.ReactNode;
-    /**
-     * These props will be forwarded to the title
-     * (as long as disableTypography is not `true`).
-     */
-    titleTypographyProps?: TypographyProps<
-      TitleTypographyComponent,
-      { component?: TitleTypographyComponent }
-    >;
-  };
-  defaultComponent: DefaultComponent;
+  /**
+   * The action to display in the card header.
+   */
+  action?: React.ReactNode;
+  /**
+   * The Avatar element to display.
+   */
+  avatar?: React.ReactNode;
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<CardHeaderClasses>;
+  /**
+   * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
+   * This can be useful to render an alternative Typography variant by wrapping
+   * the `title` text, and optional `subheader` text
+   * with the Typography component.
+   * @default false
+   */
+  disableTypography?: boolean;
+  /**
+   * The content of the component.
+   */
+  subheader?: React.ReactNode;
+  /**
+   * These props will be forwarded to the subheader
+   * (as long as disableTypography is not `true`).
+   */
+  subheaderTypographyProps?: TypographyProps<
+    SubheaderTypographyComponent,
+    {
+      component?: SubheaderTypographyComponent;
+    }
+  >;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * The content of the component.
+   */
+  title?: React.ReactNode;
+  /**
+   * These props will be forwarded to the title
+   * (as long as disableTypography is not `true`).
+   */
+  titleTypographyProps?: TypographyProps<
+    TitleTypographyComponent,
+    {
+      component?: TitleTypographyComponent;
+    }
+  >;
+}
+
+export interface CardHeaderTypeMap<
+  AdditionalProps = {},
+  RootComponent extends React.ElementType = 'div',
+  TitleTypographyComponent extends React.ElementType = 'span',
+  SubheaderTypographyComponent extends React.ElementType = 'span',
+> {
+  props: AdditionalProps &
+    CardHeaderOwnProps<TitleTypographyComponent, SubheaderTypographyComponent>;
+  defaultComponent: RootComponent;
 }
 /**
  *
@@ -77,38 +87,38 @@ declare const CardHeader: OverridableCardHeader;
 
 export interface OverridableCardHeader extends OverridableComponent<CardHeaderTypeMap> {
   <
-    DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
-    Props = {},
+    RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+    AdditionalProps = {},
     TitleTypographyComponent extends React.ElementType = 'span',
     SubheaderTypographyComponent extends React.ElementType = 'span',
   >(
     props: CardHeaderPropsWithComponent<
-      DefaultComponent,
-      Props,
+      RootComponent,
+      AdditionalProps,
       TitleTypographyComponent,
       SubheaderTypographyComponent
     >,
-  ): JSX.Element;
+  ): React.JSX.Element;
 }
 
 export type CardHeaderProps<
-  DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
-  Props = {},
+  RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+  AdditionalProps = {},
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > = OverrideProps<
   CardHeaderTypeMap<
-    Props,
-    DefaultComponent,
+    AdditionalProps,
+    RootComponent,
     TitleTypographyComponent,
     SubheaderTypographyComponent
   >,
-  DefaultComponent
+  RootComponent
 >;
 
 export type CardHeaderPropsWithComponent<
-  DefaultComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
-  Props = {},
+  RootComponent extends React.ElementType = CardHeaderTypeMap['defaultComponent'],
+  AdditionalProps = {},
   TitleTypographyComponent extends React.ElementType = 'span',
   SubheaderTypographyComponent extends React.ElementType = 'span',
 > = {
@@ -116,10 +126,10 @@ export type CardHeaderPropsWithComponent<
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
-  component?: DefaultComponent;
+  component?: RootComponent;
 } & CardHeaderProps<
-  DefaultComponent,
-  Props,
+  RootComponent,
+  AdditionalProps,
   TitleTypographyComponent,
   SubheaderTypographyComponent
 >;

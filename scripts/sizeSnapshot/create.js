@@ -1,9 +1,9 @@
+const path = require('path');
+const os = require('os');
 const fse = require('fs-extra');
 const lodash = require('lodash');
-const path = require('path');
 const yargs = require('yargs');
 const Piscina = require('piscina');
-const os = require('os');
 const { getWebpackEntries } = require('./webpack.config');
 
 const MAX_CONCURRENCY = Math.min(8, os.cpus().length);

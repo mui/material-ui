@@ -69,7 +69,7 @@ import { MenuProps } from '../Menu';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
 import { NativeSelectProps } from '../NativeSelect';
-import { Options as useMediaQueryOptions } from '../useMediaQuery';
+import { UseMediaQueryOptions } from '../useMediaQuery';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { PaginationProps } from '../Pagination';
 import { PaginationItemProps } from '../PaginationItem';
@@ -241,5 +241,5 @@ export interface ComponentsPropsList {
   MuiTooltip: TooltipProps;
   MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
-  MuiUseMediaQuery: useMediaQueryOptions;
+  MuiUseMediaQuery: UseMediaQueryOptions;
 }

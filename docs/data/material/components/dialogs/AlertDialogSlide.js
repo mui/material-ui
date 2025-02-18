@@ -23,7 +23,7 @@ export default function AlertDialogSlide() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
         Slide in alert dialog
       </Button>
@@ -46,6 +46,6 @@ export default function AlertDialogSlide() {
           <Button onClick={handleClose}>Agree</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }

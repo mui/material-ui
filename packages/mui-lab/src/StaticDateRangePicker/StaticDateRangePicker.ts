@@ -23,9 +23,10 @@ const warn = () => {
 
 type StaticDateRangePickerComponent = (<TDate>(
   props: StaticDateRangePickerProps & React.RefAttributes<HTMLDivElement>,
-) => JSX.Element) & { propTypes?: any };
+) => React.JSX.Element) & { propTypes?: any };
 
 /**
+ * @deprecated The StaticDateRangePicker component was moved from `@mui/lab` to `@mui/x-date-pickers-pro`. More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.
  * @ignore - do not document.
  */
 const StaticDateRangePicker = React.forwardRef(function DeprecatedStaticDateRangePicker() {

@@ -122,7 +122,7 @@ const ColorlibStepIconRoot = styled('div')<{
 function ColorlibStepIcon(props: StepIconProps) {
   const { active, completed, className } = props;
 
-  const icons: { [index: string]: React.ReactElement } = {
+  const icons: { [index: string]: React.ReactElement<unknown> } = {
     1: <SettingsIcon />,
     2: <GroupAddIcon />,
     3: <VideoLabelIcon />,

@@ -39,8 +39,9 @@ export default function ContainerResponsive() {
           }}
         >
           <img
+            src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2000"
+            loading="lazy"
             alt=""
-            src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2262"
           />
         </AspectRatio>
         <Box
@@ -48,12 +49,12 @@ export default function ContainerResponsive() {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            maxWidth: '200px',
+            maxWidth: 200,
           }}
         >
           <Box sx={{ display: 'flex' }}>
             <div>
-              <Typography level="h2" sx={{ fontSize: 'md' }} mb={0.5}>
+              <Typography level="title-lg">
                 <Link
                   href="#container-responsive"
                   overlay
@@ -66,7 +67,7 @@ export default function ContainerResponsive() {
                   Yosemite National Park
                 </Link>
               </Typography>
-              <Typography level="body2">California, USA</Typography>
+              <Typography level="body-sm">California, USA</Typography>
             </div>
             <IconButton
               size="sm"
@@ -95,10 +96,8 @@ export default function ContainerResponsive() {
               Y
             </Avatar>
             <div>
-              <Typography level="body2">Designed by</Typography>
-              <Typography fontWeight="lg" level="body2">
-                Nature itself
-              </Typography>
+              <Typography level="body-xs">Designed by</Typography>
+              <Typography level="body-sm">Nature itself</Typography>
             </div>
           </Box>
         </Box>

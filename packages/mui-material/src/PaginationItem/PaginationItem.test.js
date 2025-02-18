@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, describeConformance } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import PaginationItem, { paginationItemClasses as classes } from '@mui/material/PaginationItem';
+import describeConformance from '../../test/describeConformance';
 
 describe('<PaginationItem />', () => {
   const { render } = createRenderer();
@@ -14,7 +15,21 @@ describe('<PaginationItem />', () => {
     refInstanceof: window.HTMLButtonElement,
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
-    skip: ['componentProp', 'componentsProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      first: {},
+      last: {},
+      previous: {},
+      next: {},
+    },
+    skip: [
+      'componentProp',
+      'componentsProp',
+      // uses non-standard camel-case fields in `components`
+      'slotsProp',
+      'slotPropsProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render', () => {
@@ -26,6 +41,18 @@ describe('<PaginationItem />', () => {
     const { getByRole } = render(<PaginationItem selected />);
 
     expect(getByRole('button')).to.have.class(classes.selected);
+  });
+
+  it('should add the `colorPrimary` class to the root element if `color="primary"`', () => {
+    const { getByRole } = render(<PaginationItem color="primary" />);
+
+    expect(getByRole('button')).to.have.class(classes.colorPrimary);
+  });
+
+  it('should add the `colorSecondary` class to the root element if `color="secondary"`', () => {
+    const { getByRole } = render(<PaginationItem color="secondary" />);
+
+    expect(getByRole('button')).to.have.class(classes.colorSecondary);
   });
 
   describe('prop: disabled', () => {

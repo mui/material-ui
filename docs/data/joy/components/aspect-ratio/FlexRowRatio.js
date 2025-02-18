@@ -1,28 +1,25 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
-import TextField from '@mui/joy/TextField';
+import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
 
 export default function FlexRowRatio() {
   const [flexBasis, setFlexBasis] = React.useState(200);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Sheet
+      <Card
         variant="outlined"
-        sx={{
-          display: 'flex',
-          gap: 2,
-          p: 2,
-          minWidth: 300,
-          borderRadius: 'sm',
-        }}
+        size="sm"
+        orientation="horizontal"
+        sx={{ gap: 2, minWidth: 300 }}
       >
         <AspectRatio
           sx={{
             flexBasis: flexBasis ? `${flexBasis}px` : undefined,
-            borderRadius: 'sm',
             overflow: 'auto',
           }}
         >
@@ -32,22 +29,23 @@ export default function FlexRowRatio() {
             alt=""
           />
         </AspectRatio>
-        <Box>
-          <Typography fontWeight="md">Yosemite National Park</Typography>
-          <Typography level="body2">California, USA</Typography>
-        </Box>
-      </Sheet>
+        <div>
+          <Typography level="title-sm">Yosemite National Park</Typography>
+          <Typography level="body-sm">California, USA</Typography>
+        </div>
+      </Card>
       <br />
-      <TextField
-        variant="outlined"
-        label="flexBasis"
-        placeholder="number"
-        endDecorator="px"
-        type="number"
-        value={flexBasis}
-        onChange={(event) => setFlexBasis(event.target.valueAsNumber)}
-        sx={{ mx: 'auto', width: '100%' }}
-      />
+      <FormControl sx={{ mx: 'auto', width: '100%' }}>
+        <FormLabel>flexBasis</FormLabel>
+        <Input
+          variant="outlined"
+          type="number"
+          placeholder="number"
+          value={flexBasis}
+          endDecorator="px"
+          onChange={(event) => setFlexBasis(event.target.valueAsNumber)}
+        />
+      </FormControl>
     </Box>
   );
 }

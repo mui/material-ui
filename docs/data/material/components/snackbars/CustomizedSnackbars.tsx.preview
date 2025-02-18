@@ -1,12 +1,11 @@
-<Button variant="outlined" onClick={handleClick}>
-  Open success snackbar
-</Button>
+<Button onClick={handleClick}>Open Snackbar</Button>
 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-    This is a success message!
+  <Alert
+    onClose={handleClose}
+    severity="success"
+    variant="filled"
+    sx={{ width: '100%' }}
+  >
+    This is a success Alert inside a Snackbar!
   </Alert>
 </Snackbar>
-<Alert severity="error">This is an error message!</Alert>
-<Alert severity="warning">This is a warning message!</Alert>
-<Alert severity="info">This is an information message!</Alert>
-<Alert severity="success">This is a success message!</Alert>

@@ -1,6 +1,6 @@
 # Migration to Grid v2
 
-<p class="description">This guide explains how and why to migrate from Material UI Grid v1 to v2.</p>
+<p class="description">This guide explains how and why to migrate from Material UI Grid v1 to v2.</p>
 
 ## Why you should migrate
 
@@ -15,26 +15,26 @@ Grid v2 has several new feature and many improvements over the original:
 
 :::info
 Grid v2 is currently considered `Unstable_` as we give the community time to try it out and offer feedback.
-We will make it stable and deprecate v1 in the next major release of Material UI.
+We will make it stable and deprecate v1 in the next major release of Material UI.
 :::
 
-## With Material UI v4
+## With Material UI v4
 
-The Grid v2 is introduced in Material UI v5, so you have to follow the [Material UI migration guide](/material-ui/migration/migration-v4/) first.
+The Grid v2 is introduced in Material UI v5, so you have to follow the [Material UI migration guide](/material-ui/migration/migration-v4/) first.
 
-## With Material UI v5
+## With Material UI v5
 
 The migration is expected to be smooth since most of the APIs remains the same. However, there is one breaking change that we want to clarify:
 
-The default implementation of the negative margin in Grid v2 is spread equally on all sides (same as the Grid in Material UI v4).
+The default implementation of the negative margin in Grid v2 is spread equally on all sides (same as the Grid in Material UI v4).
 
 {{"demo": "GridsDiff.js", "bg": true, "hideToolbar": true}}
 
 ### Import
 
 ```diff
-- import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material/Unstable_Grid2';
+-import Grid from '@mui/material/Grid';
++import Grid from '@mui/material/Unstable_Grid2';
 ```
 
 ### Remove props
@@ -42,8 +42,8 @@ The default implementation of the negative margin in Grid v2 is spread equally o
 The `item` and `zeroMinWidth` props have been removed in Grid v2:
 
 ```diff
-- <Grid item zeroMinWidth xs={6}>
-+ <Grid xs={6}>
+-<Grid item zeroMinWidth xs={6}>
++<Grid xs={6}>
 ```
 
 ### Negative margins

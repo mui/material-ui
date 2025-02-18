@@ -4,11 +4,12 @@ description: Here are the most significant improvements in July.
 date: 2019-08-04T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Here are the most significant improvements in July:
 
-- 🌳 We have introduced a new [Tree View component](/material-ui/react-tree-view/) in the lab. Big thanks to Josh for it.
+- 🌳 We have introduced a new [Tree View component](/x/react-tree-view/) in the lab. Big thanks to Josh for it.
 
   ![Tree View](/static/blog/july-2019-update/tree-view.gif)
 

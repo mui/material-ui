@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
@@ -51,7 +52,7 @@ const ListItemTextRoot = styled('div', {
 }));
 
 const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemText' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemText' });
   const {
     children,
     className,
@@ -121,10 +122,10 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
 });
 
 ListItemText.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Alias for the `primary` prop.
    */

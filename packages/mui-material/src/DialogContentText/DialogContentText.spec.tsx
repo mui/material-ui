@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { DialogContentText } from '@mui/material';
 
-const DialogContentTextTest = () => {
-  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
+const dialogContentTextTest = () => {
+  const CustomComponent: React.FC<{ prop1: string; prop2: number }> = function CustomComponent() {
+    return <div />;
+  };
   return (
     <div>
       <DialogContentText />

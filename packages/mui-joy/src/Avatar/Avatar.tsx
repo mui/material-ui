@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
+import useSlot from '../utils/useSlot';
 import styled from '../styles/styled';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
@@ -32,41 +33,40 @@ const AvatarRoot = styled('div', {
   name: 'JoyAvatar',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AvatarOwnerState }>(({ theme, ownerState }) => {
-  return [
-    {
-      ...(ownerState.size === 'sm' && {
-        width: `var(--Avatar-size, 2rem)`,
-        height: `var(--Avatar-size, 2rem)`,
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      ...(ownerState.size === 'md' && {
-        width: `var(--Avatar-size, 2.5rem)`,
-        height: `var(--Avatar-size, 2.5rem)`,
-        fontSize: theme.vars.fontSize.md,
-      }),
-      ...(ownerState.size === 'lg' && {
-        width: `var(--Avatar-size, 3rem)`,
-        height: `var(--Avatar-size, 3rem)`,
-        fontSize: theme.vars.fontSize.lg,
-      }),
-      marginInlineStart: 'var(--Avatar-marginInlineStart)',
-      boxShadow: `var(--Avatar-ring)`,
-      fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexShrink: 0,
-      lineHeight: 1,
-      overflow: 'hidden',
-      borderRadius: 'var(--Avatar-radius, 50%)',
-      userSelect: 'none',
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ];
-});
+})<{ ownerState: AvatarOwnerState }>(({ theme, ownerState }) => ({
+  '--Icon-color':
+    ownerState.color !== 'neutral' || ownerState.variant === 'solid'
+      ? 'currentColor'
+      : theme.vars.palette.text.icon,
+  ...theme.typography[`title-${ownerState.size!}`],
+  ...(ownerState.size === 'sm' && {
+    width: `var(--Avatar-size, 2rem)`,
+    height: `var(--Avatar-size, 2rem)`,
+    fontSize: `calc(var(--Avatar-size, 2rem) * 0.4375)`, // default as 14px
+  }),
+  ...(ownerState.size === 'md' && {
+    width: `var(--Avatar-size, 2.5rem)`,
+    height: `var(--Avatar-size, 2.5rem)`,
+    fontSize: `calc(var(--Avatar-size, 2.5rem) * 0.4)`, // default as 16px
+  }),
+  ...(ownerState.size === 'lg' && {
+    width: `var(--Avatar-size, 3rem)`,
+    height: `var(--Avatar-size, 3rem)`,
+    fontSize: `calc(var(--Avatar-size, 3rem) * 0.375)`, // default as 18px
+  }),
+  marginInlineStart: 'var(--Avatar-marginInlineStart)',
+  boxShadow: `var(--Avatar-ring)`,
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  lineHeight: 1,
+  overflow: 'hidden',
+  borderRadius: 'var(--Avatar-radius, 50%)',
+  userSelect: 'none',
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+}));
 
 const AvatarImg = styled('img', {
   name: 'JoyAvatar',
@@ -84,7 +84,7 @@ const AvatarImg = styled('img', {
   textIndent: 10000,
 });
 
-const AvatarFallback = styled(Person, {
+const AvatarFallback = styled(Person as unknown as 'svg', {
   name: 'JoyAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
@@ -135,7 +135,17 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 
   return loaded;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Avatar](https://mui.com/joy-ui/react-avatar/)
+ * - [Skeleton](https://mui.com/joy-ui/react-skeleton/)
+ *
+ * API:
+ *
+ * - [Avatar API](https://mui.com/joy-ui/api/avatar/)
+ */
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
@@ -147,18 +157,18 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const {
     alt,
     color: colorProp = 'neutral',
-    component = 'div',
-    componentsProps = {},
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
-    imgProps,
     src,
     srcSet,
     children: childrenProp,
+    component,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
-  const color = inProps.color || groupContext?.color || colorProp;
   const variant = inProps.variant || groupContext?.variant || variantProp;
+  const color = inProps.color || groupContext?.color || colorProp;
   const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
@@ -166,18 +176,44 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const ownerState = {
     ...props,
     color,
-    component,
     size,
     variant,
     grouped: !!groupContext,
   };
 
+  const classes = useUtilityClasses(ownerState);
+  const externalForwardedProps = { ...other, component, slots, slotProps };
+
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: AvatarRoot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotImg, imageProps] = useSlot('img', {
+    additionalProps: {
+      alt,
+      src,
+      srcSet,
+    },
+    className: classes.img,
+    elementType: AvatarImg,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [SlotFallback, fallbackProps] = useSlot('fallback', {
+    className: classes.fallback,
+    elementType: AvatarFallback,
+    externalForwardedProps,
+    ownerState,
+  });
+
   // Use a hook instead of onError on the img element to support server-side rendering.
   const loaded = useLoaded({
-    ...imgProps,
-    ...(typeof componentsProps.img === 'function'
-      ? componentsProps.img(ownerState)
-      : componentsProps.img),
+    ...imageProps,
     src,
     srcSet,
   });
@@ -185,58 +221,24 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
-  const classes = useUtilityClasses(ownerState);
-
-  const imageProps = useSlotProps({
-    elementType: AvatarImg,
-    externalSlotProps: componentsProps.img,
-    ownerState,
-    additionalProps: {
-      alt,
-      src,
-      srcSet,
-      ...imgProps,
-    },
-    className: classes.img,
-  });
-
-  const fallbackProps = useSlotProps({
-    elementType: AvatarFallback,
-    externalSlotProps: componentsProps.fallback,
-    ownerState,
-    className: classes.fallback,
-  });
-
   if (hasImgNotFailing) {
-    children = <AvatarImg {...imageProps} />;
+    children = <SlotImg {...imageProps} />;
   } else if (childrenProp != null) {
     children = childrenProp;
-  } else if (hasImg && alt) {
+  } else if (alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback {...fallbackProps} />;
+    children = <SlotFallback {...fallbackProps} />;
   }
 
-  const rootProps = useSlotProps({
-    elementType: AvatarRoot,
-    externalSlotProps: componentsProps.root,
-    ownerState,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
-    },
-    className: classes.root,
-  });
-
-  return <AvatarRoot {...rootProps}>{children}</AvatarRoot>;
+  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
 }) as OverridableComponent<AvatarTypeMap>;
 
 Avatar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
@@ -252,7 +254,7 @@ Avatar.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -260,20 +262,6 @@ Avatar.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the component.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
-   * It can be used to listen for the loading error event.
-   */
-  imgProps: PropTypes.object,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
@@ -283,6 +271,24 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['lg', 'md', 'sm']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    fallback: PropTypes.elementType,
+    img: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The `src` attribute for the `img` element.
    */
@@ -301,7 +307,7 @@ Avatar.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

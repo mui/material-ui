@@ -2,14 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { act, createRenderer, fireEvent, screen, reactMajor } from '@mui-internal/test-utils';
+import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import InputBase, { inputBaseClasses as classes } from '@mui/material/InputBase';
 import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from '@emotion/react';
+import describeConformance from '../../test/describeConformance';
 
 describe('<InputBase />', () => {
   const { render } = createRenderer();
@@ -21,7 +22,16 @@ describe('<InputBase />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
     testVariantProps: { size: 'small' },
-    skip: ['componentProp'],
+    testLegacyComponentsProp: true,
+    slots: {
+      // can't test with DOM element as InputBase places an ownerState prop on it unconditionally.
+      root: { expectedClassName: classes.root, testWithElement: null },
+      input: { expectedClassName: classes.input, testWithElement: null },
+    },
+    skip: [
+      'componentProp',
+      'slotPropsCallback', // not supported yet
+    ],
   }));
 
   it('should render an <input /> inside the div', () => {
@@ -119,6 +129,14 @@ describe('<InputBase />', () => {
         getByRole('textbox').focus();
       });
       expect(handleFocus.called).to.equal(false);
+    });
+
+    it('fires the click event when the <input /> is disabled', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<InputBase disabled onClick={handleClick} />);
+      const input = getByRole('textbox');
+      fireEvent.click(input);
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 
@@ -256,7 +274,7 @@ describe('<InputBase />', () => {
     });
 
     describe('errors', () => {
-      it('throws on change if the target isnt mocked', () => {
+      it("throws on change if the target isn't mocked", () => {
         /**
          * This component simulates a custom input component that hides the inner
          * input value for security reasons e.g. react-stripe-element.
@@ -279,16 +297,20 @@ describe('<InputBase />', () => {
 
         const triggerChangeRef = React.createRef();
 
+        const errorMessage =
+          'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.';
+
+        let expectedOccurrences = 1;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 2;
+        }
+
         expect(() => {
           render(
             <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
           );
-        }).toErrorDev([
-          'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-        ]);
+        }).toErrorDev(Array(expectedOccurrences).fill(errorMessage));
       });
     });
   });
@@ -500,6 +522,14 @@ describe('<InputBase />', () => {
 
     describe('registering input', () => {
       it("should warn if more than one input is rendered regardless how it's nested", () => {
+        const errorMessage =
+          'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.';
+
+        let expectedOccurrences = 1;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 2;
+        }
         expect(() => {
           render(
             <FormControl>
@@ -510,12 +540,7 @@ describe('<InputBase />', () => {
               </div>
             </FormControl>,
           );
-        }).toErrorDev([
-          'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
-        ]);
+        }).toErrorDev(Array(expectedOccurrences).fill(errorMessage));
       });
 
       it('should not warn if only one input is rendered', () => {
@@ -529,8 +554,8 @@ describe('<InputBase />', () => {
       });
 
       it('should not warn when toggling between inputs', () => {
-        // this will ensure that unregistering was called during unmount
-        const ToggleFormInputs = () => {
+        // this will ensure that deregistering was called during unmount
+        function ToggleFormInputs() {
           const [flag, setFlag] = React.useState(true);
 
           return (
@@ -547,7 +572,7 @@ describe('<InputBase />', () => {
               </button>
             </FormControl>
           );
-        };
+        }
 
         const { getByText } = render(<ToggleFormInputs />);
         expect(() => {

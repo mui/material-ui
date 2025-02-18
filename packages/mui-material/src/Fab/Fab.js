@@ -1,12 +1,13 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
   const { color, variant, classes, size } = ownerState;
@@ -20,12 +21,18 @@ const useUtilityClasses = (ownerState) => {
     ],
   };
 
-  return composeClasses(slots, getFabUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getFabUtilityClass, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
 const FabRoot = styled(ButtonBase, {
   name: 'MuiFab',
   slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
@@ -69,11 +76,6 @@ const FabRoot = styled(ButtonBase, {
     },
     [`&.${fabClasses.focusVisible}`]: {
       boxShadow: (theme.vars || theme).shadows[6],
-    },
-    [`&.${fabClasses.disabled}`]: {
-      color: (theme.vars || theme).palette.action.disabled,
-      boxShadow: (theme.vars || theme).shadows[0],
-      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
     },
     ...(ownerState.size === 'small' && {
       width: 40,
@@ -126,10 +128,17 @@ const FabRoot = styled(ButtonBase, {
         },
       }),
   }),
+  ({ theme }) => ({
+    [`&.${fabClasses.disabled}`]: {
+      color: (theme.vars || theme).palette.action.disabled,
+      boxShadow: (theme.vars || theme).shadows[0],
+      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+    },
+  }),
 );
 
 const Fab = React.forwardRef(function Fab(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiFab' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiFab' });
   const {
     children,
     className,
@@ -165,6 +174,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       {...other}
+      classes={classes}
     >
       {children}
     </FabRoot>
@@ -172,10 +182,10 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
 });
 
 Fab.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -191,7 +201,7 @@ Fab.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

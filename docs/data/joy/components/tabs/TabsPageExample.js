@@ -5,131 +5,86 @@ import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
-import Typography from '@mui/joy/Typography';
-import Input from '@mui/joy/Input';
-import SearchRounded from '@mui/icons-material/SearchRounded';
 
 export default function TabsPageExample() {
   const [index, setIndex] = React.useState(0);
   return (
     <Box
       sx={{
-        bgcolor: 'background.body',
         flexGrow: 1,
-        m: -3,
-        p: 3,
+        m: -2,
         overflowX: 'hidden',
-        borderRadius: 'md',
       }}
     >
       <Tabs
         aria-label="Pipeline"
         value={index}
         onChange={(event, value) => setIndex(value)}
-        sx={{ '--Tabs-gap': '0px', maxWidth: 400, mx: 'auto' }}
       >
         <TabList
-          variant="plain"
           sx={{
-            alignSelf: 'flex-start',
-            [`& .${tabClasses.root}`]: {
+            pt: 1,
+            justifyContent: 'center',
+            [`&& .${tabClasses.root}`]: {
+              flex: 'initial',
               bgcolor: 'transparent',
-              boxShadow: 'none',
               '&:hover': {
                 bgcolor: 'transparent',
               },
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
-                fontWeight: 'lg',
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  zIndex: 1,
-                  bottom: '-1px',
-                  left: 'var(--List-item-paddingLeft)',
-                  right: 'var(--List-item-paddingRight)',
-                  height: '3px',
-                  borderTopLeftRadius: '3px',
-                  borderTopRightRadius: '3px',
+                '&::after': {
+                  height: 2,
+                  borderTopLeftRadius: 3,
+                  borderTopRightRadius: 3,
                   bgcolor: 'primary.500',
                 },
               },
             },
           }}
         >
-          <Tab>
+          <Tab indicatorInset>
             Deals{' '}
             <Chip
               size="sm"
               variant="soft"
               color={index === 0 ? 'primary' : 'neutral'}
-              sx={{ ml: 1 }}
             >
               14
             </Chip>
           </Tab>
-          <Tab>
+          <Tab indicatorInset>
             Library{' '}
             <Chip
               size="sm"
               variant="soft"
               color={index === 1 ? 'primary' : 'neutral'}
-              sx={{ ml: 1 }}
             >
-              24
+              20
             </Chip>
           </Tab>
-          <Tab>Search library</Tab>
+          <Tab indicatorInset>
+            Products{' '}
+            <Chip
+              size="sm"
+              variant="soft"
+              color={index === 2 ? 'primary' : 'neutral'}
+            >
+              8
+            </Chip>
+          </Tab>
         </TabList>
         <Box
           sx={(theme) => ({
-            '--bg': theme.vars.palette.background.level3,
-            height: '1px',
+            '--bg': theme.vars.palette.background.surface,
             background: 'var(--bg)',
             boxShadow: '0 0 0 100vmax var(--bg)',
             clipPath: 'inset(0 -100vmax)',
-          })}
-        />
-        <Box
-          sx={(theme) => ({
-            '--bg': theme.vars.palette.background.level1,
-            background: 'var(--bg)',
-            boxShadow: '0 0 0 100vmax var(--bg)',
-            clipPath: 'inset(0 -100vmax)',
-            px: 1.5,
-            py: 2,
           })}
         >
-          <TabPanel value={0}>
-            <Typography
-              level="h1"
-              component="div"
-              fontSize="xl2"
-              mb={2}
-              textColor="text.secondary"
-            >
-              Deals
-            </Typography>
-          </TabPanel>
-          <TabPanel value={1}>
-            <Typography
-              level="h1"
-              component="div"
-              fontSize="xl2"
-              mb={2}
-              textColor="text.secondary"
-            >
-              Library
-            </Typography>
-          </TabPanel>
-          <TabPanel value={2}>
-            <Input
-              autoFocus
-              placeholder="type a library..."
-              startDecorator={<SearchRounded />}
-            />
-          </TabPanel>
+          <TabPanel value={0}>Deals</TabPanel>
+          <TabPanel value={1}>Library</TabPanel>
+          <TabPanel value={2}>Products</TabPanel>
         </Box>
       </Tabs>
     </Box>

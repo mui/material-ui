@@ -1,0 +1,53 @@
+{
+  "props": {
+    "action": {
+      "type": {
+        "name": "union",
+        "description": "func<br>&#124;&nbsp;{ current?: { focusVisible: func } }"
+      }
+    },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "onChange": { "type": { "name": "func" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+  },
+  "name": "Tab",
+  "imports": ["import { Tab } from '@mui/base/Tab';", "import { Tab } from '@mui/base';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'button'",
+      "class": "base-Tab-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "disabled",
+      "className": "base--disabled",
+      "description": "State class applied to the root `button` element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "selected",
+      "className": "base--selected",
+      "description": "State class applied to the root `button` element if `selected={true}`.",
+      "isGlobal": true
+    }
+  ],
+  "spread": true,
+  "muiName": "Tab",
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/mui-base/src/Tab/Tab.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

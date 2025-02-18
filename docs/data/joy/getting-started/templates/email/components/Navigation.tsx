@@ -1,63 +1,29 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Typography from '@mui/joy/Typography';
-import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
+import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 
-// Icons import
 import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
-export default function EmailNav() {
+export default function Navigation() {
   return (
-    <List size="sm" sx={{ '--List-item-radius': '8px' }}>
-      <ListItem nested sx={{ p: 0 }}>
-        <Box
-          sx={{
-            mb: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Typography
-            id="nav-list-browse"
-            textColor="neutral.500"
-            fontWeight={700}
-            sx={{
-              fontSize: '10px',
-              textTransform: 'uppercase',
-              letterSpacing: '.1rem',
-            }}
-          >
-            Browse
-          </Typography>
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px' }}
-          >
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </Box>
-        <List
-          aria-labelledby="nav-list-browse"
-          sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
-        >
+    <List size="sm" sx={{ '--ListItem-radius': '8px', '--List-gap': '4px' }}>
+      <ListItem nested>
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
+          Browse
+        </ListSubheader>
+        <List aria-labelledby="nav-list-browse">
           <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
+            <ListItemButton selected>
+              <ListItemDecorator>
                 <InboxRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Inbox</ListItemContent>
@@ -65,7 +31,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <OutboxRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Sent</ListItemContent>
@@ -73,7 +39,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <DraftsRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Draft</ListItemContent>
@@ -81,7 +47,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <AssistantPhotoRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Flagged</ListItemContent>
@@ -89,7 +55,7 @@ export default function EmailNav() {
           </ListItem>
           <ListItem>
             <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ListItemDecorator>
                 <DeleteRoundedIcon fontSize="small" />
               </ListItemDecorator>
               <ListItemContent>Trash</ListItemContent>
@@ -97,43 +63,15 @@ export default function EmailNav() {
           </ListItem>
         </List>
       </ListItem>
-      <ListItem nested>
-        <Box
-          sx={{
-            mt: 2,
-            mb: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Typography
-            id="nav-list-tags"
-            textColor="neutral.500"
-            fontWeight={700}
-            sx={{
-              fontSize: '10px',
-              textTransform: 'uppercase',
-              letterSpacing: '.1rem',
-            }}
-          >
-            Tags
-          </Typography>
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px' }}
-          >
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </Box>
+      <ListItem nested sx={{ mt: 2 }}>
+        <ListSubheader sx={{ letterSpacing: '2px', fontWeight: '800' }}>
+          Tags
+        </ListSubheader>
         <List
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
-            '--List-decorator-size': '32px',
-            '& .JoyListItemButton-root': { p: '8px' },
+            '--ListItemDecorator-size': '32px',
           }}
         >
           <ListItem>
@@ -144,7 +82,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'primary.300',
+                    bgcolor: 'primary.500',
                   }}
                 />
               </ListItemDecorator>
@@ -159,7 +97,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'danger.300',
+                    bgcolor: 'danger.500',
                   }}
                 />
               </ListItemDecorator>
@@ -174,7 +112,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'warning.200',
+                    bgcolor: 'warning.400',
                   }}
                 />
               </ListItemDecorator>
@@ -189,7 +127,7 @@ export default function EmailNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'success.300',
+                    bgcolor: 'success.400',
                   }}
                 />
               </ListItemDecorator>

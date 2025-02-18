@@ -22,7 +22,7 @@ const commonColors = [
  * @param {string} colorIdentifier
  */
 function colorAccent(colorIdentifier) {
-  const [, palette, hue] = colorIdentifier.match(/([A-za-z]+?)(A?\d+)?$/);
+  const [, palette, hue] = colorIdentifier.match(/([A-Za-z]+?)(A?\d+)?$/);
   return { palette, hue };
 }
 

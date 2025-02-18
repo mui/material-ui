@@ -1,8 +1,9 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useThemeProps from '../styles/useThemeProps';
+import composeClasses from '@mui/utils/composeClasses';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import { getToolbarUtilityClass } from './toolbarClasses';
 
@@ -45,7 +46,7 @@ const ToolbarRoot = styled('div', {
 );
 
 const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiToolbar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiToolbar' });
   const {
     className,
     component = 'div',
@@ -75,13 +76,13 @@ const Toolbar = React.forwardRef(function Toolbar(inProps, ref) {
 });
 
 Toolbar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
-   * The Toolbar is a flex container, allowing flex item properites to be used to lay out the children.
+   * The Toolbar is a flex container, allowing flex item properties to be used to lay out the children.
    */
   children: PropTypes.node,
   /**

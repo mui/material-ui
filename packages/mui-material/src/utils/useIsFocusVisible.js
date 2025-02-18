@@ -1,3 +1,4 @@
-import { unstable_useIsFocusVisible as useIsFocusVisible } from '@mui/utils';
+'use client';
+import useIsFocusVisible from '@mui/utils/useIsFocusVisible';
 
 export default useIsFocusVisible;

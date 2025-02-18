@@ -1,38 +1,27 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "activeStep": "Set the active step (zero based index). Defines which dot is highlighted when the variant is &#39;dots&#39;.",
-    "backButton": "A back button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "LinearProgressProps": "Props applied to the <code>LinearProgress</code> element.",
-    "nextButton": "A next button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>.",
-    "position": "Set the positioning type.",
-    "steps": "The total steps.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "activeStep": {
+      "description": "Set the active step (zero based index). Defines which dot is highlighted when the variant is &#39;dots&#39;."
+    },
+    "backButton": {
+      "description": "A back button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>."
+    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "LinearProgressProps": {
+      "description": "Props applied to the <code>LinearProgress</code> element."
+    },
+    "nextButton": {
+      "description": "A next button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>."
+    },
+    "position": { "description": "Set the positioning type." },
+    "steps": { "description": "The total steps." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "positionBottom": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"bottom\"</code>"
-    },
-    "positionTop": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"top\"</code>"
-    },
-    "positionStatic": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"static\"</code>"
-    },
-    "dots": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the dots container",
-      "conditions": "<code>variant=\"dots\"</code>"
-    },
     "dot": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "each dot",
@@ -43,10 +32,31 @@
       "nodeName": "a dot",
       "conditions": "<code>variant=\"dots\"</code> and this is the active step"
     },
+    "dots": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the dots container",
+      "conditions": "<code>variant=\"dots\"</code>"
+    },
+    "positionBottom": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"bottom\"</code>"
+    },
+    "positionStatic": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"static\"</code>"
+    },
+    "positionTop": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"top\"</code>"
+    },
     "progress": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Linear Progress component",
       "conditions": "<code>variant=\"progress\"</code>"
-    }
+    },
+    "root": { "description": "Styles applied to the root element." }
   }
 }

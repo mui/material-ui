@@ -1,12 +1,13 @@
 ---
-title: Give your users more freedom with data grid row grouping
+title: Give your users more freedom with Data Grid row grouping
 description: The new row grouping feature gives your users more customization options for organizing their data.
 date: 2022-01-20T00:00:00.000Z
 authors: ['alexfauquette']
-tags: ['MUI X', 'News']
+tags: ['MUI X', 'Product']
+manualCard: true
 ---
 
-After an incredible year fully focused on improving our data grid component, we are moving forward by launching the first feature of our new Premium plan: [row grouping](/x/react-data-grid/row-grouping/), released in [v5.3.0](https://github.com/mui/mui-x/releases/tag/v5.3.0).
+After an incredible year fully focused on improving our Data Grid component, we are moving forward by launching the first feature of our new Premium plan: [row grouping](/x/react-data-grid/row-grouping/), released in [v5.3.0](https://github.com/mui/mui-x/releases/tag/v5.3.0).
 
 Let's take a closer look at this feature.
 

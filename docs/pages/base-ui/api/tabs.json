@@ -1,0 +1,57 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "defaultValue": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "direction": {
+      "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
+      "default": "'ltr'"
+    },
+    "onChange": { "type": { "name": "func" } },
+    "orientation": {
+      "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
+      "default": "'horizontal'"
+    },
+    "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "slotProps": {
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ root?: elementType }" },
+      "default": "{}",
+      "additionalInfo": { "slotsApi": true }
+    },
+    "value": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } }
+  },
+  "name": "Tabs",
+  "imports": ["import { Tabs } from '@mui/base/Tabs';", "import { Tabs } from '@mui/base';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "'div'",
+      "class": "base-Tabs-root"
+    }
+  ],
+  "classes": [
+    {
+      "key": "horizontal",
+      "className": "base-Tabs-horizontal",
+      "description": "Class name applied to the root element if `orientation='horizontal'`.",
+      "isGlobal": false
+    },
+    {
+      "key": "vertical",
+      "className": "base-Tabs-vertical",
+      "description": "Class name applied to the root element if `orientation='vertical'`.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "muiName": "Tabs",
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/Tabs/Tabs.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-tabs/\">Tabs</a></li></ul>",
+  "cssComponent": false
+}

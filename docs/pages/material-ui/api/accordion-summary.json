@@ -1,36 +1,76 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "expandIcon": { "type": { "name": "node" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
     "sx": {
       "type": {
         "name": "union",
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
-      }
+      },
+      "additionalInfo": { "sx": true }
     }
   },
   "name": "AccordionSummary",
-  "styles": {
-    "classes": [
-      "root",
-      "expanded",
-      "focusVisible",
-      "disabled",
-      "gutters",
-      "contentGutters",
-      "content",
-      "expandIconWrapper"
-    ],
-    "globalClasses": {
-      "expanded": "Mui-expanded",
-      "focusVisible": "Mui-focusVisible",
-      "disabled": "Mui-disabled"
+  "imports": [
+    "import AccordionSummary from '@mui/material/AccordionSummary';",
+    "import { AccordionSummary } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "content",
+      "className": "MuiAccordionSummary-content",
+      "description": "Styles applied to the children wrapper element.",
+      "isGlobal": false
     },
-    "name": "MuiAccordionSummary"
-  },
+    {
+      "key": "contentGutters",
+      "className": "MuiAccordionSummary-contentGutters",
+      "description": "Styles applied to the children wrapper element unless `disableGutters={true}`.",
+      "isGlobal": false,
+      "isDeprecated": true
+    },
+    {
+      "key": "disabled",
+      "className": "Mui-disabled",
+      "description": "State class applied to the root element if `disabled={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expanded",
+      "className": "Mui-expanded",
+      "description": "State class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.",
+      "isGlobal": true
+    },
+    {
+      "key": "expandIconWrapper",
+      "className": "MuiAccordionSummary-expandIconWrapper",
+      "description": "Styles applied to the `expandIcon`'s wrapper element.",
+      "isGlobal": false
+    },
+    {
+      "key": "focusVisible",
+      "className": "Mui-focusVisible",
+      "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
+      "isGlobal": true
+    },
+    {
+      "key": "gutters",
+      "className": "MuiAccordionSummary-gutters",
+      "description": "Styles applied to the root element unless `disableGutters={true}`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiAccordionSummary-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
   "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiAccordionSummary",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AccordionSummary/AccordionSummary.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },

@@ -1,17 +1,22 @@
 [
   {
-    "id": 64,
-    "title": "<b>Premium passengers, please proceed to the boarding gate</b> 🚀",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/premium-plan-release/\">Check out our blog post</a> introducing the MUI X Premium plan, and the new licensing model."
+    "id": 68,
+    "title": "Check out Base UI today 💥",
+    "text": "Love Material UI, but don't need Material Design? Try Base UI, the new \"unstyled\" alternative. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-base-ui\" href=\"/blog/introducing-base-ui/\">Read more in this announcement</a>."
   },
   {
-    "id": 65,
-    "title": "<b>Get a first look at Joy UI</b> 🚀",
-    "text": "Joy UI is MUI's new starting point for your design system. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out the blog post</a> to see what's in store for this new library."
+    "id": 78,
+    "title": "MUI X v6.18.x and the latest improvements before the next major",
+    "text": "New stable components, polished features, better performance and more. Check out the details in our <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-end-v6\" href=\"https://mui.com/blog/mui-x-end-v6-features/\">recent blog post</a>."
   },
   {
-    "id": 67,
-    "title": "<b>Aggregate data like in Excel, but easier!</b>",
-    "text": "Aggregation functions and summary rows are now available in the MUI X Premium Data Grid. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"aggregation-functions\" href=\"/blog/aggregation-functions/\">Check out our blog post</a>."
+    "id": 81,
+    "title": "Introducing MUI X v7",
+    "text": "This new version is packed with new components, exciting features, improved usability, and developer experience. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v7\" href=\"https://mui.com/blog/mui-x-v7/\">announcement blog post</a>."
+  },
+  {
+    "id": 82,
+    "title": "Upcoming changes to MUI X pricing in 2024",
+    "text": "Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x\" href=\"https://mui.com/blog/mui-x-sep-2024-price-update/\">new pricing updates</a> and how to transition to the new model."
   }
 ]

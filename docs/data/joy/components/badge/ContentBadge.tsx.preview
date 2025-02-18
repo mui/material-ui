@@ -4,3 +4,6 @@
 <Badge badgeContent="❕">
   <Typography fontSize="xl">🔔</Typography>
 </Badge>
+<Badge variant="plain" color="danger" badgeContent={<Warning />}>
+  <Typography fontSize="xl">🪫</Typography>
+</Badge>

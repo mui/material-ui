@@ -15,26 +15,21 @@ import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 export default function DribbbleShot() {
   return (
     <Card
+      variant="plain"
       sx={{
-        minWidth: 300,
+        width: 300,
         bgcolor: 'initial',
-        boxShadow: 'none',
-        '--Card-padding': '0px',
+        p: 0,
       }}
     >
       <Box sx={{ position: 'relative' }}>
         <AspectRatio ratio="4/3">
           <figure>
             <img
+              src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?auto=format&fit=crop&w=300"
+              srcSet="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?auto=format&fit=crop&w=300&dpr=2 2x"
+              loading="lazy"
               alt="Yosemite by Casey Horner"
-              width="330"
-              height="247"
-              sizes="338px"
-              data-sizes="auto"
-              data-srcset="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
-              data-src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
-              src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
-              srcSet="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
             />
           </figure>
         </AspectRatio>
@@ -51,7 +46,7 @@ export default function DribbbleShot() {
           }}
         >
           {/* The first box acts as a container that inherits style from the CardCover */}
-          <Box>
+          <div>
             <Box
               sx={{
                 p: 2,
@@ -77,17 +72,27 @@ export default function DribbbleShot() {
                   Yosemite
                 </Link>
               </Typography>
-              <IconButton size="sm" color="neutral" sx={{ ml: 'auto' }}>
+              <IconButton
+                size="sm"
+                variant="solid"
+                color="neutral"
+                sx={{ ml: 'auto', bgcolor: 'rgba(0 0 0 / 0.2)' }}
+              >
                 <CreateNewFolder />
               </IconButton>
-              <IconButton size="sm" color="neutral">
+              <IconButton
+                size="sm"
+                variant="solid"
+                color="neutral"
+                sx={{ bgcolor: 'rgba(0 0 0 / 0.2)' }}
+              >
                 <Favorite />
               </IconButton>
             </Box>
-          </Box>
+          </div>
         </CardCover>
       </Box>
-      <Box sx={{ display: 'flex', gap: 1, mt: 1.5, alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Avatar
           src="https://images.unsplash.com/profile-1502669002421-a8d274ad2897?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"
           size="sm"
@@ -110,7 +115,7 @@ export default function DribbbleShot() {
         </Chip>
         <Link
           href="#dribbble-shot"
-          level="body3"
+          level="body-xs"
           underline="none"
           startDecorator={<Favorite />}
           sx={{
@@ -124,7 +129,7 @@ export default function DribbbleShot() {
         </Link>
         <Link
           href="#dribbble-shot"
-          level="body3"
+          level="body-xs"
           underline="none"
           startDecorator={<Visibility />}
           sx={{

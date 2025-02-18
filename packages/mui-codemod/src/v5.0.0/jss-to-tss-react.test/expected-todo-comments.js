@@ -5,7 +5,7 @@ any comments that they get combined with.
 /*
 Comments that should not be lost when the clsx import comments are preserved.
  */
-import React from "react";
+import * as React from "react";
 import { makeStyles } from 'tss-react/mui';
 
 // TODO jss-to-tss-react codemod: Unable to handle style definition reliably. ArrowFunctionExpression in CSS prop.
@@ -29,7 +29,7 @@ export const useExportedStyles = makeStyles()({
 });
 
 // TODO jss-to-tss-react codemod: Unable to handle style definition reliably. Unsupported arrow function syntax.
-// Arrow function has parameter type of Identifier instead of ObjectPattern (e.g. `(props) => ({...})` instead of `({color}) => ({...})`).
+// Arrow function has parameter type of Identifier instead of ObjectPattern (for example `(props) => ({...})` instead of `({color}) => ({...})`).
 const useStyles2 = makeStyles()({
   test2: props => ({
     backgroundColor: "blue",

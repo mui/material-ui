@@ -2,11 +2,20 @@ import * as React from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import { Stack, Unstable_Grid as Grid } from '@mui/system';
+import Grid from '@mui/system/Unstable_Grid';
+import Stack from '@mui/system/Stack';
+import { styled } from '@mui/system';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+
+const Item = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#262B32' : '#fff',
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  borderRadius: 4,
+}));
 
 export default function InteractiveStack() {
   const [direction, setDirection] = React.useState('row');
@@ -33,20 +42,16 @@ export default function InteractiveStack() {
         sx={{ height: 240 }}
       >
         {[0, 1, 2].map((value) => (
-          <Paper
+          <Item
             key={value}
             sx={{
               p: 2,
               pt: value + 1,
               pb: value + 1,
-              color: 'text.secondary',
-              typography: 'body2',
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
             }}
           >
             {`Item ${value + 1}`}
-          </Paper>
+          </Item>
         ))}
       </Stack>
       <Paper sx={{ p: 2 }}>

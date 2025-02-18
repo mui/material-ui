@@ -4,11 +4,12 @@ description: Here are the most significant improvements in June.
 date: 2019-07-08T00:00:00.000Z
 authors: ['oliviertassinari']
 tags: ['Company']
+manualCard: true
 ---
 
 Here are the most significant improvements in June:
 
-- 💄 We have introduced a new [ButtonGroup](/material-ui/react-button/#grouped-buttons) component.
+- 💄 We have introduced a new [ButtonGroup](/material-ui/react-button-group/) component.
   ![ButtonGroup](/static/blog/june-2019-update/button-group.png)
 
 - 💄 The [Slider](/material-ui/react-slider/) component has been overhauled and enhanced with range support. It was also moved from the lab to the core.

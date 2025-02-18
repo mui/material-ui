@@ -7,10 +7,12 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 
 export default function GradientCover() {
   return (
-    <Card sx={{ minHeight: '280px', minWidth: 320 }}>
+    <Card sx={{ minHeight: '280px', width: 320 }}>
       <CardCover>
         <img
-          src="https://images.unsplash.com/photo-1542773998-9325f0a098d7?crop=entropy&auto=format&fit=crop&w=3271"
+          src="https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320"
+          srcSet="https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320&dpr=2 2x"
+          loading="lazy"
           alt=""
         />
       </CardCover>
@@ -21,7 +23,7 @@ export default function GradientCover() {
         }}
       />
       <CardContent sx={{ justifyContent: 'flex-end' }}>
-        <Typography level="h2" fontSize="lg" textColor="#fff" mb={1}>
+        <Typography level="title-lg" textColor="#fff">
           Yosemite National Park
         </Typography>
         <Typography

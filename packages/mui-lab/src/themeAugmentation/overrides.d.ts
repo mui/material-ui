@@ -1,4 +1,5 @@
 import { LoadingButtonClassKey } from '../LoadingButton';
+import { MasonryClassKey } from '../Masonry';
 import { TabListClassKey } from '../TabList';
 import { TabPanelClassKey } from '../TabPanel';
 import { TimelineClassKey } from '../Timeline';
@@ -8,12 +9,11 @@ import { TimelineDotClassKey } from '../TimelineDot';
 import { TimelineItemClassKey } from '../TimelineItem';
 import { TimelineOppositeContentClassKey } from '../TimelineOppositeContent';
 import { TimelineSeparatorClassKey } from '../TimelineSeparator';
-import { TreeItemClassKey } from '../TreeItem';
-import { TreeViewClassKey } from '../TreeView';
 
 // prettier-ignore
 export interface LabComponentNameToClassKey {
   MuiLoadingButton: LoadingButtonClassKey;
+  MuiMasonry: MasonryClassKey;
   MuiTabList: TabListClassKey;
   MuiTabPanel: TabPanelClassKey;
   MuiTimeline: TimelineClassKey;
@@ -23,8 +23,6 @@ export interface LabComponentNameToClassKey {
   MuiTimelineItem: TimelineItemClassKey;
   MuiTimelineOppositeContent: TimelineOppositeContentClassKey;
   MuiTimelineSeparator: TimelineSeparatorClassKey;
-  MuiTreeItem: TreeItemClassKey;
-  MuiTreeView: TreeViewClassKey;
 }
 
 declare module '@mui/material/styles' {

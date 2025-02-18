@@ -1,6 +1,7 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import GlobalStyles from '../GlobalStyles';
 
 export const html = (theme, enableColorScheme) => ({
@@ -11,7 +12,8 @@ export const html = (theme, enableColorScheme) => ({
   boxSizing: 'border-box',
   // Fix font resize problem in iOS
   WebkitTextSizeAdjust: '100%',
-  ...(enableColorScheme && { colorScheme: theme.palette.mode }),
+  // When used under CssVarsProvider, colorScheme should not be applied dynamically because it will generate the stylesheet twice for server-rendered applications.
+  ...(enableColorScheme && !theme.vars && { colorScheme: theme.palette.mode }),
 });
 
 export const body = (theme) => ({
@@ -25,6 +27,14 @@ export const body = (theme) => ({
 });
 
 export const styles = (theme, enableColorScheme = false) => {
+  const colorSchemeStyles = {};
+  if (enableColorScheme && theme.colorSchemes) {
+    Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
+      colorSchemeStyles[theme.getColorSchemeSelector(key).replace(/\s*&/, '')] = {
+        colorScheme: scheme.palette?.mode,
+      };
+    });
+  }
   let defaultStyles = {
     html: html(theme, enableColorScheme),
     '*, *::before, *::after': {
@@ -42,6 +52,7 @@ export const styles = (theme, enableColorScheme = false) => {
         backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
+    ...colorSchemeStyles,
   };
 
   const themeOverrides = theme.components?.MuiCssBaseline?.styleOverrides;
@@ -56,7 +67,7 @@ export const styles = (theme, enableColorScheme = false) => {
  * Kickstart an elegant, consistent, and simple baseline to build upon.
  */
 function CssBaseline(inProps) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCssBaseline' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCssBaseline' });
   const { children, enableColorScheme = false } = props;
   return (
     <React.Fragment>
@@ -67,10 +78,10 @@ function CssBaseline(inProps) {
 }
 
 CssBaseline.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * You can wrap a node.
    */

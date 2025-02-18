@@ -1,0 +1,30 @@
+{
+  "props": {
+    "open": { "type": { "name": "bool" }, "required": true },
+    "children": { "type": { "name": "custom", "description": "element" } },
+    "disableAutoFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableEnforceFocus": { "type": { "name": "bool" }, "default": "false" },
+    "disableRestoreFocus": { "type": { "name": "bool" }, "default": "false" },
+    "getTabbable": {
+      "type": { "name": "func" },
+      "signature": { "type": "function(root: HTMLElement) => void", "describedArgs": [] }
+    },
+    "isEnabled": {
+      "type": { "name": "func" },
+      "default": "function defaultIsEnabled(): boolean {\n  return true;\n}"
+    }
+  },
+  "name": "FocusTrap",
+  "imports": [
+    "import { FocusTrap } from '@mui/base/FocusTrap';",
+    "import { FocusTrap } from '@mui/base';"
+  ],
+  "classes": [],
+  "spread": false,
+  "themeDefaultProps": null,
+  "muiName": "FocusTrap",
+  "filename": "/packages/mui-base/src/FocusTrap/FocusTrap.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base-ui/react-focus-trap/\">Focus Trap</a></li></ul>",
+  "cssComponent": false
+}

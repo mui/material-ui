@@ -1,150 +1,195 @@
 import * as React from 'react';
+import { CSSObject } from '@mui/system';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
-// override theme
-<CssVarsProvider
-  theme={extendTheme({
-    fontFamily: {
-      body: '"Rubik", sans-serif',
-    },
-    // @ts-expect-error 'color' does not exist in JoyTheme
-    color: {},
-  })}
-/>;
+// -----------------------------------
+// Extending palette
 
-// extends PaletteRange
 declare module '@mui/joy/styles' {
-  interface PaletteRange {
-    1000: string;
+  interface ColorSchemeOverrides {
+    trueDark: true;
   }
-}
 
-// extends Palette
-declare module '@mui/joy/styles' {
   interface Palette {
     secondary: PaletteRange;
   }
-}
 
-// extends ColorSystem
-declare module '@mui/joy/styles' {
-  interface ColorSystem {
-    bgcolor: string;
+  interface PaletteRange {
+    1000: string;
+  }
+
+  interface PaletteRangeOverrides {
+    100: false;
+    120: true;
   }
 }
 
-// extends Radius
-declare module '@mui/joy/styles' {
-  interface Radius {
-    xxxs: string;
-  }
+function App() {
+  return <CssVarsProvider />;
 }
 
-// extends FontSize
-declare module '@mui/joy/styles' {
-  interface FontSize {
-    xxxs: string;
-  }
+function App2() {
+  // @ts-expect-error theme can't be empty
+  return <CssVarsProvider theme={{}} />;
 }
 
-// extends FontFamily
-declare module '@mui/joy/styles' {
-  interface FontFamily {
-    secondary: string;
-  }
-}
-
-// extends FontWeight
-declare module '@mui/joy/styles' {
-  interface FontWeight {
-    xxxs: string;
-  }
-}
-
-// extends LineHeight
-declare module '@mui/joy/styles' {
-  interface LineHeight {
-    xxxs: string;
-  }
-}
-
-// extends TypographySystem
-declare module '@mui/joy/styles' {
-  interface TypographySystem {
-    ads: React.CSSProperties;
-  }
-}
-
-const extendedTheme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          1000: '',
-        },
-        neutral: {
-          500: '',
-        },
-      },
-      bgcolor: '',
-    },
-  },
-  radius: {
-    xxxs: '',
-  },
-  fontSize: {
-    xxxs: '',
-  },
-  fontFamily: {
-    secondary: '',
-  },
-  fontWeight: {
-    xxxs: '',
-  },
-  lineHeight: {
-    xxxs: '',
-  },
-  typography: {
-    ads: {
-      fontFamily: 'var(--joy-fontFamily-secondary)',
-      fontSize: '1rem',
-      lineHeight: 1,
-    },
-  },
-  components: {
-    JoyButton: {
-      styleOverrides: {
-        root: ({ ownerState, theme }) => {
-          const { color, variant } = ownerState;
-          const styles = [];
-          if (color === 'primary') {
-            styles.push({
-              width: 120,
-              height: 48,
-            });
-          }
-          if (variant === 'outlined') {
-            styles.push(theme.typography.body1);
-          }
-          return styles;
-        },
-      },
-    },
-    JoySwitch: {
-      styleOverrides: {
-        thumb: ({ ownerState, theme }) => [
-          ownerState.color === 'primary' && {
-            '&:hover': {
-              backgroundColor: theme.vars.palette.primary.outlinedHoverBg,
+function App3() {
+  return (
+    <CssVarsProvider
+      theme={extendTheme({
+        colorSchemes: {
+          // `trueDark` is extended
+          trueDark: {
+            palette: {
+              primary: {
+                500: '',
+              },
             },
           },
-        ],
-      },
-    },
-  },
-});
+        },
+      })}
+    />
+  );
+}
 
-extendedTheme.getCssVar('fontSize-xxxs');
-extendedTheme.getCssVar('palette-secondary-solidBg');
+function App4() {
+  return (
+    <CssVarsProvider
+      theme={extendTheme({
+        colorSchemes: {
+          // @ts-expect-error `yellow` is not listed in ExtendedColorSchemes
+          yellow: {},
+        },
+      })}
+    />
+  );
+}
 
-<CssVarsProvider theme={extendedTheme} />;
+function App5() {
+  return (
+    <CssVarsProvider
+      theme={extendTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              primary: {
+                1000: '#000',
+              },
+              secondary: {
+                // @ts-expect-error `100` is removed
+                100: '',
+                120: '#ff5252',
+              },
+            },
+          },
+        },
+      })}
+    />
+  );
+}
+
+// -----------------------------------
+// Extending radius
+
+declare module '@mui/joy/styles' {
+  interface Radius {
+    xl2: string;
+  }
+}
+
+function App6() {
+  return (
+    <CssVarsProvider
+      theme={extendTheme({
+        radius: {
+          xl2: '20px',
+        },
+      })}
+    />
+  );
+}
+
+// -----------------------------------
+// Extending shadow
+
+declare module '@mui/joy/styles' {
+  interface Shadow {
+    xl2: string;
+  }
+}
+
+function App7() {
+  return (
+    <CssVarsProvider
+      theme={extendTheme({
+        shadow: {
+          xl2: '0 0 20px 1px rgba(0,0,0,0.12)',
+        },
+      })}
+    />
+  );
+}
+
+// -----------------------------------
+// Extending focus
+
+declare module '@mui/joy/styles' {
+  interface Focus {
+    bordered: CSSObject;
+  }
+}
+
+function App8() {
+  return (
+    <CssVarsProvider
+      theme={extendTheme({
+        focus: {
+          bordered: {
+            '&::after': {
+              position: 'absolute',
+              inset: '2px',
+              outline: '1px solid',
+              outlineColor: 'var(--token)',
+            },
+          },
+        },
+      })}
+    />
+  );
+}
+
+// -----------------------------------
+// Extending typography
+
+declare module '@mui/joy/styles' {
+  interface TypographySystemOverrides {
+    callout: true; // add new typography
+    h1: false; // default the default
+  }
+}
+
+function App9() {
+  return (
+    <React.Fragment>
+      <CssVarsProvider
+        theme={extendTheme({
+          typography: {
+            callout: {
+              fontSize: '12px',
+            },
+          },
+        })}
+      />
+      <CssVarsProvider
+        theme={extendTheme({
+          typography: {
+            // @ts-expect-error 'h1' is removed
+            h1: {
+              fontSize: '12px',
+            },
+          },
+        })}
+      />
+    </React.Fragment>
+  );
+}

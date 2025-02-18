@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
@@ -20,7 +21,7 @@ const useUtilityClasses = (ownerState) => {
 
 // var2 is the fallback.
 // Ex. var1: 'var(--a)', var2: 'var(--b)'; return: 'var(--a, var(--b))'
-const joinVars = (var1, var2) => `${var1?.replace(')', '')}, ${var2})`;
+const joinVars = (var1, var2) => (var1 ? `${var1?.replace(')', '')}, ${var2})` : var2);
 
 const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',
@@ -125,7 +126,9 @@ const AppBarRoot = styled(Paper, {
                 theme.vars.palette[ownerState.color].contrastText,
               ),
         }),
-      backgroundColor: 'var(--AppBar-background)',
+      ...(!['inherit', 'transparent'].includes(ownerState.color) && {
+        backgroundColor: 'var(--AppBar-background)',
+      }),
       color: ownerState.color === 'inherit' ? 'inherit' : 'var(--AppBar-color)',
       ...(ownerState.color === 'transparent' && {
         backgroundImage: 'none',
@@ -137,7 +140,7 @@ const AppBarRoot = styled(Paper, {
 });
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiAppBar' });
   const {
     className,
     color = 'primary',
@@ -175,10 +178,10 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
 });
 
 AppBar.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component.
    */
@@ -194,11 +197,21 @@ AppBar.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
+    PropTypes.oneOf([
+      'default',
+      'inherit',
+      'primary',
+      'secondary',
+      'transparent',
+      'error',
+      'info',
+      'success',
+      'warning',
+    ]),
     PropTypes.string,
   ]),
   /**

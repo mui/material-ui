@@ -1,16 +1,34 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "actionIcon": "An IconButton element to be used as secondary action target (primary action target is the item itself).",
-    "actionPosition": "Position of secondary action IconButton.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "position": "Position of the title bar.",
-    "subtitle": "String or element serving as subtitle (support text).",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "title": "Title to be displayed."
+    "actionIcon": {
+      "description": "An IconButton element to be used as secondary action target (primary action target is the item itself)."
+    },
+    "actionPosition": { "description": "Position of secondary action IconButton." },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "position": { "description": "Position of the title bar." },
+    "subtitle": { "description": "String or element serving as subtitle (support text)." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    },
+    "title": { "description": "Title to be displayed." }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "actionIcon": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the actionIcon",
+      "conditions": "supplied"
+    },
+    "actionIconActionPosLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the actionIcon",
+      "conditions": "<code>actionPosition=\"left\"</code>"
+    },
+    "positionBelow": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"below\"</code>"
+    },
     "positionBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -21,19 +39,18 @@
       "nodeName": "the root element",
       "conditions": "<code>position=\"top\"</code>"
     },
-    "positionBelow": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "<code>position=\"below\"</code>"
+    "root": { "description": "Styles applied to the root element." },
+    "subtitle": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the subtitle container element"
+    },
+    "title": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the title container element"
     },
     "titleWrap": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the title and subtitle container element"
-    },
-    "titleWrapBelow": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the title and subtitle container element",
-      "conditions": "<code>position=\"below\"</code>"
     },
     "titleWrapActionPosLeft": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -45,23 +62,10 @@
       "nodeName": "the container element",
       "conditions": "<code>actionPosition=\"right\"</code>"
     },
-    "title": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the title container element"
-    },
-    "subtitle": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the subtitle container element"
-    },
-    "actionIcon": {
+    "titleWrapBelow": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the actionIcon",
-      "conditions": "supplied"
-    },
-    "actionIconActionPosLeft": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the actionIcon",
-      "conditions": "<code>actionPosition=\"left\"</code>"
+      "nodeName": "the title and subtitle container element",
+      "conditions": "<code>position=\"below\"</code>"
     }
   }
 }

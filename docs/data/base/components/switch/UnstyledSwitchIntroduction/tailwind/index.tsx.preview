@@ -1,0 +1,4 @@
+<Switch slotProps={{ input: { ...label } }} defaultChecked />
+<Switch slotProps={{ input: { ...label } }} />
+<Switch slotProps={{ input: { ...label } }} defaultChecked disabled />
+<Switch slotProps={{ input: { ...label } }} disabled />

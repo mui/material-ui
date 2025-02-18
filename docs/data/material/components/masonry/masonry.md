@@ -1,5 +1,5 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Masonry component
 components: Masonry
 githubLabel: 'component: masonry'
@@ -56,13 +56,20 @@ It is important to note that the value provided to the `spacing` prop is multipl
 
 {{"demo": "ResponsiveSpacing.js", "bg": true}}
 
+## Sequential
+
+This example demonstrates the use of the `sequential` to configure the sequential order.
+With `sequential` enabled, items are added in order from left to right rather than adding to the shortest column.
+
+{{"demo": "Sequential.js", "bg": true}}
+
 ## Server-side rendering
 
 This example demonstrates the use of the `defaultHeight`, `defaultColumns` and `defaultSpacing`, which are used to
 support server-side rendering.
 
 :::info
-**Note**: `defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
+`defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
 :::
 
 {{"demo": "SSRMasonry.js", "bg": true}}

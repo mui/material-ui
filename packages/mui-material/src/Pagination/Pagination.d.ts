@@ -29,7 +29,7 @@ export interface PaginationProps
   /**
    * The active color.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'standard'
    */
   color?: OverridableStringUnion<
@@ -41,16 +41,13 @@ export interface PaginationProps
    * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
+   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
    * @returns {string}
    */
-  getItemAriaLabel?: (
-    type: 'page' | 'first' | 'last' | 'next' | 'previous',
-    page: number,
-    selected: boolean,
-  ) => string;
+  getItemAriaLabel?: (type: UsePaginationItem['type'], page: number, selected: boolean) => string;
+
   /**
    * Render the item.
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
@@ -89,4 +86,4 @@ export interface PaginationProps
  *
  * - [Pagination API](https://mui.com/material-ui/api/pagination/)
  */
-export default function Pagination(props: PaginationProps): JSX.Element;
+export default function Pagination(props: PaginationProps): React.JSX.Element;

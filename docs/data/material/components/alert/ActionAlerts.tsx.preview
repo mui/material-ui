@@ -1,10 +1,13 @@
-<Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
+<Alert severity="warning" onClose={() => {}}>
+  This Alert displays the default close icon.
+</Alert>
 <Alert
+  severity="success"
   action={
     <Button color="inherit" size="small">
       UNDO
     </Button>
   }
 >
-  This is a success alert — check it out!
+  This Alert uses a Button component for its action.
 </Alert>

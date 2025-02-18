@@ -1,10 +1,11 @@
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { integerPropType } from '@mui/utils';
+'use client';
+import composeClasses from '@mui/utils/composeClasses';
+import integerPropType from '@mui/utils/integerPropType';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
 
@@ -41,7 +42,7 @@ const ImageListRoot = styled('ul', {
 });
 
 const ImageList = React.forwardRef(function ImageList(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiImageList',
   });
@@ -101,10 +102,10 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
 });
 
 ImageList.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The content of the component, normally `ImageListItem`s.
    */

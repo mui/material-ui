@@ -11,6 +11,12 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+export type MUIStyledComponent<
+  ComponentProps extends {},
+  SpecificComponentProps extends {} = {},
+  JSXProps extends {} = {},
+> = StyledComponent<ComponentProps, SpecificComponentProps, JSXProps>;
+
 /**
  * For internal usage in `@mui/system` package
  */
@@ -29,22 +35,38 @@ export interface SerializedStyles {
 
 export type CSSProperties = CSS.PropertiesFallback<number | string>;
 export type CSSPropertiesWithMultiValues = {
-  [K in keyof CSSProperties]: CSSProperties[K] | Array<Extract<CSSProperties[K], string>>;
+  [K in keyof CSSProperties]: CSSProperties[K] | ReadonlyArray<Extract<CSSProperties[K], string>>;
 };
+
+// TODO v6 - check if we can drop the unknown, as it breaks the autocomplete
+// For more info on why it was added, see https://github.com/mui/material-ui/pull/26228
 export type CSSPseudos = { [K in CSS.Pseudos]?: unknown | CSSObject };
 
+// TODO v6 - check if we can drop the unknown, as it breaks the autocomplete
+// For more info on why it was added, see https://github.com/mui/material-ui/pull/26228
 export interface CSSOthersObject {
   [propertiesName: string]: unknown | CSSInterpolation;
 }
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
-export interface ArrayCSSInterpolation extends Array<CSSInterpolation> {}
+export interface ArrayCSSInterpolation extends ReadonlyArray<CSSInterpolation> {}
 
 export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
+// Omit variants as a key, because we have a special handling for it
+export interface CSSObject
+  extends CSSPropertiesWithMultiValues,
+    CSSPseudos,
+    Omit<CSSOthersObject, 'variants'> {}
+
+interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
+  variants: Array<{
+    props: Props | ((props: Props) => boolean);
+    style: CSSObject;
+  }>;
+}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -76,10 +98,11 @@ export interface FunctionInterpolation<Props> {
   (props: Props): Interpolation<Props>;
 }
 
-export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {}
+export interface ArrayInterpolation<Props> extends ReadonlyArray<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
   | InterpolationPrimitive
+  | CSSObjectWithVariants<Props>
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;
 
@@ -177,20 +200,22 @@ export interface CreateMUIStyled<
   ): CreateStyledComponent<PropsOf<C> & MUIStyledCommonProps, {}, {}, Theme>;
 
   <
-    Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
+    Tag extends keyof React.JSX.IntrinsicElements,
+    ForwardedProps extends
+      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &
+      MuiStyledOptions,
   ): CreateStyledComponent<
     MUIStyledCommonProps,
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
+    Pick<React.JSX.IntrinsicElements[Tag], ForwardedProps>,
     {},
     Theme
   >;
 
-  <Tag extends keyof JSX.IntrinsicElements>(
+  <Tag extends keyof React.JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<MUIStyledCommonProps> & MuiStyledOptions,
-  ): CreateStyledComponent<MUIStyledCommonProps, JSX.IntrinsicElements[Tag], {}, Theme>;
+  ): CreateStyledComponent<MUIStyledCommonProps, React.JSX.IntrinsicElements[Tag], {}, Theme>;
 }

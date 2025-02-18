@@ -3,7 +3,8 @@ import { Transition } from 'react-transition-group';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
 
 export default function FadeModalDialog() {
   const [open, setOpen] = React.useState(false);
@@ -18,7 +19,7 @@ export default function FadeModalDialog() {
             keepMounted
             open={!['exited', 'exiting'].includes(state)}
             onClose={() => setOpen(false)}
-            componentsProps={{
+            slotProps={{
               backdrop: {
                 sx: {
                   opacity: 0,
@@ -36,8 +37,6 @@ export default function FadeModalDialog() {
             }}
           >
             <ModalDialog
-              aria-labelledby="fade-modal-dialog-title"
-              aria-describedby="fade-modal-dialog-description"
               sx={{
                 opacity: 0,
                 transition: `opacity 300ms`,
@@ -47,21 +46,10 @@ export default function FadeModalDialog() {
                 }[state],
               }}
             >
-              <Typography
-                id="fade-modal-dialog-title"
-                component="h2"
-                level="inherit"
-                fontSize="1.25em"
-                mb="0.25em"
-              >
-                Transition modal
-              </Typography>
-              <Typography
-                id="fade-modal-dialog-description"
-                textColor="text.tertiary"
-              >
+              <DialogTitle>Transition modal</DialogTitle>
+              <DialogContent>
                 Using `react-transition-group` to create a fade animation.
-              </Typography>
+              </DialogContent>
             </ModalDialog>
           </Modal>
         )}

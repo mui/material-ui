@@ -4,18 +4,9 @@ import { ColorPaletteProp } from './colorSystem';
 
 export interface VariantPropOverrides {}
 
-export interface ContextualOverrides {}
-
 export type DefaultVariantProp = 'plain' | 'outlined' | 'soft' | 'solid';
 
 export type VariantProp = OverridableStringUnion<DefaultVariantProp, VariantPropOverrides>;
-
-export type DefaultContextualOverrides = `${DefaultVariantProp}Overrides`;
-
-export type ContextualOverrideKeys = OverridableStringUnion<
-  DefaultContextualOverrides,
-  ContextualOverrides
->;
 
 type State = 'Hover' | 'Active' | 'Disabled';
 
@@ -24,8 +15,6 @@ export type VariantKey = DefaultVariantProp | `${DefaultVariantProp}${State}`;
 export type DefaultVariantKey =
   | Exclude<DefaultVariantProp, 'solid'>
   | `${Exclude<DefaultVariantProp, 'solid'>}${State}`;
-
-type BaseContextOverrides = Record<DefaultContextualOverrides, Record<ColorPaletteProp, CSSObject>>;
 
 // Split interfaces into multiple chunks so that they can be augmented independently
 
@@ -49,7 +38,7 @@ export interface VariantSolidHover extends Record<ColorPaletteProp, CSSObject> {
 export interface VariantSolidActive extends Record<ColorPaletteProp, CSSObject> {}
 export interface VariantSolidDisabled extends Record<ColorPaletteProp, CSSObject> {}
 
-export interface Variants extends BaseContextOverrides {
+export interface Variants {
   plain: VariantPlain;
   plainHover: VariantPlainHover;
   plainActive: VariantPlainActive;
@@ -70,3 +59,8 @@ export interface Variants extends BaseContextOverrides {
   solidActive: VariantSolidActive;
   solidDisabled: VariantSolidDisabled;
 }
+
+export interface VariantPlainInversion extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantOutlinedInversion extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantSoftInversion extends Record<ColorPaletteProp, CSSObject> {}
+export interface VariantSolidInversion extends Record<ColorPaletteProp, CSSObject> {}

@@ -1,3 +1,4 @@
+'use client';
 export { default } from './Skeleton';
 
 export * from './skeletonClasses';

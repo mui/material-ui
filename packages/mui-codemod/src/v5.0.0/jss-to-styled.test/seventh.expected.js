@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withPrefix, navigate } from 'gatsby';
@@ -68,10 +68,6 @@ function Iframe(props) {
 
       if (scrollHeight) {
         setIframeHeight(scrollHeight);
-      }
-
-      if (event.data.redirect) {
-        window.location = event.data.redirect;
       }
 
       if (event.data.pathname) {

@@ -4,9 +4,6 @@ import TextField from '@mui/material/TextField';
 
 export default function StateTextFields() {
   const [name, setName] = React.useState('Cat in the Hat');
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
 
   return (
     <Box
@@ -18,10 +15,12 @@ export default function StateTextFields() {
       autoComplete="off"
     >
       <TextField
-        id="outlined-name"
-        label="Name"
+        id="outlined-controlled"
+        label="Controlled"
         value={name}
-        onChange={handleChange}
+        onChange={(event) => {
+          setName(event.target.value);
+        }}
       />
       <TextField
         id="outlined-uncontrolled"

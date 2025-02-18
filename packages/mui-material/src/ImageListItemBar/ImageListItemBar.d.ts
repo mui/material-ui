@@ -42,10 +42,10 @@ export interface ImageListItemBarProps
  *
  * Demos:
  *
- * - [Image list](https://mui.com/material-ui/react-image-list/)
+ * - [Image List](https://mui.com/material-ui/react-image-list/)
  *
  * API:
  *
  * - [ImageListItemBar API](https://mui.com/material-ui/api/image-list-item-bar/)
  */
-export default function ImageListItemBar(props: ImageListItemBarProps): JSX.Element;
+export default function ImageListItemBar(props: ImageListItemBarProps): React.JSX.Element;

@@ -1,27 +1,31 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "Can be a <code>StepLabel</code> or a node to place inside <code>StepLabel</code> as children.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "icon": "The icon displayed by the step label.",
-    "optional": "The optional node to display.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
+    "children": {
+      "description": "Can be a <code>StepLabel</code> or a node to place inside <code>StepLabel</code> as children."
+    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "icon": { "description": "The icon displayed by the step label." },
+    "optional": { "description": "The optional node to display." },
+    "sx": {
+      "description": "The system prop that allows defining system overrides as well as additional CSS styles."
+    }
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
     "horizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"horizontal\"</code>"
     },
+    "root": { "description": "Styles applied to the root element." },
+    "touchRipple": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the <code>ButtonBase</code> touch-ripple"
+    },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
-    },
-    "touchRipple": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the `ButtonBase` touch-ripple"
     }
   }
 }

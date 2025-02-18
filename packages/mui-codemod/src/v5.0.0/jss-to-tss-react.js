@@ -111,7 +111,7 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
               if (prop.value.body.type === 'ObjectExpression') {
                 let example = '';
                 if (prop.value.params[0].type === 'Identifier') {
-                  example = ' (e.g. `(props) => ({...})` instead of `({color}) => ({...})`)';
+                  example = ' (for example `(props) => ({...})` instead of `({color}) => ({...})`)';
                 }
                 extraComment = ` Arrow function has parameter type of ${prop.value.params[0].type} instead of ObjectPattern${example}.`;
               } else {
@@ -367,7 +367,7 @@ export default function transformer(file, api, options) {
           });
       });
     /**
-     * Convert classes assignment syntax in calls to the hook (e.g. useStyles) and
+     * Convert classes assignment syntax in calls to the hook (for example useStyles) and
      * convert usages of clsx or classnames to cx.
      */
     styleHooks.forEach((hookName) => {

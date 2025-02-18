@@ -1,16 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer, screen } from 'test/utils';
-import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import { createRenderer, screen } from '@mui-internal/test-utils';
+import { TabsProps } from '@mui/base/Tabs';
+import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabList, { tabListClasses as classes } from '@mui/joy/TabList';
 import RowListContext from '../List/RowListContext';
+import describeConformance from '../../test/describeConformance';
 
-const TabsProvider = ({ children, ...props }: TabsUnstyledProps) => {
-  const { tabsContextValue } = useTabs(props);
-  return <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>;
-};
+function TabsProvider({ children, ...props }: TabsProps) {
+  const { contextValue } = useTabs(props);
+  return <BaseTabsProvider value={contextValue}>{children}</BaseTabsProvider>;
+}
 
 describe('Joy <TabList />', () => {
   const { render } = createRenderer();
@@ -19,12 +21,16 @@ describe('Joy <TabList />', () => {
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
-    wrapMount: (mount) => (node) => mount(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
     ThemeProvider,
     muiName: 'JoyTabList',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
-    skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['componentsProp', 'classesRoot'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
   }));
 
   describe('size', () => {
@@ -78,10 +84,10 @@ describe('Joy <TabList />', () => {
   });
 
   it('provides the correct value to RowListContext', () => {
-    const TabItem = () => {
+    function TabItem() {
       const row = React.useContext(RowListContext);
       return <div>{row ? 'horizontal' : 'vertical'}</div>;
-    };
+    }
     render(
       <Tabs orientation="vertical">
         <TabList>

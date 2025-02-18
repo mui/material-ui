@@ -25,22 +25,22 @@ export interface HiddenProps {
    */
   initialWidth?: Breakpoint;
   /**
-   * If `true`, screens this size and down are hidden.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   lgDown?: boolean;
   /**
-   * If `true`, screens this size and up are hidden.
+   * If `true`, component is hidden on screens this size and above.
    * @default false
    */
   lgUp?: boolean;
   /**
-   * If `true`, screens this size and down are hidden.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   mdDown?: boolean;
   /**
-   * If `true`, screens this size and up are hidden.
+   * If `true`, component is hidden on screens this size and above.
    * @default false
    */
   mdUp?: boolean;
@@ -49,32 +49,32 @@ export interface HiddenProps {
    */
   only?: Breakpoint | Breakpoint[];
   /**
-   * If `true`, screens this size and down are hidden.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   smDown?: boolean;
   /**
-   * If `true`, screens this size and up are hidden.
+   * If `true`, component is hidden on screens this size and above.
    * @default false
    */
   smUp?: boolean;
   /**
-   * If `true`, screens this size and down are hidden.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   xlDown?: boolean;
   /**
-   * If `true`, screens this size and up are hidden.
+   * If `true`, component is hidden on screens this size and above.
    * @default false
    */
   xlUp?: boolean;
   /**
-   * If `true`, screens this size and down are hidden.
+   * If `true`, component is hidden on screens below (but not including) this size.
    * @default false
    */
   xsDown?: boolean;
   /**
-   * If `true`, screens this size and up are hidden.
+   * If `true`, component is hidden on screens this size and above.
    * @default false
    */
   xsUp?: boolean;
@@ -90,6 +90,8 @@ export interface HiddenProps {
  * API:
  *
  * - [Hidden API](https://mui.com/material-ui/api/hidden/)
+ *
+ * @deprecated The Hidden component was deprecated in Material UI v5. To learn more, see [the Hidden section](/material-ui/migration/v5-component-changes/#hidden) of the migration docs.
  */
 declare const Hidden: React.JSXElementConstructor<HiddenProps>;
 

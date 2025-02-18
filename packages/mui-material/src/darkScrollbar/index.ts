@@ -1,4 +1,4 @@
-// track, thumb and active are derieved from macOS 10.15.7
+// track, thumb and active are derived from macOS 10.15.7
 const scrollBar = {
   track: '#2b2b2b',
   thumb: '#6b6b6b',

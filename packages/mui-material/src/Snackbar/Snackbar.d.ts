@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
+import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
@@ -56,10 +56,10 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    */
   disableWindowBlurListener?: boolean;
   /**
-   * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key prop to ensure independent treatment of each message.
-   * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
-   * features such as autoHideDuration may be canceled.
+   * When displaying multiple consecutive snackbars using a single parent-rendered
+   * `<Snackbar/>`, add the `key` prop to ensure independent treatment of each message.
+   * For instance, use `<Snackbar key={message} />`. Otherwise, messages might update
+   * in place, and features like `autoHideDuration` could be affected.
    */
   key?: any;
   /**
@@ -111,7 +111,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
   transitionDuration?: TransitionProps['timeout'];
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -127,4 +127,4 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
  *
  * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
  */
-export default function Snackbar(props: SnackbarProps): JSX.Element;
+export default function Snackbar(props: SnackbarProps): React.JSX.Element;

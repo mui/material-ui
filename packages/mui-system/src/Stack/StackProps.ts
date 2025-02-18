@@ -24,26 +24,40 @@ export interface StackBaseProps {
    * Add an element between each child.
    */
   divider?: React.ReactNode;
+  /**
+   * If `true`, the CSS flexbox `gap` is used instead of applying `margin` to children.
+   *
+   * While CSS `gap` removes the [known limitations](https://mui.com/joy-ui/react-stack/#limitations),
+   * it is not fully supported in some browsers. We recommend checking https://caniuse.com/?search=flex%20gap before using this flag.
+   *
+   * To enable this flag globally, follow the theme's default props configuration.
+   * @default false
+   */
+  useFlexGap?: boolean;
 }
-export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
+export interface StackTypeMap<
+  AdditionalProps = {},
+  DefaultComponent extends React.ElementType = 'div',
+> {
+  props: AdditionalProps &
     StackBaseProps & {
       /**
        * The system prop, which allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps<Theme>;
     } & SystemProps<Theme>;
-  defaultComponent: D;
+  defaultComponent: DefaultComponent;
 }
 
 export type StackProps<
-  D extends React.ElementType = StackTypeMap['defaultComponent'],
-  P = {
+  RootComponent extends React.ElementType = StackTypeMap['defaultComponent'],
+  AdditionalProps = {
     component?: React.ElementType;
   },
-> = OverrideProps<StackTypeMap<P, D>, D>;
+> = OverrideProps<StackTypeMap<AdditionalProps, RootComponent>, RootComponent>;
 
 export interface StackOwnerState {
   direction: StackProps['direction'];
   spacing: StackProps['spacing'];
+  useFlexGap: boolean;
 }

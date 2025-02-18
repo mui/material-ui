@@ -2,8 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
-// web.cjs is required for IE11 support
-import { useSpring, animated } from 'react-spring/web.cjs';
+import { useSpring, animated } from '@react-spring/web';
 
 const Fade = React.forwardRef(function Fade(props, ref) {
   const { in: open, children, onEnter, onExited, ...other } = props;
@@ -23,6 +22,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   });
 
   return (
+    // @ts-expect-error https://github.com/pmndrs/react-spring/issues/2341
     <animated.div ref={ref} style={style} {...other}>
       {children}
     </animated.div>

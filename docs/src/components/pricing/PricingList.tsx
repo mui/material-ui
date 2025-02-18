@@ -2,15 +2,15 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import Fade from '@mui/material/Fade';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import Link from 'docs/src/modules/components/Link';
+import { Link } from '@mui/docs/Link';
 import PricingTable, { PlanName, PlanPrice } from 'docs/src/components/pricing/PricingTable';
+import { useLicensingModel } from 'docs/src/components/pricing/LicensingModelContext';
 
 const Plan = React.forwardRef<
   HTMLDivElement,
@@ -22,6 +22,8 @@ const Plan = React.forwardRef<
 >(function Plan({ plan, benefits, unavailable, sx, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
+  const { licensingModel } = useLicensingModel();
+
   return (
     <Paper
       ref={ref}
@@ -51,8 +53,14 @@ const Plan = React.forwardRef<
           href={
             {
               community: '/material-ui/getting-started/usage/',
-              pro: 'https://mui.com/store/items/mui-x-pro/',
-              premium: 'https://mui.com/store/items/mui-x-premium/',
+              pro:
+                licensingModel === 'annual'
+                  ? 'https://mui.com/store/items/mui-x-pro/'
+                  : 'https://mui.com/store/items/mui-x-pro-perpetual/',
+              premium:
+                licensingModel === 'annual'
+                  ? 'https://mui.com/store/items/mui-x-premium/'
+                  : 'https://mui.com/store/items/mui-x-premium-perpetual/',
             }[plan]
           }
           endIcon={<KeyboardArrowRightRounded />}
@@ -82,28 +90,38 @@ const Plan = React.forwardRef<
 export default function PricingList() {
   const [planIndex, setPlanIndex] = React.useState(0);
   return (
-    <Container sx={{ pb: 2, mt: '-1px', display: { xs: 'block', md: 'none' } }}>
+    <React.Fragment>
       <Tabs
         value={planIndex}
         variant="fullWidth"
         onChange={(event, value) => setPlanIndex(value)}
-        sx={{
-          mb: 2,
-          position: 'sticky',
-          top: 55,
-          bgcolor: 'background.paper',
-          zIndex: 1,
-          mx: { xs: -2, sm: -3 },
-          borderTop: '1px solid',
-          borderColor: 'divider',
-          '& .MuiTab-root': {
-            borderBottom: '1px solid',
+        sx={[
+          {
+            mb: 2,
+            position: 'sticky',
+            top: 55,
+            bgcolor: 'background.paper',
+            zIndex: 1,
+            mx: { xs: -2, sm: -3 },
+            borderTop: '1px solid',
             borderColor: 'divider',
-            '&.Mui-selected': {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
+            '& .MuiTab-root': {
+              borderBottom: '1px solid',
+              borderColor: 'divider',
+              '&.Mui-selected': {
+                bgcolor: 'grey.50',
+              },
             },
           },
-        }}
+          (theme) =>
+            theme.applyDarkStyles({
+              '& .MuiTab-root': {
+                '&.Mui-selected': {
+                  bgcolor: 'primaryDark.700',
+                },
+              },
+            }),
+        ]}
       >
         <Tab label="Community" />
         <Tab
@@ -136,6 +154,6 @@ export default function PricingList() {
           </div>
         </Fade>
       )}
-    </Container>
+    </React.Fragment>
   );
 }

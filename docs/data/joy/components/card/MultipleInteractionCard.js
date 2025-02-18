@@ -1,8 +1,9 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
+import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
@@ -10,11 +11,13 @@ import Favorite from '@mui/icons-material/Favorite';
 
 export default function MultipleInteractionCard() {
   return (
-    <Card variant="outlined" sx={{ minWidth: 320 }}>
+    <Card variant="outlined" sx={{ width: 320 }}>
       <CardOverflow>
         <AspectRatio ratio="2">
           <img
-            src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?crop=entropy&auto=format&fit=crop&w=3270"
+            src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
+            srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
+            loading="lazy"
             alt=""
           />
         </AspectRatio>
@@ -35,33 +38,23 @@ export default function MultipleInteractionCard() {
           <Favorite />
         </IconButton>
       </CardOverflow>
-      <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
-        <Link href="#multiple-actions" overlay underline="none">
-          Yosemite National Park
-        </Link>
-      </Typography>
-      <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-        <Link href="#multiple-actions">California</Link>
-      </Typography>
-      <CardOverflow
-        variant="soft"
-        sx={{
-          display: 'flex',
-          gap: 1.5,
-          py: 1.5,
-          px: 'var(--Card-padding)',
-          borderTop: '1px solid',
-          borderColor: 'neutral.outlinedBorder',
-          bgcolor: 'background.level1',
-        }}
-      >
-        <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-          6.3k views
+      <CardContent>
+        <Typography level="title-md">
+          <Link href="#multiple-actions" overlay underline="none">
+            Yosemite National Park
+          </Link>
         </Typography>
-        <Box sx={{ width: 2, bgcolor: 'divider' }} />
-        <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-          1 hour ago
+        <Typography level="body-sm">
+          <Link href="#multiple-actions">California</Link>
         </Typography>
+      </CardContent>
+      <CardOverflow variant="soft">
+        <Divider inset="context" />
+        <CardContent orientation="horizontal">
+          <Typography level="body-xs">6.3k views</Typography>
+          <Divider orientation="vertical" />
+          <Typography level="body-xs">1 hour ago</Typography>
+        </CardContent>
       </CardOverflow>
     </Card>
   );

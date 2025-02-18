@@ -3,18 +3,18 @@ title: Strategies for building customizable components
 description: Explore the tradeoffs between different customization techniques, and how we landed on our strategy at MUI.
 date: 2022-08-22T00:00:00.000Z
 authors: ['alexfauquette']
-tags: ['MUI X', 'MUI Core']
-card: true
+tags: ['MUI X', 'Material UI', 'Guide']
+manualCard: true
 ---
 
-MUI's components are used by hundreds of thousands of developers worldwide, encompassing the full range of implementation from minor side projects to massive company websites.
+Material UI's components are used by hundreds of thousands of developers worldwide, encompassing the full range of implementation from minor side projects to massive company websites.
 
 This variety of users presents a dilemma for us as maintainers: hobbyists working on side projects want fully built components that work right out of the box, so they can focus on the application logic; many larger companies, by contrast, want to be able to fully customize components to respect their brand design.
 
 Managing these contradictory needs only becomes more difficult as component complexity increases.
 
 This article reviews several different approaches that a developer might take to customize UI components, as well as the various tradeoffs associated with each method.
-Along the way, we'll explore how these tradeoffs ultimately led to the solution that we've settled on for customizing MUI components: the slot strategy.
+Along the way, we'll explore how these tradeoffs ultimately led to the solution that we've settled on for customizing Material UI components: the slot strategy.
 
 ## Style modification
 
@@ -27,17 +27,17 @@ Let's start with the easiest part: modifying the style.
 This will necessarily involve CSS—especially the notion of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity), which says that if an element is targeted by two CSS selectors, the browser will apply the more specific one.
 Usually this means that the selector with more classes applied to it is more specific and therefore takes precedence.
 
-For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
+For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
-<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; margin-top: 16px; margin-bottom: 16px;" alt="Switch component with highlighted sub components" />
+<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Switch component with highlighted subcomponents" />
 
 Notice that each element is styled using only one CSS class—the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class, so any CSS selector that includes more than one class will override its style.
 
 I'm not a designer, so I made an ugly switch example using only CSS—
-you can play around with it in [CodeSandbox](https://codesandbox.io/s/fast-http-kv85p5?file=/src/App.js):
+you can play around with it in [CodeSandbox](https://codesandbox.io/p/sandbox/fast-http-kv85p5?file=/src/App.js):
 
-<img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 692px; margin-top: 16px; margin-bottom: 8px;" alt="Switch customized with CSS" />
+<img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 692px; aspect-ratio: 173/80; margin-top: 16px; margin-bottom: 8px;" loading="lazy" alt="Switch customized with CSS" />
 
 ```jsx
 <Switch className="uglySwitch" />
@@ -46,24 +46,26 @@ you can play around with it in [CodeSandbox](https://codesandbox.io/s/fast-http-
 ```css
 /* two classes are more specific than the default single class selector */
 .uglySwitch .MuiSwitch-thumb {
-  background-color: 'green';
+  background-color: green;
 }
+
 .uglySwitch .MuiTouchRipple-root {
-  border: 'solid red 2px';
+  border: 2px solid red;
 }
+
 .uglySwitch .MuiSwitch-track {
-  background-color: 'orange';
+  background-color: orange;
   opacity: 1;
 }
 ```
 
-### Let JS generate the CSS
+### Let JavaScript generate the CSS
 
 Maybe you don't want to spend your time switching between CSS and JavaScript files, or writing long, cluttered stylesheets.
-To avoid these problems you can integrate styles directly into your JS code. 🎉
+To avoid these problems you can integrate styles directly into your JavaScript code. 🎉
 
-Because the level of customization varies across projects, MUI's components can be customized in several different ways.
-For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).
+Because the level of customization varies across projects, Material UI's components can be customized in several different ways.
+For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).
 
 ## Logic modification
 
@@ -94,7 +96,7 @@ To give you an idea of how complex this component can get, let's look at an exam
 When I open the filter panel, the input listing the names of the columns is sorted according to column position.
 I would like to be able to sort it by alphabetical order.
 
-<img src="/static/blog/making-customizable-components/issueScreenshot.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Screen shot of the filter panel with column selector un sorted" />
+<img src="/static/blog/making-customizable-components/issueScreenshot.png" style="width: 692px; aspect-ratio: 329/212; margin-top: 16px; margin-bottom: 8px;" loading="lazy" alt="Screen shot of the filter panel with column selector un sorted" />
 :::
 
 This request makes sense.
@@ -108,7 +110,7 @@ It just doesn't scale.
 There are too many different props that developers might need to modify.
 You will end up with API documentation so long that it will take an eternity to scroll to the end—meaning nobody will read it.
 
-<img src="/static/blog/making-customizable-components/bruce.gif" style="width: 500px; margin-top: 16px; margin-bottom: 8px;" alt="Your user opening the list of props" />
+<img src="/static/blog/making-customizable-components/bruce.gif" style="width: 500px; aspect-ratio: 500/281; margin-top: 16px; margin-bottom: 8px;" loading="lazy" alt="Your user opening the list of props" />
 
 Instead, consider these alternative solutions that can scale more efficiently with complex components:
 
@@ -134,7 +136,7 @@ If your main priority is to get up and running quickly, then this may not be a v
 #### Subdivide your components
 
 Another approach I like is to provide subcomponents.
-This is what we do for MUI Core components such as the [Menu](https://mui.com/material-ui/react-menu/).
+This is what we do for Material UI components such as the [Menu](https://mui.com/material-ui/react-menu/).
 
 This is also the approach used by [react-admin](https://marmelab.com/react-admin/) to provide a customizable administration interface.
 Here is their quick start example:
@@ -174,7 +176,7 @@ _The more freedom, the more bugs_.
 
 ##### Drawback example
 
-To show you how easy it is to make a mistake using this technique, here is a personal example involving Material UI components.
+To show you how easy it is to make a mistake using this technique, here is a personal example involving Material UI components.
 
 I recently tried to wrap a `TextField` component in a `FormControl`, and was frustrated when it didn't work.
 But the reason why is quite simple: the `TextField` component is itself composed of an input wrapped inside of a `FormControl`, and neither TypeScript nor `console.error` messages could warn me that my rendered markup was redundant and broken.
@@ -188,9 +190,9 @@ But the reason why is quite simple: the `TextField` component is itself composed
 
 <FormControl>
   <FormControl>
-    <Label />
+    <InputLabel />
     <Input />
-    <HelperText />
+    <FormHelperText />
   </FormControl>
 </FormControl>
 ```
@@ -223,7 +225,7 @@ There's an **x** icon on the left side of the panel for deleting the current fil
 Say you want to replace this **x** with a trash icon.
 You can't do it with CSS—you need DOM modification to replace the SVG icon.
 
-<img src="/static/blog/making-customizable-components/FilterPanel.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Default view of filter panel" />
+<img src="/static/blog/making-customizable-components/FilterPanel.png" style="width: 692px; aspect-ratio: ; margin-top: 16px; margin-bottom: 16px;" loading="lazy" alt="Default view of filter panel" />
 
 To manage such a scenario, the `DataGrid` has a prop called `components`.
 This prop lets you replace some internal grid components with your own custom ones.
@@ -257,14 +259,14 @@ By adding this prop to the default filter panel, we can derive a customized pane
 ```jsx
 import { GridFilterPanel } from '@mui/x-data-grid';
 
-const CustomFilterPanel = (props) => (
-  <GridFilterPanel {...props} columnsSort="asc" />
-);
+function CustomFilterPanel(props) {
+  return <GridFilterPanel {...props} columnsSort="asc" />;
+}
 ```
 
 But this strategy of adding props to customize components is a bit verbose.
-So we added a way to pass props to an existing component using `componentsProps`.
-You can pass props to every slot on `components` using `componentsProps`.
+So we added a way to pass props to an existing component using `slotProps`.
+You can pass props to every slot on `slots` using `slotProps`.
 
 Here's how to pass `columnsSort='asc'` to the filter panel slot:
 
@@ -299,12 +301,12 @@ For example, a grid can exist without its filter panel, or without its toolbar.
 
 ## Customization is key
 
-In our last two annual [developer surveys](/blog/2021-developer-survey-results/), our users made it clear that customization is always a top priority when choosing a UI library.
+In our last two annual [Developer Surveys](/blog/2021-developer-survey-results/), our users made it clear that customization is always a top priority when choosing a UI library.
 
-Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize MUI's components to suit your specific needs.
+Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize Material UI's components to suit your specific needs.
 
-[Material UI](https://mui.com/material-ui/getting-started/overview/) and [Joy UI](https://mui.com/joy-ui/getting-started/overview/) are designed to be both beautiful and flexible right out of the box, while [MUI Base](https://mui.com/base/getting-started/overview/) gives you the most freedom to implement your own custom styling solution.
-[MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
+[Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
+[MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
 
-Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.
+Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.
 And be sure to let us know what you think about the customization experience!

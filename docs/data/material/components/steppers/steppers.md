@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: React Stepper component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 githubLabel: 'component: stepper'
-materialDesign: https://material.io/archive/guidelines/components/steppers.html
+materialDesign: https://m1.material.io/components/steppers.html
 ---
 
 # Stepper
@@ -18,9 +18,32 @@ Steppers may display a transient feedback message after a step is saved.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-:::warning
-**Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material UI will continue to support them.
+:::info
+This component is no longer documented in the [Material Design guidelines](https://m2.material.io/), but Material UI will continue to support it.
 :::
+
+## Introduction
+
+The Stepper component displays progress through a sequence of logical and numbered steps.
+It supports horizontal and vertical orientation for desktop and mobile viewports.
+
+Steppers are implemented using a collection of related components:
+
+- Stepper: the container for the steps.
+- Step: an individual step in the sequence.
+- Step Label: a label for a Step.
+- Step Content: optional content for a Step.
+- Step Button: optional button for a Step.
+- Step Icon: optional icon for a Step.
+- Step Connector: optional customized connector between Steps.
+
+## Basics
+
+```jsx
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+```
 
 ## Horizontal stepper
 
@@ -84,7 +107,7 @@ If you need to make the content available to search engines or render expensive 
 
 ## Mobile stepper
 
-This component implements a compact stepper suitable for a mobile device. It has more limited functionality than the vertical stepper. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+This component implements a compact stepper suitable for a mobile device. It has more limited functionality than the vertical stepper. See [mobile steps](https://m1.material.io/components/steppers.html#steppers-types-of-steps) for its inspiration.
 
 The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
 

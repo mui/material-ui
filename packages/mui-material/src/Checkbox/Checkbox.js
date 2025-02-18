@@ -1,22 +1,29 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha } from '@mui/system';
+import clsx from 'clsx';
+import refType from '@mui/utils/refType';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
 import capitalize from '../utils/capitalize';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, indeterminate, color } = ownerState;
+  const { classes, indeterminate, color, size } = ownerState;
 
   const slots = {
-    root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
+    root: [
+      'root',
+      indeterminate && 'indeterminate',
+      `color${capitalize(color)}`,
+      `size${capitalize(size)}`,
+    ],
   };
 
   const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
@@ -37,6 +44,7 @@ const CheckboxRoot = styled(SwitchBase, {
     return [
       styles.root,
       ownerState.indeterminate && styles.indeterminate,
+      styles[`size${capitalize(ownerState.size)}`],
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
@@ -48,7 +56,7 @@ const CheckboxRoot = styled(SwitchBase, {
         ? `rgba(${
             ownerState.color === 'default'
               ? theme.vars.palette.action.activeChannel
-              : theme.vars.palette.primary.mainChannel
+              : theme.vars.palette[ownerState.color].mainChannel
           } / ${theme.vars.palette.action.hoverOpacity})`
         : alpha(
             ownerState.color === 'default'
@@ -77,7 +85,7 @@ const defaultIcon = <CheckBoxOutlineBlankIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
     color = 'primary',
@@ -86,6 +94,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
     inputProps,
     size = 'medium',
+    className,
     ...other
   } = props;
 
@@ -116,6 +125,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       })}
       ownerState={ownerState}
       ref={ref}
+      className={clsx(classes.root, className)}
       {...other}
       classes={classes}
     />
@@ -123,10 +133,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 });
 
 Checkbox.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the component is checked.
    */
@@ -141,9 +151,13 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -156,10 +170,12 @@ Checkbox.propTypes /* remove-proptypes */ = {
   defaultChecked: PropTypes.bool,
   /**
    * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -201,6 +217,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**

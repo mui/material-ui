@@ -1,9 +1,10 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
@@ -36,7 +37,7 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       alternativeLabel && 'alternativeLabel',
     ],
-    labelContainer: ['labelContainer'],
+    labelContainer: ['labelContainer', alternativeLabel && 'alternativeLabel'],
   };
 
   return composeClasses(slots, getStepLabelUtilityClass, classes);
@@ -84,7 +85,6 @@ const StepLabelLabel = styled('span', {
     fontWeight: 500,
   },
   [`&.${stepLabelClasses.alternativeLabel}`]: {
-    textAlign: 'center',
     marginTop: 16,
   },
   [`&.${stepLabelClasses.error}`]: {
@@ -112,10 +112,13 @@ const StepLabelLabelContainer = styled('span', {
 })(({ theme }) => ({
   width: '100%',
   color: (theme.vars || theme).palette.text.secondary,
+  [`&.${stepLabelClasses.alternativeLabel}`]: {
+    textAlign: 'center',
+  },
 }));
 
 const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiStepLabel' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiStepLabel' });
   const {
     children,
     className,
@@ -123,6 +126,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     error = false,
     icon: iconProp,
     optional,
+    slotProps = {},
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
     ...other
@@ -150,6 +154,8 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const labelSlotProps = slotProps.label ?? componentsProps.label;
+
   return (
     <StepLabelRoot
       className={clsx(classes.root, className)}
@@ -171,9 +177,9 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       <StepLabelLabelContainer className={classes.labelContainer} ownerState={ownerState}>
         {children ? (
           <StepLabelLabel
-            className={classes.label}
             ownerState={ownerState}
-            {...componentsProps.label}
+            {...labelSlotProps}
+            className={clsx(classes.label, labelSlotProps?.className)}
           >
             {children}
           </StepLabelLabel>
@@ -185,10 +191,10 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
 });
 
 StepLabel.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * In most cases will simply be a string containing a title for the label.
    */
@@ -221,6 +227,13 @@ StepLabel.propTypes /* remove-proptypes */ = {
    * The optional node to display.
    */
   optional: PropTypes.node,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    label: PropTypes.object,
+  }),
   /**
    * The component to render in place of the [`StepIcon`](/material-ui/api/step-icon/).
    */

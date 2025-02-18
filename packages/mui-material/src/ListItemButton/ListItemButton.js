@@ -1,10 +1,11 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import styled, { rootShouldForwardProp } from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import useForkRef from '../utils/useForkRef';
@@ -125,7 +126,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
 }));
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiListItemButton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiListItemButton' });
   const {
     alignItems = 'center',
     autoFocus = false,
@@ -136,15 +137,19 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     divider = false,
     focusVisibleClassName,
     selected = false,
+    className,
     ...other
   } = props;
 
   const context = React.useContext(ListContext);
-  const childContext = {
-    dense: dense || context.dense || false,
-    alignItems,
-    disableGutters,
-  };
+  const childContext = React.useMemo(
+    () => ({
+      dense: dense || context.dense || false,
+      alignItems,
+      disableGutters,
+    }),
+    [alignItems, context.dense, dense, disableGutters],
+  );
 
   const listItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -177,9 +182,11 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
       <ListItemButtonRoot
         ref={handleRef}
         href={other.href || other.to}
-        component={(other.href || other.to) && component === 'div' ? 'a' : component}
+        // `ButtonBase` processes `href` or `to` if `component` is set to 'button'
+        component={(other.href || other.to) && component === 'div' ? 'button' : component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
+        className={clsx(classes.root, className)}
         {...other}
         classes={classes}
       >
@@ -190,10 +197,10 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
 });
 
 ListItemButton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * Defines the `align-items` style property.
    * @default 'center'
@@ -214,6 +221,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

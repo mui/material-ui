@@ -1,5 +1,5 @@
-import Sheet from '@mui/joy/Sheet';
 import * as React from 'react';
+import Sheet from '@mui/joy/Sheet';
 
 <Sheet />;
 
@@ -14,7 +14,6 @@ import * as React from 'react';
 // `color`
 <Sheet color="primary" />;
 <Sheet color="danger" />;
-<Sheet color="info" />;
 <Sheet color="success" />;
 <Sheet color="warning" />;
 <Sheet color="neutral" />;

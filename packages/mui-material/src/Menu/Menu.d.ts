@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps } from '..';
+import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { Theme } from '../styles';
@@ -68,7 +69,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
   transitionDuration?: TransitionProps['timeout'] | 'auto';
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -79,11 +80,13 @@ export interface MenuProps extends StandardProps<PopoverProps> {
   variant?: 'menu' | 'selectedMenu';
 }
 
+export declare const MenuPaper: React.FC<PaperProps>;
+
 /**
  *
  * Demos:
  *
- * - [App bar](https://mui.com/material-ui/react-app-bar/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
  * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
@@ -91,4 +94,4 @@ export interface MenuProps extends StandardProps<PopoverProps> {
  * - [Menu API](https://mui.com/material-ui/api/menu/)
  * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
-export default function Menu(props: MenuProps): JSX.Element;
+export default function Menu(props: MenuProps): React.JSX.Element;

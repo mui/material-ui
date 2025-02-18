@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps, SystemProps } from '@mui/system';
 import { GridBaseProps } from '@mui/system/Unstable_Grid';

@@ -19,7 +19,6 @@ export default function FreeSoloCreateOptionDialog() {
       title: '',
       year: '',
     });
-
     toggleOpen(false);
   };
 
@@ -34,7 +33,6 @@ export default function FreeSoloCreateOptionDialog() {
       title: dialogValue.title,
       year: parseInt(dialogValue.year, 10),
     });
-
     handleClose();
   };
 
@@ -77,7 +75,7 @@ export default function FreeSoloCreateOptionDialog() {
         id="free-solo-dialog-demo"
         options={top100Films}
         getOptionLabel={(option) => {
-          // e.g value selected with enter, right from the input
+          // for example value selected with enter, right from the input
           if (typeof option === 'string') {
             return option;
           }
@@ -89,7 +87,14 @@ export default function FreeSoloCreateOptionDialog() {
         selectOnFocus
         clearOnBlur
         handleHomeEndKeys
-        renderOption={(props, option) => <li {...props}>{option.title}</li>}
+        renderOption={(props, option) => {
+          const { key, ...optionProps } = props;
+          return (
+            <li key={key} {...optionProps}>
+              {option.title}
+            </li>
+          );
+        }}
         sx={{ width: 300 }}
         freeSolo
         renderInput={(params) => <TextField {...params} label="Free solo dialog" />}

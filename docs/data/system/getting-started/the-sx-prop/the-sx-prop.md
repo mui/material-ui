@@ -1,9 +1,9 @@
 # The sx prop
 
-<p class="description">The sx prop is a shortcut for defining custom styles that has access to the theme.</p>
+<p class="description">The sx prop is a shortcut for defining custom styles that have access to the theme.</p>
 
 The `sx` prop lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`.
-You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
+You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
 
 ## Basic example
 
@@ -112,7 +112,7 @@ function transform(value) {
 }
 ```
 
-If the value is between [0, 1], it's converted to a percentage.
+If the value is between (0, 1], it's converted to a percentage.
 Otherwise, it is directly set on the CSS property:
 
 ```jsx
@@ -203,6 +203,43 @@ The `sx` prop can also receive a callback when you need to get theme values that
 />
 ```
 
+In TypeScript, to use custom theme properties with the `sx` prop callback, extend the `Theme` type from the `@mui/system` library using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation):
+
+```tsx
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { orange } from '@mui/material/colors';
+
+declare module '@mui/system' {
+  interface Theme {
+    status: {
+      warning: string;
+    };
+  }
+}
+
+const theme = createTheme({
+  status: {
+    warning: orange[500],
+  },
+});
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={(theme) => ({
+          bgcolor: theme.status.warning,
+        })}
+      >
+        Example
+      </Box>
+    </ThemeProvider>
+  );
+}
+```
+
 ## Array values
 
 Array types are useful when you want to partially override some styles in the former index:
@@ -251,9 +288,21 @@ Each index can be an object or a callback.
 
 ## Passing the sx prop
 
-If you want to receive the `sx` prop from a custom component and pass it down to an MUI component, we recommend this approach:
+If you want to receive the `sx` prop from a custom component and pass it down to another MUI System, we recommend this approach:
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
+
+## Dynamic values
+
+For highly dynamic CSS values, we recommend using inline CSS variables instead of passing an object with varying values to the `sx` prop on each render.
+This approach avoids inserting unnecessary `style` tags into the DOM, which prevents potential performance issues when dealing with CSS properties that can hold a wide range of values that change frequently—for example, a color picker with live preview.
+
+:::info
+If you're having problems with your Content Security Policy while using inline styles with the `style` attribute, make sure you've enabled the [`style-src-attr` directive](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src-attr).
+Visit the [Content Security Policy guide](/material-ui/guides/content-security-policy/) for configuration details.
+:::
+
+{{"demo": "DynamicValues.js", "bg": true}}
 
 ## TypeScript usage
 
@@ -267,10 +316,11 @@ const style = {
 export default function App() {
   return <Button sx={style}>Example</Button>;
 }
-//    Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'.
-//    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
-//      Property 'flexDirection' is incompatible with index signature.
-//        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
+
+// Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'
+// Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'
+//   Property 'flexDirection' is incompatible with index signature
+//     Type 'string' is not assignable to type 'SystemStyleObject<Theme>'
 ```
 
 The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide.

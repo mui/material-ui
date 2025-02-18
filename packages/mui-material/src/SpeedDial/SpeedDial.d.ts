@@ -87,7 +87,7 @@ export interface SpeedDialProps
   transitionDuration?: TransitionProps['timeout'];
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps?: TransitionProps;
 }
@@ -96,10 +96,10 @@ export interface SpeedDialProps
  *
  * Demos:
  *
- * - [Speed dial](https://mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
  * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
-export default function SpeedDial(props: SpeedDialProps): JSX.Element;
+export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;

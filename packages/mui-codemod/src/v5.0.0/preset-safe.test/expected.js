@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ThemeProvider, StyledEngineProvider, createTheme, alpha, adaptV4Theme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import StylesProvider from '@mui/styles/StylesProvider';

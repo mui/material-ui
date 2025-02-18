@@ -1,6 +1,6 @@
 # Transitions
 
-<p class="description">The theme key enables you to customize the durations and easings of the various transitions used across MUI components, and offers a utility for creating custom transitions.</p>
+<p class="description">These theme helpers allow you to create custom CSS transitions, you can customize the durations, easings and more.</p>
 
 ## API
 
@@ -87,4 +87,4 @@ const theme = createTheme({
 
 ## References
 
-Check out the [Transitions](/material-ui/transitions/) page to explore the transition components that are included with MUI.
+Check out the [Transitions](/material-ui/transitions/) page to explore the transition components that are included with Material UI.

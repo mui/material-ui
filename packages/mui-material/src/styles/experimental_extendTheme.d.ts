@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { OverridableStringUnion } from '@mui/types';
+import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
 import { ThemeOptions, Theme } from './createTheme';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
@@ -34,6 +35,8 @@ export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 export interface Opacity {
   inputPlaceholder: number;
   inputUnderline: number;
+  switchTrackDisabled: number;
+  switchTrack: number;
 }
 
 export type Overlays = [
@@ -63,6 +66,11 @@ export type Overlays = [
   string | undefined,
   string | undefined,
 ];
+
+export interface PaletteBackgroundChannel {
+  defaultChannel: string;
+  paperChannel: string;
+}
 
 export interface PaletteCommonChannel {
   background: string;
@@ -119,6 +127,11 @@ export interface PaletteAppBar {
 
 export interface PaletteAvatar {
   defaultBg: string;
+}
+
+export interface PaletteButton {
+  inheritContainedBg: string;
+  inheritContainedHoverBg: string;
 }
 
 export interface PaletteChip {
@@ -193,7 +206,8 @@ export interface PaletteTooltip {
 
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
-  palette?: Omit<PaletteOptions, 'mode'> & {
+  palette?: PaletteOptions & {
+    background?: Partial<PaletteBackgroundChannel>;
     common?: Partial<PaletteCommonChannel>;
     primary?: Partial<PaletteColorChannel>;
     secondary?: Partial<PaletteColorChannel>;
@@ -206,6 +220,7 @@ export interface ColorSystemOptions {
     Alert?: Partial<PaletteAlert>;
     AppBar?: Partial<PaletteAppBar>;
     Avatar?: Partial<PaletteAvatar>;
+    Button?: Partial<PaletteButton>;
     Chip?: Partial<PaletteChip>;
     FilledInput?: Partial<PaletteFilledInput>;
     LinearProgress?: Partial<PaletteLinearProgress>;
@@ -233,11 +248,13 @@ export interface CssVarsPalette {
   success: PaletteColorChannel;
   warning: PaletteColorChannel;
   text: PaletteTextChannel;
+  background: PaletteBackgroundChannel;
   dividerChannel: string;
   action: PaletteActionChannel;
   Alert: PaletteAlert;
   AppBar: PaletteAppBar;
   Avatar: PaletteAvatar;
+  Button: PaletteButton;
   Chip: PaletteChip;
   FilledInput: PaletteFilledInput;
   LinearProgress: PaletteLinearProgress;
@@ -272,6 +289,14 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    * Color schemes configuration
    */
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
@@ -296,15 +321,16 @@ type Split<T, K extends keyof T = keyof T> = K extends string | number
   ? { [k in K]: Exclude<T[K], undefined> }
   : never;
 
-type ConcatDeep<T> = T extends Record<string | number, infer V>
-  ? keyof T extends string | number
-    ? V extends string | number
-      ? keyof T
-      : keyof V extends string | number
-      ? `${keyof T}-${ConcatDeep<Split<V>>}`
+type ConcatDeep<T> =
+  T extends Record<string | number, infer V>
+    ? keyof T extends string | number
+      ? V extends string | number
+        ? keyof T
+        : keyof V extends string | number
+          ? `${keyof T}-${ConcatDeep<Split<V>>}`
+          : never
       : never
-    : never
-  : never;
+    : never;
 
 /**
  * Does not work for these cases:
@@ -383,6 +409,32 @@ export interface CssVarsTheme extends ColorSystem {
   vars: ThemeVars;
   getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
+  generateCssVars: (colorScheme?: SupportedColorScheme) => {
+    css: Record<string, string | number>;
+    vars: ThemeVars;
+  };
+
+  // Default theme tokens
+  spacing: Theme['spacing'];
+  breakpoints: Theme['breakpoints'];
+  shape: Theme['shape'];
+  typography: Theme['typography'];
+  transitions: Theme['transitions'];
+  shadows: Theme['shadows'];
+  mixins: Theme['mixins'];
+  zIndex: Theme['zIndex'];
+  direction: Theme['direction'];
+  /**
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
+   */
+  shouldSkipGeneratingVar: (keys: string[], value: string | number) => boolean;
+  unstable_sxConfig: SxConfig;
+  unstable_sx: (props: SxProps<CssVarsTheme>) => CSSObject;
+  applyStyles: ApplyStyles<SupportedColorScheme>;
 }
 
 /**
@@ -394,4 +446,4 @@ export interface CssVarsTheme extends ColorSystem {
 export default function experimental_extendTheme(
   options?: CssVarsThemeOptions,
   ...args: object[]
-): Omit<Theme, 'palette'> & CssVarsTheme;
+): Omit<Theme, 'palette' | 'applyStyles'> & CssVarsTheme;

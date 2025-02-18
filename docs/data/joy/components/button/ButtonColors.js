@@ -32,9 +32,6 @@ export default function ButtonColors() {
         <Button size="md" variant={variant} color="danger">
           Danger
         </Button>
-        <Button size="md" variant={variant} color="info">
-          Info
-        </Button>
         <Button size="md" variant={variant} color="success">
           Success
         </Button>
@@ -51,7 +48,7 @@ export default function ButtonColors() {
         }}
       >
         <Typography
-          level="body2"
+          level="body-sm"
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"

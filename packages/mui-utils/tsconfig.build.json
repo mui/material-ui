@@ -1,8 +1,9 @@
 {
   // This config is for emitting declarations (.d.ts) only
   // Actual .ts source files are transpiled via babel
-  "extends": "./tsconfig",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
+    "composite": true,
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
@@ -11,5 +12,5 @@
     "types": ["react", "node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+  "exclude": ["src/**/*.test.ts*", "src/**/*.spec.ts*"]
 }

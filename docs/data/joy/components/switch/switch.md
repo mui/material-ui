@@ -1,13 +1,16 @@
 ---
-product: joy-ui
+productId: joy-ui
 title: React Switch component
+components: Switch
 githubLabel: 'component: switch'
-unstyled: /base/react-switch/
+unstyled: /base-ui/react-switch/
 ---
 
 # Switch
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Introduction
 
@@ -15,13 +18,7 @@ Switches are very commonly used for adjusting settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"demo": "SwitchUsage.js", "hideToolbar": true}}
-
-:::success
-To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
-:::
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "SwitchUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Component
 
@@ -39,11 +36,27 @@ export default function MyApp() {
 
 To create a controlled switch, use the `checked` and `onChange` props.
 
+:::info
+
+- A component is **controlled** when it's managed by its parent using props.
+- A component is **uncontrolled** when it's managed by its own local state.
+
+Learn more about controlled and uncontrolled components in the [React documentation](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
+:::
+
 {{"demo": "SwitchControlled.js"}}
+
+:::info
+By default, the color of the switch changes from `neutral` to `primary` when it is checked unless you specify the `color` prop directly to the component.
+:::
 
 ### Label
 
-Use the `Switch` component inside the `Typography`'s `endDecorator` prop for having labels.
+When a `Switch` is used together with `FormControl` and `FormLabel`, the switch is labeled automatically. You can also use `FormHelperText` to include a description to the switch as well.
+
+{{"demo": "SwitchControl.js"}}
+
+An alternative way is to place the `Switch` component inside a label element. The `Typography` is used in this case to leverage the typography scale from the theme.
 
 {{"demo": "SwitchLabel.js"}}
 
@@ -55,56 +68,33 @@ To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
 
 ### Track child
 
-Target the track's children using the `componentsProps` prop to display a text inside of it.
+Target the track's children using the `slotProps` prop to display a text inside of it.
 
 {{"demo": "ExampleTrackChild.js"}}
 
+:::warning
+The track text **should not** be used to label the switch, you should use [proper methods](#label) to achieve it.
+:::
+
 ### Thumb child
 
-Simmilarly to the above, target the thumb's children to display icons inside of it.
+Similarly to the above, target the thumb's children to display icons inside of it.
 
 {{"demo": "ExampleThumbChild.js"}}
 
-## CSS Variables
+## CSS variables playground
 
 Play around with all the CSS variables available in the switch component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-{{"demo": "SwitchVariables.js"}}
-
-## Accessibility
-
-Here are a few tips to make sure you have an accessible switch component:
-
-- The `Switch` will render with the `checkbox` role as opposed to `switch`.
-  This is mainly because the latter isn't widely supported yet.
-  However, if you believe your audience will support it, make sure to test with assistive technology.
-  Use the `componentProps` prop to change the role:
-
-  ```jsx
-  <Switch componentsProps={{ input: { role: 'switch' } }}>
-  ```
-
-- Every form control component should have proper labels.
-  This includes radio buttons, checkboxes, and switches.
-  In most cases, this is done using the `<label>` element.
-  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `componentProps` prop.
-  ```jsx
-  <Switch value="checkedA" componentsProps={{ 'aria-label': 'Switch A' }} />
-  ```
+{{"demo": "SwitchVariables.js", "hideToolbar": true, "bg": "gradient"}}
 
 ## Common examples
 
-### Material Design
+### Fluent UI
 
-You can also find the Material Design switch design, out of the box, in [Material UI's documentation](/material-ui/react-switch/).
-
-{{"demo": "ExampleMaterialSwitch.js"}}
-
-### Fluent
-
-Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
+Here's how you'd customize Joy UI's Switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
 
 - Unchecked state: `outlined` variant and `neutral` color.
 - Checked state: `solid` variant and `primary` color.
@@ -113,7 +103,7 @@ Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Flu
 
 ### iOS
 
-Note how we've used the `:active` pseudo-class to replicate the small thumb size increase, which happens when you press and holder the switch.
+Note how we've used the `:active` pseudo-class to replicate the small thumb size increase, which happens when you press and hold the switch.
 
 {{"demo": "ExampleIosSwitch.js"}}
 
@@ -132,3 +122,24 @@ Note how we've used the `:active` pseudo-class to replicate the small thumb size
 ### Mantine
 
 {{"demo": "ExampleMantineSwitch.js"}}
+
+## Accessibility
+
+Here are a few tips to make sure you have an accessible switch component:
+
+- The `Switch` will render with the `checkbox` role as opposed to `switch`.
+  This is mainly because the latter isn't widely supported yet.
+  However, if you believe your audience will support it, make sure to test with assistive technology.
+  Use the `slotProps` prop to change the role:
+
+  ```jsx
+  <Switch slotProps={{ input: { role: 'switch' } }}>
+  ```
+
+- Every form control component should have proper labels.
+  This includes radio buttons, checkboxes, and switches.
+  In most cases, this is done using the `<label>` element.
+  - If a label can't be applied, make sure to add an attribute (for example `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `slotProps` prop.
+  ```jsx
+  <Switch value="checkedA" slotProps={{ 'aria-label': 'Switch A' }} />
+  ```

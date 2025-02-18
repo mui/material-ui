@@ -12,7 +12,7 @@ Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/global-styles',
     false,
-    /global-styles.*.json$/,
+    /\.\/global-styles.*.json$/,
   );
   const descriptions = mapApiPageTranslations(req);
 

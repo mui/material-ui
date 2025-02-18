@@ -1,19 +1,20 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha } from '@mui/system';
+import composeClasses from '@mui/utils/composeClasses';
+import { alpha } from '@mui/system/colorManipulator';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -30,7 +31,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(color)}`],
+    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor)}`],
     deleteIcon: [
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
@@ -47,7 +48,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, clickable, onDelete, size, variant } = ownerState;
+    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
@@ -55,7 +56,7 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
       { [`& .${chipClasses.icon}`]: styles.icon },
       { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(iconColor)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
@@ -76,7 +77,6 @@ const ChipRoot = styled('div', {
   },
 })(
   ({ theme, ownerState }) => {
-    const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
     const textColor =
       theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
     return {
@@ -92,8 +92,8 @@ const ChipRoot = styled('div', {
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
-      // label will inherit this from root, then `clickable` class overrides this for both
-      cursor: 'default',
+      // reset cursor explicitly in case ButtonBase is used
+      cursor: 'unset',
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 0,
       textDecoration: 'none',
@@ -129,7 +129,6 @@ const ChipRoot = styled('div', {
         fontSize: theme.typography.pxToRem(10),
       },
       [`& .${chipClasses.icon}`]: {
-        color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
         marginLeft: 5,
         marginRight: -6,
         ...(ownerState.size === 'small' && {
@@ -137,22 +136,25 @@ const ChipRoot = styled('div', {
           marginLeft: 4,
           marginRight: -4,
         }),
-        ...(ownerState.color !== 'default' && {
-          color: 'inherit',
+        ...(ownerState.iconColor === ownerState.color && {
+          color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
+          ...(ownerState.color !== 'default' && {
+            color: 'inherit',
+          }),
         }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: theme.vars
           ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.26)`
-          : deleteIconColor,
+          : alpha(theme.palette.text.primary, 0.26),
         fontSize: 22,
         cursor: 'pointer',
         margin: '0 5px 0 -6px',
         '&:hover': {
           color: theme.vars
             ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
-            : alpha(deleteIconColor, 0.4),
+            : alpha(theme.palette.text.primary, 0.4),
         },
         ...(ownerState.size === 'small' && {
           fontSize: 16,
@@ -178,9 +180,7 @@ const ChipRoot = styled('div', {
       ...(ownerState.onDelete && {
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
-                theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity
-              }))`
+            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
             : alpha(
                 theme.palette.action.selected,
                 theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -202,9 +202,7 @@ const ChipRoot = styled('div', {
       cursor: 'pointer',
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
-              theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.hoverOpacity
-            }))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
@@ -212,9 +210,7 @@ const ChipRoot = styled('div', {
       },
       [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
-              theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity
-            }))`
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
           : alpha(
               theme.palette.action.selected,
               theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
@@ -313,10 +309,19 @@ const ChipLabel = styled('span', {
   paddingLeft: 12,
   paddingRight: 12,
   whiteSpace: 'nowrap',
+  ...(ownerState.variant === 'outlined' && {
+    paddingLeft: 11,
+    paddingRight: 11,
+  }),
   ...(ownerState.size === 'small' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
+  ...(ownerState.size === 'small' &&
+    ownerState.variant === 'outlined' && {
+      paddingLeft: 7,
+      paddingRight: 7,
+    }),
 }));
 
 function isDeleteKeyboardEvent(keyboardEvent) {
@@ -327,7 +332,7 @@ function isDeleteKeyboardEvent(keyboardEvent) {
  * Chips represent complex entities in small blocks, such as a contact.
  */
 const Chip = React.forwardRef(function Chip(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiChip' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiChip' });
   const {
     avatar: avatarProp,
     className,
@@ -344,6 +349,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     onKeyUp,
     size = 'medium',
     variant = 'filled',
+    tabIndex,
+    skipFocusWhenDisabled = false, // TODO v6: Rename to `focusableWhenDisabled`.
     ...other
   } = props;
 
@@ -396,6 +403,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
+    iconColor: React.isValidElement(iconProp) ? iconProp.props.color || color : color,
     onDelete: !!onDelete,
     clickable,
     variant,
@@ -457,6 +465,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
+      tabIndex={skipFocusWhenDisabled && disabled ? -1 : tabIndex}
       ownerState={ownerState}
       {...moreProps}
       {...other}
@@ -471,10 +480,10 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 });
 
 Chip.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * The Avatar element to display.
    */
@@ -504,7 +513,7 @@ Chip.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -559,6 +568,12 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * If `true`, allows the disabled chip to escape focus.
+   * If `false`, allows the disabled chip to receive focus.
+   * @default false
+   */
+  skipFocusWhenDisabled: PropTypes.bool,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -566,6 +581,10 @@ Chip.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * @ignore
+   */
+  tabIndex: PropTypes.number,
   /**
    * The variant to use.
    * @default 'filled'

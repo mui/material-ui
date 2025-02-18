@@ -15,7 +15,7 @@ const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivEleme
  *  <button className="MuiCode-copy">...</button>
  * </div>
  */
-export const useCodeCopy = () => {
+export function useCodeCopy(): any {
   const rootNode = React.useContext(CodeBlockContext);
   return {
     onMouseEnter: (event: React.MouseEvent) => {
@@ -36,9 +36,9 @@ export const useCodeCopy = () => {
       }
     },
   };
-};
+}
 
-const InitCodeCopy = () => {
+function InitCodeCopy() {
   const rootNode = React.useContext(CodeBlockContext);
   const router = useRouter();
   React.useEffect(() => {
@@ -110,7 +110,7 @@ const InitCodeCopy = () => {
 
         const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
         if (btn) {
-          const keyNode = btn.childNodes[1]?.childNodes[1];
+          const keyNode = btn.querySelector('.MuiCode-copyKeypress')?.childNodes[1];
           if (!keyNode) {
             // skip the logic if the btn is not generated from the markdown.
             return;
@@ -131,7 +131,22 @@ const InitCodeCopy = () => {
     return undefined;
   }, [rootNode, router.pathname]);
   return null;
-};
+}
+
+function hasNativeSelection(element: HTMLTextAreaElement) {
+  if (window.getSelection()?.toString()) {
+    return true;
+  }
+
+  // window.getSelection() returns an empty string in Firefox for selections inside a form element.
+  // See: https://bugzilla.mozilla.org/show_bug.cgi?id=85686.
+  // Instead, we can use element.selectionStart that is only defined on form elements.
+  if (element && (element.selectionEnd || 0) - (element.selectionStart || 0) > 0) {
+    return true;
+  }
+
+  return false;
+}
 
 interface CodeCopyProviderProps {
   children: React.ReactNode;
@@ -141,28 +156,32 @@ interface CodeCopyProviderProps {
  * Place <CodeCopyProvider> at the page level. It will check the keydown event and try to initiate copy click if rootNode exist.
  * Any code block inside the tree can set the rootNode when mouse enter to leverage keyboard copy.
  */
-export const CodeCopyProvider = ({ children }: CodeCopyProviderProps) => {
+export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
   const rootNode = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
-      if (document.getSelection()?.toString()) {
-        // Skip if user is highlighting a text.
-        return;
-      }
-      // event.key === 'c' is not enough as alt+c can lead to ©, ç, or other characters on macOS.
-      // event.code === 'KeyC' is not enough as event.code assume a QWERTY keyboard layout which would
-      // be wrong with a Dvorak keyboard (as if pressing J).
-      const isModifierKeyPressed = event.ctrlKey || event.metaKey || event.altKey;
-      if (String.fromCharCode(event.keyCode) !== 'C' || !isModifierKeyPressed) {
-        return;
-      }
       if (!rootNode.current) {
         return;
       }
-      const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
-      if (!copyBtn) {
+
+      // Skip if user is highlighting a text.
+      if (hasNativeSelection(event.target as HTMLTextAreaElement)) {
         return;
       }
+
+      // Skip if it's not a copy keyboard event
+      if (
+        !(
+          (event.ctrlKey || event.metaKey) &&
+          event.key.toLowerCase() === 'c' &&
+          !event.shiftKey &&
+          !event.altKey
+        )
+      ) {
+        return;
+      }
+
+      const copyBtn = rootNode.current.querySelector('.MuiCode-copy') as HTMLButtonElement;
       const initialEventAction = copyBtn.getAttribute('data-ga-event-action');
       // update the 'data-ga-event-action' on the button to track keyboard interaction
       copyBtn.dataset.gaEventAction =
@@ -177,4 +196,4 @@ export const CodeCopyProvider = ({ children }: CodeCopyProviderProps) => {
       {children}
     </CodeBlockContext.Provider>
   );
-};
+}

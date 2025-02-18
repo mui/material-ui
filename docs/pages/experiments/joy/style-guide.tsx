@@ -19,7 +19,7 @@ const rgb2hex = (rgb: string) =>
     .map((n) => parseInt(n, 10).toString(16).padStart(2, '0'))
     .join('')}`;
 
-const ColorSchemePicker = () => {
+function ColorSchemePicker() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -58,9 +58,9 @@ const ColorSchemePicker = () => {
       </Box>
     </Box>
   );
-};
+}
 
-const ColorToken = ({ name, value }: { name: string; value: string }) => {
+function ColorToken({ name, value }: { name: string; value: string }) {
   const [color, setColor] = React.useState('');
   const ref = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
@@ -70,7 +70,7 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
     }
   }, []);
   return (
-    <Box>
+    <div>
       <Box
         ref={ref}
         sx={{
@@ -82,13 +82,13 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
           boxShadow: 'sm',
         }}
       />
-      <Typography level="body3">{name}</Typography>
-      <Typography level="body3">{color}</Typography>
-    </Box>
+      <Typography level="body-xs">{name}</Typography>
+      <Typography level="body-xs">{color}</Typography>
+    </div>
   );
-};
+}
 
-const PaletteTokens = () => {
+function PaletteTokens() {
   const { colorScheme } = useColorScheme();
   const { palette } = useTheme();
   const [mounted, setMounted] = React.useState(false);
@@ -98,11 +98,11 @@ const PaletteTokens = () => {
   return (
     <React.Fragment>
       {mounted && (
-        <Typography level="h5" sx={{ mb: 1 }}>
+        <Typography level="title-md" sx={{ mb: 1 }}>
           Palette ({colorScheme})
         </Typography>
       )}
-      <Box>
+      <div>
         {Object.entries(palette).map(([key, nestedObj]) => {
           if (typeof nestedObj === 'string' && mounted) {
             return <ColorToken key={key} name={key} value={nestedObj} />;
@@ -135,16 +135,16 @@ const PaletteTokens = () => {
             </details>
           );
         })}
-      </Box>
+      </div>
     </React.Fragment>
   );
-};
+}
 
-const TypographyScale = () => {
+function TypographyScale() {
   const { typography } = useTheme();
   return (
     <React.Fragment>
-      <Typography level="h5" sx={{ mb: 1 }}>
+      <Typography level="title-md" sx={{ mb: 1 }}>
         Typography
       </Typography>
 
@@ -157,7 +157,7 @@ const TypographyScale = () => {
       })}
     </React.Fragment>
   );
-};
+}
 
 export default function JoyStyleGuide() {
   return (
@@ -185,36 +185,36 @@ export default function JoyStyleGuide() {
           <Box sx={{ minWidth: 300 }}>
             <TypographyScale />
           </Box>
-          <Box>
-            <Typography level="h5" sx={{ mb: 1 }}>
+          <div>
+            <Typography level="title-md" sx={{ mb: 1 }}>
               UI Patterns
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Box sx={{ width: 48, height: 48, bgcolor: 'background.level2' }} />
-              <Box>
+              <div>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
-              </Box>
+                <Typography level="body-sm">Secondary text.</Typography>
+              </div>
             </Box>
             <hr />
             <Box sx={{ display: 'flex', gap: 2, minWidth: 300 }}>
               <Box sx={{ width: 48, height: 48, bgcolor: 'background.level2' }} />
               <Box sx={{ flexGrow: 1 }}>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
+                <Typography level="body-sm">Secondary text.</Typography>
               </Box>
-              <Typography level="body3">metadata</Typography>
+              <Typography level="body-xs">metadata</Typography>
             </Box>
             <hr />
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Box sx={{ width: 64, height: 64, bgcolor: 'background.level2' }} />
               <Box sx={{ flexGrow: 1 }}>
                 <Typography>List item title</Typography>
-                <Typography level="body2">Secondary text.</Typography>
-                <Typography level="body3">metadata</Typography>
+                <Typography level="body-sm">Secondary text.</Typography>
+                <Typography level="body-xs">metadata</Typography>
               </Box>
             </Box>
-          </Box>
+          </div>
         </Box>
       </Container>
     </CssVarsProvider>

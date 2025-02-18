@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import ListItem from '@mui/material/ListItem';
 import FormLabel from '@mui/material/FormLabel';
 
-const ListHeader = ({ sx = [], children }) => (
-  <ListItem
-    sx={[
-      {
-        width: 'auto',
-        textDecoration: 'underline',
-      },
-      // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ]}
-  >
-    <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>
-  </ListItem>
-);
+function ListHeader({ sx = [], children }) {
+  return (
+    <ListItem
+      sx={[
+        {
+          width: 'auto',
+          textDecoration: 'underline',
+        },
+        // You cannot spread `sx` directly because `SxProps` (typeof sx) can be an array.
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
+      <FormLabel sx={{ color: 'inherit' }}>{children}</FormLabel>
+    </ListItem>
+  );
+}
 
 ListHeader.propTypes = {
   children: PropTypes.node,

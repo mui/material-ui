@@ -16,7 +16,7 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   },
 }));
 
-const Background = styled(Box)({
+const Background = styled('div')({
   position: 'absolute',
   left: 0,
   right: 0,

@@ -1,1 +1,1 @@
-<CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
+<Input aria-label="Demo input" multiline placeholder="Type something…" />

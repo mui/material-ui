@@ -1,0 +1,1 @@
+<Slider defaultValue={10} slots={{ valueLabel: SliderValueLabel }} />

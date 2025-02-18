@@ -6,7 +6,7 @@ export default function FallbackAvatars() {
   return (
     <Box sx={{ display: 'flex', gap: 2 }}>
       <Avatar alt="Remy Sharp" src="/broken-image.jpg">
-        B
+        BT
       </Avatar>
       <Avatar alt="Remy Sharp" src="/broken-image.jpg" />
       <Avatar src="/broken-image.jpg" />

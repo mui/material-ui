@@ -25,22 +25,22 @@ export default function TabsVariants() {
         value={index}
         onChange={(event, value) => setIndex(value)}
       >
-        <TabList variant="outlined">
+        <TabList variant="outlined" disableUnderline>
           <Tab
             variant={index === 0 ? 'soft' : 'plain'}
-            color={index === 0 ? 'primary' : 'neutral'}
+            color={index === 0 ? 'success' : 'neutral'}
           >
             First tab
           </Tab>
           <Tab
             variant={index === 1 ? 'soft' : 'plain'}
-            color={index === 1 ? 'info' : 'neutral'}
+            color={index === 1 ? 'warning' : 'neutral'}
           >
             Second tab
           </Tab>
           <Tab
             variant={index === 2 ? 'soft' : 'plain'}
-            color={index === 2 ? 'warning' : 'neutral'}
+            color={index === 2 ? 'danger' : 'neutral'}
           >
             Third tab
           </Tab>

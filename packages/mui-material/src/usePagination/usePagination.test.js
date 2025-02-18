@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer } from 'test/utils';
+import { createRenderer } from '@mui-internal/test-utils';
 import { expect } from 'chai';
 import usePagination from '@mui/material/usePagination';
 
@@ -9,10 +9,10 @@ describe('usePagination', () => {
 
   const renderHook = (useHook) => {
     const result = {};
-    const TestCase = () => {
+    function TestCase() {
       result.current = useHook();
       return null;
-    };
+    }
     render(<TestCase />);
     return { result };
   };

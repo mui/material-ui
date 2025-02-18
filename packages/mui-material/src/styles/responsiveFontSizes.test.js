@@ -59,6 +59,19 @@ describe('responsiveFontSizes', () => {
     });
   });
 
+  it('should handle variants that have been reset to undefined', () => {
+    const theme = createTheme({
+      typography: {
+        h1: undefined,
+      },
+    });
+    const { typography } = responsiveFontSizes(theme, {
+      disableAlign: true,
+    });
+
+    expect(typography.h1).to.deep.equal(undefined);
+  });
+
   describe('when requesting a responsive typography with non unitless line height and alignment', () => {
     it('should throw an error, as this is not supported', () => {
       const theme = createTheme({

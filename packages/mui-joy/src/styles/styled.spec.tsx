@@ -10,7 +10,7 @@ const Basic = styled('button')({
 const ObjectStyle = styled('button')(({ theme }) => ({
   fontWeight: theme.vars.fontWeight.md,
   backgroundColor: theme.vars.palette.background.body,
-  ...theme.typography.body1,
+  ...theme.typography['body-md'],
 }));
 
 const ArrayStyle = styled('button')(({ theme }) => [
@@ -18,7 +18,7 @@ const ArrayStyle = styled('button')(({ theme }) => [
     fontWeight: theme.vars.fontWeight.md,
     backgroundColor: theme.vars.palette.background.body,
   },
-  theme.typography.body1,
+  theme.typography['body-md'],
 ]);
 
 const FocusStyle = styled('button')(({ theme }) => [

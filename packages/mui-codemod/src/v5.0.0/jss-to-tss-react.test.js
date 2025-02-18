@@ -25,6 +25,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core-styles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('should be idempotent', () => {
         const actual = transform(
           {
@@ -40,6 +41,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core-styles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms @material-ui/core makeStyles to use tss-react', () => {
         const actual = transform(
           {
@@ -53,6 +55,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-material-ui-core.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('adds todo comments for scenarios that are not supported', () => {
         const actual = transform(
           {
@@ -66,6 +69,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-todo-comments.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms makeStyles with style rules returned by function to use tss-react', () => {
         const actual = transform(
           {
@@ -79,6 +83,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-mixins-pattern.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms @mui/styles makeStyles to use tss-react', () => {
         const actual = transform(
           {
@@ -92,6 +97,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-mui-styles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms @mui/styles/makeStyles to use tss-react', () => {
         const actual = transform(
           {
@@ -105,6 +111,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-mui-styles-makeStyles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms typescript makeStyles with nested selectors to use tss-react', () => {
         const actual = transform(
           {
@@ -118,6 +125,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-typescript.tsx');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms typescript makeStyles example in docs to use tss-react', () => {
         const actual = transform(
           {
@@ -131,6 +139,7 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-typescript-docs-example.tsx');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms typescript makeStyles advanced example in docs with params to use tss-react', () => {
         const actual = transform(
           {
@@ -148,6 +157,7 @@ describe('@mui/codemod', () => {
         );
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
       it('transforms withStyles to use tss-react', () => {
         const actual = transform(
           {

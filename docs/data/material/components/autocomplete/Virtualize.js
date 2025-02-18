@@ -27,9 +27,11 @@ function renderRow(props) {
     );
   }
 
+  const { key, ...optionProps } = dataSet[0];
+
   return (
-    <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
-      {dataSet[1]}
+    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
+      {`#${dataSet[2] + 1} - ${dataSet[1]}`}
     </Typography>
   );
 }
@@ -64,7 +66,6 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,
   });
-
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
@@ -147,8 +148,7 @@ export default function Virtualize() {
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option) => [props, option]}
-      // TODO: Post React 18 update - validate this conversion, look like a hidden bug
+      renderOption={(props, option, state) => [props, option, state.index]}
       renderGroup={(params) => params}
     />
   );

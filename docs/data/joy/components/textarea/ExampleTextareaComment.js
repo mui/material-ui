@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import IconButton from '@mui/joy/IconButton';
@@ -12,12 +13,12 @@ import FormatItalic from '@mui/icons-material/FormatItalic';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Check from '@mui/icons-material/Check';
 
-export default function TextareaValidator() {
+export default function ExampleTextareaComment() {
   const [italic, setItalic] = React.useState(false);
   const [fontWeight, setFontWeight] = React.useState('normal');
   const [anchorEl, setAnchorEl] = React.useState(null);
   return (
-    <Box sx={{ p: 2 }}>
+    <FormControl>
       <FormLabel>Your comment</FormLabel>
       <Textarea
         placeholder="Type something here…"
@@ -47,7 +48,7 @@ export default function TextareaValidator() {
               onClose={() => setAnchorEl(null)}
               size="sm"
               placement="bottom-start"
-              sx={{ '--List-decorator-size': '24px' }}
+              sx={{ '--ListItemDecorator-size': '24px' }}
             >
               {['200', 'normal', 'bold'].map((weight) => (
                 <MenuItem
@@ -83,6 +84,6 @@ export default function TextareaValidator() {
           fontStyle: italic ? 'italic' : 'initial',
         }}
       />
-    </Box>
+    </FormControl>
   );
 }

@@ -72,7 +72,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
    * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
-  PaperProps?: Partial<PaperProps>;
+  PaperProps?: Partial<PaperProps<React.ElementType>>;
   /**
    * Determine the container for scrolling the dialog.
    * @default 'paper'
@@ -101,7 +101,7 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
   transitionDuration?: TransitionProps['timeout'];
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
+   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps?: TransitionProps;
 }
@@ -118,4 +118,4 @@ export interface DialogProps extends StandardProps<ModalProps, 'children'> {
  * - [Dialog API](https://mui.com/material-ui/api/dialog/)
  * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
-export default function Dialog(props: DialogProps): JSX.Element;
+export default function Dialog(props: DialogProps): React.JSX.Element;

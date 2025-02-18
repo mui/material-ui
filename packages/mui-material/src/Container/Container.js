@@ -1,9 +1,9 @@
-/* eslint-disable material-ui/mui-name-matches-component-name */
+'use client';
 import PropTypes from 'prop-types';
 import { createContainer } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
-import useThemeProps from '../styles/useThemeProps';
+import { useDefaultProps } from '../DefaultPropsProvider';
 
 const Container = createContainer({
   createStyledComponent: styled('div', {
@@ -20,14 +20,14 @@ const Container = createContainer({
       ];
     },
   }),
-  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
+  useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiContainer' }),
 });
 
 Container.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
    * @ignore
    */

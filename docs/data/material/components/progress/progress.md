@@ -1,9 +1,9 @@
 ---
-product: material-ui
+productId: material-ui
 title: Circular, Linear progress React components
 components: CircularProgress, LinearProgress
 githubLabel: 'component: progress'
-materialDesign: https://material.io/components/progress-indicators
+materialDesign: https://m2.material.io/components/progress-indicators
 ---
 
 # Progress
@@ -69,7 +69,7 @@ The progress components accept a value in the range 0 - 100. This simplifies thi
 
 ```jsx
 // MIN = Minimum expected value
-// MAX = Maximium expected value
+// MAX = Maximum expected value
 // Function to normalise the values (MIN / MAX could be integrated)
 const normalise = (value) => ((value - MIN) * 100) / (MAX - MIN);
 
@@ -94,7 +94,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 ## Delaying appearance
 
 There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time.
-The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously.
+The ripple effect of the `ButtonBase` component ensures that the user feels that the UI is reacting instantaneously.
 Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second.
 After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
 

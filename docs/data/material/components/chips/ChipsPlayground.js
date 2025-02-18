@@ -1,5 +1,4 @@
 import * as React from 'react';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -10,6 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import FaceIcon from '@mui/icons-material/Face';
 import DoneIcon from '@mui/icons-material/Done';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 function ChipsPlayground() {
   const [state, setState] = React.useState({

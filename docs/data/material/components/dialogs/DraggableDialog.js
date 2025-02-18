@@ -9,12 +9,14 @@ import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 
 function PaperComponent(props) {
+  const nodeRef = React.useRef(null);
   return (
     <Draggable
+      nodeRef={nodeRef}
       handle="#draggable-dialog-title"
       cancel={'[class*="MuiDialogContent-root"]'}
     >
-      <Paper {...props} />
+      <Paper {...props} ref={nodeRef} />
     </Draggable>
   );
 }
@@ -31,7 +33,7 @@ export default function DraggableDialog() {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open draggable dialog
       </Button>
@@ -57,6 +59,6 @@ export default function DraggableDialog() {
           <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </React.Fragment>
   );
 }
