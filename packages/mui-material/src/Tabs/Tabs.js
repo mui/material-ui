@@ -815,6 +815,12 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const handleKeyDown = (event) => {
+    // Check if Alt key is pressed and handle ArrowLeft/ArrowRight
+    if (event.altKey && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
+      event.stopPropagation();
+      return;
+    }
+
     const list = tabListRef.current;
     const currentFocus = ownerDocument(list).activeElement;
     // Keyboard navigation assumes that [role="tab"] are siblings
