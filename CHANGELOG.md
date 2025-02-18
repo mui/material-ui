@@ -1,5 +1,30 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.5
+
+<!-- generated comparing v6.4.4..v6.x -->
+
+_Feb 18, 2025_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@6.4.5`
+
+- [Autocomplete] Remove legacy `aria-owns` attribute for combobox (#45303) @ZeeshanTamboli
+- [Button] Apply id only if loading indicator is present (#45339) @aarongarciah
+
+### Docs
+
+- [icons] Fix typo in material-icons.md (#45336) @a-s-russo
+- [Menu] Add Grouped Menu demo (#45292) @noobDev31
+
+### Core
+
+- [blog] Consistent Base UI terminology (#45342) @aarongarciah
+- Fix double redirection to Base UI (#45146) @oliviertassinari
+
+All contributors of this release in alphabetical order: @a-s-russo, @aarongarciah, @noobDev31, @oliviertassinari, @ZeeshanTamboli
+
 ## 6.4.4
 
 <!-- generated comparing v6.4.3..v6.x -->
