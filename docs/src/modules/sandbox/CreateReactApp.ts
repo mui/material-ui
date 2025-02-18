@@ -155,7 +155,7 @@ export const getTsconfig = () => `{
     "jsx": "react"
   },
   "include": [
-    "src"
+    "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"
   ]
 }
 `;
