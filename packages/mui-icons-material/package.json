@@ -105,6 +105,8 @@
         "types": "./icon.d.ts",
         "default": "./*.js"
       }
-    }
+    },
+    "./esm": null,
+    "./utils/*": null
   }
 }
