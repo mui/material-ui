@@ -3,7 +3,7 @@ title: Migrating MUI X to React 19
 description: How we migrated to React 19 while maintaining backward compatibility.
 date: 2025-02-18
 authors: ['arminmeh', 'alexfauquette']
-tags: ['MUI X', 'React', 'Migration']
+tags: ['MUI X']
 ---
 
 [React 19 is out](https://react.dev/blog/2024/12/05/react-19) for some time now and we have finished migrating our codebase to it. If you are still having this migration in your backlog or you are interested in the details of our migration, read on.
