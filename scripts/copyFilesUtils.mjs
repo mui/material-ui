@@ -151,15 +151,19 @@ export async function createPackageFile(useEsmExports = false) {
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
-  const packageExports = {
-    ...createExportFor('.', { [srcCondition]: './src/index.ts' }),
-    ...createExportFor('./*', { [srcCondition]: './src/*/index.ts' }),
-  };
+  const packageExports = {};
+
+  if (!packageDataOther.exports?.['.']) {
+    Object.assign(packageExports, {
+      ...createExportFor('.', { [srcCondition]: './src/index.ts' }),
+    });
+  }
 
   if (!packageDataOther.exports?.['./*']) {
-    // From the default wildcard we should exclude the esm and modern builds.
-    // If you override the wildcard, you're on your own
+    // The default behavior is to export all top-level folders with an index.ts file
+    // except for the esm/modern targets.
     Object.assign(packageExports, {
+      ...createExportFor('./*', { [srcCondition]: './src/*/index.ts' }),
       ...createExportFor('./esm', null),
       ...createExportFor('./modern', null),
     });
