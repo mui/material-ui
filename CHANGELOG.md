@@ -6,7 +6,7 @@
 
 _Feb 18, 2025_
 
-A big thanks to the 8 contributors who made this release possible.
+A big thanks to the 9 contributors who made this release possible.
 
 ### `@mui/material@7.0.0-alpha.2`
 
@@ -19,6 +19,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 ### Docs
 
+- Fix broken links to MUI X docs (#45145) @mapache-salvaje
 - Add migration guide for package layout changes (#45222) @Janpot
 - [icons] Fix typo in material-icons.md (#45334) @a-s-russo
 
@@ -28,7 +29,7 @@ A big thanks to the 8 contributors who made this release possible.
 - [code-infra] Update `elliptic` (#45311) @Janpot
 - Update release guide to specify package bumping rules (#45294) @DiegoAndai
 
-All contributors of this release in alphabetical order: @a-s-russo, @aarongarciah, @DiegoAndai, @Janpot, @perkrlsn, @sai6855, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @a-s-russo, @aarongarciah, @DiegoAndai, @Janpot, @mapache-salvaje, @perkrlsn, @sai6855, @siriwatknp, @ZeeshanTamboli
 
 ## 7.0.0-alpha.1
 
