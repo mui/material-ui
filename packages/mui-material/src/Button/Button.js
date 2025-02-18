@@ -578,11 +578,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const positionClassName = buttonGroupButtonContextPositionClassName || '';
 
-  let loader = null;
-  let computedId = idProp;
-
-  if (typeof loading === 'boolean') {
-    loader = (
+  const loader =
+    typeof loading === 'boolean' ? (
       // use plain HTML span to minimize the runtime overhead
       <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
         {loading && (
@@ -591,10 +588,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
           </ButtonLoadingIndicator>
         )}
       </span>
-    );
-
-    computedId = loadingId;
-  }
+    ) : null;
 
   return (
     <ButtonRoot
@@ -606,7 +600,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      id={computedId}
+      id={loading ? loadingId : idProp}
       {...other}
       classes={classes}
     >
