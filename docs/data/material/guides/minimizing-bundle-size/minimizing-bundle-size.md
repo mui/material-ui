@@ -230,25 +230,20 @@ You are strongly discouraged to:
 
   :::
 
-A great way to use these bundles is to configure bundler aliases, for example with [webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+A great way to use these bundles is to configure bundler export conditions, for example with [webpack's `resolve.conditionNames`](https://webpack.js.org/configuration/resolve/#resolveconditionnames) or [vite's `resolve.conditions`](https://vite.dev/config/shared-options#resolve-conditions):
 
 ```js
+// webpack.config.js
 {
   resolve: {
-    alias: {
-      '@mui/material': '@mui/material/modern',
-      '@mui/styled-engine': '@mui/styled-engine/modern',
-      '@mui/system': '@mui/system/modern',
-      '@mui/base': '@mui/base/modern',
-      '@mui/utils': '@mui/utils/modern',
-      '@mui/lab': '@mui/lab/modern',
-    }
+    conditionNames: ['mui-modern', '...'],
+  }
+}
+
+// vite.config.js
+{
+  resolve: {
+    conditions: ['mui-modern', 'module', 'browser', 'development|production']
   }
 }
 ```
-
-### Modern bundle
-
-The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
-It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
-This can be used to make separate bundles targeting different browsers.
