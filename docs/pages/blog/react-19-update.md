@@ -8,7 +8,7 @@ tags: ['MUI X', 'React', 'Migration']
 
 [React 19 is out](https://react.dev/blog/2024/12/05/react-19) for some time now and we have finished migrating our codebase to it. If you are still having this migration in your backlog or you are interested in the details of our migration, read on.
 
-## The migration strategy 
+## The migration strategy
 
 It was crucial for us to keep supporting older React versions, so we approached the migration in two phases:
 
@@ -31,7 +31,8 @@ We are using that to conditionally set the test expectations.
 const errorMessage1 = 'MUI X: Could not find the animation ref context.';
 const errorMessage2 =
   'It looks like you rendered your component outside of a ChartsContainer parent component.';
-const errorMessage3 = 'The above error occurred in the <UseSkipAnimation> component:';
+const errorMessage3 =
+  'The above error occurred in the <UseSkipAnimation> component:';
 const expextedError =
   reactMajor < 19
     ? [errorMessage1, errorMessage2, errorMessage3]
@@ -76,7 +77,9 @@ export const forwardRef = <T, P = {}>(
     Component.displayName = render.displayName ?? render.name;
     return Component as React.ForwardRefExoticComponent<P>;
   }
-  return React.forwardRef(render as React.ForwardRefRenderFunction<T, React.PropsWithoutRef<P>>);
+  return React.forwardRef(
+    render as React.ForwardRefRenderFunction<T, React.PropsWithoutRef<P>>,
+  );
 };
 ```
 
@@ -100,7 +103,6 @@ const GridRoot = forwardRefShim((props, ref) => {
   return <div {...props} {...state} ref={ref} />;
 });
 ```
-
 
 ## Phase 2: Moving to React 19
 
