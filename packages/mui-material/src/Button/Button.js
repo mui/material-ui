@@ -531,9 +531,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
 
-  const id = useId(idProp);
+  const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+    <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
   );
 
   const ownerState = {
@@ -600,7 +600,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      id={id}
+      id={loading ? loadingId : idProp}
       {...other}
       classes={classes}
     >
