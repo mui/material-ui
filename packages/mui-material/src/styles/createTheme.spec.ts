@@ -218,6 +218,7 @@ const theme = createTheme();
             variants: [
               {
                 props: ({ ownerState }) => ownerState.color === 'primary',
+                style: {},
               },
             ],
           }),
@@ -260,6 +261,48 @@ const theme = createTheme();
     cssVariables: {
       rootSelector: ':host',
       colorSchemeSelector: 'class',
+    },
+  });
+}
+
+// Prop type on styleOverrides' variants
+// Valid variant
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            variants: [
+              {
+                props: { variant: 'contained' },
+                style: { border: 0 },
+              },
+            ],
+          },
+        },
+      },
+    },
+  });
+}
+
+// Invalid variant
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          // @ts-expect-error invalid variant
+          root: {
+            variants: [
+              {
+                props: { variant: 'not-a-variant' },
+                style: { border: 0 },
+              },
+            ],
+          },
+        },
+      },
     },
   });
 }
