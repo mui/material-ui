@@ -196,9 +196,8 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     }
 
     const textarea = event.target;
-    const value = textarea.value;
-    const countOfCharacters = value.length;
-    const isLastCharacterNewLine = value.endsWith('\n');
+    const countOfCharacters = textarea.value.length;
+    const isLastCharacterNewLine = textarea.value.endsWith('\n');
     const isEndOfTheLine = textarea.selectionStart === countOfCharacters;
 
     // Set the cursor position to the very end of the text.
