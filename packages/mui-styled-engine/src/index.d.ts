@@ -48,8 +48,9 @@ export type CSSPseudos = { [K in CSS.Pseudos]?: unknown | CSSObject };
 // TODO v6 - check if we can drop the unknown, as it breaks the autocomplete
 // For more info on why it was added, see https://github.com/mui/material-ui/pull/26228
 export type CSSOthersObject = {
+  variants?: never;
   [propertiesName: string]: unknown | CSSInterpolation;
-} & { variants?: never };
+};
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
 export interface ArrayCSSInterpolation extends ReadonlyArray<CSSInterpolation> {}
