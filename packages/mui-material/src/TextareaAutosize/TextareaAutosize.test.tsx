@@ -445,4 +445,17 @@ describe('<TextareaAutosize />', () => {
       backgroundColor: 'rgb(255, 255, 0)',
     });
   });
+
+  it('should keep input caret position at the end when adding a newline', () => {
+    const { container } = render(<TextareaAutosize />);
+    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+    input.focus();
+    input.value = 'abc def abc def abc def\nabc def abc def abc def\nabc def abc def abc def\n';
+    const valueLength = input.value.length;
+    act(() => {
+      fireEvent.change(input, { target: { value: input.value } });
+    });
+    expect(input.selectionStart).to.equal(valueLength);
+    expect(input.selectionEnd).to.equal(valueLength);
+  });
 });
