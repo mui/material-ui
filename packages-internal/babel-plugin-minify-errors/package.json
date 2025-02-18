@@ -28,11 +28,11 @@
     "chai": "^4.5.0"
   },
   "sideEffects": false,
-  "type": "module",
+  "type": "commonjs",
   "exports": {
     ".": "./index.js",
     "./tag": {
-      "import": "./tag.js"
+      "import": "./tag.mjs"
     }
   },
   "engines": {
