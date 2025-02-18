@@ -137,6 +137,6 @@ The migration to React 19 was a significant undertaking that required careful pl
 
 The migration has also helped us identify areas where we can further improve our components' type safety and performance.
 
-It is worth noting that a big chunk of our own migration was done by the MUI Core team as they added support for React 19 to both `@mui/material` v5 and v6. Additionally, they provided the necessary updates to the internal tools that both of our repositories use for building and testing our components.
+It is worth noting that a big chunk of our own migration was done by the MUI Core team as they added support for React 19 to both `@mui/material` v5 and v6. Additionally, they provided the necessary updates to the internal tools that both of our repositories use for building and testing our components.
 
 We hope our experience can be useful and shorten the time needed for your own React 19 migration!
