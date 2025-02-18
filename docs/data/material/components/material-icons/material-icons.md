@@ -40,6 +40,7 @@ See the [Installation](/material-ui/getting-started/installation/) page for addi
 
 :::info
 Google also offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as the successor of Material Icons. `@mui/icons-material` only covers Icons at this time, there are no support for Symbols yet.
+Google offers [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) as the successor to Material Icons. However, `@mui/icons-material` currently supports only Icons, with no support for Symbols yet.
 :::
 
 <hr/>
