@@ -27,7 +27,7 @@ These changes caused different call count for our spies and different console ou
 `@mui/internal-test-utils` provides an export `reactMajor` that extracts the major version of the React version used in the test.
 We are using that to conditionally set the test expectations.
 
-```typescript
+```ts
 const errorMessage1 = 'MUI X: Could not find the animation ref context.';
 const errorMessage2 =
   'It looks like you rendered your component outside of a ChartsContainer parent component.';
@@ -39,7 +39,7 @@ const expextedError =
     : `${errorMessage1}\n${errorMessage2}`;
 ```
 
-```typescript
+```ts
 // Spy call count
 //   1x during state initialization
 // + 1x during state initialization (StrictMode)
@@ -124,7 +124,7 @@ To have different types for `apiRef` in the DataGrid component for different Rea
 
 We used the fact that `useRef()` requires a param for React 19 to have `RefObject` evaluated to `MutableRefObject` for React < 19 and to `RefObject` otherwise.
 
-```typescript
+```ts
 // in React 19 useRef requires a parameter, so `() => any` will not match anymore
 export type RefObject<T> = typeof React.useRef extends () => any
   ? React.MutableRefObject<T>
