@@ -26,9 +26,7 @@ function createThemeNoVars(options = {}, ...args) {
 
   if (
     options.vars &&
-    // check for both `cssVariables` (user provided) and `generateThemeVars` (created internally) to handle nested theme
-    options.cssVariables === undefined &&
-    options.generateThemeVars === undefined
+    options.generateThemeVars === undefined // check for `generateThemeVars` (created internally) to handle nested theme
   ) {
     throw /* minify-error */ new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
