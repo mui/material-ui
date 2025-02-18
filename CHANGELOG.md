@@ -19,7 +19,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Docs
 
-- Fix broken links to MUI X docs (#45145) @mapache-salvaje
+- Fix broken links to MUI X docs (#45145) @mapache-salvaje
 - Add migration guide for package layout changes (#45222) @Janpot
 - [icons] Fix typo in material-icons.md (#45334) @a-s-russo
 
