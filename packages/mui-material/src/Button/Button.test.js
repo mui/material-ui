@@ -793,7 +793,7 @@ describe('<Button />', () => {
       expect(progressbar).toHaveAccessibleName('Submit');
     });
 
-    it('button has no id when `loading=false` and no `id` prop is present`', () => {
+    it('has no id when `loading=false` and no `id` prop is present`', () => {
       const id = 'some-id';
       render(
         <React.Fragment>
