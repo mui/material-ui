@@ -18,12 +18,13 @@ function resolveAliasPath(relativeToBabelConf) {
 }
 
 /** @type {babel.PluginItem[]} */
-const productionPlugins = ['babel-plugin-react-remove-properties'];
+const productionPlugins = [
+  ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
+];
 
 /** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['regressions', 'modern', 'stable']);
-  const useProductionPlugins = api.env(['node', 'stable', 'modern', 'benchmark']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -119,7 +120,7 @@ module.exports = function getBabelConfig(api) {
       : []),
   ];
 
-  if (useProductionPlugins) {
+  if (process.env.NODE_ENV === 'production') {
     plugins.push(...productionPlugins);
   }
   if (process.env.NODE_ENV === 'test') {
@@ -190,6 +191,7 @@ module.exports = function getBabelConfig(api) {
       },
       benchmark: {
         plugins: [
+          ...productionPlugins,
           [
             'babel-plugin-module-resolver',
             {
