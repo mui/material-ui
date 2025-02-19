@@ -123,6 +123,8 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
+
+    // TODO v8: Remove when removing the legacy Grid component
     deleteLegacyGridProps(props, theme.breakpoints);
 
     const {
