@@ -198,7 +198,7 @@
     "layout": "Layout",
     "/material-ui/react-box": "Box",
     "/material-ui/react-container": "Container",
-    "/material-ui/react-grid": "Grid",
+    "/material-ui/react-grid-legacy": "Grid legacy",
     "/material-ui/react-grid2": "Grid v2",
     "/material-ui/react-stack": "Stack",
     "/material-ui/react-image-list": "Image List",
