@@ -413,7 +413,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     },
   }) as ThemeOptions;
 
-const themedComponents: ThemeOptions = {
+export const themedComponents: ThemeOptions = {
     components: {
       MuiAlert: {
         styleOverrides: {

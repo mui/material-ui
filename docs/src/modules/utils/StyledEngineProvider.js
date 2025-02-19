@@ -16,15 +16,23 @@ const cacheRtl = createCache({
 });
 
 export default function StyledEngineProvider(props) {
-  const { children, cacheLtr } = props;
+  const { children } = props;
   const theme = useTheme();
-
   const rtl = theme.direction === 'rtl';
-  const emotionCache = theme.direction === 'rtl' ? cacheRtl : cacheLtr;
 
+  let Wrapper = React.Fragment;
+  let wraperProps = {};
+
+  // Only happens client-side after the hydration
+  if (rtl) {
+    Wrapper = CacheProvider;
+    wraperProps = {
+      value: cacheRtl,
+    };
+  }
   return (
     <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
-      <CacheProvider value={emotionCache}>{children}</CacheProvider>
+      <Wrapper {...wraperProps}>{props.children}</Wrapper>
     </StyleSheetManager>
   );
 }

@@ -2,6 +2,7 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import { CacheProvider } from '@emotion/react';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
@@ -368,9 +369,11 @@ export default function MyApp(props) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      {getLayout(<Component {...pageProps} />)}
-    </AppWrapper>
+    <CacheProvider value={emotionCache}>
+      <AppWrapper pageProps={pageProps}>
+        <Component {...pageProps} />
+      </AppWrapper>
+    </CacheProvider>
   );
 }
 MyApp.propTypes = {
