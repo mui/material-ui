@@ -413,8 +413,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     },
   }) as ThemeOptions;
 
-export function getThemedComponents(): ThemeOptions {
-  return {
+const themedComponents: ThemeOptions = {
     components: {
       MuiAlert: {
         styleOverrides: {
@@ -1574,14 +1573,13 @@ export function getThemedComponents(): ThemeOptions {
       },
     },
   };
-}
 
 export const brandingDarkTheme = createTheme({
   ...getDesignTokens('dark'),
-  ...getThemedComponents(),
+  ...themedComponents,
 });
 
 export const brandingLightTheme = createTheme({
   ...getDesignTokens('light'),
-  ...getThemedComponents(),
+  ...themedComponents,
 });
