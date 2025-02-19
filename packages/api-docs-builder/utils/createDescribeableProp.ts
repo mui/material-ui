@@ -5,7 +5,7 @@ export interface DescribeablePropDescriptor {
   annotation: doctrine.Annotation;
   defaultValue: string | null;
   required: boolean;
-  type: PropTypeDescriptor;
+  type?: PropTypeDescriptor;
 }
 
 export type CreateDescribeablePropSettings = {

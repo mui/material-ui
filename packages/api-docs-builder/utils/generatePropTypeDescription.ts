@@ -2,7 +2,11 @@ import * as recast from 'recast';
 import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
 import { escapeCell, escapeEntities, joinUnionTypes } from '../buildApi';
 
-function getDeprecatedInfo(type: PropTypeDescriptor) {
+function getDeprecatedInfo(type?: PropTypeDescriptor) {
+  if (!type) {
+    return false;
+  }
+
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
   const match = type.raw.match(marker);
   const startIndex = type.raw.search(marker);
@@ -18,7 +22,11 @@ function getDeprecatedInfo(type: PropTypeDescriptor) {
   return false;
 }
 
-export function getChained(type: PropTypeDescriptor) {
+export function getChained(type?: PropTypeDescriptor) {
+  if (!type) {
+    return false;
+  }
+
   if (type.raw) {
     const marker = 'chainPropTypes';
     const indexStart = type.raw.indexOf(marker);
@@ -48,24 +56,24 @@ export function getChained(type: PropTypeDescriptor) {
   return false;
 }
 
-export function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return type.raw === 'elementTypeAcceptingRef';
+export function isElementTypeAcceptingRefProp(type?: PropTypeDescriptor): boolean {
+  return type?.raw === 'elementTypeAcceptingRef';
 }
 
-function isRefType(type: PropTypeDescriptor): boolean {
-  return type.raw === 'refType';
+function isRefType(type?: PropTypeDescriptor): boolean {
+  return type?.raw === 'refType';
 }
 
-function isIntegerType(type: PropTypeDescriptor): boolean {
-  return type.raw.startsWith('integerPropType');
+function isIntegerType(type?: PropTypeDescriptor): boolean {
+  return !!type && type.raw.startsWith('integerPropType');
 }
 
-export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return /^elementAcceptingRef/.test(type.raw);
+export function isElementAcceptingRefProp(type?: PropTypeDescriptor): boolean {
+  return /^elementAcceptingRef/.test(type?.raw ?? '');
 }
 
-export default function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
-  switch (type.name) {
+export default function generatePropTypeDescription(type?: PropTypeDescriptor): string | undefined {
+  switch (type?.name) {
     case 'custom': {
       if (isElementTypeAcceptingRefProp(type)) {
         return 'element type';
@@ -137,6 +145,6 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
     }
 
     default:
-      return type.name;
+      return type?.name;
   }
 }
