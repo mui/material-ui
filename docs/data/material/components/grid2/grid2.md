@@ -243,7 +243,7 @@ It cannot wrap other elements.
 
 ## Limitations
 
-### Direction column or column-reverse
+### Column direction
 
 Using `direction="column"` or `direction="column-reverse"` is not supported.
 The Grid component is designed to divide the container in columns, not rows.

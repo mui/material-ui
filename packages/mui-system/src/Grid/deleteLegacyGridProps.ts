@@ -2,7 +2,7 @@ import { Breakpoint, Breakpoints } from '../createTheme';
 
 const getLegacyGridWarning = (propName: 'item' | 'zeroMinWidth' | Breakpoint) => {
   if (['item', 'zeroMinWidth'].includes(propName)) {
-    return `The \`${propName}\` prop has been removed. It is no longer necessary. You can safely remove it.`;
+    return `The \`${propName}\` prop has been removed and is no longer necessary. You can safely remove it.`;
   }
 
   // #host-reference
@@ -47,7 +47,7 @@ export default function deleteLegacyGridProps(
     propsToWarn.forEach((prop) => {
       if (!warnedAboutProps.includes(prop)) {
         warnedAboutProps.push(prop);
-        console.warn(`MUI Grid v2: ${getLegacyGridWarning(prop)}\n`);
+        console.warn(`MUI Grid2: ${getLegacyGridWarning(prop)}\n`);
       }
     });
   }

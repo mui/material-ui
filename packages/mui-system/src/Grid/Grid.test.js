@@ -258,7 +258,7 @@ describe('System <Grid />', () => {
       expect(() => {
         render(<Grid item />);
       }).toWarnDev(
-        'MUI Grid v2: The `item` prop has been removed. It is no longer necessary. You can safely remove it.',
+        'MUI Grid2: The `item` prop has been removed and is no longer necessary. You can safely remove it.',
       );
 
       // Should not warn again
@@ -271,7 +271,7 @@ describe('System <Grid />', () => {
       expect(() => {
         render(<Grid zeroMinWidth />);
       }).toWarnDev(
-        'MUI Grid v2: The `zeroMinWidth` prop has been removed. It is no longer necessary. You can safely remove it.',
+        'MUI Grid2: The `zeroMinWidth` prop has been removed and is no longer necessary. You can safely remove it.',
       );
     });
 
@@ -281,7 +281,7 @@ describe('System <Grid />', () => {
           render(<Grid {...{ [breakpoint]: 8 }} />);
         }).toWarnDev(
           // #host-reference
-          `MUI Grid v2: The \`${breakpoint}\` prop has been removed. See https://mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`,
+          `MUI Grid2: The \`${breakpoint}\` prop has been removed. See https://mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`,
         );
       });
     });

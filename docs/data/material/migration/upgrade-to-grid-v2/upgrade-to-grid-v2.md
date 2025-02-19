@@ -1,32 +1,31 @@
-# Upgrade to Grid v2
+# Upgrade to Grid2
 
 <p class="description">This guide explains how and why to migrate from the Grid component to the Grid2 component.</p>
 
-## About naming
+## Grid component versions
 
-The names of both versions of the grid components have changed over time, which makes referencing them somewhat confusing.
-This document refers to them in the following way:
-
-- **Updated Grid**: The new component named `Grid2`.
-- **Legacy Grid**: The original component named `Grid`.
+In Material UI v7, the legacy Grid component has been deprecated and replaced by Grid2, which offers several new features as well as significant improvements to the developer experience.
+This guide explains how to upgrade from Grid to Grid2, and includes details for Material UI v5, v6, and v7.
 
 ## Why you should upgrade
 
-The updated Grid component has several new features and improvements over the legacy Grid:
+Grid2 provides the following improvements over the legacy Grid:
 
-- It uses CSS variables which removes CSS specificity from class selectors.
-  Now you can use `sx` prop on the Grid to control any style you'd like.
+- It uses CSS variables, removing CSS specificity from class selectors.
+  You can use `sx` prop on Grid2 to control any style you'd like.
 - All grids are considered items without specifying the `item` prop.
 - The [offset feature](/material-ui/react-grid2/#offset) gives you more flexibility for positioning.
 - [Nested grids](/material-ui/react-grid2/#nested-grid) now have no depth limitation.
-- Its implementation doesn't use negative margins so it doesn't [overflow like the legacy grid](/material-ui/react-grid/#negative-margin).
+- Its implementation doesn't use negative margins so it doesn't [overflow like the legacy Grid](/material-ui/react-grid/#negative-margin).
 
 ## How to upgrade
 
-Before you start:
+### Prerequisites
 
-- The updated Grid was introduced in Material UI v5. You have to be on that version or above for this upgrade.
-- If you're updating your Material UI version, complete that version's upgrade guide before this one.
+Before proceeding with this upgrade:
+
+- You must be on Material UI v5+.
+- If you're in the process of upgrading your Material UI version, you should complete that upgrade first.
 
 ### 1. Update the import
 
@@ -78,7 +77,7 @@ Skip this step if you're using Material UI v5.
 :::
 
 In the legacy Grid, the size props were named to correspond with the theme's breakpoints.
-For the default theme, these were: `xs`, `sm`, `md`, `lg`, `xl`
+For the default theme, these were `xs`, `sm`, `md`, `lg`, and `xl`.
 
 Starting from Material UI v6, these props are renamed to `size` on the updated Grid:
 
@@ -114,7 +113,7 @@ npx @mui/codemod@latest v6.0.0/grid-v2-props <path/to/folder>
 The codemod requires [updating the imports](#update-the-import) beforehand.
 :::
 
-### 4. Opt-in to legacy negative margins
+### 4. Opt in to legacy negative margins
 
 :::warning
 Skip this step if you're using Material UI v6 or v7.
@@ -150,15 +149,15 @@ function Demo() {
 
 ## Common issues
 
-### Direction column or column-reverse
+### Column direction
 
-Using `direction="column"` or `direction="column-reverse"` is not supported on [the legacy Grid](/material-ui/react-grid/#direction-column-column-reverse) nor on [the updated Grid](/material-ui/react-grid2/#direction-column-or-column-reverse).
+Using `direction="column"` or `direction="column-reverse"` is not supported on [the legacy Grid](/material-ui/react-grid/#direction-column-column-reverse) nor on [the updated Grid2](/material-ui/react-grid2/#column-direction).
 If your layout used the legacy Grid with these values, it might break when you switch to the updated Grid.
-If you need vertical layout, follow the instructions in the [updated Grid documentation](/material-ui/react-grid2/#direction-column-or-column-reverse).
+If you need a vertical layout, follow the instructions in the [Grid2 documentation](/material-ui/react-grid2/#column-direction).
 
 ## Documentation pages
 
-- Updated Grid:
+- Grid2:
   - [Documentation](/material-ui/react-grid2/)
   - [API](/material-ui/api/grid-2/)
 - Legacy Grid:
