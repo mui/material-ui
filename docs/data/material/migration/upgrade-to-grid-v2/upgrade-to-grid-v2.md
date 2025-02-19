@@ -148,6 +148,14 @@ function Demo() {
 }
 ```
 
+## Common issues
+
+### Direction column or column-reverse
+
+Using `direction="column"` or `direction="column-reverse"` is not supported on [the legacy Grid](/material-ui/react-grid/#direction-column-column-reverse) nor on [the updated Grid](/material-ui/react-grid2/#direction-column-or-column-reverse).
+If your layout used the legacy Grid with these values, it might break when you switch to the updated Grid.
+If you need vertical layout, follow the instructions in the [updated Grid documentation](/material-ui/react-grid2/#direction-column-or-column-reverse).
+
 ## Documentation pages
 
 - Updated Grid:
