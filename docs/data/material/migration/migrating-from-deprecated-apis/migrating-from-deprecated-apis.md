@@ -1337,6 +1337,57 @@ Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-code
 
 ```bash
 npx @mui/codemod@latest deprecations/input-base-props <path>
+npx @mui/codemod@latest deprecations/input-base-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes that composed the `input` class with other props `size`, `type`, `multiline`, `adornedStart`, `adornedEnd`, and `hiddenLabel` have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiInputBase-root .MuiInputBase-inputSizeSmall
++.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputMultiline
++.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedStart
++.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedEnd
++.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputHiddenLabel
++.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input
+```
+
+```diff
+ import { inputBaseClasses } from '@mui/material/InputBase';
+
+ MuiInputBase: {
+   styleOverrides: {
+     root: {
+-      [`& .${inputBaseClasses.inputSizeSmall}`]: {
++      [`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputMultiline}`]: {
++      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedStart}`]: {
++      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedEnd}`]: {
++      [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputHiddenLabel}`]: {
++      [`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
 ```
 
 ### components
@@ -1585,6 +1636,36 @@ Here's how to migrate:
      },
    },
  }
+```
+
+## Menu
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#menu-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/menu-props <path>
+```
+
+### MenuListProps
+
+The Menu's `MenuListProps` prop was deprecated in favor of `slotProps.list`:
+
+```diff
+ <Menu
+-  MenuListProps={menuListProps}
++  slotProps={{ list: menuListProps }}
+ >
+```
+
+### TransitionProps
+
+The Menu's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Menu
+-  TransitionProps={transitionProps}
++  slotProps={{ transition: transitionProps }}
+ >
 ```
 
 ## MobileStepper

@@ -1289,6 +1289,60 @@ npx @mui/codemod@latest deprecations/image-list-item-bar-classes <path>
 npx @mui/codemod@latest deprecations/input-base-props <path>
 ```
 
+#### `input-base-classes`
+
+JS transforms:
+
+```diff
+ import { inputBaseClasses } from '@mui/material/InputBase';
+
+ MuiInputBase: {
+   styleOverrides: {
+     root: {
+-      [`& .${inputBaseClasses.inputSizeSmall}`]: {
++      [`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputMultiline}`]: {
++      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedStart}`]: {
++      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedEnd}`]: {
++      [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputHiddenLabel}`]: {
++      [`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiInputBase-root .MuiInputBase-inputSizeSmall
++.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputMultiline
++.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedStart
++.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedEnd
++.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputHiddenLabel
++.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-classes <path>
+```
+
 #### `input-props`
 
 ```diff
