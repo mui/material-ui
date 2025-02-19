@@ -37,6 +37,8 @@ import transformPopoverProps from '../popover-props';
 import transformSliderClasses from '../slider-classes';
 import transformMobileStepperProps from '../mobile-stepper-props';
 import transformSnackbarProps from '../snackbar-props';
+import transformerTabsProps from '../tabs-props';
+import transformerTabsClasses from '../tabs-classes';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -82,6 +84,8 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformSliderClasses(file, api, options);
   file.source = transformMobileStepperProps(file, api, options);
   file.source = transformSnackbarProps(file, api, options);
+  file.source = transformerTabsProps(file, api, options);
+  file.source = transformerTabsClasses(file, api, options);
 
   return file.source;
 }

@@ -1,19 +1,141 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { SlotComponentProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { Theme } from '../styles';
-import { TabScrollButtonProps } from '../TabScrollButton';
+import TabScrollButton, { TabScrollButtonProps } from '../TabScrollButton';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TabsClasses } from './tabsClasses';
 import SvgIcon from '../SvgIcon';
 
 export interface TabsPropsIndicatorColorOverrides {}
 
+export interface TabsRootSlotPropsOverrides {}
+export interface TabsScrollerSlotPropsOverrides {}
+export interface TabsListSlotPropsOverrides {}
+export interface TabsScrollbarSlotPropsOverrides {}
+export interface TabsIndicatorSlotPropsOverrides {}
+export interface TabsScrollButtonsSlotPropsOverrides {}
 export interface TabsStartScrollButtonIconSlotPropsOverrides {}
 export interface TabsEndScrollButtonIconSlotPropsOverrides {}
 
-export interface TabsOwnerState extends TabsProps {
+export interface TabsSlots {
+  /**
+   * The component used for the popper.
+   * @default div
+   */
+  root: React.ElementType;
+  /**
+   * The component used for the scroller.
+   * @default div
+   */
+  scroller: React.ElementType;
+  /**
+   * The component used for the flex container.
+   * @default div
+   */
+  list: React.ElementType;
+  /**
+   * The component used for the scroller.
+   * @default ScrollbarSize
+   */
+  scrollbar: React.ElementType;
+  /**
+   * The component used for the tab indicator.
+   * @default span
+   */
+  indicator: React.ElementType;
+  /**
+   * The component used for the scroll button.
+   * @default TabScrollButton
+   */
+  scrollButtons: React.ElementType;
+  /**
+   * The component used for the start scroll button icon.
+   * @default KeyboardArrowLeft
+   */
+  startScrollButtonIcon: React.ElementType;
+  /**
+   * The component used for the end scroll button icon.
+   * @default KeyboardArrowRight
+   */
+  endScrollButtonIcon: React.ElementType;
+}
+
+export type TabsSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TabsSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the div element.
+     */
+    root: SlotProps<'div', TabsRootSlotPropsOverrides, TabsOwnerState>;
+    /**
+     * Props forwarded to the scroller slot.
+     * By default, the avaible props are based on the div element.
+     */
+    scroller: SlotProps<'div', TabsScrollerSlotPropsOverrides, TabsOwnerState>;
+    /**
+     * Props forwarded to the list slot.
+     * By default, the avaible props are based on the div element.
+     */
+    list: SlotProps<'div', TabsListSlotPropsOverrides, TabsOwnerState>;
+    /**
+     * Props forwarded to the scrollbar slot.
+     * By default, the avaible props are based on the div element.
+     */
+    scrollbar: SlotProps<
+      'div',
+      { onChange?: (scrollbarWidth: undefined | number) => void } & TabsScrollbarSlotPropsOverrides,
+      TabsOwnerState
+    >;
+    /**
+     * Props forwarded to the indicator slot.
+     * By default, the avaible props are based on the span element.
+     */
+    indicator: SlotProps<'span', TabsIndicatorSlotPropsOverrides, TabsOwnerState>;
+    /**
+     * Props forwarded to the scrollButton slot.
+     * By default, the avaible props are based on the [TabScrollButton](https://mui.com/material-ui/api/tab-scroll-button/#props) component.
+     */
+    scrollButtons: SlotProps<
+      typeof TabScrollButton,
+      TabsScrollButtonsSlotPropsOverrides,
+      TabsOwnerState
+    >;
+    /**
+     * Props forwarded to the startScrollButtonIcon slot.
+     * By default, the avaible props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
+     */
+    startScrollButtonIcon: SlotProps<
+      typeof SvgIcon,
+      TabsStartScrollButtonIconSlotPropsOverrides,
+      TabsOwnerState
+    >;
+    /**
+     * Props forwarded to the endScrollButtonIcon slot.
+     * By default, the avaible props are based on the [SvgIcon](https://mui.com/material-ui/api/svg-icon/#props) component.
+     */
+    endScrollButtonIcon: SlotProps<
+      typeof SvgIcon,
+      TabsEndScrollButtonIconSlotPropsOverrides,
+      TabsOwnerState
+    >;
+  }
+> & {
+  slots?: {
+    /**
+     * @deprecated Use `slots.startScrollButtonIcon` instead.
+     */
+    StartScrollButtonIcon?: React.ElementType;
+    /**
+     * @deprecated Use `slots.endScrollButtonIcon` instead.
+     */
+    EndScrollButtonIcon?: React.ElementType;
+  };
+};
+
+export interface TabsOwnerState extends Omit<TabsProps, 'slots' | 'slotProps'> {
   vertical: boolean;
   fixed: boolean;
   hideScrollbar: boolean;
@@ -23,7 +145,7 @@ export interface TabsOwnerState extends TabsProps {
   scrollButtonsHideMobile: boolean;
 }
 
-export interface TabsOwnProps {
+export interface TabsOwnProps extends TabsSlotsAndSlotProps {
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
@@ -62,31 +184,6 @@ export interface TabsOwnProps {
    */
   classes?: Partial<TabsClasses>;
   /**
-   * The components used for each slot inside.
-   * @default {}
-   */
-  slots?: {
-    StartScrollButtonIcon?: React.ElementType;
-    EndScrollButtonIcon?: React.ElementType;
-  };
-  /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   * @default {}
-   */
-  slotProps?: {
-    startScrollButtonIcon?: SlotComponentProps<
-      typeof SvgIcon,
-      TabsStartScrollButtonIconSlotPropsOverrides,
-      TabsOwnerState
-    >;
-    endScrollButtonIcon?: SlotComponentProps<
-      typeof SvgIcon,
-      TabsEndScrollButtonIconSlotPropsOverrides,
-      TabsOwnerState
-    >;
-  };
-  /**
    * Determines the color of the indicator.
    * @default 'primary'
    */
@@ -108,6 +205,7 @@ export interface TabsOwnProps {
   orientation?: 'horizontal' | 'vertical';
   /**
    * The component used to render the scroll buttons.
+   * @deprecated use the `slots.scrollButtons` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default TabScrollButton
    */
   ScrollButtonComponent?: React.ElementType;
@@ -130,6 +228,7 @@ export interface TabsOwnProps {
   selectionFollowsFocus?: boolean;
   /**
    * Props applied to the tab indicator element.
+   * @deprecated use the `slotProps.indicator` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default  {}
    */
   TabIndicatorProps?: React.HTMLAttributes<HTMLDivElement> & {
@@ -137,6 +236,7 @@ export interface TabsOwnProps {
   };
   /**
    * Props applied to the [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
+   * @deprecated use the `slotProps.scrollButtons` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TabScrollButtonProps?: Partial<TabScrollButtonProps>;
