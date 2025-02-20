@@ -22,8 +22,8 @@ describe('replaceUrl', () => {
     expect(replaceMaterialLinks(`/experimental-api/css-theme-variables/overview/`)).to.equal(
       `/material-ui/experimental-api/css-theme-variables/overview/`,
     );
-    expect(replaceMaterialLinks(`/migration/migration-grid-v2/`)).to.equal(
-      `/material-ui/migration/migration-grid-v2/`,
+    expect(replaceMaterialLinks(`/migration/upgrade-to-grid-v2/`)).to.equal(
+      `/material-ui/migration/upgrade-to-grid-v2/`,
     );
   });
 
