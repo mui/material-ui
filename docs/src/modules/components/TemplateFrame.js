@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';
-import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
+import { getDesignTokens, themedComponents } from '@mui/docs/branding';
 import { createTheme, ThemeProvider, styled, useColorScheme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
@@ -207,7 +207,7 @@ const brandingTheme = createTheme({
       },
     },
   }),
-  ...getThemedComponents(),
+  ...themedComponents,
 });
 
 export default function TemplateFrame({ children }) {

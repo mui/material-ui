@@ -368,7 +368,7 @@ export default function MyApp(props) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
+    <AppWrapper pageProps={pageProps} emotionCache={emotionCache}>
       {getLayout(<Component {...pageProps} />)}
     </AppWrapper>
   );

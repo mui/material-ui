@@ -34,7 +34,7 @@ import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
 import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
-import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
+import { getDesignTokens, themedComponents } from '@mui/docs/branding';
 
 const Grid = styled('div')(({ theme }) => [
   {
@@ -208,7 +208,6 @@ const StyledChip = styled(Chip)(({ theme }) => [
   }),
 ]);
 
-const themedComponents = getThemedComponents();
 export function buildTheme(): ThemeOptions {
   return {
     components: {

@@ -3,7 +3,7 @@ import { deepmerge } from '@mui/utils';
 import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
-import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
+import { getDesignTokens, themedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 
@@ -47,7 +47,7 @@ const theme = createTheme({
       },
     },
   }),
-  ...getThemedComponents(),
+  ...themedComponents,
 });
 
 export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
