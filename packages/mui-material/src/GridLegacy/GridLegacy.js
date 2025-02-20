@@ -25,6 +25,17 @@ import useTheme from '../styles/useTheme';
 import GridLegacyContext from './GridLegacyContext';
 import gridLegacyClasses, { getGridLegacyUtilityClass } from './gridLegacyClasses';
 
+let warnedOnce = false;
+
+function warnAboutDeprecatedGridLegacy() {
+  if (!warnedOnce && process.env.NODE_ENV === 'development') {
+    warnedOnce = true;
+    console.warn(
+      'MUI: The GridLegacy component is deprecated. See https://mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.\n',
+    );
+  }
+}
+
 export function generateGridLegacy({ theme, ownerState }) {
   let size;
 
@@ -420,6 +431,10 @@ const GridLegacy = React.forwardRef(function GridLegacy(inProps, ref) {
     zeroMinWidth = false,
     ...other
   } = props;
+
+  React.useEffect(() => {
+    warnAboutDeprecatedGridLegacy();
+  }, []);
 
   const rowSpacing = rowSpacingProp || spacing;
   const columnSpacing = columnSpacingProp || spacing;
