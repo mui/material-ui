@@ -2414,3 +2414,65 @@ The SpeedDial's `TransitionProps` prop was deprecated in favor of `slotProps.tra
 +  slotProps={{ transition: { unmountOnExit: true } }}
  />
 ```
+
+## SpeedDialAction
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#speed-dial-action-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/speed-dial-action-props <path>
+```
+
+### FabProps
+
+The SpeedDialAction's `FabProps` prop was deprecated in favor of `slotProps.fab`:
+
+```diff
+ <SpeedDialAction
+-  FabProps={CustomFabProps}
++  slotProps={{ fab: CustomFabProps }}
+```
+
+### TooltipClasses
+
+The SpeedDialAction's `TooltipClasses` prop was deprecated in favor of `slotProps.tooltip.classes`:
+
+```diff
+ <SpeedDialAction
+-  TooltipClasses={{ tooltip: 'foo' }}
++  slotProps={{ tooltip: { classes: { tooltip: 'foo' } } }}
+ />
+```
+
+### tooltipPlacement
+
+The SpeedDialAction's `tooltipPlacement` prop was deprecated in favor of `slotProps.tooltip.placement`:
+
+```diff
+ <SpeedDialAction
+-  tooltipPlacement="top"
++  slotProps={{ tooltip: { placement: 'top' } }}
+ />
+```
+
+### tooltipTitle
+
+The SpeedDialAction's `tooltipTitle` prop was deprecated in favor of `slotProps.tooltip.title`:
+
+```diff
+ <SpeedDialAction
+-  tooltipTitle="foo"
++  slotProps={{ tooltip: { title: 'foo' } }}
+ />
+```
+
+### tooltipOpen
+
+The SpeedDialAction's `tooltipOpen` prop was deprecated in favor of `slotProps.tooltip.open`:
+
+```diff
+ <SpeedDialAction
+-  tooltipOpen
++  slotProps={{ tooltip: { open: true } }}
+ />
+```
