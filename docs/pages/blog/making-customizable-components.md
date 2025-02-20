@@ -310,5 +310,5 @@ Thanks to the slot strategy and the introduction of supplementary tools like [MU
 [Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
 [MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
 
-Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.
+Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/quickstart/) today.
 And be sure to let us know what you think about the customization experience!

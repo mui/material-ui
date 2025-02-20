@@ -535,9 +535,40 @@ describe('createTheme', () => {
     } catch (error) {
       expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name.',
+          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
+  });
+
+  it('should not throw for nested theme that includes `vars` node', () => {
+    const outerTheme = createTheme({
+      cssVariables: true,
+      palette: {
+        secondary: {
+          main: deepOrange[500],
+        },
+      },
+    });
+
+    expect(() =>
+      render(
+        <ThemeProvider theme={outerTheme}>
+          <ThemeProvider
+            theme={(theme) => {
+              return createTheme({
+                ...theme,
+                palette: {
+                  ...theme.palette,
+                  primary: {
+                    main: green[500],
+                  },
+                },
+              });
+            }}
+          />
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 
   it('should create a new object', () => {

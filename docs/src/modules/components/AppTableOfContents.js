@@ -82,13 +82,18 @@ const NavItem = styled(Link, {
       variants: [
         {
           props: ({ active }) => !!active,
-          style: activeStyles,
+          style: [activeStyles, theme.applyDarkStyles(activeDarkStyles)],
         },
         {
           props: ({ active }) => !active,
-          style: {
-            color: (theme.vars || theme).palette.text.primary,
-          },
+          style: [
+            {
+              color: (theme.vars || theme).palette.text.primary,
+            },
+            theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.grey[500],
+            }),
+          ],
         },
         {
           props: ({ level }) => level === 2,
@@ -110,18 +115,6 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[500],
         color: (theme.vars || theme).palette.grey[200],
       },
-      variants: [
-        {
-          props: ({ active }) => !!active,
-          style: activeDarkStyles,
-        },
-        {
-          props: ({ active }) => !active,
-          style: {
-            color: (theme.vars || theme).palette.grey[500],
-          },
-        },
-      ],
       '&:active': activeDarkStyles,
     }),
   ];

@@ -64,53 +64,76 @@ const Item = styled(
         },
         {
           props: ({ subheader }) => !subheader,
-          style: {
-            '&:hover': {
-              color: (theme.vars || theme).palette.common.black,
-              backgroundColor: (theme.vars || theme).palette.grey[50],
-              '@media (hover: none)': {
-                color: 'var(--_color)',
-                backgroundColor: 'transparent',
+          style: [
+            {
+              '&:hover': {
+                color: (theme.vars || theme).palette.common.black,
+                backgroundColor: (theme.vars || theme).palette.grey[50],
+                '@media (hover: none)': {
+                  color: 'var(--_color)',
+                  backgroundColor: 'transparent',
+                },
               },
             },
-          },
+            theme.applyDarkStyles({
+              '&:hover': {
+                color: '#fff',
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                '@media (hover: none)': {
+                  color: 'var(--_color)',
+                  backgroundColor: 'transparent',
+                },
+              },
+            }),
+          ],
         },
         {
           props: ({ subheader }) => !!subheader,
-          style: {
-            '--_color': (theme.vars || theme).palette.text.tertiary,
-            marginTop: theme.spacing(1),
-            textTransform: 'uppercase',
-            letterSpacing: '.1rem',
-            fontWeight: theme.typography.fontWeightSemiBold,
-            fontSize: theme.typography.pxToRem(11),
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              zIndex: 1,
-              left: 9.5,
-              height: '55%',
-              top: 16,
-              width: 1,
-              opacity: 0,
-              background: (theme.vars || theme).palette.grey[100],
+          style: [
+            {
+              '--_color': (theme.vars || theme).palette.text.tertiary,
+              marginTop: theme.spacing(1),
+              textTransform: 'uppercase',
+              letterSpacing: '.1rem',
+              fontWeight: theme.typography.fontWeightSemiBold,
+              fontSize: theme.typography.pxToRem(11),
+              '&::before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                zIndex: 1,
+                left: 9.5,
+                height: '55%',
+                top: 16,
+                width: 1,
+                opacity: 0,
+                background: (theme.vars || theme).palette.grey[100],
+              },
+              '&::after': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                zIndex: 5,
+                left: 6,
+                height: 8,
+                width: 8,
+                borderRadius: 2,
+                opacity: 0,
+                background: alpha(theme.palette.grey[50], 0.5),
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[200],
+              },
             },
-            '&::after': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              zIndex: 5,
-              left: 6,
-              height: 8,
-              width: 8,
-              borderRadius: 2,
-              opacity: 0,
-              background: alpha(theme.palette.grey[50], 0.5),
-              border: '1px solid',
-              borderColor: (theme.vars || theme).palette.grey[200],
-            },
-          },
+            theme.applyDarkStyles({
+              '&::before': {
+                background: (theme.vars || theme).palette.primaryDark[700],
+              },
+              '&::after': {
+                background: alpha(theme.palette.primaryDark[700], 0.8),
+                borderColor: alpha(theme.palette.primaryDark[600], 0.6),
+              },
+            }),
+          ],
         },
         {
           props: ({ depth, subheader }) => depth !== 0 && subheader,
@@ -167,6 +190,7 @@ const Item = styled(
       },
     },
     theme.applyDarkStyles({
+      color: `var(--_color, ${(theme.vars || theme).palette.text.secondary})`,
       '&::before': {
         background: (theme.vars || theme).palette.primaryDark[700],
       },
@@ -181,33 +205,6 @@ const Item = styled(
           background: (theme.vars || theme).palette.primary[400],
         },
       },
-      variants: [
-        {
-          props: ({ subheader }) => !!subheader,
-          style: {
-            '&::before': {
-              background: (theme.vars || theme).palette.primaryDark[700],
-            },
-            '&::after': {
-              background: alpha(theme.palette.primaryDark[700], 0.8),
-              borderColor: alpha(theme.palette.primaryDark[600], 0.6),
-            },
-          },
-        },
-        {
-          props: ({ subheader }) => !subheader,
-          style: {
-            '&:hover': {
-              color: '#fff',
-              backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-              '@media (hover: none)': {
-                color: 'var(--_color)',
-                backgroundColor: 'transparent',
-              },
-            },
-          },
-        },
-      ],
     }),
   ];
 });

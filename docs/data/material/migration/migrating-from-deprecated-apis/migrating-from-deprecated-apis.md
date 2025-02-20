@@ -1638,6 +1638,36 @@ Here's how to migrate:
  }
 ```
 
+## Menu
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#menu-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/menu-props <path>
+```
+
+### MenuListProps
+
+The Menu's `MenuListProps` prop was deprecated in favor of `slotProps.list`:
+
+```diff
+ <Menu
+-  MenuListProps={menuListProps}
++  slotProps={{ list: menuListProps }}
+ >
+```
+
+### TransitionProps
+
+The Menu's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Menu
+-  TransitionProps={transitionProps}
++  slotProps={{ transition: transitionProps }}
+ >
+```
+
 ## MobileStepper
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#mobile-stepper-props) below to migrate the code as described in the following sections:

@@ -10,7 +10,7 @@ manualCard: true
 There's a lot of exciting news in [MUI X v6.0.0-beta.0](https://github.com/mui/mui-x/releases/v6.0.0-beta.0), but there's hardly anything comparable to the revamp we're delivering for the Date and Time Pickers.
 
 This is the result of our ongoing efforts to improve the usability and customizability of these components.
-We kept the best aspects of the previous versions, and we're fleshing out the package with a [new documentation](https://next.mui.com/x/react-date-pickers/getting-started/), major new features and one fundamental change: a new input type to replace the masked text fields.
+We kept the best aspects of the previous versions, and we're fleshing out the package with [new documentation](https://next.mui.com/x/react-date-pickers/), major new features, and one fundamental change: a new input type to replace the masked text fields.
 
 ## The new date and time fields
 

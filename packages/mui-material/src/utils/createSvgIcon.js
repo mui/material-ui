@@ -8,7 +8,11 @@ import SvgIcon from '../SvgIcon';
 export default function createSvgIcon(path, displayName) {
   function Component(props, ref) {
     return (
-      <SvgIcon data-testid={`${displayName}Icon`} ref={ref} {...props}>
+      <SvgIcon
+        data-testid={process.env.NODE_ENV !== 'production' ? `${displayName}Icon` : undefined}
+        ref={ref}
+        {...props}
+      >
         {path}
       </SvgIcon>
     );

@@ -132,9 +132,9 @@ A significant addition is the time-saving alternative to the traditional JSX arc
 
 The Tree View was split into two distinct components.
 
-The first is the [Simple Tree View](/x/react-tree-view/#simple-tree-view), which retains the classic and familiar JSX approach and is still the one behind the original Tree View.
+The first is the [Simple Tree View](/x/react-tree-view/quickstart/#simple-tree-view), which retains the classic and familiar JSX approach and is still the one behind the original Tree View.
 
-The second is the [Rich Tree View](/x/react-tree-view/#rich-tree-view), a new component designed to streamline the development process, and with which we aim to support several common use cases out-of-the-box.
+The second is the [Rich Tree View](/x/react-tree-view/quickstart/#rich-tree-view), a new component designed to streamline the development process, and with which we aim to support several common use cases out of the box.
 
 Similar to the Data Grid, it only requires a dataset and possibly a few properties to render; it does all the heavy lifting for you, handling most of the complexities internally.
 
@@ -296,7 +296,7 @@ This feature greatly improves the experience for screen reader users, making int
 <DatePicker enableAccessibleFieldDOMStructure />
 ```
 
-For more details, please check out the [documentation section](/x/react-date-pickers/fields/#accessible-dom-structure).
+For more details, please check out the [Fields documentation](/x/react-date-pickers/fields/).
 
 ### Support for date-fns v3
 

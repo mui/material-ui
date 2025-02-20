@@ -1,5 +1,36 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-alpha.2
+
+<!-- generated comparing v7.0.0-alpha.1..master -->
+
+_Feb 18, 2025_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@7.0.0-alpha.2`
+
+- [Autocomplete] Remove legacy `aria-owns` attribute for combobox (#45302) @ZeeshanTamboli
+- [Button] Apply id only if loading indicator is present (#45296) @aarongarciah
+- [Hidden] Remove deprecated Hidden component (#45283) @DiegoAndai
+- [InputBase] Deprecate composed classes (#45234) @sai6855
+- [InputLabel] Changed size prop value from `normal` to `medium` (#45235) @perkrlsn
+- Fix `slotProps.transition` types (#45214) @siriwatknp
+
+### Docs
+
+- Fix broken links to MUI X docs (#45145) @mapache-salvaje
+- Add migration guide for package layout changes (#45222) @Janpot
+- [icons] Fix typo in material-icons.md (#45334) @a-s-russo
+
+### Core
+
+- Disallow access to esm/modern barrel files (#45332) @Janpot
+- [code-infra] Update `elliptic` (#45311) @Janpot
+- Update release guide to specify package bumping rules (#45294) @DiegoAndai
+
+All contributors of this release in alphabetical order: @a-s-russo, @aarongarciah, @DiegoAndai, @Janpot, @mapache-salvaje, @perkrlsn, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 7.0.0-alpha.1
 
 <!-- generated comparing v7.0.0-alpha.0..master -->
