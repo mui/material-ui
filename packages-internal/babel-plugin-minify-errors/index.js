@@ -24,7 +24,8 @@ function pathToNodeImportSpecifier(importPath) {
   return normalized.startsWith('/') || normalized.startsWith('.') ? normalized : `./${normalized}`;
 }
 
-const COMMENT_MARKER = 'minify-error';
+const COMMENT_OPT_IN_MARKER = 'minify-error';
+const COMMENT_OPT_OUT_MARKER = 'minify-error-disabled';
 
 /**
  * @typedef {import('@babel/core')} babel
@@ -33,7 +34,7 @@ const COMMENT_MARKER = 'minify-error';
 /**
  * @typedef {babel.PluginPass & {updatedErrorCodes?: boolean, formatErrorMessageIdentifier?: babel.types.Identifier}} PluginState
  * @typedef {'annotate' | 'throw' | 'write'} MissingError
- * @typedef {{ errorCodesPath: string, missingError: MissingError, runtimeModule?: string }} Options
+ * @typedef {{ errorCodesPath: string, missingError: MissingError, runtimeModule?: string, detection?: 'opt-in' | 'opt-out' }} Options
  */
 
 /**
@@ -124,7 +125,7 @@ function transformErrorMessage(
   state,
   errorCodesLookup,
   missingError,
-  runtimeModule = '#formatErrorMessage',
+  runtimeModule,
 ) {
   const message = extractMessageFromExpression(t, messageNode);
   if (!message) {
@@ -230,7 +231,12 @@ function transformErrorMessage(
  */
 module.exports = function plugin(
   { types: t },
-  { errorCodesPath, missingError = 'annotate', runtimeModule },
+  {
+    errorCodesPath,
+    missingError = 'annotate',
+    runtimeModule = '#formatErrorMessage',
+    detection = 'opt-in',
+  },
 ) {
   if (!errorCodesPath) {
     throw new Error('errorCodesPath is required.');
@@ -253,17 +259,39 @@ module.exports = function plugin(
           return;
         }
 
-        if (
-          !newExpressionPath.node.leadingComments?.some((comment) =>
-            comment.value.includes(COMMENT_MARKER),
-          )
-        ) {
-          return;
-        }
+        switch (detection) {
+          case 'opt-in': {
+            if (
+              !newExpressionPath.node.leadingComments?.some((comment) =>
+                comment.value.includes(COMMENT_OPT_IN_MARKER),
+              )
+            ) {
+              return;
+            }
+            newExpressionPath.node.leadingComments = newExpressionPath.node.leadingComments.filter(
+              (comment) => !comment.value.includes(COMMENT_OPT_IN_MARKER),
+            );
+            break;
+          }
+          case 'opt-out': {
+            if (
+              newExpressionPath.node.leadingComments?.some((comment) =>
+                comment.value.includes(COMMENT_OPT_OUT_MARKER),
+              )
+            ) {
+              newExpressionPath.node.leadingComments =
+                newExpressionPath.node.leadingComments.filter(
+                  (comment) => !comment.value.includes(COMMENT_OPT_OUT_MARKER),
+                );
+              return;
+            }
 
-        newExpressionPath.node.leadingComments = newExpressionPath.node.leadingComments.filter(
-          (comment) => !comment.value.includes(COMMENT_MARKER),
-        );
+            break;
+          }
+          default: {
+            throw new Error(`Unknown detection option: ${detection}`);
+          }
+        }
 
         const messagePath = newExpressionPath.get('arguments')[0];
         if (!messagePath) {
