@@ -22,8 +22,8 @@ The `GridLegacy` component shouldn't be confused with a data grid; it is closer 
 
 :::warning
 The `GridLegacy` component has been deprecated.
-Please use [Grid2](/material-ui/react-grid2/) instead.
-See the [Grid2 upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more details.
+Please use [Grid](/material-ui/react-grid/) instead.
+See the [Grid upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more details.
 :::
 
 ## How it works

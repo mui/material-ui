@@ -150,7 +150,7 @@ export interface GridLegacyOwnProps extends SystemProps<Theme>, Breakpoints {
 }
 
 /**
- * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ * @deprecated Use the [`Grid`](https://mui.com/material-ui/react-grid/) component instead.
  */
 export interface GridLegacyTypeMap<
   AdditionalProps = {},
@@ -170,12 +170,12 @@ export interface GridLegacyTypeMap<
  *
  * - [GridLegacy API](https://next.mui.com/material-ui/api/grid-legacy/)
  *
- * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ * @deprecated Use the [`Grid`](https://mui.com/material-ui/react-grid/) component instead.
  */
 declare const GridLegacy: OverridableComponent<GridLegacyTypeMap>;
 
 /**
- * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
+ * @deprecated Use the [`Grid`](https://mui.com/material-ui/react-grid/) component instead.
  */
 export type GridLegacyProps<
   RootComponent extends React.ElementType = GridLegacyTypeMap['defaultComponent'],

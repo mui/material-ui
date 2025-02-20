@@ -34,10 +34,10 @@ const layoutComponents = [
     noGuidelines: true,
   },
   {
-    name: 'Grid v2',
+    name: 'Grid',
     srcLight: '/static/material-ui/react-components/grid-v2-light.png',
     srcDark: '/static/material-ui/react-components/grid-v2-dark.png',
-    link: '/material-ui/react-grid2/',
+    link: '/material-ui/react-grid/',
     md1: false,
     md2: false,
     md3: false,
