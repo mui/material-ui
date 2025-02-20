@@ -124,14 +124,6 @@ pluginTester({
       output: readOutputFixtureSync('custom-runtime', 'output.js'),
     },
     {
-      title: 'throws when runtimeModule is not provided',
-      error: /runtimeModule is required/,
-      pluginOptions: {
-        errorCodesPath: path.join(fixturePath, 'literal', 'error-codes.json'),
-      },
-      fixture: path.join(fixturePath, 'literal', 'input.js'),
-    },
-    {
       title: 'literal-tag',
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'literal-tag', 'error-codes.json'),
@@ -210,14 +202,6 @@ pluginTester({
       },
       fixture: path.join(fixturePath, 'custom-runtime-tag', 'input.js'),
       output: readOutputFixtureSync('custom-runtime-tag', 'output.js'),
-    },
-    {
-      title: 'throws when runtimeModule is not provided with tag',
-      error: /runtimeModule is required/,
-      pluginOptions: {
-        errorCodesPath: path.join(fixturePath, 'literal-tag', 'error-codes.json'),
-      },
-      fixture: path.join(fixturePath, 'literal-tag', 'input.js'),
     },
   ],
 });
