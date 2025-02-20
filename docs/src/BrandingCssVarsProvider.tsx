@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import { CssVarsProvider, extendTheme, PaletteColorOptions } from '@mui/material/styles';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  // @ts-expect-error need to use deprecated API because MUI X repo still on Material UI v5
+  experimental_extendTheme as extendTheme,
+  PaletteColorOptions,
+} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
@@ -51,7 +56,7 @@ const theme = extendTheme({
 export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
-    // Need to use deprecated CssVarsProvider because MUI X repo still on Material UI v5
+    // need to use deprecated API because MUI X repo still on Material UI v5
     <CssVarsProvider theme={theme} disableTransitionOnChange>
       <NextNProgressBar />
       <CssBaseline />
