@@ -69,6 +69,39 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
    },
 ```
 
+### Grid renamed to GridLegacy
+
+The deprecated `Grid` component has been renamed to `GridLegacy`.
+If you wish to continue using this legacy component, update your imports as follows:
+
+```diff
+-import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
++import Grid, { gridLegacyClasses, GridLegacyProps } from '@mui/material/GridLegacy';
+
+-import { Grid } from '@mui/material';
++import { GridLegacy as Grid } from '@mui/material';
+```
+
+This also applies to the theme's `components` object:
+
+```diff
+ const theme = createTheme({
+   components: {
+-    MuiGrid: {
++    MuiGridLegacy: {
+       // ...
+     },
+   },
+ });
+```
+
+As well as the component's CSS classes:
+
+```diff
+-.MuiGrid-root
++.MuiGridLegacy-root
+```
+
 ### Hidden and PigmentHidden components removed
 
 The deprecated `Hidden` and `PigmentHidden` components have been removed.
