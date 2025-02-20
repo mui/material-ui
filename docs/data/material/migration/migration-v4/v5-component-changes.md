@@ -778,7 +778,7 @@ If you need negative margins on all sides, we recommend using the new Grid v2 in
 To learn more about Grid2, check out the [Grid2 component doc](/material-ui/react-grid2/) and the [upgrade guide](/material-ui/migration/upgrade-to-grid-v2/).
 
 :::info
-Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
+Grid2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
 :::
 
 ## GridList

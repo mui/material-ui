@@ -246,8 +246,8 @@ It cannot wrap other elements.
 ### Column direction
 
 Using `direction="column"` or `direction="column-reverse"` is not supported.
-The Grid component is designed to divide the container in columns, not rows.
-We advice against using the Grid component for vertical layouts.
-Instead, you can use the [Stack component](/material-ui/react-stack/) inside your grid to create vertical layouts, as follows:
+The Grid component is specifically designed to subdivide a layout into columns, not rows.
+You should not use the Grid component on its own to stack layout elements vertically.
+Instead, you should use the [Stack component](/material-ui/react-stack/) inside of a Grid to create vertical layouts as shown below:
 
 {{"demo": "ColumnLayoutInsideGrid.js"}}
