@@ -24,6 +24,7 @@ import {
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridTypeMap, GridOwnerState, GridProps, GridOffset, GridSize } from './GridProps';
+import deleteLegacyGridProps from './deleteLegacyGridProps';
 
 const defaultTheme = createTheme();
 
@@ -121,6 +122,10 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
+
+    // TODO v8: Remove when removing the legacy Grid component
+    deleteLegacyGridProps(props, theme.breakpoints);
+
     const {
       className,
       children,
