@@ -371,7 +371,7 @@ export default function MyApp(props) {
   return (
     <CacheProvider value={emotionCache}>
       <AppWrapper pageProps={pageProps}>
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
       </AppWrapper>
     </CacheProvider>
   );
