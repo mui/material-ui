@@ -2,6 +2,27 @@
 
 const helperModuleImports = require('@babel/helper-module-imports');
 const fs = require('fs');
+const nodePath = require('path');
+const finder = require('find-package-json');
+
+/**
+ * Normalize a file path to POSIX in order for it to be platform-agnostic.
+ * @param {string} importPath
+ * @returns {string}
+ */
+function toPosixPath(importPath) {
+  return nodePath.normalize(importPath).split(nodePath.sep).join(nodePath.posix.sep);
+}
+
+/**
+ * Converts a file path to a node import specifier.
+ * @param {string} importPath
+ * @returns {string}
+ */
+function pathToNodeImportSpecifier(importPath) {
+  const normalized = toPosixPath(importPath);
+  return normalized.startsWith('/') || normalized.startsWith('.') ? normalized : `./${normalized}`;
+}
 
 const COMMENT_MARKER = 'minify-error';
 
@@ -10,7 +31,7 @@ const COMMENT_MARKER = 'minify-error';
  */
 
 /**
- * @typedef {{updatedErrorCodes?: boolean, formatErrorMessageIdentifier?: babel.types.Identifier}} PluginState
+ * @typedef {babel.PluginPass & {updatedErrorCodes?: boolean, formatErrorMessageIdentifier?: babel.types.Identifier}} PluginState
  * @typedef {'annotate' | 'throw' | 'write'} MissingError
  * @typedef {{ errorCodesPath: string, missingError: MissingError, runtimeModule?: string }} Options
  */
@@ -90,7 +111,7 @@ function handleUnminifyable(missingError, path) {
  * @param {babel.types} t
  * @param {babel.NodePath} path
  * @param {babel.types.Expression} messageNode
- * @param {PluginState} state
+ * @param {PluginState } state
  * @param {Map<string, number>} errorCodesLookup
  * @param {MissingError} missingError
  * @param {string} runtimeModule
@@ -103,7 +124,7 @@ function transformErrorMessage(
   state,
   errorCodesLookup,
   missingError,
-  runtimeModule,
+  runtimeModule = '#formatErrorMessage',
 ) {
   const message = extractMessageFromExpression(t, messageNode);
   if (!message) {
@@ -139,9 +160,48 @@ function transformErrorMessage(
   }
 
   if (!state.formatErrorMessageIdentifier) {
-    state.formatErrorMessageIdentifier = helperModuleImports.addDefault(path, runtimeModule, {
-      nameHint: '_formatErrorMessage',
-    });
+    let resolvedRuntimeModuleSpecifier = runtimeModule;
+    if (runtimeModule.startsWith('#')) {
+      const currentFile = state.filename;
+      if (!currentFile) {
+        throw new Error('filename is not defined');
+      }
+      const result = finder(currentFile).next();
+      if (result.done) {
+        throw new Error('Could not find package.json');
+      }
+      const pkg = result.value;
+      const pkgPath = result.filename;
+
+      const runtimeModulePath = pkg?.imports?.[runtimeModule];
+      if (typeof runtimeModulePath !== 'string') {
+        throw new Error(`Could not find a valid runtime module path for ${runtimeModule}`);
+      }
+      if (runtimeModulePath.startsWith('.')) {
+        const resolvedRuntimeModulePath = nodePath.resolve(
+          nodePath.dirname(pkgPath),
+          runtimeModulePath,
+        );
+        const relative = nodePath.relative(
+          nodePath.dirname(currentFile),
+          resolvedRuntimeModulePath,
+        );
+        const withJsExtension = relative.replace(/\.(j|t)sx?$/, '.js');
+        resolvedRuntimeModuleSpecifier = pathToNodeImportSpecifier(withJsExtension);
+      } else if (runtimeModulePath.startsWith('#')) {
+        throw new Error('Cannot recursively resolve imports yet.');
+      } else {
+        resolvedRuntimeModuleSpecifier = runtimeModulePath;
+      }
+    }
+
+    state.formatErrorMessageIdentifier = helperModuleImports.addDefault(
+      path,
+      resolvedRuntimeModuleSpecifier,
+      {
+        nameHint: '_formatErrorMessage',
+      },
+    );
   }
 
   // Return a conditional expression that uses the original message in development
@@ -174,10 +234,6 @@ module.exports = function plugin(
 ) {
   if (!errorCodesPath) {
     throw new Error('errorCodesPath is required.');
-  }
-
-  if (!runtimeModule) {
-    throw new Error('runtimeModule is required.');
   }
 
   const errorCodesContent = fs.readFileSync(errorCodesPath, 'utf8');
