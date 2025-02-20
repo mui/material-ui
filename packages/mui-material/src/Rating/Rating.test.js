@@ -4,6 +4,7 @@ import { stub, spy } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import userEvent from '@testing-library/user-event';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Rating />', () => {
@@ -165,6 +166,25 @@ describe('<Rating />', () => {
     expect(handleChange.args[0][1]).to.deep.equal(3);
     const checked = container.querySelector('input[name="rating-test"]:checked');
     expect(checked.value).to.equal('2');
+  });
+
+  it('should select the rating with user clicks using user-event', async () => {
+    if (!/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const user = userEvent.setup();
+    const handleChange = spy();
+
+    const { container } = render(<Rating name="rating-test" onChange={handleChange} />);
+
+    await user.click(screen.getByLabelText('3 Stars'));
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.deep.equal(3);
+
+    const checked = container.querySelector('input[name="rating-test"]:checked');
+    expect(checked.value).to.equal('3');
   });
 
   it('should change the value to null', () => {
