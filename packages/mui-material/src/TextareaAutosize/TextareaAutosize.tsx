@@ -5,7 +5,6 @@ import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useEventCallback as useEventCallback,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
@@ -146,20 +145,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     textarea.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
   }, [calculateTextareaStyles]);
 
-  const didHeightChange = useEventCallback(() => {
-    const textarea = textareaRef.current;
-    const textareaStyles = calculateTextareaStyles();
-
-    if (!textarea || !textareaStyles || isEmpty(textareaStyles)) {
-      // console.warn('oops');
-      return false;
-    }
-
-    const outerHeightStyle = textareaStyles.outerHeightStyle;
-
-    return heightRef.current != null && heightRef.current !== outerHeightStyle;
-  });
-
   const frameRef = React.useRef(-1);
 
   useEnhancedEffect(() => {
@@ -178,19 +163,15 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => {
-        const changed = didHeightChange();
-        // console.log('RO callback didHeightChange()', changed);
-        if (changed) {
-          // avoid "ResizeObserver loop completed with undelivered notifications" error
-          // by temporarily unobserving the textarea element while manipulating the height
-          // and reobserving one frame later
-          resizeObserver.unobserve(textarea);
-          cancelAnimationFrame(frameRef.current);
-          syncHeight();
-          frameRef.current = requestAnimationFrame(() => {
-            resizeObserver.observe(textarea);
-          });
-        }
+        // avoid "ResizeObserver loop completed with undelivered notifications" error
+        // by temporarily unobserving the textarea element while manipulating the height
+        // and reobserving one frame later
+        resizeObserver.unobserve(textarea);
+        cancelAnimationFrame(frameRef.current);
+        syncHeight();
+        frameRef.current = requestAnimationFrame(() => {
+          resizeObserver.observe(textarea);
+        });
       });
       resizeObserver.observe(textarea);
     }
@@ -203,7 +184,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
         resizeObserver.disconnect();
       }
     };
-  }, [calculateTextareaStyles, syncHeight, didHeightChange]);
+  }, [calculateTextareaStyles, syncHeight]);
 
   useEnhancedEffect(() => {
     syncHeight();
