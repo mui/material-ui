@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
@@ -28,24 +28,10 @@ const theme = createTheme({
 });
 
 <ThemeProvider theme={theme}>
-  <Grid
-    size={{
-      mobile: 1,
-      tablet: 2,
-      laptop: 3,
-      desktop: 4,
-    }}
-  />
+  <Grid item mobile={1} tablet={2} laptop={3} desktop={4} />
 </ThemeProvider>;
 
 <ThemeProvider theme={theme}>
-  <Grid
-    size={{
-      mobile: 1,
-      tablet: 2,
-      laptop: 3,
-      /* @ts-expect-error unknown desk */
-      desk: 4,
-    }}
-  />
+  {/* @ts-expect-error unknown desk */}
+  <Grid item mobile={1} tablet={2} laptop={3} desk={4} />
 </ThemeProvider>;

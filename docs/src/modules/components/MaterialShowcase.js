@@ -470,7 +470,7 @@ export default function MaterialShowcase() {
           .filter((item) => item[sortFunctionName] !== undefined)
           .sort(sortFunction)
           .map((app) => (
-            <Grid key={app.title} item size={{ xs: 12, sm: 6 }}>
+            <Grid key={app.title} size={{ xs: 12, sm: 6 }}>
               {app.image ? (
                 <Card
                   variant="outlined"

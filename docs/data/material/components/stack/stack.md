@@ -36,7 +36,7 @@ The spacing value can be any number, including decimals, or a string.
 
 ### Stack vs. Grid
 
-`Stack` is concerned with one-dimensional layouts, while [GridLegacy](/material-ui/react-grid-legacy/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+`Stack` is concerned with one-dimensional layouts, while [Grid](/material-ui/react-grid/) handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
 
 ## Direction
 
