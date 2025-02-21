@@ -445,4 +445,25 @@ describe('<TextareaAutosize />', () => {
       backgroundColor: 'rgb(255, 255, 0)',
     });
   });
+
+  it('should not infinite loop document selectionchange', async () => {
+    const handleSelectionChange = spy();
+
+    function App() {
+      React.useEffect(() => {
+        document.addEventListener('selectionchange', handleSelectionChange);
+        return () => {
+          document.removeEventListener('selectionchange', handleSelectionChange);
+        };
+      }, []);
+
+      return (
+        <TextareaAutosize defaultValue="some long text that makes the input start with multiple rows" />
+      );
+    }
+
+    await render(<App />);
+    await sleep(100);
+    expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
+  });
 });
