@@ -47,31 +47,31 @@ export type CSSPseudos = { [K in CSS.Pseudos]?: unknown | CSSObject };
 
 // TODO v6 - check if we can drop the unknown, as it breaks the autocomplete
 // For more info on why it was added, see https://github.com/mui/material-ui/pull/26228
-export interface CSSOthersObject {
+export type CSSOthersObject = {
+  variants?: never;
   [propertiesName: string]: unknown | CSSInterpolation;
-}
+};
 export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 
 export interface ArrayCSSInterpolation extends ReadonlyArray<CSSInterpolation> {}
 
 export interface CSSOthersObjectForCSSObject {
+  variants?: never;
   [propertiesName: string]: CSSInterpolation;
 }
 
-// Omit variants as a key, because we have a special handling for it
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos,
-    Omit<CSSOthersObject, 'variants'> {}
+export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
-interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{
-    props: Props | ((props: Props) => boolean);
-    style:
-      | CSSObject
-      | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
-  }>;
-}
+export type CSSObjectWithVariants<Props> = CSSPropertiesWithMultiValues &
+  CSSPseudos & {
+    variants: Array<{
+      props: Partial<Props> | ((props: Props) => boolean);
+      style:
+        | CSSObject
+        | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
+    }>;
+    [propertiesName: string]: unknown | CSSInterpolation;
+  };
 
 export interface ComponentSelector {
   __emotion_styles: any;
