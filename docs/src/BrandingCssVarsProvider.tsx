@@ -74,6 +74,7 @@ const theme =
 const ThemeVarsProvider = typeof createColorScheme === 'function' ? ThemeProvider : CssVarsProvider;
 
 export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
+  // TODO: add custom palette, spacing, and density support
   const { children } = props;
   return (
     // need to use deprecated API because MUI X repo still on Material UI v5
