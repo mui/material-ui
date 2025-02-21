@@ -41,17 +41,14 @@
     "precision": { "description": "The minimum increment value change allowed." },
     "readOnly": { "description": "Removes all hover effects and pointer events." },
     "size": { "description": "The size of the component." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "value": { "description": "The rating value." }
   },
   "classDescriptions": {
-    "decimal": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the icon wrapping elements",
-      "conditions": "decimals are necessary"
-    },
     "disabled": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -61,10 +58,6 @@
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
-    },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon wrapping elements"
     },
     "iconActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
@@ -91,7 +84,6 @@
       "nodeName": "the icon wrapping elements",
       "conditions": "hover"
     },
-    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
     "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the label of the &quot;no value&quot; input",
@@ -102,7 +94,6 @@
       "nodeName": "the root element",
       "conditions": "<code>readOnly={true}</code>"
     },
-    "root": { "description": "Styles applied to the root element." },
     "sizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -119,5 +110,11 @@
       "conditions": "<code>size=\"small\"</code>"
     },
     "visuallyHidden": { "description": "Visually hide an element." }
+  },
+  "slotDescriptions": {
+    "decimal": "The component used fo r the decimal slot.",
+    "icon": "The component used for the icon slot.",
+    "label": "The component used for the label slot.",
+    "root": "The component used for the root slot."
   }
 }

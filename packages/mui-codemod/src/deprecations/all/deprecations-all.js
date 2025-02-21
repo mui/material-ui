@@ -42,6 +42,7 @@ import transformerTabsClasses from '../tabs-classes';
 import transformDrawerProps from '../drawer-props';
 import transformMobileStepperProps from '../mobile-stepper-props';
 import transformMenuProps from '../menu-props';
+import transformRatingProps from '../rating-props';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -92,6 +93,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformDrawerProps(file, api, options);
   file.source = transformMobileStepperProps(file, api, options);
   file.source = transformMenuProps(file, api, options);
+  file.source = transformRatingProps(file, api, options);
 
   return file.source;
 }
