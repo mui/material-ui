@@ -1,0 +1,20 @@
+.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input {
+  color: red;
+}
+
+.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input {
+  color: red;
+}
+
+.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input {
+  color: red;
+}
+
+.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input {
+  color: red;
+}
+
+.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input {
+  color: red;
+}
+
