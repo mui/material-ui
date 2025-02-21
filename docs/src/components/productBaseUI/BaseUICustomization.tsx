@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import clsx from 'clsx';
 import { Switch as SwitchUnstyled } from '@mui/base/Switch';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import Typography from '@mui/material/Typography';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import SvgTwinkle from 'docs/src/icons/SvgTwinkle';

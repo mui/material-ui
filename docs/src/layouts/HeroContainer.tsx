@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { alpha } from '@mui/material/styles';
 
