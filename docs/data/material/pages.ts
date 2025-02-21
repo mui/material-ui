@@ -287,8 +287,8 @@ const pages: MuiPage[] = [
     title: 'Migration',
     children: [
       {
-        pathname: '/material-ui/migration/migration-grid-v2',
-        title: 'Migrating to Grid v2',
+        pathname: '/material-ui/migration/upgrade-to-grid-v2',
+        title: 'Upgrade to Grid v2',
       },
       {
         pathname: '/material-ui/migration/pickers-migration',
