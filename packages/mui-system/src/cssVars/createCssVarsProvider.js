@@ -60,6 +60,7 @@ export default function createCssVarsProvider(options) {
       modeStorageKey = defaultModeStorageKey,
       colorSchemeStorageKey = defaultColorSchemeStorageKey,
       disableTransitionOnChange = designSystemTransitionOnChange,
+      storageManager,
       storageWindow = typeof window === 'undefined' ? undefined : window,
       documentNode = typeof document === 'undefined' ? undefined : document,
       colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
@@ -119,6 +120,7 @@ export default function createCssVarsProvider(options) {
       modeStorageKey,
       colorSchemeStorageKey,
       defaultMode,
+      storageManager,
       storageWindow,
       noSsr,
     });
@@ -357,6 +359,11 @@ export default function createCssVarsProvider(options) {
      * You should use this option in conjuction with `InitColorSchemeScript` component.
      */
     noSsr: PropTypes.bool,
+    /**
+     * The storage manager to be used for storing the mode and color scheme
+     * @default using `window.localStorage`
+     */
+    storageManager: PropTypes.func,
     /**
      * The window that attaches the 'storage' event listener.
      * @default window
