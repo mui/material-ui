@@ -1,6 +1,14 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  // @ts-expect-error need to use deprecated API because MUI X repo still on Material UI v5
+  experimental_extendTheme as extendTheme,
+  createColorScheme,
+  ThemeProvider,
+  createTheme,
+  PaletteColorOptions,
+} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
@@ -15,12 +23,7 @@ declare module '@mui/material/styles' {
 
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
-
-const theme = createTheme({
-  cssVariables: {
-    cssVarPrefix: 'muidocs',
-    colorSchemeSelector: 'data-mui-color-scheme',
-  },
+const themeOptions = {
   colorSchemes: {
     light: {
       palette: lightPalette,
@@ -48,17 +51,38 @@ const theme = createTheme({
     },
   }),
   ...getThemedComponents(),
-});
+};
+
+// `createColorScheme` is available in Material UI v6+
+// TODO: use the `createTheme` once the MUI X repo upgrade to Material UI v6+
+const theme =
+  typeof createColorScheme === 'function'
+    ? createTheme({
+        cssVariables: {
+          cssVarPrefix: 'muidocs',
+          colorSchemeSelector: 'data-mui-color-scheme',
+        },
+        ...themeOptions,
+      })
+    : extendTheme({
+        cssVarPrefix: 'muidocs',
+        colorSchemeSelector: 'data-mui-color-scheme',
+        ...themeOptions,
+      });
+
+// TODO: use the `ThemeProvider` once the MUI X repo upgrade to Material UI v6+
+const ThemeVarsProvider = typeof createColorScheme === 'function' ? ThemeProvider : CssVarsProvider;
 
 export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
-    <ThemeProvider theme={theme} disableTransitionOnChange>
+    // need to use deprecated API because MUI X repo still on Material UI v5
+    <ThemeVarsProvider theme={theme} disableTransitionOnChange>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />
       <MarkdownLinks />
       {children}
-    </ThemeProvider>
+    </ThemeVarsProvider>
   );
 }
