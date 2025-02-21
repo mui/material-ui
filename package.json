@@ -192,7 +192,7 @@
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
     "stylelint": "^16.14.1",
-    "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard": "^37.0.0",
     "terser-webpack-plugin": "^5.3.11",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
