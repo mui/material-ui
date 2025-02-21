@@ -4,7 +4,7 @@
 
 Material UI components are designed to suit the widest possible range of use cases, but you may occasionally need to change how a component's structure is rendered in the DOM.
 
-To understand how to do this, it helps to have an accurate mental model of the components.
+To understand how to do this, it helps to know a bit about how the API design has evolved over time, and to have an accurate mental model of the components themselves.
 
 ## The mental model
 
@@ -35,7 +35,8 @@ The demo below shows how to replace the Button's `<button>` tag with a `<a>` to 
 {{"demo": "OverridingRootSlot.js"}}
 
 :::info
-The props `href`, `target`, and `rel` are specific to `<a>` tag. Be sure to use the appropriate attributes when you provide a custom `component` prop.
+The `href`, `target`, and `rel` props are specific to `<a>` tags. 
+When using the `component` prop, be sure to add the appropriate attributes that correspond to the element you're inserting.
 :::
 
 ## Interior slots
@@ -43,7 +44,7 @@ The props `href`, `target`, and `rel` are specific to `<a>` tag. Be sure to use 
 Complex components are composed of one or more interior slots in addition to the root.
 These slots are often (but not necessarily) nested within the root.
 
-For example, the [Autocomplete](/material-ui/react-autocomplete/) is composed of a root `<div>` that houses several interior slots named for the elements they represent: input, startDecorator, endDecorator, clearIndicator, popupIndicator and so on.
+For example, the [Autocomplete](/material-ui/react-autocomplete/) is composed of a root `<div>` that houses several interior slots named for the elements they represent: input, startDecorator, endDecorator, clearIndicator, popupIndicator, and more.
 
 ### The slots prop
 
@@ -81,9 +82,9 @@ This does not apply to classes or the `style` prop—they will be merged instead
 
 ## Best practices
 
-Use `component` or `slotProps.{slot}.component` prop to override the element by preserving the styles of the slot.
+Use the `component` or `slotProps.{slot}.component` prop when you need to override the element while preserving the styles of the slot.
 
-Use `slots` prop to replace the slot's styles and functionality with your custom component.
+Use the `slots` prop when you need to replace the slot's styles and functionality with your custom component.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
 For instance, if you override the Button's root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
@@ -94,15 +95,15 @@ You can easily break the rules of semantic and accessible HTML if you deviate to
 
 ## History of the pattern
 
-Prior to Material UI v6, majority of the components lacked the ability to override their structure.
-Some components had `*Props` props that allowed you to pass props to a specific slot, but this was not a consistent pattern across the library.
+Prior to Material UI v6, it was not possible to override the structure of most components in the library.
+Some components had `*Props` props that allowed you to pass props to a specific slot, but this pattern was not applied consistently.
 
 In v6, those props were deprecated in favor of the `slots` and `slotProps` props, which allow for more granular control over the structure of a component and make the API more consistent across the library.
 
-The summary of the benefits of the new pattern is as follows:
+The benefits of the new pattern include:
 
-- The `slotProps` provided to [theme default props](/material-ui/customization/theme-components/#theme-default-props) are merged with the instance `slotProps` prop. This is useful for building custom themes or use Material UI as a design system component library.
-- Most components have a `slots` prop that allows developers to replace the entire slot with a custom one. For example, developers can remove the popper behavior from the Autocomplete component by replacing `popper` slot with a `div` as [shown above](#the-slots-prop).
-- Integrate better with [Tailwind CSS](https://tailwindcss.com/) because developers can provide utility classes to the slots through `slotProps.*.className`.
+- `slotProps` provided to [the default theme props](/material-ui/customization/theme-components/#theme-default-props) are merged with the instance's `slotProps` prop. This is useful for building custom themes or using Material UI as the basis for a design system component library.
+- Most components have a `slots` prop that allows you to replace the entire slot with a custom element. For example, you can remove the popper behavior from the Autocomplete component by replacing the `popper` slot with a `<div>` as [shown above](#the-slots-prop).
+- Offers better integration with [Tailwind CSS](https://tailwindcss.com/) because developers can provide utility classes to the slots through `slotProps.*.className`.
 
-To see the available slots for a component, refer to the component API documentation at slots section.
+To see the available slots for a component, refer to the slots sections of the respective component API documentation.
