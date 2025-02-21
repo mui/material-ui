@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import ComponentShowcaseCard from 'docs/src/components/action/ComponentShowcaseCard';
 
 const layoutComponents = [
@@ -24,10 +24,10 @@ const layoutComponents = [
     noGuidelines: true,
   },
   {
-    name: 'Grid',
+    name: 'GridLegacy',
     srcLight: '/static/material-ui/react-components/grid-light.png',
     srcDark: '/static/material-ui/react-components/grid-dark.png',
-    link: '/material-ui/react-grid/',
+    link: '/material-ui/react-grid-legacy/',
     md1: false,
     md2: false,
     md3: false,

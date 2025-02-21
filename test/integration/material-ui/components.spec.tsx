@@ -34,7 +34,7 @@ import {
   Fade,
   FormControlLabel,
   FormGroup,
-  Grid,
+  GridLegacy,
   ImageList,
   ImageListItem,
   Grow,
@@ -532,20 +532,20 @@ function AccordionTest() {
 
 function GridTest() {
   return (
-    <Grid component={Paper} container>
-      <Grid item xs={12}>
+    <GridLegacy component={Paper} container>
+      <GridLegacy item xs={12}>
         ...
-      </Grid>
-      <Grid item sm={12}>
+      </GridLegacy>
+      <GridLegacy item sm={12}>
         ...
-      </Grid>
-      <Grid item xl>
+      </GridLegacy>
+      <GridLegacy item xl>
         ...
-      </Grid>
-      <Grid item style={{ color: 'red' }}>
+      </GridLegacy>
+      <GridLegacy item style={{ color: 'red' }}>
         ...
-      </Grid>
-    </Grid>
+      </GridLegacy>
+    </GridLegacy>
   );
 }
 

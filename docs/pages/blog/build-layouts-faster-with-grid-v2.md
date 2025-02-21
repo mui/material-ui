@@ -10,8 +10,8 @@ manualCard: true
 You can now use the new `Grid` component, shipped with [Material UI v5.9.0](https://github.com/mui/material-ui/releases/tag/v5.9.0), for updated features and a better developer experience when building layouts.
 
 ```js
-import Grid from '@mui/material/Grid'; // The current grid, a.k.a. Grid v1
-import Grid from '@mui/material/Unstable_Grid2'; // The new grid, a.k.a. Grid v2
+import Grid from '@mui/material/GridLegacy'; // The legacy grid, a.k.a. Grid v1
+import Grid from '@mui/material/Grid2'; // The updated grid, a.k.a. Grid v2
 ```
 
 ## The motivation
@@ -19,7 +19,7 @@ import Grid from '@mui/material/Unstable_Grid2'; // The new grid, a.k.a. Grid v2
 - To fix the migration pain points ([#26266](https://github.com/mui/material-ui/issues/29266) and [#31244](https://github.com/mui/material-ui/issues/31244)) for the grid component which is caused by the [implementation changes](https://github.com/mui/material-ui/pull/24332) introduced in v5.
 - To add the long-awaited [offset feature](https://github.com/mui/material-ui/issues/11251) to the layout grid component.
 - To remove the child combinator (`>`) from the grid item styles, which [complicates the customization](https://github.com/mui/material-ui/issues/28855) of the old grid.
-- To fix [the limitation on nested grids](https://mui.com/material-ui/react-grid/#nested-grid).
+- To fix [the limitation on nested grids](https://mui.com/material-ui/react-grid-legacy/#nested-grid).
 - To eliminate the unnecessary `item` prop.
 
 ## What's new
