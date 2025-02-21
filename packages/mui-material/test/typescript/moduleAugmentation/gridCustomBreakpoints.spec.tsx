@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {

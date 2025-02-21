@@ -56,7 +56,7 @@ const componentAreas = {
   formhelpertext: 'inputs',
   formlabel: 'inputs',
   globalstyles: 'utils',
-  grid: 'layout',
+  gridlegacy: 'layout',
   grid2: 'layout',
   grow: 'utils',
   hidden: 'layout',
