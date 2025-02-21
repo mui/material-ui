@@ -1,95 +1,34 @@
-import capitalize from '@mui/utils/capitalize';
-import merge from '../merge';
-import { getPath, getStyleValue as getValue } from '../style';
+import merge from '@mui/utils/fastDeepAssign';
+import { getPath, getStyleValue2 } from '../style';
 import {
-  handleBreakpoints,
+  hasBreakpoint,
+  iterateBreakpoints,
   createEmptyBreakpointObject,
   removeUnusedBreakpoints,
+  DEFAULT_BREAKPOINTS,
 } from '../breakpoints';
 import { sortContainerQueries } from '../cssContainerQueries';
 import defaultSxConfig from './defaultSxConfig';
 
-function objectsHaveSameKeys(...objects) {
-  const allKeys = objects.reduce((keys, object) => keys.concat(Object.keys(object)), []);
-  const union = new Set(allKeys);
-  return objects.every((object) => union.size === Object.keys(object).length);
-}
+/* eslint-disable guard-for-in */
 
-function callIfFn(maybeFn, arg) {
-  return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
-}
+const EMPTY_THEME = {};
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function unstable_createStyleFunctionSx() {
-  function getThemeValue(prop, val, theme, config) {
-    const props = {
-      [prop]: val,
-      theme,
-    };
-
-    const options = config[prop];
-
-    if (!options) {
-      return { [prop]: val };
-    }
-
-    const { cssProperty = prop, themeKey, transform, style } = options;
-
-    if (val == null) {
+  function styleFunctionSx(props) {
+    if (!props.sx) {
       return null;
     }
 
-    // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
-    if (themeKey === 'typography' && val === 'inherit') {
-      return { [prop]: val };
-    }
-
-    const themeMapping = getPath(theme, themeKey) || {};
-
-    if (style) {
-      return style(props);
-    }
-
-    const styleFromPropValue = (propValueFinal) => {
-      let value = getValue(themeMapping, transform, propValueFinal);
-
-      if (propValueFinal === value && typeof propValueFinal === 'string') {
-        // Haven't found value
-        value = getValue(
-          themeMapping,
-          transform,
-          `${prop}${propValueFinal === 'default' ? '' : capitalize(propValueFinal)}`,
-          propValueFinal,
-        );
-      }
-
-      if (cssProperty === false) {
-        return value;
-      }
-
-      return {
-        [cssProperty]: value,
-      };
-    };
-
-    return handleBreakpoints(props, val, styleFromPropValue);
-  }
-
-  function styleFunctionSx(props) {
-    const { sx, theme = {} } = props || {};
-
-    if (!sx) {
-      return null; // Emotion & styled-components will neglect null
-    }
+    const { sx, theme = EMPTY_THEME } = props;
 
     const config = theme.unstable_sxConfig ?? defaultSxConfig;
 
-    /*
-     * Receive `sxInput` as object or callback
-     * and then recursively check keys & values to create media query object styles.
-     * (the result will be used in `styled`)
-     */
-    function traverse(sxInput) {
+    // Pass argument without loop allocations
+    const wrapper = { sx: null, theme };
+
+    function process(sxInput) {
       let sxObject = sxInput;
       if (typeof sxInput === 'function') {
         sxObject = sxInput(theme);
@@ -100,45 +39,102 @@ export function unstable_createStyleFunctionSx() {
       if (!sxObject) {
         return null;
       }
-      const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints);
-      const breakpointsKeys = Object.keys(emptyBreakpoints);
 
-      let css = emptyBreakpoints;
+      const breakpoints = theme.breakpoints ?? DEFAULT_BREAKPOINTS;
 
-      Object.keys(sxObject).forEach((styleKey) => {
+      const css = createEmptyBreakpointObject(breakpoints);
+
+      for (const styleKey in sxObject) {
         const value = callIfFn(sxObject[styleKey], theme);
-        if (value !== null && value !== undefined) {
-          if (typeof value === 'object') {
-            if (config[styleKey]) {
-              css = merge(css, getThemeValue(styleKey, value, theme, config));
-            } else {
-              const breakpointsValues = handleBreakpoints({ theme }, value, (x) => ({
-                [styleKey]: x,
-              }));
-
-              if (objectsHaveSameKeys(breakpointsValues, value)) {
-                css[styleKey] = styleFunctionSx({ sx: value, theme });
-              } else {
-                css = merge(css, breakpointsValues);
-              }
-            }
-          } else {
-            css = merge(css, getThemeValue(styleKey, value, theme, config));
-          }
+        if (value === null || value === undefined) {
+          continue;
         }
-      });
+        if (typeof value !== 'object') {
+          setThemeValue(css, styleKey, value, theme, config);
+          continue;
+        }
+        if (config[styleKey]) {
+          setThemeValue(css, styleKey, value, theme, config);
+          continue;
+        }
 
-      return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
+        if (hasBreakpoint(breakpoints, value)) {
+          iterateBreakpoints(css, props.theme, value, (mediaKey, finalValue) => {
+            css[mediaKey][styleKey] = finalValue;
+          });
+        } else {
+          wrapper.sx = value;
+          css[styleKey] = styleFunctionSx(wrapper);
+        }
+      }
+
+      return sortContainerQueries(theme, removeUnusedBreakpoints(breakpoints, css));
     }
 
-    return Array.isArray(sx) ? sx.map(traverse) : traverse(sx);
+    return Array.isArray(sx) ? sx.map(process) : process(sx);
   }
+
+  styleFunctionSx.filterProps = ['sx'];
 
   return styleFunctionSx;
 }
 
-const styleFunctionSx = unstable_createStyleFunctionSx();
+export default unstable_createStyleFunctionSx();
 
-styleFunctionSx.filterProps = ['sx'];
+function setThemeValue(css, prop, value, theme, config) {
+  const options = config[prop];
 
-export default styleFunctionSx;
+  if (!options) {
+    css[prop] = value;
+    return;
+  }
+
+  if (value == null) {
+    return;
+  }
+
+  const { themeKey } = options;
+  // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
+  if (themeKey === 'typography' && value === 'inherit') {
+    css[prop] = value;
+    return;
+  }
+
+  const { style } = options;
+  if (style) {
+    merge(
+      css,
+      style({
+        [prop]: value,
+        theme,
+      }),
+    );
+    return;
+  }
+
+  const { cssProperty = prop, transform } = options;
+  const themeMapping = getPath(theme, themeKey);
+
+  iterateBreakpoints(css, theme, value, (mediaKey, valueFinal) => {
+    const finalValue = getStyleValue2(themeMapping, transform, valueFinal, prop);
+
+    if (cssProperty === false) {
+      if (mediaKey) {
+        css[mediaKey] = finalValue;
+      } else {
+        merge(css, finalValue);
+      }
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (mediaKey) {
+        css[mediaKey][cssProperty] = finalValue;
+      } else {
+        css[cssProperty] = finalValue;
+      }
+    }
+  });
+}
+
+function callIfFn(maybeFn, arg) {
+  return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
+}
