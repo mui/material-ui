@@ -1324,14 +1324,14 @@ importers:
       uuid:
         specifier: ^11.0.5
         version: 11.0.5
-    optionalDependencies:
-      aws-sdk:
-        specifier: ^2.1692.0
-        version: 2.1692.0
     devDependencies:
       claudia:
         specifier: ^5.14.1
         version: 5.14.1
+    optionalDependencies:
+      aws-sdk:
+        specifier: ^2.1692.0
+        version: 2.1692.0
 
   packages/markdown:
     dependencies:
