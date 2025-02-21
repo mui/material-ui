@@ -141,6 +141,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/1423607',
     github: 'romgrk',
   },
+  arminmeh: {
+    name: 'Armin Mehinović',
+    avatar: 'https://avatars.githubusercontent.com/u/4390250',
+    github: 'arminmeh',
+  },
 };
 
 const classes = {
