@@ -166,7 +166,7 @@
     "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-compiler": "0.0.0-experimental-75b9fd4-20240912",
-    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
     "globby": "^14.1.0",
