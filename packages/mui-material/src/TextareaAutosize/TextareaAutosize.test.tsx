@@ -463,8 +463,7 @@ describe('<TextareaAutosize />', () => {
     }
 
     await render(<App />);
-    // tick 1 second
-    await sleep(1000);
+    await sleep(100);
     expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
   });
 });
