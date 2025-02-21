@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -18,22 +18,22 @@ export default function TriggersTooltips() {
   return (
     <div>
       <Grid container sx={{ justifyContent: 'center' }}>
-        <Grid item>
+        <Grid>
           <Tooltip disableFocusListener title="Add">
             <Button>Hover or touch</Button>
           </Tooltip>
         </Grid>
-        <Grid item>
+        <Grid>
           <Tooltip disableHoverListener title="Add">
             <Button>Focus or touch</Button>
           </Tooltip>
         </Grid>
-        <Grid item>
+        <Grid>
           <Tooltip disableFocusListener disableTouchListener title="Add">
             <Button>Hover</Button>
           </Tooltip>
         </Grid>
-        <Grid item>
+        <Grid>
           <ClickAwayListener onClickAway={handleTooltipClose}>
             <div>
               <Tooltip

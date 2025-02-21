@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import clsx from 'clsx';
 import { Switch as SwitchUnstyled } from '@mui/base/Switch';
 import { useSwitch, UseSwitchParameters } from '@mui/base/useSwitch';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
@@ -235,7 +235,12 @@ export default function BaseUICustomization() {
   return (
     <Section>
       <Grid container spacing={2}>
-        <Grid item md={6} sx={{ minWidth: 0 }}>
+        <Grid
+          sx={{ minWidth: 0 }}
+          size={{
+            md: 6,
+          }}
+        >
           <SectionHeadline
             overline="Customization"
             title={
@@ -270,7 +275,12 @@ export default function BaseUICustomization() {
             </Highlighter>
           </Group>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid
+          size={{
+            xs: 12,
+            md: 6,
+          }}
+        >
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={(theme) => ({

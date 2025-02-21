@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';

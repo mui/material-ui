@@ -5,7 +5,7 @@ import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -410,17 +410,17 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </ImportLink>
           <DialogContent>
             <Grid container>
-              <Grid item xs>
+              <Grid size="grow">
                 <Grid container sx={{ justifyContent: 'center' }}>
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
-              <Grid item xs>
+              <Grid size="grow">
                 <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
                 >
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -428,12 +428,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                       />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize medium">
                       <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize large">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -608,7 +608,12 @@ export default function SearchIcons() {
 
   return (
     <Grid container sx={{ minHeight: 500 }}>
-      <Grid item xs={12} sm={3}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 3,
+        }}
+      >
         <Form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the style
@@ -632,7 +637,12 @@ export default function SearchIcons() {
           </RadioGroup>
         </Form>
       </Grid>
-      <Grid item xs={12} sm={9}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 9,
+        }}
+      >
         <Paper>
           <IconButton sx={{ padding: '10px' }} aria-label="search">
             <SearchIcon />

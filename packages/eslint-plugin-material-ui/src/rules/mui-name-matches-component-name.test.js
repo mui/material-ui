@@ -37,14 +37,14 @@ ruleTester.run('mui-name-matches-component-name', rule, {
     });
     `,
     `
-    const Grid2 = createGrid2({
+    const Grid = createGrid({
       createStyledComponent: styled('div', {
-        name: 'MuiGrid2',
+        name: 'MuiGrid',
         overridesResolver: (props, styles) => styles.root,
       }),
-      componentName: 'MuiGrid2',
-      useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid2' }),
-    }) as OverridableComponent<Grid2TypeMap>;
+      componentName: 'MuiGrid',
+      useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid' }),
+    }) as OverridableComponent<GridTypeMap>;
     `,
     {
       code: `
@@ -88,14 +88,14 @@ ruleTester.run('mui-name-matches-component-name', rule, {
     });
     `,
     `
-    const Grid2 = createGrid2({
+    const Grid = createGrid({
       createStyledComponent: styled('div', {
-        name: 'MuiGrid2',
+        name: 'MuiGrid',
         overridesResolver: (props, styles) => styles.root,
       }),
-      componentName: 'MuiGrid2',
-      useDefaultProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid2' }),
-    }) as OverridableComponent<Grid2TypeMap>;
+      componentName: 'MuiGrid',
+      useDefaultProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiGrid' }),
+    }) as OverridableComponent<GridTypeMap>;
     `,
     {
       code: `

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';

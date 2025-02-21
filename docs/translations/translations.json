@@ -199,7 +199,7 @@
     "/material-ui/react-box": "Box",
     "/material-ui/react-container": "Container",
     "/material-ui/react-grid-legacy": "Grid Legacy",
-    "/material-ui/react-grid2": "Grid v2",
+    "/material-ui/react-grid": "Grid",
     "/material-ui/react-stack": "Stack",
     "/material-ui/react-image-list": "Image List",
     "/material-ui/react-click-away-listener": "Click-Away Listener",
