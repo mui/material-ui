@@ -4,22 +4,22 @@ import TextField from '@mui/material/TextField';
 
 export default function MultilineTextFields() {
   const handlePaste = (event: React.ClipboardEvent<HTMLTextAreaElement>) => {
-    event.preventDefault(); 
+    event.preventDefault();
 
-    const text = event.clipboardData.getData("text");
+    const text = event.clipboardData.getData('text');
     const target = event.target as HTMLTextAreaElement;
 
-    if (!target || typeof target.selectionStart !== "number") return;
+    if (!target || typeof target.selectionStart !== 'number') return;
 
     const { selectionStart, selectionEnd, value } = target;
 
     const newValue =
       value.slice(0, selectionStart) + text + value.slice(selectionEnd);
-      target.value = newValue;
+    target.value = newValue;
 
     target.setSelectionRange(
       selectionStart + text.length,
-      selectionStart + text.length
+      selectionStart + text.length,
     );
   };
 

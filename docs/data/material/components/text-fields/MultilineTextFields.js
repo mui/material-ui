@@ -3,6 +3,26 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function MultilineTextFields() {
+  const handlePaste = (event) => {
+    event.preventDefault();
+
+    const text = event.clipboardData.getData('text');
+    const target = event.target;
+
+    if (!target || typeof target.selectionStart !== 'number') return;
+
+    const { selectionStart, selectionEnd, value } = target;
+
+    const newValue =
+      value.slice(0, selectionStart) + text + value.slice(selectionEnd);
+    target.value = newValue;
+
+    target.setSelectionRange(
+      selectionStart + text.length,
+      selectionStart + text.length,
+    );
+  };
+
   return (
     <Box
       component="form"
@@ -16,12 +36,14 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           maxRows={4}
+          onPaste={handlePaste}
         />
         <TextField
           id="outlined-textarea"
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
+          onPaste={handlePaste}
         />
         <TextField
           id="outlined-multiline-static"
@@ -29,6 +51,7 @@ export default function MultilineTextFields() {
           multiline
           rows={4}
           defaultValue="Default Value"
+          onPaste={handlePaste}
         />
       </div>
       <div>
@@ -38,6 +61,7 @@ export default function MultilineTextFields() {
           multiline
           maxRows={4}
           variant="filled"
+          onPaste={handlePaste}
         />
         <TextField
           id="filled-textarea"
@@ -45,6 +69,7 @@ export default function MultilineTextFields() {
           placeholder="Placeholder"
           multiline
           variant="filled"
+          onPaste={handlePaste}
         />
         <TextField
           id="filled-multiline-static"
@@ -53,6 +78,7 @@ export default function MultilineTextFields() {
           rows={4}
           defaultValue="Default Value"
           variant="filled"
+          onPaste={handlePaste}
         />
       </div>
       <div>
@@ -62,6 +88,7 @@ export default function MultilineTextFields() {
           multiline
           maxRows={4}
           variant="standard"
+          onPaste={handlePaste}
         />
         <TextField
           id="standard-textarea"
@@ -69,6 +96,7 @@ export default function MultilineTextFields() {
           placeholder="Placeholder"
           multiline
           variant="standard"
+          onPaste={handlePaste}
         />
         <TextField
           id="standard-multiline-static"
@@ -77,6 +105,7 @@ export default function MultilineTextFields() {
           rows={4}
           defaultValue="Default Value"
           variant="standard"
+          onPaste={handlePaste}
         />
       </div>
     </Box>
