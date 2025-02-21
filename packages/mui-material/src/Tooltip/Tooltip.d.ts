@@ -41,26 +41,34 @@ export interface TooltipSlots {
 export type TooltipSlotsAndSlotProps = CreateSlotsAndSlotProps<
   TooltipSlots,
   {
+    /**
+     * Props forwarded to the popper slot.
+     * By default, the avaible props are based on the [Popper](https://mui.com/material-ui/api/popper/#props) component.
+     */
     popper: SlotProps<
       React.ElementType<PopperProps>,
       TooltipPopperSlotPropsOverrides,
       TooltipOwnerState
     >;
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
+     */
     transition: SlotProps<
-      React.ElementType<TransitionProps>,
-      TooltipTransitionSlotPropsOverrides,
+      React.ElementType,
+      TransitionProps & TooltipTransitionSlotPropsOverrides,
       TooltipOwnerState
     >;
-    tooltip: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLDivElement>>,
-      TooltipTooltipSlotPropsOverrides,
-      TooltipOwnerState
-    >;
-    arrow: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLSpanElement>>,
-      TooltipArrowSlotPropsOverrides,
-      TooltipOwnerState
-    >;
+    /**
+     * Props forwarded to the tooltip slot.
+     * By default, the avaible props are based on the div element.
+     */
+    tooltip: SlotProps<'div', TooltipTooltipSlotPropsOverrides, TooltipOwnerState>;
+    /**
+     * Props forwarded to the tooltip slot.
+     * By default, the avaible props are based on the span element.
+     */
+    arrow: SlotProps<'span', TooltipArrowSlotPropsOverrides, TooltipOwnerState>;
   }
 >;
 

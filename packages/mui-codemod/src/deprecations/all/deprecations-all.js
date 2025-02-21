@@ -40,7 +40,6 @@ import transformSnackbarProps from '../snackbar-props';
 import transformerTabsProps from '../tabs-props';
 import transformerTabsClasses from '../tabs-classes';
 import transformDrawerProps from '../drawer-props';
-import transformMobileStepperProps from '../mobile-stepper-props';
 import transformMenuProps from '../menu-props';
 
 /**
@@ -90,7 +89,6 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformerTabsProps(file, api, options);
   file.source = transformerTabsClasses(file, api, options);
   file.source = transformDrawerProps(file, api, options);
-  file.source = transformMobileStepperProps(file, api, options);
   file.source = transformMenuProps(file, api, options);
 
   return file.source;

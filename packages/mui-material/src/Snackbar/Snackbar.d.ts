@@ -66,11 +66,11 @@ export type SnackbarSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props applied to the transition element.
-     * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+     * By default, the element is based on the [Grow](https://mui.com/material-ui/api/grow/#props) component.
      */
     transition: SlotComponentProps<
-      React.ElementType<TransitionProps>,
-      SnackbarTransitionSlotPropsOverrides,
+      React.ElementType,
+      TransitionProps & SnackbarTransitionSlotPropsOverrides,
       SnackbarOwnerState
     >;
   }
