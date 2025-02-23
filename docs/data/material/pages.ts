@@ -106,7 +106,7 @@ const pages: MuiPage[] = [
         children: [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
-          { pathname: '/material-ui/react-grid', deprecated: true },
+          { pathname: '/material-ui/react-grid-legacy', deprecated: true, title: 'Grid Legacy' },
           { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
@@ -287,8 +287,8 @@ const pages: MuiPage[] = [
     title: 'Migration',
     children: [
       {
-        pathname: '/material-ui/migration/migration-grid-v2',
-        title: 'Migrating to Grid v2',
+        pathname: '/material-ui/migration/upgrade-to-grid-v2',
+        title: 'Upgrade to Grid v2',
       },
       {
         pathname: '/material-ui/migration/pickers-migration',

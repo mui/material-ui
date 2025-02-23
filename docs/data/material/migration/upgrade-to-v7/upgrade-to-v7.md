@@ -24,6 +24,84 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
+### Package layout
+
+The package layout has been updated to use the Node.js exports field. This brings several changes:
+
+Deep imports with more than one level are no longer allowed. For example:
+
+```diff
+- import createTheme from '@mui/material/styles/createTheme';
++ import { createTheme } from '@mui/material/styles';
+```
+
+This was never officially supported, but now it will be restricted by bundlers and runtimes.
+
+To use the modern bundle (which excludes legacy browser support for smaller bundle size), you'll need to configure your bundler to use the "mui-modern" exports condition:
+
+```js
+// webpack.config.js
+{
+  resolve: {
+    conditionNames: ['mui-modern', '...'],
+  }
+}
+
+// vite.config.js
+{
+  resolve: {
+    conditions: ['mui-modern', 'module', 'browser', 'development|production']
+  }
+}
+```
+
+If you were using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
+
+```diff
+ // vite.config.js
+   resolve: {
+     alias: [
+-      {
+-        find: /^@mui\/icons-material\/(.*)/,
+-        replacement: "@mui/icons-material/esm/$1",
+-      },
+     ],
+   },
+```
+
+### Grid renamed to GridLegacy
+
+The deprecated `Grid` component has been renamed to `GridLegacy`.
+If you wish to continue using this legacy component, update your imports as follows:
+
+```diff
+-import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
++import Grid, { gridLegacyClasses, GridLegacyProps } from '@mui/material/GridLegacy';
+
+-import { Grid } from '@mui/material';
++import { GridLegacy as Grid } from '@mui/material';
+```
+
+This also applies to the theme's `components` object:
+
+```diff
+ const theme = createTheme({
+   components: {
+-    MuiGrid: {
++    MuiGridLegacy: {
+       // ...
+     },
+   },
+ });
+```
+
+As well as the component's CSS classes:
+
+```diff
+-.MuiGrid-root
++.MuiGridLegacy-root
+```
+
 ### Hidden and PigmentHidden components removed
 
 The deprecated `Hidden` and `PigmentHidden` components have been removed.
@@ -113,3 +191,7 @@ Use this codemod to automatically update the `size` value:
 ```bash
 npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 ```
+
+### Removal of `data-testid` prop from `SvgIcon`
+
+The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
