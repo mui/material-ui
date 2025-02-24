@@ -16,7 +16,7 @@ Grid2 provides the following improvements over the legacy Grid:
 - All grids are considered items without specifying the `item` prop.
 - The [offset feature](/material-ui/react-grid2/#offset) gives you more flexibility for positioning.
 - [Nested grids](/material-ui/react-grid2/#nested-grid) now have no depth limitation.
-- Its implementation doesn't use negative margins so it doesn't [overflow like the legacy Grid](/material-ui/react-grid/#negative-margin).
+- Its implementation doesn't use negative margins so it doesn't [overflow like the legacy Grid](/material-ui/react-grid-legacy/#negative-margin).
 
 ## How to upgrade
 
@@ -34,8 +34,8 @@ Depending on the Material UI version you are using, you must update the import 
 <codeblock storageKey="material-ui-version">
 
 ```diff v7
-// The legacy Grid component is named Grid
--import Grid from '@mui/material/Grid';
+// The legacy Grid component is named GridLegacy
+-import Grid from '@mui/material/GridLegacy';
 
 // The updated Grid component is named Grid2
 +import Grid from '@mui/material/Grid2';
@@ -151,7 +151,7 @@ function Demo() {
 
 ### Column direction
 
-Using `direction="column"` or `direction="column-reverse"` is not supported on [the legacy Grid](/material-ui/react-grid/#direction-column-column-reverse) nor on [the updated Grid2](/material-ui/react-grid2/#column-direction).
+Using `direction="column"` or `direction="column-reverse"` is not supported on [the legacy Grid](/material-ui/react-grid-legacy/#direction-column-column-reverse) nor on [the updated Grid2](/material-ui/react-grid2/#column-direction).
 If your layout used the legacy Grid with these values, it might break when you switch to the updated Grid.
 If you need a vertical layout, follow the instructions in the [Grid2 documentation](/material-ui/react-grid2/#column-direction).
 
@@ -161,5 +161,5 @@ If you need a vertical layout, follow the instructions in the [Grid2 documentati
   - [Documentation](/material-ui/react-grid2/)
   - [API](/material-ui/api/grid-2/)
 - Legacy Grid:
-  - [Documentation](/material-ui/react-grid/)
-  - [API](/material-ui/api/grid/)
+  - [Documentation](/material-ui/react-grid-legacy/)
+  - [API](/material-ui/api/grid-legacy/)
