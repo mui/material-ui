@@ -228,3 +228,15 @@ npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 ### Removal of `data-testid` prop from `SvgIcon`
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### StepButtonIcon type removed
+
+The deprecated `StepButtonIcon` type has been removed. Use `StepButtonProps['icon']` instead.
+
+```diff
+- import { StepButtonIcon } from '@mui/material/StepButton';
++ import { StepButtonProps } from '@mui/material/StepButton';
+
+-StepButtonIcon
++StepButtonProps['icon']
+```
