@@ -121,7 +121,7 @@ function useAutocomplete(props) {
 
   getOptionLabel = (option) => {
     const optionLabel = getOptionLabelProp(option);
-    if (typeof optionLabel !== 'string') {
+    if (typeof optionLabel !== 'string' && !renderTags) {
       if (process.env.NODE_ENV !== 'production') {
         const erroneousReturn =
           optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
