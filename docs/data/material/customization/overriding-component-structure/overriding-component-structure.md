@@ -6,6 +6,15 @@ Material UI components are designed to suit the widest possible range of use ca
 
 To understand how to do this, it helps to know a bit about how the API design has evolved over time, and to have an accurate mental model of the components themselves.
 
+## Context
+
+Prior to Material UI v6, it was not possible to override the structure of most components in the library.
+Some components had `*Props` props that allowed you to pass props to a specific slot, but this pattern was not applied consistently.
+
+In v6, those props were deprecated in favor of the `slots` and `slotProps` props, which allow for more granular control over the structure of a component and make the API more consistent across the library.
+
+To see the available slots for a component, refer to the slots sections of the respective component API documentation.
+
 ## The mental model
 
 A component's structure is determined by the elements that fill that component's **slots**.
@@ -35,7 +44,7 @@ The demo below shows how to replace the Button's `<button>` tag with a `<a>` to 
 {{"demo": "OverridingRootSlot.js"}}
 
 :::info
-The `href`, `target`, and `rel` props are specific to `<a>` tags. 
+The `href`, `target`, and `rel` props are specific to `<a>` tags.
 When using the `component` prop, be sure to add the appropriate attributes that correspond to the element you're inserting.
 :::
 
@@ -92,18 +101,3 @@ If you did the same with `slots.root`, you would need to place this attribute on
 
 Be mindful of your rendered DOM structure when overriding the slots of more complex components.
 You can easily break the rules of semantic and accessible HTML if you deviate too far from the default structure—for instance, by unintentionally nesting block-level elements inside of inline elements.
-
-## History of the pattern
-
-Prior to Material UI v6, it was not possible to override the structure of most components in the library.
-Some components had `*Props` props that allowed you to pass props to a specific slot, but this pattern was not applied consistently.
-
-In v6, those props were deprecated in favor of the `slots` and `slotProps` props, which allow for more granular control over the structure of a component and make the API more consistent across the library.
-
-The benefits of the new pattern include:
-
-- `slotProps` provided to [the default theme props](/material-ui/customization/theme-components/#theme-default-props) are merged with the instance's `slotProps` prop. This is useful for building custom themes or using Material UI as the basis for a design system component library.
-- Most components have a `slots` prop that allows you to replace the entire slot with a custom element. For example, you can remove the popper behavior from the Autocomplete component by replacing the `popper` slot with a `<div>` as [shown above](#the-slots-prop).
-- Offers better integration with [Tailwind CSS](https://tailwindcss.com/) because developers can provide utility classes to the slots through `slotProps.*.className`.
-
-To see the available slots for a component, refer to the slots sections of the respective component API documentation.
