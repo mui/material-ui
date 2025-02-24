@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
@@ -160,6 +160,13 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ theme }) => ({
   ],
 }));
 
+const defaultTheme = createTheme({
+  colorSchemes: { light: true, dark: true },
+  cssVariables: {
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
+});
+
 export const HEIGHT = 57;
 
 export default function AppFrame(props) {
@@ -178,6 +185,9 @@ export default function AppFrame(props) {
 
   return (
     <BrandingCssVarsProvider>
+      {/* The ThemeProvider below generate default Material UI CSS variables and attach to html for all the demo on the page */}
+      {/* This is more performant than generating variables in each demo. */}
+      <ThemeProvider theme={defaultTheme} />
       <RootDiv className={className}>
         <StyledAppBar
           disablePermanent={disablePermanent}

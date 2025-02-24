@@ -246,9 +246,9 @@ function DemoSandbox(props) {
         children
       ) : (
         <StylesProvider jss={jss}>
-          <ThemeProvider theme={theme} disableTransitionOnChange disableStyleSheetGeneration>
-            {children}
-          </ThemeProvider>
+          {/* - use a function to ensure that the upper theme (branding theme) is not spread to the demo theme */}
+          {/* - a function will skip the CSS vars generation logic */}
+          <ThemeProvider theme={() => theme}>{children}</ThemeProvider>
         </StylesProvider>
       )}
     </DemoErrorBoundary>
