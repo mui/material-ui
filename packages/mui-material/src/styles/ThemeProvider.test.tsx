@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
 describe('ThemeProvider', () => {
   const { render } = createRenderer();
@@ -107,6 +108,39 @@ describe('ThemeProvider', () => {
       );
 
       expect(getByTestId('mode-switcher')).to.have.property('value', 'dark');
+    });
+  });
+
+  describe('nested ThemeProvider', () => {
+    it('should have `vars` as null for nested non-vars theme', () => {
+      const upperTheme = createTheme({
+        cssVariables: true,
+      });
+      const nestedTheme = createTheme({
+        palette: {
+          // @ts-ignore
+          ochre: {
+            main: '#E3D026',
+            light: '#E9DB5D',
+            dark: '#A29415',
+            contrastText: '#242105',
+          },
+        },
+      });
+      let theme: any;
+      function Component() {
+        theme = useTheme();
+        return <Button>Button</Button>;
+      }
+      render(
+        <ThemeProvider theme={upperTheme}>
+          <ThemeProvider theme={nestedTheme}>
+            <Component />
+          </ThemeProvider>
+        </ThemeProvider>,
+      );
+
+      expect(theme.vars).to.equal(null);
     });
   });
 });
