@@ -243,10 +243,11 @@ It cannot wrap other elements.
 
 ## Limitations
 
-### Column direction and reversing
+### Column direction
 
-The `size` and `offset` props are _not_ supported within containers that use `direction="column"` or `direction="column-reverse"`.
+Using `direction="column"` or `direction="column-reverse"` is not supported.
+The Grid component is specifically designed to subdivide a layout into columns, not rows.
+You should not use the Grid component on its own to stack layout elements vertically.
+Instead, you should use the [Stack component](/material-ui/react-stack/) inside of a Grid to create vertical layouts as shown below:
 
-Size and offset props define the number of columns the component will use for a given breakpoint.
-They are intended to control the width using `flex-basis` in `row` containers, but they will impact the height in `column` containers.
-If used, these props may have undesirable effects on the height of the `Grid` item elements.
+{{"demo": "ColumnLayoutInsideGrid.js"}}

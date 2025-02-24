@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import Skeleton from '@mui/material/Skeleton';
 
 const Image = styled('img')({

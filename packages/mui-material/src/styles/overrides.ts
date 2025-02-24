@@ -44,7 +44,7 @@ import { FormControlLabelClassKey } from '../FormControlLabel';
 import { FormGroupClassKey } from '../FormGroup';
 import { FormHelperTextClassKey } from '../FormHelperText';
 import { FormLabelClassKey } from '../FormLabel';
-import { GridClassKey } from '../Grid';
+import { GridLegacyClassKey } from '../GridLegacy';
 import { Grid2ClassKey } from '../Grid2';
 import { IconButtonClassKey } from '../IconButton';
 import { IconClassKey } from '../Icon';
@@ -189,7 +189,7 @@ export interface ComponentNameToClassKey {
   MuiFormGroup: FormGroupClassKey;
   MuiFormHelperText: FormHelperTextClassKey;
   MuiFormLabel: FormLabelClassKey;
-  MuiGrid: GridClassKey;
+  MuiGridLegacy: GridLegacyClassKey;
   MuiGrid2: Grid2ClassKey;
   MuiIcon: IconClassKey;
   MuiIconButton: IconButtonClassKey;
