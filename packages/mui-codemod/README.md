@@ -2073,6 +2073,40 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `grid-props`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/grid-props <path>
+```
+
+Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
+
+```diff
+ <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+ />
+```
+
+You can provide the theme breakpoints via options, for example, `--jscodeshift='--muiBreakpoints=mobile,desktop'`, to use your custom breakpoints in the transformation.
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+```
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
 #### `lab-removed-components`
 
 <!-- #npm-tag-reference -->

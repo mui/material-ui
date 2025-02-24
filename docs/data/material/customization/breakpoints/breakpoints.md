@@ -7,7 +7,7 @@ Material UI uses a **simplified** implementation of the original [specification
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
-for controlling the layout of your application through the [GridLegacy](/material-ui/react-grid-legacy/) component.
+for controlling the layout of your application through the [Grid](/material-ui/react-grid/) component.
 
 ## Default breakpoints
 
