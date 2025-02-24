@@ -69,6 +69,26 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
    },
 ```
 
+### createMuiTheme removed
+
+The deprecated `createMuiTheme` function has been removed.
+Use `createTheme` instead.
+
+```diff
+-import { createMuiTheme } from '@mui/material/styles';
++import { createTheme } from '@mui/material/styles';
+```
+
+### experimentalStyled removed
+
+The deprecated `experimentalStyled` function has been removed.
+Use `styled` instead.
+
+```diff
+-import { experimentalStyled as styled } from '@mui/material/styles';
++import { styled } from '@mui/material/styles';
+```
+
 ### Grid and Grid2 renamed
 
 The deprecated `Grid` component has been renamed to `GridLegacy`.
@@ -228,3 +248,13 @@ npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 ### Removal of `data-testid` prop from `SvgIcon`
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### StyledEngineProvider deprecated import path removed
+
+Importing `StyledEngineProvider` from `'@mui/material'` was deprecated and now has been removed.
+Import it from `'@mui/material/styles'` instead:
+
+```diff
+-import { StyledEngineProvider } from '@mui/material';
++import { StyledEngineProvider } from '@mui/material/styles';
+```
