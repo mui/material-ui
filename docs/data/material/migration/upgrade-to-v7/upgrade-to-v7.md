@@ -69,6 +69,31 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
    },
 ```
 
+### Dialog's onBackdropClick prop removed
+
+The deprecated `onBackdropClick` prop has been removed from the `Dialog` component.
+Please use the [`onClose`](/material-ui/api/dialog/#dialog-prop-onClose) callback instead, which receives the event and the reason for the dialog closing.
+Here's an example of how to use it:
+
+```jsx
+function Example() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      // Handle the backdrop click
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Dialog open={open} onClose={handleClose}>
+      {/* Dialog content */}
+    </Dialog>
+  );
+}
+```
+
 ### Grid and Grid2 renamed
 
 The deprecated `Grid` component has been renamed to `GridLegacy`.
@@ -162,6 +187,31 @@ Use the `useMediaQuery` hook to replace `implementation="js"`:
 :::warning
 There's no codemod available for this change, as each project's setup will heavily influence the migration.
 :::
+
+### Modal's onBackdropClick prop removed
+
+The deprecated `onBackdropClick` prop has been removed from the `Modal` component.
+Please use the [`onClose`](/material-ui/api/modal/#modal-prop-onClose) callback instead, which receives the event and the reason for the modal closing.
+Here's an example of how to use it:
+
+```jsx
+function Example() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      // Handle the backdrop click
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Modal open={open} onClose={handleClose}>
+      {/* Modal content */}
+    </Modal>
+  );
+}
+```
 
 ### Lab components moved to the main package
 
