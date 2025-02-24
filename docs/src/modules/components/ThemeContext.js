@@ -1,9 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ThemeProvider as MdThemeProvider,
-  createTheme as createMdTheme,
-} from '@mui/material/styles';
+import { createTheme as createMdTheme } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import { enUS, zhCN, ptBR } from '@mui/material/locale';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
@@ -111,45 +108,45 @@ export function ThemeProvider(props) {
 
   const [themeOptions, dispatch] = React.useReducer((state, action) => {
     switch (action.type) {
-      // case 'SET_SPACING':
-      //   return {
-      //     ...state,
-      //     spacing: action.payload,
-      //   };
-      // case 'INCREASE_SPACING': {
-      //   return {
-      //     ...state,
-      //     spacing: state.spacing + 1,
-      //   };
-      // }
-      // case 'DECREASE_SPACING': {
-      //   return {
-      //     ...state,
-      //     spacing: state.spacing - 1,
-      //   };
-      // }
-      // case 'SET_DENSE':
-      //   return {
-      //     ...state,
-      //     dense: action.payload,
-      //   };
-      // case 'RESET_DENSITY':
-      //   return {
-      //     ...state,
-      //     dense: themeInitialOptions.dense,
-      //     spacing: themeInitialOptions.spacing,
-      //   };
-      // case 'RESET_COLORS':
-      //   return {
-      //     ...state,
-      //     paletteColors: themeInitialOptions.paletteColors,
-      //   };
+      case 'SET_SPACING':
+        return {
+          ...state,
+          spacing: action.payload,
+        };
+      case 'INCREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing + 1,
+        };
+      }
+      case 'DECREASE_SPACING': {
+        return {
+          ...state,
+          spacing: state.spacing - 1,
+        };
+      }
+      case 'SET_DENSE':
+        return {
+          ...state,
+          dense: action.payload,
+        };
+      case 'RESET_DENSITY':
+        return {
+          ...state,
+          dense: themeInitialOptions.dense,
+          spacing: themeInitialOptions.spacing,
+        };
+      case 'RESET_COLORS':
+        return {
+          ...state,
+          paletteColors: themeInitialOptions.paletteColors,
+        };
       case 'CHANGE':
         // No value changed
         if (
           (!action.payload.paletteMode || action.payload.paletteMode === state.paletteMode) &&
-          (!action.payload.direction || action.payload.direction === state.direction)
-          // && (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors)
+          (!action.payload.direction || action.payload.direction === state.direction) &&
+          (!action.payload.paletteColors || action.payload.paletteColors === state.paletteColors)
         ) {
           return state;
         }
@@ -158,7 +155,7 @@ export function ThemeProvider(props) {
           ...state,
           paletteMode: action.payload.paletteMode || state.paletteMode,
           direction: action.payload.direction || state.direction,
-          // paletteColors: action.payload.paletteColors || state.paletteColors,
+          paletteColors: action.payload.paletteColors || state.paletteColors,
         };
       default:
         throw new Error(`Unrecognized type ${action.type}`);
@@ -166,13 +163,7 @@ export function ThemeProvider(props) {
   }, themeInitialOptions);
 
   const userLanguage = useUserLanguage();
-  const {
-    // dense,
-    direction,
-    //  paletteColors,
-    paletteMode,
-    // spacing
-  } = themeOptions;
+  const { dense, direction, paletteColors, paletteMode, spacing } = themeOptions;
 
   useLazyCSS('/static/styles/prism-okaidia.css', '#prismjs');
 
@@ -216,51 +207,50 @@ export function ThemeProvider(props) {
     });
   }, [paletteMode]);
 
-  // const theme = React.useMemo(() => {
-  //   const brandingDesignTokens = getDesignTokens(paletteMode);
-  //   const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors);
-  //   let nextTheme = createMdTheme(
-  //     {
-  //       direction,
-  //       ...brandingDesignTokens,
-  //       palette: {
-  //         ...nextPalette,
-  //         mode: paletteMode,
-  //       },
-  //       // v5 migration
-  //       props: {
-  //         MuiBadge: {
-  //           overlap: 'rectangular',
-  //         },
-  //       },
-  //       spacing,
-  //     },
-  //     dense ? highDensity : null,
-  //     {
-  //       components: {
-  //         MuiCssBaseline: {
-  //           defaultProps: {
-  //             // TODO: Material UI v6, makes this the default
-  //             enableColorScheme: true,
-  //           },
-  //         },
-  //       },
-  //     },
-  //     languageMap[userLanguage],
-  //   );
+  const theme = React.useMemo(() => {
+    const brandingDesignTokens = getDesignTokens(paletteMode);
+    const nextPalette = deepmerge(brandingDesignTokens.palette, paletteColors);
+    let nextTheme = createMdTheme(
+      {
+        direction,
+        ...brandingDesignTokens,
+        palette: {
+          ...nextPalette,
+          mode: paletteMode,
+        },
+        // v5 migration
+        props: {
+          MuiBadge: {
+            overlap: 'rectangular',
+          },
+        },
+        spacing,
+      },
+      dense ? highDensity : null,
+      {
+        components: {
+          MuiCssBaseline: {
+            defaultProps: {
+              // TODO: Material UI v6, makes this the default
+              enableColorScheme: true,
+            },
+          },
+        },
+      },
+      languageMap[userLanguage],
+    );
 
-  //   nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
+    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
-  //   return nextTheme;
-  // }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
+    return nextTheme;
+  }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
 
-  // React.useEffect(() => {
-  //   // Expose the theme as a global variable so people can play with it.
-  //   window.theme = theme;
-  //   window.createTheme = createMdTheme;
-  // }, [theme]);
+  React.useEffect(() => {
+    // Expose the theme as a global variable so people can play with it.
+    window.theme = theme;
+    window.createTheme = createMdTheme;
+  }, [theme]);
 
-  // TODO: remove MdThemeProvider, top level layout should render the default theme.
   return <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>;
 }
 
