@@ -587,31 +587,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   });
 
+  const getCustomizedTagProps = (params) => ({
+    className: classes.tag,
+    disabled,
+    ...getTagProps(params),
+  });
+
   let startAdornment;
 
-  if (multiple && value.length > 0) {
-    const getCustomizedTagProps = (params) => ({
-      className: classes.tag,
-      disabled,
-      ...getTagProps(params),
+  if (renderTags && value) {
+    startAdornment = renderTags(!multiple ? [value] : value, getCustomizedTagProps, ownerState);
+  } else if (multiple && value.length > 0) {
+    startAdornment = value.map((option, index) => {
+      const { key, ...customTagProps } = getCustomizedTagProps({ index });
+      return (
+        <Chip
+          key={key}
+          label={getOptionLabel(option)}
+          size={size}
+          {...customTagProps}
+          {...externalForwardedProps.slotProps.chip}
+        />
+      );
     });
-
-    if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
-    } else {
-      startAdornment = value.map((option, index) => {
-        const { key, ...customTagProps } = getCustomizedTagProps({ index });
-        return (
-          <Chip
-            key={key}
-            label={getOptionLabel(option)}
-            size={size}
-            {...customTagProps}
-            {...externalForwardedProps.slotProps.chip}
-          />
-        );
-      });
-    }
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {

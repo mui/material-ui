@@ -61,8 +61,8 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInputValue(value, multiple, getOptionLabel) {
-  if (multiple || value == null) {
+function getInputValue(value, multiple, getOptionLabel, renderTags) {
+  if (multiple || value == null || renderTags) {
     return '';
   }
   const optionLabel = getOptionLabel(value);
@@ -110,6 +110,7 @@ function useAutocomplete(props) {
     openOnFocus = false,
     options,
     readOnly = false,
+    renderTags,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -173,7 +174,7 @@ function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
-      const newInputValue = getInputValue(newValue, multiple, getOptionLabel);
+      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderTags);
 
       if (inputValue === newInputValue) {
         return;
@@ -185,7 +186,16 @@ function useAutocomplete(props) {
         onInputChange(event, newInputValue, reason);
       }
     },
-    [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
+    [
+      getOptionLabel,
+      inputValue,
+      multiple,
+      onInputChange,
+      setInputValueState,
+      clearOnBlur,
+      value,
+      renderTags,
+    ],
   );
 
   const [open, setOpenState] = useControlled({
