@@ -596,7 +596,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   let startAdornment;
 
   if (renderTags && value) {
-    startAdornment = renderTags(!multiple ? [value] : value, getCustomizedTagProps, ownerState);
+    startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
   } else if (multiple && value.length > 0) {
     startAdornment = value.map((option, index) => {
       const { key, ...customTagProps } = getCustomizedTagProps({ index });

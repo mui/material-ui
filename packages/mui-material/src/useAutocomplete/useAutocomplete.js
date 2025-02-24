@@ -208,7 +208,7 @@ function useAutocomplete(props) {
   const [inputPristine, setInputPristine] = React.useState(true);
 
   const inputValueIsSelectedValue =
-    !multiple && value != null && inputValue === getOptionLabel(value);
+    !multiple && !renderTags && value != null && inputValue === getOptionLabel(value);
 
   const popupOpen = open && !readOnly;
 
@@ -649,7 +649,7 @@ function useAutocomplete(props) {
     let reason = reasonProp;
     let newValue = option;
 
-    if (multiple) {
+    if (multiple || renderTags) {
       newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
@@ -884,7 +884,7 @@ function useAutocomplete(props) {
           break;
         case 'Backspace':
           // Remove the value on the left of the "cursor"
-          if (multiple && !readOnly && inputValue === '' && value.length > 0) {
+          if (!readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
