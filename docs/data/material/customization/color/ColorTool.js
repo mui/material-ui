@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { rgbToHex, useTheme } from '@mui/material/styles';
 import * as colors from '@mui/material/colors';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import Input from '@mui/material/Input';
 import Radio from '@mui/material/Radio';
 import Tooltip from '@mui/material/Tooltip';
@@ -248,7 +248,7 @@ function ColorTool() {
             const backgroundColor = colors[hue][shade];
 
             return (
-              <Tooltip placement="right" title={hue} key={hue}>
+              <Tooltip placement="right" title={hue} key={hue} disableInteractive>
                 <TooltipRadio
                   sx={{ p: 0 }}
                   color="default"

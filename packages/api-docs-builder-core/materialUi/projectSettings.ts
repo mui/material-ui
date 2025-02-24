@@ -29,7 +29,6 @@ export const projectSettings: ProjectSettings = {
         'src/index.d.ts',
         'src/PigmentStack/PigmentStack.tsx',
         'src/PigmentContainer/PigmentContainer.tsx',
-        'src/PigmentHidden/PigmentHidden.tsx',
         'src/PigmentGrid/PigmentGrid.tsx',
       ],
     },

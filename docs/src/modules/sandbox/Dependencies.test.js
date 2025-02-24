@@ -85,7 +85,7 @@ const suggestions = [
     const source = `
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import { withStyles } from '@mui/material/styles';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@mui/lab';
@@ -112,7 +112,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
     const source = `
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import '@mui/material/Grid';
+import '@mui/material/GridLegacy';
 import '@mui/material/styles';
 import '@mui/lab/AdapterDateFns';
 import '@mui/lab';
