@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import ComponentShowcaseCard from 'docs/src/components/action/ComponentShowcaseCard';
 
 const layoutComponents = [
@@ -34,10 +34,10 @@ const layoutComponents = [
     noGuidelines: true,
   },
   {
-    name: 'Grid v2',
+    name: 'Grid',
     srcLight: '/static/material-ui/react-components/grid-v2-light.png',
     srcDark: '/static/material-ui/react-components/grid-v2-dark.png',
-    link: '/material-ui/react-grid2/',
+    link: '/material-ui/react-grid/',
     md1: false,
     md2: false,
     md3: false,
@@ -69,7 +69,14 @@ export default function MaterialLayoutComponents() {
   return (
     <Grid container spacing={2} sx={{ pt: 1 }}>
       {layoutComponents.map(({ name, link, srcLight, srcDark, md1, md2, md3, noGuidelines }) => (
-        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={name}>
+        <Grid
+          sx={{ flexGrow: 1 }}
+          key={name}
+          size={{
+            xs: 12,
+            sm: 4,
+          }}
+        >
           <ComponentShowcaseCard
             link={link}
             name={name}

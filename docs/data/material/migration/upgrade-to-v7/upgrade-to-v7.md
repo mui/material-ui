@@ -94,38 +94,71 @@ function Example() {
 }
 ```
 
-### Grid renamed to GridLegacy
+### Grid and Grid2 renamed
 
 The deprecated `Grid` component has been renamed to `GridLegacy`.
-If you wish to continue using this legacy component, update your imports as follows:
+The `Grid2` component has been moved to the `Grid` namespace.
+Depending on your project, you may follow one of the following approaches:
 
-```diff
--import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
-+import Grid, { gridLegacyClasses, GridLegacyProps } from '@mui/material/GridLegacy';
+1. **If you are using the deprecated grid and wish to upgrade,** run the following codemod:
 
--import { Grid } from '@mui/material';
-+import { GridLegacy as Grid } from '@mui/material';
-```
+   <!-- #npm-tag-reference -->
 
-This also applies to the theme's `components` object:
+   ```bash
+   npx @mui/codemod@next v7.0.0/grid-props <path/to/folder>
+   ```
 
-```diff
- const theme = createTheme({
-   components: {
--    MuiGrid: {
-+    MuiGridLegacy: {
-       // ...
-     },
-   },
- });
-```
+   See the [Grid upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more information.
 
-As well as the component's CSS classes:
+2. **If you are using the deprecated grid and wish to continue using it,** update the `Grid` references as follows:
 
-```diff
--.MuiGrid-root
-+.MuiGridLegacy-root
-```
+   ```diff
+    // imports
+   -import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
+   +import Grid, { gridLegacyClasses, GridLegacyProps } from '@mui/material/GridLegacy';
+
+   -import { Grid } from '@mui/material';
+   +import { GridLegacy as Grid } from '@mui/material';
+
+    // theme
+    const theme = createTheme({
+      components: {
+   -    MuiGrid: {
+   +    MuiGridLegacy: {
+          // ...
+        },
+      },
+    });
+
+    // CSS classes
+   -.MuiGrid-root
+   +.MuiGridLegacy-root
+   ```
+
+3. **If you are using Grid2,** update the `Grid2` references as follows:
+
+   ```diff
+    // imports
+   -import Grid, { grid2Classes as gridClasses, Grid2Props as GridProps } from '@mui/material/Grid2';
+   +import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
+
+   -import { Grid2 as Grid } from '@mui/material';
+   +import { Grid } from '@mui/material';
+
+    // theme
+    const theme = createTheme({
+      components: {
+   -    MuiGrid2: {
+   +    MuiGrid: {
+          // ...
+        },
+      },
+    });
+
+    // CSS classes
+   -.MuiGrid2-root
+   +.MuiGrid-root
+   ```
 
 ### Hidden and PigmentHidden components removed
 

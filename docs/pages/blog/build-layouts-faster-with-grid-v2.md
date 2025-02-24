@@ -11,7 +11,7 @@ You can now use the new `Grid` component, shipped with [Material UI v5.9.0](htt
 
 ```js
 import Grid from '@mui/material/GridLegacy'; // The legacy grid, a.k.a. Grid v1
-import Grid from '@mui/material/Grid2'; // The updated grid, a.k.a. Grid v2
+import Grid from '@mui/material/Grid'; // The updated grid, a.k.a. Grid v2
 ```
 
 ## The motivation
@@ -33,16 +33,16 @@ This is the same as the `Grid` in Material UI v4.
 
 :::info
 We believe that the migration from Grid v1 to v2 will be smooth for most users.
-To get started right away, head over to the [Grid2 migration guide](/material-ui/migration/upgrade-to-grid-v2/).
+To get started right away, head over to the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/).
 :::
 
 ### 🚀 New features
 
-#### [Disable the scrollbar](https://v5.mui.com/material-ui/react-grid2/#disable-the-scrollbar)
+#### [Disable the scrollbar](https://v5.mui.com/material-ui/react-grid/#disable-the-scrollbar)
 
 A new prop called `disableEqualOverflow` solves the problem of an unwanted scrollbar appearing on small viewports.
 
-#### [Offset](/material-ui/react-grid2/#offset)
+#### [Offset](/material-ui/react-grid/#offset)
 
 We have added the long-awaited offset feature to v2 of the `Grid`.
 Thanks to CSS variables, we're able to implement this feature with just a few lines of code.
@@ -140,7 +140,7 @@ Since the `Grid` has been rewritten from scratch for v2, it is currently conside
 We will make it stable and deprecate v1 in the next major release of Material UI.
 
 Ready to make the jump?
-Check out the [Grid2 documentation](/material-ui/react-grid2/) and the [Grid2 migration guide](/material-ui/migration/upgrade-to-grid-v2/).
+Check out the [Grid v2 documentation](/material-ui/react-grid/) and the [Grid v2 migration guide](/material-ui/migration/upgrade-to-grid-v2/).
 
 <hr />
 

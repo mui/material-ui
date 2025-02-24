@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -19,7 +19,7 @@ function SimpleMenu({ selectedItem, ...props }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   return (
-    <Grid item>
+    <Grid>
       <Button
         style={{
           // give the anchor enough space so that the menu can align the selected item
