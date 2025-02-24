@@ -1711,35 +1711,35 @@ JS transforms:
  MuiSlider: {
    styleOverrides: {
      root: {
--      [`&.${sliderClasses.thumbSizeSmall}`]: {
+-      [`& .${sliderClasses.thumbSizeSmall}`]: {
 +      [`&.${sliderClasses.sizeSmall} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbSizeMedium}`]: {
+-      [`& .${sliderClasses.thumbSizeMedium}`]: {
 +      [`&.${sliderClasses.sizeMedium} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorPrimary}`]: {
+-      [`& .${sliderClasses.thumbColorPrimary}`]: {
 +      [`&.${sliderClasses.colorPrimary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSecondary}`]: {
+-      [`& .${sliderClasses.thumbColorSecondary}`]: {
 +      [`&.${sliderClasses.colorSecondary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorError}`]: {
+-      [`& .${sliderClasses.thumbColorError}`]: {
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClrsses.thumbColorInfo}`]: {
+-      [`& .${sliderClrsses.thumbColorInfo}`]: {
 +      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSuccess}`]: {
+-      [`& .${sliderClasses.thumbColorSuccess}`]: {
 +      [`&.${sliderClasses.colorSuccess} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorWarning}`]: {
+-      [`& .${sliderClasses.thumbColorWarning}`]: {
 +      [`&.${sliderClasses.colorWarning} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
@@ -1770,7 +1770,7 @@ CSS transforms:
 ```
 
 ```bash
-npx @mui/codemod@latest deprecations/button-classes <path>
+npx @mui/codemod@latest deprecations/slider-classes <path>
 ```
 
 #### `tooltip-props`
