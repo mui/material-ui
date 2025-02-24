@@ -62,6 +62,7 @@ npx @mui/codemod@latest <transform> <path> --jscodeshift="--printOptions='{\"quo
 ## Included scripts
 
 - [Deprecations](#deprecations)
+- [v7](#v700)
 - [v6](#v600)
 - [v5](#v500)
 - [v4](#v400)
@@ -1288,6 +1289,60 @@ npx @mui/codemod@latest deprecations/image-list-item-bar-classes <path>
 npx @mui/codemod@latest deprecations/input-base-props <path>
 ```
 
+#### `input-base-classes`
+
+JS transforms:
+
+```diff
+ import { inputBaseClasses } from '@mui/material/InputBase';
+
+ MuiInputBase: {
+   styleOverrides: {
+     root: {
+-      [`& .${inputBaseClasses.inputSizeSmall}`]: {
++      [`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputMultiline}`]: {
++      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedStart}`]: {
++      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedEnd}`]: {
++      [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputHiddenLabel}`]: {
++      [`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiInputBase-root .MuiInputBase-inputSizeSmall
++.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputMultiline
++.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedStart
++.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedEnd
++.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputHiddenLabel
++.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-classes <path>
+```
+
 #### `input-props`
 
 ```diff
@@ -1398,6 +1453,19 @@ npx @mui/codemod@latest deprecations/linear-progress-classes <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/modal-props <path>
+```
+
+#### `mobile-stepper-props`
+
+```diff
+ <MobileStepper
+-  LinearProgressProps={{ color: 'primary' }}
++  slotProps={{ progress: { color: 'primary' } }}
+ />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/mobile-stepper-props <path>
 ```
 
 #### `pagination-item-classes`
@@ -2002,6 +2070,66 @@ npx @mui/codemod@latest deprecations/table-sort-label-classes <path>
 ```bash
 npx @mui/codemod@latest deprecations/typography-props <path>
 ```
+
+### v7.0.0
+
+#### `lab-removed-components`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+```
+
+Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
+
+- Alert
+- AlertTitle
+- Autocomplete
+- AvatarGroup
+- Pagination
+- PaginationItem
+- Rating
+- Skeleton
+- SpeedDial
+- SpeedDialAction
+- SpeedDialIcon
+- ToggleButton
+- ToggleButtonGroup
+- usePagination
+
+It updates named imports from top-level `@mui/lab`:
+
+```diff
+- import { Alert } from '@mui/lab';
++ import { Alert } from '@mui/material';
+```
+
+As well as default and named imports from component-level files:
+
+```diff
+- import Alert, { alertClasses } from '@mui/lab/Alert';
++ import Alert, { alertClasses } from '@mui/material/Alert';
+```
+
+#### `input-label-size-normal-medium`
+
+Updates the `InputLabel`'s `size` value from `normal` to `medium`.
+
+```diff
+-<InputLabel size="normal">Label</InputLabel>
++<InputLabel size="medium">Label</InputLabel>
+```
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path>
+```
+
+<!-- #host-reference -->
+
+You can find more details about this breaking change in [the migration guide](https://next.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
 
 ### v6.0.0
 

@@ -73,7 +73,7 @@ const components = [
   },
   {
     name: 'Date Pickers',
-    materialUI: '/x/react-date-pickers/getting-started/',
+    materialUI: '/x/react-date-pickers/',
     materialDesign: 'https://m2.material.io/components/date-pickers',
   },
   {

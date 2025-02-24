@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 
 const variants = ['h1', 'h3', 'body1', 'caption'];
 

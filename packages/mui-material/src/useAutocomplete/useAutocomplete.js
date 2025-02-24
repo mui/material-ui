@@ -1073,7 +1073,6 @@ function useAutocomplete(props) {
 
   return {
     getRootProps: (other = {}) => ({
-      'aria-owns': listboxAvailable ? `${id}-listbox` : null,
       ...other,
       onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,

@@ -37,8 +37,8 @@ As for the URLs, this is how they look now:
   - Base UI: [https://mui.com/base-ui/](https://mui.com/base-ui/getting-started/)
   - MUI System: [https://mui.com/system/](https://mui.com/system/getting-started/)
 - MUI X:
-  - Data grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
-  - Date and Time pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
+  - Data Grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
+  - Date and Time Pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/)
 
 :::info
 The date and time pickers have been promoted from the lab (`@mui/lab`) to MUI X—still available under the MIT license.
