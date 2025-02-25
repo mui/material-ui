@@ -145,7 +145,7 @@ export default function BrandingCssVarsProvider(props: {
   }, []);
   return (
     // need to use deprecated API because MUI X repo still on Material UI v5
-    <ThemeVarsProvider theme={theme} disableTransitionOnChange>
+    <ThemeVarsProvider theme={theme} disableTransitionOnChange freezeThemeValues>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />
