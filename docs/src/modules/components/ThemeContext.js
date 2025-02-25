@@ -255,11 +255,7 @@ export function ThemeProvider(props) {
   }, [theme]);
 
   // TODO: remove MdThemeProvider, top level layout should render the default theme.
-  return (
-    <MdThemeProvider theme={theme}>
-      <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
-    </MdThemeProvider>
-  );
+  return <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>;
 }
 
 ThemeProvider.propTypes = {
