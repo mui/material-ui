@@ -69,38 +69,96 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
    },
 ```
 
-### Grid renamed to GridLegacy
+### Dialog's onBackdropClick prop removed
+
+The deprecated `onBackdropClick` prop has been removed from the `Dialog` component.
+Please use the [`onClose`](/material-ui/api/dialog/#dialog-prop-onClose) callback instead, which receives the event and the reason for the dialog closing.
+Here's an example of how to use it:
+
+```jsx
+function Example() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      // Handle the backdrop click
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Dialog open={open} onClose={handleClose}>
+      {/* Dialog content */}
+    </Dialog>
+  );
+}
+```
+
+### Grid and Grid2 renamed
 
 The deprecated `Grid` component has been renamed to `GridLegacy`.
-If you wish to continue using this legacy component, update your imports as follows:
+The `Grid2` component has been moved to the `Grid` namespace.
+Depending on your project, you may follow one of the following approaches:
 
-```diff
--import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
-+import Grid, { gridLegacyClasses, GridLegacyProps } from '@mui/material/GridLegacy';
+1. **If you are using the deprecated grid and wish to upgrade,** run the following codemod:
 
--import { Grid } from '@mui/material';
-+import { GridLegacy as Grid } from '@mui/material';
-```
+   <!-- #npm-tag-reference -->
 
-This also applies to the theme's `components` object:
+   ```bash
+   npx @mui/codemod@next v7.0.0/grid-props <path/to/folder>
+   ```
 
-```diff
- const theme = createTheme({
-   components: {
--    MuiGrid: {
-+    MuiGridLegacy: {
-       // ...
-     },
-   },
- });
-```
+   See the [Grid upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more information.
 
-As well as the component's CSS classes:
+2. **If you are using the deprecated grid and wish to continue using it,** update the `Grid` references as follows:
 
-```diff
--.MuiGrid-root
-+.MuiGridLegacy-root
-```
+   ```diff
+    // imports
+   -import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
+   +import Grid, { gridLegacyClasses, GridLegacyProps } from '@mui/material/GridLegacy';
+
+   -import { Grid } from '@mui/material';
+   +import { GridLegacy as Grid } from '@mui/material';
+
+    // theme
+    const theme = createTheme({
+      components: {
+   -    MuiGrid: {
+   +    MuiGridLegacy: {
+          // ...
+        },
+      },
+    });
+
+    // CSS classes
+   -.MuiGrid-root
+   +.MuiGridLegacy-root
+   ```
+
+3. **If you are using Grid2,** update the `Grid2` references as follows:
+
+   ```diff
+    // imports
+   -import Grid, { grid2Classes as gridClasses, Grid2Props as GridProps } from '@mui/material/Grid2';
+   +import Grid, { gridClasses, GridProps } from '@mui/material/Grid';
+
+   -import { Grid2 as Grid } from '@mui/material';
+   +import { Grid } from '@mui/material';
+
+    // theme
+    const theme = createTheme({
+      components: {
+   -    MuiGrid2: {
+   +    MuiGrid: {
+          // ...
+        },
+      },
+    });
+
+    // CSS classes
+   -.MuiGrid2-root
+   +.MuiGrid-root
+   ```
 
 ### Hidden and PigmentHidden components removed
 
@@ -129,6 +187,31 @@ Use the `useMediaQuery` hook to replace `implementation="js"`:
 :::warning
 There's no codemod available for this change, as each project's setup will heavily influence the migration.
 :::
+
+### Modal's onBackdropClick prop removed
+
+The deprecated `onBackdropClick` prop has been removed from the `Modal` component.
+Please use the [`onClose`](/material-ui/api/modal/#modal-prop-onClose) callback instead, which receives the event and the reason for the modal closing.
+Here's an example of how to use it:
+
+```jsx
+function Example() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      // Handle the backdrop click
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Modal open={open} onClose={handleClose}>
+      {/* Modal content */}
+    </Modal>
+  );
+}
+```
 
 ### Lab components moved to the main package
 
@@ -195,3 +278,7 @@ npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 ### Removal of `data-testid` prop from `SvgIcon`
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### Removal of `MuiRating-readOnly` class from Rating
+
+Class name `MuiRating-readOnly` was removed in favor of `Mui-readOnly` global class.

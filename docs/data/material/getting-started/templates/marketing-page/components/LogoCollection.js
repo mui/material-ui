@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/system';
 
 const whiteLogos = [
@@ -45,7 +45,7 @@ export default function LogoCollection() {
       </Typography>
       <Grid container sx={{ justifyContent: 'center', mt: 0.5, opacity: 0.6 }}>
         {logos.map((logo, index) => (
-          <Grid item key={index}>
+          <Grid key={index}>
             <img
               src={logo}
               alt={`Fake company number ${index + 1}`}

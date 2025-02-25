@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -95,8 +95,8 @@ export default function TransferList() {
       spacing={2}
       sx={{ justifyContent: 'center', alignItems: 'center' }}
     >
-      <Grid item>{customList(left)}</Grid>
-      <Grid item>
+      <Grid>{customList(left)}</Grid>
+      <Grid>
         <Grid container direction="column" sx={{ alignItems: 'center' }}>
           <Button
             sx={{ my: 0.5 }}
@@ -140,7 +140,7 @@ export default function TransferList() {
           </Button>
         </Grid>
       </Grid>
-      <Grid item>{customList(right)}</Grid>
+      <Grid>{customList(right)}</Grid>
     </Grid>
   );
 }
