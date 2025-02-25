@@ -92,14 +92,14 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={[movies[0]]}
         disableClearable
-        renderTags={(value, getTagProps) => {
+        renderTags={(value, getTagProps) =>
           value.map((option, index) => {
             const { key, ...other } = getTagProps({ index });
             return (
               <Chip key={key} variant="outlined" label={option.title} size="small" {...other} />
             );
-          });
-        }}
+          })
+        }
         renderInput={(params) => (
           <TextField {...params} variant="filled" label="Movies" placeholder="Favorites" />
         )}
