@@ -22,6 +22,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -180,11 +181,12 @@ export default function AppFrame(props) {
   const openDrawer = React.useCallback(() => setMobileOpen(true), []);
 
   const { activePage, productIdentifier } = React.useContext(PageContext);
+  const themeOptions = React.useContext(ThemeOptionsContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   return (
-    <BrandingCssVarsProvider>
+    <BrandingCssVarsProvider {...themeOptions}>
       {/* The ThemeProvider below generate default Material UI CSS variables and attach to html for all the demo on the page */}
       {/* This is more performant than generating variables in each demo. */}
       <ThemeProvider theme={defaultTheme} />

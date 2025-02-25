@@ -53,29 +53,33 @@ const themeOptions = {
   ...getThemedComponents(),
 };
 
-// `createColorScheme` is available in Material UI v6+
-// TODO: use the `createTheme` once the MUI X repo upgrade to Material UI v6+
-const theme =
-  typeof createColorScheme === 'function'
-    ? createTheme({
-        cssVariables: {
-          cssVarPrefix: 'muidocs',
-          colorSchemeSelector: 'data-mui-color-scheme',
-        },
-        ...themeOptions,
-      })
-    : extendTheme({
-        cssVarPrefix: 'muidocs',
-        colorSchemeSelector: 'data-mui-color-scheme',
-        ...themeOptions,
-      });
-
 // TODO: use the `ThemeProvider` once the MUI X repo upgrade to Material UI v6+
 const ThemeVarsProvider = typeof createColorScheme === 'function' ? ThemeProvider : CssVarsProvider;
 
-export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
-  // TODO: add custom palette, spacing, and density support
-  const { children } = props;
+export default function BrandingCssVarsProvider(props: {
+  children: React.ReactNode;
+  direction?: 'ltr' | 'rtl';
+}) {
+  const { direction = 'ltr', children } = props;
+  const theme = React.useMemo(() => {
+    // `createColorScheme` is available in Material UI v6+
+    // TODO: use the `createTheme` once the MUI X repo upgrade to Material UI v6+
+    return typeof createColorScheme === 'function'
+      ? createTheme({
+          cssVariables: {
+            cssVarPrefix: 'muidocs',
+            colorSchemeSelector: 'data-mui-color-scheme',
+          },
+          direction,
+          ...themeOptions,
+        })
+      : extendTheme({
+          cssVarPrefix: 'muidocs',
+          colorSchemeSelector: 'data-mui-color-scheme',
+          direction,
+          ...themeOptions,
+        });
+  }, [direction]);
   return (
     // need to use deprecated API because MUI X repo still on Material UI v5
     <ThemeVarsProvider theme={theme} disableTransitionOnChange>
