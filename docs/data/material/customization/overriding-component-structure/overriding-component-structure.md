@@ -13,14 +13,16 @@ Some components had `*Props` props that allowed you to pass props to a specific 
 
 In v6, those props were deprecated in favor of the `slots` and `slotProps` props, which allow for more granular control over the structure of a component and make the API more consistent across the library.
 
-To see the available slots for a component, refer to the slots sections of the respective component API documentation.
-
 ## The mental model
 
 A component's structure is determined by the elements that fill that component's **slots**.
 Slots are most commonly filled by HTML tags, but may also be filled by React components.
 
 All components contain a root slot that defines their primary node in the DOM tree; more complex components also contain additional interior slots named after the elements they represent.
+
+:::info
+To see the available slots for a component, refer to the slots sections of the respective component API documentation.
+:::
 
 All _non-utility_ Material UI components accept two props for overriding their rendered HTML structure:
 
