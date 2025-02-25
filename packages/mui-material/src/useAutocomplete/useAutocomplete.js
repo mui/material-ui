@@ -650,7 +650,7 @@ function useAutocomplete(props) {
     let newValue = option;
 
     if (multiple || renderTags) {
-      newValue = Array.isArray(value) ? value.slice() : [];
+      newValue = Array.isArray(value) && multiple ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
         const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
