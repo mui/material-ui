@@ -2051,7 +2051,7 @@ Here's how to migrate:
          color: 'red',
        },
 -      [`& .${sliderClasses.thumbColorInfo}`]: {
-+      [`& .${sliderClasses.thumb}.${sliderClasses.colorInfo}`]: {
++      [`& .${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
 -      [`& .${sliderClasses.thumbColorSuccess}`]: {
