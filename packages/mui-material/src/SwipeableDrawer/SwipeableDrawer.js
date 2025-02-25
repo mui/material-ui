@@ -497,8 +497,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     // At least one element clogs the drawer interaction zone.
     if (
       open &&
-      (hideBackdrop || !backdropRef.current.contains(nativeEvent.target)) &&
-      !paperRef.current.contains(nativeEvent.target)
+      (hideBackdrop || !backdropRef?.current?.contains(nativeEvent.target)) &&
+      !paperRef?.current?.contains(nativeEvent.target)
     ) {
       return;
     }
