@@ -86,8 +86,8 @@ const blacklist = [
   'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
   'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
   'docs-components-floating-action-button/FloatingActionButtonZoom.png', // Needs interaction
-  'docs-components-grid/InteractiveGrid.png', // Redux isolation
-  'docs-components-grid/SpacingGrid.png', // Needs interaction
+  'docs-components-grid-legacy/InteractiveGrid.png', // Redux isolation
+  'docs-components-grid-legacy/SpacingGrid.png', // Needs interaction
   'docs-components-image-list', // Image don't load
   'docs-components-masonry/ImageMasonry.png', // Image don't load
   'docs-components-menus', // Need interaction
