@@ -1746,7 +1746,7 @@ JS transforms:
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`& .${sliderClrsses.thumbColorInfo}`]: {
+-      [`& .${sliderClasses.thumbColorInfo}`]: {
 +      [`&.${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
