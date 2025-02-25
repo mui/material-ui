@@ -47,7 +47,7 @@ module.exports = [
   { pathname: '/material-ui/api/form-helper-text' },
   { pathname: '/material-ui/api/form-label' },
   { pathname: '/material-ui/api/global-styles' },
-  { pathname: '/material-ui/api/grid-2' },
+  { pathname: '/material-ui/api/grid' },
   { pathname: '/material-ui/api/grid-legacy' },
   { pathname: '/material-ui/api/grow' },
   { pathname: '/material-ui/api/icon' },

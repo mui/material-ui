@@ -4,6 +4,7 @@ import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '..';
 import { RatingClasses } from './ratingClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
@@ -11,7 +12,61 @@ export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement
 
 export interface RatingPropsSizeOverrides {}
 
-export interface RatingOwnProps {
+export interface RatingRootSlotPropsOverrides {}
+export interface RatingLabelSlotPropsOverrides {}
+export interface RatingIconSlotPropsOverrides {}
+export interface RatingDecimalSlotPropsOverrides {}
+
+export interface RatingSlots {
+  /**
+   * The component used for the root slot.
+   * @default 'span'
+   */
+  root: React.ElementType;
+  /**
+   * The component used for the label slot.
+   * @default 'label'
+   */
+  label: React.ElementType;
+  /**
+   * The component used for the icon slot.
+   * @default 'span'
+   */
+  icon: React.ElementType;
+  /**
+   * The component used fo r the decimal slot.
+   * @default 'span'
+   */
+  decimal: React.ElementType;
+}
+
+export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  RatingSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the span element.
+     */
+    root: SlotProps<'span', RatingRootSlotPropsOverrides, RatingOwnerState>;
+    /**
+     * Props forwarded to the label slot.
+     * By default, the avaible props are based on the label element.
+     */
+    label: SlotProps<'label', RatingLabelSlotPropsOverrides, RatingOwnerState>;
+    /**
+     * Props forwarded to the icon slot.
+     * By default, the avaible props are based on the span element.
+     */
+    icon: SlotProps<'span', RatingIconSlotPropsOverrides, RatingOwnerState>;
+    /**
+     * Props forwarded to the decimal slot.
+     * By default, the avaible props are based on the span element.
+     */
+    decimal: SlotProps<'span', RatingDecimalSlotPropsOverrides, RatingOwnerState>;
+  }
+>;
+
+export interface RatingOwnProps extends RatingSlotsAndSlotProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -60,6 +115,7 @@ export interface RatingOwnProps {
   icon?: React.ReactNode;
   /**
    * The component containing the icon.
+   * @deprecated Use `slotProps.icon.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default function IconContainer(props) {
    *   const { value, ...other } = props;
    *   return <span {...other} />;
@@ -113,6 +169,8 @@ export interface RatingOwnProps {
    */
   value?: number | null;
 }
+
+export interface RatingOwnerState extends Omit<RatingProps, 'slots' | 'slotProps'> {}
 
 export type RatingTypeMap<
   AdditionalProps = {},

@@ -2,7 +2,7 @@ import * as React from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
@@ -54,7 +54,7 @@ export default function InteractiveStack() {
       </Stack>
       <Paper sx={{ p: 2 }}>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">direction</FormLabel>
               <RadioGroup
@@ -85,7 +85,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">alignItems</FormLabel>
               <RadioGroup
@@ -125,7 +125,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">justifyContent</FormLabel>
               <RadioGroup
@@ -170,7 +170,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">spacing</FormLabel>
               <RadioGroup
