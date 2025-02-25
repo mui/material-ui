@@ -439,4 +439,32 @@ describe('[Material UI] ThemeProviderWithVars', () => {
 
     expect(screen.queryByTestId('theme-changed')).to.equal(null);
   });
+
+  it('theme does not change if `freezeThemeValues` is true', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return <button onClick={() => setMode('dark')}>{count}</button>;
+    }
+
+    const theme = createTheme({ colorSchemes: { light: true, dark: true } });
+    function App() {
+      return (
+        <ThemeProvider theme={theme} freezeThemeValues>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text('1');
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text('1');
+  });
 });
