@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createTheme as createMdTheme } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
-import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { getMetaThemeColor } from '@mui/docs/branding';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -142,16 +141,9 @@ export function ThemeProvider(props) {
   const calculatedMode = mode === 'system' ? systemMode : mode;
 
   useEnhancedEffect(() => {
-    let nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
-    // Set default value if no value is found in cookie
-    if (nextPaletteColors === null) {
-      nextPaletteColors = themeInitialOptions.paletteColors;
-    }
-
     dispatch({
       type: 'CHANGE',
       payload: {
-        paletteColors: nextPaletteColors,
         paletteMode: calculatedMode,
       },
     });

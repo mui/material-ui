@@ -9,7 +9,10 @@ import {
   createTheme,
   PaletteColorOptions,
 } from '@mui/material/styles';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
+import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
+import { getCookie } from 'docs/src/modules/utils/helpers';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
@@ -56,6 +59,60 @@ const themeOptions = {
 // TODO: use the `ThemeProvider` once the MUI X repo upgrade to Material UI v6+
 const ThemeVarsProvider = typeof createColorScheme === 'function' ? ThemeProvider : CssVarsProvider;
 
+export function setDocsColors(primary: Record<string, string>, secondary: Record<string, string>) {
+  function injectPalette(prefix: string, palette: string, color: string) {
+    // simplified logic of `createPalette` to avoid `useTheme`.
+    const light = lighten(color, 0.2);
+    const dark = darken(color, 0.3);
+    const contrastText = getContrastRatio(color, '#fff') >= 3 ? '#fff' : 'rgba(0, 0, 0, 0.87)';
+
+    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-main`, color);
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-mainChannel`,
+      colorChannel(color),
+    );
+    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-light`, light);
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-lightChannel`,
+      colorChannel(light),
+    );
+    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-dark`, dark);
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-darkChannel`,
+      colorChannel(dark),
+    );
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-contrastText`,
+      contrastText,
+    );
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-contrastTextChannel`,
+      colorChannel(contrastText),
+    );
+  }
+  if (typeof document !== 'undefined') {
+    injectPalette('muidocs', 'primary', primary.main);
+    injectPalette('muidocs', 'secondary', secondary.main);
+
+    ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].forEach((key) => {
+      document.documentElement.style.setProperty(`--muidocs-palette-primary-${key}`, primary[key]);
+      document.documentElement.style.setProperty(
+        `--muidocs-palette-secondary-${key}`,
+        secondary[key],
+      );
+    });
+
+    injectPalette('mui', 'primary', primary.main);
+    injectPalette('mui', 'secondary', secondary.main);
+  }
+}
+
+export function resetDocsColor() {
+  if (typeof document !== 'undefined') {
+    document.documentElement.removeAttribute('style');
+  }
+}
+
 export default function BrandingCssVarsProvider(props: {
   children: React.ReactNode;
   direction?: 'ltr' | 'rtl';
@@ -80,6 +137,12 @@ export default function BrandingCssVarsProvider(props: {
           ...themeOptions,
         });
   }, [direction]);
+  useEnhancedEffect(() => {
+    const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
+    if (nextPaletteColors) {
+      setDocsColors(nextPaletteColors.primary, nextPaletteColors.secondary);
+    }
+  }, []);
   return (
     // need to use deprecated API because MUI X repo still on Material UI v5
     <ThemeVarsProvider theme={theme} disableTransitionOnChange>

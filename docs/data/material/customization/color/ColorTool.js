@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { rgbToHex, useTheme } from '@mui/material/styles';
+import { colorChannel } from '@mui/system';
 import * as colors from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -12,8 +13,8 @@ import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
-import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
 import ColorDemo from './ColorDemo';
+import { resetDocsColor, setDocsColors } from 'docs/src/BrandingCssVarsProvider';
 
 const defaults = {
   primary: '#2196f3',
@@ -84,7 +85,6 @@ TooltipRadio.propTypes = {
 };
 
 function ColorTool() {
-  const dispatch = React.useContext(DispatchContext);
   const theme = useTheme();
   const [state, setState] = React.useState({
     primary: defaults.primary,
@@ -159,10 +159,7 @@ function ColorTool() {
       secondary: { ...colors[state.secondaryHue], main: state.secondary },
     };
 
-    dispatch({
-      type: 'CHANGE',
-      payload: { paletteColors },
-    });
+    setDocsColors(paletteColors.primary, paletteColors.secondary);
 
     document.cookie = `paletteColors=${JSON.stringify(
       paletteColors,
@@ -170,7 +167,7 @@ function ColorTool() {
   };
 
   const handleResetDocsColors = () => {
-    dispatch({ type: 'RESET_COLORS' });
+    resetDocsColor();
 
     document.cookie = 'paletteColors=;path=/;max-age=0';
   };
