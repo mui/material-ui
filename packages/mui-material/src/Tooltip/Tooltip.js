@@ -492,7 +492,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       setChildNode(event.currentTarget);
     }
 
-    if ( event && isFocusVisible(event.target)) {
+    if (event && isFocusVisible(event.target)) {
       setChildIsFocusVisible(true);
       handleMouseOver(event);
     }
