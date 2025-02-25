@@ -29,8 +29,11 @@ function FramedDemo(props) {
   const theme = useTheme();
   React.useEffect(() => {
     document.body.setAttribute('dir', theme.direction);
+  }, [document, theme.direction]);
+
+  React.useEffect(() => {
     document.documentElement.style.colorScheme = theme.palette.mode;
-  }, [document, theme.direction, theme.palette.mode]);
+  }, [document, theme.palette.mode]);
 
   const { jss, sheetsManager } = React.useMemo(() => {
     return {
