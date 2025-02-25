@@ -282,3 +282,15 @@ The default `data-testid` prop has been removed from the icons in `@mui/icons-ma
 ### Removal of `MuiRating-readOnly` class from Rating
 
 Class name `MuiRating-readOnly` was removed in favor of `Mui-readOnly` global class.
+
+### StepButtonIcon type removed
+
+The deprecated `StepButtonIcon` type has been removed. Use `StepButtonProps['icon']` instead.
+
+```diff
+- import { StepButtonIcon } from '@mui/material/StepButton';
++ import { StepButtonProps } from '@mui/material/StepButton';
+
+-StepButtonIcon
++StepButtonProps['icon']
+```
