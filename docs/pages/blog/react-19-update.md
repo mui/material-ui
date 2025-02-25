@@ -2,7 +2,7 @@
 title: How we migrated MUI X to React 19
 description: Learn how we migrated our library's codebase to React 19 while maintaining backward compatibility.
 date: 2025-02-25
-authors: ['arminmeh', 'alexfauquette']
+authors: ['arminmeh']
 tags: ['MUI X']
 ---
 
