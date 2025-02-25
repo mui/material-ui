@@ -39,7 +39,7 @@ We are using that to conditionally set the test expectations.
 #### Error message modification
 
 ```ts
-const errorMessage1 = 'MUI X: Could not find the animation ref context.';
+const errorMessage1 = 'MUI X: Could not find the animation ref context.';
 const errorMessage2 =
   'It looks like you rendered your component outside of a ChartsContainer parent component.';
 const errorMessage3 =
@@ -148,7 +148,7 @@ By breaking it down into two phases we were able to quickly provide React 19 com
 
 The utilities and refactoring made during the migration will make it easier to maintain backward compatibility in the future, since `forwardRef` updates and `apiRef` type changes can all be done from one place.
 
-Though this project was spearheaded by the MUI X team, we owe a special thanks to our colleagues who maintain Material UI for their massive help in adding React 19 support to both v5 and v6 of `@mui/material`.
+Though this project was spearheaded by the MUI X team, we owe a special thanks to our colleagues who maintain Material UI for their massive help in adding React 19 support to both v5 and v6 of `@mui/material`.
 They also provided the necessary updates to the internal tools that both of our repositories use for building and testing our components.
 
 We hope our experience can be useful and shorten the time needed for your own React 19 migration!
