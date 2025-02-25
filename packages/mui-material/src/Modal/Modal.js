@@ -97,7 +97,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
-    onBackdropClick,
     onClose,
     onTransitionEnter,
     onTransitionExited,
@@ -193,9 +192,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
       return getBackdropProps({
         ...otherHandlers,
         onClick: (event) => {
-          if (onBackdropClick) {
-            onBackdropClick(event);
-          }
           if (otherHandlers?.onClick) {
             otherHandlers.onClick(event);
           }
@@ -363,11 +359,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
-  /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
