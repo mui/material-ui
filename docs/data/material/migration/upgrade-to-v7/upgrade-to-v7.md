@@ -69,6 +69,31 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
    },
 ```
 
+### Dialog's onBackdropClick prop removed
+
+The deprecated `onBackdropClick` prop has been removed from the `Dialog` component.
+Please use the [`onClose`](/material-ui/api/dialog/#dialog-prop-onClose) callback instead, which receives the event and the reason for the dialog closing.
+Here's an example of how to use it:
+
+```jsx
+function Example() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      // Handle the backdrop click
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Dialog open={open} onClose={handleClose}>
+      {/* Dialog content */}
+    </Dialog>
+  );
+}
+```
+
 ### Grid and Grid2 renamed
 
 The deprecated `Grid` component has been renamed to `GridLegacy`.
@@ -163,6 +188,31 @@ Use the `useMediaQuery` hook to replace `implementation="js"`:
 There's no codemod available for this change, as each project's setup will heavily influence the migration.
 :::
 
+### Modal's onBackdropClick prop removed
+
+The deprecated `onBackdropClick` prop has been removed from the `Modal` component.
+Please use the [`onClose`](/material-ui/api/modal/#modal-prop-onClose) callback instead, which receives the event and the reason for the modal closing.
+Here's an example of how to use it:
+
+```jsx
+function Example() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      // Handle the backdrop click
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Modal open={open} onClose={handleClose}>
+      {/* Modal content */}
+    </Modal>
+  );
+}
+```
+
 ### Lab components moved to the main package
 
 The following `@mui/lab` components and hook have been moved to `@mui/material`:
@@ -228,6 +278,10 @@ npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 ### Removal of `data-testid` prop from `SvgIcon`
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### Removal of `MuiRating-readOnly` class from Rating
+
+Class name `MuiRating-readOnly` was removed in favor of `Mui-readOnly` global class.
 
 ### StepButtonIcon type removed
 
