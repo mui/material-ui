@@ -38,12 +38,12 @@ const COMMENT_OPT_OUT_MARKER = 'minify-error-disabled';
  */
 
 /**
- *
+ * Extracts the message and expressions from a node.
  * @param {babel.types} t
  * @param {babel.types.Node} node
  * @returns {{ message: string, expressions: babel.types.Expression[] } | null}
  */
-function extractMessageFromExpression(t, node) {
+function extractMessage(t, node) {
   if (t.isTemplateLiteral(node)) {
     return {
       message: node.quasis.map((quasi) => quasi.value.cooked).join('%s'),
@@ -59,12 +59,8 @@ function extractMessageFromExpression(t, node) {
     return { message: node.value, expressions: [] };
   }
   if (t.isBinaryExpression(node) && node.operator === '+') {
-    if (t.isPrivateName(node.left)) {
-      // This is only psossible with `in` expressions, e.g. `#foo in {}`
-      throw new Error('Unreachable');
-    }
-    const left = extractMessageFromExpression(t, node.left);
-    const right = extractMessageFromExpression(t, node.right);
+    const left = extractMessage(t, node.left);
+    const right = extractMessage(t, node.right);
     if (!left || !right) {
       return null;
     }
@@ -77,48 +73,41 @@ function extractMessageFromExpression(t, node) {
 }
 
 /**
- *
+ * Handles unminifyable errors based on the missingError option.
  * @param {MissingError} missingError
  * @param {babel.NodePath} path
- * @returns
  */
-function handleUnminifyable(missingError, path) {
+function handleUnminifyableError(missingError, path) {
   switch (missingError) {
-    case 'annotate': {
-      // Outputs:
-      // /* FIXME (minify-errors-in-prod): Unminified error message in production build! */
-      // throw new Error(foo)
+    case 'annotate':
       path.addComment(
         'leading',
         ' FIXME (minify-errors-in-prod): Unminifyable error in production! ',
       );
-      return;
-    }
-    case 'throw': {
+      break;
+    case 'throw':
       throw new Error(
-        `Unminifyable error. You can only use literal strings and template strings as error messages.`,
+        'Unminifyable error. Use literal strings and template strings as error messages.',
       );
-    }
-    case 'write': {
-      return;
-    }
-    default: {
+    case 'write':
+      break;
+    default:
       throw new Error(`Unknown missingError option: ${missingError}`);
-    }
   }
 }
 
 /**
+ * Transforms the error message node.
  * @param {babel.types} t
  * @param {babel.NodePath} path
  * @param {babel.types.Expression} messageNode
- * @param {PluginState } state
+ * @param {PluginState} state
  * @param {Map<string, number>} errorCodesLookup
  * @param {MissingError} missingError
  * @param {string} runtimeModule
  * @returns {babel.types.Expression | null}
  */
-function transformErrorMessage(
+function transformMessage(
   t,
   path,
   messageNode,
@@ -127,86 +116,43 @@ function transformErrorMessage(
   missingError,
   runtimeModule,
 ) {
-  const message = extractMessageFromExpression(t, messageNode);
+  const message = extractMessage(t, messageNode);
   if (!message) {
-    handleUnminifyable(missingError, path);
+    handleUnminifyableError(missingError, path);
     return null;
   }
 
   let errorCode = errorCodesLookup.get(message.message);
   if (errorCode === undefined) {
     switch (missingError) {
-      case 'annotate': {
+      case 'annotate':
         path.addComment(
           'leading',
           ' FIXME (minify-errors-in-prod): Unminified error message in production build! ',
         );
         return null;
-      }
-      case 'throw': {
+      case 'throw':
         throw new Error(
-          `Missing error code for message '${message.message}'. Did you forget to run \`pnpm extract-error-codes\` first?`,
+          `Missing error code for message '${message.message}'. Run \`pnpm extract-error-codes\` first.`,
         );
-      }
-      case 'write': {
+      case 'write':
         errorCode = errorCodesLookup.size + 1;
         errorCodesLookup.set(message.message, errorCode);
         state.updatedErrorCodes = true;
         break;
-      }
-      default: {
+      default:
         throw new Error(`Unknown missingError option: ${missingError}`);
-      }
     }
   }
 
   if (!state.formatErrorMessageIdentifier) {
-    let resolvedRuntimeModuleSpecifier = runtimeModule;
-    if (runtimeModule.startsWith('#')) {
-      const currentFile = state.filename;
-      if (!currentFile) {
-        throw new Error('filename is not defined');
-      }
-      const result = finder(currentFile).next();
-      if (result.done) {
-        throw new Error('Could not find package.json');
-      }
-      const pkg = result.value;
-      const pkgPath = result.filename;
-
-      const runtimeModulePath = pkg?.imports?.[runtimeModule];
-      if (typeof runtimeModulePath !== 'string') {
-        throw new Error(`Could not find a valid runtime module path for ${runtimeModule}`);
-      }
-      if (runtimeModulePath.startsWith('.')) {
-        const resolvedRuntimeModulePath = nodePath.resolve(
-          nodePath.dirname(pkgPath),
-          runtimeModulePath,
-        );
-        const relative = nodePath.relative(
-          nodePath.dirname(currentFile),
-          resolvedRuntimeModulePath,
-        );
-        const withJsExtension = relative.replace(/\.(j|t)sx?$/, '.js');
-        resolvedRuntimeModuleSpecifier = pathToNodeImportSpecifier(withJsExtension);
-      } else if (runtimeModulePath.startsWith('#')) {
-        throw new Error('Cannot recursively resolve imports yet.');
-      } else {
-        resolvedRuntimeModuleSpecifier = runtimeModulePath;
-      }
-    }
-
     state.formatErrorMessageIdentifier = helperModuleImports.addDefault(
       path,
-      resolvedRuntimeModuleSpecifier,
-      {
-        nameHint: '_formatErrorMessage',
-      },
+      resolveRuntimeModule(runtimeModule, state),
+      { nameHint: '_formatErrorMessage' },
     );
   }
 
-  // Return a conditional expression that uses the original message in development
-  // and the minified version in production
   return t.conditionalExpression(
     t.binaryExpression(
       '!==',
@@ -222,6 +168,46 @@ function transformErrorMessage(
       ...message.expressions,
     ]),
   );
+}
+
+/**
+ * Resolves the runtime module path.
+ * @param {string} runtimeModule
+ * @param {PluginState} state
+ * @returns {string}
+ */
+function resolveRuntimeModule(runtimeModule, state) {
+  if (!runtimeModule.startsWith('#')) {
+    return runtimeModule;
+  }
+
+  const currentFile = state.filename;
+  if (!currentFile) {
+    throw new Error('filename is not defined');
+  }
+
+  const result = finder(currentFile).next();
+  if (result.done) {
+    throw new Error('Could not find package.json');
+  }
+
+  const pkg = result.value;
+  const pkgPath = result.filename;
+  const runtimeModulePath = pkg?.imports?.[runtimeModule];
+  if (typeof runtimeModulePath !== 'string') {
+    throw new Error(`Invalid runtime module path for ${runtimeModule}`);
+  }
+
+  if (runtimeModulePath.startsWith('.')) {
+    const resolvedPath = nodePath.resolve(nodePath.dirname(pkgPath), runtimeModulePath);
+    const relativePath = nodePath.relative(nodePath.dirname(currentFile), resolvedPath);
+    return pathToNodeImportSpecifier(relativePath.replace(/\.(j|t)sx?$/, '.js'));
+  }
+
+  if (runtimeModulePath.startsWith('#')) {
+    throw new Error('Cannot recursively resolve imports yet.');
+  }
+  return runtimeModulePath;
 }
 
 /**
@@ -248,8 +234,6 @@ module.exports = function plugin(
   const errorCodesLookup = new Map(
     Object.entries(errorCodes).map(([key, value]) => [value, Number(key)]),
   );
-
-  const importPaths = new Set();
 
   return {
     name: '@mui/internal-babel-plugin-minify-errors',
@@ -300,11 +284,11 @@ module.exports = function plugin(
 
         const messageNode = messagePath.node;
         if (t.isSpreadElement(messageNode) || t.isArgumentPlaceholder(messageNode)) {
-          handleUnminifyable(missingError, newExpressionPath);
+          handleUnminifyableError(missingError, newExpressionPath);
           return;
         }
 
-        const transformedMessage = transformErrorMessage(
+        const transformedMessage = transformMessage(
           t,
           newExpressionPath,
           messageNode,
@@ -318,47 +302,8 @@ module.exports = function plugin(
           messagePath.replaceWith(transformedMessage);
         }
       },
-      TaggedTemplateExpression(path, state) {
-        // Get the tag function
-        const tag = path.get('tag');
-        if (!tag.isIdentifier()) {
-          return;
-        }
-
-        // Check if the tag is imported from our package
-        const binding = path.scope.getBinding(tag.node.name);
-        if (!binding?.path.isImportDefaultSpecifier()) {
-          return;
-        }
-        const importPath = binding.path.parentPath;
-        if (!importPath.isImportDeclaration()) {
-          return;
-        }
-        if (importPath.node.source.value !== '@mui/internal-babel-plugin-minify-errors/tag') {
-          return;
-        }
-
-        const transformedMessage = transformErrorMessage(
-          t,
-          path,
-          path.node.quasi,
-          state,
-          errorCodesLookup,
-          missingError,
-          runtimeModule,
-        );
-
-        if (transformedMessage) {
-          path.replaceWith(transformedMessage);
-          importPaths.add(importPath);
-        }
-      },
     },
     post() {
-      for (const importPath of importPaths) {
-        importPath.remove();
-      }
-
       if (missingError === 'write' && this.updatedErrorCodes) {
         const invertedErrorCodes = Object.fromEntries(
           Array.from(errorCodesLookup, ([key, value]) => [value, key]),
