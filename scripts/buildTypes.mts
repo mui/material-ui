@@ -4,7 +4,6 @@ import path from 'path';
 import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
-import { stat } from 'fs';
 
 const $$ = $({ stdio: 'inherit' });
 
