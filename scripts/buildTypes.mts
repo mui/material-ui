@@ -47,8 +47,8 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
   await fs.cp(fullSourceDirectory, fullDestinationDirectory, {
     recursive: true,
     filter: (src) => {
-      // include directories and .d.ts files
-      return src.endsWith('.d.ts');
+      // include directories and .d.ts files, exclude dotfiles
+      return !src.startsWith('.') || src.endsWith('.d.ts');
     },
   });
 }
