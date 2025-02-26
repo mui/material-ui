@@ -584,10 +584,6 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(window.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
-        true,
-      );
-
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
       expect(window.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(

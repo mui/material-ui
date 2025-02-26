@@ -44,11 +44,7 @@ const localStorageManager: StorageManager = ({ key, storageWindow }) => {
       }
       let value;
       try {
-        value = storageWindow.localStorage.getItem(key) || undefined;
-        if (!value) {
-          // the first time that user enters the site.
-          storageWindow.localStorage.setItem(key, defaultValue);
-        }
+        value = storageWindow.localStorage.getItem(key);
       } catch {
         // Unsupported
       }

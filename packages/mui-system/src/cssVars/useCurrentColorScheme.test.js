@@ -564,22 +564,6 @@ describe('useCurrentColorScheme', () => {
       ).to.equal(true);
     });
 
-    it('save system mode', () => {
-      function Data() {
-        useCurrentColorScheme({
-          defaultMode: 'system',
-          defaultLightColorScheme: 'light',
-          defaultDarkColorScheme: 'dark',
-          supportedColorSchemes: ['light', 'dark'],
-        });
-        return null;
-      }
-      render(<Data />);
-      expect(window.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
-        true,
-      );
-    });
-
     it('save lightColorScheme and darkColorScheme', () => {
       function Data() {
         const { setMode, setColorScheme, ...data } = useCurrentColorScheme({
