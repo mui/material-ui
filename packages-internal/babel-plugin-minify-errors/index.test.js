@@ -51,7 +51,7 @@ pluginTester({
       // babel prefixes with filename.
       // We're only interested in the message.
       error:
-        /: Missing error code for message 'missing'. Did you forget to run `pnpm extract-error-codes` first?/,
+        /: Missing error code for message 'missing'. Did you forget to run `pnpm extract-error-codes` first\?/,
       fixture: path.join(fixturePath, 'no-error-code-throw', 'input.js'),
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'no-error-code-throw', 'error-codes.json'),
@@ -73,7 +73,7 @@ pluginTester({
       // babel prefixes with filename.
       // We're only interested in the message.
       error:
-        /: Unminifyable error. You can only use literal strings and template strings as error messages.?/,
+        /: Unminifyable error. You can only use literal strings and template strings as error messages./,
       fixture: path.join(fixturePath, 'unminifyable-throw', 'input.js'),
       pluginOptions: {
         errorCodesPath: path.join(fixturePath, 'unminifyable-throw', 'error-codes.json'),
@@ -122,6 +122,15 @@ pluginTester({
       },
       fixture: path.join(fixturePath, 'custom-runtime', 'input.js'),
       output: readOutputFixtureSync('custom-runtime', 'output.js'),
+    },
+    {
+      title: 'uses custom runtime module with imports',
+      pluginOptions: {
+        errorCodesPath: path.join(fixturePath, 'custom-runtime-imports', 'error-codes.json'),
+        runtimeModule: '#error-formatter',
+      },
+      fixture: path.join(fixturePath, 'custom-runtime-imports', 'input.js'),
+      output: readOutputFixtureSync('custom-runtime-imports', 'output.js'),
     },
   ],
 });

@@ -87,7 +87,7 @@ function handleUnminifyableError(missingError, path) {
       break;
     case 'throw':
       throw new Error(
-        'Unminifyable error. Use literal strings and template strings as error messages.',
+        'Unminifyable error. You can only use literal strings and template strings as error messages.',
       );
     case 'write':
       break;
@@ -133,7 +133,7 @@ function transformMessage(
         return null;
       case 'throw':
         throw new Error(
-          `Missing error code for message '${message.message}'. Run \`pnpm extract-error-codes\` first.`,
+          `Missing error code for message '${message.message}'. Did you forget to run \`pnpm extract-error-codes\` first?`,
         );
       case 'write':
         errorCode = errorCodesLookup.size + 1;
