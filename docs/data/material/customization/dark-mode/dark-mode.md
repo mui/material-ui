@@ -191,7 +191,7 @@ To disable the storage manager, pass `null` to the `storageManager` prop:
 ```
 
 :::warning
-If you are building a SSR application, disabling the storage manager will cause [dark mode flicker](#dark-mode-flicker) when users refresh the page.
+Disabling the storage manager will reset the app to its default mode when users refresh the page.
 :::
 
 ## Disable transitions
