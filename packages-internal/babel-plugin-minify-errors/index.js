@@ -34,7 +34,13 @@ const COMMENT_OPT_OUT_MARKER = 'minify-error-disabled';
 /**
  * @typedef {babel.PluginPass & {updatedErrorCodes?: boolean, formatErrorMessageIdentifier?: babel.types.Identifier}} PluginState
  * @typedef {'annotate' | 'throw' | 'write'} MissingError
- * @typedef {{ errorCodesPath: string, missingError: MissingError, runtimeModule?: string, detection?: 'opt-in' | 'opt-out' }} Options
+ * @typedef {{
+ *   errorCodesPath: string,
+ *   missingError: MissingError,
+ *   runtimeModule?: string,
+ *   detection?: 'opt-in' | 'opt-out',
+ *   outExtension?: string
+ * }} Options
  */
 
 /**
@@ -105,6 +111,7 @@ function handleUnminifyableError(missingError, path) {
  * @param {Map<string, number>} errorCodesLookup
  * @param {MissingError} missingError
  * @param {string} runtimeModule
+ * @param {string} outExtension
  * @returns {babel.types.Expression | null}
  */
 function transformMessage(
@@ -115,6 +122,7 @@ function transformMessage(
   errorCodesLookup,
   missingError,
   runtimeModule,
+  outExtension,
 ) {
   const message = extractMessage(t, messageNode);
   if (!message) {
@@ -148,7 +156,7 @@ function transformMessage(
   if (!state.formatErrorMessageIdentifier) {
     state.formatErrorMessageIdentifier = helperModuleImports.addDefault(
       path,
-      resolveRuntimeModule(runtimeModule, state),
+      transformExtension(resolveRuntimeModule(runtimeModule, state), outExtension),
       { nameHint: '_formatErrorMessage' },
     );
   }
@@ -214,6 +222,16 @@ function resolveRuntimeModule(runtimeModule, state, visitedModules = new Set()) 
 }
 
 /**
+ *
+ * @param {string} importSpecifier
+ * @param {string} outExtension
+ * @returns
+ */
+function transformExtension(importSpecifier, outExtension = '.js') {
+  return importSpecifier.replace(/\.[a-zA-Z0-9]+$/, outExtension);
+}
+
+/**
  * @param {babel} file
  * @param {Options} options
  * @returns {babel.PluginObj<PluginState>}
@@ -225,6 +243,7 @@ module.exports = function plugin(
     missingError = 'annotate',
     runtimeModule = '#formatErrorMessage',
     detection = 'opt-in',
+    outExtension = '.js',
   },
 ) {
   if (!errorCodesPath) {
@@ -299,6 +318,7 @@ module.exports = function plugin(
           errorCodesLookup,
           missingError,
           runtimeModule,
+          outExtension,
         );
 
         if (transformedMessage) {
