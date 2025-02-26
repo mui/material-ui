@@ -90,7 +90,7 @@ function ToggleVarTheme(props) {
     if (paletteMode === null) {
       return;
     }
-    props.onChange(paletteMode);
+    props.onChange(event, paletteMode);
     setMode(paletteMode);
   };
   return <ToggleTheme value={props.value} onChange={handleChangeThemeMode} />;
