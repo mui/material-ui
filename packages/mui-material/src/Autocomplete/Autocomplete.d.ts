@@ -335,6 +335,19 @@ export interface AutocompleteProps<
   /**
    * Render the selected value.
    *
+   * @param {Value} value The `value` provided to the component.
+   * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderSingleValue?: (
+    value: Value,
+    getTagProps: AutocompleteRenderGetTagProps,
+    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  ) => React.ReactNode;
+  /**
+   * Render the selected value when doing multiple selections.
+   *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @param {object} ownerState The state of the Autocomplete component.

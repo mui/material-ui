@@ -485,6 +485,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
+    renderSingleValue,
     renderTags,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
@@ -595,21 +596,27 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   let startAdornment;
 
-  if (renderTags && value?.length > 0) {
-    startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
-  } else if (multiple && value.length > 0) {
-    startAdornment = value.map((option, index) => {
-      const { key, ...customTagProps } = getCustomizedTagProps({ index });
-      return (
-        <Chip
-          key={key}
-          label={getOptionLabel(option)}
-          size={size}
-          {...customTagProps}
-          {...externalForwardedProps.slotProps.chip}
-        />
-      );
-    });
+  if (multiple && value.length > 0) {
+    if (renderTags) {
+      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
+    } else {
+      startAdornment = value.map((option, index) => {
+        const { key, ...customTagProps } = getCustomizedTagProps({ index });
+        return (
+          <Chip
+            key={key}
+            label={getOptionLabel(option)}
+            size={size}
+            {...customTagProps}
+            {...externalForwardedProps.slotProps.chip}
+          />
+        );
+      });
+    }
+  }
+
+  if (!multiple && renderSingleValue && value) {
+    startAdornment = renderSingleValue(value, getCustomizedTagProps, ownerState);
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
@@ -1169,6 +1176,15 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   renderOption: PropTypes.func,
   /**
    * Render the selected value.
+   *
+   * @param {Value} value The `value` provided to the component.
+   * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderSingleValue: PropTypes.func,
+  /**
+   * Render the selected value when doing multiple selections.
    *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.

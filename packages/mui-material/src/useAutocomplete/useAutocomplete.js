@@ -61,8 +61,8 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInputValue(value, multiple, getOptionLabel, renderTags) {
-  if (multiple || value == null || renderTags) {
+function getInputValue(value, multiple, getOptionLabel, renderSingleValue) {
+  if (multiple || value == null || renderSingleValue) {
     return '';
   }
   const optionLabel = getOptionLabel(value);
@@ -110,7 +110,7 @@ function useAutocomplete(props) {
     openOnFocus = false,
     options,
     readOnly = false,
-    renderTags,
+    renderSingleValue,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -121,7 +121,7 @@ function useAutocomplete(props) {
 
   getOptionLabel = (option) => {
     const optionLabel = getOptionLabelProp(option);
-    if (typeof optionLabel !== 'string' && !renderTags) {
+    if (typeof optionLabel !== 'string') {
       if (process.env.NODE_ENV !== 'production') {
         const erroneousReturn =
           optionLabel === undefined ? 'undefined' : `${typeof optionLabel} (${optionLabel})`;
@@ -174,7 +174,7 @@ function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
-      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderTags);
+      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderSingleValue);
 
       if (inputValue === newInputValue) {
         return;
@@ -194,7 +194,7 @@ function useAutocomplete(props) {
       setInputValueState,
       clearOnBlur,
       value,
-      renderTags,
+      renderSingleValue,
     ],
   );
 
@@ -208,7 +208,7 @@ function useAutocomplete(props) {
   const [inputPristine, setInputPristine] = React.useState(true);
 
   const inputValueIsSelectedValue =
-    !multiple && !renderTags && value != null && inputValue === getOptionLabel(value);
+    !multiple && value != null && inputValue === getOptionLabel(value);
 
   const popupOpen = open && !readOnly;
 
@@ -649,8 +649,8 @@ function useAutocomplete(props) {
     let reason = reasonProp;
     let newValue = option;
 
-    if (multiple || renderTags) {
-      newValue = Array.isArray(value) && multiple ? value.slice() : [];
+    if (multiple) {
+      newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
         const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
@@ -884,13 +884,16 @@ function useAutocomplete(props) {
           break;
         case 'Backspace':
           // Remove the value on the left of the "cursor"
-          if (!readOnly && inputValue === '' && value.length > 0) {
+          if (multiple && !readOnly && inputValue === '' && value.length > 0) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
+          }
+          if (!multiple && renderSingleValue && !readOnly) {
+            setValueState(null);
           }
           break;
         case 'Delete':
