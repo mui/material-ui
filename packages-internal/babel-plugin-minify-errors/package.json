@@ -32,10 +32,7 @@
   "sideEffects": false,
   "type": "commonjs",
   "exports": {
-    ".": "./index.js",
-    "./tag": {
-      "import": "./tag.mjs"
-    }
+    ".": "./index.js"
   },
   "engines": {
     "node": ">=14.0.0"
