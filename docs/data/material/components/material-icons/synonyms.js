@@ -141,6 +141,8 @@ const synonyms = {
     'all applications circles collection components dots grid interface squares ui ux',
   Architecture: 'art compass design drawing engineering geometric tool',
   Archive: 'inbox mail store',
+  AreaChart:
+    'analytics data diagram infographic measure metrics statistics tracking',
   ArrowBack:
     'DISABLE_IOS application components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowBackIos:
@@ -749,8 +751,8 @@ const synonyms = {
     'approve checkmark complete finished layers multiple ok select stack success tick validate verified yes',
   DoneOutline:
     'all approve checkmark complete finished ok select success tick validate verified yes',
-  DoNotDisturb: 'cancel close denied deny remove silence slash stop',
-  DoNotDisturbAlt: 'cancel close denied deny remove silence slash stop',
+  DoNotDisturb: 'cancel close denied deny neutral remove silence slash stop',
+  DoNotDisturbAlt: 'cancel close denied deny neutral remove silence slash stop',
   DoNotDisturbOff:
     'cancel close dash denied deny disabled enabled on remove silence slash stop',
   DoNotDisturbOn:
@@ -1161,7 +1163,7 @@ const synonyms = {
   GasMeter: 'droplet energy measure nest usage water',
   Gavel:
     'agreement contract court document government hammer judge law mallet official police rules terms',
-  Gesture: 'doodle drawing finger gestures hand line motion string thread',
+  Gesture: 'doodle drawing finger gestures hand line motion scribble string thread',
   GetApp: 'arrows downloads export install play pointing retrieve upload',
   Gif: 'alphabet animated animation bitmap character font format graphics interchange letters symbol text type',
   GifBox:
@@ -1334,7 +1336,7 @@ const synonyms = {
     'Android cell computer desktop hardware iOS mobile monitor phone star tablet web',
   ImportContacts: 'address book friends information magazine open',
   ImportExport: 'arrows direction down explort up',
-  Inbox: 'archive email incoming message',
+  Inbox: 'archive category email incoming message',
   IndeterminateCheckBox:
     'application button components control design form interface minus screen selected selection square toggle ui undetermined ux website',
   Info: 'about alert announcement announcment assistance bubble circle details help information service support',
@@ -1411,7 +1413,7 @@ const synonyms = {
     'athlete athletic beach body entertainment exercise hobby human people person social sports travel water',
   Label: 'badge favorite indent item library mail remember save stamp sticker tag',
   LabelImportant:
-    'badge favorite important. indent item library mail remember save stamp sticker tag wing',
+    'badge chevron favorite flag important. indent item library mail remember right save stamp sticker tag wing',
   LabelOff:
     'disabled enabled favorite indent library mail on remember save slash stamp sticker tag wing',
   Lan: 'computer connection data internet network service',
@@ -3015,10 +3017,10 @@ const synonyms = {
     'arrow backwards find glass history inprogress loading look magnifying refresh renew restore reverse rotate see yt',
   ZoomIn:
     'bigger find glass grow look magnifier magnifying plus scale search see size',
-  ZoomInMap: 'arrows destination location maps move place stop',
+  ZoomInMap: 'arrows center destination location maps middle move place stop',
   ZoomOut:
     'find glass look magnifier magnifying minus negative scale search see size smaller',
-  ZoomOutMap: 'arrows destination location maps move place stop',
+  ZoomOutMap: 'arrows center destination location maps middle move place stop',
 };
 
 export default synonyms;

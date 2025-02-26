@@ -168,7 +168,7 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
 
-## Toolpad (Beta)
+## Experimental APIs - Toolpad
 
 ### useDialogs
 

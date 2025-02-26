@@ -4,7 +4,7 @@ import { CollapseProps, InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { StepContentClasses } from './stepContentClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types';
 
 export interface StepContentSlots {
   /**
@@ -24,7 +24,7 @@ export type StepContentSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwared to the transition slot.
      * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component
      */
-    transition: SlotProps<React.ElementType<CollapseProps>, {}, StepContentOwnerState>;
+    transition: SlotComponentProps<React.ElementType, CollapseProps, StepContentOwnerState>;
   }
 >;
 
@@ -76,10 +76,10 @@ export type StepContentClasskey = keyof NonNullable<StepContentProps['classes']>
  *
  * Demos:
  *
- * - [Stepper](https://mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [StepContent API](https://mui.com/material-ui/api/step-content/)
+ * - [StepContent API](https://next.mui.com/material-ui/api/step-content/)
  */
 export default function StepContent(props: StepContentProps): React.JSX.Element;

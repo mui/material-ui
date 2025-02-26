@@ -2043,7 +2043,6 @@ describe('<Autocomplete />', () => {
 
       const textbox = getByRole('combobox');
       expect(textbox).to.have.attribute('aria-expanded', 'false');
-      expect(textbox).not.to.have.attribute('aria-owns');
       expect(textbox).not.to.have.attribute('aria-controls');
       expect(document.querySelector(`.${classes.paper}`)).to.have.text('No options');
     });
@@ -2898,10 +2897,10 @@ describe('<Autocomplete />', () => {
     );
     expect(handleHighlightChange.callCount).to.equal(
       // FIXME: highlighted index implementation should be implemented using React not the DOM.
-      reactMajor >= 18 ? 2 : 1,
+      reactMajor > 18 ? 2 : 1,
     );
     expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-    if (reactMajor >= 18) {
+    if (reactMajor > 18) {
       expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
     }
   });
@@ -2921,10 +2920,10 @@ describe('<Autocomplete />', () => {
       );
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 2 : 1,
+        reactMajor > 18 ? 2 : 1,
       );
       expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (reactMajor >= 18) {
+      if (reactMajor > 18) {
         expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
       }
     });

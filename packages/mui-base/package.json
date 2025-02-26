@@ -32,7 +32,7 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-base/**/*.test.?(c|m)[jt]s?(x)'",
@@ -40,7 +40,7 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.7",
+    "@babel/runtime": "^7.26.9",
     "@floating-ui/react-dom": "^2.1.1",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -51,8 +51,8 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
-    "@testing-library/react": "^16.1.0",
-    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.14",
     "@types/react": "^19.0.8",

@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "6.4.1",
+  "version": "7.0.0-alpha.2",
   "private": false,
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -28,12 +28,13 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && pnpm build:typings && pnpm build:copy-files",
-    "build:lib": "pnpm build:node && pnpm build:stable",
+    "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:esm-pkg",
+    "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
+    "build:lib": "pnpm build:node && pnpm build:stable && pnpm build:typings",
     "build:lib:clean": "rimraf lib/ && pnpm build:lib",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
-    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib",
+    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib --skipEsmPkg",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
@@ -45,19 +46,19 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.7"
+    "@babel/runtime": "^7.26.9"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/internal-waterfall": "workspace:^",
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/chai": "^4.3.20",
     "@types/react": "^19.0.8",
     "chai": "^4.5.0",
     "chalk": "^5.4.1",
     "cross-fetch": "^4.1.0",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.2.0",
+    "fs-extra": "^11.3.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0",
     "react": "^19.0.0",
@@ -67,7 +68,7 @@
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
-    "@mui/material": "workspace:^",
+    "@mui/material": "workspace:*",
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
   },
@@ -86,16 +87,26 @@
   },
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./esm/index.js",
-      "require": "./index.js"
+      "import": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      }
     },
     "./*": {
-      "types": "./*.d.ts",
-      "import": "./esm/*.js",
-      "require": "./*.js"
+      "import": {
+        "types": "./esm/icon.d.ts",
+        "default": "./esm/*.js"
+      },
+      "require": {
+        "types": "./icon.d.ts",
+        "default": "./*.js"
+      }
     },
-    "./esm/*": "./esm/*.js",
-    "./esm/*.js": "./esm/*.js"
+    "./esm": null,
+    "./utils/*": null
   }
 }

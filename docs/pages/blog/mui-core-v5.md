@@ -527,25 +527,25 @@ This release comes with eight new components!
 The development of the Grid was mostly put on hold for the last three years, blocked by the size of the statically generated CSS with JSS.
 The [migration to emotion](#migration-from-jss-to-emotion) has unlocked the following frequently requested changes:
 
-Support for [row & column](/material-ui/react-grid/#row-amp-column-spacing) spacing:
+Support for [row & column](/material-ui/react-grid-legacy/#row-amp-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
 ```
 
-Support for [responsive values](/material-ui/react-grid/#responsive-values) on all the props:
+Support for [responsive values](/material-ui/react-grid-legacy/#responsive-values) on all the props:
 
 ```jsx
 <Grid container spacing={{ xs: 2, md: 3 }} />
 ```
 
-Support for a different [number of columns](/material-ui/react-grid/#columns) than 12:
+Support for a different [number of columns](/material-ui/react-grid-legacy/#columns) than 12:
 
 ```jsx
 <Grid container columns={16}>
 ```
 
-An alternative implementation that uses [CSS grid](/material-ui/react-grid/#css-grid-layout):
+An alternative implementation that uses [CSS grid](/material-ui/react-grid-legacy/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>

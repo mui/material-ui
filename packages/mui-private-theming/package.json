@@ -1,6 +1,6 @@
 {
   "name": "@mui/private-theming",
-  "version": "6.4.1",
+  "version": "7.0.0-alpha.2",
   "private": false,
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
@@ -37,8 +37,8 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.7",
-    "@mui/utils": "workspace:^",
+    "@babel/runtime": "^7.26.9",
+    "@mui/utils": "workspace:*",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {

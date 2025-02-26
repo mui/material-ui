@@ -26,7 +26,7 @@ export default function MuiBaseDeprecation(props: {
         <Icon />
         <Box className="MuiCallout-content">
           @mui/base has been deprecated and has been replaced by{' '}
-          <a href="https://www.base-ui.com">Base UI</a>. We strongly recommend using the new package
+          <a href="https://base-ui.com">Base UI</a>. We strongly recommend using the new package
           instead.
         </Box>
       </Box>
@@ -37,12 +37,7 @@ export default function MuiBaseDeprecation(props: {
 function Icon() {
   return (
     <Box className="MuiCallout-icon-container">
-      <svg
-        focusable="false"
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        data-testid="ContentCopyRoundedIcon"
-      >
+      <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24">
         <use className="MuiCode-copied-icon" xlinkHref="#error-icon" />
       </svg>
     </Box>

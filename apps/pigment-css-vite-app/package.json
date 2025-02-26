@@ -1,5 +1,5 @@
 {
-  "name": "@app/vite-app",
+  "name": "@app/pigment-css-vite-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -17,11 +17,11 @@
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
-    "playwright": "^1.48.2",
+    "playwright": "^1.50.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^5.0.0",
-    "react-router-dom": "^6.28.2",
+    "react-router-dom": "^6.29.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
@@ -32,10 +32,10 @@
     "@types/react-dom": "^19.0.3",
     "@types/webfontloader": "^1.6.38",
     "@vitejs/plugin-react": "^4.3.4",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.2",
     "postcss-combine-media-query": "^1.0.1",
-    "vite": "5.4.12",
-    "vite-plugin-node-polyfills": "0.22.0",
+    "vite": "5.4.14",
+    "vite-plugin-node-polyfills": "0.23.0",
     "vite-plugin-pages": "^0.32.4"
   },
   "nx": {
