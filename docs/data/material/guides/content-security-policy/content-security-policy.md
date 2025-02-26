@@ -72,13 +72,26 @@ function App(props) {
 }
 ```
 
-### Create React App (CRA)
+### CSP in Vite
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default.
-This will require a new hash to be set in your CSP during each deployment.
+According to the [Vite Docs](https://vite.dev/guide/features.html#content-security-policy-csp), Vite requires a few specific configurations for proper CSP deployment due to its internal handling of assets and modules.
 
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build.
-This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+#### Vite supports CSP with a few configurations:
+
+Nonce Injection:
+When you set `html.cspNonce` in your Vite config, Vite adds a nonce to all <script>, <style>, and stylesheet <link> tags, and injects a meta tag:
+
+```html
+<meta property="csp-nonce" nonce="PLACEHOLDER" />
+```
+
+> Replace PLACEHOLDER with a unique nonce per request.
+
+* Asset Inlining:
+
+Vite inlines small assets as data URIs by default. For CSP, allow `data:` for safe directives like `img-src` and `font-src`, but never for `script-src`. Alternatively, disable inlining by setting build.`assetsInlineLimit: 0`.
+
+This configuration keeps your Vite project CSP-compliant without requiring inline runtime scripts.
 
 ### styled-components
 
