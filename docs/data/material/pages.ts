@@ -183,6 +183,7 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/customization',
     children: [
       { pathname: '/material-ui/customization/how-to-customize' },
+      { pathname: '/material-ui/customization/overriding-component-structure' },
       { pathname: '/material-ui/customization/dark-mode' },
       { pathname: '/material-ui/customization/color' },
       { pathname: '/material-ui/customization/right-to-left', title: 'Right-to-left' },
