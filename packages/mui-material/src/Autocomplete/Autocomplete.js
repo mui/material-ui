@@ -514,6 +514,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     focusedTag,
     anchorEl,
     setAnchorEl,
+    singleTagProps,
     inputValue,
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
@@ -594,6 +595,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     ...getTagProps(params),
   });
 
+  const customizedSingleTagProps = {
+    className: classes.tag,
+    disabled,
+    ...singleTagProps,
+  };
+
   let startAdornment;
 
   if (multiple && value.length > 0) {
@@ -616,7 +623,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   }
 
   if (!multiple && renderSingleValue && value) {
-    startAdornment = renderSingleValue(value, getCustomizedTagProps, ownerState);
+    startAdornment = renderSingleValue(value, customizedSingleTagProps, ownerState);
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {

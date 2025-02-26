@@ -998,6 +998,12 @@ function useAutocomplete(props) {
     });
   };
 
+  const handleSingleTagDelete = (event) => {
+    handleValue(event, null, 'removeOption', {
+      option: value,
+    });
+  };
+
   const handlePopupIndicator = (event) => {
     if (open) {
       handleClose(event, 'toggleInput');
@@ -1127,6 +1133,9 @@ function useAutocomplete(props) {
       type: 'button',
       onClick: handlePopupIndicator,
     }),
+    singleTagProps: {
+      ...(!readOnly && { onDelete: handleSingleTagDelete }),
+    },
     getTagProps: ({ index }) => ({
       key: index,
       'data-tag-index': index,

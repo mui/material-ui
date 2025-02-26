@@ -58,6 +58,10 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
+export type AutocompleteSingleTagProps = {
+  onDelete: (event: any) => void;
+};
+
 export interface AutocompleteRenderOptionState {
   inputValue: string;
   index: number;
@@ -342,7 +346,7 @@ export interface AutocompleteProps<
    */
   renderSingleValue?: (
     value: Value,
-    getTagProps: AutocompleteRenderGetTagProps,
+    singleTagProps: AutocompleteSingleTagProps,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
