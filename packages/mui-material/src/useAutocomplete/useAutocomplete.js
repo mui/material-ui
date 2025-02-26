@@ -260,6 +260,8 @@ function useAutocomplete(props) {
   const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {
       inputRef.current.focus();
+    } else if (renderSingleValue) {
+      anchorEl.querySelector('[data-tag="single"]').focus();
     } else {
       anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`).focus();
     }
@@ -833,10 +835,18 @@ function useAutocomplete(props) {
           handleOpen(event);
           break;
         case 'ArrowLeft':
-          handleFocusTag(event, 'previous');
+          if (renderSingleValue) {
+            focusTag();
+          } else {
+            handleFocusTag(event, 'previous');
+          }
           break;
         case 'ArrowRight':
-          handleFocusTag(event, 'next');
+          if (renderSingleValue) {
+            focusTag(-1);
+          } else {
+            handleFocusTag(event, 'next');
+          }
           break;
         case 'Enter':
           if (highlightedIndexRef.current !== -1 && popupOpen) {
@@ -897,6 +907,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderSingleValue && !readOnly) {
             setValueState(null);
+            focusTag(-1);
           }
           break;
         case 'Delete':
@@ -1138,6 +1149,7 @@ function useAutocomplete(props) {
     }),
     singleTagProps: {
       tabIndex: -1,
+      'data-tag': 'single',
       ...(!readOnly && { onDelete: handleSingleTagDelete }),
     },
     getTagProps: ({ index }) => ({
