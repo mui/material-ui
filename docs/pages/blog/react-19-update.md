@@ -16,7 +16,7 @@ We hope it may be useful to others who also need to support both versions of Rea
 
 It was crucial for us to keep supporting older React versions, as many of our users rely on existing React 18 applications that can't be migrated immediately.
 
-We understand that upgrading major versions takes time and planning, especially in large production applications and we want to support our users' migration timeline.
+We understand that upgrading major versions takes time and planning, especially in large production applications, and we want to support our users' migration timelines.
 At the same time, we didn't want to block early adopters of React 19 from using the latest React version with our packages.
 
 So, we approached the migration in two phases:
@@ -123,7 +123,7 @@ After ensuring compatibility, we started working on migrating the codebase to Re
 2. Migrating test utilities to work with React 19
 3. Ensuring all components work with the new React 19 features
 4. Updating CI to run tests with React 18
-5. Type references with `RefObject` for React 19 and `MutableRefObject` for earlier versions
+5. Updating type references with `RefObject` for React 19 and `MutableRefObject` for earlier versions
 
 The biggest change in this phase was around the [`useRef()` hook update](https://react.dev/blog/2024/04/25/react-19-upgrade-guide#useref-requires-argument).
 The `apiRef` in the Data Grid component had to be updated from `MutableRefObject` to `RefObject` for React 19 only, to avoid type errors for users who haven't migrated yet.
