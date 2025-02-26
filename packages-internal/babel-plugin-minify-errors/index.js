@@ -201,7 +201,7 @@ function resolveRuntimeModule(runtimeModule, state) {
   if (runtimeModulePath.startsWith('.')) {
     const resolvedPath = nodePath.resolve(nodePath.dirname(pkgPath), runtimeModulePath);
     const relativePath = nodePath.relative(nodePath.dirname(currentFile), resolvedPath);
-    return pathToNodeImportSpecifier(relativePath.replace(/\.(j|t)sx?$/, '.js'));
+    return pathToNodeImportSpecifier(relativePath);
   }
 
   if (runtimeModulePath.startsWith('#')) {

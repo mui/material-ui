@@ -132,5 +132,31 @@ pluginTester({
       fixture: path.join(fixturePath, 'custom-runtime-imports', 'input.js'),
       output: readOutputFixtureSync('custom-runtime-imports', 'output.js'),
     },
+    {
+      title: 'uses custom runtime module with relative path',
+      pluginOptions: {
+        errorCodesPath: path.join(
+          fixturePath,
+          'custom-runtime-imports-relative',
+          'error-codes.json',
+        ),
+        runtimeModule: '#error-formatter',
+      },
+      fixture: path.join(fixturePath, 'custom-runtime-imports-relative', 'input.js'),
+      output: readOutputFixtureSync('custom-runtime-imports-relative', 'output.js'),
+    },
+    {
+      title: 'uses custom runtime module with recursive imports',
+      pluginOptions: {
+        errorCodesPath: path.join(
+          fixturePath,
+          'custom-runtime-imports-recursive',
+          'error-codes.json',
+        ),
+        runtimeModule: '#error-formatter',
+      },
+      fixture: path.join(fixturePath, 'custom-runtime-imports-recursive', 'input.js'),
+      output: readOutputFixtureSync('custom-runtime-imports-recursive', 'output.js'),
+    },
   ],
 });
