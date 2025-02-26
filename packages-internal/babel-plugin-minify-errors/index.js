@@ -171,12 +171,13 @@ function transformMessage(
 }
 
 /**
- * Resolves the runtime module path.
+ * Resolves the runtime module path recursively.
  * @param {string} runtimeModule
  * @param {PluginState} state
+ * @param {Set<string>} [visitedModules]
  * @returns {string}
  */
-function resolveRuntimeModule(runtimeModule, state) {
+function resolveRuntimeModule(runtimeModule, state, visitedModules = new Set()) {
   if (!runtimeModule.startsWith('#')) {
     return runtimeModule;
   }
@@ -198,16 +199,18 @@ function resolveRuntimeModule(runtimeModule, state) {
     throw new Error(`Invalid runtime module path for ${runtimeModule}`);
   }
 
+  if (visitedModules.has(runtimeModule)) {
+    throw new Error(`Circular import detected for ${runtimeModule}`);
+  }
+  visitedModules.add(runtimeModule);
+
   if (runtimeModulePath.startsWith('.')) {
     const resolvedPath = nodePath.resolve(nodePath.dirname(pkgPath), runtimeModulePath);
     const relativePath = nodePath.relative(nodePath.dirname(currentFile), resolvedPath);
     return pathToNodeImportSpecifier(relativePath);
   }
 
-  if (runtimeModulePath.startsWith('#')) {
-    throw new Error('Cannot recursively resolve imports yet.');
-  }
-  return runtimeModulePath;
+  return resolveRuntimeModule(runtimeModulePath, state, visitedModules);
 }
 
 /**
