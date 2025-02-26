@@ -12,15 +12,15 @@ A big thanks to the 4 contributors who made this release possible.
 
 - [Checkbox] Add slots and slotProps (#45361) @siriwatknp
 - [Drawer] Deprecate *Props and complete `slots`, `slotProps` (#45377) @siriwatknp
-- [Grid] Improve Grid2 upgrade experience (@DiegoAndai) (#45372) @DiegoAndai
+- [Grid] Improve Grid2 upgrade experience (#45372) @DiegoAndai
 - [InputBase] Deprecate composed classes (#45366) @siriwatknp
 - Fix `slotProps.transition` types (#45367) @siriwatknp
 - Allow nested theme creation with `vars` (#45368) @siriwatknp
 - Fix wrong slotProps of DetailsHTMLAttributes types (#45356) @siriwatknp
 - [Popover] Deprecate *Props and complete `slots`, `slotProps` (#45337) @siriwatknp
 - [Radio] Add slots and slotProps (#45364) @siriwatknp
-- [Slider] Fix css class selector in migration guide (@sai6855) (#45409) @sai6855
-- [Slider] Fix spacings in .md files (@sai6855) (#45393) @sai6855
+- [Slider] Fix css class selector in migration guide (#45409) @sai6855
+- [Slider] Fix spacings in .md files (#45393) @sai6855
 - [Snackbar] Add Slots and SlotProps (#45103) (#45352) @siriwatknp
 - [SpeedDialAction] Add slots and slotProps (#45365) @siriwatknp
 - [SwitchBase] Deprecate `inputProps` and complete slots, slotProps (#45338) @siriwatknp
@@ -29,12 +29,12 @@ A big thanks to the 4 contributors who made this release possible.
 
 ### Docs
 
-- [Autocomplete] Remove unnecessary renderTags prop from Sizes demo (@ZeeshanTamboli) (#45403) @ZeeshanTamboli
-- Fix typo in slider docs (@sai6855) (#45392) @sai6855
+- [Autocomplete] Remove unnecessary renderTags prop from Sizes demo (#45403) @ZeeshanTamboli
+- Fix typo in slider docs (#45392) @sai6855
 
 ### Core
 
-- [test] Remove unused renderTags prop and fix key warning in Autocomplete regression test (@ZeeshanTamboli) (#45412) @ZeeshanTamboli
+- [test] Remove unused renderTags prop and fix key warning in Autocomplete regression test (#45412) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @DiegoAndai, @sai6855, @siriwatknp, @ZeeshanTamboli
 
