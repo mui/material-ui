@@ -1,5 +1,18 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-beta.1
+<!-- generated comparing v7.0.0-beta.0..master -->
+_Feb 27, 2025_
+
+This release fixes incorrect build output from the previous release (`beta.0`).
+
+### Core
+
+- [code-infra] Fix build:types script omitting folders with a dot in their name (#45422) @Janpot
+- [release] Fix versions (#45420) @mj12albert
+
+All contributors of this release in alphabetical order: @Janpot, @mj12albert
+
 ## 7.0.0-beta.0
 
 <!-- generated comparing v7.0.0-alpha.2..master -->
