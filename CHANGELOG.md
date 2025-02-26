@@ -6,7 +6,7 @@
 
 _Feb 26, 2025_
 
-A big thanks to the 9 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 ### `@mui/material@7.0.0-beta.0`
 
@@ -32,6 +32,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Core
 
+- [code-infra] Fix types for @mui/styled-engine (#45413) @Janpot
 - [docs-infra] Fix theme toggle call (#45400) @siriwatknp
 - [docs-infra] Add `color-scheme` to document in iframe demos (#45406) @KenanYusuf
 - [docs-infra] Revert to use deprecated `CssVarsProvider` for MUI X (#45371) @siriwatknp
