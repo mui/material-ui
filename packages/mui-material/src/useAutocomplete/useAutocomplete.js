@@ -920,6 +920,10 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
+          if (!multiple && renderSingleValue && !readOnly) {
+            setValueState(null);
+            focusTag(-1);
+          }
           break;
         default:
       }
