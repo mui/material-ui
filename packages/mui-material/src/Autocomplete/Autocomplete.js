@@ -589,21 +589,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     },
   });
 
-  const getCustomizedTagProps = (params) => ({
-    className: classes.tag,
-    disabled,
-    ...getTagProps(params),
-  });
-
-  const customizedSingleTagProps = {
-    className: classes.tag,
-    disabled,
-    ...singleTagProps,
-  };
-
   let startAdornment;
 
   if (multiple && value.length > 0) {
+    const getCustomizedTagProps = (params) => ({
+      className: classes.tag,
+      disabled,
+      ...getTagProps(params),
+    });
+
     if (renderTags) {
       startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
@@ -623,6 +617,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   }
 
   if (!multiple && renderSingleValue && value) {
+    const customizedSingleTagProps = {
+      className: classes.tag,
+      disabled,
+      ...singleTagProps,
+    };
+
     startAdornment = renderSingleValue(value, customizedSingleTagProps, ownerState);
   }
 
