@@ -5,11 +5,6 @@ import { OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { StepButtonClasses } from './stepButtonClasses';
 
-/**
- * @deprecated use `StepButtonProps['icon']` instead.
- */
-export type StepButtonIcon = React.ReactNode;
-
 export interface StepButtonOwnProps {
   /**
    * Can be a `StepLabel` or a node to place inside `StepLabel` as children.

@@ -1782,8 +1782,8 @@ JS transforms:
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`& .${sliderClrsses.thumbColorInfo}`]: {
-+      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+-      [`& .${sliderClasses.thumbColorInfo}`]: {
++      [`&.${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
 -      [`& .${sliderClasses.thumbColorSuccess}`]: {

@@ -24,7 +24,7 @@ This list is a work in progress.
 Expect updates as new breaking changes are introduced.
 :::
 
-### Package layout
+### Package layout updated
 
 The package layout has been updated to use the Node.js exports field. This brings several changes:
 
@@ -67,31 +67,6 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
 -      },
      ],
    },
-```
-
-### Dialog's onBackdropClick prop removed
-
-The deprecated `onBackdropClick` prop has been removed from the `Dialog` component.
-Please use the [`onClose`](/material-ui/api/dialog/#dialog-prop-onClose) callback instead, which receives the event and the reason for the dialog closing.
-Here's an example of how to use it:
-
-```jsx
-function Example() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === 'backdropClick') {
-      // Handle the backdrop click
-    }
-    setOpen(false);
-  };
-
-  return (
-    <Dialog open={open} onClose={handleClose}>
-      {/* Dialog content */}
-    </Dialog>
-  );
-}
 ```
 
 ### Grid and Grid2 renamed
@@ -160,7 +135,81 @@ Depending on your project, you may follow one of the following approaches:
    +.MuiGrid-root
    ```
 
-### Hidden and PigmentHidden components removed
+### InputLabel size prop standardized
+
+The `size` prop for `InputLabel` now follows the standard naming convention used across other components like `Button` and `TextField`. `'normal'` has been replaced with `'medium'` for consistency.
+
+If you were using `size="normal"`, update it to `size="medium"`:
+
+```diff
+-<InputLabel size="normal">Label</InputLabel>
++<InputLabel size="medium">Label</InputLabel>
+```
+
+The default behavior remains unchanged, so no updates are needed unless you explicitly set `size="normal"`.
+
+Use this codemod to automatically update the `size` value:
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
+```
+
+### SvgIcon's data-testid removed
+
+The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### Deprecated APIs removed
+
+APIs that were deprecated in v5 have been removed in v7.
+
+#### createMuiTheme function
+
+The deprecated `createMuiTheme` function has been removed.
+Use `createTheme` instead.
+
+```diff
+-import { createMuiTheme } from '@mui/material/styles';
++import { createTheme } from '@mui/material/styles';
+```
+
+#### Dialog's onBackdropClick prop
+
+The deprecated `onBackdropClick` prop has been removed from the `Dialog` component.
+Please use the [`onClose`](/material-ui/api/dialog/#dialog-prop-onClose) callback instead, which receives the event and the reason for the dialog closing.
+Here's an example of how to use it:
+
+```jsx
+function Example() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'backdropClick') {
+      // Handle the backdrop click
+    }
+    setOpen(false);
+  };
+
+  return (
+    <Dialog open={open} onClose={handleClose}>
+      {/* Dialog content */}
+    </Dialog>
+  );
+}
+```
+
+#### experimentalStyled function
+
+The deprecated `experimentalStyled` function has been removed.
+Use `styled` instead.
+
+```diff
+-import { experimentalStyled as styled } from '@mui/material/styles';
++import { styled } from '@mui/material/styles';
+```
+
+#### Hidden and PigmentHidden components
 
 The deprecated `Hidden` and `PigmentHidden` components have been removed.
 
@@ -184,11 +233,7 @@ Use the `useMediaQuery` hook to replace `implementation="js"`:
 +return hidden ? null : <Paper />;
 ```
 
-:::warning
-There's no codemod available for this change, as each project's setup will heavily influence the migration.
-:::
-
-### Modal's onBackdropClick prop removed
+#### Modal's onBackdropClick prop
 
 The deprecated `onBackdropClick` prop has been removed from the `Modal` component.
 Please use the [`onClose`](/material-ui/api/modal/#modal-prop-onClose) callback instead, which receives the event and the reason for the modal closing.
@@ -213,7 +258,38 @@ function Example() {
 }
 ```
 
-### Lab components moved to the main package
+#### Rating's MuiRating-readOnly CSS class
+
+The deprecated `MuiRating-readOnly` class was removed in favor of `Mui-readOnly` global class.
+
+```diff
+-.MuiRating-readOnly
++.Mui-readOnly
+```
+
+#### StepButtonIcon type
+
+The deprecated `StepButtonIcon` type has been removed. Use `StepButtonProps['icon']` instead.
+
+```diff
+- import { StepButtonIcon } from '@mui/material/StepButton';
++ import { StepButtonProps } from '@mui/material/StepButton';
+
+-StepButtonIcon
++StepButtonProps['icon']
+```
+
+#### StyledEngineProvider import path
+
+Importing `StyledEngineProvider` from `'@mui/material'` was deprecated and now has been removed.
+Import it from `'@mui/material/styles'` instead:
+
+```diff
+-import { StyledEngineProvider } from '@mui/material';
++import { StyledEngineProvider } from '@mui/material/styles';
+```
+
+#### Lab components moved to the main package
 
 The following `@mui/lab` components and hook have been moved to `@mui/material`:
 
@@ -253,32 +329,3 @@ npx @mui/codemod@next v7.0.0/lab-removed-components <path/to/folder>
 :::warning
 The codemod doesn't cover type imports associated with the components.
 :::
-
-### InputLabel
-
-The `size` prop for `InputLabel` now follows the standard naming convention used across other components like `Button` and `TextField`. `'normal'` has been replaced with `'medium'` for consistency.
-
-If you were using `size="normal"`, update it to `size="medium"`:
-
-```diff
--<InputLabel size="normal">Label</InputLabel>
-+<InputLabel size="medium">Label</InputLabel>
-```
-
-The default behavior remains unchanged, so no updates are needed unless you explicitly set `size="normal"`.
-
-Use this codemod to automatically update the `size` value:
-
-<!-- #npm-tag-reference -->
-
-```bash
-npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
-```
-
-### Removal of `data-testid` prop from `SvgIcon`
-
-The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
-
-### Removal of `MuiRating-readOnly` class from Rating
-
-Class name `MuiRating-readOnly` was removed in favor of `Mui-readOnly` global class.
