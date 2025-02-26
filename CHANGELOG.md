@@ -1,5 +1,43 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.6
+
+<!-- generated comparing v6.4.5..v6.x -->
+
+_Feb 26, 2025_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@6.4.6`
+
+- [Checkbox] Add slots and slotProps (#45361) @siriwatknp
+- [Drawer] Deprecate *Props and complete `slots`, `slotProps` (#45377) @siriwatknp
+- [Grid] Improve Grid2 upgrade experience (#45372) @DiegoAndai
+- [InputBase] Deprecate composed classes (#45366) @siriwatknp
+- Fix `slotProps.transition` types (#45367) @siriwatknp
+- Allow nested theme creation with `vars` (#45368) @siriwatknp
+- Fix wrong slotProps of DetailsHTMLAttributes types (#45356) @siriwatknp
+- [Popover] Deprecate *Props and complete `slots`, `slotProps` (#45337) @siriwatknp
+- [Radio] Add slots and slotProps (#45364) @siriwatknp
+- [Slider] Fix css class selector in migration guide (#45409) @sai6855
+- [Slider] Fix spacings in .md files (#45393) @sai6855
+- [Snackbar] Add Slots and SlotProps (#45103) (#45352) @siriwatknp
+- [SpeedDialAction] Add slots and slotProps (#45365) @siriwatknp
+- [SwitchBase] Deprecate `inputProps` and complete slots, slotProps (#45338) @siriwatknp
+- [Tabs] Deprecate *Props and complete slots, slotProps (#45012) (#45355) @siriwatknp
+- [Menu] Deprecate *Props and complete `slots`, `slotProps`  (#45369) @siriwatknp
+
+### Docs
+
+- [Autocomplete] Remove unnecessary renderTags prop from Sizes demo (#45403) @ZeeshanTamboli
+- Fix typo in slider docs (#45392) @sai6855
+
+### Core
+
+- [test] Remove unused renderTags prop and fix key warning in Autocomplete regression test (#45412) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @DiegoAndai, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 6.4.5
 
 <!-- generated comparing v6.4.4..v6.x -->
