@@ -4,7 +4,6 @@ import path from 'path';
 import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
-import { typescriptCopy } from './copyFilesUtils.mjs';
 
 const $$ = $({ stdio: 'inherit' });
 
@@ -49,7 +48,7 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
     recursive: true,
     filter: (src) => {
       // include directories and .d.ts files
-      return !src.includes('.') || src.endsWith('.d.ts');
+      return src.endsWith('.d.ts');
     },
   });
 }
@@ -66,7 +65,7 @@ async function main(argv: HandlerArgv) {
   const esmFolder = path.join(buildFolder, 'esm');
   const modernFolder = path.join(buildFolder, 'modern');
 
-  await typescriptCopy({ from: srcPath, to: esmFolder });
+  await copyDeclarations(srcPath, esmFolder);
 
   if (!argv.skipTsc) {
     const tsconfigPath = path.join(packageRoot, 'tsconfig.build.json');
