@@ -81,20 +81,6 @@ The Material Design guidelines name the icons using "snake_case" naming (for exa
 
 {{"demo": "SvgMaterialIcons.js"}}
 
-### Testing
-
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
-
-```jsx
-import DeleteIcon from '@mui/icons-material/Delete';
-```
-
-has the following attribute once mounted:
-
-```html
-<svg data-testid="DeleteIcon"></svg>
-```
-
 ## SvgIcon
 
 If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper.
