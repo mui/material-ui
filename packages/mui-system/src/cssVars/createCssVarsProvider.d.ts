@@ -72,7 +72,7 @@ export interface CreateCssVarsProviderResult<
          */
         colorSchemeNode?: Element | null;
         /**
-         * The storage manager to be used for storing the mode and color scheme
+         * The storage manager to be used for storing the mode and color scheme.
          * @default using `window.localStorage`
          */
         storageManager?: StorageManager | null;
