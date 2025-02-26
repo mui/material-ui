@@ -1,20 +1,7 @@
-.MuiInputBase-root .MuiInputBase-inputSizeSmall {
+.MuiDialog-root .MuiDialog-paperScrollBody {
   color: red;
 }
 
-.MuiInputBase-root .MuiInputBase-inputMultiline {
+.MuiDialog-root .MuiDialog-paperScrollPaper {
   color: red;
 }
-
-.MuiInputBase-root .MuiInputBase-inputAdornedStart {
-  color: red;
-}
-
-.MuiInputBase-root .MuiInputBase-inputAdornedEnd {
-  color: red;
-}
-
-.MuiInputBase-root .MuiInputBase-inputHiddenLabel {
-  color: red;
-}
-

@@ -1,20 +1,7 @@
-.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input {
+.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper {
   color: red;
 }
 
-.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input {
+.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper {
   color: red;
 }
-
-.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input {
-  color: red;
-}
-
-.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input {
-  color: red;
-}
-
-.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input {
-  color: red;
-}
-

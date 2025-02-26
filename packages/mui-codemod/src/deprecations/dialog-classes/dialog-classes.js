@@ -39,6 +39,7 @@ export default function transformer(file, api, options) {
                     .replaceAll('MuiDialog-', '')
                     .replaceAll(replacementSelectorPrefix, '')
                     .replaceAll(' > ', '')
+                    .replaceAll(' ', '')
                     .split('.')
                     .filter(Boolean);
 
@@ -69,8 +70,8 @@ export default function transformer(file, api, options) {
                         1,
                         j.templateElement(
                           {
-                            raw: precedingTemplateElement.value.raw.replace(' ', ''),
-                            cooked: precedingTemplateElement.value.cooked.replace(' ', ''),
+                            raw: precedingTemplateElement.value.raw,
+                            cooked: precedingTemplateElement.value.cooked,
                           },
                           false,
                         ),
@@ -109,7 +110,7 @@ export default function transformer(file, api, options) {
           j.literal(
             path.value.value.replace(
               selectorRegex,
-              `${replacementSelectorPrefix}${replacementSelector}`,
+              `${replacementSelectorPrefix}${deprecatedClass.startsWith(' ') ? ' ' : ''}${replacementSelector.trim()}`,
             ),
           ),
         );

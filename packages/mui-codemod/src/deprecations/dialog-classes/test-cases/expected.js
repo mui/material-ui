@@ -1,13 +1,7 @@
-import { inputBaseClasses } from '@mui/material/InputBase';
+import { dialogClasses } from '@mui/material/Dialog';
 
-("&.MuiInputBase-hiddenLabel > .MuiInputBase-input");
-("&.MuiInputBase-multiline > .MuiInputBase-input");
-("&.MuiInputBase-adornedStart > .MuiInputBase-input");
-("&.MuiInputBase-adornedEnd > .MuiInputBase-input");
-("&.MuiInputBase-sizeSmall > .MuiInputBase-input");
+("& .MuiDialog-scrollBody > .MuiDialog-paper");
+("& .MuiDialog-scrollPaper > .MuiDialog-paper");
 
-`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`;
-`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`;
-`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`;
-`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`;
-`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`;
+`& .${dialogClasses.scrollBody} > .${dialogClasses.paper}`;
+`& .${dialogClasses.scrollPaper} > .${dialogClasses.paper}`;
