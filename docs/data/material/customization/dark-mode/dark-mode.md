@@ -122,6 +122,78 @@ The `mode` is always `undefined` on first render, so make sure to handle this ca
 
 {{"demo": "ToggleColorMode.js", "defaultCodeOpen": false}}
 
+## Storage manager
+
+By default, the [built-in support](#built-in-support) for color schemes uses the browser's `localStorage` API to store the user's mode and scheme preference.
+
+To use a different storage manager, create a custom function with this signature:
+
+```ts
+type Unsubscribe = () => void;
+
+function storageManager(params: { key: string }): {
+  get: (defaultValue: any) => any;
+  set: (value: any) => void;
+  subscribe: (handler: (value: any) => void) => Unsubscribe;
+};
+```
+
+Then pass it to the `storageManager` prop of the `ThemeProvider` component:
+
+```tsx
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import type { StorageManager } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: {
+    dark: true,
+  },
+});
+
+function storageManager(params): StorageManager {
+  return {
+    get: (defaultValue) => {
+      // Your implementation
+    },
+    set: (value) => {
+      // Your implementation
+    },
+    subscribe: (handler) => {
+      // Your implementation
+      return () => {
+        // cleanup
+      };
+    },
+  };
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme} storageManager={storageManager}>
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
+:::warning
+If you are using the `InitColorSchemeScript` component to [prevent SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering), you have to include the `localStorage` implementation in your custom storage manager.
+:::
+
+### Disable storage
+
+To disable the storage manager, pass `null` to the `storageManager` prop:
+
+```tsx
+<ThemeProvider theme={theme} storageManager={null}>
+  ...
+</ThemeProvider>
+```
+
+:::warning
+If you are building a SSR application, disabling the storage manager will cause [dark mode flicker](#dark-mode-flicker) when users refresh the page.
+:::
+
 ## Disable transitions
 
 To instantly switch between color schemes with no transition, apply the `disableTransitionOnChange` prop to the `ThemeProvider` component:
@@ -344,57 +416,3 @@ For applications that need to support light and dark mode using CSS media `prefe
 
 But if you want to be able to toggle between modes manually, avoiding the flicker requires a combination of CSS variables and the `InitColorSchemeScript` component.
 Check out the [Preventing SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering) section for more details.
-
-## Storage manager
-
-The default approach of the [built-in support](#built-in-support) uses the browser's `localStorage` API to store the mode and color scheme preference.
-
-To use a different storage manager, create a custom function with this signature:
-
-```ts
-type Unsubscribe = () => void;
-
-function storageManager(params: { key: string }): {
-  get: (defaultValue: any) => any;
-  set: (value: any) => void;
-  subscribe: (handler: (value: any) => void) => Unsubscribe;
-};
-```
-
-Then pass it to the `storageManager` prop of the `ThemeProvider` component:
-
-```tsx
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import type { StorageManager } from '@mui/material/styles';
-
-const theme = createTheme({
-  colorSchemes: {
-    dark: true,
-  },
-});
-
-function storageManager(params): StorageManager {
-  return {
-    get: (defaultValue) => {
-      // Your implementation
-    },
-    set: (value) => {
-      // Your implementation
-    },
-    subscribe: (handler) => {
-      // Your implementation
-      return () => {
-        // cleanup
-      };
-    },
-  };
-}
-
-function App() {
-  return (
-    <ThemeProvider theme={theme} storageManager={storageManager}>
-      ...
-    </ThemeProvider>
-  );
-}
-```
