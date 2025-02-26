@@ -1137,6 +1137,7 @@ function useAutocomplete(props) {
       onClick: handlePopupIndicator,
     }),
     singleTagProps: {
+      tabIndex: -1,
       ...(!readOnly && { onDelete: handleSingleTagDelete }),
     },
     getTagProps: ({ index }) => ({
