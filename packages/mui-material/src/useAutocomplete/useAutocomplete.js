@@ -874,7 +874,10 @@ function useAutocomplete(props) {
             // Avoid the Modal to handle the event.
             event.stopPropagation();
             handleClose(event, 'escape');
-          } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
+          } else if (
+            clearOnEscape &&
+            (inputValue !== '' || (multiple && value.length > 0) || renderSingleValue)
+          ) {
             // Avoid Opera to exit fullscreen mode.
             event.preventDefault();
             // Avoid the Modal to handle the event.
