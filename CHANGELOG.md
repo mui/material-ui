@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 7.0.0-beta.1
+
 <!-- generated comparing v7.0.0-beta.0..master -->
+
 _Feb 27, 2025_
 
 This release fixes incorrect build output from the previous release (`beta.0`).
