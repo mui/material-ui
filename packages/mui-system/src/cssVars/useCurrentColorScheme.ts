@@ -107,7 +107,7 @@ interface UseCurrentColoSchemeOptions<SupportedColorScheme extends string> {
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
   storageWindow?: Window | null;
-  storageManager?: StorageManager;
+  storageManager?: StorageManager | null;
   noSsr?: boolean;
 }
 
@@ -129,32 +129,22 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   const joinedColorSchemes = supportedColorSchemes.join(',');
   const isMultiSchemes = supportedColorSchemes.length > 1;
   const modeStorage = React.useMemo(
-    () => (storageManager ? storageManager({ key: modeStorageKey, storageWindow }) : undefined),
+    () => storageManager?.({ key: modeStorageKey, storageWindow }),
     [storageManager, modeStorageKey, storageWindow],
   );
   const lightStorage = React.useMemo(
-    () =>
-      storageManager
-        ? storageManager({ key: `${colorSchemeStorageKey}-light`, storageWindow })
-        : undefined,
+    () => storageManager?.({ key: `${colorSchemeStorageKey}-light`, storageWindow }),
     [storageManager, colorSchemeStorageKey, storageWindow],
   );
   const darkStorage = React.useMemo(
-    () =>
-      storageManager
-        ? storageManager({ key: `${colorSchemeStorageKey}-dark`, storageWindow })
-        : undefined,
+    () => storageManager?.({ key: `${colorSchemeStorageKey}-dark`, storageWindow }),
     [storageManager, colorSchemeStorageKey, storageWindow],
   );
 
   const [state, setState] = React.useState(() => {
-    const initialMode = modeStorage ? modeStorage.get(defaultMode) : defaultMode;
-    const lightColorScheme = lightStorage
-      ? lightStorage.get(defaultLightColorScheme)
-      : defaultLightColorScheme;
-    const darkColorScheme = darkStorage
-      ? darkStorage.get(defaultDarkColorScheme)
-      : defaultDarkColorScheme;
+    const initialMode = modeStorage?.get(defaultMode) || defaultMode;
+    const lightColorScheme = lightStorage?.get(defaultLightColorScheme) || defaultLightColorScheme;
+    const darkColorScheme = darkStorage?.get(defaultDarkColorScheme) || defaultDarkColorScheme;
     return {
       mode: initialMode,
       systemMode: getSystemMode(initialMode),
@@ -177,13 +167,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
           return currentState;
         }
         const newMode = mode ?? defaultMode;
-        try {
-          if (modeStorage) {
-            modeStorage.set(newMode);
-          }
-        } catch (error) {
-          // Unsupported
-        }
+        modeStorage?.set(newMode);
         return {
           ...currentState,
           mode: newMode,
@@ -198,12 +182,8 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     (value) => {
       if (!value) {
         setState((currentState) => {
-          if (lightStorage) {
-            lightStorage.set(defaultLightColorScheme);
-          }
-          if (darkStorage) {
-            darkStorage.set(defaultDarkColorScheme);
-          }
+          lightStorage?.set(defaultLightColorScheme);
+          darkStorage?.set(defaultDarkColorScheme);
           return {
             ...currentState,
             lightColorScheme: defaultLightColorScheme,
@@ -218,15 +198,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
             const newState = { ...currentState };
             processState(currentState, (mode) => {
               if (mode === 'light') {
-                if (lightStorage) {
-                  lightStorage.set(value);
-                }
+                lightStorage?.set(value);
                 newState.lightColorScheme = value;
               }
               if (mode === 'dark') {
-                if (darkStorage) {
-                  darkStorage.set(value);
-                }
+                darkStorage?.set(value);
                 newState.darkColorScheme = value;
               }
             });
@@ -244,9 +220,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
               console.error(`\`${newLightColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
             } else {
               newState.lightColorScheme = newLightColorScheme;
-              if (lightStorage) {
-                lightStorage.set(newLightColorScheme);
-              }
+              lightStorage?.set(newLightColorScheme);
             }
           }
 
@@ -255,9 +229,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
               console.error(`\`${newDarkColorScheme}\` does not exist in \`theme.colorSchemes\`.`);
             } else {
               newState.darkColorScheme = newDarkColorScheme;
-              if (darkStorage) {
-                darkStorage.set(newDarkColorScheme);
-              }
+              darkStorage?.set(newDarkColorScheme);
             }
           }
 
@@ -315,27 +287,24 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   // Handle when localStorage has changed
   React.useEffect(() => {
     if (isMultiSchemes) {
-      const unsubscribeMode = modeStorage
-        ? modeStorage.subscribe((value: Mode) => {
-            if (!value || ['light', 'dark', 'system'].includes(value)) {
-              setMode((value as Mode) || defaultMode);
-            }
-          })
-        : noop;
-      const unsubscribeLight = lightStorage
-        ? lightStorage.subscribe((value: SupportedColorScheme) => {
-            if (!value || joinedColorSchemes.match(value)) {
-              setColorScheme({ light: value as SupportedColorScheme | null });
-            }
-          })
-        : noop;
-      const unsubscribeDark = darkStorage
-        ? darkStorage.subscribe((value: SupportedColorScheme) => {
-            if (!value || joinedColorSchemes.match(value)) {
-              setColorScheme({ dark: value as SupportedColorScheme | null });
-            }
-          })
-        : noop;
+      const unsubscribeMode =
+        modeStorage?.subscribe((value: Mode) => {
+          if (!value || ['light', 'dark', 'system'].includes(value)) {
+            setMode((value as Mode) || defaultMode);
+          }
+        }) || noop;
+      const unsubscribeLight =
+        lightStorage?.subscribe((value: SupportedColorScheme) => {
+          if (!value || joinedColorSchemes.match(value)) {
+            setColorScheme({ light: value as SupportedColorScheme | null });
+          }
+        }) || noop;
+      const unsubscribeDark =
+        darkStorage?.subscribe((value: SupportedColorScheme) => {
+          if (!value || joinedColorSchemes.match(value)) {
+            setColorScheme({ dark: value as SupportedColorScheme | null });
+          }
+        }) || noop;
       return () => {
         unsubscribeMode();
         unsubscribeLight();
