@@ -4,6 +4,7 @@ import path from 'path';
 import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
+import { stat } from 'fs';
 
 const $$ = $({ stdio: 'inherit' });
 
@@ -46,9 +47,16 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
 
   await fs.cp(fullSourceDirectory, fullDestinationDirectory, {
     recursive: true,
-    filter: (src) => {
-      // include directories and .d.ts files, exclude dotfiles
-      return !src.startsWith('.') && src.endsWith('.d.ts');
+    filter: async (src) => {
+      if (src.startsWith('.')) {
+        // ignore dotfiles
+        return false;
+      }
+      const stats = await fs.stat(src);
+      if (stats.isDirectory()) {
+        return true;
+      }
+      return src.endsWith('.d.ts');
     },
   });
 }
