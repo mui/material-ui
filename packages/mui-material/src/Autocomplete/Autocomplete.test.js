@@ -3561,7 +3561,7 @@ describe('<Autocomplete />', () => {
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
     });
 
-    it('should delete on Backspace', () => {
+    it('should delete using Backspace key', () => {
       const { container } = render(
         <Autocomplete
           options={['one', 'two']}
@@ -3578,6 +3578,27 @@ describe('<Autocomplete />', () => {
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
 
       fireEvent.keyDown(textbox, { key: 'Backspace' });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
+
+    it('should delete using Delete key', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          defaultValue="one"
+          renderSingleValue={(value, tagProps) => {
+            return <Chip label={value} {...tagProps} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'Delete' });
 
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
