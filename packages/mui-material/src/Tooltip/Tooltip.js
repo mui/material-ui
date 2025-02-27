@@ -478,8 +478,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const [, setChildIsFocusVisible] = React.useState(false);
   const handleBlur = (event) => {
-    if (!isFocusVisible(event.target)) {
-      setChildIsFocusVisible(false);
+    setChildIsFocusVisible(false);
+    if (event && !isFocusVisible(event.target)) {
       handleMouseLeave(event);
     }
   };
