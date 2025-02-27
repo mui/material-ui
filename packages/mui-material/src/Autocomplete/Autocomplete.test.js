@@ -3503,4 +3503,62 @@ describe('<Autocomplete />', () => {
 
     expect(listbox).to.have.property('scrollTop', 60);
   });
+
+  describe('prop: renderSingleValue', () => {
+    it('should render only a single value, given that options are primitive values', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderSingleValue={(value, singleTagProps) => {
+            return <Chip label={value} {...singleTagProps} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the second option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
+
+    it('should render only a single value, given that options as objects', () => {
+      const { container } = render(
+        <Autocomplete
+          options={[
+            { title: 'The Shawshank Redemption', year: 1994 },
+            { title: 'The Godfather', year: 1972 },
+          ]}
+          getOptionLabel={(option) => option.title}
+          renderSingleValue={(value, singleTagProps) => {
+            return <Chip label={value.title} {...singleTagProps} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the second option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
+  });
 });
