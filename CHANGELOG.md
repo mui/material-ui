@@ -1,5 +1,20 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-beta.2
+
+<!-- generated comparing v7.0.0-beta.1..master -->
+
+_Feb 27, 2025_
+
+A big thanks to the 2 contributors who made this release possible. Here are some highlights ✨:
+
+### Core
+
+- [code-infra] Add package.json export (#45433) @Janpot
+- [blog] React 19 migration for MUI X (#45348) @arminmeh
+
+All contributors of this release in alphabetical order: @arminmeh, @Janpot
+
 ## 7.0.0-beta.1
 
 <!-- generated comparing v7.0.0-beta.0..master -->
