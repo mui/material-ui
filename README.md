@@ -91,6 +91,8 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/instagram-likes/2a72a03/logo/78.png" alt="poprey.com" title="Poprey: Buy Instagram likes with crypto." loading="lazy" />Poprey</a>
   &nbsp;
+  <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/instagram-followers-socialwick/ac6033a/logo/256.png" alt="socialwick.com/instagram/followers" title="SocialWick: Buy Instagram followers." loading="lazy" />SocialWick</a>
+  &nbsp;
 </p>
 
 Gold sponsors are those who have pledged \$500/month or more to MUI.
