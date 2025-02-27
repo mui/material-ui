@@ -152,7 +152,7 @@ export async function createPackageFile(useEsmExports = false) {
     JSON.parse(packageData);
 
   const packageExports = {
-    'package.json': './package.json',
+    './package.json': './package.json',
   };
 
   if (!packageDataOther.exports?.['.']) {
