@@ -106,8 +106,8 @@ const pages: MuiPage[] = [
         children: [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
-          { pathname: '/material-ui/react-grid', deprecated: true },
-          { pathname: '/material-ui/react-grid2', title: 'Grid v2' },
+          { pathname: '/material-ui/react-grid-legacy', deprecated: true, title: 'Grid Legacy' },
+          { pathname: '/material-ui/react-grid' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
         ],
@@ -180,6 +180,7 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/customization',
     children: [
       { pathname: '/material-ui/customization/how-to-customize' },
+      { pathname: '/material-ui/customization/overriding-component-structure' },
       { pathname: '/material-ui/customization/dark-mode' },
       { pathname: '/material-ui/customization/color' },
       { pathname: '/material-ui/customization/right-to-left', title: 'Right-to-left' },
