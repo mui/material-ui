@@ -177,7 +177,7 @@ function App() {
 ```
 
 :::warning
-If you are using the `InitColorSchemeScript` component to [prevent SSR flicker](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering), you have to include the `localStorage` implementation in your custom storage manager.
+If you are using the `InitColorSchemeScript` component to [prevent SSR flickering](/material-ui/customization/css-theme-variables/configuration/#preventing-ssr-flickering), you have to include the `localStorage` implementation in your custom storage manager.
 :::
 
 ### Disable storage
@@ -191,7 +191,7 @@ To disable the storage manager, pass `null` to the `storageManager` prop:
 ```
 
 :::warning
-Disabling the storage manager will reset the app to its default mode when users refresh the page.
+Disabling the storage manager will cause the app to reset to its default mode whenever the user refreshes the page.
 :::
 
 ## Disable transitions
