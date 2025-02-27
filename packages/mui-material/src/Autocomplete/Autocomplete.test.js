@@ -3315,6 +3315,32 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'Backspace' });
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
+
+    it('should not be able to delete the tag using Backspace when renderSingleValue', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two']}
+          defaultValue="one"
+          renderInput={(params) => <TextField {...params} />}
+          renderSingleValue={(value, singleTagProps) => {
+            return <Chip label={value} {...singleTagProps} />;
+          }}
+        />,
+      );
+
+      const chip = container.querySelector(`.${chipClasses.root}`);
+      expect(chip).not.to.have.class(chipClasses.deletable);
+
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
   });
 
   // https://github.com/mui/material-ui/issues/36114
