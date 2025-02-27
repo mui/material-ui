@@ -3581,5 +3581,29 @@ describe('<Autocomplete />', () => {
 
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
     });
+
+    it('navigates between the tag and input', () => {
+      const { container } = render(
+        <Autocomplete
+          defaultValue="two"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderSingleValue={(value, singleTagProps) => {
+            return <Chip label={value} {...singleTagProps} />;
+          }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = container.querySelector(`.${chipClasses.root}`);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(chip).toHaveFocus();
+
+      fireEvent.keyDown(chip, { key: 'ArrowRight' });
+
+      expect(textbox).toHaveFocus();
+    });
   });
 });
