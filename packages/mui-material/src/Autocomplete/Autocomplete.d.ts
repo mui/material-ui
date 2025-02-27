@@ -59,6 +59,8 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
 };
 
 export type AutocompleteSingleTagProps = {
+  tabIndex: -1;
+  'data-tag': 'single';
   onDelete: (event: any) => void;
 };
 
