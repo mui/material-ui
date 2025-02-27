@@ -3560,5 +3560,26 @@ describe('<Autocomplete />', () => {
 
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
     });
+
+    it('should delete on Backspace', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          defaultValue="one"
+          renderSingleValue={(value, singleTagProps) => {
+            return <Chip label={value} {...singleTagProps} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
   });
 });
