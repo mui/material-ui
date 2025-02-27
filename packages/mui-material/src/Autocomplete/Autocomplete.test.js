@@ -1222,6 +1222,27 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([]);
     });
+
+    it('should clear on escape if rendering single value', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          clearOnEscape
+          value="one"
+          options={['one', 'two']}
+          renderSingleValue={(value, singleTagProps) => {
+            return <Chip label={value} {...singleTagProps} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(null);
+      expect(handleChange.args[0][2]).to.deep.equal('clear');
+    });
   });
 
   describe('prop: clearOnBlur', () => {
