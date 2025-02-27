@@ -58,7 +58,7 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
-export type AutocompleteSingleTagProps = {
+export type AutocompleteTagProps = {
   tabIndex: -1;
   'data-tag': 'single';
   onDelete: (event: any) => void;
@@ -342,13 +342,13 @@ export interface AutocompleteProps<
    * Render the selected value.
    *
    * @param {Value} value The `value` provided to the component.
-   * @param {function} getTagProps A tag props getter.
+   * @param {function} tagProps The tag props.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderSingleValue?: (
     value: Value,
-    singleTagProps: AutocompleteSingleTagProps,
+    tagProps: AutocompleteTagProps,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**

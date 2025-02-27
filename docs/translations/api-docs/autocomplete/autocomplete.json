@@ -180,7 +180,7 @@
       "description": "Render the selected value.",
       "typeDescriptions": {
         "value": "The <code>value</code> provided to the component.",
-        "getTagProps": "A tag props getter.",
+        "tagProps": "The tag props.",
         "ownerState": "The state of the Autocomplete component."
       }
     },

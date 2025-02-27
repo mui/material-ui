@@ -1231,8 +1231,8 @@ describe('<Autocomplete />', () => {
           clearOnEscape
           value="one"
           options={['one', 'two']}
-          renderSingleValue={(value, singleTagProps) => {
-            return <Chip label={value} {...singleTagProps} />;
+          renderSingleValue={(value, tagProps) => {
+            return <Chip label={value} {...tagProps} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3323,8 +3323,8 @@ describe('<Autocomplete />', () => {
           options={['one', 'two']}
           defaultValue="one"
           renderInput={(params) => <TextField {...params} />}
-          renderSingleValue={(value, singleTagProps) => {
-            return <Chip label={value} {...singleTagProps} />;
+          renderSingleValue={(value, tagProps) => {
+            return <Chip label={value} {...tagProps} />;
           }}
         />,
       );
@@ -3509,8 +3509,8 @@ describe('<Autocomplete />', () => {
       const { container } = render(
         <Autocomplete
           options={['one', 'two']}
-          renderSingleValue={(value, singleTagProps) => {
-            return <Chip label={value} {...singleTagProps} />;
+          renderSingleValue={(value, tagProps) => {
+            return <Chip label={value} {...tagProps} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3539,8 +3539,8 @@ describe('<Autocomplete />', () => {
             { title: 'The Godfather', year: 1972 },
           ]}
           getOptionLabel={(option) => option.title}
-          renderSingleValue={(value, singleTagProps) => {
-            return <Chip label={value.title} {...singleTagProps} />;
+          renderSingleValue={(value, tagProps) => {
+            return <Chip label={value.title} {...tagProps} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3566,8 +3566,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
-          renderSingleValue={(value, singleTagProps) => {
-            return <Chip label={value} {...singleTagProps} />;
+          renderSingleValue={(value, tagProps) => {
+            return <Chip label={value} {...tagProps} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3588,8 +3588,8 @@ describe('<Autocomplete />', () => {
           defaultValue="two"
           options={['one', 'two']}
           renderInput={(params) => <TextField {...params} autoFocus />}
-          renderSingleValue={(value, singleTagProps) => {
-            return <Chip label={value} {...singleTagProps} />;
+          renderSingleValue={(value, tagProps) => {
+            return <Chip label={value} {...tagProps} />;
           }}
         />,
       );

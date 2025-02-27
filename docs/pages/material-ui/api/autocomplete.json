@@ -181,8 +181,8 @@
     "renderSingleValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(value: Value, getTagProps: function, ownerState: object) => ReactNode",
-        "describedArgs": ["value", "getTagProps", "ownerState"]
+        "type": "function(value: Value, tagProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "tagProps", "ownerState"]
       }
     },
     "renderTags": {
