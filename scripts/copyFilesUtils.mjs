@@ -151,7 +151,9 @@ export async function createPackageFile(useEsmExports = false) {
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
-  const packageExports = {};
+  const packageExports = {
+    'package.json': './package.json',
+  };
 
   if (!packageDataOther.exports?.['.']) {
     Object.assign(packageExports, {
