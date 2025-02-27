@@ -1,0 +1,9 @@
+<Autocomplete
+  sx={{ width: 300 }}
+  options={top100Films}
+  getOptionLabel={(option) => option.title}
+  renderSingleValue={(value, singleTagProps) => (
+    <Chip label={value.title} {...singleTagProps} />
+  )}
+  renderInput={(params) => <TextField {...params} label="Movie" />}
+/>
