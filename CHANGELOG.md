@@ -6,7 +6,7 @@
 
 _Feb 27, 2025_
 
-A big thanks to the 2 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 2 contributors who made this release possible.
 
 ### Core
 
