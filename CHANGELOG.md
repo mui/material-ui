@@ -11,7 +11,7 @@ A big thanks to the 2 contributors who made this release possible. Here are some
 ### Core
 
 - [code-infra] Add package.json export (#45433) @Janpot
-- [blog] React 19 migration for MUI X (#45348) @arminmeh
+- [blog] React 19 migration for MUI X (#45348) @arminmeh
 
 All contributors of this release in alphabetical order: @arminmeh, @Janpot
 
