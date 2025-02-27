@@ -25,6 +25,14 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       disableStyleSheetGeneration?: boolean;
+      /**
+       * If `true`, theme values will not change when the mode/color-scheme changes.
+       *
+       * This is useful for optimizing rendering performance. However, need to ensure that all components
+       * are using CSS variables or static values that does not differ between modes to prevent SSR hydration mismatch.
+       * @default false
+       */
+      freezeThemeValues?: boolean;
     }
   : {};
 
@@ -79,6 +87,11 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   }
   const muiTheme = (THEME_ID in theme ? theme[THEME_ID] : theme) as ThemeProviderProps['theme'];
   if (!('colorSchemes' in muiTheme)) {
+    if (!('vars' in muiTheme)) {
+      // For non-CSS variables themes, set `vars` to null to prevent theme inheritance from the upper theme.
+      // The example use case is the docs demo that uses ThemeProvider to custom the theme while the upper theme is using CSS variables.
+      return <ThemeProviderNoVars theme={{ ...theme, vars: null }} {...props} />;
+    }
     return <ThemeProviderNoVars theme={theme} {...props} />;
   }
   return <CssVarsProvider theme={theme as unknown as CssVarsTheme} {...props} />;
