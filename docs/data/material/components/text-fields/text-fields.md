@@ -54,6 +54,11 @@ The rendered HTML input will look like this:
 />
 ```
 
+:::info
+The `slotProps.htmlInput` is **NOT** the same as the `slotProps.input`.
+The former represent the HTML input whereas the latter refers to `Input`, `FilledInput`, or `OutlinedInput` component based on the specified variant prop.
+:::
+
 ## Validation
 
 The `error` prop toggles the error state.
