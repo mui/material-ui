@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { rgbToHex, useTheme } from '@mui/material/styles';
-import { colorChannel } from '@mui/system';
 import * as colors from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -13,8 +12,8 @@ import Button from '@mui/material/Button';
 import CheckIcon from '@mui/icons-material/Check';
 import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
-import ColorDemo from './ColorDemo';
 import { resetDocsColor, setDocsColors } from 'docs/src/BrandingCssVarsProvider';
+import ColorDemo from './ColorDemo';
 
 const defaults = {
   primary: '#2196f3',
