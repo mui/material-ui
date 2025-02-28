@@ -80,16 +80,6 @@ export default function Sizes() {
         getOptionLabel={(option) => option.title}
         defaultValue={movies[0]}
         disableClearable
-        renderTags={(value, getTagProps) =>
-          value.map((option, index) => (
-            <Chip
-              variant="outlined"
-              label={option.title}
-              size="small"
-              {...getTagProps({ index })}
-            />
-          ))
-        }
         renderInput={(params) => (
           <TextField {...params} variant="filled" label="Movies" placeholder="Favorites" />
         )}
@@ -103,14 +93,12 @@ export default function Sizes() {
         defaultValue={[movies[0]]}
         disableClearable
         renderTags={(value, getTagProps) =>
-          value.map((option, index) => (
-            <Chip
-              variant="outlined"
-              label={option.title}
-              size="small"
-              {...getTagProps({ index })}
-            />
-          ))
+          value.map((option, index) => {
+            const { key, ...other } = getTagProps({ index });
+            return (
+              <Chip key={key} variant="outlined" label={option.title} size="small" {...other} />
+            );
+          })
         }
         renderInput={(params) => (
           <TextField {...params} variant="filled" label="Movies" placeholder="Favorites" />

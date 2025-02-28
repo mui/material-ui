@@ -457,11 +457,6 @@ export * from './GlobalStyles';
 
 export * from './version';
 
-/**
- * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
- */
-export { StyledEngineProvider } from './styles';
-
 export { unstable_composeClasses } from '@mui/utils';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
