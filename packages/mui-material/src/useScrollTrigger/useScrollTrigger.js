@@ -26,6 +26,10 @@ export default function useScrollTrigger(options = {}) {
   const store = React.useRef();
   const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
   React.useEffect(() => {
+    if (target === null) {
+      setTrigger(false);
+      return undefined;
+    }
     const handleScroll = () => {
       setTrigger(getTrigger(store, { target, ...other }));
     };
