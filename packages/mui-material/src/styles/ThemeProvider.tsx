@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import { DefaultTheme } from '@mui/system';
+import { StorageManager } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
@@ -55,6 +56,11 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    * @default window
    */
   storageWindow?: Window | null;
+  /**
+   * The storage manager to be used for storing the mode and color scheme
+   * @default using `window.localStorage`
+   */
+  storageManager?: StorageManager | null;
   /**
    * localStorage key used to store application `mode`
    * @default 'mui-mode'

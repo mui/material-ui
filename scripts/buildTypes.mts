@@ -4,7 +4,6 @@ import path from 'path';
 import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
-import { typescriptCopy } from './copyFilesUtils.mjs';
 
 const $$ = $({ stdio: 'inherit' });
 
@@ -47,36 +46,51 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
 
   await fs.cp(fullSourceDirectory, fullDestinationDirectory, {
     recursive: true,
-    filter: (src) => {
-      // include directories and .d.ts files
-      return !src.includes('.') || src.endsWith('.d.ts');
+    filter: async (src) => {
+      if (src.startsWith('.')) {
+        // ignore dotfiles
+        return false;
+      }
+      const stats = await fs.stat(src);
+      if (stats.isDirectory()) {
+        return true;
+      }
+      return src.endsWith('.d.ts');
     },
   });
 }
 
-async function main() {
-  const packageRoot = process.cwd();
+interface HandlerArgv {
+  skipTsc: boolean;
+}
 
-  const tsconfigPath = path.join(packageRoot, 'tsconfig.build.json');
-  const tsconfigExists = await fs.access(tsconfigPath).then(
-    () => true,
-    () => false,
-  );
-  if (!tsconfigExists) {
-    throw new Error(
-      'Unable to find a tsconfig to build this project. ' +
-        `The package root needs to contain a 'tsconfig.build.json'. ` +
-        `The package root is '${packageRoot}'`,
-    );
-  }
+async function main(argv: HandlerArgv) {
+  const packageRoot = process.cwd();
 
   const srcPath = path.join(packageRoot, 'src');
   const buildFolder = path.join(packageRoot, 'build');
   const esmFolder = path.join(buildFolder, 'esm');
   const modernFolder = path.join(buildFolder, 'modern');
 
-  await typescriptCopy({ from: srcPath, to: esmFolder });
-  await emitDeclarations(tsconfigPath, esmFolder);
+  await copyDeclarations(srcPath, esmFolder);
+
+  if (!argv.skipTsc) {
+    const tsconfigPath = path.join(packageRoot, 'tsconfig.build.json');
+    const tsconfigExists = await fs.access(tsconfigPath).then(
+      () => true,
+      () => false,
+    );
+
+    if (!tsconfigExists) {
+      throw new Error(
+        'Unable to find a tsconfig to build this project. ' +
+          `The package root needs to contain a 'tsconfig.build.json'. ` +
+          `The package root is '${packageRoot}'`,
+      );
+    }
+
+    await emitDeclarations(tsconfigPath, esmFolder);
+  }
 
   await addImportExtensions(esmFolder);
 
@@ -85,10 +99,17 @@ async function main() {
 }
 
 yargs(process.argv.slice(2))
-  .command({
+  .command<HandlerArgv>({
     command: '$0',
     description:
       'Builds a project with a fix for https://github.com/microsoft/TypeScript/issues/39117',
+    builder: (command) => {
+      return command.option('skipTsc', {
+        type: 'boolean',
+        default: false,
+        describe: 'Set to `true` if you want the legacy behavior of just copying .d.ts files.',
+      });
+    },
     handler: main,
   })
   .help()
