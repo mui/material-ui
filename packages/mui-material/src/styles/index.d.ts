@@ -103,6 +103,7 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export * from './ThemeProviderWithVars';
+export type { StorageManager } from '@mui/system/cssVars';
 
 export { default as extendTheme } from './createThemeWithVars';
 
