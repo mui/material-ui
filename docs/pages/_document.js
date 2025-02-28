@@ -43,7 +43,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang={userLanguage} data-mui-color-scheme="light" data-joy-color-scheme="light">
         <Head>
-          <script crossOrigin="anonymous" src="//unpkg.com/react-scan/dist/auto.global.js" />
           {/*
             manifest.json provides metadata used when your web app is added to the
             homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
