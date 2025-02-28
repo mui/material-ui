@@ -60,7 +60,12 @@ Our products empower React developers to build awesome applications faster – w
 
 Depending on the day, you'll:
 
-- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace, align the team on "one way" of doing things and make sure engineers follow the conventions.
+- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace. This includes:
+  - Responding to outages and failing CI.
+  - Stabilizing and optimizing test infrastructure.
+  - Optimizing and improving build tools, linting tools.
+  - Improve packaging and publishing flow.
+- **Find consensus**. In response to their needs, this role aligns the teams on "one way" of doing things and doing it well. You'll need to communicate clearly and openly. You'll be at service to the teams DX needs.
 - **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
 
 ### The best parts of this job
