@@ -56,7 +56,6 @@ export type CSSPseudosForCSSObject = { [K in CSS.Pseudos]?: CSSObject };
 export interface ArrayCSSInterpolation extends ReadonlyArray<CSSInterpolation> {}
 
 export interface CSSOthersObjectForCSSObject {
-  variants?: never;
   [propertiesName: string]: CSSInterpolation;
 }
 
@@ -65,7 +64,13 @@ export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSS
 export type CSSObjectWithVariants<Props> = CSSPropertiesWithMultiValues &
   CSSPseudos & {
     variants: Array<{
-      props: Partial<Props> | ((props: Props) => boolean);
+      props:
+        | Partial<Props>
+        | ((
+            props: Partial<Props> & {
+              ownerState: Partial<Props>;
+            },
+          ) => boolean);
       style:
         | CSSObject
         | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
