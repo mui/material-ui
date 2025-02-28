@@ -1,6 +1,7 @@
 import * as React from 'react';
 import InitColorSchemeScript from '../InitColorSchemeScript';
 import { Result } from './useCurrentColorScheme';
+import type { StorageManager } from './localStorageManager';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
@@ -70,6 +71,11 @@ export interface CreateCssVarsProviderResult<
          * @default document
          */
         colorSchemeNode?: Element | null;
+        /**
+         * The storage manager to be used for storing the mode and color scheme.
+         * @default using `window.localStorage`
+         */
+        storageManager?: StorageManager | null;
         /**
          * The window that attaches the 'storage' event listener
          * @default window
