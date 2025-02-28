@@ -5,6 +5,23 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { StyleSheet } from '@emotion/sheet';
 
+// Need to add a private variable to test the generated CSS from Emotion, this is the simplest way to do it.
+// We can't test the CSS from `style` tag easily because the `speedy: true` (produce empty text content) is enabled by Emotion.
+// Even if we disable it, JSDOM needs extra configuration to be able to parse `@layer` CSS.
+export const privateForTest = {
+  /**
+   * to intercept the generated CSS before inserting to the style tag, so that we can check the generated CSS.
+   *
+   * let rule;
+   * privateForTest.insert = (...args) => {
+   *    rule = args[0];
+   * };
+   *
+   * expect(rule).to.equal(...);
+   */
+  insert: undefined,
+};
+
 // We might be able to remove this when this issue is fixed:
 // https://github.com/emotion-js/emotion/issues/2790
 const createEmotionCache = (options, CustomSheet) => {
@@ -48,6 +65,9 @@ function getCache(injectFirst, enableCssLayer) {
      */
     class MyStyleSheet extends StyleSheet {
       insert(rule, options) {
+        if (privateForTest.insert) {
+          return privateForTest.insert(rule, options);
+        }
         if (this.key && this.key.endsWith('global')) {
           this.before = insertionPoint;
         }
