@@ -7,7 +7,6 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-  reactMajor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
@@ -2881,53 +2880,32 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  it('should not override internal listbox ref when external listbox ref is provided', () => {
+  it('should not override internal listbox ref when external listbox ref is provided by testing if highlighting works', () => {
     const handleHighlightChange = spy();
-    const options = ['one', 'two', 'three'];
-    const ref = React.createRef(null);
+    const externalListboxRef = React.createRef(null);
+
     render(
       <Autocomplete
-        defaultValue={options[0]}
-        onHighlightChange={handleHighlightChange}
-        options={options}
-        ListboxProps={{ ref }}
-        open
+        options={['one', 'two', 'three']}
+        slotProps={{
+          listbox: {
+            ref: externalListboxRef,
+          },
+        }}
         renderInput={(params) => <TextField {...params} autoFocus />}
+        onHighlightChange={handleHighlightChange}
       />,
     );
-    expect(handleHighlightChange.callCount).to.equal(
-      // FIXME: highlighted index implementation should be implemented using React not the DOM.
-      reactMajor > 18 ? 2 : 1,
-    );
-    expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-    if (reactMajor > 18) {
-      expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
-    }
+
+    const textbox = screen.getByRole('combobox');
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight first option
+
+    expect(handleHighlightChange.callCount).to.equal(1);
   });
 
   describe('prop: onHighlightChange', () => {
-    it('should trigger event when default value is passed', () => {
-      const handleHighlightChange = spy();
-      const options = ['one', 'two', 'three'];
-      render(
-        <Autocomplete
-          defaultValue={options[0]}
-          onHighlightChange={handleHighlightChange}
-          options={options}
-          open
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor > 18 ? 2 : 1,
-      );
-      expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (reactMajor > 18) {
-        expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
-      }
-    });
-
     it('should support keyboard event', () => {
       const handleHighlightChange = spy();
       const options = ['one', 'two', 'three'];
@@ -2943,24 +2921,13 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
-      );
-      if (reactMajor >= 18) {
-        expect(handleHighlightChange.args[2][0]).to.equal(undefined);
-        expect(handleHighlightChange.args[2][1]).to.equal(null);
-        expect(handleHighlightChange.args[2][2]).to.equal('auto');
-      }
+      expect(handleHighlightChange.callCount).to.equal(1);
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 5 : 4,
-      );
+      expect(handleHighlightChange.callCount).to.equal(2);
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
@@ -2979,15 +2946,7 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseMove(firstOption);
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
-      );
-      if (reactMajor >= 18) {
-        expect(handleHighlightChange.args[2][0]).to.equal(undefined);
-        expect(handleHighlightChange.args[2][1]).to.equal(null);
-        expect(handleHighlightChange.args[2][2]).to.equal('auto');
-      }
+      expect(handleHighlightChange.callCount).to.equal(1);
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
@@ -3016,12 +2975,8 @@ describe('<Autocomplete />', () => {
     });
 
     it('should reset the highlight when the options change', () => {
-      const handleHighlightChange = [];
       const { getByRole, setProps } = render(
         <Autocomplete
-          onHighlightChange={(event, option) => {
-            handleHighlightChange.push(option);
-          }}
           openOnFocus
           autoHighlight
           options={['one', 'two', 'three']}
@@ -3032,11 +2987,6 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'one');
       setProps({ options: ['four', 'five'] });
       checkHighlightIs(getByRole('listbox'), 'four');
-
-      const expectedCallHistory =
-        reactMajor >= 19 ? [null, 'one', 'one', 'four'] : [null, 'one', 'four'];
-
-      expect(handleHighlightChange).to.deep.equal(expectedCallHistory);
     });
   });
 
