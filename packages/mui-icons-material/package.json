@@ -85,6 +85,16 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "typesVersions": {
+    "*": {
+      "index": [
+        "./index.d.ts"
+      ],
+      "*": [
+        "./icon.d.ts"
+      ]
+    }
+  },
   "exports": {
     ".": {
       "import": {
