@@ -1,5 +1,77 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-beta.2
+
+<!-- generated comparing v7.0.0-beta.1..master -->
+
+_Feb 27, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### Core
+
+- [code-infra] Add package.json export (#45433) @Janpot
+- [blog] React 19 migration for MUI X (#45348) @arminmeh
+
+All contributors of this release in alphabetical order: @arminmeh, @Janpot
+
+## 7.0.0-beta.1
+
+<!-- generated comparing v7.0.0-beta.0..master -->
+
+_Feb 27, 2025_
+
+This release fixes incorrect build output from the previous release (`beta.0`).
+
+### Core
+
+- [code-infra] Fix build:types script omitting folders with a dot in their name (#45422) @Janpot
+- [release] Fix versions (#45420) @mj12albert
+
+All contributors of this release in alphabetical order: @Janpot, @mj12albert
+
+## 7.0.0-beta.0
+
+<!-- generated comparing v7.0.0-alpha.2..master -->
+
+_Feb 26, 2025_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@7.0.0-beta.0`
+
+- [Modal][Dialog] Remove deprecated `onBackdropClick` (#45395) @DiegoAndai
+- [Grid] Improve Grid2 upgrade experience (#45304) @DiegoAndai
+- [Grid] Rename to GridLegacy (#45363) @DiegoAndai
+- [Grid2] Rename to Grid (#45381) @DiegoAndai
+- Remove SvgIcon data-testid in production (#45333) @Janpot
+- Allow nested theme creation with `vars` (#45335) @siriwatknp
+- [Rating] Deprecate \*Props and complete `slots`, `slotProps` (#45295) @harry-whorlow
+- [Slider] Fix css class selector in migration guide (#45402) @sai6855
+- [Slider] Fix spacings in .md files (#45388) @sai6855
+- [styles] Remove deprecated exports (#45397) @DiegoAndai
+- [Menu] Deprecate \*Props and complete `slots`, `slotProps` (#44913) @siriwatknp
+- [StepButton] Remove StepIconButton type (#45396) @DiegoAndai
+
+### Docs
+
+- [Autocomplete] Remove unnecessary renderTags prop from Sizes demo (#45401) @ZeeshanTamboli
+- Add `overriding-component-structure` doc to Material UI (#45186) @siriwatknp
+- Fix typo in slider docs (#45390) @sai6855
+- Fix Context Menu selection lost on Safari (#44903) @NooBat
+
+### Core
+
+- [code-infra] Fix types for @mui/styled-engine (#45413) @Janpot
+- [docs-infra] Fix theme toggle call (#45400) @siriwatknp
+- [docs-infra] Add `color-scheme` to document in iframe demos (#45406) @KenanYusuf
+- [docs-infra] Revert to use deprecated `CssVarsProvider` for MUI X (#45371) @siriwatknp
+- [docs-infra] Fix dark mode flicker for API pages (#45354) @siriwatknp
+- [examples] Remove unnecessary comma in Material UI Vite JS example (#45370) @ZeeshanTamboli
+- [test] Remove unused renderTags prop and fix key warning in Autocomplete regression test (#45410) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @DiegoAndai, @harry-whorlow, @Janpot, @KenanYusuf, @NooBat, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 7.0.0-alpha.2
 
 <!-- generated comparing v7.0.0-alpha.1..master -->
