@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import userEvent from '@testing-library/user-event';
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
@@ -446,16 +447,35 @@ describe('<TextareaAutosize />', () => {
     });
   });
 
-  it('should keep input caret position at the end when adding a newline', () => {
-    const { container } = render(<TextareaAutosize />);
-    const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
-    input.focus();
-    input.value = 'abc def abc def abc def\nabc def abc def abc def\nabc def abc def abc def\n';
-    const valueLength = input.value.length;
-    act(() => {
-      fireEvent.change(input, { target: { value: input.value } });
-    });
-    expect(input.selectionStart).to.equal(valueLength);
-    expect(input.selectionEnd).to.equal(valueLength);
+  it('should keep input caret position at the end when adding a newline', async () => {
+    const minRows = 4;
+    const { container } = render(<TextareaAutosize minRows={minRows} />);
+ 
+
+    const textarea = container.querySelector<HTMLTextAreaElement>('textarea')!;
+    const user = userEvent.setup();
+    const textWithEndline = 'abc def abc def abc def\n';
+    let finalText = '';
+
+    // Simulate pasting the text
+    await user.click(textarea);
+    await user.paste(textWithEndline);
+    finalText += textWithEndline;
+    expect(textarea.selectionStart).to.equal(finalText.length);
+    expect(textarea.selectionEnd).to.equal(finalText.length);
+
+    // Simulate pasting the text a second time
+    await user.click(textarea);
+    await user.paste(textWithEndline);
+    finalText += textWithEndline;
+    expect(textarea.selectionStart).to.equal(finalText.length);
+    expect(textarea.selectionEnd).to.equal(finalText.length);
+
+    // Simulate pasting the text a third time
+    await user.click(textarea);
+    await user.paste(textWithEndline);
+    finalText += textWithEndline;
+    expect(textarea.selectionStart).to.equal(finalText.length);
+    expect(textarea.selectionEnd).to.equal(finalText.length);
   });
 });
