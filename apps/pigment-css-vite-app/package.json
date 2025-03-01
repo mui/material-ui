@@ -34,7 +34,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "postcss": "^8.5.2",
     "postcss-combine-media-query": "^1.0.1",
-    "vite": "5.4.14",
+    "vite": "6.2.0",
     "vite-plugin-node-polyfills": "0.23.0",
     "vite-plugin-pages": "^0.32.4"
   },
