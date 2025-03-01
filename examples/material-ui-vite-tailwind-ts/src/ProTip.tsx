@@ -1,7 +1,6 @@
-import * as React from 'react';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
+import { Link, Typography } from '@mui/material';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
-import Typography from '@mui/material/Typography';
 
 function LightBulbIcon(props: SvgIconProps) {
   return (
@@ -17,7 +16,7 @@ export default function ProTip() {
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
       {'Pro tip: See more '}
       <Link href="https://mui.com/material-ui/getting-started/templates/">templates</Link>
-      {' in the Material UI documentation.'}
+      {' in the Material UI documentation.'}
     </Typography>
   );
 }

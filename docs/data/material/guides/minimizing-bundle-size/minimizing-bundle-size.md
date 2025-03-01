@@ -156,34 +156,52 @@ import Button from '@mui/material/Button/Button.js';
 Future changes to the library's internal structure could break these paths. `babel-plugin-direct-import` allows for granular control over what gets imported, but it comes with the potential risk of relying on internal library paths. This may fail in future versions if the package is updated to use the `exports` field in `package.json`, which could block access to internal paths like this.
 :::
 
-If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
+> Note that Material UI supports tree shaking out of the box when importing from specific paths (e.g. @mui/material/Button), so this configuration is optional and primarily useful if you want to enforce modular imports.
 
-`yarn add -D react-app-rewired customize-cra`
+Vite doesn’t require extra Babel configuration by default because it uses esbuild for fast bundling and minification. However, if you need to customize Babel (for example, to use babel-plugin-import), here’s a way to do it:
 
-Create a `config-overrides.js` file in the root directory:
+Install Dependencies
 
-```js
-/* config-overrides.js */
-/* eslint-disable react-hooks/rules-of-hooks */
-const { useBabelRc, override } = require('customize-cra');
-
-module.exports = override(useBabelRc());
+```bash
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-plugin-transform-imports
 ```
 
-If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
+Create a `.babelrc` file in the root directory:
 
-Modify your `package.json` commands:
+```json
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    [
+      "babel-plugin-transform-imports",
+      {
+        "@mui/material": {
+          "transform": "@mui/material/${member}",
+          "preventFullImport": true
+        },
+        "@mui/icons-material": {
+          "transform": "@mui/icons-material/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ]
+}
+```
 
-```diff
-   "scripts": {
--    "start": "react-scripts start",
--    "build": "react-scripts build",
--    "test": "react-scripts test",
-+    "start": "react-app-rewired start",
-+    "build": "react-app-rewired build",
-+    "test": "react-app-rewired test",
-     "eject": "react-scripts eject"
-  }
+Update your `vite.config.js` to use the Babel plugin:
+
+```js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import babel from 'vite-plugin-babel';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    babel()
+  ]
+});
 ```
 
 Enjoy significantly faster start times.
