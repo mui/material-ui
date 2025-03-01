@@ -54,7 +54,7 @@
     "start": "pnpm install && pnpm docs:dev",
     "test": "node scripts/test.mjs",
     "tc": "nx run nx_test_tc",
-    "test:attw": "pnpm run --stream -r attw",
+    "test:attw": "pnpm run --parallel -r attw",
     "test:extended": "pnpm eslint && pnpm typescript && pnpm test:coverage",
     "test:coverage": "nx run nx_test_coverage",
     "test:coverage:ci": "nx run nx_test_coverage_ci",
