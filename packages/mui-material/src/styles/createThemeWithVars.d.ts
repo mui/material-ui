@@ -1,7 +1,7 @@
 import { OverridableStringUnion } from '@mui/types';
 import { SxConfig, SxProps, CSSObject, ApplyStyles } from '@mui/system';
 import { ExtractTypographyTokens } from '@mui/system/cssVars';
-import { ThemeOptions, Theme } from './createThemeNoVars';
+import { ThemeOptions, Theme, BaseTheme } from './createThemeNoVars';
 import { Palette, PaletteOptions } from './createPalette';
 import { Shadows } from './shadows';
 import { ZIndex } from './zIndex';
@@ -287,7 +287,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   /**
    * Theme components
    */
-  components?: Components<Omit<Theme, 'components' | 'palette'> & CssVarsTheme>;
+  components?: Components<Omit<BaseTheme, 'components' | 'palette'> & CssVarsTheme>;
   /**
    * Color schemes configuration
    */

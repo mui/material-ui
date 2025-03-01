@@ -1,4 +1,4 @@
-import { Interpolation } from '@mui/system';
+import { CSSObject } from '@mui/system';
 import { ComponentsPropsList } from './props';
 
 export type ComponentsVariants<Theme = unknown> = {
@@ -10,6 +10,10 @@ export type ComponentsVariants<Theme = unknown> = {
             ownerState: Partial<ComponentsPropsList[Name]>;
           },
         ) => boolean);
-    style: Interpolation<{ theme: Theme }>;
+    style:
+      | CSSObject
+      | ((
+          args: ComponentsPropsList[Name] extends { theme: any } ? { theme: Theme } : any,
+        ) => CSSObject);
   }>;
 };
