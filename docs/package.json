@@ -134,7 +134,7 @@
     "@types/stylis": "^4.2.0",
     "chai": "^4.5.0",
     "cross-fetch": "^4.1.0",
-    "gm": "^1.25.0",
+    "gm": "^1.25.1",
     "marked": "^15.0.7",
     "playwright": "^1.50.1",
     "prettier": "^3.5.1",
