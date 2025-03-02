@@ -101,7 +101,7 @@
   "dependencies": {
     "@googleapis/sheets": "^9.3.1",
     "@netlify/functions": "^3.0.0",
-    "@slack/bolt": "^4.2.0",
+    "@slack/bolt": "^4.2.1",
     "babel-plugin-transform-import-meta": "^2.3.2",
     "execa": "^9.5.2",
     "google-auth-library": "^9.15.1"
