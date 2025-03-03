@@ -450,7 +450,6 @@ describe('<TextareaAutosize />', () => {
   it('should keep input caret position at the end when adding a newline', async () => {
     const minRows = 4;
     const { container } = render(<TextareaAutosize minRows={minRows} />);
- 
 
     const textarea = container.querySelector<HTMLTextAreaElement>('textarea')!;
     const user = userEvent.setup();
