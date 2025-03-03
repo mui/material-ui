@@ -469,6 +469,9 @@ jobs:
           name: Build packages for fixtures
           command: pnpm release:build
       - run:
+          name: Analyze exported typescript
+          command: pnpm test:attw
+      - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css
       - run:

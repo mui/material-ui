@@ -42,7 +42,6 @@
     "keepMounted": {
       "description": "Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal."
     },
-    "onBackdropClick": { "description": "Callback fired when the backdrop is clicked." },
     "onClose": {
       "description": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.",
       "typeDescriptions": {
