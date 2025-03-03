@@ -37,12 +37,7 @@ export default function MuiBaseDeprecation(props: {
 function Icon() {
   return (
     <Box className="MuiCallout-icon-container">
-      <svg
-        focusable="false"
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        data-testid="ContentCopyRoundedIcon"
-      >
+      <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24">
         <use className="MuiCode-copied-icon" xlinkHref="#error-icon" />
       </svg>
     </Box>

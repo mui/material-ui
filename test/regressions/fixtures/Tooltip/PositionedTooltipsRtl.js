@@ -25,7 +25,7 @@ export default function PositionedTooltipsRtl() {
         <ThemeProvider theme={theme}>
           <Box sx={{ width: 500, margin: 10 }} dir="rtl">
             <Grid container justifyContent="center">
-              <Grid item>
+              <Grid>
                 <Tooltip title="Add" arrow open placement="top-start">
                   <Button>top-start</Button>
                 </Tooltip>
@@ -38,7 +38,7 @@ export default function PositionedTooltipsRtl() {
               </Grid>
             </Grid>
             <Grid container justifyContent="center">
-              <Grid item xs={6}>
+              <Grid size={6}>
                 <Tooltip title="Add" arrow open placement="left-start">
                   <Button>left-start</Button>
                 </Tooltip>
@@ -51,18 +51,18 @@ export default function PositionedTooltipsRtl() {
                   <Button>left-end</Button>
                 </Tooltip>
               </Grid>
-              <Grid item container xs={6} alignItems="flex-end" direction="column">
-                <Grid item>
+              <Grid container alignItems="flex-end" direction="column" size={6}>
+                <Grid>
                   <Tooltip title="Add" arrow open placement="right-start">
                     <Button>right-start</Button>
                   </Tooltip>
                 </Grid>
-                <Grid item>
+                <Grid>
                   <Tooltip title="Add" arrow open placement="right">
                     <Button>right</Button>
                   </Tooltip>
                 </Grid>
-                <Grid item>
+                <Grid>
                   <Tooltip title="Add" arrow open placement="right-end">
                     <Button>right-end</Button>
                   </Tooltip>
@@ -70,7 +70,7 @@ export default function PositionedTooltipsRtl() {
               </Grid>
             </Grid>
             <Grid container justifyContent="center">
-              <Grid item>
+              <Grid>
                 <Tooltip title="Add" arrow open placement="bottom-start">
                   <Button>bottom-start</Button>
                 </Tooltip>

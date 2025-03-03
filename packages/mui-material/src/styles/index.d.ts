@@ -2,7 +2,6 @@ export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
-  createMuiTheme,
   ThemeOptions,
   Theme,
   CssThemeVariables,
@@ -78,10 +77,6 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
-/**
- * @deprecated will be removed in v5.beta, please use styled from @mui/material/styles instead
- */
-export { default as experimentalStyled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
@@ -103,6 +98,7 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export * from './ThemeProviderWithVars';
+export type { StorageManager } from '@mui/system/cssVars';
 
 export { default as extendTheme } from './createThemeWithVars';
 
