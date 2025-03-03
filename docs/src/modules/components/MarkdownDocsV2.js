@@ -4,7 +4,12 @@ import { useRouter } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
 import { useColorScheme as useMuiColorScheme } from '@mui/material/styles';
-import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import {
+  CssVarsProvider as JoyCssVarsProvider,
+  useColorScheme,
+  extendTheme,
+  THEME_ID as JOY_THEME_ID,
+} from '@mui/joy/styles';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
@@ -18,6 +23,8 @@ import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageT
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
+
+const defaultJoyTheme = extendTheme();
 
 function JoyModeObserver() {
   const { mode } = useMuiColorScheme();
@@ -257,7 +264,7 @@ export default function MarkdownDocsV2(props) {
             <Ad />
           </AdGuest>
         )}
-        <CssVarsProvider>
+        <CssVarsProvider {...(isJoy && { theme: { [JOY_THEME_ID]: defaultJoyTheme } })}>
           {isJoy && <JoyModeObserver />}
           {isBase && (
             <MuiBaseDeprecation
