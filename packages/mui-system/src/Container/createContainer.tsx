@@ -2,7 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Interpolation, MUIStyledComponent as StyledComponent } from '@mui/styled-engine';
+import {
+  CSSObject,
+  Interpolation,
+  MUIStyledComponent as StyledComponent,
+} from '@mui/styled-engine';
 import { OverridableComponent } from '@mui/types';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
@@ -89,7 +93,7 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
             paddingRight: theme.spacing(3),
           },
         }),
-      }) as Interpolation<StyleFnProps<Theme>>,
+      }) as CSSObject,
     ({ theme, ownerState }: StyleFnProps<Theme>) =>
       ownerState.fixed &&
       Object.keys(theme.breakpoints.values).reduce((acc, breakpointValueKey) => {
