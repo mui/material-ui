@@ -134,7 +134,7 @@
     "@types/lodash": "^4.17.15",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.17.19",
-    "@types/react": "^19.0.8",
+    "@types/react": "^19.0.10",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^8.24.0",
     "@typescript-eslint/parser": "^8.24.0",
