@@ -1173,7 +1173,7 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -1255,7 +1255,7 @@ importers:
         version: link:../react-docgen-types
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1289,7 +1289,7 @@ importers:
         version: 20.17.19
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1402,7 +1402,7 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1679,7 +1679,7 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1756,7 +1756,7 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1842,7 +1842,7 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -2102,7 +2102,7 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -2167,7 +2167,7 @@ importers:
         version: 19.0.8
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -2242,7 +2242,7 @@ importers:
         version: 19.0.0
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -2354,7 +2354,7 @@ importers:
         version: 19.0.0
       '@types/sinon':
         specifier: ^17.0.3
-        version: 17.0.3
+        version: 17.0.4
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -5641,8 +5641,8 @@ packages:
   '@types/serve-static@1.15.7':
     resolution: {integrity: sha512-W8Ym+h8nhuRwaKPaDw34QUkwsGi6Rc4yYqvKFo5rm2FUEhCFbzVWrxXUxuKK8TASjWsysJY0nsmNCGhCOIsrOw==}
 
-  '@types/sinon@17.0.3':
-    resolution: {integrity: sha512-j3uovdn8ewky9kRBG19bOwaZbexJu/XjtkHyjvUgt4xfPFz18dcORIMqnYh66Fx3Powhcr85NT5+er3+oViapw==}
+  '@types/sinon@17.0.4':
+    resolution: {integrity: sha512-RHnIrhfPO3+tJT0s7cFaXGZvsL4bbR3/k7z3P312qMS4JaS2Tk+KiwiLx1S0rQ56ERj00u1/BtdyVd0FY+Pdew==}
 
   '@types/sinonjs__fake-timers@8.1.2':
     resolution: {integrity: sha512-9GcLXF0/v3t80caGs5p2rRfkB+a8VBGLJZVih6CNFkx8IZ994wiKKLSRs9nuFwk1HevWs/1mnUmkApGrSGsShA==}
@@ -17170,7 +17170,7 @@ snapshots:
       '@types/node': 20.17.19
       '@types/send': 0.17.4
 
-  '@types/sinon@17.0.3':
+  '@types/sinon@17.0.4':
     dependencies:
       '@types/sinonjs__fake-timers': 8.1.2
 
