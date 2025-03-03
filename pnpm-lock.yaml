@@ -1172,7 +1172,7 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       typescript:
         specifier: ^5.7.3
@@ -1254,7 +1254,7 @@ importers:
         specifier: workspace:*
         version: link:../react-docgen-types
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -1288,7 +1288,7 @@ importers:
         specifier: ^20.17.22
         version: 20.17.22
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -1401,7 +1401,7 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -1678,7 +1678,7 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -1755,7 +1755,7 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -1841,7 +1841,7 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -2101,7 +2101,7 @@ importers:
         specifier: ^19.0.4
         version: 19.0.4(@types/react@19.0.10)
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -2166,7 +2166,7 @@ importers:
         specifier: ^19.0.10
         version: 19.0.10
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -2241,7 +2241,7 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
@@ -2353,7 +2353,7 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0
       '@types/sinon':
-        specifier: ^17.0.3
+        specifier: ^17.0.4
         version: 17.0.4
       chai:
         specifier: ^4.5.0
