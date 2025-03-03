@@ -141,8 +141,8 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5(@types/node@20.17.22)(playwright@1.50.1)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.22)(terser@5.37.0))(vitest@3.0.5)
       '@vitest/coverage-v8':
-        specifier: ^3.0.5
-        version: 3.0.5(@vitest/browser@3.0.5)(vitest@3.0.5)
+        specifier: ^3.0.7
+        version: 3.0.7(@vitest/browser@3.0.5)(vitest@3.0.5)
       babel-loader:
         specifier: ^9.2.1
         version: 9.2.1(@babel/core@7.26.9)(webpack@5.98.0)
@@ -5763,11 +5763,11 @@ packages:
       webdriverio:
         optional: true
 
-  '@vitest/coverage-v8@3.0.5':
-    resolution: {integrity: sha512-zOOWIsj5fHh3jjGwQg+P+J1FW3s4jBu1Zqga0qW60yutsBtqEqNEJKWYh7cYn1yGD+1bdPsPdC/eL4eVK56xMg==}
+  '@vitest/coverage-v8@3.0.7':
+    resolution: {integrity: sha512-Av8WgBJLTrfLOer0uy3CxjlVuWK4CzcLBndW1Nm2vI+3hZ2ozHututkfc7Blu1u6waeQ7J8gzPK/AsBRnWA5mQ==}
     peerDependencies:
-      '@vitest/browser': 3.0.5
-      vitest: 3.0.5
+      '@vitest/browser': 3.0.7
+      vitest: 3.0.7
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -17325,7 +17325,7 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/coverage-v8@3.0.5(@vitest/browser@3.0.5)(vitest@3.0.5)':
+  '@vitest/coverage-v8@3.0.7(@vitest/browser@3.0.5)(vitest@3.0.5)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 1.0.2
