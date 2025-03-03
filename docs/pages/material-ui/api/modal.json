@@ -40,11 +40,6 @@
     "disableScrollLock": { "type": { "name": "bool" }, "default": "false" },
     "hideBackdrop": { "type": { "name": "bool" }, "default": "false" },
     "keepMounted": { "type": { "name": "bool" }, "default": "false" },
-    "onBackdropClick": {
-      "type": { "name": "func" },
-      "deprecated": true,
-      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
-    },
     "onClose": {
       "type": { "name": "func" },
       "signature": {

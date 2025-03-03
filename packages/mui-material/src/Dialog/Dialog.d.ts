@@ -133,11 +133,6 @@ export interface DialogProps
    */
   maxWidth?: Breakpoint | false;
   /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick?: ModalProps['onBackdropClick'];
-  /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
