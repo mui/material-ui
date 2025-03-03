@@ -124,7 +124,7 @@ importers:
         specifier: ^20.17.12
         version: 20.17.24
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/yargs':
         specifier: ^17.0.33
@@ -374,7 +374,7 @@ importers:
         specifier: ^20.17.12
         version: 20.17.24
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -441,7 +441,7 @@ importers:
         specifier: 0.0.29
         version: 0.0.29(@types/react@19.0.10)(react@19.0.0)(typescript@5.7.3)(vite@5.4.12(@types/node@20.17.24)(terser@5.39.0))
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -871,7 +871,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -1006,7 +1006,7 @@ importers:
         specifier: ^20.17.12
         version: 20.17.24
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/uuid':
         specifier: ^10.0.0
@@ -1106,7 +1106,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -1335,7 +1335,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -1453,7 +1453,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       next:
         specifier: ^15.1.4
@@ -1504,7 +1504,7 @@ importers:
         version: 19.0.0(react@19.0.0)
     devDependencies:
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
 
   packages/mui-icons-material:
@@ -1526,7 +1526,7 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       chai:
         specifier: ^4.5.0
@@ -1612,7 +1612,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -1689,7 +1689,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -1775,7 +1775,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -1831,7 +1831,7 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0(@emotion/css@11.13.4)
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       next:
         specifier: ^15.1.4
@@ -1876,7 +1876,7 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       chai:
         specifier: ^4.5.0
@@ -1923,7 +1923,7 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       chai:
         specifier: ^4.5.0
@@ -1958,7 +1958,7 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       chai:
         specifier: ^4.5.0
@@ -2035,7 +2035,7 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -2103,7 +2103,7 @@ importers:
         specifier: ^15.7.14
         version: 15.7.14
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/sinon':
         specifier: ^17.0.3
@@ -2134,7 +2134,7 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
     publishDirectory: build
 
@@ -2172,7 +2172,7 @@ importers:
         specifier: ^20.17.12
         version: 20.17.24
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-dom':
         specifier: ^19.0.2
@@ -2287,7 +2287,7 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.10
         version: 19.0.10
       '@types/react-is':
         specifier: ^19.0.0
