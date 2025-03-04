@@ -35,6 +35,30 @@ Standard form attributes are supported, for example `required`, `disabled`, `typ
 
 {{"demo": "FormPropsTextFields.js"}}
 
+## HTML input
+
+Use `slotProps.htmlInput` to pass attributes to the underlying `input` element.
+
+```jsx
+<TextField slotProps={{ htmlInput: { 'data-testid': '…' } }} />
+```
+
+The rendered HTML input will look like this:
+
+```html
+<input
+  aria-invalid="false"
+  class="MuiInputBase-input MuiOutlinedInput-input"
+  type="text"
+  data-testid="…"
+/>
+```
+
+:::info
+The `slotProps.htmlInput` is **NOT** the same as the `slotProps.input`.
+The former represent the HTML input whereas the latter refers to `Input`, `FilledInput`, or `OutlinedInput` component based on the specified variant prop.
+:::
+
 ## Validation
 
 The `error` prop toggles the error state.
