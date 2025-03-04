@@ -139,7 +139,8 @@ export default function createCssVarsProvider(options) {
         console.warn(
           [
             'MUI: The `forceRecalculateTheme` prop should only be used with CSS theme variables.',
-            'This prop should be used for a specific use case and is not recommended for general usage.',
+            'Note that it will slow down the app when changing between modes, so only do this when you cannot find a better solution.',
+            'If you are not sure about your use case, feel free to create a [new issue](https://github.com/mui/material-ui/issues/new) to let us help',
           ].join('\n'),
         );
       }
