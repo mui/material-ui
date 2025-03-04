@@ -369,6 +369,9 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    * @deprecated Use `slotProps.tooltip.placement` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipPlacement: PropTypes.oneOf([
+    'auto-end',
+    'auto-start',
+    'auto',
     'bottom-end',
     'bottom-start',
     'bottom',
