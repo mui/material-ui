@@ -435,6 +435,7 @@ describe('<TextareaAutosize />', () => {
 
   it('should apply the inline styles using the "style" prop', function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
+      // docuemnt selectionchange event doesn't fire in JSDOM
       this.skip();
     }
 
@@ -444,5 +445,33 @@ describe('<TextareaAutosize />', () => {
     expect(input).toHaveComputedStyle({
       backgroundColor: 'rgb(255, 255, 0)',
     });
+  });
+
+  it('should not infinite loop document selectionchange', async function test() {
+    // there's no document selectionchange event in JSDOM
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const handleSelectionChange = spy();
+
+    function App() {
+      React.useEffect(() => {
+        document.addEventListener('selectionchange', handleSelectionChange);
+        return () => {
+          document.removeEventListener('selectionchange', handleSelectionChange);
+        };
+      }, []);
+
+      return (
+        <TextareaAutosize defaultValue="some long text that makes the input start with multiple rows" />
+      );
+    }
+
+    await render(<App />);
+    await sleep(100);
+    // when the component mounts this fires 3 times in browser tests
+    // and 2 times in a real browser
+    expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
   });
 });
