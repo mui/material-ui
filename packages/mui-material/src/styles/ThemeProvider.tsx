@@ -26,6 +26,12 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       disableStyleSheetGeneration?: boolean;
+      /**
+       * If `true`, theme values is recalculated when the mode changes.
+       * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+       * @default false
+       */
+      forceRecalculateTheme?: boolean;
     }
   : {};
 
