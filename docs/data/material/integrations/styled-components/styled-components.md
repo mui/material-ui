@@ -102,8 +102,8 @@ We provide boilerplate examples of Create React App with Material UI and styled
 
 <!-- #repo-reference -->
 
-- [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
-- [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
+- [Material UI + Vite + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-styled-components)
+- [Material UI + Vite + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-styled-components-ts)
 
 :::warning
 `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself.
