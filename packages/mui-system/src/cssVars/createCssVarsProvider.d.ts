@@ -36,13 +36,11 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   disableTransitionOnChange?: boolean;
   /**
-   * If `true`, theme values will not change when the mode/color-scheme changes.
-   *
-   * This is useful for optimizing rendering performance. However, need to ensure that all components
-   * are using CSS variables or static values that does not differ between modes to prevent SSR hydration mismatch.
+   * If `true`, theme values is recalculated when the mode/color-scheme changes.
+   * The `colorSchemes.{mode}.*` nodes will be shallow merged with the theme.
    * @default false
    */
-  freezeThemeValues?: boolean;
+  forceRecalculateTheme?: boolean;
 }
 
 type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;

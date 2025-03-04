@@ -14,12 +14,14 @@ import {
 describe('[Material UI] ThemeProviderWithVars', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
-  const storage = {};
+  let storage = {};
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
+    // clear the localstorage
+    storage = {};
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
         setItem: (key, value) => {
@@ -440,7 +442,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     expect(screen.queryByTestId('theme-changed')).to.equal(null);
   });
 
-  it('theme does not change if `freezeThemeValues` is true', () => {
+  it('theme does not change with CSS variables', () => {
     function Toggle() {
       const [count, setCount] = React.useState(0);
       const { setMode } = useColorScheme();
@@ -448,23 +450,65 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       React.useEffect(() => {
         setCount((prev) => prev + 1);
       }, [theme]);
-      return <button onClick={() => setMode('dark')}>{count}</button>;
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode}
+        </button>
+      );
     }
 
-    const theme = createTheme({ colorSchemes: { light: true, dark: true } });
+    const theme = createTheme({
+      cssVariables: { colorSchemeSelector: 'class' },
+      colorSchemes: { light: true, dark: true },
+    });
     function App() {
       return (
-        <ThemeProvider theme={theme} freezeThemeValues>
+        <ThemeProvider theme={theme}>
           <Toggle />
         </ThemeProvider>
       );
     }
     const { container } = render(<App />);
 
-    expect(container).to.have.text('1');
+    expect(container).to.have.text('1 light');
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text('1');
+    expect(container).to.have.text('1 light');
+  });
+
+  it('`forceRecalculateTheme` recalculates the theme', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: { colorSchemeSelector: 'class' },
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme} forceRecalculateTheme>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text('1 light');
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text('2 dark');
   });
 });
