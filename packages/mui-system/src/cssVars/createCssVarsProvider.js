@@ -367,7 +367,7 @@ export default function createCssVarsProvider(options) {
      */
     documentNode: PropTypes.any,
     /**
-     * If `true`, theme values is recalculated when the mode/color-scheme changes.
+     * If `true`, theme values is recalculated when the mode changes.
      */
     forceRecalculateTheme: PropTypes.bool,
     /**
