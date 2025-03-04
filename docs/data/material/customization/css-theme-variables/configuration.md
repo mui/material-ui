@@ -307,3 +307,13 @@ To disable CSS transitions when switching between modes, apply the `disableTrans
 ```
 
 {{"demo": "DisableTransitionOnChange.js"}}
+
+## Force theme recalculation between modes
+
+By default, the theme does not change between light and dark modes to get the best transition performance.
+
+If you want to opt-out from this behavior, use `forceRecalculateTheme` prop to the ThemeProvider component:
+
+```js
+<ThemeProvider forceRecalculateTheme />
+```
