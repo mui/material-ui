@@ -19,10 +19,7 @@ function useEventCallback<Args extends unknown[], Return>(
   useEnhancedEffect(() => {
     ref.current = fn;
   });
-  return React.useRef((...args: Args) =>
-    // @ts-expect-error hide `this`
-    (0, ref.current!)(...args),
-  ).current;
+  return React.useCallback((...args: Args) => ref.current(...args), []);
 }
 
 export default useEventCallback;
