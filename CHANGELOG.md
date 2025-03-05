@@ -1,5 +1,25 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-beta.3
+
+<!-- generated comparing v7.0.0-beta.2..master -->
+
+_Mar 5, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@7.0.0-beta.3`
+
+- Fix moduleResolution:node for icons (#45444) @Janpot
+- [ThemeProvider] Add `storageManager` prop to `ThemeProvider` (#45136) @siriwatknp
+- [Radio] Fix `inputProps` not forwarded (#45471) @siriwatknp
+
+### `@mui/codemod@7.0.0-beta.3`
+
+- [codemod] Fix codemods not found (#45473) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @Janpot, @siriwatknp
+
 ## 7.0.0-beta.2
 
 <!-- generated comparing v7.0.0-beta.1..master -->
