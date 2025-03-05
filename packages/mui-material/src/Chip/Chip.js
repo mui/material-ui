@@ -348,6 +348,7 @@ const ChipLabel = styled('span', {
   paddingLeft: 12,
   paddingRight: 12,
   whiteSpace: 'nowrap',
+  lineHeight: 'normal',
   variants: [
     {
       props: { variant: 'outlined' },
