@@ -1,5 +1,25 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.7
+
+<!-- generated comparing v6.4.6..v6.x -->
+
+_Mar 5, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@6.4.7`
+
+- [ThemeProvider] Add `storageManager` prop to `ThemeProvider` (@siriwatknp) (#45437) @siriwatknp
+- [Rating] Deprecate \*Props and complete slots, slotProps (#45295) (#45398) @DiegoAndai
+- [Radio] Fix `inputProps` not forwarded (@siriwatknp) (#45475) @siriwatknp
+
+### Core
+
+- [blog] React 19 migration for MUI X (#45440) @arminmeh
+
+All contributors of this release in alphabetical order: @arminmeh, @DiegoAndai, @siriwatknp
+
 ## 6.4.6
 
 <!-- generated comparing v6.4.5..v6.x -->
