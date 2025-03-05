@@ -12,7 +12,7 @@ const PaperRoot = styled(MuiPaper, {
 })<ExtraPaperProps>(({ theme }) => ({
   variants: [
     {
-      props: ({ padding }) => padding,
+      props: ({ padding }) => !!padding,
       style: {
         padding: theme.spacing(1),
       },
