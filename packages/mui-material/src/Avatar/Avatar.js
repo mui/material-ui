@@ -185,6 +185,19 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    className: clsx(classes.root, className),
+    elementType: AvatarRoot,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+      component,
+      ...other,
+    },
+    ownerState,
+  });
+
   const [ImgSlot, imgSlotProps] = useSlot('img', {
     className: classes.img,
     elementType: AvatarImg,
@@ -193,6 +206,17 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       slotProps: { img: { ...imgProps, ...slotProps.img } },
     },
     additionalProps: { alt, src, srcSet, sizes },
+    ownerState,
+  });
+
+  const [FallbackSlot, fallbackSlotProps] = useSlot('fallback', {
+    className: classes.fallback,
+    elementType: AvatarFallback,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+    },
+    shouldForwardComponentProp: true,
     ownerState,
   });
 
@@ -205,20 +229,10 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback ownerState={ownerState} className={classes.fallback} />;
+    children = <FallbackSlot {...fallbackSlotProps} />;
   }
 
-  return (
-    <AvatarRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-      ownerState={ownerState}
-    >
-      {children}
-    </AvatarRoot>
-  );
+  return <RootSlot {...rootSlotProps}>{children}</RootSlot>;
 });
 
 Avatar.propTypes /* remove-proptypes */ = {
@@ -264,14 +278,18 @@ Avatar.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    fallback: PropTypes.elementType,
     img: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The `src` attribute for the `img` element.
