@@ -159,4 +159,18 @@ describe('<Switch />', () => {
       expect(container.firstChild).to.have.class('test-class-name');
     });
   });
+
+  describe('accessibility', () => {
+    it('has attribute aria-disabled="true" when disabled', () => {
+      const { getByRole } = render(<Switch disabled />);
+
+      expect(getByRole('checkbox')).to.have.attribute('aria-disabled', 'true');
+    });
+
+    it('does not have aria-disabled when not disabled', () => {
+      const { getByRole } = render(<Switch />);
+
+      expect(getByRole('checkbox')).to.not.have.attribute('aria-disabled');
+    });
+  });
 });
