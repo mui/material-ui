@@ -35,7 +35,7 @@ Standard form attributes are supported, for example `required`, `disabled`, `typ
 
 {{"demo": "FormPropsTextFields.js"}}
 
-## HTML input
+## Controlling the HTML input
 
 Use `slotProps.htmlInput` to pass attributes to the underlying `input` element.
 
@@ -54,9 +54,10 @@ The rendered HTML input will look like this:
 />
 ```
 
-:::info
-The `slotProps.htmlInput` is **NOT** the same as the `slotProps.input`.
-The former represent the HTML input whereas the latter refers to `Input`, `FilledInput`, or `OutlinedInput` component based on the specified variant prop.
+:::warning
+`slotProps.htmlInput` is not the same as `slotProps.input`.
+`slotProps.input` refers to the React `<Input />` component that's rendered based on the specified variant prop.
+`slotProps.htmlInput` refers to the HTML `<input>` element rendered within that Input component, regardless of the variant.
 :::
 
 ## Validation
