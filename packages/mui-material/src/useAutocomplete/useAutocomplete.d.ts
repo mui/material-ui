@@ -345,7 +345,7 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
-export type AutocompleteTagProps = {
+export type AutocompleteSingleTagProps = {
   tabIndex: -1;
   'data-tag': 'single';
   onDelete?: (event: any) => void;
@@ -488,7 +488,7 @@ export interface UseAutocompleteReturnValue<
   /**
    * The single tag props for rendering a custom single value.
    */
-  tagProps: AutocompleteTagProps;
+  tagProps: AutocompleteSingleTagProps;
 }
 
 export default useAutocomplete;
