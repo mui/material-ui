@@ -344,6 +344,13 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
+
+export type AutocompleteTagProps = {
+  tabIndex: -1;
+  'data-tag': 'single';
+  onDelete?: (event: any) => void;
+};
+
 /**
  *
  * Demos:
@@ -478,6 +485,10 @@ export interface UseAutocompleteReturnValue<
    * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
   groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Value>[] : Value[];
+  /**
+   * The single tag props for rendering a custom single value.
+   */
+  tagProps: AutocompleteTagProps;
 }
 
 export default useAutocomplete;
