@@ -1,6 +1,7 @@
 import transformAccordionClasses from '../accordion-summary-classes';
 import transformAccordionProps from '../accordion-props';
 import transformAlertClasses from '../alert-classes';
+import transformAlertProps from '../alert-props';
 import transformAvatarGroupProps from '../avatar-group-props';
 import transformAutocompleteProps from '../autocomplete-props';
 import transformAvatarProps from '../avatar-props';
@@ -22,7 +23,9 @@ import transformListItemTextProps from '../list-item-text-props';
 import transformLinearProgressClasses from '../linear-progress-classes';
 import transformModalProps from '../modal-props';
 import transformOutlinedInputProps from '../outlined-input-props';
+import transformPaginationItemProps from '../pagination-item-props';
 import transformPaginationItemClasses from '../pagination-item-classes';
+import transformPopperProps from '../popper-props';
 import transformSpeedDialProps from '../speed-dial-props';
 import transformTableSortLabelClasses from '../table-sort-label-classes';
 import transformSelectClasses from '../select-classes';
@@ -37,6 +40,7 @@ import transformTablePaginationProps from '../table-pagination-props';
 import transformCardHeaderProps from '../card-header-props';
 import transformPopoverProps from '../popover-props';
 import transformSnackbarProps from '../snackbar-props';
+import transformSliderProps from '../slider-props';
 import transformSliderClasses from '../slider-classes';
 import transformerTabsProps from '../tabs-props';
 import transformerTabsClasses from '../tabs-classes';
@@ -44,6 +48,7 @@ import transformDrawerProps from '../drawer-props';
 import transformMobileStepperProps from '../mobile-stepper-props';
 import transformMenuProps from '../menu-props';
 import transformRatingProps from '../rating-props';
+import transformTypographyProps from '../typography-props';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -53,6 +58,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformAccordionClasses(file, api, options);
   file.source = transformAccordionProps(file, api, options);
   file.source = transformAlertClasses(file, api, options);
+  file.source = transformAlertProps(file, api, options);
   file.source = transformAvatarGroupProps(file, api, options);
   file.source = transformAutocompleteProps(file, api, options);
   file.source = transformAvatarProps(file, api, options);
@@ -75,6 +81,8 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformModalProps(file, api, options);
   file.source = transformOutlinedInputProps(file, api, options);
   file.source = transformPaginationItemClasses(file, api, options);
+  file.source = transformPaginationItemProps(file, api, options);
+  file.source = transformPopperProps(file, api, options);
   file.source = transformSpeedDialProps(file, api, options);
   file.source = transformStepConnectorClasses(file, api, options);
   file.source = transformStepContentProps(file, api, options);
@@ -89,6 +97,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformCardHeaderProps(file, api, options);
   file.source = transformPopoverProps(file, api, options);
   file.source = transformSnackbarProps(file, api, options);
+  file.source = transformSliderProps(file, api, options);
   file.source = transformSliderClasses(file, api, options);
   file.source = transformerTabsProps(file, api, options);
   file.source = transformerTabsClasses(file, api, options);
@@ -96,6 +105,7 @@ export default function deprecationsAll(file, api, options) {
   file.source = transformMobileStepperProps(file, api, options);
   file.source = transformMenuProps(file, api, options);
   file.source = transformRatingProps(file, api, options);
+  file.source = transformTypographyProps(file, api, options);
 
   return file.source;
 }

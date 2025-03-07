@@ -461,7 +461,7 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
 
 ```diff
- <Slider
+ <Backdrop
 -  TransitionComponent={CustomTransition}
 +  slots={{ transition: CustomTransition }}
 ```
