@@ -204,6 +204,9 @@ export interface TooltipProps
    * @default 'bottom'
    */
   placement?:
+    | 'auto-end'
+    | 'auto-start'
+    | 'auto'
     | 'bottom-end'
     | 'bottom-start'
     | 'bottom'
