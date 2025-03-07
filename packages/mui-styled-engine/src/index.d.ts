@@ -102,7 +102,6 @@ export type Interpolation<Props> =
   | ComponentSelector
   | Keyframes
   | SerializedStyles
-  | CSSPropertiesWithMultiValues
   | (CSSObject & {
       variants?: Array<{
         props:
