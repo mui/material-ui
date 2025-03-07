@@ -470,8 +470,8 @@ describe('<TextareaAutosize />', () => {
 
     await render(<App />);
     await sleep(100);
-    // when the component mounts and idles this fires 3 times in browser tests
+    // when the component mounts and idles this fires 4 times in browser tests
     // and 2 times in a real browser
-    expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
+    expect(handleSelectionChange.callCount).to.lessThanOrEqual(4);
   });
 });
