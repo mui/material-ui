@@ -137,13 +137,15 @@
       "key": "paperScrollBody",
       "className": "MuiDialog-paperScrollBody",
       "description": "Styles applied to the Paper component if `scroll=\"body\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperScrollPaper",
       "className": "MuiDialog-paperScrollPaper",
       "description": "Styles applied to the Paper component if `scroll=\"paper\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperWidthFalse",
