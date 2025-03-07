@@ -1491,4 +1491,29 @@ describe('<Tooltip />', () => {
       expect(screen.getByTestId('popper')).to.have.class('my-class');
     });
   });
+
+ it('should not throw error when onBlur is called without an event', () => {
+    // Create a test component that mimics the Input behavior
+    function TestInput(props) {
+      const { onBlur, ...other } = props;
+
+      React.useEffect(() => {
+        // This simulates the issue - calling onBlur without an event
+        if (onBlur) {
+          onBlur();
+        }
+      }, [onBlur]);
+
+      return <input {...other} onBlur={onBlur} />;
+    }
+
+    // We expect this not to throw an error after your fix
+    expect(() => {
+      render(
+        <Tooltip title="test">
+          <TestInput />
+        </Tooltip>,
+      );
+    }).not.to.throw();
+  });
 });
