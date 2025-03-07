@@ -1081,7 +1081,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {Value} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
+   * @param {string} reason Can be: `"keyboard"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**
