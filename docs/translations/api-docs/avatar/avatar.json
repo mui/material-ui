@@ -39,8 +39,6 @@
       "nodeName": "the root element",
       "conditions": "not <code>src</code> or <code>srcSet</code>"
     },
-    "fallback": { "description": "Styles applied to the fallback icon" },
-    "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -53,6 +51,8 @@
     }
   },
   "slotDescriptions": {
-    "img": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+    "fallback": "The component that renders the fallback slot.",
+    "img": "The component that renders the img slot.",
+    "root": "The component that renders the root slot."
   }
 }
