@@ -216,10 +216,10 @@ const Custom = styled('div')(({ theme }) => ({
 }));
 ```
 
-If any of the methods above do not suit your project, you can opt out from this behavior by specifying `forceRecalculateTheme` prop to the ThemeProvider component:
+If any of the methods above do not suit your project, you can opt out from this behavior by specifying `forceThemeRerender` prop to the ThemeProvider component:
 
 ```js
-<ThemeProvider forceRecalculateTheme />
+<ThemeProvider forceThemeRerender />
 ```
 
 ### Deprecated APIs removed

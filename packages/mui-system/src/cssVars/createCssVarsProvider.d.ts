@@ -40,7 +40,7 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
    * @default false
    */
-  forceRecalculateTheme?: boolean;
+  forceThemeRerender?: boolean;
 }
 
 type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;

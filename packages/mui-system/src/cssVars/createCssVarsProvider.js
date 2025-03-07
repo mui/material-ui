@@ -67,7 +67,7 @@ export default function createCssVarsProvider(options) {
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
       defaultMode: initialMode = 'system',
-      forceRecalculateTheme = false,
+      forceThemeRerender = false,
       noSsr,
     } = props;
     const hasMounted = React.useRef(false);
@@ -135,10 +135,10 @@ export default function createCssVarsProvider(options) {
     }
 
     if (process.env.NODE_ENV !== 'production') {
-      if (forceRecalculateTheme && !restThemeProp.vars) {
+      if (forceThemeRerender && !restThemeProp.vars) {
         console.warn(
           [
-            'MUI: The `forceRecalculateTheme` prop should only be used with CSS theme variables.',
+            'MUI: The `forceThemeRerender` prop should only be used with CSS theme variables.',
             'Note that it will slow down the app when changing between modes, so only do this when you cannot find a better solution.',
             'If you are not sure about your use case, feel free to create a [new issue](https://github.com/mui/material-ui/issues/new) to let us help',
           ].join('\n'),
@@ -147,7 +147,7 @@ export default function createCssVarsProvider(options) {
     }
 
     const calculatedColorScheme =
-      forceRecalculateTheme && restThemeProp.vars
+      forceThemeRerender && restThemeProp.vars
         ? // `colorScheme` is undefined on the server and hydration phase
           colorScheme || restThemeProp.defaultColorScheme
         : restThemeProp.defaultColorScheme;
@@ -369,7 +369,7 @@ export default function createCssVarsProvider(options) {
     /**
      * If `true`, theme values is recalculated when the mode changes.
      */
-    forceRecalculateTheme: PropTypes.bool,
+    forceThemeRerender: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */

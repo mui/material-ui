@@ -31,7 +31,7 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
        * @default false
        */
-      forceRecalculateTheme?: boolean;
+      forceThemeRerender?: boolean;
     }
   : {};
 

@@ -477,7 +477,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     expect(container).to.have.text('1 light');
   });
 
-  it('`forceRecalculateTheme` recalculates the theme', () => {
+  it('`forceThemeRerender` recalculates the theme', () => {
     function Toggle() {
       const [count, setCount] = React.useState(0);
       const { setMode } = useColorScheme();
@@ -498,7 +498,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     });
     function App() {
       return (
-        <ThemeProvider theme={theme} forceRecalculateTheme>
+        <ThemeProvider theme={theme} forceThemeRerender>
           <Toggle />
         </ThemeProvider>
       );
