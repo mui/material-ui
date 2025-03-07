@@ -2,14 +2,14 @@ import * as React from 'react';
 import { StyledEngineProvider, GlobalStyles } from '@mui/styled-engine';
 import { createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
-import { privateForTest } from './StyledEngineProvider';
+import { TEST_INTERNALS_DO_NOT_USE } from './StyledEngineProvider';
 
 describe('[Emotion] StyledEngineProvider', () => {
   const { render } = createRenderer();
 
   it('should create styles with @layer', () => {
     let rule;
-    privateForTest.insert = (...args) => {
+    TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
       rule = args[0];
     };
     render(
@@ -18,12 +18,12 @@ describe('[Emotion] StyledEngineProvider', () => {
       </StyledEngineProvider>,
     );
     expect(rule).to.equal('@layer mui{html{color:red;}}');
-    delete privateForTest.insert;
+    delete TEST_INTERNALS_DO_NOT_USE.insert;
   });
 
   it('should do nothing if the styles already in a layer', () => {
     let rule;
-    privateForTest.insert = (...args) => {
+    TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
       rule = args[0];
     };
     render(
@@ -32,12 +32,12 @@ describe('[Emotion] StyledEngineProvider', () => {
       </StyledEngineProvider>,
     );
     expect(rule).to.equal('@layer components{html{color:red;}}');
-    delete privateForTest.insert;
+    delete TEST_INTERNALS_DO_NOT_USE.insert;
   });
 
   it('able to config layer order through GlobalStyles', () => {
     let rule;
-    privateForTest.insert = (...args) => {
+    TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
       rule = args[0];
     };
     render(
@@ -46,6 +46,6 @@ describe('[Emotion] StyledEngineProvider', () => {
       </StyledEngineProvider>,
     );
     expect(rule).to.equal('@layer theme,base,mui,components,utilities;');
-    delete privateForTest.insert;
+    delete TEST_INTERNALS_DO_NOT_USE.insert;
   });
 });
