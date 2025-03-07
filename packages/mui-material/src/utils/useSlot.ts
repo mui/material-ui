@@ -145,6 +145,11 @@ export default function useSlot<
           component: LeafComponent,
         }),
       ref,
+      ...((name === 'input' || elementType === 'input' || name.includes('input')) &&
+        'disabled' in ownerState &&
+        ownerState.disabled !== undefined && {
+          'aria-disabled': !!ownerState.disabled || undefined,
+        }),
     },
     ownerState,
   );

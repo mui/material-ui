@@ -227,4 +227,18 @@ describe('<Checkbox />', () => {
     await ripple.startTouch(checkbox);
     expect(checkbox.querySelector('.touch-ripple')).to.equal(null);
   });
+
+  describe('accessibility', () => {
+    it('should have aria-disabled="true" when disabled', () => {
+      const { getByRole } = render(<Checkbox disabled />);
+
+      expect(getByRole('checkbox')).to.have.attribute('aria-disabled', 'true');
+    });
+
+    it('should not have aria-disabled when not disabled', () => {
+      const { getByRole } = render(<Checkbox />);
+
+      expect(getByRole('checkbox')).not.to.have.attribute('aria-disabled');
+    });
+  });
 });

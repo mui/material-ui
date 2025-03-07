@@ -1708,6 +1708,31 @@ describe('<Autocomplete />', () => {
       setProps({ disabled: true });
       expect(textbox).toBeVisible();
     });
+
+    describe('accessibility', () => {
+      it('has attribute aria-disabled="true" when disabled', () => {
+        const { getByRole } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} />}
+          />,
+        );
+        const input = getByRole('combobox');
+        expect(input).to.have.attribute('aria-disabled', 'true');
+      });
+
+      it('does not have aria-disabled when not disabled', () => {
+        const { getByRole } = render(
+          <Autocomplete
+            options={['one', 'two', 'three']}
+            renderInput={(params) => <TextField {...params} />}
+          />,
+        );
+        const input = getByRole('combobox');
+        expect(input).to.not.have.attribute('aria-disabled');
+      });
+    });
   });
 
   describe('prop: disableClearable', () => {

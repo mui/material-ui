@@ -148,4 +148,18 @@ describe('<Radio />', () => {
 
     expect(screen.queryByRole('radio', { name: 'A' })).not.to.equal(null);
   });
+
+  describe('accessibility', () => {
+    it('should have aria-disabled="true" when disabled', () => {
+      const { getByRole } = render(<Radio disabled />);
+
+      expect(getByRole('radio')).to.have.attribute('aria-disabled', 'true');
+    });
+
+    it('should not have aria-disabled when not disabled', () => {
+      const { getByRole } = render(<Radio />);
+
+      expect(getByRole('radio')).not.to.have.attribute('aria-disabled');
+    });
+  });
 });
