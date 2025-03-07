@@ -37,7 +37,7 @@ Standard form attributes are supported, for example `required`, `disabled`, `typ
 
 ## Controlling the HTML input
 
-Use `slotProps.htmlInput` to pass attributes to the underlying `input` element.
+Use `slotProps.htmlInput` to pass attributes to the underlying `<input>` element.
 
 ```jsx
 <TextField slotProps={{ htmlInput: { 'data-testid': '…' } }} />
