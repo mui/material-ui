@@ -55,7 +55,7 @@ To use the modern bundle (which excludes legacy browser support for smaller bund
 }
 ```
 
-If you were using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
+If you are using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
 
 ```diff
  // vite.config.js
@@ -67,6 +67,23 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
 -      },
      ],
    },
+```
+
+If you are augmenting the theme and using declarations for nested imports, you should replace them with `@mui/material/styles`. You may also have to rename an interface as some are exported from `@mui/material/styles` under a different name:
+
+```diff
+-declare module '@mui/material/styles/createTypography' {
++declare module '@mui/material/styles' {
+-  interface TypographyOptions {
++  interface TypographyVariantsOptions {
+     // ...
+   }
+
+-  interface Typography {
++  interface TypographyVariants {
+     // ...
+   }
+ }
 ```
 
 ### Grid and Grid2 renamed
