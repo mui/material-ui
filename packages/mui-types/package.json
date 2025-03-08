@@ -5,10 +5,6 @@
   "author": "MUI Team",
   "description": "Utility types for MUI.",
   "types": "./index.d.ts",
-  "files": [
-    "index.d.ts",
-    "OverridableComponentAugmentation.ts"
-  ],
   "keywords": [
     "react",
     "react-component",
