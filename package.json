@@ -196,7 +196,7 @@
     "stylelint": "^16.14.1",
     "stylelint-config-standard": "^36.0.1",
     "terser-webpack-plugin": "^5.3.14",
-    "tsx": "^4.19.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5",
     "vitest-fail-on-console": "^0.7.1",
