@@ -42,6 +42,9 @@ describe('<Accordion />', () => {
         testWithElement: 'h4',
         expectedClassName: classes.heading,
       },
+      root: {
+        expectedClassName: classes.root,
+      },
     },
     skip: ['componentProp', 'componentsProp'],
   }));

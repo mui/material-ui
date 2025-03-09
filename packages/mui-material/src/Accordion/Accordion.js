@@ -194,6 +194,21 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     slotProps: backwardCompatibleSlotProps,
   };
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: AccordionRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    className: clsx(classes.root, className),
+    shouldForwardComponentProp: true,
+    ownerState,
+    ref,
+    additionalProps: {
+      square,
+    },
+  });
+
   const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
     elementType: AccordionHeading,
     externalForwardedProps,
@@ -208,13 +223,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   });
 
   return (
-    <AccordionRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      square={square}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       <AccordionHeadingSlot {...accordionProps}>
         <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       </AccordionHeadingSlot>
@@ -228,7 +237,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
           {children}
         </div>
       </TransitionSlot>
-    </AccordionRoot>
+    </RootSlot>
   );
 });
 
