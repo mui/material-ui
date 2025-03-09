@@ -22,6 +22,10 @@ function NoTransition(props) {
   return children;
 }
 
+const CustomPaper = React.forwardRef(({ square, ...props }, ref) => (
+  <Paper ref={ref} {...props} data-testid="custom" />
+));
+
 describe('<Accordion />', () => {
   const { render } = createRenderer();
 
@@ -44,6 +48,7 @@ describe('<Accordion />', () => {
       },
       root: {
         expectedClassName: classes.root,
+        testWithComponent: CustomPaper,
       },
     },
     skip: ['componentProp', 'componentsProp'],
