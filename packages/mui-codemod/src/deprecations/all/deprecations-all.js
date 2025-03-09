@@ -42,7 +42,6 @@ import transformSnackbarProps from '../snackbar-props';
 import transformSliderProps from '../slider-props';
 import transformSliderClasses from '../slider-classes';
 import transformMobileStepperProps from '../mobile-stepper-props';
-import transformSnackbarProps from '../snackbar-props';
 import transformerTabsProps from '../tabs-props';
 import transformerTabsClasses from '../tabs-classes';
 import transformDrawerProps from '../drawer-props';
