@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import userEvent from '@testing-library/user-event';
+
 
 function getStyleValue(value: string) {
   return parseInt(value, 10) || 0;
