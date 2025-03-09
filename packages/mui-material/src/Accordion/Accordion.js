@@ -305,6 +305,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -313,6 +314,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     heading: PropTypes.elementType,
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
