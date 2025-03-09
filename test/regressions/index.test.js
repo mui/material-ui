@@ -158,6 +158,38 @@ async function main() {
         await takeScreenshot({ testcase, route: '/regression-Autocomplete/Virtualize4' });
       });
     });
+
+    describe('Textarea', () => {
+      it('should keep input caret position at the end when adding a newline', async () => {
+        const testcase = await renderFixture('/regression-Textarea/TextareaAutosize');
+        await page.getByRole('textbox').focus();
+
+        const textWithEndline = `abc def abc def abc def\n`;
+        await page.evaluate((text) => {
+          navigator.clipboard.writeText(text);
+        }, textWithEndline);
+
+        const pasteCommand = process.platform === 'darwin' ? 'Meta+V' : 'Control+V';
+
+        await page.keyboard.press(pasteCommand);
+        await takeScreenshot({ testcase, route: '/regression-Textarea/TextareaAutosize1' });
+
+        await page.waitForTimeout(500);
+        await page.keyboard.press(pasteCommand);
+        await takeScreenshot({ testcase, route: '/regression-Textarea/TextareaAutosize2' });
+
+        await page.waitForTimeout(500);
+        await page.keyboard.press(pasteCommand);
+        await takeScreenshot({ testcase, route: '/regression-Textarea/TextareaAutosize3' });
+
+        await page.evaluate(() => {
+          const textarea = document.querySelector('textarea');
+          if (textarea.selectionStart !== textarea.value.length) {
+            throw new Error('The caret is not at the end of the textarea');
+          }
+        });
+      });
+    });
   });
 
   run();

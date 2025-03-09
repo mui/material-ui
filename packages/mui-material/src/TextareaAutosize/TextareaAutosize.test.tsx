@@ -446,35 +446,4 @@ describe('<TextareaAutosize />', () => {
       backgroundColor: 'rgb(255, 255, 0)',
     });
   });
-
-  it('should keep input caret position at the end when adding a newline', async () => {
-    const minRows = 4;
-    const { container } = render(<TextareaAutosize minRows={minRows} />);
-
-    const textarea = container.querySelector<HTMLTextAreaElement>('textarea')!;
-    const user = userEvent.setup();
-    const textWithEndline = 'abc def abc def abc def\n';
-    let finalText = '';
-
-    // Simulate pasting the text
-    await user.click(textarea);
-    await user.paste(textWithEndline);
-    finalText += textWithEndline;
-    expect(textarea.selectionStart).to.equal(finalText.length);
-    expect(textarea.selectionEnd).to.equal(finalText.length);
-
-    // Simulate pasting the text a second time
-    await user.click(textarea);
-    await user.paste(textWithEndline);
-    finalText += textWithEndline;
-    expect(textarea.selectionStart).to.equal(finalText.length);
-    expect(textarea.selectionEnd).to.equal(finalText.length);
-
-    // Simulate pasting the text a third time
-    await user.click(textarea);
-    await user.paste(textWithEndline);
-    finalText += textWithEndline;
-    expect(textarea.selectionStart).to.equal(finalText.length);
-    expect(textarea.selectionEnd).to.equal(finalText.length);
-  });
 });
