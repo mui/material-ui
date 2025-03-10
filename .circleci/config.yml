@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@5.1.2
+  aws-cli: circleci/aws-cli@5.2.0
   aws-s3: circleci/aws-s3@4.1.1
 
 parameters:
@@ -469,6 +469,9 @@ jobs:
           name: Build packages for fixtures
           command: pnpm release:build
       - run:
+          name: Analyze exported typescript
+          command: pnpm test:attw
+      - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css
       - run:
@@ -683,8 +686,8 @@ jobs:
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/setup:
-                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 region: ${AWS_REGION_ARTIFACTS}
             # Upload distributables to S3
             - aws-s3/copy:
@@ -712,8 +715,8 @@ jobs:
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/setup:
-                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 region: ${AWS_REGION_ARTIFACTS}
             # persist size snapshot on S3
             - aws-s3/copy:

@@ -109,7 +109,7 @@ const polyfillLegacyModern = false;
 const legacyModernPrefix = './modern';
 
 function createExportFor(exportName, conditions) {
-  if (typeof conditions === 'object') {
+  if (typeof conditions === 'object' && conditions) {
     const { [srcCondition]: src, ...rest } = conditions;
     if (typeof src === 'string') {
       if (!/\.tsx?$/.test(src)) {
@@ -152,17 +152,28 @@ export async function createPackageFile(useEsmExports = false) {
     JSON.parse(packageData);
 
   const packageExports = {
-    ...createExportFor('.', { [srcCondition]: './src/index.ts' }),
-    ...createExportFor('./*', { [srcCondition]: './src/*/index.ts' }),
+    './package.json': './package.json',
   };
+
+  if (!packageDataOther.exports?.['.']) {
+    Object.assign(packageExports, {
+      ...createExportFor('.', { [srcCondition]: './src/index.ts' }),
+    });
+  }
+
+  if (!packageDataOther.exports?.['./*']) {
+    // The default behavior is to export all top-level folders with an index.ts file
+    // except for the esm/modern targets.
+    Object.assign(packageExports, {
+      ...createExportFor('./*', { [srcCondition]: './src/*/index.ts' }),
+      ...createExportFor('./esm', null),
+      ...createExportFor('./modern', null),
+    });
+  }
 
   if (packageDataOther.exports) {
     for (const [exportName, conditions] of Object.entries(packageDataOther.exports)) {
-      if (conditions) {
-        Object.assign(packageExports, createExportFor(exportName, conditions));
-      } else {
-        delete packageExports[exportName];
-      }
+      Object.assign(packageExports, createExportFor(exportName, conditions));
     }
   }
 
