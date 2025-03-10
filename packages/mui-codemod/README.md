@@ -1606,6 +1606,21 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
+#### `rating-props`
+
+```diff
+ <Snackbar
+-  IconContainerComponent={CustomContainer}
++  slots={{
++    icon: { component: CustomContainer }
++  }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/snackbar-props <path>
+```
+
 #### `select-classes`
 
 JS transforms:
@@ -1731,8 +1746,8 @@ JS transforms:
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`& .${sliderClrsses.thumbColorInfo}`]: {
-+      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+-      [`& .${sliderClasses.thumbColorInfo}`]: {
++      [`&.${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
 -      [`& .${sliderClasses.thumbColorSuccess}`]: {

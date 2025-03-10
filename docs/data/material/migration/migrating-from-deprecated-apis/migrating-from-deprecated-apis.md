@@ -461,7 +461,7 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
 
 ```diff
- <Slider
+ <Backdrop
 -  TransitionComponent={CustomTransition}
 +  slots={{ transition: CustomTransition }}
 ```
@@ -1925,6 +1925,25 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## Rating
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#rating-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/step-label-props <path>
+```
+
+### IconContainerComponent
+
+The Rating's `IconContainerComponent` prop was deprecated in favor of `slotProps.icon.component`:
+
+```diff
+ <Rating
+-  IconContainerComponent={CustomIconContainer}
++  slotProps={{ icon: { component: CustomIconContainer }}}
+ />
+```
+
 ## Select
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#select-classes) below to migrate the code as described in the following sections:
@@ -2032,7 +2051,7 @@ Here's how to migrate:
          color: 'red',
        },
 -      [`& .${sliderClasses.thumbColorInfo}`]: {
-+      [`& .${sliderClasses.thumb}.${sliderClasses.colorInfo}`]: {
++      [`& .${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
 -      [`& .${sliderClasses.thumbColorSuccess}`]: {
