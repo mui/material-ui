@@ -8,7 +8,7 @@ const PaperRoot = styled(MuiPaper, {
 })(({ theme }) => ({
   variants: [
     {
-      props: ({ padding }) => padding,
+      props: ({ padding }) => !!padding,
       style: {
         padding: theme.spacing(1),
       },
