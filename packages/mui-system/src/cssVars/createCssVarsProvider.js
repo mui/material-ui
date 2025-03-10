@@ -140,7 +140,6 @@ export default function createCssVarsProvider(options) {
           [
             'MUI: The `forceThemeRerender` prop should only be used with CSS theme variables.',
             'Note that it will slow down the app when changing between modes, so only do this when you cannot find a better solution.',
-            'If you are not sure about your use case, feel free to create a [new issue](https://github.com/mui/material-ui/issues/new) to let us help',
           ].join('\n'),
         );
       }
@@ -367,7 +366,7 @@ export default function createCssVarsProvider(options) {
      */
     documentNode: PropTypes.any,
     /**
-     * If `true`, theme values is recalculated when the mode changes.
+     * If `true`, theme values are recalculated when the mode changes.
      */
     forceThemeRerender: PropTypes.bool,
     /**

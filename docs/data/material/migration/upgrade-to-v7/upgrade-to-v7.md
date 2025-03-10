@@ -196,7 +196,7 @@ const Custom = styled('div')(({ theme }) => ({
 }));
 ```
 
-If you need to do runtime calculation, we recommend using CSS approach whenever possible.
+If you need to do runtime calculations, we recommend using CSS instead of JS whenever possible.
 For example, adjusting the alpha channel of a color can be done using the [`color-mix` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix):
 
 ```js
@@ -216,7 +216,7 @@ const Custom = styled('div')(({ theme }) => ({
 }));
 ```
 
-If any of the methods above do not suit your project, you can opt out from this behavior by specifying `forceThemeRerender` prop to the ThemeProvider component:
+If any of the methods above do not suit your project, you can opt out from this behavior by passing the `forceThemeRerender` prop to the ThemeProvider component:
 
 ```js
 <ThemeProvider forceThemeRerender />

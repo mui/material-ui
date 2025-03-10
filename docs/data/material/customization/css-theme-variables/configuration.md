@@ -310,9 +310,9 @@ To disable CSS transitions when switching between modes, apply the `disableTrans
 
 ## Force theme recalculation between modes
 
-By default, the theme does not change between light and dark modes to get the best transition performance.
+By default, the `ThemeProvider` does not re-render when switching between light and dark modes when `cssVariables: true` is set in the theme.
 
-If you want to opt-out from this behavior, use `forceThemeRerender` prop to the ThemeProvider component:
+If you want to opt-out from this behavior, use the `forceThemeRerender` prop in the ThemeProvider:
 
 ```js
 <ThemeProvider forceThemeRerender />
