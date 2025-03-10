@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import { usePreviousProps } from '@mui/utils';
 import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
 
 /**
@@ -21,18 +20,13 @@ function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
     showZero = false,
   } = parameters;
 
-  const prevProps = usePreviousProps({
-    badgeContent: badgeContentProp,
-    max: maxProp,
-  });
-
   let invisible = invisibleProp;
 
   if (invisibleProp === false && badgeContentProp === 0 && !showZero) {
     invisible = true;
   }
 
-  const { badgeContent, max = maxProp } = invisible ? prevProps : parameters;
+  const { badgeContent, max = maxProp } = parameters;
 
   const displayValue: React.ReactNode =
     badgeContent && Number(badgeContent) > max ? `${max}+` : badgeContent;
