@@ -419,8 +419,16 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       onMouseMove(event);
     }
 
+    setFocusVisible(false);
+
     const rootNode = rootRef.current;
     const { right, left, width: containerWidth } = rootNode.getBoundingClientRect();
+
+    if (!containerWidth) {
+      // Workaround for test scenario using userEvent since jsdom defaults getBoundingClientRect to 0
+      // Fix https://github.com/mui/material-ui/issues/38828
+      return;
+    }
 
     let percent;
 
@@ -441,8 +449,6 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             focus: newHover,
           },
     );
-
-    setFocusVisible(false);
 
     if (onChangeActive && hover !== newHover) {
       onChangeActive(event, newHover);
