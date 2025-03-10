@@ -178,6 +178,13 @@
         "describedArgs": ["props", "option", "state", "ownerState"]
       }
     },
+    "renderSingleValue": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: Value, tagProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "tagProps", "ownerState"]
+      }
+    },
     "renderTags": {
       "type": { "name": "func" },
       "signature": {
