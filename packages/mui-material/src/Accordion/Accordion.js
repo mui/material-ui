@@ -194,6 +194,21 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     slotProps: backwardCompatibleSlotProps,
   };
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: AccordionRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    className: clsx(classes.root, className),
+    shouldForwardComponentProp: true,
+    ownerState,
+    ref,
+    additionalProps: {
+      square,
+    },
+  });
+
   const [AccordionHeadingSlot, accordionProps] = useSlot('heading', {
     elementType: AccordionHeading,
     externalForwardedProps,
@@ -208,13 +223,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   });
 
   return (
-    <AccordionRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      square={square}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       <AccordionHeadingSlot {...accordionProps}>
         <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       </AccordionHeadingSlot>
@@ -228,7 +237,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
           {children}
         </div>
       </TransitionSlot>
-    </AccordionRoot>
+    </RootSlot>
   );
 });
 
@@ -296,6 +305,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     heading: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -304,6 +314,7 @@ Accordion.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     heading: PropTypes.elementType,
+    root: PropTypes.elementType,
     transition: PropTypes.elementType,
   }),
   /**
