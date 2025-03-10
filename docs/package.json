@@ -22,7 +22,7 @@
     "@babel/core": "^7.26.9",
     "@babel/runtime": "^7.26.9",
     "@babel/runtime-corejs2": "^7.26.9",
-    "@docsearch/react": "^3.8.3",
+    "@docsearch/react": "^3.9.0",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@emotion/server": "^11.11.0",
