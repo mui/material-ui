@@ -522,6 +522,13 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
+      files: ['test/bundling/fixtures/**/*.?(c|m)[jt]s?(x)'],
+      rules: {
+        'react/prop-types': 'off',
+        'import/no-unresolved': 'off',
+      },
+    },
+    {
       files: ['**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
