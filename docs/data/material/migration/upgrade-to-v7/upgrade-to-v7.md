@@ -14,6 +14,28 @@ In the `package.json` file, change the package version from `latest` to `next`.
 Using `next` ensures your project always uses the latest v7 pre-releases.
 Alternatively, you can also target and fix it to a specific version, for example, `7.0.0-alpha.0`.
 
+## Supported browsers and versions
+
+### Minimum TypeScript version
+
+The minimum supported version of TypeScript has been increased from v4.7 to 4.9.
+
+:::info
+We align with [support window](https://github.com/DefinitelyTyped/DefinitelyTyped?tab=readme-ov-file#support-window) by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (published on npm under the `@types` namespace).
+
+We will not change the minimum supported version in a minor version of Material UI.
+However, we recommend not using a TypeScript version older than the lowest supported version by DefinitelyTyped.
+:::
+
+If your project includes these packages, you'll need to update them:
+
+- `@types/react`
+- `@types/react-dom`
+
+:::warning
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+:::
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
