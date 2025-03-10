@@ -16,6 +16,27 @@ Alternatively, you can also target and fix it to a specific version, for example
 
 ## Supported browsers and versions
 
+### Minimum React version
+
+The minimum supported version of React is v17.0.0 (the same as v5 and v6).
+Use the snippet below to update your project (replace the `<version>` with the one you want):
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react@<version> react-dom@<version>
+```
+
+```bash pnpm
+pnpm add react@<version> react-dom@<version>
+```
+
+```bash yarn
+yarn add react@<version> react-dom@<version>
+```
+
+</codeblock>
+
 ### Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v4.7 to 4.9.
