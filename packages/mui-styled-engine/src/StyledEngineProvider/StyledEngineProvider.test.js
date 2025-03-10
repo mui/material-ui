@@ -7,11 +7,23 @@ import { TEST_INTERNALS_DO_NOT_USE } from './StyledEngineProvider';
 describe('[Emotion] StyledEngineProvider', () => {
   const { render } = createRenderer();
 
-  it('should create styles with @layer', () => {
-    let rule;
+  let rule;
+
+  before(() => {
     TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
       rule = args[0];
     };
+  });
+
+  after(() => {
+    delete TEST_INTERNALS_DO_NOT_USE.insert;
+  });
+
+  beforeEach(() => {
+    rule = undefined;
+  });
+
+  it('should create styles with @layer', () => {
     render(
       <StyledEngineProvider enableCssLayer>
         <GlobalStyles styles={{ html: { color: 'red' } }} />
@@ -22,7 +34,6 @@ describe('[Emotion] StyledEngineProvider', () => {
   });
 
   it('should do nothing if the styles already in a layer', () => {
-    let rule;
     TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
       rule = args[0];
     };
@@ -36,7 +47,6 @@ describe('[Emotion] StyledEngineProvider', () => {
   });
 
   it('able to config layer order through GlobalStyles', () => {
-    let rule;
     TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
       rule = args[0];
     };
