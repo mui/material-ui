@@ -468,7 +468,7 @@ function createRender(context) {
 
             return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${[
               '<div class="MuiCallout-icon-container">',
-              '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ContentCopyRoundedIcon">',
+              '<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24">',
               `<use class="MuiCode-copied-icon" xlink:href="#${token.severity}-icon" />`,
               '</svg>',
               '</div>',
