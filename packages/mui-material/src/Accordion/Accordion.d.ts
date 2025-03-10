@@ -4,10 +4,15 @@ import { Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ExtendPaperTypeMap } from '../Paper/Paper';
+import { ExtendPaperTypeMap, PaperProps } from '../Paper/Paper';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface AccordionSlots {
+  /**
+   * The component that renders the root.
+   * @default Paper
+   */
+  root: React.ElementType;
   /**
    * The component that renders the heading.
    * @default 'h3'
@@ -21,12 +26,22 @@ export interface AccordionSlots {
   transition: React.ElementType;
 }
 
-export interface AccordionTransitionSlotPropsOverrides {}
+export interface AccordionRootSlotPropsOverrides {}
 export interface AccordionHeadingSlotPropsOverrides {}
+export interface AccordionTransitionSlotPropsOverrides {}
 
 export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
   {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the Paper element.
+     */
+    root: SlotProps<
+      React.ElementType<PaperProps>,
+      AccordionRootSlotPropsOverrides,
+      AccordionOwnerState
+    >;
     /**
      * Props forwarded to the heading slot.
      * By default, the avaible props are based on the h3 element.
