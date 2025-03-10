@@ -81,7 +81,6 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
   cssVariables?: false;
-  components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
 }
