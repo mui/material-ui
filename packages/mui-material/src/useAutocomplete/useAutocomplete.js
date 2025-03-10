@@ -309,7 +309,7 @@ function useAutocomplete(props) {
       inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
     }
 
-    if (onHighlightChange) {
+    if (onHighlightChange && ['mouse', 'keyboard', 'touch'].includes(reason)) {
       onHighlightChange(event, index === -1 ? null : filteredOptions[index], reason);
     }
 
