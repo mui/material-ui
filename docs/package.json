@@ -85,7 +85,7 @@
     "next": "^15.2.1",
     "notistack": "3.0.2",
     "nprogress": "^0.2.0",
-    "postcss": "^8.5.2",
+    "postcss": "^8.5.3",
     "postcss-import": "^16.1.0",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
@@ -137,7 +137,7 @@
     "gm": "^1.25.1",
     "marked": "^15.0.7",
     "playwright": "^1.50.1",
-    "prettier": "^3.5.1",
+    "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
     "yargs": "^17.7.2"
   }
