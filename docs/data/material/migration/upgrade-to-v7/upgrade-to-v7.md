@@ -196,7 +196,7 @@ const Custom = styled('div')(({ theme }) => ({
 }));
 ```
 
-If you need to do runtime calculations, we recommend using CSS instead of JS whenever possible.
+If you need to do runtime calculations, we recommend using CSS instead of JavaScript whenever possible.
 For example, adjusting the alpha channel of a color can be done using the [`color-mix` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix):
 
 ```js
