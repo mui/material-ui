@@ -67,6 +67,7 @@ export default function createCssVarsProvider(options) {
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
       defaultMode: initialMode = 'system',
+      forceThemeRerender = false,
       noSsr,
     } = props;
     const hasMounted = React.useRef(false);
@@ -133,10 +134,24 @@ export default function createCssVarsProvider(options) {
       colorScheme = ctx.colorScheme;
     }
 
-    const memoTheme = React.useMemo(() => {
-      // `colorScheme` is undefined on the server and hydration phase
-      const calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
+    if (process.env.NODE_ENV !== 'production') {
+      if (forceThemeRerender && !restThemeProp.vars) {
+        console.warn(
+          [
+            'MUI: The `forceThemeRerender` prop should only be used with CSS theme variables.',
+            'Note that it will slow down the app when changing between modes, so only do this when you cannot find a better solution.',
+          ].join('\n'),
+        );
+      }
+    }
 
+    const calculatedColorScheme =
+      forceThemeRerender && restThemeProp.vars
+        ? // `colorScheme` is undefined on the server and hydration phase
+          colorScheme || restThemeProp.defaultColorScheme
+        : restThemeProp.defaultColorScheme;
+
+    const memoTheme = React.useMemo(() => {
       // 2. get the `vars` object that refers to the CSS custom properties
       const themeVars = restThemeProp.generateThemeVars?.() || restThemeProp.vars;
 
@@ -172,7 +187,7 @@ export default function createCssVarsProvider(options) {
       }
 
       return resolveTheme ? resolveTheme(theme) : theme;
-    }, [restThemeProp, colorScheme, components, colorSchemes, cssVarPrefix]);
+    }, [restThemeProp, calculatedColorScheme, components, colorSchemes, cssVarPrefix]);
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
@@ -350,6 +365,10 @@ export default function createCssVarsProvider(options) {
      * The document to attach the attribute to.
      */
     documentNode: PropTypes.any,
+    /**
+     * If `true`, theme values are recalculated when the mode changes.
+     */
+    forceThemeRerender: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */
