@@ -327,4 +327,18 @@ describe('<TextField />', () => {
       expect(getByTestId('label').getAttribute('data-shrink')).to.equal('true');
     });
   });
+
+  describe('accessibility', () => {
+    it('should have aria-disabled="true" when disabled', () => {
+      const { getByRole } = render(<TextField disabled />);
+
+      expect(getByRole('textbox')).to.have.attribute('aria-disabled', 'true');
+    });
+
+    it('should not have aria-disabled when not disabled', () => {
+      const { getByRole } = render(<TextField />);
+
+      expect(getByRole('textbox')).not.to.have.attribute('aria-disabled');
+    });
+  });
 });
