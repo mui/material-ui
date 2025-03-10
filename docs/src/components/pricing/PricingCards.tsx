@@ -403,7 +403,7 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
       }}
     >
       {feature.icon === 'check' && (
-        <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main'}} />
+        <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main' }} />
       )}
       {feature.icon === 'support' && (
         <Box
