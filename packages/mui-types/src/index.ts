@@ -84,7 +84,9 @@ export type IfEquals<T, U, Y = unknown, N = never> =
  * This means `typeof value` is not identical to `number | string`
  * @param actual
  */
-export function expectType<Expected, Actual>(actual: IfEquals<Actual, Expected, Actual>): void;
+export declare function expectType<Expected, Actual>(
+  actual: IfEquals<Actual, Expected, Actual>,
+): void;
 
 /**
  * A component whose root component can be controlled via a `component` prop.
