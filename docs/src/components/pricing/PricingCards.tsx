@@ -399,10 +399,11 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
         display: 'flex',
         alignItems: 'center',
         gap: 1,
+        pl: feature.icon === 'check' ? 0.4 : null,
       }}
     >
       {feature.icon === 'check' && (
-        <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main', ml: 0.4 }} />
+        <IconImage name="pricing/yes" sx={{ fontSize: 20, color: 'primary.main'}} />
       )}
       {feature.icon === 'support' && (
         <Box
