@@ -25,7 +25,7 @@ const openRolesData = [
       {
         title: 'Staff Engineer — Pigment CSS',
         description:
-          'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
+          'You will research, document, and help build our next-gen zero-runtime CSS-in-JS library, with a focus on performance and great developer experience.',
         url: '/careers/staff-engineer-pigment-css/',
       },
       // {
@@ -37,13 +37,13 @@ const openRolesData = [
       {
         title: 'React Engineer — eXplore',
         description:
-          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+          'You will work with the team behind the Date Pickers and Tree View components to expand on our advanced component suite.',
         url: '/careers/react-engineer-explore/',
       },
       {
         title: 'React Engineer — X',
         description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+          'You will strengthen the MUI X product by building ambitious and complex new features, working on strategic problems, and helping to drive adoption.',
         url: '/careers/react-engineer-x/',
       },
     ],
@@ -71,19 +71,19 @@ const nextRolesData = [
       {
         title: 'React Tech Lead — Core',
         description:
-          'You will lead the development of the core libraries, helping position it as the industry standard for design system teams.',
+          'You will lead the development of the core libraries, helping to position them as the industry standard for design system teams.',
         url: '/careers/react-tech-lead-core/',
       },
       {
         title: 'React Community Engineer — X',
         description:
-          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+          'You will work with the advanced components team to provide guidance to the community and help resolve user issues.',
         url: '/careers/react-community-engineer/',
       },
       {
         title: 'Accessibility Engineer',
         description:
-          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
+          'You will become our go-to accessibility expert to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
         url: '/careers/accessibility-engineer/',
       },
     ],
@@ -135,7 +135,7 @@ export default function Careers() {
                 <br /> of tools for UI development
               </Typography>
             }
-            description="Together, we are enabling developers & designers to bring stunning UIs to life with unrivalled speed and ease."
+            description="We give developers and designers the tools to bring stunning user interfaces to life with unrivaled speed and ease."
           />
         </Section>
         <Divider />
@@ -157,7 +157,7 @@ export default function Careers() {
                 />
               </Typography>
             }
-            description="The company was incorporated in mid-2019 and has been bootstrapped so far. We're growing fast—2× YoY—and have kept a steady pace of increasing the team: in 2020, we were 6; 15 in 2021, 25 in 2022, and 32 in 2023. We plan to grow the team to 60 people in 2024 in the following areas:"
+            description="We are actively hiring for the following roles:"
           />
           <Divider sx={{ borderStyle: 'dashed', my: { xs: 2, sm: 6 } }} />
           <Stack spacing={2} divider={<Divider />}>
@@ -188,7 +188,6 @@ export default function Careers() {
           <Box data-mui-color-scheme="dark" sx={{ bgcolor: 'common.black' }}>
             <Section bg="transparent" cozy>
               <SectionHeadline
-                alwaysCenter
                 title={
                   <Typography variant="h2" id="next-roles" gutterBottom>
                     Next roles
@@ -196,17 +195,13 @@ export default function Careers() {
                 }
                 description={
                   <React.Fragment>
-                    {
-                      'We are not actively hiring for these roles but we will likely focus on them next. '
-                    }
-                    {"If you are passively looking, don't hesitate to apply!"}
-                    <br />
-                    <br />
-                    If none of the roles below fit with what you are looking for, apply to{' '}
+                    We&apos;re not actively hiring for these roles yet, but you&apos;re welcome to
+                    apply for future consideration. If none of these roles match your profile, you
+                    can apply to{' '}
                     <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
-                      the Dream job role
-                    </Link>
-                    !
+                      the dream job
+                    </Link>{' '}
+                    and tell us more about what you bring to the table.
                   </React.Fragment>
                 }
               />
