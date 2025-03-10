@@ -815,6 +815,14 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const handleKeyDown = (event) => {
+    // Check if a modifier key (Alt, Shift, Ctrl) is pressed with ArrowLeft/ArrowRight
+    if (
+      (event.altKey || event.shiftKey || event.ctrlKey) &&
+      (event.key === 'ArrowLeft' || event.key === 'ArrowRight')
+    ) {
+      return;
+    }
+
     const list = tabListRef.current;
     const currentFocus = ownerDocument(list).activeElement;
     // Keyboard navigation assumes that [role="tab"] are siblings
@@ -828,7 +836,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
     let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
     if (orientation === 'horizontal' && isRtl) {
-      // swap previousItemKey with nextItemKey
       previousItemKey = 'ArrowRight';
       nextItemKey = 'ArrowLeft';
     }
