@@ -27,47 +27,49 @@ WrappedIcon.muiName = Icon.muiName;
 Use the `mergeSlotProps` utility function to merge custom props with the slot props.
 If the arguments are functions then they'll be resolved before merging, and the result from the first argument will override the second.
 
-```jsx
-import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-import { mergeSlotProps } from '@mui/material/utils';
-
-export const CustomTooltip = (props: TooltipProps) => {
-  const { children, title, sx: sxProps } = props;
-
-  return (
-    <Tooltip
-      {...props}
-      title={<Box sx={{ p: 4 }}>{title}</Box>}
-      slotProps={{
-        ...props.slotProps,
-        popper: mergeSlotProps(props.slotProps?.popper, {
-          className: 'custom-tooltip-popper',
-          disablePortal: true,
-          placement: 'top',
-        }),
-      }}
-    >
-      {children}
-    </Tooltip>
-  );
-};
-```
-
 Special properties that merged between the two arguments are listed below:
 
 - `className`: values are concatenated rather than overriding one another.
-  In the snippet above, the `custom-tooltip-popper` class is applied to the Tooltip's popper slot.
+
+  In the snippet below, the `custom-tooltip-popper` class is applied to the Tooltip's popper slot.
+
+  ```jsx
+  import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
+  import { mergeSlotProps } from '@mui/material/utils';
+
+  export const CustomTooltip = (props: TooltipProps) => {
+    const { children, title, sx: sxProps } = props;
+
+    return (
+      <Tooltip
+        {...props}
+        title={<Box sx={{ p: 4 }}>{title}</Box>}
+        slotProps={{
+          ...props.slotProps,
+          popper: mergeSlotProps(props.slotProps?.popper, {
+            className: 'custom-tooltip-popper',
+            disablePortal: true,
+            placement: 'top',
+          }),
+        }}
+      >
+        {children}
+      </Tooltip>
+    );
+  };
+  ```
+
   If you added another `className` via the `slotProps` prop on the Custom Tooltip—as shown below—then both would be present on the rendered popper slot:
 
-```js
-<CustomTooltip slotProps={{ popper: { className: 'foo' } }} />
-```
+  ```js
+  <CustomTooltip slotProps={{ popper: { className: 'foo' } }} />
+  ```
 
-The popper slot in the original example would now have both classes applied to it, in addition to any others that may be present: `"[…] custom-tooltip-popper foo"`.
+  The popper slot in the original example would now have both classes applied to it, in addition to any others that may be present: `"[…] custom-tooltip-popper foo"`.
 
 - `style`: object are shallow merged rather than replacing one another. The style keys from the first argument have higher priority.
 - `sx`: values are concatenated into an array.
-- functions: the values type of `function` with the same key are merged into a single function by default. You can control the list of the functions that should be merged by passing an array of function name to the third argument.
+- functions: the values with type of `function` and the same key are merged into a single function. To apply the merging behavior to some functions, pass an array of names to the third argument.
 
 ```js
 mergeSlotProps(
