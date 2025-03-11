@@ -177,6 +177,91 @@ npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
 
+### Theme behavior changes
+
+When CSS theme variables is enabled with built-in light and dark color schemes, the theme no longer changes between modes.
+The snippet below demonstrates this behavior when users toggle the dark mode, the `mode` state from `useColorScheme` changes, but the theme object no longer changes:
+
+```js
+import {
+  ThemeProvider,
+  createTheme,
+  useTheme,
+  useColorScheme,
+} from '@mui/material/styles';
+
+const theme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'class',
+  },
+  colorSchemes: {
+    light: true,
+    dark: true,
+  },
+});
+console.log(theme.palette.mode); // 'light' is the default mode
+
+function ColorModeToggle() {
+  const { setMode, mode } = useColorScheme();
+  const theme = useTheme();
+
+  React.useEffect(() => {
+    console.log(mode); // logged 'light' at first render, and 'dark' after the button click
+  }, [mode]);
+
+  React.useEffect(() => {
+    console.log(theme.palette.mode); // logged 'light' at first render, no log after the button click
+  }, [theme]);
+
+  return <button onClick={() => setMode('dark')}>Toggle dark mode</button>;
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <ColorModeToggle />
+    </ThemeProvider>
+  );
+}
+```
+
+This default behavior was made to improve performance by avoiding unnecessary re-renders when the mode changes.
+
+It's recommended to use the `theme.vars.*` as values in your styles to refer to the CSS variables directly:
+
+```js
+const Custom = styled('div')(({ theme }) => ({
+  color: theme.vars.palette.text.primary,
+  background: theme.vars.palette.primary.main,
+}));
+```
+
+If you need to do runtime calculations, we recommend using CSS instead of JavaScript whenever possible.
+For example, adjusting the alpha channel of a color can be done using the [`color-mix` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix):
+
+```js
+const Custom = styled('div')(({ theme }) => ({
+  color: `color-mix(in srgb, ${theme.vars.palette.text.primary}, transparent 50%)`,
+}));
+```
+
+However, if CSS approach is not possible, you can access the value directly from the `theme.colorSchemes` object, then apply both light and dark styles:
+
+```js
+const Custom = styled('div')(({ theme }) => ({
+  color: alpha(theme.colorSchemes.light.palette.text.primary, 0.5),
+  ...theme.applyStyles('dark', {
+    color: alpha(theme.colorSchemes.dark.palette.text.primary, 0.5),
+  }),
+}));
+```
+
+If any of the methods above do not suit your project, you can opt out from this behavior by passing the `forceThemeRerender` prop to the ThemeProvider component:
+
+```js
+<ThemeProvider forceThemeRerender />
+```
+
 ### Deprecated APIs removed
 
 APIs that were deprecated in v5 have been removed in v7.
