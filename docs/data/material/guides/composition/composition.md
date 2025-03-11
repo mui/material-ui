@@ -71,16 +71,16 @@ Special properties that merged between the two arguments are listed below:
 - `sx`: values are concatenated into an array.
 - functions: the values with type of `function` and the same key are merged into a single function. To apply the merging behavior to some functions, pass an array of names to the third argument.
 
-```js
-mergeSlotProps(
-  props.slotProps?.popper,
-  {
-    onClick: (event) => {},
-    createPopper: (popperOptions) => {},
-  },
-  ['onClick'], // only merge `onClick` function, `createPopper` will be overridden
-);
-```
+  ```js
+  mergeSlotProps(
+    props.slotProps?.popper,
+    {
+      onClick: (event) => {},
+      createPopper: (popperOptions) => {},
+    },
+    ['onClick'], // only merge `onClick` function, `createPopper` will be overridden
+  );
+  ```
 
 ## Component prop
 
