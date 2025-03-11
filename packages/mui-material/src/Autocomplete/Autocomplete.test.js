@@ -2906,6 +2906,21 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: onHighlightChange', () => {
+    it('should not trigger event when default value is passed', () => {
+      const handleHighlightChange = spy();
+      const options = ['one', 'two', 'three'];
+      render(
+        <Autocomplete
+          defaultValue={options[0]}
+          onHighlightChange={handleHighlightChange}
+          options={options}
+          open
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      expect(handleHighlightChange.callCount).to.equal(0);
+    });
+
     it('should support keyboard event', () => {
       const handleHighlightChange = spy();
       const options = ['one', 'two', 'three'];
@@ -2974,9 +2989,11 @@ describe('<Autocomplete />', () => {
       );
     });
 
-    it('should reset the highlight when the options change', () => {
+    it('should reset the highlight when the options change and onHighlightChange should not be called', () => {
+      const handleHighlightChange = spy();
       const { getByRole, setProps } = render(
         <Autocomplete
+          onHighlightChange={handleHighlightChange}
           openOnFocus
           autoHighlight
           options={['one', 'two', 'three']}
@@ -2985,8 +3002,12 @@ describe('<Autocomplete />', () => {
       );
 
       checkHighlightIs(getByRole('listbox'), 'one');
+      expect(handleHighlightChange.callCount).to.equal(0);
+
       setProps({ options: ['four', 'five'] });
+
       checkHighlightIs(getByRole('listbox'), 'four');
+      expect(handleHighlightChange.callCount).to.equal(0);
     });
   });
 
