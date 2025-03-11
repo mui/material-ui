@@ -1,6 +1,24 @@
 import { SlotComponentProps } from '@mui/utils';
 import clsx from 'clsx';
 
+function extractHandlers(
+  externalSlotPropsValue: Record<string, any>,
+  defaultSlotPropsValue: Record<string, any>,
+) {
+  let handlers: Record<string, Function> = {};
+  for (const key in defaultSlotPropsValue) {
+    if (typeof defaultSlotPropsValue[key] === 'function' && key.startsWith('on')) {
+      handlers[key] = (...args: unknown[]) => {
+        if (typeof externalSlotPropsValue[key] === 'function') {
+          externalSlotPropsValue[key](...args);
+        }
+        defaultSlotPropsValue[key](...args);
+      };
+    }
+  }
+  return handlers;
+}
+
 export default function mergeSlotProps<
   T extends SlotComponentProps<React.ElementType, {}, {}>,
   K = T,
@@ -24,9 +42,12 @@ export default function mergeSlotProps<
         defaultSlotPropsValue?.className,
         externalSlotPropsValue?.className,
       );
+      const handlers = extractHandlers(externalSlotPropsValue, defaultSlotPropsValue);
+
       return {
         ...defaultSlotPropsValue,
         ...externalSlotPropsValue,
+        ...handlers,
         ...(!!className && { className }),
         ...(defaultSlotPropsValue?.style &&
           externalSlotPropsValue?.style && {
@@ -47,10 +68,12 @@ export default function mergeSlotProps<
     }) as U;
   }
   const typedDefaultSlotProps = defaultSlotProps as Record<string, any>;
+  const handlers = extractHandlers(externalSlotProps, typedDefaultSlotProps);
   const className = clsx(typedDefaultSlotProps?.className, externalSlotProps?.className);
   return {
     ...defaultSlotProps,
     ...externalSlotProps,
+    ...handlers,
     ...(!!className && { className }),
     ...(typedDefaultSlotProps?.style &&
       externalSlotProps?.style && {
