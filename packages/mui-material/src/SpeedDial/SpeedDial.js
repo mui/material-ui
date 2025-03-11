@@ -395,6 +395,43 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     slotProps: backwardCompatibleSlotProps,
   };
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    elementType: SpeedDialRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+    additionalProps: {
+      role: 'presentation',
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onKeyDown: (event) => {
+        handlers.onKeyDown?.(event);
+        handleKeyDown(event);
+      },
+      onBlur: (event) => {
+        handlers.onBlur?.(event);
+        handleClose(event);
+      },
+      onFocus: (event) => {
+        handlers.onFocus?.(event);
+        handleOpen(event);
+      },
+      onMouseEnter: (event) => {
+        handlers.onMouseEnter?.(event);
+        handleOpen(event);
+      },
+      onMouseLeave: (event) => {
+        handlers.onMouseLeave?.(event);
+        handleClose(event);
+      },
+    }),
+  });
+
   const [TransitionSlot, transitionProps] = useSlot('transition', {
     elementType: Zoom,
     externalForwardedProps,
@@ -402,18 +439,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   });
 
   return (
-    <SpeedDialRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      role="presentation"
-      onKeyDown={handleKeyDown}
-      onBlur={handleClose}
-      onFocus={handleOpen}
-      onMouseEnter={handleOpen}
-      onMouseLeave={handleClose}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       <TransitionSlot in={!hidden} timeout={transitionDuration} unmountOnExit {...transitionProps}>
         <SpeedDialFab
           color="primary"
@@ -441,7 +467,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       >
         {children}
       </SpeedDialActions>
-    </SpeedDialRoot>
+    </RootSlot>
   );
 });
 
