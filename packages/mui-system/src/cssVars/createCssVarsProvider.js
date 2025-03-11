@@ -67,7 +67,6 @@ export default function createCssVarsProvider(options) {
       disableNestedContext = false,
       disableStyleSheetGeneration = false,
       defaultMode: initialMode = 'system',
-      freezeThemeValues = false,
       noSsr,
     } = props;
     const hasMounted = React.useRef(false);
@@ -134,12 +133,10 @@ export default function createCssVarsProvider(options) {
       colorScheme = ctx.colorScheme;
     }
 
-    const calculatedColorScheme = freezeThemeValues
-      ? restThemeProp.defaultColorScheme
-      : // `colorScheme` is undefined on the server and hydration phase
-        colorScheme || restThemeProp.defaultColorScheme;
-
     const memoTheme = React.useMemo(() => {
+      // `colorScheme` is undefined on the server and hydration phase
+      const calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
+
       // 2. get the `vars` object that refers to the CSS custom properties
       const themeVars = restThemeProp.generateThemeVars?.() || restThemeProp.vars;
 
@@ -175,7 +172,7 @@ export default function createCssVarsProvider(options) {
       }
 
       return resolveTheme ? resolveTheme(theme) : theme;
-    }, [restThemeProp, calculatedColorScheme, components, colorSchemes, cssVarPrefix]);
+    }, [restThemeProp, colorScheme, components, colorSchemes, cssVarPrefix]);
 
     // 5. Declaring effects
     // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
@@ -353,10 +350,6 @@ export default function createCssVarsProvider(options) {
      * The document to attach the attribute to.
      */
     documentNode: PropTypes.any,
-    /**
-     * If `true`, theme values will not change when the mode/color-scheme changes.
-     */
-    freezeThemeValues: PropTypes.bool,
     /**
      * The key in the local storage used to store current color scheme.
      */
