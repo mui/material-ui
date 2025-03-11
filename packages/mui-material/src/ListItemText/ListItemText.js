@@ -214,6 +214,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -222,6 +223,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     primary: PropTypes.elementType,
+    root: PropTypes.elementType,
     secondary: PropTypes.elementType,
   }),
   /**
