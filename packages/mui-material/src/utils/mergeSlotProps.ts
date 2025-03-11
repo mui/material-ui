@@ -1,32 +1,32 @@
 import { SlotComponentProps } from '@mui/utils';
 import clsx from 'clsx';
 
-function extractHandlers(
-  externalSlotPropsValue: Record<string, any>,
-  defaultSlotPropsValue: Record<string, any>,
-) {
-  let handlers: Record<string, Function> = {};
-  for (const key in defaultSlotPropsValue) {
-    if (typeof defaultSlotPropsValue[key] === 'function' && key.startsWith('on')) {
-      handlers[key] = (...args: unknown[]) => {
-        if (typeof externalSlotPropsValue[key] === 'function') {
-          externalSlotPropsValue[key](...args);
-        }
-        defaultSlotPropsValue[key](...args);
-      };
-    }
-  }
-  return handlers;
-}
-
 export default function mergeSlotProps<
   T extends SlotComponentProps<React.ElementType, {}, {}>,
   K = T,
   // infer external slot props first to provide autocomplete for default slot props
   U = T extends Function ? T : K extends Function ? K : T extends undefined ? K : T,
->(externalSlotProps: T | undefined, defaultSlotProps: K): U {
+>(externalSlotProps: T | undefined, defaultSlotProps: K, mergedFunctionList?: string[]): U {
   if (!externalSlotProps) {
     return defaultSlotProps as unknown as U;
+  }
+  function extractHandlers(
+    externalSlotPropsValue: Record<string, any>,
+    defaultSlotPropsValue: Record<string, any>,
+  ) {
+    let handlers: Record<string, Function> = {};
+    const keys = mergedFunctionList || Object.keys(defaultSlotPropsValue);
+    keys.forEach((key) => {
+      if (typeof defaultSlotPropsValue[key] === 'function') {
+        handlers[key] = (...args: unknown[]) => {
+          if (typeof externalSlotPropsValue[key] === 'function') {
+            externalSlotPropsValue[key](...args);
+          }
+          defaultSlotPropsValue[key](...args);
+        };
+      }
+    });
+    return handlers;
   }
   if (typeof externalSlotProps === 'function' || typeof defaultSlotProps === 'function') {
     return ((ownerState: Record<string, any>) => {
