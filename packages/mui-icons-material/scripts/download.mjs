@@ -18,33 +18,16 @@ const ignoredIconNames = new Set([
   '123',
   '6_ft_apart',
   'add_chart', // Leads to inconsistent casing with `Addchart`
-  'compost',
-  'cruelty_free',
-  'data_exploration',
-  'disabled_visible',
-  'drive_file_move_rtl',
   'exposure_neg_1', // Google product
   'exposure_neg_2', // Google product
   'exposure_plus_1', // Google product
   'exposure_plus_2', // Google product
   'exposure_zero', // Google product
-  'free_cancellation',
-  'front_hand',
-  'generating_tokens',
-  'group_off',
   'horizontal_distribute', // Advanced text editor
-  'hotel_class',
-  'incomplete_circle',
   'motion_photos_on', // Google product
   'motion_photos_pause', // Google product
   'motion_photos_paused', // Google product
-  'new_label',
-  'personal_injury',
-  'pin_end',
-  'pin_invoke',
   'polymer', // Legacy brand
-  'private_connectivity',
-  'real_estate_agent',
   'vertical_distribute', // Advanced text editor
 ]);
 
