@@ -30,32 +30,23 @@ describe('[Emotion] StyledEngineProvider', () => {
       </StyledEngineProvider>,
     );
     expect(rule).to.equal('@layer mui{html{color:red;}}');
-    delete TEST_INTERNALS_DO_NOT_USE.insert;
   });
 
   it('should do nothing if the styles already in a layer', () => {
-    TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
-      rule = args[0];
-    };
     render(
       <StyledEngineProvider enableCssLayer>
         <GlobalStyles styles={{ '@layer components': { html: { color: 'red' } } }} />
       </StyledEngineProvider>,
     );
     expect(rule).to.equal('@layer components{html{color:red;}}');
-    delete TEST_INTERNALS_DO_NOT_USE.insert;
   });
 
   it('able to config layer order through GlobalStyles', () => {
-    TEST_INTERNALS_DO_NOT_USE.insert = (...args) => {
-      rule = args[0];
-    };
     render(
       <StyledEngineProvider enableCssLayer>
         <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
       </StyledEngineProvider>,
     );
     expect(rule).to.equal('@layer theme,base,mui,components,utilities;');
-    delete TEST_INTERNALS_DO_NOT_USE.insert;
   });
 });
