@@ -17,7 +17,11 @@ export default function mergeSlotProps<
     const handlers: Record<string, Function> = {};
     const keys = mergedFunctionList || Object.keys(defaultSlotPropsValue);
     keys.forEach((key) => {
-      if (key !== 'ref' && typeof defaultSlotPropsValue[key] === 'function') {
+      if (
+        key !== 'ref' &&
+        key !== 'component' &&
+        typeof defaultSlotPropsValue[key] === 'function'
+      ) {
         handlers[key] = (...args: unknown[]) => {
           if (typeof externalSlotPropsValue[key] === 'function') {
             externalSlotPropsValue[key](...args);
