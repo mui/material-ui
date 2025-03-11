@@ -49,8 +49,8 @@ We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
-You would be able to shape the infrstructure of one of the most visited reposotires.
-The impact of your work will not improve the experience for the MNUI team, but also for thousands of other open source contributors that contribute to our projects.
+You would be able to shape the infrstructure of one of the most visited reposotires and documentation.
+The impact of your work will not improve the experience for the MUI team, but also for thousands of other open source contributors that contribute to our projects.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
@@ -60,13 +60,22 @@ Our products empower React developers to build awesome applications faster – w
 
 Depending on the day, you'll:
 
-- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace. This includes:
-  - Responding to outages and failing CI.
-  - Stabilizing and optimizing test infrastructure.
-  - Optimizing and improving build tools, linting tools.
-  - Improve packaging and publishing flow.
+- **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace.
 - **Find consensus**. In response to their needs, this role aligns the teams on "one way" of doing things and doing it well. You'll need to communicate clearly and openly. You'll be at service to the teams DX needs.
 - **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
+- **Own infrastructure tasks**, like managing dependencies, analytics, TypeScript modules, and hosting, so product teams can stay focused on their primary responsibilities.
+- **Develop new features** that will enhance the way the libraries are showcased.
+
+### Tasks and initiatives you might take on
+
+- Responding to outages and failing CI.
+- Stabilizing and optimizing test infrastructure.
+- Optimizing and improving build tools, linting tools.
+- Improve packaging and publishing flow.
+- Migrate the docs platform to the Next.js App Router
+- Allow users to search the docs within a specific product scope
+- Make it possible to store different parts of our documentation in different repositories
+- Introduce a more scalable solution for hosting videos and images
 
 ### The best parts of this job
 
