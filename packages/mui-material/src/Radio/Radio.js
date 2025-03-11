@@ -127,6 +127,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     disableRipple = false,
     slots = {},
     slotProps = {},
+    inputProps,
     ...other
   } = props;
 
@@ -166,6 +167,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     }
   }
 
+  const externalInputProps = slotProps.input ?? inputProps;
+
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
     elementType: RadioRoot,
@@ -197,7 +200,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       slotProps: {
         // Do not forward `slotProps.root` again because it's already handled by the `RootSlot` in this file.
         input:
-          typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
+          typeof externalInputProps === 'function'
+            ? externalInputProps(ownerState)
+            : externalInputProps,
       },
     },
   });

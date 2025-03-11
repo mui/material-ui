@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import { DefaultTheme } from '@mui/system';
+import { StorageManager } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
@@ -25,6 +26,12 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       disableStyleSheetGeneration?: boolean;
+      /**
+       * If `true`, theme values are recalculated when the mode changes.
+       * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+       * @default false
+       */
+      forceThemeRerender?: boolean;
     }
   : {};
 
@@ -47,6 +54,11 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    * @default window
    */
   storageWindow?: Window | null;
+  /**
+   * The storage manager to be used for storing the mode and color scheme
+   * @default using `window.localStorage`
+   */
+  storageManager?: StorageManager | null;
   /**
    * localStorage key used to store application `mode`
    * @default 'mui-mode'
