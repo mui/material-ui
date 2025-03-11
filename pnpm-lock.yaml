@@ -2192,6 +2192,10 @@ importers:
     publishDirectory: build
 
   packages/mui-types:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.26.9
+        version: 7.26.9
     devDependencies:
       '@mui/types':
         specifier: workspace:*
