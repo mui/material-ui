@@ -9,7 +9,7 @@ export interface ProductVersion {
   href?: undefined;
 }
 
-export interface ProductIdentifier {
+export interface ProductInfo {
   metadata: string;
   name: string;
   logo: (props: RootSvgProps) => React.JSX.Element;
@@ -18,13 +18,15 @@ export interface ProductIdentifier {
   versions: ProductVersion[];
 }
 
-const PageContext = React.createContext<{
+export interface MuiPageContext {
   activePage: MuiPage | null;
   pages: MuiPage[];
   productId: MuiProductId;
-  productIdentifier: ProductIdentifier;
+  productIdentifier: ProductInfo;
   activePageParents: MuiPage[];
-}>(undefined!);
+}
+
+const PageContext = React.createContext<MuiPageContext>(undefined!);
 
 if (process.env.NODE_ENV !== 'production') {
   PageContext.displayName = 'PageContext';
