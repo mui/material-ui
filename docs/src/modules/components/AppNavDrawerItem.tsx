@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
 import { Link, LinkProps } from '@mui/docs/Link';
+import { MuiPageIcon } from 'docs/src/MuiPage';
 import standardNavIcons from './AppNavIcons';
 
 const Item = styled(
@@ -305,20 +306,20 @@ DeadLink.propTypes = {
 
 export interface AppNavDrawerItemProps {
   beta?: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   deprecated?: boolean;
   depth: number;
   expandable?: boolean;
   href?: string | object;
-  icon: keyof typeof standardNavIcons;
+  icon?: MuiPageIcon;
   initiallyExpanded?: boolean;
   legacy?: boolean;
-  linkProps?: LinkProps;
+  linkProps?: Record<string, unknown> | undefined;
   newFeature?: boolean;
   onClick?: (event: MouseEvent) => void;
   planned?: boolean;
   subheader: boolean;
-  title: string;
+  title?: string | null;
   topLevel?: boolean;
   unstable?: boolean;
   plan?: 'community' | 'pro' | 'premium';
@@ -363,8 +364,8 @@ export default function AppNavDrawerItem(props: AppNavDrawerItemProps) {
     }
   };
 
-  const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon]);
   const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon;
+  const hasIcon = !!IconComponent;
   const iconElement = hasIcon ? (
     <Box
       component="span"
@@ -397,7 +398,7 @@ export default function AppNavDrawerItem(props: AppNavDrawerItemProps) {
         onClick={handleClick}
         {...linkProps}
         style={{
-          ...linkProps?.style,
+          ...(linkProps?.style ?? {}),
           '--_depth': depth,
           '--_expandable': expandable ? 1 : 0,
         }}
