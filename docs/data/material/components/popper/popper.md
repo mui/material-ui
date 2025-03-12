@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/Popper
 
 Some important features of the Popper component:
 
-- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/docs/v2/)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
 - Its child element is a [MUI Base Portal](/base-ui/react-portal/) on the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
