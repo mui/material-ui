@@ -164,7 +164,7 @@ describe('system spacing', () => {
         },
         p: 1,
       });
-      expect(output).to.deep.equal({ padding: 'calc(1 * var(--mui-spacing))' });
+      expect(output).to.deep.equal({ padding: 'var(--mui-spacing)' });
     });
 
     it('should support CSS variables array', () => {
