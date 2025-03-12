@@ -9,6 +9,10 @@ import Accordion from '@mui/material/Accordion';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 
+const CustomButtonBase = React.forwardRef(({ focusVisible, ...props }, ref) => (
+  <ButtonBase ref={ref} {...props} />
+));
+
 describe('<AccordionSummary />', () => {
   const { render } = createRenderer();
 
@@ -24,6 +28,7 @@ describe('<AccordionSummary />', () => {
     slots: {
       root: {
         expectedClassName: classes.root,
+        testWithElement: CustomButtonBase,
       },
       content: {
         expectedClassName: classes.content,
