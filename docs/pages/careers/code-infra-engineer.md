@@ -72,6 +72,8 @@ Depending on the day, you'll:
 - Stabilizing and optimizing test infrastructure.
 - Optimizing and improving build tools, linting tools.
 - Improve packaging and publishing flow.
+- Enhance security of our documentation websites
+- Improve documentation performance
 - Migrate the docs platform to the Next.js App Router
 - Allow users to search the docs within a specific product scope
 - Design a distribution model for shared documentation infrastructure
