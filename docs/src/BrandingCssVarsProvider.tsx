@@ -82,6 +82,7 @@ export default function BrandingCssVarsProvider(props: { children: React.ReactNo
   const { children } = props;
   return (
     // need to use deprecated API because MUI X repo still on Material UI v5
+    // @ts-ignore to bypass type checking in MUI X repo because it still on Material UI v5, no `forceThemeRerender` prop
     <ThemeVarsProvider theme={theme} disableTransitionOnChange forceThemeRerender>
       <NextNProgressBar />
       <CssBaseline />
