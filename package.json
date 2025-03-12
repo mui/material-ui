@@ -100,7 +100,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
-    "@googleapis/sheets": "^9.3.1",
+    "@googleapis/sheets": "^9.4.0",
     "@netlify/functions": "^3.0.1",
     "@slack/bolt": "^4.2.1",
     "babel-plugin-transform-import-meta": "^2.3.2",
@@ -127,7 +127,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^15.1.7",
+    "@next/eslint-plugin-next": "^15.2.1",
     "@octokit/rest": "^21.1.1",
     "@pigment-css/react": "0.0.30",
     "@playwright/test": "1.50.1",
