@@ -12,7 +12,7 @@ import describeConformance from '../../test/describeConformance';
 describe('<AccordionSummary />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<AccordionSummary />, () => ({
+  describeConformance(<AccordionSummary expandIcon="expand" />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
@@ -21,6 +21,17 @@ describe('<AccordionSummary />', () => {
     testVariantProps: { disabled: true },
     testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
     skip: ['componentProp', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      content: {
+        expectedClassName: classes.content,
+      },
+      expandIconWrapper: {
+        expectedClassName: classes.expandIconWrapper,
+      },
+    },
   }));
 
   it('renders the children inside the .content element', () => {
