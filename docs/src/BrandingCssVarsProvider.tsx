@@ -2,8 +2,9 @@ import * as React from 'react';
 import { deepmerge } from '@mui/utils';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
-  // @ts-expect-error need to use deprecated API because MUI X repo still on Material UI v5
+  // @ts-ignore need to use deprecated API because MUI X repo still on Material UI v5
   experimental_extendTheme as extendTheme,
+  // @ts-ignore to bypass type checking in MUI X repo because it still on Material UI v5
   createColorScheme,
   ThemeProvider,
   createTheme,
@@ -13,9 +14,11 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/u
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getCookie } from 'docs/src/modules/utils/helpers';
+// @ts-ignore to bypass type checking in MUI X repo
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
+// @ts-ignore to bypass type checking in MUI X repo
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 
 declare module '@mui/material/styles' {
@@ -123,6 +126,7 @@ export default function BrandingCssVarsProvider(props: {
     // TODO: use the `createTheme` once the MUI X repo upgrade to Material UI v6+
     return typeof createColorScheme === 'function'
       ? createTheme({
+          // @ts-ignore to bypass type checking in MUI X repo
           cssVariables: {
             cssVarPrefix: 'muidocs',
             colorSchemeSelector: 'data-mui-color-scheme',
@@ -132,6 +136,7 @@ export default function BrandingCssVarsProvider(props: {
         })
       : extendTheme({
           cssVarPrefix: 'muidocs',
+          // @ts-ignore to bypass type checking in MUI X repo
           colorSchemeSelector: 'data-mui-color-scheme',
           direction,
           ...themeOptions,
