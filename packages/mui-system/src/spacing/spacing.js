@@ -110,6 +110,9 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
       }
 
       if (typeof themeSpacing === 'string') {
+        if (themeSpacing.startsWith('var(') && val === 0) {
+          return 0;
+        }
         if (themeSpacing.startsWith('var(') && val === 1) {
           return themeSpacing;
         }
