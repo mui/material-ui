@@ -105,6 +105,17 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    className: clsx(classes.root, className),
+    elementType: ListItemTextRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+  });
+
   const [PrimarySlot, primarySlotProps] = useSlot('primary', {
     className: classes.primary,
     elementType: Typography,
@@ -139,15 +150,10 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   }
 
   return (
-    <ListItemTextRoot
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {primary}
       {secondary}
-    </ListItemTextRoot>
+    </RootSlot>
   );
 });
 
@@ -208,6 +214,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     primary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     secondary: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -216,6 +223,7 @@ ListItemText.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     primary: PropTypes.elementType,
+    root: PropTypes.elementType,
     secondary: PropTypes.elementType,
   }),
   /**

@@ -11,9 +11,7 @@ declare module '@mui/material/styles' {
   interface Theme {
     applyDarkStyles: ApplyDarkStyles;
   }
-}
 
-declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
     100: string;
@@ -40,17 +38,15 @@ declare module '@mui/material/styles/createPalette' {
   interface TypeText {
     tertiary: string;
   }
-}
 
-declare module '@mui/material/styles/createTypography' {
-  interface TypographyOptions {
+  interface TypographyVariantsOptions {
     fontWeightSemiBold?: number;
     fontWeightExtraBold?: number;
     fontFamilyCode?: string;
     fontFamilySystem?: string;
   }
 
-  interface Typography {
+  interface TypographyVariants {
     fontWeightSemiBold: number;
     fontWeightExtraBold: number;
     fontFamilyCode: string;
