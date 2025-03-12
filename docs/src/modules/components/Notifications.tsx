@@ -57,13 +57,15 @@ const Divider = styled(MuiDivider)(({ theme }) => ({
 
 interface NotificationsState {
   lastSeen: number;
-  messages: {
-    id: number;
-    title?: string;
-    text: string;
-    date?: string;
-    userLanguage?: string;
-  }[];
+  messages:
+    | {
+        id: number;
+        title?: string;
+        text: string;
+        date?: string;
+        userLanguage?: string;
+      }[]
+    | undefined;
 }
 
 export default function Notifications() {
@@ -74,7 +76,7 @@ export default function Notifications() {
   const userLanguage = useUserLanguage();
   const [{ lastSeen, messages }, setNotifications] = React.useState<NotificationsState>({
     lastSeen: 0,
-    messages: [],
+    messages: undefined,
   });
 
   const messageList = messages
