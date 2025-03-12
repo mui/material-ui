@@ -7,7 +7,7 @@ import {
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
-import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
+import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
@@ -38,7 +38,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
-  typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
+  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
   unstable_sxConfig?: SxConfig;
@@ -49,7 +49,7 @@ export interface BaseTheme extends SystemTheme {
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
   transitions: Transitions;
-  typography: TypographyVariants;
+  typography: Typography;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
 }

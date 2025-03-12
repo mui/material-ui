@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as CSS from 'csstype';
 import { Palette } from './createPalette';
 
-export type TypographyVariant =
+export type Variant =
   | 'h1'
   | 'h2'
   | 'h3'
@@ -63,15 +63,12 @@ export interface TypographyUtils {
   pxToRem: (px: number) => string;
 }
 
-export interface TypographyVariants
-  extends Record<TypographyVariant, TypographyStyle>,
-    FontStyle,
-    TypographyUtils {}
+export interface Typography extends Record<Variant, TypographyStyle>, FontStyle, TypographyUtils {}
 
-export interface TypographyVariantsOptions
-  extends Partial<Record<TypographyVariant, TypographyStyleOptions> & FontStyleOptions> {}
+export interface TypographyOptions
+  extends Partial<Record<Variant, TypographyStyleOptions> & FontStyleOptions> {}
 
 export default function createTypography(
   palette: Palette,
-  typography: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions),
-): TypographyVariants;
+  typography: TypographyOptions | ((palette: Palette) => TypographyOptions),
+): Typography;

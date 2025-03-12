@@ -1,7 +1,7 @@
 import { BreakpointsOptions, ShapeOptions, SpacingOptions } from '@mui/system';
 import { MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
-import { TypographyVariantsOptions } from './createTypography';
+import { TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { TransitionsOptions } from './createTransitions';
 import { ZIndexOptions } from './zIndex';
@@ -23,7 +23,7 @@ export interface DeprecatedThemeOptions {
   shadows?: Shadows;
   spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
-  typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
+  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   variants?: ComponentsVariants;
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;

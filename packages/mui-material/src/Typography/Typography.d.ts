@@ -3,7 +3,7 @@ import { OverridableStringUnion } from '@mui/types';
 import { SxProps, SystemProps } from '@mui/system';
 import { Theme, TypeText } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
-import { TypographyVariant } from '../styles/createTypography';
+import { Variant } from '../styles/createTypography';
 import { TypographyClasses } from './typographyClasses';
 
 export interface TypographyPropsVariantOverrides {}
@@ -68,7 +68,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  variant?: OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>;
+  variant?: OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>;
   /**
    * The component maps the variant prop to a range of different HTML element types.
    * For instance, subtitle1 to `<h6>`.
@@ -89,10 +89,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
    * }
    */
   variantMapping?: Partial<
-    Record<
-      OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>,
-      string
-    >
+    Record<OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>, string>
   >;
 }
 
