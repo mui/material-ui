@@ -139,19 +139,22 @@ export function PrioritySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
 }
 
 const CommunitySupportGradient = styled(Typography)(() => ({
-  background: `linear-gradient(
-  to bottom right,
-    #8F6959 0%,
-    #AC836E 25%,
-    #F8DAC8 50%,
-    #AC836E 75%,
-    #8F6959 100%
+  background: `linear-gradient(rgba(106, 81, 36, 0.5), rgba(106, 81, 36, 0.5)),
+  linear-gradient(
+  97deg,
+  #B6947E 0%,
+  #8F6959 20%,
+  #F8DAC8 44%,
+  #AC836E 67%,
+  #8F6959 83%,
+  #F8DCCB 100%
   )`,
   backgroundClip: 'text',
   color: 'transparent',
   fontSize: '14px',
   fontWeight: 600,
   lineHeight: '15px',
+  backgroundBlendMode: 'multiply',
 }));
 
 export function CommunitySupportText() {
@@ -159,18 +162,21 @@ export function CommunitySupportText() {
 }
 
 const ProSupportGradient = styled(Typography)(() => ({
-  background: `linear-gradient(
-    to bottom right,
-    #35544E 0%,
-    #6CA196 30%,
-    #8AD2C3 50%,
-    #6CA196 70%,
-    #35544E 100%
+  background: `linear-gradient(rgba(34, 76, 97, 0.5), rgba(34, 76, 97, 0.5)),
+  linear-gradient(
+  23deg,
+  #FDFFFE 0%,
+  #7ABBAC 23%,
+  #B1FFEF 39%,
+  #8AD2C3 54%,
+  #CFFEF4 75%,
+  #6CA196 100%
   )`,
   backgroundClip: 'text',
   color: 'transparent',
   fontSize: '14px',
   fontWeight: 600,
+  backgroundBlendMode: 'multiply',
 }));
 
 export function ProSupportText() {
@@ -178,19 +184,21 @@ export function ProSupportText() {
 }
 
 const PremiumSupportGradient = styled(Typography)(() => ({
-  background: `linear-gradient(
-    to bottom right,
-    #8C421D 0%,
-    #D4A041 30%,
-    #F7D14E 50%,
-    #D4A041 70%,
-    #8C421D 100%
+  background: `linear-gradient(rgba(122, 114, 58, 0.5), rgba(122, 114, 58, 0.5)),
+  linear-gradient(
+  97deg,
+  #8C421D 0%,
+  #FBE67B 30%,
+  #FCFBE7 50%,
+  #F7D14E 70%,
+  #D4A041 100%
   )`,
   backgroundClip: 'text',
   color: 'transparent',
   fontSize: '14px',
   fontWeight: 600,
   lineHeight: '15px',
+  backgroundBlendMode: 'multiply',
 }));
 
 export function PremiumSupportText() {
@@ -198,19 +206,21 @@ export function PremiumSupportText() {
 }
 
 const PrioritySupportGradient = styled(Typography)(() => ({
-  background: `linear-gradient(
-    to bottom right,
-    #8489F5 0%,
-    #B591E9 45%,
-    #CCE8FE 55%,
-    #B591E9 70%,
-    #8489F5 100%
-  )`,
+  background: `linear-gradient(rgba(79, 100, 147, 0.5), rgba(79, 100, 147, 0.5)),
+    linear-gradient(
+      97deg,
+      #cce8fe 0%,
+      #cda0ff 24%,
+      #8489f5 40%,
+      #cdf1ff 71%,
+      #b591e9 100%
+    )`,
   backgroundClip: 'text',
   color: 'transparent',
   fontSize: '14px',
   fontWeight: 600,
   lineHeight: '15px',
+  backgroundBlendMode: 'multiply',
 }));
 
 export function PrioritySupportText() {
