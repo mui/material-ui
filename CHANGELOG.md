@@ -55,7 +55,7 @@ This release contains bug fixes 🐛 and improvements to the new package layout 
 - [code-infra] Convert a few docs modules to ts (#45548) @Janpot
 - [code-infra] Remove more CJS modules from the docs (#45557) @Janpot
 - [code-infra] Remove nested imports from theme augmentation (#45514) @Janpot
-- [docs-infra] Add @ts-ignore to avoid type checking for MUI X (#45555) @siriwatknp
+- [docs-infra] Add @ts-ignore to avoid type checking for MUI X (#45555) @siriwatknp
 - [blog] Fix author end-of-year updates (#45533) @oliviertassinari
 
 All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Janpot, @Jtaks, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp, @vipierozan99, @yermartee
