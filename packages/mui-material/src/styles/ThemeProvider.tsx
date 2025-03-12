@@ -93,7 +93,7 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   if (!('colorSchemes' in muiTheme)) {
     if (!('vars' in muiTheme)) {
       // For non-CSS variables themes, set `vars` to null to prevent theme inheritance from the upper theme.
-      // The example use case is the docs demo that uses ThemeProvider to custom the theme while the upper theme is using CSS variables.
+      // The example use case is the docs demo that uses ThemeProvider to customize the theme while the upper theme is using CSS variables.
       return <ThemeProviderNoVars theme={{ ...theme, vars: null }} {...props} />;
     }
     return <ThemeProviderNoVars theme={theme} {...props} />;
