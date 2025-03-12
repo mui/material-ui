@@ -240,7 +240,31 @@ describe('createTheme', () => {
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });
-        expect(theme.spacing(1)).to.equal(`calc(1 * var(--mui-spacing, 8px))`);
+        expect(theme.spacing(1)).to.equal(`var(--mui-spacing, 8px)`);
+        expect(theme.spacing(2)).to.equal(`calc(2 * var(--mui-spacing, 8px))`);
+      });
+    });
+
+    describe('spacing array', () => {
+      it('should create spacing vars array', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.vars.spacing).to.deep.equal([
+          'var(--mui-spacing-0, 0px)',
+          'var(--mui-spacing-1, 4px)',
+          'var(--mui-spacing-2, 8px)',
+        ]);
+      });
+
+      it('should work with positive input', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.spacing(1)).to.equal(`var(--mui-spacing-1, 4px)`);
+        expect(theme.spacing(2)).to.equal(`var(--mui-spacing-2, 8px)`);
+      });
+
+      it('should work with negative input', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.spacing(-1)).to.equal(`calc(-1 * var(--mui-spacing-1, 4px))`);
+        expect(theme.spacing(-2)).to.equal(`calc(-1 * var(--mui-spacing-2, 8px))`);
       });
     });
   });
