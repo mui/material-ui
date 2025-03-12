@@ -10,18 +10,21 @@ import { Link, LinkProps } from '@mui/docs/Link';
 import { MuiPageIcon } from 'docs/src/MuiPage';
 import standardNavIcons from './AppNavIcons';
 
-const Item = styled(
-  // @ts-expect-error
-  function Item({ component: Component = 'div', ...props }) {
-    return <Component {...props} />;
-  },
-  {
-    shouldForwardProp: (prop) =>
-      prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
-  },
-)<{ depth: number; subheader?: boolean; hasIcon?: boolean; component: React.ElementType }>(({
-  theme,
-}) => {
+interface ItemBaseProps {
+  component?: React.ElementType;
+  depth: number;
+  subheader?: boolean;
+  hasIcon?: boolean;
+}
+
+function ItemBase({ component: Component = 'div', ...props }: ItemBaseProps) {
+  return <Component {...props} />;
+}
+
+const Item = styled(ItemBase, {
+  shouldForwardProp: (prop) =>
+    prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
+})(({ theme }) => {
   return [
     {
       ...theme.typography.body2,
@@ -253,7 +256,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-export const sxChip = (color: string): SxProps<Theme> => [
+const sxChip = (color: 'warning' | 'success' | 'grey' | 'primary'): SxProps<Theme> => [
   (theme) => ({
     ml: 1,
     fontSize: theme.typography.pxToRem(10),
@@ -262,14 +265,10 @@ export const sxChip = (color: string): SxProps<Theme> => [
     letterSpacing: '.04rem',
     height: '16px',
     border: 1,
-    // @ts-ignore
     borderColor: (theme.vars || theme).palette[color][300],
-    // @ts-ignore
     bgcolor: alpha(theme.palette[color][100], 0.5),
-    // @ts-ignore
     color: (theme.vars || theme).palette[color][900],
     '&:hover': {
-      // @ts-ignore
       bgcolor: alpha(theme.palette[color][100], 0.5),
     },
     '& .MuiChip-label': {
@@ -278,15 +277,10 @@ export const sxChip = (color: string): SxProps<Theme> => [
   }),
   (theme) =>
     theme.applyDarkStyles({
-      // @ts-ignore
       borderColor: alpha(theme.palette[color][800], 0.5),
-      // @ts-ignore
       bgcolor: alpha(theme.palette[color][900], 0.5),
-      // @ts-ignore
       color: (theme.vars || theme).palette[color][300],
-      // @ts-ignore
       '&:hover': {
-        // @ts-ignore
         bgcolor: alpha(theme.palette[color][900], 0.5),
       },
     }),
