@@ -4233,14 +4233,6 @@ packages:
       '@types/react':
         optional: true
 
-  '@mui/types@7.2.22':
-    resolution: {integrity: sha512-yVb9KzUczVeASFrIWWBh4SDNKk22ub+nN1CGZTbqia0UGtCJJGeqiMcZe9wAmym1fhDCoGO+KSibwPhle7Zh6w==}
-    peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
   '@mui/types@7.2.23':
     resolution: {integrity: sha512-y/PyDYyVqccHOgEcYnLHJJusKRcIDhTbRCJXuFyUHRQ/patmvm8z23W1YFpOSfyk27R1UARcL9xI6ftY0Ihu8Q==}
     peerDependencies:
@@ -15546,10 +15538,6 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.0.10
 
-  '@mui/types@7.2.22(@types/react@19.0.10)':
-    optionalDependencies:
-      '@types/react': 19.0.10
-
   '@mui/types@7.2.23(@types/react@19.0.10)':
     optionalDependencies:
       '@types/react': 19.0.10
@@ -15581,7 +15569,7 @@ snapshots:
   '@mui/utils@7.0.0-alpha.2(@types/react@19.0.10)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.10
-      '@mui/types': 7.2.22(@types/react@19.0.10)
+      '@mui/types': 7.2.23(@types/react@19.0.10)
       '@types/prop-types': 15.7.14
       clsx: 2.1.1
       prop-types: 15.8.1
