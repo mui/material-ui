@@ -29,8 +29,8 @@ Learn more about MUI's products in this blog post: [An introduction to the MUI e
 
 ## The culture
 
-MUI is a fully remote company with a team that spans the globe.
-The majority of our work is asynchronous, and we rely on written communication to collaborate.
+MUI is a fully remote company with a team that spans across the globe.
+The majority of our work is asynchronous, and we rely mostly on written communication to collaborate.
 We're radically transparent: nearly all of our work happens in public.
 Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
@@ -39,9 +39,9 @@ For additional details about the culture, you can check our [careers](https://mu
 ## Why we're hiring
 
 Over the time, MUI expanded the product lines by adding more products.
-We currently active work across 5+ different repositories, and need to main several documentations.
+We currently actively work across 5+ different repositories and need to maintain several documentation sites.
 
-We want to build a team that will take care of the infrastructure work that's needed to make the work across different repositories/docs experiences seamless.
+We want to build a team that will take care of the infrastructure that's needed to make the work across different repositories/docs experiences seamless.
 We want to set up common utilities and set up best practices that all teams across the company can use.
 
 Overall, both our open-source community and our premium products are growing fast.
@@ -49,8 +49,8 @@ We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
-You would be able to shape the infrstructure of one of the most visited reposotires and documentation.
-The impact of your work will not improve the experience for the MUI team, but also for thousands of other open source contributors that contribute to our projects.
+You would be able to shape the infrastructure of one of the most visited repositories and documentation sites.
+The impact of your work will not only improve the experience for the MUI team, but also for thousands of other open source contributors that contribute to our projects.
 
 Our products empower React developers to build awesome applications faster – we see millions of developers on MUI's docs every year, one million a month.
 
@@ -61,8 +61,8 @@ Our products empower React developers to build awesome applications faster – w
 Depending on the day, you'll:
 
 - **Keep technical debt in check**. You will make sure we can keep shipping features at a reasonable pace.
-- **Find consensus**. In response to their needs, this role aligns the teams on "one way" of doing things and doing it well. You'll need to communicate clearly and openly. You'll be at service to the teams DX needs.
-- **Be a solver**. You will dig deep into arbitrarily complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
+- **Find consensus**. In response to their needs, this role aligns the teams on "one way" of doing things and doing it well. You'll need to communicate clearly and openly. You'll be of service to the teams' DX needs.
+- **Be a solver**. You will dig deep into complex problems and find an appropriate path forward. Some focus on a given area for long periods, others bounce from hotspot to hotspot as guided by organizational leadership.
 - **Own infrastructure tasks**, like managing dependencies, analytics, TypeScript modules, and hosting, so product teams can stay focused on their primary responsibilities.
 - **Develop new features** that will enhance the way the libraries are showcased.
 
@@ -74,7 +74,7 @@ Depending on the day, you'll:
 - Improve packaging and publishing flow.
 - Migrate the docs platform to the Next.js App Router
 - Allow users to search the docs within a specific product scope
-- Make it possible to store different parts of our documentation in different repositories
+- Design a distribution model for shared documentation infrastructure
 - Introduce a more scalable solution for hosting videos and images
 
 ### The best parts of this job
@@ -90,13 +90,13 @@ Depending on the day, you'll:
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly but don't sacrifice quality**.
   We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI has a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
-  The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
-- **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
+- **MUI has a large codebase**. You may bang your head against the wall at times and then write tests to assist the future you 😌.
+  The work you will be doing is somewhat unique. You probably have not had a similar role before.
+- **In open-source, you're faced with a non-stop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
 ## Who we're looking for
 
-We're looking for someone with strong technical skills and experience in infrastructure related work. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
+We're looking for someone with strong technical skills and experience in infrastructure-related work. More important than specific technical skills, though, is that you're a strong problem solver who loves to learn. Details matter to you.
 
 ### Required
 
@@ -105,7 +105,7 @@ We're looking for someone with strong technical skills and experience in infrast
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
-  As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
+  As part of the team, you'll interface both directly and indirectly with team members, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
@@ -113,20 +113,20 @@ We're looking for someone with strong technical skills and experience in infrast
 - **Avoid monolithic deliverables**.
   You scope and stage your work into well-defined milestones to ship.
 - **Past work with infrastructure related work**.
-  Perhaps you've been responsible for setting up the CI for some of your companie's projects, or you needed to write a Babel plugin for some custom needs.
+  Perhaps you've been responsible for setting up the CI for some of your company's projects, or you needed to write a Babel plugin for your custom needs.
   It would be great if you could address this in your cover letter!
 
 ### Nice to have (but not required)
 
 - **You've maintained an active repository before**.
-  Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
+  Maybe you've helped maintain a popular open-source repository, or you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
 - **You have contributed code**. A history of contributing to MUI's open-source projects is a plus.
 
 ## Benefits and compensation
 
-We offer competitive compensation commensurate with your experience level and location and are prepared to pay top market rates for someone who can clearly exceed the role's expectations.
-You can find the other perks and benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
+We offer competitive compensation based on your experience and location, and we are prepared to pay top market rates for someone who can clearly exceed the expectations of the role.
+You can find other perks and benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply
 
