@@ -69,17 +69,13 @@ Special properties that merged between the two arguments are listed below:
 
 - `style`: object are shallow merged rather than replacing one another. The style keys from the first argument have higher priority.
 - `sx`: values are concatenated into an array.
-- functions: the values with type of `function` and the same key are merged into a single function. To apply the merging behavior to some functions, pass an array of names to the third argument.
+- `^on[A-Z]` event handlers: these functions are composed between the two arguments.
 
   ```js
-  mergeSlotProps(
-    props.slotProps?.popper,
-    {
-      onClick: (event) => {},
-      createPopper: (popperOptions) => {},
-    },
-    ['onClick'], // only merge `onClick` function, `createPopper` will be overridden
-  );
+  mergeSlotProps(props.slotProps?.popper, {
+    onClick: (event) => {}, // composed with the `slotProps?.popper?.onClick`
+    createPopper: (popperOptions) => {}, // overridden by the `slotProps?.popper?.createPopper`
+  });
   ```
 
 ## Component prop
