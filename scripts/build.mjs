@@ -29,7 +29,7 @@ async function run(argv) {
   const packageJsonPath = path.resolve('./package.json');
   const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
 
-  const babelRuntimeVersion = packageJson.dependencies['@babel/runtime'];
+  const babelRuntimeVersion = packageJson.dependencies?.['@babel/runtime'];
   if (!babelRuntimeVersion) {
     throw new Error(
       'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',

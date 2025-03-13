@@ -1,5 +1,55 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-beta.3
+
+<!-- generated comparing v7.0.0-beta.2..master -->
+
+_Mar 5, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@7.0.0-beta.3`
+
+- Fix moduleResolution:node for icons (#45444) @Janpot
+- [ThemeProvider] Add `storageManager` prop to `ThemeProvider` (#45136) @siriwatknp
+- [Radio] Fix `inputProps` not forwarded (#45471) @siriwatknp
+
+### `@mui/codemod@7.0.0-beta.3`
+
+- [codemod] Fix codemods not found (#45473) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @Janpot, @siriwatknp
+
+## 7.0.0-beta.2
+
+<!-- generated comparing v7.0.0-beta.1..master -->
+
+_Feb 27, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### Core
+
+- [code-infra] Add package.json export (#45433) @Janpot
+- [blog] React 19 migration for MUI X (#45348) @arminmeh
+
+All contributors of this release in alphabetical order: @arminmeh, @Janpot
+
+## 7.0.0-beta.1
+
+<!-- generated comparing v7.0.0-beta.0..master -->
+
+_Feb 27, 2025_
+
+This release fixes incorrect build output from the previous release (`beta.0`).
+
+### Core
+
+- [code-infra] Fix build:types script omitting folders with a dot in their name (#45422) @Janpot
+- [release] Fix versions (#45420) @mj12albert
+
+All contributors of this release in alphabetical order: @Janpot, @mj12albert
+
 ## 7.0.0-beta.0
 
 <!-- generated comparing v7.0.0-alpha.2..master -->

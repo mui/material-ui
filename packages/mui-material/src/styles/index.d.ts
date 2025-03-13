@@ -25,10 +25,10 @@ export {
 export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';
 export {
-  Typography as TypographyVariants,
-  TypographyOptions as TypographyVariantsOptions,
+  TypographyVariants,
+  TypographyVariantsOptions,
   TypographyStyle,
-  Variant as TypographyVariant,
+  TypographyVariant,
 } from './createTypography';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export {
@@ -98,6 +98,7 @@ export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export * from './ThemeProviderWithVars';
+export type { StorageManager } from '@mui/system/cssVars';
 
 export { default as extendTheme } from './createThemeWithVars';
 
