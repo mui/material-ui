@@ -4,7 +4,7 @@
 
 <!-- generated comparing v7.0.0-beta.3..master -->
 
-_Mar 12, 2025_
+_Mar 13, 2025_
 
 A big thanks to the 10 contributors who made this release possible.
 This release contains bug fixes 🐛 and improvements to the new package layout 🏗️.
@@ -43,7 +43,7 @@ This release contains bug fixes 🐛 and improvements to the new package layout 
 ### `@mui/utils@7.0.0-beta.4`
 
 - Fix package layout inconsistencies (#45491) @DiegoAndai
-- use correct iri-reference homepage format (#45472) @dahiro
+- Use correct iri-reference homepage format (#45472) @dahiro
 
 ### Docs
 
