@@ -26,7 +26,7 @@ jobs:
       - name: Use Node.js 20.x
         uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
         with:
-          node-version: 18
+          node-version: 20
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: npm install -g npm@latest
       - run: pnpm install:codesandbox
