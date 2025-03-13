@@ -40,8 +40,9 @@ const styles = theme => ({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
-      '@mui/base': 'next',
+      '@mui/base': 'latest',
       'prop-types': 'latest',
     });
   });
@@ -71,6 +72,7 @@ const suggestions = [
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
@@ -100,6 +102,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
       '@mui/lab': 'next',
     });
@@ -127,6 +130,7 @@ import 'exceljs';
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
       '@mui/lab': 'next',
       exceljs: 'latest',
@@ -146,8 +150,9 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
-      '@mui/base': 'next',
+      '@mui/base': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -167,6 +172,7 @@ import 'exceljs';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
@@ -195,6 +201,7 @@ import {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
       '@mui/lab': 'next',
     });
@@ -215,6 +222,7 @@ import lab from '@mui/lab';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
+      // #npm-tag-reference
       '@mui/material': 'next',
       '@mui/lab': 'next',
     });
@@ -518,7 +526,7 @@ export default function EmailExample() {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@mui/icons-material': 'next',
-      '@mui/joy': 'next',
+      '@mui/joy': 'latest',
       '@mui/material': 'next',
       '@mui/system': 'next',
       '@types/react': 'latest',

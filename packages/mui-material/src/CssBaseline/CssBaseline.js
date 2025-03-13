@@ -31,7 +31,11 @@ export const body = (theme) => ({
 
 export const styles = (theme, enableColorScheme = false) => {
   const colorSchemeStyles = {};
-  if (enableColorScheme && theme.colorSchemes) {
+  if (
+    enableColorScheme &&
+    theme.colorSchemes &&
+    typeof theme.getColorSchemeSelector === 'function'
+  ) {
     Object.entries(theme.colorSchemes).forEach(([key, scheme]) => {
       const selector = theme.getColorSchemeSelector(key);
       if (selector.startsWith('@')) {

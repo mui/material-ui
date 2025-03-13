@@ -118,7 +118,7 @@ function ColorTool() {
       isValidColor = true;
     } else if (isHex(color)) {
       isValidColor = true;
-      if (color.indexOf('#') === -1) {
+      if (!color.includes('#')) {
         color = `#${color}`;
       }
     }
@@ -216,7 +216,13 @@ function ColorTool() {
     const color = state[`${intent}`];
 
     return (
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 6,
+          md: 4,
+        }}
+      >
         <Typography component="label" gutterBottom htmlFor={intent} variant="h6">
           {capitalize(intent)}
         </Typography>
@@ -237,7 +243,7 @@ function ColorTool() {
             onChange={handleChangeShade(intent)}
             aria-labelledby={`${intent}ShadeSliderLabel`}
           />
-          <Typography>{shades[intentShade]}</Typography>
+          <Typography minWidth={40}>{shades[intentShade]}</Typography>
         </Box>
         <Box sx={{ width: 192 }}>
           {hues.map((hue) => {
@@ -248,7 +254,7 @@ function ColorTool() {
             const backgroundColor = colors[hue][shade];
 
             return (
-              <Tooltip placement="right" title={hue} key={hue}>
+              <Tooltip placement="right" title={hue} key={hue} disableInteractive>
                 <TooltipRadio
                   sx={{ p: 0 }}
                   color="default"
@@ -293,10 +299,16 @@ function ColorTool() {
     <Grid container spacing={5} sx={{ p: 0 }}>
       {colorPicker('primary')}
       {colorPicker('secondary')}
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 6,
+          md: 4,
+        }}
+      >
         <ColorDemo data={state} />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Button variant="contained" onClick={handleChangeDocsColors}>
           Set Docs Colors
         </Button>

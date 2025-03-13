@@ -48,6 +48,8 @@ export { default as GlobalStyles } from './GlobalStyles';
 export type { GlobalStylesProps } from './GlobalStyles';
 
 export * from './style';
+export { default as style } from './style';
+
 export * from './spacing';
 
 export {
@@ -102,6 +104,8 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
+export { default as unstable_memoTheme } from './memoTheme';
+
 export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export { default as unstable_cssVarsParser } from './cssVars/cssVarsParser';
@@ -117,8 +121,10 @@ export * from './Container/createContainer';
 export { default as Container } from './Container';
 export * from './Container';
 
-export { default as Unstable_Grid } from './Unstable_Grid';
-export * from './Unstable_Grid';
+export { default as Grid } from './Grid';
+export * from './Grid';
 
 export { default as Stack } from './Stack';
 export * from './Stack';
+
+export * from './version';

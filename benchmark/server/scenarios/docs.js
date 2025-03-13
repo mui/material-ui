@@ -5,7 +5,6 @@ import Benchmark from 'benchmark';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { MarkdownElement } from '@mui/docs/MarkdownElement';
-import Markdown from 'docs/data/material/getting-started/templates/blog/Markdown';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -28,9 +27,6 @@ const store = createStore((state) => state, {
 });
 
 suite
-  .add('Markdown', () => {
-    ReactDOMServer.renderToString(<Markdown>{markdown}</Markdown>);
-  })
   .add('MarkdownElement', () => {
     ReactDOMServer.renderToString(
       <Provider store={store}>

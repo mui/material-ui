@@ -73,7 +73,7 @@ const StyledInputRoot: React.ElementType = styled('div')(
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  box-shadow: 0px 2px 4px ${
+  box-shadow: 0 2px 4px ${
     theme.palette.mode === 'dark' ? 'rgba(0,0,0, 0.5)' : 'rgba(0,0,0, 0.05)'
   };
   display: grid;
@@ -90,10 +90,12 @@ const StyledInputRoot: React.ElementType = styled('div')(
       & button:hover {
         background: ${blue[400]};
       }
-      // firefox
+
+      /* firefox */
       &:focus-visible {
         outline: 0;
     }
+}
   `,
 );
 

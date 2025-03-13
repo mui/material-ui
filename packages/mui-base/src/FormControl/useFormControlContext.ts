@@ -6,11 +6,11 @@ import { FormControlContext } from './FormControlContext';
  *
  * Demos:
  *
- * - [Form Control](https://next.mui.com/base-ui/react-form-control/#hook)
+ * - [Form Control](https://mui.com/base-ui/react-form-control/#hook)
  *
  * API:
  *
- * - [useFormControlContext API](https://next.mui.com/base-ui/react-form-control/hooks-api/#use-form-control-context)
+ * - [useFormControlContext API](https://mui.com/base-ui/react-form-control/hooks-api/#use-form-control-context)
  */
 export function useFormControlContext(): UseFormControlContextReturnValue | undefined {
   return React.useContext(FormControlContext);

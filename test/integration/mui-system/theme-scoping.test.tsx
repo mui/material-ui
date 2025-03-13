@@ -68,8 +68,11 @@ describe('Multiple nested theme providers', () => {
   let storage: Record<string, string> = {};
   const createMatchMedia = (matches: boolean) => () => ({
     matches,
+    // Keep mocking legacy methods because @mui/material v5 still uses them
     addListener: () => {},
+    addEventListener: () => {},
     removeListener: () => {},
+    removeEventListener: () => {},
   });
 
   beforeEach(() => {

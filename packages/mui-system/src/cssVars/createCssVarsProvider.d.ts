@@ -1,6 +1,7 @@
 import * as React from 'react';
 import InitColorSchemeScript from '../InitColorSchemeScript';
 import { Result } from './useCurrentColorScheme';
+import type { StorageManager } from './localStorageManager';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
@@ -34,6 +35,12 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * @default false
    */
   disableTransitionOnChange?: boolean;
+  /**
+   * If `true`, theme values are recalculated when the mode changes.
+   * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+   * @default false
+   */
+  forceThemeRerender?: boolean;
 }
 
 type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;
@@ -48,11 +55,18 @@ export interface CreateCssVarsProviderResult<
         theme?: Identify<
           Identifier,
           {
+            cssVariables?: false;
             cssVarPrefix?: string;
-            colorSchemes: Record<ColorScheme, Record<string, any>>;
+            colorSchemes: Partial<Record<ColorScheme, any>>;
             colorSchemeSelector?: 'media' | 'class' | 'data' | string;
           }
         >;
+        /**
+         * The default mode when the storage is empty,
+         * require the theme to have `colorSchemes` with light and dark.
+         * @default 'system'
+         */
+        defaultMode?: 'light' | 'dark' | 'system';
         /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
@@ -63,6 +77,11 @@ export interface CreateCssVarsProviderResult<
          * @default document
          */
         colorSchemeNode?: Element | null;
+        /**
+         * The storage manager to be used for storing the mode and color scheme.
+         * @default using `window.localStorage`
+         */
+        storageManager?: StorageManager | null;
         /**
          * The window that attaches the 'storage' event listener
          * @default window
@@ -81,7 +100,7 @@ export interface CreateCssVarsProviderResult<
         disableStyleSheetGeneration?: boolean;
       }
     >,
-  ) => React.ReactElement<any>;
+  ) => React.JSX.Element;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
   getInitColorSchemeScript: typeof InitColorSchemeScript;
 }

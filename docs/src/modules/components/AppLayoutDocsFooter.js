@@ -39,9 +39,9 @@ const FooterLink = styled(Link)(({ theme }) => {
     display: 'flex',
     alignItems: 'center',
     gap: 2,
-    fontFamily: (theme.vars || theme).typography.fontFamily,
-    fontSize: (theme.vars || theme).typography.pxToRem(13),
-    fontWeight: (theme.vars || theme).typography.fontWeightMedium,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: theme.typography.fontWeightMedium,
     color: (theme.vars || theme).palette.primary[600],
     '& > svg': { fontSize: '13px', transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
@@ -57,6 +57,8 @@ const FooterLink = styled(Link)(({ theme }) => {
  */
 
 /**
+ * This function is flattening the pages tree and extracts all the leaves that are internal pages.
+ * To extract the leaves, it skips all the nodes that have at least one child.
  * @param {MuiPage[]} pages
  * @param {MuiPage[]} [current]
  * @returns {OrderedMuiPage[]}
@@ -64,10 +66,10 @@ const FooterLink = styled(Link)(({ theme }) => {
 function orderedPages(pages, current = []) {
   return pages
     .reduce((items, item) => {
-      if (item.children && item.children.length > 1) {
+      if (item.children && item.children.length > 0) {
         items = orderedPages(item.children, items);
       } else {
-        items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+        items.push(item);
       }
       return items;
     }, current)
@@ -81,7 +83,7 @@ function orderedPages(pages, current = []) {
 }
 
 async function postFeedback(data) {
-  const env = window.location.host.indexOf('mui.com') !== -1 ? 'prod' : 'dev';
+  const env = process.env.DEPLOY_ENV === 'production' ? 'prod' : 'dev';
   try {
     const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
@@ -341,7 +343,7 @@ export default function AppLayoutDocsFooter(props) {
     processFeedback();
   };
 
-  // See https://github.com/mui/mui-toolpad/issues/1164 for context.
+  // See https://github.com/mui/toolpad/issues/1164 for context.
   const handleKeyDownForm = (event) => {
     const modifierKey = (event.metaKey || event.ctrlKey) && !event.shiftKey;
 

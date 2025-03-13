@@ -48,7 +48,7 @@ export default function SelectUsage() {
           defaultListboxOpen
           action={action}
           value={value}
-          onChange={(e, newValue) => setValue(newValue)}
+          onChange={(event, newValue) => setValue(newValue)}
           sx={{ minWidth: 160, mb: 20 }}
         >
           <Option value="react">React</Option>

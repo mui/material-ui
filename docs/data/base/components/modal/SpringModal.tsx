@@ -86,6 +86,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
   });
 
   return (
+    // @ts-expect-error https://github.com/pmndrs/react-spring/issues/2341
     <animated.div ref={ref} style={style} {...other}>
       {children}
     </animated.div>
@@ -115,7 +116,7 @@ const grey = {
 };
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',

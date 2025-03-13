@@ -1,6 +1,6 @@
 # Quickstart
 
-<p class="description">Get started with Base UI, a library of headless ("unstyled") React UI components and low-level hooks.</p>
+<p class="description">Get started with MUI Base, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
 :::info
 If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](/base-ui/guides/next-js-app-router/).
@@ -8,26 +8,20 @@ If you're using Next.js 13.4 or later, check out the [Next.js App Router guide](
 
 ## Installation
 
-`@mui/base` is completely standalone – run one of the following commands to add Base UI to your React project:
-
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
+`@mui/base` is completely standalone – run one of the following commands to add MUI Base to your React project:
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/base@next
-```
-
-```bash yarn
-yarn add @mui/base@next
+npm install @mui/base
 ```
 
 ```bash pnpm
-pnpm add @mui/base@next
+pnpm add @mui/base
+```
+
+```bash yarn
+yarn add @mui/base
 ```
 
 </codeblock>
@@ -36,24 +30,24 @@ pnpm add @mui/base@next
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Base UI.
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing MUI Base.
 
 ```json
 "peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0",
-  "react-dom": "^17.0.0 || ^18.0.0"
+  "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
 },
 ```
 
 ## Implementing a Button
 
-This is a quick tutorial that goes through the basics of using and styling Base UI components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/components/button/) as a reference.
+This is a quick tutorial that goes through the basics of using and styling MUI Base components by replicating a button from GitHub's UI, using their [Primer design system](https://primer.style/components/button/) as a reference.
 
 {{"demo": "Tutorial.js", "defaultCodeOpen": false, "hideToolbar": true}}
 
 ### Components and hooks
 
-Base UI provides a `<Button />` component and a `useButton` hook.
+MUI Base provides a `<Button />` component and a `useButton` hook.
 Both can be used to build a button, and each has its own benefits and trade-offs—see [Components vs. hooks](/base-ui/getting-started/usage/#components-vs-hooks) for details.
 
 The code snippets below demonstrate the basic implementation of each:
@@ -85,7 +79,7 @@ export default function App() {
 }
 ```
 
-Base UI comes with no styles or styling solution—here's what the Button component looks like out of the box:
+MUI Base comes with no styles or styling solution—here's what the Button component looks like out of the box:
 
 {{"demo": "BaseButton.js", "defaultCodeOpen": false}}
 
@@ -112,7 +106,7 @@ Pass a `className` prop and use it as a styling hook:
 <Button className="btn">Create Repository</Button>
 ```
 
-Base UI components like the Button come with a classes object (for example `buttonClasses`) that provides class hooks for styling a particular state.
+MUI Base components like the Button come with a classes object (for example `buttonClasses`) that provides class hooks for styling a particular state.
 
 ```css
 /* To style the disabled state: */
@@ -122,7 +116,7 @@ Base UI components like the Button come with a classes object (for example `but
 }
 ```
 
-The demo below shows how to create the Primer button using plain CSS with Base UI's Button component and `useButton` hook:
+The demo below shows how to create the Primer button using plain CSS with MUI Base's Button component and `useButton` hook:
 
 {{"demo": "BaseButtonPlainCss.js", "defaultCodeOpen": false}}
 
@@ -175,7 +169,7 @@ export default function App() {
 
 ```
 
-Most of the demos in the Base UI docs are styled with MUI System in this way.
+Most of the demos in the MUI Base docs are styled with MUI System in this way.
 You can inspect the `theme` object used on this site in your browser console, or explore the default structure in the Material UI [Default theme](/material-ui/customization/default-theme/) documentation.
 
 The demos below show how to create the Primer button using MUI System:

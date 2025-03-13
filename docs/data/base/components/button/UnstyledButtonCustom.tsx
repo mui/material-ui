@@ -46,6 +46,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
   ({ theme }: { theme: Theme }) => `
   overflow: visible;
   cursor: pointer;
+
   --main-color: ${theme.palette.mode === 'light' ? blue[600] : blue[200]};
   --hover-color: ${theme.palette.mode === 'light' ? blue[50] : blue[900]};
   --active-color: ${theme.palette.mode === 'light' ? blue[100] : blue[800]};
@@ -59,7 +60,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
   & .bg {
     stroke: var(--main-color);
     stroke-width: 1;
-    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0 4px 16px rgb(0 0 0 / 0.1));
     fill: transparent;
   }
 

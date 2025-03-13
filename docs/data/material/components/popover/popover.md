@@ -3,6 +3,7 @@ productId: material-ui
 title: React Popover component
 components: Grow, Popover
 githubLabel: 'component: Popover'
+githubSource: packages/mui-material/src/Popover
 ---
 
 # Popover
@@ -30,11 +31,11 @@ the position of the popover.
 
 {{"demo": "AnchorPlayground.js", "hideToolbar": true}}
 
-## Mouse over interaction
+## Mouse hover interaction
 
-This demo demonstrates how to use the `Popover` component and the mouseover event to achieve popover behavior.
+This demo demonstrates how to use the `Popover` component with `mouseenter` and `mouseleave` events to achieve popover behavior.
 
-{{"demo": "MouseOverPopover.js"}}
+{{"demo": "MouseHoverPopover.js"}}
 
 ## Virtual element
 
@@ -63,7 +64,7 @@ The usage of a virtual element for the Popover component requires the `nodeType`
 This is different from virtual elements used for the [`Popper`](/material-ui/react-popper/#virtual-element) or [`Tooltip`](/material-ui/react-tooltip/#virtual-element) components, both of which don't require the property.
 :::
 
-## Complementary projects
+## Supplementary projects
 
 For more advanced use cases, you might be able to take advantage of:
 

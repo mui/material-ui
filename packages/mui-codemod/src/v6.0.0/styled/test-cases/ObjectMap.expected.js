@@ -4,8 +4,6 @@ const IconRoot = styled('span')(({
   userSelect: 'none',
   width: '1em',
   height: '1em',
-  // Chrome fix for https://bugs.chromium.org/p/chromium/issues/detail?id=820541
-  // To remove at some point.
   overflow: 'hidden',
   // allow overflow hidden to take action
   display: 'inline-block',

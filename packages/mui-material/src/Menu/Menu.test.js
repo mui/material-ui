@@ -6,12 +6,21 @@ import {
   screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
+  reactMajor,
 } from '@mui/internal-test-utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
+import { modalClasses } from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import { paperClasses } from '../Paper';
+
+const CustomTransition = React.forwardRef(function CustomTransition(
+  { in: inProp, appear, onEnter, onEntering, onExited, ownerState, ...props },
+  ref,
+) {
+  return <div data-testid="custom" ref={ref} {...props} />;
+});
 
 describe('<Menu />', () => {
   const { render } = createRenderer({ clock: 'fake' });
@@ -28,6 +37,21 @@ describe('<Menu />', () => {
       },
       paper: {
         expectedClassName: classes.paper,
+      },
+      list: {
+        expectedClassName: classes.list,
+        testWithElement: null, // already tested with `testWithComponent`
+      },
+      backdrop: {
+        expectedClassName: modalClasses.backdrop,
+        testWithElement: React.forwardRef(({ invisible, ownerState, ...props }, ref) => (
+          <i ref={ref} {...props} />
+        )),
+      },
+      transition: {
+        expectedClassName: null,
+        testWithComponent: CustomTransition,
+        testWithElement: CustomTransition,
       },
     },
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },
@@ -59,7 +83,7 @@ describe('<Menu />', () => {
 
         expect(handleEnter.callCount).to.equal(
           // onEnter is called on mount which is run twice with Strict Effects
-          React.version.startsWith('18') ? 2 : 1,
+          reactMajor >= 18 ? 2 : 1,
         );
         expect(handleEnter.args[0].length).to.equal(2);
         expect(handleEntering.callCount).to.equal(1);
@@ -216,31 +240,61 @@ describe('<Menu />', () => {
     expect(screen.getByRole('menu')).not.toHaveFocus();
   });
 
-  it('should call TransitionProps.onEntering', () => {
+  it('should call slotProps.transition.onEntering', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
         anchorEl={document.createElement('div')}
         open
-        TransitionProps={{ onEntering: onEnteringSpy }}
+        slotProps={{ transition: { onEntering: onEnteringSpy } }}
       />,
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
   });
 
-  it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+  it('should call slotProps.transition.onEntering, disableAutoFocusItem', () => {
     const onEnteringSpy = spy();
     render(
       <Menu
         anchorEl={document.createElement('div')}
         disableAutoFocusItem
         open
-        TransitionProps={{ onEntering: onEnteringSpy }}
+        slotProps={{ transition: { onEntering: onEnteringSpy } }}
       />,
     );
 
     expect(onEnteringSpy.callCount).to.equal(1);
+  });
+
+  // TODO: remove in v7
+  describe('legacy TransitionProps', () => {
+    it('should call TransitionProps.onEntering', () => {
+      const onEnteringSpy = spy();
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          open
+          TransitionProps={{ onEntering: onEnteringSpy }}
+        />,
+      );
+
+      expect(onEnteringSpy.callCount).to.equal(1);
+    });
+
+    it('should call TransitionProps.onEntering, disableAutoFocusItem', () => {
+      const onEnteringSpy = spy();
+      render(
+        <Menu
+          anchorEl={document.createElement('div')}
+          disableAutoFocusItem
+          open
+          TransitionProps={{ onEntering: onEnteringSpy }}
+        />,
+      );
+
+      expect(onEnteringSpy.callCount).to.equal(1);
+    });
   });
 
   it('should call onClose on tab', () => {

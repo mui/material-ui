@@ -12,7 +12,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -39,8 +39,8 @@ For additional details about the culture, you can check our [careers](https://mu
 
 The Base UI team is just starting to take shape now, and we have big goals for the next few years. We need experienced people to work alongside excellent UI engineers and designers, in an IC capacity, to research, spec, build, document, and ship high-quality, unstyled UI components with a focus on a11y.
 
-Overall, both our open-source community and our premium products are growing fast (x2 YoY).
-We need talented people to keep that going!
+Overall, both our open-source community and our premium products are growing fast.
+We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
@@ -48,7 +48,7 @@ Our products empower React developers to build awesome applications faster – w
 
 ## The role
 
-### What you'll do on a day-to-day basis
+### Key responsibilities
 
 Depending on the day, you'll:
 
@@ -64,7 +64,7 @@ Depending on the day, you'll:
 
 ### Required
 
-- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, Webpack, and Babel. Working knowledge of these technologies is critical.
+- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, webpack, and Babel. Working knowledge of these technologies is critical.
 - **Expertise with CSS.** Deep knowledge of the functional aspects of CSS will be required.
 - **Familiarity with a11y requirements.** We are looking for someone familiar with ARIA requirements, who cares about building accessible UI, and wants to make the web a more accessible place.
 - **An eye for detail.** We appreciate people who sweat the details. People who go above and beyond to make interfaces fast, accessible, beautiful, and delightful.

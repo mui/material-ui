@@ -58,7 +58,7 @@ function ColorDemo(props) {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Box component="pre" sx={{ m: 2, fontSize: 16 }}>
+        <Box component="pre" sx={{ m: 2, fontSize: 16, overflowX: 'auto' }}>
           {`{
   palette: {
     primary: ${primary.output},

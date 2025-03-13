@@ -89,8 +89,7 @@ async function main(version) {
           `Version ${majorVersion} does not have version defined for the ${packageName}`,
         );
       }
-      packageJson.devDependencies[packageName] =
-        additionalVersionsMappings[majorVersion][packageName];
+      packageJson.resolutions[packageName] = additionalVersionsMappings[majorVersion][packageName];
     });
   }
 

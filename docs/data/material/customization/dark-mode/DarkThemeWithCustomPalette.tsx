@@ -1,8 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  useTheme,
+  createTheme,
+  PaletteMode,
+} from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
-import { PaletteMode } from '@mui/material';
 
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {

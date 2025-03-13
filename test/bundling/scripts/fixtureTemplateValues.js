@@ -94,8 +94,8 @@ import { FormHelperText as FormHelperText_core } from '@mui/material';
 import FormHelperText_core__pathImport from '@mui/material/FormHelperText';
 import { FormLabel as FormLabel_core } from '@mui/material';
 import FormLabel_core__pathImport from '@mui/material/FormLabel';
-import { Grid as Grid_core } from '@mui/material';
-import Grid_core__pathImport from '@mui/material/Grid';
+import { GridLegacy as GridLegacy_core } from '@mui/material';
+import GridLegacy_core__pathImport from '@mui/material/GridLegacy';
 import { Grow as Grow_core } from '@mui/material';
 import Grow_core__pathImport from '@mui/material/Grow';
 import { Icon as Icon_core } from '@mui/material';
@@ -262,30 +262,8 @@ import { Zoom as Zoom_core } from '@mui/material';
 import Zoom_core__pathImport from '@mui/material/Zoom';
 import { Accessibility as Accessibility_icons } from '@mui/icons-material';
 import Accessibility_icons__pathImport from '@mui/icons-material/Accessibility';
-import { Alert as Alert_lab } from '@mui/lab';
-import Alert_lab__pathImport from '@mui/lab/Alert';
-import { AlertTitle as AlertTitle_lab } from '@mui/lab';
-import AlertTitle_lab__pathImport from '@mui/lab/AlertTitle';
-import { Autocomplete as Autocomplete_lab } from '@mui/lab';
-import Autocomplete_lab__pathImport from '@mui/lab/Autocomplete';
-import { AvatarGroup as AvatarGroup_lab } from '@mui/lab';
-import AvatarGroup_lab__pathImport from '@mui/lab/AvatarGroup';
 import { LoadingButton as LoadingButton_lab } from '@mui/lab';
 import LoadingButton_lab__pathImport from '@mui/lab/LoadingButton';
-import { Pagination as Pagination_lab } from '@mui/lab';
-import Pagination_lab__pathImport from '@mui/lab/Pagination';
-import { PaginationItem as PaginationItem_lab } from '@mui/lab';
-import PaginationItem_lab__pathImport from '@mui/lab/PaginationItem';
-import { Rating as Rating_lab } from '@mui/lab';
-import Rating_lab__pathImport from '@mui/lab/Rating';
-import { Skeleton as Skeleton_lab } from '@mui/lab';
-import Skeleton_lab__pathImport from '@mui/lab/Skeleton';
-import { SpeedDial as SpeedDial_lab } from '@mui/lab';
-import SpeedDial_lab__pathImport from '@mui/lab/SpeedDial';
-import { SpeedDialAction as SpeedDialAction_lab } from '@mui/lab';
-import SpeedDialAction_lab__pathImport from '@mui/lab/SpeedDialAction';
-import { SpeedDialIcon as SpeedDialIcon_lab } from '@mui/lab';
-import SpeedDialIcon_lab__pathImport from '@mui/lab/SpeedDialIcon';
 import { TabContext as TabContext_lab } from '@mui/lab';
 import TabContext_lab__pathImport from '@mui/lab/TabContext';
 import { TabList as TabList_lab } from '@mui/lab';
@@ -306,10 +284,6 @@ import { TimelineOppositeContent as TimelineOppositeContent_lab } from '@mui/lab
 import TimelineOppositeContent_lab__pathImport from '@mui/lab/TimelineOppositeContent';
 import { TimelineSeparator as TimelineSeparator_lab } from '@mui/lab';
 import TimelineSeparator_lab__pathImport from '@mui/lab/TimelineSeparator';
-import { ToggleButton as ToggleButton_lab } from '@mui/lab';
-import ToggleButton_lab__pathImport from '@mui/lab/ToggleButton';
-import { ToggleButtonGroup as ToggleButtonGroup_lab } from '@mui/lab';
-import ToggleButtonGroup_lab__pathImport from '@mui/lab/ToggleButtonGroup';
 import { TreeItem as TreeItem_lab } from '@mui/lab';
 import TreeItem_lab__pathImport from '@mui/lab/TreeItem';
 import { TreeView as TreeView_lab } from '@mui/lab';
@@ -708,10 +682,10 @@ console.assert(
   ReactIs.isValidElementType(FormLabel_core__pathImport),
   'FormLabel path import is not consumable.',
 );
-console.assert(ReactIs.isValidElementType(Grid_core), 'Grid named import is not consumable.');
+console.assert(ReactIs.isValidElementType(GridLegacy_core), 'Grid named import is not consumable.');
 console.assert(
-  ReactIs.isValidElementType(Grid_core__pathImport),
-  'Grid path import is not consumable.',
+  ReactIs.isValidElementType(GridLegacy_core__pathImport),
+  'GridLegacy path import is not consumable.',
 );
 console.assert(ReactIs.isValidElementType(Grow_core), 'Grow named import is not consumable.');
 console.assert(
@@ -1290,35 +1264,6 @@ console.assert(
   ReactIs.isValidElementType(Accessibility_icons__pathImport),
   'Accessibility path import is not consumable.',
 );
-console.assert(ReactIs.isValidElementType(Alert_lab), 'Alert named import is not consumable.');
-console.assert(
-  ReactIs.isValidElementType(Alert_lab__pathImport),
-  'Alert path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(AlertTitle_lab),
-  'AlertTitle named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(AlertTitle_lab__pathImport),
-  'AlertTitle path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(Autocomplete_lab),
-  'Autocomplete named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(Autocomplete_lab__pathImport),
-  'Autocomplete path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(AvatarGroup_lab),
-  'AvatarGroup named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(AvatarGroup_lab__pathImport),
-  'AvatarGroup path import is not consumable.',
-);
 console.assert(
   ReactIs.isValidElementType(LoadingButton_lab),
   'LoadingButton named import is not consumable.',
@@ -1326,59 +1271,6 @@ console.assert(
 console.assert(
   ReactIs.isValidElementType(LoadingButton_lab__pathImport),
   'LoadingButton path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(Pagination_lab),
-  'Pagination named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(Pagination_lab__pathImport),
-  'Pagination path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(PaginationItem_lab),
-  'PaginationItem named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(PaginationItem_lab__pathImport),
-  'PaginationItem path import is not consumable.',
-);
-console.assert(ReactIs.isValidElementType(Rating_lab), 'Rating named import is not consumable.');
-console.assert(
-  ReactIs.isValidElementType(Rating_lab__pathImport),
-  'Rating path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(Skeleton_lab),
-  'Skeleton named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(Skeleton_lab__pathImport),
-  'Skeleton path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(SpeedDial_lab),
-  'SpeedDial named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(SpeedDial_lab__pathImport),
-  'SpeedDial path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(SpeedDialAction_lab),
-  'SpeedDialAction named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(SpeedDialAction_lab__pathImport),
-  'SpeedDialAction path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(SpeedDialIcon_lab),
-  'SpeedDialIcon named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(SpeedDialIcon_lab__pathImport),
-  'SpeedDialIcon path import is not consumable.',
 );
 console.assert(
   ReactIs.isValidElementType(TabContext_lab),
@@ -1456,22 +1348,6 @@ console.assert(
 console.assert(
   ReactIs.isValidElementType(TimelineSeparator_lab__pathImport),
   'TimelineSeparator path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ToggleButton_lab),
-  'ToggleButton named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ToggleButton_lab__pathImport),
-  'ToggleButton path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ToggleButtonGroup_lab),
-  'ToggleButtonGroup named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ToggleButtonGroup_lab__pathImport),
-  'ToggleButtonGroup path import is not consumable.',
 );
 console.assert(
   ReactIs.isValidElementType(TreeItem_lab),

@@ -26,23 +26,19 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-:::info
-The `next` tag is used to download the latest <b>pre-release</b>, v6 version. Remove it to get the current stable version.
-:::
-
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 ```bash npm
 npm install @mui/icons-material@next
 ```
 
-```bash yarn
-yarn add @mui/icons-material@next
-```
-
 ```bash pnpm
 pnpm add @mui/icons-material@next
+```
+
+```bash yarn
+yarn add @mui/icons-material@next
 ```
 
 </codeblock>
@@ -85,20 +81,6 @@ The Material Design guidelines name the icons using "snake_case" naming (for exa
 
 {{"demo": "SvgMaterialIcons.js"}}
 
-### Testing
-
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
-
-```jsx
-import DeleteIcon from '@mui/icons-material/Delete';
-```
-
-has the following attribute once mounted:
-
-```html
-<svg data-testid="DeleteIcon"></svg>
-```
-
 ## SvgIcon
 
 If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper.
@@ -124,7 +106,7 @@ This component extends the native `<svg>` element:
 ### Component prop
 
 You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format.
-[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with Webpack:
+[svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
 ```jsx
 // webpack.config.js
@@ -303,10 +285,10 @@ const theme = createTheme({
 
 ## Font vs. SVGs: Which approach to use?
 
-Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality.
+Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality.
 Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 
-For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/engineering/delivering-octicons-with-svg/).
 
 ## Accessibility
 

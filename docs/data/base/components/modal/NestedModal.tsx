@@ -124,7 +124,7 @@ const StyledBackdrop = styled(Backdrop)`
 `;
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -173,7 +173,6 @@ const TriggerButton = styled(Button)(
   line-height: 1.5;
   padding: 8px 16px;
   border-radius: 8px;
-  color: white;
   transition: all 150ms ease;
   cursor: pointer;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
@@ -232,6 +231,7 @@ const ModalButton = styled(Button)(
     opacity: 0.4;
     cursor: not-allowed;
     box-shadow: none;
+
     &:hover {
       background-color: ${blue[500]};
     }

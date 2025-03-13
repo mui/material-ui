@@ -19,44 +19,30 @@ function sleep(duration: number): Promise<void> {
 export default function Asynchronous() {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState<readonly Film[]>([]);
-  const loading = open && options.length === 0;
+  const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    let active = true;
-
-    if (!loading) {
-      return undefined;
-    }
-
+  const handleOpen = () => {
+    setOpen(true);
     (async () => {
+      setLoading(true);
       await sleep(1e3); // For demo purposes.
+      setLoading(false);
 
-      if (active) {
-        setOptions([...topFilms]);
-      }
+      setOptions([...topFilms]);
     })();
+  };
 
-    return () => {
-      active = false;
-    };
-  }, [loading]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+  const handleClose = () => {
+    setOpen(false);
+    setOptions([]);
+  };
 
   return (
     <Autocomplete
       sx={{ width: 300 }}
       open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      onClose={() => {
-        setOpen(false);
-      }}
+      onOpen={handleOpen}
+      onClose={handleClose}
       isOptionEqualToValue={(option, value) => option.title === value.title}
       getOptionLabel={(option) => option.title}
       options={options}

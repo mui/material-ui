@@ -15,7 +15,7 @@ const StyledRating = styled(Rating)(({ theme }) => ({
 
 const customIcons: {
   [index: string]: {
-    icon: React.ReactElement<any>;
+    icon: React.ReactElement<unknown>;
     label: string;
   };
 } = {

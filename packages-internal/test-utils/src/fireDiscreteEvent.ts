@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { configure, fireEvent, getConfig } from '@testing-library/react';
+import reactMajor from './reactMajor';
 
 const noWrapper = (callback: () => void) => callback();
 
@@ -8,7 +8,7 @@ const noWrapper = (callback: () => void) => callback();
  * @returns {void}
  */
 function withMissingActWarningsIgnored(callback: () => void) {
-  if (React.version.startsWith('18')) {
+  if (reactMajor >= 18) {
     callback();
     return;
   }

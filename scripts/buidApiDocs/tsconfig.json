@@ -20,7 +20,7 @@
     "paths": {
       "@mui/base": ["../../packages/mui-base/src"],
       "@mui/base/*": ["../../packages/mui-base/src/*"],
-      "@mui/types": ["../../packages/mui-types/src"],
+      "@mui/types": ["../../packages/mui-types"],
       "@mui/utils": ["../../packages/mui-utils/src"],
       "@mui/utils/*": ["../../packages/mui-utils/src/*"]
     }

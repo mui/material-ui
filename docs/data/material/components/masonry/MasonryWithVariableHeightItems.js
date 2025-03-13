@@ -2,12 +2,10 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Masonry from '@mui/lab/Masonry';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
@@ -29,7 +27,7 @@ export default function MasonryWithVariableHeightItems() {
           <Paper key={index}>
             <StyledAccordion sx={{ minHeight: height }}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>Accordion {index + 1}</Typography>
+                <Typography component="span">Accordion {index + 1}</Typography>
               </AccordionSummary>
               <AccordionDetails>Contents</AccordionDetails>
             </StyledAccordion>

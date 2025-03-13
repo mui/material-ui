@@ -1,15 +1,13 @@
 # @mui/styles
 
-You can leverage our styling solution, even if you are not using our components.
+The legacy styling solution for Material UI, now deprecated and not recommended for use.
 
 ## Installation
 
 Install the package in your project directory with:
 
-<!-- #default-branch-switch -->
-
 ```bash
-npm install @mui/styles@next
+npm install @mui/styles
 ```
 
 ## Documentation

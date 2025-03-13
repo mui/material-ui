@@ -7,11 +7,11 @@ import { ListContext, ListContextValue } from '../useList';
  *
  * Demos:
  *
- * - [Select](https://next.mui.com/base-ui/react-select/#hooks)
+ * - [Select](https://mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useOptionContextStabilizer API](https://next.mui.com/base-ui/react-select/hooks-api/#use-option-context-stabilizer)
+ * - [useOptionContextStabilizer API](https://mui.com/base-ui/react-select/hooks-api/#use-option-context-stabilizer)
  *
  * @param value - The value of the Option.
  * @returns The stable ListContext value.
@@ -33,7 +33,7 @@ export function useOptionContextStabilizer<OptionValue>(value: OptionValue) {
       if (itemValue !== value) {
         throw new Error(
           [
-            'Base UI Option: Tried to access the state of another Option.',
+            'MUI Base Option: Tried to access the state of another Option.',
             'This is unsupported when the Option uses the OptionContextStabilizer as a performance optimization.',
           ].join('/n'),
         );

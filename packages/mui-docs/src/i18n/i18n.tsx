@@ -6,7 +6,7 @@ import defaultTranslations from '../translations';
 const TranslationsContext = React.createContext(defaultTranslations);
 
 interface TranslationsProviderProps {
-  translations?: Record<string, any>;
+  translations?: Translations;
   children: React.ReactNode;
 }
 
@@ -23,12 +23,23 @@ function TranslationsProvider({ translations = {}, children }: TranslationsProvi
   );
 }
 
-function getPath(obj: any, path: string): any {
+function getPath(obj: Translations, path: string): string | null {
   if (!path || typeof path !== 'string') {
     return null;
   }
 
-  return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
+  const translation = path
+    .split('.')
+    .reduce(
+      (acc: Translations | string | null, item) =>
+        (acc && typeof acc === 'object' && acc[item]) || null,
+      obj,
+    );
+
+  if (typeof translation === 'object') {
+    return null;
+  }
+  return translation;
 }
 
 interface UserLanguageContextValue {
@@ -96,7 +107,9 @@ export interface TranslateOptions {
   ignoreWarning?: boolean;
 }
 
-export function useTranslate() {
+export type Translate = (key: string, options?: TranslateOptions) => any;
+
+export function useTranslate(): Translate {
   const userLanguage = useUserLanguage();
 
   const translations = React.useContext(TranslationsContext);
@@ -116,7 +129,9 @@ export function useTranslate() {
 
         if (!translation) {
           warn(userLanguage, key, ignoreWarning);
-          return getPath(translations.en, key);
+
+          const enTranslation = getPath(translations.en, key);
+          return enTranslation ?? null;
         }
 
         return translation;

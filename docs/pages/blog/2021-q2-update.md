@@ -49,25 +49,25 @@ Here are the most significant improvements since March 2021.
 
 - ✨ The new style engine has unlocked problems on the `Grid` component that we couldn't solve before with JSS:
 
-  We have added support for [row & column](https://mui.com/material-ui/react-grid/#row-amp-column-spacing) spacing:
+  We have added support for [row & column](https://mui.com/material-ui/react-grid-legacy/#row-amp-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
 ```
 
-We have added support for [responsive values](https://mui.com/material-ui/react-grid/#responsive-values) on all the props:
+We have added support for [responsive values](https://mui.com/material-ui/react-grid-legacy/#responsive-values) on all the props:
 
 ```jsx
 <Grid container spacing={{ xs: 2, md: 3 }} />
 ```
 
-We have added support for a different [number of columns](https://mui.com/material-ui/react-grid/#columns) than 12:
+We have added support for a different [number of columns](https://mui.com/material-ui/react-grid-legacy/#columns) than 12:
 
 ```jsx
 <Grid container columns={16}>
 ```
 
-We have added an alternative implementation that uses [CSS grid](https://mui.com/material-ui/react-grid/#css-grid-layout):
+We have added an alternative implementation that uses [CSS grid](https://mui.com/material-ui/react-grid-legacy/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -111,7 +111,9 @@ The date picker is at the border between the core component and advanced compone
   We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://mui.com/x/react-data-grid/editing/).
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
+  <video autoplay muted loop playsinline width="1684" height="782">
+    <source src="/static/blog/2021-q2-update/cell-edit.mp4" type="video/mp4" />
+  </video>
 
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
   This was done instead of taking on ambitious new features.
@@ -120,7 +122,7 @@ The date picker is at the border between the core component and advanced compone
 
   <img loading="lazy" src="/static/blog/2021-q2-update/single-select.png" alt="" style="width: 481px; margin-bottom: 16px;" />
 
-  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">codesandbox</a></p>
+  <p class="blog-description">the <a href="https://codesandbox.io/p/sandbox/material-demo-forked-iuyo5?file=/demo.js">CodeSandbox</a></p>
 
   and the **boolean** column type.
 
@@ -229,7 +231,7 @@ We have the following objectives:
 - ✨ Resume work on the [key features](https://github.com/mui/mui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
   It seems that the audience is adopting the data grid as fast as we can build it.
   For instance, we have one issue with over [1,000 upvotes](https://github.com/mui/mui-x/issues/204) 👍.
-- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/orgs/mui/projects/35).
 - ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Design Kits

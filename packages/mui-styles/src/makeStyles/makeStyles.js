@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { getDynamicStyles } from 'jss';
 import mergeClasses from '../mergeClasses';
@@ -164,6 +165,7 @@ function useSynchronousEffect(func, values) {
   let output;
 
   // Store "generation" key. Just returns a new object every time
+  // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
   const currentKey = React.useMemo(() => ({}), values); // eslint-disable-line react-hooks/exhaustive-deps
 
   // "the first render", or "memo dropped the value"
@@ -238,7 +240,8 @@ export default function makeStyles(stylesOrCreator, options = {}) {
 
     const classes = getClasses(instance.current, props.classes, Component);
     if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
+      // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
+      // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
       React.useDebugValue(classes);
     }
     if (process.env.NODE_ENV !== 'production') {
@@ -260,12 +263,7 @@ export default function makeStyles(stylesOrCreator, options = {}) {
         'MuiTimelineDot',
       ];
 
-      if (
-        name &&
-        supportedComponents.indexOf(name) >= 0 &&
-        props.variant &&
-        !classes[props.variant]
-      ) {
+      if (name && supportedComponents.includes(name) && props.variant && !classes[props.variant]) {
         console.error(
           [
             `MUI: You are using a variant value \`${props.variant}\` for which you didn't define styles.`,

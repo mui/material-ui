@@ -16,13 +16,13 @@ We have focused on improving stability and developer experience since then, and 
 - Dozens of bugs have been fixed since the first alpha.
 - DX and overall API consistency have been improved.
 - Improved customizability.
-- Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/migration/migration-pickers-lab/).
+- Follow the [installation instructions](https://mui.com/x/react-date-pickers/quickstart/) and the [migration guide](https://mui.com/x/migration/migration-pickers-lab/).
 
 ## What's changed?
 
 ### Documentation
 
-We revamped the [getting started](https://mui.com/x/react-date-pickers/getting-started/) page to ease the burden with installation, and improved sections that are key to customization, like the documentation of component [slots](https://mui.com/x/react-date-pickers/custom-components/).
+We revamped the [Quickstart](https://mui.com/x/react-date-pickers/quickstart/) page to ease the burden with installation, and improved sections that are key to customization, like the documentation of component [slots](https://mui.com/x/react-date-pickers/custom-components/).
 
 ### Bug fixes and other issues
 
@@ -30,7 +30,7 @@ More than 150 issues were solved during the pre-releases (alpha/beta), including
 
 A big thanks to all the contributors who took the time to clarify the edge cases they faced. It's been a huge help in refining the components behavior.
 
-<img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px; aspect-ratio: 112/59;" loading="lazy" alt="Bug illustration from monkeyuser.com" />
+<img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" loading="lazy" alt="Bug illustration from monkeyuser.com" width="1600" height="844" />
 
 ### Better APIs and improved customization
 
@@ -82,13 +82,13 @@ So a significant share has already migrated.
 And the adoption speed across versions is very encouraging.
 Over 40% of users are already using the beta versions.
 
-<img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; aspect-ratio: 168/89;" loading="lazy" alt="Evolution of downloaded version of @mui/x-data-pickers" />
+<img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" width="1846" height="977" loading="lazy" alt="Evolution of downloaded version of @mui/x-data-pickers" />
 
 <p class="blog-description">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
 
 ## Installation and migration from `@mui/lab`
 
-You can find the installation instructions in our [getting started](https://mui.com/x/react-date-pickers/getting-started/) page.
+You can find the installation instructions on the [Quickstart](https://mui.com/x/react-date-pickers/quickstart/) page.
 If you are migrating from the `@mui/lab` package, we've prepared a [migration guide](https://mui.com/x/migration/migration-pickers-lab/) to support you, including a codemod to replace the date pickers declarations.
 
 ## What to expect next?

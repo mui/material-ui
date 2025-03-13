@@ -1,3 +1,5 @@
+// Keeping this around for backwards compatibility for X. TODO: remove once X is on an alpha that implements ESM layout.
+
 import chalk from 'chalk';
 import glob from 'fast-glob';
 import fse from 'fs-extra';
@@ -38,7 +40,7 @@ async function rewriteImportPaths(declarationFile, publishDir) {
   if (
     // Only consider React components
     basename[0] === basename[0].toUpperCase() &&
-    code.indexOf("import PropTypes from 'prop-types';") !== -1
+    code.includes("import PropTypes from 'prop-types';")
   ) {
     throw new Error(
       [

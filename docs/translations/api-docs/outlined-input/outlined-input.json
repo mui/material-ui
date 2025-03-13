@@ -46,7 +46,7 @@
       "description": "Minimum number of rows to display when multiline option is set to true."
     },
     "multiline": {
-      "description": "If <code>true</code>, a <a href=\"/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
+      "description": "If <code>true</code>, a <a href=\"https://mui.com/material-ui/react-textarea-autosize/\">TextareaAutosize</a> element is rendered."
     },
     "name": { "description": "Name attribute of the <code>input</code> element." },
     "notched": {

@@ -8,13 +8,24 @@ import describeConformance from '../../test/describeConformance';
 describe('<ListItemText />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItemText>Conformance?</ListItemText>, () => ({
+  describeConformance(<ListItemText primary="Primary" secondary="Secondary" />, () => ({
     classes,
     inheritComponent: 'div',
     render,
     muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      primary: {
+        expectedClassName: classes.primary,
+      },
+      secondary: {
+        expectedClassName: classes.secondary,
+      },
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 

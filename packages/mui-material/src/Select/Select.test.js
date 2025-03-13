@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { ErrorBoundary, act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import {
+  ErrorBoundary,
+  act,
+  createRenderer,
+  fireEvent,
+  screen,
+  reactMajor,
+} from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -368,6 +375,15 @@ describe('<Select />', () => {
 
     describe('warnings', () => {
       it('warns when the value is not present in any option', () => {
+        const errorMessage =
+          'MUI: You have provided an out-of-range value `20` for the select component.';
+
+        let expectedOccurrences = 2;
+
+        if (reactMajor === 18) {
+          expectedOccurrences = 3;
+        }
+
         expect(() =>
           render(
             <Select value={20}>
@@ -375,13 +391,7 @@ describe('<Select />', () => {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>,
           ),
-        ).toWarnDev([
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') &&
-            'MUI: You have provided an out-of-range value `20` for the select component.',
-          'MUI: You have provided an out-of-range value `20` for the select component.',
-        ]);
+        ).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
       });
     });
   });
@@ -458,6 +468,36 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).not.to.have.attribute('aria-disabled');
     });
 
+    it('sets aria-required="true" when component is required', () => {
+      const { getByRole } = render(<Select required value="" />);
+
+      expect(getByRole('combobox')).to.have.attribute('aria-required', 'true');
+    });
+
+    it('aria-required is not present if component is not required', () => {
+      const { getByRole } = render(<Select required={false} value="" />);
+
+      expect(getByRole('combobox')).not.to.have.attribute('aria-required');
+    });
+
+    it('sets required attribute in input when component is required', () => {
+      const { container } = render(<Select required value="" />);
+
+      expect(container.querySelector('input')).to.have.property('required', true);
+    });
+
+    it('sets aria-invalid="true" when component is in the error state', () => {
+      const { getByRole } = render(<Select error value="" />);
+
+      expect(getByRole('combobox')).to.have.attribute('aria-invalid', 'true');
+    });
+
+    it('aria-invalid is not present if component is not in an error state', () => {
+      const { getByRole } = render(<Select value="" />);
+
+      expect(getByRole('combobox')).not.to.have.attribute('aria-invalid');
+    });
+
     it('indicates that activating the button displays a listbox', () => {
       const { getByRole } = render(<Select value="" />);
 
@@ -475,6 +515,11 @@ describe('<Select />', () => {
       const listboxId = getByRole('listbox').id;
 
       expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-controls', listboxId);
+    });
+
+    it('does not set aria-controls when closed', () => {
+      const { getByRole } = render(<Select open={false} value="" />);
+      expect(getByRole('combobox', { hidden: true })).to.not.have.attribute('aria-controls');
     });
 
     specify('the listbox is focusable', async () => {
@@ -1175,8 +1220,8 @@ describe('<Select />', () => {
         }).toErrorDev([
           'MUI: The `value` prop must be an array',
           // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'MUI: The `value` prop must be an array',
-          'The above error occurred in the <ForwardRef(SelectInput)> component',
+          reactMajor === 18 && 'MUI: The `value` prop must be an array',
+          reactMajor < 19 && 'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
@@ -1191,7 +1236,7 @@ describe('<Select />', () => {
         function ControlledSelectInput(props) {
           const { onChange } = props;
           const [values, clickedValue] = React.useReducer((currentValues, valueClicked) => {
-            if (currentValues.indexOf(valueClicked) === -1) {
+            if (!currentValues.includes(valueClicked)) {
               return currentValues.concat(valueClicked);
             }
             return currentValues.filter((value) => {
@@ -1717,6 +1762,21 @@ describe('<Select />', () => {
       expect(selectRef).to.deep.equal({ current: { refToInput: true } });
     });
 
+    it('should have root class', () => {
+      const { container } = render(
+        <Select value={10}>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).not.to.equal(null);
+    });
+
     it('should merge the class names', () => {
       const { getByTestId } = render(
         <Select
@@ -1741,5 +1801,23 @@ describe('<Select />', () => {
     fireEvent.click(getByTestId('test-element'));
 
     expect(getByRole('combobox')).not.toHaveFocus();
+  });
+
+  it('outlined icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" />);
+    expect(container.querySelector('.MuiSelect-iconOutlined')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('standard icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" variant="standard" />);
+    expect(container.querySelector('.MuiSelect-iconStandard')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-standard ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('filled icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" variant="filled" />);
+    expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
 });

@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid2';
 
 // Transforms custom breakpoints
 <Grid customXs={2} customSm={4} customMd={6} />;

@@ -5,6 +5,7 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { CircularProgressClasses } from './circularProgressClasses';
 
 export interface CircularProgressPropsColorOverrides {}
+export interface CircularProgressPropsVariantOverrides {}
 
 export interface CircularProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -55,7 +56,10 @@ export interface CircularProgressProps
    * Use indeterminate when there is no progress value.
    * @default 'indeterminate'
    */
-  variant?: 'determinate' | 'indeterminate';
+  variant?: OverridableStringUnion<
+    'determinate' | 'indeterminate',
+    CircularProgressPropsVariantOverrides
+  >;
 }
 
 /**

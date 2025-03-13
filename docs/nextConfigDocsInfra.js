@@ -49,8 +49,6 @@ process.env.DEPLOY_ENV = DEPLOY_ENV;
 function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
-    // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
-    optimizeFonts: false,
     reactStrictMode: true,
     ...nextConfig,
     env: {
@@ -71,11 +69,13 @@ function withDocsInfra(nextConfig) {
       NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
       // Name of the site, its Netlify subdomain; for example, material-ui-docs
       NETLIFY_SITE_NAME: process.env.SITE_NAME,
+      // For template images
+      TEMPLATE_IMAGE_URL: '',
     },
     experimental: {
       scrollRestoration: true,
       esmExternals: false,
-      workerThreads: true,
+      workerThreads: false,
       cpus: 3,
       ...nextConfig.experimental,
     },

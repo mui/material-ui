@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { emphasize } from '@mui/system/colorManipulator';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
@@ -25,28 +26,30 @@ const SnackbarContentRoot = styled(Paper, {
   name: 'MuiSnackbarContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => {
-  const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
-  const backgroundColor = emphasize(theme.palette.background.default, emphasis);
+})(
+  memoTheme(({ theme }) => {
+    const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
+    const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
-  return {
-    ...theme.typography.body2,
-    color: theme.vars
-      ? theme.vars.palette.SnackbarContent.color
-      : theme.palette.getContrastText(backgroundColor),
-    backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    padding: '6px 16px',
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    flexGrow: 1,
-    [theme.breakpoints.up('sm')]: {
-      flexGrow: 'initial',
-      minWidth: 288,
-    },
-  };
-});
+    return {
+      ...theme.typography.body2,
+      color: theme.vars
+        ? theme.vars.palette.SnackbarContent.color
+        : theme.palette.getContrastText(backgroundColor),
+      backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
+      display: 'flex',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      padding: '6px 16px',
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+      flexGrow: 1,
+      [theme.breakpoints.up('sm')]: {
+        flexGrow: 'initial',
+        minWidth: 288,
+      },
+    };
+  }),
+);
 
 const SnackbarContentMessage = styled('div', {
   name: 'MuiSnackbarContent',
