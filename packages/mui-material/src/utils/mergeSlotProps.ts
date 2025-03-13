@@ -20,7 +20,7 @@ export default function mergeSlotProps<
   K = T,
   // infer external slot props first to provide autocomplete for default slot props
   U = T extends Function ? T : K extends Function ? K : T extends undefined ? K : T,
->(externalSlotProps: T | undefined, defaultSlotProps: K, mergedFunctionList?: string[]): U {
+>(externalSlotProps: T | undefined, defaultSlotProps: K): U {
   if (!externalSlotProps) {
     return defaultSlotProps as unknown as U;
   }
@@ -29,8 +29,8 @@ export default function mergeSlotProps<
     defaultSlotPropsValue: Record<string, any>,
   ) {
     const handlers: Record<string, Function> = {};
-    const keys = mergedFunctionList || Object.keys(defaultSlotPropsValue);
-    keys.forEach((key) => {
+
+    Object.keys(defaultSlotPropsValue).forEach((key) => {
       if (isEventHandler(key, defaultSlotPropsValue[key])) {
         handlers[key] = (...args: unknown[]) => {
           if (typeof externalSlotPropsValue[key] === 'function') {
