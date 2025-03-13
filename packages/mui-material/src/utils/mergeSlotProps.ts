@@ -31,11 +31,13 @@ export default function mergeSlotProps<
     const handlers: Record<string, Function> = {};
 
     Object.keys(defaultSlotPropsValue).forEach((key) => {
-      if (isEventHandler(key, defaultSlotPropsValue[key])) {
+      if (
+        isEventHandler(key, defaultSlotPropsValue[key]) &&
+        typeof externalSlotPropsValue[key] === 'function'
+      ) {
+        // only compose the handlers if both default and external slot props match the event handler
         handlers[key] = (...args: unknown[]) => {
-          if (typeof externalSlotPropsValue[key] === 'function') {
-            externalSlotPropsValue[key](...args);
-          }
+          externalSlotPropsValue[key](...args);
           defaultSlotPropsValue[key](...args);
         };
       }
