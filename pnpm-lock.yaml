@@ -621,8 +621,8 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-system/build
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../packages/mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../packages/mui-utils/build
@@ -1304,8 +1304,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1587,8 +1587,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1664,8 +1664,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1732,8 +1732,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1870,8 +1870,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
@@ -1983,8 +1983,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-private-theming/build
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -2069,8 +2069,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-styled-engine/build
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -2144,8 +2144,8 @@ importers:
         specifier: ^7.26.0
         version: 7.26.0
       '@mui/types':
-        specifier: <7.3.0
-        version: 7.2.21(@types/react@19.0.6)
+        specifier: workspace:~
+        version: link:../mui-types/build
       '@types/prop-types':
         specifier: ^15.7.14
         version: 15.7.14
