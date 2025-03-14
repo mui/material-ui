@@ -115,6 +115,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/16889233',
     github: 'DiegoAndai',
   },
+  alelthomas: {
+    name: 'Ale Thomas',
+    avatar: 'https://avatars.githubusercontent.com/u/93217218',
+    github: 'alelthomas',
+  },
   DavidCnoops: {
     name: 'David Cnoops',
     avatar: 'https://avatars.githubusercontent.com/u/28001064',

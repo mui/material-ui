@@ -1,23 +1,30 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, SxProps, Theme } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLinks';
-import { Link } from '@mui/docs/Link';
+import { Link, LinkProps } from '@mui/docs/Link';
+import { MuiPageIcon } from 'docs/src/MuiPage';
 import standardNavIcons from './AppNavIcons';
 
-const Item = styled(
-  function Item({ component: Component = 'div', ...props }) {
-    return <Component {...props} />;
-  },
-  {
-    shouldForwardProp: (prop) =>
-      prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
-  },
-)(({ theme }) => {
+interface ItemBaseProps {
+  component?: React.ElementType;
+  depth: number;
+  subheader?: boolean;
+  hasIcon?: boolean;
+}
+
+function ItemBase({ component: Component = 'div', ...props }: ItemBaseProps) {
+  return <Component {...props} />;
+}
+
+const Item = styled(ItemBase, {
+  shouldForwardProp: (prop) =>
+    prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader' && prop !== 'expandable',
+})(({ theme }) => {
   return [
     {
       ...theme.typography.body2,
@@ -211,7 +218,7 @@ const Item = styled(
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
-})({
+})<{ open: boolean }>({
   fontSize: '1rem',
   '&&:last-child': {
     // overrrides https://github.com/mui/material-ui/blob/ca7c5c63e64b6a7f55255981f1836a565927b56c/docs/src/modules/brandingTheme.ts#L757-L759
@@ -227,27 +234,29 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   ],
 });
 
-const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(({ theme }) => ({
-  display: 'block',
-  variants: [
-    {
-      props: {
-        depth: 0,
+const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })<{ depth: number }>(
+  ({ theme }) => ({
+    display: 'block',
+    variants: [
+      {
+        props: {
+          depth: 0,
+        },
+        style: {
+          padding: theme.spacing(1, '10px', 0, '10px'),
+        },
       },
-      style: {
-        padding: theme.spacing(1, '10px', 0, '10px'),
+      {
+        props: ({ depth }) => depth !== 0,
+        style: {
+          padding: 0,
+        },
       },
-    },
-    {
-      props: ({ depth }) => depth !== 0,
-      style: {
-        padding: 0,
-      },
-    },
-  ],
-}));
+    ],
+  }),
+);
 
-export const sxChip = (color) => [
+const sxChip = (color: 'warning' | 'success' | 'grey' | 'primary'): SxProps<Theme> => [
   (theme) => ({
     ml: 1,
     fontSize: theme.typography.pxToRem(10),
@@ -277,7 +286,7 @@ export const sxChip = (color) => [
     }),
 ];
 
-function DeadLink(props) {
+function DeadLink(props: LinkProps & React.HTMLProps<HTMLDivElement>) {
   const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;
   return <div {...other} />;
 }
@@ -289,7 +298,28 @@ DeadLink.propTypes = {
   prefetch: PropTypes.any,
 };
 
-export default function AppNavDrawerItem(props) {
+export interface AppNavDrawerItemProps {
+  beta?: boolean;
+  children?: React.ReactNode;
+  deprecated?: boolean;
+  depth: number;
+  expandable?: boolean;
+  href?: string | object;
+  icon?: MuiPageIcon;
+  initiallyExpanded?: boolean;
+  legacy?: boolean;
+  linkProps?: Record<string, unknown> | undefined;
+  newFeature?: boolean;
+  onClick?: (event: MouseEvent) => void;
+  planned?: boolean;
+  subheader: boolean;
+  title?: string | null;
+  topLevel?: boolean;
+  unstable?: boolean;
+  plan?: 'community' | 'pro' | 'premium';
+}
+
+export default function AppNavDrawerItem(props: AppNavDrawerItemProps) {
   const {
     beta,
     children,
@@ -312,7 +342,7 @@ export default function AppNavDrawerItem(props) {
     ...other
   } = props;
   const [open, setOpen] = React.useState(initiallyExpanded);
-  const handleClick = (event) => {
+  const handleClick = (event: MouseEvent) => {
     // Ignore click events meant for native link handling, for example open in new tab
     if (samePageLinkNavigation(event)) {
       return;
@@ -328,8 +358,8 @@ export default function AppNavDrawerItem(props) {
     }
   };
 
-  const hasIcon = icon && (typeof icon !== 'string' || !!standardNavIcons[icon]);
   const IconComponent = typeof icon === 'string' ? standardNavIcons[icon] : icon;
+  const hasIcon = !!IconComponent;
   const iconElement = hasIcon ? (
     <Box
       component="span"
@@ -348,6 +378,7 @@ export default function AppNavDrawerItem(props) {
   return (
     <StyledLi {...other} depth={depth}>
       {/* Fix overloading with prefetch={false}, only prefetch on hover */}
+      {/* @ts-ignore */}
       <Item
         component={subheader ? DeadLink : Link}
         depth={depth}
@@ -361,7 +392,7 @@ export default function AppNavDrawerItem(props) {
         onClick={handleClick}
         {...linkProps}
         style={{
-          ...linkProps?.style,
+          ...(linkProps?.style ?? {}),
           '--_depth': depth,
           '--_expandable': expandable ? 1 : 0,
         }}

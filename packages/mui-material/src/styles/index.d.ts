@@ -25,10 +25,10 @@ export {
 export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';
 export {
-  Typography as TypographyVariants,
-  TypographyOptions as TypographyVariantsOptions,
+  TypographyVariants,
+  TypographyVariantsOptions,
   TypographyStyle,
-  Variant as TypographyVariant,
+  TypographyVariant,
 } from './createTypography';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export {

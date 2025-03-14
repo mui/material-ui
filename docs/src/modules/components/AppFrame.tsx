@@ -36,13 +36,13 @@ function nProgressDone() {
 export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
-    const handleRouteChangeStart = (url, { shallow }) => {
+    const handleRouteChangeStart = (url: string, { shallow }: { shallow: boolean }) => {
       if (!shallow) {
         nProgressStart();
       }
     };
 
-    const handleRouteChangeDone = (url, { shallow }) => {
+    const handleRouteChangeDone = (url: string, { shallow }: { shallow: boolean }) => {
       if (!shallow) {
         nProgressDone();
       }
@@ -95,7 +95,7 @@ const RootDiv = styled('div')(({ theme }) => {
 
 const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ theme }) => {
+})<{ disablePermanent: boolean }>(({ theme }) => {
   return {
     padding: theme.spacing(1.5),
     transition: theme.transitions.create('width'),
@@ -130,7 +130,7 @@ const StyledAppBar = styled(AppBar, {
 
 const NavIconButton = styled(IconButton, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
-})(({ theme }) => ({
+})<{ disablePermanent: boolean }>(({ theme }) => ({
   variants: [
     {
       props: {
@@ -170,7 +170,14 @@ const defaultTheme = createTheme({
 
 export const HEIGHT = 57;
 
-export default function AppFrame(props) {
+export interface AppFrameProps {
+  BannerComponent?: React.ElementType;
+  children: React.ReactNode;
+  className?: string;
+  disableDrawer?: boolean;
+}
+
+export default function AppFrame(props: AppFrameProps) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
 
