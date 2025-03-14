@@ -2,18 +2,28 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 export default function CustomSingleValueRendering() {
   return (
-    <Autocomplete
-      sx={{ width: 300 }}
-      options={top100Films}
-      getOptionLabel={(option) => option.title}
-      renderSingleValue={(value, singleTagProps) => (
-        <Chip label={value.title} {...singleTagProps} />
-      )}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
-    />
+    <Stack spacing={3} sx={{ width: 500 }}>
+      <Autocomplete
+        options={top100Films}
+        getOptionLabel={(option) => option.title}
+        renderValue={(value, getTagProps) => (
+          <Chip label={value.title} {...getTagProps()} />
+        )}
+        renderInput={(params) => <TextField {...params} label="Movie" />}
+      />
+      <Autocomplete
+        options={top100Films.map((option) => option.title)}
+        freeSolo
+        renderValue={(value, getTagProps) => (
+          <Chip label={value} {...getTagProps()} />
+        )}
+        renderInput={(params) => <TextField {...params} label="freeSolo" />}
+      />
+    </Stack>
   );
 }
 

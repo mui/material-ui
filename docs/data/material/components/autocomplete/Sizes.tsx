@@ -81,8 +81,8 @@ export default function Sizes() {
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
-        renderTags={(value, getTagProps) =>
-          value.map((option, index) => {
+        renderValue={(values, getTagProps) =>
+          values.map((option, index) => {
             const { key, ...tagProps } = getTagProps({ index });
             return (
               <Chip

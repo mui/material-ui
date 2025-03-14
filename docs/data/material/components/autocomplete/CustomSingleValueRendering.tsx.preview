@@ -1,9 +1,16 @@
 <Autocomplete
-  sx={{ width: 300 }}
   options={top100Films}
   getOptionLabel={(option) => option.title}
-  renderSingleValue={(value, singleTagProps) => (
-    <Chip label={value.title} {...singleTagProps} />
+  renderValue={(value, getTagProps) => (
+    <Chip label={value.title} {...getTagProps()} />
   )}
   renderInput={(params) => <TextField {...params} label="Movie" />}
+/>
+<Autocomplete
+  options={top100Films.map((option) => option.title)}
+  freeSolo
+  renderValue={(value, getTagProps) => (
+    <Chip label={value} {...getTagProps()} />
+  )}
+  renderInput={(params) => <TextField {...params} label="freeSolo" />}
 />

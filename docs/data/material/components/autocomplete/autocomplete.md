@@ -227,7 +227,7 @@ This demo has limited quotas to make API requests. When your quota exceeds, you 
 
 ## Custom Single Value Rendering
 
-By default, when `multiple={false}`, the selected option is displayed as plain text inside the input. The `renderSingleValue` prop allows you to customize how the selected value is rendered. This can be useful for adding custom styles, displaying additional information, or formatting the value differently.
+By default, when `multiple={false}`, the selected option is displayed as plain text inside the input. The `renderValue` prop allows you to customize how the selected value is rendered. This can be useful for adding custom styles, displaying additional information, or formatting the value differently.
 
 {{"demo": "CustomSingleValueRendering.js"}}
 

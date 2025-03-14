@@ -43,7 +43,7 @@ export default function Tags() {
         options={top100Films.map((option) => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo
-        renderTags={(value: readonly string[], getTagProps) =>
+        renderValue={(value: readonly string[], getTagProps) =>
           value.map((option: string, index: number) => {
             const { key, ...tagProps } = getTagProps({ index });
             return (
