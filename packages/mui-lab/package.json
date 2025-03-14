@@ -43,7 +43,7 @@
     "@babel/runtime": "^7.26.0",
     "@mui/base": "workspace:*",
     "@mui/system": "workspace:^",
-    "@mui/types": "<7.3.0",
+    "@mui/types": "workspace:~",
     "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1"
