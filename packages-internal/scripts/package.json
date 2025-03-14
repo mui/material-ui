@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-scripts",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "MUI Team",
   "description": "Utilities supporting MUI libraries build and docs generation. This is an internal package not meant for general use.",
   "main": "build/index.js",
@@ -47,7 +47,7 @@
     "@types/uuid": "^10.0.0",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.3",
-    "prettier": "^3.5.1",
+    "prettier": "^3.5.3",
     "rimraf": "^6.0.1"
   },
   "publishConfig": {
