@@ -590,31 +590,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   let startAdornment;
 
-  if (value) {
-    const getCustomizedTagProps = (params) => ({
-      className: classes.tag,
-      disabled,
-      ...getTagProps(params),
-    });
+  const getCustomizedTagProps = (params) => ({
+    className: classes.tag,
+    disabled,
+    ...getTagProps(params),
+  });
 
-    if (renderTags || renderValue) {
-      startAdornment = renderTags
-        ? renderTags(value, getCustomizedTagProps, ownerState)
-        : renderValue(value, getCustomizedTagProps, ownerState);
-    } else if (multiple) {
-      startAdornment = value.map((option, index) => {
-        const { key, ...customTagProps } = getCustomizedTagProps({ index });
-        return (
-          <Chip
-            key={key}
-            label={getOptionLabel(option)}
-            size={size}
-            {...customTagProps}
-            {...externalForwardedProps.slotProps.chip}
-          />
-        );
-      });
-    }
+  if (renderTags && multiple && value.length > 0) {
+    startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
+  } else if (renderValue && value) {
+    startAdornment = renderValue(value, getCustomizedTagProps, ownerState);
+  } else if (multiple && value.length > 0) {
+    startAdornment = value.map((option, index) => {
+      const { key, ...customTagProps } = getCustomizedTagProps({ index });
+      return (
+        <Chip
+          key={key}
+          label={getOptionLabel(option)}
+          size={size}
+          {...customTagProps}
+          {...externalForwardedProps.slotProps.chip}
+        />
+      );
+    });
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
