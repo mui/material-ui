@@ -344,7 +344,6 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
-
 /**
  *
  * Demos:
