@@ -61,8 +61,8 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInputValue(value, multiple, getOptionLabel, renderSingleValue) {
-  if (multiple || value == null || renderSingleValue) {
+function getInputValue(value, multiple, getOptionLabel, renderValue) {
+  if (multiple || value == null || renderValue) {
     return '';
   }
   const optionLabel = getOptionLabel(value);
@@ -110,7 +110,7 @@ function useAutocomplete(props) {
     openOnFocus = false,
     options,
     readOnly = false,
-    renderSingleValue,
+    renderValue,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -174,7 +174,7 @@ function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
-      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderSingleValue);
+      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderValue);
 
       if (inputValue === newInputValue) {
         return;
@@ -194,7 +194,7 @@ function useAutocomplete(props) {
       setInputValueState,
       clearOnBlur,
       value,
-      renderSingleValue,
+      renderValue,
     ],
   );
 
@@ -260,8 +260,6 @@ function useAutocomplete(props) {
   const focusTag = useEventCallback((tagToFocus) => {
     if (tagToFocus === -1) {
       inputRef.current.focus();
-    } else if (renderSingleValue) {
-      anchorEl.querySelector('[data-tag="single"]').focus();
     } else {
       anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`).focus();
     }
@@ -835,14 +833,14 @@ function useAutocomplete(props) {
           handleOpen(event);
           break;
         case 'ArrowLeft':
-          if (renderSingleValue) {
-            focusTag();
+          if (!multiple && renderValue) {
+            focusTag(0);
           } else {
             handleFocusTag(event, 'previous');
           }
           break;
         case 'ArrowRight':
-          if (renderSingleValue) {
+          if (!multiple && renderValue) {
             focusTag(-1);
           } else {
             handleFocusTag(event, 'next');
@@ -886,7 +884,7 @@ function useAutocomplete(props) {
             handleClose(event, 'escape');
           } else if (
             clearOnEscape &&
-            (inputValue !== '' || (multiple && value.length > 0) || renderSingleValue)
+            (inputValue !== '' || (multiple && value.length > 0) || renderValue)
           ) {
             // Avoid Opera to exit fullscreen mode.
             event.preventDefault();
@@ -905,7 +903,7 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderSingleValue && !readOnly) {
+          if (!multiple && renderValue && !readOnly) {
             setValueState(null);
             focusTag(-1);
           }
@@ -920,7 +918,7 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
-          if (!multiple && renderSingleValue && !readOnly) {
+          if (!multiple && renderValue && !readOnly) {
             setValueState(null);
             focusTag(-1);
           }
@@ -1151,16 +1149,11 @@ function useAutocomplete(props) {
       type: 'button',
       onClick: handlePopupIndicator,
     }),
-    tagProps: {
-      tabIndex: -1,
-      'data-tag': 'single',
-      ...(!readOnly && { onDelete: handleSingleTagDelete }),
-    },
-    getTagProps: ({ index }) => ({
-      key: index,
+    getTagProps: ({ index = 0 } = {}) => ({
+      ...(multiple && { key: index }),
       'data-tag-index': index,
       tabIndex: -1,
-      ...(!readOnly && { onDelete: handleTagDelete(index) }),
+      ...(!readOnly && { onDelete: multiple ? handleTagDelete(index) : handleSingleTagDelete }),
     }),
     getListboxProps: () => ({
       role: 'listbox',

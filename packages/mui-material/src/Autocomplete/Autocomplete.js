@@ -485,8 +485,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
-    renderSingleValue,
     renderTags,
+    renderValue,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
     slots = {},
@@ -514,7 +514,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     focusedTag,
     anchorEl,
     setAnchorEl,
-    tagProps,
     inputValue,
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
@@ -591,16 +590,18 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   let startAdornment;
 
-  if (multiple && value.length > 0) {
+  if (value) {
     const getCustomizedTagProps = (params) => ({
       className: classes.tag,
       disabled,
       ...getTagProps(params),
     });
 
-    if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
-    } else {
+    if (renderTags || renderValue) {
+      startAdornment = renderTags
+        ? renderTags(value, getCustomizedTagProps, ownerState)
+        : renderValue(value, getCustomizedTagProps, ownerState);
+    } else if (multiple) {
       startAdornment = value.map((option, index) => {
         const { key, ...customTagProps } = getCustomizedTagProps({ index });
         return (
@@ -614,16 +615,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
         );
       });
     }
-  }
-
-  if (!multiple && renderSingleValue && value) {
-    const customizedTagProps = {
-      className: classes.tag,
-      disabled,
-      ...tagProps,
-    };
-
-    startAdornment = renderSingleValue(value, customizedTagProps, ownerState);
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
@@ -1182,16 +1173,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   renderOption: PropTypes.func,
   /**
-   * Render the selected value.
-   *
-   * @param {Value} value The `value` provided to the component.
-   * @param {function} tagProps The tag props.
-   * @param {object} ownerState The state of the Autocomplete component.
-   * @returns {ReactNode}
-   */
-  renderSingleValue: PropTypes.func,
-  /**
    * Render the selected value when doing multiple selections.
+   *
+   * @deprecated Use `renderValue` prop instead
    *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
@@ -1199,6 +1183,15 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * Renders the selected value(s) as rich content in the input for both single and multiple selections.
+   *
+   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderValue: PropTypes.func,
   /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
