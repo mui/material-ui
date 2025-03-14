@@ -1482,7 +1482,7 @@ importers:
         specifier: workspace:^
         version: link:../markdown
       '@mui/system':
-        specifier: ^7.0.0 || ^7.0.0-beta
+        specifier: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta
         version: 7.0.0-beta.3(@emotion/react@11.13.5(@types/react@19.0.10)(react@19.0.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.0.10)(react@19.0.0))(@types/react@19.0.10)(react@19.0.0))(@types/react@19.0.10)(react@19.0.0)
       chai:
         specifier: ^4.4.1
