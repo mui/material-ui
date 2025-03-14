@@ -345,12 +345,6 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
-export type AutocompleteSingleTagProps = {
-  tabIndex: -1;
-  'data-tag': 'single';
-  onDelete?: (event: any) => void;
-};
-
 /**
  *
  * Demos:
