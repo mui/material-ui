@@ -10,25 +10,25 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### `@mui/material@6.4.8`
 
-- [ListItemText] Add missing `root` slot (@sai6855) (#45552) @sai6855
-- [SpeedDial] Add missing `root` slot (@sai6855) (#45551) @sai6855
-- [Tooltip] Allow auto placement on tooltip (@Jtaks) (#45536) @Jtaks
-- [useScrollTrigger] Do nothing if target is null (@vipierozan99) (#45553) @vipierozan99
-- [Accordion] Add missing `root` slot (@sai6855) (#45534) @sai6855
-- [AccordionSummary] Add slots and slotProps (@sai6855) (#45560) @sai6855
+- [ListItemText] Add missing `root` slot (#45552) @sai6855
+- [SpeedDial] Add missing `root` slot (#45551) @sai6855
+- [Tooltip] Allow auto placement on tooltip (#45536) @Jtaks
+- [useScrollTrigger] Do nothing if target is null (#45553) @vipierozan99
+- [Accordion] Add missing `root` slot (#45534) @sai6855
+- [AccordionSummary] Add slots and slotProps (#45560) @sai6855
 - [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) (#45498) @mj12albert
 
 ### `@mui/styled-engine@6.4.8`
 
-- Add `enableCssLayer` prop to StyledEngineProvider (@siriwatknp) (#45563) @siriwatknp
+- Add `enableCssLayer` prop to StyledEngineProvider (#45563) @siriwatknp
 
 ### `@mui/system@6.4.8`
 
-- [system] Prevent nested non-vars theme inheritance (@siriwatknp) (#45564) @siriwatknp
+- [system] Prevent nested non-vars theme inheritance (#45564) @siriwatknp
 
 ### `@mui/utils@6.4.8`
 
-- Use correct iri-reference homepage format (@dahiro) (#45511) @dahiro
+- Use correct iri-reference homepage format (#45511) @dahiro
 
 ### Core
 
@@ -36,8 +36,8 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Docs
 
-- [Backdrop] Fix component name in migration guide (@sai6855) (#45507) @sai6855
-- Fix broken links to MUI X docs (cherry-pick of #45145) (#45481) @mapache-salvaje
+- [Backdrop] Fix component name in migration guide (#45507) @sai6855
+- Fix broken links to MUI X docs (cherry-pick of #45145) (#45481) @mapache-salvaje
 - [examples] Fix the invalid argument to extract examples (#45493) @ovtn
 
 All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Jtaks, @mapache-salvaje, @mj12albert, @ovtn, @sai6855, @siriwatknp, @vipierozan99
