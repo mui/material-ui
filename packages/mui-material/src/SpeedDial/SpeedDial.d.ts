@@ -12,6 +12,11 @@ export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
 export interface SpeedDialSlots {
   /**
+   * The component that renders the root slot.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
    * The component that renders the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
@@ -22,6 +27,11 @@ export interface SpeedDialSlots {
 export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   SpeedDialSlots,
   {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on div element.
+     */
+    root: SlotComponentProps<'div', React.HTMLAttributes<HTMLDivElement>, SpeedDialOwnerState>;
     /**
      * Props forwarded to the transition slot.
      * By default, the avaible props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
