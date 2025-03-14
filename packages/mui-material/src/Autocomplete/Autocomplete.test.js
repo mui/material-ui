@@ -694,7 +694,7 @@ describe('<Autocomplete />', () => {
           defaultValue={options}
           options={options}
           value={options}
-          renderTags={(value, getTagProps) =>
+          renderValue={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
               .map((option, index) => {
@@ -1231,8 +1231,8 @@ describe('<Autocomplete />', () => {
           clearOnEscape
           value="one"
           options={['one', 'two']}
-          renderSingleValue={(value, tagProps) => {
-            return <Chip label={value} {...tagProps} />;
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3316,15 +3316,15 @@ describe('<Autocomplete />', () => {
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
 
-    it('should not be able to delete the tag using Backspace when renderSingleValue', () => {
+    it('should not be able to delete the tag using Backspace when using renderValue', () => {
       const { container } = render(
         <Autocomplete
           readOnly
           options={['one', 'two']}
           defaultValue="one"
           renderInput={(params) => <TextField {...params} />}
-          renderSingleValue={(value, tagProps) => {
-            return <Chip label={value} {...tagProps} />;
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
           }}
         />,
       );
@@ -3504,13 +3504,13 @@ describe('<Autocomplete />', () => {
     expect(listbox).to.have.property('scrollTop', 60);
   });
 
-  describe('prop: renderSingleValue', () => {
+  describe('prop: renderValue (single selection)', () => {
     it('should render only a single value, given that options are primitive values', () => {
       const { container } = render(
         <Autocomplete
           options={['one', 'two']}
-          renderSingleValue={(value, tagProps) => {
-            return <Chip label={value} {...tagProps} />;
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3539,8 +3539,8 @@ describe('<Autocomplete />', () => {
             { title: 'The Godfather', year: 1972 },
           ]}
           getOptionLabel={(option) => option.title}
-          renderSingleValue={(value, tagProps) => {
-            return <Chip label={value.title} {...tagProps} />;
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value.title} {...getTagProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3566,8 +3566,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
-          renderSingleValue={(value, tagProps) => {
-            return <Chip label={value} {...tagProps} />;
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3587,8 +3587,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
-          renderSingleValue={(value, tagProps) => {
-            return <Chip label={value} {...tagProps} />;
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3609,8 +3609,8 @@ describe('<Autocomplete />', () => {
           defaultValue="two"
           options={['one', 'two']}
           renderInput={(params) => <TextField {...params} autoFocus />}
-          renderSingleValue={(value, tagProps) => {
-            return <Chip label={value} {...tagProps} />;
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
           }}
         />,
       );
