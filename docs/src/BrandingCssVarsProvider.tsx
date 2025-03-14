@@ -2,17 +2,20 @@ import * as React from 'react';
 import { deepmerge } from '@mui/utils';
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
-  // @ts-expect-error need to use deprecated API because MUI X repo still on Material UI v5
+  // @ts-ignore need to use deprecated API because MUI X repo still on Material UI v5
   experimental_extendTheme as extendTheme,
+  // @ts-ignore to bypass type checking in MUI X repo because it still on Material UI v5
   createColorScheme,
   ThemeProvider,
   createTheme,
   PaletteColorOptions,
 } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+// @ts-ignore to bypass type checking in MUI X repo
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
+// @ts-ignore to bypass type checking in MUI X repo
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 
 declare module '@mui/material/styles' {
@@ -58,6 +61,7 @@ const themeOptions = {
 const theme =
   typeof createColorScheme === 'function'
     ? createTheme({
+        // @ts-ignore to bypass type checking in MUI X repo
         cssVariables: {
           cssVarPrefix: 'muidocs',
           colorSchemeSelector: 'data-mui-color-scheme',
@@ -66,6 +70,7 @@ const theme =
       })
     : extendTheme({
         cssVarPrefix: 'muidocs',
+        // @ts-ignore to bypass type checking in MUI X repo
         colorSchemeSelector: 'data-mui-color-scheme',
         ...themeOptions,
       });
@@ -77,6 +82,7 @@ export default function BrandingCssVarsProvider(props: { children: React.ReactNo
   const { children } = props;
   return (
     // need to use deprecated API because MUI X repo still on Material UI v5
+    // @ts-ignore to bypass type checking in MUI X repo because it still on Material UI v5, no `forceThemeRerender` prop
     <ThemeVarsProvider theme={theme} disableTransitionOnChange forceThemeRerender>
       <NextNProgressBar />
       <CssBaseline />

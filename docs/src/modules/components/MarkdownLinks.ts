@@ -2,7 +2,7 @@ import * as React from 'react';
 import Router from 'next/router';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-export function samePageLinkNavigation(event) {
+export function samePageLinkNavigation(event: MouseEvent) {
   if (
     event.defaultPrevented ||
     event.button !== 0 || // ignore everything but left-click
@@ -16,8 +16,8 @@ export function samePageLinkNavigation(event) {
   return false;
 }
 
-function isLink(event) {
-  let activeElement = event.target;
+function isLink(event: MouseEvent): HTMLElement | null {
+  let activeElement: HTMLElement | null = event.target as HTMLElement | null;
   while (activeElement?.nodeType === Node.ELEMENT_NODE && activeElement.nodeName !== 'A') {
     activeElement = activeElement.parentElement;
   }
@@ -39,7 +39,7 @@ function isLink(event) {
 /**
  * @param {MouseEvent} event
  */
-function handleClick(event) {
+function handleClick(event: MouseEvent) {
   // Ignore click events meant for native link handling, for example open in new tab
   if (samePageLinkNavigation(event)) {
     return;
@@ -52,6 +52,9 @@ function handleClick(event) {
 
   event.preventDefault();
   const as = activeElement.getAttribute('href');
+  if (as === null) {
+    return;
+  }
   const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
   Router.push(canonicalPathname, as);
 }
@@ -59,13 +62,16 @@ function handleClick(event) {
 /**
  * Source copied from https://github.com/vercel/next.js/blob/ebc4eaaa2564b4283711646079d68e430496c88b/packages/next/src/client/link.tsx
  */
-function handleMouseOver(event) {
+function handleMouseOver(event: MouseEvent) {
   const activeElement = isLink(event);
   if (activeElement === null) {
     return;
   }
 
   const as = activeElement.getAttribute('href');
+  if (as === null) {
+    return;
+  }
   const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
 
   const prefetchPromise = Router.prefetch(canonicalPathname, as, { priority: true });
