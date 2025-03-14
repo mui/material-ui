@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "7.0.0-beta.2",
+  "version": "7.0.0-beta.4",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -36,7 +36,8 @@
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
   },
   "dependencies": {
     "@babel/runtime": "^7.26.9",

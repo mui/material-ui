@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   { pathname: '/material-ui/api/accordion' },
   { pathname: '/material-ui/api/accordion-actions' },
   { pathname: '/material-ui/api/accordion-details' },
