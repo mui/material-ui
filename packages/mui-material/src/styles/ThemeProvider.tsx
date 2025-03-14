@@ -26,6 +26,12 @@ type ThemeProviderCssVariablesProps = CssThemeVariables extends { enabled: true 
        * @default false
        */
       disableStyleSheetGeneration?: boolean;
+      /**
+       * If `true`, theme values are recalculated when the mode changes.
+       * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+       * @default false
+       */
+      forceThemeRerender?: boolean;
     }
   : {};
 
@@ -85,6 +91,11 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   }
   const muiTheme = (THEME_ID in theme ? theme[THEME_ID] : theme) as ThemeProviderProps['theme'];
   if (!('colorSchemes' in muiTheme)) {
+    if (!('vars' in muiTheme)) {
+      // For non-CSS variables themes, set `vars` to null to prevent theme inheritance from the upper theme.
+      // The example use case is the docs demo that uses ThemeProvider to customize the theme while the upper theme is using CSS variables.
+      return <ThemeProviderNoVars theme={{ ...theme, vars: null }} {...props} />;
+    }
     return <ThemeProviderNoVars theme={theme} {...props} />;
   }
   return <CssVarsProvider theme={theme as unknown as CssVarsTheme} {...props} />;
