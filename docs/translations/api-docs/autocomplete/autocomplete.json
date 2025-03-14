@@ -176,16 +176,16 @@
         "ownerState": "The state of the Autocomplete component."
       }
     },
-    "renderSingleValue": {
-      "description": "Render the selected value.",
+    "renderTags": {
+      "description": "Render the selected value when doing multiple selections.",
       "typeDescriptions": {
         "value": "The <code>value</code> provided to the component.",
-        "tagProps": "The tag props.",
+        "getTagProps": "A tag props getter.",
         "ownerState": "The state of the Autocomplete component."
       }
     },
-    "renderTags": {
-      "description": "Render the selected value when doing multiple selections.",
+    "renderValue": {
+      "description": "Renders the selected value(s) as rich content in the input for both single and multiple selections.",
       "typeDescriptions": {
         "value": "The <code>value</code> provided to the component.",
         "getTagProps": "A tag props getter.",

@@ -178,17 +178,19 @@
         "describedArgs": ["props", "option", "state", "ownerState"]
       }
     },
-    "renderSingleValue": {
-      "type": { "name": "func" },
-      "signature": {
-        "type": "function(value: Value, tagProps: function, ownerState: object) => ReactNode",
-        "describedArgs": ["value", "tagProps", "ownerState"]
-      }
-    },
     "renderTags": {
       "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>renderValue</code> prop instead",
       "signature": {
         "type": "function(value: Array<Value>, getTagProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "getTagProps", "ownerState"]
+      }
+    },
+    "renderValue": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: AutocompleteRenderValue<Value, Multiple, FreeSolo>, getTagProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getTagProps", "ownerState"]
       }
     },

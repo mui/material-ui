@@ -485,10 +485,6 @@ export interface UseAutocompleteReturnValue<
    * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
   groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Value>[] : Value[];
-  /**
-   * The single tag props for rendering a custom single value.
-   */
-  tagProps: AutocompleteSingleTagProps;
 }
 
 export default useAutocomplete;

@@ -58,11 +58,27 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
-export type AutocompleteTagProps = {
-  tabIndex: -1;
-  'data-tag': 'single';
-  onDelete: (event: any) => void;
-};
+export type AutocompleteRenderValueGetTagProps<Multiple extends boolean | undefined> =
+  Multiple extends true
+    ? (args: { index: number }) => {
+        key: number;
+        className: string;
+        disabled: boolean;
+        'data-tag-index': number;
+        tabIndex: -1;
+        onDelete: (event: any) => void;
+      }
+    : (args?: { index?: number }) => {
+        className: string;
+        disabled: boolean;
+        'data-tag-index': number;
+        tabIndex: -1;
+        onDelete: (event: any) => void;
+      };
+
+export type AutocompleteRenderValue<Value, Multiple, FreeSolo> = Multiple extends true
+  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>;
 
 export interface AutocompleteRenderOptionState {
   inputValue: string;
@@ -339,20 +355,9 @@ export interface AutocompleteProps<
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
-   * Render the selected value.
-   *
-   * @param {Value} value The `value` provided to the component.
-   * @param {function} tagProps The tag props.
-   * @param {object} ownerState The state of the Autocomplete component.
-   * @returns {ReactNode}
-   */
-  renderSingleValue?: (
-    value: Value,
-    tagProps: AutocompleteTagProps,
-    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
-  ) => React.ReactNode;
-  /**
    * Render the selected value when doing multiple selections.
+   *
+   * @deprecated Use `renderValue` prop instead
    *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
@@ -362,6 +367,19 @@ export interface AutocompleteProps<
   renderTags?: (
     value: Value[],
     getTagProps: AutocompleteRenderGetTagProps,
+    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  ) => React.ReactNode;
+  /**
+   * Renders the selected value(s) as rich content in the input for both single and multiple selections.
+   *
+   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderValue?: (
+    value: AutocompleteRenderValue<Value, Multiple, FreeSolo>,
+    getTagProps: AutocompleteRenderValueGetTagProps<Multiple>,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
