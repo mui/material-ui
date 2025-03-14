@@ -112,7 +112,29 @@ export function setDocsColors(primary: Record<string, string>, secondary: Record
 
 export function resetDocsColor() {
   if (typeof document !== 'undefined') {
-    document.documentElement.removeAttribute('style');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-main');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-main');
+    document.documentElement.style.removeProperty('--mui-palette-primary-main');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-main');
+
+    ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].forEach((key) => {
+      document.documentElement.style.removeProperty(`--muidocs-palette-primary-${key}`);
+      document.documentElement.style.removeProperty(`--muidocs-palette-secondary-${key}`);
+    });
+  }
+}
+
+export function setDocsSpacing(value: number) {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.setProperty('--muidocs-spacing', `${value}px`);
+    document.documentElement.style.setProperty('--mui-spacing', `${value}px`);
+  }
+}
+
+export function resetDocsSpacing() {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.removeProperty('--muidocs-spacing');
+    document.documentElement.style.removeProperty('--mui-spacing');
   }
 }
 

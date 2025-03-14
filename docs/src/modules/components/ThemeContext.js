@@ -111,7 +111,6 @@ export function ThemeProvider(props) {
         return {
           ...state,
           dense: themeInitialOptions.dense,
-          spacing: themeInitialOptions.spacing,
         };
       case 'CHANGE':
         // No value changed
