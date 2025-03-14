@@ -41,7 +41,7 @@
     "@mui/styled-engine-sc": "workspace:^",
     "@mui/styles": "workspace:^",
     "@mui/system": "workspace:^",
-    "@mui/types": "workspace:^",
+    "@mui/types": "<7.3.0",
     "@mui/utils": "workspace:^",
     "@mui/x-charts": "7.23.6",
     "@mui/x-data-grid": "7.23.6",
