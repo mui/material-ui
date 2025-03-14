@@ -188,7 +188,11 @@ export default function AppFrame(props: AppFrameProps) {
   const openDrawer = React.useCallback(() => setMobileOpen(true), []);
 
   const { activePage, productIdentifier } = React.useContext(PageContext);
-  const themeOptions = React.useContext(ThemeOptionsContext);
+  const themeOptions = React.useContext(ThemeOptionsContext) as {
+    dense: boolean;
+    direction: 'ltr' | 'rtl';
+    paletteMode: 'light' | 'dark';
+  };
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
