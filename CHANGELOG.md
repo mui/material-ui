@@ -1,5 +1,22 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.16.15
+
+<!-- generated comparing v5.16.14..v5.x -->
+
+_Mar 14, 2025_
+
+### `@mui/material@5.16.15`
+
+- [TextareaAutosize] Temporarily disconnect ResizeObserver to avoid loop error (#44540) (#45238) @DiegoAndai
+
+### Core
+
+- Remove Suspense and clock mocking from regressions and e2e tests (#44935) (#45359) @DiegoAndai
+- Update pnpm (#45357) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai
+
 ## v5.16.14
 
 <!-- generated comparing v5.16.13..v5.x -->
