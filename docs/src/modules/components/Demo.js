@@ -213,6 +213,7 @@ const Root = styled('div')(({ theme }) => ({
 const DemoRootMaterial = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme }) => ({
+  color: 'initial',
   position: 'relative',
   margin: 'auto',
   display: 'flex',
@@ -330,6 +331,7 @@ const DemoRootMaterial = styled('div', {
 const DemoRootJoy = joyStyled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme, hideToolbar, bg }) => ({
+  color: 'initial',
   position: 'relative',
   margin: 'auto',
   display: 'flex',
