@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "6.4.7",
+  "version": "6.4.8",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -42,7 +42,7 @@
     "@babel/runtime": "^7.26.0",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
-    "@mui/types": "workspace:^",
+    "@mui/types": "workspace:~",
     "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
     "csstype": "^3.1.3",
