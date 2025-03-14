@@ -499,7 +499,7 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../packages/mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1090,7 +1090,7 @@ importers:
         specifier: ^2.0.8
         version: 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1361,7 +1361,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1438,7 +1438,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1500,7 +1500,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1658,7 +1658,7 @@ importers:
         specifier: workspace:^
         version: link:../test-utils
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@types/chai':
         specifier: ^4.3.12
@@ -1768,7 +1768,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-private-theming/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1854,7 +1854,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-styled-engine/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1932,7 +1932,7 @@ importers:
         specifier: ^7.23.9
         version: 7.23.9
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@types/prop-types':
         specifier: ^15.7.12
@@ -4564,6 +4564,7 @@ packages:
   '@playwright/test@1.42.1':
     resolution: {integrity: sha512-Gq9rmS54mjBL/7/MvBaNOBwbfnh7beHvS6oS4srqXFcQHpQCV1+c8JXWE8VLPyRDhgS3H8x8A7hztqI9VnwrAQ==}
     engines: {node: '>=16'}
+    deprecated: Please update to the latest version of Playwright to test up-to-date browsers.
     hasBin: true
 
   '@polka/url@1.0.0-next.21':
@@ -7961,6 +7962,7 @@ packages:
   gm@1.25.0:
     resolution: {integrity: sha512-4kKdWXTtgQ4biIo7hZA396HT062nDVVHPjQcurNZ3o/voYN+o5FUC5kOwuORbpExp3XbTJ3SU7iRipiIhQtovw==}
     engines: {node: '>=14'}
+    deprecated: The gm module has been sunset. Please migrate to an alternative. https://github.com/aheckmann/gm?tab=readme-ov-file#2025-02-24-this-project-is-not-maintained
 
   goober@2.1.13:
     resolution: {integrity: sha512-jFj3BQeleOoy7t93E9rZ2de+ScC4lQICLwiAQmKMg9F6roKGaLSHoCDYKkWlSafg138jejvq/mTdvmnwDQgqoQ==}
