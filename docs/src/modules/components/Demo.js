@@ -28,7 +28,7 @@ import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { AdCarbonInline } from '@mui/docs/Ad';
-import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
+import { blue, blueDark, grey } from '@mui/docs/branding';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -213,6 +213,7 @@ const Root = styled('div')(({ theme }) => ({
 const DemoRootMaterial = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme }) => ({
+  color: 'initial',
   position: 'relative',
   margin: 'auto',
   display: 'flex',
@@ -330,6 +331,7 @@ const DemoRootMaterial = styled('div', {
 const DemoRootJoy = joyStyled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme, hideToolbar, bg }) => ({
+  color: 'initial',
   position: 'relative',
   margin: 'auto',
   display: 'flex',
@@ -353,7 +355,7 @@ const DemoRootJoy = joyStyled('div', {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     backgroundColor: 'transparent',
-    ...theme.applyDarkStyles({
+    ...theme.applyStyles('dark', {
       borderColor: alpha(blueDark[500], 0.3),
       backgroundColor: alpha(theme.palette.neutral[900], 0.8),
     }),
@@ -379,7 +381,7 @@ const DemoRootJoy = joyStyled('div', {
       radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
       radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%),
       radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
-    ...theme.applyDarkStyles({
+    ...theme.applyStyles('dark', {
       backgroundColor: alpha(blue[900], 0.1),
       borderColor: alpha(blueDark[700], 1),
       backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
@@ -435,7 +437,7 @@ const selectionOverride = (theme) => ({
 });
 
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation, mode } = props;
+  const { demo, demoOptions, disableAd, githubLocation } = props;
 
   if (process.env.NODE_ENV !== 'production') {
     if (demoOptions.hideToolbar === false) {
@@ -538,7 +540,6 @@ export default function Demo(props) {
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
 
   const DemoRoot = demoData.productId === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = demoData.productId === 'joy-ui' ? BrandingProvider : React.Fragment;
 
   const isPreview = !codeOpen && showPreview;
 
@@ -629,13 +630,7 @@ export default function Demo(props) {
     <Root>
       <AnchorLink id={demoName} />
       <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
-        <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
-          <InitialFocus
-            aria-label={t('initialFocusLabel')}
-            action={initialFocusRef}
-            tabIndex={-1}
-          />
-        </Wrapper>
+        <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
           style={demoSandboxedStyle}
@@ -647,9 +642,8 @@ export default function Demo(props) {
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {/* TODO: Wrapper shouldn't be needed, it should already be at the top of the docs page */}
       {demoOptions.hideToolbar ? null : (
-        <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+        <React.Fragment>
           {Object.keys(stylingSolutionMapping).map((key) => (
             <React.Fragment key={key}>
               <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
@@ -754,7 +748,7 @@ export default function Demo(props) {
             </Collapse>
           </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
-        </Wrapper>
+        </React.Fragment>
       )}
     </Root>
   );
@@ -768,5 +762,4 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  mode: PropTypes.string, // temporary, just to make Joy docs work.
 };
