@@ -694,7 +694,7 @@ describe('<Autocomplete />', () => {
           defaultValue={options}
           options={options}
           value={options}
-          renderTags={(value, getTagProps) =>
+          renderValue={(value, getTagProps) =>
             value
               .filter((x, index) => index === 1)
               .map((option, index) => {
@@ -1221,6 +1221,27 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([]);
+    });
+
+    it('should clear on escape if rendering single value', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          clearOnEscape
+          value="one"
+          options={['one', 'two']}
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(null);
+      expect(handleChange.args[0][2]).to.deep.equal('clear');
     });
   });
 
@@ -3294,6 +3315,32 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'Backspace' });
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
+
+    it('should not be able to delete the tag using Backspace when using renderValue', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two']}
+          defaultValue="one"
+          renderInput={(params) => <TextField {...params} />}
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
+          }}
+        />,
+      );
+
+      const chip = container.querySelector(`.${chipClasses.root}`);
+      expect(chip).not.to.have.class(chipClasses.deletable);
+
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
   });
 
   // https://github.com/mui/material-ui/issues/36114
@@ -3455,5 +3502,129 @@ describe('<Autocomplete />', () => {
     });
 
     expect(listbox).to.have.property('scrollTop', 60);
+  });
+
+  describe('prop: renderValue (single selection)', () => {
+    it('should render only a single value, given that options are primitive values', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the second option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
+
+    it('should render only a single value, given that options as objects', () => {
+      const { container } = render(
+        <Autocomplete
+          options={[
+            { title: 'The Shawshank Redemption', year: 1994 },
+            { title: 'The Godfather', year: 1972 },
+          ]}
+          getOptionLabel={(option) => option.title}
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value.title} {...getTagProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the second option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
+
+    it('should delete using Backspace key', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          defaultValue="one"
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
+
+    it('should delete using Delete key', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          defaultValue="one"
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'Delete' });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
+
+    it('navigates between the tag and input', () => {
+      const { container } = render(
+        <Autocomplete
+          defaultValue="two"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getTagProps) => {
+            return <Chip label={value} {...getTagProps()} />;
+          }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = container.querySelector(`.${chipClasses.root}`);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(chip).toHaveFocus();
+
+      fireEvent.keyDown(chip, { key: 'ArrowRight' });
+
+      expect(textbox).toHaveFocus();
+    });
   });
 });
