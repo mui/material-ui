@@ -1,5 +1,4 @@
 import childProcess from 'child_process';
-import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
