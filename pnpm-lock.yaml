@@ -1351,7 +1351,7 @@ importers:
         specifier: ^15.0.7
         version: 15.0.7
       prismjs:
-        specifier: ^1.29.0
+        specifier: ^1.30.0
         version: 1.30.0
     devDependencies:
       '@types/chai':
