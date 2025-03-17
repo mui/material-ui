@@ -1,1 +1,2 @@
-export { useAutocomplete as default } from '@mui/base';
+export { useAutocomplete } from './useAutocomplete';
+export * from './useAutocomplete';
