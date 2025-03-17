@@ -39,6 +39,7 @@ A big thanks to the 9 contributors who made this release possible.
 - [Backdrop] Fix component name in migration guide (#45507) @sai6855
 - Fix broken links to MUI X docs (cherry-pick of #45145) (#45481) @mapache-salvaje
 - [examples] Fix the invalid argument to extract examples (#45493) @ovtn
+- Add `overriding-component-structure` doc to Material UI (#45570) @siriwatknp
 
 All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Jtaks, @mapache-salvaje, @mj12albert, @ovtn, @sai6855, @siriwatknp, @vipierozan99
 
