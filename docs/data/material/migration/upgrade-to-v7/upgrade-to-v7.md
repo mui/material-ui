@@ -48,10 +48,23 @@ We will not change the minimum supported version in a minor version of MaterialÂ
 However, we recommend not using a TypeScript version older than the lowest supported version by DefinitelyTyped.
 :::
 
-If your project includes these packages, you'll need to update them:
+For `@types/react*` packages, use the snippet below to update your project (replace the `<version>` with the major version of `react` you are using):
 
-- `@types/react`
-- `@types/react-dom`
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @types/react@<version> @types/react-dom@<version>
+```
+
+```bash pnpm
+pnpm add @types/react@<version> @types/react-dom@<version>
+```
+
+```bash yarn
+yarn add @types/react@<version> @types/react-dom@<version>
+```
+
+</codeblock>
 
 :::warning
 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
