@@ -245,11 +245,10 @@ To use a custom [Emotion cache](https://emotion.sh/docs/@emotion/cache), pass it
 
 #### Cascade layers (optional)
 
-To enable [cascade layers](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Cascade_layers) (`@layer`), create a new cache with `enableCssLayer: true` and pass it to the `emotionCache` property in `_document.tsx`:
+To enable [cascade layers](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Cascade_layers) (`@layer`), create a new cache with `enableCssLayer: true` and pass it to the `emotionCache` property in both `_document.tsx` and `_app.tsx`:
 
 ```diff title="pages/_document.tsx"
 +import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
-
  ...
 
  MyDocument.getInitialProps = async (ctx) => {
@@ -258,6 +257,24 @@ To enable [cascade layers](https://developer.mozilla.org/en-US/docs/Learn_web_de
    });
    return finalProps;
  };
+```
+
+```diff title="pages/_app.tsx"
++import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
+  ...
+
+const clientCache = createEmotionCache({ enableCssLayer: true });
+
++ export default function MyApp({ emotionCache = clientCache }) {
+    return (
++     <AppCacheProvider emotionCache={emotionCache}>
+        <Head>
+          ...
+        </Head>
+        ...
+      </AppCacheProvider>
+    );
+  }
 ```
 
 #### App enhancement (optional)
