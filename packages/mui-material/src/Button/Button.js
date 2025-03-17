@@ -504,6 +504,8 @@ const ButtonLoadingIconPlaceholder = styled('span', {
 });
 
 const Button = React.forwardRef(function Button(inProps, ref) {
+  // eslint-disable-next-line no-console
+  console.log('Hello from PR preview');
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
   const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);

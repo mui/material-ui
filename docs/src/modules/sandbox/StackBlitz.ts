@@ -31,10 +31,20 @@ function openStackBlitz({
   form.action = `https://stackblitz.com/run?file=${initialFile}${
     initialFile.match(/(\.tsx|\.ts|\.js)$/) ? '' : extension
   }`;
+
+  const projectDependencies = Object.fromEntries(
+    Object.entries(dependencies).map(([key, value]) => {
+      if (value.startsWith('https://')) {
+        return [key, '*'];
+      }
+      return [key, value];
+    }),
+  );
+
   addHiddenInput(form, 'project[template]', 'create-react-app');
   addHiddenInput(form, 'project[title]', title);
   addHiddenInput(form, 'project[description]', `# ${title}\n${description}`);
-  addHiddenInput(form, 'project[dependencies]', JSON.stringify(dependencies));
+  addHiddenInput(form, 'project[dependencies]', JSON.stringify(projectDependencies));
   addHiddenInput(form, 'project[devDependencies]', JSON.stringify(devDependencies));
   Object.keys(files).forEach((key) => {
     const value = files[key];
@@ -49,9 +59,24 @@ function createReactApp(demoData: DemoData) {
   const ext = getFileExtension(demoData.codeVariant);
   const { title, githubLocation: description } = demoData;
 
+  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+  });
+
+  const urlDependenciesEntries = Object.entries(dependencies).filter(([_, value]) =>
+    value.startsWith('https://'),
+  );
+
   const files: Record<string, string> = {
     'index.html': CRA.getHtml(demoData),
-    [`index.${ext}`]: CRA.getRootIndex(demoData),
+    [`index.${ext}`]: [
+      ...(urlDependenciesEntries.length > 0
+        ? [
+            `SystemJS.config({ map: ${JSON.stringify(Object.fromEntries(urlDependenciesEntries))} });`,
+          ]
+        : []),
+      CRA.getRootIndex(demoData),
+    ].join('\n'),
     [`Demo.${ext}`]: flattenRelativeImports(demoData.raw),
     // Spread the relative modules
     ...(demoData.relativeModules &&
@@ -68,11 +93,6 @@ function createReactApp(demoData: DemoData) {
       'tsconfig.json': CRA.getTsconfig(),
     }),
   };
-
-  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
-    // Waiting for https://github.com/stackblitz/core/issues/437
-    // commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-  });
 
   return {
     title,
