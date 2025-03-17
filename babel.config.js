@@ -106,6 +106,7 @@ module.exports = function getBabelConfig(api) {
       {
         missingError,
         errorCodesPath,
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
     ],
     ...(useESModules

@@ -6,7 +6,7 @@ import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/transition';
 import { DialogClasses } from './dialogClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface DialogSlots {
   /**
@@ -66,9 +66,9 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the transition slot.
      * By default, the avaible props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
-    transition: SlotProps<
-      React.ElementType<TransitionProps>,
-      DialogTransitionSlotPropsOverrides,
+    transition: SlotComponentProps<
+      React.ElementType,
+      TransitionProps & DialogTransitionSlotPropsOverrides,
       DialogOwnerState
     >;
     /**
@@ -132,11 +132,6 @@ export interface DialogProps
    * @default 'sm'
    */
   maxWidth?: Breakpoint | false;
-  /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick?: ModalProps['onBackdropClick'];
   /**
    * Callback fired when the component requests to be closed.
    *

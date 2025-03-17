@@ -1289,6 +1289,60 @@ npx @mui/codemod@latest deprecations/image-list-item-bar-classes <path>
 npx @mui/codemod@latest deprecations/input-base-props <path>
 ```
 
+#### `input-base-classes`
+
+JS transforms:
+
+```diff
+ import { inputBaseClasses } from '@mui/material/InputBase';
+
+ MuiInputBase: {
+   styleOverrides: {
+     root: {
+-      [`& .${inputBaseClasses.inputSizeSmall}`]: {
++      [`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputMultiline}`]: {
++      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedStart}`]: {
++      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedEnd}`]: {
++      [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputHiddenLabel}`]: {
++      [`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiInputBase-root .MuiInputBase-inputSizeSmall
++.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputMultiline
++.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedStart
++.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedEnd
++.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputHiddenLabel
++.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-classes <path>
+```
+
 #### `input-props`
 
 ```diff
@@ -1552,6 +1606,21 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
+#### `rating-props`
+
+```diff
+ <Snackbar
+-  IconContainerComponent={CustomContainer}
++  slots={{
++    icon: { component: CustomContainer }
++  }}
+ />
+```
+
+```bash
+npx @mui/codemod@next deprecations/snackbar-props <path>
+```
+
 #### `select-classes`
 
 JS transforms:
@@ -1657,35 +1726,35 @@ JS transforms:
  MuiSlider: {
    styleOverrides: {
      root: {
--      [`&.${sliderClasses.thumbSizeSmall}`]: {
+-      [`& .${sliderClasses.thumbSizeSmall}`]: {
 +      [`&.${sliderClasses.sizeSmall} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbSizeMedium}`]: {
+-      [`& .${sliderClasses.thumbSizeMedium}`]: {
 +      [`&.${sliderClasses.sizeMedium} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorPrimary}`]: {
+-      [`& .${sliderClasses.thumbColorPrimary}`]: {
 +      [`&.${sliderClasses.colorPrimary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSecondary}`]: {
+-      [`& .${sliderClasses.thumbColorSecondary}`]: {
 +      [`&.${sliderClasses.colorSecondary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorError}`]: {
+-      [`& .${sliderClasses.thumbColorError}`]: {
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClrsses.thumbColorInfo}`]: {
-+      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+-      [`& .${sliderClasses.thumbColorInfo}`]: {
++      [`&.${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSuccess}`]: {
+-      [`& .${sliderClasses.thumbColorSuccess}`]: {
 +      [`&.${sliderClasses.colorSuccess} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorWarning}`]: {
+-      [`& .${sliderClasses.thumbColorWarning}`]: {
 +      [`&.${sliderClasses.colorWarning} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
@@ -1716,7 +1785,7 @@ CSS transforms:
 ```
 
 ```bash
-npx @mui/codemod@latest deprecations/button-classes <path>
+npx @mui/codemod@latest deprecations/slider-classes <path>
 ```
 
 #### `tooltip-props`
@@ -2019,6 +2088,40 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `grid-props`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/grid-props <path>
+```
+
+Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
+
+```diff
+ <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+ />
+```
+
+You can provide the theme breakpoints via options, for example, `--jscodeshift='--muiBreakpoints=mobile,desktop'`, to use your custom breakpoints in the transformation.
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+```
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
 #### `lab-removed-components`
 
 <!-- #npm-tag-reference -->
@@ -2057,6 +2160,25 @@ As well as default and named imports from component-level files:
 - import Alert, { alertClasses } from '@mui/lab/Alert';
 + import Alert, { alertClasses } from '@mui/material/Alert';
 ```
+
+#### `input-label-size-normal-medium`
+
+Updates the `InputLabel`'s `size` value from `normal` to `medium`.
+
+```diff
+-<InputLabel size="normal">Label</InputLabel>
++<InputLabel size="medium">Label</InputLabel>
+```
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path>
+```
+
+<!-- #host-reference -->
+
+You can find more details about this breaking change in [the migration guide](https://next.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
 
 ### v6.0.0
 

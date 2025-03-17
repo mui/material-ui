@@ -79,3 +79,5 @@ export function getValue(
 ): SpacingValueType;
 
 export type PaddingProps = PropsFor<typeof padding>;
+
+export default spacing;

@@ -136,7 +136,7 @@ Apps focused on productivity that require balance across the screen.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}
 
-## Toolpad (Beta)
+## Experimental APIs - Toolpad
 
 ### Dashboard Layout
 

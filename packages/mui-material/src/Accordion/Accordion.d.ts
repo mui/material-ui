@@ -4,10 +4,15 @@ import { Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { AccordionClasses } from './accordionClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { ExtendPaperTypeMap } from '../Paper/Paper';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { ExtendPaperTypeMap, PaperProps } from '../Paper/Paper';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface AccordionSlots {
+  /**
+   * The component that renders the root.
+   * @default Paper
+   */
+  root: React.ElementType;
   /**
    * The component that renders the heading.
    * @default 'h3'
@@ -18,25 +23,37 @@ export interface AccordionSlots {
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
-  transition: React.JSXElementConstructor<
-    TransitionProps & { children?: React.ReactElement<unknown, any> }
-  >;
+  transition: React.ElementType;
 }
 
-export interface AccordionTransitionSlotPropsOverrides {}
+export interface AccordionRootSlotPropsOverrides {}
 export interface AccordionHeadingSlotPropsOverrides {}
+export interface AccordionTransitionSlotPropsOverrides {}
 
 export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   AccordionSlots,
   {
-    heading: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLHeadingElement>>,
-      AccordionHeadingSlotPropsOverrides,
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the Paper element.
+     */
+    root: SlotProps<
+      React.ElementType<PaperProps>,
+      AccordionRootSlotPropsOverrides,
       AccordionOwnerState
     >;
-    transition: SlotProps<
-      React.ElementType<TransitionProps>,
-      AccordionTransitionSlotPropsOverrides,
+    /**
+     * Props forwarded to the heading slot.
+     * By default, the avaible props are based on the h3 element.
+     */
+    heading: SlotProps<'h3', AccordionHeadingSlotPropsOverrides, AccordionOwnerState>;
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
+     */
+    transition: SlotComponentProps<
+      React.ElementType,
+      TransitionProps & AccordionTransitionSlotPropsOverrides,
       AccordionOwnerState
     >;
   }
