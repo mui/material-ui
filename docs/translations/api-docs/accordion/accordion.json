@@ -52,7 +52,6 @@
       "nodeName": "the region element",
       "conditions": "the container of the children"
     },
-    "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
@@ -61,6 +60,7 @@
   },
   "slotDescriptions": {
     "heading": "The component that renders the heading.",
+    "root": "The component that renders the root.",
     "transition": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

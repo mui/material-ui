@@ -35,6 +35,12 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    * @default false
    */
   disableTransitionOnChange?: boolean;
+  /**
+   * If `true`, theme values are recalculated when the mode changes.
+   * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+   * @default false
+   */
+  forceThemeRerender?: boolean;
 }
 
 type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;
