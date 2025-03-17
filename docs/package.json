@@ -54,6 +54,7 @@
     "@mui/x-tree-view": "7.26.0",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^9.7.5",
+    "@tailwindcss/postcss": "4.0.14",
     "@toolpad/core": "^0.12.1",
     "autoprefixer": "^10.4.21",
     "autosuggest-highlight": "^3.3.4",
@@ -139,7 +140,7 @@
     "marked": "^15.0.7",
     "playwright": "^1.50.1",
     "prettier": "^3.5.3",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.0.14",
     "yargs": "^17.7.2"
   }
 }
