@@ -987,10 +987,16 @@ importers:
       '@babel/helper-module-imports':
         specifier: ^7.25.9
         version: 7.25.9
+      find-package-json:
+        specifier: ^1.2.0
+        version: 1.2.0
     devDependencies:
       '@types/babel__helper-module-imports':
         specifier: ^7.18.3
         version: 7.18.3
+      '@types/find-package-json':
+        specifier: ^1.2.6
+        version: 1.2.6
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.26.10)
@@ -5616,6 +5622,9 @@ packages:
   '@types/express@5.0.0':
     resolution: {integrity: sha512-DvZriSMehGHL1ZNLzi6MidnsDhUZM/x2pRdDIKdwbUNqqwHxMlRdkxtn6/EPKyqKpHqTl/4nRZsRNLpZxZRpPQ==}
 
+  '@types/find-package-json@1.2.6':
+    resolution: {integrity: sha512-ZGsnItMbi56k1DLzI1d1ln8Omt7+WRv8cBsTwXIw58BhuKE7wQUW1Krr6QFj0JT125dW9w6XLALSYOLCj7N8Rg==}
+
   '@types/format-util@1.0.4':
     resolution: {integrity: sha512-xrCYOdHh5zA3LUrn6CvspYwlzSWxPso11Lx32WnAG6KvLCRecKZ/Rh21PLXUkzUFsQmrGcx/traJAFjR6dVS5Q==}
 
@@ -8212,6 +8221,9 @@ packages:
   find-cache-dir@4.0.0:
     resolution: {integrity: sha512-9ZonPT4ZAK4a+1pUPVPZJapbi7O5qbbJPdYw/NOQWZZbVLdDTYM3A4R9z/DpAM08IDaFGsvPgiGZ82WEwUDWjg==}
     engines: {node: '>=14.16'}
+
+  find-package-json@1.2.0:
+    resolution: {integrity: sha512-+SOGcLGYDJHtyqHd87ysBhmaeQ95oWspDKnMXBrnQ9Eq4OkLNqejgoaD8xVWu6GPa0B6roa6KinCMEMcVeqONw==}
 
   find-root@1.1.0:
     resolution: {integrity: sha512-NKfW6bec6GfKc0SGx1e07QZY9PE99u0Bft/0rzSD5k3sO/vwkVUpDUKVm5Gpp5Ue3YfShPFTX2070tDs5kB9Ng==}
@@ -17330,6 +17342,10 @@ snapshots:
       '@types/qs': 6.9.18
       '@types/serve-static': 1.15.7
 
+  '@types/find-package-json@1.2.6':
+    dependencies:
+      '@types/node': 20.17.24
+
   '@types/format-util@1.0.4': {}
 
   '@types/fs-extra@11.0.4':
@@ -20596,6 +20612,8 @@ snapshots:
     dependencies:
       common-path-prefix: 3.0.0
       pkg-dir: 7.0.0
+
+  find-package-json@1.2.0: {}
 
   find-root@1.1.0: {}
 
