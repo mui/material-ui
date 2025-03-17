@@ -1,6 +1,5 @@
 import path from 'path';
 import url from 'url';
-import fs from 'fs/promises';
 
 /**
  * Returns the full path of the root directory of this repository.
@@ -15,12 +14,10 @@ export function getWorkspaceRoot() {
 /**
  * Returns the version and destructured values of the version as env variables to be replaced.
  */
-export async function getVersionEnvVariables() {
-  const packageJsonData = await fs.readFile(path.resolve('./package.json'), 'utf8');
-  const { version = null } = JSON.parse(packageJsonData);
-
+export function getVersionEnvVariables(pkgJson) {
+  const version = pkgJson.version;
   if (!version) {
-    throw new Error('Could not find the version in the package.json');
+    throw new Error('No version found in package.json');
   }
 
   const [versionNumber, prerelease] = version.split('-');
