@@ -1,5 +1,4 @@
 import childProcess from 'child_process';
-import glob from 'fast-glob';
 import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
@@ -30,7 +29,7 @@ async function run(argv) {
   const packageJsonPath = path.resolve('./package.json');
   const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
 
-  const babelRuntimeVersion = packageJson.dependencies['@babel/runtime'];
+  const babelRuntimeVersion = packageJson.dependencies?.['@babel/runtime'];
   if (!babelRuntimeVersion) {
     throw new Error(
       'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',
@@ -67,7 +66,7 @@ async function run(argv) {
     MUI_BUILD_VERBOSE: verbose,
     MUI_BABEL_RUNTIME_VERSION: babelRuntimeVersion,
     MUI_OUT_FILE_EXTENSION: outFileExtension,
-    ...(await getVersionEnvVariables()),
+    ...(await getVersionEnvVariables(packageJson)),
   };
 
   const babelArgs = [
