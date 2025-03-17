@@ -1,5 +1,48 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.8
+
+<!-- generated comparing v6.4.7..v6.x -->
+
+_Mar 14, 2025_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.4.8`
+
+- [ListItemText] Add missing `root` slot (#45552) @sai6855
+- [SpeedDial] Add missing `root` slot (#45551) @sai6855
+- [Tooltip] Allow auto placement on tooltip (#45536) @Jtaks
+- [useScrollTrigger] Do nothing if target is null (#45553) @vipierozan99
+- [Accordion] Add missing `root` slot (#45534) @sai6855
+- [AccordionSummary] Add slots and slotProps (#45560) @sai6855
+- [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) (#45498) @mj12albert
+
+### `@mui/styled-engine@6.4.8`
+
+- Add `enableCssLayer` prop to StyledEngineProvider (#45563) @siriwatknp
+
+### `@mui/system@6.4.8`
+
+- [system] Prevent nested non-vars theme inheritance (#45564) @siriwatknp
+
+### `@mui/utils@6.4.8`
+
+- Use correct iri-reference homepage format (#45511) @dahiro
+
+### Core
+
+- [test] Fix React 18 tests (#45161) (#45496) @DiegoAndai
+
+### Docs
+
+- [Backdrop] Fix component name in migration guide (#45507) @sai6855
+- Fix broken links to MUI X docs (cherry-pick of #45145) (#45481) @mapache-salvaje
+- [examples] Fix the invalid argument to extract examples (#45493) @ovtn
+- Add `overriding-component-structure` doc to Material UI (#45570) @siriwatknp
+
+All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Jtaks, @mapache-salvaje, @mj12albert, @ovtn, @sai6855, @siriwatknp, @vipierozan99
+
 ## 6.4.7
 
 <!-- generated comparing v6.4.6..v6.x -->
@@ -31,21 +74,21 @@ A big thanks to the 4 contributors who made this release possible.
 ### `@mui/material@6.4.6`
 
 - [Checkbox] Add slots and slotProps (#45361) @siriwatknp
-- [Drawer] Deprecate *Props and complete `slots`, `slotProps` (#45377) @siriwatknp
+- [Drawer] Deprecate \*Props and complete `slots`, `slotProps` (#45377) @siriwatknp
 - [Grid] Improve Grid2 upgrade experience (#45372) @DiegoAndai
 - [InputBase] Deprecate composed classes (#45366) @siriwatknp
 - Fix `slotProps.transition` types (#45367) @siriwatknp
 - Allow nested theme creation with `vars` (#45368) @siriwatknp
 - Fix wrong slotProps of DetailsHTMLAttributes types (#45356) @siriwatknp
-- [Popover] Deprecate *Props and complete `slots`, `slotProps` (#45337) @siriwatknp
+- [Popover] Deprecate \*Props and complete `slots`, `slotProps` (#45337) @siriwatknp
 - [Radio] Add slots and slotProps (#45364) @siriwatknp
 - [Slider] Fix css class selector in migration guide (#45409) @sai6855
 - [Slider] Fix spacings in .md files (#45393) @sai6855
 - [Snackbar] Add Slots and SlotProps (#45103) (#45352) @siriwatknp
 - [SpeedDialAction] Add slots and slotProps (#45365) @siriwatknp
 - [SwitchBase] Deprecate `inputProps` and complete slots, slotProps (#45338) @siriwatknp
-- [Tabs] Deprecate *Props and complete slots, slotProps (#45012) (#45355) @siriwatknp
-- [Menu] Deprecate *Props and complete `slots`, `slotProps`  (#45369) @siriwatknp
+- [Tabs] Deprecate \*Props and complete slots, slotProps (#45012) (#45355) @siriwatknp
+- [Menu] Deprecate \*Props and complete `slots`, `slotProps` (#45369) @siriwatknp
 
 ### Docs
 
