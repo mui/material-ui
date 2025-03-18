@@ -2,71 +2,27 @@
 
 ## 7.0.0-beta.5
 
-<!-- generated comparing v7.0.0-beta.3..master -->
+<!-- generated comparing v7.0.0-beta.4..master -->
 
 _Mar 18, 2025_
 
-A big thanks to the 10 contributors who made this release possible.
+A big thanks to the 4 contributors who made this release possible.
 
 ### `@mui/material@7.0.0-beta.5`
 
-- [Accordion] Add missing `root` slot (#45532) @sai6855
-- [AccordionSummary] Add slots and slotProps (#45559) @sai6855
-- [ListItemText] Add missing `root` slot (#45540) @sai6855
-- [SpeedDial] Add missing `root` slot (#45541) @sai6855
 - [StepLabel] Add missing root slot (#45603) @sai6855
 - [Switch] Add slots and slotProps (#45595) @siriwatknp
-- [Tooltip] Allow auto placement on tooltip (#45399) @Jtaks
-- [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) @mj12albert
-- [useScrollTrigger] Do nothing if target is null (#45441) @vipierozan99
-- [core] Rename some `./styles/createTypography` exports (#45558) @Janpot
-- [utils] use correct iri-reference homepage format [NOTICKET] (#45472) @dahiro
-- Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
-- Fix negative input for CSS variables spacing array (#45550) @siriwatknp
-- Add missing deprecations in deprecations-all file (#45505) @sai6855
-
-### `@mui/icons-material@7.0.0-beta.5`
-
-- Remove unused icon names from the download script (#45453) @yermartee
-
-### `@mui/system@7.0.0-beta.5`
-
-#### Breaking changes
-
-- Disable theme recalculation as default behavior (#45405) @siriwatknp
-
-  When CSS theme variables is enabled with built-in light and dark color schemes, the theme no longer changes between modes.
-  This default behavior was made to improve performance by avoiding unnecessary re-renders when the mode changes.
-
-#### Changes
-
-- Prevent nested non-vars theme inheritance (#45545) @siriwatknp
-
-### `@mui/styled-engine@7.0.0-beta.5`
-
-- Add `enableCssLayer` prop to StyledEngineProvider (#45428) @siriwatknp
-
-### Docs
-
-- [Backdrop] Fix component name in migration guide (#45506) @sai6855
-- Add StackBlitz template to issue template (#45504) @Janpot
-- Add HTML input section to TextField page (#45439) @siriwatknp
+- [utils] Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
 
 ### Core
 
 - [blog] Clarify the difference between the two Pro plans (#45266) @oliviertassinari
-- [blog] Fix author end-of-year updates (#45533) @oliviertassinari
-- [core] Fix package layout inconsistencies (#45491) @DiegoAndai
 - [code-infra] Allow specifying a custom error formatter module for error minifcation (#45291) @Janpot
 - [code-infra] Make `getVersionEnvVariables` reusable for other repos (#45562) @Janpot
 - [code-infra] Update peer dependency of `@mui/utils` in `@mui/docs` (#45561) @Janpot
-- [code-infra] Convert a few docs modules to ts (#45548) @Janpot
-- [code-infra] Remove more CJS modules from the docs (#45557) @Janpot
-- [code-infra] Remove nested imports from theme augmentation (#45514) @Janpot
-- [code-infra] Fix type resolution for @mui/types (#45513) @Janpot
-- [docs-infra] Add @ts-ignore to avoid type checking for MUI X (#45555) @siriwatknp
+- Add StackBlitz template to issue template (#45504) @Janpot
 
-All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Janpot, @Jtaks, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp, @vipierozan99, @yermartee
+All contributors of this release in alphabetical order: @Janpot, @oliviertassinari, @sai6855, @siriwatknp
 
 ## 7.0.0-beta.4
 
