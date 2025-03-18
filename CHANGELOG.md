@@ -64,7 +64,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [code-infra] Remove more CJS modules from the docs (#45557) @Janpot
 - [code-infra] Remove nested imports from theme augmentation (#45514) @Janpot
 - [code-infra] Fix type resolution for @mui/types (#45513) @Janpot
-- [docs-infra] Add @ts-ignore to avoid type checking for MUI X (#45555) @siriwatknp
+- [docs-infra] Add @ts-ignore to avoid type checking for MUI X (#45555) @siriwatknp
 
 All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Janpot, @Jtaks, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp, @vipierozan99, @yermartee
 
