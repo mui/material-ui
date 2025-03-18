@@ -130,7 +130,7 @@
     "@next/eslint-plugin-next": "^15.2.2",
     "@octokit/rest": "^21.1.1",
     "@pigment-css/react": "0.0.30",
-    "@playwright/test": "1.50.1",
+    "@playwright/test": "1.51.1",
     "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash": "^4.17.16",
