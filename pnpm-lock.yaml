@@ -499,7 +499,7 @@ importers:
         specifier: workspace:^
         version: link:../packages/mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../packages/mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1090,7 +1090,7 @@ importers:
         specifier: ^2.0.8
         version: 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1361,7 +1361,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1438,7 +1438,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1500,7 +1500,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1658,7 +1658,7 @@ importers:
         specifier: workspace:^
         version: link:../test-utils
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@types/chai':
         specifier: ^4.3.12
@@ -1768,7 +1768,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-private-theming/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1854,7 +1854,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-styled-engine/build
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@mui/utils':
         specifier: workspace:^
@@ -1932,7 +1932,7 @@ importers:
         specifier: ^7.23.9
         version: 7.23.9
       '@mui/types':
-        specifier: workspace:^
+        specifier: workspace:~
         version: link:../mui-types/build
       '@types/prop-types':
         specifier: ^15.7.12
