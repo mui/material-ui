@@ -40,7 +40,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.9",
+    "@babel/runtime": "^7.26.10",
     "@mui/private-theming": "workspace:*",
     "@mui/styled-engine": "workspace:*",
     "@mui/types": "workspace:^",
