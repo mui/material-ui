@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.9",
-    "@mui/types": "workspace:^",
+    "@mui/types": "workspace:~",
     "@types/prop-types": "^15.7.12",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
@@ -49,7 +49,7 @@
   "devDependencies": {
     "@mui-internal/test-utils": "workspace:^",
     "@mui/internal-babel-macros": "workspace:^",
-    "@mui/types": "workspace:^",
+    "@mui/types": "workspace:~",
     "@types/chai": "^4.3.12",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.19.48",
