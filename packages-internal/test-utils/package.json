@@ -36,7 +36,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
     "@babel/register": "^7.25.9",
-    "@babel/runtime": "^7.26.9",
+    "@babel/runtime": "^7.26.10",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@testing-library/dom": "^10.4.0",
@@ -50,7 +50,7 @@
     "jsdom": "^26.0.0",
     "lodash": "^4.17.21",
     "mocha": "^11.1.0",
-    "playwright": "^1.50.1",
+    "playwright": "^1.51.1",
     "prop-types": "^15.8.1",
     "sinon": "^19.0.2"
   },
