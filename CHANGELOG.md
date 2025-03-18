@@ -14,9 +14,11 @@ A big thanks to the 10 contributors who made this release possible.
 - [AccordionSummary] Add slots and slotProps (#45559) @sai6855
 - [ListItemText] Add missing `root` slot (#45540) @sai6855
 - [SpeedDial] Add missing `root` slot (#45541) @sai6855
+- [StepLabel] Add missing root slot (#45603) @sai6855
+- [Switch] Add slots and slotProps (#45595) @siriwatknp
 - [Tooltip] Allow auto placement on tooltip (#45399) @Jtaks
-- [useScrollTrigger] Do nothing if target is null (#45441) @vipierozan99
 - [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) @mj12albert
+- [useScrollTrigger] Do nothing if target is null (#45441) @vipierozan99
 - [core] Rename some `@mui/material/styles/createTypography` exports (#45558) @Janpot
 - [utils] use correct iri-reference homepage format [NOTICKET] (#45472) @dahiro
 - Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
