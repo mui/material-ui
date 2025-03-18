@@ -24,7 +24,12 @@ function createTheme(options = {}, ...args) {
     ...other
   } = options;
 
-  if (options.vars) {
+  if (
+    options.vars &&
+    // The error should throw only for the root theme creation because user is not allowed to use a custom node `vars`.
+    // `generateCssVars` is the closest identifier for checking that the `options` is a result of `extendTheme` with CSS variables so that user can create new theme for nested ThemeProvider.
+    options.generateCssVars === undefined
+  ) {
     throw new MuiError(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
         'Please use another name.',
