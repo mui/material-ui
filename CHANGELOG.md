@@ -1,8 +1,5 @@
 # [Versions](https://mui.com/versions/)
 
-> @mui/monorepo@5.17.0 release:changelog /Users/siriwatknp/Personal-Repos/material-ui
-> node scripts/releaseChangelog.mjs
-
 ## v5.17.0
 
 _Mar 18, 2025_
