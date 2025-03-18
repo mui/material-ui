@@ -1,5 +1,13 @@
 # [Versions](https://mui.com/versions/)
 
+## v5.17.1
+
+<!-- generated comparing v5.17.0..v5.x -->
+
+_Mar 18, 2025_
+
+This release fixes the `@mui/types` dependencies in all packages to fix a package layout bug (#45612) @DiegoAndai
+
 ## v5.17.0
 
 _Mar 18, 2025_
