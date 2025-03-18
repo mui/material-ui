@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
@@ -13,7 +13,6 @@ import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NProgressBar from '@mui/docs/NProgressBar';
 import { debounce } from '@mui/material/utils';
-import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
@@ -22,7 +21,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
-import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
+import { DemoPageThemeProvider } from 'docs/src/theming';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -161,13 +160,6 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ theme }) => ({
   ],
 }));
 
-const defaultTheme = createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'data-mui-color-scheme',
-  },
-});
-
 export const HEIGHT = 57;
 
 export interface AppFrameProps {
@@ -188,19 +180,11 @@ export default function AppFrame(props: AppFrameProps) {
   const openDrawer = React.useCallback(() => setMobileOpen(true), []);
 
   const { activePage, productIdentifier } = React.useContext(PageContext);
-  const themeOptions = React.useContext(ThemeOptionsContext) as {
-    dense: boolean;
-    direction: 'ltr' | 'rtl';
-    paletteMode: 'light' | 'dark';
-  };
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   return (
-    <BrandingCssVarsProvider {...themeOptions}>
-      {/* The ThemeProvider below generate default Material UI CSS variables and attach to html for all the demo on the page */}
-      {/* This is more performant than generating variables in each demo. */}
-      <ThemeProvider theme={defaultTheme} />
+    <DemoPageThemeProvider>
       <RootDiv className={className}>
         <StyledAppBar
           disablePermanent={disablePermanent}
@@ -266,7 +250,7 @@ export default function AppFrame(props: AppFrameProps) {
         {children}
         <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
       </RootDiv>
-    </BrandingCssVarsProvider>
+    </DemoPageThemeProvider>
   );
 }
 

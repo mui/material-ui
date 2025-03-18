@@ -9,12 +9,12 @@ import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@mui/styles';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
-import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
-import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
-import { ThemeOptionsContext, highDensity } from 'docs/src/modules/components/ThemeContext';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import { DemoInstanceThemeProvider } from 'docs/src/theming';
 
 const iframeDefaultJoyTheme = extendTheme({
   cssVarPrefix: 'demo-iframe',
@@ -163,7 +163,6 @@ function DemoSandbox(props) {
     usesCssVarsTheme,
     ...other
   } = props;
-  const { dense, direction } = React.useContext(ThemeOptionsContext);
   const [injectTheme, setInjectTheme] = React.useState();
   const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, usesCssVarsTheme, ...other } : {};
@@ -188,39 +187,15 @@ function DemoSandbox(props) {
     setupMaterialUITheme();
   }, []);
 
-  const theme = React.useMemo(() => {
-    const resultTheme = createTheme(
-      {
-        cssVariables: {
-          colorSchemeSelector: 'data-mui-color-scheme',
-        },
-        colorSchemes: {
-          light: true,
-          dark: true,
-        },
-        direction,
-      },
-      dense ? highDensity : undefined,
-    );
-    if (injectTheme && Object.prototype.toString.call(injectTheme) === '[object Object]') {
-      try {
-        return deepmerge(resultTheme, injectTheme);
-      } catch {
-        return resultTheme;
-      }
-    }
-    return resultTheme;
-  }, [injectTheme, dense, direction]);
-
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {usesCssVarsTheme ? (
         children
       ) : (
         <StylesProvider jss={jss}>
-          {/* - use a function to ensure that the upper theme (branding theme) is not spread to the demo theme */}
-          {/* - a function will skip the CSS vars generation logic */}
-          <ThemeProvider theme={() => theme}>{children}</ThemeProvider>
+          <DemoInstanceThemeProvider runtimeTheme={injectTheme}>
+            {children}
+          </DemoInstanceThemeProvider>
         </StylesProvider>
       )}
     </DemoErrorBoundary>
