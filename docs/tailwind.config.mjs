@@ -2,10 +2,10 @@
 // eslint-disable-next-line import/no-import-module-exports
 import plugin from 'tailwindcss/plugin';
 
-const defaultTheme = require('tailwindcss/defaultTheme');
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ['class', '[data-mui-color-scheme="dark"]'],
   content: [
     './data/**/*.{js,ts,jsx,tsx,mdx}',
