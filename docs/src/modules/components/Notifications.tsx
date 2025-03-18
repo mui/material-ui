@@ -55,14 +55,27 @@ const Divider = styled(MuiDivider)(({ theme }) => ({
   margin: theme.spacing(1, 0),
 }));
 
+interface NotificationsState {
+  lastSeen: number;
+  messages:
+    | {
+        id: number;
+        title?: string;
+        text: string;
+        date?: string;
+        userLanguage?: string;
+      }[]
+    | undefined;
+}
+
 export default function Notifications() {
   const [open, setOpen] = React.useState(false);
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const t = useTranslate();
   const userLanguage = useUserLanguage();
-  const [{ lastSeen, messages }, setNotifications] = React.useState({
-    lastSeen: undefined,
+  const [{ lastSeen, messages }, setNotifications] = React.useState<NotificationsState>({
+    lastSeen: 0,
     messages: undefined,
   });
 
