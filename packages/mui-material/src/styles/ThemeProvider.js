@@ -10,8 +10,7 @@ export default function ThemeProvider({ theme: themeInput, ...props }) {
   if (typeof themeInput !== 'function') {
     if (scopedTheme && !scopedTheme.vars) {
       finalTheme = { ...scopedTheme, vars: null };
-    }
-    if (themeInput && !themeInput.vars) {
+    } else if (themeInput && !themeInput.vars) {
       finalTheme = { ...themeInput, vars: null };
     }
   }
