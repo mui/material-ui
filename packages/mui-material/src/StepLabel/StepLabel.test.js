@@ -20,6 +20,7 @@ describe('<StepLabel />', () => {
     testVariantProps: { error: true },
     slots: {
       label: { expectedClassName: classes.label },
+      root: { expectedClassName: classes.root },
     },
     skip: ['componentProp', 'componentsProp'],
   }));
