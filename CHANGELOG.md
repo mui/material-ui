@@ -31,8 +31,16 @@ A big thanks to the 10 contributors who made this release possible.
 
 ### `@mui/system@7.0.0-beta.5`
 
-- Prevent nested non-vars theme inheritance (#45545) @siriwatknp
+#### Breaking changes
+
 - Disable theme recalculation as default behavior (#45405) @siriwatknp
+
+  When CSS theme variables is enabled with built-in light and dark color schemes, the theme no longer changes between modes.
+  This default behavior was made to improve performance by avoiding unnecessary re-renders when the mode changes.
+
+#### Changes
+
+- Prevent nested non-vars theme inheritance (#45545) @siriwatknp
 
 ### `@mui/styled-engine@7.0.0-beta.5`
 
