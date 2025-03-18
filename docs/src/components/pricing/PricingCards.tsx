@@ -7,8 +7,6 @@ import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
-import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
-import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
 import {
@@ -118,8 +116,6 @@ export function PlanPrice(props: PlanPriceProps) {
   const { licenseModel } = useLicenseModel();
   const annual = licenseModel === 'annual';
   const planPriceMinHeight = 24;
-
-  const { prioritySupport } = usePrioritySupport();
 
   if (plan === 'community') {
     return (
@@ -243,24 +239,12 @@ export function PlanPrice(props: PlanPriceProps) {
     const premiumPerpetualValue = premiumAnnualValue * 3;
     const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
-    const premiumAnnualValueWithPrioritySupport = premiumAnnualValue + 399;
-    const premiumPerpetualValueWithPrioritySupport = premiumPerpetualValue + 399;
-    const premiumMonthlyValueForAnnualWithPrioritySupport = 82; // premiumAnnualValueWithPrioritySupport / 12;
-
-    const priceExplanation = getPriceExplanation(
-      prioritySupport
-        ? premiumMonthlyValueForAnnualWithPrioritySupport
-        : premiumMonthlyValueForAnnual,
-    );
+    const priceExplanation = getPriceExplanation(premiumMonthlyValueForAnnual);
 
     let premiumDisplayedValue: number = premiumAnnualValue;
-    if (annual && prioritySupport) {
-      premiumDisplayedValue = premiumAnnualValueWithPrioritySupport;
-    } else if (!annual && prioritySupport) {
-      premiumDisplayedValue = premiumPerpetualValueWithPrioritySupport;
-    } else if (annual && !prioritySupport) {
+    if (annual) {
       premiumDisplayedValue = premiumAnnualValue;
-    } else if (!annual && !prioritySupport) {
+    } else if (!annual) {
       premiumDisplayedValue = premiumPerpetualValue;
     }
 
@@ -326,7 +310,6 @@ export function PlanPrice(props: PlanPriceProps) {
         >
           Buy now
         </Button>
-        <PrioritySupportSwitch />
       </Box>
     );
   }
@@ -630,6 +613,7 @@ export default function PricingCards() {
             <PlanNameDisplay plan="premium" disableDescription={false} />
             <PlanPrice plan="premium" />
           </Box>
+          <Divider />
           <Box textAlign="left">
             {planInfo.premium.features.map((feature, index) => (
               <Box

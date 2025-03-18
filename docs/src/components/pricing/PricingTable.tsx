@@ -16,8 +16,6 @@ import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import { PrioritySupportSwitchTable } from 'docs/src/components/pricing/PrioritySupportSwitch';
-import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
 import { PlanName, planInfo } from './PricingCards';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
@@ -82,7 +80,6 @@ export function PlanNameTable({
 
 function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { value, metadata } = props;
-
   return (
     <React.Fragment>
       {typeof value === 'string' ? (
@@ -922,14 +919,26 @@ const premiumData: Record<string, React.ReactNode> = {
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
+  'core-support': <Info value={yes} metadata="Priority add-on only" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
-  'priority-support': <PrioritySupportSwitchTable />,
+  'priority-support': <Info value={yes} metadata="Available as add-on" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <InfoPrioritySupport value={yes} metadata="24 hours" value2={no} />,
-  'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
-  'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
+  'response-time': (
+    <Info
+      value={yes}
+      metadata={
+        <React.Fragment>
+          Available later on
+          <br />
+          2 business days.
+          <br />1 business day (priority add-on only)
+        </React.Fragment>
+      }
+    />
+  ),
+  'pre-screening': <Info value={yes} metadata="4 hours (priority add-on only)" />,
+  'issue-escalation': <Info value={yes} metadata="Priority add-on only" />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
   'customer-success': no,
 };
