@@ -220,6 +220,7 @@ export default {
     'formatMuiErrorMessage',
     'getDisplayName',
     'HTMLElementType',
+    'ponyfillGlobal',
     'refType',
   ],
 };

@@ -341,6 +341,7 @@ import { exactProp as exactProp_utils } from '@mui/utils';
 import { formatMuiErrorMessage as formatMuiErrorMessage_utils } from '@mui/utils';
 import { getDisplayName as getDisplayName_utils } from '@mui/utils';
 import { HTMLElementType as HTMLElementType_utils } from '@mui/utils';
+import { ponyfillGlobal as ponyfillGlobal_utils } from '@mui/utils';
 import { refType as refType_utils } from '@mui/utils';
 /* eslint-enable import/no-duplicates */
 // #endregion
@@ -1500,6 +1501,10 @@ console.assert(
 console.assert(
   ReactIs.isValidElementType(HTMLElementType_utils),
   'HTMLElementType named import is not consumable.',
+);
+console.assert(
+  ponyfillGlobal_utils !== undefined,
+  'ponyfillGlobal named import is not consumable.',
 );
 console.assert(refType_utils !== undefined, 'refType named import is not consumable.');
 /* eslint-enable no-console */
