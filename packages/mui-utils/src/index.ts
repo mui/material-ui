@@ -7,7 +7,6 @@ export { default as exactProp } from './exactProp';
 export { default as formatMuiErrorMessage } from './formatMuiErrorMessage';
 export { default as getDisplayName } from './getDisplayName';
 export { default as HTMLElementType } from './HTMLElementType';
-export { default as ponyfillGlobal } from './ponyfillGlobal';
 export { default as refType } from './refType';
 export { default as unstable_capitalize } from './capitalize';
 export { default as unstable_createChainedFunction } from './createChainedFunction';
