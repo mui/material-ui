@@ -1200,7 +1200,7 @@ importers:
         version: 7.23.9
       '@mui/base':
         specifier: '*'
-        version: 5.0.0-beta.69(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 5.0.0-beta.70(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@mui/system':
         specifier: ^5.0.0
         version: 5.15.12(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0)
@@ -3906,6 +3906,17 @@ packages:
       '@types/react':
         optional: true
 
+  '@mui/base@5.0.0-beta.70':
+    resolution: {integrity: sha512-Tb/BIhJzb0pa5zv/wu7OdokY9ZKEDqcu1BDFnohyvGCoHuSXbEr90rPq1qeNW3XvTBIbNWHEF7gqge+xpUo6tQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   '@mui/core-downloads-tracker@5.15.8':
     resolution: {integrity: sha512-W6R1dZJgbYfLmQKf7Es2WUw0pkDkEVUf2jA22DYu0JOa9M3pjvOqoC9HgOPGNNJTu6SCWLSWh3euv1Jn2NmeQA==}
 
@@ -3990,6 +4001,14 @@ packages:
       '@types/react':
         optional: true
 
+  '@mui/types@7.2.24':
+    resolution: {integrity: sha512-3c8tRt/CbWZ+pEg7QpSwbdxOk36EfmhbKf6AGZsD1EcLDLTSZoxxJ86FVtcjxvjuhdyBiWKSTGZFaXCnidO2kw==}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   '@mui/utils@5.15.20':
     resolution: {integrity: sha512-mAbYx0sovrnpAu1zHc3MDIhPqL8RPVC5W5xcO1b7PiSCJPtckIZmBkp8hefamAvUiAV8gpfMOM6Zb+eSisbI2A==}
     engines: {node: '>=12.0.0'}
@@ -4002,6 +4021,16 @@ packages:
 
   '@mui/utils@6.4.3':
     resolution: {integrity: sha512-jxHRHh3BqVXE9ABxDm+Tc3wlBooYz/4XPa0+4AI+iF38rV1/+btJmSUgG4shDtSWVs/I97aDn5jBCt6SF2Uq2A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@mui/utils@6.4.8':
+    resolution: {integrity: sha512-C86gfiZ5BfZ51KqzqoHi1WuuM2QdSKoFhbkZeAfQRB+jCc4YNhhj11UXFVMMsqBgZ+Zy8IHNJW3M9Wj/LOwRXQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -4564,6 +4593,7 @@ packages:
   '@playwright/test@1.42.1':
     resolution: {integrity: sha512-Gq9rmS54mjBL/7/MvBaNOBwbfnh7beHvS6oS4srqXFcQHpQCV1+c8JXWE8VLPyRDhgS3H8x8A7hztqI9VnwrAQ==}
     engines: {node: '>=16'}
+    deprecated: Please update to the latest version of Playwright to test up-to-date browsers.
     hasBin: true
 
   '@polka/url@1.0.0-next.21':
@@ -7961,6 +7991,7 @@ packages:
   gm@1.25.0:
     resolution: {integrity: sha512-4kKdWXTtgQ4biIo7hZA396HT062nDVVHPjQcurNZ3o/voYN+o5FUC5kOwuORbpExp3XbTJ3SU7iRipiIhQtovw==}
     engines: {node: '>=14'}
+    deprecated: The gm module has been sunset. Please migrate to an alternative. https://github.com/aheckmann/gm?tab=readme-ov-file#2025-02-24-this-project-is-not-maintained
 
   goober@2.1.13:
     resolution: {integrity: sha512-jFj3BQeleOoy7t93E9rZ2de+ScC4lQICLwiAQmKMg9F6roKGaLSHoCDYKkWlSafg138jejvq/mTdvmnwDQgqoQ==}
@@ -14618,6 +14649,20 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.0.1
 
+  '@mui/base@5.0.0-beta.70(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@floating-ui/react-dom': 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@mui/types': 7.2.24(@types/react@19.0.1)
+      '@mui/utils': 6.4.8(@types/react@19.0.1)(react@19.0.0)
+      '@popperjs/core': 2.11.8
+      clsx: 2.1.1
+      prop-types: 15.8.1
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    optionalDependencies:
+      '@types/react': 19.0.1
+
   '@mui/core-downloads-tracker@5.15.8': {}
 
   '@mui/joy@5.0.0-beta.22(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
@@ -14698,6 +14743,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.0.1
 
+  '@mui/types@7.2.24(@types/react@19.0.1)':
+    optionalDependencies:
+      '@types/react': 19.0.1
+
   '@mui/utils@5.15.20(@types/react@18.3.3)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.23.9
@@ -14722,6 +14771,18 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.23.9
       '@mui/types': 7.2.21(@types/react@19.0.1)
+      '@types/prop-types': 15.7.14
+      clsx: 2.1.1
+      prop-types: 15.8.1
+      react: 19.0.0
+      react-is: 19.0.0
+    optionalDependencies:
+      '@types/react': 19.0.1
+
+  '@mui/utils@6.4.8(@types/react@19.0.1)(react@19.0.0)':
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@mui/types': 7.2.24(@types/react@19.0.1)
       '@types/prop-types': 15.7.14
       clsx: 2.1.1
       prop-types: 15.8.1
