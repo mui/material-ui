@@ -30,12 +30,12 @@ export function DemoPageThemeProvider({ children }: React.PropsWithChildren) {
         },
       });
     }
-    const initialTheme = extendTheme({
-      cssVarPrefix: 'muidocs',
-    });
+    const initialTheme = extendTheme();
     return {
       ...initialTheme,
       ...initialTheme.colorSchemes[themeOptions.paletteMode],
+      getColorSchemeSelector: (colorScheme: string) =>
+        `*:where([data-mui-color-scheme="${colorScheme}"]) &`,
     };
   }, [themeOptions.paletteMode]);
   return (
@@ -71,12 +71,12 @@ export function DemoInstanceThemeProvider({
         dense ? highDensity : {},
       );
     } else {
-      resultTheme = extendTheme({
-        cssVarPrefix: 'muidocs',
-      });
+      resultTheme = extendTheme();
       resultTheme = {
         ...resultTheme,
         ...resultTheme.colorSchemes[paletteMode],
+        getColorSchemeSelector: (colorScheme: string) =>
+          `*:where([data-mui-color-scheme="${colorScheme}"]) &`,
       };
     }
     if (runtimeTheme && Object.prototype.toString.call(runtimeTheme) === '[object Object]') {
