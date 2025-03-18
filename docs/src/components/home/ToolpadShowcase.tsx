@@ -153,7 +153,19 @@ function a11yProps(index: number) {
   };
 }
 
-const tabsCodeInfo = [
+const STUDIO_ENABLED = true;
+
+interface TabInfo {
+  code: string;
+  label: string;
+  language: string;
+  imgSrc: string;
+  imgAlt: string;
+  Demo?: React.ElementType;
+  description?: string;
+}
+
+const tabsCodeInfo: TabInfo[] = [
   {
     code: tabOneCode,
     label: 'Core',
@@ -162,7 +174,10 @@ const tabsCodeInfo = [
     imgAlt: 'Toolpad app',
     Demo: ToolpadCoreShowcaseDemo,
   },
-  {
+];
+
+if (STUDIO_ENABLED) {
+  tabsCodeInfo.push({
     code: tabTwoCode,
     label: 'Studio',
     language: 'yml',
@@ -170,8 +185,8 @@ const tabsCodeInfo = [
       'A drag-and-drop builder for creating dashboards and internal tools quickly, with your own components and data. Changes you make are synced to yml, and vice versa.',
     imgSrc: '/static/branding/toolpad/ex-1.png',
     imgAlt: '.yaml file represents Toolpad app',
-  },
-];
+  });
+}
 
 export default function ToolpadShowcase() {
   const [tabValue, setTabValue] = React.useState(0);
@@ -185,47 +200,49 @@ export default function ToolpadShowcase() {
       noPadding
       preview={
         <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
-          <Tabs
-            value={tabValue}
-            onChange={handleChange}
-            aria-label="Toolpad showcase"
-            sx={(theme) => ({
-              minHeight: '26px',
-              p: 0,
-              borderBottom: '1px solid',
-              borderColor: 'divider',
-              '& .MuiTabs-flexContainer': {
-                p: 1,
-                gap: '6px',
-              },
-              '& .MuiTab-root': {
+          {tabsCodeInfo.length > 1 ? (
+            <Tabs
+              value={tabValue}
+              onChange={handleChange}
+              aria-label="Toolpad showcase"
+              sx={(theme) => ({
                 minHeight: '26px',
-                minWidth: 'fit-content',
-                p: '6px',
-                borderRadius: '6px',
-                fontSize: '.75rem',
-                fontWeight: 'medium',
-                lineHeight: 1,
-                '&:hover': {
-                  backgroundColor: (theme.vars || theme).palette.grey[100],
-                  ...theme.applyDarkStyles({
-                    backgroundColor: 'primaryDark.700',
-                  }),
+                p: 0,
+                borderBottom: '1px solid',
+                borderColor: 'divider',
+                '& .MuiTabs-flexContainer': {
+                  p: 1,
+                  gap: '6px',
                 },
-              },
-              '& .MuiTabs-indicator': {
-                height: '1px',
-                opacity: '60%',
-              },
-              '& .Mui-selected': {
-                color: 'primary.300',
-              },
-            })}
-          >
-            {tabsCodeInfo.map((tab, index) => (
-              <Tab label={tab.label} {...a11yProps(index)} />
-            ))}
-          </Tabs>
+                '& .MuiTab-root': {
+                  minHeight: '26px',
+                  minWidth: 'fit-content',
+                  p: '6px',
+                  borderRadius: '6px',
+                  fontSize: '.75rem',
+                  fontWeight: 'medium',
+                  lineHeight: 1,
+                  '&:hover': {
+                    backgroundColor: (theme.vars || theme).palette.grey[100],
+                    ...theme.applyDarkStyles({
+                      backgroundColor: 'primaryDark.700',
+                    }),
+                  },
+                },
+                '& .MuiTabs-indicator': {
+                  height: '1px',
+                  opacity: '60%',
+                },
+                '& .Mui-selected': {
+                  color: 'primary.300',
+                },
+              })}
+            >
+              {tabsCodeInfo.map((tab, index) => (
+                <Tab label={tab.label} {...a11yProps(index)} />
+              ))}
+            </Tabs>
+          ) : null}
           <Box sx={{ p: 2 }}>
             {tabsCodeInfo.map((tab, index) =>
               tab.Demo ? (

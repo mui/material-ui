@@ -201,13 +201,6 @@ const toolpadProducts = [
     icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadCoreDocs,
   },
-  {
-    id: 'toolpad-studio',
-    name: 'Toolpad Studio',
-    description: 'Self-hosted, low-code internal tool builder.',
-    icon: <BrushIcon sx={iconStyles} />,
-    href: ROUTES.toolpadStudioDocs,
-  },
 ];
 
 const MuiProductSelector = React.forwardRef(function MuiProductSelector(
