@@ -18,7 +18,6 @@ import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
-import BrushIcon from '@mui/icons-material/Brush';
 
 const iconStyles = (theme: Theme) => ({
   fontSize: '.875rem',
