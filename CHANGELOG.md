@@ -1,5 +1,21 @@
 # [Versions](https://mui.com/versions/)
 
+> @mui/monorepo@5.17.0 release:changelog /Users/siriwatknp/Personal-Repos/material-ui
+> node scripts/releaseChangelog.mjs
+
+## v5.17.0
+
+_Mar 18, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material@5.17.0`
+
+- [TextareaAutosize] Temporarily disconnect ResizeObserver to avoid loop error (#44540) (#45238) @DiegoAndai
+- Support nested theme when upper theme is CSS vars theme (#45604) @siriwatknp
+
+All contributors of this release in alphabetical order: @DiegoAndai, @siriwatknp
+
 ## v5.16.14
 
 <!-- generated comparing v5.16.13..v5.x -->
