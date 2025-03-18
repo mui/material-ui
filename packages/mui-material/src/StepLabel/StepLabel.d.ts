@@ -40,7 +40,7 @@ export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the stepIcon slot.
      * By default, the avaible props are based on the div element.
      */
-    stepIcon: SlotProps<'div', {}, StepLabelOwnerState>;
+    stepIcon: SlotProps<React.ElementType<StepIconProps>, {}, StepLabelOwnerState>;
   }
 >;
 
