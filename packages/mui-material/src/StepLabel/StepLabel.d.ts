@@ -8,6 +8,11 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface StepLabelSlots {
   /**
+   * The component that renders the root.
+   * @default span
+   */
+  root: React.ElementType;
+  /**
    * The component that renders the label.
    * @default span
    */
@@ -21,8 +26,21 @@ export interface StepLabelSlots {
 export type StepLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
   StepLabelSlots,
   {
-    label: SlotProps<React.ElementType<React.HTMLProps<HTMLSpanElement>>, {}, StepLabelOwnerState>;
-    stepIcon: SlotProps<React.ElementType<StepIconProps>, {}, StepLabelOwnerState>;
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the span element.
+     */
+    root: SlotProps<'span', {}, StepLabelOwnerState>;
+    /**
+     * Props forwarded to the label slot.
+     * By default, the avaible props are based on the span element.
+     */
+    label: SlotProps<'span', {}, StepLabelOwnerState>;
+    /**
+     * Props forwarded to the stepIcon slot.
+     * By default, the avaible props are based on the div element.
+     */
+    stepIcon: SlotProps<'div', {}, StepLabelOwnerState>;
   }
 >;
 
