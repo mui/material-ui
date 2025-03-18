@@ -1,6 +1,6 @@
 # [Versions](https://mui.com/versions/)
 
-## 7.0.0-beta.5
+## 7.0.0-rc.0
 
 <!-- generated comparing v7.0.0-beta.4..master -->
 
@@ -8,7 +8,7 @@ _Mar 18, 2025_
 
 A big thanks to the 4 contributors who made this release possible.
 
-### `@mui/material@7.0.0-beta.5`
+### `@mui/material@7.0.0-rc.0`
 
 - [StepLabel] Add missing root slot (#45603) @sai6855
 - [Switch] Add slots and slotProps (#45595) @siriwatknp
