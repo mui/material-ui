@@ -3,7 +3,12 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui-internal/test-utils';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  styled,
+  experimental_extendTheme as extendTheme,
+} from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
 describe('createTheme', () => {
@@ -310,5 +315,39 @@ describe('createTheme', () => {
           'Please use another name.',
       );
     }
+  });
+
+  it('should not throw for nested theme that includes `vars` node', () => {
+    const outerTheme = extendTheme({
+      colorSchemes: {
+        light: {
+          palette: {
+            secondary: {
+              main: deepOrange[500],
+            },
+          },
+        },
+      },
+    });
+
+    expect(() =>
+      render(
+        <ThemeProvider theme={outerTheme}>
+          <ThemeProvider
+            theme={(theme) => {
+              return createTheme({
+                ...theme,
+                palette: {
+                  ...theme.palette,
+                  primary: {
+                    main: green[500],
+                  },
+                },
+              });
+            }}
+          />
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 });
