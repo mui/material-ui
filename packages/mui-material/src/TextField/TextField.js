@@ -170,6 +170,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
 
   const [RootSlot, rootProps] = useSlot('root', {
     elementType: TextFieldRoot,
+    shouldForwardComponentProp: true,
     externalForwardedProps: {
       ...externalForwardedProps,
       ...other,
