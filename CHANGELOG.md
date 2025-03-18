@@ -19,7 +19,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [Tooltip] Allow auto placement on tooltip (#45399) @Jtaks
 - [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) @mj12albert
 - [useScrollTrigger] Do nothing if target is null (#45441) @vipierozan99
-- [core] Rename some `@mui/material/styles/createTypography` exports (#45558) @Janpot
+- [core] Rename some `./styles/createTypography` exports (#45558) @Janpot
 - [utils] use correct iri-reference homepage format [NOTICKET] (#45472) @dahiro
 - Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
 - Fix negative input for CSS variables spacing array (#45550) @siriwatknp
