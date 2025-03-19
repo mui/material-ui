@@ -133,7 +133,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     variant = 'standard',
     ...other
   } = props;
-
+  const [labelWidth, setLabelWidth] = React.useState(null);
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -197,6 +197,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     const label = ownerDocument(displayRef.current).getElementById(labelId);
     if (label) {
+      const width = label.clientWidth;
+      const innerText = label.innerText;
+      const averageCharWidth = parseFloat(getComputedStyle(label).fontSize) / 4;
+      const calculatedLabelWidth = averageCharWidth * innerText.length + width;
+
+      if(calculatedLabelWidth > displayRef.current.clientWidth) {
+        setLabelWidth(calculatedLabelWidth)
+      } 
       const handler = () => {
         if (getSelection().isCollapsed) {
           displayRef.current.focus();
@@ -511,6 +519,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
+        style={{
+          minWidth: labelWidth,
+        }}
         ownerState={ownerState}
         className={clsx(SelectDisplayProps.className, classes.select, className)}
         // The id is required for proper a11y

@@ -11,16 +11,16 @@ export default function BasicSelect() {
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value as string);
   };
-
+  const label = 'Something Longer';
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">{label}</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={age}
-          label="Age"
+          label={label}
           onChange={handleChange}
         >
           <MenuItem value={10}>Ten</MenuItem>
