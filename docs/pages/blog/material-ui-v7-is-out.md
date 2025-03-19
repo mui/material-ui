@@ -18,7 +18,7 @@ This is achieved by adding the `exports` field to the `package.json` file.
 The `export` field indicates where bundlers can find CJS, ESM, and modern bundle files.
 You can read more about this in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
 
-This update fixes several issues with popular bundlers like Vite and Webpack.
+This update fixes several issues with popular bundlers like Vite and webpack.
 It also reduces the amount of setup required to work with these tools.
 
 ## Opt-in support for CSS layers
