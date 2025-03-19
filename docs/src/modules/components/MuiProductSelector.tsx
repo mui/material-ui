@@ -196,6 +196,22 @@ const toolpadProducts = [
   {
     id: 'toolpad-core',
     name: 'Toolpad Core',
+    chip: <Chip
+    label="Beta"
+    size="small"
+    color="primary"
+    variant="outlined"
+    sx={{
+      fontSize: '.625rem',
+      fontWeight: 'semiBold',
+      textTransform: 'uppercase',
+      letterSpacing: '.04rem',
+      height: '16px',
+      '& .MuiChip-label': {
+        px: '4px',
+      },
+    }}
+  />,
     description: 'Components for building dashboards.',
     icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadCoreDocs,
@@ -274,45 +290,21 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       />
-      <Box
-        key="Toolpad"
-        role="none"
-        sx={{
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '1px' }}>
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-          <NavLabel> Toolpad </NavLabel>
-          <Chip
-            label="Beta"
-            size="small"
-            color="primary"
-            variant="outlined"
-            sx={{
-              fontSize: '.625rem',
-              fontWeight: 'semiBold',
-              textTransform: 'uppercase',
-              letterSpacing: '.04rem',
-              height: '16px',
-              '& .MuiChip-label': {
-                px: '4px',
-              },
-            }}
-          />
-        </Box>
-      </Box>
       {toolpadProducts.map((product) => (
         <ProductItem
           key={product.name}
           name={product.name}
+          chip={product.chip}
           description={product.description}
           icon={product.icon}
           href={product.href}
           active={pageContext.productId === product.id}
+          sx={{
+            gridColumn: {
+              xs: '1 / span 1', // For extra small screens, it will take one column
+              sm: '1 / span 2', // For small and larger screens, it will take both columns
+            },
+          }}
         />
       ))}
     </MenuList>
