@@ -12,11 +12,7 @@ const defaultTheme = createTheme({
 });
 
 export function DemoPageThemeProvider({ children }: React.PropsWithChildren) {
-  const themeOptions = React.useContext(ThemeOptionsContext) as {
-    dense: boolean;
-    direction: 'ltr' | 'rtl';
-    paletteMode: 'light' | 'dark';
-  };
+  const themeOptions = React.useContext(ThemeOptionsContext);
   return (
     <BrandingCssVarsProvider {...themeOptions}>
       {/* The ThemeProvider below generate default Material UI CSS variables and attach to html for all the demo on the page */}

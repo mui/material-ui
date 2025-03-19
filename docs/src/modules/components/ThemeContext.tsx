@@ -9,8 +9,8 @@ import useLocalStorageState from '@mui/utils/useLocalStorageState';
 
 const themeInitialOptions = {
   dense: false,
-  direction: 'ltr',
-  paletteMode: 'light',
+  direction: 'ltr' as 'ltr' | 'rtl',
+  paletteMode: 'light' as 'light' | 'dark',
 };
 
 export const highDensity = {
@@ -83,7 +83,7 @@ export const highDensity = {
   },
 };
 
-export const DispatchContext = React.createContext(() => {
+export const DispatchContext = React.createContext<React.ActionDispatch<any>>(() => {
   throw new Error('Forgot to wrap component in `ThemeProvider`');
 });
 
@@ -97,7 +97,7 @@ if (process.env.NODE_ENV !== 'production') {
   ThemeOptionsContext.displayName = 'ThemeOptionsContext';
 }
 
-export function ThemeProvider(props) {
+export function ThemeProvider(props: React.PropsWithChildren) {
   const { children } = props;
 
   const [themeOptions, dispatch] = React.useReducer((state, action) => {
@@ -170,7 +170,7 @@ export function ThemeProvider(props) {
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
-    window.createTheme = createMdTheme;
+    (window as any).createTheme = createMdTheme;
   }, []);
 
   return (
@@ -189,7 +189,10 @@ ThemeProvider.propTypes = {
  */
 export function useChangeTheme() {
   const dispatch = React.useContext(DispatchContext);
-  return React.useCallback((options) => dispatch({ type: 'CHANGE', payload: options }), [dispatch]);
+  return React.useCallback(
+    (options: any) => dispatch({ type: 'CHANGE', payload: options }),
+    [dispatch],
+  );
 }
 
 // TODO: remove once all pages support css vars and replace call sites with useColorScheme()
