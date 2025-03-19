@@ -71,7 +71,7 @@ export const planInfo: Record<
     description:
       'The most advanced features for data-rich applications along with standard support.',
     features: [
-      { text: 'All Pro', text2: 'features and...', icon: 'check' },
+      { text: 'All Pro', text2: 'features and…', icon: 'check' },
       { text: 'MUI X', highlight: 'Premium', text2: 'access', icon: 'check' },
       { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
       {
