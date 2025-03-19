@@ -1,5 +1,4 @@
 import * as React from 'react';
-// @ts-ignore
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 
 /**
@@ -12,7 +11,7 @@ export default function useLazyCSS(href: string, before: string) {
   React.useEffect(() => {
     const link = loadCSS(href, document.querySelector(before));
     return () => {
-      link.parentElement.removeChild(link);
+      link.parentElement?.removeChild(link);
     };
   }, [href, before]);
 }
