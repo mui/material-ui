@@ -1,15 +1,6 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  // @ts-ignore need to use deprecated API because MUI X repo still on Material UI v5
-  experimental_extendTheme as extendTheme,
-  // @ts-ignore to bypass type checking in MUI X repo because it still on Material UI v5
-  createColorScheme,
-  ThemeProvider,
-  createTheme,
-  PaletteColorOptions,
-} from '@mui/material/styles';
+import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -58,9 +49,6 @@ const themeOptions = {
   }),
   ...getThemedComponents(),
 };
-
-// TODO: use the `ThemeProvider` once the MUI X repo upgrade to Material UI v6+
-const ThemeVarsProvider = typeof createColorScheme === 'function' ? ThemeProvider : CssVarsProvider;
 
 export function setDocsColors(primary: Record<string, string>, secondary: Record<string, string>) {
   function injectPalette(prefix: string, palette: string, color: string) {
@@ -144,23 +132,14 @@ export default function BrandingCssVarsProvider(props: {
 }) {
   const { direction = 'ltr', children } = props;
   const theme = React.useMemo(() => {
-    // `createColorScheme` is available in Material UI v6+
-    // TODO: use the `createTheme` once the MUI X repo upgrade to Material UI v6+
-    return typeof createColorScheme === 'function'
-      ? createTheme({
-          // @ts-ignore to bypass type checking in MUI X repo
-          cssVariables: {
-            cssVarPrefix: 'muidocs',
-            colorSchemeSelector: 'data-mui-color-scheme',
-          },
-          direction,
-          ...themeOptions,
-        })
-      : extendTheme({
-          cssVarPrefix: 'muidocs',
-          direction,
-          ...themeOptions,
-        });
+    return createTheme({
+      cssVariables: {
+        cssVarPrefix: 'muidocs',
+        colorSchemeSelector: 'data-mui-color-scheme',
+      },
+      direction,
+      ...themeOptions,
+    });
   }, [direction]);
   useEnhancedEffect(() => {
     const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
@@ -170,12 +149,12 @@ export default function BrandingCssVarsProvider(props: {
   }, []);
   return (
     // need to use deprecated API because MUI X repo still on Material UI v5
-    <ThemeVarsProvider theme={theme} disableTransitionOnChange>
+    <ThemeProvider theme={theme} disableTransitionOnChange>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />
       <MarkdownLinks />
       {children}
-    </ThemeVarsProvider>
+    </ThemeProvider>
   );
 }
