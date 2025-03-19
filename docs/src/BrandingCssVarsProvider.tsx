@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
-import { getCookie } from 'docs/src/modules/utils/helpers';
+import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 // @ts-ignore to bypass type checking in MUI X repo
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
@@ -131,6 +132,8 @@ export default function BrandingCssVarsProvider(props: {
   direction?: 'ltr' | 'rtl';
 }) {
   const { direction = 'ltr', children } = props;
+  const { asPath } = useRouter();
+  const { canonicalAs } = pathnameToLanguage(asPath);
   const theme = React.useMemo(() => {
     return createTheme({
       cssVariables: {
@@ -148,8 +151,11 @@ export default function BrandingCssVarsProvider(props: {
     }
   }, []);
   return (
-    // need to use deprecated API because MUI X repo still on Material UI v5
-    <ThemeProvider theme={theme} disableTransitionOnChange>
+    <ThemeProvider
+      theme={theme}
+      disableTransitionOnChange
+      forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
+    >
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />
