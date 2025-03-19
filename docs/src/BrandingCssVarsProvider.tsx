@@ -154,6 +154,7 @@ export default function BrandingCssVarsProvider(props: {
     <ThemeProvider
       theme={theme}
       disableTransitionOnChange
+      // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
       forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
     >
       <NextNProgressBar />
