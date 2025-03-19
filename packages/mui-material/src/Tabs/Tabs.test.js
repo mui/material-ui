@@ -1383,7 +1383,7 @@ describe('<Tabs />', () => {
     });
 
     ['Alt', 'Shift', 'Ctrl', 'Meta'].forEach((modifierKey) => {
-      it.only(`does not navigate when ${modifierKey} is pressed with ArrowLeft`, async () => {
+      it(`does not navigate when ${modifierKey} is pressed with ArrowLeft`, async () => {
         const { getAllByRole } = render(
           <Tabs value={1}>
             <Tab />
