@@ -1,3 +1,5 @@
+// @ts-check
+
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
 const glob = require('fast-glob');
@@ -6,39 +8,31 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const workspaceRoot = path.join(__dirname, '..', '..');
 
+/**
+ * @typedef {object} WebpackEntry
+ * @property {string} id
+ * @property {string} import
+ * @property {string} [importName]
+ * @property {string[]} [conditionNames]
+ *
+ * @typedef {object} Environment
+ * @property {boolean} analyze
+ * @property {boolean} accurateBundles
+ */
+
+/**
+ *
+ * @returns {Promise<WebpackEntry[]>}
+ */
 async function getWebpackEntries() {
   const materialPackagePath = path.join(workspaceRoot, 'packages/mui-material/build');
   const materialComponents = (await glob(path.join(materialPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
-      let entryName = componentName;
-      // adjust for legacy names
-      if (componentName === 'Paper') {
-        entryName = '@material-ui/core/Paper.esm';
-      } else if (componentName === 'TextareaAutosize') {
-        entryName = '@material-ui/core/Textarea';
-      }
 
       return {
-        id: entryName,
+        id: componentName,
         import: `@mui/material/${componentName}`,
-      };
-    },
-  );
-
-  const corePackagePath = path.join(workspaceRoot, 'packages/mui-base/build');
-  const baseComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
-    (componentPath) => {
-      const componentName = path.basename(path.dirname(componentPath));
-      let entryName = componentName;
-
-      if (['Popper'].includes(componentName)) {
-        entryName = `@material-ui/core/${componentName}`;
-      }
-
-      return {
-        id: entryName,
-        import: `@mui/base/${componentName}`,
       };
     },
   );
@@ -55,41 +49,29 @@ async function getWebpackEntries() {
     },
   );
 
-  const joyPackagePath = path.join(workspaceRoot, 'packages/mui-joy/build');
-  const joyComponents = (await glob(path.join(joyPackagePath, '([A-Z])*/index.js'))).map(
-    (componentPath) => {
-      const componentName = path.basename(path.dirname(componentPath));
-
-      return {
-        id: `@mui/joy/${componentName}`,
-        import: `@mui/joy/${componentName}`,
-      };
-    },
-  );
-
   return [
     {
       // WARNING: Changing the name will break tracking of bundle size over time
       // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
-      id: '@material-ui/core',
+      id: '@mui/material',
       import: '@mui/material',
     },
     ...materialComponents,
     {
-      id: '@material-ui/lab',
+      id: '@mui/lab',
       import: '@mui/lab',
     },
     ...labComponents,
     {
-      id: '@material-ui/styles',
+      id: '@mui/styles',
       import: '@mui/styles',
     },
     {
-      id: '@material-ui/private-theming',
+      id: '@mui/private-theming',
       import: '@mui/private-theming',
     },
     {
-      id: '@material-ui/system',
+      id: '@mui/system',
       import: '@mui/system',
     },
     {
@@ -101,7 +83,7 @@ async function getWebpackEntries() {
       import: '@mui/system/createStyled',
     },
     {
-      id: '@material-ui/core/styles/createTheme',
+      id: '@mui/styles/createTheme',
       importName: 'createTheme',
       import: '@mui/material/styles',
     },
@@ -114,37 +96,31 @@ async function getWebpackEntries() {
       import: '@mui/lab/useAutocomplete',
     },
     {
-      id: '@material-ui/core/useMediaQuery',
+      id: '@mui/material/useMediaQuery',
       import: '@mui/material/useMediaQuery',
     },
     {
-      id: '@material-ui/core/useScrollTrigger',
+      id: '@mui/material/useScrollTrigger',
       import: '@mui/material/useScrollTrigger',
     },
     {
-      id: '@material-ui/unstyled',
-      import: '@mui/base',
-    },
-    ...baseComponents,
-    {
-      id: '@material-ui/utils',
+      id: '@mui/utils',
       import: '@mui/utils',
     },
-    // TODO: Requires webpack v5
-    // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
-    // {
-    //   id: '@material-ui/core.modern',
-    //   webpack: true,
-    //   path: path.join(path.relative(workspaceRoot, materialPackagePath), 'modern/index.js'),
-    // },
     {
-      id: '@mui/joy',
-      import: '@mui/joy',
+      id: '@mui/material:mui-modern',
+      import: '@mui/material',
+      conditionNames: ['mui-modern', '...'],
     },
-    ...joyComponents,
   ];
 }
 
+/**
+ *
+ * @param {WebpackEntry} entry
+ * @param {Environment} environment
+ * @returns
+ */
 function createWebpackConfig(entry, environment) {
   const analyzerMode = environment.analyze ? 'static' : 'disabled';
   const concatenateModules = !environment.accurateBundles;
@@ -166,6 +142,9 @@ function createWebpackConfig(entry, environment) {
           test: /\.m?js(\?.*)?$/i,
         }),
       ],
+    },
+    resolve: {
+      ...(entry.conditionNames ? { conditionNames: entry.conditionNames } : {}),
     },
     output: {
       filename: '[name].js',
