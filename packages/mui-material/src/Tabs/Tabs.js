@@ -833,6 +833,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     let previousItemKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
     let nextItemKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
     if (orientation === 'horizontal' && isRtl) {
+      // swap previousItemKey with nextItemKey
       previousItemKey = 'ArrowRight';
       nextItemKey = 'ArrowLeft';
     }
