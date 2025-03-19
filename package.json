@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "7.0.0-beta.4",
+  "version": "7.0.0-rc.0",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -205,9 +205,9 @@
     "webpack-cli": "^6.0.1",
     "yargs": "^17.7.2"
   },
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.6.4",
   "engines": {
-    "pnpm": "9.15.4"
+    "pnpm": "10.6.4"
   },
   "resolutions": {
     "@babel/core": "^7.26.10",
