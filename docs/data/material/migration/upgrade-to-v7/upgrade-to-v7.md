@@ -2,27 +2,51 @@
 
 <p class="description">This guide explains how to upgrade from Material UI v6 to v7.</p>
 
-## Start using the alpha release
+## Why you should upgrade to Material UI v7
 
-In the `package.json` file, change the package version from `latest` to `next`.
+### Improved ESM support
 
-```diff title="package.json"
--"@mui/material": "latest",
-+"@mui/material": "next",
-```
+The package layout has been updated to comply with ESM.
+This is achieved by adding the `exports` field to the `package.json` file.
+The `export` field indicates where bundlers can find CJS, ESM, and modern bundle files.
+You can read more about this in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
 
-Using `next` ensures your project always uses the latest v7 pre-releases.
-Alternatively, you can also target and fix it to a specific version, for example, `7.0.0-alpha.0`.
+This update fixes several issues with popular bundlers like Vite and webpack.
+It also reduces the amount of setup required to work with these tools.
+
+### Quality-of-life improvements
+
+Material UI v7 features other quality-of-life improvements, including:
+
+- `ThemeProvider` now supports CSS layers via the `enableCssLayer` prop
+- the slot pattern has been standardized accross all components
+
+If you're using any of these packages, you should also change their version to `"7.0.0"`:
+
+- `@mui/icons-material`
+- `@mui/system`
+- `@mui/lab`
+- `@mui/material-nextjs`
+- `@mui/styled-engine`
+- `@mui/styled-engine-sc`
+- `@mui/utils`
+
+Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
+If you're using any of the following packages, they should remain unchanged during the upgrade process:
+
+- `@mui/x-data-grid`
+- `@mui/x-data-grid-pro`
+- `@mui/x-data-grid-premium`
+- `@mui/x-date-pickers`
+- `@mui/x-date-pickers-pro`
+- `@mui/x-charts`
+- `@mui/x-tree-view`
+- `@mui/x-tree-view-pro`
 
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
 The steps you need to take to migrate from Material UI v6 to v7 are described below.
-
-:::info
-This list is a work in progress.
-Expect updates as new breaking changes are introduced.
-:::
 
 ### Package layout updated
 
