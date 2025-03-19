@@ -17,7 +17,7 @@ export default function TextareaAutosize() {
       value={value}
       slotProps={{
         input: {
-          role: 'textbox',
+          'data-testid': 'input',
         },
       }}
     />

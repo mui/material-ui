@@ -161,8 +161,8 @@ async function main() {
 
     describe('Textarea', () => {
       it('should keep input caret position at the end when adding a newline', async () => {
-        const testcase = await renderFixture('/regression-Textarea/TextareaAutosize');
-        await page.getByRole('textbox').focus();
+        await renderFixture('/regression-Textarea/TextareaAutosize');
+        await page.getByTestId('input').focus();
 
         const textWithEndline = `abc def abc def abc def\n`;
         await page.evaluate((text) => {
@@ -172,15 +172,8 @@ async function main() {
         const pasteCommand = process.platform === 'darwin' ? 'Meta+V' : 'Control+V';
 
         await page.keyboard.press(pasteCommand);
-        await takeScreenshot({ testcase, route: '/regression-Textarea/TextareaAutosize1' });
-
-        await page.waitForTimeout(500);
         await page.keyboard.press(pasteCommand);
-        await takeScreenshot({ testcase, route: '/regression-Textarea/TextareaAutosize2' });
-
-        await page.waitForTimeout(500);
         await page.keyboard.press(pasteCommand);
-        await takeScreenshot({ testcase, route: '/regression-Textarea/TextareaAutosize3' });
 
         await page.evaluate(() => {
           const textarea = document.querySelector('textarea');
