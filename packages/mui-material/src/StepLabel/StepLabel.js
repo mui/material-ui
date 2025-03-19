@@ -175,6 +175,17 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: StepLabelRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+  });
+
   const [LabelSlot, labelProps] = useSlot('label', {
     elementType: StepLabelLabel,
     externalForwardedProps,
@@ -188,12 +199,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   });
 
   return (
-    <StepLabelRoot
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {icon || StepIconSlot ? (
         <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
           <StepIconSlot
@@ -213,7 +219,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
         ) : null}
         {optional}
       </StepLabelLabelContainer>
-    </StepLabelRoot>
+    </RootSlot>
   );
 });
 
@@ -261,6 +267,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slotProps: PropTypes.shape({
     label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     stepIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
@@ -269,6 +276,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
    */
   slots: PropTypes.shape({
     label: PropTypes.elementType,
+    root: PropTypes.elementType,
     stepIcon: PropTypes.elementType,
   }),
   /**
