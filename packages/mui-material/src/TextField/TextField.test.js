@@ -21,6 +21,15 @@ describe('<TextField />', () => {
     );
   }
 
+  function TestFormControl(props) {
+    const { children, error, ...rest } = props;
+    return (
+      <FormControl data-testid={'custom'} {...rest}>
+        {children}
+      </FormControl>
+    );
+  }
+
   describeConformance(
     <TextField variant="standard" helperText="Helper text" label="Label" />,
     () => ({
@@ -40,6 +49,10 @@ describe('<TextField />', () => {
           testWithElement: 'input',
         },
         formHelperText: {},
+        root: {
+          expectedClassName: classes.root,
+          testWithElement: TestFormControl,
+        },
       },
       skip: ['componentProp', 'componentsProp'],
     }),
