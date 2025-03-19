@@ -10,10 +10,8 @@ import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
 import {
-  CommunitySupportIcon,
   ProSupportIcon,
   PremiumSupportIcon,
-  CommunitySupportText,
   ProSupportText,
   PremiumSupportText,
   PrioritySupportIcon,
@@ -45,10 +43,7 @@ export const planInfo: Record<
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
     features: [
       { text: '+40 free components', icon: 'check' },
-      {
-        icon: 'support',
-        supportType: 'community',
-      },
+      { text: 'Community support', icon: 'check' },
     ],
   },
   pro: {
@@ -397,14 +392,6 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
           }}
         >
           {(() => {
-            if (feature.supportType === 'community') {
-              return (
-                <React.Fragment>
-                  <CommunitySupportIcon idPrefix={idPrefix} />
-                  <CommunitySupportText />
-                </React.Fragment>
-              );
-            }
             if (feature.supportType === 'pro') {
               return (
                 <React.Fragment>

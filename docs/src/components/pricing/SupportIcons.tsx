@@ -3,40 +3,6 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-export function CommunitySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
-  const gradientId = `${idPrefix}community-gradient`;
-  return (
-    <SvgIcon inheritViewBox>
-      <path
-        d="M10.92 12.75L12 11.93L13.07 12.74C13.46 13.03 13.99 12.66 13.85 12.19L13.43 10.83L14.63 9.88C15 9.6 14.79 9 14.31 9H12.91L12.48 7.66C12.33 7.2 11.68 7.2 11.53 7.66L11.09 9H9.68C9.21 9 9 9.6 9.37 9.89L10.56 10.84L10.14 12.2C10 12.67 10.53 13.04 10.92 12.75ZM6 21.61C6 22.29 6.67 22.77 7.32 22.56L12 21L16.68 22.56C17.33 22.78 18 22.3 18 21.61V15.28C19.24 13.87 20 12.03 20 10C20 5.58 16.42 2 12 2C7.58 2 4 5.58 4 10C4 12.03 4.76 13.87 6 15.28V21.61ZM12 4C15.31 4 18 6.69 18 10C18 13.31 15.31 16 12 16C8.69 16 6 13.31 6 10C6 6.69 8.69 4 12 4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M10.92 12.75L12 11.93L13.07 12.74C13.46 13.03 13.99 12.66 13.85 12.19L13.43 10.83L14.63 9.88C15 9.6 14.79 9 14.31 9H12.91L12.48 7.66C12.33 7.2 11.68 7.2 11.53 7.66L11.09 9H9.68C9.21 9 9 9.6 9.37 9.89L10.56 10.84L10.14 12.2C10 12.67 10.53 13.04 10.92 12.75ZM6 21.61C6 22.29 6.67 22.77 7.32 22.56L12 21L16.68 22.56C17.33 22.78 18 22.3 18 21.61V15.28C19.24 13.87 20 12.03 20 10C20 5.58 16.42 2 12 2C7.58 2 4 5.58 4 10C4 12.03 4.76 13.87 6 15.28V21.61ZM12 4C15.31 4 18 6.69 18 10C18 13.31 15.31 16 12 16C8.69 16 6 13.31 6 10C6 6.69 8.69 4 12 4Z"
-        fill={`url(#${gradientId})`}
-        fillOpacity="0.8"
-      />
-      <defs>
-        <linearGradient
-          id={gradientId}
-          x1="6.53333"
-          y1="4.92031"
-          x2="21.1146"
-          y2="18.9651"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#B6947E" />
-          <stop offset="0.2" stopColor="#8F6959" />
-          <stop offset="0.475" stopColor="#F8DAC8" />
-          <stop offset="0.67" stopColor="#AC836E" />
-          <stop offset="0.83" stopColor="#B6947E" />
-          <stop offset="1" stopColor="#F8DCCB" />
-        </linearGradient>
-      </defs>
-    </SvgIcon>
-  );
-}
-
 export function ProSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
   const gradientId = `${idPrefix}pro-gradient`;
   return (
@@ -136,38 +102,15 @@ export function PrioritySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
   );
 }
 
-const CommunitySupportGradient = styled(Typography)(() => ({
-  background: `linear-gradient(rgba(106, 81, 36, 0.5), rgba(106, 81, 36, 0.5)),
-  linear-gradient(
-  97deg,
-  #B6947E 0%,
-  #8F6959 20%,
-  #F8DAC8 44%,
-  #AC836E 67%,
-  #8F6959 83%,
-  #F8DCCB 100%
-  )`,
-  backgroundClip: 'text',
-  color: 'transparent',
-  fontSize: '14px',
-  fontWeight: 600,
-  lineHeight: '15px',
-  backgroundBlendMode: 'multiply',
-}));
-
-export function CommunitySupportText() {
-  return <CommunitySupportGradient>Community support</CommunitySupportGradient>;
-}
-
 const ProSupportGradient = styled(Typography)(() => ({
   background: `linear-gradient(rgba(63, 63, 64, 0.5), rgba(61, 62, 62, 0.5)),
   linear-gradient(
   23deg,
-  #7A96AC 0%,
-  #EAEFF3 23%,
-  #C2D4E1 39%,
+rgb(138, 177, 206) 0%,
+rgb(204, 225, 242) 23%,
+rgb(159, 195, 221) 39%,
   #FFFFFF 54%,
-  #ABBDC8 75%,
+rgb(114, 139, 155) 75%,
   #BCCAD7 100%
   )`,
   backgroundClip: 'text',
