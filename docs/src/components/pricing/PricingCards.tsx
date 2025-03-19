@@ -86,7 +86,7 @@ export const planInfo: Record<
     description:
       'All features of Premium coupled with enterprise-grade support and customer success.',
     features: [
-      { text: 'All Premium', text2: 'features and...', icon: 'check' },
+      { text: 'All Premium', text2: 'features and…', icon: 'check' },
       { text: 'Technical support for all libraries', icon: 'check' },
       { text: 'Guaranteed response time', icon: 'check' },
       { text: 'Pre-screening', icon: 'check' },
