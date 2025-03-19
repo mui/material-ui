@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { styled, alpha, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha, ThemeProvider, Theme } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
@@ -21,17 +21,18 @@ import DoneRounded from '@mui/icons-material/DoneRounded';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
-import PageContext from 'docs/src/modules/components/PageContext';
+import PageContext, { ProductVersion } from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
+import { MuiPage } from 'docs/src/MuiPage';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
-function transitionTheme(theme) {
+function transitionTheme(theme: Theme) {
   return {
     ...theme,
     transitions: {
       ...theme.transitions,
-      getAutoHeightDuration: (height) => {
+      getAutoHeightDuration: (height: number) => {
         if (!height) {
           return 0;
         }
@@ -45,9 +46,9 @@ function transitionTheme(theme) {
   };
 }
 
-const savedScrollTop = {};
+const savedScrollTop: Record<string, number> = {};
 
-const customButtonStyles = (theme) => ({
+const customButtonStyles = (theme: Theme) => ({
   pl: 1,
   pr: '6px',
   height: 26,
@@ -56,22 +57,26 @@ const customButtonStyles = (theme) => ({
   letterSpacing: '0.01rem',
 });
 
-function ProductDrawerButton(props) {
+interface ProductDrawerButtonProps {
+  productName: string;
+}
+
+function ProductDrawerButton(props: ProductDrawerButtonProps) {
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  const handleClose = (event: MouseEvent | TouchEvent) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target as Node)) {
       return;
     }
     setOpen(false);
   };
 
-  function handleListKeyDown(event) {
+  function handleListKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
@@ -138,7 +143,13 @@ ProductDrawerButton.propTypes = {
   productName: PropTypes.string,
 };
 
-function ProductIdentifier(props) {
+interface ProductIdentifierProps {
+  name: string;
+  metadata: string;
+  versionSelector: React.ReactNode;
+}
+
+function ProductIdentifier(props: ProductIdentifierProps) {
   const { name, metadata, versionSelector } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -171,13 +182,19 @@ ProductIdentifier.propTypes = {
 // To match scrollMarginBottom
 const browserUrlPreviewMarge = 120;
 
-function PersistScroll(props) {
+interface PersistScrollProps {
+  children: React.ReactNode;
+  enabled: boolean;
+  slot: string;
+}
+
+function PersistScroll(props: PersistScrollProps) {
   const { slot, children, enabled } = props;
-  const rootRef = React.useRef();
+  const rootRef = React.useRef<HTMLDivElement>(null);
 
   useEnhancedEffect(() => {
     const scrollContainer = rootRef.current ? rootRef.current.parentElement : null;
-    const activeDrawerLink = scrollContainer.querySelector('.app-drawer-active');
+    const activeDrawerLink = scrollContainer?.querySelector('.app-drawer-active');
 
     if (!enabled || !scrollContainer || !activeDrawerLink || !activeDrawerLink.scrollIntoView) {
       return undefined;
@@ -235,24 +252,38 @@ const AppNavPaperComponent = styled('div')(() => {
     width: 'var(--MuiDocs-navDrawer-width)',
     boxShadow: 'none',
     border: '0 !important', // TODO add a Paper slot
-    overflowY: 'unset !important', // TODO add a Paper slot
+    overflowY: 'unset !important' as 'unset', // TODO add a Paper slot
     boxSizing: 'border-box', // TODO have CssBaseline in the Next.js layout
   };
 });
 
-function renderNavItems(options) {
+interface RenderNavItemsOptions {
+  onClose: () => void;
+  pages: MuiPage[];
+  activePageParents: MuiPage[];
+  depth: number;
+  t: (key: string) => string;
+}
+
+function renderNavItems(options: RenderNavItemsOptions) {
   const { pages, ...params } = options;
 
   return (
-    <List>{pages.reduce((items, page) => reduceChildRoutes({ items, page, ...params }), [])}</List>
+    <List>
+      {pages.reduce(
+        (items, page) => reduceChildRoutes({ items, page, ...params }),
+        [] as React.ReactNode[],
+      )}
+    </List>
   );
 }
 
-/**
- * @param {object} context
- * @param {import('docs/src/pages').MuiPage} context.page
- */
-function reduceChildRoutes(context) {
+interface ReduceChildRoutesContext extends Omit<RenderNavItemsOptions, 'pages'> {
+  items: React.ReactNode[];
+  page: MuiPage;
+}
+
+function reduceChildRoutes(context: ReduceChildRoutesContext): React.ReactNode[] {
   const { onClose, activePageParents, items, depth, t } = context;
   const { page } = context;
   if (page.inSideNav === false) {
@@ -339,10 +370,18 @@ function reduceChildRoutes(context) {
 // So: <SwipeableDrawer disableBackdropTransition={false} />
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-export default function AppNavDrawer(props) {
+export interface AppNavDrawerProps {
+  className?: string;
+  disablePermanent: boolean;
+  mobileOpen: boolean;
+  onClose: () => void;
+  onOpen: () => void;
+}
+
+export default function AppNavDrawer(props: AppNavDrawerProps) {
   const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePageParents, pages, productIdentifier } = React.useContext(PageContext);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const t = useTranslate();
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
   const swipeableDrawer = disablePermanent || mobile;
@@ -350,7 +389,7 @@ export default function AppNavDrawer(props) {
   const drawer = React.useMemo(() => {
     const navItems = renderNavItems({ onClose, pages, activePageParents, depth: 0, t });
 
-    const renderVersionSelector = (versions) => {
+    const renderVersionSelector = (versions: ProductVersion[]) => {
       if (!versions?.length) {
         return null;
       }

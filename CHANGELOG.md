@@ -1,5 +1,89 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-rc.0
+
+<!-- generated comparing v7.0.0-beta.4..master -->
+
+_Mar 18, 2025_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@7.0.0-rc.0`
+
+- [StepLabel] Add missing root slot (#45603) @sai6855
+- [Switch] Add slots and slotProps (#45595) @siriwatknp
+- [utils] Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
+
+### Core
+
+- [blog] Clarify the difference between the two Pro plans (#45266) @oliviertassinari
+- [code-infra] Allow specifying a custom error formatter module for error minifcation (#45291) @Janpot
+- [code-infra] Make `getVersionEnvVariables` reusable for other repos (#45562) @Janpot
+- [code-infra] Update peer dependency of `@mui/utils` in `@mui/docs` (#45561) @Janpot
+- Add StackBlitz template to issue template (#45504) @Janpot
+
+All contributors of this release in alphabetical order: @Janpot, @oliviertassinari, @sai6855, @siriwatknp
+
+## 7.0.0-beta.4
+
+<!-- generated comparing v7.0.0-beta.3..master -->
+
+_Mar 13, 2025_
+
+A big thanks to the 10 contributors who made this release possible.
+This release contains bug fixes 🐛 and improvements to the new package layout 🏗️.
+
+### `@mui/material@7.0.0-beta.4`
+
+- [Accordion] Add missing `root` slot (#45532) @sai6855
+- [AccordionSummary] Add slots and slotProps (#45559) @sai6855
+- [ListItemText] Add missing `root` slot (#45540) @sai6855
+- [SpeedDial] Add missing `root` slot (#45541) @sai6855
+- [Tooltip] Allow auto placement on tooltip (#45399) @Jtaks
+- [useScrollTrigger] Do nothing if target is null (#45441) @vipierozan99
+- [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) @mj12albert
+- Fix negative input for CSS variables spacing array (#45550) @siriwatknp
+- Add missing deprecations in deprecations-all file (#45505) @sai6855
+- Rename some `@mui/material/styles/createTypography` exports (#45558) @Janpot
+
+### `@mui/icons-material@7.0.0-beta.4`
+
+- Remove unused icon names from the download script (#45453) @yermartee
+
+### `@mui/system@7.0.0-beta.4`
+
+- Prevent nested non-vars theme inheritance (#45545) @siriwatknp
+- Disable theme recalculation as default behavior (#45405) @siriwatknp
+- Fix package layout inconsistencies (#45491) @DiegoAndai
+
+### `@mui/styled-engine@7.0.0-beta.4`
+
+- Add `enableCssLayer` prop to StyledEngineProvider (#45428) @siriwatknp
+
+### `@mui/types@7.3.0`
+
+- [code-infra] Fix type resolution for @mui/types (#45513) @Janpot
+
+### `@mui/utils@7.0.0-beta.4`
+
+- Fix package layout inconsistencies (#45491) @DiegoAndai
+- Use correct iri-reference homepage format (#45472) @dahiro
+
+### Docs
+
+- [Backdrop] Fix component name in migration guide (#45506) @sai6855
+- [TextField] Add HTML input section to TextField page (#45439) @siriwatknp
+
+### Core
+
+- [code-infra] Convert a few docs modules to ts (#45548) @Janpot
+- [code-infra] Remove more CJS modules from the docs (#45557) @Janpot
+- [code-infra] Remove nested imports from theme augmentation (#45514) @Janpot
+- [docs-infra] Add @ts-ignore to avoid type checking for MUI X (#45555) @siriwatknp
+- [blog] Fix author end-of-year updates (#45533) @oliviertassinari
+
+All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Janpot, @Jtaks, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp, @vipierozan99, @yermartee
+
 ## 7.0.0-beta.3
 
 <!-- generated comparing v7.0.0-beta.2..master -->
