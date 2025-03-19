@@ -3,7 +3,7 @@ title: Material UI v7 is out 🚀
 description: Material UI v7 is now stable, improving integration with modern tools and consistency across the library.
 date: 2025-03-31T12:00:00.000Z
 authors: ['diegoandai']
-tags: ['Material UI', 'Product']
+tags: ['Material UI', 'Product']
 manualCard: true
 ---
 
