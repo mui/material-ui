@@ -168,6 +168,26 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     inputAdditionalProps['aria-describedby'] = undefined;
   }
 
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: TextFieldRoot,
+    shouldForwardComponentProp: true,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    className: clsx(classes.root, className),
+    ref,
+    additionalProps: {
+      disabled,
+      error,
+      fullWidth,
+      required,
+      color,
+      variant,
+    },
+  });
+
   const [InputSlot, inputProps] = useSlot('input', {
     elementType: InputComponent,
     externalForwardedProps,
@@ -228,18 +248,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   );
 
   return (
-    <TextFieldRoot
-      className={clsx(classes.root, className)}
-      disabled={disabled}
-      error={error}
-      fullWidth={fullWidth}
-      ref={ref}
-      required={required}
-      color={color}
-      variant={variant}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {label != null && label !== '' && (
         <InputLabelSlot htmlFor={id} id={inputLabelId} {...inputLabelProps}>
           {label}
@@ -266,7 +275,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
           {helperText}
         </FormHelperTextSlot>
       )}
-    </TextFieldRoot>
+    </RootSlot>
   );
 });
 
@@ -457,6 +466,7 @@ TextField.propTypes /* remove-proptypes */ = {
     htmlInput: PropTypes.elementType,
     input: PropTypes.elementType,
     inputLabel: PropTypes.elementType,
+    root: PropTypes.elementType,
     select: PropTypes.elementType,
   }),
   /**
