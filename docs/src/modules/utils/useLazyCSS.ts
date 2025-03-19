@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import { loadCSS } from 'fg-loadcss';
 
 /**
  * Convenience wrapper around fgLoadCSS for hooks usage
@@ -9,7 +9,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
  */
 export default function useLazyCSS(href: string, before: string) {
   React.useEffect(() => {
-    const link = loadCSS(href, document.querySelector(before));
+    const link = loadCSS(href, document.querySelector(before) as HTMLElement);
     return () => {
       link.parentElement?.removeChild(link);
     };
