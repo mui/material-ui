@@ -15,6 +15,7 @@ import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { DemoInstanceThemeProvider } from 'docs/src/theming';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 const iframeDefaultJoyTheme = extendTheme({
   cssVarPrefix: 'demo-iframe',
@@ -24,6 +25,7 @@ let globalInjectThemeCache;
 
 function FramedDemo(props) {
   const { children, document, usesCssVarsTheme } = props;
+  const themeOptions = React.useContext(ThemeOptionsContext);
 
   const theme = useTheme();
   React.useEffect(() => {
@@ -31,8 +33,8 @@ function FramedDemo(props) {
   }, [document, theme.direction]);
 
   React.useEffect(() => {
-    document.documentElement.style.colorScheme = theme.palette.mode;
-  }, [document, theme.palette.mode]);
+    document.documentElement.style.colorScheme = themeOptions.paletteMode;
+  }, [document, themeOptions.paletteMode]);
 
   const { jss, sheetsManager } = React.useMemo(() => {
     return {
