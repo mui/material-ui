@@ -22,6 +22,9 @@ describe('<ListItemText />', () => {
       secondary: {
         expectedClassName: classes.secondary,
       },
+      root: {
+        expectedClassName: classes.root,
+      },
     },
     skip: ['componentProp', 'componentsProp'],
   }));
