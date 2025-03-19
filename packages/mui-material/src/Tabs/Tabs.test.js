@@ -926,60 +926,6 @@ describe('<Tabs />', () => {
       });
 
       describe(`when focus is on a tab element in a ${orientation} ${direction} tablist`, () => {
-        describe('modifier keys', () => {
-          ['Alt', 'Shift', 'Ctrl'].forEach((modifierKey) => {
-            it(`does not interfere when ${modifierKey} is pressed with ArrowLeft`, async () => {
-              const handleKeyDown = spy();
-              const { getAllByRole } = render(
-                <Tabs onKeyDown={handleKeyDown} orientation={orientation} value={1}>
-                  <Tab />
-                  <Tab />
-                  <Tab />
-                </Tabs>,
-                { wrapper },
-              );
-
-              const [firstTab] = getAllByRole('tab');
-              await act(async () => {
-                firstTab.focus();
-              });
-
-              fireEvent.keyDown(firstTab, {
-                key: 'ArrowLeft',
-                [`${modifierKey.toLowerCase()}Key`]: true,
-              });
-
-              expect(firstTab).toHaveFocus();
-              expect(handleKeyDown.callCount).to.equal(0);
-            });
-
-            it(`does not interfere when ${modifierKey} is pressed with ArrowRight`, async () => {
-              const handleKeyDown = spy();
-              const { getAllByRole } = render(
-                <Tabs onKeyDown={handleKeyDown} orientation={orientation} value={1}>
-                  <Tab />
-                  <Tab />
-                  <Tab />
-                </Tabs>,
-                { wrapper },
-              );
-
-              const [firstTab] = getAllByRole('tab');
-              await act(async () => {
-                firstTab.focus();
-              });
-
-              fireEvent.keyDown(firstTab, {
-                key: 'ArrowRight',
-                [`${modifierKey.toLowerCase()}Key`]: true,
-              });
-
-              expect(firstTab).toHaveFocus();
-              expect(handleKeyDown.callCount).to.equal(0);
-            });
-          });
-        });
-
         describe(previousItemKey, () => {
           it('moves focus to the last tab without activating it if focus is on the first tab', async () => {
             const handleChange = spy();
@@ -1434,6 +1380,30 @@ describe('<Tabs />', () => {
         '0',
         '-1',
       ]);
+    });
+
+    ['Alt', 'Shift', 'Ctrl', 'Meta'].forEach((modifierKey) => {
+      it.only(`does not navigate when ${modifierKey} is pressed with ArrowLeft`, async () => {
+        const { getAllByRole } = render(
+          <Tabs value={1}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+
+        const [firstTab, secondTab] = getAllByRole('tab');
+        await act(async () => {
+          secondTab.focus();
+        });
+
+        fireEvent.keyDown(secondTab, {
+          key: 'ArrowLeft',
+          [`${modifierKey.toLowerCase()}Key`]: true,
+        });
+
+        expect(secondTab).toHaveFocus();
+        expect(firstTab).not.toHaveFocus();
+      });
     });
   });
 

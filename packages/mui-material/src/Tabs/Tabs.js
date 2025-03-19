@@ -815,11 +815,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const handleKeyDown = (event) => {
-    // Check if a modifier key (Alt, Shift, Ctrl) is pressed with ArrowLeft/ArrowRight
-    if (
-      (event.altKey || event.shiftKey || event.ctrlKey) &&
-      (event.key === 'ArrowLeft' || event.key === 'ArrowRight')
-    ) {
+    // Check if a modifier key (Alt, Shift, Ctrl, Meta) is pressed
+    if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
       return;
     }
 
