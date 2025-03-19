@@ -48,6 +48,8 @@ export { default as GlobalStyles } from './GlobalStyles';
 export type { GlobalStylesProps } from './GlobalStyles';
 
 export * from './style';
+export { default as style } from './style';
+
 export * from './spacing';
 
 export {

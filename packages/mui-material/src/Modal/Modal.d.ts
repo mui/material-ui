@@ -150,11 +150,6 @@ export interface ModalOwnProps {
    */
   keepMounted?: boolean;
   /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick?: React.ReactEventHandler<{}>;
-  /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
    *

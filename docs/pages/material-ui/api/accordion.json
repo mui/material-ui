@@ -16,14 +16,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ heading?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ heading?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ heading?: elementType, transition?: elementType }"
+        "description": "{ heading?: elementType, root?: elementType, transition?: elementType }"
       },
       "default": "{}"
     },
@@ -52,6 +52,12 @@
     "import { Accordion } from '@mui/material';"
   ],
   "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "Paper",
+      "class": "MuiAccordion-root"
+    },
     {
       "name": "heading",
       "description": "The component that renders the heading.",
@@ -88,12 +94,6 @@
       "key": "region",
       "className": "MuiAccordion-region",
       "description": "Styles applied to the region element, the container of the children.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiAccordion-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

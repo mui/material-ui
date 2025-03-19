@@ -35,6 +35,7 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
+  GridLegacy,
   ImageList,
   ImageListItem,
   Grow,
@@ -530,21 +531,44 @@ function AccordionTest() {
   );
 }
 
+function GridLegacyTest() {
+  return (
+    <GridLegacy component={Paper} container>
+      <GridLegacy item xs={12}>
+        ...
+      </GridLegacy>
+      <GridLegacy item sm={12}>
+        ...
+      </GridLegacy>
+      <GridLegacy item xl>
+        ...
+      </GridLegacy>
+      <GridLegacy item style={{ color: 'red' }}>
+        ...
+      </GridLegacy>
+    </GridLegacy>
+  );
+}
+
 function GridTest() {
   return (
     <Grid component={Paper} container>
-      <Grid item xs={12}>
+      <Grid size={12}>...</Grid>
+      <Grid
+        size={{
+          sm: 12,
+        }}
+      >
         ...
       </Grid>
-      <Grid item sm={12}>
+      <Grid
+        size={{
+          xl: 'grow',
+        }}
+      >
         ...
       </Grid>
-      <Grid item xl>
-        ...
-      </Grid>
-      <Grid item style={{ color: 'red' }}>
-        ...
-      </Grid>
+      <Grid style={{ color: 'red' }}>...</Grid>
     </Grid>
   );
 }

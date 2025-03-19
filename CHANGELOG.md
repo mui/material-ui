@@ -1,5 +1,188 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-beta.4
+
+<!-- generated comparing v7.0.0-beta.3..master -->
+
+_Mar 13, 2025_
+
+A big thanks to the 10 contributors who made this release possible.
+This release contains bug fixes 🐛 and improvements to the new package layout 🏗️.
+
+### `@mui/material@7.0.0-beta.4`
+
+- [Accordion] Add missing `root` slot (#45532) @sai6855
+- [AccordionSummary] Add slots and slotProps (#45559) @sai6855
+- [ListItemText] Add missing `root` slot (#45540) @sai6855
+- [SpeedDial] Add missing `root` slot (#45541) @sai6855
+- [Tooltip] Allow auto placement on tooltip (#45399) @Jtaks
+- [useScrollTrigger] Do nothing if target is null (#45441) @vipierozan99
+- [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) @mj12albert
+- Fix negative input for CSS variables spacing array (#45550) @siriwatknp
+- Add missing deprecations in deprecations-all file (#45505) @sai6855
+- Rename some `@mui/material/styles/createTypography` exports (#45558) @Janpot
+
+### `@mui/icons-material@7.0.0-beta.4`
+
+- Remove unused icon names from the download script (#45453) @yermartee
+
+### `@mui/system@7.0.0-beta.4`
+
+- Prevent nested non-vars theme inheritance (#45545) @siriwatknp
+- Disable theme recalculation as default behavior (#45405) @siriwatknp
+- Fix package layout inconsistencies (#45491) @DiegoAndai
+
+### `@mui/styled-engine@7.0.0-beta.4`
+
+- Add `enableCssLayer` prop to StyledEngineProvider (#45428) @siriwatknp
+
+### `@mui/types@7.3.0`
+
+- [code-infra] Fix type resolution for @mui/types (#45513) @Janpot
+
+### `@mui/utils@7.0.0-beta.4`
+
+- Fix package layout inconsistencies (#45491) @DiegoAndai
+- Use correct iri-reference homepage format (#45472) @dahiro
+
+### Docs
+
+- [Backdrop] Fix component name in migration guide (#45506) @sai6855
+- [TextField] Add HTML input section to TextField page (#45439) @siriwatknp
+
+### Core
+
+- [code-infra] Convert a few docs modules to ts (#45548) @Janpot
+- [code-infra] Remove more CJS modules from the docs (#45557) @Janpot
+- [code-infra] Remove nested imports from theme augmentation (#45514) @Janpot
+- [docs-infra] Add @ts-ignore to avoid type checking for MUI X (#45555) @siriwatknp
+- [blog] Fix author end-of-year updates (#45533) @oliviertassinari
+
+All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Janpot, @Jtaks, @mj12albert, @oliviertassinari, @sai6855, @siriwatknp, @vipierozan99, @yermartee
+
+## 7.0.0-beta.3
+
+<!-- generated comparing v7.0.0-beta.2..master -->
+
+_Mar 5, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@7.0.0-beta.3`
+
+- Fix moduleResolution:node for icons (#45444) @Janpot
+- [ThemeProvider] Add `storageManager` prop to `ThemeProvider` (#45136) @siriwatknp
+- [Radio] Fix `inputProps` not forwarded (#45471) @siriwatknp
+
+### `@mui/codemod@7.0.0-beta.3`
+
+- [codemod] Fix codemods not found (#45473) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @Janpot, @siriwatknp
+
+## 7.0.0-beta.2
+
+<!-- generated comparing v7.0.0-beta.1..master -->
+
+_Feb 27, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### Core
+
+- [code-infra] Add package.json export (#45433) @Janpot
+- [blog] React 19 migration for MUI X (#45348) @arminmeh
+
+All contributors of this release in alphabetical order: @arminmeh, @Janpot
+
+## 7.0.0-beta.1
+
+<!-- generated comparing v7.0.0-beta.0..master -->
+
+_Feb 27, 2025_
+
+This release fixes incorrect build output from the previous release (`beta.0`).
+
+### Core
+
+- [code-infra] Fix build:types script omitting folders with a dot in their name (#45422) @Janpot
+- [release] Fix versions (#45420) @mj12albert
+
+All contributors of this release in alphabetical order: @Janpot, @mj12albert
+
+## 7.0.0-beta.0
+
+<!-- generated comparing v7.0.0-alpha.2..master -->
+
+_Feb 26, 2025_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@mui/material@7.0.0-beta.0`
+
+- [Modal][Dialog] Remove deprecated `onBackdropClick` (#45395) @DiegoAndai
+- [Grid] Improve Grid2 upgrade experience (#45304) @DiegoAndai
+- [Grid] Rename to GridLegacy (#45363) @DiegoAndai
+- [Grid2] Rename to Grid (#45381) @DiegoAndai
+- Remove SvgIcon data-testid in production (#45333) @Janpot
+- Allow nested theme creation with `vars` (#45335) @siriwatknp
+- [Rating] Deprecate \*Props and complete `slots`, `slotProps` (#45295) @harry-whorlow
+- [Slider] Fix css class selector in migration guide (#45402) @sai6855
+- [Slider] Fix spacings in .md files (#45388) @sai6855
+- [styles] Remove deprecated exports (#45397) @DiegoAndai
+- [Menu] Deprecate \*Props and complete `slots`, `slotProps` (#44913) @siriwatknp
+- [StepButton] Remove StepIconButton type (#45396) @DiegoAndai
+
+### Docs
+
+- [Autocomplete] Remove unnecessary renderTags prop from Sizes demo (#45401) @ZeeshanTamboli
+- Add `overriding-component-structure` doc to Material UI (#45186) @siriwatknp
+- Fix typo in slider docs (#45390) @sai6855
+- Fix Context Menu selection lost on Safari (#44903) @NooBat
+
+### Core
+
+- [code-infra] Fix types for @mui/styled-engine (#45413) @Janpot
+- [docs-infra] Fix theme toggle call (#45400) @siriwatknp
+- [docs-infra] Add `color-scheme` to document in iframe demos (#45406) @KenanYusuf
+- [docs-infra] Revert to use deprecated `CssVarsProvider` for MUI X (#45371) @siriwatknp
+- [docs-infra] Fix dark mode flicker for API pages (#45354) @siriwatknp
+- [examples] Remove unnecessary comma in Material UI Vite JS example (#45370) @ZeeshanTamboli
+- [test] Remove unused renderTags prop and fix key warning in Autocomplete regression test (#45410) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @DiegoAndai, @harry-whorlow, @Janpot, @KenanYusuf, @NooBat, @sai6855, @siriwatknp, @ZeeshanTamboli
+
+## 7.0.0-alpha.2
+
+<!-- generated comparing v7.0.0-alpha.1..master -->
+
+_Feb 18, 2025_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@7.0.0-alpha.2`
+
+- [Autocomplete] Remove legacy `aria-owns` attribute for combobox (#45302) @ZeeshanTamboli
+- [Button] Apply id only if loading indicator is present (#45296) @aarongarciah
+- [Hidden] Remove deprecated Hidden component (#45283) @DiegoAndai
+- [InputBase] Deprecate composed classes (#45234) @sai6855
+- [InputLabel] Changed size prop value from `normal` to `medium` (#45235) @perkrlsn
+- Fix `slotProps.transition` types (#45214) @siriwatknp
+
+### Docs
+
+- Fix broken links to MUI X docs (#45145) @mapache-salvaje
+- Add migration guide for package layout changes (#45222) @Janpot
+- [icons] Fix typo in material-icons.md (#45334) @a-s-russo
+
+### Core
+
+- Disallow access to esm/modern barrel files (#45332) @Janpot
+- [code-infra] Update `elliptic` (#45311) @Janpot
+- Update release guide to specify package bumping rules (#45294) @DiegoAndai
+
+All contributors of this release in alphabetical order: @a-s-russo, @aarongarciah, @DiegoAndai, @Janpot, @mapache-salvaje, @perkrlsn, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 7.0.0-alpha.1
 
 <!-- generated comparing v7.0.0-alpha.0..master -->
