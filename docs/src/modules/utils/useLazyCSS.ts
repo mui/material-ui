@@ -1,4 +1,5 @@
 import * as React from 'react';
+// @ts-ignore
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 
 /**
@@ -7,7 +8,7 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
  * @param {string} before - CSS selector
  * @returns {() => void} cleanup function
  */
-export default function useLazyCSS(href, before) {
+export default function useLazyCSS(href: string, before: string) {
   React.useEffect(() => {
     const link = loadCSS(href, document.querySelector(before));
     return () => {
