@@ -1836,5 +1836,4 @@ describe('<Select />', () => {
       expect(select.style.minWidth).toBeGreaterThan(select.clientWidth);
     });
   });
-  
 });

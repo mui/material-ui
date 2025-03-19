@@ -202,9 +202,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       const averageCharWidth = parseFloat(getComputedStyle(label).fontSize) / 4;
       const calculatedLabelWidth = averageCharWidth * innerText.length + width;
 
-      if(calculatedLabelWidth > displayRef.current.clientWidth) {
-        setLabelWidth(calculatedLabelWidth)
-      } 
+      if (calculatedLabelWidth > displayRef.current.clientWidth) {
+        setLabelWidth(calculatedLabelWidth);
+      }
       const handler = () => {
         if (getSelection().isCollapsed) {
           displayRef.current.focus();
