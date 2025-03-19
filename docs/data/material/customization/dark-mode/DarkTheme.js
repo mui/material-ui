@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/GridLegacy';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { styled, ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 
@@ -30,7 +30,7 @@ function Demo() {
   const theme = useTheme();
 
   const item = (color, name, expanded = false, border = false) => (
-    <Color item xs={12} sm={6} md={expanded ? 8 : 4}>
+    <Color size={{ xs: 12, sm: 6, md: expanded ? 8 : 4 }}>
       <div
         style={{
           backgroundColor: color,

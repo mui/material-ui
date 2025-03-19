@@ -206,8 +206,8 @@ export * from './FormLabel';
 export { default as GridLegacy } from './GridLegacy';
 export { GridLegacyProps, GridLegacyTypeMap } from './GridLegacy';
 
-export { default as Grid2 } from './Grid2';
-export * from './Grid2';
+export { default as Grid } from './Grid';
+export * from './Grid';
 
 export { default as Grow } from './Grow';
 export * from './Grow';
@@ -456,11 +456,6 @@ export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
 export * from './version';
-
-/**
- * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
- */
-export { StyledEngineProvider } from './styles';
 
 export { unstable_composeClasses } from '@mui/utils';
 
