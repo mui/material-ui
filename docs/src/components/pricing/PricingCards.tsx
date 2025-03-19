@@ -91,7 +91,7 @@ export const planInfo: Record<
       { text: 'Guaranteed response time', icon: 'check' },
       { text: 'Pre-screening', icon: 'check' },
       { text: 'Issue escalation', icon: 'check' },
-      { text: 'Customer success manager', icon: 'check' },
+      { text: 'Customer Success Manager', icon: 'check' },
       {
         icon: 'support',
         supportType: 'priority',
@@ -306,7 +306,7 @@ export function PlanPrice(props: PlanPriceProps) {
           variant="contained"
           fullWidth
           endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1, mt: 2, mb: 2 }}
+          sx={{ py: 1, width: '100%', mt: 2 }}
         >
           Buy now
         </Button>

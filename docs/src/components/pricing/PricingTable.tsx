@@ -279,10 +279,10 @@ function RowHead({
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'Base UI': (
     <ColumnHead
-      label="MUI Base"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
+      label="Base UI"
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base-ui."
     />
   ),
   'MUI System': (
@@ -591,7 +591,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'customer-success': (
     <ColumnHead
       {...{
-        label: 'Customer success manager',
+        label: 'Customer Success Manager',
         tooltip: 'A dedicated person to help you get the most out of MUI products.',
       }}
     />
@@ -617,7 +617,7 @@ const toBeDefined = (
 
 const communityData: Record<string, React.ReactNode> = {
   // Core open-source libraries
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -722,7 +722,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -828,7 +828,7 @@ const proData: Record<string, React.ReactNode> = {
 
 const premiumData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -1041,7 +1041,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'priority-support': <Info value="Included" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value={yes} metadata="24 hours" />,
+  'response-time': <Info value={yes} metadata="1 business day" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
@@ -1313,7 +1313,7 @@ export default function PricingTable({
         {divider}
         {renderRow('Joy UI')}
         {divider}
-        {renderRow('MUI Base')}
+        {renderRow('Base UI')}
         {divider}
         {renderRow('MUI System')}
         <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
@@ -1637,7 +1637,7 @@ export default function PricingTable({
                 }),
             ]}
           >
-            TreeView
+            Tree View
           </Button>
         </Box>
         <StyledCollapse in={treeViewCollapsed}>

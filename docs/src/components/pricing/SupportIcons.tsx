@@ -60,12 +60,10 @@ export function ProSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FDFFFE" />
-          <stop offset="0.23" stopColor="#7ABBAC" />
-          <stop offset="0.39" stopColor="#B1FFEF" />
-          <stop offset="0.535" stopColor="#8AD2C3" />
-          <stop offset="0.745" stopColor="#CFFEF4" />
-          <stop offset="0.915" stopColor="#6CA196" />
-          <stop offset="1" stopColor="#35544E" />
+          <stop offset="0.39" stopColor="#7A96AC" />
+          <stop offset="0.635" stopColor="#D4DEE5" />
+          <stop offset="0.815" stopColor="#7A96AC" />
+          <stop offset="1" stopColor="#BCCAD7" />
         </linearGradient>
       </defs>
     </SvgIcon>
@@ -162,15 +160,15 @@ export function CommunitySupportText() {
 }
 
 const ProSupportGradient = styled(Typography)(() => ({
-  background: `linear-gradient(rgba(34, 76, 97, 0.5), rgba(34, 76, 97, 0.5)),
+  background: `linear-gradient(rgba(63, 63, 64, 0.5), rgba(61, 62, 62, 0.5)),
   linear-gradient(
   23deg,
-  #FDFFFE 0%,
-  #7ABBAC 23%,
-  #B1FFEF 39%,
-  #8AD2C3 54%,
-  #CFFEF4 75%,
-  #6CA196 100%
+  #7A96AC 0%,
+  #EAEFF3 23%,
+  #C2D4E1 39%,
+  #FFFFFF 54%,
+  #ABBDC8 75%,
+  #BCCAD7 100%
   )`,
   backgroundClip: 'text',
   color: 'transparent',
@@ -184,13 +182,13 @@ export function ProSupportText() {
 }
 
 const PremiumSupportGradient = styled(Typography)(() => ({
-  background: `linear-gradient(rgba(122, 114, 58, 0.5), rgba(122, 114, 58, 0.5)),
+  background: `linear-gradient(rgba(150, 141, 70, 0.5), rgba(167, 157, 77, 0.5)),
   linear-gradient(
   97deg,
   #8C421D 0%,
   #FBE67B 30%,
-  #FCFBE7 50%,
-  #F7D14E 70%,
+  #D4A041 50%,
+  #AE9662 70%,
   #D4A041 100%
   )`,
   backgroundClip: 'text',
