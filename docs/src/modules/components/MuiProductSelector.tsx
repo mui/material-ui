@@ -196,22 +196,24 @@ const toolpadProducts = [
   {
     id: 'toolpad-core',
     name: 'Toolpad Core',
-    chip: <Chip
-    label="Beta"
-    size="small"
-    color="primary"
-    variant="outlined"
-    sx={{
-      fontSize: '.625rem',
-      fontWeight: 'semiBold',
-      textTransform: 'uppercase',
-      letterSpacing: '.04rem',
-      height: '16px',
-      '& .MuiChip-label': {
-        px: '4px',
-      },
-    }}
-  />,
+    chip: (
+      <Chip
+        label="Beta"
+        size="small"
+        color="primary"
+        variant="outlined"
+        sx={{
+          fontSize: '.625rem',
+          fontWeight: 'semiBold',
+          textTransform: 'uppercase',
+          letterSpacing: '.04rem',
+          height: '16px',
+          '& .MuiChip-label': {
+            px: '4px',
+          },
+        }}
+      />
+    ),
     description: 'Components for building dashboards.',
     icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
     href: ROUTES.toolpadCoreDocs,
