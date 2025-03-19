@@ -158,8 +158,6 @@ export default function BrandingCssVarsProvider(props: {
         })
       : extendTheme({
           cssVarPrefix: 'muidocs',
-          // @ts-ignore to bypass type checking in MUI X repo
-          colorSchemeSelector: 'data-mui-color-scheme',
           direction,
           ...themeOptions,
         });

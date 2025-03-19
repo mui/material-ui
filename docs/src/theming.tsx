@@ -59,6 +59,7 @@ export function DemoInstanceThemeProvider({
     if (typeof createColorScheme === 'function') {
       resultTheme = createTheme(
         {
+          // @ts-ignore to bypass type checking in MUI X repo
           cssVariables: {
             colorSchemeSelector: 'data-mui-color-scheme',
           },
@@ -71,7 +72,12 @@ export function DemoInstanceThemeProvider({
         dense ? highDensity : {},
       );
     } else {
-      resultTheme = extendTheme();
+      resultTheme = extendTheme(
+        {
+          direction: direction as 'ltr' | 'rtl',
+        },
+        dense ? highDensity : {},
+      );
       resultTheme = {
         ...resultTheme,
         ...resultTheme.colorSchemes[paletteMode],
