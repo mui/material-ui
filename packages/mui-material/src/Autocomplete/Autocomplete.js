@@ -1185,7 +1185,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Renders the selected value(s) as rich content in the input for both single and multiple selections.
    *
    * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
-   * @param {function} getTagProps A tag props getter.
+   * @param {function} getItemProps The value item props.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */

@@ -190,8 +190,8 @@
     "renderValue": {
       "type": { "name": "func" },
       "signature": {
-        "type": "function(value: AutocompleteRenderValue<Value, Multiple, FreeSolo>, getTagProps: function, ownerState: object) => ReactNode",
-        "describedArgs": ["value", "getTagProps", "ownerState"]
+        "type": "function(value: AutocompleteRenderValue<Value, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },

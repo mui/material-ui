@@ -261,7 +261,8 @@ function useAutocomplete(props) {
     if (tagToFocus === -1) {
       inputRef.current.focus();
     } else {
-      anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`).focus();
+      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
+      anchorEl.querySelector(`[${indexType}="${tagToFocus}"]`).focus();
     }
   });
 
@@ -707,7 +708,8 @@ function useAutocomplete(props) {
         return -1;
       }
 
-      const option = anchorEl.querySelector(`[data-tag-index="${nextFocus}"]`);
+      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
+      const option = anchorEl.querySelector(`[${indexType}="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       if (
@@ -1151,7 +1153,7 @@ function useAutocomplete(props) {
     }),
     getTagProps: ({ index = 0 } = {}) => ({
       ...(multiple && { key: index }),
-      'data-tag-index': index,
+      ...(renderValue ? { 'data-item-index': index } : { 'data-tag-index': index }),
       tabIndex: -1,
       ...(!readOnly && { onDelete: multiple ? handleTagDelete(index) : handleSingleTagDelete }),
     }),

@@ -58,20 +58,20 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
-export type AutocompleteRenderValueGetTagProps<Multiple extends boolean | undefined> =
+export type AutocompleteRenderValueGetItemProps<Multiple extends boolean | undefined> =
   Multiple extends true
     ? (args: { index: number }) => {
         key: number;
         className: string;
         disabled: boolean;
-        'data-tag-index': number;
+        'data-item-index': number;
         tabIndex: -1;
         onDelete: (event: any) => void;
       }
     : (args?: { index?: number }) => {
         className: string;
         disabled: boolean;
-        'data-tag-index': number;
+        'data-item-index': number;
         tabIndex: -1;
         onDelete: (event: any) => void;
       };
@@ -373,13 +373,13 @@ export interface AutocompleteProps<
    * Renders the selected value(s) as rich content in the input for both single and multiple selections.
    *
    * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
-   * @param {function} getTagProps A tag props getter.
+   * @param {function} getItemProps The value item props.
    * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderValue?: (
     value: AutocompleteRenderValue<Value, Multiple, FreeSolo>,
-    getTagProps: AutocompleteRenderValueGetTagProps<Multiple>,
+    getItemProps: AutocompleteRenderValueGetItemProps<Multiple>,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**

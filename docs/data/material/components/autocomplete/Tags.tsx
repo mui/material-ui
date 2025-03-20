@@ -43,9 +43,9 @@ export default function Tags() {
         options={top100Films.map((option) => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo
-        renderValue={(value: readonly string[], getTagProps) =>
+        renderValue={(value: readonly string[], getItemProps) =>
           value.map((option: string, index: number) => {
-            const { key, ...tagProps } = getTagProps({ index });
+            const { key, ...tagProps } = getItemProps({ index });
             return (
               <Chip variant="outlined" label={option} key={key} {...tagProps} />
             );

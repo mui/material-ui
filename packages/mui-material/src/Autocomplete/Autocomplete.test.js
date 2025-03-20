@@ -694,11 +694,11 @@ describe('<Autocomplete />', () => {
           defaultValue={options}
           options={options}
           value={options}
-          renderValue={(value, getTagProps) =>
+          renderValue={(value, getItemProps) =>
             value
               .filter((x, index) => index === 1)
               .map((option, index) => {
-                const { key, ...tagProps } = getTagProps({ index });
+                const { key, ...tagProps } = getItemProps({ index });
                 return <Chip key={key} label={option.title} {...tagProps} />;
               })
           }
@@ -3323,8 +3323,8 @@ describe('<Autocomplete />', () => {
           options={['one', 'two']}
           defaultValue="one"
           renderInput={(params) => <TextField {...params} />}
-          renderValue={(value, getTagProps) => {
-            return <Chip label={value} {...getTagProps()} />;
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
           }}
         />,
       );
@@ -3509,8 +3509,8 @@ describe('<Autocomplete />', () => {
       const { container } = render(
         <Autocomplete
           options={['one', 'two']}
-          renderValue={(value, getTagProps) => {
-            return <Chip label={value} {...getTagProps()} />;
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3539,8 +3539,8 @@ describe('<Autocomplete />', () => {
             { title: 'The Godfather', year: 1972 },
           ]}
           getOptionLabel={(option) => option.title}
-          renderValue={(value, getTagProps) => {
-            return <Chip label={value.title} {...getTagProps()} />;
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value.title} {...getItemProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3566,8 +3566,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
-          renderValue={(value, getTagProps) => {
-            return <Chip label={value} {...getTagProps()} />;
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3587,8 +3587,8 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           options={['one', 'two']}
           defaultValue="one"
-          renderValue={(value, getTagProps) => {
-            return <Chip label={value} {...getTagProps()} />;
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
@@ -3609,8 +3609,8 @@ describe('<Autocomplete />', () => {
           defaultValue="two"
           options={['one', 'two']}
           renderInput={(params) => <TextField {...params} autoFocus />}
-          renderValue={(value, getTagProps) => {
-            return <Chip label={value} {...getTagProps()} />;
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
           }}
         />,
       );

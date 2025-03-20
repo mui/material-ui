@@ -188,7 +188,7 @@
       "description": "Renders the selected value(s) as rich content in the input for both single and multiple selections.",
       "typeDescriptions": {
         "value": "The <code>value</code> provided to the component.",
-        "getTagProps": "A tag props getter.",
+        "getItemProps": "The value item props.",
         "ownerState": "The state of the Autocomplete component."
       }
     },

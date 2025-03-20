@@ -10,16 +10,16 @@ export default function CustomSingleValueRendering() {
       <Autocomplete
         options={top100Films}
         getOptionLabel={(option) => option.title}
-        renderValue={(value, getTagProps) => (
-          <Chip label={value.title} {...getTagProps()} />
+        renderValue={(value, getItemProps) => (
+          <Chip label={value.title} {...getItemProps()} />
         )}
         renderInput={(params) => <TextField {...params} label="Movie" />}
       />
       <Autocomplete
         options={top100Films.map((option) => option.title)}
         freeSolo
-        renderValue={(value, getTagProps) => (
-          <Chip label={value} {...getTagProps()} />
+        renderValue={(value, getItemProps) => (
+          <Chip label={value} {...getItemProps()} />
         )}
         renderInput={(params) => <TextField {...params} label="freeSolo" />}
       />

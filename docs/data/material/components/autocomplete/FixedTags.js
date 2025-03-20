@@ -20,9 +20,9 @@ export default function FixedTags() {
       }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
-      renderValue={(values, getTagProps) =>
+      renderValue={(values, getItemProps) =>
         values.map((option, index) => {
-          const { key, ...tagProps } = getTagProps({ index });
+          const { key, ...tagProps } = getItemProps({ index });
           return (
             <Chip
               key={key}
