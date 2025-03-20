@@ -10,26 +10,6 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from '@mui/docs/branding';
 
-// You can find a benchmark of the available CSS minifiers under
-// https://github.com/GoalSmashers/css-minification-benchmark
-// We have found that clean-css is faster than cssnano but the output is larger.
-// Waiting for https://github.com/cssinjs/jss/issues/279
-// 4% slower but 12% smaller output than doing it in a single step.
-//
-// It's using .browserslistrc
-let prefixer;
-let cleanCSS;
-if (process.env.NODE_ENV === 'production') {
-  /* eslint-disable global-require */
-  const postcss = require('postcss');
-  const autoprefixer = require('autoprefixer');
-  const CleanCSS = require('clean-css');
-  /* eslint-enable global-require */
-
-  prefixer = postcss([autoprefixer]);
-  cleanCSS = new CleanCSS();
-}
-
 const PRODUCTION_GA =
   process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
 
