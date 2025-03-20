@@ -1,7 +1,32 @@
 import * as React from 'react';
-import { DrawerProps } from '../Drawer';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { DrawerProps, DrawerOwnerState, DrawerSlotsAndSlotProps } from '../Drawer';
 
-export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
+export interface SwipeableDrawerSwipeAreaSlotPropsOverrides {}
+
+export interface SwipeableDrawerSlots {
+  /**
+   * The component used for the swipeArea slot.
+   * @default div
+   */
+  swipeArea?: React.ElementType;
+}
+
+type SwipeableDrawerSlotsAndSlotProps = DrawerSlotsAndSlotProps &
+  CreateSlotsAndSlotProps<
+    SwipeableDrawerSlots,
+    {
+      /**
+       * Props forwarded to the docked slot.
+       * By default, the avaible props are based on a div element.
+       */
+      swipeArea: SlotProps<'div', SwipeableDrawerSwipeAreaSlotPropsOverrides, DrawerOwnerState>;
+    }
+  >;
+
+export interface SwipeableDrawerProps
+  extends Omit<DrawerProps, 'onClose' | 'open' | 'slots' | 'slotProps'>,
+    SwipeableDrawerSlotsAndSlotProps {
   /**
    * If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children.
    * This can be useful in scenarios where the drawer is partially visible.
@@ -67,6 +92,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   open?: boolean;
   /**
    * The element is used to intercept the touch events on the edge.
+   * @deprecated use the `slotProps.swipeArea` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SwipeAreaProps?: object;
   /**

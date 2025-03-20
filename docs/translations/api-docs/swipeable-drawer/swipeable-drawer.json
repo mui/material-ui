@@ -29,6 +29,8 @@
       "typeDescriptions": { "event": "The event source of the callback." }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "SwipeAreaProps": {
       "description": "The element is used to intercept the touch events on the edge."
     },
@@ -122,5 +124,6 @@
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/drawer/#drawer-classes-MuiDrawer-anchorTop\">.MuiDrawer-anchorTop</a> and <a href=\"/material-ui/api/drawer/#drawer-classes-MuiDrawer-paper\">.MuiDrawer-paper</a> classes instead. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "root": { "description": "Styles applied to the root element." }
-  }
+  },
+  "slotDescriptions": { "swipeArea": "The component used for the swipeArea slot." }
 }

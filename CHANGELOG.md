@@ -1,5 +1,161 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.8
+
+<!-- generated comparing v6.4.7..v6.x -->
+
+_Mar 14, 2025_
+
+A big thanks to the 9 contributors who made this release possible.
+
+### `@mui/material@6.4.8`
+
+- [ListItemText] Add missing `root` slot (#45552) @sai6855
+- [SpeedDial] Add missing `root` slot (#45551) @sai6855
+- [Tooltip] Allow auto placement on tooltip (#45536) @Jtaks
+- [useScrollTrigger] Do nothing if target is null (#45553) @vipierozan99
+- [Accordion] Add missing `root` slot (#45534) @sai6855
+- [AccordionSummary] Add slots and slotProps (#45560) @sai6855
+- [TextareaAutosize] Fix ResizeObserver causing infinite `selectionchange` loop (#45351) (#45498) @mj12albert
+
+### `@mui/styled-engine@6.4.8`
+
+- Add `enableCssLayer` prop to StyledEngineProvider (#45563) @siriwatknp
+
+### `@mui/system@6.4.8`
+
+- [system] Prevent nested non-vars theme inheritance (#45564) @siriwatknp
+
+### `@mui/utils@6.4.8`
+
+- Use correct iri-reference homepage format (#45511) @dahiro
+
+### Core
+
+- [test] Fix React 18 tests (#45161) (#45496) @DiegoAndai
+
+### Docs
+
+- [Backdrop] Fix component name in migration guide (#45507) @sai6855
+- Fix broken links to MUI X docs (cherry-pick of #45145) (#45481) @mapache-salvaje
+- [examples] Fix the invalid argument to extract examples (#45493) @ovtn
+- Add `overriding-component-structure` doc to Material UI (#45570) @siriwatknp
+
+All contributors of this release in alphabetical order: @dahiro, @DiegoAndai, @Jtaks, @mapache-salvaje, @mj12albert, @ovtn, @sai6855, @siriwatknp, @vipierozan99
+
+## 6.4.7
+
+<!-- generated comparing v6.4.6..v6.x -->
+
+_Mar 5, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@6.4.7`
+
+- [ThemeProvider] Add `storageManager` prop to `ThemeProvider` (@siriwatknp) (#45437) @siriwatknp
+- [Rating] Deprecate \*Props and complete slots, slotProps (#45295) (#45398) @DiegoAndai
+- [Radio] Fix `inputProps` not forwarded (@siriwatknp) (#45475) @siriwatknp
+
+### Core
+
+- [blog] React 19 migration for MUI X (#45440) @arminmeh
+
+All contributors of this release in alphabetical order: @arminmeh, @DiegoAndai, @siriwatknp
+
+## 6.4.6
+
+<!-- generated comparing v6.4.5..v6.x -->
+
+_Feb 26, 2025_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@6.4.6`
+
+- [Checkbox] Add slots and slotProps (#45361) @siriwatknp
+- [Drawer] Deprecate \*Props and complete `slots`, `slotProps` (#45377) @siriwatknp
+- [Grid] Improve Grid2 upgrade experience (#45372) @DiegoAndai
+- [InputBase] Deprecate composed classes (#45366) @siriwatknp
+- Fix `slotProps.transition` types (#45367) @siriwatknp
+- Allow nested theme creation with `vars` (#45368) @siriwatknp
+- Fix wrong slotProps of DetailsHTMLAttributes types (#45356) @siriwatknp
+- [Popover] Deprecate \*Props and complete `slots`, `slotProps` (#45337) @siriwatknp
+- [Radio] Add slots and slotProps (#45364) @siriwatknp
+- [Slider] Fix css class selector in migration guide (#45409) @sai6855
+- [Slider] Fix spacings in .md files (#45393) @sai6855
+- [Snackbar] Add Slots and SlotProps (#45103) (#45352) @siriwatknp
+- [SpeedDialAction] Add slots and slotProps (#45365) @siriwatknp
+- [SwitchBase] Deprecate `inputProps` and complete slots, slotProps (#45338) @siriwatknp
+- [Tabs] Deprecate \*Props and complete slots, slotProps (#45012) (#45355) @siriwatknp
+- [Menu] Deprecate \*Props and complete `slots`, `slotProps` (#45369) @siriwatknp
+
+### Docs
+
+- [Autocomplete] Remove unnecessary renderTags prop from Sizes demo (#45403) @ZeeshanTamboli
+- Fix typo in slider docs (#45392) @sai6855
+
+### Core
+
+- [test] Remove unused renderTags prop and fix key warning in Autocomplete regression test (#45412) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @DiegoAndai, @sai6855, @siriwatknp, @ZeeshanTamboli
+
+## 6.4.5
+
+<!-- generated comparing v6.4.4..v6.x -->
+
+_Feb 18, 2025_
+
+A big thanks to the 5 contributors who made this release possible.
+
+### `@mui/material@6.4.5`
+
+- [Autocomplete] Remove legacy `aria-owns` attribute for combobox (#45303) @ZeeshanTamboli
+- [Button] Apply id only if loading indicator is present (#45339) @aarongarciah
+
+### Docs
+
+- [icons] Fix typo in material-icons.md (#45336) @a-s-russo
+- [Menu] Add Grouped Menu demo (#45292) @noobDev31
+
+### Core
+
+- [blog] Consistent Base UI terminology (#45342) @aarongarciah
+- Fix double redirection to Base UI (#45146) @oliviertassinari
+
+All contributors of this release in alphabetical order: @a-s-russo, @aarongarciah, @noobDev31, @oliviertassinari, @ZeeshanTamboli
+
+## 6.4.4
+
+<!-- generated comparing v6.4.3..v6.x -->
+
+_Feb 11, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@6.4.4`
+
+- [MobileStepper] deprecate `LinearProgressProps` and complete `slots`, `slotProps` (@siriwatknp) (#45242) @siriwatknp
+- [Slider] Deprecate composed classes (@sai6855) (#45223) @sai6855
+- [utils] Merge `sx` instead of override when using `mergeSlotProps` (#45129) @siriwatknp
+
+### Docs
+
+- [Autocomplete] Improve Google Maps search example (#44708) @oliviertassinari
+- [Dialog] Removes deprecated PaperProps from docs (#45217) @sai6855
+- A quick first step to update docs for Tailwind v4 (#45221) @oliviertassinari
+
+### Core
+
+- Fix missing store contributor renaming (527222d) @oliviertassinari
+- Fix MUI Base vale rule (#45140) @oliviertassinari
+- Fix 404 errors (#45137) @oliviertassinari
+- [docs] Sync active sponsors (#45204) @oliviertassinari
+- [docs-infra] Move Ukraine banner to the bottom (#45135) @oliviertassinari
+
+All contributors of this release in alphabetical order: @oliviertassinari, @sai6855, @siriwatknp
+
 ## 6.4.3
 
 <!-- generated comparing v6.4.2..v6.x -->

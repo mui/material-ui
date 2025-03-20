@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import { DefaultTheme } from '@mui/system';
+import { StorageManager } from '@mui/system/cssVars';
 import ThemeProviderNoVars from './ThemeProviderNoVars';
 import { CssThemeVariables } from './createThemeNoVars';
 import { CssVarsProvider } from './ThemeProviderWithVars';
@@ -48,6 +49,11 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    */
   storageWindow?: Window | null;
   /**
+   * The storage manager to be used for storing the mode and color scheme
+   * @default using `window.localStorage`
+   */
+  storageManager?: StorageManager | null;
+  /**
    * localStorage key used to store application `mode`
    * @default 'mui-mode'
    */
@@ -79,6 +85,11 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   }
   const muiTheme = (THEME_ID in theme ? theme[THEME_ID] : theme) as ThemeProviderProps['theme'];
   if (!('colorSchemes' in muiTheme)) {
+    if (!('vars' in muiTheme)) {
+      // For non-CSS variables themes, set `vars` to null to prevent theme inheritance from the upper theme.
+      // The example use case is the docs demo that uses ThemeProvider to customize the theme while the upper theme is using CSS variables.
+      return <ThemeProviderNoVars theme={{ ...theme, vars: null }} {...props} />;
+    }
     return <ThemeProviderNoVars theme={theme} {...props} />;
   }
   return <CssVarsProvider theme={theme as unknown as CssVarsTheme} {...props} />;

@@ -60,6 +60,16 @@ const BACKLINKs = [
     description: 'Social media growth services.',
     href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
+  {
+    name: 'Poprey',
+    description: 'Buy Instagram likes with crypto.',
+    href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'SocialWick',
+    description: 'Buy Instagram followers.',
+    href: 'https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {

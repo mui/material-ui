@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expectType } from '@mui/types';
+import { createTheme } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -56,5 +57,70 @@ function SampleIcon() {
 <Tabs
   ref={(elem) => {
     expectType<HTMLDivElement | null, typeof elem>(elem);
+  }}
+/>;
+
+<Tabs
+  slots={{
+    root: 'div',
+    scroller: 'div',
+    list: 'div',
+    scrollbar: 'div',
+    indicator: 'div',
+    scrollButtons: 'div',
+    startScrollButtonIcon: 'div',
+    endScrollButtonIcon: 'div',
+  }}
+/>;
+
+const CustomComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  (props, ref) => <div ref={ref} {...props} />,
+);
+<Tabs
+  slots={{
+    root: CustomComponent,
+    scroller: CustomComponent,
+    list: CustomComponent,
+    scrollbar: CustomComponent,
+    indicator: CustomComponent,
+    scrollButtons: CustomComponent,
+    startScrollButtonIcon: CustomComponent,
+    endScrollButtonIcon: CustomComponent,
+  }}
+/>;
+
+<Tabs
+  slotProps={{
+    root: {
+      className: 'flex',
+    },
+    scroller: {
+      className: 'flex',
+    },
+    list: {
+      className: 'flex',
+    },
+    scrollbar: {
+      className: 'flex',
+    },
+    indicator: {
+      className: 'flex',
+      sx: {
+        color: 'primary.main',
+      },
+      style: { backgroundColor: 'green' },
+    },
+    scrollButtons: {
+      className: 'flex',
+      disableRipple: true,
+    },
+    startScrollButtonIcon: {
+      className: 'flex',
+      fontSize: 'large',
+    },
+    endScrollButtonIcon: {
+      className: 'flex',
+      fontSize: 'large',
+    },
   }}
 />;
