@@ -623,7 +623,7 @@ describe('<Snackbar />', () => {
     });
   });
 
-  it('should skip default behavior when defaultMuiPrevented is true', () => {
+  it('should skip default clickAway behavior when defaultMuiPrevented is true', () => {
     const handleClose = spy();
     render(
       <Snackbar
