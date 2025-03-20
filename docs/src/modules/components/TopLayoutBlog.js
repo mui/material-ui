@@ -151,6 +151,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/4390250',
     github: 'arminmeh',
   },
+  janpot: {
+    name: 'Jan Potoms',
+    avatar: 'https://avatars.githubusercontent.com/u/2109932',
+    github: 'Janpot',
+  },
 };
 
 const classes = {
