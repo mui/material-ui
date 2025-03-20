@@ -118,7 +118,7 @@ Finally, in `src/app/layout.tsx`, pass the theme to the `ThemeProvider`:
 
 To learn more about theming, check out the [theming guide](/material-ui/customization/theming/) page.
 
-#### CSS theme variables
+### CSS theme variables
 
 To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
 
@@ -395,7 +395,7 @@ To integrate [Next.js font optimization](https://nextjs.org/docs/pages/building-
 
 To learn more about theming, check out the [Theming guide](/material-ui/customization/theming/).
 
-#### CSS theme variables
+### CSS theme variables
 
 To use [CSS theme variables](/material-ui/customization/css-theme-variables/overview/), enable the `cssVariables` flag:
 
