@@ -43,6 +43,47 @@ If you're using any of the following packages, they should remain unchanged duri
 - `@mui/x-tree-view`
 - `@mui/x-tree-view-pro`
 
+## Supported browsers and versions
+
+### Minimum React version
+
+The minimum supported version of React is v17.0.0 (the same as v6).
+If you want to upgrade React, it's recommended to finish upgrading Material UI first, then upgrade React.
+
+### Minimum TypeScript version
+
+The minimum supported version of TypeScript has been increased from v4.7 to 4.9.
+
+:::info
+We align with [support window](https://github.com/DefinitelyTyped/DefinitelyTyped?tab=readme-ov-file#support-window) by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (published on npm under the `@types` namespace).
+
+We will not change the minimum supported version in a minor version of Material UI.
+However, we recommend not using a TypeScript version older than the lowest supported version by DefinitelyTyped.
+:::
+
+For `@types/react*` packages, make sure they are the same major version as the `react` you are using.
+Use the snippet below to update your project if needed (replace the `<version>` with the major version of `react` you are using):
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @types/react@<version> @types/react-dom@<version>
+```
+
+```bash pnpm
+pnpm add @types/react@<version> @types/react-dom@<version>
+```
+
+```bash yarn
+yarn add @types/react@<version> @types/react-dom@<version>
+```
+
+</codeblock>
+
+:::warning
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+:::
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
