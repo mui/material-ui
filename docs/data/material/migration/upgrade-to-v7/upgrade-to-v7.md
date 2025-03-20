@@ -6,20 +6,18 @@
 
 ### Improved ESM support
 
-The package layout has been updated to comply with ESM.
-This is achieved by adding the `exports` field to the `package.json` file.
-The `export` field indicates where bundlers can find CJS, ESM, and modern bundle files.
+Our package layout has been updated, we now unambiguously support both valid ESM and commonjs through the `exports` field in `package.json`.
 You can read more about this in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
 
-This update fixes several issues with popular bundlers like Vite and webpack.
-It also reduces the amount of setup required to work with these tools.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load our packages from ESM modules under Node.js.
 
 ### Quality-of-life improvements
 
 Material UI v7 features other quality-of-life improvements, including:
 
-- `ThemeProvider` now supports CSS layers via the `enableCssLayer` prop
-- the slot pattern has been standardized accross all components
+- Standardization of the slot pattern accross all components
+- CSS layers support via the `enableCssLayer` prop in `StyledEngineProvider` for client-side apps and `AppRouterCacheProvider` Next.js App Router apps
+- Removed deprecated APIs to reduce the API surface and make the docs easier to navigate
 
 If you're using any of these packages, you should also change their version to `"7.0.0"`:
 
