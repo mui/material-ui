@@ -1,5 +1,29 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0-rc.0
+
+<!-- generated comparing v7.0.0-beta.4..master -->
+
+_Mar 18, 2025_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@7.0.0-rc.0`
+
+- [StepLabel] Add missing root slot (#45603) @sai6855
+- [Switch] Add slots and slotProps (#45595) @siriwatknp
+- [utils] Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
+
+### Core
+
+- [blog] Clarify the difference between the two Pro plans (#45266) @oliviertassinari
+- [code-infra] Allow specifying a custom error formatter module for error minifcation (#45291) @Janpot
+- [code-infra] Make `getVersionEnvVariables` reusable for other repos (#45562) @Janpot
+- [code-infra] Update peer dependency of `@mui/utils` in `@mui/docs` (#45561) @Janpot
+- Add StackBlitz template to issue template (#45504) @Janpot
+
+All contributors of this release in alphabetical order: @Janpot, @oliviertassinari, @sai6855, @siriwatknp
+
 ## 7.0.0-beta.4
 
 <!-- generated comparing v7.0.0-beta.3..master -->
