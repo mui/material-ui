@@ -14,12 +14,15 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ label?: func<br>&#124;&nbsp;object, stepIcon?: func<br>&#124;&nbsp;object }"
+        "description": "{ label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, stepIcon?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ label?: elementType, stepIcon?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ label?: elementType, root?: elementType, stepIcon?: elementType }"
+      },
       "default": "{}"
     },
     "StepIconComponent": {
@@ -46,6 +49,12 @@
     "import { StepLabel } from '@mui/material';"
   ],
   "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "span",
+      "class": "MuiStepLabel-root"
+    },
     {
       "name": "label",
       "description": "The component that renders the label.",
@@ -105,12 +114,6 @@
       "key": "labelContainer",
       "className": "MuiStepLabel-labelContainer",
       "description": "Styles applied to the container element which wraps label and `optional`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiStepLabel-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {
