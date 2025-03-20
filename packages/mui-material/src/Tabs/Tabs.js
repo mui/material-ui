@@ -815,6 +815,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   });
 
   const handleKeyDown = (event) => {
+    // Check if a modifier key (Alt, Shift, Ctrl, Meta) is pressed
+    if (event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
+      return;
+    }
+
     const list = tabListRef.current;
     const currentFocus = ownerDocument(list).activeElement;
     // Keyboard navigation assumes that [role="tab"] are siblings

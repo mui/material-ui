@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
@@ -40,7 +40,7 @@
     "directory": "build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.9"
+    "@babel/runtime": "^7.26.10"
   },
   "devDependencies": {
     "@mui/types": "workspace:*",
