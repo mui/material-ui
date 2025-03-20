@@ -79,7 +79,7 @@
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ formHelperText?: elementType, htmlInput?: elementType, input?: elementType, inputLabel?: elementType, select?: elementType }"
+        "description": "{ formHelperText?: elementType, htmlInput?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, select?: elementType }"
       },
       "default": "{}"
     },
@@ -106,6 +106,12 @@
     "import { TextField } from '@mui/material';"
   ],
   "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "FormControl",
+      "class": "MuiTextField-root"
+    },
     {
       "name": "input",
       "description": "The component that renders the input.",
@@ -137,14 +143,7 @@
       "class": null
     }
   ],
-  "classes": [
-    {
-      "key": "root",
-      "className": "MuiTextField-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    }
-  ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiTextField",
