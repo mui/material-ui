@@ -28,4 +28,19 @@ describe('createRenderer', () => {
     expect(descriptions[1]).to.have.property('id', 'r:2');
     expect(descriptions[2]).to.have.property('id', 'r:3');
   });
+
+  it('uses strict mode when strict and strictEffects are true', () => {
+    let mounted = 0;
+    function Component() {
+      React.useEffect(() => {
+        mounted += 1;
+      });
+
+      return null;
+    }
+
+    render(<Component />, { strict: true, strictEffects: true });
+
+    expect(mounted).to.equal(2);
+  });
 });
