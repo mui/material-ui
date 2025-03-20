@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Script from 'next/script';
 import { documentGetInitialProps } from '@mui/material-nextjs/v13-pagesRouter';
-import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import GlobalStyles from '@mui/material/GlobalStyles';
@@ -221,7 +220,6 @@ gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
-  const jssSheets = new JSSServerStyleSheets();
   const styledComponentsSheet = new ServerStyleSheet();
 
   try {
@@ -235,33 +233,6 @@ MyDocument.getInitialProps = async (ctx) => {
             ...initialProps,
             styles: [styledComponentsSheet.getStyleElement(), ...initialProps.styles],
           }),
-        },
-        {
-          // JSS
-          enhanceApp: (App) => (props) => jssSheets.collect(<App {...props} />),
-          resolveProps: async (initialProps) => {
-            let css = jssSheets.toString();
-            // It might be undefined, for example after an error.
-            if (css && process.env.NODE_ENV === 'production') {
-              const result1 = await prefixer.process(css, { from: undefined });
-              css = result1.css;
-              css = cleanCSS.minify(css).styles;
-            }
-
-            return {
-              ...initialProps,
-              styles: [
-                ...initialProps.styles,
-                <style
-                  id="jss-server-side"
-                  key="jss-server-side"
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{ __html: css }}
-                />,
-                <style id="insertion-point-jss" key="insertion-point-jss" />,
-              ],
-            };
-          },
         },
       ],
     });

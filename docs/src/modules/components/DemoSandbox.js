@@ -1,16 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { create } from 'jss';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { jssPreset, StylesProvider } from '@mui/styles';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
 import { getDesignTokens } from '@mui/docs/branding';
@@ -35,16 +32,6 @@ function FramedDemo(props) {
     document.documentElement.style.colorScheme = theme.palette.mode;
   }, [document, theme.palette.mode]);
 
-  const { jss, sheetsManager } = React.useMemo(() => {
-    return {
-      jss: create({
-        plugins: [...jssPreset().plugins, rtl()],
-        insertionPoint: document.head,
-      }),
-      sheetsManager: new Map(),
-    };
-  }, [document]);
-
   const cache = React.useMemo(
     () =>
       createCache({
@@ -68,20 +55,18 @@ function FramedDemo(props) {
     : {};
 
   return (
-    <StylesProvider jss={jss} sheetsManager={sheetsManager}>
-      <StyleSheetManager
-        target={document.head}
-        stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
-      >
-        <CacheProvider value={cache}>
-          <Wrapper {...wrapperProps}>
-            {React.cloneElement(children, {
-              window: getWindow,
-            })}
-          </Wrapper>
-        </CacheProvider>
-      </StyleSheetManager>
-    </StylesProvider>
+    <StyleSheetManager
+      target={document.head}
+      stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
+    >
+      <CacheProvider value={cache}>
+        <Wrapper {...wrapperProps}>
+          {React.cloneElement(children, {
+            window: getWindow,
+          })}
+        </Wrapper>
+      </CacheProvider>
+    </StyleSheetManager>
   );
 }
 FramedDemo.propTypes = {
@@ -183,12 +168,6 @@ function getTheme(outerTheme, injectTheme) {
   return resultTheme;
 }
 
-const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-  insertionPoint:
-    typeof window !== 'undefined' ? document.querySelector('#insertion-point-jss') : null,
-});
-
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -231,11 +210,9 @@ function DemoSandbox(props) {
       {usesCssVarsTheme ? (
         children
       ) : (
-        <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme, injectTheme)}>
-            {children}
-          </ThemeProvider>
-        </StylesProvider>
+        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme, injectTheme)}>
+          {children}
+        </ThemeProvider>
       )}
     </DemoErrorBoundary>
   );

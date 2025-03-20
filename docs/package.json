@@ -39,7 +39,6 @@
     "@mui/material": "workspace:*",
     "@mui/styled-engine": "workspace:*",
     "@mui/styled-engine-sc": "workspace:*",
-    "@mui/styles": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:*",
