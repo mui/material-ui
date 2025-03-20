@@ -9,7 +9,8 @@ manualCard: true
 
 Material UI v7 is now stable.
 This major improves the integration with modern tools and consistency across the library.
-It's a lean upgrade designed to be straightforward to upgrade to.
+It is designed to be straightforward to upgrade to.
+`
 
 ## Improved ESM support
 
@@ -24,25 +25,21 @@ It also reduces the amount of setup required to work with these tools.
 ## Opt-in support for CSS layers
 
 The `enableCssLayer` prop has been added to `ThemeProvider`.
-When enabled, Material UI styles are wrapped in a CSS layer named `@mui`.
+When enabled, Material UI styles are wrapped in a CSS layer named `mui`.
 
-This allows Material UI to integrate with modern tools that rely on CSS layers, like Tailwind CSS v4.
+This allows Material UI to integrate with modern tools that rely on CSS layers, like Tailwind CSS v4.
 
 ## Completed the slot pattern implementation
 
-The API for replacing or modifying inner elements of components has been standardized.
-All components that require it now implement the slot pattern through the `slots` and `slotProps` props.
+The API for replacing or modifying component inner elements is now standardized, and all relevant components use the `slots` and `slotProps` props for greater flexibility and consistency.
 A [guide about this pattern](/material-ui/customization/overriding-component-structure/) has been added to the documentation.
 
-This increases the consistency between components, making it possible to transfer knowledge from one to the other and improving the developer experience overall.
-
-## Reduced bloat
+## Removed deprecated APIs
 
 APIs that were deprecated in v5 have been removed.
-This reduces the library's bloat, keeping the API and docs leaner and easier to navigate.
+This reduces the API surface, making the docs easier to navigate.
 Visit the upgrade guide for a [list of removed APIs](/material-ui/migration/upgrade-to-v7/#deprecated-apis-removed).
 
 ## Get started
 
-Ready to upgrade to Material UI v7?
-Head to [the v7 upgrade guide](/material-ui/migration/upgrade-to-v7/) next.
+Head to [the v7 upgrade guide](/material-ui/migration/upgrade-to-v7/) and upgrade today.
