@@ -1,5 +1,4 @@
 /* eslint-disable import/export */
-import { ponyfillGlobal } from '@mui/utils';
 
 /* Warning if there are several instances of @mui/styles */
 if (
@@ -7,9 +6,9 @@ if (
   process.env.NODE_ENV !== 'test' &&
   typeof window !== 'undefined'
 ) {
-  ponyfillGlobal['__@mui/styles-init__'] = ponyfillGlobal['__@mui/styles-init__'] || 0;
+  globalThis['__@mui/styles-init__'] = globalThis['__@mui/styles-init__'] || 0;
 
-  if (ponyfillGlobal['__@mui/styles-init__'] === 1) {
+  if (globalThis['__@mui/styles-init__'] === 1) {
     console.warn(
       [
         'It looks like there are several instances of `@mui/styles` initialized in this application.',
@@ -21,7 +20,7 @@ if (
     );
   }
 
-  ponyfillGlobal['__@mui/styles-init__'] += 1;
+  globalThis['__@mui/styles-init__'] += 1;
 }
 
 export { default as createGenerateClassName } from './createGenerateClassName';
