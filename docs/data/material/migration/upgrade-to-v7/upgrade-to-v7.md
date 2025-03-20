@@ -18,24 +18,8 @@ Alternatively, you can also target and fix it to a specific version, for example
 
 ### Minimum React version
 
-The minimum supported version of React is v17.0.0 (the same as v5 and v6).
-Use the snippet below to update your project (replace the `<version>` with the one you want):
-
-<codeblock storageKey="package-manager">
-
-```bash npm
-npm install react@<version> react-dom@<version>
-```
-
-```bash pnpm
-pnpm add react@<version> react-dom@<version>
-```
-
-```bash yarn
-yarn add react@<version> react-dom@<version>
-```
-
-</codeblock>
+The minimum supported version of React is v17.0.0 (the same as v6).
+If you want to upgrade React, it's recommended to finish upgrading MaterialÂ UI first, then upgrade React.
 
 ### Minimum TypeScript version
 
@@ -48,7 +32,8 @@ We will not change the minimum supported version in a minor version of MaterialÂ
 However, we recommend not using a TypeScript version older than the lowest supported version by DefinitelyTyped.
 :::
 
-For `@types/react*` packages, use the snippet below to update your project (replace the `<version>` with the major version of `react` you are using):
+For `@types/react*` packages, make sure they are the same major version as the `react` you are using.
+Use the snippet below to update your project if needed (replace the `<version>` with the major version of `react` you are using):
 
 <codeblock storageKey="package-manager">
 
