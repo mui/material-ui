@@ -1723,9 +1723,6 @@ importers:
       '@emotion/styled':
         specifier: ^11.3.0
         version: 11.13.5(@emotion/react@11.13.5(@types/react@19.0.10)(react@19.0.0))(@types/react@19.0.10)(react@19.0.0)
-      '@mui/base':
-        specifier: workspace:*
-        version: link:../mui-base/build
       '@mui/material-pigment-css':
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
