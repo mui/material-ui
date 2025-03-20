@@ -14,7 +14,7 @@ If you think you've found a bug, or you have a new feature idea:
 
 ### New issue guidelines
 
-- Please follow one the issue templates provided on GitHub.
+- Please follow one of the issue templates provided on GitHub.
 - Please begin the title with "[component-name]" (if relevant), and use a succinct description that helps others find similar issues.
   - ❌ _"It doesn't work"_
   - ✅ _"[button] Add support for {{new feature}}"_
@@ -109,7 +109,7 @@ Keep in mind that the work must be directly related to Material UI's products�
 
 Our contracting price starts at $200/hour or $1,500/day.
 
-[Send us an email](mailto:custom-work@mui.com) summarizing of your needs, and we'll let you know whether we can help (or else try to suggest alternatives).
+[Send us an email](mailto:custom-work@mui.com) summarizing your needs, and we'll let you know whether we can help (or else try to suggest alternatives).
 
 ## Tidelift subscription
 
