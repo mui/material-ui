@@ -82,7 +82,13 @@ export default function TemplateCarousel() {
   const shape = ['--mui-shape-borderRadius'];
   const zIndex = Object.keys(defaultTheme.vars.zIndex).map((key) => `--mui-zIndex-${key}`);
   return (
-    <ThemeProvider theme={() => defaultTheme}>
+    <ThemeProvider
+      theme={
+        // Use a function to ensure that the theme context does not inherit the upper branding theme.
+        // It's required because this demo needs to show default tokens of Material UI theme.
+        () => defaultTheme
+      }
+    >
       <Box
         sx={(theme) => ({
           mb: 4,
