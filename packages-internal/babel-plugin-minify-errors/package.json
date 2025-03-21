@@ -27,7 +27,7 @@
     "@types/babel__helper-module-imports": "^7.18.3",
     "@types/find-package-json": "^1.2.6",
     "babel-plugin-tester": "^11.0.4",
-    "chai": "^4.5.0"
+    "chai": "^5.2.0"
   },
   "sideEffects": false,
   "type": "commonjs",
