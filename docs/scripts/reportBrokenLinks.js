@@ -6,7 +6,7 @@ import { parseDocFolder, getAnchor } from './reportBrokenLinksLib';
 /**
  * The remaining pat to the code is specific to this repository
  */
-const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/'];
+const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/', '/system/styles/'];
 
 const docsSpaceRoot = path.join(path.dirname(new URL(import.meta.url).pathname), '../');
 

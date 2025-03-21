@@ -16,7 +16,6 @@
     "packages/mui-private-theming",
     "packages/mui-styled-engine-sc",
     "packages/mui-styled-engine",
-    "packages/mui-styles",
     "packages/mui-system",
     "packages/mui-types",
     "packages/mui-utils",
@@ -45,7 +44,6 @@
     "@mui/private-theming": "packages/mui-private-theming/build",
     "@mui/styled-engine": "packages/mui-styled-engine/build",
     "@mui/styled-engine-sc": "packages/mui-styled-engine-sc/build",
-    "@mui/styles": "packages/mui-styles/build",
     "@mui/system": "packages/mui-system/build",
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build"
