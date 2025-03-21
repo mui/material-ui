@@ -262,21 +262,6 @@ export default withDocsInfra({
         destination: 'https://base-ui.com',
         permanent: true,
       },
-      {
-        source: '/system/styles/basics/',
-        destination: 'https://mui.com/system/styles/basics/',
-        permanent: true,
-      },
-      {
-        source: '/system/styles/advanced/',
-        destination: 'https://mui.com/system/styles/advanced/',
-        permanent: true,
-      },
-      {
-        source: '/system/styles/api/',
-        destination: 'https://mui.com/system/styles/api/',
-        permanent: true,
-      },
     ];
   },
   // Used to signal we run pnpm build
