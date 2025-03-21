@@ -7,14 +7,16 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
+    "@emotion/react": "11.14.0",
+    "@emotion/server": "11.11.0",
+    "@emotion/styled": "11.14.0",
     "@mui/material": "workspace:*",
+    "@mui/material-nextjs": "workspace:*",
     "@mui/icons-material": "workspace:*",
     "@mui/lab": "workspace:*",
     "@mui/styled-engine": "workspace:*",
     "@mui/utils": "workspace:*",
-    "next": "14.2.21",
+    "next": "15.1.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
@@ -27,6 +29,7 @@
     "overrides": {
       "@mui/base": "file:../../../../packed/@mui/base.tgz",
       "@mui/material": "file:../../../../packed/@mui/material.tgz",
+      "@mui/material-nextjs": "file:../../../../packed/@mui/material-nextjs.tgz",
       "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
       "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
       "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
