@@ -61,8 +61,8 @@ const defaultIsActiveElementInListbox = (listboxRef) =>
 
 const MULTIPLE_DEFAULT_VALUE = [];
 
-function getInputValue(value, multiple, getOptionLabel) {
-  if (multiple || value == null) {
+function getInputValue(value, multiple, getOptionLabel, renderValue) {
+  if (multiple || value == null || renderValue) {
     return '';
   }
   const optionLabel = getOptionLabel(value);
@@ -110,6 +110,7 @@ function useAutocomplete(props) {
     openOnFocus = false,
     options,
     readOnly = false,
+    renderValue,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
   } = props;
@@ -173,7 +174,7 @@ function useAutocomplete(props) {
       if (!isOptionSelected && !clearOnBlur) {
         return;
       }
-      const newInputValue = getInputValue(newValue, multiple, getOptionLabel);
+      const newInputValue = getInputValue(newValue, multiple, getOptionLabel, renderValue);
 
       if (inputValue === newInputValue) {
         return;
@@ -185,7 +186,16 @@ function useAutocomplete(props) {
         onInputChange(event, newInputValue, reason);
       }
     },
-    [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState, clearOnBlur, value],
+    [
+      getOptionLabel,
+      inputValue,
+      multiple,
+      onInputChange,
+      setInputValueState,
+      clearOnBlur,
+      value,
+      renderValue,
+    ],
   );
 
   const [open, setOpenState] = useControlled({
@@ -251,7 +261,8 @@ function useAutocomplete(props) {
     if (tagToFocus === -1) {
       inputRef.current.focus();
     } else {
-      anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`).focus();
+      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
+      anchorEl.querySelector(`[${indexType}="${tagToFocus}"]`).focus();
     }
   });
 
@@ -695,7 +706,8 @@ function useAutocomplete(props) {
         return -1;
       }
 
-      const option = anchorEl.querySelector(`[data-tag-index="${nextFocus}"]`);
+      const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
+      const option = anchorEl.querySelector(`[${indexType}="${nextFocus}"]`);
 
       // Same logic as MenuList.js
       if (
@@ -821,10 +833,18 @@ function useAutocomplete(props) {
           handleOpen(event);
           break;
         case 'ArrowLeft':
-          handleFocusTag(event, 'previous');
+          if (!multiple && renderValue) {
+            focusTag(0);
+          } else {
+            handleFocusTag(event, 'previous');
+          }
           break;
         case 'ArrowRight':
-          handleFocusTag(event, 'next');
+          if (!multiple && renderValue) {
+            focusTag(-1);
+          } else {
+            handleFocusTag(event, 'next');
+          }
           break;
         case 'Enter':
           if (highlightedIndexRef.current !== -1 && popupOpen) {
@@ -862,7 +882,10 @@ function useAutocomplete(props) {
             // Avoid the Modal to handle the event.
             event.stopPropagation();
             handleClose(event, 'escape');
-          } else if (clearOnEscape && (inputValue !== '' || (multiple && value.length > 0))) {
+          } else if (
+            clearOnEscape &&
+            (inputValue !== '' || (multiple && value.length > 0) || renderValue)
+          ) {
             // Avoid Opera to exit fullscreen mode.
             event.preventDefault();
             // Avoid the Modal to handle the event.
@@ -880,6 +903,10 @@ function useAutocomplete(props) {
               option: value[index],
             });
           }
+          if (!multiple && renderValue && !readOnly) {
+            setValueState(null);
+            focusTag(-1);
+          }
           break;
         case 'Delete':
           // Remove the value on the right of the "cursor"
@@ -890,6 +917,10 @@ function useAutocomplete(props) {
             handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
+          }
+          if (!multiple && renderValue && !readOnly) {
+            setValueState(null);
+            focusTag(-1);
           }
           break;
         default:
@@ -980,6 +1011,12 @@ function useAutocomplete(props) {
     newValue.splice(index, 1);
     handleValue(event, newValue, 'removeOption', {
       option: value[index],
+    });
+  };
+
+  const handleSingleTagDelete = (event) => {
+    handleValue(event, null, 'removeOption', {
+      option: value,
     });
   };
 
@@ -1112,11 +1149,11 @@ function useAutocomplete(props) {
       type: 'button',
       onClick: handlePopupIndicator,
     }),
-    getTagProps: ({ index }) => ({
-      key: index,
-      'data-tag-index': index,
+    getTagProps: ({ index = 0 } = {}) => ({
+      ...(multiple && { key: index }),
+      ...(renderValue ? { 'data-item-index': index } : { 'data-tag-index': index }),
       tabIndex: -1,
-      ...(!readOnly && { onDelete: handleTagDelete(index) }),
+      ...(!readOnly && { onDelete: multiple ? handleTagDelete(index) : handleSingleTagDelete }),
     }),
     getListboxProps: () => ({
       role: 'listbox',
