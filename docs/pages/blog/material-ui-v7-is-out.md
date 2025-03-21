@@ -15,20 +15,66 @@ It is designed to be straightforward to upgrade to.
 
 ## Improved ESM support
 
-Our package layout has been updated, we now unambiguously support both valid ESM and commonjs through the exports field in package.json.
-This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load our packages from ESM modules under Node.js.
-
-## Opt-in support for CSS layers
-
-The `enableCssLayer` prop has been added to `ThemeProvider`.
-When enabled, Material UI styles are wrapped in a CSS layer named `mui`.
-
-This allows Material UI to integrate with modern tools that rely on CSS layers, like Tailwind CSS v4.
+The package layout has been updated, Material UI packages now unambiguously support both valid ESM and commonjs through the exports field in their package.json.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load the packages from ESM modules under Node.js.
 
 ## Completed the slot pattern implementation
 
 The API for replacing or modifying component inner elements is now standardized, and all relevant components use the `slots` and `slotProps` props for greater flexibility and consistency.
 A [guide about this pattern](/material-ui/customization/overriding-component-structure/) has been added to the documentation.
+
+## Opt-in support for CSS layers
+
+The `enableCssLayer` prop has been added to `ThemeProvider`.
+When enabled, Material UI styles are wrapped in a CSS layer named `mui`.
+This allows Material UI to integrate with modern tools that rely on CSS layers, like Tailwind CSS v4.
+
+This feature is currently supported in Next.js App router and client-side frameworks like Vite.
+Here is an example of how to enable CSS layers depending on your setup:
+
+<codeblock>
+
+```tsx Next.js
+// App router only, support for Pages router is coming soon
+
+// app/layout.tsx
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import GlobalStyles from '@mui/material/GlobalStyles';
+
+export default function RootLayout(props) {
+  const { children } = props;
+  return (
+    <html lang="en">
+      <body className={roboto.variable}>
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          <GlobalStyles styles="@layer theme,base,mui,components,utilities;" />
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+```tsx Client-side
+// main.js
+import { StyledEngineProvider } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import App from './App';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <StyledEngineProvider enableCssLayer>
+      <GlobalStyles styles="@layer theme,base,mui,components,utilities;" />
+      <App />
+    </StyledEngineProvider>
+  </StrictMode>,
+);
+```
+
+</codeblock>
+
+A detailed guide for Tailwind CSS v4 integration is coming soon.
 
 ## Removed deprecated APIs
 
