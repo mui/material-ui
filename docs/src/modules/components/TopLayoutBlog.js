@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
-import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
@@ -317,7 +316,6 @@ const Root = styled('div')(
 );
 
 export default function TopLayoutBlog(props) {
-  const theme = useTheme();
   const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
@@ -479,8 +477,6 @@ export default function TopLayoutBlog(props) {
                 disableAd
                 localizedDoc={docs.en}
                 renderedMarkdownOrDemo={chunk}
-                theme={theme}
-                WrapperComponent={React.Fragment}
               />
             );
           })}
