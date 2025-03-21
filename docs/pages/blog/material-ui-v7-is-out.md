@@ -24,8 +24,7 @@ A [guide about this pattern](/material-ui/customization/overriding-component-str
 
 ## Opt-in support for CSS layers
 
-The `enableCssLayer` prop has been added to `ThemeProvider`.
-When enabled, Material UI styles are wrapped in a CSS layer named `mui`.
+Material UI styles can be wrapped in a CSS layer named via the opt-in config `enableCssLayer`.
 This allows Material UI to integrate with modern tools that rely on CSS layers, like Tailwind CSS v4.
 This feature was backported and is now also available in Material UI v6.
 
