@@ -921,6 +921,9 @@ importers:
       '@types/css-mediaquery':
         specifier: ^0.1.4
         version: 0.1.4
+      '@types/fg-loadcss':
+        specifier: ^3.1.0
+        version: 3.1.3
       '@types/gtag.js':
         specifier: ^0.0.20
         version: 0.0.20
@@ -5528,6 +5531,9 @@ packages:
 
   '@types/express@5.0.0':
     resolution: {integrity: sha512-DvZriSMehGHL1ZNLzi6MidnsDhUZM/x2pRdDIKdwbUNqqwHxMlRdkxtn6/EPKyqKpHqTl/4nRZsRNLpZxZRpPQ==}
+
+  '@types/fg-loadcss@3.1.3':
+    resolution: {integrity: sha512-l9Cf3szP7MbYXRuWnnctz6BRRADeGIakbY7+FtZSvvV+Rg+Ytv961FcXBtwpQrdjCbd4lIyawBADayxKA2GiaA==}
 
   '@types/find-package-json@1.2.6':
     resolution: {integrity: sha512-ZGsnItMbi56k1DLzI1d1ln8Omt7+WRv8cBsTwXIw58BhuKE7wQUW1Krr6QFj0JT125dW9w6XLALSYOLCj7N8Rg==}
@@ -17143,6 +17149,8 @@ snapshots:
       '@types/express-serve-static-core': 5.0.6
       '@types/qs': 6.9.18
       '@types/serve-static': 1.15.7
+
+  '@types/fg-loadcss@3.1.3': {}
 
   '@types/find-package-json@1.2.6':
     dependencies:
