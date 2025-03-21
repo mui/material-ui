@@ -929,8 +929,6 @@ const premiumData: Record<string, React.ReactNode> = {
       value={yes}
       metadata={
         <React.Fragment>
-          Available later on
-          <br />
           2 business days.
           <br />1 business day (priority add-on only)
         </React.Fragment>
@@ -1044,7 +1042,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'response-time': <Info value={yes} metadata="1 business day" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
-  'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'security-questionnaire': <Info value={yes}/>,
   'customer-success': yes,
 };
 
