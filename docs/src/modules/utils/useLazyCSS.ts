@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import { loadCSS } from 'fg-loadcss';
 
 /**
  * Enhanced lazy CSS loader that wraps CSS in a layer using fetch to avoid CORS issues
@@ -9,20 +9,18 @@ import { loadCSS } from 'fg-loadcss/src/loadCSS';
  * @param {string} options.layer - Optional CSS layer name to wrap the CSS in
  * @returns {() => void} cleanup function
  */
-export default function useLazyCSS(href, before, options = {}) {
+export default function useLazyCSS(href: string, before: string, options: { layer?: string } = {}) {
   React.useEffect(() => {
     // If no layer is specified, use the original behavior
     if (!options.layer) {
-      const link = loadCSS(href, document.querySelector(before));
+      const link = loadCSS(href, document.querySelector(before) as HTMLElement);
       return () => {
-        if (link.parentElement) {
-          link.parentElement.removeChild(link);
-        }
+        link.parentElement?.removeChild(link);
       };
     }
 
     // With layer option, we need to fetch the CSS content and wrap it
-    let styleElement = null;
+    let styleElement: HTMLStyleElement | null = null;
     const abortController = new AbortController();
 
     // Fetch the CSS content directly to avoid CORS issues with cssRules
@@ -41,7 +39,7 @@ export default function useLazyCSS(href, before, options = {}) {
 
         // Insert at the specified position
         const beforeElement = document.querySelector(before);
-        if (beforeElement) {
+        if (beforeElement?.parentNode) {
           beforeElement.parentNode.insertBefore(styleElement, beforeElement);
         } else {
           document.head.appendChild(styleElement);

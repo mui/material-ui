@@ -1,18 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { useTheme } from '@mui/system';
 import { exactProp } from '@mui/utils';
-import { CssVarsProvider as JoyCssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import { useColorScheme as useMuiColorScheme } from '@mui/material/styles';
+import {
+  CssVarsProvider as JoyCssVarsProvider,
+  useColorScheme,
+  extendTheme,
+  THEME_ID as JOY_THEME_ID,
+} from '@mui/joy/styles';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
-import { BrandingProvider } from '@mui/docs/branding';
 import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
 
-function JoyModeObserver({ mode }) {
+const defaultJoyTheme = extendTheme();
+
+function JoyModeObserver() {
+  const { mode } = useMuiColorScheme();
   const { setMode } = useColorScheme();
   React.useEffect(() => {
     setMode(mode);
@@ -20,12 +27,7 @@ function JoyModeObserver({ mode }) {
   return null;
 }
 
-JoyModeObserver.propTypes = {
-  mode: PropTypes.oneOf(['light', 'dark']),
-};
-
 export default function MarkdownDocs(props) {
-  const theme = useTheme();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
@@ -49,10 +51,6 @@ export default function MarkdownDocs(props) {
 
   const isJoy = canonicalAs.startsWith('/joy-ui/') && !disableCssVarsProvider;
   const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
-  const Wrapper = isJoy ? BrandingProvider : React.Fragment;
-  const wrapperProps = {
-    ...(isJoy && { mode: theme.palette.mode }),
-  };
 
   return (
     <AppLayoutDocs
@@ -68,14 +66,12 @@ export default function MarkdownDocs(props) {
       toc={localizedDoc.toc}
     >
       {disableAd ? null : (
-        <BrandingProvider>
-          <AdGuest>
-            <Ad />
-          </AdGuest>
-        </BrandingProvider>
+        <AdGuest>
+          <Ad />
+        </AdGuest>
       )}
-      <CssVarsProvider>
-        {isJoy && <JoyModeObserver mode={theme.palette.mode} />}
+      <CssVarsProvider {...(isJoy && { theme: { [JOY_THEME_ID]: defaultJoyTheme } })}>
+        {isJoy && <JoyModeObserver />}
         {isBase && (
           <MuiBaseDeprecation
             newComponentUrl={localizedDoc.headers.newUrl}
@@ -91,9 +87,6 @@ export default function MarkdownDocs(props) {
             localizedDoc={localizedDoc}
             renderedMarkdownOrDemo={renderedMarkdownOrDemo}
             srcComponents={srcComponents}
-            theme={theme}
-            WrapperComponent={Wrapper}
-            wrapperProps={wrapperProps}
           />
         ))}
       </CssVarsProvider>
