@@ -28,6 +28,7 @@ A [guide about this pattern](/material-ui/customization/overriding-component-str
 The `enableCssLayer` prop has been added to `ThemeProvider`.
 When enabled, Material UI styles are wrapped in a CSS layer named `mui`.
 This allows Material UI to integrate with modern tools that rely on CSS layers, like Tailwind CSS v4.
+This feature was backported and is now also available in Material UI v6.
 
 This feature is currently supported in Next.js App router and client-side frameworks like Vite.
 Here is an example of how to enable CSS layers depending on your setup:
