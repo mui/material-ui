@@ -53,7 +53,7 @@ export default function useLazyCSS(href: string, before: string, options: { laye
           }
 
           // Fall back to regular link element if fetch fails
-          const link = loadCSS(href, document.querySelector(before));
+          const link = loadCSS(href, document.querySelector(before) as HTMLElement);
           styleElement = link;
         }
       });
