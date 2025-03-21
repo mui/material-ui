@@ -121,6 +121,7 @@
     "@types/chai": "^4.3.20",
     "@types/chance": "^1.1.6",
     "@types/css-mediaquery": "^0.1.4",
+    "@types/fg-loadcss": "^3.1.0",
     "@types/gtag.js": "^0.0.20",
     "@types/json2mq": "^0.2.2",
     "@types/node": "^20.17.24",

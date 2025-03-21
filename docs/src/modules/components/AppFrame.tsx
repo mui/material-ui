@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
-import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
@@ -18,12 +17,11 @@ import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
-import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import SkipLink from 'docs/src/modules/components/SkipLink';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
+import { DemoPageThemeProvider } from 'docs/src/theming';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -186,75 +184,73 @@ export default function AppFrame(props: AppFrameProps) {
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   return (
-    <RootDiv className={className}>
-      <NextNProgressBar />
-      <CssBaseline />
-      <SkipLink />
-      <MarkdownLinks />
-      <StyledAppBar
-        disablePermanent={disablePermanent}
-        sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
-      >
-        <GlobalStyles
-          styles={{
-            ':root': {
-              '--MuiDocs-header-height': `${HEIGHT}px`,
-            },
-          }}
-        />
-        <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
-          <NavIconButton
-            edge="start"
-            color="primary"
-            size="small"
-            aria-label={t('appFrame.openDrawer')}
-            disablePermanent={disablePermanent}
-            onClick={() => setMobileOpen(true)}
-            sx={{ ml: '1px' }}
-          >
-            <SvgHamburgerMenu />
-          </NavIconButton>
-          <Box sx={{ display: { md: 'flex', lg: 'none' } }}>
-            <LogoWithCopyMenu
-              logo={productIdentifier.logo}
-              logoSvgString={productIdentifier.logoSvg}
-              wordmarkSvgString={productIdentifier.wordmarkSvg}
-              marginLeft
-            />
-          </Box>
-          <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
-            <BannerComponent />
-            <DeferredAppSearch />
-            <Tooltip title={t('appFrame.github')} enterDelay={300}>
-              <IconButton
-                component="a"
-                color="primary"
-                size="small"
-                href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Notifications />
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
+    <DemoPageThemeProvider>
+      <RootDiv className={className}>
+        <StyledAppBar
+          disablePermanent={disablePermanent}
+          sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
+        >
+          <GlobalStyles
+            styles={{
+              ':root': {
+                '--MuiDocs-header-height': `${HEIGHT}px`,
+              },
+            }}
+          />
+          <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
+            <NavIconButton
+              edge="start"
+              color="primary"
+              size="small"
+              aria-label={t('appFrame.openDrawer')}
+              disablePermanent={disablePermanent}
+              onClick={() => setMobileOpen(true)}
+              sx={{ ml: '1px' }}
+            >
+              <SvgHamburgerMenu />
+            </NavIconButton>
+            <Box sx={{ display: { md: 'flex', lg: 'none' } }}>
+              <LogoWithCopyMenu
+                logo={productIdentifier.logo}
+                logoSvgString={productIdentifier.logoSvg}
+                wordmarkSvgString={productIdentifier.wordmarkSvg}
+                marginLeft
+              />
+            </Box>
+            <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
+              <BannerComponent />
+              <DeferredAppSearch />
+              <Tooltip title={t('appFrame.github')} enterDelay={300}>
+                <IconButton
+                  component="a"
+                  color="primary"
+                  size="small"
+                  href={process.env.SOURCE_CODE_REPO}
+                  data-ga-event-category="header"
+                  data-ga-event-action="github"
+                >
+                  <GitHubIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Notifications />
+              <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+                <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
+                  <SettingsIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </Stack>
           </Stack>
-        </Stack>
-      </StyledAppBar>
-      <StyledAppNavDrawer
-        disablePermanent={disablePermanent}
-        onClose={closeDrawer}
-        onOpen={openDrawer}
-        mobileOpen={mobileOpen}
-      />
-      {children}
-      <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
-    </RootDiv>
+        </StyledAppBar>
+        <StyledAppNavDrawer
+          disablePermanent={disablePermanent}
+          onClose={closeDrawer}
+          onOpen={openDrawer}
+          mobileOpen={mobileOpen}
+        />
+        {children}
+        <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+      </RootDiv>
+    </DemoPageThemeProvider>
   );
 }
 

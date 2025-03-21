@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/joy/styles';
 
 const StatRoot = styled('div')(({ theme }) => ({
   display: 'flex',
