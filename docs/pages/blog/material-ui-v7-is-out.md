@@ -11,7 +11,6 @@ manualCard: true
 Material UI v7 is now stable.
 This major improves the integration with modern tools and consistency across the library.
 It is designed to be straightforward to upgrade to.
-`
 
 ## Improved ESM support
 
