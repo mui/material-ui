@@ -173,9 +173,7 @@ function DemoSandbox(props) {
       {usesCssVarsTheme ? (
         children
       ) : (
-        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>
-          {children}
-        </DemoInstanceThemeProvider>
+        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>{children}</DemoInstanceThemeProvider>
       )}
     </DemoErrorBoundary>
   );
