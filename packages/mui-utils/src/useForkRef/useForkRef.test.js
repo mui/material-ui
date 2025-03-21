@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import useForkRef from './useForkRef';
 import getReactElementRef from '../getReactElementRef';
@@ -107,5 +108,53 @@ describe('useForkRef', () => {
       expect(firstRightRef.current).to.equal(null);
       expect(secondRightRef.current.id).to.equal('test');
     });
+  });
+
+  it('calls clean up function if it exists', () => {
+    const cleanUp = spy();
+    const setup = spy();
+    const setup2 = spy();
+    const nullHandler = spy();
+
+    function onRefChangeWithCleanup(ref) {
+      if (ref) {
+        setup(ref.id);
+      } else {
+        nullHandler();
+      }
+      return cleanUp;
+    }
+
+    function onRefChangeWithoutCleanup(ref) {
+      if (ref) {
+        setup2(ref.id);
+      } else {
+        nullHandler();
+      }
+    }
+
+    function App() {
+      const ref = useForkRef(onRefChangeWithCleanup, onRefChangeWithoutCleanup);
+      return <div id="test" ref={ref} />;
+    }
+
+    const { unmount } = render(<App />);
+
+    expect(setup.args[0][0]).to.equal('test');
+    expect(setup.callCount).to.equal(1);
+    expect(cleanUp.callCount).to.equal(0);
+
+    expect(setup2.args[0][0]).to.equal('test');
+    expect(setup2.callCount).to.equal(1);
+
+    unmount();
+
+    expect(setup.callCount).to.equal(1);
+    expect(cleanUp.callCount).to.equal(1);
+
+    // Setup was not called again
+    expect(setup2.callCount).to.equal(1);
+    // Null handler hit because no cleanup is returned
+    expect(nullHandler.callCount).to.equal(1);
   });
 });
