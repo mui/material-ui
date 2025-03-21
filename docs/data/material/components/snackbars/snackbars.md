@@ -65,6 +65,23 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 
 {{"demo": "TransitionsSnackbar.js"}}
 
+## Events
+
+If you would like to prevent the default onClickAway behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+    <Snackbar
+      slotProps={{
+        clickAwayListener: {
+          onClickAway: (event) => {
+            // Prevent's default 'onClickAway' behavior.
+            event.defaultMuiPrevented = true;
+          },
+        },
+      }}
+    />;
+```
+
 ## Customization
 
 ### Use with Alerts
