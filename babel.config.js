@@ -31,7 +31,6 @@ module.exports = function getBabelConfig(api) {
     '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
-    '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
     '@mui/system': resolveAliasPath('./packages/mui-system/src'),
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
