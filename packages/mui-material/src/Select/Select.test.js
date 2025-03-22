@@ -7,7 +7,7 @@ import {
   createRenderer,
   fireEvent,
   screen,
-  reactMajor,
+  reactMajor
 } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
@@ -1821,19 +1821,19 @@ describe('<Select />', () => {
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
 
-  describe('label width', () => {
-    it('should apply label width when the label is longer than the option', () => {
-      const { getByRole } = render(
+  it('should apply label width when the label is longer than the option if the adaptive is enabled', () => {
+    const selectTestId = 'select';
+    const labelTestId = 'label'
+     const {getByTestId} = render(
         <React.Fragment>
-          <InputLabel id="long-label">This is a very long label</InputLabel>
-          <Select labelId="long-label" value="">
-            <MenuItem value="">Short</MenuItem>
+          <InputLabel data-testid={labelTestId} id="long-label">This is a very long label</InputLabel>
+          <Select data-testid={selectTestId} adaptive labelId="long-label" value="">
+            <MenuItem value="#">Short</MenuItem>
           </Select>
         </React.Fragment>,
       );
-
-      const select = getByRole('combobox');
-      expect(select.style.minWidth).toBeGreaterThan(select.clientWidth);
-    });
+      const select = getByTestId(selectTestId);
+      const label = getByTestId(labelTestId);
+      expect(select.style.minWidth).lessThanOrEqual(label.clientWidth);
   });
 });

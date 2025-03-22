@@ -15,6 +15,7 @@ export type SelectChangeEvent<Value = string> =
 export interface SelectInputProps<Value = unknown> {
   autoFocus?: boolean;
   autoWidth: boolean;
+  adaptive?: boolean;
   defaultOpen?: boolean;
   disabled?: boolean;
   error?: boolean;

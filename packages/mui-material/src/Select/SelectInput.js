@@ -102,6 +102,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     'aria-describedby': ariaDescribedby,
     'aria-label': ariaLabel,
     autoFocus,
+    adaptive = false,
     autoWidth,
     children,
     className,
@@ -197,14 +198,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
     const label = ownerDocument(displayRef.current).getElementById(labelId);
     if (label) {
-      const width = label.clientWidth;
-      const innerText = label.innerText;
-      const averageCharWidth = parseFloat(getComputedStyle(label).fontSize) / 4;
-      const calculatedLabelWidth = averageCharWidth * innerText.length + width;
+      if (adaptive) {
+        const width = label.clientWidth;
+        const innerText = label.innerText;
+        const averageCharWidth = parseFloat(getComputedStyle(label).fontSize) / 4;
+        const calculatedLabelWidth = averageCharWidth * innerText.length + width;
 
-      if (calculatedLabelWidth > displayRef.current.clientWidth) {
-        setLabelWidth(calculatedLabelWidth);
+        if (calculatedLabelWidth > displayRef.current.clientWidth) {
+          setLabelWidth(calculatedLabelWidth);
+        }
       }
+
       const handler = () => {
         if (getSelection().isCollapsed) {
           displayRef.current.focus();
@@ -216,7 +220,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       };
     }
     return undefined;
-  }, [labelId]);
+  }, [adaptive, labelId]);
 
   const update = (open, event) => {
     if (open) {
@@ -519,9 +523,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
-        style={{
-          minWidth: labelWidth,
-        }}
+        style={adaptive ? { minWidth: labelWidth } : {}}
         ownerState={ownerState}
         className={clsx(SelectDisplayProps.className, classes.select, className)}
         // The id is required for proper a11y
@@ -594,6 +596,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
 SelectInput.propTypes = {
   /**
+   * If `true`, the width of the select input will be aligned with the width of the label.
+   * If the label length is longer than the select input, the select input will be wider than the label.
+   * @default false
+   */
+  adaptive: PropTypes.bool,
+  /**
    * @ignore
    */
   'aria-describedby': PropTypes.string,
@@ -601,9 +609,6 @@ SelectInput.propTypes = {
    * @ignore
    */
   'aria-label': PropTypes.string,
-  /**
-   * @ignore
-   */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the

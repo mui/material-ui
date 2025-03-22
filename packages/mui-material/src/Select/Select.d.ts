@@ -13,6 +13,12 @@ export { SelectChangeEvent };
 export interface BaseSelectProps<Value = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange' | 'placeholder'> {
   /**
+   * If `true`, the width of the select input will be aligned with the width of the label.
+   * If the label length is longer than the select input, the select input will be wider than the label.
+   * @default false
+   */
+  adaptive?: boolean;
+  /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
    * @default false

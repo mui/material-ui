@@ -49,6 +49,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const {
     autoWidth = false,
     children,
+    adaptive = false,
     classes: classesProp = {},
     className,
     defaultOpen = false,
@@ -130,6 +131,9 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         ...(((multiple && native) || displayEmpty) && variant === 'outlined'
           ? { notched: true }
           : {}),
+        ...(adaptive && {
+          adaptive,
+        }),
         ref: inputComponentRef,
         className: clsx(InputComponent.props.className, className, classes.root),
         // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.
@@ -145,6 +149,12 @@ Select.propTypes /* remove-proptypes */ = {
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
   // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If `true`, the width of the select input will be aligned with the width of the label.
+   * If the label length is longer than the select input, the select input will be wider than the label.
+   * @default false
+   */
+  adaptive: PropTypes.bool,
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
