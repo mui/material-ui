@@ -14,6 +14,47 @@ In the `package.json` file, change the package version from `latest` to `next`.
 Using `next` ensures your project always uses the latest v7 pre-releases.
 Alternatively, you can also target and fix it to a specific version, for example, `7.0.0-alpha.0`.
 
+## Supported browsers and versions
+
+### Minimum React version
+
+The minimum supported version of React is v17.0.0 (the same as v6).
+If you want to upgrade React, it's recommended to finish upgrading Material UI first, then upgrade React.
+
+### Minimum TypeScript version
+
+The minimum supported version of TypeScript has been increased from v4.7 to 4.9.
+
+:::info
+We align with [support window](https://github.com/DefinitelyTyped/DefinitelyTyped?tab=readme-ov-file#support-window) by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (published on npm under the `@types` namespace).
+
+We will not change the minimum supported version in a minor version of Material UI.
+However, we recommend not using a TypeScript version older than the lowest supported version by DefinitelyTyped.
+:::
+
+For `@types/react*` packages, make sure they are the same major version as the `react` you are using.
+Use the snippet below to update your project if needed (replace the `<version>` with the major version of `react` you are using):
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @types/react@<version> @types/react-dom@<version>
+```
+
+```bash pnpm
+pnpm add @types/react@<version> @types/react-dom@<version>
+```
+
+```bash yarn
+yarn add @types/react@<version> @types/react-dom@<version>
+```
+
+</codeblock>
+
+:::warning
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+:::
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
@@ -55,7 +96,7 @@ To use the modern bundle (which excludes legacy browser support for smaller bund
 }
 ```
 
-If you were using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
+If you are using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
 
 ```diff
  // vite.config.js
@@ -67,6 +108,23 @@ If you were using a Vite alias to force ESM imports for the icons package, you s
 -      },
      ],
    },
+```
+
+If you are augmenting the theme and using declarations for nested imports, you should replace them with `@mui/material/styles`. You may also have to rename an interface as some are exported from `@mui/material/styles` under a different name:
+
+```diff
+-declare module '@mui/material/styles/createTypography' {
++declare module '@mui/material/styles' {
+-  interface TypographyOptions {
++  interface TypographyVariantsOptions {
+     // ...
+   }
+
+-  interface Typography {
++  interface TypographyVariants {
+     // ...
+   }
+ }
 ```
 
 ### Grid and Grid2 renamed
@@ -159,6 +217,91 @@ npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
 ### SvgIcon's data-testid removed
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### Theme behavior changes
+
+When CSS theme variables is enabled with built-in light and dark color schemes, the theme no longer changes between modes.
+The snippet below demonstrates this behavior when users toggle the dark mode, the `mode` state from `useColorScheme` changes, but the theme object no longer changes:
+
+```js
+import {
+  ThemeProvider,
+  createTheme,
+  useTheme,
+  useColorScheme,
+} from '@mui/material/styles';
+
+const theme = createTheme({
+  cssVariables: {
+    colorSchemeSelector: 'class',
+  },
+  colorSchemes: {
+    light: true,
+    dark: true,
+  },
+});
+console.log(theme.palette.mode); // 'light' is the default mode
+
+function ColorModeToggle() {
+  const { setMode, mode } = useColorScheme();
+  const theme = useTheme();
+
+  React.useEffect(() => {
+    console.log(mode); // logged 'light' at first render, and 'dark' after the button click
+  }, [mode]);
+
+  React.useEffect(() => {
+    console.log(theme.palette.mode); // logged 'light' at first render, no log after the button click
+  }, [theme]);
+
+  return <button onClick={() => setMode('dark')}>Toggle dark mode</button>;
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <ColorModeToggle />
+    </ThemeProvider>
+  );
+}
+```
+
+This default behavior was made to improve performance by avoiding unnecessary re-renders when the mode changes.
+
+It's recommended to use the `theme.vars.*` as values in your styles to refer to the CSS variables directly:
+
+```js
+const Custom = styled('div')(({ theme }) => ({
+  color: theme.vars.palette.text.primary,
+  background: theme.vars.palette.primary.main,
+}));
+```
+
+If you need to do runtime calculations, we recommend using CSS instead of JavaScript whenever possible.
+For example, adjusting the alpha channel of a color can be done using the [`color-mix` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix):
+
+```js
+const Custom = styled('div')(({ theme }) => ({
+  color: `color-mix(in srgb, ${theme.vars.palette.text.primary}, transparent 50%)`,
+}));
+```
+
+However, if CSS approach is not possible, you can access the value directly from the `theme.colorSchemes` object, then apply both light and dark styles:
+
+```js
+const Custom = styled('div')(({ theme }) => ({
+  color: alpha(theme.colorSchemes.light.palette.text.primary, 0.5),
+  ...theme.applyStyles('dark', {
+    color: alpha(theme.colorSchemes.dark.palette.text.primary, 0.5),
+  }),
+}));
+```
+
+If any of the methods above do not suit your project, you can opt out from this behavior by passing the `forceThemeRerender` prop to the ThemeProvider component:
+
+```js
+<ThemeProvider forceThemeRerender />
+```
 
 ### Deprecated APIs removed
 

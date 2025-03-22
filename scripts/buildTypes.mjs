@@ -20,11 +20,6 @@ function rewriteImportPath(importPath) {
     return importPath.replace(coreSrcPath, '@mui/material');
   }
 
-  const stylesSrcPath = path.posix.join('..', 'mui-styles', 'src');
-  if (importPath.startsWith(stylesSrcPath)) {
-    return importPath.replace(stylesSrcPath, '@mui/styles');
-  }
-
   const systemSrcPath = path.posix.join('..', 'mui-system', 'src');
   if (importPath.startsWith(systemSrcPath)) {
     return importPath.replace(systemSrcPath, '@mui/system');

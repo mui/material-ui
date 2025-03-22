@@ -17,11 +17,6 @@ function resolveAliasPath(relativeToBabelConf) {
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
-/** @type {babel.PluginItem[]} */
-const productionPlugins = [
-  ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-];
-
 /** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
   const useESModules = api.env(['regressions', 'modern', 'stable']);
@@ -36,7 +31,6 @@ module.exports = function getBabelConfig(api) {
     '@mui/internal-markdown': resolveAliasPath('./packages/markdown'),
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
-    '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
     '@mui/system': resolveAliasPath('./packages/mui-system/src'),
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
     '@mui/base': resolveAliasPath('./packages/mui-base/src'),
@@ -106,6 +100,7 @@ module.exports = function getBabelConfig(api) {
       {
         missingError,
         errorCodesPath,
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
     ],
     ...(useESModules
@@ -120,9 +115,6 @@ module.exports = function getBabelConfig(api) {
       : []),
   ];
 
-  if (process.env.NODE_ENV === 'production') {
-    plugins.push(...productionPlugins);
-  }
   if (process.env.NODE_ENV === 'test') {
     plugins.push([
       'babel-plugin-module-resolver',
@@ -191,7 +183,6 @@ module.exports = function getBabelConfig(api) {
       },
       benchmark: {
         plugins: [
-          ...productionPlugins,
           [
             'babel-plugin-module-resolver',
             {
