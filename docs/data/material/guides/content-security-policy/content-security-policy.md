@@ -74,24 +74,8 @@ function App(props) {
 
 ### CSP in Vite
 
-According to the [Vite Docs](https://vite.dev/guide/features.html#content-security-policy-csp), Vite requires a few specific configurations for proper CSP deployment due to its internal handling of assets and modules.
-
-#### Vite supports CSP with a few configurations:
-
-Nonce Injection:
-When you set `html.cspNonce` in your Vite config, Vite adds a nonce to all <script>, <style>, and stylesheet <link> tags, and injects a meta tag:
-
-```html
-<meta property="csp-nonce" nonce="PLACEHOLDER" />
-```
-
-> Replace PLACEHOLDER with a unique nonce per request.
-
-* Asset Inlining:
-
-Vite inlines small assets as data URIs by default. For CSP, allow `data:` for safe directives like `img-src` and `font-src`, but never for `script-src`. Alternatively, disable inlining by setting build.`assetsInlineLimit: 0`.
-
-This configuration keeps your Vite project CSP-compliant without requiring inline runtime scripts.
+When deploying a CSP using Vite, there are specific configurations you must set up due to Vite's internal handling of assets and modules.
+See [Vite Features—Content Security Policy](https://vite.dev/guide/features.html#content-security-policy-csp) for complete details.
 
 ### styled-components
 
