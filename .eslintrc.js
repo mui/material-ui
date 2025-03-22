@@ -434,15 +434,6 @@ module.exports = /** @type {Config} */ ({
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
-              {
-                name: '@mui/styles',
-                importNames: ['createStyles'],
-                message: forbidCreateStylesMessage,
-              },
-              {
-                name: '@mui/styles/createStyles',
-                message: forbidCreateStylesMessage,
-              },
             ],
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
