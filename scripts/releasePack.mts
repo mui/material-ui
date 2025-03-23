@@ -24,11 +24,12 @@ interface RunOptions {
 
 async function packWorkspace(workspace: WorkspaceDefinition, outDir: string): Promise<string> {
   const packages: Record<string, string> = {};
-  const { stdout: zipFilePath } = await $({
+  const { stdout } = await $({
     cwd: workspace.path,
-  })`pnpm pack --pack-destination ${outDir}`;
-  packages[workspace.name] = zipFilePath;
-  return zipFilePath;
+  })`pnpm pack --json --pack-destination ${outDir}`;
+  const result = JSON.parse(stdout);
+  packages[workspace.name] = result.filename;
+  return result.filename;
 }
 
 async function run({ packages, outDir, concurrency }: RunOptions) {
