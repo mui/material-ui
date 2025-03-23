@@ -18,11 +18,16 @@ window.muiFixture = {
 };
 
 // Get all the fixtures specifically written for preventing visual regressions.
-const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
+const importRegressionFixtures = import.meta.glob(['./fixtures/**/*.(js|ts|tsx)'], {
+  import: 'default',
+  eager: true,
+});
+
 const regressionFixtures = [];
-importRegressionFixtures.keys().forEach((path) => {
+
+Object.keys(importRegressionFixtures).forEach((path) => {
   const [suite, name] = path
-    .replace('./', '')
+    .replace('./fixtures/', '')
     .replace(/\.\w+$/, '')
     .split('/');
 
@@ -33,224 +38,184 @@ importRegressionFixtures.keys().forEach((path) => {
       path,
       suite: `regression-${suite}`,
       name,
-      Component: React.lazy(() => importRegressionFixtures(path)),
+      Component: importRegressionFixtures[path],
     });
   }
 }, []);
 
-const blacklist = [
-  // Excludes demos that we don't want
-  /^docs-(.*)(?<=NoSnap)\.png$/,
-  // Template
-  'docs-getting-started-templates-blog-components',
-  'docs-getting-started-templates-checkout-components',
-  'docs-getting-started-templates-dashboard-components',
-  'docs-getting-started-templates-dashboard-internals-components',
-  'docs-getting-started-templates-dashboard-theme-customizations',
-  'docs-getting-started-templates-marketing-page-components',
-  'docs-getting-started-templates-shared-theme',
-  'docs-getting-started-templates-sign-in-components',
-  'docs-getting-started-templates-sign-in-side-components',
-  'docs-getting-started-templates-sign-up-components',
-  // Checkout Theme Customizations
-  // Marketing Page Theme Customizations
-  'docs-base-getting-started-quickstart/BaseButtonTailwind.png', // CodeSandbox
-  'docs-base-guides-working-with-tailwind-css/PlayerFinal.png', // No public components
-  'docs-components-alert/TransitionAlerts.png', // Needs interaction
-  'docs-components-app-bar/BackToTop.png', // Needs interaction
-  'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
-  'docs-components-app-bar/HideAppBar.png', // Needs interaction
-  'docs-components-app-bar/MenuAppBar.png', // Redundant
-  'docs-components-autocomplete/Asynchronous.png', // Redundant
-  'docs-components-autocomplete/CheckboxesTags.png', // Redundant
-  'docs-components-autocomplete/CountrySelect.png', // Redundant
-  'docs-components-autocomplete/DisabledOptions.png', // Redundant
-  'docs-components-autocomplete/Filter.png', // Redundant
-  'docs-components-autocomplete/FreeSolo.png', // Redundant
-  'docs-components-autocomplete/GoogleMaps.png', // Redundant
-  'docs-components-autocomplete/Grouped.png', // Redundant
-  'docs-components-autocomplete/Highlights.png', // Redundant
-  'docs-components-autocomplete/Playground.png', // Redundant
-  'docs-components-autocomplete/UseAutocomplete.png', // Redundant
-  'docs-components-autocomplete/Virtualize.png', // Redundant
-  'docs-components-backdrop/SimpleBackdrop.png', // Needs interaction
-  'docs-components-badges/BadgeAlignment.png', // Redux isolation
-  'docs-components-badges/BadgeVisibility.png', // Needs interaction
-  'docs-components-bottom-navigation/FixedBottomNavigation.png', // Redundant
-  'docs-components-breadcrumbs/ActiveLastBreadcrumb.png', // Redundant
-  'docs-components-chips/ChipsPlayground.png', // Redux isolation
-  'docs-components-click-away-listener', // Needs interaction
-  'docs-components-container', // Can't see the impact
-  'docs-components-dialogs', // Needs interaction
-  'docs-components-drawers/SwipeableEdgeDrawer.png', // Needs interaction
-  'docs-components-drawers/SwipeableTemporaryDrawer.png', // Needs interaction
-  'docs-components-drawers/TemporaryDrawer.png', // Needs interaction
-  'docs-components-floating-action-button/FloatingActionButtonZoom.png', // Needs interaction
-  'docs-components-grid-legacy/InteractiveGrid.png', // Redux isolation
-  'docs-components-grid-legacy/SpacingGrid.png', // Needs interaction
-  'docs-components-image-list', // Image don't load
-  'docs-components-masonry/ImageMasonry.png', // Image don't load
-  'docs-components-menus', // Need interaction
-  'docs-components-modal/BasicModal.png', // Needs interaction
-  'docs-components-modal/KeepMountedModal.png', // Needs interaction
-  'docs-components-modal/SpringModal.png', // Needs interaction
-  'docs-components-modal/TransitionsModal.png', // Needs interaction
-  'docs-components-no-ssr/FrameDeferring.png', // Needs interaction
-  'docs-components-popover/AnchorPlayground.png', // Redux isolation
-  'docs-components-popover/BasicPopover.png', // Needs interaction
-  'docs-components-popover/PopoverPopupState.png', // Needs interaction
-  'docs-components-popper/PopperPopupState.png', // Needs interaction
-  'docs-components-popper/PositionedPopper.png', // Needs interaction
-  'docs-components-popper/ScrollPlayground.png', // Redux isolation
-  'docs-components-popper/SimplePopper.png', // Needs interaction
-  'docs-components-popper/SpringPopper.png', // Needs interaction
-  'docs-components-popper/TransitionsPopper.png', // Needs interaction
-  'docs-components-popper/VirtualElementPopper.png', // Needs interaction
-  'docs-components-progress', // Flaky
-  'docs-components-selects/ControlledOpenSelect.png', // Needs interaction
-  'docs-components-selects/DialogSelect.png', // Needs interaction
-  'docs-components-selects/GroupedSelect.png', // Needs interaction
-  'docs-components-skeleton/Animations.png', // Animation disabled
-  'docs-components-skeleton/Facebook.png', // Flaky image loading
-  'docs-components-skeleton/SkeletonChildren.png', // flaky image loading
-  'docs-components-skeleton/YouTube.png', // Flaky image loading
-  'docs-components-snackbars/ConsecutiveSnackbars.png', // Needs interaction
-  'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
-  'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction
-  'docs-components-snackbars/FabIntegrationSnackbar.png', // Needs interaction
-  'docs-components-snackbars/IntegrationNotistack.png', // Needs interaction
-  'docs-components-snackbars/PositionedSnackbar.png', // Needs interaction
-  'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
-  'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction
-  'docs-components-speed-dial', // Needs interaction
-  'docs-components-stack/InteractiveStack.png', // Redundant
-  'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
-  'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
-  'docs-components-tabs/AccessibleTabs1.png', // Need interaction
-  'docs-components-tabs/AccessibleTabs2.png', // Need interaction
-  'docs-components-textarea-autosize', // Superseded by a dedicated regression test
-  'docs-components-tooltips', // Needs interaction
-  'docs-components-transitions', // Needs interaction
-  'docs-components-use-media-query', // Need to dynamically resize to test
-  'docs-customization-breakpoints', // Need to dynamically resize to test
-  'docs-customization-color', // Escape viewport
-  'docs-customization-container-queries/ResizableDemo.png', // No public components
-  'docs-customization-default-theme', // Redux isolation
-  'docs-customization-density/DensityTool.png', // Redux isolation
-  'docs-customization-right-to-left/RtlDemo.png',
-  'docs-customization-transitions/TransitionHover.png', // Need interaction
-  'docs-customization-typography/ResponsiveFontSizesChart.png',
-  'docs-getting-started-supported-components/MaterialUIComponents.png', // No public components
-  'docs-getting-started-templates-marketing-page/MarketingPage.png',
-  'docs-joy-components-circular-progress/CircularProgressCountUp.png', // Flaky due to animation
-  'docs-joy-components-divider/DividerChildPosition.png', // Needs interaction
-  'docs-joy-components-linear-progress/LinearProgressCountUp.png', // Flaky due to animation
-  'docs-joy-customization-theme-typography/TypographyThemeViewer.png', // No need for theme tokens
-  'docs-joy-getting-started-templates/TemplateCollection.png', // No public components
-  'docs-styles-advanced', // Redundant
-  'docs-styles-basics/StressTest.png', // Need interaction
-  /^docs-guides-.*/, // No public components
-];
-
-const unusedBlacklistPatterns = new Set(blacklist);
-
-function excludeDemoFixture(suite, name) {
-  if (/^docs-premium-themes(.*)/.test(suite)) {
-    return true;
-  }
-
-  // Exclude files that are not images and are not PascalCase
-  // Tantamount to skipping JS/TS files that are not React components or "index.js" files
-  // PascalCase starts with a capital letter and has zero or more capital letters in the middle
-  if (!suite.endsWith('.png') && name !== 'index' && !/^[A-Z][A-Za-z0-9]*$/.test(name)) {
-    return true;
-  }
-
-  if (suite.includes('docs-joy') && name.match(/(Variables|Usage)$/)) {
-    return true;
-  }
-
-  return blacklist.some((pattern) => {
-    if (typeof pattern === 'string') {
-      if (pattern === suite) {
-        unusedBlacklistPatterns.delete(pattern);
-
-        return true;
-      }
-      if (pattern === `${suite}/${name}.png`) {
-        unusedBlacklistPatterns.delete(pattern);
-
-        return true;
-      }
-
-      return false;
-    }
-
-    // assume regex
-    if (pattern.test(`${suite}/${name}.png`)) {
-      unusedBlacklistPatterns.delete(pattern);
-      return true;
-    }
-    return false;
-  });
-}
-
 // Also use some of the demos to avoid code duplication.
-const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
+const importDemos = import.meta.glob(
+  [
+    '../../docs/data/**/[A-Z]*.js',
+    '!**/*.d.ts',
+    '!**.preview',
+    '!**/.eslintrc.js',
+    '!**/pages.ts',
+    '!**/pagesApi.js',
+    '!../../docs/data/experiments/**',
+    '!**/*NoSnap*',
+    // Template
+    '!**/docs-getting-started-templates-blog-components',
+    '!**/docs-getting-started-templates-checkout-components',
+    '!**/docs-getting-started-templates-dashboard-components',
+    '!**/docs-getting-started-templates-dashboard-internals-components',
+    '!**/docs-getting-started-templates-dashboard-theme-customizations',
+    '!**/docs-getting-started-templates-marketing-page-components',
+    '!**/docs-getting-started-templates-shared-theme',
+    '!**/docs-getting-started-templates-sign-in-components',
+    '!**/docs-getting-started-templates-sign-in-side-components',
+    '!**/docs-getting-started-templates-sign-up-components',
+    // Checkout Theme Customizations
+    // Marketing Page Theme Customizations
+    '!**/docs-base-getting-started-quickstart/BaseButtonTailwind.*', // CodeSandbox
+    '!**/docs-base-guides-working-with-tailwind-css/PlayerFinal.*', // No public components
+    '!**/docs-components-alert/TransitionAlerts.*', // Needs interaction
+    '!**/docs-components-app-bar/BackToTop.*', // Needs interaction
+    '!**/docs-components-app-bar/ElevateAppBar.*', // Needs interaction
+    '!**/docs-components-app-bar/HideAppBar.*', // Needs interaction
+    '!**/docs-components-app-bar/MenuAppBar.*', // Redundant
+    '!**/docs-components-autocomplete/Asynchronous.*', // Redundant
+    '!**/docs-components-autocomplete/CheckboxesTags.*', // Redundant
+    '!**/docs-components-autocomplete/CountrySelect.*', // Redundant
+    '!**/docs-components-autocomplete/DisabledOptions.*', // Redundant
+    '!**/docs-components-autocomplete/Filter.*', // Redundant
+    '!**/docs-components-autocomplete/FreeSolo.*', // Redundant
+    '!**/docs-components-autocomplete/GoogleMaps.*', // Redundant
+    '!**/docs-components-autocomplete/Grouped.*', // Redundant
+    '!**/docs-components-autocomplete/Highlights.*', // Redundant
+    '!**/docs-components-autocomplete/Playground.*', // Redundant
+    '!**/docs-components-autocomplete/UseAutocomplete.*', // Redundant
+    '!**/docs-components-autocomplete/Virtualize.*', // Redundant
+    '!**/docs-components-backdrop/SimpleBackdrop.*', // Needs interaction
+    '!**/docs-components-badges/BadgeAlignment.*', // Redux isolation
+    '!**/docs-components-badges/BadgeVisibility.*', // Needs interaction
+    '!**/docs-components-bottom-navigation/FixedBottomNavigation.*', // Redundant
+    '!**/docs-components-breadcrumbs/ActiveLastBreadcrumb.*', // Redundant
+    '!**/docs-components-chips/ChipsPlayground.*', // Redux isolation
+    '!**/docs-components-click-away-listener', // Needs interaction
+    '!**/docs-components-container', // Can't see the impact
+    '!**/docs-components-dialogs', // Needs interaction
+    '!**/docs-components-drawers/SwipeableEdgeDrawer.*', // Needs interaction
+    '!**/docs-components-drawers/SwipeableTemporaryDrawer.*', // Needs interaction
+    '!**/docs-components-drawers/TemporaryDrawer.*', // Needs interaction
+    '!**/docs-components-floating-action-button/FloatingActionButtonZoom.*', // Needs interaction
+    '!**/docs-components-grid-legacy/InteractiveGrid.*', // Redux isolation
+    '!**/docs-components-grid-legacy/SpacingGrid.*', // Needs interaction
+    '!**/docs-components-image-list', // Image don't load
+    '!**/docs-components-masonry/ImageMasonry.*', // Image don't load
+    '!**/docs-components-menus', // Need interaction
+    '!**/docs-components-modal/BasicModal.*', // Needs interaction
+    '!**/docs-components-modal/KeepMountedModal.*', // Needs interaction
+    '!**/docs-components-modal/SpringModal.*', // Needs interaction
+    '!**/docs-components-modal/TransitionsModal.*', // Needs interaction
+    '!**/docs-components-no-ssr/FrameDeferring.*', // Needs interaction
+    '!**/docs-components-popover/AnchorPlayground.*', // Redux isolation
+    '!**/docs-components-popover/BasicPopover.*', // Needs interaction
+    '!**/docs-components-popover/PopoverPopupState.*', // Needs interaction
+    '!**/docs-components-popper/PopperPopupState.*', // Needs interaction
+    '!**/docs-components-popper/PositionedPopper.*', // Needs interaction
+    '!**/docs-components-popper/ScrollPlayground.*', // Redux isolation
+    '!**/docs-components-popper/SimplePopper.*', // Needs interaction
+    '!**/docs-components-popper/SpringPopper.*', // Needs interaction
+    '!**/docs-components-popper/TransitionsPopper.*', // Needs interaction
+    '!**/docs-components-popper/VirtualElementPopper.*', // Needs interaction
+    '!**/docs-components-progress', // Flaky
+    '!**/docs-components-selects/ControlledOpenSelect.*', // Needs interaction
+    '!**/docs-components-selects/DialogSelect.*', // Needs interaction
+    '!**/docs-components-selects/GroupedSelect.*', // Needs interaction
+    '!**/docs-components-skeleton/Animations.*', // Animation disabled
+    '!**/docs-components-skeleton/Facebook.*', // Flaky image loading
+    '!**/docs-components-skeleton/SkeletonChildren.*', // flaky image loading
+    '!**/docs-components-skeleton/YouTube.*', // Flaky image loading
+    '!**/docs-components-snackbars/ConsecutiveSnackbars.*', // Needs interaction
+    '!**/docs-components-snackbars/CustomizedSnackbars.*', // Redundant
+    '!**/docs-components-snackbars/DirectionSnackbar.*', // Needs interaction
+    '!**/docs-components-snackbars/FabIntegrationSnackbar.*', // Needs interaction
+    '!**/docs-components-snackbars/IntegrationNotistack.*', // Needs interaction
+    '!**/docs-components-snackbars/PositionedSnackbar.*', // Needs interaction
+    '!**/docs-components-snackbars/SimpleSnackbar.*', // Needs interaction
+    '!**/docs-components-snackbars/TransitionsSnackbar.*', // Needs interaction
+    '!**/docs-components-speed-dial', // Needs interaction
+    '!**/docs-components-stack/InteractiveStack.*', // Redundant
+    '!**/docs-components-steppers/HorizontalNonLinearStepper.*', // Redundant
+    '!**/docs-components-steppers/TextMobileStepper.*', // Flaky image loading
+    '!**/docs-components-tabs/AccessibleTabs1.*', // Need interaction
+    '!**/docs-components-tabs/AccessibleTabs2.*', // Need interaction
+    '!**/docs-components-textarea-autosize', // Superseded by a dedicated regression test
+    '!**/docs-components-tooltips', // Needs interaction
+    '!**/docs-components-transitions', // Needs interaction
+    '!**/docs-components-use-media-query', // Need to dynamically resize to test
+    '!**/docs-customization-breakpoints', // Need to dynamically resize to test
+    '!**/docs-customization-color', // Escape viewport
+    '!**/docs-customization-container-queries/ResizableDemo.*', // No public components
+    '!**/docs-customization-default-theme', // Redux isolation
+    '!**/docs-customization-density/DensityTool.*', // Redux isolation
+    '!**/docs-customization-right-to-left/RtlDemo.*',
+    '!**/docs-customization-transitions/TransitionHover.*', // Need interaction
+    '!**/docs-customization-typography/ResponsiveFontSizesChart.*',
+    '!**/docs-getting-started-supported-components/MaterialUIComponents.*', // No public components
+    '!**/docs-getting-started-templates-marketing-page/MarketingPage.*',
+    '!**/docs-joy-components-circular-progress/CircularProgressCountUp.*', // Flaky due to animation
+    '!**/docs-joy-components-divider/DividerChildPosition.*', // Needs interaction
+    '!**/docs-joy-components-linear-progress/LinearProgressCountUp.*', // Flaky due to animation
+    '!**/docs-joy-customization-theme-typography/TypographyThemeViewer.*', // No need for theme tokens
+    '!**/docs-joy-getting-started-templates/TemplateCollection.*', // No public components
+    '!**/docs-styles-advanced', // Redundant
+    '!**/docs-styles-basics/StressTest.*', // Need interaction
+    '!**/**/docs-guides/**',
+    '!**/docs-premium-themes/**',
+    '!**/docs-joy/**/Variables',
+    '!**/docs-joy/**/Usage',
+    // '!**/SearchIcons.js',
+    '!**/getting-started/**',
+    // '!**/material-icons/SearchIcons.js',
+  ],
+  {
+    import: 'default',
+    eager: true,
+  },
+);
+
 const demoFixtures = [];
-importDemos.keys().forEach((path) => {
-  const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
+Object.keys(importDemos).forEach((path) => {
+  const [name, ...suiteArray] = path
+    .replace('./docs/data/', '')
+    .replace('.js', '')
+    .split('/')
+    .reverse();
   const suite = `docs-${suiteArray
     .reverse()
     .join('-')
     .replace(/^material-/, '')}`;
 
-  // TODO: Why does webpack include a key for the absolute and relative path?
-  // We just want the relative path
-  if (path.startsWith('./') && !excludeDemoFixture(suite, name)) {
-    demoFixtures.push({
-      path,
-      suite,
-      name,
-      Component: React.lazy(() => importDemos(path)),
-    });
-  }
+  demoFixtures.push({
+    path,
+    suite,
+    name,
+    Component: importDemos[path],
+  });
 }, []);
 
-if (unusedBlacklistPatterns.size > 0) {
-  console.warn(
-    `The following patterns are unused:\n\n${Array.from(unusedBlacklistPatterns)
-      .map((pattern) => `- ${pattern}`)
-      .join('\n')}`,
-  );
-}
-
-const viewerRoot = document.getElementById('test-viewer');
-
 function FixtureRenderer({ component: FixtureComponent, path }) {
-  const viewerReactRoot = React.useRef(null);
-
-  React.useLayoutEffect(() => {
-    const renderTimeout = setTimeout(() => {
-      const children = (
-        <TestViewer path={path}>
+  React.useEffect(() => {
+    const viewerRoot = document.getElementById('test-viewer');
+    const testRoot = document.createElement('div');
+    viewerRoot.appendChild(testRoot);
+    const reactRoot = ReactDOMClient.createRoot(testRoot);
+    React.startTransition(() => {
+      reactRoot.render(
+        <TestViewer path={path} FixtureComponent={FixtureComponent}>
           <FixtureComponent />
-        </TestViewer>
+        </TestViewer>,
       );
-
-      if (viewerReactRoot.current === null) {
-        viewerReactRoot.current = ReactDOMClient.createRoot(viewerRoot);
-      }
-
-      viewerReactRoot.current.render(children);
     });
 
     return () => {
-      clearTimeout(renderTimeout);
       setTimeout(() => {
-        viewerReactRoot.current.unmount();
-        viewerReactRoot.current = null;
-      });
+        reactRoot.unmount();
+      }, 0);
+
+      viewerRoot.removeChild(testRoot);
     };
   }, [FixtureComponent, path]);
 
@@ -311,8 +276,6 @@ function App(props) {
     });
   }, []);
 
-  const fixturePrepared = fontState !== 'pending';
-
   function computePath(fixture) {
     return `/${fixture.suite}/${fixture.name}`;
   }
@@ -324,29 +287,27 @@ function App(props) {
 
   return (
     <React.Fragment>
-      <Routes>
-        {fixtures.map((fixture) => {
-          const path = computePath(fixture);
-          const FixtureComponent = fixture.Component;
-          if (FixtureComponent === undefined) {
-            console.warn('Missing `Component` for ', fixture);
-            return null;
-          }
+      {fontState === 'active' ? (
+        <Routes>
+          {fixtures.map((fixture) => {
+            const path = computePath(fixture);
+            const FixtureComponent = fixture.Component;
+            if (FixtureComponent === undefined) {
+              console.warn('Missing `Component` for ', fixture);
+              return null;
+            }
 
-          return (
-            <Route
-              key={path}
-              exact
-              path={path}
-              element={
-                fixturePrepared ? (
-                  <FixtureRenderer component={FixtureComponent} path={path} />
-                ) : null
-              }
-            />
-          );
-        })}
-      </Routes>
+            return (
+              <Route
+                key={path}
+                exact
+                path={path}
+                element={<FixtureRenderer component={FixtureComponent} path={path} />}
+              />
+            );
+          })}
+        </Routes>
+      ) : null}
 
       {isDev ? (
         <div>
@@ -363,6 +324,7 @@ function App(props) {
               <ol>
                 {fixtures.map((fixture) => {
                   const path = computePath(fixture);
+
                   return (
                     <li key={path}>
                       <Link to={path}>{path}</Link>
@@ -385,7 +347,7 @@ App.propTypes = {
 const container = document.getElementById('react-root');
 const children = (
   <Router>
-    <App fixtures={regressionFixtures.concat(demoFixtures)} />{' '}
+    <App fixtures={regressionFixtures.concat(demoFixtures)} />
   </Router>
 );
 const reactRoot = ReactDOMClient.createRoot(container);
