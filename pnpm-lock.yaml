@@ -144,8 +144,8 @@ importers:
         specifier: ^3.0.8
         version: 3.0.8(@testing-library/dom@10.4.0)(@types/node@20.17.24)(playwright@1.51.1)(typescript@5.7.3)(vite@5.4.14(@types/node@20.17.24)(terser@5.39.0))(vitest@3.0.8)
       '@vitest/coverage-v8':
-        specifier: ^3.0.8
-        version: 3.0.8(@vitest/browser@3.0.8)(vitest@3.0.8)
+        specifier: ^3.0.9
+        version: 3.0.9(@vitest/browser@3.0.8)(vitest@3.0.8)
       babel-loader:
         specifier: ^9.2.1
         version: 9.2.1(@babel/core@7.26.10)(webpack@5.98.0)
@@ -4077,6 +4077,7 @@ packages:
   '@mui/styles@6.4.8':
     resolution: {integrity: sha512-1q5ZAidCBqnEaGNv/GgJfi8LeCDdEuZNJ/cQRJW1GEVKY1rSUNqceSIWW12aUcDswm5nsGlq3fdc89vypAEIcw==}
     engines: {node: '>=14.0.0'}
+    deprecated: Deprecated, check the migration instruction in https://mui.com/material-ui/migration/migrating-from-jss/
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -5719,11 +5720,11 @@ packages:
       webdriverio:
         optional: true
 
-  '@vitest/coverage-v8@3.0.8':
-    resolution: {integrity: sha512-y7SAKsQirsEJ2F8bulBck4DoluhI2EEgTimHd6EEUgJBGKy9tC25cpywh1MH4FvDGoG2Unt7+asVd1kj4qOSAw==}
+  '@vitest/coverage-v8@3.0.9':
+    resolution: {integrity: sha512-15OACZcBtQ34keIEn19JYTVuMFTlFrClclwWjHo/IRPg/8ELpkgNTl0o7WLP9WO9XGH6+tip9CPYtEOrIDJvBA==}
     peerDependencies:
-      '@vitest/browser': 3.0.8
-      vitest: 3.0.8
+      '@vitest/browser': 3.0.9
+      vitest: 3.0.9
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -17391,7 +17392,7 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/coverage-v8@3.0.8(@vitest/browser@3.0.8)(vitest@3.0.8)':
+  '@vitest/coverage-v8@3.0.9(@vitest/browser@3.0.8)(vitest@3.0.8)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 1.0.2
