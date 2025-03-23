@@ -6,7 +6,7 @@ import { parseDocFolder, getAnchor } from './reportBrokenLinksLib';
 /**
  * The remaining pat to the code is specific to this repository
  */
-const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/'];
+const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/', '/system/styles/'];
 
 const docsSpaceRoot = path.join(path.dirname(new URL(import.meta.url).pathname), '../');
 
@@ -45,10 +45,10 @@ Object.keys(usedLinks)
   .sort()
   .forEach((linkKey) => {
     //
-    // <!-- #default-branch-switch -->
+    // <!-- #host-reference -->
     //
-    write(`- https://mui.com${linkKey}`);
-    console.log(`https://mui.com${linkKey}`);
+    write(`- https://next.mui.com${linkKey}`);
+    console.log(`https://next.mui.com${linkKey}`);
 
     console.log(`used in`);
     usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));

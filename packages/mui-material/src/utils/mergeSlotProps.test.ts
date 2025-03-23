@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
+import { SxProps } from '@mui/material/styles';
 
 import mergeSlotProps from './mergeSlotProps';
 
@@ -41,6 +43,31 @@ describe('utils/index.js', () => {
         ),
       ).to.deep.equal({
         style: { backgroundColor: 'red' },
+      });
+    });
+
+    it('merge sx', () => {
+      expect(
+        mergeSlotProps<{ sx: SxProps }>(
+          { sx: { color: 'red' } },
+          { sx: { backgroundColor: 'blue' } },
+        ),
+      ).to.deep.equal({
+        sx: [{ backgroundColor: 'blue' }, { color: 'red' }],
+      });
+    });
+
+    it('merge sx array', () => {
+      expect(
+        mergeSlotProps<{ sx: SxProps }>(
+          { sx: [{ color: 'red', '&.Mui-disabled': { opacity: 0 } }] },
+          { sx: [{ backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } }] },
+        ),
+      ).to.deep.equal({
+        sx: [
+          { backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } },
+          { color: 'red', '&.Mui-disabled': { opacity: 0 } },
+        ],
       });
     });
 
@@ -130,6 +157,35 @@ describe('utils/index.js', () => {
       });
     });
 
+    it('merge sx for callback', () => {
+      expect(
+        mergeSlotProps(
+          () => ({
+            sx: { color: 'red' },
+          }),
+          () => ({
+            sx: { backgroundColor: 'blue' },
+          }),
+        )(),
+      ).to.deep.equal({
+        sx: [{ backgroundColor: 'blue' }, { color: 'red' }],
+      });
+    });
+
+    it('merge sx array for callback', () => {
+      expect(
+        mergeSlotProps(
+          () => ({ sx: [{ color: 'red', '&.Mui-disabled': { opacity: 0 } }] }),
+          () => ({ sx: [{ backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } }] }),
+        )(),
+      ).to.deep.equal({
+        sx: [
+          { backgroundColor: 'blue', '&.Mui-disabled': { opacity: 0.5 } },
+          { color: 'red', '&.Mui-disabled': { opacity: 0 } },
+        ],
+      });
+    });
+
     it('external callback should be called with default slot props', () => {
       expect(
         mergeSlotProps<(ownerState: OwnerState) => OwnerState>(
@@ -146,6 +202,47 @@ describe('utils/index.js', () => {
         className: 'base default external',
         'aria-label': 'bar',
       });
+    });
+
+    it('automatically merge function based on the default slot props', () => {
+      const slotPropsOnClick = spy();
+      const defaultPropsOnClick = spy();
+
+      const defaultPropsOnChange = spy();
+
+      const slotPropsFoo = spy();
+      const defaultPropsFoo = spy();
+
+      const mergedSlotProps = mergeSlotProps<{
+        onClick: (arg1: string, arg2: string) => string;
+        onChange?: (arg1: string, arg2: string) => string;
+        foo: (arg1: string, arg2: string) => string;
+      }>(
+        {
+          onClick: slotPropsOnClick,
+          foo: slotPropsFoo,
+        },
+        {
+          onClick: defaultPropsOnClick,
+          onChange: defaultPropsOnChange,
+          foo: defaultPropsFoo,
+        },
+      );
+
+      mergedSlotProps.onClick('arg1', 'arg2');
+      expect(defaultPropsOnClick.callCount).to.equal(1);
+      expect(defaultPropsOnClick.args[0]).to.deep.equal(['arg1', 'arg2']);
+      expect(slotPropsOnClick.callCount).to.equal(1);
+      expect(slotPropsOnClick.args[0]).to.deep.equal(['arg1', 'arg2']);
+
+      mergedSlotProps.onChange?.('arg1', 'arg2');
+      expect(defaultPropsOnChange.callCount).to.equal(1);
+      expect(defaultPropsOnChange.args[0]).to.deep.equal(['arg1', 'arg2']);
+
+      mergedSlotProps.foo('arg1', 'arg2');
+      expect(defaultPropsFoo.callCount).to.equal(0);
+      expect(slotPropsFoo.callCount).to.equal(1);
+      expect(slotPropsFoo.args[0]).to.deep.equal(['arg1', 'arg2']);
     });
   });
 });

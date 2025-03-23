@@ -5,7 +5,7 @@ import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';
 import { BackdropClasses } from './backdropClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface BackdropSlots {
   /**
@@ -18,9 +18,7 @@ export interface BackdropSlots {
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
-  transition: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<unknown, any> }
-  >;
+  transition: React.ElementType;
 }
 export interface BackdropComponentsPropsOverrides {}
 
@@ -29,14 +27,18 @@ export interface BackdropTransitionSlotPropsOverrides {}
 export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
   BackdropSlots,
   {
-    root: SlotProps<
-      React.ElementType<HTMLDivElement>,
-      BackdropComponentsPropsOverrides,
-      BackdropOwnerState
-    >;
-    transition: SlotProps<
-      React.JSXElementConstructor<TransitionProps>,
-      BackdropTransitionSlotPropsOverrides,
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the div element.
+     */
+    root: SlotProps<'div', BackdropComponentsPropsOverrides, BackdropOwnerState>;
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
+     */
+    transition: SlotComponentProps<
+      React.ElementType,
+      TransitionProps & BackdropTransitionSlotPropsOverrides,
       BackdropOwnerState
     >;
   }
@@ -122,12 +124,12 @@ export declare const BackdropRoot: React.FC<BackdropRootProps>;
  *
  * Demos:
  *
- * - [Backdrop](https://mui.com/material-ui/react-backdrop/)
+ * - [Backdrop](https://next.mui.com/material-ui/react-backdrop/)
  *
  * API:
  *
- * - [Backdrop API](https://mui.com/material-ui/api/backdrop/)
- * - inherits [Fade API](https://mui.com/material-ui/api/fade/)
+ * - [Backdrop API](https://next.mui.com/material-ui/api/backdrop/)
+ * - inherits [Fade API](https://next.mui.com/material-ui/api/fade/)
  */
 declare const Backdrop: OverridableComponent<BackdropTypeMap>;
 

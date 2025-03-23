@@ -25,11 +25,9 @@
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
       "@mui/styled-engine-sc/*": ["./packages/mui-styled-engine-sc/src/*"],
-      "@mui/styles": ["./packages/mui-styles/src"],
-      "@mui/styles/*": ["./packages/mui-styles/src/*"],
       "@mui/system": ["./packages/mui-system/src"],
       "@mui/system/*": ["./packages/mui-system/src/*"],
-      "@mui/types": ["./packages/mui-types"],
+      "@mui/types": ["./packages/mui-types/src"],
       "@mui/private-theming": ["./packages/mui-private-theming/src"],
       "@mui/private-theming/*": ["./packages/mui-private-theming/src/*"],
       "@mui/base": ["./packages/mui-base/src"],
@@ -42,8 +40,8 @@
       "@mui/material-nextjs/*": ["./packages/mui-material-nextjs/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
-      "@mui/icons-material": ["./packages/mui-icons-material/lib/esm/index.js"],
-      "@mui/icons-material/*": ["./packages/mui-icons-material/src/icon.d.ts"],
+      "@mui/icons-material": ["./packages/mui-icons-material/lib/esm"],
+      "@mui/icons-material/*": ["./packages/mui-icons-material/lib/esm/icon"],
       "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"

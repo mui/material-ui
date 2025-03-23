@@ -187,9 +187,9 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ...other
   } = props;
 
-  const id = useId(idProp);
+  const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+    <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
   );
 
   const ownerState = {
@@ -207,7 +207,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   return (
     <IconButtonRoot
-      id={id}
+      id={loading ? loadingId : idProp}
       className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}

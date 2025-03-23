@@ -227,7 +227,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     fullScreen = false,
     fullWidth = false,
     maxWidth = 'sm',
-    onBackdropClick,
     onClick,
     onClose,
     open,
@@ -270,10 +269,6 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     }
 
     backdropClick.current = null;
-
-    if (onBackdropClick) {
-      onBackdropClick(event);
-    }
 
     if (onClose) {
       onClose(event, 'backdropClick');
@@ -461,11 +456,6 @@ Dialog.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
     PropTypes.string,
   ]),
-  /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
   /**
    * @ignore
    */

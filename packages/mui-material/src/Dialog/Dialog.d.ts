@@ -6,7 +6,7 @@ import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
 import { TransitionProps } from '../transitions/transition';
 import { DialogClasses } from './dialogClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface DialogSlots {
   /**
@@ -66,9 +66,9 @@ export type DialogSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the transition slot.
      * By default, the avaible props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
      */
-    transition: SlotProps<
-      React.ElementType<TransitionProps>,
-      DialogTransitionSlotPropsOverrides,
+    transition: SlotComponentProps<
+      React.ElementType,
+      TransitionProps & DialogTransitionSlotPropsOverrides,
       DialogOwnerState
     >;
     /**
@@ -133,11 +133,6 @@ export interface DialogProps
    */
   maxWidth?: Breakpoint | false;
   /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick?: ModalProps['onBackdropClick'];
-  /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
@@ -199,12 +194,12 @@ export interface DialogProps
  *
  * Demos:
  *
- * - [Dialog](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://next.mui.com/material-ui/react-dialog/)
  *
  * API:
  *
- * - [Dialog API](https://mui.com/material-ui/api/dialog/)
- * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ * - [Dialog API](https://next.mui.com/material-ui/api/dialog/)
+ * - inherits [Modal API](https://next.mui.com/material-ui/api/modal/)
  */
 export default function Dialog(props: DialogProps): React.JSX.Element;
 

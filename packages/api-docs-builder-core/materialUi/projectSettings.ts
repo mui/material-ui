@@ -29,7 +29,6 @@ export const projectSettings: ProjectSettings = {
         'src/index.d.ts',
         'src/PigmentStack/PigmentStack.tsx',
         'src/PigmentContainer/PigmentContainer.tsx',
-        'src/PigmentHidden/PigmentHidden.tsx',
         'src/PigmentGrid/PigmentGrid.tsx',
       ],
     },
@@ -52,6 +51,6 @@ export const projectSettings: ProjectSettings = {
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName,
   isGlobalClassName: isGlobalState,
-  // #default-branch-switch
-  baseApiUrl: 'https://mui.com',
+  // #host-reference
+  baseApiUrl: 'https://next.mui.com',
 };

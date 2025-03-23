@@ -7,7 +7,7 @@ import {
   PageHeader,
   PageHeaderToolbar,
 } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -15,9 +15,10 @@ import PrintIcon from '@mui/icons-material/Print';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const NAVIGATION: Navigation = [
+  { segment: 'inbox', title: 'Inbox' },
   {
-    segment: 'orders',
-    title: 'Orders',
+    segment: 'inbox/all',
+    title: 'All',
     icon: <DashboardIcon />,
   },
 ];
@@ -74,7 +75,7 @@ function CustomPageHeader() {
 
 export default function PageContainerBasic(props: any) {
   const { window } = props;
-  const router = useDemoRouter('/orders');
+  const router = useDemoRouter('/inbox/all');
   const theme = useTheme();
   // Remove this const when copying and pasting into your project.
   const demoWindow = window ? window() : undefined;
