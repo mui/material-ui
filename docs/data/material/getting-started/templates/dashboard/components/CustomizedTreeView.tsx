@@ -9,17 +9,17 @@ import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import { RichTreeView } from '@mui/x-tree-view/RichTreeView';
 import {
-  unstable_useTreeItem2 as useTreeItem2,
-  UseTreeItem2Parameters,
-} from '@mui/x-tree-view/useTreeItem2';
+  useTreeItem as useTreeItem2,
+  UseTreeItemParameters,
+} from '@mui/x-tree-view/useTreeItem';
 import {
-  TreeItem2Content,
-  TreeItem2IconContainer,
-  TreeItem2Label,
-  TreeItem2Root,
-} from '@mui/x-tree-view/TreeItem2';
-import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
-import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
+  TreeItemContent,
+  TreeItemIconContainer,
+  TreeItemLabel,
+  TreeItemRoot,
+} from '@mui/x-tree-view/TreeItem';
+import { TreeItemIcon } from '@mui/x-tree-view/TreeItemIcon';
+import { TreeItemProvider } from '@mui/x-tree-view/TreeItemProvider';
 import { TreeViewBaseItem } from '@mui/x-tree-view/models';
 import { useTheme } from '@mui/material/styles';
 
@@ -111,7 +111,7 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
 
   const iconColor = color ? colors[color] : null;
   return (
-    <TreeItem2Label {...other} sx={{ display: 'flex', alignItems: 'center' }}>
+    <TreeItemLabel {...other} sx={{ display: 'flex', alignItems: 'center' }}>
       {iconColor && <DotIcon color={iconColor} />}
       <Typography
         className="labelText"
@@ -120,12 +120,12 @@ function CustomLabel({ color, expandable, children, ...other }: CustomLabelProps
       >
         {children}
       </Typography>
-    </TreeItem2Label>
+    </TreeItemLabel>
   );
 }
 
 interface CustomTreeItemProps
-  extends Omit<UseTreeItem2Parameters, 'rootRef'>,
+  extends Omit<UseTreeItemParameters, 'rootRef'>,
     Omit<React.HTMLAttributes<HTMLLIElement>, 'onFocus'> {}
 
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
@@ -147,9 +147,9 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
   const item = publicAPI.getItem(itemId);
   const color = item?.color;
   return (
-    <TreeItem2Provider itemId={itemId}>
-      <TreeItem2Root {...getRootProps(other)}>
-        <TreeItem2Content
+    <TreeItemProvider itemId={itemId}>
+      <TreeItemRoot {...getRootProps(other)}>
+        <TreeItemContent
           {...getContentProps({
             className: clsx('content', {
               expanded: status.expanded,
@@ -160,20 +160,20 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
           })}
         >
           {status.expandable && (
-            <TreeItem2IconContainer {...getIconContainerProps()}>
-              <TreeItem2Icon status={status} />
-            </TreeItem2IconContainer>
+            <TreeItemIconContainer {...getIconContainerProps()}>
+              <TreeItemIcon status={status} />
+            </TreeItemIconContainer>
           )}
 
           <CustomLabel {...getLabelProps({ color })} />
-        </TreeItem2Content>
+        </TreeItemContent>
         {children && (
           <TransitionComponent
             {...getGroupTransitionProps({ className: 'groupTransition' })}
           />
         )}
-      </TreeItem2Root>
-    </TreeItem2Provider>
+      </TreeItemRoot>
+    </TreeItemProvider>
   );
 });
 
