@@ -40,3 +40,7 @@ So, it renders the "outlined" background variant.
 ## Multiple Tabs demo
 
 {{"demo": "DemoMultiTabs.js", "bg": "inline" }}
+
+## Iframe
+
+{{"demo": "DemoIframe.js", "bg": "inline", "defaultCodeOpen": false, "iframe": true }}
