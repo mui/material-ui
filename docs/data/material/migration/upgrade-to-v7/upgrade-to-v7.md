@@ -6,20 +6,20 @@
 
 ### Improved ESM support
 
-Our package layout has been updated, we now unambiguously support both valid ESM and commonjs through the `exports` field in `package.json`.
-You can read more about this in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
+The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
+You can read more about package exports in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
 
-This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load our packages from ESM modules under Node.js.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
 
 ### Quality-of-life improvements
 
 Material UI v7 features other quality-of-life improvements, including:
 
-- Standardization of the slot pattern accross all components
-- CSS layers support via the `enableCssLayer` prop in `StyledEngineProvider` for client-side apps and `AppRouterCacheProvider` Next.js App Router apps
+- Standardization of the slot pattern across all components
+- CSS layers support via the `enableCssLayer` prop in `StyledEngineProvider` for client-side apps, and `AppRouterCacheProvider` for Next.js App Router apps
 - Removed deprecated APIs to reduce the API surface and make the docs easier to navigate
 
-If you're using any of these packages, you should also change their version to `"7.0.0"`:
+If you're using any of these packages, you should also update their versions to `"7.0.0"`:
 
 - `@mui/icons-material`
 - `@mui/system`
