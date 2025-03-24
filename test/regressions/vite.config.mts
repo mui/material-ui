@@ -8,11 +8,9 @@ const WORKSPACE_ROOT = path.resolve(currentDirectory, '../../');
 
 // https://vite.dev/config/
 export default defineConfig({
-  esbuild: {
-    minifyIdentifiers: false,
-  },
   plugins: [
     {
+      // Unfortunatelly necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {
