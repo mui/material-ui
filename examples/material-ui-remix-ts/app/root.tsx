@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Links,
   Meta,
@@ -7,70 +7,61 @@ import {
   ScrollRestoration,
   useRouteError,
   isRouteErrorResponse,
-} from "@remix-run/react";
-import { withEmotionCache } from "@emotion/react";
-import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
-import theme from "./src/theme";
-import ClientStyleContext from "./src/ClientStyleContext";
-import Layout from "./src/Layout";
+} from '@remix-run/react';
+import { withEmotionCache } from '@emotion/react';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material';
+import theme from './src/theme';
+import ClientStyleContext from './src/ClientStyleContext';
+import Layout from './src/Layout';
 
 interface DocumentProps {
   children: React.ReactNode;
   title?: string;
 }
 
-const Document = withEmotionCache(
-  ({ children, title }: DocumentProps, emotionCache) => {
-    const clientStyleData = React.useContext(ClientStyleContext);
+const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCache) => {
+  const clientStyleData = React.useContext(ClientStyleContext);
 
-    // Only executed on client
-    useEnhancedEffect(() => {
-      // re-link sheet container
-      emotionCache.sheet.container = document.head;
-      // re-inject tags
-      const tags = emotionCache.sheet.tags;
-      emotionCache.sheet.flush();
-      tags.forEach((tag) => {
-        (emotionCache.sheet as any)._insertTag(tag);
-      });
-      // reset cache to reapply global styles
-      clientStyleData.reset();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  // Only executed on client
+  useEnhancedEffect(() => {
+    // re-link sheet container
+    emotionCache.sheet.container = document.head;
+    // re-inject tags
+    const tags = emotionCache.sheet.tags;
+    emotionCache.sheet.flush();
+    tags.forEach((tag) => {
+      (emotionCache.sheet as any)._insertTag(tag);
+    });
+    // reset cache to reapply global styles
+    clientStyleData.reset();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    return (
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width,initial-scale=1" />
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          {title ? <title>{title}</title> : null}
-          <Meta />
-          <Links />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin=""
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-          />
-          <meta
-            name="emotion-insertion-point"
-            content="emotion-insertion-point"
-          />
-        </head>
-        <body>
-          {children}
-          <ScrollRestoration />
-          <Scripts />
-        </body>
-      </html>
-    );
-  }
-);
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content={theme.palette.primary.main} />
+        {title ? <title>{title}</title> : null}
+        <Meta />
+        <Links />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+        />
+        <meta name="emotion-insertion-point" content="emotion-insertion-point" />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+});
 
 // https://remix.run/docs/en/main/route/component
 // https://remix.run/docs/en/main/file-conventions/routes
@@ -92,17 +83,10 @@ export function ErrorBoundary() {
     let message;
     switch (error.status) {
       case 401:
-        message = (
-          <p>
-            Oops! Looks like you tried to visit a page that you do not have
-            access to.
-          </p>
-        );
+        message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>;
         break;
       case 404:
-        message = (
-          <p>Oops! Looks like you tried to visit a page that does not exist.</p>
-        );
+        message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>;
         break;
 
       default:
@@ -130,10 +114,7 @@ export function ErrorBoundary() {
             <h1>There was an error</h1>
             <p>{error.message}</p>
             <hr />
-            <p>
-              Hey, developer, you should replace this with what you want your
-              users to see.
-            </p>
+            <p>Hey, developer, you should replace this with what you want your users to see.</p>
           </div>
         </Layout>
       </Document>
