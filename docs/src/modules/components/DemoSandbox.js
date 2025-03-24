@@ -51,7 +51,7 @@ function FramedDemo(props) {
     ? {
         documentNode: document,
         colorSchemeNode: document.documentElement,
-        theme: iframeDefaultJoyTheme,
+        theme: { [JOY_THEME_ID]: iframeDefaultJoyTheme },
       }
     : {};
 
