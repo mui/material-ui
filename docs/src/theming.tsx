@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from 'docs/src/modules/components/ThemeContext';
 import BrandingCssVarsProvider from './BrandingCssVarsProvider';
 
@@ -28,6 +28,8 @@ export function DemoInstanceThemeProvider({
   runtimeTheme,
 }: React.PropsWithChildren<{ runtimeTheme: any }>) {
   const { dense, direction } = React.useContext(ThemeOptionsContext);
+  const upperTheme = useTheme();
+  const upperMode = upperTheme?.palette?.mode;
 
   const theme = React.useMemo(() => {
     const resultTheme = createTheme(
@@ -43,6 +45,9 @@ export function DemoInstanceThemeProvider({
       },
       dense ? highDensity : {},
     );
+    if (upperMode) {
+      Object.assign(resultTheme, resultTheme.colorSchemes[upperMode]);
+    }
     if (runtimeTheme && Object.prototype.toString.call(runtimeTheme) === '[object Object]') {
       try {
         return deepmerge(resultTheme, runtimeTheme);
@@ -51,7 +56,7 @@ export function DemoInstanceThemeProvider({
       }
     }
     return resultTheme;
-  }, [runtimeTheme, dense, direction]);
+  }, [runtimeTheme, dense, direction, upperMode]);
 
   return (
     /* - use a function to ensure that the upper theme (branding theme) is not spread to the demo theme */
