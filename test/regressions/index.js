@@ -155,10 +155,10 @@ const importDemos = import.meta.glob(
     '!docs/data/material/customization/typography/ResponsiveFontSizesChart.*',
     '!docs/data/material/getting-started/supported-components/MaterialUIComponents.*', // No public components
     '!docs/data/material/getting-started/templates/marketing-page/MarketingPage.*',
-    '!docs/data/joy/components-circular-progress/CircularProgressCountUp.*', // Flaky due to animation
-    '!docs/data/joy/components-divider/DividerChildPosition.*', // Needs interaction
-    '!docs/data/joy/components-linear-progress/LinearProgressCountUp.*', // Flaky due to animation
-    '!docs/data/joy/customization-theme-typography/TypographyThemeViewer.*', // No need for theme tokens
+    '!docs/data/joy/components/circular-progress/CircularProgressCountUp.*', // Flaky due to animation
+    '!docs/data/joy/components/divider/DividerChildPosition.*', // Needs interaction
+    '!docs/data/joy/components/linear-progress/LinearProgressCountUp.*', // Flaky due to animation
+    '!docs/data/joy/customization/theme-typography/TypographyThemeViewer.*', // No need for theme tokens
     '!docs/data/joy/getting-started/templates/TemplateCollection.*', // No public components
     '!docs/data/material/guides/**',
     '!docs/data/premium-themes/**',
@@ -166,7 +166,6 @@ const importDemos = import.meta.glob(
     '!docs/data/joy/**/*Usage.*',
     '!**/SearchIcons.*',
     '!**/ColorDemo.*',
-    '!**/RtlDemo.*',
   ],
   {
     import: 'default',
