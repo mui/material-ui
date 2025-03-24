@@ -162,8 +162,8 @@ const importDemos = import.meta.glob(
     '!docs/data/joy/getting-started-templates/TemplateCollection.*', // No public components
     '!docs/data/material/guides/**',
     '!docs/data/premium-themes/**',
-    '!docs/data/joy/**/Variables',
-    '!docs/data/joy/**/Usage',
+    '!docs/data/joy/**/*Variables.*',
+    '!docs/data/joy/**/*Usage.*',
     '!**/SearchIcons.*',
     '!**/ColorDemo.*',
     '!**/RtlDemo.*',
