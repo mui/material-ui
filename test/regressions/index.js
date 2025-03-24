@@ -142,27 +142,25 @@ const importDemos = import.meta.glob(
     '!docs/data/material/components/tooltips', // Needs interaction
     '!docs/data/material/components/transitions', // Needs interaction
     '!docs/data/material/components/use-media-query', // Need to dynamically resize to test
-    '!docs/data/customization-breakpoints', // Need to dynamically resize to test
-    '!docs/data/customization-color', // Escape viewport
-    '!docs/data/customization-container-queries/ResizableDemo.*', // No public components
-    '!docs/data/customization-default-theme', // Redux isolation
-    '!docs/data/customization-density/DensityTool.*', // Redux isolation
-    '!docs/data/customization-right-to-left/RtlDemo.*',
-    '!docs/data/customization-transitions/TransitionHover.*', // Need interaction
-    '!docs/data/customization-typography/ResponsiveFontSizesChart.*',
-    '!docs/data/getting-started-supported-components/MaterialUIComponents.*', // No public components
-    '!docs/data/getting-started-templates-marketing-page/MarketingPage.*',
-    '!docs/data/joy-components-circular-progress/CircularProgressCountUp.*', // Flaky due to animation
-    '!docs/data/joy-components-divider/DividerChildPosition.*', // Needs interaction
-    '!docs/data/joy-components-linear-progress/LinearProgressCountUp.*', // Flaky due to animation
-    '!docs/data/joy-customization-theme-typography/TypographyThemeViewer.*', // No need for theme tokens
-    '!docs/data/joy-getting-started-templates/TemplateCollection.*', // No public components
-    '!docs/data/styles-advanced', // Redundant
-    '!docs/data/styles-basics/StressTest.*', // Need interaction
-    '!docs/guides/**',
-    '!docs/premium-themes/**',
-    '!docs/joy/**/Variables',
-    '!docs/joy/**/Usage',
+    '!docs/data/material/customization/breakpoints', // Need to dynamically resize to test
+    '!docs/data/material/customization/color', // Escape viewport
+    '!docs/data/material/customization/container-queries/ResizableDemo.*', // No public components
+    '!docs/data/material/customization/default-theme', // Redux isolation
+    '!docs/data/material/customization/density/DensityTool.*', // Redux isolation
+    '!docs/data/material/customization/right-to-left/RtlDemo.*',
+    '!docs/data/material/customization/transitions/TransitionHover.*', // Need interaction
+    '!docs/data/material/customization/typography/ResponsiveFontSizesChart.*',
+    '!docs/data/material/getting-started/supported-components/MaterialUIComponents.*', // No public components
+    '!docs/data/material/getting-started/templates/marketing-page/MarketingPage.*',
+    '!docs/data/joy/components-circular-progress/CircularProgressCountUp.*', // Flaky due to animation
+    '!docs/data/joy/components-divider/DividerChildPosition.*', // Needs interaction
+    '!docs/data/joy/components-linear-progress/LinearProgressCountUp.*', // Flaky due to animation
+    '!docs/data/joy/customization-theme-typography/TypographyThemeViewer.*', // No need for theme tokens
+    '!docs/data/joy/getting-started-templates/TemplateCollection.*', // No public components
+    '!docs/data/material/guides/**',
+    '!docs/data/premium-themes/**',
+    '!docs/data/joy/**/Variables',
+    '!docs/data/joy/**/Usage',
     '!**/SearchIcons.*',
     '!**/ColorDemo.*',
     '!**/RtlDemo.*',
