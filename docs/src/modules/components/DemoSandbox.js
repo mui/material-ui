@@ -6,7 +6,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { extendTheme } from '@mui/joy/styles';
+import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
 import { createTheme, useTheme, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
@@ -16,6 +16,17 @@ import { DemoInstanceThemeProvider } from 'docs/src/theming';
 import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 let globalInjectThemeCache;
+
+function JoyIframeObserver({ document }) {
+  const { mode, systemMode } = useJoyColorScheme();
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-joy-color-scheme', systemMode || mode);
+  }, [document, mode, systemMode]);
+  return null;
+}
+JoyIframeObserver.propTypes = {
+  document: PropTypes.object.isRequired,
+};
 
 function FramedDemo(props) {
   const { children, document, isJoy } = props;
@@ -29,7 +40,7 @@ function FramedDemo(props) {
   React.useEffect(() => {
     document.documentElement.style.colorScheme = themeOptions.paletteMode;
     document.documentElement.setAttribute('data-mui-color-scheme', themeOptions.paletteMode);
-  }, [document, themeOptions.paletteMode]);
+  }, [document, themeOptions.paletteMode, isJoy]);
 
   const cache = React.useMemo(
     () =>
@@ -47,9 +58,7 @@ function FramedDemo(props) {
   // This theme only used for generating CSS variables, NOT with the React context (ThemeProvider).
   const iframeTheme = React.useMemo(() => {
     return isJoy
-      ? extendTheme({
-          colorSchemeSelector: 'data-mui-color-scheme',
-        })
+      ? extendTheme()
       : createTheme({
           colorSchemes: { light: true, dark: true },
           cssVariables: {
@@ -68,6 +77,7 @@ function FramedDemo(props) {
         {React.cloneElement(children, {
           window: getWindow,
         })}
+        {isJoy && <JoyIframeObserver document={document} />}
       </CacheProvider>
     </StyleSheetManager>
   );

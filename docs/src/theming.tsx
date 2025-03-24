@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
-import { THEME_ID as JOY_THEME_ID } from '@mui/joy/styles';
+import {
+  CssVarsProvider as JoyCssVarsProvider,
+  useColorScheme as useJoyColorScheme,
+  extendTheme,
+  THEME_ID as JOY_THEME_ID,
+} from '@mui/joy/styles';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from 'docs/src/modules/components/ThemeContext';
 import BrandingCssVarsProvider from './BrandingCssVarsProvider';
@@ -12,14 +17,42 @@ const defaultTheme = createTheme({
   },
 });
 
-export function DemoPageThemeProvider({ children }: React.PropsWithChildren) {
+function JoyModeObserver() {
   const themeOptions = React.useContext(ThemeOptionsContext);
+  const { setMode } = useJoyColorScheme();
+  React.useEffect(() => {
+    if (themeOptions.paletteMode) {
+      setMode(themeOptions.paletteMode);
+    }
+  }, [themeOptions.paletteMode, setMode]);
+  return null;
+}
+
+export function DemoPageThemeProvider({
+  children,
+  hasJoy,
+}: React.PropsWithChildren<{
+  /**
+   * Set to true if the children render Joy UI components.
+   * Otherwise, Joy UI components will throw errors because they try to get fields that does not exist in material theme.
+   */
+  hasJoy?: boolean;
+}>) {
+  const themeOptions = React.useContext(ThemeOptionsContext);
+  const joyTheme = React.useMemo(() => (hasJoy ? extendTheme() : undefined), [hasJoy]);
   return (
     <BrandingCssVarsProvider {...themeOptions}>
       {/* The ThemeProvider below generate default Material UI CSS variables and attach to html for all the demo on the page */}
       {/* This is more performant than generating variables in each demo. */}
       <ThemeProvider theme={defaultTheme} />
-      {children}
+      {hasJoy ? (
+        <JoyCssVarsProvider theme={{ [JOY_THEME_ID]: joyTheme! }}>
+          <JoyModeObserver />
+          {children}
+        </JoyCssVarsProvider>
+      ) : (
+        children
+      )}
     </BrandingCssVarsProvider>
   );
 }

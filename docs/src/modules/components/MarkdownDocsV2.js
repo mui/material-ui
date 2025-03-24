@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';
-import { useColorScheme as useMuiColorScheme } from '@mui/material/styles';
-import {
-  CssVarsProvider as JoyCssVarsProvider,
-  useColorScheme,
-  extendTheme,
-  THEME_ID as JOY_THEME_ID,
-} from '@mui/joy/styles';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiContent';
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
@@ -23,17 +16,6 @@ import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageT
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
-
-const defaultJoyTheme = extendTheme();
-
-function JoyModeObserver() {
-  const { mode } = useMuiColorScheme();
-  const { setMode } = useColorScheme();
-  React.useEffect(() => {
-    setMode(mode);
-  }, [mode, setMode]);
-  return null;
-}
 
 function getHookTranslatedHeader(t, header) {
   const translations = {
@@ -187,9 +169,6 @@ export default function MarkdownDocsV2(props) {
 
   const isBase = canonicalAs.startsWith('/base-ui/');
 
-  const isJoy = canonicalAs.startsWith('/joy-ui/');
-  const CssVarsProvider = isJoy ? JoyCssVarsProvider : React.Fragment;
-
   const commonElements = [];
 
   let i = 0;
@@ -264,43 +243,40 @@ export default function MarkdownDocsV2(props) {
             <Ad />
           </AdGuest>
         )}
-        <CssVarsProvider {...(isJoy && { theme: { [JOY_THEME_ID]: defaultJoyTheme } })}>
-          {isJoy && <JoyModeObserver />}
-          {isBase && (
-            <MuiBaseDeprecation
-              newComponentUrl={localizedDoc.headers.newUrl}
-              newComponentName={localizedDoc.headers.newName}
-            />
-          )}
-          {commonElements}
-          {activeTab === '' &&
-            localizedDoc.rendered
-              .slice(i)
-              .map((renderedMarkdownOrDemo, index) => (
-                <RichMarkdownElement
-                  key={`demos-section-${index}`}
-                  activeTab={activeTab}
-                  demoComponents={demoComponents}
-                  demos={demos}
-                  disableAd={disableAd}
-                  localizedDoc={localizedDoc}
-                  renderedMarkdownOrDemo={renderedMarkdownOrDemo}
-                  srcComponents={srcComponents}
-                />
-              ))}
-          {activeTab === 'components-api' && (
-            <ComponentsApiContent
-              descriptions={componentsApiDescriptions}
-              pageContents={componentsApiPageContents}
-            />
-          )}
-          {activeTab === 'hooks-api' && (
-            <HooksApiContent
-              descriptions={hooksApiDescriptions}
-              pagesContents={hooksApiPageContents}
-            />
-          )}
-        </CssVarsProvider>
+        {isBase && (
+          <MuiBaseDeprecation
+            newComponentUrl={localizedDoc.headers.newUrl}
+            newComponentName={localizedDoc.headers.newName}
+          />
+        )}
+        {commonElements}
+        {activeTab === '' &&
+          localizedDoc.rendered
+            .slice(i)
+            .map((renderedMarkdownOrDemo, index) => (
+              <RichMarkdownElement
+                key={`demos-section-${index}`}
+                activeTab={activeTab}
+                demoComponents={demoComponents}
+                demos={demos}
+                disableAd={disableAd}
+                localizedDoc={localizedDoc}
+                renderedMarkdownOrDemo={renderedMarkdownOrDemo}
+                srcComponents={srcComponents}
+              />
+            ))}
+        {activeTab === 'components-api' && (
+          <ComponentsApiContent
+            descriptions={componentsApiDescriptions}
+            pageContents={componentsApiPageContents}
+          />
+        )}
+        {activeTab === 'hooks-api' && (
+          <HooksApiContent
+            descriptions={hooksApiDescriptions}
+            pagesContents={hooksApiPageContents}
+          />
+        )}
       </div>
     </AppLayoutDocs>
   );
