@@ -47,6 +47,9 @@ Object.keys(importRegressionFixtures).forEach((path) => {
 const importDemos = import.meta.glob(
   [
     'docs/data/**/[A-Z]*.js',
+    'docs/data/base/**/[A-Z]*/css/index.js',
+    'docs/data/base/**/[A-Z]*/tailwind/index.js',
+    'docs/data/base/**/[A-Z]*/system/index.js',
     '!**/.eslintrc.js',
     '!**/pagesApi.js',
     '!docs/data/experiments/**',
