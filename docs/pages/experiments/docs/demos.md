@@ -41,6 +41,32 @@ So, it renders the "outlined" background variant.
 
 {{"demo": "DemoMultiTabs.js", "bg": "inline" }}
 
+## Mode toggle demo
+
+If the demo needs to demonstrate mode toggling, you need to set `isolated: true` to the demo and pass the props to the `ThemeProvider` in the demo.
+
+{{"demo": "DemoModeToggle.js", "isolated": true, "bg": "inline" }}
+
+```js
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  colorSchemes: { light: true, dark: true },
+  cssVariables: {
+    cssVarPrefix: 'demo', // to prevent clashing with other demos
+    colorSchemeSelector: 'class', // any value except `media`
+  },
+});
+
+export default function Demo(props) {
+  return (
+    <ThemeProvider {...props} theme={theme}>
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
 ## Iframe
 
 {{"demo": "DemoIframe.js", "bg": "inline", "defaultCodeOpen": false, "iframe": true }}

@@ -6,8 +6,14 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
-import { createTheme, useTheme, styled } from '@mui/material/styles';
+import { ThemeProvider as SystemThemeProvider } from '@mui/system';
+import { CssVarsProvider, extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
+import {
+  createTheme,
+  useTheme,
+  styled,
+  useColorScheme as useMuiColorScheme,
+} from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
@@ -127,7 +133,7 @@ function DemoIframe(props) {
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document} isJoy={isJoy}>
-              {children}
+              {React.cloneElement(children, { root: document?.documentElement })}
             </FramedDemo>,
             document.body,
           )
@@ -142,20 +148,65 @@ DemoIframe.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+function IsolatedDemo({ root, children }) {
+  return (
+    <SystemThemeProvider
+      theme={(upperTheme) => ({
+        direction: upperTheme.direction,
+      })}
+    >
+      {React.cloneElement(children, {
+        disableNestedContext: true,
+        storageManager: null,
+        colorSchemeNode: root,
+      })}
+    </SystemThemeProvider>
+  );
+}
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
-  const { children: childrenProp, iframe = false, name, onResetDemoClick, isJoy, ...other } = props;
+  const {
+    children: childrenProp,
+    iframe = false,
+    id,
+    name,
+    onResetDemoClick,
+    isJoy,
+    isolated,
+    ...other
+  } = props;
   const [injectTheme, setInjectTheme] = React.useState();
+  const { mode } = useMuiColorScheme();
+  const [root, setRoot] = React.useState();
   const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, isJoy, ...other } : {};
+
+  React.useEffect(() => {
+    setRoot(document.getElementById(id));
+  }, []);
 
   const t = useTranslate();
 
   // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
-  const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
+  const children = (
+    <Sandbox {...sandboxProps}>
+      {isolated ? (
+        <IsolatedDemo root={root}>
+          {React.cloneElement(childrenProp, {
+            disableNestedContext: true,
+            storageManager: null,
+            defaultMode: mode, // The default mode comes from `BrandingCssVarsProvider` at page level.
+          })}
+        </IsolatedDemo>
+      ) : (
+        childrenProp
+      )}
+    </Sandbox>
+  );
 
   useEnhancedEffect(() => {
     async function setupMaterialUITheme() {
@@ -181,8 +232,10 @@ function DemoSandbox(props) {
 
 DemoSandbox.propTypes = {
   children: PropTypes.node.isRequired,
+  id: PropTypes.string.isRequired,
   iframe: PropTypes.bool,
   isJoy: PropTypes.bool,
+  isolated: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
 };

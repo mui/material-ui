@@ -561,8 +561,10 @@ export default function Demo(props) {
         <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
+          id={demoId}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
+          isolated={demoOptions.isolated}
           isJoy={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}

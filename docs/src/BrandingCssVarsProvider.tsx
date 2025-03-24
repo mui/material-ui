@@ -152,6 +152,7 @@ export default function BrandingCssVarsProvider(props: {
   }, []);
   return (
     <ThemeProvider
+      noSsr
       theme={theme}
       disableTransitionOnChange
       // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
