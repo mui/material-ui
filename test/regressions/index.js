@@ -167,7 +167,6 @@ const importDemos = import.meta.glob(
     '!**/SearchIcons.*',
     '!**/ColorDemo.*',
     '!**/RtlDemo.*',
-    '!**/getting-started/**',
   ],
   {
     import: 'default',
