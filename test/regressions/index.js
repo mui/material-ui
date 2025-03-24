@@ -159,7 +159,7 @@ const importDemos = import.meta.glob(
     '!docs/data/joy/components-divider/DividerChildPosition.*', // Needs interaction
     '!docs/data/joy/components-linear-progress/LinearProgressCountUp.*', // Flaky due to animation
     '!docs/data/joy/customization-theme-typography/TypographyThemeViewer.*', // No need for theme tokens
-    '!docs/data/joy/getting-started-templates/TemplateCollection.*', // No public components
+    '!docs/data/joy/getting-started/templates/TemplateCollection.*', // No public components
     '!docs/data/material/guides/**',
     '!docs/data/premium-themes/**',
     '!docs/data/joy/**/*Variables.*',
