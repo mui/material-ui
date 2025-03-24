@@ -8,12 +8,7 @@ import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
 import { CssVarsProvider, extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
-import {
-  createTheme,
-  useTheme,
-  styled,
-  useColorScheme as useMuiColorScheme,
-} from '@mui/material/styles';
+import { createTheme, useTheme, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
@@ -180,7 +175,6 @@ function DemoSandbox(props) {
     ...other
   } = props;
   const [injectTheme, setInjectTheme] = React.useState();
-  const { mode } = useMuiColorScheme();
   const [root, setRoot] = React.useState();
   const Sandbox = iframe ? DemoIframe : React.Fragment;
   const sandboxProps = iframe ? { name, isJoy, ...other } : {};
@@ -199,7 +193,6 @@ function DemoSandbox(props) {
           {React.cloneElement(childrenProp, {
             disableNestedContext: true,
             storageManager: null,
-            defaultMode: mode, // The default mode comes from `BrandingCssVarsProvider` at page level.
           })}
         </IsolatedDemo>
       ) : (
