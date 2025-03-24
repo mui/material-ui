@@ -3,6 +3,8 @@ import { expect } from 'chai';
 import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import { THEME_ID as JOY_THEME_ID, extendTheme } from '@mui/joy/styles';
+import Button from '@mui/joy/Button';
 import { DemoInstanceThemeProvider } from './theming';
 
 function DarkMode() {
@@ -47,5 +49,18 @@ describe('docs demo theming', () => {
 
     expect(screen.getByRole('button')).to.have.text('dark');
     expect(screen.getByTestId('foo')).toHaveComputedStyle({ mixBlendMode: 'darken' });
+  });
+
+  it('able to render Joy components if upper theme of Joy UI is scoped', () => {
+    const materialTheme = createTheme({ cssVariables: true });
+    expect(() =>
+      render(
+        <ThemeProvider theme={{ ...materialTheme, [JOY_THEME_ID]: extendTheme() }}>
+          <DemoInstanceThemeProvider runtimeTheme={undefined}>
+            <Button>Joy</Button>
+          </DemoInstanceThemeProvider>
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 });

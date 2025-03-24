@@ -6,22 +6,19 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
-import { useTheme, styled } from '@mui/material/styles';
+import { extendTheme } from '@mui/joy/styles';
+import { createTheme, useTheme, styled } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { DemoInstanceThemeProvider } from 'docs/src/theming';
 import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
-const iframeDefaultJoyTheme = extendTheme({
-  cssVarPrefix: 'demo-iframe',
-});
-
 let globalInjectThemeCache;
 
 function FramedDemo(props) {
-  const { children, document, usesCssVarsTheme } = props;
+  const { children, document, isJoy } = props;
   const themeOptions = React.useContext(ThemeOptionsContext);
 
   const theme = useTheme();
@@ -31,6 +28,7 @@ function FramedDemo(props) {
 
   React.useEffect(() => {
     document.documentElement.style.colorScheme = themeOptions.paletteMode;
+    document.documentElement.setAttribute('data-mui-color-scheme', themeOptions.paletteMode);
   }, [document, themeOptions.paletteMode]);
 
   const cache = React.useMemo(
@@ -46,14 +44,19 @@ function FramedDemo(props) {
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
-  const Wrapper = usesCssVarsTheme ? CssVarsProvider : React.Fragment;
-  const wrapperProps = usesCssVarsTheme
-    ? {
-        documentNode: document,
-        colorSchemeNode: document.documentElement,
-        theme: { [JOY_THEME_ID]: iframeDefaultJoyTheme },
-      }
-    : {};
+  // This theme only used for generating CSS variables, NOT with the React context (ThemeProvider).
+  const iframeTheme = React.useMemo(() => {
+    return isJoy
+      ? extendTheme({
+          colorSchemeSelector: 'data-mui-color-scheme',
+        })
+      : createTheme({
+          colorSchemes: { light: true, dark: true },
+          cssVariables: {
+            colorSchemeSelector: 'data-mui-color-scheme',
+          },
+        });
+  }, [isJoy]);
 
   return (
     <StyleSheetManager
@@ -61,11 +64,10 @@ function FramedDemo(props) {
       stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
     >
       <CacheProvider value={cache}>
-        <Wrapper {...wrapperProps}>
-          {React.cloneElement(children, {
-            window: getWindow,
-          })}
-        </Wrapper>
+        <GlobalStyles styles={iframeTheme.generateStyleSheets?.() || []} />
+        {React.cloneElement(children, {
+          window: getWindow,
+        })}
       </CacheProvider>
     </StyleSheetManager>
   );
@@ -73,7 +75,7 @@ function FramedDemo(props) {
 FramedDemo.propTypes = {
   children: PropTypes.node,
   document: PropTypes.object.isRequired,
-  usesCssVarsTheme: PropTypes.bool,
+  isJoy: PropTypes.bool,
 };
 
 const Iframe = styled('iframe')(({ theme }) => ({
@@ -81,11 +83,10 @@ const Iframe = styled('iframe')(({ theme }) => ({
   flexGrow: 1,
   height: 400,
   border: 0,
-  boxShadow: (theme.vars || theme)?.shadows?.[1],
 }));
 
 function DemoIframe(props) {
-  const { children, name, usesCssVarsTheme, ...other } = props;
+  const { children, name, isJoy, ...other } = props;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -115,7 +116,7 @@ function DemoIframe(props) {
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
-            <FramedDemo document={document} usesCssVarsTheme={usesCssVarsTheme}>
+            <FramedDemo document={document} isJoy={isJoy}>
               {children}
             </FramedDemo>,
             document.body,
@@ -127,8 +128,8 @@ function DemoIframe(props) {
 
 DemoIframe.propTypes = {
   children: PropTypes.node.isRequired,
+  isJoy: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  usesCssVarsTheme: PropTypes.bool,
 };
 
 /**
@@ -136,17 +137,10 @@ DemoIframe.propTypes = {
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
-  const {
-    children: childrenProp,
-    iframe = false,
-    name,
-    onResetDemoClick,
-    usesCssVarsTheme,
-    ...other
-  } = props;
+  const { children: childrenProp, iframe = false, name, onResetDemoClick, isJoy, ...other } = props;
   const [injectTheme, setInjectTheme] = React.useState();
   const Sandbox = iframe ? DemoIframe : React.Fragment;
-  const sandboxProps = iframe ? { name, usesCssVarsTheme, ...other } : {};
+  const sandboxProps = iframe ? { name, isJoy, ...other } : {};
 
   const t = useTranslate();
 
@@ -170,11 +164,7 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {usesCssVarsTheme ? (
-        children
-      ) : (
-        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>{children}</DemoInstanceThemeProvider>
-      )}
+      <DemoInstanceThemeProvider runtimeTheme={injectTheme}>{children}</DemoInstanceThemeProvider>
     </DemoErrorBoundary>
   );
 }
@@ -182,9 +172,9 @@ function DemoSandbox(props) {
 DemoSandbox.propTypes = {
   children: PropTypes.node.isRequired,
   iframe: PropTypes.bool,
+  isJoy: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
-  usesCssVarsTheme: PropTypes.bool,
 };
 
 export default React.memo(DemoSandbox);

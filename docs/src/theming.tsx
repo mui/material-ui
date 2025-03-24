@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { deepmerge } from '@mui/utils';
+import { THEME_ID as JOY_THEME_ID } from '@mui/joy/styles';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { ThemeOptionsContext, highDensity } from 'docs/src/modules/components/ThemeContext';
 import BrandingCssVarsProvider from './BrandingCssVarsProvider';
@@ -61,6 +62,14 @@ export function DemoInstanceThemeProvider({
   return (
     /* - use a function to ensure that the upper theme (branding theme) is not spread to the demo theme */
     /* - a function will skip the CSS vars generation logic */
-    <ThemeProvider theme={() => theme}>{children}</ThemeProvider>
+    <ThemeProvider
+      theme={() =>
+        upperTheme && JOY_THEME_ID in upperTheme
+          ? { ...theme, [JOY_THEME_ID]: upperTheme?.[JOY_THEME_ID] }
+          : theme
+      }
+    >
+      {children}
+    </ThemeProvider>
   );
 }
