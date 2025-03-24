@@ -65,7 +65,7 @@ const importDemos = import.meta.glob(
     // Checkout Theme Customizations
     // Marketing Page Theme Customizations
     '!docs/data/base/getting-started/quickstart/BaseButtonTailwind.*', // CodeSandbox
-    '!docs/data/base/guides-working-with-tailwind-css/PlayerFinal.*', // No public components
+    '!docs/data/base/guides/working-with-tailwind-css/PlayerFinal.*', // No public components
     '!docs/data/material/components/alert/TransitionAlerts.*', // Needs interaction
     '!docs/data/material/components/app-bar/BackToTop.*', // Needs interaction
     '!docs/data/material/components/app-bar/ElevateAppBar.*', // Needs interaction
