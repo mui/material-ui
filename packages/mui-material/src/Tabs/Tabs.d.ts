@@ -285,11 +285,11 @@ export interface TabsTypeMap<
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/material-ui/react-tabs/)
+ * - [Tabs](https://v6.mui.com/material-ui/react-tabs/)
  *
  * API:
  *
- * - [Tabs API](https://mui.com/material-ui/api/tabs/)
+ * - [Tabs API](https://v6.mui.com/material-ui/api/tabs/)
  */
 declare const Tabs: OverridableComponent<TabsTypeMap>;
 

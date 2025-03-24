@@ -63,11 +63,11 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Stack](https://mui.com/material-ui/react-stack/)
+ * - [Stack](https://v6.mui.com/material-ui/react-stack/)
  *
  * API:
  *
- * - [PigmentStack API](https://mui.com/material-ui/api/pigment-stack/)
+ * - [PigmentStack API](https://v6.mui.com/material-ui/api/pigment-stack/)
  */
 const PigmentStack = React.forwardRef(function PigmentStack({ className, ...props }, ref) {
   const classes = useUtilityClasses();

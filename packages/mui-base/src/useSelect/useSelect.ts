@@ -56,11 +56,11 @@ function defaultFormValueProvider<OptionValue>(
  *
  * Demos:
  *
- * - [Select](https://mui.com/base-ui/react-select/#hooks)
+ * - [Select](https://v6.mui.com/base-ui/react-select/#hooks)
  *
  * API:
  *
- * - [useSelect API](https://mui.com/base-ui/react-select/hooks-api/#use-select)
+ * - [useSelect API](https://v6.mui.com/base-ui/react-select/hooks-api/#use-select)
  */
 function useSelect<OptionValue, Multiple extends boolean = false>(
   props: UseSelectParameters<OptionValue, Multiple>,

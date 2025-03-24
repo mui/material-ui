@@ -23,12 +23,12 @@ export interface InputProps extends StandardProps<InputBaseProps> {
  *
  * Demos:
  *
- * - [Text Field](https://mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://v6.mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [Input API](https://mui.com/material-ui/api/input/)
- * - inherits [InputBase API](https://mui.com/material-ui/api/input-base/)
+ * - [Input API](https://v6.mui.com/material-ui/api/input/)
+ * - inherits [InputBase API](https://v6.mui.com/material-ui/api/input-base/)
  */
 declare const Input: ((props: InputProps) => React.JSX.Element) & { muiName: string };
 

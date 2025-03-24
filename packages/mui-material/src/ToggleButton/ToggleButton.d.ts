@@ -91,12 +91,12 @@ export type ToggleButtonTypeMap<
  *
  * Demos:
  *
- * - [Toggle Button](https://mui.com/material-ui/react-toggle-button/)
+ * - [Toggle Button](https://v6.mui.com/material-ui/react-toggle-button/)
  *
  * API:
  *
- * - [ToggleButton API](https://mui.com/material-ui/api/toggle-button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [ToggleButton API](https://v6.mui.com/material-ui/api/toggle-button/)
+ * - inherits [ButtonBase API](https://v6.mui.com/material-ui/api/button-base/)
  */
 declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 

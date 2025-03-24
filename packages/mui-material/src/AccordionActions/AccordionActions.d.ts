@@ -27,10 +27,10 @@ export interface AccordionActionsProps extends StandardProps<React.HTMLAttribute
  *
  * Demos:
  *
- * - [Accordion](https://mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://v6.mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [AccordionActions API](https://mui.com/material-ui/api/accordion-actions/)
+ * - [AccordionActions API](https://v6.mui.com/material-ui/api/accordion-actions/)
  */
 export default function AccordionActions(props: AccordionActionsProps): React.JSX.Element;

@@ -51,11 +51,11 @@ export interface ListSubheaderTypeMap<
  *
  * Demos:
  *
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Lists](https://v6.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListSubheader API](https://mui.com/material-ui/api/list-subheader/)
+ * - [ListSubheader API](https://v6.mui.com/material-ui/api/list-subheader/)
  */
 declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 

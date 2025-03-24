@@ -164,11 +164,11 @@ export interface GridTypeMap<
  *
  * Demos:
  *
- * - [Grid](https://mui.com/material-ui/react-grid/)
+ * - [Grid](https://v6.mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [Grid API](https://mui.com/material-ui/api/grid/)
+ * - [Grid API](https://v6.mui.com/material-ui/api/grid/)
  *
  * @deprecated Use the [`Grid2`](https://mui.com/material-ui/react-grid2/) component instead.
  */

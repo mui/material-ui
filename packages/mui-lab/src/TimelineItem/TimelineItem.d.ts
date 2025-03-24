@@ -27,10 +27,10 @@ export interface TimelineItemProps extends StandardProps<React.HTMLAttributes<HT
  *
  * Demos:
  *
- * - [Timeline](https://mui.com/material-ui/react-timeline/)
+ * - [Timeline](https://v6.mui.com/material-ui/react-timeline/)
  *
  * API:
  *
- * - [TimelineItem API](https://mui.com/material-ui/api/timeline-item/)
+ * - [TimelineItem API](https://v6.mui.com/material-ui/api/timeline-item/)
  */
 export default function TimelineItem(props: TimelineItemProps): React.JSX.Element;

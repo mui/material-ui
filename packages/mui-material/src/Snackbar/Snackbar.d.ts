@@ -196,11 +196,11 @@ export interface SnackbarProps
  *
  * Demos:
  *
- * - [Snackbar](https://mui.com/material-ui/react-snackbar/)
+ * - [Snackbar](https://v6.mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
+ * - [Snackbar API](https://v6.mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): React.JSX.Element;
 

@@ -90,11 +90,11 @@ export interface ButtonGroupTypeMap<
  *
  * Demos:
  *
- * - [Button Group](https://mui.com/material-ui/react-button-group/)
+ * - [Button Group](https://v6.mui.com/material-ui/react-button-group/)
  *
  * API:
  *
- * - [ButtonGroup API](https://mui.com/material-ui/api/button-group/)
+ * - [ButtonGroup API](https://v6.mui.com/material-ui/api/button-group/)
  */
 declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 

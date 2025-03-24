@@ -30,11 +30,11 @@ export interface CardContentTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://v6.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardContent API](https://mui.com/material-ui/api/card-content/)
+ * - [CardContent API](https://v6.mui.com/material-ui/api/card-content/)
  */
 declare const CardContent: OverridableComponent<CardContentTypeMap>;
 

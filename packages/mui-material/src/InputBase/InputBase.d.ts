@@ -255,10 +255,10 @@ export interface InputBaseComponentProps
  *
  * Demos:
  *
- * - [Text Field](https://mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://v6.mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputBase API](https://mui.com/material-ui/api/input-base/)
+ * - [InputBase API](https://v6.mui.com/material-ui/api/input-base/)
  */
 export default function InputBase(props: InputBaseProps): React.JSX.Element;

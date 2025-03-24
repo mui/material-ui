@@ -50,11 +50,11 @@ export interface StackTypeMap<
  *
  * Demos:
  *
- * - [Stack](https://mui.com/material-ui/react-stack/)
+ * - [Stack](https://v6.mui.com/material-ui/react-stack/)
  *
  * API:
  *
- * - [Stack API](https://mui.com/material-ui/api/stack/)
+ * - [Stack API](https://v6.mui.com/material-ui/api/stack/)
  */
 declare const Stack: OverridableComponent<StackTypeMap>;
 

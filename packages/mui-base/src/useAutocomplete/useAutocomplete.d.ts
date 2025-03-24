@@ -347,11 +347,11 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
+ * - [Autocomplete](https://v6.mui.com/base-ui/react-autocomplete/#hook)
  *
  * API:
  *
- * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
+ * - [useAutocomplete API](https://v6.mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
  */
 export function useAutocomplete<
   Value,

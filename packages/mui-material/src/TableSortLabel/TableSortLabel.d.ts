@@ -97,12 +97,12 @@ export type TableSortLabelTypeMap<
  *
  * Demos:
  *
- * - [Table](https://mui.com/material-ui/react-table/)
+ * - [Table](https://v6.mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableSortLabel API](https://mui.com/material-ui/api/table-sort-label/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [TableSortLabel API](https://v6.mui.com/material-ui/api/table-sort-label/)
+ * - inherits [ButtonBase API](https://v6.mui.com/material-ui/api/button-base/)
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 

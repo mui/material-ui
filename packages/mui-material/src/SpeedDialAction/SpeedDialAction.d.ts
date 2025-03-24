@@ -131,12 +131,12 @@ export interface SpeedDialActionProps
  *
  * Demos:
  *
- * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://v6.mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDialAction API](https://mui.com/material-ui/api/speed-dial-action/)
- * - inherits [Tooltip API](https://mui.com/material-ui/api/tooltip/)
+ * - [SpeedDialAction API](https://v6.mui.com/material-ui/api/speed-dial-action/)
+ * - inherits [Tooltip API](https://v6.mui.com/material-ui/api/tooltip/)
  */
 export default function SpeedDialAction(props: SpeedDialActionProps): React.JSX.Element;
 
