@@ -6,23 +6,25 @@ This package hosts the incubator components that are not yet ready to move to `c
 
 Install the package in your project directory with:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/lab
+npm install @mui/lab@latest-v6
 ```
 
 The lab has peer dependencies on the Material Design components and on the Emotion library.
 If you are not already using them in your project, you can install with:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material@latest-v6 @emotion/react @emotion/styled
 ```
+
+If you wish to use the latest version, remove the `@latest-v6` suffix.
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
-Visit [https://mui.com/material-ui/about-the-lab/](https://mui.com/material-ui/about-the-lab/) to view the full documentation.
+Visit [https://v6.mui.com/material-ui/about-the-lab/](https://v6.mui.com/material-ui/about-the-lab/) to view the full documentation.

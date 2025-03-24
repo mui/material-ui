@@ -19,23 +19,25 @@ For a component to be ready to move to the core, the following criteria are cons
 
 To install and save in your `package.json` dependencies, run one of the following commands:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/lab @mui/material
+npm install @mui/lab@latest-v6 @mui/material@latest-v6
 ```
 
 ```bash pnpm
-pnpm add @mui/lab @mui/material
+pnpm add @mui/lab@latest-v6 @mui/material@latest-v6
 ```
 
 ```bash yarn
-yarn add @mui/lab @mui/material
+yarn add @mui/lab@latest-v6 @mui/material@latest-v6
 ```
 
 </codeblock>
+
+If you wish to use the latest version, remove the `@latest-v6` suffix.
 
 Note that the lab has a peer dependency on the Material UI components.
 

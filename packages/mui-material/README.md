@@ -11,11 +11,13 @@ Material UI is an open-source React component library that implements Google's 
 
 Install the package in your project directory with:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material@latest-v6 @emotion/react @emotion/styled
 ```
+
+If you wish to use the latest version, remove the `@latest-v6` suffix.
 
 ## Documentation
 

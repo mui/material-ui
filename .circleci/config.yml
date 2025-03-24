@@ -133,7 +133,7 @@ jobs:
             - run:
                 name: '`pnpm dedupe` was run?'
                 command: |
-                  # #default-branch-switch
+                  # #target-branch-reference
                   if [[ $(git diff --name-status v6.x | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
                   then
                       echo "No changes to dependencies detected. Skipping..."

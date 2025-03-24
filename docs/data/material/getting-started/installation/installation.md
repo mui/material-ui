@@ -6,23 +6,25 @@
 
 Run one of the following commands to add Material UI to your project:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material@latest-v6 @emotion/react @emotion/styled
 ```
 
 ```bash pnpm
-pnpm add @mui/material @emotion/react @emotion/styled
+pnpm add @mui/material@latest-v6 @emotion/react @emotion/styled
 ```
 
 ```bash yarn
-yarn add @mui/material @emotion/react @emotion/styled
+yarn add @mui/material@latest-v6 @emotion/react @emotion/styled
 ```
 
 </codeblock>
+
+If you wish to use the latest version, remove the `@latest-v6` suffix.
 
 ### Peer dependencies
 
@@ -156,7 +158,7 @@ For instance, via Google Web Fonts:
 
 You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 Follow [this CDN example](https://github.com/mui/material-ui/tree/v6.x/examples/material-ui-via-cdn) to get started.
 
