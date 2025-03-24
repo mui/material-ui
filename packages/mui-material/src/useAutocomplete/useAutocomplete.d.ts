@@ -246,7 +246,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {Value} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
+   * @param {string} reason Can be: `"keyboard"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange?: (
     event: React.SyntheticEvent,
@@ -312,7 +312,7 @@ export interface UseAutocompleteParameters<
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> {}
 
-export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto' | 'touch';
+export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'touch';
 
 export type AutocompleteChangeReason =
   | 'createOption'
