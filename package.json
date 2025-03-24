@@ -7,7 +7,7 @@
     "proptypes": "tsx ./scripts/generateProptypes.ts",
     "deduplicate": "pnpm dedupe",
     "benchmark:browser": "pnpm --filter benchmark browser",
-    "build": "lerna run build --ignore docs",
+    "build": "cross-env BROWSERSLIST_IGNORE_OLD_DATA=true lerna run build --ignore docs",
     "build:ci": "cross-env BROWSERSLIST_IGNORE_OLD_DATA=true lerna run build --ignore docs --concurrency 8 --skip-nx-cache",
     "build:public": "lerna run --no-private build",
     "build:public:ci": "lerna run --no-private build --concurrency 8 --skip-nx-cache",
@@ -38,7 +38,7 @@
     "docs:sync-team": "tsx ./docs/scripts/syncTeamMembers.ts && pnpm prettier",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./docs/scripts/updateIconSynonyms && pnpm prettier",
     "docs:zipRules": "cd docs && rm mui-vale.zip && zip -r mui-vale.zip mui-vale && cd ../ && vale sync",
-    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --concurrency 1 build:modern",
+    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true BROWSERSLIST_IGNORE_OLD_DATA=true lerna run --concurrency 1 build:modern",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "install:codesandbox": "pnpm install --no-frozen-lockfile",
     "jsonlint": "node ./scripts/jsonlint.mjs",
@@ -95,7 +95,7 @@
     "nx_test_karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "nx_test_regressions_run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "nx_test_regressions_pigment_css_run": "mocha --config apps/pigment-css-vite-app/.mocharc.cjs --delay 'apps/pigment-css-vite-app/**/*.test.js'",
-    "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
+    "nx_test_unit": "cross-env NODE_ENV=test BROWSERSLIST_IGNORE_OLD_DATA=true mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
     "@googleapis/sheets": "^9.3.1",
