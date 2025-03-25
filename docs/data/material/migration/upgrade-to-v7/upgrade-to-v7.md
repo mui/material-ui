@@ -160,7 +160,7 @@ Depending on your project, you may follow one of the following approaches:
    <!-- #npm-tag-reference -->
 
    ```bash
-   npx @mui/codemod@next v7.0.0/grid-props <path/to/folder>
+   npx @mui/codemod v7.0.0/grid-props <path/to/folder>
    ```
 
    See the [Grid upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more information.
@@ -233,7 +233,7 @@ Use this codemod to automatically update the `size` value:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
+npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
 ```
 
 ### SvgIcon's data-testid removed
@@ -488,7 +488,7 @@ Use this codemod to automatically update the imports:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/lab-removed-components <path/to/folder>
+npx @mui/codemod v7.0.0/lab-removed-components <path/to/folder>
 ```
 
 :::warning
