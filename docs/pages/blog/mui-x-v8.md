@@ -247,13 +247,17 @@ Managing your license has never been easier. Our redesigned [account page](https
   <figcaption>Accounts Page</figcaption>
 </figure>
 
-In addition, we’ve integrated telemetry to continuously enhance your experience with our products—and soon, you’ll be able to manage your license without changing the key by leveraging server-side license validation.
+In addition, we’ve integrated telemetry to continuously enhance your experience with our products—and with the same infrastructure soon, you’ll be able to manage your license without changing the key by leveraging server-side license validation.
 
 Telemetry is released as an opt-in feature. We recommend enabling it by adding the following code to your project:
 
 ```js
-enable like this
+import { muiXTelemetrySettings } from '@mui/x-license';
+
+muiXTelemetrySettings.enableTelemetry();
 ```
+
+You can find more details on our [telemetry guide](/x/guides/telemetry/).
 
 ## Priority Support – A New Support Service
 
