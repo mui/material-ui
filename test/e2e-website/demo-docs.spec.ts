@@ -62,8 +62,6 @@ test.describe('Demo docs', () => {
 
     const iframe = page.locator('iframe[title*="DemoModeToggleIframe"]').contentFrame();
 
-    console.log('iframe', iframe);
-
     await expect(iframe.locator('html')).toHaveClass(/light/);
     await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
       'background-color',
