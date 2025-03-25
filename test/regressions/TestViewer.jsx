@@ -67,7 +67,7 @@ function TestViewer(props) {
           },
         }}
       />
-      {window.location.pathname.startsWith('/docs-joy') ? (
+      {path.startsWith('/docs-joy') ? (
         <CssVarsProvider>
           <JoyBox
             aria-busy={!ready}
