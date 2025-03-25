@@ -94,6 +94,7 @@ const Iframe = styled('iframe')(({ theme }) => ({
   flexGrow: 1,
   height: 400,
   border: 0,
+  boxShadow: (theme.vars || theme)?.shadows?.[1],
 }));
 
 function DemoIframe(props) {
