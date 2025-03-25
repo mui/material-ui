@@ -4,9 +4,9 @@ import fse from 'fs-extra';
 import { parseDocFolder, getAnchor } from './reportBrokenLinksLib';
 
 /**
- * The remaining pat to the code is specific to this repository
+ * The remaining path to the code is specific to this repository
  */
-const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/', '/system/styles/'];
+const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/'];
 
 const docsSpaceRoot = path.join(path.dirname(new URL(import.meta.url).pathname), '../');
 
