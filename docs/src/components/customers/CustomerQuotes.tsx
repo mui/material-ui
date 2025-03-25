@@ -23,6 +23,7 @@ const QUOTES = [
           height="16"
           alt="Particl logo"
           loading="lazy"
+          style={{ filter: 'invert(50%)' }}
         />
       ),
       gridArea: 'one',
