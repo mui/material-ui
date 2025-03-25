@@ -29,12 +29,12 @@ export type CardActionAreaTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://v6.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardActionArea API](https://mui.com/material-ui/api/card-action-area/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [CardActionArea API](https://v6.mui.com/material-ui/api/card-action-area/)
+ * - inherits [ButtonBase API](https://v6.mui.com/material-ui/api/button-base/)
  */
 declare const CardActionArea: ExtendButtonBase<
   CardActionAreaTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>

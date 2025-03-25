@@ -67,12 +67,12 @@ export interface IconTypeMap<
  *
  * Demos:
  *
- * - [Icons](https://mui.com/material-ui/icons/)
- * - [Material Icons](https://mui.com/material-ui/material-icons/)
+ * - [Icons](https://v6.mui.com/material-ui/icons/)
+ * - [Material Icons](https://v6.mui.com/material-ui/material-icons/)
  *
  * API:
  *
- * - [Icon API](https://mui.com/material-ui/api/icon/)
+ * - [Icon API](https://v6.mui.com/material-ui/api/icon/)
  */
 declare const Icon: OverridableComponent<IconTypeMap> & { muiName: string };
 

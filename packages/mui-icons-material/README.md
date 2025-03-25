@@ -8,20 +8,20 @@ This package contains Google's [Material Icons](https://fonts.google.com/icons?i
 
 The Material Icons package depends on Material UI—install both with the following command:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+npm install @mui/icons-material@^6.0.0 @mui/material@^6.0.0 @emotion/styled @emotion/react
 ```
 
-<!-- #default-branch-switch -->
+If you wish to use the latest version, remove the `@^6.0.0` suffix.
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
-- Learn more about Material UI's [SVG Icon component](https://mui.com/material-ui/icons/#svgicon).
-- Browse the available icons on the [Material Icons page](https://mui.com/material-ui/material-icons/).
+- Learn more about Material UI's [SVG Icon component](https://v6.mui.com/material-ui/icons/#svgicon).
+- Browse the available icons on the [Material Icons page](https://v6.mui.com/material-ui/material-icons/).
 
 ## Contributing
 

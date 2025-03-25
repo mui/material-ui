@@ -68,13 +68,13 @@ export interface FormLabelTypeMap<
  *
  * Demos:
  *
- * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
- * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
- * - [Switch](https://mui.com/material-ui/react-switch/)
+ * - [Checkbox](https://v6.mui.com/material-ui/react-checkbox/)
+ * - [Radio Group](https://v6.mui.com/material-ui/react-radio-button/)
+ * - [Switch](https://v6.mui.com/material-ui/react-switch/)
  *
  * API:
  *
- * - [FormLabel API](https://mui.com/material-ui/api/form-label/)
+ * - [FormLabel API](https://v6.mui.com/material-ui/api/form-label/)
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 

@@ -360,11 +360,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
+ * - [Autocomplete](https://v6.mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
+ * - [Autocomplete API](https://v6.mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   Value,

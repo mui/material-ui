@@ -177,6 +177,7 @@ function AppWrapper(props) {
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
+          { text: 'v7', href: `https://mui.com${languagePrefix}/getting-started/installation/` },
           { text: `v${materialPkgJson.version}`, current: true },
           {
             text: 'v5',
@@ -213,7 +214,15 @@ function AppWrapper(props) {
         logoSvg: muiSvgLogoString,
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
+          {
+            text: 'v7',
+            href: `https://mui.com${languagePrefix}/system/getting-started/installation/`,
+          },
           { text: `v${systemPkgJson.version}`, current: true },
+          {
+            text: 'v5',
+            href: `https://v5.mui.com${languagePrefix}/system/getting-started/installation`,
+          },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',

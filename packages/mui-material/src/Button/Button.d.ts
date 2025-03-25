@@ -129,13 +129,13 @@ export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
  *
  * Demos:
  *
- * - [Button Group](https://mui.com/material-ui/react-button-group/)
- * - [Button](https://mui.com/material-ui/react-button/)
+ * - [Button Group](https://v6.mui.com/material-ui/react-button-group/)
+ * - [Button](https://v6.mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [Button API](https://mui.com/material-ui/api/button/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [Button API](https://v6.mui.com/material-ui/api/button/)
+ * - inherits [ButtonBase API](https://v6.mui.com/material-ui/api/button-base/)
  */
 declare const Button: ExtendButtonBase<ButtonTypeMap>;
 

@@ -192,11 +192,11 @@ export interface AlertOwnerState extends AlertProps {}
  *
  * Demos:
  *
- * - [Alert](https://mui.com/material-ui/react-alert/)
+ * - [Alert](https://v6.mui.com/material-ui/react-alert/)
  *
  * API:
  *
- * - [Alert API](https://mui.com/material-ui/api/alert/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
+ * - [Alert API](https://v6.mui.com/material-ui/api/alert/)
+ * - inherits [Paper API](https://v6.mui.com/material-ui/api/paper/)
  */
 export default function Alert(props: AlertProps): React.JSX.Element;

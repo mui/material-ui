@@ -7,11 +7,11 @@ import { UseBadgeParameters, UseBadgeReturnValue } from './useBadge.types';
  *
  * Demos:
  *
- * - [Badge](https://mui.com/base-ui/react-badge/#hook)
+ * - [Badge](https://v6.mui.com/base-ui/react-badge/#hook)
  *
  * API:
  *
- * - [useBadge API](https://mui.com/base-ui/react-badge/hooks-api/#use-badge)
+ * - [useBadge API](https://v6.mui.com/base-ui/react-badge/hooks-api/#use-badge)
  */
 export function useBadge(parameters: UseBadgeParameters): UseBadgeReturnValue {
   const {

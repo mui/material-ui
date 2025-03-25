@@ -66,12 +66,12 @@ export interface DividerTypeMap<
  *
  * Demos:
  *
- * - [Divider](https://mui.com/material-ui/react-divider/)
- * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Divider](https://v6.mui.com/material-ui/react-divider/)
+ * - [Lists](https://v6.mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [Divider API](https://mui.com/material-ui/api/divider/)
+ * - [Divider API](https://v6.mui.com/material-ui/api/divider/)
  */
 declare const Divider: OverridableComponent<DividerTypeMap>;
 

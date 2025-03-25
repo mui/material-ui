@@ -30,11 +30,11 @@ const FALLBACK_MENU_CONTEXT: DropdownContextValue = {
  *
  * Demos:
  *
- * - [Menu](https://mui.com/base-ui/react-menu/#hooks)
+ * - [Menu](https://v6.mui.com/base-ui/react-menu/#hooks)
  *
  * API:
  *
- * - [useMenu API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu)
+ * - [useMenu API](https://v6.mui.com/base-ui/react-menu/hooks-api/#use-menu)
  */
 export function useMenu(parameters: UseMenuParameters = {}): UseMenuReturnValue {
   const {

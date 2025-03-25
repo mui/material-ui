@@ -259,12 +259,12 @@ export declare const PopoverPaper: React.FC<PopoverPaperProps>;
  *
  * Demos:
  *
- * - [Menu](https://mui.com/material-ui/react-menu/)
- * - [Popover](https://mui.com/material-ui/react-popover/)
+ * - [Menu](https://v6.mui.com/material-ui/react-menu/)
+ * - [Popover](https://v6.mui.com/material-ui/react-popover/)
  *
  * API:
  *
- * - [Popover API](https://mui.com/material-ui/api/popover/)
- * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
+ * - [Popover API](https://v6.mui.com/material-ui/api/popover/)
+ * - inherits [Modal API](https://v6.mui.com/material-ui/api/modal/)
  */
 export default function Popover(props: PopoverProps): React.JSX.Element;
