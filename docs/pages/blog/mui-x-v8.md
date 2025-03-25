@@ -40,7 +40,8 @@ Read more on: [Support for Material UI](#support-for-material-ui)
   - [Accessible DOM Structure](#accessible-dom-structure)
   - [Keyboard Editing on Mobile Pickers](#keyboard-editing-on-mobile-pickers)
 - [Tree View](#tree-view)
-  - [Enhanced Selection & Lazy Loading](#enhanced-selection--lazy-loading)
+  - [Automatic selection propagation](#automatic-selection-propagation)
+  - [Lazy loading child nodes](#lazy-loading-child-nodes)
   - [New Customization Hook](#new-customization-hook)
 - [Charts](#charts)
   - [Refined Design and Interaction](#refined-design-and-interaction)
@@ -189,19 +190,55 @@ We’ve introduced keyboard editing support for mobile pickers. Users can now se
 
 ### Automatic selection propagation
 
-The Tree View component now supports improved parent/child selection propagation. This means you can select a parent and automatically select all your children, and vice-versa depending on your requirements.
+The Rich Tree View now supports parent/child selection propagation. This means you can select a parent and automatically select all your children, and vice-versa depending on your requirements and configuration.
 
-### Children Lazy Loading
+```js
+type TreeViewSelectionPropagation = {
+  descendants?: boolean; // default: false
+  parents?: boolean; // default: false
+};
+```
 
-We’ve enhanced the Tree View with a robust lazy loading mechanism for child nodes. Now, child nodes are loaded on demand—only when needed—reducing initial load times and improving performance when working with extensive hierarchical data. This approach not only ensures a smoother user experience but also minimizes unnecessary network and rendering overhead.
+You can learn about this and other selection features on [Selection docs](/x/react-tree-view/rich-tree-view/selection/).
+
+### Lazy loading child nodes
+
+We’ve enhanced the Rich Tree View with a robust lazy loading mechanism for children. Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data. This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
+
+<figure>
+  <video autoplay muted loop playsinline width="690" height="417" controls>
+    <source src="/static/blog/mui-x-v8/tree-view-lazy-loading.mp4" type="video/mp4">
+  </video>
+  <figcaption>lazy loading of children on selection</figcaption>
+</figure>
+
+Learn how to add [lazy loading](/x/react-tree-view/rich-tree-view/lazy-loading/) to your application's Tree View.
 
 ### New Customization Hook
 
-We’ve officially transitioned to a new developer experience for customizing TreeItems. With our new customization hook, you can freely compose your TreeItem while still leveraging all the out-of-the-box features of the RichTreeView. This provides unparalleled flexibility to tailor your tree components to your project’s unique requirements.
+We’ve officially transitioned to a new developer experience for customizing TreeItems for the Rich Tree View. With our new customization hook, you can freely compose your TreeItem while still leveraging all the out-of-the-box features of the RichTreeView. This provides unparalleled flexibility to tailor your tree components to your project’s unique requirements.
 
 ```js
-example here
+const CustomTreeItemComponent = React.forwardRef(function CustomTreeItemComponent(
+  { id, itemId, label, disabled, children }: TreeItemProps,
+  ref: React.Ref<HTMLLIElement>,
+) {
+  const treeItemData = useTreeItem({ id, itemId, children, label, disabled, rootRef: ref });
+
+  return (
+    <TreeItemProvider {...treeItemData.getContextProviderProps()}>
+      <TreeItemRoot {...treeItemData.getRootProps()}>
+        <TreeItemContent {...treeItemData.getContentProps()}>
+          <TreeItemLabel {...treeItemData.getLabelProps()} />
+        </TreeItemContent>
+        {children && <TreeItemGroupTransition {...treeItemData.getGroupTransitionProps()} />}
+      </TreeItemRoot>
+    </TreeItemProvider>
+  );
+}
 ```
+
+Learn more this and other options on [Tree Item Customization docs](/x/react-tree-view/tree-item-customization/).
 
 ## Charts
 
@@ -225,11 +262,20 @@ Similarly, our Radar Charts offer a dynamic way to display multivariate data, en
 
 ### Server-Side Rendering for Charts
 
-In certain scenarios, you can now leverage server-side rendering for charts to improve initial load performance and SEO.
+You can now leverage server-side rendering (SSR) for charts to improve initial load performance and SEO.
+SSR is supported under two conditions:
+
+- **Dimensions:** You must provide explicit `width` and `height` props, as the SVG dimensions cannot be computed on the server.
+- **Animations:** Animations must be disabled using the `skipAnimation` prop; otherwise, the chart may render in an empty state on the initial render.
 
 ### Refined Design and Interaction
 
-Charts in MUI X v8 have been improved with a focus on clarity and interactivity. Refined pallete and improved responsiveness make it easier than ever to bring your data stories to life.
+Charts in MUI X v8 have been improved with a focus on clarity and interactivity.
+
+<figure>
+  <img style="width: 303px;" width="606" height="900" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy">
+  <figcaption>Charts redesigned before/after</figcaption>
+</figure>
 
 ### HTML Legend for Charts
 
