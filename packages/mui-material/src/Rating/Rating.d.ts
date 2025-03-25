@@ -184,11 +184,11 @@ export type RatingTypeMap<
  *
  * Demos:
  *
- * - [Rating](https://next.mui.com/material-ui/react-rating/)
+ * - [Rating](https://mui.com/material-ui/react-rating/)
  *
  * API:
  *
- * - [Rating API](https://next.mui.com/material-ui/api/rating/)
+ * - [Rating API](https://mui.com/material-ui/api/rating/)
  */
 declare const Rating: OverridableComponent<RatingTypeMap>;
 

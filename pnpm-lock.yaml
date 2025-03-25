@@ -660,10 +660,10 @@ importers:
         specifier: workspace:*
         version: link:../packages/mui-base/build
       '@mui/docs':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-docs/build
       '@mui/icons-material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-icons-material/build
       '@mui/internal-markdown':
         specifier: workspace:^
@@ -675,22 +675,22 @@ importers:
         specifier: workspace:*
         version: link:../packages/mui-lab/build
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-material/build
       '@mui/styled-engine':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-styled-engine/build
       '@mui/styled-engine-sc':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-styled-engine-sc/build
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../packages/mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../packages/mui-utils/build
       '@mui/x-charts':
         specifier: 7.28.0
@@ -1598,7 +1598,7 @@ importers:
         specifier: workspace:^
         version: link:../waterfall
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
         specifier: ^4.3.20
@@ -1736,13 +1736,13 @@ importers:
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1
@@ -1755,7 +1755,7 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@mui/material':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
         specifier: ^4.3.20
@@ -1801,16 +1801,16 @@ importers:
         specifier: workspace:^
         version: link:../mui-core-downloads-tracker/build
       '@mui/material-pigment-css':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-material-pigment-css/build
       '@mui/system':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-system/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       '@popperjs/core':
         specifier: ^2.11.8
@@ -1935,7 +1935,7 @@ importers:
         specifier: ^7.26.10
         version: 7.26.10
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       prop-types:
         specifier: ^15.8.1
@@ -2052,16 +2052,16 @@ importers:
         specifier: ^7.26.10
         version: 7.26.10
       '@mui/private-theming':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-private-theming/build
       '@mui/styled-engine':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-styled-engine/build
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../mui-utils/build
       clsx:
         specifier: ^2.1.1
