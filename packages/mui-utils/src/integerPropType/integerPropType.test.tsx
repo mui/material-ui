@@ -79,8 +79,8 @@ describe('integerPropType', () => {
     });
 
     it('passes with the boolean conversion', () => {
-      // eslint-disable-next-line no-bitwise
       // @ts-expect-error div doesn't have an a prop
+      // eslint-disable-next-line no-bitwise
       assertPass(<div a={1.1 | 0} />, 'a');
     });
   });
