@@ -99,7 +99,7 @@ Interested in bringing this feature to your users? [Contact us](mailto:sales@mui
 The [redesigned toolbar](/x/react-data-grid/components/toolbar/) not only looks fantastic but also empowers developers one step further through an open composition of sub-components, allowing you to tailor the toolbar's layout precisely to your application's needs.
 
 <figure>
-  <img style="width: 303px;" width="606" height="900" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy">
+  <img width="606" height="300" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy">
   <figcaption>The new toolbar's design</figcaption>
 </figure>
 
@@ -119,9 +119,9 @@ Learn more about overlays on [overlay's docs](/x/react-data-grid/overlays/).
 
 ### Data Source on the Community Plan
 
-### Data Source on the Community Plan
+Great news—the Data Source is now part of the community plan!
 
-Great news—the Data Source is now part of the community plan! We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
+We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
 
 Explore your options in our [Data Source Docs](/x/react-data-grid/data-source/).
 
@@ -182,7 +182,7 @@ The Accessible DOM Structure is now the default for our field components. The ne
 We’ve introduced keyboard editing support for mobile pickers. Users can now seamlessly input and adjust date and time values directly via on-screen keyboards, providing a more accessible and efficient experience.
 
 <figure>
-  <img style="width: 303px;" width="606" height="900" alt="Mobile picker with keyboard input" src="/static/blog/mui-x-v8/mobile-picker-keyboard.png" loading="lazy">
+  <img width="606" height="300" alt="Mobile picker with keyboard input" src="/static/blog/mui-x-v8/mobile-picker-keyboard.png" loading="lazy">
   <figcaption>Mobile picker with keyboard input</figcaption>
 </figure>
 
@@ -247,7 +247,7 @@ Learn more this and other options on [Tree Item Customization docs](/x/react-tre
 We have expanded our chart portfolio with the addition of Funnel Charts, providing a new way to visualize data conversions and drop-offs.
 
 <figure>
-  <img style="width: 303px;" width="606" height="900" alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy">
+  <img width="606" height="300" alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy">
   <figcaption>Funnel charts examples</figcaption>
 </figure>
 
@@ -256,7 +256,7 @@ We have expanded our chart portfolio with the addition of Funnel Charts, providi
 Similarly, our Radar Charts offer a dynamic way to display multivariate data, enhancing your users data analysis capabilities.
 
 <figure>
-  <img style="width: 303px;" width="606" height="900" alt="Radar charts examples" src="/static/blog/mui-x-v8/radar-charts.png" loading="lazy">
+  <img width="606" height="300" alt="Radar charts examples" src="/static/blog/mui-x-v8/radar-charts.png" loading="lazy">
   <figcaption>Radar charts examples</figcaption>
 </figure>
 
@@ -273,7 +273,7 @@ SSR is supported under two conditions:
 Charts in MUI X v8 have been improved with a focus on clarity and interactivity.
 
 <figure>
-  <img style="width: 303px;" width="606" height="900" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy">
+  <img width="606" height="300" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy">
   <figcaption>Charts redesigned before/after</figcaption>
 </figure>
 
@@ -292,7 +292,7 @@ Learn more in our [Charts Composition Documentation](/x/react-charts/composition
 Managing your license has never been easier. Our redesigned [account page](https://mui.com/store/account/) on the store allows you to view your license keys, update number of seats, renew and upgarde and more, with minimal effort.
 
 <figure>
-  <img style="width: 303px;" width="606" height="900" alt="Radar charts examples" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
+  <img width="606" height="300" alt="Radar charts examples" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
   <figcaption>Accounts Page</figcaption>
 </figure>
 
