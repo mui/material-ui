@@ -47,6 +47,7 @@ Read more on: [Support for Material UI](#support-for-material-ui)
   - [Radar Charts](#radar-charts)
   - [Server-Side Rendering for Charts](#server-side-rendering-for-charts)
 - [New Account Page & License Management](#new-account-page--license-management)
+- [Priority Support – A New Support Service](#priority-support-a-new-support-service)
 - [Support for Material UI](#support-for-material-ui)
 - [Migration](#migration)
 - [Long-Term Support](#long-term-support)
@@ -246,13 +247,23 @@ Managing your license has never been easier. Our redesigned [account page](https
   <figcaption>Accounts Page</figcaption>
 </figure>
 
-In addition, we’ve integrated telemetry to continuously enhance your experience with our products—and soon, you’ll be able to manage your license without changing the key by leveraging server-side authentication.
+In addition, we’ve integrated telemetry to continuously enhance your experience with our products—and soon, you’ll be able to manage your license without changing the key by leveraging server-side license validation.
 
 Telemetry is released as an opt-in feature. We recommend enabling it by adding the following code to your project:
 
 ```js
 enable like this
 ```
+
+## Priority Support – A New Support Service
+
+A few months ago, we launched Priority Support with a few customers, and now we’re excited to invite more users to take advantage of this service.
+
+Priority Support offers fast, dedicated assistance with guaranteed response times, ensuring that technical issues on both MUI X and MUI Core are addressed swiftly and efficiently.
+
+For full details on the benefits and service levels of Priority Support, please see our [Support SLA](https://mui.com/legal/technical-support-sla/).
+
+If you’re interested in upgrading to Priority Support, don’t hesitate to [contact our sales team](mailto:sales@mui.com) for more information or purchase it directly through your account page.
 
 ## Support for Material UI
 
@@ -262,8 +273,7 @@ As a result, **MUI X v8 now supports Material UI v7 natively**, ensuring your a
 
 ## Migration Guide
 
-
-We have built a migration guide for Material UI and one for each of the advanced components. They detail every breaking change from previous versions with the recommended approach to fix them, ensuring that you can transition smoothly without the least amount of hassle.
+We have built a migration guide for Material UI and one for each of the advanced components. They detail every breaking change from previous versions with the recommended approach to fix them, ensuring that you can transition smoothly without the least amount of hassle. We care about an smooth migration, and that's been a priority for us when planning our new major versions.
 
 Please follow the instructions in our [migration guide](/x/migration/).
 
