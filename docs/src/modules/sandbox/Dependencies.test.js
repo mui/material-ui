@@ -40,8 +40,7 @@ const styles = theme => ({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
+      '@mui/material': '^6.0.0',
       '@mui/base': 'latest',
       'prop-types': 'latest',
     });
@@ -72,8 +71,7 @@ const suggestions = [
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
+      '@mui/material': '^6.0.0',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -102,9 +100,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
-      '@mui/lab': 'latest-v6',
+      '@mui/material': '^6.0.0',
+      '@mui/lab': '^6.0.0',
     });
   });
 
@@ -130,9 +127,8 @@ import 'exceljs';
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
-      '@mui/lab': 'latest-v6',
+      '@mui/material': '^6.0.0',
+      '@mui/lab': '^6.0.0',
       exceljs: 'latest',
     });
   });
@@ -150,8 +146,7 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
+      '@mui/material': '^6.0.0',
       '@mui/base': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
@@ -172,8 +167,7 @@ import 'exceljs';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
+      '@mui/material': '^6.0.0',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
       typescript: 'latest',
@@ -201,9 +195,8 @@ import {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
-      '@mui/lab': 'latest-v6',
+      '@mui/material': '^6.0.0',
+      '@mui/lab': '^6.0.0',
     });
   });
 
@@ -222,9 +215,8 @@ import lab from '@mui/lab';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/material': 'latest-v6',
-      '@mui/lab': 'latest-v6',
+      '@mui/material': '^6.0.0',
+      '@mui/lab': '^6.0.0',
     });
   });
 
@@ -525,11 +517,10 @@ export default function EmailExample() {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      // #npm-tag-reference
-      '@mui/icons-material': 'latest-v6',
+      '@mui/icons-material': '^6.0.0',
       '@mui/joy': 'latest',
-      '@mui/material': 'latest-v6',
-      '@mui/system': 'latest-v6',
+      '@mui/material': '^6.0.0',
+      '@mui/system': '^6.0.0',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
       typescript: 'latest',

@@ -83,8 +83,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
       },
       dependencies: {
         react: 'latest',
-        // #npm-tag-reference
-        '@mui/material': 'latest-v6',
+        '@mui/material': '^6.0.0',
         'react-dom': 'latest',
         '@emotion/react': 'latest',
         '@emotion/styled': 'latest',
@@ -187,8 +186,7 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
       },
       dependencies: {
         react: 'latest',
-        // #npm-tag-reference
-        '@mui/material': 'latest-v6',
+        '@mui/material': '^6.0.0',
         'react-dom': 'latest',
         '@emotion/react': 'latest',
         '@emotion/styled': 'latest',

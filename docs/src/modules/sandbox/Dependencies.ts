@@ -54,8 +54,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
       if (['joy', 'base'].includes(packageName)) {
         return 'latest';
       }
-      // #npm-tag-reference
-      return 'latest-v6';
+      return '^6.0.0';
     }
     const shortSha = commitRef.slice(0, 8);
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;
