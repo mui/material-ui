@@ -2,7 +2,7 @@ import * as React from 'react';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
 import DvrIcon from '@mui/icons-material/Dvr';
-import { ThemeProvider, useColorScheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -107,7 +107,16 @@ export function ColorSchemeTabsBasic() {
 
 export default function DemoModeToggleIframe(props) {
   return (
-    <ThemeProvider {...props}>
+    <ThemeProvider
+      {...props}
+      theme={createTheme({
+        colorSchemes: { light: true, dark: true },
+        cssVariables: {
+          cssVarPrefix: props.cssVarPrefix,
+          colorSchemeSelector: props.colorSchemeSelector || 'class',
+        },
+      })}
+    >
       <Paper
         data-testid="demo-mode-toggle-iframe-paper"
         sx={{

@@ -109,8 +109,8 @@ export function ColorSchemeTabsBasic() {
 export default function DemoModeToggleCustomTheme(props) {
   const theme = createTheme({
     cssVariables: {
-      cssVarPrefix: props.theme.cssVarPrefix,
-      colorSchemeSelector: props.theme.colorSchemeSelector,
+      cssVarPrefix: props.cssVarPrefix,
+      colorSchemeSelector: props.colorSchemeSelector || 'class',
     },
     colorSchemes: {
       light: {

@@ -48,14 +48,27 @@ If the demo needs to demonstrate mode toggling, you need to set `isolated: true`
 {{"demo": "DemoModeToggle.js", "isolated": true, "bg": "inline" }}
 
 ```js
-import { ThemeProvider, useColorScheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 
 function ModeToggle() {
   const { mode, setMode } = useColorScheme();
 }
 
 export default function Demo(props) {
-  return <ThemeProvider {...props}>...</ThemeProvider>;
+  return (
+    <ThemeProvider
+      {...props}
+      theme={createTheme({
+        colorSchemes: { light: true, dark: true },
+        cssVariables: {
+          cssVarPrefix: props.cssVarPrefix,
+          colorSchemeSelector: props.colorSchemeSelector || 'class',
+        },
+      })}
+    >
+      ...
+    </ThemeProvider>
+  );
 }
 ```
 
@@ -79,8 +92,8 @@ import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles
 export default function Demo(props) {
   const theme = createTheme({
     cssVariables: {
-      cssVarPrefix: props.theme.cssVarPrefix,
-      colorSchemeSelector: props.theme.colorSchemeSelector,
+      cssVarPrefix: props.cssVarPrefix,
+      colorSchemeSelector: props.colorSchemeSelector || 'class',
     },
     colorSchemes: {
       light: {
