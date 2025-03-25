@@ -67,6 +67,10 @@ The demo with `isolated` will always set to `system` mode when refresh the page.
 
 Create a custom theme and pass the `cssVarPrefix` and `colorSchemeSelector` from the theme prop to the `createTheme` function.
 
+:::warning
+If the demo contains only a custom theme without mode toggle, you don't need to use `isolated: true`.
+:::
+
 {{"demo": "DemoModeToggleCustomTheme.js", "isolated": true, "bg": "inline", "theme": "dark" }}
 
 ```js
