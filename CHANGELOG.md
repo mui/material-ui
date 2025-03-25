@@ -11,19 +11,19 @@ A big thanks to the 7 contributors who made this release possible.
 ### `@mui/material@6.4.9`
 
 - [Autocomplete] Fix when `onHighlightChange` is called (@ZeeshanTamboli) (#45635) @ZeeshanTamboli
-- [StepLabel] Add missing root slot (@sai6855) (#45607) @sai6855
-- [Switch] Add slots and slotProps (#45595) (#45628) @siriwatknp
-- [TextField] Add `root` slot (@sai6855) (#45616) @sai6855
-- [Tabs] Fix modifier keys + Left/Right Arrow key from being consumed by tab navigation (@mushfiqbh) (#45620) @mushfiqbh
+- [StepLabel] Add missing root slot (#45607) @sai6855
+- [Switch] Add slots and slotProps (#45628) @siriwatknp
+- [TextField] Add `root` slot (#45616) @sai6855
+- [Tabs] Fix modifier keys + Left/Right Arrow key from being consumed by tab navigation (#45620) @mushfiqbh
 
 ### `@mui/codemon@6.4.9`
 
-- Add missing deprecations in deprecations-all file (@sai6855) (#45508) @sai6855
+- Add missing deprecations in deprecations-all file (#45508) @sai6855
 
 ### Docs
 
-- [docs] Fix grammatical errors in support.md (@letianpailove) (#45636) @letianpailove
-- [docs] Restore utility component docs from MUI Base to Material UI (@mapache-salvaje) (#45240) @mapache-salvaje
+- [docs] Fix grammatical errors in support.md (#45636) @letianpailove
+- [docs] Restore utility component docs from MUI Base to Material UI (#45240) @mapache-salvaje
 
 ### Core
 
