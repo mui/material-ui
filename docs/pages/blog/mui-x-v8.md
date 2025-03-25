@@ -16,7 +16,7 @@ manualCard: false
 We are excited to announce the stable release of **MUI X v8.0.0**—packed with many new features, native ESM support alongside Material UI v7, and an improved license management experience.
 
 :::warning
-MUI X v8 no longer supports Material UI v5 and v6 out of the box. Instead, we’ve chosen to fully embrace the future by supporting **Material UI v7 natively**.  
+**MUI X v8 natively supports ESM** along Material UI v7. Because of that, the support for Material UI v5 and v6 don't come out-of-the-box.
 Read more on: [Support for Material UI](#support-for-material-ui)
 :::
 
@@ -70,9 +70,11 @@ The feature is available out-of-the-box, but you can also create a pre-configure
 
 Learn how to use pivoting [now](/x/react-data-grid/pivoting/).
 
-### AI Assistant - Featuring LLMs on the Data Grid
+### Ask Your Table - Featuring AI Assistance on the Data Grid
 
-After an extensive period of test with users and pilot customers, we're excited to introduce the new [AI Assistant](/x/react-data-grid/ai-assistant/). for the Data Grid. Now your users can interact with data using natural language queries and extract data insights quickly as ever.
+After an extensive period of test with users and pilot customers, we're excited to introduce our new AI-Powered feature for the Data Grid, [Ask Your Table](/x/react-data-grid/ask-your-table/).
+
+Now your users can interact with data using natural language queries and extract data insights quickly as ever.
 
 For example, if you’re working with an Olympics medal dataset, you can simply ask, “Who won the most gold medals this century?” and the Data Grid will automatically apply the right filters, groupings, and aggregations to display your answer—all that while keeping your dataset private.
 
@@ -106,11 +108,9 @@ Dive into our new docs section: [Sub-Components Composition](/x/react-data-grid/
 
 We understand how customization is important to you. So with the ultimate goal to be absolutely customizable, we're taking the first step to decouple Material UI from the Data Grid Core, opening the possibility to use the Data Grid with any design system—and it’s just the beginning. On the next steps, we'll work to provide the best experience for you to build a full featured data grid that fits all your design requirements.
 
-Try now the [design agnostic data grid package](/x/react-data-grid/components/usage/)!
-
 ### New No-Columns Overlay
 
-We’ve redesigned the no-columns overlay to provide a cleaner, more intuitive interface. 
+We’ve redesigned the no-columns overlay to provide a cleaner, more intuitive interface.
 
 Learn more about the new columns overlay in the [overlay's docs](/x/react-data-grid/overlays/#no-columns-overlay).
 
@@ -128,7 +128,7 @@ Checkout all your options with [Server-Side Data and Our Data Source](/x/react-d
 
 ### List View
 
-We’ve promoted List View to stable, and we’ll continue to add features to enhance its experience—making it easier to bring the Data Grid to small screens.
+We’ve promoted the feature to stable, and over this major we’re committed to enhancing List View even further—making it easier to deliver a robust Data Grid experience on small screens.
 
 <figure>
   <video autoplay muted loop playsinline width="690" height="417" controls>
@@ -184,12 +184,15 @@ We’ve introduced keyboard editing support for mobile pickers. Users can now se
 ## Tree View
 
 ### Automatic selection propagation
+
 The Tree View component now supports improved parent/child selection propagation. This means you can select a parent and automatically select all your children, and vice-versa depending on your requirements.
 
 ### Children Lazy Loading
+
 We’ve enhanced the Tree View with a robust lazy loading mechanism for child nodes. Now, child nodes are loaded on demand—only when needed—reducing initial load times and improving performance when working with extensive hierarchical data. This approach not only ensures a smoother user experience but also minimizes unnecessary network and rendering overhead.
 
 ### New Customization Hook
+
 We’ve officially transitioned to a new developer experience for customizing TreeItems. With our new customization hook, you can freely compose your TreeItem while still leveraging all the out-of-the-box features of the RichTreeView. This provides unparalleled flexibility to tailor your tree components to your project’s unique requirements.
 
 ```js
@@ -234,9 +237,16 @@ We've restructured our charts composition by dividing responsibilities between t
 
 Learn more in our [Charts Composition Documentation](/x/react-charts/composition/).
 
-## New Account Page & License Management
+## Better license Management and telemetry
 
-Managing your license has never been easier. Our redesigned account page on mui.com/store streamlines the entire process, allowing you to view, update, and manage your licenses with minimal effort. In addition, we’ve integrated telemetry to continuously enhance your experience—and soon, you’ll be able to manage your license without changing the key by leveraging server-side authentication.
+Managing your license has never been easier. Our redesigned [account page](https://mui.com/store/account/) on the store allows you to view your license keys, update number of seats, renew and upgarde and more, with minimal effort.
+
+<figure>
+  <img style="width: 303px;" width="606" height="900" alt="Radar charts examples" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
+  <figcaption>Accounts Page</figcaption>
+</figure>
+
+In addition, we’ve integrated telemetry to continuously enhance your experience with our products—and soon, you’ll be able to manage your license without changing the key by leveraging server-side authentication.
 
 Telemetry is released as an opt-in feature. We recommend enabling it by adding the following code to your project:
 
@@ -253,11 +263,11 @@ We understand that change can be challenging, but migrating to Material UI v7 is
 ## Migration Guide
 
 Upgrading to v8 is simple with our comprehensive migration guides. They detail every change from previous versions, ensuring that you can transition smoothly without any hassle.  
-*For detailed instructions, please refer to our [migration guide](https://next.mui.com/x/introduction/).*
+_For detailed instructions, please refer to our [migration guide](https://next.mui.com/x/introduction/)._
 
 ## Long-Term Support
 
-We're now moving **MUI X v7 to Long-Term support**, while support for **MUI X v6 is discountinued**. In addition to critical bug fixes and security updates, v7 will continue to receive some bug fixes as a safe net for your your transition for Material UI v7. 
+We're now moving **MUI X v7 to Long-Term support**, while support for **MUI X v6 is discountinued**. In addition to critical bug fixes and security updates, v7 will continue to receive some bug fixes as a safe net for your your transition for Material UI v7.
 
 You can check our [supported versions in our docs](/x/introduction/support/#supported-versions).
 
@@ -266,7 +276,9 @@ Once you’ve migrated to MUI X v8, you’ll benefit from the latest features an
 ## What’s Next
 
 Our roadmap for MUI X remains ambitious. In the coming months, we’ll continue delivering significant improvements and feature enhancements, including:
+
 - **Charts and Data Grid integration**: Deeper interoperability for cohesive data visualization.
+- **Further improvements in the DX of the new Design Agnostic Data Grid**: We’ll continue iterating on the unstyled core to deliver a seamless and customizable experience across diverse design ecosystems.
 - **Further customization based on Composition**: Expanding our composable architecture for even more flexible customization.
 - **Increased leverage of AI**: Harnessing advanced AI to unlock new insights and streamline data analysis.
 - **Design and usability improvements**: Continuous refinements to enhance the overall user experience.
@@ -279,4 +291,3 @@ Your input is vital to our continuous improvement. We invite you to:
 - **Share Your Feedback:** Let us know how these new features work for you and what you’d like to see next.
 - **Report Issues & Suggest Features:** Our [GitHub repository](https://github.com/mui/mui-x) is the perfect place to contribute.
 - **Join Our Community:** Participate in user interviews and help steer the roadmap for future releases.
-
