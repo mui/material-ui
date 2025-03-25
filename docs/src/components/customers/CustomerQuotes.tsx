@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 
 const QUOTES = [
 
-  // Using current Testimonials as placeholders just to visualize the layout
+  // Using current Testimonials as placeholders just to visualize
 
   {
     quote:
