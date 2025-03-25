@@ -477,7 +477,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     expect(container).to.have.text('1 light');
   });
 
-  it('palette mode should change if not use CSS variables', () => {
+  it('palette mode should change if not using CSS variables', () => {
     function Toggle() {
       const [count, setCount] = React.useState(0);
       const { setMode } = useColorScheme();
