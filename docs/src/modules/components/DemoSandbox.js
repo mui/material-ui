@@ -41,7 +41,7 @@ function FramedDemo(props) {
   React.useEffect(() => {
     document.documentElement.style.colorScheme = themeOptions.paletteMode;
     document.documentElement.setAttribute('data-mui-color-scheme', themeOptions.paletteMode);
-  }, [document, themeOptions.paletteMode, isJoy]);
+  }, [document, themeOptions.paletteMode]);
 
   const cache = React.useMemo(
     () =>
@@ -144,18 +144,14 @@ DemoIframe.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-function IsolatedDemo({ root, children }) {
+function IsolatedDemo({ children, ...props }) {
   return (
     <SystemThemeProvider
       theme={(upperTheme) => ({
         direction: upperTheme.direction,
       })}
     >
-      {React.cloneElement(children, {
-        disableNestedContext: true,
-        storageManager: null,
-        colorSchemeNode: root,
-      })}
+      {React.cloneElement(children, props)}
     </SystemThemeProvider>
   );
 }
@@ -195,12 +191,17 @@ function DemoSandbox(props) {
   const children = (
     <Sandbox {...sandboxProps}>
       {isolated ? (
-        <IsolatedDemo root={root}>
+        <IsolatedDemo
+          theme={(upperTheme) => ({
+            direction: upperTheme.direction,
+          })}
+        >
           {React.cloneElement(childrenProp, {
+            cssVarPrefix: name,
+            colorSchemeNode: root,
+            colorSchemeSelector: 'class',
             disableNestedContext: true,
             storageManager: null,
-            cssVarPrefix: name,
-            colorSchemeSelector: 'class',
           })}
         </IsolatedDemo>
       ) : (
