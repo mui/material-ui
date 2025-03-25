@@ -274,8 +274,8 @@ If, however, you would like to use styled-components, you can configure your app
 
 <!-- #repo-reference -->
 
-- [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
-- [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
+- [Vite with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-styled-components)
+- [Vite with styled-components and TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-styled-components-ts)
 
 Following this approach reduces the bundle size, and removes the need to configure the CSS injection order.
 
@@ -582,7 +582,7 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 <!-- #repo-reference -->
 
-If you are used to Tailwind CSS and want to use it together with the Material UI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts) example project.
+To use Tailwind CSS with Material UI components, you can start by cloning the [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts) built with Vite and TypeScript.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation/framework-guides.
@@ -596,7 +596,7 @@ If you use a different framework, or already have set up your project, follow th
  };
 ```
 
-3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js and `"#root"` for CRA:
+3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js:
 
 ```diff title="tailwind.config.js"
  module.exports = {
