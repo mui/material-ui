@@ -24,9 +24,10 @@ Read more on: [Support for Material UI](#support-for-material-ui)
 
 - [Data Grid](#data-grid)
   - [Pivoting](#pivoting)
+  - [AI Assistant – Featuring LLMs on the Data Grid](#ai-assistant-featuring-llms-on-the-data-grid)
   - [New Toolbar](#new-toolbar)
-  - [Ask Your Table – Featuring AI on the Data Grid](#ask-your-table--featuring-ai-on-the-data-grid)
-  - [New Columns Overlay](#new-columns-overlay)
+  - [Design Agnostic Core](#design-agnostic-core)
+  - [New No Columns Overlay](#new-no-columns-overlay)
   - [Data Source on the Community Plan](#data-source-on-the-community-plan)
   - [Server-Side Aggregation and Lazy Loading](#server-side-aggregation-and-lazy-loading)
   - [List View](#list-view)
@@ -71,7 +72,7 @@ Learn how to use pivoting [now](/x/react-data-grid/pivoting/).
 
 ### AI Assistant - Featuring LLMs on the Data Grid
 
-After extensive period of test with users and pilot customers, we're excited to introduce the new AI Assistant for the Data Grid. Now your users can interact with data using natural language queries and extract data insights quickly as ever.
+After an extensive period of test with users and pilot customers, we're excited to introduce the new [AI Assistant](/x/react-data-grid/ai-assistant/). for the Data Grid. Now your users can interact with data using natural language queries and extract data insights quickly as ever.
 
 For example, if you’re working with an Olympics medal dataset, you can simply ask, “Who won the most gold medals this century?” and the Data Grid will automatically apply the right filters, groupings, and aggregations to display your answer—all that while keeping your dataset private.
 
@@ -169,7 +170,7 @@ We've refined our slot system by clearing the `ownerState` before passing props 
 
 ### Accessible DOM Structure
 
-The Accessible DOM Structure is now the default for our field components. With this updated structure, screen readers benefit from a more intuitive interface, enhancing usability for all users.
+The Accessible DOM Structure is now the default for our field components. The new structure ensures screen readers can correctly work with the fields
 
 ### Keyboard Editing on Mobile Pickers
 
@@ -208,7 +209,7 @@ We have expanded our chart portfolio with the addition of Funnel Charts, providi
 
 ### Radar Charts
 
-Similarly, our Radar Charts offer a dynamic way to display multivariate data, enhancing your data analysis capabilities.
+Similarly, our Radar Charts offer a dynamic way to display multivariate data, enhancing your users data analysis capabilities.
 
 <figure>
   <img style="width: 303px;" width="606" height="900" alt="Radar charts examples" src="/static/blog/mui-x-v8/radar-charts.png" loading="lazy">
@@ -256,7 +257,11 @@ Upgrading to v8 is simple with our comprehensive migration guides. They detail e
 
 ## Long-Term Support
 
-MUI X v7 is now officially moved to Long-Term support, while support for MUI X v6 is discountinued. v7 will continue to receive critical bug fixes and security updates as safe net for your your transition for Material UI v7. Once you’ve migrated to v8, you’ll benefit from the latest features and performance enhancements, with no disruptive breaking changes until the next major release.
+We're now moving **MUI X v7 to Long-Term support**, while support for **MUI X v6 is discountinued**. In addition to critical bug fixes and security updates, v7 will continue to receive some bug fixes as a safe net for your your transition for Material UI v7. 
+
+You can check our [supported versions in our docs](/x/introduction/support/#supported-versions).
+
+Once you’ve migrated to MUI X v8, you’ll benefit from the latest features and performance enhancements, with no disruptive breaking changes until the next major release.
 
 ## What’s Next
 
