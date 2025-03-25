@@ -1,4 +1,10 @@
-export default function requirePropFactory(componentNameInError, Component) {
+import * as React from 'react';
+import PropTypes from 'prop-types';
+
+export default function requirePropFactory(
+  componentNameInError: string,
+  Component?: React.ComponentType<unknown>,
+): (requiredProp: string) => PropTypes.Validator<any> | null {
   if (process.env.NODE_ENV === 'production') {
     return () => null;
   }
@@ -7,7 +13,7 @@ export default function requirePropFactory(componentNameInError, Component) {
   const prevPropTypes = Component ? { ...Component.propTypes } : null;
 
   const requireProp =
-    (requiredProp) =>
+    (requiredProp: string): PropTypes.Validator<any> =>
     (props, propName, componentName, location, propFullName, ...args) => {
       const propFullNameSafe = propFullName || propName;
 
