@@ -17,6 +17,7 @@ We are excited to announce the stable release of [MUI X v8.0.0](https://github
 
 :::warning
 **MUI X v8 natively supports ESM** along Material UI v7. But because of that, the support for Material UI v5 and v6 don't come out-of-the-box.
+
 Read more on: [Support for Material UI](#support-for-material-ui)
 :::
 
@@ -73,7 +74,7 @@ Learn how to use pivoting [now](/x/react-data-grid/pivoting/).
 
 ### Ask Your Table - Featuring AI Assistance on the Data Grid
 
-After an extensive period of test with users and pilot customers, we're excited to introduce our new AI-Powered feature for the Data Grid, [Ask Your Table](/x/react-data-grid/ask-your-table/).
+After a period of test with users and pilot customers, we're excited to introduce our new AI Assistant for the Data Grid: [Ask Your Table](/x/react-data-grid/ask-your-table/).
 
 Now your users can interact with data using natural language queries and extract data insights quickly as ever.
 
@@ -109,27 +110,29 @@ Dive into our new docs section: [Sub-Components Composition](/x/react-data-grid/
 
 We understand how customization is important to you. So with the ultimate goal to be absolutely customizable, we're taking the first step to decouple Material UI from the Data Grid Core, opening the possibility to use the Data Grid with any design system—and it’s just the beginning. On the next steps, we'll work to provide the best experience for you to build a full featured data grid that fits all your design requirements.
 
-### New No-Columns Overlay
+### No-Columns Overlay
 
-We’ve redesigned the no-columns overlay to provide a cleaner, more intuitive interface.
+We’ve added a no-columns overlay to serve as a clear fallback when the Data Grid has no columns to show.
 
-Learn more about the new columns overlay in the [overlay's docs](/x/react-data-grid/overlays/#no-columns-overlay).
+Learn more about overlays on [overlay's docs](/x/react-data-grid/overlays/).
 
 ### Data Source on the Community Plan
 
-Great news—the Data Source is now part of the community plan! This means you can start leveraging its capabilities from day one without any additional cost.
+### Data Source on the Community Plan
 
-Explore your options with our [Data Source Docs](/x/react-data-grid/data-source/).
+Great news—the Data Source is now part of the community plan! We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
+
+Explore your options in our [Data Source Docs](/x/react-data-grid/data-source/).
 
 ### Server-Side Aggregation and Lazy Loading
 
-Our new Data Source allows you to fetch rows on demand and seamlessly update them using infinite scrolling and lazy loading, all while supporting robust server-side aggregation. This approach lets you process vast datasets efficiently and display real-time aggregated results.
+The Data Source now supports advanced features such as server-side aggregation, and on-demand data fetching for infinite scrolling, and lazy loading.
 
-Checkout all your options with [Server-Side Data and Our Data Source](/x/react-data-grid/server-side-data/).
+Explore all your options when handling [Server-Side Data](/x/react-data-grid/server-side-data/).
 
 ### List View
 
-We’ve promoted the feature to stable, and over this major we’re committed to enhancing List View even further—making it easier to deliver a robust Data Grid experience on small screens.
+We’ve promoted List View to stable, and over this major we’re committed to enhancing this feature even further—making it easier to deliver a robust Data Grid experience on small screens.
 
 <figure>
   <video autoplay muted loop playsinline width="690" height="417" controls>
@@ -138,7 +141,7 @@ We’ve promoted the feature to stable, and over this major we’re committed to
   <figcaption>Two different views to match the capabilities of multiple displays</figcaption>
 </figure>
 
-Learn more about List View in our [List View Docs](/x/react-data-grid/list-view/).
+Learn more about [List View](/x/react-data-grid/list-view/).
 
 ### Performance Improvements
 
@@ -163,7 +166,7 @@ Get started with the [Time Range Picker](/x/react-date-pickers/time-range-picker
 
 We’ve removed the automatic view-switching in the date time and time range pickers to deliver a more consistent and user-friendly experience. Now, you can easily customize the input flow behavior to better suit your application's needs.
 
-You can know more on how to leverage the new actions on [docs](/x/react-date-pickers/time-range-picker/).
+You can learn about it on [docs](/x/react-date-pickers/time-range-picker/).
 
 ### Clear `ownerState` for slots
 
