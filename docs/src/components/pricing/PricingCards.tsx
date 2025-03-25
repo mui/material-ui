@@ -314,11 +314,7 @@ export function PlanPrice(props: PlanPriceProps) {
         <Button
           component={Link}
           noLinkStyle
-          href={
-            licenseModel === 'annual'
-              ? 'https://mui.com/store/items/mui-x-premium/'
-              : 'https://mui.com/store/items/mui-x-premium-perpetual/'
-          }
+          href={getHref(annual, prioritySupport)}
           variant="contained"
           fullWidth
           endIcon={<KeyboardArrowRightRounded />}
@@ -390,6 +386,18 @@ export function PlanPrice(props: PlanPriceProps) {
       </Button>
     </Box>
   );
+}
+
+function getHref(annual: boolean, prioritySupport: boolean): string {
+  if (annual && prioritySupport) {
+    return 'https://mui.com/store/items/mui-x-premium/?addons=mui-x-priority-support';
+  } else if (!annual && prioritySupport) {
+    return 'https://mui.com/store/items/mui-x-premium-perpetual/?addons=mui-x-priority-support';
+  } else if (annual && !prioritySupport) {
+    return 'https://mui.com/store/items/mui-x-premium/';
+  } else {
+    return 'https://mui.com/store/items/mui-x-premium-perpetual/';
+  }
 }
 
 export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?: string }) {
