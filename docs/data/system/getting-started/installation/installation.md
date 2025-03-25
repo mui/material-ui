@@ -44,20 +44,20 @@ If you want to use [styled-components](https://styled-components.com/) instead, 
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/system@latest-v6 @mui/styled-engine-sc@latest-v6 styled-components
+npm install @mui/system@^6.0.0 @mui/styled-engine-sc@^6.0.0 styled-components
 ```
 
 ```bash pnpm
-pnpm add @mui/system@latest-v6 @mui/styled-engine-sc@latest-v6 styled-components
+pnpm add @mui/system@^6.0.0 @mui/styled-engine-sc@^6.0.0 styled-components
 ```
 
 ```bash yarn
-yarn add @mui/system@latest-v6 @mui/styled-engine-sc@latest-v6 styled-components
+yarn add @mui/system@^6.0.0 @mui/styled-engine-sc@^6.0.0 styled-components
 ```
 
 </codeblock>
 
-If you wish to use the latest version, remove the `@latest-v6` suffix.
+If you wish to use the latest version, remove the `@^6.0.0` suffix.
 
 :::error
 As of late 2021, [styled-components](https://github.com/styled-components/styled-components) is **not compatible** with server-rendered Material UI projects.

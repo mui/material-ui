@@ -30,20 +30,20 @@ Run one of the following commands to install it and save it to your `package.jso
 
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/icons-material@latest-v6
+npm install @mui/icons-material@^6.0.0
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@latest-v6
+pnpm add @mui/icons-material@^6.0.0
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@latest-v6
+yarn add @mui/icons-material@^6.0.0
 ```
 
 </codeblock>
 
-If you wish to use the latest version, remove the `@latest-v6` suffix.
+If you wish to use the latest version, remove the `@^6.0.0` suffix.
 
 These components use the Material UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 

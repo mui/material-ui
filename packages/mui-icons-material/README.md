@@ -11,10 +11,10 @@ The Material Icons package depends on Material UI—install both with the follo
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/icons-material@latest-v6 @mui/material@latest-v6 @emotion/styled @emotion/react
+npm install @mui/icons-material@^6.0.0 @mui/material@^6.0.0 @emotion/styled @emotion/react
 ```
 
-If you wish to use the latest version, remove the `@latest-v6` suffix.
+If you wish to use the latest version, remove the `@^6.0.0` suffix.
 
 ## Documentation
 

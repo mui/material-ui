@@ -19,10 +19,10 @@ To install and save in your `package.json` dependencies, run:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/styles@latest-v6
+npm install @mui/styles@^6.0.0
 ```
 
-If you wish to use the latest version, remove the `@latest-v6` suffix.
+If you wish to use the latest version, remove the `@^6.0.0` suffix.
 
 ## Getting started
 

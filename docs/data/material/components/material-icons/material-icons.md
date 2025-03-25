@@ -23,20 +23,20 @@ Use one of the following commands to install it:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/icons-material@latest-v6 @mui/material@latest-v6 @emotion/styled @emotion/react
+npm install @mui/icons-material@^6.0.0 @mui/material@^6.0.0 @emotion/styled @emotion/react
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@latest-v6 @mui/material@latest-v6 @emotion/styled @emotion/react
+pnpm add @mui/icons-material@^6.0.0 @mui/material@^6.0.0 @emotion/styled @emotion/react
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@latest-v6 @mui/material@latest-v6 @emotion/styled @emotion/react
+yarn add @mui/icons-material@^6.0.0 @mui/material@^6.0.0 @emotion/styled @emotion/react
 ```
 
 </codeblock>
 
-If you wish to use the latest version, remove the `@latest-v6` suffix.
+If you wish to use the latest version, remove the `@^6.0.0` suffix.
 
 See the [Installation](/material-ui/getting-started/installation/) page for additional docs about how to make sure everything is set up correctly.
 
