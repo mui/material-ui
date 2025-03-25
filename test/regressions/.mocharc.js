@@ -4,4 +4,5 @@ module.exports = {
   timeout: (process.env.CIRCLECI === 'true' ? 4 : 2) * 1000, // Circle CI has low-performance CPUs.
   reporter: 'dot',
   require: ['@mui/internal-test-utils/setupBabelPlaywright'],
+  'node-options': ['no-experimental-detect-esm'],
 };
