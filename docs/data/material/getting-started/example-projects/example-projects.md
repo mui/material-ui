@@ -12,7 +12,7 @@ These examples feature Material UI paired with other popular React libraries an
 :::success
 Not sure which to pick?
 We recommend Next.js for server-side rendering and more opinionated framework features, or Vite for a lightweight single-page app (SPA).
-See [Start a New React Project](https://react.dev/learn/creating-a-react-app) from the official React docs to learn more about some of the options available.
+See [Creating a React App](https://react.dev/learn/creating-a-react-app) from the official React docs to learn more about some of the options available.
 :::
 
 {{"component": "modules/components/MaterialUIExampleCollection"}}
