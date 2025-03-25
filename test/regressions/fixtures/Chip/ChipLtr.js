@@ -9,11 +9,7 @@ export default function ChipLtr() {
     <Box sx={{ width: 500 }}>
       <Stack direction="row" spacing={1}>
         <Chip avatar={<Avatar>M</Avatar>} label="Avatar" />
-        <Chip
-          avatar={<Avatar>N</Avatar>}
-          label="Avatar"
-          variant="outlined"
-        />
+        <Chip avatar={<Avatar>N</Avatar>} label="Avatar" variant="outlined" />
       </Stack>
     </Box>
   );
