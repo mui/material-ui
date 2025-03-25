@@ -108,8 +108,8 @@ const ChipRoot = styled('div', {
         pointerEvents: 'none',
       },
       [`& .${chipClasses.avatar}`]: {
-        marginLeft: 5,
-        marginRight: -6,
+        marginInlineStart: 5,
+        marginInlineEnd: -6,
         width: 24,
         height: 24,
         color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
@@ -124,15 +124,15 @@ const ChipRoot = styled('div', {
         backgroundColor: (theme.vars || theme).palette.secondary.dark,
       },
       [`& .${chipClasses.avatarSmall}`]: {
-        marginLeft: 4,
-        marginRight: -4,
+        marginInlineStart: 4,
+        marginInlineEnd: -4,
         width: 18,
         height: 18,
         fontSize: theme.typography.pxToRem(10),
       },
       [`& .${chipClasses.icon}`]: {
-        marginLeft: 5,
-        marginRight: -6,
+        marginInlineStart: 5,
+        marginInlineEnd: -6,
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
@@ -141,7 +141,9 @@ const ChipRoot = styled('div', {
           : alpha(theme.palette.text.primary, 0.26),
         fontSize: 22,
         cursor: 'pointer',
-        margin: '0 5px 0 -6px',
+        marginBlock: 0,
+        marginInlineStart: -6,
+        marginInlineEnd: 5,
         '&:hover': {
           color: theme.vars
             ? `rgba(${theme.vars.palette.text.primaryChannel} / 0.4)`
@@ -155,13 +157,13 @@ const ChipRoot = styled('div', {
             height: 24,
             [`& .${chipClasses.icon}`]: {
               fontSize: 18,
-              marginLeft: 4,
-              marginRight: -4,
+              marginInlineStart: 4,
+              marginInlineEnd: -4,
             },
             [`& .${chipClasses.deleteIcon}`]: {
               fontSize: 16,
-              marginRight: 4,
-              marginLeft: -4,
+              marginInlineEnd: 4,
+              marginInlineStart: -4,
             },
           },
         },
@@ -278,22 +280,22 @@ const ChipRoot = styled('div', {
               backgroundColor: (theme.vars || theme).palette.action.focus,
             },
             [`& .${chipClasses.avatar}`]: {
-              marginLeft: 4,
+              marginInlineStart: 4,
             },
             [`& .${chipClasses.avatarSmall}`]: {
-              marginLeft: 2,
+              marginInlineStart: 2,
             },
             [`& .${chipClasses.icon}`]: {
-              marginLeft: 4,
+              marginInlineStart: 4,
             },
             [`& .${chipClasses.iconSmall}`]: {
-              marginLeft: 2,
+              marginInlineStart: 2,
             },
             [`& .${chipClasses.deleteIcon}`]: {
-              marginRight: 5,
+              marginInlineEnd: 5,
             },
             [`& .${chipClasses.deleteIconSmall}`]: {
-              marginRight: 3,
+              marginInlineEnd: 3,
             },
           },
         },
