@@ -16,7 +16,7 @@ manualCard: false
 We are excited to announce the stable release of [MUI X v8.0.0](https://github.com/mui/mui-x/releases/tag/v8.0.0)—packed with many new features, native ESM support alongside Material UI v7, and an improved license management experience.
 
 :::warning
-**MUI X v8 natively supports ESM** along Material UI v7. Because of that, the support for Material UI v5 and v6 don't come out-of-the-box.
+**MUI X v8 natively supports ESM** along Material UI v7. But because of that, the support for Material UI v5 and v6 don't come out-of-the-box.
 Read more on: [Support for Material UI](#support-for-material-ui)
 :::
 
@@ -256,14 +256,16 @@ enable like this
 
 ## Support for Material UI
 
-In making the leap to MUI X v8, we faced a critical choice: continue supporting older Material UI versions (v5 and v6) or fully embrace the enhancements offered by **Material UI v7**.  
-Material UI v7 brings native support for ESM imports, improved package management, and better integration with modern bundlers like Vite and webpack. As a result, **MUI X v8 now supports Material UI v7 natively**, ensuring that your applications benefit from these modern improvements.  
-We understand that change can be challenging, but migrating to Material UI v7 is designed to be as painless as possible in modern environments. Our migration guides and support channels are here to help you transition smoothly.
+When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) or fully embrace the innovations of **Material UI v7**. With native ESM support, improved package management, and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both wasn’t feasible, so we chose to move forward.
+
+As a result, **MUI X v8 now supports Material UI v7 natively**, ensuring your applications benefit from the latest improvements. We understand that change can be challenging, but migrating to v7 has been designed to be as smooth as possible—with comprehensive migration guides and GitHub support to assist you every step of the way.
 
 ## Migration Guide
 
-Upgrading to v8 is simple with our comprehensive migration guides. They detail every change from previous versions, ensuring that you can transition smoothly without any hassle.  
-_For detailed instructions, please refer to our [migration guide](https://next.mui.com/x/introduction/)._
+
+We have built a migration guide for Material UI and one for each of the advanced components. They detail every breaking change from previous versions with the recommended approach to fix them, ensuring that you can transition smoothly without the least amount of hassle.
+
+Please follow the instructions in our [migration guide](/x/migration/).
 
 ## Long-Term Support
 
