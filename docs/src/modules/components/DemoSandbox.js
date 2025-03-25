@@ -7,7 +7,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { ThemeProvider as SystemThemeProvider } from '@mui/system';
-import { CssVarsProvider, extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
+import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
 import { createTheme, useTheme, styled } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
@@ -159,6 +159,11 @@ function IsolatedDemo({ root, children }) {
   );
 }
 
+IsolatedDemo.propTypes = {
+  children: PropTypes.node.isRequired,
+  root: PropTypes.node,
+};
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -181,7 +186,7 @@ function DemoSandbox(props) {
 
   React.useEffect(() => {
     setRoot(document.getElementById(id));
-  }, []);
+  }, [id]);
 
   const t = useTranslate();
 
