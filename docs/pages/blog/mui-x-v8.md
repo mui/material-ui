@@ -82,7 +82,7 @@ Now your users can interact with data using natural language queries and extract
 For example, if you’re working with an Olympics medal dataset, you can simply ask, “Who won the most gold medals this century?” and the Data Grid will automatically apply the right filters, groupings, and aggregations to display your answer—all that while keeping your dataset private.
 
 <figure>
-  <img style="width: 303px;" width="606" height="900" alt="An example use case showcasing the answer to the question with the correct sorting, filters and grouping" src="/static/blog/mui-x-v8/ask-your-table.png" loading="lazy">
+  <img width="2084" height="928" alt="An example use case showcasing the answer to the question with the correct sorting, filters and grouping" src="/static/blog/mui-x-v8/ask-your-table.png" loading="lazy">
   <figcaption>An answer from the Data Grid</figcaption>
 </figure>
 
