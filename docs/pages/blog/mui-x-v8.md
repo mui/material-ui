@@ -13,7 +13,7 @@ manualCard: false
   </a>
 </div>
 
-We are excited to announce the stable release of **MUI X v8.0.0**—packed with many new features, native ESM support alongside Material UI v7, and an improved license management experience.
+We are excited to announce the stable release of [MUI X v8.0.0](https://github.com/mui/mui-x/releases/tag/v8.0.0)—packed with many new features, native ESM support alongside Material UI v7, and an improved license management experience.
 
 :::warning
 **MUI X v8 natively supports ESM** along Material UI v7. Because of that, the support for Material UI v5 and v6 don't come out-of-the-box.
