@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 export default function requirePropFactory(
   componentNameInError: string,
   Component?: React.ComponentType<unknown>,
-): (requiredProp: string) => PropTypes.Validator<any> | null {
+): (requiredProp: string) => PropTypes.Validator<any> {
   if (process.env.NODE_ENV === 'production') {
-    return () => null;
+    return () => () => null;
   }
 
   // eslint-disable-next-line react/forbid-foreign-prop-types

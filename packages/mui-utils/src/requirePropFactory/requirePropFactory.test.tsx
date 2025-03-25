@@ -7,7 +7,6 @@ describe('requirePropFactory', () => {
   let requireProp: (prop: string) => PropTypes.Validator<any>;
 
   before(() => {
-    // @ts-expect-error `(prop: string) => null` in production
     requireProp = requirePropFactory(componentNameInError);
   });
 
