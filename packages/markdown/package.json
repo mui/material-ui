@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-markdown",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "MUI Team",
   "description": "MUI markdown parser. This is an internal package not meant for general use.",
   "main": "./index.mjs",
@@ -11,7 +11,7 @@
     "./loader": "./loader.mjs",
     "./prism": {
       "types": "./prism.d.mts",
-      "require": "./prism.cjs",
+      "require": null,
       "import": "./prism.mjs"
     }
   },

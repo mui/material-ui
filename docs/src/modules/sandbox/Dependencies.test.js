@@ -234,7 +234,6 @@ import * as Material from '@mui/material';
 import * as Base from '@mui/base';
 import * as IconsMaterial from '@mui/icons-material';
 import * as Lab from '@mui/lab';
-import * as Styles from '@mui/styles';
 import * as System from '@mui/system';
 import * as Utils from '@mui/utils';
     `;
@@ -256,7 +255,6 @@ import * as Utils from '@mui/utils';
       '@mui/icons-material':
         'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/icons-material',
       '@mui/lab': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/lab',
-      '@mui/styles': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/styles',
       '@mui/system': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/system',
       '@mui/utils': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/utils',
       '@mui/base': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/base',
