@@ -46,7 +46,7 @@ export function ColorSchemeTabsBasic() {
     <RadioGroup
       defaultValue="system"
       row
-      aria-label="demo-mode-toggle"
+      aria-label="demo-mode-toggle-iframe"
       name="color-scheme-segmented-control"
       sx={{
         display: 'flex',
@@ -105,14 +105,13 @@ export function ColorSchemeTabsBasic() {
   );
 }
 
-export default function DemoInDocs(props) {
+export default function DemoModeToggleIframe(props) {
   return (
     <ThemeProvider {...props}>
       <Paper
-        data-testid="demo-mode-toggle-paper"
+        data-testid="demo-mode-toggle-iframe-paper"
         sx={{
           p: 2,
-          width: '100%',
           display: 'flex',
           justifyContent: 'center',
         }}

@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { red } from '@mui/material/colors';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
 import DvrIcon from '@mui/icons-material/Dvr';
-import { ThemeProvider, useColorScheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -46,7 +47,7 @@ export function ColorSchemeTabsBasic() {
     <RadioGroup
       defaultValue="system"
       row
-      aria-label="demo-mode-toggle"
+      aria-label="demo-mode-toggle-custom-theme"
       name="color-scheme-segmented-control"
       sx={{
         display: 'flex',
@@ -105,11 +106,33 @@ export function ColorSchemeTabsBasic() {
   );
 }
 
-export default function DemoInDocs(props) {
+export default function DemoModeToggleCustomTheme(props) {
+  const theme = createTheme({
+    cssVariables: {
+      cssVarPrefix: props.theme.cssVarPrefix,
+      colorSchemeSelector: props.theme.colorSchemeSelector,
+    },
+    colorSchemes: {
+      light: {
+        palette: {
+          background: {
+            paper: red[200],
+          },
+        },
+      },
+      dark: {
+        palette: {
+          background: {
+            paper: red[900],
+          },
+        },
+      },
+    },
+  });
   return (
-    <ThemeProvider {...props}>
+    <ThemeProvider {...props} theme={theme}>
       <Paper
-        data-testid="demo-mode-toggle-paper"
+        data-testid="demo-mode-toggle-custom-theme-paper"
         sx={{
           p: 2,
           width: '100%',

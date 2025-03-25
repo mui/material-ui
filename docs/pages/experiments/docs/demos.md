@@ -43,22 +43,54 @@ So, it renders the "outlined" background variant.
 
 ## Mode toggle demo
 
-If the demo needs to demonstrate mode toggling, you need to set `isolated: true` to the demo and pass the props to the `ThemeProvider` in the demo.
+If the demo needs to demonstrate mode toggling, you need to set `isolated: true` to the demo and pass the props to the `ThemeProvider` of the demo.
 
 {{"demo": "DemoModeToggle.js", "isolated": true, "bg": "inline" }}
 
 ```js
-import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+import { ThemeProvider, useColorScheme } from '@mui/material/styles';
 
-const theme = createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    cssVarPrefix: 'demo', // to prevent clashing with other demos
-    colorSchemeSelector: 'class', // any value except `media`
-  },
-});
+function ModeToggle() {
+  const { mode, setMode } = useColorScheme();
+}
 
 export default function Demo(props) {
+  return <ThemeProvider {...props}>...</ThemeProvider>;
+}
+```
+
+:::info
+The demo with `isolated` will always set to `system` mode when refresh the page. It will not store to the local storage.
+:::
+
+### Custom theme
+
+Create a custom theme and pass the `cssVarPrefix` and `colorSchemeSelector` from the theme prop to the `createTheme` function.
+
+{{"demo": "DemoModeToggleCustomTheme.js", "isolated": true, "bg": "inline", "theme": "dark" }}
+
+```js
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+
+export default function Demo(props) {
+  const theme = createTheme({
+    cssVariables: {
+      cssVarPrefix: props.theme.cssVarPrefix,
+      colorSchemeSelector: props.theme.colorSchemeSelector,
+    },
+    colorSchemes: {
+      light: {
+        palette: {
+          // ...custom palette
+        },
+      },
+      dark: {
+        palette: {
+          // ...custom palette
+        },
+      },
+    },
+  });
   return (
     <ThemeProvider {...props} theme={theme}>
       ...
@@ -67,6 +99,8 @@ export default function Demo(props) {
 }
 ```
 
-## Iframe
+### Iframe demo
 
-{{"demo": "DemoIframe.js", "bg": "inline", "defaultCodeOpen": false, "iframe": true }}
+Similar to the above demos, you need to set `isolated: true` to the demo and pass the props to the `ThemeProvider` of the demo.
+
+{{"demo": "DemoModeToggleIframe.js", "bg": "inline", "defaultCodeOpen": false, "iframe": true, "isolated": true }}

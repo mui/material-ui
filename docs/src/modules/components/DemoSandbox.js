@@ -199,6 +199,13 @@ function DemoSandbox(props) {
           {React.cloneElement(childrenProp, {
             disableNestedContext: true,
             storageManager: null,
+            theme: createTheme({
+              cssVariables: {
+                cssVarPrefix: name,
+                colorSchemeSelector: 'class',
+              },
+              colorSchemes: { light: true, dark: true },
+            }),
           })}
         </IsolatedDemo>
       ) : (
