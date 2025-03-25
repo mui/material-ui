@@ -43,7 +43,12 @@ So, it renders the "outlined" background variant.
 
 ## Mode toggle demo
 
-If the demo needs to demonstrate mode toggling, you need to set `isolated: true` to the demo and pass the props to the `ThemeProvider` of the demo.
+Follow this guide if the demo:
+
+- Needs to use CSS variables
+- Needs to demonstrate mode toggling for light and dark color schemes
+
+Set `isolated: true` to the demo options and pass the props to the `ThemeProvider` of the demo.
 
 {{"demo": "DemoModeToggle.js", "isolated": true, "bg": "inline" }}
 
@@ -73,15 +78,15 @@ export default function Demo(props) {
 ```
 
 :::info
-The demo with `isolated` will always set to `system` mode when refresh the page. It will not store to the local storage.
+The demo with `isolated` will always set to `system` mode when refresh the page. It will not store the selected mode to the local storage.
 :::
 
 ### Custom theme
 
-Create a custom theme and pass the `cssVarPrefix` and `colorSchemeSelector` from the theme prop to the `createTheme` function.
+Provide custom palettes to light and/or dark color schemes.
 
 :::warning
-If the demo contains only a custom theme without mode toggle, you don't need to use `isolated: true`.
+If the demo contains only a custom theme (without mode toggle and CSS variables), you don't need to use `isolated: true`.
 :::
 
 {{"demo": "DemoModeToggleCustomTheme.js", "isolated": true, "bg": "inline", "theme": "dark" }}
