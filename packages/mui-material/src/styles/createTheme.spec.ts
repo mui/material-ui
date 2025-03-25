@@ -155,7 +155,7 @@ const theme = createTheme();
           },
         },
       },
-      MuiGrid2: {
+      MuiGrid: {
         styleOverrides: {
           root: {
             justifyContent: 'space-between',

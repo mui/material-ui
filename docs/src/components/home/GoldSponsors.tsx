@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
 import { Link } from '@mui/docs/Link';
@@ -64,6 +64,11 @@ const BACKLINKs = [
     name: 'Poprey',
     description: 'Buy Instagram likes with crypto.',
     href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'SocialWick',
+    description: 'Buy Instagram followers.',
+    href: 'https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 

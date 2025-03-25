@@ -923,6 +923,9 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default 'bottom'
    */
   placement: PropTypes.oneOf([
+    'auto-end',
+    'auto-start',
+    'auto',
     'bottom-end',
     'bottom-start',
     'bottom',
