@@ -27,7 +27,7 @@ export const getStaticProps = () => {
 export default function Customers(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <BrandingCssVarsProvider>
-      <Head title="Customers - MUI" description="" />
+      <Head title="Customers - MUI" description="Meet the teams powered by MUI" />
       <AppHeaderBanner />
       <AppHeader />
       <Divider />
