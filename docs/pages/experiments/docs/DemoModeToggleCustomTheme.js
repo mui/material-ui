@@ -132,7 +132,7 @@ export default function DemoModeToggleCustomTheme(props) {
   return (
     <ThemeProvider {...props} theme={theme}>
       <Paper
-        data-testid="demo-mode-toggle-custom-theme-paper"
+        data-element="demo-mode-toggle-custom-theme-paper"
         sx={{
           p: 2,
           width: '100%',

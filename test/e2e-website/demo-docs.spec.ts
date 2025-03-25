@@ -8,10 +8,10 @@ test.describe('Demo docs', () => {
   test('mode toggle demos should work', async ({ page }) => {
     await page.goto('/experiments/docs/demos/');
 
-    await expect(page.locator('div:has(> [data-testid="demo-mode-toggle-paper"])')).toHaveClass(
+    await expect(page.locator('div:has(> [data-element="demo-mode-toggle-paper"])')).toHaveClass(
       /light/,
     );
-    await expect(page.getByTestId('demo-mode-toggle-paper')).toHaveCSS(
+    await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
       'background-color',
       'rgb(255, 255, 255)',
     );
@@ -22,10 +22,10 @@ test.describe('Demo docs', () => {
       .locator('label:nth-child(3)')
       .click();
 
-    await expect(page.locator('div:has(> [data-testid="demo-mode-toggle-paper"])')).toHaveClass(
+    await expect(page.locator('div:has(> [data-element="demo-mode-toggle-paper"])')).toHaveClass(
       /dark/,
     );
-    await expect(page.getByTestId('demo-mode-toggle-paper')).toHaveCSS(
+    await expect(page.locator('[data-element="demo-mode-toggle-paper"]')).toHaveCSS(
       'background-color',
       'rgb(18, 18, 18)',
     );
@@ -35,9 +35,9 @@ test.describe('Demo docs', () => {
     await page.goto('/experiments/docs/demos/');
 
     await expect(
-      page.locator('div:has(> [data-testid="demo-mode-toggle-custom-theme-paper"])'),
+      page.locator('div:has(> [data-element="demo-mode-toggle-custom-theme-paper"])'),
     ).toHaveClass(/light/);
-    await expect(page.getByTestId('demo-mode-toggle-custom-theme-paper')).toHaveCSS(
+    await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
       'background-color',
       'rgb(239, 154, 154)',
     );
@@ -49,9 +49,9 @@ test.describe('Demo docs', () => {
       .click();
 
     await expect(
-      page.locator('div:has(> [data-testid="demo-mode-toggle-custom-theme-paper"])'),
+      page.locator('div:has(> [data-element="demo-mode-toggle-custom-theme-paper"])'),
     ).toHaveClass(/dark/);
-    await expect(page.getByTestId('demo-mode-toggle-custom-theme-paper')).toHaveCSS(
+    await expect(page.locator('[data-element="demo-mode-toggle-custom-theme-paper"]')).toHaveCSS(
       'background-color',
       'rgb(183, 28, 28)',
     );
@@ -65,7 +65,7 @@ test.describe('Demo docs', () => {
     console.log('iframe', iframe);
 
     await expect(iframe.locator('html')).toHaveClass(/light/);
-    await expect(iframe.getByTestId('demo-mode-toggle-iframe-paper')).toHaveCSS(
+    await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
       'background-color',
       'rgb(255, 255, 255)',
     );
@@ -77,7 +77,7 @@ test.describe('Demo docs', () => {
       .click();
 
     await expect(iframe.locator('html')).toHaveClass(/dark/);
-    await expect(iframe.getByTestId('demo-mode-toggle-iframe-paper')).toHaveCSS(
+    await expect(iframe.locator('[data-element="demo-mode-toggle-iframe-paper"]')).toHaveCSS(
       'background-color',
       'rgb(18, 18, 18)',
     );

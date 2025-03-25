@@ -118,7 +118,7 @@ export default function DemoInDocs(props) {
       })}
     >
       <Paper
-        data-testid="demo-mode-toggle-paper"
+        data-element="demo-mode-toggle-paper"
         sx={{
           p: 2,
           width: '100%',

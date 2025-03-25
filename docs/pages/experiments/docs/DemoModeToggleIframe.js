@@ -118,7 +118,7 @@ export default function DemoModeToggleIframe(props) {
       })}
     >
       <Paper
-        data-testid="demo-mode-toggle-iframe-paper"
+        data-element="demo-mode-toggle-iframe-paper"
         sx={{
           p: 2,
           display: 'flex',
