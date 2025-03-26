@@ -48,7 +48,7 @@ Read more on: [Support for Material UI](#support-for-material-ui)
   - [Funnel Charts](#funnel-charts)
   - [Radar Charts](#radar-charts)
   - [Server-Side Rendering for Charts](#server-side-rendering-for-charts)
-- [New Account Page & License Management](#new-account-page--license-management)
+- [Enhanced License Management and Telemetry](#enhanced-license-management-and-telemetry)
 - [Priority Support – A New Support Service](#priority-support-a-new-support-service)
 - [Support for Material UI](#support-for-material-ui)
 - [Migration](#migration)
@@ -287,18 +287,18 @@ We've restructured our charts composition by dividing responsibilities between t
 
 Learn more in our [Charts Composition Documentation](/x/react-charts/composition/).
 
-## Better license Management and telemetry
+## Enhanced License Management and Telemetry
 
-Managing your license has never been easier. Our redesigned [account page](https://mui.com/store/account/) on the store allows you to view your license keys, update number of seats, renew and upgarde and more, with minimal effort.
+Managing your license has never been easier. Our redesigned [account page](https://mui.com/store/account/) on the store allows you to view your license keys, update number of seats, renew, upgrade and more, with minimal effort.
 
 <figure>
   <img width="606" height="300" alt="Radar charts examples" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
   <figcaption>Accounts Page</figcaption>
 </figure>
 
-In addition, we’ve integrated telemetry to continuously enhance your experience with our products—and with the same infrastructure soon, you’ll be able to manage your license without changing the key by leveraging server-side license validation.
+In addition, we’ve integrated telemetry into our system to continuously enhance your experience with our products. Using this same infrastructure, you'll soon be able to manage your license without changing your key—thanks to server-side license validation.
 
-Telemetry is released as an opt-in feature. We recommend enabling it by adding the following code to your project:
+Telemetry is released as an opt-in feature. We recommend enabling it by adding the following code to your project, close to your license validation:
 
 ```js
 import { muiXTelemetrySettings } from '@mui/x-license';
@@ -306,7 +306,7 @@ import { muiXTelemetrySettings } from '@mui/x-license';
 muiXTelemetrySettings.enableTelemetry();
 ```
 
-You can find more details on our [telemetry guide](/x/guides/telemetry/).
+You can find more details in our [telemetry guide](/x/guides/telemetry/).
 
 ## Priority Support – A New Support Service
 
