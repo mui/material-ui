@@ -88,10 +88,10 @@
   },
   "typesVersions": {
     "*": {
-      "index": [
+      ".": [
         "./index.d.ts"
       ],
-      "*": [
+      "./*": [
         "./icon.d.ts"
       ]
     }
