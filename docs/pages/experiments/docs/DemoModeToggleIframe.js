@@ -3,6 +3,7 @@ import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
 import DvrIcon from '@mui/icons-material/Dvr';
 import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -117,6 +118,7 @@ export default function DemoModeToggleIframe(props) {
         },
       })}
     >
+      <CssBaseline />
       <Paper
         data-element="demo-mode-toggle-iframe-paper"
         sx={{

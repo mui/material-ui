@@ -147,7 +147,36 @@ function DemoIframe(props) {
 DemoIframe.propTypes = {
   children: PropTypes.node.isRequired,
   isJoy: PropTypes.bool,
+  isolated: PropTypes.bool,
   name: PropTypes.string.isRequired,
+};
+
+function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }) {
+  return React.cloneElement(children, {
+    cssVarPrefix,
+    colorSchemeNode: window ? window().document.documentElement : colorSchemeNode,
+    colorSchemeSelector: 'class',
+    disableNestedContext: true,
+    storageManager: null,
+  });
+}
+
+IsolatedDemo.propTypes = {
+  children: PropTypes.node.isRequired,
+  /**
+   * The node to attach the selector. Ignored if `window` is provided.
+   */
+  colorSchemeNode: PropTypes.object,
+  /**
+   * The CSS variables prefix will be the name of the demo to avoid clashing with other demos
+   * because the generated CSS variables are global (always contain `:root`).
+   */
+  cssVarPrefix: PropTypes.string,
+  /**
+   * Provided by `DemoIframe`.
+   * If `window` is provided, the `colorSchemeNode` will be set to the html tag of the iframe.
+   */
+  window: PropTypes.func,
 };
 
 /**
@@ -157,6 +186,11 @@ DemoIframe.propTypes = {
 function DemoSandbox(props) {
   const { children, iframe = false, id, name, onResetDemoClick, isJoy, isolated, ...other } = props;
   const [injectTheme, setInjectTheme] = React.useState();
+  const [root, setRoot] = React.useState();
+
+  React.useEffect(() => {
+    setRoot(document.getElementById(id));
+  }, [id]);
 
   const t = useTranslate();
 
@@ -177,15 +211,38 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {iframe ? (
-        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>
-          <DemoIframe name={name} isJoy={isJoy} isolated={isolated} {...other}>
-            {/* `children` needs to be a child of `DemoIframe` since the iframe implementation rely on `cloneElement`. */}
-            {children}
-          </DemoIframe>
-        </DemoInstanceThemeProvider>
+      {isolated ? (
+        // Place ThemeProvider from MUI System here to disconnect the theme inheritance for Material UI and Joy UI
+        // The demo will need to handle the ThemeProvider itself.
+        <SystemThemeProvider
+          theme={(upperTheme) => ({
+            direction: upperTheme.direction, // required for internal ThemeProvider
+            vars: upperTheme.vars, // required for styling Iframe
+          })}
+        >
+          {iframe ? (
+            <DemoIframe name={name} isJoy={isJoy} isolated={isolated} {...other}>
+              {/* `children` needs to be a child of `DemoIframe` since the iframe implementation rely on `cloneElement`. */}
+              {/* the `colorSchemeNode` will be provided by DemoIframe through `window` prop */}
+              <IsolatedDemo cssVarPrefix={name}>{children}</IsolatedDemo>
+            </DemoIframe>
+          ) : (
+            <IsolatedDemo cssVarPrefix={name} colorSchemeNode={root}>
+              {children}
+            </IsolatedDemo>
+          )}
+        </SystemThemeProvider>
       ) : (
-        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>{children}</DemoInstanceThemeProvider>
+        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>
+          {iframe ? (
+            <DemoIframe name={name} isJoy={isJoy} {...other}>
+              {/* `children` needs to be a child of `DemoIframe` since the iframe implementation rely on `cloneElement`. */}
+              {children}
+            </DemoIframe>
+          ) : (
+            children
+          )}
+        </DemoInstanceThemeProvider>
       )}
     </DemoErrorBoundary>
   );
