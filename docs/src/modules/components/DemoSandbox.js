@@ -18,11 +18,13 @@ import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 let globalInjectThemeCache;
 
-function JoyIframeObserver({ document }) {
+function JoyIframeObserver({ document, isolated }) {
   const { mode, systemMode } = useJoyColorScheme();
   React.useEffect(() => {
-    document.documentElement.setAttribute('data-joy-color-scheme', systemMode || mode);
-  }, [document, mode, systemMode]);
+    if (!isolated) {
+      document.documentElement.setAttribute('data-joy-color-scheme', systemMode || mode);
+    }
+  }, [document, mode, systemMode, isolated]);
   return null;
 }
 JoyIframeObserver.propTypes = {
@@ -30,18 +32,18 @@ JoyIframeObserver.propTypes = {
 };
 
 function FramedDemo(props) {
-  const { children, document, isJoy } = props;
+  const { children, document, isJoy, isolated } = props;
   const themeOptions = React.useContext(ThemeOptionsContext);
 
   const theme = useTheme();
-  React.useEffect(() => {
-    document.body.setAttribute('dir', theme.direction);
-  }, [document, theme.direction]);
 
   React.useEffect(() => {
-    document.documentElement.style.colorScheme = themeOptions.paletteMode;
-    document.documentElement.setAttribute('data-mui-color-scheme', themeOptions.paletteMode);
-  }, [document, themeOptions.paletteMode]);
+    if (!isolated) {
+      document.body.setAttribute('dir', theme.direction);
+      document.documentElement.style.colorScheme = themeOptions.paletteMode;
+      document.documentElement.setAttribute('data-mui-color-scheme', themeOptions.paletteMode);
+    }
+  }, [document, isolated, theme.direction, themeOptions.paletteMode]);
 
   const cache = React.useMemo(
     () =>
@@ -58,6 +60,9 @@ function FramedDemo(props) {
 
   // This theme only used for generating CSS variables, NOT with the React context (ThemeProvider).
   const iframeTheme = React.useMemo(() => {
+    if (isolated) {
+      return null;
+    }
     return isJoy
       ? extendTheme()
       : createTheme({
@@ -66,7 +71,7 @@ function FramedDemo(props) {
             colorSchemeSelector: 'data-mui-color-scheme',
           },
         });
-  }, [isJoy]);
+  }, [isJoy, isolated]);
 
   return (
     <StyleSheetManager
@@ -74,11 +79,11 @@ function FramedDemo(props) {
       stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
     >
       <CacheProvider value={cache}>
-        <GlobalStyles styles={iframeTheme.generateStyleSheets?.() || []} />
+        {iframeTheme && <GlobalStyles styles={iframeTheme.generateStyleSheets?.() || []} />}
         {React.cloneElement(children, {
           window: getWindow,
         })}
-        {isJoy && <JoyIframeObserver document={document} />}
+        {isJoy && <JoyIframeObserver document={document} isolated={isolated} />}
       </CacheProvider>
     </StyleSheetManager>
   );
@@ -87,6 +92,7 @@ FramedDemo.propTypes = {
   children: PropTypes.node,
   document: PropTypes.object.isRequired,
   isJoy: PropTypes.bool,
+  isolated: PropTypes.bool,
 };
 
 const Iframe = styled('iframe')(({ theme }) => ({
@@ -98,7 +104,7 @@ const Iframe = styled('iframe')(({ theme }) => ({
 }));
 
 function DemoIframe(props) {
-  const { children, name, isJoy, ...other } = props;
+  const { children, name, isJoy, isolated, ...other } = props;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -128,8 +134,8 @@ function DemoIframe(props) {
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
-            <FramedDemo document={document} isJoy={isJoy}>
-              {React.cloneElement(children, { root: document?.documentElement })}
+            <FramedDemo document={document} isJoy={isJoy} isolated={isolated}>
+              {children}
             </FramedDemo>,
             document.body,
           )
@@ -144,71 +150,15 @@ DemoIframe.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-function IsolatedDemo({ children, ...props }) {
-  return (
-    <SystemThemeProvider
-      theme={(upperTheme) => ({
-        direction: upperTheme.direction,
-      })}
-    >
-      {React.cloneElement(children, props)}
-    </SystemThemeProvider>
-  );
-}
-
-IsolatedDemo.propTypes = {
-  children: PropTypes.node.isRequired,
-  root: PropTypes.node,
-};
-
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
-  const {
-    children: childrenProp,
-    iframe = false,
-    id,
-    name,
-    onResetDemoClick,
-    isJoy,
-    isolated,
-    ...other
-  } = props;
+  const { children, iframe = false, id, name, onResetDemoClick, isJoy, isolated, ...other } = props;
   const [injectTheme, setInjectTheme] = React.useState();
-  const [root, setRoot] = React.useState();
-  const Sandbox = iframe ? DemoIframe : React.Fragment;
-  const sandboxProps = iframe ? { name, isJoy, ...other } : {};
-
-  React.useEffect(() => {
-    setRoot(document.getElementById(id));
-  }, [id]);
 
   const t = useTranslate();
-
-  // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
-  const children = (
-    <Sandbox {...sandboxProps}>
-      {isolated ? (
-        <IsolatedDemo
-          theme={(upperTheme) => ({
-            direction: upperTheme.direction,
-          })}
-        >
-          {React.cloneElement(childrenProp, {
-            cssVarPrefix: name,
-            colorSchemeNode: root,
-            colorSchemeSelector: 'class',
-            disableNestedContext: true,
-            storageManager: null,
-          })}
-        </IsolatedDemo>
-      ) : (
-        childrenProp
-      )}
-    </Sandbox>
-  );
 
   useEnhancedEffect(() => {
     async function setupMaterialUITheme() {
@@ -227,7 +177,16 @@ function DemoSandbox(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      <DemoInstanceThemeProvider runtimeTheme={injectTheme}>{children}</DemoInstanceThemeProvider>
+      {iframe ? (
+        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>
+          <DemoIframe name={name} isJoy={isJoy} isolated={isolated} {...other}>
+            {/* `children` needs to be a child of `DemoIframe` since the iframe implementation rely on `cloneElement`. */}
+            {children}
+          </DemoIframe>
+        </DemoInstanceThemeProvider>
+      ) : (
+        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>{children}</DemoInstanceThemeProvider>
+      )}
     </DemoErrorBoundary>
   );
 }
