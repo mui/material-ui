@@ -29,6 +29,7 @@ function JoyIframeObserver({ document, isolated }) {
 }
 JoyIframeObserver.propTypes = {
   document: PropTypes.object.isRequired,
+  isolated: PropTypes.bool,
 };
 
 function FramedDemo(props) {
