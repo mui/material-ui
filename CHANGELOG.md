@@ -33,6 +33,7 @@ _Mar 26, 2025_
 - [docs] Fix grammatical errors in support.md (#45631) @letianpailove
 - [docs] Update nextjs font optimization guide (#45600) @IshfaqAhmedProg
 - [docs] Deprecate Toolpad Studio (#45613) @Janpot
+- [docs] Sync the mode from page to demos #45661 @siriwatknp
 
 ### Core
 
