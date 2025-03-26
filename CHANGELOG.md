@@ -11,8 +11,6 @@ _Mar 26, 2025_
 - Read the blog post [Material-UI v7 stable release](https://mui.com/blog/material-ui-v7-is-here/).
 - Check out the [v7 upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v7/).
 
-A big thanks to the 10 contributors who made this release possible.
-
 ### `@mui/material@7.0.0`
 
 - [Autocomplete] Fix when `onHighlightChange` is called (#45438) @ZeeshanTamboli
@@ -21,7 +19,7 @@ A big thanks to the 10 contributors who made this release possible.
 
 ### `@mui/system@7.0.0`
 
-- [system] Fix palette mode does not change when not use CSS vars (#45660) @siriwatknp
+- [system] Fix palette mode does not change when not using CSS vars (#45660) @siriwatknp
 
 ### `@mui/lab@7.0.0-beta.9`
 
