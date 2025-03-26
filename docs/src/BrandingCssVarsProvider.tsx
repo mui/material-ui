@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
-import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import { getCookie } from 'docs/src/modules/utils/helpers';
 // @ts-ignore to bypass type checking in MUI X repo
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
@@ -132,8 +131,6 @@ export default function BrandingCssVarsProvider(props: {
   direction?: 'ltr' | 'rtl';
 }) {
   const { direction = 'ltr', children } = props;
-  const { asPath } = useRouter();
-  const { canonicalAs } = pathnameToLanguage(asPath);
   const theme = React.useMemo(() => {
     return createTheme({
       cssVariables: {
@@ -154,8 +151,8 @@ export default function BrandingCssVarsProvider(props: {
     <ThemeProvider
       theme={theme}
       disableTransitionOnChange
-      // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
-      forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
+      // TODO: remove `forceThemeRerender` once all pages migrate to CSS variables
+      forceThemeRerender
     >
       <NextNProgressBar />
       <CssBaseline />
