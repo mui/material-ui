@@ -8,7 +8,7 @@ _Mar 26, 2025_
 
 🎉 We're happy to announce the stable release of v7.
 
-- Read the blog post [Material-UI v7 stable release](https://mui.com/blog/material-ui-v7-is-here/).
+- Read the [blog post](https://mui.com/blog/material-ui-v7-is-here/) about the announcement.
 - Check out the [v7 upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v7/).
 
 ### `@mui/material@7.0.0`
