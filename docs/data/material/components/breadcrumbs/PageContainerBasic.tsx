@@ -76,7 +76,7 @@ function CustomPageHeader() {
 const demoTheme = createTheme({
   colorSchemes: { light: true, dark: true },
   cssVariables: {
-    colorSchemeSelector: 'class',
+    colorSchemeSelector: 'data-mui-color-scheme',
   },
 });
 
