@@ -154,9 +154,11 @@ DemoIframe.propTypes = {
 
 function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }) {
   return React.cloneElement(children, {
+    window,
     cssVarPrefix,
     colorSchemeNode: window ? window().document.documentElement : colorSchemeNode,
     colorSchemeSelector: 'class',
+    documentNode: window ? window().document : undefined,
     disableNestedContext: true,
     storageManager: null,
   });
