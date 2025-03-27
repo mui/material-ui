@@ -2349,6 +2349,15 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
 
+  test/production:
+    dependencies:
+      '@mui/icons-material':
+        specifier: workspace:^
+        version: link:../../packages/mui-icons-material/build
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../packages/mui-material/build
+
 packages:
 
   '@aashutoshrathi/word-wrap@1.2.6':

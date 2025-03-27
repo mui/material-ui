@@ -1,6 +1,7 @@
 {
-  "extends": "../../../../tsconfig.json",
   "compilerOptions": {
+    // rely on workspace linking
+    "paths": {},
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -8,7 +9,9 @@
     "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "rootDir": "./src",
+    "skipLibCheck": true
   },
   "exclude": ["**/node_modules/"]
 }

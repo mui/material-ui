@@ -5,5 +5,6 @@ packages:
   - 'packages-internal/*'
   - 'docs'
   - 'test'
+  - 'test/production'
   - 'apps/*'
   - 'scripts/sizeSnapshot'
