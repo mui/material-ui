@@ -1,10 +1,14 @@
 packages:
-  - 'benchmark'
-  - 'packages/*'
-  - 'packages/mui-envinfo/test'
-  - 'packages-internal/*'
-  - 'docs'
-  - 'test'
-  - 'test/moduleResolution'
-  - 'apps/*'
-  - 'scripts/sizeSnapshot'
+  - benchmark
+  - packages/*
+  - packages/mui-envinfo/test
+  - packages-internal/*
+  - docs
+  - test
+  - test/moduleResolution
+  - apps/*
+  - scripts/sizeSnapshot
+onlyBuiltDependencies:
+  - esbuild
+  - msw
+  - nx
