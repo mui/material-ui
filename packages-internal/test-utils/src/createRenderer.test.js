@@ -30,17 +30,25 @@ describe('createRenderer', () => {
   });
 
   it('uses strict mode when strict and strictEffects are true', () => {
-    let mounted = 0;
+    let effectCalls = 0;
+    let refCalls = 0;
     function Component() {
       React.useEffect(() => {
-        mounted += 1;
+        effectCalls += 1;
       });
 
-      return null;
+      return (
+        <div
+          ref={() => {
+            refCalls += 1;
+          }}
+        />
+      );
     }
 
     render(<Component />, { strict: true, strictEffects: true });
 
-    expect(mounted).to.equal(2);
+    expect(effectCalls).to.equal(2);
+    expect(refCalls).to.equal(3);
   });
 });

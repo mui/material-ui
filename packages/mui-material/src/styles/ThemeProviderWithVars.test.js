@@ -503,7 +503,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const { container } = render(<App />, { strict: reactMajor !== 19 });
 
     expect(container).to.have.text(`1 light ${createTheme().palette.primary.main}`);
 
