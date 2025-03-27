@@ -18,12 +18,32 @@ function normalizeFileName(file) {
 async function createIconTypings(targetDir, files) {
   const contents = `export { default } from '@mui/material/SvgIcon';`;
 
-  await Promise.all(
-    files.map(async (file) => {
-      const iconName = normalizeFileName(file);
-      await fs.writeFile(path.resolve(targetDir, `${iconName}.d.ts`), contents, 'utf8');
+  let index = 0;
+  const filesIterable = {
+    [Symbol.iterator]: () => ({
+      next() {
+        if (index >= files.length) {
+          return { done: true };
+        }
+        const nextFile = files[index];
+        index += 1;
+        return { value: nextFile, done: false };
+      },
     }),
-  );
+  };
+
+  const createWorker = async () => {
+    for (const file of filesIterable) {
+      const iconName = normalizeFileName(file);
+      // eslint-disable-next-line no-await-in-loop
+      await fs.writeFile(path.resolve(targetDir, `${iconName}.d.ts`), contents, 'utf8');
+    }
+  };
+
+  const concurrency = 50;
+  const workers = Array.from({ length: concurrency }, createWorker);
+
+  await Promise.all(workers);
 }
 
 async function createIndexTyping(targetDir, files) {
