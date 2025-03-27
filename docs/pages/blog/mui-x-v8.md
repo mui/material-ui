@@ -99,7 +99,7 @@ Interested in bringing this feature to your users? [Contact us](mailto:sales@mui
 The [redesigned toolbar](/x/react-data-grid/components/toolbar/) not only looks fantastic but also empowers developers one step further through an open composition of sub-components, allowing you to tailor the toolbar's layout precisely to your application's needs.
 
 <figure>
-  <img width="606" height="300" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy">
+  <img width="100%" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy">
   <figcaption>The new toolbar's design</figcaption>
 </figure>
 
