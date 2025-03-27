@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as CSS from 'csstype';
 import { CSSProperties } from './createMixins';
 import { Palette } from './createPalette';
 
