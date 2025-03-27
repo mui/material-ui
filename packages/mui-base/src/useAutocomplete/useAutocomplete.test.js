@@ -322,6 +322,7 @@ describe('useAutocomplete', () => {
         <ErrorBoundary>
           <Test options={['foo', 'bar']} />
         </ErrorBoundary>,
+        { strict: reactMajor < 19 },
       );
     }).toErrorDev(devErrorMessages);
   });

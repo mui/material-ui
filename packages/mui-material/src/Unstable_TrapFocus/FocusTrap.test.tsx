@@ -219,7 +219,7 @@ describe('<FocusTrap />', () => {
         </div>
       );
     }
-    const { setProps, getByRole } = render(<Test />);
+    const { setProps, getByRole } = render(<Test />, { strict: React.version.startsWith('18.') });
     expect(screen.getByTestId('root')).toHaveFocus();
 
     act(() => {

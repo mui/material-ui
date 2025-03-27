@@ -390,6 +390,7 @@ describe('<Select />', () => {
               <MenuItem value={10}>Ten</MenuItem>
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>,
+            { strict: reactMajor !== 19 },
           ),
         ).toWarnDev(Array(expectedOccurrences).fill(errorMessage));
       });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {
   CssVarsProvider,
@@ -468,7 +468,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const { container } = render(<App />, { strict: reactMajor !== 19 });
 
     expect(container).to.have.text('1 light');
 
@@ -540,7 +540,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const { container } = render(<App />, { strict: reactMajor !== 19 });
 
     expect(container).to.have.text('1 light');
 

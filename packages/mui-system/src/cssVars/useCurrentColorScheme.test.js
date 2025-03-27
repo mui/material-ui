@@ -108,7 +108,7 @@ describe('useCurrentColorScheme', () => {
       return <div>{mode}</div>;
     }
 
-    const { container } = render(<Data />);
+    const { container } = render(<Data />, { strict: reactMajor !== 19 });
 
     expect(container.firstChild.textContent).to.equal('light');
     expect(effectRunCount).to.equal(reactMajor >= 19 ? 2 : 3);

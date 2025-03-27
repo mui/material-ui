@@ -46,9 +46,9 @@ describe('<Portal />', () => {
         </Portal>,
       );
       const mountNode = document.querySelector('.woofPortal');
-      expect(refSpy.args).to.deep.equal([[mountNode]]);
+      expect(refSpy.args).to.deep.equal([[mountNode], [null], [mountNode]]);
       unmount();
-      expect(refSpy.args).to.deep.equal([[mountNode], [null]]);
+      expect(refSpy.args).to.deep.equal([[mountNode], [null], [mountNode], [null]]);
     });
 
     it('should have access to the mountNode when switching disabledPortal', () => {
@@ -59,14 +59,27 @@ describe('<Portal />', () => {
         </Portal>,
       );
       const mountNode = document.querySelector('.woofPortal');
-      expect(refSpy.args).to.deep.equal([[mountNode]]);
+      expect(refSpy.args).to.deep.equal([[mountNode], [null], [mountNode]]);
       setProps({
         disablePortal: false,
         ref: refSpy,
       });
-      expect(refSpy.args).to.deep.equal([[mountNode], [null], [document.body]]);
+      expect(refSpy.args).to.deep.equal([
+        [mountNode],
+        [null],
+        [mountNode],
+        [null],
+        [document.body],
+      ]);
       unmount();
-      expect(refSpy.args).to.deep.equal([[mountNode], [null], [document.body], [null]]);
+      expect(refSpy.args).to.deep.equal([
+        [mountNode],
+        [null],
+        [mountNode],
+        [null],
+        [document.body],
+        [null],
+      ]);
     });
   });
 
