@@ -31,7 +31,7 @@ or:
 <!-- #host-reference -->
 
 This example demonstrates how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with Material UI.
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v6.
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI.
 If you prefer, you can [use styled-components instead](https://mui.com/material-ui/integrations/interoperability/#styled-components).
 
 ## What's next?
