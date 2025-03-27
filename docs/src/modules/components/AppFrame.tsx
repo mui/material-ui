@@ -22,6 +22,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -172,6 +173,8 @@ export interface AppFrameProps {
 export default function AppFrame(props: AppFrameProps) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
+  const router = useRouter();
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
@@ -182,9 +185,10 @@ export default function AppFrame(props: AppFrameProps) {
   const { activePage, productIdentifier } = React.useContext(PageContext);
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
+  const isJoy = canonicalAs.startsWith('/joy-ui/');
 
   return (
-    <DemoPageThemeProvider>
+    <DemoPageThemeProvider hasJoy={isJoy}>
       <RootDiv className={className}>
         <StyledAppBar
           disablePermanent={disablePermanent}

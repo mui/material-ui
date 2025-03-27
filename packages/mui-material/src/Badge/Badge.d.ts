@@ -162,12 +162,12 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
  *
  * Demos:
  *
- * - [Avatar](https://next.mui.com/material-ui/react-avatar/)
- * - [Badge](https://next.mui.com/material-ui/react-badge/)
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ * - [Badge](https://mui.com/material-ui/react-badge/)
  *
  * API:
  *
- * - [Badge API](https://next.mui.com/material-ui/api/badge/)
+ * - [Badge API](https://mui.com/material-ui/api/badge/)
  */
 declare const Badge: OverridableComponent<BadgeTypeMap>;
 

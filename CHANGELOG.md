@@ -1,5 +1,58 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.0
+
+<!-- generated comparing v7.0.0-rc.0..master -->
+
+_Mar 26, 2025_
+
+🎉 We're happy to announce the stable release of v7.
+
+- Read the [blog post](https://mui.com/blog/material-ui-v7-is-here/) about the announcement.
+- Check out the [v7 upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v7/).
+
+### `@mui/material@7.0.0`
+
+- [Autocomplete] Fix when `onHighlightChange` is called (#45438) @ZeeshanTamboli
+- [Tabs] Fix modifier keys + Left/Right Arrow key from being consumed by tab navigation (#45345) @mushfiqbh
+- Update minimum TypeScript support to 4.9 (#45535) @siriwatknp
+
+### `@mui/system@7.0.0`
+
+- [system] Fix palette mode does not change when not using CSS vars (#45660) @siriwatknp
+
+### `@mui/lab@7.0.0-beta.9`
+
+- [lab] Remove @mui/base dependency (#45602) @mnajdova
+
+### Docs
+
+- [docs] Fix unnecessary redirects for v7 (#45677) @Janpot
+- [docs] Fix new React project link, CRA deprecated (#45362) @oliviertassinari
+- [docs] Prepare the v7 upgrade guide for stable release (#45624) @DiegoAndai
+- [docs] Fix grammatical errors in support.md (#45631) @letianpailove
+- [docs] Update nextjs font optimization guide (#45600) @IshfaqAhmedProg
+- [docs] Deprecate Toolpad Studio (#45613) @Janpot
+- [docs] Sync the mode from page to demos #45661 @siriwatknp
+
+### Core
+
+- [blog] v7 stable release (#45623) @DiegoAndai
+- [code-infra] Disable flaky masonry screenshot (#45678) @Janpot
+- [code-infra] Migrate regression tests to vite (#44964) @Janpot
+- [code-infra] Update rollup (#45666) @Janpot
+- [code-infra] Support `React.ComponentType` in proptypes generation (#45664) @Janpot
+- [code-infra] Ensure `translations.json` is present in all `@mui/docs` package builds (#45626) @LukasTy
+- [code-infra] Improve Argos script debuggability (#45619) @Janpot
+- [code-infra] Reconfigure `react-remove-properties` babel plugin (#45218) @Janpot
+- [core] Prepare master for v7 stable (#45674) @DiegoAndai
+- [core] Improve instructions on changing domain (#45637) @mnajdova
+- [core] Deprecate `ponyfillGlobal` (#45606) @Janpot
+- [docs-infra] Restructure docs theme context to CSS variables (#45386) @siriwatknp
+- [styles] Remove code & docs (#45633) @mnajdova
+
+All contributors of this release in alphabetical order: @DiegoAndai, @IshfaqAhmedProg, @Janpot, @letianpailove, @LukasTy, @mnajdova, @mushfiqbh, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
+
 ## 7.0.0-rc.0
 
 <!-- generated comparing v7.0.0-beta.4..master -->

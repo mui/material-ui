@@ -2,17 +2,44 @@
 
 <p class="description">This guide explains how to upgrade from Material UI v6 to v7.</p>
 
-## Start using the alpha release
+## Why you should upgrade to Material UI v7
 
-In the `package.json` file, change the package version from `latest` to `next`.
+### Improved ESM support
 
-```diff title="package.json"
--"@mui/material": "latest",
-+"@mui/material": "next",
-```
+The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
+You can read more about package exports in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
 
-Using `next` ensures your project always uses the latest v7 pre-releases.
-Alternatively, you can also target and fix it to a specific version, for example, `7.0.0-alpha.0`.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
+
+### Quality-of-life improvements
+
+Material UI v7 features other quality-of-life improvements, including:
+
+- Standardization of the slot pattern across all components
+- CSS layers support via the `enableCssLayer` prop in `StyledEngineProvider` for client-side apps, and `AppRouterCacheProvider` for Next.js App Router apps
+- Removed deprecated APIs to reduce the API surface and make the docs easier to navigate
+
+If you're using any of these packages, you should also update their versions to `"7.0.0"`:
+
+- `@mui/icons-material`
+- `@mui/system`
+- `@mui/lab`
+- `@mui/material-nextjs`
+- `@mui/styled-engine`
+- `@mui/styled-engine-sc`
+- `@mui/utils`
+
+Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
+If you're using any of the following packages, they should remain unchanged during the upgrade process:
+
+- `@mui/x-data-grid`
+- `@mui/x-data-grid-pro`
+- `@mui/x-data-grid-premium`
+- `@mui/x-date-pickers`
+- `@mui/x-date-pickers-pro`
+- `@mui/x-charts`
+- `@mui/x-tree-view`
+- `@mui/x-tree-view-pro`
 
 ## Supported browsers and versions
 
@@ -59,11 +86,6 @@ Make sure that your application is still running without errors, and commit the 
 
 Since v7 is a new major release, it contains some changes that affect the public API.
 The steps you need to take to migrate from Material UI v6 to v7 are described below.
-
-:::info
-This list is a work in progress.
-Expect updates as new breaking changes are introduced.
-:::
 
 ### Package layout updated
 
@@ -138,7 +160,7 @@ Depending on your project, you may follow one of the following approaches:
    <!-- #npm-tag-reference -->
 
    ```bash
-   npx @mui/codemod@next v7.0.0/grid-props <path/to/folder>
+   npx @mui/codemod v7.0.0/grid-props <path/to/folder>
    ```
 
    See the [Grid upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more information.
@@ -211,7 +233,7 @@ Use this codemod to automatically update the `size` value:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
+npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
 ```
 
 ### SvgIcon's data-testid removed
@@ -466,7 +488,7 @@ Use this codemod to automatically update the imports:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/lab-removed-components <path/to/folder>
+npx @mui/codemod v7.0.0/lab-removed-components <path/to/folder>
 ```
 
 :::warning

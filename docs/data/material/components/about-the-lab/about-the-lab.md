@@ -24,15 +24,15 @@ To install and save in your `package.json` dependencies, run one of the followin
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/lab@next @mui/material@next
+npm install @mui/lab @mui/material
 ```
 
 ```bash pnpm
-pnpm add @mui/lab@next @mui/material@next
+pnpm add @mui/lab @mui/material
 ```
 
 ```bash yarn
-yarn add @mui/lab@next @mui/material@next
+yarn add @mui/lab @mui/material
 ```
 
 </codeblock>
