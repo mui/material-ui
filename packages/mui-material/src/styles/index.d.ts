@@ -77,7 +77,7 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
-export { default as ThemeProvider } from './ThemeProvider';
+export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
 export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
