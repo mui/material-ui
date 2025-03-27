@@ -1,5 +1,5 @@
 {
-  "name": "@mui-internal/production-tests",
+  "name": "@mui-internal/test-module-resolution",
   "version": "5.0.0",
   "private": true,
   "scripts": {

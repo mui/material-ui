@@ -457,7 +457,7 @@ jobs:
           command: pnpm test:attw
       - run:
           name: test exported typescript
-          command: pnpm --filter @mui-internal/production-tests typescript:all
+          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css

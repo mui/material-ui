@@ -1,7 +1,0 @@
-# Production tests
-
-This test suite relies on workspace linking for its node module resolution. That makes it suitable to test specific production behavior.
-
-## Command `typescript:all`
-
-This runs the src folder through different typescript options to verify it resolves correctly under different `moculeResolution` options.
