@@ -141,3 +141,6 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
+
+// Export CSSProperties from createMixins (which contains our extended version)
+export type { CSSProperties } from './createMixins';
