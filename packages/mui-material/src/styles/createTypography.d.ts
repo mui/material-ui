@@ -28,9 +28,6 @@ export interface FontStyle {
   htmlFontSize: number;
 }
 
-export type NormalCssProperties = CSS.Properties<number | string>;
-export type Fontface = CSS.AtRule.FontFace & { fallbacks?: CSS.AtRule.FontFace[] };
-
 export interface FontStyleOptions extends Partial<FontStyle> {
   allVariants?: React.CSSProperties;
 }
