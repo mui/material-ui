@@ -39,7 +39,7 @@ export {
   duration,
   easing,
 } from './createTransitions';
-export { Mixins } from './createMixins';
+export { Mixins, CSSProperties } from './createMixins';
 export {
   Direction,
   Breakpoint,
