@@ -273,7 +273,7 @@ MobileStepper.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `LinearProgress` element.
-   * @deprecated Use `slotProps.progress` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.progress` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   LinearProgressProps: PropTypes.object,
   /**
