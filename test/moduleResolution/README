@@ -1,3 +1,3 @@
-# typescript `moduleResolution` tests
+# TypeScript `moduleResolution` Tests
 
-Leverages workspace linking to resolve into the build folders. This suite runs the typescript compiler for multiple values of `moduleResolution`
+This suite uses workspace linking to resolve build folders and runs the TypeScript compiler with various `moduleResolution` settings.
