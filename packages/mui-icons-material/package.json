@@ -109,11 +109,11 @@
     },
     "./*": {
       "import": {
-        "types": "./esm/icon.d.ts",
+        "types": "./esm/*.d.ts",
         "default": "./esm/*.js"
       },
       "require": {
-        "types": "./icon.d.ts",
+        "types": "./*.d.ts",
         "default": "./*.js"
       }
     },

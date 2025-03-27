@@ -15,9 +15,15 @@ function normalizeFileName(file) {
   return path.parse(file).name;
 }
 
-async function createIconTyping(targetDir) {
+async function createIconTypings(targetDir, files) {
   const contents = `export { default } from '@mui/material/SvgIcon';`;
-  await fs.writeFile(path.resolve(targetDir, `icon.d.ts`), contents, 'utf8');
+
+  await Promise.all(
+    files.map(async (file) => {
+      const iconName = normalizeFileName(file);
+      await fs.writeFile(path.resolve(targetDir, `${iconName}.d.ts`), contents, 'utf8');
+    }),
+  );
 }
 
 async function createIndexTyping(targetDir, files) {
@@ -41,9 +47,9 @@ async function run() {
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
   const files = await glob('!(index)*.js', { cwd: SRC_DIR });
   await Promise.all([
-    createIconTyping(TARGET_DIR),
+    createIconTypings(TARGET_DIR, files),
     createIndexTyping(TARGET_DIR, files),
-    createIconTyping(TARGET_DIR_ESM),
+    createIconTypings(TARGET_DIR_ESM, files),
     createIndexTyping(TARGET_DIR_ESM, files),
   ]);
   console.log(`\u{1F5C4}  Written typings to ${chalk.dim(TARGET_DIR)}.`);
