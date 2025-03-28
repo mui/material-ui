@@ -71,12 +71,12 @@ export type InputLabelTypeMap<
  *
  * Demos:
  *
- * - [Text Field](https://mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://v6.mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputLabel API](https://mui.com/material-ui/api/input-label/)
- * - inherits [FormLabel API](https://mui.com/material-ui/api/form-label/)
+ * - [InputLabel API](https://v6.mui.com/material-ui/api/input-label/)
+ * - inherits [FormLabel API](https://v6.mui.com/material-ui/api/form-label/)
  */
 declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
 

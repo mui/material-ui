@@ -26,13 +26,13 @@ You can start using Material UI with minimal front-end infrastructure, which is
 We discourage using this approach in production, though.
 The client has to download the entire library, regardless of which components are used, affecting performance and bandwidth usage.
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 [The live preview.](https://raw.githack.com/mui/material-ui/v6.x/examples/material-ui-via-cdn/index.html)
 
 ## What's next?
 
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+<!-- #host-reference -->
 
-<!-- #default-branch-switch -->
+You now have a working example project.
+You can head back to the documentation and continue by browsing the [templates](https://v6.mui.com/material-ui/getting-started/templates/) section.

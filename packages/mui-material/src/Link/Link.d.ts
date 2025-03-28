@@ -49,13 +49,13 @@ export interface LinkTypeMap<AdditionalProps = {}, RootComponent extends React.E
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
- * - [Links](https://mui.com/material-ui/react-link/)
+ * - [Breadcrumbs](https://v6.mui.com/material-ui/react-breadcrumbs/)
+ * - [Links](https://v6.mui.com/material-ui/react-link/)
  *
  * API:
  *
- * - [Link API](https://mui.com/material-ui/api/link/)
- * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
+ * - [Link API](https://v6.mui.com/material-ui/api/link/)
+ * - inherits [Typography API](https://v6.mui.com/material-ui/api/typography/)
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 

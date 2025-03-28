@@ -15,7 +15,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@emotion/server": "latest",
-    "@mui/material": "latest",
+    "@mui/material": "^6.0.0",
     "babel-loader": "latest",
     "cross-env": "latest",
     "express": "latest",

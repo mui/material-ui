@@ -15,8 +15,6 @@ We recommend Next.js for server-side rendering and more opinionated framework fe
 See [Creating a React App](https://react.dev/learn/creating-a-react-app) from the official React docs to learn more about some of the options available.
 :::
 
-<!-- #default-branch-switch -->
-
 {{"component": "modules/components/MaterialUIExampleCollection"}}
 
 <br />

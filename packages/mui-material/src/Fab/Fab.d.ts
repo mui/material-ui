@@ -79,12 +79,12 @@ export type FabTypeMap<
  *
  * Demos:
  *
- * - [Floating Action Button](https://mui.com/material-ui/react-floating-action-button/)
+ * - [Floating Action Button](https://v6.mui.com/material-ui/react-floating-action-button/)
  *
  * API:
  *
- * - [Fab API](https://mui.com/material-ui/api/fab/)
- * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
+ * - [Fab API](https://v6.mui.com/material-ui/api/fab/)
+ * - inherits [ButtonBase API](https://v6.mui.com/material-ui/api/button-base/)
  */
 declare const Fab: ExtendButtonBase<FabTypeMap>;
 

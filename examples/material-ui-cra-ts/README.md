@@ -4,7 +4,7 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/v6.x | tar -xz --strip=2 material-ui-6.x/examples/material-ui-cra-ts
@@ -20,7 +20,7 @@ npm start
 
 or:
 
-<!-- #default-branch-switch -->
+<!-- #repo-reference -->
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/v6.x/examples/material-ui-cra-ts)
 
@@ -34,7 +34,7 @@ If you prefer, you can [use styled-components instead](https://mui.com/material-
 
 ## What's next?
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://v6.mui.com/material-ui/getting-started/templates/) section.

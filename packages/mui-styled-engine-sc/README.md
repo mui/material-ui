@@ -5,6 +5,6 @@ It's designed for developers who would like to use `styled-components` as the ma
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
-Visit [https://mui.com/material-ui/integrations/styled-components/](https://mui.com/material-ui/integrations/styled-components/) to view the full documentation.
+Visit [https://v6.mui.com/material-ui/integrations/styled-components/](https://v6.mui.com/material-ui/integrations/styled-components/) to view the full documentation.

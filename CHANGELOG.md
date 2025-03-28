@@ -1,5 +1,36 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.9
+
+<!-- generated comparing v6.4.8..v6.x -->
+
+_Mar 25, 2025_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@6.4.9`
+
+- [Autocomplete] Fix when `onHighlightChange` is called (@ZeeshanTamboli) (#45635) @ZeeshanTamboli
+- [StepLabel] Add missing root slot (#45607) @sai6855
+- [Switch] Add slots and slotProps (#45628) @siriwatknp
+- [TextField] Add `root` slot (#45616) @sai6855
+- [Tabs] Fix modifier keys + Left/Right Arrow key from being consumed by tab navigation (#45620) @mushfiqbh
+
+### `@mui/codemon@6.4.9`
+
+- Add missing deprecations in deprecations-all file (#45508) @sai6855
+
+### Docs
+
+- [docs] Fix grammatical errors in support.md (#45636) @letianpailove
+- [docs] Restore utility component docs from MUI Base to Material UI (#45240) @mapache-salvaje
+
+### Core
+
+- [core] Prepare v6 branch for v7 stable release (#45668) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @letianpailove, @mapache-salvaje, @mushfiqbh, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 6.4.8
 
 <!-- generated comparing v6.4.7..v6.x -->

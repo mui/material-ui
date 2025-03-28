@@ -40,11 +40,11 @@ export interface ImageListItemTypeMap<
  *
  * Demos:
  *
- * - [Image List](https://mui.com/material-ui/react-image-list/)
+ * - [Image List](https://v6.mui.com/material-ui/react-image-list/)
  *
  * API:
  *
- * - [ImageListItem API](https://mui.com/material-ui/api/image-list-item/)
+ * - [ImageListItem API](https://v6.mui.com/material-ui/api/image-list-item/)
  */
 declare const ImageListItem: OverridableComponent<ImageListItemTypeMap>;
 

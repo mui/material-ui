@@ -174,11 +174,11 @@ export interface CardHeaderTypeMap<
  *
  * Demos:
  *
- * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Card](https://v6.mui.com/material-ui/react-card/)
  *
  * API:
  *
- * - [CardHeader API](https://mui.com/material-ui/api/card-header/)
+ * - [CardHeader API](https://v6.mui.com/material-ui/api/card-header/)
  */
 declare const CardHeader: OverridableCardHeader;
 

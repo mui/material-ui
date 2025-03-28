@@ -281,7 +281,7 @@ describe('System <Grid />', () => {
           render(<Grid {...{ [breakpoint]: 8 }} />);
         }).toWarnDev(
           // #host-reference
-          `MUI Grid2: The \`${breakpoint}\` prop has been removed. See https://mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`,
+          `MUI Grid2: The \`${breakpoint}\` prop has been removed. See https://v6.mui.com/material-ui/migration/upgrade-to-grid-v2/ for migration instructions.`,
         );
       });
     });

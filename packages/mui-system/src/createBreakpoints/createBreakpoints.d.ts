@@ -9,7 +9,7 @@ export type Breakpoint = OverridableStringUnion<
 export const keys: Breakpoint[];
 
 // Keep in sync with docs/src/pages/customization/breakpoints/breakpoints.md
-// #default-branch-switch
+// #host-reference
 export interface Breakpoints {
   keys: Breakpoint[];
   /**
@@ -31,13 +31,13 @@ export interface Breakpoints {
   /**
    * @param key - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key (inclusive).
-   * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-up-key-media-query)
+   * @see [API documentation](https://v6.mui.com/material-ui/customization/breakpoints/#theme-breakpoints-up-key-media-query)
    */
   up: (key: Breakpoint | number) => string;
   /**
    * @param key - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths less than the screen size given by the breakpoint key (exclusive).
-   * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-down-key-media-query)
+   * @see [API documentation](https://v6.mui.com/material-ui/customization/breakpoints/#theme-breakpoints-down-key-media-query)
    */
   down: (key: Breakpoint | number) => string;
   /**
@@ -45,14 +45,14 @@ export interface Breakpoints {
    * @param end - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths greater than
    *          the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
-   * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-between-start-end-media-query)
+   * @see [API documentation](https://v6.mui.com/material-ui/customization/breakpoints/#theme-breakpoints-between-start-end-media-query)
    */
   between: (start: Breakpoint | number, end: Breakpoint | number) => string;
   /**
    * @param key - A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
    * @returns A media query string ready to be used with most styling solutions, which matches screen widths starting from
    *          the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive).
-   * @see [API documentation](https://mui.com/material-ui/customization/breakpoints/#theme-breakpoints-only-key-media-query)
+   * @see [API documentation](https://v6.mui.com/material-ui/customization/breakpoints/#theme-breakpoints-only-key-media-query)
    */
   only: (key: Breakpoint) => string;
   /**

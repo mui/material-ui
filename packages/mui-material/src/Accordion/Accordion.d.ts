@@ -128,12 +128,12 @@ export type AccordionTypeMap<
  *
  * Demos:
  *
- * - [Accordion](https://mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://v6.mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [Accordion API](https://mui.com/material-ui/api/accordion/)
- * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
+ * - [Accordion API](https://v6.mui.com/material-ui/api/accordion/)
+ * - inherits [Paper API](https://v6.mui.com/material-ui/api/paper/)
  */
 declare const Accordion: OverridableComponent<AccordionTypeMap>;
 
