@@ -5,26 +5,38 @@ import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
 import { TransitionProps } from '../transitions';
 import { SpeedDialClasses } from './speedDialClasses';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotComponentProps } from '../utils/types';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
 export interface SpeedDialSlots {
   /**
+   * The component that renders the root slot.
+   * @default 'div'
+   */
+  root: React.ElementType;
+  /**
    * The component that renders the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default {}
+   * @default Zoom
    */
-  transition: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<unknown, any> }
-  >;
+  transition: React.ElementType;
 }
 
 export type SpeedDialSlotsAndSlotProps = CreateSlotsAndSlotProps<
   SpeedDialSlots,
   {
-    transition: SlotProps<React.JSXElementConstructor<TransitionProps>, {}, SpeedDialOwnerState>;
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on div element.
+     */
+    root: SlotComponentProps<'div', React.HTMLAttributes<HTMLDivElement>, SpeedDialOwnerState>;
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the [Zoom](https://mui.com/material-ui/api/zoom/#props) component.
+     */
+    transition: SlotComponentProps<React.ElementType, TransitionProps, SpeedDialOwnerState>;
   }
 >;
 
@@ -97,7 +109,7 @@ export interface SpeedDialProps
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
-   * * @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
@@ -112,7 +124,7 @@ export interface SpeedDialProps
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)
    */
   TransitionProps?: TransitionProps;
 }
@@ -123,10 +135,10 @@ export interface SpeedDialOwnerState extends SpeedDialProps {}
  *
  * Demos:
  *
- * - [Speed Dial](https://next.mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDial API](https://next.mui.com/material-ui/api/speed-dial/)
+ * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
 export default function SpeedDial(props: SpeedDialProps): React.JSX.Element;

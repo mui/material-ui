@@ -10,3 +10,5 @@ export const sizeWidth: SimpleStyleFunction<'sizeWidth'>;
 export const sizeHeight: SimpleStyleFunction<'sizeHeight'>;
 export const boxSizing: SimpleStyleFunction<'boxSizing'>;
 export type SizingProps = PropsFor<typeof sizing>;
+
+export default sizing;

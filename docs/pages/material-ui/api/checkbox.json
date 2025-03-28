@@ -17,8 +17,11 @@
     "id": { "type": { "name": "string" } },
     "indeterminate": { "type": { "name": "bool" }, "default": "false" },
     "indeterminateIcon": { "type": { "name": "node" }, "default": "<IndeterminateCheckBoxIcon />" },
-    "inputProps": { "type": { "name": "object" } },
-    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "inputProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.input</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "onChange": {
       "type": { "name": "func" },
       "signature": {
@@ -34,6 +37,17 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -47,6 +61,20 @@
   "imports": [
     "import Checkbox from '@mui/material/Checkbox';",
     "import { Checkbox } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "SwitchBase",
+      "class": "MuiCheckbox-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input slot.",
+      "default": "SwitchBase's input",
+      "class": null
+    }
   ],
   "classes": [
     {
@@ -77,12 +105,6 @@
       "key": "indeterminate",
       "className": "MuiCheckbox-indeterminate",
       "description": "State class applied to the root element if `indeterminate={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiCheckbox-root",
-      "description": "Class name applied to the root element.",
       "isGlobal": false
     },
     {

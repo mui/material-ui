@@ -15,6 +15,8 @@
       "description": "A next button element. For instance, it can be a <code>Button</code> or an <code>IconButton</code>."
     },
     "position": { "description": "Set the positioning type." },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "steps": { "description": "The total steps." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -22,20 +24,10 @@
     "variant": { "description": "The variant to use." }
   },
   "classDescriptions": {
-    "dot": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "each dot",
-      "conditions": "<code>variant=\"dots\"</code>"
-    },
     "dotActive": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "a dot",
       "conditions": "<code>variant=\"dots\"</code> and this is the active step"
-    },
-    "dots": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the dots container",
-      "conditions": "<code>variant=\"dots\"</code>"
     },
     "positionBottom": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
@@ -51,12 +43,12 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>position=\"top\"</code>"
-    },
-    "progress": {
-      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the Linear Progress component",
-      "conditions": "<code>variant=\"progress\"</code>"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
+  },
+  "slotDescriptions": {
+    "dot": "The component that renders the dot slot.",
+    "dots": "The component that renders the dots slot.",
+    "progress": "The component that renders the progress slot.",
+    "root": "The component that renders the root slot."
   }
 }

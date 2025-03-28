@@ -46,9 +46,9 @@ export interface InputLabelOwnProps extends Pick<FormLabelProps, 'children'> {
   shrink?: boolean;
   /**
    * The size of the component.
-   * @default 'normal'
+   * @default 'medium'
    */
-  size?: OverridableStringUnion<'small' | 'normal', InputLabelPropsSizeOverrides>;
+  size?: OverridableStringUnion<'small' | 'medium', InputLabelPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -71,12 +71,12 @@ export type InputLabelTypeMap<
  *
  * Demos:
  *
- * - [Text Field](https://next.mui.com/material-ui/react-text-field/)
+ * - [Text Field](https://mui.com/material-ui/react-text-field/)
  *
  * API:
  *
- * - [InputLabel API](https://next.mui.com/material-ui/api/input-label/)
- * - inherits [FormLabel API](https://next.mui.com/material-ui/api/form-label/)
+ * - [InputLabel API](https://mui.com/material-ui/api/input-label/)
+ * - inherits [FormLabel API](https://mui.com/material-ui/api/form-label/)
  */
 declare const InputLabel: OverridableComponent<InputLabelTypeMap>;
 

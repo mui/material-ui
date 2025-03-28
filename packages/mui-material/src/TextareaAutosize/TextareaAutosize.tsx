@@ -5,6 +5,7 @@ import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,
   unstable_useEnhancedEffect as useEnhancedEffect,
+  unstable_useEventCallback as useEventCallback,
   unstable_ownerWindow as ownerWindow,
 } from '@mui/utils';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
@@ -52,11 +53,11 @@ function isEmpty(obj: TextareaStyles) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://next.mui.com/material-ui/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://next.mui.com/material-ui/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/material-ui/api/textarea-autosize/)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
@@ -129,6 +130,19 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     return { outerHeightStyle, overflowing };
   }, [maxRows, minRows, props.placeholder]);
 
+  const didHeightChange = useEventCallback(() => {
+    const textarea = textareaRef.current;
+    const textareaStyles = calculateTextareaStyles();
+
+    if (!textarea || !textareaStyles || isEmpty(textareaStyles)) {
+      return false;
+    }
+
+    const outerHeightStyle = textareaStyles.outerHeightStyle;
+
+    return heightRef.current != null && heightRef.current !== outerHeightStyle;
+  });
+
   const syncHeight = React.useCallback(() => {
     const textarea = textareaRef.current;
     const textareaStyles = calculateTextareaStyles();
@@ -148,7 +162,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const frameRef = React.useRef(-1);
 
   useEnhancedEffect(() => {
-    const debounceHandleResize = debounce(() => syncHeight());
+    const debouncedHandleResize = debounce(syncHeight);
     const textarea = textareaRef?.current;
 
     if (!textarea) {
@@ -157,34 +171,36 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
 
     const containerWindow = ownerWindow(textarea);
 
-    containerWindow.addEventListener('resize', debounceHandleResize);
+    containerWindow.addEventListener('resize', debouncedHandleResize);
 
     let resizeObserver: ResizeObserver;
 
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(() => {
-        // avoid "ResizeObserver loop completed with undelivered notifications" error
-        // by temporarily unobserving the textarea element while manipulating the height
-        // and reobserving one frame later
-        resizeObserver.unobserve(textarea);
-        cancelAnimationFrame(frameRef.current);
-        syncHeight();
-        frameRef.current = requestAnimationFrame(() => {
-          resizeObserver.observe(textarea);
-        });
+        if (didHeightChange()) {
+          // avoid "ResizeObserver loop completed with undelivered notifications" error
+          // by temporarily unobserving the textarea element while manipulating the height
+          // and reobserving one frame later
+          resizeObserver.unobserve(textarea);
+          cancelAnimationFrame(frameRef.current);
+          syncHeight();
+          frameRef.current = requestAnimationFrame(() => {
+            resizeObserver.observe(textarea);
+          });
+        }
       });
       resizeObserver.observe(textarea);
     }
 
     return () => {
-      debounceHandleResize.clear();
+      debouncedHandleResize.clear();
       cancelAnimationFrame(frameRef.current);
-      containerWindow.removeEventListener('resize', debounceHandleResize);
+      containerWindow.removeEventListener('resize', debouncedHandleResize);
       if (resizeObserver) {
         resizeObserver.disconnect();
       }
     };
-  }, [calculateTextareaStyles, syncHeight]);
+  }, [calculateTextareaStyles, syncHeight, didHeightChange]);
 
   useEnhancedEffect(() => {
     syncHeight();

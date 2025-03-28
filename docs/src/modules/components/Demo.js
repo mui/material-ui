@@ -4,7 +4,6 @@ import copy from 'clipboard-copy';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
-import { styled as joyStyled } from '@mui/joy/styles';
 import { Tabs } from '@mui/base/Tabs';
 import { TabPanel } from '@mui/base/TabPanel';
 import { unstable_useId as useId } from '@mui/utils';
@@ -28,7 +27,6 @@ import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { AdCarbonInline } from '@mui/docs/Ad';
-import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -210,7 +208,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const DemoRootMaterial = styled('div', {
+const DemoRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme }) => ({
   position: 'relative',
@@ -327,73 +325,6 @@ const DemoRootMaterial = styled('div', {
   ],
 }));
 
-const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
-})(({ theme, hideToolbar, bg }) => ({
-  position: 'relative',
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    border: `1px solid`,
-    borderColor: grey[100],
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundColor: 'transparent',
-    ...theme.applyDarkStyles({
-      borderColor: alpha(blueDark[500], 0.3),
-      backgroundColor: alpha(theme.palette.neutral[900], 0.8),
-    }),
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.level2,
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: 12,
-    },
-    borderRadius: 0,
-    padding: theme.spacing(0),
-    overflow: 'auto',
-    backgroundColor: alpha(blue[50], 0.5),
-    border: `1px solid`,
-    borderColor: grey[100],
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
-      radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-      radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
-      radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%),
-      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
-    ...theme.applyDarkStyles({
-      backgroundColor: alpha(blue[900], 0.1),
-      borderColor: alpha(blueDark[700], 1),
-      backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-        blueDark[700],
-        0.5,
-      )} 0px, transparent 50%),
-    radial-gradient(at 80% 0%, ${alpha(blue[900], 0.3)} 0px, transparent 50%),
-    radial-gradient(at 0% 95%,  ${alpha(blue[900], 0.5)} 0px, transparent 50%),
-    radial-gradient(at 0% 5%, ${alpha(blue[900], 0.5)} 0px, transparent 35%),
-    radial-gradient(at 93% 85%, ${alpha(blue[900], 0.3)} 0px, transparent 50%);`,
-    }),
-  }),
-}));
-
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
@@ -435,7 +366,7 @@ const selectionOverride = (theme) => ({
 });
 
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation, mode } = props;
+  const { demo, demoOptions, disableAd, githubLocation } = props;
 
   if (process.env.NODE_ENV !== 'production') {
     if (demoOptions.hideToolbar === false) {
@@ -537,9 +468,6 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
 
-  const DemoRoot = demoData.productId === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = demoData.productId === 'joy-ui' ? BrandingProvider : React.Fragment;
-
   const isPreview = !codeOpen && showPreview;
 
   const initialEditorCode = isPreview
@@ -629,27 +557,22 @@ export default function Demo(props) {
     <Root>
       <AnchorLink id={demoName} />
       <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
-        <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
-          <InitialFocus
-            aria-label={t('initialFocusLabel')}
-            action={initialFocusRef}
-            tabIndex={-1}
-          />
-        </Wrapper>
+        <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
+          id={demoId}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
-          usesCssVarsTheme={demoData.productId === 'joy-ui'}
+          isolated={demoOptions.isolated}
+          isJoy={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {/* TODO: Wrapper shouldn't be needed, it should already be at the top of the docs page */}
       {demoOptions.hideToolbar ? null : (
-        <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+        <React.Fragment>
           {Object.keys(stylingSolutionMapping).map((key) => (
             <React.Fragment key={key}>
               <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
@@ -754,7 +677,7 @@ export default function Demo(props) {
             </Collapse>
           </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
-        </Wrapper>
+        </React.Fragment>
       )}
     </Root>
   );
@@ -768,5 +691,4 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  mode: PropTypes.string, // temporary, just to make Joy docs work.
 };

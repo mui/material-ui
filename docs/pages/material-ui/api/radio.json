@@ -14,8 +14,16 @@
     "disableRipple": { "type": { "name": "bool" }, "default": "false" },
     "icon": { "type": { "name": "node" }, "default": "<RadioButtonIcon />" },
     "id": { "type": { "name": "string" } },
-    "inputProps": { "type": { "name": "object" } },
-    "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "inputProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.input</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "inputRef": {
+      "type": { "name": "custom", "description": "ref" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.input.ref</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "name": { "type": { "name": "string" } },
     "onChange": {
       "type": { "name": "func" },
@@ -32,6 +40,17 @@
       },
       "default": "'medium'"
     },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -43,6 +62,20 @@
   },
   "name": "Radio",
   "imports": ["import Radio from '@mui/material/Radio';", "import { Radio } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "SwitchBase",
+      "class": "MuiRadio-root"
+    },
+    {
+      "name": "input",
+      "description": "The component that renders the input slot.",
+      "default": "SwitchBase's input",
+      "class": null
+    }
+  ],
   "classes": [
     {
       "key": "checked",
@@ -67,12 +100,6 @@
       "className": "Mui-disabled",
       "description": "State class applied to the root element if `disabled={true}`.",
       "isGlobal": true
-    },
-    {
-      "key": "root",
-      "className": "MuiRadio-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "sizeSmall",

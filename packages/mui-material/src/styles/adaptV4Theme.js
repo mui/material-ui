@@ -1,3 +1,4 @@
+'use client';
 import { createBreakpoints, createSpacing } from '@mui/system';
 
 export default function adaptV4Theme(inputTheme) {

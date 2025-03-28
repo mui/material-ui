@@ -136,7 +136,14 @@ export default function BaseUIComponents() {
   return (
     <Grid container spacing={2} sx={{ pt: 2, pb: 4 }}>
       {components().map((component, index) => (
-        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={component.title}>
+        <Grid
+          sx={{ flexGrow: 1 }}
+          key={component.title}
+          size={{
+            xs: 12,
+            sm: 4,
+          }}
+        >
           <Card
             component={Link}
             noLinkStyle

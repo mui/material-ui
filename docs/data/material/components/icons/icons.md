@@ -26,19 +26,19 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/icons-material@next
+npm install @mui/icons-material
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next
+pnpm add @mui/icons-material
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@next
+yarn add @mui/icons-material
 ```
 
 </codeblock>
@@ -80,20 +80,6 @@ The Material Design guidelines name the icons using "snake_case" naming (for exa
 :::
 
 {{"demo": "SvgMaterialIcons.js"}}
-
-### Testing
-
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
-
-```jsx
-import DeleteIcon from '@mui/icons-material/Delete';
-```
-
-has the following attribute once mounted:
-
-```html
-<svg data-testid="DeleteIcon"></svg>
-```
 
 ## SvgIcon
 
