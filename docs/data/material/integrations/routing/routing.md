@@ -148,16 +148,15 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/mater
   }
   ```
 
-  
 ### TanStack Router
 
 TanStack Router supports custom links through the `createLink` helper function. More information about [`createLink`](https://tanstack.com/router/latest/docs/framework/react/guide/custom-link) can be found in their documentation.
 
 ```tsx
-import { createLink, type LinkComponent } from '@tanstack/react-router'
-import { Link as MUILink } from '@mui/material'
+import { createLink, type LinkComponent } from '@tanstack/react-router';
+import { Link as MUILink } from '@mui/material';
 
-const CustomLink = createLink(MUILink)
+const CustomLink = createLink(MUILink);
 
 function IndexPage() {
   return (
