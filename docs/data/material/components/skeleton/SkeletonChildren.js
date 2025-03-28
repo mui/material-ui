@@ -57,10 +57,10 @@ SkeletonChildrenDemo.propTypes = {
 export default function SkeletonChildren() {
   return (
     <Grid container spacing={8}>
-      <Grid item xs>
+      <Grid size="grow">
         <SkeletonChildrenDemo loading />
       </Grid>
-      <Grid item xs>
+      <Grid size="grow">
         <SkeletonChildrenDemo />
       </Grid>
     </Grid>

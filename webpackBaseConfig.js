@@ -16,7 +16,6 @@ module.exports = {
       '@mui/lab': path.resolve(__dirname, './packages/mui-lab/src'),
       '@mui/styled-engine': path.resolve(__dirname, './packages/mui-styled-engine/src'),
       '@mui/styled-engine-sc': path.resolve(__dirname, './packages/mui-styled-engine-sc/src'),
-      '@mui/styles': path.resolve(__dirname, './packages/mui-styles/src'),
       '@mui/system': path.resolve(__dirname, './packages/mui-system/src'),
       '@mui/private-theming': path.resolve(__dirname, './packages/mui-private-theming/src'),
       '@mui/base': path.resolve(__dirname, './packages/mui-base/src'),
@@ -31,6 +30,6 @@ module.exports = {
       '@mui/internal-test-utils': path.resolve(__dirname, './packages-internal/test-utils/src'),
       docs: path.resolve(__dirname, './docs'),
     },
-    extensions: ['.js', '.ts', '.tsx', '.d.ts'],
+    extensions: ['.js', '.mjs', '.ts', '.tsx', '.d.ts'],
   },
 };

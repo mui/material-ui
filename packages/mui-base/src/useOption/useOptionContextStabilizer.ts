@@ -33,7 +33,7 @@ export function useOptionContextStabilizer<OptionValue>(value: OptionValue) {
       if (itemValue !== value) {
         throw new Error(
           [
-            'Base UI Option: Tried to access the state of another Option.',
+            'MUI Base Option: Tried to access the state of another Option.',
             'This is unsupported when the Option uses the OptionContextStabilizer as a performance optimization.',
           ].join('/n'),
         );

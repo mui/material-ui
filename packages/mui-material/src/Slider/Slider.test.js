@@ -1195,6 +1195,54 @@ describe('<Slider />', () => {
         });
       });
     });
+
+    it('stops at the max value with custom marks', () => {
+      const handleChange = stub();
+      render(
+        <Slider
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
+          step={null}
+          value={30}
+          onChange={handleChange}
+        />,
+      );
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-valuenow', '30');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowRight' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(slider).to.have.attribute('aria-valuenow', '30');
+    });
+
+    it('stops at the min value with custom marks', () => {
+      const handleChange = stub();
+      render(
+        <Slider
+          marks={[{ value: 10 }, { value: 20 }, { value: 30 }]}
+          step={null}
+          value={10}
+          onChange={handleChange}
+        />,
+      );
+
+      const slider = screen.getByRole('slider');
+      expect(slider).to.have.attribute('aria-valuenow', '10');
+
+      act(() => {
+        slider.focus();
+      });
+
+      fireEvent.keyDown(slider, { key: 'ArrowLeft' });
+
+      expect(handleChange.callCount).to.equal(0);
+      expect(slider).to.have.attribute('aria-valuenow', '10');
+    });
   });
 
   describe('warnings', () => {
@@ -1663,6 +1711,40 @@ describe('<Slider />', () => {
     expect(container.querySelector(`.${classes.markActive}`)).toHaveComputedStyle({
       height: '10px',
       width: '10px',
+    });
+  });
+
+  describe('When the onMouseUp event occurs at a different location than the last onChange event', () => {
+    it('should pass onChangeCommitted the same value that was passed to the last onChange event', () => {
+      const handleChange = spy();
+      const handleChangeCommitted = spy();
+
+      const { container } = render(
+        <Slider onChange={handleChange} onChangeCommitted={handleChangeCommitted} value={0} />,
+      );
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        left: 0,
+      }));
+
+      fireEvent.mouseDown(container.firstChild, {
+        buttons: 1,
+        clientX: 10,
+      });
+      fireEvent.mouseMove(container.firstChild, {
+        buttons: 1,
+        clientX: 15,
+      });
+      fireEvent.mouseUp(container.firstChild, {
+        buttons: 1,
+        clientX: 20,
+      });
+
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[0][1]).to.equal(10);
+      expect(handleChange.args[1][1]).to.equal(15);
+      expect(handleChangeCommitted.callCount).to.equal(1);
+      expect(handleChangeCommitted.args[0][1]).to.equal(15);
     });
   });
 });

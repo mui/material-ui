@@ -1,7 +1,7 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import { loadCSS } from 'fg-loadcss';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
@@ -39,7 +39,7 @@ import SvgBaseUiLogo, {
 } from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
-import config from '../config';
+import * as config from '../config';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -179,6 +179,10 @@ function AppWrapper(props) {
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
           {
+            text: 'v6',
+            href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
+          {
             text: 'v5',
             href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
           },
@@ -214,6 +218,8 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
+          { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
+          { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {
             text: 'View all versions',
@@ -226,7 +232,7 @@ function AppWrapper(props) {
     if (productId === 'base-ui') {
       return {
         metadata: '',
-        name: 'Base UI',
+        name: 'MUI Base',
         logo: SvgBaseUiLogo,
         logoSvg: baseSvgLogoString,
         wordmarkSvg: baseSvgWordmarkString,

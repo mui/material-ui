@@ -8,7 +8,7 @@ import { AppProvider, Router } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer, type Navigation } from '@toolpad/core';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 
 const NAVIGATION: Navigation = [
@@ -107,7 +107,7 @@ function DashboardLayoutBasic(props: DemoProps) {
 
 export default function ToolpadDashboardLayout() {
   return (
-    <DemoSandbox iframe name="DashboardLayout" onResetDemoClick={NOOP} usesCssVarsTheme>
+    <DemoSandbox iframe name="DashboardLayout" onResetDemoClick={NOOP} sx={{ height: '100%' }}>
       <DashboardLayoutBasic />
     </DemoSandbox>
   );

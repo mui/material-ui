@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import PhishingRoundedIcon from '@mui/icons-material/PhishingRounded';
@@ -21,14 +21,14 @@ const content = [
     icon: <PhishingRoundedIcon color="primary" />,
     title: 'Low-level hooks',
     description:
-      "When it's time to go fully custom, Base UI has you covered with low-level hooks for fine-grained flexibility in component design.",
+      "When it's time to go fully custom, MUI Base has you covered with low-level hooks for fine-grained flexibility in component design.",
     link: '/base-ui/getting-started/usage/#components-vs-hooks',
   },
   {
     icon: <AccessibilityNewRounded color="primary" />,
     title: 'Accessibility',
     description:
-      'We take accessibility seriously. The Base UI docs are loaded with guidelines and best practices.',
+      'We take accessibility seriously. The MUI Base docs are loaded with guidelines and best practices.',
     link: '/base-ui/getting-started/accessibility/',
   },
 ];
@@ -38,14 +38,14 @@ export default function BaseUISummary() {
     <Section cozy>
       <SectionHeadline
         alwaysCenter
-        overline="Why Base UI"
+        overline="Why MUI Base"
         title={
           <Typography variant="h2" sx={{ mt: 1 }}>
             Essential building blocks
             <br /> for <GradientText>sleek and accessible</GradientText> UIs
           </Typography>
         }
-        description="Base UI abstracts away the more frustrating aspects of UI development—like accessibility, cross-browser compatibility, and event handling—so you can skip ahead to design implementation."
+        description="MUI Base abstracts away the more frustrating aspects of UI development—like accessibility, cross-browser compatibility, and event handling—so you can skip ahead to design implementation."
       />
       <Box sx={{ mt: 6 }}>
         <Grid container spacing={3}>

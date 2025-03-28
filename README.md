@@ -1,3 +1,4 @@
+<!-- #host-reference -->
 <!-- markdownlint-disable-next-line -->
 <p align="center">
   <a href="https://mui.com/core/" rel="noopener" target="_blank"><img width="150" height="133" src="https://mui.com/static/logo.svg" alt="Material UI logo"></a>
@@ -72,8 +73,6 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
 <p>
   <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   &nbsp;
-  <a href="https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://rxdb.info/files/logo/logo_text.svg" alt="RxDB" title="RxDB: Local-first JavaScript database." loading="lazy" /></a>
-  &nbsp;
   <a href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
   &nbsp;
   <a href="https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/288.png" alt="dialmycalls.com" title="DialMyCalls: Send text messages, calls, and emails." loading="lazy" /></a>
@@ -93,6 +92,8 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/instagram-likes/2a72a03/logo/78.png" alt="poprey.com" title="Poprey: Buy Instagram likes with crypto." loading="lazy" />Poprey</a>
   &nbsp;
+  <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/instagram-followers-socialwick/ac6033a/logo/256.png" alt="socialwick.com/instagram/followers" title="SocialWick: Buy Instagram followers." loading="lazy" />SocialWick</a>
+  &nbsp;
 </p>
 
 Gold sponsors are those who have pledged \$500/month or more to MUI.
@@ -106,6 +107,8 @@ See the full list of [our backers](https://mui.com/material-ui/discover-more/bac
 For how-to questions that don't involve making changes to the code base, please use [Stack Overflow](https://stackoverflow.com/questions/) instead of GitHub issues.
 
 ## Examples
+
+<!-- #repo-reference -->
 
 Our documentation features [a collection of example projects](https://github.com/mui/material-ui/tree/master/examples).
 

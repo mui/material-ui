@@ -6,7 +6,7 @@ MUI System is a set of CSS utilities to help you build custom designs more effi
 
 Install the package in your project directory with:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 ```bash
 npm install @mui/system @emotion/react @emotion/styled
@@ -14,6 +14,6 @@ npm install @mui/system @emotion/react @emotion/styled
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 Visit [https://mui.com/system/getting-started/](https://mui.com/system/getting-started/) to view the full documentation.

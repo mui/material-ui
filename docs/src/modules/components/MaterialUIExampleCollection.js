@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
 
-// #default-branch-switch
+// #repo-reference
 const examples = [
   {
     name: 'Next.js App Router',

@@ -13,17 +13,15 @@
     "@mui/icons-material": "workspace:*",
     "@mui/lab": "workspace:*",
     "@mui/styled-engine": "workspace:*",
-    "@mui/styles": "workspace:*",
-    "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "next": "14.2.15",
+    "next": "14.2.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.48.2"
+    "playwright": "1.51.1"
   },
   "pnpm": {
     "overrides": {
@@ -32,7 +30,6 @@
       "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
       "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
       "@mui/styled-engine": "file:../../../../packed/@mui/styled-engine.tgz",
-      "@mui/styles": "file:../../../../packed/@mui/styles.tgz",
       "@mui/system": "file:../../../../packed/@mui/system.tgz",
       "@mui/utils": "file:../../../../packed/@mui/utils.tgz"
     }

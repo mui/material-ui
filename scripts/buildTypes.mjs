@@ -1,3 +1,5 @@
+// Keeping this around for backwards compatibility for X. TODO: remove once X is on an alpha that implements ESM layout.
+
 import chalk from 'chalk';
 import glob from 'fast-glob';
 import fse from 'fs-extra';
@@ -16,11 +18,6 @@ function rewriteImportPath(importPath) {
   const coreSrcPath = path.posix.join('..', 'mui-material', 'src');
   if (importPath.startsWith(coreSrcPath)) {
     return importPath.replace(coreSrcPath, '@mui/material');
-  }
-
-  const stylesSrcPath = path.posix.join('..', 'mui-styles', 'src');
-  if (importPath.startsWith(stylesSrcPath)) {
-    return importPath.replace(stylesSrcPath, '@mui/styles');
   }
 
   const systemSrcPath = path.posix.join('..', 'mui-system', 'src');

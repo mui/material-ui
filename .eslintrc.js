@@ -64,7 +64,7 @@ module.exports = /** @type {Config} */ ({
     'plugin:eslint-plugin-import/recommended',
     'plugin:eslint-plugin-import/typescript',
     'eslint-config-airbnb',
-    'eslint-config-airbnb-typescript',
+    './eslint/config-airbnb-typescript.js',
     'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -74,7 +74,7 @@ module.exports = /** @type {Config} */ ({
   plugins: [
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
-    '@typescript-eslint/eslint-plugin',
+    '@typescript-eslint',
     'eslint-plugin-filenames',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
@@ -92,6 +92,7 @@ module.exports = /** @type {Config} */ ({
   rules: {
     'consistent-this': ['error', 'self'],
     curly: ['error', 'all'],
+    'dot-notation': 'error',
     // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
@@ -112,14 +113,18 @@ module.exports = /** @type {Config} */ ({
     ],
     'no-continue': 'off',
     'no-constant-condition': 'error',
+    'no-implied-eval': 'error',
+    'no-throw-literal': 'error',
     // Use the proptype inheritance chain
     'no-prototype-builtins': 'off',
+    'no-return-await': 'error',
     'no-underscore-dangle': 'error',
     'nonblock-statement-body-position': 'error',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     // Destructuring harm grep potential.
     'prefer-destructuring': 'off',
 
+    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
       {
@@ -128,24 +133,17 @@ module.exports = /** @type {Config} */ ({
         variables: true,
       },
     ],
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
-      { vars: 'all', args: 'after-used', ignoreRestSiblings: true, argsIgnorePattern: '^_' },
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        caughtErrors: 'none',
+      },
     ],
-    'no-use-before-define': 'off',
-
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/dot-notation': 'off',
-    'dot-notation': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/no-implied-eval': 'off',
-    'no-implied-eval': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/no-throw-literal': 'off',
-    'no-throw-literal': 'error',
-    // disabled type-aware linting due to performance considerations
-    '@typescript-eslint/return-await': 'off',
-    'no-return-await': 'error',
 
     // Not sure why it doesn't work
     'import/named': 'off',
@@ -343,6 +341,7 @@ module.exports = /** @type {Config} */ ({
             patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
           },
         ],
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
     {
@@ -408,6 +407,21 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
+      files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
+      excludedFiles: [
+        '*.spec.*',
+        '*.test.*',
+        // deprecated library
+        '**/mui-base/**/*',
+        '**/mui-joy/**/*',
+        // used internally, not used on app router yet
+        '**/mui-docs/**/*',
+      ],
+      rules: {
+        'material-ui/disallow-react-api-in-server-components': 'error',
+      },
+    },
+    {
       files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
       excludedFiles: '*.spec.*',
       rules: {
@@ -418,15 +432,6 @@ module.exports = /** @type {Config} */ ({
               {
                 name: '@mui/material/styles',
                 importNames: ['createStyles'],
-                message: forbidCreateStylesMessage,
-              },
-              {
-                name: '@mui/styles',
-                importNames: ['createStyles'],
-                message: forbidCreateStylesMessage,
-              },
-              {
-                name: '@mui/styles/createStyles',
                 message: forbidCreateStylesMessage,
               },
             ],
@@ -519,6 +524,7 @@ module.exports = /** @type {Config} */ ({
         'import/no-default-export': 'error',
         'import/prefer-default-export': 'off',
         'react-compiler/react-compiler': 'off',
+        'no-irregular-whitespace': ['error', { skipComments: true }],
       },
     },
     {
@@ -544,6 +550,7 @@ module.exports = /** @type {Config} */ ({
         // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
         'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
         'react/prop-types': 'off',
+        'no-irregular-whitespace': ['error', { skipJSXText: true, skipStrings: true }],
       },
     },
     {

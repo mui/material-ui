@@ -16,7 +16,7 @@ const Root = styled('div')(({ theme }) => ({
   height: '100%',
   backgroundColor: grey[100],
   ...theme.applyStyles('dark', {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: (theme.vars || theme).palette.background.default,
   }),
 }));
 
@@ -73,9 +73,7 @@ function SwipeableEdgeDrawer(props) {
         onOpen={toggleDrawer(true)}
         swipeAreaWidth={drawerBleeding}
         disableSwipeToOpen={false}
-        ModalProps={{
-          keepMounted: true,
-        }}
+        keepMounted
       >
         <StyledBox
           sx={{

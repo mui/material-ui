@@ -12,6 +12,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, position } = ownerState;
@@ -142,6 +143,8 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
     position = 'bottom',
     steps,
     variant = 'dots',
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -163,15 +166,57 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      progress: LinearProgressProps,
+      ...slotProps,
+    },
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: MobileStepperRoot,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.root, className),
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      square: true,
+      elevation: 0,
+    },
+  });
+
+  const [DotsSlot, dotsSlotProps] = useSlot('dots', {
+    className: classes.dots,
+    elementType: MobileStepperDots,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [DotSlot, dotSlotProps] = useSlot('dot', {
+    elementType: MobileStepperDot,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ProgressSlot, progressSlotProps] = useSlot('progress', {
+    className: classes.progress,
+    elementType: MobileStepperProgress,
+    shouldForwardComponentProp: true,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      value,
+      variant: 'determinate',
+    },
+  });
+
   return (
-    <MobileStepperRoot
-      square
-      elevation={0}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {backButton}
       {variant === 'text' && (
         <React.Fragment>
@@ -180,30 +225,26 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
       )}
 
       {variant === 'dots' && (
-        <MobileStepperDots ownerState={ownerState} className={classes.dots}>
+        <DotsSlot {...dotsSlotProps}>
           {[...new Array(steps)].map((_, index) => (
-            <MobileStepperDot
+            <DotSlot
               key={index}
-              className={clsx(classes.dot, { [classes.dotActive]: index === activeStep })}
-              ownerState={ownerState}
+              {...dotSlotProps}
+              className={clsx(
+                classes.dot,
+                { [classes.dotActive]: index === activeStep },
+                dotSlotProps.className,
+              )}
               dotActive={index === activeStep}
             />
           ))}
-        </MobileStepperDots>
+        </DotsSlot>
       )}
 
-      {variant === 'progress' && (
-        <MobileStepperProgress
-          ownerState={ownerState}
-          className={classes.progress}
-          variant="determinate"
-          value={value}
-          {...LinearProgressProps}
-        />
-      )}
+      {variant === 'progress' && <ProgressSlot {...progressSlotProps} />}
 
       {nextButton}
-    </MobileStepperRoot>
+    </RootSlot>
   );
 });
 
@@ -232,6 +273,7 @@ MobileStepper.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `LinearProgress` element.
+   * @deprecated Use `slotProps.progress` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   LinearProgressProps: PropTypes.object,
   /**
@@ -243,6 +285,26 @@ MobileStepper.propTypes /* remove-proptypes */ = {
    * @default 'bottom'
    */
   position: PropTypes.oneOf(['bottom', 'static', 'top']),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    dot: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    dots: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    dot: PropTypes.elementType,
+    dots: PropTypes.elementType,
+    progress: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The total steps.
    */
