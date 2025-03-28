@@ -96,6 +96,9 @@ async function main(argv: HandlerArgv) {
 
   await copyDeclarations(esmFolder, buildFolder);
   await copyDeclarations(esmFolder, modernFolder);
+
+  const tsbuildinfo = await glob('**/*.tsbuildinfo', { absolute: true, cwd: buildFolder });
+  await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
 }
 
 yargs(process.argv.slice(2))
