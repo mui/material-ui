@@ -349,7 +349,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       setPositioningStyles();
     });
 
-    const containerWindow = ownerWindow(anchorEl);
+    const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
     containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
