@@ -2,9 +2,9 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
-import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
-import { PaperProps } from '@mui/material/Paper';
-import { PopperProps } from '@mui/material/Popper';
+import { ChipProps, ChipTypeMap } from '../Chip';
+import { PaperProps } from '../Paper';
+import { PopperProps } from '../Popper';
 import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
