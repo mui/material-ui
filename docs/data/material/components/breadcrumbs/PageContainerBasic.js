@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, createTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import {
@@ -73,13 +73,6 @@ function CustomPageHeader() {
   return <PageHeader slots={{ toolbar: CustomPageToolbar }} />;
 }
 
-const demoTheme = createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'data-mui-color-scheme',
-  },
-});
-
 export default function PageContainerBasic(props) {
   const { window } = props;
   const router = useDemoRouter('/inbox/all');
@@ -90,7 +83,6 @@ export default function PageContainerBasic(props) {
     <AppProvider
       navigation={NAVIGATION}
       router={router}
-      theme={demoTheme}
       window={demoWindow}
       branding={{
         title: 'ACME Inc.',
