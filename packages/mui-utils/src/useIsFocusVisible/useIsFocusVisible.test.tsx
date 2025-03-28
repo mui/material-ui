@@ -11,7 +11,14 @@ import {
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from '../useForkRef';
 
-const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
+type SimpleButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  ref?: React.ForwardedRef<HTMLButtonElement>;
+};
+
+const SimpleButton = React.forwardRef(function SimpleButton(
+  props: SimpleButtonProps,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
   const {
     isFocusVisibleRef,
     onBlur: handleBlurVisible,
@@ -23,14 +30,14 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
 
   const [isFocusVisible, setIsFocusVisible] = React.useState(false);
 
-  const handleBlur = (event) => {
+  const handleBlur = (event: React.FocusEvent<HTMLButtonElement>) => {
     handleBlurVisible(event);
     if (isFocusVisibleRef.current === false) {
       setIsFocusVisible(false);
     }
   };
 
-  const handleFocus = (event) => {
+  const handleFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
     handleFocusVisible(event);
     if (isFocusVisibleRef.current === true) {
       setIsFocusVisible(true);
@@ -42,7 +49,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
       type="button"
       {...props}
       ref={handleRef}
-      className={isFocusVisible ? 'focus-visible' : null}
+      className={isFocusVisible ? 'focus-visible' : undefined}
       onBlur={handleBlur}
       onFocus={handleFocus}
     />
@@ -65,14 +72,14 @@ describe('useIsFocusVisible', () => {
       }
     });
 
-    let rootElement;
-    let reactRoot;
+    let rootElement: HTMLDivElement;
+    let reactRoot: ReactDOMClient.Root;
 
     beforeEach(() => {
       rootElement = document.createElement('div');
       document.body.appendChild(rootElement);
       rootElement.attachShadow({ mode: 'open' });
-      reactRoot = ReactDOMClient.createRoot(rootElement.shadowRoot);
+      reactRoot = ReactDOMClient.createRoot(rootElement.shadowRoot!);
     });
 
     afterEach(() => {
@@ -80,17 +87,19 @@ describe('useIsFocusVisible', () => {
         reactRoot.unmount();
       });
 
+      // @ts-expect-error TODO: investigate why TS is not happy with `shadowRoot` here
       teardownFocusVisible(rootElement.shadowRoot);
       document.body.removeChild(rootElement);
     });
 
     it('should set focus state for shadowRoot children', () => {
-      const buttonRef = React.createRef();
+      const buttonRef = React.createRef<HTMLButtonElement>();
       render(
         <SimpleButton id="test-button" ref={buttonRef}>
           Hello
         </SimpleButton>,
         {},
+        // @ts-expect-error TODO: investigate why this third argument is here
         {
           container: rootElement.shadowRoot,
         },
@@ -98,14 +107,14 @@ describe('useIsFocusVisible', () => {
       simulatePointerDevice();
 
       const { current: button } = buttonRef;
-      if (button.nodeName !== 'BUTTON') {
+      if (button!.nodeName !== 'BUTTON') {
         throw new Error('missing button');
       }
 
-      expect(button.classList.contains('focus-visible')).to.equal(false);
+      expect(button!.classList.contains('focus-visible')).to.equal(false);
 
       act(() => {
-        button.focus();
+        button!.focus();
       });
 
       if (programmaticFocusTriggersFocusVisible()) {
@@ -115,11 +124,11 @@ describe('useIsFocusVisible', () => {
       }
 
       act(() => {
-        button.blur();
+        button!.blur();
       });
-      focusVisible(button);
+      focusVisible(button!);
 
-      expect(button.classList.contains('focus-visible')).to.equal(true);
+      expect(button!.classList.contains('focus-visible')).to.equal(true);
     });
   });
 });

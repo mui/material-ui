@@ -3,11 +3,15 @@ import { expect } from 'chai';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import useId from '@mui/utils/useId';
 
+interface TestComponentProps {
+  id?: string;
+}
+
 describe('useId', () => {
   const { render, renderToString } = createRenderer();
 
   it('returns the provided ID', () => {
-    function TestComponent({ id: idProp }) {
+    function TestComponent({ id: idProp }: TestComponentProps) {
       const id = useId(idProp);
       return <span data-testid="target" id={id} />;
     }
@@ -22,7 +26,7 @@ describe('useId', () => {
   });
 
   it("generates an ID if one isn't provided", () => {
-    function TestComponent({ id: idProp }) {
+    function TestComponent({ id: idProp }: TestComponentProps) {
       const id = useId(idProp);
       return <span data-testid="target" id={id} />;
     }

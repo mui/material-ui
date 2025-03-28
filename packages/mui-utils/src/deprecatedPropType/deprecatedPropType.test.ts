@@ -12,7 +12,7 @@ describe('deprecatedPropType', () => {
 
   it('should not warn', () => {
     const propName = `children${new Date()}`;
-    const props = {};
+    const props: Record<string, any> = {};
     PropTypes.checkPropTypes(
       {
         [propName]: deprecatedPropType(PropTypes.string, 'give me a reason'),
@@ -26,7 +26,7 @@ describe('deprecatedPropType', () => {
 
   it('should warn once', () => {
     const propName = `children`;
-    const props = {
+    const props: Record<string, any> = {
       [propName]: 'yolo',
     };
 

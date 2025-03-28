@@ -1,4 +1,6 @@
-export function getTypeByValue(value) {
+import PropTypes from 'prop-types';
+
+export function getTypeByValue(value: any): string {
   const valueType = typeof value;
   switch (valueType) {
     case 'number':
@@ -24,7 +26,12 @@ export function getTypeByValue(value) {
   }
 }
 
-function requiredInteger(props, propName, componentName, location) {
+function requiredInteger(
+  props: Record<string, any>,
+  propName: string,
+  componentName: string,
+  location: string,
+): Error | null {
   const propValue = props[propName];
 
   if (propValue == null || !Number.isInteger(propValue)) {
@@ -38,21 +45,29 @@ function requiredInteger(props, propName, componentName, location) {
   return null;
 }
 
-function validator(props, propName, ...other) {
+function validator(
+  props: Record<string, any>,
+  propName: string,
+  componentName: string,
+  location: string,
+): Error | null {
   const propValue = props[propName];
 
   if (propValue === undefined) {
     return null;
   }
 
-  return requiredInteger(props, propName, ...other);
+  return requiredInteger(props, propName, componentName, location);
 }
 
-function validatorNoop() {
+function validatorNoop(): null {
   return null;
 }
 
 validator.isRequired = requiredInteger;
 validatorNoop.isRequired = validatorNoop;
 
-export default process.env.NODE_ENV === 'production' ? validatorNoop : validator;
+const integerPropType: PropTypes.Requireable<number> =
+  process.env.NODE_ENV === 'production' ? validatorNoop : validator;
+
+export default integerPropType;

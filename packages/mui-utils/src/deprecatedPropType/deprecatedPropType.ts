@@ -1,9 +1,20 @@
-export default function deprecatedPropType(validator, reason) {
+import { Validator } from 'prop-types';
+
+export default function deprecatedPropType<T>(
+  validator: Validator<T>,
+  reason: string,
+): Validator<T> {
   if (process.env.NODE_ENV === 'production') {
     return () => null;
   }
 
-  return (props, propName, componentName, location, propFullName) => {
+  return (
+    props: Record<string, any>,
+    propName: string,
+    componentName?: string,
+    location?: string,
+    propFullName?: string,
+  ) => {
     const componentNameSafe = componentName || '<<anonymous>>';
     const propFullNameSafe = propFullName || propName;
 

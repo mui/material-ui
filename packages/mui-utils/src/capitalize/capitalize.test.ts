@@ -8,6 +8,7 @@ describe('capitalize', () => {
 
   it('should throw when not used correctly', () => {
     expect(() => {
+      // @ts-expect-error Testing improper usage
       capitalize();
     }).toThrowMinified(/expects a string argument/);
   });

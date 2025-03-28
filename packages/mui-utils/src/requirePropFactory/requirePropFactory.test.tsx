@@ -4,7 +4,7 @@ import requirePropFactory from './requirePropFactory';
 
 describe('requirePropFactory', () => {
   const componentNameInError = 'componentNameInError';
-  let requireProp;
+  let requireProp: (prop: string) => PropTypes.Validator<any>;
 
   before(() => {
     requireProp = requirePropFactory(componentNameInError);
@@ -18,7 +18,7 @@ describe('requirePropFactory', () => {
   describe('requireProp()', () => {
     const requiredPropName = 'requiredPropName';
 
-    let requirePropValidator;
+    let requirePropValidator: PropTypes.Validator<any>;
 
     before(() => {
       requirePropValidator = requireProp(requiredPropName);
@@ -29,8 +29,8 @@ describe('requirePropFactory', () => {
     });
 
     describe('requirePropValidator', () => {
-      let props;
-      let propName;
+      let props: Record<string, unknown>;
+      let propName: string;
 
       beforeEach(() => {
         PropTypes.resetWarningCache();
@@ -71,13 +71,14 @@ describe('requirePropFactory', () => {
       });
 
       describe('propName is in props and requiredProp not in props', () => {
-        let result;
+        let result: Error | null;
 
         before(() => {
           props = {};
           propName = 'propName';
           props[propName] = true;
           delete props[requiredPropName];
+          // @ts-expect-error The validator should be called with the right arguments
           result = requirePropValidator(props, propName, undefined, undefined, undefined);
         });
 
@@ -97,19 +98,20 @@ describe('requirePropFactory', () => {
         });
 
         describe('propFullName given to validator', () => {
-          let propFullName;
+          let propFullName: string;
 
           before(() => {
             propFullName = 'propFullName';
+            // @ts-expect-error The validator should be called with the right arguments
             result = requirePropValidator(props, propName, undefined, undefined, propFullName);
           });
 
           it('returned error message should have propFullName', () => {
-            expect(result.message.includes(propFullName)).to.equal(true);
+            expect(result!.message.includes(propFullName)).to.equal(true);
           });
 
           it('returned error message should not have propName', () => {
-            expect(result.message.includes(propName)).to.equal(false);
+            expect(result!.message.includes(propName)).to.equal(false);
           });
         });
       });
@@ -122,7 +124,7 @@ describe('requirePropFactory', () => {
           test: PropTypes.string,
         };
 
-        const localProps = {};
+        const localProps: Record<string, unknown> = {};
         const localPropName = 'test';
         localProps[localPropName] = 'string';
 
@@ -150,7 +152,7 @@ describe('requirePropFactory', () => {
           test: PropTypes.string,
         };
 
-        const localProps = {};
+        const localProps: Record<string, unknown> = {};
         const localPropName = 'test';
         localProps[localPropName] = true;
 
