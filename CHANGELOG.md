@@ -34,7 +34,7 @@ A big thanks to the 7 contributors who made this release possible.
 - Rename GitHub icon import (#45709) @micttyoid
 - Fix Safari issue in dark mode (#45696) @mnajdova
 - Fix `Grid`, `GridLegacy`, `Stack`, `Badge`, `Select`, `Autocomplete` demos CSS variables (#45693) @DiegoAndai
-- Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
+- Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
 - Fix `Breadcrumbs`, `List`, `Divider`, and `Typography` dark mode demos (#45692) @siriwatknp
 - Fix Material Icons page in dark mode (#45691) @mnajdova
 
