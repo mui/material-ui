@@ -354,6 +354,10 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 {{"demo": "Virtualize.js"}}
 
+Alternatively, if you prefer [@tanstack/react-virtual](https://github.com/tanstack/virtual):
+
+{{"demo": "Virtualize2.js"}}
+
 ## Events
 
 If you would like to prevent the default key handler behavior, you can set the event's `defaultMuiPrevented` property to `true`:
