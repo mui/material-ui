@@ -6,7 +6,7 @@ import { Theme } from '../styles';
 import { TypographyOwnProps } from '../Typography';
 import { LinkClasses } from './linkClasses';
 
-export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'> {
+export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes' | 'sx'> {
   /**
    * The content of the component.
    */
