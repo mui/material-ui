@@ -419,11 +419,12 @@ describe('useAutocomplete', () => {
   describe('prop: value', () => {
     it('should not trigger onInputChange when value is provided', () => {
       const onInputChange = spy();
-      const value = 'foo';
 
       function Test() {
+        const [value, setValue] = React.useState('foo');
         const { getInputProps } = useAutocomplete({
           value,
+          onChange: (event, valueParam) => setValue(valueParam),
           onInputChange,
           options: ['foo', 'bar'],
         });
