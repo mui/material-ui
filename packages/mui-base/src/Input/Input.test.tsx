@@ -281,9 +281,7 @@ describe('<Input />', () => {
         );
       }).toErrorDev([
         'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-        // React 18 Strict Effects run mount effects twice
-        React.version.startsWith('18') &&
-          'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+        'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
       ]);
     });
   });

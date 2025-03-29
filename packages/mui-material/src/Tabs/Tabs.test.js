@@ -369,6 +369,7 @@ describe('<Tabs />', () => {
               <Tab value={1} />
               <Tab value={3} />
             </Tabs>,
+            { strict: reactMajor !== 19 },
           );
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',

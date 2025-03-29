@@ -116,6 +116,9 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
+      '@types/babel__register':
+        specifier: ^7.17.3
+        version: 7.17.3
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -5560,6 +5563,9 @@ packages:
 
   '@types/babel__helper-module-imports@7.18.3':
     resolution: {integrity: sha512-2pyr9Vlriessj2KI85SEF7qma8vA3vzquQMw3wn6kL5lsfjH/YxJ1Noytk4/FJElpYybUbyaC37CVfEgfyme9A==}
+
+  '@types/babel__register@7.17.3':
+    resolution: {integrity: sha512-hy9H39BUIGO0C88bLxQD5rqBvqMgjPjDnA8Mx+fjAqtOi4OG7qYaZUMlDHfLOx5G9WtBzhfchzxKl37LTsVRbA==}
 
   '@types/babel__template@7.4.1':
     resolution: {integrity: sha512-azBFKemX6kMg5Io+/rdGT0dkGreboUVR0Cdm3fz9QJWpaQGJRQXl7C+6hOTCZcMll7KFyEQpgbYI2lHdsS4U7g==}
@@ -17323,6 +17329,10 @@ snapshots:
     dependencies:
       '@types/babel__core': 7.20.5
       '@types/babel__traverse': 7.20.6
+
+  '@types/babel__register@7.17.3':
+    dependencies:
+      '@types/babel__core': 7.20.5
 
   '@types/babel__template@7.4.1':
     dependencies:
