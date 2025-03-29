@@ -31,8 +31,8 @@
     "prismjs": "^1.30.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.20",
-    "chai": "^4.5.0"
+    "@types/chai": "^5.2.1",
+    "chai": "^5.2.0"
   },
   "publishConfig": {
     "access": "public"
