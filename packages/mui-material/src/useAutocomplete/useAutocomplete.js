@@ -148,7 +148,7 @@ function useAutocomplete(props) {
   // Calculate the initial inputValue on mount only.
   // Using useRef since defaultValue doesn't need to update inputValue dynamically.
   const initialInputValue = React.useRef(
-    getInputValue(defaultValue, multiple, getOptionLabel),
+    getInputValue(defaultValue ?? valueProp, multiple, getOptionLabel),
   ).current;
 
   const [value, setValueState] = useControlled({
