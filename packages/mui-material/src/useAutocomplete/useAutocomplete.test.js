@@ -415,4 +415,24 @@ describe('useAutocomplete', () => {
       expect(onInputChange.callCount).to.equal(0);
     });
   });
+
+  describe('prop: value', () => {
+    it('should not trigger onInputChange when value is provided', () => {
+      const onInputChange = spy();
+      const value = 'foo';
+
+      function Test() {
+        const { getInputProps } = useAutocomplete({
+          value,
+          onInputChange,
+          options: ['foo', 'bar'],
+        });
+
+        return <input {...getInputProps()} />;
+      }
+
+      render(<Test />);
+      expect(onInputChange.callCount).to.equal(0);
+    });
+  });
 });
