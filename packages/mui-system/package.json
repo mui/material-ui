@@ -62,7 +62,7 @@
     "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
     "react": "^19.0.0",
-    "sinon": "^19.0.4",
+    "sinon": "^19.0.5",
     "styled-components": "^6.1.16"
   },
   "peerDependencies": {
