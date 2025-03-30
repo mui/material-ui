@@ -1168,8 +1168,8 @@ importers:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.0.0(react@19.0.0)
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
     devDependencies:
       '@types/chai':
         specifier: ^4.3.20
@@ -1278,8 +1278,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
 
   packages/api-docs-builder-core:
     dependencies:
@@ -1312,8 +1312,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -1437,8 +1437,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
     publishDirectory: build
 
   packages/mui-codemod:
@@ -1717,8 +1717,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
     publishDirectory: build
 
   packages/mui-lab:
@@ -1782,8 +1782,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
     publishDirectory: build
 
   packages/mui-material:
@@ -1886,8 +1886,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
     publishDirectory: build
 
   packages/mui-material-nextjs:
@@ -2110,8 +2110,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
       styled-components:
         specifier: ^6.1.16
         version: 6.1.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -2186,8 +2186,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
     publishDirectory: build
 
   packages/netlify-plugin-cache-docs:
@@ -2328,8 +2328,8 @@ importers:
         specifier: ^1.8.11
         version: 1.8.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       sinon:
-        specifier: ^19.0.4
-        version: 19.0.4
+        specifier: ^19.0.5
+        version: 19.0.5
       styled-components:
         specifier: ^6.1.16
         version: 6.1.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -12155,8 +12155,8 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
-  sinon@19.0.4:
-    resolution: {integrity: sha512-myidFob7fjmYHJb+CHNLtAYScxn3sngGq4t75L2rCGGpE/k4OQVkN3KE5FsN+XkO2+fcDZ65PGvq3KHrlLAm7g==}
+  sinon@19.0.5:
+    resolution: {integrity: sha512-r15s9/s+ub/d4bxNXqIUmwp6imVSdTorIRaxoecYjqTVLZ8RuoXr/4EDGwIBo6Waxn7f2gnURX9zuhAfCwaF6Q==}
 
   sirv@2.0.4:
     resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
@@ -25548,7 +25548,7 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
 
-  sinon@19.0.4:
+  sinon@19.0.5:
     dependencies:
       '@sinonjs/commons': 3.0.1
       '@sinonjs/fake-timers': 13.0.5
