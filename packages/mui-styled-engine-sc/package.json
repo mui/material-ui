@@ -49,7 +49,7 @@
     "@types/chai": "^4.3.20",
     "@types/react": "^19.0.12",
     "chai": "^4.5.0",
-    "react": "^19.0.0",
+    "react": "^19.1.0",
     "styled-components": "^6.1.16"
   },
   "peerDependencies": {
