@@ -327,8 +327,8 @@ We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
-<video style="width: 550px;" autoplay muted loop playsinline width="1716" height="1362">
-  <source src="/static/blog/2019-developer-survey-results/vote.mov" type="video/mp4" />
+<video autoplay muted loop playsinline width="2914" height="1440">
+  <source src="/static/blog/2019-developer-survey-results/vote.mp4" type="video/mp4" />
 </video>
 
 <p class="blog-description">Help us prioritize by upvoting.</p>

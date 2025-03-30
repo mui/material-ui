@@ -804,8 +804,8 @@ Your feedback from this survey helped us to better understand the areas where we
 
 If you want to continue to influence our roadmap, you can visit the [Material UI](https://github.com/mui/material-ui) and [MUI X](https://github.com/mui/mui-x) repositories, open issues, upvote the ones you're most interested in, or leave your thoughts about anything else you want to be improved. We'd love to hear from you.
 
-<video style="width: 550px;" autoplay muted loop playsinline width="1716" height="1362">
-  <source src="/static/blog/2019-developer-survey-results/vote.mov" type="video/mp4" />
+<video autoplay muted loop playsinline width="2914" height="1440">
+  <source src="/static/blog/2019-developer-survey-results/vote.mp4" type="video/mp4" />
 </video>
 
 <p class="blog-description">Help us prioritize by upvoting.</p>
