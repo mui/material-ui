@@ -9,8 +9,8 @@ overrides:
   '@babel/plugin-transform-runtime': ^7.26.10
   '@babel/preset-env': ^7.26.9
   '@babel/preset-react': ^7.26.3
-  '@babel/preset-typescript': ^7.26.0
-  '@babel/runtime': ^7.26.10
+  '@babel/preset-typescript': ^7.27.0
+  '@babel/runtime': ^7.27.0
   '@definitelytyped/header-parser': ^0.2.17
   '@definitelytyped/typescript-versions': ^0.1.7
   '@definitelytyped/utils': ^0.1.8
@@ -51,8 +51,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1
       '@babel/cli':
-        specifier: ^7.26.4
-        version: 7.26.4(@babel/core@7.26.10)
+        specifier: ^7.27.0
+        version: 7.27.0(@babel/core@7.26.10)
       '@babel/core':
         specifier: ^7.26.10
         version: 7.26.10
@@ -72,7 +72,7 @@ importers:
         specifier: ^7.26.3
         version: 7.26.3(@babel/core@7.26.10)
       '@babel/preset-typescript':
-        specifier: ^7.26.0
+        specifier: ^7.27.0
         version: 7.27.0(@babel/core@7.26.10)
       '@babel/register':
         specifier: ^7.25.9
@@ -504,7 +504,7 @@ importers:
         specifier: ^7.26.3
         version: 7.26.3(@babel/core@7.26.10)
       '@babel/preset-typescript':
-        specifier: ^7.26.0
+        specifier: ^7.27.0
         version: 7.27.0(@babel/core@7.26.10)
       '@pigment-css/vite-plugin':
         specifier: 0.0.30
@@ -540,7 +540,7 @@ importers:
   benchmark:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@chakra-ui/system':
         specifier: ^2.6.2
@@ -627,11 +627,11 @@ importers:
         specifier: ^7.26.10
         version: 7.26.10
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@babel/runtime-corejs2':
-        specifier: ^7.26.10
-        version: 7.26.10
+        specifier: ^7.27.0
+        version: 7.27.0
       '@docsearch/react':
         specifier: ^3.9.0
         version: 3.9.0(@algolia/client-search@5.18.0)(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(search-insights@2.13.0)
@@ -898,7 +898,7 @@ importers:
         specifier: ^7.25.9
         version: 7.25.9(@babel/core@7.26.10)
       '@babel/preset-typescript':
-        specifier: ^7.26.0
+        specifier: ^7.27.0
         version: 7.27.0(@babel/core@7.26.10)
       '@mui-internal/api-docs-builder':
         specifier: workspace:^
@@ -1047,7 +1047,7 @@ importers:
         specifier: ^7.25.9
         version: 7.25.9(@babel/core@7.26.10)
       '@babel/types':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@mui/internal-docs-utils':
         specifier: workspace:^
@@ -1108,13 +1108,13 @@ importers:
         specifier: ^7.26.3
         version: 7.26.3(@babel/core@7.26.10)
       '@babel/preset-typescript':
-        specifier: ^7.26.0
+        specifier: ^7.27.0
         version: 7.27.0(@babel/core@7.26.10)
       '@babel/register':
         specifier: ^7.25.9
         version: 7.25.9(@babel/core@7.26.10)
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@emotion/cache':
         specifier: ^11.13.5
@@ -1202,10 +1202,10 @@ importers:
         specifier: ^7.26.10
         version: 7.26.10
       '@babel/preset-typescript':
-        specifier: ^7.26.0
+        specifier: ^7.27.0
         version: 7.27.0(@babel/core@7.26.10)
       '@babel/traverse':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@mui/internal-docs-utils':
         specifier: workspace:^
@@ -1251,8 +1251,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/babel__traverse':
-        specifier: ^7.20.6
-        version: 7.20.6
+        specifier: ^7.20.7
+        version: 7.20.7
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
@@ -1354,7 +1354,7 @@ importers:
   packages/markdown:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       lodash:
         specifier: ^4.17.21
@@ -1376,7 +1376,7 @@ importers:
   packages/mui-base:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@floating-ui/react-dom':
         specifier: ^2.1.1
@@ -1447,10 +1447,10 @@ importers:
         specifier: ^7.26.10
         version: 7.26.10
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@babel/traverse':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       jscodeshift:
         specifier: ^17.1.2
@@ -1485,7 +1485,7 @@ importers:
   packages/mui-docs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@mui/base':
         specifier: '*'
@@ -1588,7 +1588,7 @@ importers:
   packages/mui-icons-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
     devDependencies:
       '@mui/icons-material':
@@ -1647,7 +1647,7 @@ importers:
   packages/mui-joy:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@emotion/react':
         specifier: ^11.5.0
@@ -1724,7 +1724,7 @@ importers:
   packages/mui-lab:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@emotion/react':
         specifier: ^11.5.0
@@ -1789,7 +1789,7 @@ importers:
   packages/mui-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@emotion/react':
         specifier: ^11.5.0
@@ -1893,7 +1893,7 @@ importers:
   packages/mui-material-nextjs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
     devDependencies:
       '@emotion/cache':
@@ -1919,7 +1919,7 @@ importers:
   packages/mui-material-pigment-css:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@mui/system':
         specifier: workspace:*
@@ -1932,7 +1932,7 @@ importers:
   packages/mui-private-theming:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@mui/utils':
         specifier: workspace:^
@@ -1964,7 +1964,7 @@ importers:
   packages/mui-styled-engine:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@emotion/cache':
         specifier: ^11.13.5
@@ -2011,7 +2011,7 @@ importers:
   packages/mui-styled-engine-sc:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@types/hoist-non-react-statics':
         specifier: ^3.3.6
@@ -2049,7 +2049,7 @@ importers:
   packages/mui-system:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@mui/private-theming':
         specifier: workspace:^
@@ -2120,7 +2120,7 @@ importers:
   packages/mui-types:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
     devDependencies:
       '@mui/types':
@@ -2134,7 +2134,7 @@ importers:
   packages/mui-utils:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@mui/types':
         specifier: workspace:^
@@ -2238,7 +2238,7 @@ importers:
         version: 9.7.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@babel/runtime':
-        specifier: ^7.26.10
+        specifier: ^7.27.0
         version: 7.27.0
       '@emotion/cache':
         specifier: ^11.13.5
@@ -2471,8 +2471,8 @@ packages:
   '@asamuzakjp/css-color@2.8.3':
     resolution: {integrity: sha512-GIc76d9UI1hCvOATjZPyHFmE5qhRccp3/zGfMPapK3jBi+yocEzp6BBB0UnfRYP9NP4FANqUZYb0hnfs3TM3hw==}
 
-  '@babel/cli@7.26.4':
-    resolution: {integrity: sha512-+mORf3ezU3p3qr+82WvJSnQNE1GAYeoCfEv4fik6B5/2cvKZ75AX8oawWQdXtM9MmndooQj15Jr9kelRFWsuRw==}
+  '@babel/cli@7.27.0':
+    resolution: {integrity: sha512-bZfxn8DRxwiVzDO5CEeV+7IqXeCkzI4yYnrQbpwjT76CUyossQc6RYE7n+xfm0/2k40lPaCpW0FhxYs7EBAetw==}
     engines: {node: '>=6.9.0'}
     hasBin: true
     peerDependencies:
@@ -3116,8 +3116,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.26.10
 
-  '@babel/runtime-corejs2@7.26.10':
-    resolution: {integrity: sha512-JfoPiD7f/vvd/PaOfu5cr9CyzwDMPg4T0nX3MQr6IgTq49DhjvUcmjmjA7j6+xih1Evq+QKZnge1SoIlYozv/Q==}
+  '@babel/runtime-corejs2@7.27.0':
+    resolution: {integrity: sha512-89TgomkhiBKJ1QN/zPJbSW6M3T9caLoSDYsHFNlTI2Q+T12w8ehZeEnx54I79gB0kmM+etCC5Lfgv95rYUJPdQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime-corejs3@7.24.4':
@@ -5564,8 +5564,8 @@ packages:
   '@types/babel__template@7.4.1':
     resolution: {integrity: sha512-azBFKemX6kMg5Io+/rdGT0dkGreboUVR0Cdm3fz9QJWpaQGJRQXl7C+6hOTCZcMll7KFyEQpgbYI2lHdsS4U7g==}
 
-  '@types/babel__traverse@7.20.6':
-    resolution: {integrity: sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==}
+  '@types/babel__traverse@7.20.7':
+    resolution: {integrity: sha512-dkO5fhS7+/oos4ciWxyEyjWe48zmG6wbCheo/G2ZnHx4fs3EU6YC6UM8rk56gAjNJ9P3MTH2jo5jb92/K6wbng==}
 
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
@@ -13772,7 +13772,7 @@ snapshots:
       '@csstools/css-tokenizer': 3.0.3
       lru-cache: 10.4.3
 
-  '@babel/cli@7.26.4(@babel/core@7.26.10)':
+  '@babel/cli@7.27.0(@babel/core@7.26.10)':
     dependencies:
       '@babel/core': 7.26.10
       '@jridgewell/trace-mapping': 0.3.25
@@ -14596,7 +14596,7 @@ snapshots:
       pirates: 4.0.6
       source-map-support: 0.5.21
 
-  '@babel/runtime-corejs2@7.26.10':
+  '@babel/runtime-corejs2@7.27.0':
     dependencies:
       core-js: 2.6.12
       regenerator-runtime: 0.14.1
@@ -17313,7 +17313,7 @@ snapshots:
       '@babel/types': 7.27.0
       '@types/babel__generator': 7.6.4
       '@types/babel__template': 7.4.1
-      '@types/babel__traverse': 7.20.6
+      '@types/babel__traverse': 7.20.7
 
   '@types/babel__generator@7.6.4':
     dependencies:
@@ -17322,14 +17322,14 @@ snapshots:
   '@types/babel__helper-module-imports@7.18.3':
     dependencies:
       '@types/babel__core': 7.20.5
-      '@types/babel__traverse': 7.20.6
+      '@types/babel__traverse': 7.20.7
 
   '@types/babel__template@7.4.1':
     dependencies:
       '@babel/parser': 7.27.0
       '@babel/types': 7.27.0
 
-  '@types/babel__traverse@7.20.6':
+  '@types/babel__traverse@7.20.7':
     dependencies:
       '@babel/types': 7.27.0
 
