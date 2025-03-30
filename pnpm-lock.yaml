@@ -48,8 +48,8 @@ importers:
         specifier: ^0.17.4
         version: 0.17.4
       '@argos-ci/core':
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: 3.1.1
       '@babel/cli':
         specifier: ^7.26.4
         version: 7.26.4(@babel/core@7.26.10)
@@ -2456,16 +2456,16 @@ packages:
     resolution: {integrity: sha512-Izvir8iIoU+X4SKtDAa5kpb+9cpifclzsbA8x/AZY0k0gIfXYQ1fa1B6Epfe6vNA2YfDX8VtrZFgvnXB6aPEoQ==}
     engines: {node: '>=18'}
 
-  '@argos-ci/api-client@0.8.0':
-    resolution: {integrity: sha512-UHa1vAf8gwHVpkqM/RaSryrFe1juqWH6dHpPeMtT4e/ZMB9hNYwYFinaGq/KRWe88JEi2WeAu776YdoeUSZQkQ==}
+  '@argos-ci/api-client@0.8.1':
+    resolution: {integrity: sha512-3IHv7ANSPNO6OwWgwULlHbP9/tFV9kQDu6+nL9jysfPkGj0GgtrOsyBb+iU931c7wSMo1OD+XNujCnRzDD968w==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/core@3.1.0':
-    resolution: {integrity: sha512-bo/pNKk6P0pz4NRdymgU1letwQrRbMPTeFyMsUEW8fhKNdesSFnFIWZBFGsGkkh05uw75PBjl2ZN4PvQ2TxSog==}
+  '@argos-ci/core@3.1.1':
+    resolution: {integrity: sha512-7iE3o1XGxlfHC5AF05pzT0OxuO387sryrZt3gKGj/e+6R20DXz7J49yI8++nQ2cuT+wLhcJp8+X0ox+SGMYHmw==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/util@2.3.0':
-    resolution: {integrity: sha512-tkxnCpaj7yN9nCFzo9MX0FJ5YjUepEOGYfdvF8COQqp+EdY1qubOPpc4Z0l1B60BlC8YtjQv/oRxHSh1XzxWFg==}
+  '@argos-ci/util@2.3.1':
+    resolution: {integrity: sha512-kE61HU2480fbAnimmA4x9HK45ZJvkoqLdW5GxT5uvwhkclQykVd2S6WfGFUr3JokTXfZ5LZEEfoWgtGA316KSQ==}
     engines: {node: '>=18.0.0'}
 
   '@asamuzakjp/css-color@2.8.3':
@@ -6372,8 +6372,8 @@ packages:
     resolution: {integrity: sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==}
     engines: {node: '>=4'}
 
-  axios@1.8.3:
-    resolution: {integrity: sha512-iP4DebzoNlP/YN2dpwCgb8zoCmhtkajzS48JvwmkSkXvPI3DHc7m+XYL5tGnSlJtR6nImXZmdCuN5aP8dh1d8A==}
+  axios@1.8.4:
+    resolution: {integrity: sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==}
 
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
@@ -10700,8 +10700,8 @@ packages:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
 
-  openapi-fetch@0.13.4:
-    resolution: {integrity: sha512-JHX7UYjLEiHuQGCPxa3CCCIqe/nc4bTIF9c4UYVC8BegAbWoS3g4gJxKX5XcG7UtYQs2060kY6DH64KkvNZahg==}
+  openapi-fetch@0.13.5:
+    resolution: {integrity: sha512-AQK8T9GSKFREFlN1DBXTYsLjs7YV2tZcJ7zUWxbjMoQmj8dDSFRrzhLCbHPZWA1TMV3vACqfCxLEZcwf2wxV6Q==}
 
   openapi-typescript-helpers@0.0.15:
     resolution: {integrity: sha512-opyTPaunsklCBpTK8JGef6mfPhLSnyy5a0IN9vKtx3+4aExf+KxEqYwIy3hqkedXIB97u357uLMJsOnm3GVjsw==}
@@ -13742,18 +13742,18 @@ snapshots:
       typescript: 5.6.1-rc
       validate-npm-package-name: 5.0.1
 
-  '@argos-ci/api-client@0.8.0':
+  '@argos-ci/api-client@0.8.1':
     dependencies:
       debug: 4.4.0(supports-color@8.1.1)
-      openapi-fetch: 0.13.4
+      openapi-fetch: 0.13.5
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/core@3.1.0':
+  '@argos-ci/core@3.1.1':
     dependencies:
-      '@argos-ci/api-client': 0.8.0
-      '@argos-ci/util': 2.3.0
-      axios: 1.8.3(debug@4.4.0)
+      '@argos-ci/api-client': 0.8.1
+      '@argos-ci/util': 2.3.1
+      axios: 1.8.4(debug@4.4.0)
       convict: 6.2.4
       debug: 4.4.0(supports-color@8.1.1)
       fast-glob: 3.3.3
@@ -13762,7 +13762,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/util@2.3.0': {}
+  '@argos-ci/util@2.3.1': {}
 
   '@asamuzakjp/css-color@2.8.3':
     dependencies:
@@ -17062,7 +17062,7 @@ snapshots:
       '@slack/types': 2.13.0
       '@slack/web-api': 7.8.0
       '@types/express': 5.0.0
-      axios: 1.8.3(debug@4.4.0)
+      axios: 1.8.4(debug@4.4.0)
       express: 5.0.1
       path-to-regexp: 8.1.0
       raw-body: 3.0.0
@@ -17109,7 +17109,7 @@ snapshots:
       '@slack/types': 2.13.0
       '@types/node': 20.17.27
       '@types/retry': 0.12.0
-      axios: 1.8.3(debug@4.4.0)
+      axios: 1.8.4(debug@4.4.0)
       eventemitter3: 5.0.1
       form-data: 4.0.1
       is-electron: 2.2.2
@@ -18300,7 +18300,7 @@ snapshots:
 
   axe-core@4.10.2: {}
 
-  axios@1.8.3(debug@4.4.0):
+  axios@1.8.4(debug@4.4.0):
     dependencies:
       follow-redirects: 1.15.6(debug@4.4.0)
       form-data: 4.0.1
@@ -23683,7 +23683,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.8.3(debug@4.4.0)
+      axios: 1.8.4(debug@4.4.0)
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -23865,7 +23865,7 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  openapi-fetch@0.13.4:
+  openapi-fetch@0.13.5:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
