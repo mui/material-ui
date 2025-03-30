@@ -727,7 +727,7 @@ importers:
         version: 9.7.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@toolpad/core':
         specifier: ^0.12.1
-        version: 0.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(next@15.2.4(@babel/core@7.26.10)(@opentelemetry/api@1.8.0)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-router@7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(vite@6.0.12(@types/node@20.17.28)(jiti@1.21.6)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0))
+        version: 0.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(next@15.2.4(@babel/core@7.26.10)(@opentelemetry/api@1.8.0)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-router@7.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(vite@6.0.12(@types/node@20.17.28)(jiti@1.21.6)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0))
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
@@ -852,8 +852,8 @@ importers:
         specifier: ^5.4.3
         version: 5.4.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-router:
-        specifier: ^7.3.0
-        version: 7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^7.4.1
+        version: 7.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-runner:
         specifier: ^1.0.5
         version: 1.0.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1883,8 +1883,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
       react-router:
-        specifier: ^7.3.0
-        version: 7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^7.4.1
+        version: 7.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       sinon:
         specifier: ^19.0.5
         version: 19.0.5
@@ -2322,8 +2322,8 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0
       react-router:
-        specifier: ^7.3.0
-        version: 7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^7.4.1
+        version: 7.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-window:
         specifier: ^1.8.11
         version: 1.8.11(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -11617,8 +11617,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react-router@7.3.0:
-    resolution: {integrity: sha512-466f2W7HIWaNXTKM5nHTqNxLrHTyXybm7R0eBlVSt0k/u55tTCDO194OIx/NrYD4TS5SXKTNekXfT37kMKUjgw==}
+  react-router@7.4.1:
+    resolution: {integrity: sha512-Vmizn9ZNzxfh3cumddqv3kLOKvc7AskUT0dC1prTabhiEi0U4A33LmkDOJ79tXaeSqCqMBXBU/ySX88W85+EUg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -17296,7 +17296,7 @@ snapshots:
       '@theme-ui/css': 0.17.1(@emotion/react@11.13.5(@types/react@19.0.12)(react@19.0.0))
       react: 19.0.0
 
-  '@toolpad/core@0.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(next@15.2.4(@babel/core@7.26.10)(@opentelemetry/api@1.8.0)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-router@7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(vite@6.0.12(@types/node@20.17.28)(jiti@1.21.6)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0))':
+  '@toolpad/core@0.12.1(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(next@15.2.4(@babel/core@7.26.10)(@opentelemetry/api@1.8.0)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-router@7.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)(vite@6.0.12(@types/node@20.17.28)(jiti@1.21.6)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0))':
     dependencies:
       '@babel/runtime': 7.27.0
       '@mui/icons-material': link:packages/mui-icons-material/build
@@ -17311,7 +17311,7 @@ snapshots:
       react: 19.0.0
     optionalDependencies:
       next: 15.2.4(@babel/core@7.26.10)(@opentelemetry/api@1.8.0)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      react-router: 7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-router: 7.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
@@ -24874,7 +24874,7 @@ snapshots:
       '@remix-run/router': 1.23.0
       react: 19.0.0
 
-  react-router@7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-router@7.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@types/cookie': 0.6.0
       cookie: 1.0.2
