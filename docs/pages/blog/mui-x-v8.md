@@ -320,10 +320,11 @@ If you’re interested in upgrading to Priority Support, don’t hesitate to [co
 
 ## Support for Material UI
 
-When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) or fully embrace the innovations of **Material UI v7**. With native ESM support, improved package management, and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both wasn’t feasible, so we chose to move forward.
+When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) or fully embrace the innovations of **Material UI v7**. With improved ESM support and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both wasn’t feasible, so we chose to move forward.
 
-As a result, **MUI X v8 now supports Material UI v7 natively**, ensuring your applications benefit from the latest improvements. We understand that change can be challenging, but migrating to v7 has been designed to be as smooth as possible—with comprehensive migration guides and GitHub support to assist you every step of the way.
+As a result, **MUI X v8 now supports Material UI v7 out-of-the-box**, ensuring your applications benefit from the latest improvements. We understand that change can be challenging, but migrating to v7 has been designed to be as smooth as possible—with comprehensive migration guides and GitHub support to assist you every step of the way.
 
+For users who want to upgrade to MUI X v8 while staying on Material UI v6, we've prepared a [guide](/x/migration/usage-with-material-ui-v5-v6/) to help you configure your project to keep using v6.
 ## Migration Guide
 
 We have built a migration guide for Material UI and one for each of the advanced components. They detail every breaking change from previous versions with the recommended approach to fix them, ensuring that you can transition smoothly without the least amount of hassle. We care about an smooth migration, and that's been a priority for us when planning our new major versions.
