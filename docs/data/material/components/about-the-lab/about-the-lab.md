@@ -24,20 +24,20 @@ To install and save in your `package.json` dependencies, run one of the followin
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/lab@^6.0.0 @mui/material@^6.0.0
+npm install @mui/lab@^6.0.0-beta @mui/material@^6.0.0
 ```
 
 ```bash pnpm
-pnpm add @mui/lab@^6.0.0 @mui/material@^6.0.0
+pnpm add @mui/lab@^6.0.0-beta @mui/material@^6.0.0
 ```
 
 ```bash yarn
-yarn add @mui/lab@^6.0.0 @mui/material@^6.0.0
+yarn add @mui/lab@^6.0.0-beta @mui/material@^6.0.0
 ```
 
 </codeblock>
 
-If you wish to use the latest version, remove the `@^6.0.0` suffix.
+If you wish to use the latest version, remove the `@^6.0.0-beta` suffix.
 
 Note that the lab has a peer dependency on the Material UI components.
 

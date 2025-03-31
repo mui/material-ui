@@ -9,7 +9,7 @@ Install the package in your project directory with:
 <!-- #npm-tag-reference -->
 
 ```bash
-npm install @mui/lab@^6.0.0
+npm install @mui/lab@^6.0.0-beta
 ```
 
 The lab has peer dependencies on the Material Design components and on the Emotion library.
