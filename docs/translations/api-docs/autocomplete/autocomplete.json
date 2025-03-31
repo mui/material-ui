@@ -135,7 +135,7 @@
       "typeDescriptions": {
         "event": "The event source of the callback.",
         "option": "The highlighted option.",
-        "reason": "Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;auto&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>."
+        "reason": "Can be: <code>&quot;keyboard&quot;</code>, <code>&quot;mouse&quot;</code>, <code>&quot;touch&quot;</code>."
       }
     },
     "onInputChange": {

@@ -60,14 +60,14 @@ In general, you can expect the following release cycle:
 
 ## Release schedule
 
-| Date           | Version | Status       |
-| :------------- | :------ | :----------- |
-| 2025           | v7.0.0  | Work started |
-| August 2024    | v6.0.0  | Released     |
-| September 2021 | v5.0.0  | Released     |
-| May 2019       | v4.0.0  | Released     |
-| September 2018 | v3.0.0  | Released     |
-| May 2018       | v1.0.0  | Released     |
+| Date           | Version | Status   |
+| :------------- | :------ | :------- |
+| March 2025     | v7.0.0  | Released |
+| August 2024    | v6.0.0  | Released |
+| September 2021 | v5.0.0  | Released |
+| May 2019       | v4.0.0  | Released |
+| September 2018 | v3.0.0  | Released |
+| May 2018       | v1.0.0  | Released |
 
 You can follow the [milestones](https://github.com/mui/material-ui/milestones) for a more detailed overview.
 

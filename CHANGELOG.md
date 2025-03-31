@@ -1,5 +1,122 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.1
+
+<!-- generated comparing v7.0.0..master -->
+
+_Mar 28, 2025_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@7.0.1`
+
+- Export ThemeProviderProps (#45701) @aarongarciah
+- [Fab] Fix default variant text color when using CSS vars (#45714) @aarongarciah
+- Remove mention of v7 in deprecation messages (#45708) @DiegoAndai
+- [Popover] Allow `null` in `anchorEl` function return type (#45045) @eduter
+- Fix missing CSSProperties/MixinOptions types (#45706) @Janpot
+
+### `@mui/icons-material@7.0.1`
+
+- [code-infra] Fix icon-material type resolution under `moduleResolution: "node"` (#45704) @Janpot
+- Bring back individual icon dts (#45711) @Janpot
+
+### Core
+
+- Improve the release instructions (#45688) @mnajdova
+
+### Docs
+
+- Fix Masonry and Toolpad dark mode demos (#45721) @siriwatknp
+- Update v7 related copy (#45716) @aarongarciah
+- Avoid unwanted undefined in page title (#45718) @aarongarciah
+- Fix joy templates error (#45715) @siriwatknp
+- Rename GitHub icon import (#45709) @micttyoid
+- Fix Safari issue in dark mode (#45696) @mnajdova
+- Fix `Grid`, `GridLegacy`, `Stack`, `Badge`, `Select`, `Autocomplete` demos CSS variables (#45693) @DiegoAndai
+- Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
+- Fix `Breadcrumbs`, `List`, `Divider`, and `Typography` dark mode demos (#45692) @siriwatknp
+- Fix Material Icons page in dark mode (#45691) @mnajdova
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @eduter, @Janpot, @micttyoid, @mnajdova, @siriwatknp
+
+## 7.0.0
+
+<!-- generated comparing v7.0.0-rc.0..master -->
+
+_Mar 26, 2025_
+
+🎉 We're happy to announce the stable release of v7.
+
+- Read the [blog post](https://mui.com/blog/material-ui-v7-is-here/) about the announcement.
+- Check out the [v7 upgrade guide](https://mui.com/material-ui/migration/upgrade-to-v7/).
+
+### `@mui/material@7.0.0`
+
+- [Autocomplete] Fix when `onHighlightChange` is called (#45438) @ZeeshanTamboli
+- [Tabs] Fix modifier keys + Left/Right Arrow key from being consumed by tab navigation (#45345) @mushfiqbh
+- Update minimum TypeScript support to 4.9 (#45535) @siriwatknp
+
+### `@mui/system@7.0.0`
+
+- [system] Fix palette mode does not change when not using CSS vars (#45660) @siriwatknp
+
+### `@mui/lab@7.0.0-beta.9`
+
+- [lab] Remove @mui/base dependency (#45602) @mnajdova
+
+### Docs
+
+- [docs] Fix unnecessary redirects for v7 (#45677) @Janpot
+- [docs] Fix new React project link, CRA deprecated (#45362) @oliviertassinari
+- [docs] Prepare the v7 upgrade guide for stable release (#45624) @DiegoAndai
+- [docs] Fix grammatical errors in support.md (#45631) @letianpailove
+- [docs] Update nextjs font optimization guide (#45600) @IshfaqAhmedProg
+- [docs] Deprecate Toolpad Studio (#45613) @Janpot
+- [docs] Sync the mode from page to demos #45661 @siriwatknp
+
+### Core
+
+- [blog] v7 stable release (#45623) @DiegoAndai
+- [code-infra] Disable flaky masonry screenshot (#45678) @Janpot
+- [code-infra] Migrate regression tests to vite (#44964) @Janpot
+- [code-infra] Update rollup (#45666) @Janpot
+- [code-infra] Support `React.ComponentType` in proptypes generation (#45664) @Janpot
+- [code-infra] Ensure `translations.json` is present in all `@mui/docs` package builds (#45626) @LukasTy
+- [code-infra] Improve Argos script debuggability (#45619) @Janpot
+- [code-infra] Reconfigure `react-remove-properties` babel plugin (#45218) @Janpot
+- [core] Prepare master for v7 stable (#45674) @DiegoAndai
+- [core] Improve instructions on changing domain (#45637) @mnajdova
+- [core] Deprecate `ponyfillGlobal` (#45606) @Janpot
+- [docs-infra] Restructure docs theme context to CSS variables (#45386) @siriwatknp
+- [styles] Remove code & docs (#45633) @mnajdova
+
+All contributors of this release in alphabetical order: @DiegoAndai, @IshfaqAhmedProg, @Janpot, @letianpailove, @LukasTy, @mnajdova, @mushfiqbh, @oliviertassinari, @siriwatknp, @ZeeshanTamboli
+
+## 7.0.0-rc.0
+
+<!-- generated comparing v7.0.0-beta.4..master -->
+
+_Mar 18, 2025_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@7.0.0-rc.0`
+
+- [StepLabel] Add missing root slot (#45603) @sai6855
+- [Switch] Add slots and slotProps (#45595) @siriwatknp
+- [utils] Add merging function to `mergeSlotProps` utility (#45543) @siriwatknp
+
+### Core
+
+- [blog] Clarify the difference between the two Pro plans (#45266) @oliviertassinari
+- [code-infra] Allow specifying a custom error formatter module for error minifcation (#45291) @Janpot
+- [code-infra] Make `getVersionEnvVariables` reusable for other repos (#45562) @Janpot
+- [code-infra] Update peer dependency of `@mui/utils` in `@mui/docs` (#45561) @Janpot
+- Add StackBlitz template to issue template (#45504) @Janpot
+
+All contributors of this release in alphabetical order: @Janpot, @oliviertassinari, @sai6855, @siriwatknp
+
 ## 7.0.0-beta.4
 
 <!-- generated comparing v7.0.0-beta.3..master -->

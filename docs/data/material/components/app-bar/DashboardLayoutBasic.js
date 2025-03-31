@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
+import { createTheme, styled } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -56,9 +56,11 @@ const NAVIGATION = [
   },
 ];
 
-const demoTheme = extendTheme({
+const demoTheme = createTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class',
+  cssVariables: {
+    colorSchemeSelector: 'class',
+  },
   breakpoints: {
     values: {
       xs: 0,
