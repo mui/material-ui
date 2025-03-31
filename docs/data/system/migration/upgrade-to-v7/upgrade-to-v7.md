@@ -11,11 +11,11 @@ The steps you need to take to migrate from MUI System v6 to v7 are described b
 
 The package layout has been updated to use the Node.js exports field. This brings several changes:
 
-Deep imports with more than one level are no longer allowed. For example:
+Deep imports with more than one level are no longer working, at all (they were already considered private API). For example:
 
 ```diff
-- import Box from '@mui/system/Box/Box';
-+ import Box from '@mui/system/Box';
+-import Box from '@mui/system/Box/Box';
++import Box from '@mui/system/Box';
 ```
 
 This was never officially supported, but will now be restricted by bundlers and runtimes.
