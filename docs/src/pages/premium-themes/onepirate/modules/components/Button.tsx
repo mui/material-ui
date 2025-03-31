@@ -1,6 +1,6 @@
-import * as React from 'react';
+import MuiButton, { ConstrainedButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import MuiButton, { ButtonProps } from '@mui/material/Button';
+import * as React from 'react';
 
 const ButtonRoot = styled(MuiButton)(({ theme }) => ({
   borderRadius: 0,
@@ -36,7 +36,7 @@ const ButtonRoot = styled(MuiButton)(({ theme }) => ({
 
 // See https://mui.com/guides/typescript/#usage-of-component-prop for why the types uses `C`.
 function Button<C extends React.ElementType>(
-  props: ButtonProps<C, { component?: C }>,
+  props: ConstrainedButtonProps<C, { component?: C }>,
 ) {
   return <ButtonRoot {...props} />;
 }
