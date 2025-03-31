@@ -9,7 +9,7 @@
 The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
 You can read more about package exports in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
 
-This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
 
 ### Quality-of-life improvements
 
