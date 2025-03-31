@@ -24,28 +24,28 @@ Read more on: [Support for Material UI](#support-for-material-ui)
 ## Table of Contents
 
 - [Data Grid](#data-grid)
-  - [Pivoting](#pivoting)
-  - [AI Assistant – Featuring LLMs on the Data Grid](#ai-assistant-featuring-llms-on-the-data-grid)
+  - [Pivoting](#pivoting)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
+  - [AI Assistant – Featuring LLMs on the Data Grid](#ai-assistant-featuring-llms-on-the-data-grid)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
   - [New Toolbar](#new-toolbar)
   - [Design Agnostic Core](#design-agnostic-core)
   - [New No Columns Overlay](#new-no-columns-overlay)
   - [Data Source on the Community Plan](#data-source-on-the-community-plan)
-  - [Server-Side Aggregation and Lazy Loading](#server-side-aggregation-and-lazy-loading)
-  - [List View](#list-view)
+  - [Server-Side Aggregation and Lazy Loading](#server-side-aggregation-and-lazy-loading)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [List View](#list-view)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Performance Improvements](#performance-improvements)
 - [Date and Time Pickers](#date-and-time-pickers)
-  - [Time Range Picker](#time-range-picker)
+  - [Time Range Picker](#time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Auto Switch Strategy](#auto-switch-strategy)
   - [Clear `ownerState` for slots](#clear-ownerstate-for-slots)
   - [Accessible DOM Structure](#accessible-dom-structure)
   - [Keyboard Editing on Mobile Pickers](#keyboard-editing-on-mobile-pickers)
 - [Tree View](#tree-view)
   - [Automatic selection propagation](#automatic-selection-propagation)
-  - [Lazy loading child nodes](#lazy-loading-child-nodes)
+  - [Lazy loading child nodes](#lazy-loading-child-nodes) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [New Customization Hook](#new-customization-hook)
 - [Charts](#charts)
   - [Refined Design and Interaction](#refined-design-and-interaction)
-  - [Funnel Charts](#funnel-charts)
+  - [Funnel Charts](#funnel-charts)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Radar Charts](#radar-charts)
   - [Server-Side Rendering for Charts](#server-side-rendering-for-charts)
 - [Enhanced License Management and Telemetry](#enhanced-license-management-and-telemetry)
@@ -58,7 +58,7 @@ Read more on: [Support for Material UI](#support-for-material-ui)
 
 ## Data Grid
 
-### Pivoting
+### Pivoting [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 The wait is over! With pivoting, your users can easily restructure and summarize large datasets: group related data, calculate aggregates (such as sums, averages, and counts), and compare different data categories side by side. This flexibility enables faster insight discovery and more efficient data analysis.
 
@@ -73,7 +73,7 @@ The feature is available out-of-the-box, but you can also create a pre-configure
 
 Learn how to use pivoting [now](/x/react-data-grid/pivoting/).
 
-### Ask Your Table - Featuring AI Assistance on the Data Grid
+### Ask Your Table - Featuring AI Assistance on the Data Grid [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
 After a period of test with users and pilot customers, we're excited to introduce our new AI Assistant for the Data Grid: [Ask Your Table](/x/react-data-grid/ask-your-table/).
 
@@ -125,13 +125,13 @@ We're unifying our approach to handling server-side data across all plans, creat
 
 Explore your options in our [Data Source Docs](/x/react-data-grid/data-source/).
 
-### Server-Side Aggregation and Lazy Loading
+### Server-Side Aggregation and Lazy Loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 The Data Source now supports advanced features such as server-side aggregation, and on-demand data fetching for infinite scrolling, and lazy loading.
 
 Explore all your options when handling [Server-Side Data](/x/react-data-grid/server-side-data/).
 
-### List View
+### List View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 We’ve promoted List View to stable, and over this major we’re committed to enhancing this feature even further—making it easier to deliver a robust Data Grid experience on small screens.
 
@@ -201,7 +201,7 @@ type TreeViewSelectionPropagation = {
 
 You can learn about this and other selection features on [Selection docs](/x/react-tree-view/rich-tree-view/selection/).
 
-### Lazy loading child nodes
+### Lazy loading child nodes [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 We’ve enhanced the Rich Tree View with a robust lazy loading mechanism for children. Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data. This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
 
@@ -242,7 +242,7 @@ Learn more this and other options on [Tree Item Customization docs](/x/react-tre
 
 ## Charts
 
-### Funnel Charts
+### Funnel Charts [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 We have expanded our chart portfolio with the addition of Funnel Charts, providing a new way to visualize data conversions and drop-offs.
 
