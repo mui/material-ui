@@ -1,5 +1,28 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.10
+
+<!-- generated comparing v6.4.9..v6.x -->
+
+_Mar 31, 2025_
+
+A big thanks to the 4 contributors who made this release possible.
+
+### `@mui/material@6.4.10`
+
+- [Autocomplete] Prevent shrink animation in controlled Autocomplete when initial `value` is provided (#45735) @imadx
+- [Popover] Allow `null` in `anchorEl` function return type (#45723) @eduter
+
+### Docs
+
+- Fix new React project link, CRA deprecated (#45669) @oliviertassinari
+
+### Core
+
+- [utils] Support cleanup callbacks in useForkRef (#45733) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @eduter, @imadx, @oliviertassinari
+
 ## 6.4.9
 
 <!-- generated comparing v6.4.8..v6.x -->
