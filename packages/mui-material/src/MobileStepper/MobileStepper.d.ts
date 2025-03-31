@@ -87,7 +87,7 @@ export interface MobileStepperProps
   classes?: Partial<MobileStepperClasses>;
   /**
    * Props applied to the `LinearProgress` element.
-   * @deprecated Use `slotProps.progress` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.progress` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   LinearProgressProps?: Partial<LinearProgressProps>;
   /**
@@ -120,11 +120,11 @@ export interface MobileStepperOwnerState extends Omit<MobileStepperProps, 'slots
  *
  * Demos:
  *
- * - [Stepper](https://next.mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *
- * - [MobileStepper API](https://next.mui.com/material-ui/api/mobile-stepper/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [MobileStepper API](https://mui.com/material-ui/api/mobile-stepper/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function MobileStepper(props: MobileStepperProps): React.JSX.Element;

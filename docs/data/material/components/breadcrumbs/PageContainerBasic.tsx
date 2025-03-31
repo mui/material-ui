@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, createTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
 import {
@@ -38,8 +38,8 @@ function useDemoRouter(initialPath: string): Router {
 }
 
 const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
+  backgroundColor: (theme.vars || theme).palette.action.hover,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
   height,
   content: '" "',
 }));
@@ -73,10 +73,13 @@ function CustomPageHeader() {
   return <PageHeader slots={{ toolbar: CustomPageToolbar }} />;
 }
 
+const demoTheme = createTheme({
+  colorSchemes: { light: true, dark: true },
+});
+
 export default function PageContainerBasic(props: any) {
   const { window } = props;
   const router = useDemoRouter('/inbox/all');
-  const theme = useTheme();
   // Remove this const when copying and pasting into your project.
   const demoWindow = window ? window() : undefined;
 
@@ -84,7 +87,7 @@ export default function PageContainerBasic(props: any) {
     <AppProvider
       navigation={NAVIGATION}
       router={router}
-      theme={theme}
+      theme={demoTheme}
       window={demoWindow}
       branding={{
         title: 'ACME Inc.',
