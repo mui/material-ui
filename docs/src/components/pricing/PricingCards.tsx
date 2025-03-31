@@ -12,10 +12,7 @@ import { Link } from '@mui/docs/Link';
 import {
   ProSupportIcon,
   PremiumSupportIcon,
-  ProSupportText,
-  PremiumSupportText,
   PrioritySupportIcon,
-  PrioritySupportText,
 } from 'docs/src/components/pricing/SupportIcons';
 
 export interface Feature {
@@ -54,10 +51,7 @@ export const planInfo: Record<
       { text: 'All Community features and...', icon: 'check' },
       { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
       { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
-      {
-        icon: 'support',
-        supportType: 'pro',
-      },
+      { highlight: 'Pro', text2: 'support', icon: 'support', supportType: 'pro' },
     ],
   },
   premium: {
@@ -69,10 +63,7 @@ export const planInfo: Record<
       { text: 'All Pro', text2: 'features and…', icon: 'check' },
       { text: 'MUI X', highlight: 'Premium', text2: 'access', icon: 'check' },
       { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
-      {
-        icon: 'support',
-        supportType: 'premium',
-      },
+      { highlight: 'Premium', text2: 'support', icon: 'support', supportType: 'premium' },
     ],
   },
   enterprise: {
@@ -87,10 +78,7 @@ export const planInfo: Record<
       { text: 'Pre-screening', icon: 'check' },
       { text: 'Issue escalation', icon: 'check' },
       { text: 'Customer Success Manager', icon: 'check' },
-      {
-        icon: 'support',
-        supportType: 'priority',
-      },
+      { highlight: 'Priority', text2: 'support', icon: 'support', supportType: 'priority' },
     ],
   },
 };
@@ -393,28 +381,13 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
         >
           {(() => {
             if (feature.supportType === 'pro') {
-              return (
-                <React.Fragment>
-                  <ProSupportIcon idPrefix={idPrefix} />
-                  <ProSupportText />
-                </React.Fragment>
-              );
+              return <ProSupportIcon idPrefix={idPrefix} />;
             }
             if (feature.supportType === 'premium') {
-              return (
-                <React.Fragment>
-                  <PremiumSupportIcon idPrefix={idPrefix} />
-                  <PremiumSupportText />
-                </React.Fragment>
-              );
+              return <PremiumSupportIcon idPrefix={idPrefix} />;
             }
             if (feature.supportType === 'priority') {
-              return (
-                <React.Fragment>
-                  <PrioritySupportIcon idPrefix={idPrefix} />
-                  <PrioritySupportText />
-                </React.Fragment>
-              );
+              return <PrioritySupportIcon idPrefix={idPrefix} />;
             }
             return null;
           })()}

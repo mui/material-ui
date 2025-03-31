@@ -115,7 +115,7 @@ function ColumnHead({
 }: {
   label: React.ReactNode;
   metadata?: string;
-  tooltip?: string;
+  tooltip?: React.ReactNode | string;
   href?: string;
 }) {
   const text = (
@@ -282,7 +282,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'Base UI': (
     <ColumnHead
       label="Base UI"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base-ui."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui-components/react."
     />
   ),
   'MUI System': (
@@ -532,8 +532,22 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       {...{
         label: 'Priority support',
-        tooltip:
-          'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.',
+        tooltip: (
+          <React.Fragment>
+            At $399/year/dev, get the highest level of support with a 24h SLA response time,
+            pre-screening and issue escalation. More details in the{' '}
+            <Link
+              href="https://mui.com/legal/technical-support-sla/#priority-support"
+              target="_blank"
+              color="inherit"
+              underline="always"
+              rel="noopener"
+            >
+              Technical Support SLA
+            </Link>
+            .
+          </React.Fragment>
+        ),
       }}
     />
   ),
@@ -822,7 +836,7 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': <Info value="Available from 10+ devs" />,
+  'security-questionnaire': <Info value="Available from 10+ devs" />,
   'customer-success': no,
 };
 
@@ -1042,7 +1056,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'response-time': <Info value={yes} metadata="1 business day" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
-  'security-questionnaire': <Info value={yes}/>,
+  'security-questionnaire': <Info value={yes} />,
   'customer-success': yes,
 };
 
@@ -1307,11 +1321,11 @@ export default function PricingTable({
         <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
           MUI Core (open-source)
         </RowHead>
+        {renderRow('Base UI')}
+        {divider}
         {renderRow('Material UI')}
         {divider}
         {renderRow('Joy UI')}
-        {divider}
-        {renderRow('Base UI')}
         {divider}
         {renderRow('MUI System')}
         <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
