@@ -148,7 +148,7 @@ export default class MyDocument extends Document {
               },
               '.plan-pro, .plan-premium': {
                 display: 'inline-block',
-                height: '1em',
+                height: '0.9em',
                 width: '1em',
                 verticalAlign: 'middle',
                 marginLeft: '0.3em',
