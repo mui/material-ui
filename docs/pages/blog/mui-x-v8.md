@@ -29,10 +29,10 @@ Read more on: [Support for Material UI](#support-for-material-ui)
   - [List View](#list-view)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Server-Side Aggregation and Lazy Loading](#server-side-aggregation-and-lazy-loading)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Data Source on the Community Plan](#data-source-on-the-community-plan)
-  - [Performance Improvements](#performance-improvements)
   - [New Toolbar](#new-toolbar)
   - [Design Agnostic Core](#design-agnostic-core)
   - [New No Columns Overlay](#new-no-columns-overlay)
+  - [Performance Improvements](#performance-improvements)
 - [Date and Time Pickers](#date-and-time-pickers)
   - [Time Range Picker](#time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Auto Switch Strategy](#auto-switch-strategy)
@@ -45,9 +45,11 @@ Read more on: [Support for Material UI](#support-for-material-ui)
   - [New Customization Hook](#new-customization-hook)
 - [Charts](#charts)
   - [Funnel Charts](#funnel-charts)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-  - [Refined Design and Interaction](#refined-design-and-interaction)
   - [Radar Charts](#radar-charts)
   - [Server-Side Rendering for Charts](#server-side-rendering-for-charts)
+  - [Refined Design and Interaction](#refined-design-and-interaction)
+  - [HTML Legend for Charts](#html-legend-for-charts)
+  - [Charts Composition](#charts-composition)
 - [Enhanced License Management and Telemetry](#enhanced-license-management-and-telemetry)
 - [Priority Support – A New Support Service](#priority-support-a-new-support-service)
 - [Support for Material UI](#support-for-material-ui)
@@ -94,6 +96,33 @@ For example, if you’re working with an Olympics medal dataset, you can simply 
 
 Interested in bringing this feature to your users? [Contact us](mailto:sales@mui.com) to get access to your API Key!
 
+### List View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+
+We’ve promoted List View to stable, and over this major we’re committed to enhancing this feature even further—making it easier to deliver a robust Data Grid experience on small screens.
+
+<figure>
+  <video autoplay muted loop playsinline width="690" height="417" controls>
+    <source src="/static/blog/mui-x-v8/list-view.mp4" type="video/mp4">
+  </video>
+  <figcaption>Two different views to match the capabilities of multiple displays</figcaption>
+</figure>
+
+Learn more about [List View](/x/react-data-grid/list-view/).
+
+### Server-Side Aggregation and Lazy Loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+
+The Data Source now supports advanced features such as server-side aggregation, and on-demand data fetching for infinite scrolling, and lazy loading.
+
+Explore all your options when handling [Server-Side Data](/x/react-data-grid/server-side-data/).
+
+### Data Source on the Community Plan
+
+Great news—the Data Source is now part of the community plan!
+
+We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
+
+Explore your options in our [Data Source Docs](/x/react-data-grid/data-source/).
+
 ### New Toolbar
 
 The [redesigned toolbar](/x/react-data-grid/components/toolbar/) not only looks fantastic but also empowers developers one step further through an open composition of sub-components, allowing you to tailor the toolbar's layout precisely to your application's needs.
@@ -117,40 +146,13 @@ We’ve added a no-columns overlay to serve as a clear fallback when the Data Gr
 
 Learn more about overlays on [overlay's docs](/x/react-data-grid/overlays/).
 
-### Data Source on the Community Plan
-
-Great news—the Data Source is now part of the community plan!
-
-We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
-
-Explore your options in our [Data Source Docs](/x/react-data-grid/data-source/).
-
-### Server-Side Aggregation and Lazy Loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-
-The Data Source now supports advanced features such as server-side aggregation, and on-demand data fetching for infinite scrolling, and lazy loading.
-
-Explore all your options when handling [Server-Side Data](/x/react-data-grid/server-side-data/).
-
-### List View [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-
-We’ve promoted List View to stable, and over this major we’re committed to enhancing this feature even further—making it easier to deliver a robust Data Grid experience on small screens.
-
-<figure>
-  <video autoplay muted loop playsinline width="690" height="417" controls>
-    <source src="/static/blog/mui-x-v8/list-view.mp4" type="video/mp4">
-  </video>
-  <figcaption>Two different views to match the capabilities of multiple displays</figcaption>
-</figure>
-
-Learn more about [List View](/x/react-data-grid/list-view/).
-
 ### Performance Improvements
 
 We’ve made significant performance enhancements across the board—from smoother scrolling and faster Excel export to improved mount/resize and aggregation performance.
 
 ## Date and Time Pickers
 
-### Time Range Picker
+### Time Range Picker [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 It's finally here! The highly anticipated Time Range Picker component is designed for a straightforward and efficient experience, perfect for scheduling applications and detailed period inputs.
 
@@ -188,19 +190,6 @@ We’ve introduced keyboard editing support for mobile pickers. Users can now se
 
 ## Tree View
 
-### Automatic selection propagation
-
-The Rich Tree View now supports parent/child selection propagation. This means you can select a parent and automatically select all your children, and vice-versa depending on your requirements and configuration.
-
-```js
-type TreeViewSelectionPropagation = {
-  descendants?: boolean; // default: false
-  parents?: boolean; // default: false
-};
-```
-
-You can learn about this and other selection features on [Selection docs](/x/react-tree-view/rich-tree-view/selection/).
-
 ### Lazy loading child nodes [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 We’ve enhanced the Rich Tree View with a robust lazy loading mechanism for children. Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data. This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
@@ -213,6 +202,19 @@ We’ve enhanced the Rich Tree View with a robust lazy loading mechanism for chi
 </figure>
 
 Learn how to add [lazy loading](/x/react-tree-view/rich-tree-view/lazy-loading/) to your application's Tree View.
+
+### Automatic selection propagation
+
+The Rich Tree View now supports parent/child selection propagation. This means you can select a parent and automatically select all your children, and vice-versa depending on your requirements and configuration.
+
+```js
+type TreeViewSelectionPropagation = {
+  descendants?: boolean; // default: false
+  parents?: boolean; // default: false
+};
+```
+
+You can learn about this and other selection features on [Selection docs](/x/react-tree-view/rich-tree-view/selection/).
 
 ### New Customization Hook
 
