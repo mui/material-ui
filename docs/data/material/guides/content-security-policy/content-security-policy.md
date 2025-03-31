@@ -14,7 +14,7 @@ CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whit
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 
-You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP).
 
 ## How does one implement CSP?
 
