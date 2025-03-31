@@ -67,7 +67,7 @@ You can learn more about this prop in the **[composition guide](/material-ui/gui
 
 ## React Router examples
 
-Here are a few demos with the [Link component](https://reactrouter.com/start/library/navigating#link) of [React Router](https://github.com/remix-run/react-router).
+Here are a few demos with the [Link component](https://reactrouter.com/start/declarative/navigating#link) of [React Router](https://github.com/remix-run/react-router).
 You can apply the same strategy with all the components: BottomNavigation, Card, etc.
 
 ### Link
