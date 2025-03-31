@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
+import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
+import * as React from 'react';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
-import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
+import { Theme } from '../styles';
 import { ButtonClasses } from './buttonClasses';
 
 export interface ButtonPropsVariantOverrides {}
@@ -144,6 +144,13 @@ export type ButtonProps<
   AdditionalProps = {},
 > = OverrideProps<ButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
+} & (({ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>) | { href?: undefined });
+
+export type ConstrainedButtonProps<
+  RootComponent extends React.ElementType = ButtonTypeMap['defaultComponent'],
+  AdditionalProps = {},
+> = Omit<ButtonProps<RootComponent, AdditionalProps>, 'type'> & {
+  type?: 'button' | 'submit' | 'reset' | undefined;
 };
 
 export default Button;
