@@ -18,7 +18,7 @@ const validBundles = [
 ];
 
 async function run(argv) {
-  const { bundle, largeFiles, outDir: outDirBase, verbose } = argv;
+  const { bundle, largeFiles, outDir: outDirBase, verbose, cjsDir } = argv;
 
   if (!validBundles.includes(bundle)) {
     throw new TypeError(
@@ -53,7 +53,7 @@ async function run(argv) {
   const outFileExtension = '.js';
 
   const relativeOutDir = {
-    node: './',
+    node: cjsDir,
     modern: './modern',
     stable: './esm',
   }[bundle];
@@ -142,6 +142,11 @@ yargs(process.argv.slice(2))
           default: false,
           describe:
             "Set to `true` if you don't want to generate a package.json file in the /esm folder.",
+        })
+        .option('cjsDir', {
+          default: './',
+          type: 'string',
+          description: 'The directory to copy the cjs files to.',
         })
         .option('out-dir', { default: './build', type: 'string' })
         .option('verbose', { type: 'boolean' });
