@@ -105,7 +105,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
-    legacyTestId = false,
+    // TODO v8 make `legacyTestId = false` the default.
+    legacyTestId = process.env.NODE_ENV !== 'production',
     // eslint-disable-next-line @typescript-eslint/naming-convention, react/prop-types
     _builtinTestId,
     ...other
