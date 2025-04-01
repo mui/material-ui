@@ -8,7 +8,7 @@ import SvgIcon from '../SvgIcon';
 export default function createSvgIcon(path, displayName) {
   function Component(props, ref) {
     return (
-      <SvgIcon _builtinTestid={`${displayName}Icon`} ref={ref} {...props}>
+      <SvgIcon _builtinTestId={`${displayName}Icon`} ref={ref} {...props}>
         {path}
       </SvgIcon>
     );
