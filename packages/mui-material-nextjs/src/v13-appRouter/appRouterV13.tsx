@@ -35,8 +35,8 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     if (router) {
       console.error(
         [
-          'The app router CacheProvider is not compatible with the pages router.',
-          'Please use the pages router CacheProvider from `@mui/material-ui-nextjs/vx-appRouter` instead.',
+          'The App Router CacheProvider is not compatible with the Pages Router.',
+          'Please use the Pages Router CacheProvider from `@mui/material-ui-nextjs/vx-pagesRouter` instead.',
         ].join('\n'),
       );
     }
