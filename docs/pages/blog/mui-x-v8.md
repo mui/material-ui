@@ -9,7 +9,7 @@ manualCard: false
 
 <div style="max-width: 692px; width: 100%; height: 230px; overflow: hidden; margin-bottom: 16px;">
   <a href="https://github.com/mui/mui-x/releases/tag/v8.0.0">
-    <img src="/static/blog/mui-x-v8/intro.jpg" alt="MUI X v8 - major stable release" width="2400" height="800" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img src="/static/blog/mui-x-v8/intro.png" alt="MUI X v8 - major stable release" width="2400" height="800" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
   </a>
 </div>
 
@@ -67,7 +67,7 @@ The wait is over! With pivoting, your users can easily restructure and summarize
 The feature is available out-of-the-box, but you can also create a pre-configured setup depending on your user requirements.
 
 <figure>
-  <video autoplay muted loop playsinline width="690" height="417" controls>
+  <video autoplay muted loop playsinline width="1046" height="720" controls>
     <source src="/static/blog/mui-x-v8/pivoting.mp4" type="video/mp4">
   </video>
   <figcaption>A common pivoting use case</figcaption>
@@ -203,6 +203,12 @@ We’ve enhanced the Rich Tree View with a robust lazy loading mechanism for chi
 
 Learn how to add [lazy loading](/x/react-tree-view/rich-tree-view/lazy-loading/) to your application's Tree View.
 
+### Performance improvements in re-rendering
+
+We’ve optimized the Tree View to update only the components that need changes, rather than re-rendering all child nodes.
+With the use of selectors to precisely target nodes for re-rendering, we’ve achieved a significant performance boost.
+In upcoming releases, we’ll make another big step with the introduction of virtualization.
+
 ### Automatic selection propagation
 
 The Rich Tree View now supports parent/child selection propagation. This means you can select a parent and automatically select all your children, and vice-versa depending on your requirements and configuration.
@@ -322,7 +328,7 @@ If you’re interested in upgrading to Priority Support, don’t hesitate to [co
 
 ## Support for Material UI
 
-When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) out-of-the-box or fully embrace the innovations of **Material UI v7**. With improved ESM support and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both wasn’t feasible, so we chose to move forward.
+When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) out-of-the-box or fully embrace the innovations of **Material UI v7**. With improved ESM support and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both out-of-the-box wasn’t feasible, so we chose to move forward.
 
 As a result, **MUI X v8 now supports Material UI v7 out-of-the-box**, ensuring your applications benefit from the latest improvements. We understand that change can be challenging, but migrating to v7 has been designed to be as smooth as possible—with comprehensive migration guides and GitHub support to assist you every step of the way.
 
