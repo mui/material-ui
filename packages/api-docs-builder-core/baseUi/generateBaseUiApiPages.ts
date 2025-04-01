@@ -28,18 +28,13 @@ export async function generateBaseUIApiPages() {
         const demosSource = `
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from '${importStatement}?muiMarkdown';
 
 export default function Page(props) {
   const { userLanguage, ...other } = props;
   return <MarkdownDocs {...pageProps} {...other} />;
 }
-
-Page.getLayout = (page) => {
-  return <AppFrame>{page}</AppFrame>;
-};
-      `;
+`;
 
         const componentPageDirectory = `docs/pages/${productName}-ui/react-${componentName}/`;
         if (!fs.existsSync(componentPageDirectory)) {
@@ -114,7 +109,6 @@ Page.getLayout = (page) => {
         const tabsApiSource = `
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocsV2';
-import AppFrame from 'docs/src/modules/components/AppFrame';
 import * as pageProps from '${importStatement}?muiMarkdown';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
 ${apiTabImportStatements}
@@ -123,10 +117,6 @@ export default function Page(props) {
   const { userLanguage, ...other } = props;
   return <MarkdownDocs {...pageProps} {...other} />;
 }
-
-Page.getLayout = (page) => {
-  return <AppFrame>{page}</AppFrame>;
-};
 
 export const getStaticPaths = () => {
   return {
