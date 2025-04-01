@@ -3,7 +3,8 @@
   "version": "5.0.0",
   "private": true,
   "scripts": {
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsc -p tsconfig.json",
+    "vitest": "vitest"
   },
   "devDependencies": {
     "@babel/runtime": "^7.27.0",
@@ -45,6 +46,9 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "@react-spring/web": "^9.7.5"
+    "@react-spring/web": "^9.7.5",
+    "@vitest/browser": "^3.0.9",
+    "vitest": "^3.0.9",
+    "vitest-browser-react": "^0.1.1"
   }
 }

@@ -2236,6 +2236,15 @@ importers:
       '@react-spring/web':
         specifier: ^9.7.5
         version: 9.7.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@vitest/browser':
+        specifier: ^3.0.9
+        version: 3.0.9(@types/node@20.17.28)(playwright@1.51.1)(typescript@5.8.2)(vite@6.0.13(@types/node@20.17.28)(jiti@1.21.6)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(vitest@3.0.9)
+      vitest:
+        specifier: ^3.0.9
+        version: 3.0.9(@types/debug@4.1.12)(@types/node@20.17.28)(@vitest/browser@3.0.9)(happy-dom@15.11.6)(jiti@1.21.6)(jsdom@26.0.0)(msw@2.7.3(@types/node@20.17.28)(typescript@5.8.2))(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)
+      vitest-browser-react:
+        specifier: ^0.1.1
+        version: 0.1.1(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(@vitest/browser@3.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vitest@3.0.9)
     devDependencies:
       '@babel/runtime':
         specifier: ^7.27.0
@@ -13221,6 +13230,22 @@ packages:
       tsx:
         optional: true
       yaml:
+        optional: true
+
+  vitest-browser-react@0.1.1:
+    resolution: {integrity: sha512-n9l+sIAexKqqfBuEkjVGdfZ4xAn1Gn/+wc4Mo8KsUSUOVoM9evSY0rVXdMIzCQqloT/zvmFGAtziFINkqu+t7g==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      '@types/react': '>18.0.0'
+      '@types/react-dom': '>18.0.0'
+      '@vitest/browser': '>=2.1.0'
+      react: '>18.0.0'
+      react-dom: '>18.0.0'
+      vitest: '>=2.1.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
         optional: true
 
   vitest-fail-on-console@0.7.1:
@@ -26728,6 +26753,16 @@ snapshots:
       terser: 5.39.0
       tsx: 4.19.3
       yaml: 2.7.1
+
+  vitest-browser-react@0.1.1(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(@vitest/browser@3.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(vitest@3.0.9):
+    dependencies:
+      '@vitest/browser': 3.0.9(@types/node@20.17.28)(playwright@1.51.1)(typescript@5.8.2)(vite@6.0.13(@types/node@20.17.28)(jiti@1.21.6)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(vitest@3.0.9)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      vitest: 3.0.9(@types/debug@4.1.12)(@types/node@20.17.28)(@vitest/browser@3.0.9)(happy-dom@15.11.6)(jiti@1.21.6)(jsdom@26.0.0)(msw@2.7.3(@types/node@20.17.28)(typescript@5.8.2))(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1)
+    optionalDependencies:
+      '@types/react': 19.0.12
+      '@types/react-dom': 19.0.4(@types/react@19.0.12)
 
   vitest-fail-on-console@0.7.1(vite@6.0.13(@types/node@20.17.28)(jiti@1.21.6)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(vitest@3.0.9):
     dependencies:
