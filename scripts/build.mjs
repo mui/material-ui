@@ -17,6 +17,12 @@ const validBundles = [
   'stable',
 ];
 
+const bundleTypes = {
+  modern: 'module',
+  stable: 'module',
+  node: 'commonjs',
+};
+
 async function run(argv) {
   const { bundle, largeFiles, outDir: outDirBase, verbose, cjsDir } = argv;
 
@@ -107,12 +113,15 @@ async function run(argv) {
   // `--extensions-.cjs --out-file-extension .cjs`
   await cjsCopy({ from: srcDir, to: outDir });
 
-  const isEsm = bundle === 'modern' || bundle === 'stable';
-  if (isEsm && !argv.skipEsmPkg) {
+  // Write a package.json file in the output directory if we are building the modern or stable bundle
+  // or if the output directory is not the root of the package.
+  const shouldWriteBundlePackageJson =
+    bundle === 'modern' || bundle === 'stable' || relativeOutDir !== './';
+  if (shouldWriteBundlePackageJson && !argv.skipEsmPkg) {
     const rootBundlePackageJson = path.join(outDir, 'package.json');
     await fs.writeFile(
       rootBundlePackageJson,
-      JSON.stringify({ type: 'module', sideEffects: packageJson.sideEffects }),
+      JSON.stringify({ type: bundleTypes[bundle], sideEffects: packageJson.sideEffects }),
     );
   }
 

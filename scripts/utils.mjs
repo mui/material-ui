@@ -18,7 +18,7 @@ function findUpFile(fileName, cwd = process.cwd(), maxIterations = 5) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function getWorkspaceRoot() {
-  // Short circuit when available
+  // Use this when available. Avoids the need to check for the workspace file.
   if (process.env.NX_WORKSPACE_ROOT) {
     return process.env.NX_WORKSPACE_ROOT;
   }
