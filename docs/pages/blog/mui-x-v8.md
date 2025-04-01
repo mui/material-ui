@@ -101,13 +101,17 @@ Interested in bringing this feature to your users? [Contact us](mailto:sales@mui
 We’ve promoted List View to stable, and over this major we’re committed to enhancing this feature even further—making it easier to deliver a robust Data Grid experience on small screens.
 
 <figure>
-  <video autoplay muted loop playsinline width="690" height="417" controls>
-    <source src="/static/blog/mui-x-v8/list-view.mp4" type="video/mp4">
-  </video>
-  <figcaption>Two different views to match the capabilities of multiple displays</figcaption>
+  <img width="512" height="768" alt="An example of a Data Grid's list view on a phone" src="/static/blog/mui-x-v8/list-view.png" loading="lazy">
+  <figcaption>An example of a Data Grid's list view on a phone</figcaption>
 </figure>
 
 Learn more about [List View](/x/react-data-grid/list-view/).
+
+### Row Spanning
+
+Row spanning has also been promoted to stable, providing a reliable and flexible solution for merging cells across multiple rows. This enhancement makes it easier to create complex, multi-row layouts within your Data Grid, allowing you to present your data more effectively.
+
+Learn how to setup and use [Row spanning](/x/react-data-grid/row-spanning/).
 
 ### Server-Side Aggregation and Lazy Loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
