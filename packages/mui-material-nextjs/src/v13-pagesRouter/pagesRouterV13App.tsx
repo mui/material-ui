@@ -17,8 +17,11 @@ export function AppCacheProvider({
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = usePagesRouter();
     if (!router) {
-      console.warn(
-        'The pages router CacheProvider is not compatible with the pages router. Please use the app router CacheProvider from `@mui/material-ui-nextjs/vx-pagesRouter` instead.',
+      console.error(
+        [
+          'The pages router CacheProvider is not compatible with the pages router.',
+          'Please use the app router CacheProvider from `@mui/material-ui-nextjs/vx-pagesRouter` instead.',
+        ].join('n'),
       );
     }
   }

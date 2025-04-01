@@ -33,8 +33,11 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const router = usePagesRouter();
     if (router) {
-      console.warn(
-        'The app router CacheProvider is not compatible with the pages router. Please use the pages router CacheProvider from `@mui/material-ui-nextjs/vx-appRouter` instead.',
+      console.error(
+        [
+          'The app router CacheProvider is not compatible with the pages router.',
+          'Please use the pages router CacheProvider from `@mui/material-ui-nextjs/vx-appRouter` instead.',
+        ].join('\n'),
       );
     }
   }
