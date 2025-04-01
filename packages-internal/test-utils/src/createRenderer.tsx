@@ -512,6 +512,7 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    * @default {}
    */
   vi?: any;
+  wrapper?: React.ComponentType<{ children?: React.ReactNode }>;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -522,6 +523,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     strictEffects: globalStrictEffects = globalStrict,
     vi = (globalThis as any).vi || {},
     clockOptions,
+    wrapper: OuterWrapper = React.Fragment,
   } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
@@ -632,7 +634,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     const {
       strict = globalStrict,
       strictEffects = globalStrictEffects,
-      wrapper: InnerWrapper = React.Fragment,
+      wrapper: InnerWrapper = OuterWrapper,
     } = options;
 
     const usesLegacyRoot = reactMajor < 18;
