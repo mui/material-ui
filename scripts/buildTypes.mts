@@ -4,15 +4,18 @@ import path from 'path';
 import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
+import { parse } from 'jsonc-parser';
 
 const $$ = $({ stdio: 'inherit' });
 
 async function emitDeclarations(tsconfig: string, outDir: string) {
+  // eslint-disable-next-line no-console
   console.log(`Building types for ${path.resolve(tsconfig)}`);
   await $$`tsc -p ${tsconfig} --outDir ${outDir} --declaration --emitDeclarationOnly`;
 }
 
 async function addImportExtensions(folder: string) {
+  // eslint-disable-next-line no-console
   console.log(`Adding import extensions`);
   const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: folder });
   if (dtsFiles.length === 0) {
@@ -42,6 +45,7 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
   const fullSourceDirectory = path.resolve(sourceDirectory);
   const fullDestinationDirectory = path.resolve(destinationDirectory);
 
+  // eslint-disable-next-line no-console
   console.log(`Copying declarations from ${fullSourceDirectory} to ${fullDestinationDirectory}`);
 
   await fs.cp(fullSourceDirectory, fullDestinationDirectory, {
@@ -62,25 +66,30 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
 
 interface HandlerArgv {
   skipTsc: boolean;
+  copy: string[];
 }
 
 async function main(argv: HandlerArgv) {
   const packageRoot = process.cwd();
+  const tsconfigPath = path.join(packageRoot, 'tsconfig.build.json');
+  const tsconfigExists = await fs.access(tsconfigPath).then(
+    () => true,
+    () => false,
+  );
+
+  const tsConfig = tsconfigExists
+    ? (parse(await fs.readFile(tsconfigPath, 'utf-8')) as { compilerOptions: { outDir: string } })
+    : null;
 
   const srcPath = path.join(packageRoot, 'src');
   const buildFolder = path.join(packageRoot, 'build');
-  const esmFolder = path.join(buildFolder, 'esm');
-  const modernFolder = path.join(buildFolder, 'modern');
+  const esmOrOutDir = tsConfig?.compilerOptions.outDir
+    ? path.join(packageRoot, tsConfig.compilerOptions.outDir)
+    : path.join(buildFolder, 'esm');
 
-  await copyDeclarations(srcPath, esmFolder);
+  await copyDeclarations(srcPath, esmOrOutDir);
 
   if (!argv.skipTsc) {
-    const tsconfigPath = path.join(packageRoot, 'tsconfig.build.json');
-    const tsconfigExists = await fs.access(tsconfigPath).then(
-      () => true,
-      () => false,
-    );
-
     if (!tsconfigExists) {
       throw new Error(
         'Unable to find a tsconfig to build this project. ' +
@@ -89,29 +98,36 @@ async function main(argv: HandlerArgv) {
       );
     }
 
-    await emitDeclarations(tsconfigPath, esmFolder);
+    await emitDeclarations(tsconfigPath, esmOrOutDir);
   }
 
-  await addImportExtensions(esmFolder);
+  await addImportExtensions(esmOrOutDir);
 
-  await copyDeclarations(esmFolder, buildFolder);
-  await copyDeclarations(esmFolder, modernFolder);
+  await Promise.all(
+    argv.copy.map((copy) => copyDeclarations(esmOrOutDir, path.join(packageRoot, copy))),
+  );
 }
 
 yargs(process.argv.slice(2))
-  .command<HandlerArgv>({
-    command: '$0',
-    description:
-      'Builds a project with a fix for https://github.com/microsoft/TypeScript/issues/39117',
-    builder: (command) => {
-      return command.option('skipTsc', {
-        type: 'boolean',
-        default: false,
-        describe: 'Set to `true` if you want the legacy behavior of just copying .d.ts files.',
-      });
+  .command<HandlerArgv>(
+    '$0',
+    'Builds type definition files and copies them to the specified directories with a fix for https://github.com/microsoft/TypeScript/issues/39117',
+    (command) => {
+      return command
+        .option('skipTsc', {
+          type: 'boolean',
+          default: false,
+          describe: 'Set to `true` if you want the legacy behavior of just copying .d.ts files.',
+        })
+        .option('copy', {
+          alias: 'c',
+          type: 'array',
+          description: 'Directories where the type definition files should be copied',
+          default: ['build', 'build/modern'],
+        });
     },
-    handler: main,
-  })
+    main,
+  )
   .help()
   .strict(true)
   .version(false)
