@@ -161,7 +161,7 @@ We’ve made significant performance enhancements across the board—from smooth
 It's finally here! The highly anticipated Time Range Picker component is designed for a straightforward and efficient experience, perfect for scheduling applications and detailed period inputs.
 
 <figure>
-  <video autoplay muted loop playsinline width="690" height="417" controls>
+  <video autoplay muted loop playsinline width="320" height="360" controls>
     <source src="/static/blog/mui-x-v8/time-range-picker.mp4" type="video/mp4">
   </video>
   <figcaption>Time Range Picker example</figcaption>
@@ -304,8 +304,8 @@ Learn more in our [Charts Composition Documentation](/x/react-charts/composition
 Managing your license has never been easier. Our redesigned [account page](https://mui.com/store/account/) on the store allows you to view your license keys, update number of seats, renew, upgrade and more, with minimal effort.
 
 <figure>
-  <img width="606" height="300" alt="Radar charts examples" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
-  <figcaption>Accounts Page</figcaption>
+  <img width="606" height="434" alt="One of the new screens in your accounts site" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
+  <figcaption>One of the new screens in your accounts site</figcaption>
 </figure>
 
 In addition, we’ve integrated telemetry into our system to continuously enhance your experience with our products. Using this same infrastructure, you'll soon be able to manage your license without changing your key—thanks to server-side license validation.
