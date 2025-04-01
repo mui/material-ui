@@ -48,33 +48,6 @@ export default function DiamondSponsors() {
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
-        data-ga-event-label="octopus.com"
-        href="https://octopus.com/?utm_source=mui.com&utm_medium=referral"
-        rel="noopener sponsored"
-        target="_blank"
-      >
-        <Box
-          component="img"
-          src="/static/sponsors/octopus-light.svg"
-          alt="octopus"
-          title="Repeatable, reliable deployments"
-          loading="lazy"
-          sx={[
-            {
-              height: '25px',
-              width: '116px',
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/octopus-dark.svg)`,
-              }),
-          ]}
-        />
-      </NativeLink>
-      <Divider />
-      <NativeLink
-        data-ga-event-category="sponsor"
-        data-ga-event-action="docs-premium"
         data-ga-event-label="doit.com"
         href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral"
         rel="noopener sponsored"
