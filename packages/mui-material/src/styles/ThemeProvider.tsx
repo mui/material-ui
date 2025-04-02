@@ -80,6 +80,11 @@ export interface ThemeProviderProps<Theme = DefaultTheme> extends ThemeProviderC
    * @default false
    */
   disableTransitionOnChange?: boolean;
+  /**
+   * If `true`, force theme change between modes
+   * @default false
+   */
+  forceThemeRerender?: boolean;
 }
 
 export default function ThemeProvider<Theme = DefaultTheme>({
