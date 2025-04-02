@@ -1,20 +1,20 @@
 'use client';
+import composeClasses from '@mui/utils/composeClasses';
+import refType from '@mui/utils/refType';
+import useId from '@mui/utils/useId';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 import { isFragment } from 'react-is';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import composeClasses from '@mui/utils/composeClasses';
-import useId from '@mui/utils/useId';
-import refType from '@mui/utils/refType';
-import ownerDocument from '../utils/ownerDocument';
-import capitalize from '../utils/capitalize';
-import Menu from '../Menu/Menu';
-import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
-import { styled } from '../zero-styled';
+import Menu from '../Menu/Menu';
+import { StyledSelectIcon, StyledSelectSelect } from '../NativeSelect/NativeSelectInput';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
-import useForkRef from '../utils/useForkRef';
+import capitalize from '../utils/capitalize';
+import ownerDocument from '../utils/ownerDocument';
 import useControlled from '../utils/useControlled';
+import useForkRef from '../utils/useForkRef';
+import { styled } from '../zero-styled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
 const SelectSelect = styled(StyledSelectSelect, {
@@ -162,6 +162,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const anchorElement = displayNode?.parentNode;
 
+  const [isPointerDown, setIsPointerDown] = React.useState(false);
+  const dragSelectRef = React.useRef({
+    isDragging: false,
+    startedOn: null,
+  });
+
+  const focusTrackingRef = React.useRef({
+    isFocused: false,
+    pendingBlur: false,
+  });
+
   React.useImperativeHandle(
     handleRef,
     () => ({
@@ -210,20 +221,23 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = (open, event) => {
-    if (open) {
-      if (onOpen) {
-        onOpen(event);
+  const update = React.useCallback(
+    (open, event) => {
+      if (open) {
+        if (onOpen) {
+          onOpen(event);
+        }
+      } else if (onClose) {
+        onClose(event);
       }
-    } else if (onClose) {
-      onClose(event);
-    }
 
-    if (!isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
-      setOpenState(open);
-    }
-  };
+      if (!isOpenControlled) {
+        setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
+        setOpenState(open);
+      }
+    },
+    [autoWidth, anchorElement, isOpenControlled, onOpen, onClose, setOpenState],
+  );
 
   const handleMouseDown = (event) => {
     // Ignore everything but left-click
@@ -234,6 +248,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     event.preventDefault();
     displayRef.current.focus();
 
+    // Mark that we've initiated a pointer interaction
+    setIsPointerDown(true);
+    dragSelectRef.current.startedOn = displayRef.current;
+
+    // Open the menu immediately
     update(true, event);
   };
 
@@ -257,6 +276,59 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       onChange(event, child);
     }
   };
+
+  React.useEffect(() => {
+    if (isPointerDown) {
+      const doc = ownerDocument(displayRef.current);
+
+      const handleGlobalMouseUp = (event) => {
+        setIsPointerDown(false);
+
+        if (dragSelectRef.current.isDragging) {
+          // If we're dragging and the mouse is released, check where it was released
+          dragSelectRef.current.isDragging = false;
+
+          // Check if mouse is over a menu item
+          const targetElement = event.target;
+          let menuItem = null;
+
+          // Find if we released on a menu item (checking up the parent chain)
+          let current = targetElement;
+          while (current && !menuItem) {
+            // Check if this element has role="option"
+            if (current.getAttribute && current.getAttribute('role') === 'option') {
+              menuItem = current;
+            }
+            current = current.parentElement;
+          }
+
+          if (menuItem) {
+            // Simulate a click on the menu item if we released on one
+            menuItem.click();
+          } else {
+            // If released outside menu items, close the menu
+            update(false, event);
+          }
+        }
+      };
+
+      const handleGlobalMouseMove = () => {
+        if (isPointerDown) {
+          dragSelectRef.current.isDragging = true;
+        }
+      };
+
+      doc.addEventListener('mouseup', handleGlobalMouseUp);
+      doc.addEventListener('mousemove', handleGlobalMouseMove);
+
+      return () => {
+        doc.removeEventListener('mouseup', handleGlobalMouseUp);
+        doc.removeEventListener('mousemove', handleGlobalMouseMove);
+      };
+    }
+
+    return undefined;
+  }, [isPointerDown, update]);
 
   const handleItemClick = (child) => (event) => {
     let newValue;
@@ -326,9 +398,23 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const open = displayNode !== null && openState;
 
+  const handleFocus = (event) => {
+    // Skip duplicate focus events
+    if (!focusTrackingRef.current.isFocused) {
+      focusTrackingRef.current.isFocused = true;
+      focusTrackingRef.current.pendingBlur = false;
+
+      if (onFocus) {
+        onFocus(event);
+      }
+    }
+  };
+
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
+      focusTrackingRef.current.pendingBlur = false;
+      focusTrackingRef.current.isFocused = false;
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);
@@ -509,7 +595,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
-        onFocus={onFocus}
+        onFocus={handleFocus}
         {...SelectDisplayProps}
         ownerState={ownerState}
         className={clsx(SelectDisplayProps.className, classes.select, className)}
