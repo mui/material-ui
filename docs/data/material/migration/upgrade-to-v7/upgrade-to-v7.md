@@ -9,7 +9,7 @@
 The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
 You can read more about package exports in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
 
-This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
 
 ### Quality-of-life improvements
 
@@ -41,14 +41,7 @@ If you're using any of the following packages, they should remain unchanged duri
 - `@mui/x-tree-view`
 - `@mui/x-tree-view-pro`
 
-## Supported browsers and versions
-
-### Minimum React version
-
-The minimum supported version of React is v17.0.0 (the same as v6).
-If you want to upgrade React, it's recommended to finish upgrading Material UI first, then upgrade React.
-
-### Minimum TypeScript version
+## Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v4.7 to 4.9.
 
@@ -91,11 +84,11 @@ The steps you need to take to migrate from Material UI v6 to v7 are described 
 
 The package layout has been updated to use the Node.js exports field. This brings several changes:
 
-Deep imports with more than one level are no longer allowed. For example:
+Deep imports with more than one level are no longer working, at all (they were already considered private API). For example:
 
 ```diff
-- import createTheme from '@mui/material/styles/createTheme';
-+ import { createTheme } from '@mui/material/styles';
+-import createTheme from '@mui/material/styles/createTheme';
++import { createTheme } from '@mui/material/styles';
 ```
 
 This was never officially supported, but now it will be restricted by bundlers and runtimes.
@@ -273,7 +266,8 @@ function ColorModeToggle() {
   }, [mode]);
 
   React.useEffect(() => {
-    console.log(theme.palette.mode); // logged 'light' at first render, no log after the button click
+    // logged 'light' at first render, no log after the button click
+    console.log(theme.palette.mode);
   }, [theme]);
 
   return <button onClick={() => setMode('dark')}>Toggle dark mode</button>;
@@ -437,8 +431,8 @@ The deprecated `MuiRating-readOnly` class was removed in favor of `Mui-readOnly`
 The deprecated `StepButtonIcon` type has been removed. Use `StepButtonProps['icon']` instead.
 
 ```diff
-- import { StepButtonIcon } from '@mui/material/StepButton';
-+ import { StepButtonProps } from '@mui/material/StepButton';
+-import { StepButtonIcon } from '@mui/material/StepButton';
++import { StepButtonProps } from '@mui/material/StepButton';
 
 -StepButtonIcon
 +StepButtonProps['icon']

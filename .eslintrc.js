@@ -64,7 +64,7 @@ module.exports = /** @type {Config} */ ({
     'plugin:eslint-plugin-import/recommended',
     'plugin:eslint-plugin-import/typescript',
     'eslint-config-airbnb',
-    './eslint/config-airbnb-typescript.js',
+    require.resolve('./eslint/config-airbnb-typescript.js'),
     'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
