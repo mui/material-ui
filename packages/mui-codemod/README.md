@@ -393,6 +393,10 @@ npx @mui/codemod@latest deprecations/avatar-group-props <path>
  />
 ```
 
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
+```
+
 #### `backdrop-props`
 
 ```diff
@@ -1609,7 +1613,7 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 #### `rating-props`
 
 ```diff
- <Snackbar
+ <Rating
 -  IconContainerComponent={CustomContainer}
 +  slots={{
 +    icon: { component: CustomContainer }
@@ -1618,7 +1622,7 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
 ```bash
-npx @mui/codemod deprecations/snackbar-props <path>
+npx @mui/codemod deprecations/rating-props <path>
 ```
 
 #### `select-classes`
@@ -1861,6 +1865,18 @@ JS transforms:
  },
 ```
 
+CSS transforms:
+
+```diff
+-.MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+```
+
+```diff
+-.MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
 ```bash
 npx @mui/codemod deprecations/step-connector-classes <path>
 ```
@@ -1970,22 +1986,6 @@ CSS transforms:
 
 ```bash
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
-```
-
-CSS transforms:
-
-```diff
--.MuiStepConnector-lineHorizontal
-+.MuiStepConnector-horizontal > .MuiStepConnector-line
-```
-
-```diff
--.MuiStepConnector-lineVertical
-+.MuiStepConnector-vertical > .MuiStepConnector-line
-```
-
-```bash
-npx @mui/codemod@latest deprecations/step-connector-classes <path>
 ```
 
 #### `tab-classes`
