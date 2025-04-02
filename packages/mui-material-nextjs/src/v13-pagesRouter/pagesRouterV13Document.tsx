@@ -100,18 +100,19 @@ export async function documentGetInitialProps(
         },
       resolveProps: async (initialProps) => {
         const { styles } = extractCriticalToChunks(initialProps.html);
-        console.log(styles);
         return {
           ...initialProps,
-          emotionStyleTags: styles.map((style) => (
-            <style
-              data-emotion={`${style.key} ${style.ids.join(' ')}`}
-              key={style.key}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: style.css }}
-              nonce={cache.nonce}
-            />
-          )),
+          emotionStyleTags: styles.map((style) =>
+            style.css.trim() ? (
+              <style
+                data-emotion={`${style.key} ${style.ids.join(' ')}`}
+                key={style.key}
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: style.css }}
+                nonce={cache.nonce}
+              />
+            ) : null,
+          ),
         };
       },
     },
