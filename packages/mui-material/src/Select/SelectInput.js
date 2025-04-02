@@ -1,20 +1,20 @@
 'use client';
-import composeClasses from '@mui/utils/composeClasses';
-import refType from '@mui/utils/refType';
-import useId from '@mui/utils/useId';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import * as React from 'react';
 import { isFragment } from 'react-is';
-import { isFilled } from '../InputBase/utils';
-import Menu from '../Menu/Menu';
-import { StyledSelectIcon, StyledSelectSelect } from '../NativeSelect/NativeSelectInput';
-import slotShouldForwardProp from '../styles/slotShouldForwardProp';
-import capitalize from '../utils/capitalize';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import composeClasses from '@mui/utils/composeClasses';
+import useId from '@mui/utils/useId';
+import refType from '@mui/utils/refType';
 import ownerDocument from '../utils/ownerDocument';
-import useControlled from '../utils/useControlled';
-import useForkRef from '../utils/useForkRef';
+import capitalize from '../utils/capitalize';
+import Menu from '../Menu/Menu';
+import { StyledSelectSelect, StyledSelectIcon } from '../NativeSelect/NativeSelectInput';
+import { isFilled } from '../InputBase/utils';
 import { styled } from '../zero-styled';
+import slotShouldForwardProp from '../styles/slotShouldForwardProp';
+import useForkRef from '../utils/useForkRef';
+import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
 const SelectSelect = styled(StyledSelectSelect, {
