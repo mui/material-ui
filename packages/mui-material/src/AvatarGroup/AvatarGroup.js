@@ -1,16 +1,16 @@
 'use client';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { isFragment } from 'react-is';
-import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled } from '../zero-styled';
-import memoTheme from '../utils/memoTheme';
-import { useDefaultProps } from '../DefaultPropsProvider';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import { isFragment } from 'react-is';
 import Avatar, { avatarClasses } from '../Avatar';
-import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import memoTheme from '../utils/memoTheme';
 import useSlot from '../utils/useSlot';
+import { styled } from '../zero-styled';
+import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
 
 const SPACINGS = {
   small: -16,
@@ -108,10 +108,17 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const marginValue =
-    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
-      ? SPACINGS[ownerState.spacing]
-      : -ownerState.spacing || -8;
+  let marginValue;
+
+  if (ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined) {
+    marginValue = SPACINGS[ownerState.spacing];
+  } else if (ownerState.spacing === 0) {
+    marginValue = 0;
+  } else if (ownerState.spacing === Infinity || ownerState.spacing === -Infinity) {
+    marginValue = SPACINGS.medium;
+  } else {
+    marginValue = -ownerState.spacing || SPACINGS.medium;
+  }
 
   const externalForwardedProps = {
     slots,
@@ -140,7 +147,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       ref={ref}
       {...other}
       style={{
-        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
+        '--AvatarGroup-spacing': `${marginValue}px`, // marginValue is always defined now
         ...other.style,
       }}
     >
