@@ -22,12 +22,12 @@ export default function FixedTags() {
       getOptionLabel={(option) => option.title}
       renderValue={(values, getItemProps) =>
         values.map((option, index) => {
-          const { key, ...tagProps } = getItemProps({ index });
+          const { key, ...itemProps } = getItemProps({ index });
           return (
             <Chip
               key={key}
               label={option.title}
-              {...tagProps}
+              {...itemProps}
               disabled={fixedOptions.includes(option)}
             />
           );

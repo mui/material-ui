@@ -45,9 +45,9 @@ export default function Tags() {
         freeSolo
         renderValue={(value: readonly string[], getItemProps) =>
           value.map((option: string, index: number) => {
-            const { key, ...tagProps } = getItemProps({ index });
+            const { key, ...itemProps } = getItemProps({ index });
             return (
-              <Chip variant="outlined" label={option} key={key} {...tagProps} />
+              <Chip variant="outlined" label={option} key={key} {...itemProps} />
             );
           })
         }

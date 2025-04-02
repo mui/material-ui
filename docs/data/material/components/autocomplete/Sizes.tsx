@@ -83,14 +83,14 @@ export default function Sizes() {
         defaultValue={[top100Films[13]]}
         renderValue={(values, getItemProps) =>
           values.map((option, index) => {
-            const { key, ...tagProps } = getItemProps({ index });
+            const { key, ...itemProps } = getItemProps({ index });
             return (
               <Chip
                 key={key}
                 variant="outlined"
                 label={option.title}
                 size="small"
-                {...tagProps}
+                {...itemProps}
               />
             );
           })
