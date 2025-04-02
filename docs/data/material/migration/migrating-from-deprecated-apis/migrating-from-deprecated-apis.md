@@ -1930,7 +1930,7 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#rating-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/step-label-props <path>
+npx @mui/codemod@latest deprecations/rating-props <path>
 ```
 
 ### IconContainerComponent
