@@ -239,6 +239,9 @@ importers:
       globby:
         specifier: ^14.1.0
         version: 14.1.0
+      jsonc-parser:
+        specifier: ^3.3.1
+        version: 3.3.1
       karma:
         specifier: ^6.4.4
         version: 6.4.4
