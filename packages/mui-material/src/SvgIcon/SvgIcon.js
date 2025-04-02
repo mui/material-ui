@@ -93,8 +93,6 @@ const SvgIconRoot = styled('svg', {
   })),
 );
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSvgIcon' });
   const {
@@ -107,8 +105,8 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
-    // TODO v8 make `legacyTestId = false` the default.
-    legacyTestId = !isProduction,
+    // TODO(v8): make `legacyTestId = false` the default.
+    legacyTestId = true,
     // eslint-disable-next-line @typescript-eslint/naming-convention, react/prop-types
     _builtinTestId,
     ...other
@@ -222,7 +220,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   /**
    * For @mui/icons-material, enable the legacy behavior of adding a data-testid property to the
    * root element containing the icon name.
-   * @default !isProduction
+   * @default true
    */
   legacyTestId: PropTypes.bool,
   /**
