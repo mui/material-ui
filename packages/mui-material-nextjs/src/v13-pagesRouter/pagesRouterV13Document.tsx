@@ -102,14 +102,16 @@ export async function documentGetInitialProps(
         const { styles } = extractCriticalToChunks(initialProps.html);
         return {
           ...initialProps,
-          emotionStyleTags: styles.map((style) => (
-            <style
-              data-emotion={`${style.key} ${style.ids.join(' ')}`}
-              key={style.key}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: style.css }}
-            />
-          )),
+          emotionStyleTags: styles.map((style) =>
+            style.ids.length > 0 ? (
+              <style
+                data-emotion={`${style.key} ${style.ids.join(' ')}`}
+                key={style.key}
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: style.css }}
+              />
+            ) : null,
+          ),
         };
       },
     },
