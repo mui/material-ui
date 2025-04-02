@@ -1230,8 +1230,8 @@ describe('<Autocomplete />', () => {
           clearOnEscape
           value="one"
           options={['one', 'two']}
-          renderValue={(value, getTagProps) => {
-            return <Chip label={value} {...getTagProps()} />;
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
           }}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
