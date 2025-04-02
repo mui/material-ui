@@ -150,7 +150,9 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/mater
 
 ### TanStack Router
 
-TanStack Router supports custom links through the `createLink` helper function. More information about [`createLink`](https://tanstack.com/router/latest/docs/framework/react/guide/custom-link) can be found in their documentation.
+TanStack Router supports custom links through its `createLink` helper function. 
+The snippet below shows the most basic implementation, wrapping a Material UI Link component.
+See [TanStack Router—Custom Link](https://tanstack.com/router/latest/docs/framework/react/guide/custom-link) for more component integration examples.
 
 ```tsx
 import { createLink, type LinkComponent } from '@tanstack/react-router';
