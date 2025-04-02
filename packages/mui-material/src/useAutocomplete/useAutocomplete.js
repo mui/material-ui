@@ -142,7 +142,7 @@ function useAutocomplete(props) {
   const listboxRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const [focusedTag, setFocusedTag] = React.useState(-1);
+  const [focusedItem, setFocusedItem] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
 
@@ -257,22 +257,22 @@ function useAutocomplete(props) {
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
-  const focusTag = useEventCallback((tagToFocus) => {
-    if (tagToFocus === -1) {
+  const focusItem = useEventCallback((itemToFocus) => {
+    if (itemToFocus === -1) {
       inputRef.current.focus();
     } else {
       const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
-      anchorEl.querySelector(`[${indexType}="${tagToFocus}"]`).focus();
+      anchorEl.querySelector(`[${indexType}="${itemToFocus}"]`).focus();
     }
   });
 
-  // Ensure the focusedTag is never inconsistent
+  // Ensure the focusedItem is never inconsistent
   React.useEffect(() => {
-    if (multiple && focusedTag > value.length - 1) {
-      setFocusedTag(-1);
-      focusTag(-1);
+    if (multiple && focusedItem > value.length - 1) {
+      setFocusedItem(-1);
+      focusItem(-1);
     }
-  }, [value, multiple, focusedTag, focusTag]);
+  }, [value, multiple, focusedItem, focusItem]);
 
   function validOptionIndex(index, direction) {
     if (!listboxRef.current || index < 0 || index >= filteredOptions.length) {
@@ -690,7 +690,7 @@ function useAutocomplete(props) {
     }
   };
 
-  function validTagIndex(index, direction) {
+  function validItemIndex(index, direction) {
     if (index === -1) {
       return -1;
     }
@@ -723,7 +723,7 @@ function useAutocomplete(props) {
     }
   }
 
-  const handleFocusTag = (event, direction) => {
+  const handleFocusItem = (event, direction) => {
     if (!multiple) {
       return;
     }
@@ -732,28 +732,28 @@ function useAutocomplete(props) {
       handleClose(event, 'toggleInput');
     }
 
-    let nextTag = focusedTag;
+    let nextItem = focusedItem;
 
-    if (focusedTag === -1) {
+    if (focusedItem === -1) {
       if (inputValue === '' && direction === 'previous') {
-        nextTag = value.length - 1;
+        nextItem = value.length - 1;
       }
     } else {
-      nextTag += direction === 'next' ? 1 : -1;
+      nextItem += direction === 'next' ? 1 : -1;
 
-      if (nextTag < 0) {
-        nextTag = 0;
+      if (nextItem < 0) {
+        nextItem = 0;
       }
 
-      if (nextTag === value.length) {
-        nextTag = -1;
+      if (nextItem === value.length) {
+        nextItem = -1;
       }
     }
 
-    nextTag = validTagIndex(nextTag, direction);
+    nextItem = validItemIndex(nextItem, direction);
 
-    setFocusedTag(nextTag);
-    focusTag(nextTag);
+    setFocusedItem(nextItem);
+    focusItem(nextItem);
   };
 
   const handleClear = (event) => {
@@ -776,9 +776,9 @@ function useAutocomplete(props) {
       return;
     }
 
-    if (focusedTag !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
-      setFocusedTag(-1);
-      focusTag(-1);
+    if (focusedItem !== -1 && !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
+      setFocusedItem(-1);
+      focusItem(-1);
     }
 
     // Wait until IME is settled.
@@ -834,16 +834,16 @@ function useAutocomplete(props) {
           break;
         case 'ArrowLeft':
           if (!multiple && renderValue) {
-            focusTag(0);
+            focusItem(0);
           } else {
-            handleFocusTag(event, 'previous');
+            handleFocusItem(event, 'previous');
           }
           break;
         case 'ArrowRight':
           if (!multiple && renderValue) {
-            focusTag(-1);
+            focusItem(-1);
           } else {
-            handleFocusTag(event, 'next');
+            handleFocusItem(event, 'next');
           }
           break;
         case 'Enter':
@@ -896,7 +896,7 @@ function useAutocomplete(props) {
         case 'Backspace':
           // Remove the value on the left of the "cursor"
           if (multiple && !readOnly && inputValue === '' && value.length > 0) {
-            const index = focusedTag === -1 ? value.length - 1 : focusedTag;
+            const index = focusedItem === -1 ? value.length - 1 : focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
             handleValue(event, newValue, 'removeOption', {
@@ -905,13 +905,19 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
-            focusTag(-1);
+            focusItem(-1);
           }
           break;
         case 'Delete':
           // Remove the value on the right of the "cursor"
-          if (multiple && !readOnly && inputValue === '' && value.length > 0 && focusedTag !== -1) {
-            const index = focusedTag;
+          if (
+            multiple &&
+            !readOnly &&
+            inputValue === '' &&
+            value.length > 0 &&
+            focusedItem !== -1
+          ) {
+            const index = focusedItem;
             const newValue = value.slice();
             newValue.splice(index, 1);
             handleValue(event, newValue, 'removeOption', {
@@ -920,7 +926,7 @@ function useAutocomplete(props) {
           }
           if (!multiple && renderValue && !readOnly) {
             setValueState(null);
-            focusTag(-1);
+            focusItem(-1);
           }
           break;
         default:
@@ -1006,7 +1012,7 @@ function useAutocomplete(props) {
     isTouch.current = false;
   };
 
-  const handleTagDelete = (index) => (event) => {
+  const handleItemDelete = (index) => (event) => {
     const newValue = value.slice();
     newValue.splice(index, 1);
     handleValue(event, newValue, 'removeOption', {
@@ -1014,7 +1020,7 @@ function useAutocomplete(props) {
     });
   };
 
-  const handleSingleTagDelete = (event) => {
+  const handleSingleItemDelete = (event) => {
     handleValue(event, null, 'removeOption', {
       option: value,
     });
@@ -1144,16 +1150,23 @@ function useAutocomplete(props) {
       type: 'button',
       onClick: handleClear,
     }),
+    getItemProps: ({ index = 0 } = {}) => ({
+      ...(multiple && { key: index }),
+      ...(renderValue ? { 'data-item-index': index } : { 'data-tag-index': index }),
+      tabIndex: -1,
+      ...(!readOnly && { onDelete: multiple ? handleItemDelete(index) : handleSingleItemDelete }),
+    }),
     getPopupIndicatorProps: () => ({
       tabIndex: -1,
       type: 'button',
       onClick: handlePopupIndicator,
     }),
-    getTagProps: ({ index = 0 } = {}) => ({
-      ...(multiple && { key: index }),
-      ...(renderValue ? { 'data-item-index': index } : { 'data-tag-index': index }),
+    // deprecated
+    getTagProps: ({ index }) => ({
+      key: index,
+      'data-tag-index': index,
       tabIndex: -1,
-      ...(!readOnly && { onDelete: multiple ? handleTagDelete(index) : handleSingleTagDelete }),
+      ...(!readOnly && { onDelete: handleItemDelete(index) }),
     }),
     getListboxProps: () => ({
       role: 'listbox',
@@ -1190,10 +1203,12 @@ function useAutocomplete(props) {
     dirty,
     expanded: popupOpen && anchorEl,
     popupOpen,
-    focused: focused || focusedTag !== -1,
+    focused: focused || focusedItem !== -1,
     anchorEl,
     setAnchorEl,
-    focusedTag,
+    focusedItem,
+    // deprecated
+    focusedTag: focusedItem,
     groupedOptions,
   };
 }

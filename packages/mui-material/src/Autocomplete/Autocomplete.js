@@ -502,7 +502,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getInputLabelProps,
     getPopupIndicatorProps,
     getClearProps,
-    getTagProps,
+    getItemProps,
     getListboxProps,
     getOptionProps,
     value,
@@ -511,7 +511,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     id,
     popupOpen,
     focused,
-    focusedTag,
+    focusedItem,
     anchorEl,
     setAnchorEl,
     inputValue,
@@ -537,7 +537,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionLabel,
     hasClearIcon,
     hasPopupIcon,
-    inputFocused: focusedTag === -1,
+    inputFocused: focusedItem === -1,
     popupOpen,
     size,
   };
@@ -590,25 +590,25 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   let startAdornment;
 
-  const getCustomizedTagProps = (params) => ({
+  const getCustomizedItemProps = (params) => ({
     className: classes.tag,
     disabled,
-    ...getTagProps(params),
+    ...getItemProps(params),
   });
 
   if (renderTags && multiple && value.length > 0) {
-    startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
+    startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
   } else if (renderValue && value) {
-    startAdornment = renderValue(value, getCustomizedTagProps, ownerState);
+    startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
   } else if (multiple && value.length > 0) {
     startAdornment = value.map((option, index) => {
-      const { key, ...customTagProps } = getCustomizedTagProps({ index });
+      const { key, ...customItemProps } = getCustomizedItemProps({ index });
       return (
         <Chip
           key={key}
           label={getOptionLabel(option)}
           size={size}
-          {...customTagProps}
+          {...customItemProps}
           {...externalForwardedProps.slotProps.chip}
         />
       );
