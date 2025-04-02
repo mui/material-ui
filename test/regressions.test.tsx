@@ -138,10 +138,14 @@ const importDemos: Record<string, React.ComponentType> = import.meta.glob(
   },
 );
 
+function TestWrapper({ children }: { children: React.ReactNode }) {
+  return <React.Fragment>{children}</React.Fragment>;
+}
+
 test.for(Object.entries({ ...importRegressionFixtures, ...importDemos }))(
   'Screenshot test fixture %s',
   async ([path, Component]) => {
-    await render(<Component />);
+    await render(<Component />, { wrapper: TestWrapper });
     await page.screenshot();
   },
 );
