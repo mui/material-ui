@@ -103,7 +103,7 @@ export async function documentGetInitialProps(
         return {
           ...initialProps,
           emotionStyleTags: styles.map((style) =>
-            style.ids.length > 0 ? (
+            style.css.trim() ? (
               <style
                 data-emotion={`${style.key} ${style.ids.join(' ')}`}
                 key={style.key}
