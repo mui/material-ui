@@ -13,7 +13,7 @@ Combined with [dangerJS](https://danger.systems/js/) we can inspect
 
 Tree-shaking Material UI works out of the box in modern frameworks.
 Material UI exposes its full API on the top-level `@mui` imports.
-If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
+If you're using ES modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), parcel you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@mui/material';

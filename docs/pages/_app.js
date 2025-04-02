@@ -1,7 +1,7 @@
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
-import { loadCSS } from 'fg-loadcss/src/loadCSS';
+import { loadCSS } from 'fg-loadcss';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
@@ -178,7 +178,10 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
-          { text: `v6`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
+          {
+            text: 'v6',
+            href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
           {
             text: 'v5',
             href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
@@ -215,7 +218,7 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
-          { text: 'v6', href: `https://mui.com${languagePrefix}/system/getting-started/` },
+          { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {

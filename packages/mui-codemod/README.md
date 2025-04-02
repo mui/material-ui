@@ -14,7 +14,7 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next <codemod> <paths...>
+npx @mui/codemod <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -1618,7 +1618,7 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/snackbar-props <path>
+npx @mui/codemod deprecations/snackbar-props <path>
 ```
 
 #### `select-classes`
@@ -1713,7 +1713,7 @@ npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/snackbar-props <path>
+npx @mui/codemod deprecations/snackbar-props <path>
 ```
 
 #### `slider-classes`
@@ -1862,7 +1862,7 @@ JS transforms:
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/step-connector-classes <path>
+npx @mui/codemod deprecations/step-connector-classes <path>
 ```
 
 #### `step-content-props`
@@ -2093,7 +2093,7 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/grid-props <path>
+npx @mui/codemod v7.0.0/grid-props <path>
 ```
 
 Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
@@ -2114,7 +2114,7 @@ You can provide the theme breakpoints via options, for example, `--jscodeshift='
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 ```diff
@@ -2127,7 +2127,7 @@ npx @mui/codemod@next v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=m
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+npx @mui/codemod v7.0.0/lab-removed-components <path>
 ```
 
 Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
@@ -2173,7 +2173,7 @@ Updates the `InputLabel`'s `size` value from `normal` to `medium`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path>
+npx @mui/codemod v7.0.0/input-label-size-normal-medium <path>
 ```
 
 <!-- #host-reference -->

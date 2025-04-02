@@ -41,7 +41,7 @@ const styles = theme => ({
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@mui/base': 'latest',
       'prop-types': 'latest',
     });
@@ -73,7 +73,7 @@ const suggestions = [
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -103,8 +103,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
@@ -131,8 +131,8 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       exceljs: 'latest',
     });
   });
@@ -151,7 +151,7 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@mui/base': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
@@ -173,7 +173,7 @@ import 'exceljs';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
       typescript: 'latest',
@@ -202,8 +202,8 @@ import {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
@@ -223,8 +223,8 @@ import lab from '@mui/lab';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
@@ -234,7 +234,6 @@ import * as Material from '@mui/material';
 import * as Base from '@mui/base';
 import * as IconsMaterial from '@mui/icons-material';
 import * as Lab from '@mui/lab';
-import * as Styles from '@mui/styles';
 import * as System from '@mui/system';
 import * as Utils from '@mui/utils';
     `;
@@ -256,7 +255,6 @@ import * as Utils from '@mui/utils';
       '@mui/icons-material':
         'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/icons-material',
       '@mui/lab': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/lab',
-      '@mui/styles': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/styles',
       '@mui/system': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/system',
       '@mui/utils': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/utils',
       '@mui/base': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/base',
@@ -525,10 +523,11 @@ export default function EmailExample() {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/icons-material': 'next',
+      // #npm-tag-reference
+      '@mui/icons-material': 'latest',
       '@mui/joy': 'latest',
-      '@mui/material': 'next',
-      '@mui/system': 'next',
+      '@mui/material': 'latest',
+      '@mui/system': 'latest',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
       typescript: 'latest',

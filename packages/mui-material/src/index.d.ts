@@ -43,7 +43,6 @@ export type InternalStandardProps<
 
 export namespace PropTypes {
   // keeping the type structure for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "7.0.0-rc.0",
+  "version": "7.0.1",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -28,14 +28,14 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:types": "tsx ../../scripts/buildTypes.mts",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./node/translations/translations.json",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json ./src/translations/translations.json:./modern/translations/translations.json",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10",
+    "@babel/runtime": "^7.27.0",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -46,11 +46,11 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.17.24",
+    "@types/node": "^20.17.28",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.10",
-    "next": "^15.2.2",
-    "react": "^19.0.0"
+    "@types/react": "^19.0.12",
+    "next": "^15.2.4",
+    "react": "^19.1.0"
   },
   "peerDependencies": {
     "@mui/base": "*",
