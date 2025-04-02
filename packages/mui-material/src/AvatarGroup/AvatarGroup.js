@@ -1,16 +1,16 @@
 'use client';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { isFragment } from 'react-is';
+import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import { isFragment } from 'react-is';
-import Avatar, { avatarClasses } from '../Avatar';
-import { useDefaultProps } from '../DefaultPropsProvider';
-import memoTheme from '../utils/memoTheme';
-import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
+import useSlot from '../utils/useSlot';
 
 const SPACINGS = {
   small: -16,
