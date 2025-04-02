@@ -199,10 +199,10 @@ We’ve introduced keyboard editing support for mobile pickers. Users can now se
 We’ve enhanced the Rich Tree View with a robust lazy loading mechanism for children. Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data. This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
 
 <figure>
-  <video autoplay muted loop playsinline width="690" height="417" controls>
+  <video autoplay muted loop playsinline width="480" controls>
     <source src="/static/blog/mui-x-v8/tree-view-lazy-loading.mp4" type="video/mp4">
   </video>
-  <figcaption>lazy loading of children on selection</figcaption>
+  <figcaption>Lazy loading of children on selection</figcaption>
 </figure>
 
 Learn how to add [lazy loading](/x/react-tree-view/rich-tree-view/lazy-loading/) to your application's Tree View.
