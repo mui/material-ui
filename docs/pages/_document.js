@@ -241,14 +241,3 @@ MyDocument.getInitialProps = async (ctx) => {
     styledComponentsSheet.seal();
   }
 };
-
-function loadCSS(href, elm = document.head.lastChild) {
-  return new Promise((resolve, reject) => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.onload = () => resolve();
-    link.onerror = () => reject();
-    elm.insertBefore(link);
-  });
-}
