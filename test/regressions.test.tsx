@@ -5,15 +5,12 @@ import { render } from 'vitest-browser-react';
 import webfontloader from 'webfontloader';
 import TestViewer from './regressions/TestViewer';
 
-const importRegressionFixtures: Record<string, React.ComponentType> = import.meta.glob(
-  ['./fixtures/**/*.(js|ts|tsx)'],
-  {
+const importRegressionFixtures: Record<string, () => Promise<React.ComponentType>> =
+  import.meta.glob(['./fixtures/**/*.(js|ts|tsx)'], {
     import: 'default',
-    eager: true,
-  },
-);
+  });
 
-const importDemos: Record<string, React.ComponentType> = import.meta.glob(
+const importDemos: Record<string, () => Promise<React.ComponentType>> = import.meta.glob(
   [
     'docs/data/**/[A-Z]*.js',
     'docs/data/base/**/[A-Z]*/css/index.js',
@@ -136,7 +133,6 @@ const importDemos: Record<string, React.ComponentType> = import.meta.glob(
   ],
   {
     import: 'default',
-    eager: true,
   },
 );
 
@@ -161,9 +157,15 @@ beforeAll(async () => {
   });
 });
 
+// Problem with fg-loadcss using `typeof global !== "undefined" ? global : this` to obtain the `window`
+// See https://github.com/filamentgroup/loadCSS/blob/e2fa3939a641ae0501854d15f15443fe4d017c58/src/loadCSS.js#L88
+// Remove when `fg-loadcss` no loner appears in Examples
+globalThis.global = window;
+
 test.for(Object.entries({ ...importRegressionFixtures, ...importDemos }))(
   'Screenshot test fixture %s',
-  async ([path, Component]) => {
+  async ([path, mod]) => {
+    const Component = await mod();
     await render(
       <TestViewer path={path.startsWith('../docs/data/joy/') ? '/docs-joy' : '/'}>
         <Component />
