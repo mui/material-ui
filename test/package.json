@@ -24,6 +24,7 @@
     "@types/react": "^19.0.12",
     "@types/react-is": "^19.0.0",
     "@types/sinon": "^17.0.4",
+    "@types/webfontloader": "^1.6.38",
     "chai": "^4.5.0",
     "docs": "workspace:^",
     "fast-glob": "^3.3.3",

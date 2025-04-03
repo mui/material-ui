@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { test } from 'vitest';
+import { beforeAll, test } from 'vitest';
 import { page } from '@vitest/browser/context';
 import { render } from 'vitest-browser-react';
+import webfontloader from 'webfontloader';
+import TestViewer from './regressions/TestViewer';
 
 const importRegressionFixtures: Record<string, React.ComponentType> = import.meta.glob(
   ['./fixtures/**/*.(js|ts|tsx)'],
@@ -138,14 +140,36 @@ const importDemos: Record<string, React.ComponentType> = import.meta.glob(
   },
 );
 
-function TestWrapper({ children }: { children: React.ReactNode }) {
-  return <React.Fragment>{children}</React.Fragment>;
-}
+beforeAll(async () => {
+  await new Promise<void>((resolve, reject) => {
+    webfontloader.load({
+      google: {
+        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
+      },
+      custom: {
+        families: ['Font Awesome 5 Free:n9'],
+        urls: ['https://use.fontawesome.com/releases/v5.14.0/css/all.css'],
+      },
+      timeout: 20000,
+      active: () => {
+        resolve();
+      },
+      inactive: () => {
+        reject(new Error('Font loading failed'));
+      },
+    });
+  });
+});
 
 test.for(Object.entries({ ...importRegressionFixtures, ...importDemos }))(
   'Screenshot test fixture %s',
   async ([path, Component]) => {
-    await render(<Component />, { wrapper: TestWrapper });
+    await render(
+      <TestViewer path={path.startsWith('../docs/data/joy/') ? '/docs-joy' : '/'}>
+        <Component />
+      </TestViewer>,
+    );
+    await page.getByTestId('testcase');
     await page.screenshot();
   },
 );
