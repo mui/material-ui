@@ -125,15 +125,15 @@ You can do so with npm, or with the Google Web Fonts CDN.
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/icons-material
+npm install @mui/icons-material@^6.0.0
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material
+pnpm add @mui/icons-material@^6.0.0
 ```
 
 ```bash yarn
-yarn add @mui/icons-material
+yarn add @mui/icons-material@^6.0.0
 ```
 
 </codeblock>
