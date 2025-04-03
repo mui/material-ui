@@ -9,8 +9,6 @@ import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
-  // modern build with a rolling target using ES6 modules
-  'modern',
   // build for node using commonJS modules
   'node',
   // build with a hardcoded target using ES6 modules
@@ -18,7 +16,6 @@ const validBundles = [
 ];
 
 const bundleTypes = {
-  modern: 'module',
   stable: 'module',
   node: 'commonjs',
 };
@@ -60,7 +57,6 @@ async function run(argv) {
 
   const relativeOutDir = {
     node: cjsDir,
-    modern: './modern',
     stable: './esm',
   }[bundle];
 
@@ -113,10 +109,9 @@ async function run(argv) {
   // `--extensions-.cjs --out-file-extension .cjs`
   await cjsCopy({ from: srcDir, to: outDir });
 
-  // Write a package.json file in the output directory if we are building the modern or stable bundle
+  // Write a package.json file in the output directory if we are building the stable bundle
   // or if the output directory is not the root of the package.
-  const shouldWriteBundlePackageJson =
-    bundle === 'modern' || bundle === 'stable' || relativeOutDir !== './';
+  const shouldWriteBundlePackageJson = bundle === 'stable' || relativeOutDir !== './';
   if (shouldWriteBundlePackageJson && !argv.skipEsmPkg) {
     const rootBundlePackageJson = path.join(outDir, 'package.json');
     await fs.writeFile(
