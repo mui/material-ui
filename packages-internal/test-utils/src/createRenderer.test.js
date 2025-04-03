@@ -28,4 +28,27 @@ describe('createRenderer', () => {
     expect(descriptions[1]).to.have.property('id', 'r:2');
     expect(descriptions[2]).to.have.property('id', 'r:3');
   });
+
+  it('uses strict mode when strict and strictEffects are true', () => {
+    let effectCalls = 0;
+    let refCalls = 0;
+    function Component() {
+      React.useEffect(() => {
+        effectCalls += 1;
+      });
+
+      return (
+        <div
+          ref={() => {
+            refCalls += 1;
+          }}
+        />
+      );
+    }
+
+    render(<Component />, { strict: true, strictEffects: true });
+
+    expect(effectCalls).to.equal(2);
+    expect(refCalls).to.equal(3);
+  });
 });

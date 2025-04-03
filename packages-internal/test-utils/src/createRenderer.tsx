@@ -18,6 +18,7 @@ import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
+import { configure } from '@testing-library/react';
 import reactMajor from './reactMajor';
 
 interface Interaction {
@@ -628,24 +629,16 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     serverContainer = null!;
   });
 
-  function createWrapper(options: Partial<RenderConfiguration>) {
-    const {
-      strict = globalStrict,
-      strictEffects = globalStrictEffects,
-      wrapper: InnerWrapper = React.Fragment,
-    } = options;
+  function createWrapper(options: Omit<Partial<RenderConfiguration>, 'strict' | 'strictEffects'>) {
+    const { wrapper: InnerWrapper = React.Fragment } = options;
 
-    const usesLegacyRoot = reactMajor < 18;
-    const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
-        <Mode>
-          <EmotionCacheProvider value={emotionCache}>
-            <React.Profiler id={profiler.id} onRender={profiler.onRender}>
-              <InnerWrapper>{children}</InnerWrapper>
-            </React.Profiler>
-          </EmotionCacheProvider>
-        </Mode>
+        <EmotionCacheProvider value={emotionCache}>
+          <React.Profiler id={profiler.id} onRender={profiler.onRender}>
+            <InnerWrapper>{children}</InnerWrapper>
+          </React.Profiler>
+        </EmotionCacheProvider>
       );
     };
   }
@@ -661,6 +654,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         );
       }
 
+      const { strict = globalStrict, strictEffects = globalStrictEffects } = options;
+      const usesLegacyRoot = reactMajor < 18;
+      const enableStrictMode = strict && (strictEffects || usesLegacyRoot);
+      configure({ reactStrictMode: enableStrictMode });
+
       return render(element, {
         ...options,
         hydrate: false,
@@ -675,6 +673,11 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
             'Move the call into each `it()`. Otherwise you cannot run a specific test and we cannot isolate each test.',
         );
       }
+
+      const { strict = globalStrict, strictEffects = globalStrictEffects } = options;
+      const usesLegacyRoot = reactMajor < 18;
+      const enableStrictMode = strict && (strictEffects || usesLegacyRoot);
+      configure({ reactStrictMode: enableStrictMode });
 
       const { container = serverContainer, ...localOptions } = options;
       return renderToString(element, {

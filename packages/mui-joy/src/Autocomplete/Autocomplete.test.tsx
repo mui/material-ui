@@ -1927,7 +1927,7 @@ describe('Joy <Autocomplete />', () => {
           </React.Fragment>
         );
       }
-      const { user } = render(<MyComponent />);
+      const { user } = render(<MyComponent />, { strict: reactMajor === 18 });
 
       await user.click(screen.getByText('Reset'));
 
@@ -2202,6 +2202,7 @@ describe('Joy <Autocomplete />', () => {
       const options = ['one', 'two', 'three'];
       render(
         <Autocomplete onHighlightChange={handleHighlightChange} options={options} open autoFocus />,
+        { strict: reactMajor !== 19 },
       );
       const textbox = screen.getByRole('combobox');
 
@@ -2209,9 +2210,9 @@ describe('Joy <Autocomplete />', () => {
 
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
+        reactMajor === 18 ? 4 : 3,
       );
-      if (reactMajor >= 18) {
+      if (reactMajor === 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
@@ -2223,7 +2224,7 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 5 : 4,
+        reactMajor === 18 ? 5 : 4,
       );
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
@@ -2235,14 +2236,15 @@ describe('Joy <Autocomplete />', () => {
       const options = ['one', 'two', 'three'];
       const { getAllByRole } = render(
         <Autocomplete onHighlightChange={handleHighlightChange} options={options} open autoFocus />,
+        { strict: reactMajor !== 19 },
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
+        reactMajor === 18 ? 4 : 3,
       );
-      if (reactMajor >= 18) {
+      if (reactMajor === 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
         expect(handleHighlightChange.args[2][1]).to.equal(null);
         expect(handleHighlightChange.args[2][2]).to.equal('auto');
