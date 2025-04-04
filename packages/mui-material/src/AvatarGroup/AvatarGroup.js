@@ -114,8 +114,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     marginValue = SPACINGS[ownerState.spacing];
   } else if (ownerState.spacing === 0) {
     marginValue = 0;
-  } else if (ownerState.spacing === Infinity || ownerState.spacing === -Infinity) {
-    marginValue = SPACINGS.medium;
   } else {
     marginValue = -ownerState.spacing || SPACINGS.medium;
   }
@@ -147,7 +145,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       ref={ref}
       {...other}
       style={{
-        '--AvatarGroup-spacing': `${marginValue}px`, // marginValue is always defined now
+        '--AvatarGroup-spacing': `${marginValue}px`, // marginValue is always defined
         ...other.style,
       }}
     >
