@@ -5,8 +5,6 @@ import { inputBaseClasses } from '../InputBase';
 export interface FilledInputClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if color secondary. */
-  colorSecondary: string;
   /** Styles applied to the root element unless `disableUnderline={true}`. */
   underline: string;
   /** State class applied to the root element if the component is focused. */
