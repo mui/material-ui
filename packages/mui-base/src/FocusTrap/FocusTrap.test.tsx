@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import { FocusTrap } from '@mui/base/FocusTrap';
 import { Portal } from '@mui/base/Portal';
 
@@ -219,7 +219,7 @@ describe('<FocusTrap />', () => {
         </div>
       );
     }
-    const { setProps, getByRole } = render(<Test />);
+    const { setProps, getByRole } = render(<Test />, { strict: reactMajor <= 18 });
     expect(screen.getByTestId('root')).toHaveFocus();
 
     act(() => {
