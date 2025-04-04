@@ -71,7 +71,7 @@
     {
       "name": "paper",
       "description": "The component used for the paper.",
-      "default": "Paper",
+      "default": "PopoverPaper",
       "class": "MuiMenu-paper"
     },
     {
