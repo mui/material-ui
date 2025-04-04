@@ -372,11 +372,11 @@ describe('<Tabs />', () => {
           );
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
+          // React Strict Mode runs mount effects twice
+          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
+          // React Strict Mode runs mount effects twice
+          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
         ]);

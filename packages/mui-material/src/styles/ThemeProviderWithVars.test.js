@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {
   CssVarsProvider,
@@ -470,11 +470,11 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const { container } = render(<App />);
 
-    expect(container).to.have.text('1 light');
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text('1 light');
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
   });
 
   it('palette mode should change if not using CSS variables', () => {
@@ -505,12 +505,14 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const { container } = render(<App />);
 
-    expect(container).to.have.text(`1 light ${createTheme().palette.primary.main}`);
+    expect(container).to.have.text(
+      `${reactMajor >= 19 ? 2 : 1} light ${createTheme().palette.primary.main}`,
+    );
 
     fireEvent.click(screen.getByRole('button'));
 
     expect(container).to.have.text(
-      `2 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
+      `${reactMajor >= 19 ? 3 : 2} dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
     );
   });
 
@@ -542,10 +544,10 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const { container } = render(<App />);
 
-    expect(container).to.have.text('1 light');
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text('2 dark');
+    expect(container).to.have.text(`${reactMajor >= 19 ? 3 : 2} dark`);
   });
 });

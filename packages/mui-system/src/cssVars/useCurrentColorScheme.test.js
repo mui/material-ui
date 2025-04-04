@@ -111,7 +111,7 @@ describe('useCurrentColorScheme', () => {
     const { container } = render(<Data />);
 
     expect(container.firstChild.textContent).to.equal('light');
-    expect(effectRunCount).to.equal(reactMajor >= 19 ? 2 : 3);
+    expect(effectRunCount).to.equal(3);
   });
 
   it('[noSsr] does not trigger a re-render', () => {

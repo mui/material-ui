@@ -233,7 +233,7 @@ interface ServerRenderConfiguration extends RenderConfiguration {
   container: HTMLElement;
 }
 
-export type RenderOptions = Partial<RenderConfiguration>;
+export type RenderOptions = Omit<Partial<RenderConfiguration>, 'reactStrictMode'>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
   user: ReturnType<typeof userEvent.setup>;
