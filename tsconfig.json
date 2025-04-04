@@ -10,7 +10,6 @@
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
@@ -47,7 +46,8 @@
         "./packages-internal/scripts/typescript-to-proptypes/src"
       ],
       "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
-      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"]
+      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"],
+      "docs/*": ["./docs/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react", "mocha"]
