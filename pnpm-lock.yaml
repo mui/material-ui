@@ -21,6 +21,11 @@ overrides:
   '@pigment-css/nextjs-plugin': 0.0.30
   '@pigment-css/vite-plugin': 0.0.30
 
+patchedDependencies:
+  styled-components:
+    hash: 383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f
+    path: patches/styled-components.patch
+
 importers:
 
   .:
@@ -616,7 +621,7 @@ importers:
         version: 6.1.6
       styled-components:
         specifier: ^6.1.16
-        version: 6.1.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 6.1.16(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       styled-system:
         specifier: ^5.1.5
         version: 5.1.5
@@ -886,7 +891,7 @@ importers:
         version: 6.0.1
       styled-components:
         specifier: ^6.1.16
-        version: 6.1.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 6.1.16(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -2049,7 +2054,7 @@ importers:
         version: 19.1.0
       styled-components:
         specifier: ^6.1.16
-        version: 6.1.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 6.1.16(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     publishDirectory: build
 
   packages/mui-system:
@@ -2120,7 +2125,7 @@ importers:
         version: 19.0.5
       styled-components:
         specifier: ^6.1.16
-        version: 6.1.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 6.1.16(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     publishDirectory: build
 
   packages/mui-types:
@@ -2338,7 +2343,7 @@ importers:
         version: 19.0.5
       styled-components:
         specifier: ^6.1.16
-        version: 6.1.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 6.1.16(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       stylis:
         specifier: 4.2.0
         version: 4.2.0
@@ -25970,7 +25975,7 @@ snapshots:
       minimist: 1.2.8
       through: 2.3.8
 
-  styled-components@6.1.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  styled-components@6.1.16(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/unitless': 0.8.1
