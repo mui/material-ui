@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -111,7 +111,7 @@ describe('useCurrentColorScheme', () => {
     const { container } = render(<Data />);
 
     expect(container.firstChild.textContent).to.equal('light');
-    expect(effectRunCount).to.equal(reactMajor >= 19 ? 2 : 3);
+    expect(effectRunCount).to.equal(3);
   });
 
   it('[noSsr] does not trigger a re-render', () => {
