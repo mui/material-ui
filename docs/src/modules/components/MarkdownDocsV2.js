@@ -11,11 +11,12 @@ import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
+import AppFrame, { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 function getHookTranslatedHeader(t, header) {
   const translations = {
@@ -216,6 +217,42 @@ export default function MarkdownDocsV2(props) {
     return false;
   });
 
+  const scopedDemo = router.query.scopedDemo;
+  if (scopedDemo) {
+    return (
+      <AppFrame disableDrawer>
+        <GlobalStyles
+          styles={{
+            ':root': {
+              '--MuiDocs-navDrawer-width': '300px',
+            },
+          }}
+        />
+        <div
+          style={{
+            'margin-top': `${AppFrameHeight}px`,
+            width: '100%',
+          }}
+        >
+          <RichMarkdownElement
+            activeTab={activeTab}
+            demoComponents={demoComponents}
+            demos={demos}
+            disableAd={disableAd}
+            localizedDoc={localizedDoc}
+            srcComponents={srcComponents}
+            renderedMarkdownOrDemo={{
+              demo: scopedDemo,
+              hideToolbar: true,
+              height: `calc(100vh - ${AppFrameHeight}px)`,
+              bg: false,
+            }}
+          />
+        </div>
+      </AppFrame>
+    );
+  }
+
   return (
     <AppLayoutDocs
       cardOptions={{
@@ -228,7 +265,6 @@ export default function MarkdownDocsV2(props) {
       location={localizedDoc.location}
       title={localizedDoc.title}
       toc={activeToc}
-      disableLayout
       hasTabs={hasTabs}
     >
       <div

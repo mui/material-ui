@@ -22,7 +22,7 @@ import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
 const TOC_WIDTH = 242;
 
-const Main = styled('main', {
+export const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ theme }) => ({
   minHeight: '100vh',
