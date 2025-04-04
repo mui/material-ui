@@ -77,7 +77,7 @@ Learn how to use pivoting [now](/x/react-data-grid/pivoting/).
 
 ### Ask Your Table - Featuring AI Assistance on the Data Grid [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-After a period of test with users and pilot customers, we're excited to introduce our new AI Assistant for the Data Grid: [Ask Your Table](/x/react-data-grid/ask-your-table/).
+After a period of test with users and pilot customers, we're excited to introduce our new AI Assistant for the Data Grid: [Ask Your Table](/x/react-data-grid/ai-assistant/).
 
 Now your users can interact with data using natural language queries and extract data insights quickly as ever.
 
@@ -188,7 +188,7 @@ The Accessible DOM Structure is now the default for our field components. The ne
 We’ve introduced keyboard editing support for mobile pickers. Users can now seamlessly input and adjust date and time values directly via on-screen keyboards, providing a more accessible and efficient experience.
 
 <figure>
-  <img width="606" height="300" alt="Mobile picker with keyboard input" src="/static/blog/mui-x-v8/mobile-picker-keyboard.png" loading="lazy">
+  <img width="375" alt="Mobile picker with keyboard input" src="/static/blog/mui-x-v8/mobile-picker-keyboard.jpg" loading="lazy">
   <figcaption>Mobile picker with keyboard input</figcaption>
 </figure>
 
@@ -199,7 +199,7 @@ We’ve introduced keyboard editing support for mobile pickers. Users can now se
 We’ve enhanced the Rich Tree View with a robust lazy loading mechanism for children. Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data. This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
 
 <figure>
-  <video autoplay muted loop playsinline width="480" controls>
+  <video autoplay muted loop playsinline width="360" controls>
     <source src="/static/blog/mui-x-v8/tree-view-lazy-loading.mp4" type="video/mp4">
   </video>
   <figcaption>Lazy loading of children on selection</figcaption>
@@ -216,6 +216,13 @@ In upcoming releases, we’ll make another big step with the introduction of vir
 ### Automatic selection propagation
 
 The Rich Tree View now supports parent/child selection propagation. This means you can select a parent and automatically select all your children, and vice-versa depending on your requirements and configuration.
+
+<figure>
+  <video autoplay muted loop playsinline width="250" controls>
+    <source alt="Automatic selection of children"  src="/static/blog/mui-x-v8/tree-view-automatic-selection.mp4" type="video/mp4">
+  </video>
+  <figcaption>Automatic selection of children</figcaption>
+</figure>
 
 ```js
 type TreeViewSelectionPropagation = {
