@@ -622,4 +622,27 @@ describe('<Snackbar />', () => {
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
     });
   });
+
+  it('should skip default clickAway behavior when defaultMuiPrevented is true', () => {
+    const handleClose = spy();
+    render(
+      <Snackbar
+        open
+        onClose={handleClose}
+        message="message"
+        slotProps={{
+          clickAwayListener: {
+            onClickAway: (event) => {
+              event.defaultMuiPrevented = true;
+            },
+          },
+        }}
+      />,
+    );
+
+    const event = new window.Event('click', { bubbles: true, cancelable: true });
+    document.body.dispatchEvent(event);
+
+    expect(handleClose.callCount).to.equal(0);
+  });
 });
