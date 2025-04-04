@@ -1037,6 +1037,42 @@ npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
+#### `dialog-classes`
+
+JS transforms:
+
+```diff
+ import { dialogClasses } from '@mui/material/Dialog';
+
+ MuiDialog: {
+   styleOverrides: {
+     root: {
+-      [`& .${dialogClasses.paperScrollBody}`]: {
++      [`& .${dialogClasses.scrollBody} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`& .${dialogClasses.paperScrollPaper}`]: {
++      [`& .${dialogClasses.scrollPaper} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiDialog-root .MuiDialog-paperScrollBody
++.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper
+-.MuiDialog-root .MuiDialog-paperScrollPaper
++.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-classes <path>
+```
+
 #### `drawer-classes`
 
 JS transforms:
