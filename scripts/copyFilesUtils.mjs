@@ -104,9 +104,6 @@ export async function cjsCopy({ from, to }) {
 }
 
 const srcCondition = 'mui-src';
-const modernCondition = 'mui-modern';
-const polyfillLegacyModern = false;
-const legacyModernPrefix = './modern';
 
 function createExportFor(exportName, conditions) {
   if (typeof conditions === 'object' && conditions) {
@@ -125,10 +122,6 @@ function createExportFor(exportName, conditions) {
           import: {
             types: `./esm/${baseName}.d.ts`,
             default: `./esm/${baseName}.js`,
-          },
-          [modernCondition]: {
-            types: `./modern/${baseName}.d.ts`,
-            default: `./modern/${baseName}.js`,
           },
           ...rest,
         },
@@ -174,17 +167,6 @@ export async function createPackageFile(useEsmExports = false) {
   if (packageDataOther.exports) {
     for (const [exportName, conditions] of Object.entries(packageDataOther.exports)) {
       Object.assign(packageExports, createExportFor(exportName, conditions));
-    }
-  }
-
-  if (polyfillLegacyModern) {
-    const exportedNames = new Set(Object.keys(packageExports));
-    for (const exportedName of exportedNames) {
-      const modernName = exportedName.replace(/^\./, legacyModernPrefix);
-      const modernExport = packageExports[exportedName][modernCondition] ?? null;
-      if (modernExport && !exportedNames.has(modernName)) {
-        packageExports[modernName] = modernExport;
-      }
     }
   }
 

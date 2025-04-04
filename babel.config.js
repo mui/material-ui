@@ -19,7 +19,7 @@ function resolveAliasPath(relativeToBabelConf) {
 
 /** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['regressions', 'modern', 'stable']);
+  const useESModules = api.env(['regressions', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -50,7 +50,6 @@ module.exports = function getBabelConfig(api) {
         browserslistEnv: api.env() || process.env.NODE_ENV,
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
         modules: useESModules ? false : 'commonjs',
-        shippedProposals: api.env('modern'),
       },
     ],
     [
