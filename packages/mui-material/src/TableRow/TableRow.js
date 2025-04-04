@@ -20,6 +20,8 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getTableRowUtilityClass, classes);
 };
 
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
 const TableRowRoot = styled('tr', {
   name: 'MuiTableRow',
   slot: 'Root',
@@ -28,31 +30,47 @@ const TableRowRoot = styled('tr', {
 
     return [styles.root, ownerState.head && styles.head, ownerState.footer && styles.footer];
   },
-})(
-  memoTheme(({ theme }) => ({
+})
+(memoTheme(({ theme }) => {
+  return {
     color: 'inherit',
     display: 'table-row',
     verticalAlign: 'middle',
-    // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
     [`&.${tableRowClasses.hover}:hover`]: {
       backgroundColor: (theme.vars || theme).palette.action.hover,
     },
     [`&.${tableRowClasses.selected}`]: {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${clamp(
+            theme.vars.palette.action.selectedOpacity,
+            0,
+            1
+          )})`
+        : alpha(
+            theme.palette.primary.main,
+            clamp(theme.palette.action.selectedOpacity, 0, 1)
+          ),
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${clamp(
+              theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.hoverOpacity,
+              0,
+              1
+            )})`
           : alpha(
               theme.palette.primary.main,
-              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+              clamp(
+                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+                0,
+                1
+              )
             ),
       },
     },
-  })),
-);
+  };
+}));
+
 
 const defaultComponent = 'tr';
 /**
