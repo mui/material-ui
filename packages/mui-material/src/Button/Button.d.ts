@@ -139,18 +139,38 @@ export type ExtendButton<TypeMap extends OverridableTypeMap> = ((
  */
 declare const Button: ExtendButtonBase<ButtonTypeMap>;
 
-export type ButtonProps<
+// Anchor-specific attributes that should only be available with href
+type AnchorAttributes = 'target' | 'rel' | 'download' | 'hrefLang' | 'ping' | 'referrerPolicy';
+
+// Base ButtonProps type without anchor-specific attributes
+export type ButtonPropsBase<
   RootComponent extends React.ElementType = ButtonTypeMap['defaultComponent'],
   AdditionalProps = {},
 > = OverrideProps<ButtonTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
-} & (({ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>) | { href?: undefined });
+};
 
-export type ConstrainedButtonProps<
+// Props specific to buttons without href (non-anchor buttons)
+type NonAnchorButtonProps = {
+  href?: undefined;
+  target?: undefined;
+  rel?: undefined;
+  download?: undefined;
+  hrefLang?: undefined;
+  ping?: undefined;
+  referrerPolicy?: undefined;
+};
+
+// Props specific to buttons with href (anchor buttons)
+type AnchorButtonProps = {
+  href: string;
+} & Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, AnchorAttributes>;
+
+export type ButtonProps<
   RootComponent extends React.ElementType = ButtonTypeMap['defaultComponent'],
   AdditionalProps = {},
-> = Omit<ButtonProps<RootComponent, AdditionalProps>, 'type'> & {
-  type?: 'button' | 'submit' | 'reset' | undefined;
-};
+> =
+  | (ButtonPropsBase<RootComponent, AdditionalProps> & NonAnchorButtonProps)
+  | (ButtonPropsBase<RootComponent, AdditionalProps> & AnchorButtonProps);
 
 export default Button;
