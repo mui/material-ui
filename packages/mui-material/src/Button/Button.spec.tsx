@@ -159,3 +159,42 @@ function ClassesTest() {
     </Button>
   );
 }
+
+const ButtonWithHrefForwarding = (props: ButtonProps) => <Button {...props} />;
+
+const ButtonWithFixedAnchor = () => (
+  <Button href="https://mui.com" target="_blank" rel="noopener" />
+);
+
+function AnchorAttributesTest() {
+  return (
+    <div>
+      <ButtonWithFixedAnchor />
+      <ButtonWithHrefForwarding href="https://mui.com" target="_blank" rel="noopener" download />
+
+      {/* @ts-expect-error - target should not be allowed without href */}
+      <ButtonWithHrefForwarding target="_blank" />
+
+      {/* @ts-expect-error - download should not be allowed without href */}
+      <ButtonWithHrefForwarding download />
+
+      {/* This should work - component is a with href */}
+      <ButtonWithHrefForwarding
+        component="a"
+        href="https://mui.com"
+        target="_blank"
+        rel="noopener"
+      />
+
+      {/* Edge case - forwarding ref with anchor attributes */}
+      <ButtonWithHrefForwarding
+        href="https://mui.com"
+        target="_blank"
+        ref={(elem: HTMLAnchorElement | HTMLButtonElement | null) => {
+          // Expect the element to be either an anchor or a button
+          expectType<HTMLAnchorElement | HTMLButtonElement | null, typeof elem>(elem);
+        }}
+      />
+    </div>
+  );
+}
