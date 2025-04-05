@@ -261,6 +261,7 @@ function useAutocomplete(props) {
     if (itemToFocus === -1) {
       inputRef.current.focus();
     } else {
+      // Using `data-tag-index` for deprecated `renderTags`. Remove when `renderTags` is gone.
       const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
       anchorEl.querySelector(`[${indexType}="${itemToFocus}"]`).focus();
     }
@@ -706,6 +707,7 @@ function useAutocomplete(props) {
         return -1;
       }
 
+      // Using `data-tag-index` for deprecated `renderTags`. Remove when `renderTags` is removed.
       const indexType = renderValue ? 'data-item-index' : 'data-tag-index';
       const option = anchorEl.querySelector(`[${indexType}="${nextFocus}"]`);
 
