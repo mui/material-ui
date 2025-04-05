@@ -80,10 +80,9 @@ This will require a new hash to be set in your CSP during each deployment.
 To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build.
 This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
 
-### NextJS Page Router
+### Next.js Pages Router
 
-For NextJS using Page Router, after [setting up a nonce](https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy#nonces), you can pass it to the emotion cache which you'll do it in two places:
-
+For Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy#nonces), you can pass it to the Emotion cache which you'll do it in two places:
 
 First in the `_document.tsx`
 ```tsx
