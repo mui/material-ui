@@ -125,7 +125,7 @@ Explore all your options when handling [Server-side data](/x/react-data-grid/ser
 
 ### Data source on the Community Plan
 
-Great news—the Data Source move from the Pro Plan to the Community Plan (MIT licensed)!
+Great news—the Data source move from the Pro Plan to the Community Plan (MIT licensed)!
 
 We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
 
