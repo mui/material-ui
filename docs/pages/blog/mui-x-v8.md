@@ -30,29 +30,29 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [List view](#list-view)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Row spanning](#row-spanning)
   - [Server-side Aggregation and Lazy loading](#server-side-aggregation-and-lazy-loading)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-  - [Data Source on the Community Plan](#data-source-on-the-community-plan)
+  - [Data source on the Community Plan](#data-source-on-the-community-plan)
   - [New Toolbar](#new-toolbar)
-  - [Design Agnostic Core](#design-agnostic-core)
-  - [New No Columns Overlay](#new-no-columns-overlay)
-  - [Performance Improvements](#performance-improvements)
+  - [Design agnostic core](#design-agnostic-core)
+  - [No columns overlay](#no-columns-overlay)
+  - [Performance improvements](#performance-improvements)
 - [Date and Time Pickers](#date-and-time-pickers)
   - [Time Range Picker](#time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-  - [Auto Switch Strategy](#auto-switch-strategy)
+  - [New view-switching strategy](#new-view-switching-strategy)
   - [Clear `ownerState` for slots](#clear-ownerstate-for-slots)
-  - [Accessible DOM Structure](#accessible-dom-structure)
-  - [Keyboard Editing on Mobile Pickers](#keyboard-editing-on-mobile-pickers)
+  - [Accessible DOM structure](#accessible-dom-structure)
+  - [Keyboard editing on mobile Pickers](#keyboard-editing-on-mobile-pickers)
 - [Tree View](#tree-view)
   - [Lazy loading child nodes](#lazy-loading-child-nodes) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Automatic selection propagation](#automatic-selection-propagation)
-  - [New Customization Hook](#new-customization-hook)
+  - [New customization hook](#new-customization-hook)
 - [Charts](#charts)
   - [Funnel Charts](#funnel-charts)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Radar Charts](#radar-charts)
-  - [Server-side Rendering for Charts](#server-side-rendering-for-charts)
-  - [Refined Design and Interaction](#refined-design-and-interaction)
+  - [Server-side rendering for Charts](#server-side-rendering-for-charts)
+  - [Refined design and interaction](#refined-design-and-interaction)
   - [HTML Legend for Charts](#html-legend-for-charts)
   - [Charts composition](#charts-composition)
-- [Enhanced License Management and Telemetry](#enhanced-license-management-and-telemetry)
+- [Enhanced License management and Telemetry](#enhanced-license-management-and-telemetry)
 - [Priority Support – A New Support Service](#priority-support-a-new-support-service)
 - [Support for Material UI](#support-for-material-ui)
 - [Migration](#migration)
@@ -64,7 +64,8 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
 
 ### Pivoting [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-The wait is over! With pivoting, your users can easily restructure and summarize large datasets: group related data, calculate aggregates (such as sums, averages, and counts), and compare different data categories side by side. This flexibility enables faster insight discovery and more efficient data analysis.
+The wait is over! With pivoting, your users can easily restructure and summarize large datasets: group related data, calculate aggregates (such as sums, averages, and counts), and compare different data categories side by side.
+This flexibility enables faster insight discovery and more efficient data analysis.
 
 This feature is available right out of the box, but you can also create a preconfigured setup to tailor it to your user requirements.
 
@@ -79,7 +80,7 @@ Check out the [Data Grid pivoting](/x/react-data-grid/pivoting/) documentation t
 
 ### Ask Your Table - AI assistance in the Data Grid [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
 
-After a testing period with users and pilot customers, we're excited to introduce our new AI Assistant for the Data Grid: [Ask Your Table](/x/react-data-grid/ai-assistant/).
+After a testing period with pilot users and customers, we're excited to introduce our new AI Assistant for the Data Grid: [Ask Your Table](/x/react-data-grid/ai-assistant/).
 
 Now your users can interact with data using natural language queries and extract data insights faster than ever.
 
@@ -111,50 +112,54 @@ Learn more about [List view](/x/react-data-grid/list-view/).
 
 ### Row spanning
 
-Row spanning has also been promoted to stable, providing a reliable and flexible solution for merging cells across multiple rows. This enhancement makes it easier to create complex, multi-row layouts within your Data Grid, allowing you to present your data more effectively.
+Row spanning has also been promoted to stable, providing a reliable and flexible solution for merging cells across multiple rows.
+This enhancement makes it easier to create complex, multi-row layouts within your Data Grid, allowing you to present your data more effectively.
 
-Learn how to set up and use [row spanning](/x/react-data-grid/row-spanning/).
+Learn how to set up and use [Row spanning](/x/react-data-grid/row-spanning/).
 
 ### Server-side Aggregation and Lazy loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 The Data Source now supports advanced features such as server-side aggregation, on-demand data fetching for infinite scrolling, and lazy loading.
 
-Explore all your options when handling [server-side data](/x/react-data-grid/server-side-data/).
+Explore all your options when handling [Server-side data](/x/react-data-grid/server-side-data/).
 
-### Data Source on the Community Plan
+### Data source on the Community Plan
 
-Great news—the Data Source is now part of the community plan!
+Great news—the Data Source move from the Pro Plan to the Community Plan (MIT licensed)!
 
 We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
 
-Explore your options in our [data source docs](/x/react-data-grid/server-side-data/).
+Explore your options in our [Data source docs](/x/react-data-grid/server-side-data/).
 
 ### New Toolbar
 
 The [redesigned toolbar](/x/react-data-grid/components/toolbar/) not only looks fantastic but also empowers developers one step further through an open composition of subcomponents, allowing you to tailor the toolbar's layout precisely to your application's needs.
 
 <figure>
-  <img width="100%" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy">
+  <img width="1170" height="104" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy" style="border: 0;">
   <figcaption>The new toolbar's design</figcaption>
 </figure>
 
-This new developer experience, based on composition, may feel different from our previous approach—but it sets a new standard. We'll soon extend this enhanced experience to other key subcomponents, such as the filter panel and columns management panel, ensuring a cohesive and powerful toolkit for advanced customization.
+This new developer experience, based on composition, may feel different from our previous approach—but it sets a new standard.
+We'll soon extend this enhanced experience to other key subcomponents, such as the filter panel and columns management panel, ensuring a cohesive and powerful toolkit for advanced customization.
 
-Dive into our new docs section on [component usage](/x/react-data-grid/components/usage/).
+Dive into our new docs section on [Components usage](/x/react-data-grid/components/usage/).
 
-### Design Agnostic Core
+### Design agnostic core
 
-We understand customization is important to you. So with the ultimate goal of being fully customizable, we're taking the first step to decouple Material UI from the Data Grid Core, opening the possibility to use the Data Grid with any design system—and this is just the beginning.
+We understand customization is important to you.
+So with the ultimate goal of being fully customizable, we're taking the first step to allow using the Data Grid component without a single Material UI dependency (for example
+without Emotion), opening the possibility to use the Data Grid with any design system—and this is just the beginning.
 
 Next up, we'll work to provide the best experience for you to build a full-feature Data Grid that fits all your design requirements.
 
-### No-Columns Overlay
+### No columns overlay
 
 We've added a no-columns overlay to serve as a clear fallback when the Data Grid has no columns to show.
 
-Learn more in the [overlay documentation](/x/react-data-grid/overlays/).
+Learn more in the [No columns overlay documentation](/x/react-data-grid/overlays/#no-columns-overlay).
 
-### Performance Improvements
+### Performance improvements
 
 We've made significant performance enhancements across the board—from smoother scrolling and faster Excel export to improved mount/resize and aggregation performance.
 
@@ -173,7 +178,7 @@ It's finally here! The highly anticipated Time Range Picker component is designe
 
 Get started with the [Time Range Picker](/x/react-date-pickers/time-range-picker/).
 
-### New view-switching Strategy
+### New view-switching strategy
 
 We've removed the automatic view-switching in the Date Time and Time Range Pickers to deliver a more consistent and user-friendly experience.
 
@@ -183,18 +188,22 @@ Learn more in the [Time Range Picker docs](/x/react-date-pickers/time-range-pick
 
 ### Clear `ownerState` for slots
 
-We've refined our slot system by clearing the `ownerState` before passing props to slot components. This ensures that only the necessary properties are forwarded—resulting in a cleaner API, reduced prop clutter, and enhanced performance. By isolating internal state from presentation layers, you gain more predictable styling and greater control when customizing components.
+We've refined our slot system by clearing the `ownerState` before passing props to slot components.
+This ensures that only the necessary properties are forwarded—resulting in a cleaner API, reduced prop clutter, and enhanced performance.
+By isolating internal state from presentation layers, you gain more predictable styling and greater control when customizing components.
 
-### Accessible DOM Structure
+### Accessible DOM structure
 
-The Accessible DOM Structure is now the default for our field components. The new structure ensures screen readers can correctly work with the fields.
+The Accessible DOM structure is now the default for our field components.
+The new structure ensures screen readers can correctly work with the fields.
 
-### Keyboard Editing on Mobile Pickers
+### Keyboard editing on mobile Pickers
 
-We've introduced keyboard editing support for mobile pickers. Users can now seamlessly input and adjust date and time values directly via on-screen keyboards, providing a more accessible and efficient experience.
+We've introduced keyboard editing support for mobile pickers.
+Users can now seamlessly input and adjust date and time values directly via on-screen keyboards, providing a more accessible and efficient experience.
 
 <figure>
-  <img width="375" alt="Mobile picker with keyboard input" src="/static/blog/mui-x-v8/mobile-picker-keyboard.jpg" loading="lazy">
+  <img height="1080" width="1095" style="width: 365px" alt="Mobile picker with keyboard input" src="/static/blog/mui-x-v8/mobile-picker-keyboard.jpg" loading="lazy">
   <figcaption>Mobile picker with keyboard input</figcaption>
 </figure>
 
@@ -202,16 +211,18 @@ We've introduced keyboard editing support for mobile pickers. Users can now seam
 
 ### Lazy loading child nodes [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
-We've enhanced the Rich Tree View with a robust lazy loading mechanism for children. Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data. This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
+We've enhanced the Rich Tree View with a robust lazy loading mechanism for children.
+Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data.
+This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
 
 <figure>
-  <video autoplay muted loop playsinline width="360" controls>
+  <video autoplay muted loop playsinline style="width: 360px" width="776" height="720" >
     <source src="/static/blog/mui-x-v8/tree-view-lazy-loading.mp4" type="video/mp4">
   </video>
   <figcaption>Lazy loading of children on selection</figcaption>
 </figure>
 
-Learn how to add [lazy loading](/x/react-tree-view/rich-tree-view/lazy-loading/) to your application's Tree View.
+Learn how to add [Lazy loading](/x/react-tree-view/rich-tree-view/lazy-loading/) to your application's Tree View.
 
 ### Performance improvements in re-rendering
 
@@ -221,27 +232,30 @@ In upcoming releases, we'll make another big step with the introduction of virtu
 
 ### Automatic selection propagation
 
-The Rich Tree View now supports parent/child selection propagation. This means you can select a parent and automatically select all of its children, and vice versa—depending on your requirements and configuration.
+The Rich Tree View now supports parent/child selection propagation.
+This means you can select a parent and automatically select all of its children, and vice versa—depending on your requirements and configuration.
 
 <figure>
-  <video autoplay muted loop playsinline width="250" controls>
+  <video autoplay muted loop playsinline style="width: 300px" width="704" height="720">
     <source alt="Automatic selection of children"  src="/static/blog/mui-x-v8/tree-view-automatic-selection.mp4" type="video/mp4">
   </video>
   <figcaption>Automatic selection of children</figcaption>
 </figure>
 
-```js
+```tsx
 type TreeViewSelectionPropagation = {
   descendants?: boolean; // default: false
   parents?: boolean; // default: false
 };
 ```
 
-You can learn more in the [selection docs](/x/react-tree-view/rich-tree-view/selection/).
+You can learn more in the [Selection docs](/x/react-tree-view/rich-tree-view/selection/).
 
-### New Customization Hook
+### New customization hook
 
-We've officially transitioned to a new developer experience for customizing Tree Items for the Rich Tree View. With our new customization hook, you can freely compose your Tree Item while still leveraging all the out-of-the-box features of the Rich Tree View. This provides unparalleled flexibility to tailor your tree components to your project's unique requirements.
+We've officially transitioned to a new developer experience for customizing Tree Items for the Rich Tree View.
+With our new customization hook, you can freely compose your Tree Item while still leveraging all the out-of-the-box features of the Rich Tree View.
+This provides unparalleled flexibility to tailor your tree components to your project's unique requirements.
 
 ```js
 const CustomTreeItemComponent = React.forwardRef(function CustomTreeItemComponent(
@@ -276,6 +290,8 @@ We have expanded our chart portfolio with the addition of Funnel Charts, providi
   <figcaption>Funnel charts examples</figcaption>
 </figure>
 
+You can learn more in the [Funnel](/x/react-charts/funnel/) docs.
+
 ### Radar Charts
 
 Similarly, our Radar Charts offer a dynamic way to display multivariate data, enhancing your users data analysis capabilities.
@@ -285,7 +301,9 @@ Similarly, our Radar Charts offer a dynamic way to display multivariate data, en
   <figcaption>Radar charts examples</figcaption>
 </figure>
 
-### Server-side Rendering for Charts
+You can learn more in the [Radar](/x/react-charts/radar/) docs.
+
+### Server-side rendering for Charts
 
 You can now leverage server-side rendering (SSR) for charts to improve initial load performance and SEO.
 SSR is supported under two conditions:
@@ -293,7 +311,7 @@ SSR is supported under two conditions:
 - **Dimensions:** You must provide explicit `width` and `height` props, as the SVG dimensions cannot be computed on the server.
 - **Animations:** Animations must be disabled using the `skipAnimation` prop; otherwise, the chart may render in an empty state on the initial render.
 
-### Refined Design and Interaction
+### Refined design and interaction
 
 Charts in MUI X v8 have been improved with a focus on clarity and interactivity.
 
@@ -304,26 +322,32 @@ Charts in MUI X v8 have been improved with a focus on clarity and interactivity
 
 ### HTML Legend for Charts
 
-We've re-engineered the charts legend so that it's now rendered as a native HTML element. This change gives you more control over its styling and behavior, making it easier to integrate with your design system.
+We've re-engineered the charts legend so that it's now rendered as a native HTML element.
+This change gives you more control over its styling and behavior, making it easier to integrate with your design system.
 
 ### Charts composition
 
-We've restructured our charts composition by dividing responsibilities between two dedicated components: `<ChartDataProvider />` and `<ChartsSurface />`. The `<ChartDataProvider />` now focuses solely on managing and processing your chart data, while `<ChartsSurface />` is dedicated to rendering the visual aspects. This clear separation enhances customization, improves performance, and offers a more flexible integration with your application.
+We've restructured our charts composition by dividing responsibilities between two dedicated components: `<ChartDataProvider />` and `<ChartsSurface />`.
+The `<ChartDataProvider />` now focuses solely on managing and processing your chart data, while `<ChartsSurface />` is dedicated to rendering the visual aspects.
+This clear separation enhances customization, improves performance, and offers a more flexible integration with your application.
 
 Learn more in our [Charts composition documentation](/x/react-charts/composition/).
 
-## Enhanced License Management and Telemetry
+## Enhanced License management and Telemetry
 
-Managing your license has never been easier. Our redesigned [account page](https://mui.com/store/account/) in the store allows you to view your license keys, update number of seats, renew, upgrade, and more.
+Managing your license has never been easier.
+Our redesigned [account page](https://mui.com/store/account/) in the store allows you to view your license keys, update number of seats, renew, upgrade, and more.
 
 <figure>
-  <img width="606" height="434" alt="One of the new screens in your accounts site" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
+  <img width="2424" height="1736" alt="One of the new screens in your accounts site" src="/static/blog/mui-x-v8/accounts-page.png" loading="lazy">
   <figcaption>One of the new screens in your accounts site</figcaption>
 </figure>
 
-In addition, we've integrated telemetry into our system to continuously enhance your experience with our products. Using this same infrastructure, you'll soon be able to manage your license without changing your key—thanks to server-side license validation.
+In addition, we've integrated telemetry into our system to continuously enhance your experience with our products.
+Using this same infrastructure, you'll soon be able to manage your license without changing your key—thanks to server-side license validation.
 
-Telemetry is released as an opt-in feature. We recommend enabling it by adding the following code to your project, close to your license validation:
+Telemetry is released as an opt-in feature.
+We recommend enabling it by adding the following code to your project, close to your license validation:
 
 ```js
 import { muiXTelemetrySettings } from '@mui/x-license';
@@ -345,15 +369,21 @@ If you're interested in upgrading to Priority Support, don't hesitate to [contac
 
 ## Support for Material UI
 
-When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) out of the box, or fully embrace the step forward with Material UI v7. With improved ESM support and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both simultaneously wasn't feasible, so we chose to move forward.
+When planning this major release, our goal was to support the last two major versions of Material UI.
+However, we faced a tough choice: continue supporting older versions (v5 and v6) out of the box, or fully embrace the step forward with Material UI v7.
+With improved ESM support and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI.
+Supporting both simultaneously wasn't feasible, so we chose to move forward.
 
-As a result, MUI X v8 now supports Material UI v7 by default. We understand this change could present a challenge, but migrating to v7 has been designed to be as smooth as possible, with comprehensive migration guides and GitHub support to assist you every step of the way.
+As a result, MUI X v8 only supports Material UI v7 by default.
+We understand this change could present a challenge, but migrating to v7 has been designed to be as smooth as possible, with comprehensive migration guides and GitHub support to assist you every step of the way.
 
-For users who want to upgrade to MUI X v8 while remaining on an earlier version of Material UI, we've prepared a [guide on usage with Material UI v5 and v6](/x/migration/usage-with-material-ui-v5-v6/).
+For users who want to upgrade to MUI X v8 while remaining on an earlier version of Material UI, we've prepared a [guide on usage with Material UI v5/v6](/x/migration/usage-with-material-ui-v5-v6/).
 
 ## Migration guide
 
-We've published migration guides for Material UI and each of the advanced components. These guides detail every breaking change from previous versions with the recommended approach to fix them. We care deeply about providing a smooth migration, so it's been a top priority for us when planning our new major versions.
+We've published migration guides for Material UI and each of the advanced components.
+These guides detail every breaking change from previous versions with the recommended approach to fix them.
+We care deeply about providing a smooth migration, so it's been a top priority for us when planning our new major versions.
 
 Please follow the instructions in our [migration guide](/x/migration/).
 
@@ -368,7 +398,8 @@ Once you've migrated to MUI X v8, you'll benefit from the latest features and p
 
 ## What's next
 
-Our roadmap for MUI X remains ambitious. In the coming months, we'll continue delivering significant improvements and feature enhancements, including:
+Our roadmap for MUI X remains ambitious.
+In the coming months, we'll continue delivering significant improvements and feature enhancements, including:
 
 - **Charts and Data Grid integration**: Deeper interoperability for cohesive data visualization.
 - **Further improvements in the DX of the new design-agnostic Data Grid**: We'll continue iterating on the unstyled core to deliver a seamless and customizable experience across diverse design ecosystems.
@@ -379,7 +410,8 @@ Our roadmap for MUI X remains ambitious. In the coming months, we'll continue d
 
 ## How to get involved
 
-Your input is vital to our continuous improvement. We invite you to:
+Your input is vital to our continuous improvement.
+We invite you to:
 
 - **Share your feedback:** Let us know how these new features work for you and what you'd like to see next.
 - **Report issues and suggest features:** Our [GitHub repository](https://github.com/mui/mui-x) is the perfect place to contribute.
