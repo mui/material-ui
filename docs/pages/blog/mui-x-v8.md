@@ -13,13 +13,13 @@ manualCard: true
   </a>
 </div>
 
-We are excited to announce the stable release of [MUI X v8.0.0](https://github.com/mui/mui-x/releases/tag/v8.0.0)—packed with many new features, native ESM support alongside Material UI v7, and an improved license management experience.
+We are excited to announce the stable release of [MUI X v8.0.0](https://github.com/mui/mui-x/releases/tag/v8.0.0)—packed with many new features, native ESM support alongside Material UI v7, and an improved license management experience.
 
 :::warning
-MUI X v8 features native ESM support for a seamless integration with Material UI v7. 
-As a result, extra configuration is necessary to continue working with Material UI v5 and v6, which use CJS.
+MUI X v8 features native ESM support for a seamless integration with Material UI v7.
+As a result, extra configuration is necessary to continue working with Material UI v5 and v6, which use CJS.
 
-Learn more in the [support for Material UI](#support-for-material-ui) section below.
+Learn more in the [support for Material UI](#support-for-material-ui) section below.
 :::
 
 ## Table of contents
@@ -53,7 +53,7 @@ Learn more in the [support for Material UI](#support-for-material-ui) section be
   - [Charts Composition](#charts-composition)
 - [Enhanced License Management and Telemetry](#enhanced-license-management-and-telemetry)
 - [Priority Support – A New Support Service](#priority-support-a-new-support-service)
-- [Support for Material UI](#support-for-material-ui)
+- [Support for Material UI](#support-for-material-ui)
 - [Migration](#migration)
 - [Long-Term Support](#long-term-support)
 - [What's next](#whats-next)
@@ -143,7 +143,7 @@ Dive into our new docs section on [component usage](/x/react-data-grid/component
 
 ### Design Agnostic Core
 
-We understand customization is important to you. So with the ultimate goal of being fully customizable, we're taking the first step to decouple Material UI from the Data Grid Core, opening the possibility to use the Data Grid with any design system—and this is just the beginning. 
+We understand customization is important to you. So with the ultimate goal of being fully customizable, we're taking the first step to decouple Material UI from the Data Grid Core, opening the possibility to use the Data Grid with any design system—and this is just the beginning. 
 
 Next up, we'll work to provide the best experience for you to build a full-feature Data Grid that fits all your design requirements.
 
@@ -342,17 +342,17 @@ For full details on the benefits and service levels of Priority Support, please 
 
 If you’re interested in upgrading to Priority Support, don’t hesitate to [contact our sales team](mailto:sales@mui.com) for more information or purchase it directly through your account page.
 
-## Support for Material UI
+## Support for Material UI
 
-When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) out of the box, or fully embrace the step forward with Material UI v7. With improved ESM support and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both simultaneously wasn’t feasible, so we chose to move forward.
+When planning this major release, our goal was to support the last two major versions of Material UI. However, we faced a tough choice: continue supporting older versions (v5 and v6) out of the box, or fully embrace the step forward with Material UI v7. With improved ESM support and seamless integration with modern bundlers like Vite and webpack, v7 represents the future of Material UI. Supporting both simultaneously wasn’t feasible, so we chose to move forward.
 
-As a result, MUI X v8 now supports Material UI v7 by default. We understand this change could present a challenge, but migrating to v7 has been designed to be as smooth as possible, with comprehensive migration guides and GitHub support to assist you every step of the way.
+As a result, MUI X v8 now supports Material UI v7 by default. We understand this change could present a challenge, but migrating to v7 has been designed to be as smooth as possible, with comprehensive migration guides and GitHub support to assist you every step of the way.
 
-For users who want to upgrade to MUI X v8 while remaining on an earlier version of Material UI, we've prepared a [guide on usage with Material UI v5 and v6](/x/migration/usage-with-material-ui-v5-v6/).
+For users who want to upgrade to MUI X v8 while remaining on an earlier version of Material UI, we've prepared a [guide on usage with Material UI v5 and v6](/x/migration/usage-with-material-ui-v5-v6/).
 
 ## Migration Guide
 
-We've published migration guides for Material UI and each of the advanced components. These guides detail every breaking change from previous versions with the recommended approach to fix them. We care deeply about providing a smooth migration, so it's been a top priority for us when planning our new major versions.
+We've published migration guides for Material UI and each of the advanced components. These guides detail every breaking change from previous versions with the recommended approach to fix them. We care deeply about providing a smooth migration, so it's been a top priority for us when planning our new major versions.
 
 Please follow the instructions in our [migration guide](/x/migration/).
 
