@@ -4,7 +4,7 @@ description: Read all about the new release of the advanced components and other
 date: 2025-03-31T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
-manualCard: true
+manualCard: false
 ---
 
 <div style="max-width: 692px; width: 100%; height: 285px; overflow: hidden; margin-bottom: 16px;">
