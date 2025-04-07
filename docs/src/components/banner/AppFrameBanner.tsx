@@ -5,7 +5,8 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
-const showSurveyMessage = true;
+const showSurveyMessage = false;
+const showMaterialUIv7Message = true;
 
 function isBlackFriday() {
   const today = Date.now();
@@ -37,7 +38,10 @@ export default function AppFrameBanner() {
   let message = '';
   let href = '';
 
-  if (showSurveyMessage) {
+  if (showMaterialUIv7Message) {
+    message = `🎉 Material UI v7 is out now! Check out the announcement blog post.`;
+    href = 'https://mui.com/blog/material-ui-v7-is-here/';
+  } else if (showSurveyMessage) {
     message = `🚀 Influence ${productName}'s 2025 roadmap! Participate in the latest Developer Survey`;
     href = 'https://tally.so/r/mObbvk?source=website';
   } else if (mounted && isBlackFriday()) {
