@@ -64,7 +64,7 @@ function getMaterialUIv7Message() {
         underline="always"
         sx={linkStyleOverrides}
       >
-        announcement blog post →.
+        announcement blog post. →
       </Link>
     </React.Fragment>
   );
