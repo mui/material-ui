@@ -112,7 +112,9 @@ If you've configured aliases for these bundles, you must remove them now.
 ```
 
 :::info
-Earlier versions of this guide mention the existence of a `mui-modern` conditional exports. This has since been removed. This is a non-breaking change, your bundler will fall back to the ESM bundle.
+Earlier versions of this guide mention the existence of a `mui-modern` conditional exports. 
+This has since been removed. 
+This is a non-breaking change, and your bundler will fall back to the ESM bundle.
 :::
 
 If you are using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
