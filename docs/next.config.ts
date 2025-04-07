@@ -97,10 +97,6 @@ export default withDocsInfra({
 
           // for 3rd party packages with dependencies in this repository
           '@mui/material$': path.resolve(workspaceRoot, 'packages/mui-material/src/index.js'),
-          '@mui/material/package.json': path.resolve(
-            workspaceRoot,
-            'packages/mui-material/package.json',
-          ),
           '@mui/material': path.resolve(workspaceRoot, 'packages/mui-material/src'),
 
           '@mui/docs': path.resolve(workspaceRoot, 'packages/mui-docs/src'),
@@ -111,17 +107,11 @@ export default withDocsInfra({
           '@mui/icons-material': path.resolve(workspaceRoot, 'packages/mui-icons-material/lib/esm'),
           '@mui/lab': path.resolve(workspaceRoot, 'packages/mui-lab/src'),
           '@mui/styled-engine': path.resolve(workspaceRoot, 'packages/mui-styled-engine/src'),
-          '@mui/system/package.json': path.resolve(
-            workspaceRoot,
-            'packages/mui-system/package.json',
-          ),
           '@mui/system': path.resolve(workspaceRoot, 'packages/mui-system/src'),
           '@mui/private-theming': path.resolve(workspaceRoot, 'packages/mui-private-theming/src'),
           '@mui/utils': path.resolve(workspaceRoot, 'packages/mui-utils/src'),
-          '@mui/base/package.json': path.resolve(workspaceRoot, 'packages/mui-base/package.json'),
           '@mui/base': path.resolve(workspaceRoot, 'packages/mui-base/src'),
           '@mui/material-nextjs': path.resolve(workspaceRoot, 'packages/mui-material-nextjs/src'),
-          '@mui/joy/package.json': path.resolve(workspaceRoot, 'packages/mui-joy/package.json'),
           '@mui/joy': path.resolve(workspaceRoot, 'packages/mui-joy/src'),
         },
         extensions: [
