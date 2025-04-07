@@ -24,6 +24,7 @@ function Spotlight({ posts }: SpotlightProps) {
           p: 0,
           gap: 2,
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          maxWidth: '100%',
         }}
       >
         {posts.map((post, index) => (

@@ -5,7 +5,6 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import Head from 'docs/src/modules/components/Head';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Divider from '@mui/material/Divider';
@@ -33,23 +32,22 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
       <Divider />
       <main id="main-content">
         <CustomersHero />
-        <Container>
-          <Box
-            component="ul"
-            sx={{
-              display: 'grid',
-              m: 0,
-              p: 0,
-              gap: 2,
-            }}
-          >
-            <CustomersSpotlight customers={props.customers} />
-          </Box>
-        </Container>
+        <Box
+          component="ul"
+          sx={{
+            display: 'grid',
+            m: 0,
+            p: 0,
+            gap: 2,
+          }}
+        >
+          <CustomersSpotlight customers={props.customers} />
+        </Box>
         <Divider />
         <CustomerLogos />
         <Divider />
         <CustomersTestimonials />
+        <Divider />
         <HeroEnd />
         <Divider />
       </main>

@@ -49,7 +49,7 @@ export default function CustomersLogos() {
   const [activeCategory, setActiveCategory] = React.useState<ProductCategory>('material-ui');
 
   return (
-    <Section cozy>
+    <Section maxWidth="100%" cozy>
       <SectionHeadline
         alwaysCenter
         overline="Explore our products"
@@ -61,6 +61,7 @@ export default function CustomersLogos() {
         }
       />
       <Stack
+        maxWidth="100%"
         direction="row"
         spacing={2}
         sx={{
