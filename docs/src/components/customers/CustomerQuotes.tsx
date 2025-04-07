@@ -118,9 +118,15 @@ function Data({
         color: 'text.primary',
         border: '1px solid',
         borderColor: 'divider',
-        background: `linear-gradient(180deg, ${(theme.vars || theme).palette.primary[50]} 10%, #FFF 100%)`,
+        background:
+          isFirstColumn || isLastColumn
+            ? `linear-gradient(180deg, ${(theme.vars || theme).palette.primary[50]} 10%, #FFF 100%)`
+            : 'background.paper',
         ...theme.applyDarkStyles({
-          background: 'linear-gradient(180deg, #131C23 10%, #15181A 100%)',
+          background:
+            isFirstColumn || isLastColumn
+              ? 'linear-gradient(180deg, #131C23 10%, #15181A 100%)'
+              : 'background.paper',
         }),
         gap: 2,
       })}
