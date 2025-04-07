@@ -93,7 +93,8 @@ Deep imports with more than one level are no longer working, at all (they were a
 
 This was never officially supported, but now it will be restricted by bundlers and runtimes.
 
-The modern bundles have also been removed. It turned out that the potential win in bundle size is insignificant nowadays. If you've configered aliases for these bundles, you will now have to remove them.
+Modern bundles have also been removed, as the potential for a smaller bundle size is no longer significant.
+If you've configured aliases for these bundles, you must remove them now.
 
 ```diff
  {
