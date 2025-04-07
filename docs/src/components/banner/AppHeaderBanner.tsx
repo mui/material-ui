@@ -73,11 +73,15 @@ function getMaterialUIv7Message() {
 export default function AppHeaderBanner() {
   const showSurveyMessage = false;
   const showMaterialUIv7Message = true;
-  const bannerMessage = showSurveyMessage
-    ? getSurveyMessage()
-    : showMaterialUIv7Message
-      ? getMaterialUIv7Message()
-      : getDefaultHiringMessage();
+  let bannerMessage = getDefaultHiringMessage();
+
+  if (showMaterialUIv7Message) {
+    bannerMessage = getMaterialUIv7Message();
+  }
+
+  if (showSurveyMessage) {
+    bannerMessage = getSurveyMessage();
+  }
 
   return FEATURE_TOGGLE.enable_website_banner ? (
     <Typography
