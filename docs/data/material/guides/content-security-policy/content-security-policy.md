@@ -82,9 +82,10 @@ This will import the runtime script as usual instead of embedding it, avoiding t
 
 ### Next.js Pages Router
 
-For Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy#nonces), you can pass it to the Emotion cache which you'll do it in two places:
+For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy#nonces), pass it to the Emotion cache in two places:
 
-First in the `_document.tsx`
+1. In `_document.tsx`:
+
 ```tsx
 import {
  DocumentHeadTags,
@@ -129,7 +130,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 ```
 
-And then in `_app.tsx` if you're setting up the `AppCacheProvider`
+2. In `_app.tsx` (if you're setting up the `AppCacheProvider`):
 
 ```tsx
 import {
