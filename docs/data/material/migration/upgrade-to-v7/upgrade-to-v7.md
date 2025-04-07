@@ -112,8 +112,8 @@ If you've configured aliases for these bundles, you must remove them now.
 ```
 
 :::info
-Earlier versions of this guide mention the existence of a `mui-modern` conditional exports. 
-This has since been removed. 
+Earlier versions of this guide mention the existence of a `mui-modern` conditional exports.
+This has since been removed.
 This is a non-breaking change, and your bundler will fall back to the ESM bundle.
 :::
 
