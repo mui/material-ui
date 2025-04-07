@@ -2,7 +2,8 @@
 import * as React from 'react';
 import createCache, { EmotionCache, Options as OptionsOfCreateCache } from '@emotion/cache';
 import { CacheProvider as DefaultCacheProvider } from '@emotion/react';
-import { useServerInsertedHTML } from 'next/navigation';
+import { useServerInsertedHTML } from './nextNavigation.cjs';
+import { useRouter as usePagesRouter } from '../nextCompatRouter.cjs';
 
 export type AppRouterCacheProviderProps = {
   /**
@@ -28,6 +29,18 @@ export type AppRouterCacheProviderProps = {
  * See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153 for why it's a problem.
  */
 export default function AppRouterCacheProvider(props: AppRouterCacheProviderProps) {
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const router = usePagesRouter();
+    if (router) {
+      console.error(
+        [
+          'The App Router CacheProvider is not compatible with the Pages Router.',
+          'Please use the Pages Router CacheProvider from `@mui/material-ui-nextjs/vx-pagesRouter` instead.',
+        ].join('\n'),
+      );
+    }
+  }
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
   const [registry] = React.useState(() => {
