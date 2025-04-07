@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 
 const QUOTES = [
-
   // Using current Testimonials as placeholders just to visualize
 
   {
@@ -110,7 +109,7 @@ function Data({
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         p: 3,
         height: '100%',
         display: 'flex',
@@ -119,12 +118,12 @@ function Data({
         color: 'text.primary',
         border: '1px solid',
         borderColor: 'divider',
-        backgroundColor: 'background.paper',
-        '&:hover': {
-          backgroundColor: 'action.hover',
-        },
+        background: `linear-gradient(180deg, ${(theme.vars || theme).palette.primary[50]} 10%, #FFF 100%)`,
+        ...theme.applyDarkStyles({
+          background: 'linear-gradient(180deg, #131C23 10%, #15181A 100%)',
+        }),
         gap: 2,
-      }}
+      })}
     >
       <div>{profile.company}</div>
       <Box
@@ -137,7 +136,6 @@ function Data({
         <Typography
           variant="body1"
           sx={{
-            color: 'text.secondary',
             width: '100%',
           }}
         >
@@ -156,9 +154,7 @@ function Data({
             <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
               {profile.name}
             </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {profile.role}
-            </Typography>
+            <Typography variant="body2">{profile.role}</Typography>
           </div>
           <Avatar
             src={profile.avatarSrc}
