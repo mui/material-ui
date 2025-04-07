@@ -9,5 +9,5 @@ exports.default = void 0;
 var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 var _jsxRuntime = require("react/jsx-runtime");
 var _default = exports.default = (0, _createSvgIcon.default)(/*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "M3 22q-.825 0-1.4125-.5875T1 20V9h2v11h17v2zm4-4q-.825 0-1.4125-.5875T5 16V5h5V3q0-.825.5875-1.4125T12 1h4q.825 0 1.4125.5875T18 3v2h5v11q0 .825-.5875 1.4125T21 18zm5-13h4V3h-4z"
+  d: "M18 5V3c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H5v11c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5zm-2 0h-4V3h4zM3 9H1v11c0 1.11.89 2 2 2h16v-2H3z"
 }), 'Cases');
