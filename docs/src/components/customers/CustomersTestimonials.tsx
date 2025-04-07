@@ -27,7 +27,7 @@ export default function CustomersTestimonials() {
             in the game
           </Typography>
         }
-        description="The world&apos;s best product teams trust MUI to deliver an unrivaled experience for both developers and users."
+        description="The world's best product teams trust MUI to deliver an unrivaled experience for both developers and users."
       />
       <CustomerQuotes />
     </Box>
