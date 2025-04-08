@@ -183,7 +183,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /zh/api/time-picker/ /zh/x/api/date-pickers/time-picker/ 301
 /pt/api/time-picker/ /pt/x/api/date-pickers/time-picker/ 301
 /styles/* /system/styles/:splat 301
-/:lang/styles/* /:lang/system/styles/:splat 301
+/pt/styles/* /pt/system/styles/:splat 301
+/zh/styles/* /zh/system/styles/:splat 301
 /getting-started/* /material-ui/getting-started/:splat 301
 /pt/getting-started/* /pt/material-ui/getting-started/:splat 301
 /zh/getting-started/* /zh/material-ui/getting-started/:splat 301
