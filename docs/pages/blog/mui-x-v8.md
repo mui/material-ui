@@ -286,7 +286,7 @@ Learn more this and other options on [Tree Item Customization docs](/x/react-tre
 We have expanded our chart portfolio with the addition of Funnel Charts, providing a new way to visualize data conversions and drop-offs.
 
 <figure>
-  <img width="606" height="300" alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy">
+  <img alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy">
   <figcaption>Funnel charts examples</figcaption>
 </figure>
 
@@ -297,7 +297,7 @@ You can learn more in the [Funnel](/x/react-charts/funnel/) docs.
 Similarly, our Radar Charts offer a dynamic way to display multivariate data, enhancing your users data analysis capabilities.
 
 <figure>
-  <img width="606" height="300" alt="Radar charts examples" src="/static/blog/mui-x-v8/radar-charts.png" loading="lazy">
+  <img width="418" height="370" alt="Radar charts examples" src="/static/blog/mui-x-v8/radar-charts.png" loading="lazy">
   <figcaption>Radar charts examples</figcaption>
 </figure>
 
