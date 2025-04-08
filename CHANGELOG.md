@@ -1,5 +1,24 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.4.11
+
+_Apr 9, 2025_
+
+A big thanks to the 3 contributors who made this release possible.
+
+### `@mui/material@6.4.11`
+
+- [AvatarGroup] Fix `spacing` prop ignoring value `0` (@Kartik-Murthy) (#45845) @Kartik-Murthy
+- [Dialog] Deprecate composed classes (@sai6855) (#45814) @sai6855
+
+### Docs
+
+- [docs] Add missing v7 docs banner (#45842) @DiegoAndai
+- [docs] Add v7 is here banner (#45838) @DiegoAndai
+- [docs] Fix lab version install instructions (#45770) @DiegoAndai
+
+All contributors of this release in alphabetical order: @DiegoAndai, @Kartik-Murthy, @sai6855
+
 ## 6.4.10
 
 <!-- generated comparing v6.4.9..v6.x -->
