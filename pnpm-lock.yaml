@@ -821,8 +821,8 @@ importers:
         specifier: ^7.7.4
         version: 7.7.4(react@19.1.0)
       material-ui-popup-state:
-        specifier: ^5.3.3
-        version: 5.3.3(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(react@19.1.0)
+        specifier: ^5.3.4
+        version: 5.3.4(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(react@19.1.0)
       next:
         specifier: ^15.2.4
         version: 15.2.4(@babel/core@7.26.10)(@opentelemetry/api@1.8.0)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -9977,11 +9977,11 @@ packages:
   marky@1.2.5:
     resolution: {integrity: sha512-q9JtQJKjpsVxCRVgQ+WapguSbKC3SQ5HEzFGPAJMStgh3QjCawp00UKv3MTTAArTmGmmPUvllHZoNbZ3gs0I+Q==}
 
-  material-ui-popup-state@5.3.3:
-    resolution: {integrity: sha512-eaoA4y965neZw1/iPYZ7haCGO369m5QXJT35e0RStzHd4lgrd6PC+UYkYTIRGTrNt+8Vbx8qtYUFDzRjjAGwnw==}
+  material-ui-popup-state@5.3.4:
+    resolution: {integrity: sha512-mJ+2Ixorv3og9I87kuXarFIhldCaIk5nmUuPUkssxfEO+rN81lbk7E1yb0lhuVxiAxATZBIMXId3hHGQt7SRSQ==}
     engines: {node: '>=16'}
     peerDependencies:
-      '@mui/material': ^5.0.0 || ^6.0.0
+      '@mui/material': ^5.0.0 || ^6.0.0 || ^7.0.0
       '@types/react': ^16.8.0 || ^17 || ^18 || ^19
       react: ^16.8.0 || ^17 || ^18 || ^19
     peerDependenciesMeta:
@@ -22843,7 +22843,7 @@ snapshots:
 
   marky@1.2.5: {}
 
-  material-ui-popup-state@5.3.3(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(react@19.1.0):
+  material-ui-popup-state@5.3.4(@mui/material@packages+mui-material+build)(@types/react@19.0.12)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       '@mui/material': link:packages/mui-material/build
