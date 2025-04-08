@@ -143,7 +143,7 @@ Explore your options in our [Data source docs](/x/react-data-grid/server-side-da
 The [redesigned toolbar](/x/react-data-grid/components/toolbar/) not only looks fantastic but also empowers developers one step further through an open composition of subcomponents, allowing you to tailor the toolbar's layout precisely to your application's needs.
 
 <figure>
-  <img width="1170" height="104" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy" style="border: 0;">
+  <img width="585" height="57" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy" style="border: 0;">
   <figcaption>The new toolbar's design</figcaption>
 </figure>
 
