@@ -91,6 +91,13 @@ For example, if you're working with an Olympics medal dataset, you can simply as
   <figcaption>An answer from the Data Grid</figcaption>
 </figure>
 
+<figure>
+  <video autoplay muted loop playsinline width="1180" height="720" controls style="border: 0;">
+    <source src="/static/blog/mui-x-v8/ai-assistant.mp4" type="video/mp4">
+  </video>
+  <figcaption>A video showcasing our AI Assistant panel</figcaption>
+</figure>
+
 **Key benefits:**
 
 - **Enhanced usability**: Simplify interactions with data by asking questions in plain language.
