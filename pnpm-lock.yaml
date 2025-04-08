@@ -1390,7 +1390,7 @@ importers:
         specifier: ^7.27.0
         version: 7.27.0
       '@floating-ui/react-dom':
-        specifier: ^2.1.1
+        specifier: ^2.1.2
         version: 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/types':
         specifier: workspace:^
