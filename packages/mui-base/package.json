@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "7.0.0-beta.4",
+  "version": "7.0.0-beta.5",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Base is a library of headless ('unstyled') React components and low-level hooks. You gain complete control over your app's CSS and accessibility features.",
