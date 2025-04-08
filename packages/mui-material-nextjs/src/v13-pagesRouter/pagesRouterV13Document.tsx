@@ -112,6 +112,7 @@ export async function documentGetInitialProps(
                 key={style.key}
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: style.css }}
+                nonce={cache.nonce}
               />
             );
           }),

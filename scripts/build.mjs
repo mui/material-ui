@@ -17,8 +17,14 @@ const validBundles = [
   'stable',
 ];
 
+const bundleTypes = {
+  modern: 'module',
+  stable: 'module',
+  node: 'commonjs',
+};
+
 async function run(argv) {
-  const { bundle, largeFiles, outDir: outDirBase, verbose } = argv;
+  const { bundle, largeFiles, outDir: outDirBase, verbose, cjsDir } = argv;
 
   if (!validBundles.includes(bundle)) {
     throw new TypeError(
@@ -53,7 +59,7 @@ async function run(argv) {
   const outFileExtension = '.js';
 
   const relativeOutDir = {
-    node: './',
+    node: cjsDir,
     modern: './modern',
     stable: './esm',
   }[bundle];
@@ -107,12 +113,15 @@ async function run(argv) {
   // `--extensions-.cjs --out-file-extension .cjs`
   await cjsCopy({ from: srcDir, to: outDir });
 
-  const isEsm = bundle === 'modern' || bundle === 'stable';
-  if (isEsm && !argv.skipEsmPkg) {
+  // Write a package.json file in the output directory if we are building the modern or stable bundle
+  // or if the output directory is not the root of the package.
+  const shouldWriteBundlePackageJson =
+    bundle === 'modern' || bundle === 'stable' || relativeOutDir !== './';
+  if (shouldWriteBundlePackageJson && !argv.skipEsmPkg) {
     const rootBundlePackageJson = path.join(outDir, 'package.json');
     await fs.writeFile(
       rootBundlePackageJson,
-      JSON.stringify({ type: 'module', sideEffects: packageJson.sideEffects }),
+      JSON.stringify({ type: bundleTypes[bundle], sideEffects: packageJson.sideEffects }),
     );
   }
 
@@ -142,6 +151,11 @@ yargs(process.argv.slice(2))
           default: false,
           describe:
             "Set to `true` if you don't want to generate a package.json file in the /esm folder.",
+        })
+        .option('cjsDir', {
+          default: './',
+          type: 'string',
+          description: 'The directory to copy the cjs files to.',
         })
         .option('out-dir', { default: './build', type: 'string' })
         .option('verbose', { type: 'boolean' });

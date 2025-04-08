@@ -19,16 +19,16 @@
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
     "next": "latest",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@pigment-css/nextjs-plugin": "0.0.30",
-    "@types/node": "^20.17.25",
+    "@types/node": "^20.17.30",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "eslint": "^8.57.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "nx": {
     "targets": {

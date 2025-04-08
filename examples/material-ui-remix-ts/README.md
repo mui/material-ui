@@ -31,7 +31,7 @@ or:
 <!-- #host-reference -->
 
 The project uses [Remix](https://remix.run/), which is a full-stack web framework.
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v6.
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI.
 If you prefer, you can [use styled-components instead](https://mui.com/material-ui/integrations/interoperability/#styled-components).
 
 ## What's next?

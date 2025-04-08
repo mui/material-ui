@@ -28,7 +28,7 @@
     "/system/react-stack": "Stack",
     "/system/migration": "Migration",
     "/system/migration/upgrade-to-v7": "Upgrade to v7",
-    "/system/migration/migrating-to-v6": "Migrating to v6",
+    "/system/migration/migrating-to-v6": "Upgrade to v6",
     "/system/experimental-api": "Experimental APIs",
     "/system/experimental-api/configure-the-sx-prop": "Configure the sx prop",
     "/system/experimental-api/css-theme-variables": "CSS Theme Variables",

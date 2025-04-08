@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "private": false,
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
@@ -40,7 +40,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10",
+    "@babel/runtime": "^7.27.0",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -61,8 +61,8 @@
     "chai": "^4.5.0",
     "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
-    "react": "^19.0.0",
-    "sinon": "^19.0.4",
+    "react": "^19.1.0",
+    "sinon": "^19.0.5",
     "styled-components": "^6.1.16"
   },
   "peerDependencies": {
