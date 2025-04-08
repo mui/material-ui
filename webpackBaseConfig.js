@@ -1,7 +1,7 @@
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const extensions = ['.js', '.mjs', '.ts', '.tsx', '.d.ts'];
+const extensions = ['.js', '.mjs', '.ts', '.tsx'];
 
 // WARNING: Use this module only as an inspiration.
 // Cherry-pick the parts you need and inline them in the webpack.config you need.
