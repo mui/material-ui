@@ -201,7 +201,7 @@
     "terser-webpack-plugin": "^5.3.14",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "vite": "^6.0.7",
     "vitest": "^3.0.9",
     "vitest-fail-on-console": "^0.7.1",
