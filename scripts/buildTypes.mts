@@ -117,6 +117,9 @@ async function main(argv: HandlerArgv) {
   await Promise.all(
     argv.copy.map((copy) => copyDeclarations(esmOrOutDir, path.join(packageRoot, copy))),
   );
+
+  const tsbuildinfo = await glob('**/*.tsbuildinfo', { absolute: true, cwd: buildFolder });
+  await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
 }
 
 yargs(process.argv.slice(2))
