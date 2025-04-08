@@ -8,8 +8,8 @@ import url from 'url';
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
 const SRC_DIR = path.resolve(currentDirectory, '../lib/esm');
-const TARGET_DIR = path.resolve(currentDirectory, '../lib');
-const TARGET_DIR_ESM = path.resolve(currentDirectory, '../lib/esm');
+const TARGET_DIR = path.resolve(currentDirectory, '../build');
+const TARGET_DIR_ESM = path.resolve(currentDirectory, '../build/esm');
 
 function normalizeFileName(file) {
   return path.parse(file).name;
