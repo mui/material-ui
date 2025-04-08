@@ -88,9 +88,9 @@ For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs
 
 ```tsx
 import {
- DocumentHeadTags,
- documentGetInitialProps,
- createEmotionCache,
+  DocumentHeadTags,
+  documentGetInitialProps,
+  createEmotionCache,
 } from '@mui/material-nextjs/v15-pagesRouter';
 // other imports
 
@@ -102,12 +102,12 @@ export default function MyDocument(props: Props) {
   return (
     <Html lang="en" className={roboto.className}>
       <Head>
-        { /*...*/ } 
+        {/*...*/}
         <meta name="csp-nonce" content={nonce} />
         <DocumentHeadTags {...props} nonce={nonce} />
       </Head>
       <body>
-        { /*...*/ }
+        {/*...*/}
         <NextScript nonce={nonce} />
       </body>
     </Html>
@@ -116,8 +116,8 @@ export default function MyDocument(props: Props) {
 
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const { req } = ctx;
-  const nonce = req?.headers["x-nonce"];
-  if (typeof nonce !== "string") {
+  const nonce = req?.headers['x-nonce'];
+  if (typeof nonce !== 'string') {
     throw new Error('"nonce" header is missing');
   }
 
@@ -133,9 +133,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 2. In `_app.tsx` (if you're setting up the `AppCacheProvider`):
 
 ```tsx
-import {
- createEmotionCache,
-} from '@mui/material-nextjs/v15-pagesRouter';
+import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
 // other imports
 
 export default function MyApp(props: AppProps & { nonce: string }) {
@@ -171,7 +169,7 @@ function getNonce(headers?: Record<string, string | string[] | undefined>) {
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const nonce = getNonce(appContext.ctx?.req?.headers);
-  if (typeof nonce !== "string") {
+  if (typeof nonce !== 'string') {
     throw new Error('"nonce" header is missing');
   }
 
