@@ -8,6 +8,10 @@ const WORKSPACE_ROOT = path.resolve(currentDirectory, '../../');
 
 // https://vite.dev/config/
 export default defineConfig({
+  esbuild: {
+    minifyIdentifiers: false,
+    keepNames: true,
+  },
   plugins: [
     {
       // Unfortunatelly necessary as we opted to write our jsx in js files

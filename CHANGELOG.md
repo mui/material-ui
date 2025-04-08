@@ -1,5 +1,45 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.1
+
+<!-- generated comparing v7.0.0..master -->
+
+_Mar 28, 2025_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@7.0.1`
+
+- Export ThemeProviderProps (#45701) @aarongarciah
+- [Fab] Fix default variant text color when using CSS vars (#45714) @aarongarciah
+- Remove mention of v7 in deprecation messages (#45708) @DiegoAndai
+- [Popover] Allow `null` in `anchorEl` function return type (#45045) @eduter
+- Fix missing CSSProperties/MixinOptions types (#45706) @Janpot
+
+### `@mui/icons-material@7.0.1`
+
+- [code-infra] Fix icon-material type resolution under `moduleResolution: "node"` (#45704) @Janpot
+- Bring back individual icon dts (#45711) @Janpot
+
+### Core
+
+- Improve the release instructions (#45688) @mnajdova
+
+### Docs
+
+- Fix Masonry and Toolpad dark mode demos (#45721) @siriwatknp
+- Update v7 related copy (#45716) @aarongarciah
+- Avoid unwanted undefined in page title (#45718) @aarongarciah
+- Fix joy templates error (#45715) @siriwatknp
+- Rename GitHub icon import (#45709) @micttyoid
+- Fix Safari issue in dark mode (#45696) @mnajdova
+- Fix `Grid`, `GridLegacy`, `Stack`, `Badge`, `Select`, `Autocomplete` demos CSS variables (#45693) @DiegoAndai
+- Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
+- Fix `Breadcrumbs`, `List`, `Divider`, and `Typography` dark mode demos (#45692) @siriwatknp
+- Fix Material Icons page in dark mode (#45691) @mnajdova
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @eduter, @Janpot, @micttyoid, @mnajdova, @siriwatknp
+
 ## 7.0.0
 
 <!-- generated comparing v7.0.0-rc.0..master -->

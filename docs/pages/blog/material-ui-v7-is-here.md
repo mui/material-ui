@@ -15,7 +15,7 @@ It is designed to be straightforward to upgrade to.
 ## Improved ESM support
 
 The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
-This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
 
 ## Completed the slot pattern implementation
 
