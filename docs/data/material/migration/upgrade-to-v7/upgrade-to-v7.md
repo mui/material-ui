@@ -488,3 +488,20 @@ npx @mui/codemod v7.0.0/lab-removed-components <path/to/folder>
 :::warning
 The codemod doesn't cover type imports associated with the components.
 :::
+
+## Legacy styles package
+
+To use `@mui/styles` with Material UI v7, you need to point the adapter package (`@mui/private-theming`) to v7 by adding overrides to your `package.json` file:
+
+```json title="package.json"
+{
+  ...
+  "overrides": {
+    "@mui/private-theming": "^7.0.0"
+  }
+}
+```
+
+:::info
+If you are using [Yarn v1](https://classic.yarnpkg.com/lang/en/), replace the `overrides` field with `resolutions`.
+:::
