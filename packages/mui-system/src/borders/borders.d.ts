@@ -1,4 +1,4 @@
-import { PropsFor, SimpleStyleFunction, borders } from '../Box';
+import { PropsFor, borders, SimpleStyleFunction } from '../Box';
 
 export const border: SimpleStyleFunction<'border'>;
 export const borderTop: SimpleStyleFunction<'borderTop'>;
@@ -11,4 +11,7 @@ export const borderRightColor: SimpleStyleFunction<'borderRightColor'>;
 export const borderBottomColor: SimpleStyleFunction<'borderBottomColor'>;
 export const borderLeftColor: SimpleStyleFunction<'borderLeftColor'>;
 export const borderRadius: SimpleStyleFunction<'borderRadius'>;
+
 export type BordersProps = PropsFor<typeof borders>;
+
+export default borders;

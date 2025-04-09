@@ -144,7 +144,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 - [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
 - [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
-- [docs-infra] Add vale coverage for App Router and Page Router (060c55c) @oliviertassinari
+- [docs-infra] Add vale coverage for App Router and Pages Router (060c55c) @oliviertassinari
 - Sync with other repos (1b9300f) @oliviertassinari
 - Fix docs:build to work in docs folder too (6b923a4) @oliviertassinari
 - Setup React 18 CI tests (#44868) @DiegoAndai

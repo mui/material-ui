@@ -461,7 +461,7 @@ The Backdrop's `componentsProps` prop was deprecated in favor of `slotProps`:
 The Backdrop's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
 
 ```diff
- <Slider
+ <Backdrop
 -  TransitionComponent={CustomTransition}
 +  slots={{ transition: CustomTransition }}
 ```
@@ -1134,6 +1134,46 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
  />
 ```
 
+## Dialog
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#dialog-classes) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-classes <path>
+```
+
+### Composed CSS classes
+
+The CSS classes composing the `scroll` prop values have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiDialog-root .MuiDialog-paperScrollBody
++.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper
+-.MuiDialog-root .MuiDialog-paperScrollPaper
++.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper
+```
+
+```diff
+ import { dialogClasses } from '@mui/material/Dialog';
+
+ MuiDialog: {
+   styleOverrides: {
+     root: {
+-      [`& .${dialogClasses.paperScrollBody}`]: {
++      [`& .${dialogClasses.scrollBody} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`& .${dialogClasses.paperScrollPaper}`]: {
++      [`& .${dialogClasses.scrollPaper} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
 ## Drawer
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-props) below to migrate the code as described in the following sections:
@@ -1333,7 +1373,7 @@ The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ## InputBase
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) below to migrate the code as described in the following sections:
+Use the [input-base-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) and [input-base-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-classes) codemods below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/input-base-props <path>
@@ -1638,6 +1678,36 @@ Here's how to migrate:
  }
 ```
 
+## Menu
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#menu-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/menu-props <path>
+```
+
+### MenuListProps
+
+The Menu's `MenuListProps` prop was deprecated in favor of `slotProps.list`:
+
+```diff
+ <Menu
+-  MenuListProps={menuListProps}
++  slotProps={{ list: menuListProps }}
+ >
+```
+
+### TransitionProps
+
+The Menu's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Menu
+-  TransitionProps={transitionProps}
++  slotProps={{ transition: transitionProps }}
+ >
+```
+
 ## MobileStepper
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#mobile-stepper-props) below to migrate the code as described in the following sections:
@@ -1895,6 +1965,25 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
  />
 ```
 
+## Rating
+
+Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#rating-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/rating-props <path>
+```
+
+### IconContainerComponent
+
+The Rating's `IconContainerComponent` prop was deprecated in favor of `slotProps.icon.component`:
+
+```diff
+ <Rating
+-  IconContainerComponent={CustomIconContainer}
++  slotProps={{ icon: { component: CustomIconContainer }}}
+ />
+```
+
 ## Select
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#select-classes) below to migrate the code as described in the following sections:
@@ -1943,7 +2032,7 @@ Here's how to migrate:
 
 ## Slider
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following sections:
+Use the [slider-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) and [slider-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-classes) codemods below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/slider-props <path>
@@ -1981,35 +2070,35 @@ Here's how to migrate:
  MuiSlider: {
    styleOverrides: {
      root: {
--      [`&.${sliderClasses.thumbSizeSmall}`]: {
+-      [`& .${sliderClasses.thumbSizeSmall}`]: {
 +      [`&.${sliderClasses.sizeSmall} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbSizeMedium}`]: {
+-      [`& .${sliderClasses.thumbSizeMedium}`]: {
 +      [`&.${sliderClasses.sizeMedium} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorPrimary}`]: {
+-      [`& .${sliderClasses.thumbColorPrimary}`]: {
 +      [`&.${sliderClasses.colorPrimary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSecondary}`]: {
+-      [`& .${sliderClasses.thumbColorSecondary}`]: {
 +      [`&.${sliderClasses.colorSecondary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorError}`]: {
+-      [`& .${sliderClasses.thumbColorError}`]: {
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClrsses.thumbColorInfo}`]: {
-+      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+-      [`& .${sliderClasses.thumbColorInfo}`]: {
++      [`& .${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSuccess}`]: {
+-      [`& .${sliderClasses.thumbColorSuccess}`]: {
 +      [`&.${sliderClasses.colorSuccess} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorWarning}`]: {
+-      [`& .${sliderClasses.thumbColorWarning}`]: {
 +      [`&.${sliderClasses.colorWarning} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
@@ -2123,7 +2212,7 @@ Here's how to migrate:
 
 ## Tabs
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following sections:
+Use the [tab-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props), [tab-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-classes) codemods below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/tabs-classes <path>

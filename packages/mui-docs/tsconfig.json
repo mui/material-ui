@@ -6,5 +6,5 @@
     "resolveJsonModule": true,
     "types": ["react", "node", "csstype", "mocha"]
   },
-  "include": ["src/**/*", "test/**/*"]
+  "include": ["./types.d.ts", "src/**/*", "test/**/*"]
 }

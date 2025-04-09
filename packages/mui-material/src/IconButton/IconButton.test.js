@@ -192,6 +192,21 @@ describe('<IconButton />', () => {
       const progressbar = within(button).getByRole('progressbar');
       expect(progressbar).toHaveAccessibleName('Submit');
     });
+
+    it('has no id when `loading=false` and no `id` prop is present`', () => {
+      const id = 'some-id';
+      render(
+        <React.Fragment>
+          <IconButton />
+          <IconButton id={id} />
+        </React.Fragment>,
+      );
+
+      const buttons = screen.getAllByRole('button');
+
+      expect(buttons[0]).not.to.have.attribute('id');
+      expect(buttons[1]).to.have.attribute('id', id);
+    });
   });
 
   describe('prop: loadingIndicator', () => {

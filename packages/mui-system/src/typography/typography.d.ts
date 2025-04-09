@@ -10,3 +10,5 @@ export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
 export const textTransform: SimpleStyleFunction<'textTransform'>;
 export type TypographyProps = PropsFor<typeof typography>;
+
+export default typography;

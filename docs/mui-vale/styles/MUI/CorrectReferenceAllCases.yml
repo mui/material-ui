@@ -28,8 +28,6 @@ swap:
   sub-components: subcomponents
   use-case: use case
   usecase: use case
-  client side: client-side
-  server side: server-side
   Material 3: Material Design 3
   VSCode: VS Code
   VS Code: VS Code
@@ -38,4 +36,6 @@ swap:
   Stackblitz: StackBlitz
   Webpack: webpack # https://twitter.com/wSokra/status/855800490713649152
   app router: App Router # Next.js
-  page router: Page Router # Next.js
+  pages router: Pages Router # Next.js
+  page router: Pages Router # Next.js
+  ES modules: ES modules

@@ -155,7 +155,6 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/icons-material': './packages/mui-icons-material/lib',
                         '@mui/lab': './packages/mui-lab/src',
                         '@mui/styled-engine': './packages/mui-styled-engine/src',
-                        '@mui/styles': './packages/mui-styles/src',
                         '@mui/system': './packages/mui-system/src',
                         '@mui/private-theming': './packages/mui-private-theming/src',
                         '@mui/utils': './packages/mui-utils/src',

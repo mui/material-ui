@@ -200,7 +200,7 @@ async function buildSingleProject(
   }
 
   if (writeApiManifest) {
-    let source = `module.exports = ${JSON.stringify(projectSettings.getApiPages())}`;
+    let source = `export default ${JSON.stringify(projectSettings.getApiPages())}`;
     if (projectSettings.onWritingManifestFile) {
       source = projectSettings.onWritingManifestFile(builds, source);
     }

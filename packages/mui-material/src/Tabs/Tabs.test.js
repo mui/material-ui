@@ -1381,6 +1381,30 @@ describe('<Tabs />', () => {
         '-1',
       ]);
     });
+
+    ['Alt', 'Shift', 'Ctrl', 'Meta'].forEach((modifierKey) => {
+      it(`does not navigate when ${modifierKey} is pressed with ArrowLeft`, async () => {
+        const { getAllByRole } = render(
+          <Tabs value={1}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+
+        const [firstTab, secondTab] = getAllByRole('tab');
+        await act(async () => {
+          secondTab.focus();
+        });
+
+        fireEvent.keyDown(secondTab, {
+          key: 'ArrowLeft',
+          [`${modifierKey.toLowerCase()}Key`]: true,
+        });
+
+        expect(secondTab).toHaveFocus();
+        expect(firstTab).not.toHaveFocus();
+      });
+    });
   });
 
   describe('dynamic tabs', () => {

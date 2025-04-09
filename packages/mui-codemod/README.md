@@ -14,7 +14,7 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next <codemod> <paths...>
+npx @mui/codemod <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -391,6 +391,10 @@ npx @mui/codemod@latest deprecations/avatar-group-props <path>
 +    },
    }}
  />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
 ```
 
 #### `backdrop-props`
@@ -1033,6 +1037,42 @@ npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
+#### `dialog-classes`
+
+JS transforms:
+
+```diff
+ import { dialogClasses } from '@mui/material/Dialog';
+
+ MuiDialog: {
+   styleOverrides: {
+     root: {
+-      [`& .${dialogClasses.paperScrollBody}`]: {
++      [`& .${dialogClasses.scrollBody} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`& .${dialogClasses.paperScrollPaper}`]: {
++      [`& .${dialogClasses.scrollPaper} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiDialog-root .MuiDialog-paperScrollBody
++.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper
+-.MuiDialog-root .MuiDialog-paperScrollPaper
++.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-classes <path>
+```
+
 #### `drawer-classes`
 
 JS transforms:
@@ -1606,6 +1646,21 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
+#### `rating-props`
+
+```diff
+ <Rating
+-  IconContainerComponent={CustomContainer}
++  slots={{
++    icon: { component: CustomContainer }
++  }}
+ />
+```
+
+```bash
+npx @mui/codemod deprecations/rating-props <path>
+```
+
 #### `select-classes`
 
 JS transforms:
@@ -1698,7 +1753,7 @@ npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/snackbar-props <path>
+npx @mui/codemod deprecations/snackbar-props <path>
 ```
 
 #### `slider-classes`
@@ -1711,35 +1766,35 @@ JS transforms:
  MuiSlider: {
    styleOverrides: {
      root: {
--      [`&.${sliderClasses.thumbSizeSmall}`]: {
+-      [`& .${sliderClasses.thumbSizeSmall}`]: {
 +      [`&.${sliderClasses.sizeSmall} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbSizeMedium}`]: {
+-      [`& .${sliderClasses.thumbSizeMedium}`]: {
 +      [`&.${sliderClasses.sizeMedium} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorPrimary}`]: {
+-      [`& .${sliderClasses.thumbColorPrimary}`]: {
 +      [`&.${sliderClasses.colorPrimary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSecondary}`]: {
+-      [`& .${sliderClasses.thumbColorSecondary}`]: {
 +      [`&.${sliderClasses.colorSecondary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorError}`]: {
+-      [`& .${sliderClasses.thumbColorError}`]: {
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClrsses.thumbColorInfo}`]: {
-+      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+-      [`& .${sliderClasses.thumbColorInfo}`]: {
++      [`&.${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSuccess}`]: {
+-      [`& .${sliderClasses.thumbColorSuccess}`]: {
 +      [`&.${sliderClasses.colorSuccess} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorWarning}`]: {
+-      [`& .${sliderClasses.thumbColorWarning}`]: {
 +      [`&.${sliderClasses.colorWarning} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
@@ -1770,7 +1825,7 @@ CSS transforms:
 ```
 
 ```bash
-npx @mui/codemod@latest deprecations/button-classes <path>
+npx @mui/codemod@latest deprecations/slider-classes <path>
 ```
 
 #### `tooltip-props`
@@ -1846,8 +1901,20 @@ JS transforms:
  },
 ```
 
+CSS transforms:
+
+```diff
+-.MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+```
+
+```diff
+-.MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
 ```bash
-npx @mui/codemod@next deprecations/step-connector-classes <path>
+npx @mui/codemod deprecations/step-connector-classes <path>
 ```
 
 #### `step-content-props`
@@ -1957,22 +2024,6 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
 ```
 
-CSS transforms:
-
-```diff
--.MuiStepConnector-lineHorizontal
-+.MuiStepConnector-horizontal > .MuiStepConnector-line
-```
-
-```diff
--.MuiStepConnector-lineVertical
-+.MuiStepConnector-vertical > .MuiStepConnector-line
-```
-
-```bash
-npx @mui/codemod@latest deprecations/step-connector-classes <path>
-```
-
 #### `tab-classes`
 
 JS transforms:
@@ -2073,12 +2124,46 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `grid-props`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod v7.0.0/grid-props <path>
+```
+
+Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
+
+```diff
+ <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+ />
+```
+
+You can provide the theme breakpoints via options, for example, `--jscodeshift='--muiBreakpoints=mobile,desktop'`, to use your custom breakpoints in the transformation.
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+```
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
 #### `lab-removed-components`
 
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+npx @mui/codemod v7.0.0/lab-removed-components <path>
 ```
 
 Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
@@ -2124,7 +2209,7 @@ Updates the `InputLabel`'s `size` value from `normal` to `medium`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path>
+npx @mui/codemod v7.0.0/input-label-size-normal-medium <path>
 ```
 
 <!-- #host-reference -->

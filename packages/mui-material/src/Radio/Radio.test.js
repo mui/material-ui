@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -141,5 +141,11 @@ describe('<Radio />', () => {
         paddingRight: '2px',
       });
     });
+  });
+
+  it('deprecated `inputProps` should work', () => {
+    render(<Radio inputProps={{ 'aria-label': 'A' }} />);
+
+    expect(screen.queryByRole('radio', { name: 'A' })).not.to.equal(null);
   });
 });

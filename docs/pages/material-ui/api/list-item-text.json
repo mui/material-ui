@@ -8,25 +8,25 @@
     "primaryTypographyProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.primary</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slotProps.primary</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "secondary": { "type": { "name": "node" } },
     "secondaryTypographyProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.secondary</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slotProps.secondary</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ primary?: func<br>&#124;&nbsp;object, secondary?: func<br>&#124;&nbsp;object }"
+        "description": "{ primary?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, secondary?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ primary?: elementType, secondary?: elementType }"
+        "description": "{ primary?: elementType, root?: elementType, secondary?: elementType }"
       },
       "default": "{}"
     },
@@ -44,6 +44,12 @@
     "import { ListItemText } from '@mui/material';"
   ],
   "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "'div'",
+      "class": "MuiListItemText-root"
+    },
     {
       "name": "primary",
       "description": "The component that renders the primary slot.",
@@ -74,12 +80,6 @@
       "key": "multiline",
       "className": "MuiListItemText-multiline",
       "description": "Styles applied to the Typography component if primary and secondary are set.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiListItemText-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

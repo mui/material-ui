@@ -9,7 +9,7 @@
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
     "@mui/private-theming": "workspace:^",
-    "@mui/styles": "workspace:^",
+    "@mui/styles": "latest",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^"
   }

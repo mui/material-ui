@@ -24,10 +24,16 @@ function createThemeNoVars(options = {}, ...args) {
     ...other
   } = options;
 
-  if (options.vars) {
+  if (
+    options.vars &&
+    // The error should throw only for the root theme creation because user is not allowed to use a custom node `vars`.
+    // `generateThemeVars` is the closest identifier for checking that the `options` is a result of `createTheme` with CSS variables so that user can create new theme for nested ThemeProvider.
+    options.generateThemeVars === undefined
+  ) {
     throw /* minify-error */ new Error(
       'MUI: `vars` is a private field used for CSS variables support.\n' +
-        'Please use another name.',
+        // #host-reference
+        'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
     );
   }
 
@@ -121,25 +127,6 @@ function createThemeNoVars(options = {}, ...args) {
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
 
   return muiTheme;
-}
-
-let warnedOnce = false;
-
-export function createMuiTheme(...args) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!warnedOnce) {
-      warnedOnce = true;
-      console.error(
-        [
-          'MUI: the createMuiTheme function was renamed to createTheme.',
-          '',
-          "You should use `import { createTheme } from '@mui/material/styles'`",
-        ].join('\n'),
-      );
-    }
-  }
-
-  return createThemeNoVars(...args);
 }
 
 export default createThemeNoVars;

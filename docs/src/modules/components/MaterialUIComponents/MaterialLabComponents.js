@@ -29,7 +29,14 @@ export default function MaterialLabComponents() {
   return (
     <Grid container spacing={2} sx={{ pt: 1 }}>
       {labComponents.map(({ name, link, srcLight, srcDark, md1, md2, md3, noGuidelines }) => (
-        <Grid item xs={12} sm={4} sx={{ flexGrow: 1 }} key={name}>
+        <Grid
+          sx={{ flexGrow: 1 }}
+          key={name}
+          size={{
+            xs: 12,
+            sm: 4,
+          }}
+        >
           <ComponentShowcaseCard
             link={link}
             name={name}

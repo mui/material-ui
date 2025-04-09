@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
-import { unstable_useId as useId } from '@mui/material/utils';
+import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -531,9 +531,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
 
-  const id = useId(idProp);
+  const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+    <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
   );
 
   const ownerState = {
@@ -600,7 +600,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
       type={type}
-      id={id}
+      id={loading ? loadingId : idProp}
       {...other}
       classes={classes}
     >

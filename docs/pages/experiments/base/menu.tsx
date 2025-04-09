@@ -41,7 +41,7 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0 1px 3px rgba(31 35 40 0.12), 0 8px 24px rgba(66 74 83 0.12);
+  box-shadow: 0 1px 3px rgb(31 35 40 / 0.12), 0 8px 24px rgb(66 74 83 / 0.12);
   z-index: 1;
   `,
 );

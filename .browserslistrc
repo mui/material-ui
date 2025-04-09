@@ -1,10 +1,3 @@
-[modern]
-last 1 chrome version
-last 1 edge version
-last 1 firefox version
-last 1 safari version
-node 14
-
 # Default/Fallback
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, safari >= 15.4, iOS >= 15.4"` when the last major is released.
 # Explicit safari versions are here based on the agreed terms in: https://github.com/mui/material-ui/issues/40958#issuecomment-1953215043

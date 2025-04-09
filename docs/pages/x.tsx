@@ -39,7 +39,7 @@ export default function X() {
         <XRoadmap />
         <Divider />
       </main>
-      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/mui-x" />
+      <AppFooter stackOverflowUrl="https://stackoverflow.com/questions/tagged/mui-x-charts+or+mui-x-data-grid+or+mui-x-date-picker+or+mui-x-tree-view" />
     </BrandingCssVarsProvider>
   );
 }

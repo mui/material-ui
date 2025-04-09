@@ -50,7 +50,7 @@ function NProgressBar(props) {
             height: 2,
             zIndex: (theme.vars || theme).zIndex.tooltip,
             backgroundColor: (theme.vars || theme).palette.primary[200],
-            ...theme.applyDarkStyles({
+            ...theme.applyStyles('dark', {
               backgroundColor: (theme.vars || theme).palette.primary[700],
             }),
             '& .nprogress-bar': {

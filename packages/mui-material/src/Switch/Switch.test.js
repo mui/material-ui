@@ -8,6 +8,10 @@ import describeConformance from '../../test/describeConformance';
 describe('<Switch />', () => {
   const { render } = createRenderer();
 
+  function CustomSwitchBase({ centerRipple, focusRipple, ownerState, ...props }) {
+    return <div data-testid="custom" {...props} />;
+  }
+
   describeConformance(<Switch />, () => ({
     classes,
     render,
@@ -16,6 +20,24 @@ describe('<Switch />', () => {
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
     ],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      track: {
+        expectedClassName: classes.track,
+      },
+      thumb: {
+        expectedClassName: classes.thumb,
+      },
+      switchBase: {
+        expectedClassName: classes.switchBase,
+        testWithElement: CustomSwitchBase,
+      },
+      input: {
+        expectedClassName: classes.input,
+      },
+    },
     refInstanceof: window.HTMLSpanElement,
     skip: [
       'componentProp',

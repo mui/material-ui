@@ -38,11 +38,11 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Typography component",
       "conditions": "primary and secondary are set"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
   },
   "slotDescriptions": {
     "primary": "The component that renders the primary slot.",
+    "root": "The component that renders the root slot.",
     "secondary": "The component that renders the secondary slot."
   }
 }

@@ -8,16 +8,42 @@ import url from 'url';
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
 const SRC_DIR = path.resolve(currentDirectory, '../lib/esm');
-const TARGET_DIR = path.resolve(currentDirectory, '../lib');
-const TARGET_DIR_ESM = path.resolve(currentDirectory, '../lib/esm');
+const TARGET_DIR = path.resolve(currentDirectory, '../build');
+const TARGET_DIR_ESM = path.resolve(currentDirectory, '../build/esm');
 
 function normalizeFileName(file) {
   return path.parse(file).name;
 }
 
-async function createIconTyping(targetDir) {
+async function createIconTypings(targetDir, files) {
   const contents = `export { default } from '@mui/material/SvgIcon';`;
-  await fs.writeFile(path.resolve(targetDir, `icon.d.ts`), contents, 'utf8');
+
+  let index = 0;
+  const filesIterable = {
+    [Symbol.iterator]: () => ({
+      next() {
+        if (index >= files.length) {
+          return { done: true };
+        }
+        const nextFile = files[index];
+        index += 1;
+        return { value: nextFile, done: false };
+      },
+    }),
+  };
+
+  const createWorker = async () => {
+    for (const file of filesIterable) {
+      const iconName = normalizeFileName(file);
+      // eslint-disable-next-line no-await-in-loop
+      await fs.writeFile(path.resolve(targetDir, `${iconName}.d.ts`), contents, 'utf8');
+    }
+  };
+
+  const concurrency = 50;
+  const workers = Array.from({ length: concurrency }, createWorker);
+
+  await Promise.all(workers);
 }
 
 async function createIndexTyping(targetDir, files) {
@@ -41,9 +67,9 @@ async function run() {
   console.log(`\u{1f52c}  Searching for modules inside "${chalk.dim(SRC_DIR)}".`);
   const files = await glob('!(index)*.js', { cwd: SRC_DIR });
   await Promise.all([
-    createIconTyping(TARGET_DIR),
+    createIconTypings(TARGET_DIR, files),
     createIndexTyping(TARGET_DIR, files),
-    createIconTyping(TARGET_DIR_ESM),
+    createIconTypings(TARGET_DIR_ESM, files),
     createIndexTyping(TARGET_DIR_ESM, files),
   ]);
   console.log(`\u{1F5C4}  Written typings to ${chalk.dim(TARGET_DIR)}.`);

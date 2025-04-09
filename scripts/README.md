@@ -50,7 +50,7 @@ Force push if necessary.
 
 ### Announce
 
-Follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
+After the docs is live, follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
 
 ## Deploy documentation without a release
 

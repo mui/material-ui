@@ -1,1 +1,1 @@
-export { useAutocomplete as default, createFilterOptions } from '@mui/base';
+export { default, createFilterOptions } from '@mui/material/useAutocomplete';

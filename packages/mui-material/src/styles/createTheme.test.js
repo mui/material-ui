@@ -240,7 +240,31 @@ describe('createTheme', () => {
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });
-        expect(theme.spacing(1)).to.equal(`calc(1 * var(--mui-spacing, 8px))`);
+        expect(theme.spacing(1)).to.equal(`var(--mui-spacing, 8px)`);
+        expect(theme.spacing(2)).to.equal(`calc(2 * var(--mui-spacing, 8px))`);
+      });
+    });
+
+    describe('spacing array', () => {
+      it('should create spacing vars array', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.vars.spacing).to.deep.equal([
+          'var(--mui-spacing-0, 0px)',
+          'var(--mui-spacing-1, 4px)',
+          'var(--mui-spacing-2, 8px)',
+        ]);
+      });
+
+      it('should work with positive input', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.spacing(1)).to.equal(`var(--mui-spacing-1, 4px)`);
+        expect(theme.spacing(2)).to.equal(`var(--mui-spacing-2, 8px)`);
+      });
+
+      it('should work with negative input', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.spacing(-1)).to.equal(`calc(-1 * var(--mui-spacing-1, 4px))`);
+        expect(theme.spacing(-2)).to.equal(`calc(-1 * var(--mui-spacing-2, 8px))`);
       });
     });
   });
@@ -535,9 +559,40 @@ describe('createTheme', () => {
     } catch (error) {
       expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name.',
+          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
+  });
+
+  it('should not throw for nested theme that includes `vars` node', () => {
+    const outerTheme = createTheme({
+      cssVariables: true,
+      palette: {
+        secondary: {
+          main: deepOrange[500],
+        },
+      },
+    });
+
+    expect(() =>
+      render(
+        <ThemeProvider theme={outerTheme}>
+          <ThemeProvider
+            theme={(theme) => {
+              return createTheme({
+                ...theme,
+                palette: {
+                  ...theme.palette,
+                  primary: {
+                    main: green[500],
+                  },
+                },
+              });
+            }}
+          />
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 
   it('should create a new object', () => {

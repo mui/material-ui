@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, useTheme, useColorScheme } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -35,6 +35,71 @@ const IconToggleButton = styled(ToggleButton)({
     marginRight: '8px',
   },
 });
+
+function ToggleTheme(props) {
+  const { value, onChange } = props;
+  const t = useTranslate();
+  return (
+    <ToggleButtonGroup
+      exclusive
+      value={value}
+      color="primary"
+      onChange={onChange}
+      aria-labelledby="settings-mode"
+      fullWidth
+    >
+      <IconToggleButton
+        value="light"
+        aria-label={t('settings.light')}
+        data-ga-event-category="settings"
+        data-ga-event-action="light"
+      >
+        <LightModeIcon fontSize="small" />
+        {t('settings.light')}
+      </IconToggleButton>
+      <IconToggleButton
+        value="system"
+        aria-label={t('settings.system')}
+        data-ga-event-category="settings"
+        data-ga-event-action="system"
+      >
+        <SettingsBrightnessIcon fontSize="small" />
+        {t('settings.system')}
+      </IconToggleButton>
+      <IconToggleButton
+        value="dark"
+        aria-label={t('settings.dark')}
+        data-ga-event-category="settings"
+        data-ga-event-action="dark"
+      >
+        <DarkModeOutlinedIcon fontSize="small" />
+        {t('settings.dark')}
+      </IconToggleButton>
+    </ToggleButtonGroup>
+  );
+}
+ToggleTheme.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOf(['light', 'system', 'dark']),
+};
+
+function ToggleVarTheme(props) {
+  const { setMode } = useColorScheme();
+
+  const handleChangeThemeMode = (event, paletteMode) => {
+    if (paletteMode === null) {
+      return;
+    }
+    props.onChange(event, paletteMode);
+    setMode(paletteMode);
+  };
+  return <ToggleTheme value={props.value} onChange={handleChangeThemeMode} />;
+}
+
+ToggleVarTheme.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOf(['light', 'system', 'dark']),
+};
 
 export default function AppSettingsDrawer(props) {
   const { onClose, open = false, ...other } = props;
@@ -96,42 +161,11 @@ export default function AppSettingsDrawer(props) {
         <Heading gutterBottom id="settings-mode">
           {t('settings.mode')}
         </Heading>
-        <ToggleButtonGroup
-          exclusive
-          value={mode}
-          color="primary"
-          onChange={handleChangeThemeMode}
-          aria-labelledby="settings-mode"
-          fullWidth
-        >
-          <IconToggleButton
-            value="light"
-            aria-label={t('settings.light')}
-            data-ga-event-category="settings"
-            data-ga-event-action="light"
-          >
-            <LightModeIcon fontSize="small" />
-            {t('settings.light')}
-          </IconToggleButton>
-          <IconToggleButton
-            value="system"
-            aria-label={t('settings.system')}
-            data-ga-event-category="settings"
-            data-ga-event-action="system"
-          >
-            <SettingsBrightnessIcon fontSize="small" />
-            {t('settings.system')}
-          </IconToggleButton>
-          <IconToggleButton
-            value="dark"
-            aria-label={t('settings.dark')}
-            data-ga-event-category="settings"
-            data-ga-event-action="dark"
-          >
-            <DarkModeOutlinedIcon fontSize="small" />
-            {t('settings.dark')}
-          </IconToggleButton>
-        </ToggleButtonGroup>
+        {upperTheme.vars ? (
+          <ToggleVarTheme value={mode} onChange={handleChangeThemeMode} />
+        ) : (
+          <ToggleTheme value={mode} onChange={handleChangeThemeMode} />
+        )}
         <Heading gutterBottom id="settings-direction">
           {t('settings.direction')}
         </Heading>

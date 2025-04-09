@@ -8,6 +8,9 @@ import { createTheme, useTheme, ThemeProvider } from '@mui/material/styles';
 // Theme.ts
 const customTheme = (outerTheme) =>
   createTheme({
+    cssVariables: {
+      colorSchemeSelector: 'class',
+    },
     palette: {
       mode: outerTheme.palette.mode,
     },

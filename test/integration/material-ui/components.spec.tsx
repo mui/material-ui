@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@mui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router';
 import { expectType } from '@mui/types';
 import {
@@ -35,6 +34,7 @@ import {
   FormControlLabel,
   FormGroup,
   Grid,
+  GridLegacy,
   ImageList,
   ImageListItem,
   Grow,
@@ -530,21 +530,44 @@ function AccordionTest() {
   );
 }
 
+function GridLegacyTest() {
+  return (
+    <GridLegacy component={Paper} container>
+      <GridLegacy item xs={12}>
+        ...
+      </GridLegacy>
+      <GridLegacy item sm={12}>
+        ...
+      </GridLegacy>
+      <GridLegacy item xl>
+        ...
+      </GridLegacy>
+      <GridLegacy item style={{ color: 'red' }}>
+        ...
+      </GridLegacy>
+    </GridLegacy>
+  );
+}
+
 function GridTest() {
   return (
     <Grid component={Paper} container>
-      <Grid item xs={12}>
+      <Grid size={12}>...</Grid>
+      <Grid
+        size={{
+          sm: 12,
+        }}
+      >
         ...
       </Grid>
-      <Grid item sm={12}>
+      <Grid
+        size={{
+          xl: 'grow',
+        }}
+      >
         ...
       </Grid>
-      <Grid item xl>
-        ...
-      </Grid>
-      <Grid item style={{ color: 'red' }}>
-        ...
-      </Grid>
+      <Grid style={{ color: 'red' }}>...</Grid>
     </Grid>
   );
 }
@@ -855,34 +878,6 @@ const StepperTest = () =>
       );
     }
   };
-
-const TableTest = () => {
-  const styles = (theme: Theme) => {
-    const backgroundColor: string = theme.palette.secondary.light;
-    return createStyles({
-      paper: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-        backgroundColor,
-        overflowX: 'auto',
-      },
-    });
-  };
-
-  let id = 0;
-  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
-  }
-
-  const data = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
-};
 
 function TextFieldTest() {
   return (
