@@ -103,8 +103,7 @@ export async function documentGetInitialProps(
         return {
           ...initialProps,
           emotionStyleTags: styles.map((style) => {
-            const css = style.css.trim();
-            if (!css) {
+            if (!style.css.trim()) {
               return null;
             }
             const isLayerOrderRule = style.css.startsWith('@layer') && !style.css.match(/\{.*\}/);
