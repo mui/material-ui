@@ -11,11 +11,15 @@ A big thanks to the 3 contributors who made this release possible.
 - [AvatarGroup] Fix `spacing` prop ignoring value `0` (#45845) @Kartik-Murthy
 - [Dialog] Deprecate composed classes (#45814) @sai6855
 
+### `@mui/styled-engine@6.4.11`
+
+- Add caching to improve performance for running tests with Jest (#45855) @siriwatknp
+
 ### Docs
 
-- [docs] Add missing v7 docs banner (#45842) @DiegoAndai
-- [docs] Add v7 is here banner (#45838) @DiegoAndai
-- [docs] Fix lab version install instructions (#45770) @DiegoAndai
+- Add missing v7 docs banner (#45842) @DiegoAndai
+- Add v7 is here banner (#45838) @DiegoAndai
+- Fix lab version install instructions (#45770) @DiegoAndai
 
 All contributors of this release in alphabetical order: @DiegoAndai, @Kartik-Murthy, @sai6855
 
