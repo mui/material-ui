@@ -1,4 +1,3 @@
-import { grid } from '../Box';
 import { PropsFor, SimpleStyleFunction } from '../style';
 
 export const gap: SimpleStyleFunction<'gap'>;
@@ -13,6 +12,21 @@ export const gridTemplateColumns: SimpleStyleFunction<'gridTemplateColumns'>;
 export const gridTemplateRows: SimpleStyleFunction<'gridTemplateRows'>;
 export const gridTemplateAreas: SimpleStyleFunction<'gridTemplateAreas'>;
 export const gridArea: SimpleStyleFunction<'gridArea'>;
+
+declare const grid: SimpleStyleFunction<
+  | 'gap'
+  | 'columnGap'
+  | 'rowGap'
+  | 'gridColumn'
+  | 'gridRow'
+  | 'gridAutoFlow'
+  | 'gridAutoColumns'
+  | 'gridAutoRows'
+  | 'gridTemplateColumns'
+  | 'gridTemplateRows'
+  | 'gridTemplateAreas'
+  | 'gridArea'
+>;
 
 export type CssGridProps = PropsFor<typeof grid>;
 

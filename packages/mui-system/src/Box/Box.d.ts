@@ -8,116 +8,18 @@ import {
   OverwriteCSSProperties,
   AliasesCSSProperties,
 } from '../styleFunctionSx';
-import { PropsFor, SimpleStyleFunction } from '../style';
+import { PropsFor } from '../style';
 import { ComposedStyleFunction } from '../compose';
 import borders from '../borders';
 import display from '../display';
-
-export declare const flexbox: SimpleStyleFunction<
-  | 'flexBasis'
-  | 'flexDirection'
-  | 'flexWrap'
-  | 'justifyContent'
-  | 'alignItems'
-  | 'alignContent'
-  | 'order'
-  | 'flex'
-  | 'flexGrow'
-  | 'flexShrink'
-  | 'alignSelf'
-  | 'justifyItems'
-  | 'justifySelf'
->;
-
-export declare const grid: SimpleStyleFunction<
-  | 'gap'
-  | 'columnGap'
-  | 'rowGap'
-  | 'gridColumn'
-  | 'gridRow'
-  | 'gridAutoFlow'
-  | 'gridAutoColumns'
-  | 'gridAutoRows'
-  | 'gridTemplateColumns'
-  | 'gridTemplateRows'
-  | 'gridTemplateAreas'
-  | 'gridArea'
->;
-
-export declare const palette: SimpleStyleFunction<'bgcolor' | 'color'>;
-
-export declare const positions: SimpleStyleFunction<
-  'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'
->;
-
-export declare const shadows: SimpleStyleFunction<'boxShadow'>;
-
-export declare const sizing: SimpleStyleFunction<
-  | 'width'
-  | 'maxWidth'
-  | 'minWidth'
-  | 'height'
-  | 'maxHeight'
-  | 'minHeight'
-  | 'sizeWidth'
-  | 'sizeHeight'
-  | 'boxSizing'
->;
-
-export declare const spacing: SimpleStyleFunction<
-  | 'm'
-  | 'mt'
-  | 'mr'
-  | 'mb'
-  | 'ml'
-  | 'mx'
-  | 'my'
-  | 'p'
-  | 'pt'
-  | 'pr'
-  | 'pb'
-  | 'pl'
-  | 'px'
-  | 'py'
-  | 'margin'
-  | 'marginTop'
-  | 'marginRight'
-  | 'marginBottom'
-  | 'marginLeft'
-  | 'marginX'
-  | 'marginY'
-  | 'marginInline'
-  | 'marginInlineStart'
-  | 'marginInlineEnd'
-  | 'marginBlock'
-  | 'marginBlockStart'
-  | 'marginBlockEnd'
-  | 'padding'
-  | 'paddingTop'
-  | 'paddingRight'
-  | 'paddingBottom'
-  | 'paddingLeft'
-  | 'paddingX'
-  | 'paddingY'
-  | 'paddingInline'
-  | 'paddingInlineStart'
-  | 'paddingInlineEnd'
-  | 'paddingBlock'
-  | 'paddingBlockStart'
-  | 'paddingBlockEnd'
->;
-
-export declare const typography: SimpleStyleFunction<
-  | 'typography'
-  | 'fontFamily'
-  | 'fontSize'
-  | 'fontStyle'
-  | 'fontWeight'
-  | 'letterSpacing'
-  | 'lineHeight'
-  | 'textAlign'
-  | 'textTransform'
->;
+import flexbox from '../flexbox';
+import grid from '../cssGrid';
+import palette from '../palette';
+import positions from '../positions';
+import shadows from '../shadows';
+import sizing from '../sizing';
+import spacing from '../spacing';
+import typography from '../typography';
 
 export interface CustomSystemProps extends AliasesCSSProperties, OverwriteCSSProperties {}
 

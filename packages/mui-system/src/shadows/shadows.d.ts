@@ -1,5 +1,6 @@
-import { shadows } from '../Box';
-import { PropsFor } from '../style';
+import { PropsFor, SimpleStyleFunction } from '../style';
+
+declare const shadows: SimpleStyleFunction<'boxShadow'>;
 
 export type ShadowsProps = PropsFor<typeof shadows>;
 
