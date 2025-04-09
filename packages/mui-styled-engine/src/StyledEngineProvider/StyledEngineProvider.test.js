@@ -51,7 +51,7 @@ describe('[Emotion] StyledEngineProvider', () => {
     expect(rule).to.equal('@layer theme,base,mui,components,utilities;');
   });
 
-  it('should create the same cache once', () => {
+  it('should reuse the same cache', () => {
     let upperCache;
     let innerCache;
     function Upper() {

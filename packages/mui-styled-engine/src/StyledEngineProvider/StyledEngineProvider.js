@@ -5,7 +5,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { StyleSheet } from '@emotion/sheet';
 
-// To fix the [Jest performance](https://github.com/mui/material-ui/issues/45638).
+// To fix [Jest performance](https://github.com/mui/material-ui/issues/45638).
 const cacheMap = new Map();
 
 // Need to add a private variable to test the generated CSS from Emotion, this is the simplest way to do it.
