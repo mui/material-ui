@@ -490,6 +490,10 @@ The codemod doesn't cover type imports associated with the components.
 :::
 
 ## Legacy styles package
+:::warning
+This section is for large codebase project that cannot migrate from `@mui/styles` at once.
+After upgrading to v7, you should incrementally migrate `@mui/styles`.
+:::
 
 To use `@mui/styles` with Material UI v7, you need to point the adapter package (`@mui/private-theming`) to v7 by adding overrides to your `package.json` file:
 
