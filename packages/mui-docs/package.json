@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:modern": "echo 'Skip modern build'",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
@@ -48,7 +48,7 @@
     "@types/gtag.js": "^0.0.20",
     "@types/node": "^20.17.30",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.12",
+    "@types/react": "^19.1.0",
     "next": "^15.2.4",
     "react": "^19.1.0"
   },

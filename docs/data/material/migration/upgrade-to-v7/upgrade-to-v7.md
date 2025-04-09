@@ -93,23 +93,29 @@ Deep imports with more than one level are no longer working, at all (they were a
 
 This was never officially supported, but now it will be restricted by bundlers and runtimes.
 
-To use the modern bundle (which excludes legacy browser support for smaller bundle size), you'll need to configure your bundler to use the "mui-modern" exports condition:
+Modern bundles have also been removed, as the potential for a smaller bundle size is no longer significant.
+If you've configured aliases for these bundles, you must remove them now.
 
-```js
-// webpack.config.js
-{
-  resolve: {
-    conditionNames: ['mui-modern', '...'],
-  }
-}
-
-// vite.config.js
-{
-  resolve: {
-    conditions: ['mui-modern', 'module', 'browser', 'development|production']
-  }
-}
+```diff
+ {
+   resolve: {
+     alias: {
+-      '@mui/material': '@mui/material/modern',
+-      '@mui/styled-engine': '@mui/styled-engine/modern',
+-      '@mui/system': '@mui/system/modern',
+-      '@mui/base': '@mui/base/modern',
+-      '@mui/utils': '@mui/utils/modern',
+-      '@mui/lab': '@mui/lab/modern',
+     }
+   }
+ }
 ```
+
+:::info
+Earlier versions of this guide mention the existence of a `mui-modern` conditional exports.
+This has since been removed.
+This is a non-breaking change, and your bundler will fall back to the ESM bundle.
+:::
 
 If you are using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
 
