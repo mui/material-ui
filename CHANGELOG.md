@@ -17,6 +17,7 @@ A big thanks to the 12 contributors who made this release possible.
 
 - Fix nonce issues (#45794) @Janpot
 - Add warnings to nextjs router integration (#45778) @Janpot
+
 ### `@mui/styled-engine@7.0.2`
 
 - Added caching to `StyledEngineProvider` to improve performance for running tests with Jest (#45846) @siriwatknp
