@@ -65,7 +65,9 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 
 {{"demo": "TransitionsSnackbar.js"}}
 
-## Events
+## Customization
+
+### Preventing default click away event
 
 If you would like to prevent the default onClickAway behavior, you can set the event's `defaultMuiPrevented` property to `true`:
 
@@ -81,8 +83,6 @@ If you would like to prevent the default onClickAway behavior, you can set the e
   }}
 />
 ```
-
-## Customization
 
 ### Use with Alerts
 
