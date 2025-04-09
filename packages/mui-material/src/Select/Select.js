@@ -147,7 +147,7 @@ Select.propTypes /* remove-proptypes */ = {
   // └─────────────────────────────────────────────────────────────────────┘
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
-   * menu, otherwise it will be at least the width of the select input or the 'InputLabel' associated with 'labelId'.
+   * menu, otherwise it will be at least the width of the select input or the `InputLabel` associated with `labelId`.
    * @default false
    */
   autoWidth: PropTypes.bool,
