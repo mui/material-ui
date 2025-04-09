@@ -3,7 +3,21 @@ import { expect } from 'chai';
 import { act, createRenderer } from '@mui/internal-test-utils';
 import useControlled from './useControlled';
 
-const TestComponent = ({ value: valueProp, defaultValue, children }) => {
+type TestProps<T> = {
+  value?: T;
+  defaultValue?: T;
+};
+
+type TestComponentProps<T> = TestProps<T> & {
+  children: (params: {
+    value: T;
+    setValue: React.Dispatch<React.SetStateAction<T | undefined>>;
+  }) => React.ReactNode;
+};
+
+type SetProps = <T>(props: TestProps<T>) => void;
+
+const TestComponent = <T,>({ value: valueProp, defaultValue, children }: TestComponentProps<T>) => {
   const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -16,8 +30,8 @@ describe('useControlled', () => {
   const { render } = createRenderer();
 
   it('works correctly when is not controlled', () => {
-    let valueState;
-    let setValueState;
+    let valueState = 0;
+    let setValueState: React.Dispatch<React.SetStateAction<number | undefined>>;
     render(
       <TestComponent defaultValue={1}>
         {({ value, setValue }) => {
@@ -50,7 +64,7 @@ describe('useControlled', () => {
   });
 
   it('warns when switching from uncontrolled to controlled', () => {
-    let setProps;
+    let setProps: SetProps;
     expect(() => {
       ({ setProps } = render(<TestComponent>{() => null}</TestComponent>));
     }).not.toErrorDev();
@@ -63,7 +77,7 @@ describe('useControlled', () => {
   });
 
   it('warns when switching from controlled to uncontrolled', () => {
-    let setProps;
+    let setProps: SetProps;
 
     expect(() => {
       ({ setProps } = render(<TestComponent value="foobar">{() => null}</TestComponent>));
@@ -77,7 +91,7 @@ describe('useControlled', () => {
   });
 
   it('warns when changing the defaultValue prop after initial rendering', () => {
-    let setProps;
+    let setProps: SetProps;
 
     expect(() => {
       ({ setProps } = render(<TestComponent>{() => null}</TestComponent>));
@@ -91,7 +105,7 @@ describe('useControlled', () => {
   });
 
   it('should not raise a warning if changing the defaultValue when controlled', () => {
-    let setProps;
+    let setProps: SetProps;
 
     expect(() => {
       ({ setProps } = render(
