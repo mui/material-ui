@@ -126,11 +126,11 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
 
   const [RootSlot, rootProps] = useSlot('root', {
     elementType: BottomNavigationActionRoot,
-    shouldForwardComponentProp: true,
     externalForwardedProps: {
       ...externalForwardedProps,
       ...other,
     },
+    shouldForwardComponentProp: true,
     ownerState,
     ref,
     className: clsx(classes.root, className),
