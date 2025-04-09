@@ -14,7 +14,7 @@ async function emitDeclarations(tsconfig: string, outDir: string) {
   await $$`tsc -p ${tsconfig} --outDir ${outDir} --declaration --emitDeclarationOnly`;
 }
 
-async function addImportExtensions(folder: string) {
+async function addImportExtensions(folder: string, removeCss: boolean) {
   // eslint-disable-next-line no-console
   console.log(`Adding import extensions`);
   const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: folder });
@@ -22,14 +22,24 @@ async function addImportExtensions(folder: string) {
     throw new Error(`Unable to find declaration files in '${folder}'`);
   }
 
+  const babelPlugins: babel.PluginItem[] = [
+    ['@babel/plugin-syntax-typescript', { dts: true }],
+    ['@mui/internal-babel-plugin-resolve-imports'],
+  ];
+  if (removeCss) {
+    babelPlugins.push([
+      'babel-plugin-transform-remove-imports',
+      {
+        test: /\.css$/,
+      },
+    ]);
+  }
+
   await Promise.all(
     dtsFiles.map(async (dtsFile) => {
       const result = await babel.transformFileAsync(dtsFile, {
         configFile: false,
-        plugins: [
-          ['@babel/plugin-syntax-typescript', { dts: true }],
-          ['@mui/internal-babel-plugin-resolve-imports'],
-        ],
+        plugins: babelPlugins,
       });
 
       if (typeof result?.code === 'string') {
@@ -67,6 +77,7 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
 interface HandlerArgv {
   skipTsc: boolean;
   copy: string[];
+  removeCss: boolean;
 }
 
 async function main(argv: HandlerArgv) {
@@ -101,11 +112,14 @@ async function main(argv: HandlerArgv) {
     await emitDeclarations(tsconfigPath, esmOrOutDir);
   }
 
-  await addImportExtensions(esmOrOutDir);
+  await addImportExtensions(esmOrOutDir, argv.removeCss);
 
   await Promise.all(
     argv.copy.map((copy) => copyDeclarations(esmOrOutDir, path.join(packageRoot, copy))),
   );
+
+  const tsbuildinfo = await glob('**/*.tsbuildinfo', { absolute: true, cwd: buildFolder });
+  await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
 }
 
 yargs(process.argv.slice(2))
@@ -124,6 +138,11 @@ yargs(process.argv.slice(2))
           type: 'array',
           description: 'Directories where the type definition files should be copied',
           default: ['build', 'build/modern'],
+        })
+        .option('removeCss', {
+          type: 'boolean',
+          default: false,
+          describe: 'Set to `true` if you want to remove the css imports in the type definitions',
         });
     },
     main,
