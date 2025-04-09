@@ -4,7 +4,7 @@
 
 _Apr 9, 2025_
 
-A big thanks to the 11 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 ### `@mui/material@7.0.2`
 
@@ -30,6 +30,7 @@ A big thanks to the 11 contributors who made this release possible.
 - Update scripts to support base-ui (#45784) @brijeshb42
 - Sync scorecards.yml across codebase (4de5076) @oliviertassinari
 - Remove baseUrl and skipLibCheck (#45806) @Janpot
+- [docs-infra] Fix redirect styles pages (#45848) @siriwatknp
 - [docs-infra] Remove false-positive Vale rules (#45843) @oliviertassinari
 - [docs-infra] Make sure Next.js can find package.json through its aliases (#45840) @Janpot
 - [docs-infra] Fix Next.js brand name coverage (6915f8d) @oliviertassinari
@@ -53,7 +54,7 @@ A big thanks to the 11 contributors who made this release possible.
 - [nextjs] Migrate from deprecated "legacyBehavior" prop (#44871) @oliviertassinari
 - [nextjs] Document CSP for Next.js Pages Router (#45798) @Grohden
 
-All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @Grohden, @imadx, @Janpot, @Kartik-Murthy, @oliviertassinari, @renovate[bot], @sai6855, @vetledv, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @Grohden, @imadx, @Janpot, @Kartik-Murthy, @oliviertassinari, @renovate[bot], @sai6855, @siriwatknp, @vetledv, @ZeeshanTamboli
 
 ## 7.0.1
 
