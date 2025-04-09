@@ -9,9 +9,7 @@ import { LicenseInfo } from '@mui/x-license';
 import materialPkgJson from '@mui/material/package.json';
 import joyPkgJson from '@mui/joy/package.json';
 import systemPkgJson from '@mui/system/package.json';
-import basePkgJson from '@mui/base/package.json';
 import generalDocsPages from 'docs/data/docs/pages';
-import basePages from 'docs/data/base/pages';
 import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
@@ -229,17 +227,6 @@ function AppWrapper(props) {
       };
     }
 
-    if (productId === 'base-ui') {
-      return {
-        metadata: '',
-        name: 'MUI Base',
-        logo: SvgBaseUiLogo,
-        logoSvg: baseSvgLogoString,
-        wordmarkSvg: baseSvgWordmarkString,
-        versions: [{ text: `v${basePkgJson.version}`, current: true }],
-      };
-    }
-
     if (productId === 'core') {
       return {
         metadata: '',
@@ -294,9 +281,7 @@ function AppWrapper(props) {
 
   const pageContextValue = React.useMemo(() => {
     let pages = generalDocsPages;
-    if (productId === 'base-ui') {
-      pages = basePages;
-    } else if (productId === 'material-ui') {
+    if (productId === 'material-ui') {
       pages = materialPages;
     } else if (productId === 'joy-ui') {
       pages = joyPages;

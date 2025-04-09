@@ -9,7 +9,7 @@
     "@babel/runtime": "^7.27.0",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
-    "@mui/base": "workspace:*",
+    "@mui/base": "5.0.0-beta.70",
     "@mui/icons-material": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/joy": "workspace:*",

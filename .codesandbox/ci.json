@@ -26,7 +26,6 @@
     "packages-internal/test-utils"
   ],
   "publishDirectory": {
-    "@mui/base": "packages/mui-base/build",
     "@mui/codemod": "packages/mui-codemod/build",
     "@mui/core-downloads-tracker": "packages/mui-core-downloads-tracker/build",
     "@mui/docs": "packages/mui-docs/build",

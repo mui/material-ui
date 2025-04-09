@@ -359,8 +359,8 @@ importers:
         specifier: latest
         version: 11.14.0
       '@mui/base':
-        specifier: workspace:^
-        version: link:../../packages/mui-base/build
+        specifier: 5.0.0-beta.70
+        version: 5.0.0-beta.70(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build
@@ -417,8 +417,8 @@ importers:
         specifier: latest
         version: 11.14.0
       '@mui/base':
-        specifier: workspace:^
-        version: link:../../packages/mui-base/build
+        specifier: 5.0.0-beta.70
+        version: 5.0.0-beta.70(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build
@@ -472,8 +472,8 @@ importers:
   apps/pigment-css-vite-app:
     dependencies:
       '@mui/base':
-        specifier: workspace:^
-        version: link:../../packages/mui-base/build
+        specifier: 5.0.0-beta.70
+        version: 5.0.0-beta.70(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build
@@ -671,8 +671,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.0)
       '@mui/base':
-        specifier: workspace:*
-        version: link:../packages/mui-base/build
+        specifier: 5.0.0-beta.70
+        version: 5.0.0-beta.70(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/docs':
         specifier: workspace:^
         version: link:../packages/mui-docs/build
@@ -1387,74 +1387,6 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
 
-  packages/mui-base:
-    dependencies:
-      '@babel/runtime':
-        specifier: ^7.27.0
-        version: 7.27.0
-      '@floating-ui/react-dom':
-        specifier: ^2.1.1
-        version: 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@mui/types':
-        specifier: workspace:^
-        version: link:../mui-types/build
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../mui-utils/build
-      '@popperjs/core':
-        specifier: ^2.11.8
-        version: 2.11.8
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      prop-types:
-        specifier: ^15.8.1
-        version: 15.8.1
-    devDependencies:
-      '@mui/internal-test-utils':
-        specifier: workspace:^
-        version: link:../../packages-internal/test-utils
-      '@testing-library/react':
-        specifier: ^16.3.0
-        version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@testing-library/user-event':
-        specifier: ^14.6.1
-        version: 14.6.1(@testing-library/dom@10.4.0)
-      '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
-      '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
-      '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.0
-      '@types/react-dom':
-        specifier: ^19.1.1
-        version: 19.1.1(@types/react@19.1.0)
-      '@types/sinon':
-        specifier: ^17.0.4
-        version: 17.0.4
-      chai:
-        specifier: ^4.5.0
-        version: 4.5.0
-      fast-glob:
-        specifier: ^3.3.3
-        version: 3.3.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      react:
-        specifier: ^19.1.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^19.1.0
-        version: 19.1.0(react@19.1.0)
-      sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
-    publishDirectory: build
-
   packages/mui-codemod:
     dependencies:
       '@babel/core':
@@ -1670,8 +1602,8 @@ importers:
         specifier: ^11.3.0
         version: 11.13.5(@emotion/react@11.13.5(@types/react@19.1.0)(react@19.1.0))(@types/react@19.1.0)(react@19.1.0)
       '@mui/base':
-        specifier: workspace:*
-        version: link:../mui-base/build
+        specifier: 5.0.0-beta.70
+        version: 5.0.0-beta.70(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/core-downloads-tracker':
         specifier: workspace:^
         version: link:../mui-core-downloads-tracker/build
@@ -2220,9 +2152,6 @@ importers:
 
   scripts/sizeSnapshot:
     dependencies:
-      '@mui/base':
-        specifier: workspace:^
-        version: link:../../packages/mui-base/build
       '@mui/joy':
         specifier: workspace:^
         version: link:../../packages/mui-joy/build
@@ -2261,8 +2190,8 @@ importers:
         specifier: ^11.13.5
         version: 11.13.5(@types/react@19.1.0)(react@19.1.0)
       '@mui/base':
-        specifier: workspace:*
-        version: link:../packages/mui-base/build
+        specifier: 5.0.0-beta.70
+        version: 5.0.0-beta.70(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../packages/mui-icons-material/build

@@ -519,15 +519,6 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
-      rules: {
-        'import/no-default-export': 'error',
-        'import/prefer-default-export': 'off',
-        'react-compiler/react-compiler': 'off',
-        'no-irregular-whitespace': ['error', { skipComments: true }],
-      },
-    },
-    {
       /**
        * Examples are for demonstration purposes and should not be considered a part of the library.
        * They don't contain ESLint setup, so we don't want them to contain ESLint directives

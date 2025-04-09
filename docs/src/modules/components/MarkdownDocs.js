@@ -7,7 +7,6 @@ import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
-import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
 
 export default function MarkdownDocs(props) {
   const router = useRouter();
@@ -23,8 +22,6 @@ export default function MarkdownDocs(props) {
 
   const userLanguage = useUserLanguage();
   const localizedDoc = docs[userLanguage] || docs.en;
-
-  const isBase = canonicalAs.startsWith('/base-ui/');
 
   return (
     <AppLayoutDocs
@@ -43,12 +40,6 @@ export default function MarkdownDocs(props) {
         <AdGuest>
           <Ad />
         </AdGuest>
-      )}
-      {isBase && (
-        <MuiBaseDeprecation
-          newComponentUrl={localizedDoc.headers.newUrl}
-          newComponentName={localizedDoc.headers.newName}
-        />
       )}
       {localizedDoc.rendered.map((renderedMarkdownOrDemo, index) => (
         <RichMarkdownElement

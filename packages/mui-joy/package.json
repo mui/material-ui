@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.27.0",
-    "@mui/base": "workspace:*",
+    "@mui/base": "5.0.0-beta.70",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",

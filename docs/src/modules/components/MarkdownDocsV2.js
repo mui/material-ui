@@ -15,7 +15,6 @@ import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
 
 function getHookTranslatedHeader(t, header) {
   const translations = {
@@ -167,8 +166,6 @@ export default function MarkdownDocsV2(props) {
     });
   }
 
-  const isBase = canonicalAs.startsWith('/base-ui/');
-
   const commonElements = [];
 
   let i = 0;
@@ -242,12 +239,6 @@ export default function MarkdownDocsV2(props) {
           <AdGuest classSelector={hasTabs ? '.component-tabs' : undefined}>
             <Ad />
           </AdGuest>
-        )}
-        {isBase && (
-          <MuiBaseDeprecation
-            newComponentUrl={localizedDoc.headers.newUrl}
-            newComponentName={localizedDoc.headers.newName}
-          />
         )}
         {commonElements}
         {activeTab === '' &&
