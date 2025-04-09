@@ -101,7 +101,7 @@ const SVG_ICON_CLASS = 'svg-icon';
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
-  color: theme.palette.text.secondary,
+  color: (theme.vars ?? theme).palette.text.secondary,
   margin: '0 4px',
   '& > div': {
     flexGrow: 1,
@@ -116,7 +116,7 @@ const StyledIcon = styled('span')(({ theme }) => ({
     height: iconWidth,
     boxSizing: 'content-box',
     cursor: 'pointer',
-    color: theme.palette.text.primary,
+    color: (theme.vars ?? theme).palette.text.primary,
     border: '1px solid transparent',
     fontSize: iconWidth,
     borderRadius: '12px',
@@ -126,8 +126,8 @@ const StyledIcon = styled('span')(({ theme }) => ({
     padding: theme.spacing(2),
     margin: theme.spacing(0.5, 0),
     '&:hover': {
-      backgroundColor: theme.palette.background.default,
-      borderColor: theme.palette.primary.light,
+      backgroundColor: (theme.vars ?? theme).palette.background.default,
+      borderColor: (theme.vars ?? theme).palette.primary.light,
     },
   },
 }));
@@ -263,7 +263,7 @@ const Title = styled(Typography)(({ theme }) => ({
 
 const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
-  color: theme.palette.text.primary,
+  color: (theme.vars ?? theme).palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
   backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
@@ -292,7 +292,7 @@ const ContextComponent = styled('div', {
         contextColor: 'primary',
       },
       style: {
-        color: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -300,8 +300,8 @@ const ContextComponent = styled('div', {
         contextColor: 'primaryInverse',
       },
       style: {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.contrastText,
+        backgroundColor: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -309,7 +309,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimary',
       },
       style: {
-        color: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -317,8 +317,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -326,7 +326,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondary',
       },
       style: {
-        color: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.text.secondary,
       },
     },
     {
@@ -334,8 +334,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.secondary,
       },
     },
   ],
@@ -506,7 +506,7 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   width: '100%',
   borderRadius: '12px',
   border: '1px solid',
-  borderColor: theme.palette.divider,
+  borderColor: (theme.vars ?? theme).palette.divider,
   boxShadow: 'none',
 }));
 
@@ -607,7 +607,7 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500 }}>
+    <Grid container sx={{ minHeight: 500, width: '100%' }}>
       <Grid
         size={{
           xs: 12,
