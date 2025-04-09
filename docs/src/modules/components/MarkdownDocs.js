@@ -1,15 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import { Ad, AdGuest } from '@mui/docs/Ad';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
 
 export default function MarkdownDocs(props) {
-  const router = useRouter();
   const {
     disableAd = false,
     disableToc = false,
