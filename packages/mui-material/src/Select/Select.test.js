@@ -239,7 +239,7 @@ describe('<Select />', () => {
       expect(getByRole('combobox')).toHaveFocus();
     });
 
-    it.only('should use a given labelIds text content when autoWidth is true', () => {
+    it('should use a given labelIds text content when autoWidth is true', () => {
       const labelText = 'Test Label Text';
       const { getByTestId } = render(
         <React.Fragment>
@@ -250,7 +250,7 @@ describe('<Select />', () => {
 
       const selectElement = getByTestId('select')
 
-      expect(selectElement.textContent).to.equal(labelText + '\u200B');
+      expect(selectElement.textContent).to.equal(`${labelText}\u200B`);
     });
   });
 
