@@ -17,7 +17,7 @@ export * from './flexbox';
 export { default as flexbox } from './flexbox';
 
 export * from './cssGrid';
-export { default as cssGrid } from './cssGrid';
+export { default as grid } from './cssGrid';
 
 export * from './palette';
 export { default as palette } from './palette';
