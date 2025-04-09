@@ -1,4 +1,5 @@
-import { PropsFor, grid, SimpleStyleFunction } from '../Box';
+import { grid } from '../Box';
+import { PropsFor, SimpleStyleFunction } from '../style';
 
 export const gap: SimpleStyleFunction<'gap'>;
 export const columnGap: SimpleStyleFunction<'columnGap'>;

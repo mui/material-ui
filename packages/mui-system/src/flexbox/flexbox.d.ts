@@ -1,4 +1,5 @@
-import { PropsFor, flexbox } from '../Box';
+import { flexbox } from '../Box';
+import { PropsFor } from '../style';
 
 export type FlexboxProps = PropsFor<typeof flexbox>;
 

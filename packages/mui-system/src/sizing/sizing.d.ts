@@ -1,4 +1,5 @@
-import { PropsFor, SimpleStyleFunction, sizing } from '../Box';
+import { sizing } from '../Box';
+import { PropsFor, SimpleStyleFunction } from '../style';
 
 export const width: SimpleStyleFunction<'width'>;
 export const maxWidth: SimpleStyleFunction<'maxWidth'>;

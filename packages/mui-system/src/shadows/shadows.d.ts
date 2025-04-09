@@ -1,4 +1,5 @@
-import { PropsFor, shadows } from '../Box';
+import { shadows } from '../Box';
+import { PropsFor } from '../style';
 
 export type ShadowsProps = PropsFor<typeof shadows>;
 

@@ -8,28 +8,10 @@ import {
   OverwriteCSSProperties,
   AliasesCSSProperties,
 } from '../styleFunctionSx';
-
-export type PropsFor<SomeStyleFunction> =
-  SomeStyleFunction extends StyleFunction<infer Props> ? Props : never;
-export type StyleFunction<Props> = (props: Props) => any;
-export type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<
-  Partial<Record<PropKey, any>>
-> & { filterProps: string[] };
-
-// borders.js
-export declare const borders: SimpleStyleFunction<
-  | 'border'
-  | 'borderTop'
-  | 'borderRight'
-  | 'borderBottom'
-  | 'borderLeft'
-  | 'borderColor'
-  | 'borderRadius'
->;
-
-export declare const display: SimpleStyleFunction<
-  'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
->;
+import { PropsFor, SimpleStyleFunction } from '../style';
+import { ComposedStyleFunction } from '../compose';
+import borders from '../borders';
+import display from '../display';
 
 export declare const flexbox: SimpleStyleFunction<
   | 'flexBasis'
@@ -136,21 +118,6 @@ export declare const typography: SimpleStyleFunction<
   | 'textAlign'
   | 'textTransform'
 >;
-
-// compose.js
-/**
- * given a list of StyleFunction return the intersection of the props each individual
- * StyleFunction requires.
- *
- * If `firstFn` requires { color: string } and `secondFn` requires { spacing: number }
- * their composed function requires { color: string, spacing: number }
- */
-type ComposedArg<T> = T extends Array<(arg: infer P) => any> ? P : never;
-type ComposedOwnerState<T> = ComposedArg<T>;
-
-export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFunction<
-  ComposedOwnerState<T>
-> & { filterProps: string[] };
 
 export interface CustomSystemProps extends AliasesCSSProperties, OverwriteCSSProperties {}
 

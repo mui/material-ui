@@ -1,5 +1,13 @@
 import { CSSObject } from '@mui/styled-engine';
-import { StyleFunction } from '../Box';
+
+export type PropsFor<SomeStyleFunction> =
+  SomeStyleFunction extends StyleFunction<infer Props> ? Props : never;
+
+export type StyleFunction<Props> = (props: Props) => any;
+
+export type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<
+  Partial<Record<PropKey, any>>
+> & { filterProps: string[] };
 
 export type TransformFunction = (
   cssValue: unknown,
