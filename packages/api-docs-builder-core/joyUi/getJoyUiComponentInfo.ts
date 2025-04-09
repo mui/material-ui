@@ -6,7 +6,6 @@ import {
   ComponentInfo,
   extractPackageFile,
   fixPathname,
-  getApiPath,
   getMuiName,
   getSystemComponents,
   parseFile,

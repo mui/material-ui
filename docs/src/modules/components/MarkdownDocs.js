@@ -10,7 +10,6 @@ import { useUserLanguage } from '@mui/docs/i18n';
 
 export default function MarkdownDocs(props) {
   const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
     disableAd = false,
     disableToc = false,

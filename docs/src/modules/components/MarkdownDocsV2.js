@@ -41,7 +41,6 @@ export default function MarkdownDocsV2(props) {
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
 
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
     disableAd = false,
     disableToc = false,

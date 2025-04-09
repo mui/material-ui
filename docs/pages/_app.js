@@ -31,10 +31,6 @@ import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
-import SvgBaseUiLogo, {
-  baseSvgLogoString,
-  baseSvgWordmarkString,
-} from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
 import * as config from '../config';
