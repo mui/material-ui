@@ -8,8 +8,8 @@ A big thanks to the 3 contributors who made this release possible.
 
 ### `@mui/material@6.4.11`
 
-- [AvatarGroup] Fix `spacing` prop ignoring value `0` (@Kartik-Murthy) (#45845) @Kartik-Murthy
-- [Dialog] Deprecate composed classes (@sai6855) (#45814) @sai6855
+- [AvatarGroup] Fix `spacing` prop ignoring value `0` (#45845) @Kartik-Murthy
+- [Dialog] Deprecate composed classes (#45814) @sai6855
 
 ### Docs
 
