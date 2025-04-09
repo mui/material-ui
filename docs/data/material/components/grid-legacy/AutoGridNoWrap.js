@@ -11,7 +11,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(2),
   maxWidth: 400,
-  color: theme.palette.text.primary,
+  color: (theme.vars ?? theme).palette.text.primary,
   ...theme.applyStyles('dark', {
     backgroundColor: '#1A2027',
   }),

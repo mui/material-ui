@@ -13,7 +13,7 @@ Material UI is an open-source React component library that implements Google's 
 It includes a comprehensive collection of prebuilt components that are ready for use in production right out of the box and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 
 :::info
-Material UI v6 supports Material Design 2.
+Material UI supports Material Design 2.
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future design-related updates.
 :::
 
