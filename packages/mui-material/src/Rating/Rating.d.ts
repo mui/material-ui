@@ -115,7 +115,7 @@ export interface RatingOwnProps extends RatingSlotsAndSlotProps {
   icon?: React.ReactNode;
   /**
    * The component containing the icon.
-   * @deprecated Use `slotProps.icon.component` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.icon.component` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default function IconContainer(props) {
    *   const { value, ...other } = props;
    *   return <span {...other} />;
@@ -184,11 +184,11 @@ export type RatingTypeMap<
  *
  * Demos:
  *
- * - [Rating](https://next.mui.com/material-ui/react-rating/)
+ * - [Rating](https://mui.com/material-ui/react-rating/)
  *
  * API:
  *
- * - [Rating API](https://next.mui.com/material-ui/api/rating/)
+ * - [Rating API](https://mui.com/material-ui/api/rating/)
  */
 declare const Rating: OverridableComponent<RatingTypeMap>;
 

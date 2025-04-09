@@ -13,7 +13,7 @@ Combined with [dangerJS](https://danger.systems/js/) we can inspect
 
 Tree-shaking Material UI works out of the box in modern frameworks.
 Material UI exposes its full API on the top-level `@mui` imports.
-If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
+If you're using ES modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), parcel you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@mui/material';
@@ -197,53 +197,4 @@ It will perform the following diffs:
 -import Button from '@mui/material/Button';
 -import TextField from '@mui/material/TextField';
 +import { Button, TextField } from '@mui/material';
-```
-
-## Available bundles
-
-### Default bundle
-
-The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
-
-A [modern bundle](#modern-bundle) is also available.
-
-### How to use custom bundles?
-
-:::error
-You are strongly discouraged to:
-
-- Import from any of the custom bundles directly. Do not do this:
-
-  ```js
-  import { Button } from '@mui/material/modern';
-  ```
-
-  You have no guarantee that the dependencies use the `modern` bundle, leading to module duplication in your JavaScript files.
-
-- Import from any of the undocumented files or folders. Do not do this:
-
-  ```js
-  import { Button } from '@mui/material/esm';
-  ```
-
-  You have no guarantee that these imports will continue to work from one version to the next.
-
-  :::
-
-A great way to use these bundles is to configure bundler export conditions, for example with [webpack's `resolve.conditionNames`](https://webpack.js.org/configuration/resolve/#resolveconditionnames) or [vite's `resolve.conditions`](https://vite.dev/config/shared-options#resolve-conditions):
-
-```js
-// webpack.config.js
-{
-  resolve: {
-    conditionNames: ['mui-modern', '...'],
-  }
-}
-
-// vite.config.js
-{
-  resolve: {
-    conditions: ['mui-modern', 'module', 'browser', 'development|production']
-  }
-}
 ```
