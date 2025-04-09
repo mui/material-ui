@@ -1,2 +1,1 @@
-export { default } from './compose';
-export * from './compose';
+export { default, ComposedStyleFunction } from './compose';
