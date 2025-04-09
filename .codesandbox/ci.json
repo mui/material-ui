@@ -4,7 +4,6 @@
   "node": "20",
   "packages": [
     "packages/markdown",
-    "packages/mui-base",
     "packages/mui-codemod",
     "packages/mui-core-downloads-tracker",
     "packages/mui-docs",

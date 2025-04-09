@@ -416,9 +416,6 @@ importers:
       '@emotion/cache':
         specifier: latest
         version: 11.14.0
-      '@mui/base':
-        specifier: 5.0.0-beta.70
-        version: 5.0.0-beta.70(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/icons-material':
         specifier: workspace:^
         version: link:../../packages/mui-icons-material/build

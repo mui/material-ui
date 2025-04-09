@@ -412,7 +412,6 @@ module.exports = /** @type {Config} */ ({
         '*.spec.*',
         '*.test.*',
         // deprecated library
-        '**/mui-base/**/*',
         '**/mui-joy/**/*',
         // used internally, not used on app router yet
         '**/mui-docs/**/*',
