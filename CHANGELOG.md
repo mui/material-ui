@@ -2,9 +2,9 @@
 
 ## 7.0.2
 
-_Apr 8, 2025_
+_Apr 9, 2025_
 
-A big thanks to the 10 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 ### `@mui/material@7.0.2`
 
@@ -24,6 +24,7 @@ A big thanks to the 10 contributors who made this release possible.
 - [code-infra] Remove webpack aliases (#45841) @Janpot
 - [code-infra] Remove .tsbuildinfo from build folder (#45727) @Janpot
 - [code-infra] Stabilize theme viewer screenshot tests (#45768) @Janpot
+- [code-infra] Remove modern bundles (#45808) @Janpot
 - Update buildTypes script to optionally remove css imports (#45835) @brijeshb42
 - Allow repo to be accepted as an argument for releaseTag (#45801) @brijeshb42
 - Update scripts to support base-ui (#45784) @brijeshb42
@@ -50,8 +51,9 @@ A big thanks to the 10 contributors who made this release possible.
 - Fix 301 links (abd8f63) @oliviertassinari
 - Fix 301 redirection (c7658de) @oliviertassinari
 - [nextjs] Migrate from deprecated "legacyBehavior" prop (#44871) @oliviertassinari
+- [nextjs] Document CSP for Next.js Pages Router (#45798) @Grohden
 
-All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @imadx, @Janpot, @Kartik-Murthy, @oliviertassinari, @renovate[bot], @sai6855, @vetledv, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @Grohden, @imadx, @Janpot, @Kartik-Murthy, @oliviertassinari, @renovate[bot], @sai6855, @vetledv, @ZeeshanTamboli
 
 ## 7.0.1
 
