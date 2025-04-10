@@ -355,7 +355,7 @@ Both demonstrate how to virtualize a list of 10,000 randomly-generated options.
 
 ### With react-window
 
-The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+The example below uses [react-window](https://github.com/bvaughn/react-window) to virtualize the list of options.
 
 {{"demo": "VirtualizeWithReactWindow.js"}}
 
