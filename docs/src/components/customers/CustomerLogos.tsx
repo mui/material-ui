@@ -78,17 +78,25 @@ export default function CustomersLogos() {
             key={category.value}
             label={category.label}
             onClick={() => setActiveCategory(category.value)}
-            sx={{
-              borderRadius: '16px',
+            sx={(theme) => ({
+              borderRadius: '18px',
               '&.MuiChip-root': {
                 backgroundColor: activeCategory === category.value ? 'primary.main' : 'transparent',
-                color: activeCategory === category.value ? 'primary.contrastText' : 'text.primary',
+                border: activeCategory === category.value ? '1px solid' : 'none',
+                borderColor: activeCategory === category.value ? 'secondary.main' : 'none',
+                color: activeCategory === category.value ? 'white' : 'text.secondary',
+                ...theme.applyDarkStyles({
+                  backgroundColor: activeCategory === category.value ? '#0C1D2F' : 'transparent',
+                  border: activeCategory === category.value ? '1px solid' : 'none',
+                  borderColor: activeCategory === category.value ? 'primary.dark' : 'none',
+                  color: activeCategory === category.value ? 'text.primary' : 'text.primary',
+                }),
                 '&:hover': {
                   backgroundColor:
                     activeCategory === category.value ? 'primary.dark' : 'action.hover',
                 },
               },
-            }}
+            })}
           />
         ))}
       </Stack>
