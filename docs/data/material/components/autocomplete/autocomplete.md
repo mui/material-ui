@@ -350,7 +350,8 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Virtualization
 
-Search within 10,000 randomly generated options.
+The following demos show how to use third-party virtualization tools with the Autocomplete to improve performance when handling very large lists of options.
+Both demonstrate how to virtualize a list of 10,000 randomly-generated options.
 
 ### With react-window
 
