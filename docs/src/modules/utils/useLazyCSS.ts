@@ -11,7 +11,7 @@ import { loadCSS } from 'fg-loadcss';
  */
 export default function useLazyCSS(href: string, before: string, options: { layer?: string } = {}) {
   React.useEffect(() => {
-    // If no layer is specified, use the original behavior
+    // If no layer is specified, add style and clean it on unmount
     if (!options.layer) {
       const link = loadCSS(href, document.querySelector(before) as HTMLElement);
       return () => {
@@ -53,8 +53,7 @@ export default function useLazyCSS(href: string, before: string, options: { laye
           }
 
           // Fall back to regular link element if fetch fails
-          const link = loadCSS(href, document.querySelector(before) as HTMLElement);
-          styleElement = link;
+          styleElement = loadCSS(href, document.querySelector(before) as HTMLElement);
         }
       });
 
