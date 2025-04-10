@@ -3,10 +3,32 @@
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import * as React from 'react';
 
-export default function useControlled({ controlled, default: defaultProp, name, state = 'value' }) {
+export interface UseControlledProps<T = unknown> {
+  /**
+   * Holds the component value when it's controlled.
+   */
+  controlled: T | undefined;
+  /**
+   * The default value when uncontrolled.
+   */
+  default: T | undefined;
+  /**
+   * The component name displayed in warnings.
+   */
+  name: string;
+  /**
+   * The name of the state variable displayed in warnings.
+   */
+  state?: string;
+}
+
+export default function useControlled<T = unknown>(
+  props: UseControlledProps<T>,
+): [T, React.Dispatch<React.SetStateAction<T | undefined>>] {
+  const { controlled, default: defaultProp, name, state = 'value' } = props;
   // isControlled is ignored in the hook dependency lists as it should never change.
   const { current: isControlled } = React.useRef(controlled !== undefined);
-  const [valueState, setValue] = React.useState(defaultProp);
+  const [valueState, setValue] = React.useState<T | undefined>(defaultProp);
   const value = isControlled ? controlled : valueState;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -43,11 +65,16 @@ export default function useControlled({ controlled, default: defaultProp, name, 
     }, [JSON.stringify(defaultProp)]);
   }
 
-  const setValueIfUncontrolled = React.useCallback((newValue) => {
-    if (!isControlled) {
-      setValue(newValue);
-    }
-  }, []);
+  const setValueIfUncontrolled: React.Dispatch<React.SetStateAction<T | undefined>> =
+    React.useCallback((newValue: React.SetStateAction<T | undefined>) => {
+      if (!isControlled) {
+        setValue(newValue);
+      }
+    }, []);
 
-  return [value, setValueIfUncontrolled];
+  // TODO: provide overloads for the useControlled function to account for the case where either
+  // controlled or default is not undefiend.
+  // In that case the return type should be [T, React.Dispatch<React.SetStateAction<T>>]
+  // otherwise it should be [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>]
+  return [value as T, setValueIfUncontrolled];
 }

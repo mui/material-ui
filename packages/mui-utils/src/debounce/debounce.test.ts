@@ -3,7 +3,7 @@ import { spy, useFakeTimers } from 'sinon';
 import debounce from './debounce';
 
 describe('debounce', () => {
-  let clock;
+  let clock: ReturnType<typeof useFakeTimers>;
 
   beforeEach(() => {
     clock = useFakeTimers();
@@ -16,8 +16,8 @@ describe('debounce', () => {
   it('should debounce', () => {
     const handler = spy();
     const expectedContext = { foo: 'bar' };
-    let actualContext;
-    function collectContext(...args) {
+    let actualContext: any;
+    function collectContext(this: any, ...args: any[]) {
       // eslint-disable-next-line consistent-this
       actualContext = this;
       handler(...args);
