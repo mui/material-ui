@@ -25,7 +25,8 @@ import RenderGroup from '../../../../../../docs/data/material/components/autocom
 import Sizes from '../../../../../../docs/data/material/components/autocomplete/Sizes';
 import Tags from '../../../../../../docs/data/material/components/autocomplete/Tags';
 import UseAutocomplete from '../../../../../../docs/data/material/components/autocomplete/UseAutocomplete';
-import Virtualize from '../../../../../../docs/data/material/components/autocomplete/Virtualize';
+import VirtualizeWithReactWindow from '../../../../../../docs/data/material/components/autocomplete/VirtualizeWithReactWindow';
+import VirtualizeWithTanStackVirtual from '../../../../../../docs/data/material/components/autocomplete/VirtualizeWithTanStackVirtual';
 
 export default function Autocomplete() {
   return (
@@ -183,7 +184,10 @@ export default function Autocomplete() {
       <section>
         <h2> Virtualize</h2>
         <div className="demo-container">
-          <Virtualize />
+          <VirtualizeWithReactWindow />
+        </div>
+        <div className="demo-container">
+          <VirtualizeWithTanStackVirtual />
         </div>
       </section>
     </React.Fragment>
