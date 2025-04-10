@@ -1,5 +1,105 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.0.2
+
+_Apr 9, 2025_
+
+A big thanks to the 12 contributors who made this release possible.
+
+### `@mui/material@7.0.2`
+
+- [Autocomplete] Add ability to render custom single value (#45387) @ZeeshanTamboli
+- [Autocomplete] Prevent shrink animation in controlled Autocomplete when initial `value` is provided (#45734) @imadx
+- [AvatarGroup] Fix `spacing` prop ignoring value `0` (#45799) @Kartik-Murthy
+- [Dialog] Deprecate composed classes (#45418) @sai6855
+
+### `@mui/material-nextjs@7.0.2`
+
+- Fix nonce issues (#45794) @Janpot
+- Add warnings to nextjs router integration (#45778) @Janpot
+
+### `@mui/styled-engine@7.0.2`
+
+- Added caching to `StyledEngineProvider` to improve performance for running tests with Jest (#45846) @siriwatknp
+
+### Core
+
+- [blog] Improve upvote video (0646444) @oliviertassinari
+- [code-infra] Remove webpack aliases (#45841) @Janpot
+- [code-infra] Remove .tsbuildinfo from build folder (#45727) @Janpot
+- [code-infra] Stabilize theme viewer screenshot tests (#45768) @Janpot
+- [code-infra] Remove modern bundles (#45808) @Janpot
+- Update buildTypes script to optionally remove css imports (#45835) @brijeshb42
+- Allow repo to be accepted as an argument for releaseTag (#45801) @brijeshb42
+- Update scripts to support base-ui (#45784) @brijeshb42
+- Sync scorecards.yml across codebase (4de5076) @oliviertassinari
+- Remove baseUrl and skipLibCheck (#45806) @Janpot
+- [docs-infra] Fix redirect styles pages (#45848) @siriwatknp
+- [docs-infra] Remove false-positive Vale rules (#45843) @oliviertassinari
+- [docs-infra] Make sure Next.js can find package.json through its aliases (#45840) @Janpot
+- [docs-infra] Fix Next.js brand name coverage (6915f8d) @oliviertassinari
+- [docs-infra] Fix layout shift between MIT and commercial pages (#45760) @oliviertassinari
+- [docs-infra] Non breaking space for ESM (#45758) @oliviertassinari
+- [support-infra] Remove dead 'workflow_call:' (#45736) @oliviertassinari
+- [utils] Support cleanup callbacks in useForkRef (#45621) @DiegoAndai
+
+### Docs
+
+- Fix pigment vite integration example (#44746) @brijeshb42
+- Update migration instructions and codemod references for deprecated APIs (#45793) @sai6855
+- Add TanStack Router routing example (#44930) @vetledv
+- Fix layout shifting in icons page (#45779) @sai6855
+- Fix migration instructions (#45762) @oliviertassinari
+- Fix wrong TypeScript support version (#45761) @oliviertassinari
+- Fix link to mui-joy/src/styles/components.d.ts (#45763) @oliviertassinari
+- Fix 301 link (ae94c40) @oliviertassinari
+- Fix 301 links (abd8f63) @oliviertassinari
+- Fix 301 redirection (c7658de) @oliviertassinari
+- [nextjs] Migrate from deprecated "legacyBehavior" prop (#44871) @oliviertassinari
+- [nextjs] Document CSP for Next.js Pages Router (#45798) @Grohden
+
+All contributors of this release in alphabetical order: @brijeshb42, @DiegoAndai, @Grohden, @imadx, @Janpot, @Kartik-Murthy, @oliviertassinari, @renovate[bot], @sai6855, @siriwatknp, @vetledv, @ZeeshanTamboli
+
+## 7.0.1
+
+<!-- generated comparing v7.0.0..master -->
+
+_Mar 28, 2025_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@7.0.1`
+
+- Export ThemeProviderProps (#45701) @aarongarciah
+- [Fab] Fix default variant text color when using CSS vars (#45714) @aarongarciah
+- Remove mention of v7 in deprecation messages (#45708) @DiegoAndai
+- [Popover] Allow `null` in `anchorEl` function return type (#45045) @eduter
+- Fix missing CSSProperties/MixinOptions types (#45706) @Janpot
+
+### `@mui/icons-material@7.0.1`
+
+- [code-infra] Fix icon-material type resolution under `moduleResolution: "node"` (#45704) @Janpot
+- Bring back individual icon dts (#45711) @Janpot
+
+### Core
+
+- Improve the release instructions (#45688) @mnajdova
+
+### Docs
+
+- Fix Masonry and Toolpad dark mode demos (#45721) @siriwatknp
+- Update v7 related copy (#45716) @aarongarciah
+- Avoid unwanted undefined in page title (#45718) @aarongarciah
+- Fix joy templates error (#45715) @siriwatknp
+- Rename GitHub icon import (#45709) @micttyoid
+- Fix Safari issue in dark mode (#45696) @mnajdova
+- Fix `Grid`, `GridLegacy`, `Stack`, `Badge`, `Select`, `Autocomplete` demos CSS variables (#45693) @DiegoAndai
+- Add "Material UI v7 is here" to the notifications (#45694) @DiegoAndai
+- Fix `Breadcrumbs`, `List`, `Divider`, and `Typography` dark mode demos (#45692) @siriwatknp
+- Fix Material Icons page in dark mode (#45691) @mnajdova
+
+All contributors of this release in alphabetical order: @aarongarciah, @DiegoAndai, @eduter, @Janpot, @micttyoid, @mnajdova, @siriwatknp
+
 ## 7.0.0
 
 <!-- generated comparing v7.0.0-rc.0..master -->

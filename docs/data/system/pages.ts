@@ -52,7 +52,7 @@ const pages: readonly MuiPage[] = [
       },
       {
         pathname: '/system/migration/migrating-to-v6',
-        title: 'Migrating to v6',
+        title: 'Upgrade to v6',
       },
     ],
   },

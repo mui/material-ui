@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { __unsafe_useEmotionCache } from '@emotion/react';
 import { StyledEngineProvider, GlobalStyles } from '@mui/styled-engine';
 import { createRenderer } from '@mui/internal-test-utils';
 import { expect } from 'chai';
@@ -48,5 +49,30 @@ describe('[Emotion] StyledEngineProvider', () => {
       </StyledEngineProvider>,
     );
     expect(rule).to.equal('@layer theme,base,mui,components,utilities;');
+  });
+
+  it('should reuse the same cache', () => {
+    let upperCache;
+    let innerCache;
+    function Upper() {
+      const cache = __unsafe_useEmotionCache();
+      upperCache = cache;
+      return (
+        <StyledEngineProvider injectFirst>
+          <Inner />
+        </StyledEngineProvider>
+      );
+    }
+    function Inner() {
+      const cache = __unsafe_useEmotionCache();
+      innerCache = cache;
+      return null;
+    }
+    render(
+      <StyledEngineProvider injectFirst>
+        <Upper />
+      </StyledEngineProvider>,
+    );
+    expect(innerCache).to.equal(upperCache);
   });
 });
