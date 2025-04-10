@@ -103,8 +103,8 @@ Finally, in `src/app/layout.tsx`, pass the theme to the `ThemeProvider`:
  export default function RootLayout(props) {
    const { children } = props;
    return (
-     <html lang="en">
-+      <body className={roboto.variable}>
++    <html lang="en" className={roboto.variable}>
+       <body>
           <AppRouterCacheProvider>
 +           <ThemeProvider theme={theme}>
               {children}

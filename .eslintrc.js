@@ -64,7 +64,7 @@ module.exports = /** @type {Config} */ ({
     'plugin:eslint-plugin-import/recommended',
     'plugin:eslint-plugin-import/typescript',
     'eslint-config-airbnb',
-    './eslint/config-airbnb-typescript.js',
+    require.resolve('./eslint/config-airbnb-typescript.js'),
     'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -434,15 +434,6 @@ module.exports = /** @type {Config} */ ({
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
-              {
-                name: '@mui/styles',
-                importNames: ['createStyles'],
-                message: forbidCreateStylesMessage,
-              },
-              {
-                name: '@mui/styles/createStyles',
-                message: forbidCreateStylesMessage,
-              },
             ],
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
@@ -564,7 +555,7 @@ module.exports = /** @type {Config} */ ({
     },
     {
       // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
-      files: ['examples/pigment-css-remix-ts/**/*'],
+      files: ['examples/material-ui-pigment-css-vite-ts/**/*'],
       rules: {
         'react/react-in-jsx-scope': 'off',
       },

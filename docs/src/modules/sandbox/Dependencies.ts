@@ -55,7 +55,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
         return 'latest';
       }
       // #npm-tag-reference
-      return 'next';
+      return 'latest';
     }
     return `https://pkg.pr.new/mui/material-ui/@mui/${packageName}@${commitRef}`;
   }
@@ -102,7 +102,6 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
       '@mui/icons-material': getMuiPackageVersion('icons-material'),
       '@mui/lab': getMuiPackageVersion('lab'),
       '@mui/styled-engine': getMuiPackageVersion('styled-engine'),
-      '@mui/styles': getMuiPackageVersion('styles'),
       '@mui/system': getMuiPackageVersion('system'),
       '@mui/private-theming': getMuiPackageVersion('theming'),
       '@mui/private-classnames': getMuiPackageVersion('classnames'),

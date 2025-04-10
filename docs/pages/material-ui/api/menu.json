@@ -10,7 +10,7 @@
       "type": { "name": "object" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps.list</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slotProps.list</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "onClose": {
       "type": { "name": "func" },
@@ -52,7 +52,7 @@
       "type": { "name": "object" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps.transition</code> prop instead. This prop will be removed in v7. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slotProps.transition</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "variant": {
       "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
@@ -71,7 +71,7 @@
     {
       "name": "paper",
       "description": "The component used for the paper.",
-      "default": "Paper",
+      "default": "PopoverPaper",
       "class": "MuiMenu-paper"
     },
     {
