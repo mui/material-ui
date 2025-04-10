@@ -171,14 +171,6 @@ We'll soon extend this enhanced experience to other key subcomponents, such as t
 
 Dive into our new docs section on [Components usage](/x/react-data-grid/components/usage/).
 
-### Design agnostic core
-
-We understand customization is important to you.
-So with the ultimate goal of being fully customizable, we're taking the first step to allow using the Data Grid component without a single Material UI dependency (for example
-without Emotion), opening the possibility to use the Data Grid with any design system—and this is just the beginning.
-
-Next up, we'll work to provide the best experience for you to build a full-feature Data Grid that fits all your design requirements.
-
 ### No columns overlay
 
 We've added a no-columns overlay to serve as a clear fallback when the Data Grid has no columns to show.
