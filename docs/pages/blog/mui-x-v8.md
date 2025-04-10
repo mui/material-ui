@@ -320,10 +320,10 @@ SSR is supported under two conditions:
 
 ### Refined design and interaction
 
-Charts in MUI X v8 have been improved with a focus on clarity and interactivity.
+Charts in MUI X v8 have been enhanced for greater clarity and interactivity. We’ve refined the default palettes, improved tooltips, and optimized legends display.
 
 <figure>
-  <img width="606" height="300" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy">
+  <img width="630" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy">
   <figcaption>Charts redesigned before/after</figcaption>
 </figure>
 
