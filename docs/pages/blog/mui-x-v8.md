@@ -136,6 +136,11 @@ Learn more about [List view](/x/react-data-grid/list-view/).
 Row spanning has also been promoted to stable, providing a reliable and flexible solution for merging cells across multiple rows.
 This enhancement makes it easier to create complex, multi-row layouts within your Data Grid, allowing you to present your data more effectively.
 
+<figure>
+  <img alt="An example highlighting rows using row-spanning" src="/static/blog/mui-x-v8/row-spanning.png" loading="lazy">
+  <figcaption>An example highlighting rows using row-spanning</figcaption>
+</figure>
+
 Learn how to set up and use [Row spanning](/x/react-data-grid/row-spanning/).
 
 ### Server-side Aggregation and Lazy loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
