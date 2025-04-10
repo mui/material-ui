@@ -88,7 +88,7 @@ export default function ThemeProvider<Theme = DefaultTheme>({
 }: ThemeProviderProps<Theme>) {
   const basicTheme = React.useMemo(() => {
     if (typeof theme === 'function') {
-      return theme;
+      return null;
     }
     const muiTheme = (THEME_ID in theme ? theme[THEME_ID] : theme) as ThemeProviderProps['theme'];
     if (!('colorSchemes' in muiTheme)) {
