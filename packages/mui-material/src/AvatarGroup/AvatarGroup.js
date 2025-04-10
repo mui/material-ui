@@ -108,10 +108,15 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const marginValue =
-    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
-      ? SPACINGS[ownerState.spacing]
-      : -ownerState.spacing || -8;
+  let marginValue;
+
+  if (ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined) {
+    marginValue = SPACINGS[ownerState.spacing];
+  } else if (ownerState.spacing === 0) {
+    marginValue = 0;
+  } else {
+    marginValue = -ownerState.spacing || SPACINGS.medium;
+  }
 
   const externalForwardedProps = {
     slots,
@@ -140,7 +145,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       ref={ref}
       {...other}
       style={{
-        '--AvatarGroup-spacing': marginValue ? `${marginValue}px` : undefined,
+        '--AvatarGroup-spacing': `${marginValue}px`, // marginValue is always defined
         ...other.style,
       }}
     >

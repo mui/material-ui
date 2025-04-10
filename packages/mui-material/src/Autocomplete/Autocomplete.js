@@ -486,6 +486,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    renderValue,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
     slots = {},
@@ -501,7 +502,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getInputLabelProps,
     getPopupIndicatorProps,
     getClearProps,
-    getTagProps,
+    getItemProps,
     getListboxProps,
     getOptionProps,
     value,
@@ -510,7 +511,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     id,
     popupOpen,
     focused,
-    focusedTag,
+    focusedItem,
     anchorEl,
     setAnchorEl,
     inputValue,
@@ -536,7 +537,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionLabel,
     hasClearIcon,
     hasPopupIcon,
-    inputFocused: focusedTag === -1,
+    inputFocused: focusedItem === -1,
     popupOpen,
     size,
   };
@@ -589,29 +590,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   let startAdornment;
 
-  if (multiple && value.length > 0) {
-    const getCustomizedTagProps = (params) => ({
-      className: classes.tag,
-      disabled,
-      ...getTagProps(params),
-    });
+  const getCustomizedItemProps = (params) => ({
+    className: classes.tag,
+    disabled,
+    ...getItemProps(params),
+  });
 
-    if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
-    } else {
-      startAdornment = value.map((option, index) => {
-        const { key, ...customTagProps } = getCustomizedTagProps({ index });
-        return (
-          <Chip
-            key={key}
-            label={getOptionLabel(option)}
-            size={size}
-            {...customTagProps}
-            {...externalForwardedProps.slotProps.chip}
-          />
-        );
-      });
-    }
+  if (renderTags && multiple && value.length > 0) {
+    startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
+  } else if (renderValue && value) {
+    startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
+  } else if (multiple && value.length > 0) {
+    startAdornment = value.map((option, index) => {
+      const { key, ...customItemProps } = getCustomizedItemProps({ index });
+      return (
+        <Chip
+          key={key}
+          label={getOptionLabel(option)}
+          size={size}
+          {...customItemProps}
+          {...externalForwardedProps.slotProps.chip}
+        />
+      );
+    });
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
@@ -1170,7 +1171,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   renderOption: PropTypes.func,
   /**
-   * Render the selected value.
+   * Render the selected value when doing multiple selections.
+   *
+   * @deprecated Use `renderValue` prop instead
    *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
@@ -1178,6 +1181,15 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * Renders the selected value(s) as rich content in the input for both single and multiple selections.
+   *
+   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {function} getItemProps The value item props.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderValue: PropTypes.func,
   /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.
