@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, act, reactMajor } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Input, inputClasses, InputOwnerState } from '@mui/base/Input';
@@ -281,8 +281,8 @@ describe('<Input />', () => {
         );
       }).toErrorDev([
         'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
-        // React 18 Strict Effects run mount effects twice
-        React.version.startsWith('18') &&
+        // React Strict Mode runs mount effects twice
+        reactMajor >= 18 &&
           'MUI: You have provided a `slots.input` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
       ]);
     });
