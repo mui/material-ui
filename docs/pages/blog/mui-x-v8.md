@@ -7,9 +7,21 @@ tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
-<div style="max-width: 692px; width: 100%; height: 285px; overflow: hidden; margin-bottom: 16px;">
+<div id="responsiveImage" style="max-width: 692px; width: 100%; overflow: hidden; margin-bottom: 16px;">
+  <style>
+    @media (max-width: 600px) {
+      #responsiveImage img {
+        height: 180px;
+      }
+    }
+  </style>
+
   <a href="https://github.com/mui/mui-x/releases/tag/v8.0.0">
-    <img src="/static/blog/mui-x-v8/intro.png" alt="MUI X v8 - major stable release" width="2400" height="800" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+    <img
+      src="/static/blog/mui-x-v8/intro.png"
+      alt="MUI X v8 - major stable release"
+      style="width: 100%; object-fit: cover; object-position: center;"
+    />
   </a>
 </div>
 
