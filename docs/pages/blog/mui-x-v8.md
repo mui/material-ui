@@ -54,7 +54,7 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [Accessible DOM structure](#accessible-dom-structure)
   - [Keyboard editing on mobile Pickers](#keyboard-editing-on-mobile-pickers)
 - [Tree View](#tree-view)
-  - [Lazy loading child nodes](#lazy-loading-child-nodes) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Lazy loading children](#lazy-loading-children) [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Automatic selection propagation](#automatic-selection-propagation)
   - [New customization hook](#new-customization-hook)
 - [Charts](#charts)
@@ -228,10 +228,10 @@ Users can now seamlessly input and adjust date and time values directly via on-s
 
 ## Tree View
 
-### Lazy loading child nodes [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+### Lazy loading children [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 We've enhanced the Rich Tree View with a robust lazy loading mechanism for children.
-Now, child nodes are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data.
+Now, children are loaded on demand—reducing initial load times and improving performance when working with extensive hierarchical data.
 This approach ensures a smoother user experience and also minimizes unnecessary network overhead.
 
 <figure>
@@ -245,7 +245,7 @@ Learn how to add [Lazy loading](/x/react-tree-view/rich-tree-view/lazy-loading/)
 
 ### Performance improvements in re-rendering
 
-We've optimized the Tree View to update only the components that need changes, rather than re-rendering all child nodes.
+We've optimized the Tree View to update only the parts that need changes, rather than re-rendering all items.
 With the use of selectors to precisely target nodes for re-rendering, we've achieved a significant performance boost.
 In upcoming releases, we'll make another big step with the introduction of virtualization.
 
