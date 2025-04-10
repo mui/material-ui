@@ -24,8 +24,7 @@ async function getWebpackSizes(webpackEnvironment) {
   const entries = await getWebpackEntries();
 
   const seen = new Set();
-  for (const entry of entries) {
-    const entryName = entry.id;
+  for (const entryName of entries) {
     if (seen.has(entryName)) {
       throw new Error(`Duplicate entry name found: ${entryName}`);
     }

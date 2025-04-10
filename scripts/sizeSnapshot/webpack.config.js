@@ -10,10 +10,8 @@ const workspaceRoot = path.join(__dirname, '..', '..');
 
 /**
  * @typedef {object} WebpackEntry
- * @property {string} id
  * @property {string} import
  * @property {string} [importName]
- * @property {string[]} [conditionNames]
  *
  * @typedef {object} Environment
  * @property {boolean} analyze
@@ -29,11 +27,7 @@ async function getWebpackEntries() {
   const materialComponents = (await glob(path.join(materialPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
-
-      return {
-        id: componentName,
-        import: `@mui/material/${componentName}`,
-      };
+      return `@mui/material/${componentName}`;
     },
   );
 
@@ -41,77 +35,26 @@ async function getWebpackEntries() {
   const labComponents = (await glob(path.join(labPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
-
-      return {
-        id: componentName,
-        import: `@mui/lab/${componentName}`,
-      };
+      return `@mui/lab/${componentName}`;
     },
   );
 
   return [
-    {
-      // WARNING: Changing the name will break tracking of bundle size over time
-      // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
-      id: '@mui/material',
-      import: '@mui/material',
-    },
+    '@mui/material',
     ...materialComponents,
-    {
-      id: '@mui/lab',
-      import: '@mui/lab',
-    },
+    '@mui/lab',
     ...labComponents,
-    {
-      id: '@mui/styles',
-      import: '@mui/styles',
-    },
-    {
-      id: '@mui/private-theming',
-      import: '@mui/private-theming',
-    },
-    {
-      id: '@mui/system',
-      import: '@mui/system',
-    },
-    {
-      id: 'createBox',
-      import: '@mui/system/createBox',
-    },
-    {
-      id: 'createStyled',
-      import: '@mui/system/createStyled',
-    },
-    {
-      id: '@mui/styles/createTheme',
-      importName: 'createTheme',
-      import: '@mui/material/styles',
-    },
-    {
-      id: 'colorManipulator',
-      import: '@mui/system/colorManipulator',
-    },
-    {
-      id: 'useAutocomplete',
-      import: '@mui/lab/useAutocomplete',
-    },
-    {
-      id: '@mui/material/useMediaQuery',
-      import: '@mui/material/useMediaQuery',
-    },
-    {
-      id: '@mui/material/useScrollTrigger',
-      import: '@mui/material/useScrollTrigger',
-    },
-    {
-      id: '@mui/utils',
-      import: '@mui/utils',
-    },
-    {
-      id: '@mui/material:mui-modern',
-      import: '@mui/material',
-      conditionNames: ['mui-modern', '...'],
-    },
+    '@mui/styles',
+    '@mui/private-theming',
+    '@mui/system',
+    '@mui/system/createBox',
+    '@mui/system/createStyled',
+    '@mui/material/styles#createTheme',
+    '@mui/system/colorManipulator',
+    '@mui/lab/useAutocomplete',
+    '@mui/material/useMediaQuery',
+    '@mui/material/useScrollTrigger',
+    '@mui/utils',
   ];
 }
 
@@ -125,7 +68,10 @@ function createWebpackConfig(entry, environment) {
   const analyzerMode = environment.analyze ? 'static' : 'disabled';
   const concatenateModules = !environment.accurateBundles;
 
-  const importNames = entry.importName ? `{ ${entry.importName} as foo }` : '* as foo';
+  const entryName = entry;
+  const [importSrc, importName] = entryName.split('#');
+
+  const importSpec = importName ? `{ ${importName} as foo }` : '* as foo';
 
   /**
    * @type {import('webpack').Configuration}
@@ -140,11 +86,16 @@ function createWebpackConfig(entry, environment) {
       minimizer: [
         new TerserPlugin({
           test: /\.m?js(\?.*)?$/i,
+          // Avoid creating LICENSE.txt files for each module
+          // See https://github.com/webpack-contrib/terser-webpack-plugin#remove-comments
+          terserOptions: {
+            format: {
+              comments: false,
+            },
+          },
+          extractComments: false,
         }),
       ],
-    },
-    resolve: {
-      ...(entry.conditionNames ? { conditionNames: entry.conditionNames } : {}),
     },
     output: {
       filename: '[name].js',
@@ -157,7 +108,9 @@ function createWebpackConfig(entry, environment) {
       path: path.join(__dirname, 'build'),
     },
     plugins: [
-      new CompressionPlugin(),
+      new CompressionPlugin({
+        filename: '[path][base][fragment].gz',
+      }),
       new BundleAnalyzerPlugin({
         analyzerMode,
         // We create a report for each bundle so around 120 reports.
@@ -165,7 +118,7 @@ function createWebpackConfig(entry, environment) {
         // If opened with `webpack --config . --analyze` it'll still open one new tab though.
         openAnalyzer: false,
         // '[name].html' not supported: https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/12
-        reportFilename: `${entry.id}.html`,
+        reportFilename: `${importSrc}.html`,
       }),
     ],
     // A context to the current dir, which has a node_modules folder with workspace dependencies
@@ -174,7 +127,7 @@ function createWebpackConfig(entry, environment) {
       // This format is a data: url combined with inline matchResource to obtain a virtual entry.
       // See https://github.com/webpack/webpack/issues/6437#issuecomment-874466638
       // See https://webpack.js.org/api/loaders/#inline-matchresource
-      [entry.id]: `./index.js!=!data:text/javascript,import ${importNames} from '${entry.import}';console.log(foo);`,
+      [entryName]: `./index.js!=!data:text/javascript,import ${importSpec} from '${importSrc}';console.log(foo);`,
     },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203
