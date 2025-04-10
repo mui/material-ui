@@ -120,14 +120,14 @@ function Data({
         borderColor: 'divider',
         background:
           isFirstColumn || isLastColumn
-            ? `radial-gradient(white 1.8px, transparent 1.8px) 0% 50% / 22px 22px repeat,
-              linear-gradient(180deg, ${(theme.vars || theme).palette.primary[50]} 10%, #FFF 100%)`
+            ? `radial-gradient(#ebf5ff 1.8px, transparent 1.8px) 0% 50% / 22px 22px repeat,
+              linear-gradient(180deg, ${(theme.vars || theme).palette.primary[50]} 5%, #FFF 20%)`
             : 'background.paper',
         ...theme.applyDarkStyles({
           background:
             isFirstColumn || isLastColumn
-              ? `radial-gradient(#15181A 1.8px, transparent 1.8px) 0% 50% / 22px 22px repeat,
-                linear-gradient(180deg, #131C23 10%, #15181A 100%)`
+              ? `radial-gradient(#131C23 1.8px, transparent 1.8px) 0% 50% / 22px 22px repeat,
+                linear-gradient(180deg, #131C23 5%, #15181A 20%)`
               : 'background.paper',
         }),
         gap: 2,
