@@ -1,13 +1,19 @@
-export default function requirePropFactory(componentNameInError, Component) {
+import * as React from 'react';
+import PropTypes from 'prop-types';
+
+export default function requirePropFactory(
+  componentNameInError: string,
+  Component?: React.ComponentType<unknown>,
+): (requiredProp: string) => PropTypes.Validator<any> {
   if (process.env.NODE_ENV === 'production') {
-    return () => null;
+    return () => () => null;
   }
 
   // eslint-disable-next-line react/forbid-foreign-prop-types
   const prevPropTypes = Component ? { ...Component.propTypes } : null;
 
   const requireProp =
-    (requiredProp) =>
+    (requiredProp: string): PropTypes.Validator<any> =>
     (props, propName, componentName, location, propFullName, ...args) => {
       const propFullNameSafe = propFullName || propName;
 
