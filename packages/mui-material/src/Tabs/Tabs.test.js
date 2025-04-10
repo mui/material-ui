@@ -372,11 +372,11 @@ describe('<Tabs />', () => {
           );
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
+          // React Strict Mode runs mount effects twice
+          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          reactMajor === 18 && 'You can provide one of the following values: 1, 3',
+          // React Strict Mode runs mount effects twice
+          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
         ]);
@@ -1380,6 +1380,30 @@ describe('<Tabs />', () => {
         '0',
         '-1',
       ]);
+    });
+
+    ['Alt', 'Shift', 'Ctrl', 'Meta'].forEach((modifierKey) => {
+      it(`does not navigate when ${modifierKey} is pressed with ArrowLeft`, async () => {
+        const { getAllByRole } = render(
+          <Tabs value={1}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+
+        const [firstTab, secondTab] = getAllByRole('tab');
+        await act(async () => {
+          secondTab.focus();
+        });
+
+        fireEvent.keyDown(secondTab, {
+          key: 'ArrowLeft',
+          [`${modifierKey.toLowerCase()}Key`]: true,
+        });
+
+        expect(secondTab).toHaveFocus();
+        expect(firstTab).not.toHaveFocus();
+      });
     });
   });
 
