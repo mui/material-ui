@@ -150,7 +150,7 @@ The Data Source now supports advanced features such as server-side aggregation, 
 
 Explore all your options when handling [Server-side data](/x/react-data-grid/server-side-data/).
 
-### Data Source with Support for Editing
+### Data Source with support for editing
 
 Our Data Source now includes an optional `updateRow()` method to facilitate server-side data updates. This method returns a Promise that resolves when the row is successfully updated. On success, the grid updates the row and automatically clears the client-side cache to ensure that no outdated data is displayed. If an error occurs, the `onDataSourceError` callback is triggered with an error object containing the update parameters, as detailed in the Error Handling section.
 
