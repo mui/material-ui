@@ -4,6 +4,10 @@ import CardActionArea, { cardActionAreaClasses as classes } from '@mui/material/
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 
+const CustomButtonBase = React.forwardRef(({ focusVisibleClassName, ...props }, ref) => {
+  return <ButtonBase {...props} ref={ref} />;
+});
+
 describe('<CardActionArea />', () => {
   const { render } = createRenderer();
 
@@ -19,6 +23,7 @@ describe('<CardActionArea />', () => {
     slots: {
       root: {
         expectedClassName: classes.root,
+        testWithElement: CustomButtonBase,
       },
       focusHighlight: {
         expectedClassName: classes.focusHighlight,
