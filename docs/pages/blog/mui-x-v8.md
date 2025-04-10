@@ -103,6 +103,8 @@ For example, if you're working with an Olympics medal dataset, you can simply as
   <figcaption>An answer from the Data Grid</figcaption>
 </figure>
 
+Fully customize your own UI for direct input, or use the AI Assistant panel—featuring question history, detailed view of the applied changes, and conversation threads.
+
 <figure>
   <video autoplay muted loop playsinline width="1180" height="720" controls style="border: 0;">
     <source src="/static/blog/mui-x-v8/ai-assistant.mp4" type="video/mp4">
