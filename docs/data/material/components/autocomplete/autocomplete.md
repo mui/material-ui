@@ -373,7 +373,7 @@ The example below uses [react-window](https://github.com/bvaughn/react-window) t
 
 ### With TanStack Virtual
 
-The list is virtualized thanks to [@tanstack/react-virtual](https://github.com/tanstack/virtual).
+The example below uses [TanStack Virtual](https://github.com/tanstack/virtual) to virtualize the list of options.
 
 {{"demo": "VirtualizeWithTanStackVirtual.js"}}
 
