@@ -16,5 +16,13 @@ describe('<CardActionArea />', () => {
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      focusHighlight: {
+        expectedClassName: classes.focusHighlight,
+      },
+    },
   }));
 });
