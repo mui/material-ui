@@ -42,6 +42,7 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [List view](#list-view)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Row spanning](#row-spanning)
   - [Server-side Aggregation and Lazy loading](#server-side-aggregation-and-lazy-loading)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Data source with support for editing](#data-source-with-support-for-editing)
   - [Data source on the Community Plan](#data-source-on-the-community-plan)
   - [New Toolbar](#new-toolbar)
   - [Design agnostic core](#design-agnostic-core)
@@ -148,6 +149,25 @@ Learn how to set up and use [Row spanning](/x/react-data-grid/row-spanning/).
 The Data Source now supports advanced features such as server-side aggregation, on-demand data fetching for infinite scrolling, and lazy loading.
 
 Explore all your options when handling [Server-side data](/x/react-data-grid/server-side-data/).
+
+### Data Source with Support for Editing
+
+Our Data Source now includes an optional `updateRow()` method to facilitate server-side data updates. This method returns a Promise that resolves when the row is successfully updated. On success, the grid updates the row and automatically clears the client-side cache to ensure that no outdated data is displayed. If an error occurs, the `onDataSourceError` callback is triggered with an error object containing the update parameters, as detailed in the Error Handling section.
+
+Here's an example of a Data Source configuration with editing support:
+
+```js
+const dataSource: GridDataSource = {
+  getRows: async (params: GridGetRowsParams) => {
+    // Fetch rows from the server
+  },
+  updateRow: async (params: GridUpdateRowParams) => {
+    // Update row on the server
+  },
+}
+```
+
+For more details, please refer to the [Updating Data](/x/react-data-grid/server-side-data/#updating-data) page.
 
 ### Data source on the Community Plan
 
