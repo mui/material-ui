@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion, Simplify } from '@mui/types';
-import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { BadgeClasses } from './badgeClasses';
-import { StepIconProps } from '../StepIcon';
-import { StepLabelSlots } from '../StepLabel';
 
 export interface BadgePropsVariantOverrides {}
 export interface BadgePropsColorOverrides {}
