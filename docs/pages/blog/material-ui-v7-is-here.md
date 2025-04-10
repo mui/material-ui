@@ -1,7 +1,7 @@
 ---
 title: Material UI v7 is here 🚀
 description: Material UI v7 is now stable, improving integration with modern tools and consistency across the library.
-date: 2025-03-25T12:00:00.000Z
+date: 2025-03-26T12:00:00.000Z
 authors:
   ['aarongarciah', 'brijeshb42', 'diegoandai', 'janpot', 'mnajdova', 'siriwatknp']
 tags: ['Material UI', 'Product']
@@ -15,7 +15,7 @@ It is designed to be straightforward to upgrade to.
 ## Improved ESM support
 
 The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
-This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
 
 ## Completed the slot pattern implementation
 

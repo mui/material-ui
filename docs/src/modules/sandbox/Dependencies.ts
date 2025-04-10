@@ -55,7 +55,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
         return 'latest';
       }
       // #npm-tag-reference
-      return 'next';
+      return 'latest';
     }
     const shortSha = commitRef.slice(0, 8);
     return `https://pkg.csb.dev/mui/material-ui/commit/${shortSha}/@mui/${packageName}`;

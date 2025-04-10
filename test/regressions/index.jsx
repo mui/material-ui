@@ -100,6 +100,7 @@ const importDemos = import.meta.glob(
     '!docs/data/material/components/grid-legacy/SpacingGrid', // Needs interaction
     '!docs/data/material/components/image-list', // Image don't load
     '!docs/data/material/components/masonry/ImageMasonry', // Image don't load
+    '!docs/data/material/components/masonry/Sequential', // Flaky
     '!docs/data/material/components/material-icons/SearchIcons',
     '!docs/data/material/components/menus', // Need interaction
     '!docs/data/material/components/modal/BasicModal', // Needs interaction

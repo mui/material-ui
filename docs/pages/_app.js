@@ -6,10 +6,10 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { LicenseInfo } from '@mui/x-license';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
+import materialPkgJson from '@mui/material/package.json';
+import joyPkgJson from '@mui/joy/package.json';
+import systemPkgJson from '@mui/system/package.json';
+import basePkgJson from '@mui/base/package.json';
 import generalDocsPages from 'docs/data/docs/pages';
 import basePages from 'docs/data/base/pages';
 import docsInfraPages from 'docs/data/docs-infra/pages';
@@ -178,7 +178,10 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${materialPkgJson.version}`, current: true },
-          { text: `v6`, href: `https://mui.com${languagePrefix}/material-ui/getting-started/` },
+          {
+            text: 'v6',
+            href: `https://v6.mui.com${languagePrefix}/material-ui/getting-started/`,
+          },
           {
             text: 'v5',
             href: `https://v5.mui.com${languagePrefix}/getting-started/installation/`,
@@ -215,7 +218,7 @@ function AppWrapper(props) {
         wordmarkSvg: muiSvgWordmarkString,
         versions: [
           { text: `v${systemPkgJson.version}`, current: true },
-          { text: 'v6', href: `https://mui.com${languagePrefix}/system/getting-started/` },
+          { text: 'v6', href: `https://v6.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v5', href: `https://v5.mui.com${languagePrefix}/system/getting-started/` },
           { text: 'v4', href: `https://v4.mui.com${languagePrefix}/system/basics/` },
           {

@@ -313,6 +313,14 @@ describe('useAutocomplete', () => {
         aboveErrorTestComponentMessage,
         aboveErrorTestComponentMessage,
       ],
+      19: [
+        muiErrorMessage,
+        muiErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+        nodeErrorMessage,
+      ],
     };
 
     const devErrorMessages = errorMessagesByReactMajor[reactMajor] || defaultErrorMessages;
@@ -404,6 +412,27 @@ describe('useAutocomplete', () => {
       function Test() {
         const { getInputProps } = useAutocomplete({
           defaultValue,
+          onInputChange,
+          options: ['foo', 'bar'],
+        });
+
+        return <input {...getInputProps()} />;
+      }
+
+      render(<Test />);
+      expect(onInputChange.callCount).to.equal(0);
+    });
+  });
+
+  describe('prop: value', () => {
+    it('should not trigger onInputChange when value is provided', () => {
+      const onInputChange = spy();
+
+      function Test() {
+        const [value, setValue] = React.useState('foo');
+        const { getInputProps } = useAutocomplete({
+          value,
+          onChange: (event, valueParam) => setValue(valueParam),
           onInputChange,
           options: ['foo', 'bar'],
         });
