@@ -39,7 +39,8 @@ export type CardActionAreaSlotsAndSlotProps = CreateSlotsAndSlotProps<
   }
 >;
 
-export interface CardActionAreaOwnerState extends Omit<CardActionAreaProps, 'slots' | 'slotProps'> {}
+export interface CardActionAreaOwnerState
+  extends Omit<CardActionAreaProps, 'slots' | 'slotProps'> {}
 
 export interface CardActionAreaOwnProps {
   /**
