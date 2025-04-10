@@ -362,7 +362,7 @@ The list is virtualized thanks to [react-window](https://github.com/bvaughn/reac
 
 The list is virtualized thanks to [@tanstack/react-virtual](https://github.com/tanstack/virtual).
 
-{{"demo": "VirtualizeWithTanstackVirtual.js"}}
+{{"demo": "VirtualizeWithTanStackVirtual.js"}}
 
 ## Events
 

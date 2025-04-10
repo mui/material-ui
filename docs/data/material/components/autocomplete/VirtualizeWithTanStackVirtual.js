@@ -66,7 +66,7 @@ const ListboxComponent = createVirtualizedAutocompleteListboxComponent({
   overscan: 5,
 });
 
-export default function VirtualizeWithTanstackVirtual() {
+export default function VirtualizeWithTanStackVirtual() {
   return (
     <Autocomplete
       sx={{ width: 300 }}
