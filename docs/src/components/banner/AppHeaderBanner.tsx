@@ -54,9 +54,34 @@ function getDefaultHiringMessage() {
   );
 }
 
+function getMaterialUIv7Message() {
+  return (
+    <React.Fragment>
+      🎉&#160;Material UI v7 is out now! Check out the&#160;
+      <Link
+        href="https://mui.com/blog/material-ui-v7-is-here/"
+        target="_blank"
+        underline="always"
+        sx={linkStyleOverrides}
+      >
+        announcement blog post. →
+      </Link>
+    </React.Fragment>
+  );
+}
+
 export default function AppHeaderBanner() {
-  const showSurveyMessage = true;
-  const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
+  const showSurveyMessage = false;
+  const showMaterialUIv7Message = true;
+  let bannerMessage = getDefaultHiringMessage();
+
+  if (showMaterialUIv7Message) {
+    bannerMessage = getMaterialUIv7Message();
+  }
+
+  if (showSurveyMessage) {
+    bannerMessage = getSurveyMessage();
+  }
 
   return FEATURE_TOGGLE.enable_website_banner ? (
     <Typography
