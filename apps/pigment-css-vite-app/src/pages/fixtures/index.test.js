@@ -86,9 +86,6 @@ async function main() {
     });
   }
 
-  // prepare screenshots
-  await fse.emptyDir(screenshotDir);
-
   describe('visual regressions', () => {
     beforeEach(async () => {
       await page.evaluate(() => {
