@@ -11,3 +11,12 @@ function classesTest() {
 
 <Badge anchorOrigin={{ vertical: 'bottom' }} />;
 <Badge anchorOrigin={{ horizontal: 'left' }} />;
+<Badge
+  slotProps={{
+    badge: {
+      sx: {
+        color: 'red',
+      },
+    },
+  }}
+/>;
