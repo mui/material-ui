@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {
   CssVarsProvider,
@@ -14,12 +14,14 @@ import {
 describe('[Material UI] ThemeProviderWithVars', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
-  const storage = {};
+  let storage = {};
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
+    // clear the localstorage
+    storage = {};
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
         setItem: (key, value) => {
@@ -438,5 +440,114 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     fireEvent.click(screen.getByRole('button'));
 
     expect(screen.queryByTestId('theme-changed')).to.equal(null);
+  });
+
+  it('theme does not change with CSS variables', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: { colorSchemeSelector: 'class' },
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme}>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+  });
+
+  it('palette mode should change if not using CSS variables', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode} {theme.palette.primary.main}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: false,
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme}>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text(
+      `${reactMajor >= 19 ? 2 : 1} light ${createTheme().palette.primary.main}`,
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text(
+      `${reactMajor >= 19 ? 3 : 2} dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
+    );
+  });
+
+  it('`forceThemeRerender` recalculates the theme', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: { colorSchemeSelector: 'class' },
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme} forceThemeRerender>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 3 : 2} dark`);
   });
 });

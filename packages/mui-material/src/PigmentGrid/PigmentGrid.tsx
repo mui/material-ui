@@ -116,13 +116,13 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
     ],
   };
 
-  return composeClasses(slots, (slot: string) => generateUtilityClass('MuiGrid2', slot), {});
+  return composeClasses(slots, (slot: string) => generateUtilityClass('MuiGrid', slot), {});
 };
 /**
  *
  * Demos:
  *
- * - [Grid version 2](https://mui.com/material-ui/react-grid2/)
+ * - [Grid](https://mui.com/material-ui/react-grid/)
  *
  * API:
  *

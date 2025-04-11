@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { FocusTrap } from '@mui/base/FocusTrap';
+import FocusTrap from '@mui/material/Unstable_TrapFocus';
 
-export default function BaseFocusTrap() {
+export default function OpenFocusTrap() {
   return (
     <React.Fragment>
       <button type="button" autoFocus data-testid="initial-focus">

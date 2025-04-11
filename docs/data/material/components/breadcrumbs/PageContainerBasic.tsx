@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, createTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
-import { PageContainer, PageContainerToolbar } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid2';
+import {
+  PageContainer,
+  PageHeader,
+  PageHeaderToolbar,
+} from '@toolpad/core/PageContainer';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -11,9 +15,10 @@ import PrintIcon from '@mui/icons-material/Print';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const NAVIGATION: Navigation = [
+  { segment: 'inbox', title: 'Inbox' },
   {
-    segment: 'orders',
-    title: 'Orders',
+    segment: 'inbox/all',
+    title: 'All',
     icon: <DashboardIcon />,
   },
 ];
@@ -33,15 +38,15 @@ function useDemoRouter(initialPath: string): Router {
 }
 
 const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
+  backgroundColor: (theme.vars || theme).palette.action.hover,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
   height,
   content: '" "',
 }));
 
-function PageToolbar() {
+function CustomPageToolbar() {
   return (
-    <PageContainerToolbar>
+    <PageHeaderToolbar>
       <Stack direction="row" spacing={1} alignItems="center">
         <Button
           variant="outlined"
@@ -60,14 +65,21 @@ function PageToolbar() {
           Print
         </Button>
       </Stack>
-    </PageContainerToolbar>
+    </PageHeaderToolbar>
   );
 }
 
+function CustomPageHeader() {
+  return <PageHeader slots={{ toolbar: CustomPageToolbar }} />;
+}
+
+const demoTheme = createTheme({
+  colorSchemes: { light: true, dark: true },
+});
+
 export default function PageContainerBasic(props: any) {
   const { window } = props;
-  const router = useDemoRouter('/orders');
-  const theme = useTheme();
+  const router = useDemoRouter('/inbox/all');
   // Remove this const when copying and pasting into your project.
   const demoWindow = window ? window() : undefined;
 
@@ -75,7 +87,7 @@ export default function PageContainerBasic(props: any) {
     <AppProvider
       navigation={NAVIGATION}
       router={router}
-      theme={theme}
+      theme={demoTheme}
       window={demoWindow}
       branding={{
         title: 'ACME Inc.',
@@ -84,7 +96,7 @@ export default function PageContainerBasic(props: any) {
       <Paper sx={{ p: 2, width: '100%' }}>
         <PageContainer
           slots={{
-            toolbar: PageToolbar,
+            header: CustomPageHeader,
           }}
         >
           <Grid container spacing={1}>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { PartiallyRequired } from '@mui/types';
 
 export interface CreateFilterOptionsConfig<Value> {
   ignoreAccents?: boolean;
@@ -178,7 +179,7 @@ export interface UseAutocompleteProps<
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy?: (option: Value) => string;
@@ -245,7 +246,7 @@ export interface UseAutocompleteProps<
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {Value} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
+   * @param {string} reason Can be: `"keyboard"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange?: (
     event: React.SyntheticEvent,
@@ -311,7 +312,7 @@ export interface UseAutocompleteParameters<
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo> {}
 
-export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto' | 'touch';
+export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'touch';
 
 export type AutocompleteChangeReason =
   | 'createOption'
@@ -337,30 +338,45 @@ export type AutocompleteInputChangeReason =
   | 'selectOption'
   | 'removeOption';
 
+export type AutocompleteGetItemProps<Multiple extends boolean | undefined> = Multiple extends true
+  ? (args: { index: number }) => {
+      key: number;
+      'data-item-index': number;
+      tabIndex: -1;
+      onDelete: (event: any) => void;
+    }
+  : (args?: { index?: number }) => {
+      'data-item-index': number;
+      tabIndex: -1;
+      onDelete: (event: any) => void;
+    };
+
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
   'data-tag-index': number;
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
-/**
- *
- * Demos:
- *
- * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
- *
- * API:
- *
- * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
- */
+
 export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
 >(
-  props: UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
-): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo>;
+  props: PartiallyRequired<
+    UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>,
+    'groupBy'
+  >,
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, true>;
+export function useAutocomplete<
+  Value,
+  Multiple extends boolean | undefined = false,
+  DisableClearable extends boolean | undefined = false,
+  FreeSolo extends boolean | undefined = false,
+>(
+  props: Omit<UseAutocompleteProps<Value, Multiple, DisableClearable, FreeSolo>, 'groupBy'>,
+): UseAutocompleteReturnValue<Value, Multiple, DisableClearable, FreeSolo, false>;
 
 export interface UseAutocompleteRenderedOption<Value> {
   option: Value;
@@ -372,6 +388,7 @@ export interface UseAutocompleteReturnValue<
   Multiple extends boolean | undefined = false,
   DisableClearable extends boolean | undefined = false,
   FreeSolo extends boolean | undefined = false,
+  HasGroupBy extends boolean = false,
 > {
   /**
    * Resolver for the root slot's props.
@@ -397,11 +414,17 @@ export interface UseAutocompleteReturnValue<
    */
   getClearProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
+   * An item props getter
+   */
+  getItemProps: AutocompleteGetItemProps<Multiple>;
+  /**
    * Resolver for the popup icon's props.
    * @returns props that should be spread on the popup icon
    */
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
+   * @deprecated Use `getItemProps` instead
+   *
    * A tag props getter.
    */
   getTagProps: AutocompleteGetTagProps;
@@ -456,13 +479,21 @@ export interface UseAutocompleteReturnValue<
    */
   setAnchorEl: () => void;
   /**
+   * Index of the focused item for the component.
+   */
+  focusedItem: number;
+  /**
+   * @deprecated Use `focusedItem` instead
+   *
    * Index of the focused tag for the component.
    */
   focusedTag: number;
   /**
-   * The options to render. It's either `Value[]` or `AutocompleteGroupedOption<Value>[]` if the groupBy prop is provided.
+   * The options to render.
+   * - If `groupBy` is provided, the options are grouped and represented as `AutocompleteGroupedOption<Value>[]`.
+   * - Otherwise, the options are represented as a flat array of `Value[]`.
    */
-  groupedOptions: Value[] | Array<AutocompleteGroupedOption<Value>>;
+  groupedOptions: HasGroupBy extends true ? AutocompleteGroupedOption<Value>[] : Value[];
 }
 
 export default useAutocomplete;

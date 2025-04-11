@@ -497,7 +497,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ref={handleDisplayRef}
         tabIndex={tabIndex}
         role="combobox"
-        aria-controls={listboxId}
+        aria-controls={open ? listboxId : undefined}
         aria-disabled={disabled ? 'true' : undefined}
         aria-expanded={open ? 'true' : 'false'}
         aria-haspopup="listbox"
@@ -556,16 +556,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           horizontal: 'center',
         }}
         {...MenuProps}
-        MenuListProps={{
-          'aria-labelledby': labelId,
-          role: 'listbox',
-          'aria-multiselectable': multiple ? 'true' : undefined,
-          disableListWrap: true,
-          id: listboxId,
-          ...MenuProps.MenuListProps,
-        }}
         slotProps={{
           ...MenuProps.slotProps,
+          list: {
+            'aria-labelledby': labelId,
+            role: 'listbox',
+            'aria-multiselectable': multiple ? 'true' : undefined,
+            disableListWrap: true,
+            id: listboxId,
+            ...MenuProps.MenuListProps,
+          },
           paper: {
             ...paperProps,
             style: {

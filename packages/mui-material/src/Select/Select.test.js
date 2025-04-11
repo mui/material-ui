@@ -380,7 +380,7 @@ describe('<Select />', () => {
 
         let expectedOccurrences = 2;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 3;
         }
 
@@ -515,6 +515,11 @@ describe('<Select />', () => {
       const listboxId = getByRole('listbox').id;
 
       expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-controls', listboxId);
+    });
+
+    it('does not set aria-controls when closed', () => {
+      const { getByRole } = render(<Select open={false} value="" />);
+      expect(getByRole('combobox', { hidden: true })).to.not.have.attribute('aria-controls');
     });
 
     specify('the listbox is focusable', async () => {
@@ -1757,6 +1762,21 @@ describe('<Select />', () => {
       expect(selectRef).to.deep.equal({ current: { refToInput: true } });
     });
 
+    it('should have root class', () => {
+      const { container } = render(
+        <Select value={10}>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      expect(container.querySelector(`.${classes.root}`)).not.to.equal(null);
+    });
+
     it('should merge the class names', () => {
       const { getByTestId } = render(
         <Select
@@ -1781,5 +1801,23 @@ describe('<Select />', () => {
     fireEvent.click(getByTestId('test-element'));
 
     expect(getByRole('combobox')).not.toHaveFocus();
+  });
+
+  it('outlined icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" />);
+    expect(container.querySelector('.MuiSelect-iconOutlined')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-outlined ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('standard icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" variant="standard" />);
+    expect(container.querySelector('.MuiSelect-iconStandard')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-standard ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('filled icon should be selected from below css selectors', () => {
+    const { container } = render(<Select value="" variant="filled" />);
+    expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
+    expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
   });
 });

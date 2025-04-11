@@ -26,23 +26,6 @@ async function getWebpackEntries() {
     },
   );
 
-  const corePackagePath = path.join(workspaceRoot, 'packages/mui-base/build');
-  const baseComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
-    (componentPath) => {
-      const componentName = path.basename(path.dirname(componentPath));
-      let entryName = componentName;
-
-      if (['Popper'].includes(componentName)) {
-        entryName = `@material-ui/core/${componentName}`;
-      }
-
-      return {
-        id: entryName,
-        import: `@mui/base/${componentName}`,
-      };
-    },
-  );
-
   const labPackagePath = path.join(workspaceRoot, 'packages/mui-lab/build');
   const labComponents = (await glob(path.join(labPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
@@ -122,11 +105,6 @@ async function getWebpackEntries() {
       import: '@mui/material/useScrollTrigger',
     },
     {
-      id: '@material-ui/unstyled',
-      import: '@mui/base',
-    },
-    ...baseComponents,
-    {
       id: '@material-ui/utils',
       import: '@mui/utils',
     },
@@ -176,11 +154,6 @@ function createWebpackConfig(entry, environment) {
         // type: 'module',
       },
       path: path.join(__dirname, 'build'),
-    },
-    resolve: {
-      alias: {
-        '@mui/utils': '@mui/utils/esm',
-      },
     },
     plugins: [
       new CompressionPlugin(),

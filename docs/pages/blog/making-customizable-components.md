@@ -24,7 +24,7 @@ Feel free to skip this section and move on to [Logic modification](#logic-modifi
 ### Good old CSS
 
 Let's start with the easiest part: modifying the style.
-This will necessarily involve CSS—especially the notion of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity), which says that if an element is targeted by two CSS selectors, the browser will apply the more specific one.
+This will necessarily involve CSS—especially the notion of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Specificity), which says that if an element is targeted by two CSS selectors, the browser will apply the more specific one.
 Usually this means that the selector with more classes applied to it is more specific and therefore takes precedence.
 
 For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
@@ -307,8 +307,8 @@ In our last two annual [Developer Surveys](/blog/2021-developer-survey-results/)
 
 Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize Material UI's components to suit your specific needs.
 
-[Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
+[Material UI](https://mui.com/material-ui/getting-started/) and [Joy UI](https://mui.com/joy-ui/getting-started/) are designed to be both beautiful and flexible right out of the box, while [Base UI](https://v6.mui.com/base-ui/getting-started/) gives you the most freedom to implement your own custom styling solution.
 [MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
 
-Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.
+Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/quickstart/) today.
 And be sure to let us know what you think about the customization experience!

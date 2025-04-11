@@ -64,7 +64,7 @@ export interface ConformanceOptions {
   testStateOverrides?: { prop?: string; value?: any; styleKey: string };
   testCustomVariant?: boolean;
   testVariantProps?: object;
-  testLegacyComponentsProp?: boolean;
+  testLegacyComponentsProp?: boolean | string[];
   slots?: Record<string, SlotTestingOptions>;
   ThemeProvider?: React.ElementType;
   /**
@@ -386,8 +386,11 @@ function testSlotsProp(
       });
     }
 
-    // For testing Material UI components v5, and v6. Likely to be removed in v7.
-    if (testLegacyComponentsProp) {
+    // For testing Material UI components v5, and v6. Likely to be removed in a future major release.
+    if (
+      testLegacyComponentsProp === true ||
+      (Array.isArray(testLegacyComponentsProp) && testLegacyComponentsProp.includes(slotName))
+    ) {
       it(`allows overriding the ${slotName} slot with a component using the components.${capitalize(
         slotName,
       )} prop`, async () => {
@@ -541,7 +544,10 @@ function testSlotPropsProp(
       });
     }
 
-    if (testLegacyComponentsProp) {
+    if (
+      testLegacyComponentsProp === true ||
+      (Array.isArray(testLegacyComponentsProp) && testLegacyComponentsProp.includes(slotName))
+    ) {
       it(`sets custom properties on the ${slotName} slot's element with the componentsProps.${slotName} prop`, async () => {
         const componentsProps = {
           [slotName]: {
@@ -638,7 +644,7 @@ function testSlotPropsCallbackWithPropsAsOwnerState(
       const { queryByTestId } = await render(
         React.cloneElement(element, { slotProps, className: 'custom' }),
       );
-      const slotComponent = queryByTestId('custom');
+      const slotComponent = queryByTestId('custom', { exact: false });
       expect(slotComponent).not.to.equal(null);
     });
   });

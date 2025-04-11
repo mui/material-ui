@@ -134,7 +134,7 @@ function NewStartScreen() {
     },
     {
       category: {
-        name: 'Base UI',
+        name: 'MUI Base',
       },
       items: [
         {
@@ -270,7 +270,7 @@ function NewStartScreen() {
 const productNameProductId = {
   'material-ui': 'Material UI',
   'joy-ui': 'Joy UI',
-  'base-ui': 'Base UI',
+  'base-ui': 'MUI Base',
   x: 'MUI X',
   system: 'MUI System',
   toolpad: 'Toolpad',
@@ -335,6 +335,7 @@ export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
+    { layer: 'docsearch' },
   );
   const FADE_DURATION = 120; // ms
   const t = useTranslate();
