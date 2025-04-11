@@ -35,6 +35,14 @@ describe('<Badge />', () => {
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
       testVariantProps: { color: 'secondary', variant: 'dot' },
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+        },
+        badge: {
+          expectedClassName: classes.badge,
+        },
+      },
     }),
   );
 
