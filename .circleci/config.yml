@@ -78,7 +78,7 @@ commands:
           steps:
             - run:
                 name: Install pnpm package manager
-                command: corepack enable
+                command: npm i -g corepack
       - when:
           condition:
             not: << parameters.browsers >>
