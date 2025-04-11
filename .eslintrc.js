@@ -412,7 +412,6 @@ module.exports = /** @type {Config} */ ({
         '*.spec.*',
         '*.test.*',
         // deprecated library
-        '**/mui-base/**/*',
         '**/mui-joy/**/*',
         // used internally, not used on app router yet
         '**/mui-docs/**/*',
@@ -516,15 +515,6 @@ module.exports = /** @type {Config} */ ({
       files: ['**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
-      },
-    },
-    {
-      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
-      rules: {
-        'import/no-default-export': 'error',
-        'import/prefer-default-export': 'off',
-        'react-compiler/react-compiler': 'off',
-        'no-irregular-whitespace': ['error', { skipComments: true }],
       },
     },
     {

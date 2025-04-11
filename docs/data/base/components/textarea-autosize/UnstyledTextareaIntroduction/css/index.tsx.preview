@@ -1,8 +1,0 @@
-<React.Fragment>
-  <TextareaAutosize
-    className="CustomTextareaIntroduction"
-    aria-label="empty textarea"
-    placeholder="Empty"
-  />
-  <Styles />
-</React.Fragment>
