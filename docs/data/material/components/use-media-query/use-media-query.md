@@ -25,7 +25,11 @@ The media query string can be any valid CSS media query, for example [`'(prefers
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
-⚠️ You can't use `'print'` per browsers limitation, for example [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+:::warning
+Using the query `'print'` to modify a document for printing is not supported, as changes made in re-rendering may not be accurately reflected.
+You can use the `sx` prop's `displayPrint` field for this purpose instead.
+See [MUI System—Display in print](/system/display/#display-in-print) for more details.
+:::
 
 ## Using breakpoint helpers
 
