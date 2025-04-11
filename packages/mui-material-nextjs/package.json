@@ -39,8 +39,8 @@
     "@babel/runtime": "^7.27.0"
   },
   "devDependencies": {
-    "@emotion/cache": "^11.13.5",
-    "@emotion/react": "^11.13.5",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
     "@types/react": "^19.1.0",
     "next": "^15.2.4",
