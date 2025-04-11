@@ -8,6 +8,10 @@ import BottomNavigationAction, {
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 
+const CustomButtonBase = React.forwardRef(({ focusRipple, ...props }, ref) => (
+  <ButtonBase ref={ref} {...props} />
+));
+
 describe('<BottomNavigationAction />', () => {
   const { render } = createRenderer();
 
@@ -20,6 +24,15 @@ describe('<BottomNavigationAction />', () => {
     testVariantProps: { showLabel: true },
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     skip: ['componentProp', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomButtonBase,
+      },
+      label: {
+        expectedClassName: classes.label,
+      },
+    },
   }));
 
   it('adds a `selected` class when selected', () => {
