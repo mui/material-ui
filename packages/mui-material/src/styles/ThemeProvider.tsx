@@ -86,9 +86,9 @@ export default function ThemeProvider<Theme = DefaultTheme>({
   theme,
   ...props
 }: ThemeProviderProps<Theme>) {
-  const basicTheme = React.useMemo(() => {
+  const noVarsTheme = React.useMemo(() => {
     if (typeof theme === 'function') {
-      return null;
+      return theme;
     }
     const muiTheme = (THEME_ID in theme ? theme[THEME_ID] : theme) as ThemeProviderProps['theme'];
     if (!('colorSchemes' in muiTheme)) {
@@ -102,11 +102,8 @@ export default function ThemeProvider<Theme = DefaultTheme>({
     return null;
   }, [theme]);
 
-  if (typeof theme === 'function') {
-    return <ThemeProviderNoVars theme={theme} {...props} />;
-  }
-  if (basicTheme) {
-    return <ThemeProviderNoVars theme={basicTheme} {...props} />;
+  if (noVarsTheme) {
+    return <ThemeProviderNoVars theme={noVarsTheme} {...props} />;
   }
   return <CssVarsProvider theme={theme as unknown as CssVarsTheme} {...props} />;
 }
