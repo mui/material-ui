@@ -26,7 +26,7 @@ Note that CodeSandbox is not supporting react-app-rewired, yet you can [still se
 
 <!-- #host-reference -->
 
-The following link leverages this demo: https://next.mui.com/material-ui/integrations/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
+The following link leverages this demo: https://mui.com/material-ui/integrations/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`.
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/styled-components-interoperability-w9z9d)
 
@@ -39,4 +39,4 @@ This example demonstrates how to set up Material UI with [Vite](https://github.
 <!-- #host-reference -->
 
 You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://next.mui.com/material-ui/getting-started/templates/) section.
+You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.

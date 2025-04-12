@@ -144,7 +144,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 - [examples] Update Next.js examples Next.js and React versions (#44852) @DiegoAndai
 - [code-infra] Prevent wrong nested imports in Base UI (#44426) @oliviertassinari
-- [docs-infra] Add vale coverage for App Router and Page Router (060c55c) @oliviertassinari
+- [docs-infra] Add vale coverage for App Router and Pages Router (060c55c) @oliviertassinari
 - Sync with other repos (1b9300f) @oliviertassinari
 - Fix docs:build to work in docs folder too (6b923a4) @oliviertassinari
 - Setup React 18 CI tests (#44868) @DiegoAndai
@@ -4609,7 +4609,7 @@ _Aug 23, 2023_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 Added the [Popup](https://mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak
+- 🚀 Added the [Popup](https://v6.mui.com/base-ui/react-popup/) component to Base UI (#37960) @michaldudak
   It's intended to replace the Popper component, which uses the deprecated Popper JS library. The Popup is built on top of Floating UI and has a similar API to the Popper.
 - 🚀 Added the [Accordion](https://mui.com/joy-ui/react-accordion/) component to Joy UI (#38164) @siriwatknp
 - 🚀 Added InputBase and ButtonBase components to `material-next` (#38319) @DiegoAndai @mj12albert
@@ -4720,7 +4720,7 @@ _Aug 14, 2023_
 
 A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
-- @mnajdova [made it easier to use third-party components in Base UI slots](https://mui.com/base-ui/getting-started/customization/#overriding-subcomponent-slots) with the introduction of the `prepareForSlot` utility (#38138)
+- @mnajdova [made it easier to use third-party components in Base UI slots](https://v6.mui.com/base-ui/getting-started/customization/#overriding-subcomponent-slots) with the introduction of the `prepareForSlot` utility (#38138)
 
 ### `@mui/material@5.14.5`
 
@@ -4785,7 +4785,7 @@ _Aug 8, 2023_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Added [Number Input](https://mui.com/base-ui/react-number-input/) component & [useNumberInput](https://mui.com/base-ui/react-number-input/#hook) hook in [Base UI](https://mui.com/base-ui/getting-started/) @mj12albert
+- 🎉 Added [Number Input](https://v6.mui.com/base-ui/react-number-input/) component & [useNumberInput](https://v6.mui.com/base-ui/react-number-input/#hook) hook in [Base UI](https://v6.mui.com/base-ui/getting-started/) @mj12albert
 
 ### `@mui/material@5.14.4`
 
@@ -4881,7 +4881,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - 🚀 [Joy UI](https://mui.com/joy-ui/getting-started/) is now in Beta
 - ✨ Refine [Joy UI](https://mui.com/joy-ui/getting-started/)'s default theme @siriwatknp @zanivan
-- 🎉 Added Dropdown higher-level menu component [Base UI](https://mui.com/base-ui/getting-started/) @michaldudak
+- 🎉 Added Dropdown higher-level menu component [Base UI](https://v6.mui.com/base-ui/getting-started/) @michaldudak
 - 💫 Added Material You [Badge](https://mui.com/material-ui/react-badge/#material-you-version) to `material-next` (#37850) @DiegoAndai
 
 ### `@mui/material@5.14.3`
@@ -5108,7 +5108,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - 📚 Added new guides for integrating with Next.js 13 App Router (#37656) @mj12albert
   - Ⓜ️ [Material UI guide](https://mui.com/material-ui/guides/next-js-app-router/)
   - 🅙 [Joy UI guide](https://mui.com/joy-ui/integrations/next-js-app-router/)
-  - 🅱️ [Base UI guide](https://mui.com/base-ui/guides/next-js-app-router/)
+  - 🅱️ [Base UI guide](https://v6.mui.com/base-ui/guides/next-js-app-router/)
 - 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements.
 
 ### `@mui/material@5.14.0`
@@ -6101,7 +6101,7 @@ _Mar 14, 2023_
 
 A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
-- @michaldudak added an option for [disabling the generation](https://mui.com/base-ui/getting-started/customization/#disabling-default-css-classes) of the default classes in Base UI (#35963)
+- @michaldudak added an option for [disabling the generation](https://v6.mui.com/base-ui/getting-started/customization/#disabling-default-css-classes) of the default classes in Base UI (#35963)
 - other 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.13`
@@ -6282,7 +6282,7 @@ _Feb 27, 2023_
 
 A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
-- 📚 added API documentation for the slots in Base UI and Joy UI by @hbjORbj, for e.g. [SliderUnstyled API](https://mui.com/base-ui/api/slider-unstyled/#slots)
+- 📚 added API documentation for the slots in Base UI and Joy UI by @hbjORbj, for e.g. [SliderUnstyled API](https://v6.mui.com/base-ui/api/slider-unstyled/#slots)
 - other 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.11.11`
@@ -6641,7 +6641,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   + <SliderUnstyled slots={{ valueLabel: SliderValueLabel }} />
   ```
 
-  The following demo shows how to show a value label when it is hovered over with the thumb: https://mui.com/base-ui/react-slider/#value-label
+  The following demo shows how to show a value label when it is hovered over with the thumb: https://v6.mui.com/base-ui/react-slider/#value-label
 
   - The following classes are removed from `sliderUnstyledClasses` since they are not needed for the value label:
 
@@ -7591,7 +7591,7 @@ _Oct 3, 2022_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 [SnackbarUnstyled](https://mui.com/base-ui/react-snackbar/) component & headless hook are added to Base UI (#33227) @ZeeshanTamboli
+- 🚀 [SnackbarUnstyled](https://v6.mui.com/base-ui/react-snackbar/) component & headless hook are added to Base UI (#33227) @ZeeshanTamboli
 - 📚 [CSS variables documentation](https://mui.com/material-ui/experimental-api/css-theme-variables/overview/) for Material UI has been added by @siriwatknp (#33958)
 - And more 🐛 bug fixes and 📚 documentation improvements.
 
@@ -16322,7 +16322,7 @@ Here are some highlights ✨:
 
   More details in [the documentation](https://mui.com/material-ui/customization/components/#adding-new-component-variants) and [RFC](#21749).
 
-- 👮 Add documentation for the [FocusTrap](https://mui.com/base-ui/react-focus-trap/) component (#22062) @oliviertassinari.
+- 👮 Add documentation for the [FocusTrap](https://v6.mui.com/base-ui/react-focus-trap/) component (#22062) @oliviertassinari.
 - ⚛️ Prepare support for React v17 (#22093, #22105, #22143, #22111) @eps1lon.
 - 🚧 We have undertaken breaking changes.
 

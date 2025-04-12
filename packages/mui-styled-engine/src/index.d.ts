@@ -59,19 +59,7 @@ export interface CSSOthersObjectForCSSObject {
 }
 
 // Omit variants as a key, because we have a special handling for it
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos,
-    Omit<CSSOthersObject, 'variants'> {}
-
-interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{
-    props: Props | ((props: Props) => boolean);
-    style:
-      | CSSObject
-      | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
-  }>;
-}
+export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -106,8 +94,29 @@ export interface FunctionInterpolation<Props> {
 export interface ArrayInterpolation<Props> extends ReadonlyArray<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
-  | InterpolationPrimitive
-  | CSSObjectWithVariants<Props>
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ComponentSelector
+  | Keyframes
+  | SerializedStyles
+  | CSSPropertiesWithMultiValues
+  | (CSSObject & {
+      variants?: Array<{
+        props:
+          | Partial<Props>
+          | ((
+              props: Partial<Props> & {
+                ownerState: Partial<Props>;
+              },
+            ) => boolean);
+        style:
+          | CSSObject
+          | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
+      }>;
+    })
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;
 

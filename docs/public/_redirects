@@ -183,7 +183,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /zh/api/time-picker/ /zh/x/api/date-pickers/time-picker/ 301
 /pt/api/time-picker/ /pt/x/api/date-pickers/time-picker/ 301
 /styles/* /system/styles/:splat 301
-/:lang/styles/* /:lang/system/styles/:splat 301
+/pt/styles/* /pt/system/styles/:splat 301
+/zh/styles/* /zh/system/styles/:splat 301
 /getting-started/* /material-ui/getting-started/:splat 301
 /pt/getting-started/* /pt/material-ui/getting-started/:splat 301
 /zh/getting-started/* /zh/material-ui/getting-started/:splat 301
@@ -512,10 +513,10 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/experimental-api/css-theme-variables/customization/ /material-ui/customization/css-theme-variables/configuration/ 301
 /base-ui/ https://base-ui.com/ 301
 #2025
-#host-reference change https:/mui.com to https:/v6.mui.com when domains are switched
-/system/styles/basics/ https://mui.com/system/styles/basics/ 301
-/system/styles/advanced/ https://mui.com/system/styles/advanced/ 301
-/system/styles/api/ https://mui.com/system/styles/api/ 301
+/system/styles/basics/ https://v6.mui.com/system/styles/basics/ 301
+/system/styles/advanced/ https://v6.mui.com/system/styles/advanced/ 301
+/system/styles/api/ https://v6.mui.com/system/styles/api/ 301
+/base-ui/* https://v6.mui.com/base-ui/:splat 301
 
 # Proxies
 
@@ -530,11 +531,11 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/static/x/* https://docs-next--material-ui-x.netlify.app/static/x/:splat 200
-/x/_next/* https://docs-next--material-ui-x.netlify.app/_next/:splat 200
-/x/* https://docs-next--material-ui-x.netlify.app/x/:splat 200
-/r/x-* https://docs-next--material-ui-x.netlify.app/r/x-:splat 200
-/:lang/x/* https://docs-next--material-ui-x.netlify.app/:lang/x/:splat 200
+/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
+/x/_next/* https://material-ui-x.netlify.app/_next/:splat 200
+/x/* https://material-ui-x.netlify.app/x/:splat 200
+/r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
+/:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## Toolpad
 /toolpad/core/templates/nextjs-dashboard/_next/* https://toolpad-core-nextjs-themed.vercel.app/_next/:splat 200

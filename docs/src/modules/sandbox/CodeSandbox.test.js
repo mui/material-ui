@@ -34,7 +34,7 @@ describe('CodeSandbox', () => {
           dependencies: {
             react: 'latest',
             // #npm-tag-reference
-            '@mui/material': 'next',
+            '@mui/material': 'latest',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -125,7 +125,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
           dependencies: {
             react: 'latest',
             // #npm-tag-reference
-            '@mui/material': 'next',
+            '@mui/material': 'latest',
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
@@ -233,7 +233,7 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@types/react': 'latest',
       '@types/react-dom': 'latest',
       react: 'latest',

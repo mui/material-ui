@@ -105,11 +105,11 @@ export interface ChipTypeMap<
  *
  * Demos:
  *
- * - [Chip](https://next.mui.com/material-ui/react-chip/)
+ * - [Chip](https://mui.com/material-ui/react-chip/)
  *
  * API:
  *
- * - [Chip API](https://next.mui.com/material-ui/api/chip/)
+ * - [Chip API](https://mui.com/material-ui/api/chip/)
  */
 declare const Chip: OverridableComponent<ChipTypeMap>;
 

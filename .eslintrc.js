@@ -64,7 +64,7 @@ module.exports = /** @type {Config} */ ({
     'plugin:eslint-plugin-import/recommended',
     'plugin:eslint-plugin-import/typescript',
     'eslint-config-airbnb',
-    './eslint/config-airbnb-typescript.js',
+    require.resolve('./eslint/config-airbnb-typescript.js'),
     'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -412,7 +412,6 @@ module.exports = /** @type {Config} */ ({
         '*.spec.*',
         '*.test.*',
         // deprecated library
-        '**/mui-base/**/*',
         '**/mui-joy/**/*',
         // used internally, not used on app router yet
         '**/mui-docs/**/*',
@@ -519,15 +518,6 @@ module.exports = /** @type {Config} */ ({
       },
     },
     {
-      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
-      rules: {
-        'import/no-default-export': 'error',
-        'import/prefer-default-export': 'off',
-        'react-compiler/react-compiler': 'off',
-        'no-irregular-whitespace': ['error', { skipComments: true }],
-      },
-    },
-    {
       /**
        * Examples are for demonstration purposes and should not be considered a part of the library.
        * They don't contain ESLint setup, so we don't want them to contain ESLint directives
@@ -555,7 +545,7 @@ module.exports = /** @type {Config} */ ({
     },
     {
       // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
-      files: ['examples/pigment-css-remix-ts/**/*'],
+      files: ['examples/material-ui-pigment-css-vite-ts/**/*'],
       rules: {
         'react/react-in-jsx-scope': 'off',
       },

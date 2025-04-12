@@ -25,7 +25,7 @@ function generate(element) {
 }
 
 const Demo = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
 }));
 
 export default function InteractiveList() {

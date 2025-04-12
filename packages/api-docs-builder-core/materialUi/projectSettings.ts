@@ -52,5 +52,5 @@ export const projectSettings: ProjectSettings = {
   generateClassName,
   isGlobalClassName: isGlobalState,
   // #host-reference
-  baseApiUrl: 'https://next.mui.com',
+  baseApiUrl: 'https://mui.com',
 };
