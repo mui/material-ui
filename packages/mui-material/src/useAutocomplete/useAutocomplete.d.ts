@@ -357,16 +357,7 @@ export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
-/**
- *
- * Demos:
- *
- * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
- *
- * API:
- *
- * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
- */
+
 export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,

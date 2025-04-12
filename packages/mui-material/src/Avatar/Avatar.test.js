@@ -20,6 +20,14 @@ describe('<Avatar />', () => {
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'rounded', styleKey: 'rounded' },
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      fallback: {
+        expectedClassName: classes.fallback,
+      },
+    },
     skip: ['componentsProp'],
   }));
 

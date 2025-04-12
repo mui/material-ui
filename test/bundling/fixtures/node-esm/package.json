@@ -21,7 +21,6 @@
   },
   "pnpm": {
     "overrides": {
-      "@mui/base": "file:../../../../packed/@mui/base.tgz",
       "@mui/material": "file:../../../../packed/@mui/material.tgz",
       "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
       "@mui/lab": "file:../../../../packed/@mui/lab.tgz",
