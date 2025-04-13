@@ -23,7 +23,7 @@ manualCard: false
     alt=""
     height="2400"
     width="800"
-    style="width: 100%; object-fit: cover; object-position: center;"
+    style="width: 100%; object-fit: cover; object-position: center; border: 0px;"
   />
 </a>
 
@@ -84,7 +84,7 @@ This flexibility enables faster insight discovery and more efficient data analys
 This feature is available right out of the box, but you can also create a preconfigured setup to tailor it to your user requirements.
 
 <figure>
-  <video autoplay muted loop playsinline width="1046" height="720" controls style="border: 0;">
+  <video autoplay muted loop playsinline width="1350" height="1126" controls style="border: 0; width: 675px">
     <source src="/static/blog/mui-x-v8/pivoting.mp4" type="video/mp4">
   </video>
   <figcaption>A common pivoting use case</figcaption>
@@ -127,7 +127,7 @@ Interested in bringing this feature to your users? [Contact us](mailto:sales@mui
 We've promoted List view to stable, and over this major we're committed to enhancing this feature even further—making it easier to deliver a robust Data Grid experience on small screens.
 
 <figure>
-  <img width="512" height="768" alt="An example of a Data Grid's list view on a phone" src="/static/blog/mui-x-v8/list-view.png" loading="lazy">
+  <img width="512" height="768" alt="An example of a Data Grid's list view on a phone" src="/static/blog/mui-x-v8/list-view.png" loading="lazy" style="border: 0;">
   <figcaption>An example of a Data Grid's list view on a phone</figcaption>
 </figure>
 
