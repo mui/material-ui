@@ -325,8 +325,8 @@ Learn more this and other options on [Tree Item Customization docs](/x/react-tre
 We have expanded our chart portfolio with the addition of Funnel Charts, providing a new way to visualize data conversions and drop-offs.
 
 <figure>
-  <img alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy">
-  <figcaption>Funnel charts examples</figcaption>
+  <img alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy" width="1880" height="521">
+  <figcaption>Funnel Charts examples</figcaption>
 </figure>
 
 You can learn more in the [Funnel](/x/react-charts/funnel/) docs.
@@ -336,8 +336,8 @@ You can learn more in the [Funnel](/x/react-charts/funnel/) docs.
 Similarly, our Radar Charts offer a dynamic way to display multivariate data, enhancing your users data analysis capabilities.
 
 <figure>
-  <img width="418" height="370" alt="Radar charts examples" src="/static/blog/mui-x-v8/radar-charts.png" loading="lazy">
-  <figcaption>Radar charts examples</figcaption>
+  <img width="836" height="740" alt="Radar charts examples" src="/static/blog/mui-x-v8/radar-charts.png" loading="lazy" style="width: 418px;">
+  <figcaption>Radar Charts examples</figcaption>
 </figure>
 
 You can learn more in the [Radar](/x/react-charts/radar/) docs.
@@ -355,7 +355,7 @@ SSR is supported under two conditions:
 Charts in MUI X v8 have been enhanced for greater clarity and interactivity. We’ve refined the default palettes, improved tooltips, and optimized legends display.
 
 <figure>
-  <img width="630" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy">
+  <img width="3792" height="2126" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy" style="border: 0;">
   <figcaption>Charts redesigned before/after</figcaption>
 </figure>
 
