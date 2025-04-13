@@ -139,7 +139,7 @@ Row spanning has also been promoted to stable, providing a reliable and flexible
 This enhancement makes it easier to create complex, multi-row layouts within your Data Grid, allowing you to present your data more effectively.
 
 <figure>
-  <img alt="An example highlighting rows using row-spanning" src="/static/blog/mui-x-v8/row-spanning.png" loading="lazy">
+  <img alt="An example highlighting rows using row-spanning" src="/static/blog/mui-x-v8/row-spanning.png" loading="lazy" style="border: 0;" width="1762" height="630">
   <figcaption>An example highlighting rows using row-spanning</figcaption>
 </figure>
 
@@ -183,8 +183,10 @@ Explore your options in our [Data source docs](/x/react-data-grid/server-side-da
 The [redesigned toolbar](/x/react-data-grid/components/toolbar/) not only looks fantastic but also empowers developers one step further through an open composition of subcomponents, allowing you to tailor the toolbar's layout precisely to your application's needs.
 
 <figure>
-  <img width="585" height="57" alt="The new toolbar's design" src="/static/blog/mui-x-v8/new-toolbar.png" loading="lazy" style="border: 0;">
-  <figcaption>The new toolbar's design</figcaption>
+  <video autoplay muted loop playsinline width="1386" height="630" style="border: 0; width: 686px;">
+    <source src="/static/blog/mui-x-v8/toolbar.mp4" type="video/mp4">
+  </video>
+  <figcaption>A video showcasing our AI Assistant panel</figcaption>
 </figure>
 
 This new developer experience, based on composition, may feel different from our previous approach—but it sets a new standard.
