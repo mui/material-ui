@@ -7,23 +7,25 @@ tags: ['MUI X', 'Product']
 manualCard: false
 ---
 
-<div id="responsiveImage" style="max-width: 692px; width: 100%; overflow: hidden; margin-bottom: 16px;">
-  <style>
+<style>
+  #blog-responsive-image {
+    height: 230px;
     @media (max-width: 600px) {
-      #responsiveImage img {
-        height: 180px;
-      }
+      height: 167px;
     }
-  </style>
+  }
+</style>
 
-  <a href="https://github.com/mui/mui-x/releases/tag/v8.0.0">
-    <img
-      src="/static/blog/mui-x-v8/intro.png"
-      alt="MUI X v8 - major stable release"
-      style="width: 100%; object-fit: cover; object-position: center;"
-    />
-  </a>
-</div>
+<a href="https://github.com/mui/mui-x/releases/tag/v8.0.0">
+  <img
+    id="blog-responsive-image"
+    src="/static/blog/mui-x-v8/intro.png"
+    alt=""
+    height="2400"
+    width="800"
+    style="width: 100%; object-fit: cover; object-position: center;"
+  />
+</a>
 
 We are excited to announce the stable release of [MUI X v8.0.0](https://github.com/mui/mui-x/releases/tag/v8.0.0)—packed with many new features, native ESM support alongside [Material UI v7](/blog/material-ui-v7-is-here/), and an improved license management experience.
 
