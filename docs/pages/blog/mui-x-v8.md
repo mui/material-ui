@@ -45,7 +45,6 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [Data source with support for editing](#data-source-with-support-for-editing)
   - [Data source on the Community Plan](#data-source-on-the-community-plan)
   - [New Toolbar](#new-toolbar)
-  - [Design agnostic core](#design-agnostic-core)
   - [No columns overlay](#no-columns-overlay)
   - [Performance improvements](#performance-improvements)
 - [Date and Time Pickers](#date-and-time-pickers)
