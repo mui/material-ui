@@ -36,7 +36,7 @@
     "postcss-combine-media-query": "^1.0.1",
     "vite": "5.4.16",
     "vite-plugin-node-polyfills": "0.23.0",
-    "vite-plugin-pages": "^0.32.5"
+    "vite-plugin-pages": "^0.33.0"
   },
   "nx": {
     "targets": {
