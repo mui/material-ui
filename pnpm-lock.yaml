@@ -866,8 +866,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0
       react-number-format:
-        specifier: ^5.4.3
-        version: 5.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.4.4
+        version: 5.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-router:
         specifier: ^7.4.1
         version: 7.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -11785,8 +11785,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-number-format@5.4.3:
-    resolution: {integrity: sha512-VCY5hFg/soBighAoGcdE+GagkJq0230qN6jcS5sp8wQX1qy1fYN/RX7/BXkrs0oyzzwqR8/+eSUrqXbGeywdUQ==}
+  react-number-format@5.4.4:
+    resolution: {integrity: sha512-wOmoNZoOpvMminhifQYiYSTCLUDOiUbBunrMrMjA+dV52sY+vck1S4UhR6PkgnoCquvvMSeJjErXZ4qSaWCliA==}
     peerDependencies:
       react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -25302,7 +25302,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  react-number-format@5.4.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  react-number-format@5.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
