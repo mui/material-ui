@@ -278,8 +278,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(webpack@5.98.0)
       lerna:
-        specifier: ^8.2.1
-        version: 8.2.1(babel-plugin-macros@3.1.0)(encoding@0.1.13)
+        specifier: ^8.2.2
+        version: 8.2.2(babel-plugin-macros@3.1.0)(encoding@0.1.13)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -4165,8 +4165,8 @@ packages:
   '@keyv/serialize@1.0.3':
     resolution: {integrity: sha512-qnEovoOp5Np2JDGonIDL6Ayihw0RhnRh6vxPuHo4RDn1UOzwEo4AeIfpL6UGIrsceWrCMiVPgwRjbHu4vYFc3g==}
 
-  '@lerna/create@8.2.1':
-    resolution: {integrity: sha512-Cz2u/fwc03D1EE6VFZCLMmI8FIUtGmxHQ3ECeNblsxv9i0YSKWe4Xm18sjO1xltG/K5ByiH8/HMeY9dlyAv22A==}
+  '@lerna/create@8.2.2':
+    resolution: {integrity: sha512-1yn1MvWn2Yz0SFgTTQnef2m1YedF7KwqLLVIOrGkgQrkVHzsveAIk1A1RcRa2yyUh+siKI1YcJ7lUZIEt+qQ3Q==}
     engines: {node: '>=18.0.0'}
 
   '@loaderkit/resolve@1.0.3':
@@ -9826,8 +9826,8 @@ packages:
     resolution: {integrity: sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw==}
     engines: {node: '>= 0.6.3'}
 
-  lerna@8.2.1:
-    resolution: {integrity: sha512-Xwjv9/4ixp7fpBWhtvp7dz4NoQT8DEf7hzibHKCgu/8kmZUHeXsTn+TKspHqhI+p4YDmdkDnkg8xmymz73kVOg==}
+  lerna@8.2.2:
+    resolution: {integrity: sha512-GkqBELTG4k7rfzAwRok2pKBvhNo046Hfwcj7TuhDah3q58/BBBAqvIFLfqEI5fglnNOs6maMSn6/MWjccQE55A==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -15779,7 +15779,7 @@ snapshots:
     dependencies:
       buffer: 6.0.3
 
-  '@lerna/create@8.2.1(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@5.8.3)':
+  '@lerna/create@8.2.2(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@5.8.3)':
     dependencies:
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
@@ -22824,9 +22824,9 @@ snapshots:
     dependencies:
       readable-stream: 2.3.8
 
-  lerna@8.2.1(babel-plugin-macros@3.1.0)(encoding@0.1.13):
+  lerna@8.2.2(babel-plugin-macros@3.1.0)(encoding@0.1.13):
     dependencies:
-      '@lerna/create': 8.2.1(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@5.8.3)
+      '@lerna/create': 8.2.2(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@5.8.3)
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
       '@npmcli/run-script': 8.1.0
