@@ -1,5 +1,3 @@
-// @ts-check
-
 import { promisify } from 'util';
 import path from 'path';
 import webpackCallbackBased from 'webpack';
@@ -7,28 +5,24 @@ import CompressionPlugin from 'compression-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
+/**
+ * @type {(options: webpackCallbackBased.Configuration) => Promise<webpackCallbackBased.Stats>}
+ */
+// @ts-expect-error Can't select the right overload
 const webpack = promisify(webpackCallbackBased);
 const rootDir = process.cwd();
 
-/**
- * @typedef {object} WebpackEntry
- * @property {string} import
- * @property {string} [importName]
- *
- * @typedef {object} Environment
- * @property {boolean} analyze
- * @property {boolean} accurateBundles
- */
+// Type declarations are now in types.d.ts
 
 /**
  * Creates webpack configuration for bundle size checking
- * @param {WebpackEntry} entry
- * @param {Environment} environment
+ * @param {string} entry - Entry point string
+ * @param {CommandLineArgs} args
  * @returns {import('webpack').Configuration}
  */
-function createWebpackConfig(entry, environment) {
-  const analyzerMode = environment.analyze ? 'static' : 'disabled';
-  const concatenateModules = !environment.accurateBundles;
+function createWebpackConfig(entry, args) {
+  const analyzerMode = args.analyze ? 'static' : 'disabled';
+  const concatenateModules = !args.accurateBundles;
 
   const entryName = entry;
   const [importSrc, importName] = entryName.split('#');
@@ -99,26 +93,39 @@ function createWebpackConfig(entry, environment) {
   return configuration;
 }
 
-export default async function getSizes({ entry, webpackEnvironment, index, total }) {
+/**
+ * Get sizes for a bundle
+ * @param {{ entry: string, args: CommandLineArgs, index: number, total: number }} options
+ * @returns {Promise<Array<[string, { parsed: number, gzip: number }]>>}
+ */
+export default async function getSizes({ entry, args, index, total }) {
+  /** @type {Array<[string, { parsed: number, gzip: number }]>} */
   const sizes = [];
 
-  const configuration = createWebpackConfig(entry, webpackEnvironment);
+  const configuration = createWebpackConfig(entry, args);
 
   // eslint-disable-next-line no-console -- process monitoring
-  console.log(`Compiling ${index + 1}/${total}: "${Object.keys(configuration.entry)}"`);
+  console.log(`Compiling ${index + 1}/${total}: "${entry}"`);
 
   const webpackStats = await webpack(configuration);
 
+  if (!webpackStats) {
+    throw new Error('No webpack stats were returned');
+  }
+
   if (webpackStats.hasErrors()) {
-    const { entrypoints, errors } = webpackStats.toJson({
+    const statsJson = webpackStats.toJson({
       all: false,
       entrypoints: true,
       errors: true,
     });
+
+    const entrypointKeys = statsJson.entrypoints ? Object.keys(statsJson.entrypoints) : [];
+
     throw new Error(
-      `The following errors occurred during bundling of ${Object.keys(
-        entrypoints,
-      )} with webpack: \n${errors
+      `The following errors occurred during bundling of ${entrypointKeys.join(', ')} with webpack: \n${(
+        statsJson.errors || []
+      )
         .map((error) => {
           return `${JSON.stringify(error, null, 2)}`;
         })
@@ -132,24 +139,44 @@ export default async function getSizes({ entry, webpackEnvironment, index, total
     entrypoints: true,
     relatedAssets: true,
   });
+
+  if (!stats.assets) {
+    return sizes;
+  }
+
   const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
 
-  Object.values(stats.entrypoints).forEach((entrypoint) => {
-    let parsedSize = 0;
-    let gzipSize = 0;
+  if (stats.entrypoints) {
+    Object.values(stats.entrypoints).forEach((entrypoint) => {
+      let parsedSize = 0;
+      let gzipSize = 0;
 
-    entrypoint.assets.forEach(({ name, size }) => {
-      const asset = assets.get(name);
-      const gzippedAsset = asset.related.find((relatedAsset) => {
-        return relatedAsset.type === 'gzipped';
-      });
+      if (entrypoint.assets) {
+        entrypoint.assets.forEach(({ name, size }) => {
+          const asset = assets.get(name);
+          if (asset && asset.related) {
+            const gzippedAsset = asset.related.find((relatedAsset) => {
+              return relatedAsset.type === 'gzipped';
+            });
 
-      parsedSize += size;
-      gzipSize += gzippedAsset.size;
+            if (size !== undefined) {
+              parsedSize += size;
+            }
+
+            if (gzippedAsset && gzippedAsset.size !== undefined) {
+              gzipSize += gzippedAsset.size;
+            }
+          }
+        });
+      }
+
+      if (!entrypoint.name) {
+        throw new Error('Entrypoint name is undefined');
+      }
+
+      sizes.push([entrypoint.name, { parsed: parsedSize, gzip: gzipSize }]);
     });
-
-    sizes.push([entrypoint.name, { parsed: parsedSize, gzip: gzipSize }]);
-  });
+  }
 
   return sizes;
 }

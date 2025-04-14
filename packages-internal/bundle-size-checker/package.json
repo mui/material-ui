@@ -8,6 +8,9 @@
   "bin": {
     "bundle-size-checker": "./bin/bundle-size-checker.js"
   },
+  "scripts": {
+    "typescript": "tsc -p tsconfig.json"
+  },
   "dependencies": {
     "compression-webpack-plugin": "^10.0.0",
     "fast-glob": "^3.3.2",
@@ -17,5 +20,10 @@
     "webpack": "^5.90.3",
     "webpack-bundle-analyzer": "^4.10.1",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/webpack": "^5.28.5",
+    "@types/webpack-bundle-analyzer": "^4.7.0",
+    "@types/yargs": "^17.0.33"
   }
 }

@@ -13,8 +13,10 @@ const rootDir = process.cwd();
 
 /**
  * creates size snapshot for every bundle that built with webpack
+ * @param {CommandLineArgs} args
+ * @returns {Promise<Array<[string, { parsed: number, gzip: number }]>>}
  */
-async function getWebpackSizes(webpackEnvironment) {
+async function getWebpackSizes(args) {
   const worker = new Piscina({
     filename: new URL('./worker.js', import.meta.url).href,
     maxThreads: MAX_CONCURRENCY,
@@ -41,13 +43,17 @@ async function getWebpackSizes(webpackEnvironment) {
 
   const sizeArrays = await Promise.all(
     Array.from(uniqueEntries, (entry, index) =>
-      worker.run({ entry, webpackEnvironment, index, total: uniqueEntries.size }),
+      worker.run({ entry, args, index, total: uniqueEntries.size }),
     ),
   );
 
   return sizeArrays.flat();
 }
 
+/**
+ * Main runner function
+ * @param {CommandLineArgs} argv - Command line arguments
+ */
 async function run(argv) {
   const { analyze, accurateBundles, output } = argv;
 
@@ -66,11 +72,12 @@ async function run(argv) {
 }
 
 yargs(process.argv.slice(2))
+  // @ts-expect-error
   .command({
     command: '$0',
-    description: 'Saves a size snapshot in size-snapshot.json',
-    builder: (command) => {
-      return command
+    describe: 'Saves a size snapshot in size-snapshot.json',
+    builder: (yargs) => {
+      return yargs
         .option('analyze', {
           default: false,
           describe: 'Creates a webpack-bundle-analyzer report for each bundle.',
