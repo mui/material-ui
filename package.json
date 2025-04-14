@@ -38,7 +38,7 @@
     "docs:sync-team": "tsx ./docs/scripts/syncTeamMembers.ts && pnpm prettier",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js,.mjs\" ./docs/scripts/updateIconSynonyms && pnpm prettier",
     "docs:zipRules": "cd docs && rm mui-vale.zip && zip -r mui-vale.zip mui-vale && cd ../ && vale sync",
-    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --concurrency 1 build:modern",
+    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --concurrency 1 build:stable",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "install:codesandbox": "pnpm install --no-frozen-lockfile",
     "jsonlint": "node ./scripts/jsonlint.mjs",
