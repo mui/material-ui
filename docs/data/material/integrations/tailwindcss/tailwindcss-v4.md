@@ -4,32 +4,18 @@
 
 ## Frameworks
 
-To integrate with Tailwind CSS v4, Material UI components must generate styles with `@layer` directive and insert the layer before the `@utilities` layer from Tailwind CSS.
+There are 2 steps to integrate Tailwind CSS v4 with Material UI:
 
-### Vite.js
+1. Configure the styles to generate with `@layer` directive.
+2. Set up layer order to have `mui` comes before `utilities` layer so that Tailwind CSS classes can override Material UI styles.
 
-Add the following configuration to `src/main.tsx` to enable the CSS layer and configure the layer order:
-
-```tsx title="main.tsx"
-import { StyledEngineProvider } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
-      {/* Your app */}
-    </StyledEngineProvider>
-  </React.StrictMode>,
-);
-```
+If you are using a framework, you can follow the instructions below to set up the integration.
 
 ### Next.js App Router
 
 Follow the [App Router guide](/material-ui/integrations/nextjs/#app-router) and do the following steps:
 
-- enable the CSS layer on the `AppRouterCacheProvider` component.
-- configure the layer order with `GlobalStyles` component:
+- pass `{ enableCssLayer: true }` to the `options` prop of `AppRouterCacheProvider` component.
 
 ```tsx title="src/app/layout.tsx"
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
@@ -40,7 +26,6 @@ export default function RootLayout() {
     <html lang="en" suppressHydrationWarning>
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
           {/* Your app */}
         </AppRouterCacheProvider>
       </body>
@@ -49,12 +34,18 @@ export default function RootLayout() {
 }
 ```
 
+- configure the layer order in the Tailwind CSS file.
+
+```css title="src/app/globals.css"
+@layer theme, base, mui, components, utilities;
+@import 'tailwindcss';
+```
+
 ### Next.js Pages Router
 
 Follow the [Pages Router guide](/material-ui/integrations/nextjs/#pages-router) and do the following steps:
 
-- pass a custom cache with `enableCssLayer: true` to `documentGetInitialProps`.
-- configure the layer order with `GlobalStyles` component:
+- pass a custom cache with `{ enableCssLayer: true }` to `documentGetInitialProps` function.
 
 ```tsx title="pages/_document.tsx"
 import {
@@ -72,6 +63,8 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 ```
 
+- configure the layer order with `GlobalStyles` component.
+
 ```tsx title="pages/_app.tsx"
 import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
 import GlobalStyles from '@mui/material/GlobalStyles';
@@ -85,6 +78,27 @@ export default function MyApp(props: AppProps) {
     </AppCacheProvider>
   );
 }
+```
+
+### Vite.js or any other SPA
+
+Open `src/main.tsx` and do the following steps:
+
+- set `enableCssLayer` prop to `StyledEngineProvider` component.
+- configure the layer order with `GlobalStyles` component.
+
+```tsx title="main.tsx"
+import { StyledEngineProvider } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <StyledEngineProvider enableCssLayer>
+      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
+      {/* Your app */}
+    </StyledEngineProvider>
+  </React.StrictMode>,
+);
 ```
 
 ## Tailwind IntelliSense for VS Code
@@ -102,3 +116,10 @@ Add the following configuration to your [`settings.json`](https://code.visualstu
 
 - Use `className` prop to apply Tailwind CSS classes to the root element of the component.
 - Use `slotProps.{slotName}.className` to apply Tailwind CSS classes to the [interior slot](/material-ui/customization/overriding-component-structure/#interior-slots) of the component.
+
+## Troubleshooting
+
+If the Tailwind CSS classes are not overriding Material UI components, make sure that:
+
+- You are using at least Tailwind CSS v4.
+- You have configured the layer order correctly by checking the [DevTools styles tab](https://developer.chrome.com/docs/devtools/css/reference#cascade-layers). The `mui` layer should come before the `utilities` layer.
