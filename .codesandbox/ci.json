@@ -4,7 +4,6 @@
   "node": "20",
   "packages": [
     "packages/markdown",
-    "packages/mui-base",
     "packages/mui-codemod",
     "packages/mui-core-downloads-tracker",
     "packages/mui-docs",
@@ -26,7 +25,6 @@
     "packages-internal/test-utils"
   ],
   "publishDirectory": {
-    "@mui/base": "packages/mui-base/build",
     "@mui/codemod": "packages/mui-codemod/build",
     "@mui/core-downloads-tracker": "packages/mui-core-downloads-tracker/build",
     "@mui/docs": "packages/mui-docs/build",
