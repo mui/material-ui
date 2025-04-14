@@ -548,8 +548,8 @@ importers:
         specifier: 0.23.0
         version: 0.23.0(rollup@4.38.0)(vite@5.4.16(@types/node@20.17.30)(lightningcss@1.29.2)(terser@5.39.0))
       vite-plugin-pages:
-        specifier: ^0.32.5
-        version: 0.32.5(vite@5.4.16(@types/node@20.17.30)(lightningcss@1.29.2)(terser@5.39.0))
+        specifier: ^0.33.0
+        version: 0.33.0(vite@5.4.16(@types/node@20.17.30)(lightningcss@1.29.2)(terser@5.39.0))
 
   benchmark:
     dependencies:
@@ -13355,8 +13355,8 @@ packages:
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
-  vite-plugin-pages@0.32.5:
-    resolution: {integrity: sha512-GY2JAt+4vZ4BqTtw+4CSUxPgYiqamrMRIzYk2AtJvQHeBoMlctsQW+tgCpKriUKINiKfi6NegbP07r1XrdxTWA==}
+  vite-plugin-pages@0.33.0:
+    resolution: {integrity: sha512-D6AydqTbGM2yDEPgdea7MS2wL4Eensagra+gCdO7mu5YJPcrNas5blMShxqlFOmK0JDvxh3iTVob5hJhfbHMXQ==}
     peerDependencies:
       '@solidjs/router': '*'
       '@vue/compiler-sfc': ^2.7.0 || ^3.0.0
@@ -27172,16 +27172,17 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  vite-plugin-pages@0.32.5(vite@5.4.16(@types/node@20.17.30)(lightningcss@1.29.2)(terser@5.39.0)):
+  vite-plugin-pages@0.33.0(vite@5.4.16(@types/node@20.17.30)(lightningcss@1.29.2)(terser@5.39.0)):
     dependencies:
       '@types/debug': 4.1.12
       debug: 4.4.0(supports-color@8.1.1)
       dequal: 2.0.3
       extract-comments: 1.1.0
-      fast-glob: 3.3.3
       json5: 2.2.3
       local-pkg: 1.1.1
+      micromatch: 4.0.8
       picocolors: 1.1.1
+      tinyglobby: 0.2.12
       vite: 5.4.16(@types/node@20.17.30)(lightningcss@1.29.2)(terser@5.39.0)
       yaml: 2.7.1
     transitivePeerDependencies:
