@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@emotion/cache": "latest",
-    "@mui/base": "workspace:^",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",

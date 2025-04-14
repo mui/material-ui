@@ -13,7 +13,7 @@ githubLabel: 'component: TextareaAutosize'
 
 ## Introduction
 
-Joy UI's textarea component is built on top of the MUI Base [`TextareaAutoSize`](/base-ui/react-textarea-autosize/) component.
+Joy UI's textarea component is built on top of the MUI Base [`TextareaAutoSize`](https://v6.mui.com/base-ui/react-textarea-autosize/) component.
 
 {{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
