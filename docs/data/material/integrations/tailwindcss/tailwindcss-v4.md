@@ -117,6 +117,8 @@ Add the following configuration to your [`settings.json`](https://code.visualstu
 - Use `className` prop to apply Tailwind CSS classes to the root element of the component.
 - Use `slotProps.{slotName}.className` to apply Tailwind CSS classes to the [interior slot](/material-ui/customization/overriding-component-structure/#interior-slots) of the component.
 
+{{"demo": "TextFieldTailwind.js"}}
+
 ## Troubleshooting
 
 If the Tailwind CSS classes are not overriding Material UI components, make sure that:
