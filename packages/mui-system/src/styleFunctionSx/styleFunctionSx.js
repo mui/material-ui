@@ -19,7 +19,7 @@ function callIfFn(maybeFn, arg) {
   return typeof maybeFn === 'function' ? maybeFn(arg) : maybeFn;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 export function unstable_createStyleFunctionSx() {
   function getThemeValue(prop, val, theme, config) {
     const props = {
@@ -30,6 +30,50 @@ export function unstable_createStyleFunctionSx() {
     const options = config[prop];
 
     if (!options) {
+
+      if (typeof val === 'object' && theme.breakpoints?.values) {
+        const breakpointKeys = Object.keys(theme.breakpoints.values);
+        const containerQueryMethods = ['up', 'down', 'between', 'only', 'not'];
+        
+
+        const hasBreakpointKey = Object.keys(val).some(key => breakpointKeys.includes(key));
+        
+
+        const hasContainerQueryMethod = Object.keys(val).some(key => containerQueryMethods.includes(key));
+        
+        if (hasBreakpointKey || hasContainerQueryMethod) {
+          const containerStyles = {};
+          
+          Object.entries(val).forEach(([key, styles]) => {
+            if (breakpointKeys.includes(key)) {
+
+              const containerQuery = theme.containerQueries.up(key);
+              containerStyles[containerQuery] = styles;
+            } else if (containerQueryMethods.includes(key)) {
+
+              if (typeof styles === 'object') {
+                Object.entries(styles).forEach(([breakpoint, value]) => {
+                  if (breakpointKeys.includes(breakpoint)) {
+                    const containerQuery = theme.containerQueries[key](breakpoint);
+                    containerStyles[containerQuery] = value;
+                  } else {
+                    containerStyles[breakpoint] = value;
+                  }
+                });
+              }
+            } else {
+
+              if (typeof styles === 'object') {
+                containerStyles[key] = getThemeValue(key, styles, theme, config);
+              } else {
+                containerStyles[key] = styles;
+              }
+            }
+          });
+          
+          return { [prop]: containerStyles };
+        }
+      }
       return { [prop]: val };
     }
 
@@ -39,7 +83,7 @@ export function unstable_createStyleFunctionSx() {
       return null;
     }
 
-    // TODO v6: remove, see https://github.com/mui/material-ui/pull/38123
+
     if (themeKey === 'typography' && val === 'inherit') {
       return { [prop]: val };
     }
@@ -54,7 +98,7 @@ export function unstable_createStyleFunctionSx() {
       let value = getValue(themeMapping, transform, propValueFinal);
 
       if (propValueFinal === value && typeof propValueFinal === 'string') {
-        // Haven't found value
+
         value = getValue(
           themeMapping,
           transform,
@@ -79,16 +123,12 @@ export function unstable_createStyleFunctionSx() {
     const { sx, theme = {} } = props || {};
 
     if (!sx) {
-      return null; // Emotion & styled-components will neglect null
+      return null;
     }
 
     const config = theme.unstable_sxConfig ?? defaultSxConfig;
 
-    /*
-     * Receive `sxInput` as object or callback
-     * and then recursively check keys & values to create media query object styles.
-     * (the result will be used in `styled`)
-     */
+  
     function traverse(sxInput) {
       let sxObject = sxInput;
       if (typeof sxInput === 'function') {
