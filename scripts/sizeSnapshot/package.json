@@ -4,7 +4,6 @@
   "private": true,
   "description": "Size snapshot of MUI packages",
   "dependencies": {
-    "@mui/base": "workspace:^",
     "@mui/joy": "workspace:^",
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",

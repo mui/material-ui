@@ -290,7 +290,6 @@ jobs:
           name: Test module augmentation
           command: |
             pnpm --filter @mui/material typescript:module-augmentation
-            pnpm --filter @mui/base typescript:module-augmentation
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
       - run:

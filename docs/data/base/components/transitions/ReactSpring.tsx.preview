@@ -1,5 +1,0 @@
-<PopupWithTrigger>
-  <ReactSpringTransition>
-    <PopupBody>This is an animated popup</PopupBody>
-  </ReactSpringTransition>
-</PopupWithTrigger>
