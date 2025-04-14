@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
 
-// #repo-reference
+// #target-branch-reference
 const examples = [
   {
     name: 'Next.js App Router',
