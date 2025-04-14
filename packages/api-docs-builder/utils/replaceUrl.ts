@@ -18,7 +18,7 @@ export const replaceMaterialLinks = (url: string) => {
     return url;
   }
   return url.replace(
-    /(guides|customization|getting-started|discover-more|experimental-api|migration)/,
+    /(guides|customization|getting-started|discover-more|experimental-api|migration|integrations)/,
     'material-ui/$1',
   );
 };
