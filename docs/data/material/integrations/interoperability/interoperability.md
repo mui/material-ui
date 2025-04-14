@@ -579,7 +579,7 @@ It works exactly like styled components. You can [use the same guide](/material-
 ![npm](https://img.shields.io/npm/dm/tailwindcss)
 
 :::info
-For Tailwind CSS v4, please refer to the [v4 integration guide](/material-ui/integrations/tailwindcss-v4/).
+For Tailwind CSS v4, please refer to the [v4 integration guide](/material-ui/integrations/tailwindcss/tailwindcss-v4/).
 :::
 
 ### Setup
