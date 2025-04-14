@@ -1,0 +1,21 @@
+{
+  "name": "@mui/internal-bundle-size-checker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bundle size checker for MUI packages",
+  "type": "module",
+  "main": "./index.js",
+  "bin": {
+    "bundle-size-checker": "./bin/bundle-size-checker.js"
+  },
+  "dependencies": {
+    "compression-webpack-plugin": "^10.0.0",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "piscina": "^4.2.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.90.3",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "yargs": "^17.7.2"
+  }
+}

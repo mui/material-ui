@@ -1,12 +1,14 @@
 // @ts-check
 
-const path = require('path');
-const CompressionPlugin = require('compression-webpack-plugin');
-const glob = require('fast-glob');
-const TerserPlugin = require('terser-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+import { promisify } from 'util';
+import path from 'path';
+import webpackCallbackBased from 'webpack';
+import CompressionPlugin from 'compression-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-const workspaceRoot = path.join(__dirname, '..', '..');
+const webpack = promisify(webpackCallbackBased);
+const rootDir = process.cwd();
 
 /**
  * @typedef {object} WebpackEntry
@@ -19,50 +21,10 @@ const workspaceRoot = path.join(__dirname, '..', '..');
  */
 
 /**
- *
- * @returns {Promise<WebpackEntry[]>}
- */
-async function getWebpackEntries() {
-  const materialPackagePath = path.join(workspaceRoot, 'packages/mui-material/build');
-  const materialComponents = (await glob(path.join(materialPackagePath, '([A-Z])*/index.js'))).map(
-    (componentPath) => {
-      const componentName = path.basename(path.dirname(componentPath));
-      return `@mui/material/${componentName}`;
-    },
-  );
-
-  const labPackagePath = path.join(workspaceRoot, 'packages/mui-lab/build');
-  const labComponents = (await glob(path.join(labPackagePath, '([A-Z])*/index.js'))).map(
-    (componentPath) => {
-      const componentName = path.basename(path.dirname(componentPath));
-      return `@mui/lab/${componentName}`;
-    },
-  );
-
-  return [
-    '@mui/material',
-    ...materialComponents,
-    '@mui/lab',
-    ...labComponents,
-    '@mui/styles',
-    '@mui/private-theming',
-    '@mui/system',
-    '@mui/system/createBox',
-    '@mui/system/createStyled',
-    '@mui/material/styles#createTheme',
-    '@mui/system/colorManipulator',
-    '@mui/lab/useAutocomplete',
-    '@mui/material/useMediaQuery',
-    '@mui/material/useScrollTrigger',
-    '@mui/utils',
-  ];
-}
-
-/**
- *
+ * Creates webpack configuration for bundle size checking
  * @param {WebpackEntry} entry
  * @param {Environment} environment
- * @returns
+ * @returns {import('webpack').Configuration}
  */
 function createWebpackConfig(entry, environment) {
   const analyzerMode = environment.analyze ? 'static' : 'disabled';
@@ -105,7 +67,7 @@ function createWebpackConfig(entry, environment) {
         type: 'var',
         // type: 'module',
       },
-      path: path.join(__dirname, 'build'),
+      path: path.join(rootDir, 'build'),
     },
     plugins: [
       new CompressionPlugin({
@@ -122,7 +84,7 @@ function createWebpackConfig(entry, environment) {
       }),
     ],
     // A context to the current dir, which has a node_modules folder with workspace dependencies
-    context: __dirname,
+    context: rootDir,
     entry: {
       // This format is a data: url combined with inline matchResource to obtain a virtual entry.
       // See https://github.com/webpack/webpack/issues/6437#issuecomment-874466638
@@ -137,5 +99,57 @@ function createWebpackConfig(entry, environment) {
   return configuration;
 }
 
-exports.getWebpackEntries = getWebpackEntries;
-exports.createWebpackConfig = createWebpackConfig;
+export default async function getSizes({ entry, webpackEnvironment, index, total }) {
+  const sizes = [];
+
+  const configuration = createWebpackConfig(entry, webpackEnvironment);
+
+  // eslint-disable-next-line no-console -- process monitoring
+  console.log(`Compiling ${index + 1}/${total}: "${Object.keys(configuration.entry)}"`);
+
+  const webpackStats = await webpack(configuration);
+
+  if (webpackStats.hasErrors()) {
+    const { entrypoints, errors } = webpackStats.toJson({
+      all: false,
+      entrypoints: true,
+      errors: true,
+    });
+    throw new Error(
+      `The following errors occurred during bundling of ${Object.keys(
+        entrypoints,
+      )} with webpack: \n${errors
+        .map((error) => {
+          return `${JSON.stringify(error, null, 2)}`;
+        })
+        .join('\n')}`,
+    );
+  }
+
+  const stats = webpackStats.toJson({
+    all: false,
+    assets: true,
+    entrypoints: true,
+    relatedAssets: true,
+  });
+  const assets = new Map(stats.assets.map((asset) => [asset.name, asset]));
+
+  Object.values(stats.entrypoints).forEach((entrypoint) => {
+    let parsedSize = 0;
+    let gzipSize = 0;
+
+    entrypoint.assets.forEach(({ name, size }) => {
+      const asset = assets.get(name);
+      const gzippedAsset = asset.related.find((relatedAsset) => {
+        return relatedAsset.type === 'gzipped';
+      });
+
+      parsedSize += size;
+      gzipSize += gzippedAsset.size;
+    });
+
+    sizes.push([entrypoint.name, { parsed: parsedSize, gzip: gzipSize }]);
+  });
+
+  return sizes;
+}

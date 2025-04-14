@@ -33,6 +33,9 @@ importers:
       '@googleapis/sheets':
         specifier: ^9.6.0
         version: 9.6.0(encoding@0.1.13)
+      '@mui/internal-bundle-size-checker':
+        specifier: workspace:*
+        version: link:packages-internal/bundle-size-checker
       '@netlify/functions':
         specifier: ^3.0.4
         version: 3.0.4
@@ -635,6 +638,33 @@ importers:
         specifier: ^5.98.0
         version: 5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
 
+  bundle-size:
+    dependencies:
+      '@mui/internal-bundle-size-checker':
+        specifier: workspace:*
+        version: link:../packages-internal/bundle-size-checker
+      '@mui/lab':
+        specifier: workspace:*
+        version: link:../packages/mui-lab/build
+      '@mui/material':
+        specifier: workspace:*
+        version: link:../packages/mui-material/build
+      '@mui/private-theming':
+        specifier: workspace:*
+        version: link:../packages/mui-private-theming/build
+      '@mui/system':
+        specifier: workspace:*
+        version: link:../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:*
+        version: link:../packages/mui-utils/build
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.3
+      path:
+        specifier: ^0.12.7
+        version: 0.12.7
+
   docs:
     dependencies:
       '@babel/core':
@@ -1039,6 +1069,36 @@ importers:
       '@types/resolve':
         specifier: ^1.20.6
         version: 1.20.6
+
+  packages-internal/bundle-size-checker:
+    dependencies:
+      compression-webpack-plugin:
+        specifier: ^10.0.0
+        version: 10.0.0(webpack@5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0)))
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.3
+      fs-extra:
+        specifier: ^11.2.0
+        version: 11.3.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      piscina:
+        specifier: ^4.2.1
+        version: 4.9.2
+      terser-webpack-plugin:
+        specifier: ^5.3.10
+        version: 5.3.14(webpack@5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0)))
+      webpack:
+        specifier: ^5.90.3
+        version: 5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
+      webpack-bundle-analyzer:
+        specifier: ^4.10.1
+        version: 4.10.2
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
 
   packages-internal/docs-utils:
     dependencies:
@@ -2152,30 +2212,6 @@ importers:
         version: 0.14.2
 
   packages/waterfall: {}
-
-  scripts/sizeSnapshot:
-    dependencies:
-      '@mui/joy':
-        specifier: workspace:^
-        version: link:../../packages/mui-joy/build
-      '@mui/lab':
-        specifier: workspace:^
-        version: link:../../packages/mui-lab/build
-      '@mui/material':
-        specifier: workspace:^
-        version: link:../../packages/mui-material/build
-      '@mui/private-theming':
-        specifier: workspace:^
-        version: link:../../packages/mui-private-theming/build
-      '@mui/styles':
-        specifier: latest
-        version: 6.4.8(@types/react@19.1.0)(react@19.1.0)
-      '@mui/system':
-        specifier: workspace:^
-        version: link:../../packages/mui-system/build
-      '@mui/utils':
-        specifier: workspace:^
-        version: link:../../packages/mui-utils/build
 
   test:
     dependencies:
@@ -7204,6 +7240,12 @@ packages:
     resolution: {integrity: sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==}
     engines: {node: '>= 0.6'}
 
+  compression-webpack-plugin@10.0.0:
+    resolution: {integrity: sha512-wLXLIBwpul/ALcm7Aj+69X0pYT3BYt6DdPn3qrgBIh9YejV9Bju9ShhlAsjujLyWMo6SAweFIWaUoFmXZNuNrg==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      webpack: ^5.1.0
+
   compression-webpack-plugin@11.1.0:
     resolution: {integrity: sha512-zDOQYp10+upzLxW+VRSjEpRRwBXJdsb5lBMlRxx1g8hckIFBpe3DTI0en2w7h+beuq89576RVzfiXrkdPGrHhA==}
     engines: {node: '>= 18.12.0'}
@@ -9081,6 +9123,9 @@ packages:
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
     deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+
+  inherits@2.0.3:
+    resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -11285,6 +11330,9 @@ packages:
     resolution: {integrity: sha512-Vj7sf++t5pBD637NSfkxpHSMfWaeig5+DKWLhcqIYx6mWQz5hdJTGDVMQiJcw1ZYkhs7AazKDGpRVji1LJCZUQ==}
     engines: {node: '>=18'}
 
+  path@0.12.7:
+    resolution: {integrity: sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==}
+
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
@@ -13292,6 +13340,9 @@ packages:
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  util@0.10.4:
+    resolution: {integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==}
 
   util@0.12.5:
     resolution: {integrity: sha512-kZf/K6hEIrWHI6XqOFUiiMa+79wE/D8Q+NCNAWclkyg3b4d2k7s0QGepNjiABc+aR3N1PAyHL7p6UcLY6LmrnA==}
@@ -19532,6 +19583,12 @@ snapshots:
     dependencies:
       mime-db: 1.53.0
 
+  compression-webpack-plugin@10.0.0(webpack@5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))):
+    dependencies:
+      schema-utils: 4.3.0
+      serialize-javascript: 6.0.2
+      webpack: 5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
+
   compression-webpack-plugin@11.1.0(webpack@5.98.0):
     dependencies:
       schema-utils: 4.3.0
@@ -21931,6 +21988,8 @@ snapshots:
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
+
+  inherits@2.0.3: {}
 
   inherits@2.0.4: {}
 
@@ -24749,6 +24808,11 @@ snapshots:
 
   path-type@6.0.0: {}
 
+  path@0.12.7:
+    dependencies:
+      process: 0.11.10
+      util: 0.10.4
+
   pathe@2.0.3: {}
 
   pathval@1.1.1: {}
@@ -27098,6 +27162,10 @@ snapshots:
       react: 19.1.0
 
   util-deprecate@1.0.2: {}
+
+  util@0.10.4:
+    dependencies:
+      inherits: 2.0.3
 
   util@0.12.5:
     dependencies:
