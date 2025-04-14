@@ -34,7 +34,7 @@ export default function RootLayout() {
 }
 ```
 
-- configure the layer order in the Tailwind CSS file.
+- configure layer order in the Tailwind CSS file.
 
 ```css title="src/app/globals.css"
 @layer theme, base, mui, components, utilities;
@@ -101,9 +101,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );
 ```
 
-## Tailwind IntelliSense for VS Code
+## Tailwind IntelliSense for VS Code
 
-Add the following configuration to your [`settings.json`](https://code.visualstudio.com/docs/editor/settings#_settings-json-file) file to enable the extension to recognize the `className` key:
+Follow the [installation](https://tailwindcss.com/docs/editor-setup#intellisense-for-vs-code) and add the following configuration to your [`settings.json`](https://code.visualstudio.com/docs/editor/settings#_settings-json-file) file.
 
 ```json
 {
@@ -111,6 +111,8 @@ Add the following configuration to your [`settings.json`](https://code.visualstu
   "tailwindCSS.experimental.classRegex": [["className\\s*:\\s*['\"]([^'\"]*)['\"]"]]
 }
 ```
+
+This will enable Tailwind CSS IntelliSense for any value that has key `className`.
 
 ## Usage
 
