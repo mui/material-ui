@@ -1,13 +1,13 @@
-# Tailwind CSS v4 integration
+# Tailwind CSS v4 integration
 
-<p class="description">Learn how to use Material UI with Tailwind CSS v4.</p>
+<p class="description">Learn how to use Material UI with Tailwind CSS v4.</p>
 
 ## Frameworks
 
-There are 2 steps to integrate Tailwind CSS v4 with Material UI:
+There are 2 steps to integrate Tailwind CSS v4 with Material UI:
 
 1. Configure the styles to generate with `@layer` directive.
-2. Set up layer order to have `mui` comes before `utilities` layer so that Tailwind CSS classes can override Material UI styles.
+2. Set up layer order to have `mui` comes before `utilities` layer so that Tailwind CSS classes can override Material UI styles.
 
 If you are using a framework, you can follow the instructions below to set up the integration.
 
@@ -34,7 +34,7 @@ export default function RootLayout() {
 }
 ```
 
-- configure the layer order in the Tailwind CSS file.
+- configure the layer order in the Tailwind CSS file.
 
 ```css title="src/app/globals.css"
 @layer theme, base, mui, components, utilities;
@@ -114,12 +114,12 @@ Add the following configuration to your [`settings.json`](https://code.visualstu
 
 ## Usage
 
-- Use `className` prop to apply Tailwind CSS classes to the root element of the component.
-- Use `slotProps.{slotName}.className` to apply Tailwind CSS classes to the [interior slot](/material-ui/customization/overriding-component-structure/#interior-slots) of the component.
+- Use `className` prop to apply Tailwind CSS classes to the root element of the component.
+- Use `slotProps.{slotName}.className` to apply Tailwind CSS classes to the [interior slot](/material-ui/customization/overriding-component-structure/#interior-slots) of the component.
 
 ## Troubleshooting
 
-If the Tailwind CSS classes are not overriding Material UI components, make sure that:
+If the Tailwind CSS classes are not overriding Material UI components, make sure that:
 
-- You are using at least Tailwind CSS v4.
+- You are using at least Tailwind CSS v4.
 - You have configured the layer order correctly by checking the [DevTools styles tab](https://developer.chrome.com/docs/devtools/css/reference#cascade-layers). The `mui` layer should come before the `utilities` layer.
