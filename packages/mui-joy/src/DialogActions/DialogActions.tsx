@@ -67,7 +67,23 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
     ownerState,
   });
 
-  return <SlotRoot {...rootProps}>{children}</SlotRoot>;
+  const totalChildren = React.Children.count(children);
+
+  // manually set tabindex in case of reverse orientation
+  const childrenWithTabIndex =
+    orientation === 'horizontal-reverse'
+      ? React.Children.map(children, (child, index) => {
+          // Check if the child is a valid React element before adding props
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child as React.ReactElement<HTMLElement>, {
+              tabIndex: totalChildren - index,
+            });
+          }
+          return child; // If not a React element, return it as is
+        })
+      : children;
+
+  return <SlotRoot {...rootProps}>{childrenWithTabIndex}</SlotRoot>;
 }) as OverridableComponent<DialogActionsTypeMap>;
 
 DialogActions.propTypes /* remove-proptypes */ = {
