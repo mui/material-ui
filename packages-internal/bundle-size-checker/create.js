@@ -76,8 +76,8 @@ yargs(process.argv.slice(2))
   .command({
     command: '$0',
     describe: 'Saves a size snapshot in size-snapshot.json',
-    builder: (yargs) => {
-      return yargs
+    builder: (cmdYargs) => {
+      return cmdYargs
         .option('analyze', {
           default: false,
           describe: 'Creates a webpack-bundle-analyzer report for each bundle.',
