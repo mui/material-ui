@@ -48,7 +48,6 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [Row spanning](#row-spanning)
   - [New Toolbar](#new-toolbar)
   - [No columns overlay](#no-columns-overlay)
-  - [Performance improvements](#performance-improvements)
 - [Date and Time Pickers](#date-and-time-pickers)
   - [Time Range Picker](#time-range-picker)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [New view-switching strategy](#new-view-switching-strategy)
@@ -200,10 +199,6 @@ Dive into our new docs section on [Components usage](/x/react-data-grid/componen
 We've added a no-columns overlay to serve as a clear fallback when the Data Grid has no columns to show.
 
 Learn more in the [No columns overlay documentation](/x/react-data-grid/overlays/#no-columns-overlay).
-
-### Performance improvements
-
-We've made significant performance enhancements across the board—from smoother scrolling and faster Excel export to improved mount/resize and aggregation performance.
 
 ## Date and Time Pickers
 
