@@ -122,7 +122,9 @@ function createMaterialTemplate(templateData: {
   const demoData: DemoData = { codeStyling: 'MUI System', ...templateData, raw, language: 'en' };
 
   // Get dependencies
-  const { dependencies, devDependencies: baseDevDependencies } = SandboxDependencies(demoData, {});
+  const { dependencies, devDependencies: baseDevDependencies } = SandboxDependencies(demoData, {
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+  });
 
   // Add Vite specific dependencies
   const devDependencies: Record<string, string> = {
@@ -213,7 +215,9 @@ function createReactApp(demoData: DemoData) {
 
   // Get dependencies
   const { dependencies: baseDependencies, devDependencies: baseDevDependencies } =
-    SandboxDependencies(demoData, {});
+    SandboxDependencies(demoData, {
+      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    });
 
   const dependencies = { ...baseDependencies };
 
