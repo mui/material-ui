@@ -27,6 +27,7 @@ import { useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
+import stackBlitzWc from '../sandbox/StackBlitzWc';
 
 const Root = styled('div')(({ theme }) => [
   {
@@ -539,6 +540,20 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demo.gaLabel}
                   data-ga-event-action="stackblitz"
                   onClick={() => stackBlitz.createReactApp(demoData).openSandbox()}
+                  {...getControlProps(4)}
+                  sx={{ borderRadius: 1 }}
+                >
+                  <SvgIcon viewBox="0 0 19 28">
+                    <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+              <DemoTooltip title={'Edit in StackBlitz WebContainer'} placement="bottom">
+                <IconButton
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demo.gaLabel}
+                  data-ga-event-action="stackBlitzWc"
+                  onClick={() => stackBlitzWc.createReactApp(demoData).openSandbox()}
                   {...getControlProps(4)}
                   sx={{ borderRadius: 1 }}
                 >
