@@ -1,7 +1,7 @@
 ---
 title: Introducing MUI X v8
 description: Read all about the new release of the advanced components and other important steps forward with this new major.
-date: 2025-04-11T08:00:00.000Z
+date: 2025-04-16T08:00:00.000Z
 authors: ['josefreitas']
 tags: ['MUI X', 'Product']
 manualCard: false
