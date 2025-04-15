@@ -211,7 +211,7 @@ We've made significant performance enhancements across the board—from smoother
 It's finally here! The highly anticipated Time Range Picker component is designed for a straightforward and efficient experience, perfect for scheduling applications and detailed period inputs.
 
 <figure>
-  <video autoplay muted loop playsinline width="477" height="538" controls>
+  <video autoplay muted loop playsinline width="391" height="524" controls>
     <source src="/static/blog/mui-x-v8/time-range-picker.mp4" type="video/mp4">
   </video>
   <figcaption>Time Range Picker example</figcaption>
