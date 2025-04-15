@@ -40,18 +40,18 @@ const openRolesData = [
       //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
       //   url: '/careers/react-engineer-x-charts/',
       // },
-      {
-        title: 'React Engineer — eXplore',
-        description:
-          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
-        url: '/careers/react-engineer-explore/',
-      },
-      {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
+      // {
+      //   title: 'React Engineer — eXplore',
+      //   description:
+      //     'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+      //   url: '/careers/react-engineer-explore/',
+      // },
+      // {
+      //   title: 'React Engineer — X',
+      //   description:
+      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x/',
+      // },
     ],
   },
   {
