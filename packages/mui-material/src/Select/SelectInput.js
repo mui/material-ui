@@ -168,11 +168,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     startedOn: null,
   });
 
-  const focusTrackingRef = React.useRef({
-    isFocused: false,
-    pendingBlur: false,
-  });
-
   React.useImperativeHandle(
     handleRef,
     () => ({
@@ -302,10 +297,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             current = current.parentElement;
           }
 
-          if (menuItem) {
-            // Simulate a click on the menu item if we released on one
-            menuItem.click();
-          } else {
+          if (!menuItem) {
             // If released outside menu items, close the menu
             update(false, event);
           }
@@ -398,23 +390,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const open = displayNode !== null && openState;
 
-  const handleFocus = (event) => {
-    // Skip duplicate focus events
-    if (!focusTrackingRef.current.isFocused) {
-      focusTrackingRef.current.isFocused = true;
-      focusTrackingRef.current.pendingBlur = false;
-
-      if (onFocus) {
-        onFocus(event);
-      }
-    }
-  };
-
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
-      focusTrackingRef.current.pendingBlur = false;
-      focusTrackingRef.current.isFocused = false;
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);
@@ -595,7 +573,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
-        onFocus={handleFocus}
+        onFocus={onFocus}
         {...SelectDisplayProps}
         ownerState={ownerState}
         className={clsx(SelectDisplayProps.className, classes.select, className)}
