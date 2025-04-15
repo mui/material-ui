@@ -1,4 +1,8 @@
-import { Container, Typography, Link, Slider } from '@mui/material';
+import * as React from 'react';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Slider from '@mui/material/Slider';
 import PopoverMenu from './PopOverMenu';
 import ProTip from './ProTip';
 
