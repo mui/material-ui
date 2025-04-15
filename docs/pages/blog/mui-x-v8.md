@@ -43,7 +43,7 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [Ask Your Table - AI assistance in the Data Grid](#ask-your-table-ai-assistance-in-the-data-grid)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
   - [List view](#list-view)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Row spanning](#row-spanning)
-  - [Server-side Aggregation and Lazy loading](#server-side-aggregation-and-lazy-loading)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+  - [Server-side Aggregation <span class="plan-premium"></span> and Lazy loading](#server-side-aggregation-and-lazy-loading) <a href="/x/introduction/licensing/#pro-plan" title="Pro plan"><span class="plan-pro"></span></a>
   - [Data source with support for editing](#data-source-with-support-for-editing)
   - [Data source on the Community Plan](#data-source-on-the-community-plan)
   - [New Toolbar](#new-toolbar)
@@ -145,7 +145,7 @@ This enhancement makes it easier to create complex, multi-row layouts within you
 
 Learn how to set up and use [Row spanning](/x/react-data-grid/row-spanning/).
 
-### Server-side Aggregation and Lazy loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
+### Server-side Aggregation [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan') and Lazy loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 The Data Source now supports advanced features such as server-side aggregation, on-demand data fetching for infinite scrolling, and lazy loading.
 
