@@ -987,8 +987,8 @@ importers:
         specifier: ^1.25.1
         version: 1.25.1
       marked:
-        specifier: ^15.0.7
-        version: 15.0.7
+        specifier: ^15.0.8
+        version: 15.0.8
       playwright:
         specifier: ^1.51.1
         version: 1.51.1
@@ -1377,8 +1377,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       marked:
-        specifier: ^15.0.7
-        version: 15.0.7
+        specifier: ^15.0.8
+        version: 15.0.8
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
@@ -10186,8 +10186,8 @@ packages:
     peerDependencies:
       marked: '>=1 <16'
 
-  marked@15.0.7:
-    resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
+  marked@15.0.8:
+    resolution: {integrity: sha512-rli4l2LyZqpQuRve5C0rkn6pj3hT8EWPC+zkAxFTAJLxRbENfTAhEQq9itrmf1Y81QtAX5D/MYlGlIomNgj9lA==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -23276,7 +23276,7 @@ snapshots:
       node-emoji: 2.2.0
       supports-hyperlinks: 3.2.0
 
-  marked@15.0.7: {}
+  marked@15.0.8: {}
 
   marked@9.1.6: {}
 
