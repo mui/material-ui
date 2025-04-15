@@ -34,7 +34,7 @@
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
     "typescript": "^5.8.3",
-    "uuid": "^11.0.5"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@babel/register": "^7.25.9",
@@ -43,7 +43,7 @@
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.16",
     "@types/node": "^20.17.30",
-    "@types/react": "^19.1.0",
+    "@types/react": "^19.1.1",
     "@types/uuid": "^10.0.0",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.3",
