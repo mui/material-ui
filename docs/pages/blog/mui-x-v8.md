@@ -450,11 +450,8 @@ In the coming months, we'll continue delivering significant improvements and fea
 - **More improvements to server-side integration**: Ongoing improvements for robust performance and scalability.
 - **New components**: We're exploring additions that support complex planning and time-based workflows, starting with early explorations into Scheduler and Gantt components.
 
-## How to get involved
+## How to Get Involved
 
-Your input is vital to our continuous improvement.
-We invite you to:
+Your input drives our innovation. Join our GitHub community today to share your insights, report issues, and help shape the future of MUI X.
 
-- **Share your feedback:** Let us know how these new features work for you and what you'd like to see next.
-- **Report issues and suggest features:** Our [GitHub repository](https://github.com/mui/mui-x) is the perfect place to contribute.
-- **Join our community:** Participate in user interviews and help steer the roadmap for future releases.
+[Join our community on GitHub](https://github.com/mui/mui-x)
