@@ -29,11 +29,17 @@ const openRolesData = [
         url: '/careers/staff-engineer-pigment-css/',
       },
       {
-        title: 'React Engineer — xCharts',
+        title: 'Code infra Engineer',
         description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
+          'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
+        url: '/careers/code-infra-engineer/',
       },
+      // {
+      //   title: 'React Engineer — xCharts',
+      //   description:
+      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x-charts/',
+      // },
       {
         title: 'React Engineer — eXplore',
         description:

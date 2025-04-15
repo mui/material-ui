@@ -1,8 +1,10 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
+import { snackbarContentClasses } from '@mui/material/SnackbarContent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
@@ -24,6 +26,20 @@ describe('<Snackbar />', () => {
     return result;
   }
 
+  const CustomContent = React.forwardRef(function CustomContent(
+    { className, ownerState, ...props },
+    ref,
+  ) {
+    return (
+      <div
+        className={clsx(snackbarContentClasses.root, className)}
+        data-testid="custom"
+        ref={ref}
+        {...props}
+      />
+    );
+  });
+
   describeConformance(<Snackbar open message="message" />, () => ({
     classes,
     inheritComponent: 'div',
@@ -31,6 +47,20 @@ describe('<Snackbar />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      content: {
+        expectedClassName: snackbarContentClasses.root,
+        testWithComponent: CustomContent,
+        testWithElement: CustomContent,
+      },
+      transition: {
+        testWithElement: null,
+      },
+      // skip `clickAwayListener` because it does not have any element.
+    },
   }));
 
   describe('prop: onClose', () => {
@@ -591,5 +621,28 @@ describe('<Snackbar />', () => {
       const child = getByTestId('child');
       expect(child).toHaveComputedStyle({ transitionDuration: '0.001s, 0.001s' });
     });
+  });
+
+  it('should skip default clickAway behavior when defaultMuiPrevented is true', () => {
+    const handleClose = spy();
+    render(
+      <Snackbar
+        open
+        onClose={handleClose}
+        message="message"
+        slotProps={{
+          clickAwayListener: {
+            onClickAway: (event) => {
+              event.defaultMuiPrevented = true;
+            },
+          },
+        }}
+      />,
+    );
+
+    const event = new window.Event('click', { bubbles: true, cancelable: true });
+    document.body.dispatchEvent(event);
+
+    expect(handleClose.callCount).to.equal(0);
   });
 });

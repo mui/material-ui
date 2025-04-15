@@ -1,3 +1,5 @@
+// @ts-check
+
 const path = require('path');
 const os = require('os');
 const fse = require('fs-extra');
@@ -23,9 +25,11 @@ async function getWebpackSizes(webpackEnvironment) {
 
   const entries = await getWebpackEntries();
 
+  const uniqueEntries = new Set(entries);
+
   const sizeArrays = await Promise.all(
-    entries.map((entry, index) =>
-      worker.run({ entry, webpackEnvironment, index, total: entries.length }),
+    Array.from(uniqueEntries, (entry, index) =>
+      worker.run({ entry, webpackEnvironment, index, total: uniqueEntries.size }),
     ),
   );
 

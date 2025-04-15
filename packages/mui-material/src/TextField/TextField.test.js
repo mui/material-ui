@@ -21,6 +21,15 @@ describe('<TextField />', () => {
     );
   }
 
+  function TestFormControl(props) {
+    const { children, error, ...rest } = props;
+    return (
+      <FormControl data-testid={'custom'} {...rest}>
+        {children}
+      </FormControl>
+    );
+  }
+
   describeConformance(
     <TextField variant="standard" helperText="Helper text" label="Label" />,
     () => ({
@@ -40,6 +49,10 @@ describe('<TextField />', () => {
           testWithElement: 'input',
         },
         formHelperText: {},
+        root: {
+          expectedClassName: classes.root,
+          testWithElement: TestFormControl,
+        },
       },
       skip: ['componentProp', 'componentsProp'],
     }),
@@ -301,6 +314,30 @@ describe('<TextField />', () => {
       const { getByRole } = render(<TextField inputProps={{ 'data-testid': 'input-element' }} />);
 
       expect(getByRole('textbox')).to.have.attribute('data-testid', 'input-element');
+    });
+  });
+
+  describe('autofill', () => {
+    it('should be filled after auto fill event', () => {
+      function AutoFillComponentTest() {
+        const [value, setValue] = React.useState('');
+        return (
+          <TextField
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            label="test"
+            variant="standard"
+            slotProps={{
+              htmlInput: { 'data-testid': 'htmlInput' },
+              inputLabel: { 'data-testid': 'label' },
+            }}
+          />
+        );
+      }
+
+      const { getByTestId } = render(<AutoFillComponentTest />);
+      fireEvent.animationStart(getByTestId('htmlInput'), { animationName: 'mui-auto-fill' });
+      expect(getByTestId('label').getAttribute('data-shrink')).to.equal('true');
     });
   });
 });

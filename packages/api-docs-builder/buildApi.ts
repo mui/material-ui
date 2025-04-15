@@ -200,7 +200,7 @@ async function buildSingleProject(
   }
 
   if (writeApiManifest) {
-    let source = `module.exports = ${JSON.stringify(projectSettings.getApiPages())}`;
+    let source = `export default ${JSON.stringify(projectSettings.getApiPages())}`;
     if (projectSettings.onWritingManifestFile) {
       source = projectSettings.onWritingManifestFile(builds, source);
     }
@@ -223,6 +223,9 @@ export function escapeEntities(value: string) {
 }
 export function escapeCell(value: string) {
   return rawDescriptionsCurrent ? value : _escapeCell(value);
+}
+export function removeNewLines(value: string) {
+  return rawDescriptionsCurrent ? value : value.replace(/\r*\n/g, ' ');
 }
 export function joinUnionTypes(value: string[]) {
   // Use unopinionated formatting for raw descriptions

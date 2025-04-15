@@ -13,7 +13,7 @@ const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80];
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
   backgroundColor: '#fff',
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   ...theme.applyStyles('dark', {
     backgroundColor: '#1A2027',
   }),
@@ -27,7 +27,7 @@ export default function MasonryWithVariableHeightItems() {
           <Paper key={index}>
             <StyledAccordion sx={{ minHeight: height }}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>Accordion {index + 1}</Typography>
+                <Typography component="span">Accordion {index + 1}</Typography>
               </AccordionSummary>
               <AccordionDetails>Contents</AccordionDetails>
             </StyledAccordion>

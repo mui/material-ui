@@ -282,7 +282,7 @@ describe('<InputBase />', () => {
 
         let expectedOccurrences = 1;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 2;
         }
 
@@ -507,7 +507,7 @@ describe('<InputBase />', () => {
 
         let expectedOccurrences = 1;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 2;
         }
         expect(() => {

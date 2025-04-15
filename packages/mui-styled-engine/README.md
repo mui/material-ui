@@ -6,6 +6,6 @@ It is used internally in the `@mui/system` package.
 
 ## Documentation
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 Visit [https://mui.com/material-ui/integrations/styled-components/](https://mui.com/material-ui/integrations/styled-components/) to view the full documentation.

@@ -2,6 +2,7 @@
 export {};
 
 export * from './borders';
+export { default as borders } from './borders';
 
 export { default as breakpoints, handleBreakpoints, mergeBreakpointsInOrder } from './breakpoints';
 
@@ -10,20 +11,28 @@ export { default as cssContainerQueries, type CssContainerQueries } from './cssC
 export { default as compose } from './compose';
 
 export * from './display';
+export { default as display } from './display';
 
 export * from './flexbox';
+export { default as flexbox } from './flexbox';
 
 export * from './cssGrid';
+export { default as grid } from './cssGrid';
 
 export * from './palette';
+export { default as palette } from './palette';
 
 export * from './positions';
+export { default as positions } from './positions';
 
 export * from './shadows';
+export { default as shadows } from './shadows';
 
 export * from './sizing';
+export { default as sizing } from './sizing';
 
 export * from './typography';
+export { default as typography } from './typography';
 
 export { default as unstable_getThemeValue } from './getThemeValue';
 
@@ -48,7 +57,10 @@ export { default as GlobalStyles } from './GlobalStyles';
 export type { GlobalStylesProps } from './GlobalStyles';
 
 export * from './style';
+export { default as style } from './style';
+
 export * from './spacing';
+export { default as spacing } from './spacing';
 
 export {
   default as unstable_styleFunctionSx,

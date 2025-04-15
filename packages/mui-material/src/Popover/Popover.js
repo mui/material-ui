@@ -14,12 +14,12 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-import useForkRef from '../utils/useForkRef';
 import Grow from '../Grow';
 import Modal from '../Modal';
 import PaperBase from '../Paper';
 import { getPopoverUtilityClass } from './popoverClasses';
 import useSlot from '../utils/useSlot';
+import { mergeSlotProps } from '../utils';
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -111,21 +111,19 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     elevation = 8,
     marginThreshold = 16,
     open,
-    PaperProps: PaperPropsProp = {},
+    PaperProps: PaperPropsProp = {}, // TODO: remove in v7
     slots = {},
     slotProps = {},
     transformOrigin = {
       vertical: 'top',
       horizontal: 'left',
     },
-    TransitionComponent = Grow,
+    TransitionComponent, // TODO: remove in v7
     transitionDuration: transitionDurationProp = 'auto',
-    TransitionProps: { onEntering, ...TransitionProps } = {},
+    TransitionProps = {}, // TODO: remove in v7
     disableScrollLock = false,
     ...other
   } = props;
-
-  const externalPaperSlotProps = slotProps?.paper ?? PaperPropsProp;
 
   const paperRef = React.useRef();
 
@@ -135,7 +133,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     anchorReference,
     elevation,
     marginThreshold,
-    externalPaperSlotProps,
     transformOrigin,
     TransitionComponent,
     transitionDuration: transitionDurationProp,
@@ -316,11 +313,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     return () => window.removeEventListener('scroll', setPositioningStyles);
   }, [anchorEl, disableScrollLock, setPositioningStyles]);
 
-  const handleEntering = (element, isAppearing) => {
-    if (onEntering) {
-      onEntering(element, isAppearing);
-    }
-
+  const handleEntering = () => {
     setPositioningStyles();
   };
 
@@ -356,7 +349,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       setPositioningStyles();
     });
 
-    const containerWindow = ownerWindow(anchorEl);
+    const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
     containerWindow.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
@@ -366,7 +359,40 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
 
   let transitionDuration = transitionDurationProp;
 
-  if (transitionDurationProp === 'auto' && !TransitionComponent.muiSupportAuto) {
+  const externalForwardedProps = {
+    slots: {
+      transition: TransitionComponent,
+      ...slots,
+    },
+    slotProps: {
+      transition: TransitionProps,
+      paper: PaperPropsProp,
+      ...slotProps,
+    },
+  };
+
+  const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps,
+    ownerState,
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onEntering: (element, isAppearing) => {
+        handlers.onEntering?.(element, isAppearing);
+        handleEntering();
+      },
+      onExited: (element) => {
+        handlers.onExited?.(element);
+        handleExited();
+      },
+    }),
+    additionalProps: {
+      appear: true,
+      in: open,
+    },
+  });
+
+  if (transitionDurationProp === 'auto' && !TransitionSlot.muiSupportAuto) {
     transitionDuration = undefined;
   }
 
@@ -376,60 +402,59 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const container =
     containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
-  const externalForwardedProps = {
-    slots,
-    slotProps: {
-      ...slotProps,
-      paper: externalPaperSlotProps,
+  const [RootSlot, { slots: rootSlotsProp, slotProps: rootSlotPropsProp, ...rootProps }] = useSlot(
+    'root',
+    {
+      ref,
+      elementType: PopoverRoot,
+      externalForwardedProps: {
+        ...externalForwardedProps,
+        ...other,
+      },
+      shouldForwardComponentProp: true,
+      additionalProps: {
+        slots: { backdrop: slots.backdrop },
+        slotProps: {
+          backdrop: mergeSlotProps(
+            typeof slotProps.backdrop === 'function'
+              ? slotProps.backdrop(ownerState)
+              : slotProps.backdrop,
+            { invisible: true },
+          ),
+        },
+        container,
+        open,
+      },
+      ownerState,
+      className: clsx(classes.root, className),
     },
-  };
+  );
 
   const [PaperSlot, paperProps] = useSlot('paper', {
+    ref: paperRef,
+    className: classes.paper,
     elementType: PopoverPaper,
     externalForwardedProps,
+    shouldForwardComponentProp: true,
     additionalProps: {
       elevation,
-      className: clsx(classes.paper, externalPaperSlotProps?.className),
-      style: isPositioned
-        ? externalPaperSlotProps.style
-        : { ...externalPaperSlotProps.style, opacity: 0 },
+      style: isPositioned ? undefined : { opacity: 0 },
     },
     ownerState,
   });
-
-  const [RootSlot, { slotProps: rootSlotPropsProp, ...rootProps }] = useSlot('root', {
-    elementType: PopoverRoot,
-    externalForwardedProps,
-    additionalProps: {
-      slotProps: { backdrop: { invisible: true } },
-      container,
-      open,
-    },
-    ownerState,
-    className: clsx(classes.root, className),
-  });
-
-  const handlePaperRef = useForkRef(paperRef, paperProps.ref);
 
   return (
     <RootSlot
       {...rootProps}
-      {...(!isHostComponent(RootSlot) && { slotProps: rootSlotPropsProp, disableScrollLock })}
-      {...other}
-      ref={ref}
+      {...(!isHostComponent(RootSlot) && {
+        slots: rootSlotsProp,
+        slotProps: rootSlotPropsProp,
+        disableScrollLock,
+      })}
     >
-      <TransitionComponent
-        appear
-        in={open}
-        onEntering={handleEntering}
-        onExited={handleExited}
-        timeout={transitionDuration}
-        {...TransitionProps}
-      >
-        <PaperSlot {...paperProps} ref={handlePaperRef}>
-          {children}
-        </PaperSlot>
-      </TransitionComponent>
+      <TransitionSlot {...transitionSlotProps} timeout={transitionDuration}>
+        <PaperSlot {...paperProps}>{children}</PaperSlot>
+      </TransitionSlot>
     </RootSlot>
   );
 });
@@ -520,8 +545,7 @@ Popover.propTypes /* remove-proptypes */ = {
   anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `slotProps.root.slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
-   * Use the `slotProps.root.slots.backdrop` prop to make your application ready for the next version of Material UI.
+   * @deprecated Use `slots.backdrop` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -535,7 +559,7 @@ Popover.propTypes /* remove-proptypes */ = {
   BackdropComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-   * @deprecated Use `slotProps.root.slotProps.backdrop` instead.
+   * @deprecated Use `slotProps.backdrop` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   BackdropProps: PropTypes.object,
   /**
@@ -602,16 +626,20 @@ Popover.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
     paper: PropTypes.elementType,
     root: PropTypes.elementType,
+    transition: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
@@ -644,6 +672,7 @@ Popover.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * @deprecated use the `slots.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -663,6 +692,7 @@ Popover.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps: PropTypes.object,

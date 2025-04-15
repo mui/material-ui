@@ -7,7 +7,7 @@ export interface Slot {
   default?: string;
 }
 
-export interface CssVariable {
+export interface ApiItemDescription {
   name: string;
   description: string;
 }

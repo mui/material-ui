@@ -1,10 +1,9 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Section from 'docs/src/layouts/Section';
 import { InfoCard } from '@mui/docs/InfoCard';
 import { Theme } from '@mui/material/styles';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
 
@@ -36,13 +35,6 @@ const content = [
     link: '/joy-ui/getting-started/',
   },
   {
-    icon: <SvgBaseUiLogo width={14} height={14} sx={logoColor} />,
-    title: 'Base UI',
-    description:
-      "A library of unstyled React components and low-level hooks. With Base UI, you gain complete control over your app's CSS and accessibility features.",
-    link: '/base-ui/',
-  },
-  {
     icon: <StyleRoundedIcon sx={iconStyles} />,
     title: 'MUI System',
     description:
@@ -56,7 +48,7 @@ export default function CoreProducts() {
     <Section cozy>
       <Grid container spacing={2}>
         {content.map(({ icon, title, description, link }) => (
-          <Grid key={title} size={{ xs: 12, md: 6 }}>
+          <Grid key={title} size={{ xs: 12, md: 4 }}>
             <InfoCard
               icon={icon}
               link={link}

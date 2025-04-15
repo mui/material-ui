@@ -1,15 +1,3 @@
-export { default as Alert } from './Alert';
-export * from './Alert';
-
-export { default as AlertTitle } from './AlertTitle';
-export * from './AlertTitle';
-
-export { default as Autocomplete } from './Autocomplete';
-export * from './Autocomplete';
-
-export { default as AvatarGroup } from './AvatarGroup';
-export * from './AvatarGroup';
-
 export { default as CalendarPicker } from './CalendarPicker';
 export * from './CalendarPicker';
 
@@ -64,29 +52,8 @@ export * from './MobileTimePicker';
 export { default as MonthPicker } from './MonthPicker';
 export * from './MonthPicker';
 
-export { default as Pagination } from './Pagination';
-export * from './Pagination';
-
-export { default as PaginationItem } from './PaginationItem';
-export * from './PaginationItem';
-
 export { default as PickersDay } from './PickersDay';
 export * from './PickersDay';
-
-export { default as Rating } from './Rating';
-export * from './Rating';
-
-export { default as Skeleton } from './Skeleton';
-export * from './Skeleton';
-
-export { default as SpeedDial } from './SpeedDial';
-export * from './SpeedDial';
-
-export { default as SpeedDialAction } from './SpeedDialAction';
-export * from './SpeedDialAction';
-
-export { default as SpeedDialIcon } from './SpeedDialIcon';
-export * from './SpeedDialIcon';
 
 export { default as StaticDatePicker } from './StaticDatePicker';
 export * from './StaticDatePicker';
@@ -132,12 +99,6 @@ export * from './TimelineOppositeContent';
 
 export { default as TimelineSeparator } from './TimelineSeparator';
 export * from './TimelineSeparator';
-
-export { default as ToggleButton } from './ToggleButton';
-export * from './ToggleButton';
-
-export { default as ToggleButtonGroup } from './ToggleButtonGroup';
-export * from './ToggleButtonGroup';
 
 export { default as TreeItem } from './TreeItem';
 export * from './TreeItem';
