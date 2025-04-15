@@ -62,6 +62,7 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
 - [Charts](#charts)
   - [Funnel Charts](#funnel-charts)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
   - [Radar Charts](#radar-charts)
+  - [New animation engine](#new-animation-engine)
   - [Server-side rendering for Charts](#server-side-rendering-for-charts)
   - [Refined design and interaction](#refined-design-and-interaction)
   - [HTML Legend for Charts](#html-legend-for-charts)
