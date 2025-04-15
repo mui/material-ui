@@ -477,4 +477,131 @@ describe('styleFunctionSx', () => {
       ).not.to.throw();
     });
   });
+
+  it('should support container queries with breakpoint keys', () => {
+    const result = styleFunctionSx({
+      theme,
+      sx: {
+        display: {
+          sm: 'block',
+          md: 'flex',
+        },
+      },
+    });
+
+    expect(result).to.deep.equal({
+      display: {
+        '@container (min-width:600px)': 'block',
+        '@container (min-width:900px)': 'flex',
+      },
+    });
+  });
+
+  it('should support mixed container queries and regular styles', () => {
+    const result = styleFunctionSx({
+      theme,
+      sx: {
+        display: {
+          sm: 'block',
+          padding: '16px',
+          md: 'flex',
+        },
+      },
+    });
+
+    expect(result).to.deep.equal({
+      display: {
+        '@container (min-width:600px)': 'block',
+        '@container (min-width:900px)': 'flex',
+        padding: '16px',
+      },
+    });
+  });
+
+  it('should support all container query methods with breakpoint keys', () => {
+    const result = styleFunctionSx({
+      theme,
+      sx: {
+        display: {
+          sm: 'block',
+          md: 'flex',
+          lg: 'grid',
+        },
+        width: {
+          down: {
+            sm: '100%',
+            md: '50%',
+          },
+          between: {
+            sm: '75%',
+            md: '50%',
+          },
+          only: {
+            sm: '100%',
+          },
+          not: {
+            sm: '50%',
+          },
+        },
+      },
+    });
+
+    expect(result).to.deep.equal({
+      display: {
+        '@container (min-width:600px)': 'block',
+        '@container (min-width:900px)': 'flex',
+        '@container (min-width:1200px)': 'grid',
+      },
+      width: {
+        '@container (max-width:599.95px)': '100%',
+        '@container (max-width:899.95px)': '50%',
+        '@container (min-width:600px) and (max-width:899.95px)': '75%',
+        '@container (min-width:900px) and (max-width:1199.95px)': '50%',
+        '@container (min-width:600px) and (max-width:899.95px)': '100%',
+        '@container (min-width:600px)': '50%',
+      },
+    });
+  });
+
+  it('should handle nested container queries', () => {
+    const result = styleFunctionSx({
+      theme,
+      sx: {
+        '& .child': {
+          display: {
+            sm: 'block',
+            md: 'flex',
+          },
+        },
+      },
+    });
+
+    expect(result).to.deep.equal({
+      '& .child': {
+        display: {
+          '@container (min-width:600px)': 'block',
+          '@container (min-width:900px)': 'flex',
+        },
+      },
+    });
+  });
+
+  it('should handle container queries with theme values', () => {
+    const result = styleFunctionSx({
+      theme,
+      sx: {
+        color: {
+          sm: 'primary.main',
+          md: 'secondary.main',
+        },
+      },
+    });
+
+    expect(result).to.deep.equal({
+      color: {
+        '@container (min-width:600px)': 'rgb(0, 0, 255)',
+        '@container (min-width:900px)': 'rgb(0, 255, 0)',
+      },
+    });
+  });
 });
