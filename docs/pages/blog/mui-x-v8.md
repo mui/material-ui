@@ -42,10 +42,10 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [Pivoting](#pivoting)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
   - [Ask Your Table - AI assistance in the Data Grid](#ask-your-table-ai-assistance-in-the-data-grid)[<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan')
   - [List view](#list-view)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
-  - [Row spanning](#row-spanning)
   - [Server-side Aggregation <span class="plan-premium"></span> and Lazy loading](#server-side-aggregation-and-lazy-loading) <a href="/x/introduction/licensing/#pro-plan" title="Pro plan"><span class="plan-pro"></span></a>
   - [Data source with support for editing](#data-source-with-support-for-editing)
   - [Data source on the Community Plan](#data-source-on-the-community-plan)
+  - [Row spanning](#row-spanning)
   - [New Toolbar](#new-toolbar)
   - [No columns overlay](#no-columns-overlay)
   - [Performance improvements](#performance-improvements)
@@ -133,18 +133,6 @@ We've promoted List view to stable, and over this major we're committed to enhan
 
 Learn more about [List view](/x/react-data-grid/list-view/).
 
-### Row spanning
-
-Row spanning has also been promoted to stable, providing a reliable and flexible solution for merging cells across multiple rows.
-This enhancement makes it easier to create complex, multi-row layouts within your Data Grid, allowing you to present your data more effectively.
-
-<figure>
-  <img alt="An example highlighting rows using row-spanning" src="/static/blog/mui-x-v8/row-spanning.png" loading="lazy" style="border: 0;" width="1762" height="630">
-  <figcaption>An example highlighting rows using row-spanning</figcaption>
-</figure>
-
-Learn how to set up and use [Row spanning](/x/react-data-grid/row-spanning/).
-
 ### Server-side Aggregation [<span class="plan-premium"></span>](/x/introduction/licensing/#premium-plan 'Premium plan') and Lazy loading [<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
 The Data Source now supports advanced features such as server-side aggregation, on-demand data fetching for infinite scrolling, and lazy loading.
@@ -177,6 +165,18 @@ Great news—the Data source move from the Pro Plan to the Community Plan (MIT l
 We're unifying our approach to handling server-side data across all plans, creating a single, cohesive framework.
 
 Explore your options in our [Data source docs](/x/react-data-grid/server-side-data/).
+
+### Row spanning
+
+Row spanning has also been promoted to stable, providing a reliable and flexible solution for merging cells across multiple rows.
+This enhancement makes it easier to create complex, multi-row layouts within your Data Grid, allowing you to present your data more effectively.
+
+<figure>
+  <img alt="An example highlighting rows using row-spanning" src="/static/blog/mui-x-v8/row-spanning.png" loading="lazy" style="border: 0;" width="1762" height="630">
+  <figcaption>An example highlighting rows using row-spanning</figcaption>
+</figure>
+
+Learn how to set up and use [Row spanning](/x/react-data-grid/row-spanning/).
 
 ### New Toolbar
 
@@ -344,6 +344,10 @@ Similarly, our Radar Charts offer a dynamic way to display multivariate data, en
 
 You can learn more in the [Radar](/x/react-charts/radar/) docs.
 
+### New Animation Engine
+
+We’ve replaced React Spring with our very own animation engine, designed for optimal performance and full support—including guaranteed compatibility with React 19 and future releases. By building our own solution, we can ensure reliable support and provide continuous improvements tailored to the specific needs of our components.
+
 ### Server-side rendering for Charts
 
 You can now leverage server-side rendering (SSR) for charts to improve initial load performance and SEO.
@@ -448,6 +452,7 @@ In the coming months, we'll continue delivering significant improvements and fea
 - **Increased leverage of AI**: Harnessing advanced AI to unlock new insights and streamline data analysis.
 - **Design and usability improvements**: Continuous refinements to enhance the overall user experience.
 - **More improvements to server-side integration**: Ongoing improvements for robust performance and scalability.
+- **New components**: We're exploring additions that support complex planning and time-based workflows, starting with early explorations into Scheduler and Gantt components.
 
 ## How to get involved
 
