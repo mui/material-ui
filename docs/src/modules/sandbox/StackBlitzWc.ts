@@ -114,15 +114,15 @@ function createMaterialTemplate(templateData: {
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
+  const raw = Object.entries(templateData.files ?? {}).reduce(
+    (prev, curr) => `${prev}\n${curr}`,
+    '',
+  );
+
+  const demoData: DemoData = { codeStyling: 'MUI System', ...templateData, raw, language: 'en' };
 
   // Get dependencies
-  const { dependencies, devDependencies: baseDevDependencies } = SandboxDependencies(
-    {
-      codeVariant: templateData.codeVariant,
-      raw: Object.entries(templateData.files ?? {}).reduce((prev, curr) => `${prev}\n${curr}`, ''),
-    },
-    {},
-  );
+  const { dependencies, devDependencies: baseDevDependencies } = SandboxDependencies(demoData, {});
 
   // Add Vite specific dependencies
   const devDependencies: Record<string, string> = {
@@ -134,25 +134,45 @@ function createMaterialTemplate(templateData: {
   delete devDependencies['react-scripts'];
 
   // Create base Vite files with dependencies
-  const viteFiles = createViteFiles(templateData, dependencies, devDependencies);
+  const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
 
   // Restructure template files to be under src/
   const templateSourceFiles = Object.entries(templateData.files ?? {}).reduce(
     (acc, [key, value]) => {
-      const newKey = key.startsWith('App') ? `src/${key}` : key;
+      // Move App files to src/ directory, keep configuration files at root
+      const isConfigFile = /\.(json|yml|md|config|gitignore|rc)$/.test(key);
+      const newKey =
+        key.startsWith('App') || (!isConfigFile && !key.includes('/')) ? `src/${key}` : key;
       return { ...acc, [newKey]: value };
     },
     {} as Record<string, string>,
   );
 
+  // Ensure we have App.js or App.tsx
   if (!templateSourceFiles[`src/App.${ext}`]) {
-    throw new Error(`Missing src/App.${ext} file in template files`);
+    templateSourceFiles[`src/App.${ext}`] =
+      'export default function App() { return <div>MUI Template</div>; }';
   }
+
+  // Create a proper React 18 index file for Vite
+  const indexContent = `
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider } from '@mui/material/styles';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')${templateData.codeVariant === 'TS' ? '!' : ''}).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <App />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`;
 
   // Combine all files
   const files = {
     ...viteFiles,
-    [`src/index.${ext}`]: CRA.getRootIndex(demoData),
+    [`src/index.${ext}`]: indexContent,
     ...templateSourceFiles,
   };
 
