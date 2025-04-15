@@ -158,16 +158,18 @@ Future changes to the library's internal structure could break these paths. `bab
 
 Material UI supports tree shaking out of the box when importing from specific paths (such as `@mui/material/Button`), so this configuration is optional and primarily useful if you want to enforce modular imports.
 
-Vite doesn’t require extra Babel configuration by default because it uses esbuild for fast bundling and minification. 
+Vite doesn’t require extra Babel configuration by default because it uses esbuild for fast bundling and minification.
 But if you need to customize Babel (for example, to use babel-plugin-import), you can follow these steps:
+
 1. Install dependencies:
-Install Dependencies
+   Install Dependencies
 
 ```bash
 npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-plugin-transform-imports
 ```
+
 2. Create a `.babelrc` file in the root directory:
-Create a `.babelrc` file in the root directory:
+   Create a `.babelrc` file in the root directory:
 
 ```json
 {
@@ -189,8 +191,9 @@ Create a `.babelrc` file in the root directory:
   ]
 }
 ```
+
 3. Update your `vite.config.js` to use the Babel plugin:
-Update your `vite.config.js` to use the Babel plugin:
+   Update your `vite.config.js` to use the Babel plugin:
 
 ```js
 import { defineConfig } from 'vite';
@@ -198,10 +201,7 @@ import react from '@vitejs/plugin-react';
 import babel from 'vite-plugin-babel';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    babel()
-  ]
+  plugins: [react(), babel()],
 });
 ```
 

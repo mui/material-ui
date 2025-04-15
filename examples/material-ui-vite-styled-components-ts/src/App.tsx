@@ -12,9 +12,7 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Hello Material UI with Styled-Components in TypeScript</h1>
-      <CustomButton variant="contained">
-        Styled Button
-      </CustomButton>
+      <CustomButton variant="contained">Styled Button</CustomButton>
     </div>
   );
 };

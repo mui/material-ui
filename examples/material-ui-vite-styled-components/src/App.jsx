@@ -12,9 +12,7 @@ function App() {
   return (
     <div>
       <h1>Hello Material UI with Styled Components</h1>
-      <CustomButton variant="contained">
-        Styled Button
-      </CustomButton>
+      <CustomButton variant="contained">Styled Button</CustomButton>
     </div>
   );
 }
