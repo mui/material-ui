@@ -188,7 +188,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
       externalForwardedProps,
       getSlotProps: (handlers) => ({
         onClickAway: (...params) => {
+          const event = params[0];
           handlers.onClickAway?.(...params);
+          if (event?.defaultMuiPrevented) {
+            return;
+          }
           onClickAway(...params);
         },
       }),
