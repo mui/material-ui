@@ -1,7 +1,6 @@
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { ProjectSettings, buildApi } from '@mui-internal/api-docs-builder';
 import {
-  baseUiProjectSettings,
   joyUiProjectSettings,
   materialUiProjectSettings,
   muiSystemProjectSettings,
@@ -9,7 +8,6 @@ import {
 
 const projectSettings: ProjectSettings[] = [
   materialUiProjectSettings,
-  baseUiProjectSettings,
   joyUiProjectSettings,
   muiSystemProjectSettings,
 ];
