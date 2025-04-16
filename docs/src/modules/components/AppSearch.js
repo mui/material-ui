@@ -335,6 +335,7 @@ export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
+    { layer: 'docsearch' },
   );
   const FADE_DURATION = 120; // ms
   const t = useTranslate();
