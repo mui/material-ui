@@ -108,7 +108,7 @@ For example, if you're working with an Olympics medal dataset, you can simply as
 Fully customize your own UI for direct input, or use the AI Assistant panel—featuring question history, detailed view of the applied changes, and conversation threads.
 
 <figure>
-  <video autoplay muted loop playsinline width="1280" height="792" controls style="border: 0;">
+  <video autoplay muted loop playsinline width="1260" height="772" controls style="border: 0;">
     <source src="/static/blog/mui-x-v8/ai-assistant.mp4" type="video/mp4">
   </video>
   <figcaption>A video showcasing our AI Assistant panel</figcaption>
