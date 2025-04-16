@@ -52,9 +52,32 @@ describe('StackBlitz', () => {
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
   </body>
 </html>`,
-        'Demo.js': `import * as React from 'react';
+        'package.json': `{
+  "name": "mui-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "latest",
+    "@mui/material": "latest",
+    "react-dom": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest"
+  },
+  "devDependencies": {
+    "vite": "latest",
+    "@vitejs/plugin-react": "latest"
+  }
+}`,
+        'src/Demo.js': `import * as React from \'react\';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
@@ -68,7 +91,7 @@ export default function BasicButtons() {
   );
 }
 `,
-        'index.js': `import * as React from 'react';
+        'src/index.js': `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
@@ -80,6 +103,14 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     </StyledEngineProvider>
   </React.StrictMode>
 );`,
+        'vite.config.js': `
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()]
+});`,
       },
       dependencies: {
         react: 'latest',
@@ -90,7 +121,8 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
         '@emotion/styled': 'latest',
       },
       devDependencies: {
-        'react-scripts': 'latest',
+        '@vitejs/plugin-react': 'latest',
+        vite: 'latest',
       },
     });
   });
@@ -130,60 +162,100 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>`,
-        'Demo.tsx': `import * as React from 'react';
+        'package.json': `{
+  "name": "mui-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "latest",
+    "@mui/material": "latest",
+    "react-dom": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "typescript": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "vite": "latest",
+    "@vitejs/plugin-react": "latest"
+  }
+}`,
+        'src/Demo.tsx': `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 export default function BasicButtons() {
   return (
-    <Stack spacing={2} direction="row">
-      <Button variant="text">Text</Button>
-      <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button>
+    <Stack spacing={2} direction=\"row\">
+      <Button variant=\"text\">Text</Button>
+      <Button variant=\"contained\">Contained</Button>
+      <Button variant=\"outlined\">Outlined</Button>
     </Stack>
   );
 }
 `,
-        'index.tsx': `import * as React from 'react';
+        'src/index.tsx': `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector("#root")!).render(
+ReactDOM.createRoot(document.querySelector(\"#root\")!).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <Demo />
     </StyledEngineProvider>
   </React.StrictMode>
 );`,
+
         'tsconfig.json': `{
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src"
-  ]
-}
-`,
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}`,
+        'tsconfig.node.json': `{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}`,
+        'vite.config.ts': `
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()]
+});`,
       },
       dependencies: {
         react: 'latest',
@@ -192,12 +264,13 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
         'react-dom': 'latest',
         '@emotion/react': 'latest',
         '@emotion/styled': 'latest',
-        '@types/react': 'latest',
-        '@types/react-dom': 'latest',
         typescript: 'latest',
       },
       devDependencies: {
-        'react-scripts': 'latest',
+        '@types/react': 'latest',
+        '@types/react-dom': 'latest',
+        '@vitejs/plugin-react': 'latest',
+        vite: 'latest',
       },
     });
   });
