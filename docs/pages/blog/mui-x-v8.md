@@ -67,9 +67,9 @@ Learn more in the [support for Material UI](#support-for-material-ui) section b
   - [HTML Legend for Charts](#html-legend-for-charts)
   - [Charts composition](#charts-composition)
 - [Enhanced License management and Telemetry](#enhanced-license-management-and-telemetry)
-- [Priority Support – A New Support Service](#priority-support-a-new-support-service)
+- [Priority Support – a new support service](#priority-support-a-new-support-service)
 - [Support for Material UI](#support-for-material-ui)
-- [Migration](#migration)
+- [Migration guide](#migration-guide)
 - [Long-term support (LTS)](#long-term-support-lts)
 - [What's next](#whats-next)
 - [How to get involved](#how-to-get-involved)
@@ -186,7 +186,7 @@ The [redesigned toolbar](/x/react-data-grid/components/toolbar/) not only looks 
   <video autoplay muted loop playsinline width="1386" height="630" style="border: 0; width: 686px;">
     <source src="/static/blog/mui-x-v8/toolbar.mp4" type="video/mp4">
   </video>
-  <figcaption>A video showcasing our AI Assistant panel</figcaption>
+  <figcaption>A video showcasing the new toolbar design.</figcaption>
 </figure>
 
 This new developer experience, based on composition, may feel different from our previous approach—but it sets a new standard.
@@ -340,7 +340,7 @@ Similarly, our Radar Charts offer a dynamic way to display multivariate data, en
 
 You can learn more in the [Radar](/x/react-charts/radar/) docs.
 
-### New Animation Engine
+### New animation engine
 
 We’ve replaced React Spring with our very own animation engine, designed for optimal performance and full support—including guaranteed compatibility with React 19 and future releases. By building our own solution, we can ensure reliable support and provide continuous improvements tailored to the specific needs of our components.
 
@@ -398,7 +398,7 @@ muiXTelemetrySettings.enableTelemetry();
 
 You can find more details in our [telemetry guide](/x/guides/telemetry/).
 
-## Priority Support – A New Support Service
+## Priority Support – a new support service
 
 A few months ago, we launched Priority Support with a few customers, and now we're excited to invite more users to take advantage of this service.
 
@@ -450,7 +450,7 @@ In the coming months, we'll continue delivering significant improvements and fea
 - **More improvements to server-side integration**: Ongoing improvements for robust performance and scalability.
 - **New components**: We're exploring additions that support complex planning and time-based workflows, starting with early explorations into Scheduler and Gantt components.
 
-## How to Get Involved
+## How to get involved
 
 Your input drives our innovation. Join our GitHub community today to share your insights, report issues, and help shape the future of MUI X.
 
