@@ -63,9 +63,6 @@ function useDemoData(codeVariant, demo, githubLocation) {
     if (canonicalAs.startsWith('/joy-ui/')) {
       productId = 'joy-ui';
       name = 'Joy UI';
-    } else if (canonicalAs.startsWith('/base-ui/')) {
-      productId = 'base-ui';
-      name = 'MUI Base';
     } else if (canonicalAs.startsWith('/x/')) {
       name = 'MUI X';
     }
