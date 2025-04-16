@@ -5,7 +5,7 @@ import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import { DemoData, CodeVariant, CodeStyling } from 'docs/src/modules/sandbox/types';
+import { DemoData, CodeVariant } from 'docs/src/modules/sandbox/types';
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -111,7 +111,6 @@ function createJoyTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-  codeStyling?: CodeStyling;
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
@@ -124,7 +123,6 @@ function createJoyTemplate(templateData: {
       content: CRA.getHtml({
         title: templateData.title,
         language: 'en',
-        codeStyling: templateData.codeStyling ?? 'MUI System',
       }),
     },
     [`index.${ext}`]: {
@@ -200,7 +198,6 @@ function createMaterialTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-  codeStyling?: CodeStyling;
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
@@ -213,7 +210,6 @@ function createMaterialTemplate(templateData: {
       content: CRA.getHtml({
         title: templateData.title,
         language: 'en',
-        codeStyling: templateData.codeStyling ?? 'MUI System',
       }),
     },
     [`index.${ext}`]: {
