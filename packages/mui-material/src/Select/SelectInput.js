@@ -165,7 +165,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [isPointerDown, setIsPointerDown] = React.useState(false);
   const dragSelectRef = React.useRef({
     isDragging: false,
-    startedOn: null,
   });
 
   React.useImperativeHandle(
@@ -245,7 +244,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     // Mark that we've initiated a pointer interaction
     setIsPointerDown(true);
-    dragSelectRef.current.startedOn = displayRef.current;
 
     // Open the menu immediately
     update(true, event);
