@@ -151,7 +151,7 @@ See it in action:
 </video>
 </a>
 
-This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date) UIs provided by platforms like macOS and Windows on the web.
+This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date) UIs provided by platforms like macOS and Windows on the web.
 
 ### Birthday picker
 
