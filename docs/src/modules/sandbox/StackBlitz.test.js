@@ -77,7 +77,7 @@ describe('StackBlitz', () => {
     "@vitejs/plugin-react": "latest"
   }
 }`,
-        'src/Demo.js': `import * as React from \'react\';
+        'src/Demo.js': `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
@@ -196,10 +196,10 @@ import Button from '@mui/material/Button';
 
 export default function BasicButtons() {
   return (
-    <Stack spacing={2} direction=\"row\">
-      <Button variant=\"text\">Text</Button>
-      <Button variant=\"contained\">Contained</Button>
-      <Button variant=\"outlined\">Outlined</Button>
+    <Stack spacing={2} direction="row">
+      <Button variant="text">Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
     </Stack>
   );
 }
@@ -209,7 +209,7 @@ import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
 
-ReactDOM.createRoot(document.querySelector(\"#root\")!).render(
+ReactDOM.createRoot(document.querySelector("#root")!).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <Demo />
