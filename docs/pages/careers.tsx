@@ -29,6 +29,12 @@ const openRolesData = [
         url: '/careers/staff-engineer-pigment-css/',
       },
       {
+        title: 'React Engineer — Docs-infra',
+        description:
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
+      },
+      {
         title: 'Code infra Engineer',
         description:
           'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
@@ -68,12 +74,6 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      // {
-      //   title: 'React Engineer — Docs-infra',
-      //   description:
-      //     'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-      //   url: '/careers/react-engineer-docs-infra/',
-      // },
       {
         title: 'React Tech Lead — Core',
         description:
