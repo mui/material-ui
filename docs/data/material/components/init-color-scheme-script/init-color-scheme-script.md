@@ -12,16 +12,16 @@ githubSource: packages/mui-material/src/InitColorSchemeScript
 ## Introduction
 
 `InitColorSchemeScript` component is used to remove the dark mode flicker for server-side rendering (SSR) applications.
-It is a client-side script that runs before React to attach an attribute based on the user preference.
+It is a script that runs before React to attach an attribute based on user preference.
 
-It is recommended to use `InitColorSchemeScript` component whenever:
+It is recommended to use this component whenever:
 
 - The application supports light and dark modes.
 - The application is server rendered (SSR).
 
 ## Basics
 
-To make the `InitColorSchemeScript` component work, you need to enable CSS variables with `colorSchemeSelector: 'data'` in your theme.
+You need to enable CSS variables with `colorSchemeSelector: 'data'` in your theme.
 
 ```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -39,7 +39,7 @@ function App() {
 
 Then, render the `InitColorSchemeScript` component as the first child of the `<body>` tag.
 
-Below are location for rendering `InitColorSchemeScript` component in different frameworks.
+Below are the location for rendering `InitColorSchemeScript` component for a specific framework.
 
 ### Next.js App Router
 
