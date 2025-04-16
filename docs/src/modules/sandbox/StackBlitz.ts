@@ -105,6 +105,97 @@ export default defineConfig({
 /**
  * Create a Material Template for StackBlitz using the SDK and Vite
  */
+function createJoyTemplate(templateData: {
+  title: string;
+  files: Record<string, string>;
+  githubLocation: string;
+  codeVariant: CodeVariant;
+  codeStyling?: CodeStyling;
+}) {
+  const ext = getFileExtension(templateData.codeVariant);
+  const { title, githubLocation: description } = templateData;
+  const raw = Object.entries(templateData.files ?? {}).reduce(
+    (prev, curr) => `${prev}\n${curr}`,
+    '',
+  );
+
+  const demoData: DemoData = { codeStyling: 'MUI System', ...templateData, raw, language: 'en' };
+
+  // Get dependencies
+  const { dependencies, devDependencies: baseDevDependencies } = SandboxDependencies(demoData, {
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+  });
+
+  // Add Vite specific dependencies
+  const devDependencies: Record<string, string> = {
+    ...baseDevDependencies,
+    vite: 'latest',
+    '@vitejs/plugin-react': 'latest',
+  };
+
+  // Create base Vite files with dependencies
+  const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
+
+  // Restructure template files to be under src/
+  const templateSourceFiles = templateData.files
+    ? Object.fromEntries(
+        Object.entries(templateData.files).map(([key, value]) => [`src/${key}`, value]),
+      )
+    : {};
+
+  // document.querySelector returns 'Element | null' but createRoot expects 'Element | DocumentFragment'.
+  const type = templateData.codeVariant === 'TS' ? '!' : '';
+
+  // Create a proper React 18 index file for Vite
+  const indexContent = `import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import { StyledEngineProvider } from '@mui/joy/styles';
+import App from './App';
+
+ReactDOM.createRoot(document.querySelector("#root")${type}).render(
+  <React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <App />
+    </StyledEngineProvider>
+  </React.StrictMode>
+);`;
+
+  // Combine all files
+  const files = {
+    ...viteFiles,
+    [`src/index.${ext}`]: indexContent,
+    ...templateSourceFiles,
+  };
+
+  return {
+    title,
+    files,
+    dependencies,
+    devDependencies,
+    replaceContent(updater: (content: string | Record<string, any>, filePath: string) => string) {
+      Object.keys(files).forEach((filePath) => {
+        files[filePath] = updater(files[filePath], filePath);
+      });
+      return this;
+    },
+    openStackBlitz: (initialFile: string = 'src/App') => {
+      // Add extension if missing
+      const normalizedInitialFile = initialFile.endsWith(ext)
+        ? initialFile
+        : `${initialFile}.${ext}`;
+
+      openStackBlitzSDK({
+        title,
+        description,
+        files,
+        initialFile: normalizedInitialFile,
+      });
+    },
+  };
+}
+/**
+ * Create a Material Template for StackBlitz using the SDK and Vite
+ */
 function createMaterialTemplate(templateData: {
   title: string;
   files: Record<string, string>;
@@ -261,6 +352,7 @@ function createReactApp(demoData: DemoData) {
 }
 
 export default {
+  createJoyTemplate,
   createReactApp,
   createMaterialTemplate,
 };
