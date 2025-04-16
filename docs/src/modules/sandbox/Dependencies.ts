@@ -159,9 +159,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
     dependencies[name] = versions[name] ? versions[name] : 'latest';
   }
 
-  const devDependencies: Record<string, string> = {
-    'react-scripts': 'latest',
-  };
+  const devDependencies: Record<string, string> = {};
 
   if (demo.codeVariant === CODE_VARIANTS.TS) {
     addTypeDeps(dependencies, devDependencies);
