@@ -323,7 +323,7 @@ Learn more this and other options on [Tree Item Customization docs](/x/react-tre
 We have expanded our chart portfolio with the addition of Funnel Charts, providing a new way to visualize data conversions and drop-offs.
 
 <figure>
-  <img alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy" width="1880" height="521">
+  <img alt="Funnel charts examples" src="/static/blog/mui-x-v8/funnel-charts.png" loading="lazy" width="1992" height="622">
   <figcaption>Funnel Charts examples</figcaption>
 </figure>
 
