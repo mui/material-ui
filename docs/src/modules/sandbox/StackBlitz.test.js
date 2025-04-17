@@ -73,8 +73,8 @@ describe('StackBlitz', () => {
     "@emotion/styled": "latest"
   },
   "devDependencies": {
-    "vite": "latest",
-    "@vitejs/plugin-react": "latest"
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
   }
 }`,
         'src/Demo.js': `import * as React from 'react';
@@ -185,10 +185,10 @@ export default defineConfig({
     "typescript": "latest"
   },
   "devDependencies": {
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
     "vite": "latest",
-    "@vitejs/plugin-react": "latest"
+    "@types/react": "latest",
+    "@types/react-dom": "latest"
   }
 }`,
         'src/Demo.tsx': `import * as React from 'react';
