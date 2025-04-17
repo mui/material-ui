@@ -989,7 +989,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
   'data-grid/aggregation': yes,
-  'data-grid/pivoting': pending,
+  'data-grid/pivoting': yes,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
@@ -1596,11 +1596,11 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('charts/gauge')}
           {divider}
-          {renderNestedRow('charts/heatmap')}
+          {renderNestedRow('charts/radar')}
           {divider}
           {renderNestedRow('charts/treemap')}
           {divider}
-          {renderNestedRow('charts/radar')}
+          {renderNestedRow('charts/heatmap')}
           {divider}
           {renderNestedRow('charts/funnel')}
           {divider}
