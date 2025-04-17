@@ -1,14 +1,20 @@
-import sdk from '@stackblitz/sdk';
+import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
 import { CodeStyling, CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 
-/**
- * Open a project in StackBlitz using the SDK
- */
-function openStackBlitzSDK({
+function ensureExtension(file: string, extension: string): string {
+  return file.endsWith(`.${extension}`) ? file : `${file}.${extension}`;
+}
+
+const VITE_DEV_DEPENDENCIES = {
+  '@vitejs/plugin-react': 'latest',
+  vite: 'latest',
+};
+
+function openStackBlitz({
   title,
   description,
   files,
@@ -19,15 +25,21 @@ function openStackBlitzSDK({
   files: Record<string, string>;
   initialFile: string;
 }) {
-  sdk.openProject(
-    {
-      title,
-      description,
-      template: 'node',
-      files,
-    },
-    { openFile: initialFile },
-  );
+  // ref: https://developer.stackblitz.com/docs/platform/post-api/
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.target = '_blank';
+  form.action = `https://stackblitz.com/run?file=${initialFile}`;
+  addHiddenInput(form, 'project[template]', 'node');
+  addHiddenInput(form, 'project[title]', title);
+  addHiddenInput(form, 'project[description]', `# ${title}\n${description}`);
+  Object.keys(files).forEach((key) => {
+    const value = files[key];
+    addHiddenInput(form, `project[files][${key}]`, value);
+  });
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
 }
 
 /**
@@ -123,16 +135,10 @@ function createJoyTemplate(templateData: {
   const demoData: DemoData = { codeStyling: 'MUI System', ...templateData, raw, language: 'en' };
 
   // Get dependencies
-  const { dependencies, devDependencies: baseDevDependencies } = SandboxDependencies(demoData, {
+  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    devDeps: VITE_DEV_DEPENDENCIES,
   });
-
-  // Add Vite specific dependencies
-  const devDependencies: Record<string, string> = {
-    ...baseDevDependencies,
-    vite: 'latest',
-    '@vitejs/plugin-react': 'latest',
-  };
 
   // Create base Vite files with dependencies
   const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
@@ -179,17 +185,12 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       });
       return this;
     },
-    openStackBlitz: (initialFile: string = 'src/App') => {
-      // Add extension if missing
-      const normalizedInitialFile = initialFile.endsWith(ext)
-        ? initialFile
-        : `${initialFile}.${ext}`;
-
-      openStackBlitzSDK({
+    openStackBlitz: (initialFile: string = `src/App`) => {
+      openStackBlitz({
         title,
         description,
         files,
-        initialFile: normalizedInitialFile,
+        initialFile: ensureExtension(initialFile, ext),
       });
     },
   };
@@ -214,16 +215,10 @@ function createMaterialTemplate(templateData: {
   const demoData: DemoData = { codeStyling: 'MUI System', ...templateData, raw, language: 'en' };
 
   // Get dependencies
-  const { dependencies, devDependencies: baseDevDependencies } = SandboxDependencies(demoData, {
+  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    devDeps: VITE_DEV_DEPENDENCIES,
   });
-
-  // Add Vite specific dependencies
-  const devDependencies: Record<string, string> = {
-    ...baseDevDependencies,
-    vite: 'latest',
-    '@vitejs/plugin-react': 'latest',
-  };
 
   // Create base Vite files with dependencies
   const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
@@ -268,17 +263,12 @@ ReactDOM.createRoot(document.getElementById('root')${templateData.codeVariant ==
       });
       return this;
     },
-    openStackBlitz: (initialFile: string = 'src/App') => {
-      // Add extension if missing
-      const normalizedInitialFile = initialFile.endsWith(ext)
-        ? initialFile
-        : `${initialFile}.${ext}`;
-
-      openStackBlitzSDK({
+    openStackBlitz: (initialFile: string = `src/App`) => {
+      openStackBlitz({
         title,
         description,
         files,
-        initialFile: normalizedInitialFile,
+        initialFile: ensureExtension(initialFile, ext),
       });
     },
   };
@@ -293,24 +283,13 @@ function createReactApp(demoData: DemoData) {
   const { title, githubLocation: description } = demoData;
 
   // Get dependencies
-  const { dependencies: baseDependencies, devDependencies: baseDevDependencies } =
-    SandboxDependencies(demoData, {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
-    });
+  const { dependencies, devDependencies } = SandboxDependencies(demoData, {
+    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    devDeps: VITE_DEV_DEPENDENCIES,
+  });
 
-  const dependencies = { ...baseDependencies };
-
-  // Add Vite specific dependencies
-  const devDependencies: Record<string, string> = {
-    ...baseDevDependencies,
-    vite: 'latest',
-    '@vitejs/plugin-react': 'latest',
-  };
-
-  // Create base Vite files with dependencies
   const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
 
-  // Create demo files just like in the original implementation
   const demoFiles: Record<string, string> = {
     [`src/Demo.${ext}`]: flattenRelativeImports(demoData.raw),
   };
@@ -341,12 +320,12 @@ function createReactApp(demoData: DemoData) {
     files,
     dependencies,
     devDependencies,
-    openSandbox: (initialFile = `src/Demo.${ext}`) => {
-      openStackBlitzSDK({
+    openSandbox: (initialFile = 'src/Demo') => {
+      openStackBlitz({
         title,
         description,
         files,
-        initialFile,
+        initialFile: ensureExtension(initialFile, ext),
       });
     },
   };

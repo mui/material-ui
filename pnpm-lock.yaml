@@ -739,9 +739,6 @@ importers:
       '@react-spring/web':
         specifier: ^9.7.5
         version: 9.7.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@stackblitz/sdk':
-        specifier: ^1.11.0
-        version: 1.11.0
       '@tailwindcss/postcss':
         specifier: ^4.1.3
         version: 4.1.3
@@ -5487,9 +5484,6 @@ packages:
 
   '@socket.io/component-emitter@3.1.0':
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
-
-  '@stackblitz/sdk@1.11.0':
-    resolution: {integrity: sha512-DFQGANNkEZRzFk1/rDP6TcFdM82ycHE+zfl9C/M/jXlH68jiqHWHFMQURLELoD8koxvu/eW5uhg94NSAZlYrUQ==}
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
@@ -17504,8 +17498,6 @@ snapshots:
       - debug
 
   '@socket.io/component-emitter@3.1.0': {}
-
-  '@stackblitz/sdk@1.11.0': {}
 
   '@standard-schema/spec@1.0.0': {}
 

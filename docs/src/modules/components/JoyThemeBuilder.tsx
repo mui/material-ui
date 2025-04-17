@@ -63,7 +63,7 @@ import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 import { BrandingProvider } from '@mui/docs/branding';
-import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
+import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import sourceJoyTemplates, { TemplateData } from 'docs/src/modules/joy/sourceJoyTemplates';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
 import generateThemeAugmentation from 'docs/src/modules/joy/generateThemeAugmentation';
@@ -1325,7 +1325,7 @@ function TemplatesDialog({
               textColor="#fff"
               overlay
               onClick={() => {
-                stackBlitz
+                codeSandbox
                   .createJoyTemplate({
                     ...item,
                     files: newFiles,
@@ -1333,7 +1333,7 @@ function TemplatesDialog({
                     title: `Joy UI - Custom theme`,
                     codeVariant: 'TS',
                   })
-                  .openStackBlitz();
+                  .openSandbox();
               }}
               endDecorator={<ArrowOutwardIcon sx={{ color: 'inherit', opacity: 0.72 }} />}
               sx={{ fontSize: 'xl', fontWeight: 'xl' }}
@@ -1404,14 +1404,14 @@ function TemplatesDialog({
                     './result/App.tsx': getMinimalJoyTemplate(),
                     './result/theme.ts': generateThemeCode(data),
                   });
-                  stackBlitz
+                  codeSandbox
                     .createJoyTemplate({
                       ...result,
                       codeVariant: 'TS',
                       githubLocation: '',
                       title: `Joy UI - Minimal template`,
                     })
-                    .openStackBlitz();
+                    .openSandbox();
                 }}
                 endDecorator={<ArrowOutwardIcon />}
                 sx={{ fontSize: 'lg', fontWeight: 'lg' }}
@@ -1532,8 +1532,8 @@ export default function JoyThemeBuilder() {
             </IconButton>
             <TemplatesDialog data={data}>
               <IconButton variant="solid" color="neutral" size="sm" sx={{ minWidth: '38px' }}>
-                <SvgIcon viewBox="0 0 19 28">
-                  <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                <SvgIcon viewBox="0 0 1080 1080">
+                  <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
                 </SvgIcon>
               </IconButton>
             </TemplatesDialog>

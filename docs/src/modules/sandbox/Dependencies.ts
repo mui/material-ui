@@ -39,8 +39,11 @@ function addTypeDeps(deps: Record<string, string>, devDeps: Record<string, strin
 
 type Demo = Pick<DemoData, 'productId' | 'raw' | 'codeVariant' | 'relativeModules'>;
 
-export default function SandboxDependencies(demo: Demo, options?: { commitRef?: string }) {
-  const { commitRef } = options || {};
+export default function SandboxDependencies(
+  demo: Demo,
+  options?: { commitRef?: string; devDeps?: Record<string, string> },
+) {
+  const { commitRef, devDeps = {} } = options || {};
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -158,7 +161,7 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
     dependencies[name] = versions[name] ? versions[name] : 'latest';
   }
 
-  const devDependencies: Record<string, string> = {};
+  const devDependencies: Record<string, string> = { ...devDeps };
 
   if (demo.codeVariant === CODE_VARIANTS.TS) {
     addTypeDeps(dependencies, devDependencies);
