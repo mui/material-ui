@@ -25,7 +25,7 @@
       "description": "An <code>Input</code> element; does not have to be a material-ui specific <code>Input</code>."
     },
     "inputProps": {
-      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element. When <code>native</code> is <code>true</code>, the attributes are applied on the <code>select</code> element."
+      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes\">Attributes</a> applied to the <code>input</code> element. When <code>native</code> is <code>true</code>, the attributes are applied on the <code>select</code> element."
     },
     "label": {
       "description": "See <a href=\"https://mui.com/material-ui/api/outlined-input/#props\">OutlinedInput#label</a>"

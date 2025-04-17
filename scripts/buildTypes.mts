@@ -137,7 +137,7 @@ yargs(process.argv.slice(2))
           alias: 'c',
           type: 'array',
           description: 'Directories where the type definition files should be copied',
-          default: ['build', 'build/modern'],
+          default: ['build'],
         })
         .option('removeCss', {
           type: 'boolean',
