@@ -15,11 +15,10 @@ If you are using a framework, you can follow the instructions below to set up th
 
 Follow the [App Router guide](/material-ui/integrations/nextjs/#app-router) and do the following steps:
 
-- pass `{ enableCssLayer: true }` to the `options` prop of `AppRouterCacheProvider` component.
+- enable the [CSS layer feature](/material-ui/integrations/nextjs/#using-other-styling-solutions) as shown below.
 
 ```tsx title="src/app/layout.tsx"
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import GlobalStyles from '@mui/material/GlobalStyles';
 
 export default function RootLayout() {
   return (
@@ -45,7 +44,7 @@ export default function RootLayout() {
 
 Follow the [Pages Router guide](/material-ui/integrations/nextjs/#pages-router) and do the following steps:
 
-- pass a custom cache with `{ enableCssLayer: true }` to `documentGetInitialProps` function.
+- enable the [CSS layer feature](/material-ui/integrations/nextjs/#configuration-2) as shown below.
 
 ```tsx title="pages/_document.tsx"
 import {
@@ -63,7 +62,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 ```
 
-- configure the layer order with `GlobalStyles` component.
+- configure the layer order with `GlobalStyles` component (it must be the first child of `AppCacheProvider`).
 
 ```tsx title="pages/_app.tsx"
 import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
