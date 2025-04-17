@@ -427,10 +427,10 @@ These guides detail every breaking change from previous versions with the recomm
 We care deeply about providing a smooth migration, so it's been a top priority for us when planning our new major versions.
 
 Please refer to the migration instructions for each individual component below:
-- [Data Grid](/x/migration/migration-data-grid-v7)
-- [Date and Time Pickers](/x/migration/migration-date-time-pickers-v7)
-- [Tree View](/x/migration/migration-tree-view-v7)
-- [Charts](/x/migration/migration-charts-v7)
+- [Data Grid](/x/migration/migration-data-grid-v7/)
+- [Date and Time Pickers](/x/migration/migration-date-time-pickers-v7/)
+- [Tree View](/x/migration/migration-tree-view-v7/)
+- [Charts](/x/migration/migration-charts-v7/)
 
 ## Long‑Term Support (LTS)
 
