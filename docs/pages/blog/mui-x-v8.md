@@ -428,14 +428,11 @@ We care deeply about providing a smooth migration, so it's been a top priority f
 
 Please follow the instructions in our [migration guide](/x/migration/).
 
-## Long-term support (LTS)
+## Long‑Term Support (LTS)
 
-We're now moving **MUI X v7 to long-term support**, while support for **MUI X v6 is discontinued**.
-In addition to critical bug fixes and security updates, v7 will continue to receive occasional necessary updates as a safety net while you transition to v8.
+Great news—our LTS policy just doubled to **two full years**! 🎉 As we release MUI X v8, **v7 enters long‑term support**, and instead of retiring **v6**, we’re extending its LTS window by an extra year. You’ll continue to receive critical bug fixes, security patches, and regression updates while you transition to v8.
 
-You can check the [supported versions in our docs](/x/introduction/support/#supported-versions) for more information.
-
-Once you've migrated to MUI X v8, you'll benefit from the latest features and performance enhancements, with no disruptive breaking changes until the next major release.
+For full details, see our [Supported Versions](https://mui.com/x/introduction/support/#supported-versions) page.
 
 ## What's next
 
@@ -444,7 +441,7 @@ In the coming months, we'll continue delivering significant improvements and fea
 
 - **Charts and Data Grid integration**: Deeper interoperability for cohesive data visualization.
 - **Further customization based on composition**: Expanding our composable architecture for even more flexible customization.
-- **Increased leverage of AI**: Harnessing advanced AI to unlock new insights and streamline data analysis.
+- **Increased leverage of AI**: Harnessing advanced AI for better insights and streamlined data analysis.
 - **Design and usability improvements**: Continuous refinements to enhance the overall user experience.
 - **More improvements to server-side integration**: Ongoing improvements for robust performance and scalability.
 - **New components**: We're exploring additions that support complex planning and time-based workflows, starting with early explorations into Scheduler and Gantt components.
