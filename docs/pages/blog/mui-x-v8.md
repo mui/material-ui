@@ -443,7 +443,6 @@ Our roadmap for MUI X remains ambitious.
 In the coming months, we'll continue delivering significant improvements and feature enhancements, including:
 
 - **Charts and Data Grid integration**: Deeper interoperability for cohesive data visualization.
-- **Further improvements in the DX of the new design-agnostic Data Grid**: We'll continue iterating on the unstyled core to deliver a seamless and customizable experience across diverse design ecosystems.
 - **Further customization based on composition**: Expanding our composable architecture for even more flexible customization.
 - **Increased leverage of AI**: Harnessing advanced AI to unlock new insights and streamline data analysis.
 - **Design and usability improvements**: Continuous refinements to enhance the overall user experience.
