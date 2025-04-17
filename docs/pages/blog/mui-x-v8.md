@@ -342,7 +342,7 @@ You can learn more in the [Radar](/x/react-charts/radar/) docs.
 
 ### New animation engine
 
-We’ve replaced React Spring with our very own animation engine, designed for optimal performance and full support—including guaranteed compatibility with React 19 and future releases. By building our own solution, we can ensure reliable support and provide continuous improvements tailored to the specific needs of our components.
+We've replaced React Spring with our very own animation engine, designed for optimal performance and full support—including guaranteed compatibility with React 19 and future releases. By building our own solution, we can ensure reliable support and provide continuous improvements tailored to the specific needs of our components.
 
 ### Server-side rendering for Charts
 
@@ -354,7 +354,7 @@ SSR is supported under two conditions:
 
 ### Refined design and interaction
 
-Charts in MUI X v8 have been enhanced for greater clarity and interactivity. We’ve refined the default palettes, improved tooltips, and optimized legends display.
+Charts in MUI X v8 have been enhanced for greater clarity and interactivity. We've refined the default palettes, improved tooltips, and optimized legends display.
 
 <figure>
   <img width="3792" height="2126" alt="Charts redesigned - before/after" src="/static/blog/mui-x-v8/charts-before-after.png" loading="lazy" style="border: 0;">
