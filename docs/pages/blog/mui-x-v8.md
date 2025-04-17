@@ -430,7 +430,7 @@ Please follow the instructions in our [migration guide](/x/migration/).
 
 ## Long‑Term Support (LTS)
 
-Great news—our LTS policy just doubled to **two full years**! 🎉 As we release MUI X v8, **v7 enters long‑term support**, and instead of retiring **v6**, we’re extending its LTS window by an extra year. You’ll continue to receive critical bug fixes, security patches, and regression updates while you transition to v8.
+Great news—our LTS policy just doubled to **two full years**! 🎉 As we release MUI X v8, **v7 enters long‑term support**, and instead of retiring **v6**, we're extending its LTS window by an extra year. You'll continue to receive critical bug fixes, security patches, and regression updates while you transition to v8.
 
 For full details, see our [Supported Versions](https://mui.com/x/introduction/support/#supported-versions) page.
 
