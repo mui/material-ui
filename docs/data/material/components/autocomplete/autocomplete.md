@@ -362,9 +362,20 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Virtualization
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+The following demos show how to use third-party virtualization tools with the Autocomplete to improve performance when handling very large lists of options.
+Both demonstrate how to virtualize a list of 10,000 randomly-generated options.
 
-{{"demo": "Virtualize.js"}}
+### With react-window
+
+The example below uses [react-window](https://github.com/bvaughn/react-window) to virtualize the list of options.
+
+{{"demo": "VirtualizeWithReactWindow.js"}}
+
+### With TanStack Virtual
+
+The example below uses [TanStack Virtual](https://github.com/tanstack/virtual) to virtualize the list of options.
+
+{{"demo": "VirtualizeWithTanStackVirtual.js"}}
 
 ## Events
 

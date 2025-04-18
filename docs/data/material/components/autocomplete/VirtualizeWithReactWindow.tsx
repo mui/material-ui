@@ -1,22 +1,21 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ListSubheader from '@mui/material/ListSubheader';
 import Popper from '@mui/material/Popper';
 import { useTheme, styled } from '@mui/material/styles';
-import { VariableSizeList } from 'react-window';
+import { VariableSizeList, ListChildComponentProps } from 'react-window';
 import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
-function renderRow(props) {
+function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
   const dataSet = data[index];
   const inlineStyle = {
     ...style,
-    top: style.top + LISTBOX_PADDING,
+    top: (style.top as number) + LISTBOX_PADDING,
   };
 
   if (dataSet.hasOwnProperty('group')) {
@@ -38,13 +37,13 @@ function renderRow(props) {
 
 const OuterElementContext = React.createContext({});
 
-const OuterElementType = React.forwardRef((props, ref) => {
+const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
   const outerProps = React.useContext(OuterElementContext);
   return <div ref={ref} {...props} {...outerProps} />;
 });
 
-function useResetCache(data) {
-  const ref = React.useRef(null);
+function useResetCache(data: any) {
+  const ref = React.useRef<VariableSizeList>(null);
   React.useEffect(() => {
     if (ref.current != null) {
       ref.current.resetAfterIndex(0, true);
@@ -54,13 +53,22 @@ function useResetCache(data) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
+const ListboxComponent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLElement>
+>(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData = [];
-  children.forEach((item) => {
-    itemData.push(item);
-    itemData.push(...(item.children || []));
-  });
+  const itemData: React.ReactElement<unknown>[] = [];
+  (children as React.ReactElement<unknown>[]).forEach(
+    (
+      item: React.ReactElement<unknown> & {
+        children?: React.ReactElement<unknown>[];
+      },
+    ) => {
+      itemData.push(item);
+      itemData.push(...(item.children || []));
+    },
+  );
 
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
@@ -69,7 +77,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child) => {
+  const getChildSize = (child: React.ReactElement<unknown>) => {
     if (child.hasOwnProperty('group')) {
       return 48;
     }
@@ -107,11 +115,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   );
 });
 
-ListboxComponent.propTypes = {
-  children: PropTypes.node,
-};
-
-function random(length) {
+function random(length: number) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -135,9 +139,9 @@ const StyledPopper = styled(Popper)({
 
 const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
-  .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
+  .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
-export default function Virtualize() {
+export default function VirtualizeWithReactWindow() {
   return (
     <Autocomplete
       sx={{ width: 300 }}
@@ -145,8 +149,10 @@ export default function Virtualize() {
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option, state) => [props, option, state.index]}
-      renderGroup={(params) => params}
+      renderOption={(props, option, state) =>
+        [props, option, state.index] as React.ReactNode
+      }
+      renderGroup={(params) => params as any}
       slots={{
         popper: StyledPopper,
       }}
