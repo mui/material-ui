@@ -650,9 +650,18 @@ jobs:
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
       - setup_corepack
+
       - run:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+      - run:
+          name: create a size snapshot
+          command: pnpm size:snapshot
+
+      - aws-cli/setup:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
+          region: ${AWS_REGION_ARTIFACTS}
       - run:
           # We'll add a bucket lifecycle policy to delete objects tagged as "pull_request" after 30 days.
           name: Determine S3 object tags based on whether this is a PR
@@ -663,13 +672,6 @@ jobs:
               echo "export S3_OBJECT_TYPE_TAG=base" >> $BASH_ENV
             fi
             echo "export S3_OBJECT_BRANCH_TAG=<< pipeline.git.branch >>" >> $BASH_ENV
-      - aws-cli/setup:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-          region: ${AWS_REGION_ARTIFACTS}
-      - run:
-          name: create a size snapshot
-          command: pnpm size:snapshot
 
       # === LEGACY START ===
       # remove once the UI can handle the new format
@@ -679,8 +681,8 @@ jobs:
           condition:
             not:
               matches:
-                pattern: ".+"
-                value: "${CIRCLE_PULL_REQUEST}"
+                pattern: '.+'
+                value: '${CIRCLE_PULL_REQUEST}'
           steps:
             - aws-s3/copy:
                 arguments: --content-type application/json
@@ -704,6 +706,7 @@ jobs:
               --bucket mui-org-ci \
               --key artifacts/mui/material-ui/$CIRCLE_SHA1/size-snapshot.json \
               --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TYPE_TAG},{Key=branch,Value=$S3_OBJECT_BRANCH_TAG}]"
+
       - run:
           name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
