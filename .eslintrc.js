@@ -53,6 +53,13 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
   },
 ];
 
+const restrictedMethods = ['setTimeout', 'setInterval', 'clearTimeout', 'clearInterval'];
+
+const restrictedSyntaxRules = restrictedMethods.map((method) => ({
+  message: `Use global ${method} instead of window.${method}.`,
+  selector: `MemberExpression[object.name='window'][property.name='${method}']`,
+}));
+
 module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
@@ -258,6 +265,7 @@ module.exports = /** @type {Config} */ ({
         message: 'Do not call `Error(...)` without `new`. Use `new Error(...)` instead.',
         selector: "CallExpression[callee.name='Error']",
       },
+      ...restrictedSyntaxRules,
     ],
 
     // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved

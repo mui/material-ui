@@ -29,6 +29,12 @@ const openRolesData = [
         url: '/careers/staff-engineer-pigment-css/',
       },
       {
+        title: 'React Engineer — Docs-infra',
+        description:
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
+      },
+      {
         title: 'Code infra Engineer',
         description:
           'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
@@ -40,18 +46,18 @@ const openRolesData = [
       //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
       //   url: '/careers/react-engineer-x-charts/',
       // },
-      {
-        title: 'React Engineer — eXplore',
-        description:
-          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
-        url: '/careers/react-engineer-explore/',
-      },
-      {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
+      // {
+      //   title: 'React Engineer — eXplore',
+      //   description:
+      //     'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+      //   url: '/careers/react-engineer-explore/',
+      // },
+      // {
+      //   title: 'React Engineer — X',
+      //   description:
+      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x/',
+      // },
     ],
   },
   {
@@ -68,12 +74,6 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      // {
-      //   title: 'React Engineer — Docs-infra',
-      //   description:
-      //     'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-      //   url: '/careers/react-engineer-docs-infra/',
-      // },
       {
         title: 'React Tech Lead — Core',
         description:
