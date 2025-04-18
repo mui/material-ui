@@ -654,34 +654,18 @@ jobs:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
       - run:
-          name: create @mui/material canary distributable
+          # We'll add a bucket lifecycle policy to delete objects tagged as "pull_request" after 30 days.
+          name: Determine S3 object tag based on branch
           command: |
-            cd packages/mui-material/build
-            npm version 0.0.0-canary.${CIRCLE_SHA1} --no-git-tag-version
-            npm pack
-            mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
-      - when:
-          # don't run on PRs
-          condition:
-            not:
-              matches:
-                # "^pull/\d+" is not valid YAML
-                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
-                value: << pipeline.git.branch >>
-          steps:
-            - aws-cli/setup:
-                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
-            # Upload distributables to S3
-            - aws-s3/copy:
-                from: mui-material.tgz
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-      - store_artifacts:
-          path: mui-material.tgz
-          destination: mui-material.tgz
+            if [[ "<< pipeline.git.branch >>" =~ ^pull/.+$ ]]; then
+              echo "export S3_OBJECT_TAG=pull_request" >> $BASH_ENV
+            else
+              echo "export S3_OBJECT_TAG=base" >> $BASH_ENV
+            fi
+      - aws-cli/setup:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
+          region: ${AWS_REGION_ARTIFACTS}
       - run:
           name: create a size snapshot
           command: pnpm size:snapshot
@@ -689,31 +673,16 @@ jobs:
           name: persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-      - when:
-          # don't run on PRs
-          condition:
-            not:
-              matches:
-                # "^pull/\d+" is not valid YAML
-                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
-                value: << pipeline.git.branch >>
-          steps:
-            - aws-cli/setup:
-                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
-            # persist size snapshot on S3
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-            # symlink size-snapshot to latest
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
+      # persist size snapshot on S3 (TODO: remove once UI can work with the new format)
+      - aws-s3/copy:
+          arguments: --content-type application/json --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TAG}]"
+          from: size-snapshot.json
+          to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+      # persist size snapshot on S3 (new format = <bucket-prefix>/<repository>/<sha1>/size-snapshot.json)
+      - aws-s3/copy:
+          arguments: --content-type application/json --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TAG}]"
+          from: size-snapshot.json
+          to: s3://mui-org-ci/artifacts/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1/
       - run:
           name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
