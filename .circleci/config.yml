@@ -655,9 +655,9 @@ jobs:
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
       - run:
           # We'll add a bucket lifecycle policy to delete objects tagged as "pull_request" after 30 days.
-          name: Determine S3 object tags based on branch
+          name: Determine S3 object tags based on whether this is a PR
           command: |
-            if [[ "<< pipeline.git.branch >>" =~ ^pull/.+$ ]]; then
+            if [[ -n "${CIRCLE_PULL_REQUEST}" ]]; then
               echo "export S3_OBJECT_TYPE_TAG=pull_request" >> $BASH_ENV
             else
               echo "export S3_OBJECT_TYPE_TAG=base" >> $BASH_ENV
@@ -679,11 +679,8 @@ jobs:
           condition:
             not:
               matches:
-                # "^pull/\d+" is not valid YAML
-                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
-                value: << pipeline.git.branch >>
+                pattern: ".+"
+                value: "${CIRCLE_PULL_REQUEST}"
           steps:
             - aws-s3/copy:
                 arguments: --content-type application/json
