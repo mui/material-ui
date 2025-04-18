@@ -121,6 +121,7 @@
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.27.0",
     "@babel/register": "^7.25.9",
+    "@codecov/webpack-plugin": "^1.9.0",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-docs-utils": "workspace:^",

@@ -1,5 +1,6 @@
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { codecovWebpackPlugin } = require('@codecov/webpack-plugin');
 
 const extensions = ['.js', '.mjs', '.ts', '.tsx'];
 
@@ -12,6 +13,13 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     extensions,
-    plugins: [new TsconfigPathsPlugin({ extensions })],
+    plugins: [
+      new TsconfigPathsPlugin({ extensions }),
+      codecovWebpackPlugin({
+        enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+        bundleName: "material-ui",
+        uploadToken: process.env.CODECOV_TOKEN,
+      }),
+    ],
   },
 };
