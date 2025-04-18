@@ -699,13 +699,13 @@ jobs:
       - aws-s3/copy:
           arguments: --content-type application/json
           from: size-snapshot.json
-          to: s3://mui-org-ci/artifacts/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1/
+          to: s3://mui-org-ci/artifacts/mui/material-ui/$CIRCLE_SHA1/
       - run:
           name: Tag size-snapshot.json
           command: |
             aws s3api put-object-tagging \
               --bucket mui-org-ci \
-              --key artifacts/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1/size-snapshot.json \
+              --key artifacts/mui/material-ui/$CIRCLE_SHA1/size-snapshot.json \
               --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TYPE_TAG},{Key=branch,Value=$S3_OBJECT_BRANCH_TAG}]"
       - run:
           name: Run danger on PRs
