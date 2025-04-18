@@ -9,7 +9,7 @@ import { MenuProps } from '../Menu';
  * For example, when the browser auto-fills the `Select` you'll receive a `React.ChangeEvent`.
  */
 
-export type SelectChangeEvent<Value = string> = Value extends string & {}
+export type SelectChangeEvent<Value = string> = Value extends (string & {}) | number
   ?
       | React.ChangeEvent<Omit<HTMLInputElement, 'value'> & { value: Value }>
       | (Event & { target: { value: Value; name: string } })
