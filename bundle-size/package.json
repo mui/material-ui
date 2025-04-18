@@ -1,0 +1,19 @@
+{
+  "name": "@mui/bundle-size",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bundle size measurement workspace for MUI packages",
+  "scripts": {
+    "check": "NODE_OPTIONS=\"--max-old-space-size=4096\" bundle-size-checker --output ../size-snapshot.json"
+  },
+  "dependencies": {
+    "@mui/internal-bundle-size-checker": "workspace:*",
+    "@mui/material": "workspace:*",
+    "@mui/lab": "workspace:*",
+    "@mui/private-theming": "workspace:*",
+    "@mui/system": "workspace:*",
+    "@mui/utils": "workspace:*",
+    "fast-glob": "^3.3.2",
+    "path": "^0.12.7"
+  }
+}

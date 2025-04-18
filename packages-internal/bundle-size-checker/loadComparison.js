@@ -1,14 +1,17 @@
 /**
  * `snapshots` always refer to size snapshots in this file
  */
-const path = require('path');
-const fse = require('fs-extra');
-const lodash = require('lodash');
+import path from 'path';
+import fse from 'fs-extra';
 
 const ARTIFACT_SERVER = 'https://s3.eu-central-1.amazonaws.com/mui-org-ci';
 
-async function loadCurrentSnapshot() {
-  return fse.readJSON(path.join(__dirname, '../../size-snapshot.json'));
+/**
+ * @param {string} [snapshotPath] - Optional path to the snapshot file
+ */
+async function loadCurrentSnapshot(snapshotPath) {
+  const filePath = snapshotPath || path.join(process.cwd(), 'size-snapshot.json');
+  return fse.readJSON(filePath);
 }
 
 /**
@@ -31,9 +34,14 @@ async function loadSnapshot(commitId, ref) {
 
 const nullSnapshot = { parsed: 0, gzip: 0 };
 
-module.exports = async function loadComparison(parentId, ref) {
+/**
+ * @param {string} parentId - The commit ID
+ * @param {string} ref - The branch reference
+ * @param {string} [snapshotPath] - Optional path to the current snapshot file
+ */
+export default async function loadComparison(parentId, ref, snapshotPath) {
   const [currentSnapshot, previousSnapshot] = await Promise.all([
-    loadCurrentSnapshot(),
+    loadCurrentSnapshot(snapshotPath),
     // continue non existing snapshots
     loadSnapshot(parentId, ref).catch((reason) => {
       console.warn(`Failed to load snapshot for ref '${ref}' and commit '${parentId}': `, reason);
@@ -43,7 +51,7 @@ module.exports = async function loadComparison(parentId, ref) {
 
   const bundleKeys = Object.keys({ ...currentSnapshot, ...previousSnapshot });
 
-  const bundles = lodash.fromPairs(
+  const bundles = Object.fromEntries(
     bundleKeys.map((bundle) => {
       // if a bundle was added the change should be +inf
       // if a bundle was removed the change should be -100%
@@ -75,4 +83,4 @@ module.exports = async function loadComparison(parentId, ref) {
     current: 'HEAD',
     bundles,
   };
-};
+}
