@@ -655,13 +655,14 @@ jobs:
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
       - run:
           # We'll add a bucket lifecycle policy to delete objects tagged as "pull_request" after 30 days.
-          name: Determine S3 object tag based on branch
+          name: Determine S3 object tags based on branch
           command: |
             if [[ "<< pipeline.git.branch >>" =~ ^pull/.+$ ]]; then
-              echo "export S3_OBJECT_TAG=pull_request" >> $BASH_ENV
+              echo "export S3_OBJECT_TYPE_TAG=pull_request" >> $BASH_ENV
             else
-              echo "export S3_OBJECT_TAG=base" >> $BASH_ENV
+              echo "export S3_OBJECT_TYPE_TAG=base" >> $BASH_ENV
             fi
+            echo "export S3_OBJECT_BRANCH_TAG=<< pipeline.git.branch >>" >> $BASH_ENV
       - aws-cli/setup:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
@@ -669,34 +670,43 @@ jobs:
       - run:
           name: create a size snapshot
           command: pnpm size:snapshot
+
+      # === LEGACY START ===
+      # remove once the UI can handle the new format
+      # persist size snapshot on S3
+      - when:
+          # don't run on PRs
+          condition:
+            not:
+              matches:
+                # "^pull/\d+" is not valid YAML
+                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
+                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
+                pattern: '^pull/.+$'
+                value: << pipeline.git.branch >>
+          steps:
+            - aws-s3/copy:
+                arguments: --content-type application/json
+                from: size-snapshot.json
+                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       - store_artifacts:
           name: persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-      # persist size snapshot on S3 (TODO: remove once UI can work with the new format)
-      - aws-s3/copy:
-          arguments: --content-type application/json
-          from: size-snapshot.json
-          to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-      - run:
-          name: Tag size-snapshot.json (legacy path)
-          command: |
-            aws s3api put-object-tagging \
-              --bucket mui-org-ci \
-              --key artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/size-snapshot.json \
-              --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TAG}]"
+      # === LEGACY END ===
+
       # persist size snapshot on S3 (new format = <bucket-prefix>/<repository>/<sha1>/size-snapshot.json)
       - aws-s3/copy:
           arguments: --content-type application/json
           from: size-snapshot.json
           to: s3://mui-org-ci/artifacts/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1/
       - run:
-          name: Tag size-snapshot.json (new path)
+          name: Tag size-snapshot.json
           command: |
             aws s3api put-object-tagging \
               --bucket mui-org-ci \
               --key artifacts/$CIRCLE_PROJECT_REPONAME/$CIRCLE_SHA1/size-snapshot.json \
-              --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TAG}]"
+              --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TYPE_TAG},{Key=branch,Value=$S3_OBJECT_BRANCH_TAG}]"
       - run:
           name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
