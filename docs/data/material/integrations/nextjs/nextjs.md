@@ -175,50 +175,55 @@ Inside the `pages/_document.tsx` file:
 - Import `documentGetInitialProps` and use it as the Document's `getInitialProps`.
 - Import `DocumentHeadTags` and render it inside the `<Head>`.
 
-```diff title="pages/_document.tsx"
-+import {
-+  DocumentHeadTags,
-+  documentGetInitialProps,
-+} from '@mui/material-nextjs/v15-pagesRouter';
- // or `v1X-pagesRouter` if you are using Next.js v1X
+```tsx title="pages/_document.tsx"
+import {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentProps,
+} from 'next/document';
+import {
+  DocumentHeadTags,
+  DocumentHeadTagsProps,
+  documentGetInitialProps,
+} from '@mui/material-nextjs/v15-pagesRouter';
 
- export default function MyDocument(props) {
-   return (
-     <Html lang="en">
-       <Head>
-+        <DocumentHeadTags {...props} />
-         ...
-       </Head>
-       <body>
-         <Main />
-         <NextScript />
-       </body>
-     </Html>
-   );
- }
+export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
+  return (
+    <Html lang="en">
+      <Head>
+        <DocumentHeadTags {...props} />
+      </Head>
+      <body className="antialiased">
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
 
-+MyDocument.getInitialProps = async (ctx) => {
-+  const finalProps = await documentGetInitialProps(ctx);
-+  return finalProps;
-+};
+Document.getInitialProps = async (ctx: DocumentContext) => {
+  const finalProps = await documentGetInitialProps(ctx);
+  return finalProps;
+};
 ```
 
 Then, inside `pages/_app.tsx`, import the `AppCacheProvider` component and render it as the root element:
 
-```diff title="pages/_app.tsx"
-+import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
- // Or `v1X-pages` if you are using Next.js v1X
+```tsx title="pages/_app.tsx"
+import '@/styles/globals.css';
+import type { AppProps } from 'next/app';
+import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
 
- export default function MyApp(props) {
-   return (
-+    <AppCacheProvider {...props}>
-       <Head>
-         ...
-       </Head>
-       ...
-+    </AppCacheProvider>
-   );
- }
+export default function App({ Component, pageProps, ...props }: AppProps) {
+  return (
+    <AppCacheProvider {...props}>
+      <Component {...pageProps} />
+    </AppCacheProvider>
+  );
+}
 ```
 
 :::info
@@ -235,7 +240,7 @@ To use a custom [Emotion cache](https://emotion.sh/docs/@emotion/cache), pass it
 ```diff title="pages/_document.tsx"
  ...
 
- MyDocument.getInitialProps = async (ctx) => {
+ Document.getInitialProps = async (ctx: DocumentContext) => {
    const finalProps = await documentGetInitialProps(ctx, {
 +    emotionCache: createCustomCache(),
    });
@@ -251,7 +256,7 @@ To enable [cascade layers](https://developer.mozilla.org/en-US/docs/Learn_web_de
 +import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
  ...
 
- MyDocument.getInitialProps = async (ctx) => {
+ Document.getInitialProps = async (ctx: DocumentContext) => {
    const finalProps = await documentGetInitialProps(ctx, {
 +    emotionCache: createEmotionCache({ enableCssLayer: true }),
    });
@@ -263,9 +268,9 @@ To enable [cascade layers](https://developer.mozilla.org/en-US/docs/Learn_web_de
 +import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
   ...
 
-const clientCache = createEmotionCache({ enableCssLayer: true });
++ const clientCache = createEmotionCache({ enableCssLayer: true });
 
-+ export default function MyApp({ emotionCache = clientCache }) {
++ export default function App({ emotionCache = clientCache }) {
     return (
 +     <AppCacheProvider emotionCache={emotionCache}>
         <Head>
