@@ -113,7 +113,9 @@ Follow the [Tailwind CSS IntelliSense installation guide](https://tailwindcss.c
 }
 ```
 
-This enables Tailwind CSS IntelliSense for any value that has a `className` key.
+This enables Tailwind CSS IntelliSense when customizing slots in Material UI components as shown in the image below.
+
+![A preview of Tailwind CSS Intellisense](/static/material-ui/tailwind-intellisense.jpg)
 
 ## Usage
 
