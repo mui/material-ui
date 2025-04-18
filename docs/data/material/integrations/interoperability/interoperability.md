@@ -9,9 +9,9 @@ There are examples for the following styling solutions:
 - [Plain CSS](#plain-css)
 - [Global CSS](#global-css)
 - [Styled Components](#styled-components)
-- [CSS Modules](#css-modules)
+- [CSS Modules](#cssmodules)
 - [Emotion](#emotion)
-- [Tailwind CSS](#tailwind-css)
+- [Tailwind CSS](#tailwindcss-v3)
 - [~~JSS~~ TSS](#jss-tss)
 
 ## Plain CSS
@@ -573,10 +573,14 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 It works exactly like styled components. You can [use the same guide](/material-ui/integrations/interoperability/#styled-components).
 
-## Tailwind CSS
+## Tailwind CSS v3
 
 ![stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/tailwindcss)
+
+:::info
+For Tailwind CSS v4, please refer to the [v4 integration guide](/material-ui/integrations/tailwindcss/tailwindcss-v4/).
+:::
 
 ### Setup
 
