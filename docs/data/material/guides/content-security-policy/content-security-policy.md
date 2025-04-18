@@ -72,13 +72,10 @@ function App(props) {
 }
 ```
 
-### Create React App (CRA)
+### CSP in Vite
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default.
-This will require a new hash to be set in your CSP during each deployment.
-
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build.
-This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+When deploying a CSP using Vite, there are specific configurations you must set up due to Vite's internal handling of assets and modules.
+See [Vite Features—Content Security Policy](https://vite.dev/guide/features.html#content-security-policy-csp) for complete details.
 
 ### Next.js Pages Router
 
