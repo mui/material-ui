@@ -23,5 +23,10 @@
     "id": 87,
     "title": "Material UI v7 is here",
     "text": "This major release improves the integration with modern tools and consistency across the library. Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"material-ui-v7\" href=\"https://mui.com/blog/material-ui-v7-is-here/\">announcement blog post</a>."
+  },
+  {
+    "id": 88,
+    "title": "Introducing MUI X v8",
+    "text": "Powerful new features and highly requested new components. Read the full details in the <a style=\"color: inherit;\" data-ga-event-category=\"Announcement\" data-ga-event-action=\"notification\" data-ga-event-label=\"mui-x-v8\" href=\"https://mui.com/blog/mui-x-v8/\">MUI X v8 announcement blog post</a>."
   }
 ]
