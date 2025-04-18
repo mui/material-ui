@@ -9,9 +9,9 @@ There are examples for the following styling solutions:
 - [Plain CSS](#plain-css)
 - [Global CSS](#global-css)
 - [Styled Components](#styled-components)
-- [CSS Modules](#css-modules)
+- [CSS Modules](#cssmodules)
 - [Emotion](#emotion)
-- [Tailwind CSS](#tailwind-css)
+- [Tailwind CSS](#tailwindcss-v3)
 - [~~JSS~~ TSS](#jss-tss)
 
 ## Plain CSS
