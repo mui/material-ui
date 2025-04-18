@@ -13,7 +13,7 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 | :----- | :------ | :----- | :------------- | :----------- |
 | >= 121 | >= 115  | >= 109 | >= 15.4        | >= 15.4      |
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/-/.browserslistrc#L12-L27) (check the `stable` entry).
 

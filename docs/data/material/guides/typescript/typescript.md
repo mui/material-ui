@@ -4,7 +4,7 @@
 
 ## Minimum configuration
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 Material UI requires a minimum version of TypeScript 4.9. Have a look at the [Vite.js with TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-ts) example.
 
