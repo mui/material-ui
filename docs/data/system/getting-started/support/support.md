@@ -114,7 +114,7 @@ That means less time grappling with esoteric open-source trivia, and more time b
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+  href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
 Learn more about Tidelift</a>
 and
 <a
