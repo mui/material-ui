@@ -26,49 +26,51 @@ createTheme({ cssVariables: { cssVarPrefix: '' } });
 
 To toggle between modes manually, set the `colorSchemeSelector` with one of the following selectors:
 
-<codeblock>
+- `class`: adds a class to the `<html>` element.
 
-```js class
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'class'
-  }
-});
+  ```js class
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'class'
+    }
+  });
 
-// CSS Result
-.light { ... }
-.dark { ... }
-```
+  // CSS Result
+  .light { ... }
+  .dark { ... }
+  ```
 
-```js data
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'data'
-  }
-});
+- `data`: adds a data attribute to the `<html>` element.
 
-// CSS Result
-[data-light] { ... }
-[data-dark] { ... }
-```
+  ```js data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'data'
+    }
+  });
 
-```js string
-// The value must start with dot (.) for class or square brackets ([]) for data
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: '.theme-%s'
-  }
-});
+  // CSS Result
+  [data-light] { ... }
+  [data-dark] { ... }
+  ```
 
-// CSS Result
-.theme-light { ... }
-.theme-dark { ... }
-```
+- `string`: adds a custom selector to the `<html>` element.
 
-</codeblock>
+  ```js string
+  // The value must start with dot (.) for class or square brackets ([]) for data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: '.theme-%s'
+    }
+  });
+
+  // CSS Result
+  .theme-light { ... }
+  .theme-dark { ... }
+  ```
 
 Then, use `useColorScheme` hook to switch between modes:
 
@@ -162,7 +164,7 @@ If you have such a condition, replace it with the [`theme.applyStyles()` functio
  }
 ```
 
-Next, if you have a custom selector that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
+Next, if you have a custom selector that is **not** `media`, add the [`InitColorSchemeScript`](/material-ui/react-init-color-scheme-script/) component based on the framework that you are using:
 
 :::success
 The `attribute` has to be the same as the one you set in the `colorSchemeSelector` property:
