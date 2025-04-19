@@ -21,8 +21,7 @@ import DemoEditor from 'docs/src/modules/components/DemoEditor';
 import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
-import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
@@ -53,7 +52,7 @@ function getDemoName(location) {
       location.split('/').pop();
 }
 
-function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
+function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
@@ -64,99 +63,47 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
     if (canonicalAs.startsWith('/joy-ui/')) {
       productId = 'joy-ui';
       name = 'Joy UI';
-    } else if (canonicalAs.startsWith('/base-ui/')) {
-      productId = 'base-ui';
-      name = 'MUI Base';
     } else if (canonicalAs.startsWith('/x/')) {
       name = 'MUI X';
     }
 
     let codeOptions = {};
-    if (codeStyling === CODE_STYLING.SYSTEM) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-          raw: demo.rawTS,
-          module: demo.moduleTS,
-          Component: demo.tsx ?? null,
-          sourceLanguage: 'tsx',
-        };
-        if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
-        }
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation,
-          raw: demo.raw,
-          module: demo.module,
-          Component: demo.js,
-          sourceLanguage: 'jsx',
-        };
-        if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
-        }
-      }
-    } else if (codeStyling === CODE_STYLING.TAILWIND) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
-          raw: demo.rawTailwindTS,
-          module: demo.moduleTS,
-          Component: demo.tsxTailwind,
-          sourceLanguage: 'tsx',
-        };
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
-          raw: demo.rawTailwind ?? demo.raw,
-          module: demo.module,
-          Component: demo.jsTailwind ?? demo.js,
-          sourceLanguage: 'jsx',
-        };
-      }
-    } else if (codeStyling === CODE_STYLING.CSS) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawCSSTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
-          raw: demo.rawCSSTS,
-          module: demo.moduleTS,
-          Component: demo.tsxCSS,
-          sourceLanguage: 'tsx',
-        };
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
-          raw: demo.rawCSS ?? demo.raw,
-          module: demo.module,
-          Component: demo.jsCSS ?? demo.js,
-          sourceLanguage: 'jsx',
-        };
-      }
-    }
 
-    let jsxPreview = demo.jsxPreview;
-    if (codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview) {
-      jsxPreview = demo.tailwindJsxPreview;
-    } else if (codeStyling === CODE_STYLING.CSS && demo.cssJsxPreview) {
-      jsxPreview = demo.cssJsxPreview;
+    if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.TS,
+        githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+        raw: demo.rawTS,
+        module: demo.moduleTS,
+        Component: demo.tsx ?? null,
+        sourceLanguage: 'tsx',
+      };
+      if (demo.relativeModules) {
+        codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
+      }
+    } else {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.JS,
+        githubLocation,
+        raw: demo.raw,
+        module: demo.module,
+        Component: demo.js,
+        sourceLanguage: 'jsx',
+      };
+      if (demo.relativeModules) {
+        codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
+      }
     }
 
     return {
       scope: demo.scope,
-      jsxPreview,
+      jsxPreview: demo.jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       productId,
       language: userLanguage,
-      codeStyling,
     };
-  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage, codeStyling]);
+  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
 }
 
 function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
@@ -416,9 +363,8 @@ export default function Demo(props) {
 
   const t = useTranslate();
   const codeVariant = useCodeVariant();
-  const styleSolution = useCodeStyling();
 
-  const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
+  const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
