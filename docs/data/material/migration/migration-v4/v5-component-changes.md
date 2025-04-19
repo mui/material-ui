@@ -33,6 +33,34 @@ As the core components use Emotion as their style engine, the props used by Emot
 <MuiComponent component={SomeOtherComponent} as="button" />
 ```
 
+## AccordionSummary
+
+### Rename `expandIcon` to `expandIconWrapper`
+
+This change was made to make it clearer that the element is a wrapper around the icon, not the icon itself.
+
+Update the CSS class name and the theme overrides accordingly.
+
+```diff
+-'.MuiAccordionSummary-expandIcon': {
++'.MuiAccordionSummary-expandIconWrapper': {
+```
+
+```diff
+ createTheme({
+   components: {
+     MuiAccordionSummary: {
+       styleOverrides: {
+-        expandIcon: {
++        expandIconWrapper: {
+          // ...
+         },
+       },
+     },
+   },
+ });
+```
+
 ## AppBar
 
 ### Fix z-index issues
