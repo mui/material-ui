@@ -72,7 +72,7 @@ describe('CodeSandbox', () => {
   </head>
   <body>
     <div id="root"></div>
-  </body>
+    \n  </body>
 </html>`,
       },
       'src/Demo.js': {
@@ -129,12 +129,12 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
             'react-dom': 'latest',
             '@emotion/react': 'latest',
             '@emotion/styled': 'latest',
-            '@types/react': 'latest',
-            '@types/react-dom': 'latest',
             typescript: 'latest',
           },
           devDependencies: {
             'react-scripts': 'latest',
+            '@types/react': 'latest',
+            '@types/react-dom': 'latest',
           },
           main: 'index.tsx',
           scripts: {
@@ -167,7 +167,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </head>
   <body>
     <div id="root"></div>
-  </body>
+    \n  </body>
 </html>`,
       },
       'src/Demo.tsx': {
@@ -234,14 +234,14 @@ ReactDOM.createRoot(document.querySelector("#root")!).render(
       '@emotion/styled': 'latest',
       // #npm-tag-reference
       '@mui/material': 'latest',
-      '@types/react': 'latest',
-      '@types/react-dom': 'latest',
       react: 'latest',
       'react-dom': 'latest',
       typescript: 'latest',
     });
     expect(result.devDependencies).to.deep.equal({
       'react-scripts': 'latest',
+      '@types/react': 'latest',
+      '@types/react-dom': 'latest',
     });
   });
 
