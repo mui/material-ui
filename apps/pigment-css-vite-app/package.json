@@ -31,7 +31,7 @@
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.2",
     "@types/webfontloader": "^1.6.38",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^4.4.1",
     "postcss": "^8.5.3",
     "postcss-combine-media-query": "^1.0.1",
     "vite": "5.4.18",
