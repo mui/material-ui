@@ -84,7 +84,7 @@ This flexibility enables faster insight discovery and more efficient data analys
 This feature is available right out of the box, but you can also create a preconfigured setup to tailor it to your user requirements.
 
 <figure>
-  <video autoplay muted loop playsinline width="1350" height="1126" controls style="border: 0; width: 675px">
+  <video autoplay muted loop playsinline width="1366" height="1142" controls style="border: 0; width: 683px">
     <source src="/static/blog/mui-x-v8/pivoting.mp4" type="video/mp4">
   </video>
   <figcaption>A common pivoting use case</figcaption>
