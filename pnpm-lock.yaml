@@ -245,8 +245,8 @@ importers:
         specifier: ^11.3.0
         version: 11.3.0
       git-url-parse:
-        specifier: ^16.0.1
-        version: 16.0.1
+        specifier: ^16.1.0
+        version: 16.1.0
       globby:
         specifier: ^14.1.0
         version: 14.1.0
@@ -8709,14 +8709,14 @@ packages:
   git-up@7.0.0:
     resolution: {integrity: sha512-ONdIrbBCFusq1Oy0sC71F5azx8bVkvtZtMJAsv+a6lz5YAmbNnLD6HAB4gptHZVLPR8S2/kVN6Gab7lryq5+lQ==}
 
-  git-up@8.0.1:
-    resolution: {integrity: sha512-2XFu1uNZMSjkyetaF+8rqn6P0XqpMq/C+2ycjI6YwrIKcszZ5/WR4UubxjN0lILOKqLkLaHDaCr2B6fP1cke6g==}
+  git-up@8.1.1:
+    resolution: {integrity: sha512-FDenSF3fVqBYSaJoYy1KSc2wosx0gCvKP+c+PRBht7cAaiCeQlBtfBDX9vgnNOHmdePlSFITVcn4pFfcgNvx3g==}
 
   git-url-parse@14.0.0:
     resolution: {integrity: sha512-NnLweV+2A4nCvn4U/m2AoYu0pPKlsmhK9cknG7IMwsjFY1S2jxM+mAhsDxyxfCIGfGaD+dozsyX4b6vkYc83yQ==}
 
-  git-url-parse@16.0.1:
-    resolution: {integrity: sha512-mcD36GrhAzX5JVOsIO52qNpgRyFzYWRbU1VSRFCvJt1IJvqfvH427wWw/CFqkWvjVPtdG5VTx4MKUeC5GeFPDQ==}
+  git-url-parse@16.1.0:
+    resolution: {integrity: sha512-cPLz4HuK86wClEW7iDdeAKcCVlWXmrLpb2L+G9goW0Z1dtpNS6BXXSOckUTlJT/LDQViE1QZKstNORzHsLnobw==}
 
   gitconfiglocal@1.0.0:
     resolution: {integrity: sha512-spLUXeTAVHxDtKsJc8FkFVgFtMdEN9qPGpL23VfSHx4fP4+Ds097IXLvymbnDH8FnmxX5Nr9bPw3A+AQ6mWEaQ==}
@@ -21501,7 +21501,7 @@ snapshots:
       is-ssh: 1.4.0
       parse-url: 8.1.0
 
-  git-up@8.0.1:
+  git-up@8.1.1:
     dependencies:
       is-ssh: 1.4.0
       parse-url: 9.2.0
@@ -21510,9 +21510,9 @@ snapshots:
     dependencies:
       git-up: 7.0.0
 
-  git-url-parse@16.0.1:
+  git-url-parse@16.1.0:
     dependencies:
-      git-up: 8.0.1
+      git-up: 8.1.1
 
   gitconfiglocal@1.0.0:
     dependencies:
