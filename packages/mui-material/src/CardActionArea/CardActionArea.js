@@ -24,7 +24,6 @@ const useUtilityClasses = (ownerState) => {
 const CardActionAreaRoot = styled(ButtonBase, {
   name: 'MuiCardActionArea',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => ({
     display: 'block',
@@ -46,7 +45,6 @@ const CardActionAreaRoot = styled(ButtonBase, {
 const CardActionAreaFocusHighlight = styled('span', {
   name: 'MuiCardActionArea',
   slot: 'FocusHighlight',
-  overridesResolver: (props, styles) => styles.focusHighlight,
 })(
   memoTheme(({ theme }) => ({
     overflow: 'hidden',

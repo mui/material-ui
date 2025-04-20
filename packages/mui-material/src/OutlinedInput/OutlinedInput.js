@@ -117,7 +117,6 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
 const NotchedOutlineRoot = styled(NotchedOutline, {
   name: 'MuiOutlinedInput',
   slot: 'NotchedOutline',
-  overridesResolver: (props, styles) => styles.notchedOutline,
 })(
   memoTheme(({ theme }) => {
     const borderColor =

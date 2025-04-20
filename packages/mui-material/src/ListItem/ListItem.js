@@ -155,7 +155,6 @@ export const ListItemRoot = styled('div', {
 const ListItemContainer = styled('li', {
   name: 'MuiListItem',
   slot: 'Container',
-  overridesResolver: (props, styles) => styles.container,
 })({
   position: 'relative',
 });

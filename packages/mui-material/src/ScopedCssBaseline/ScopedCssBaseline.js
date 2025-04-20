@@ -22,7 +22,6 @@ const useUtilityClasses = (ownerState) => {
 const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => {
     const colorSchemeStyles = {};

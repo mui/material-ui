@@ -411,7 +411,6 @@ const ButtonEndIcon = styled('span', {
 const ButtonLoadingIndicator = styled('span', {
   name: 'MuiButton',
   slot: 'LoadingIndicator',
-  overridesResolver: (props, styles) => styles.loadingIndicator,
 })(({ theme }) => ({
   display: 'none',
   position: 'absolute',
@@ -496,7 +495,6 @@ const ButtonLoadingIndicator = styled('span', {
 const ButtonLoadingIconPlaceholder = styled('span', {
   name: 'MuiButton',
   slot: 'LoadingIconPlaceholder',
-  overridesResolver: (props, styles) => styles.loadingIconPlaceholder,
 })({
   display: 'inline-block',
   width: '1em',

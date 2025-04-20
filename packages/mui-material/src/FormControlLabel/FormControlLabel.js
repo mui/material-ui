@@ -97,7 +97,6 @@ export const FormControlLabelRoot = styled('label', {
 const AsteriskComponent = styled('span', {
   name: 'MuiFormControlLabel',
   slot: 'Asterisk',
-  overridesResolver: (props, styles) => styles.asterisk,
 })(
   memoTheme(({ theme }) => ({
     [`&.${formControlLabelClasses.error}`]: {

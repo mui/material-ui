@@ -129,7 +129,6 @@ const AccordionRoot = styled(Paper, {
 const AccordionHeading = styled('h3', {
   name: 'MuiAccordion',
   slot: 'Heading',
-  overridesResolver: (props, styles) => styles.heading,
 })({
   all: 'unset',
 });

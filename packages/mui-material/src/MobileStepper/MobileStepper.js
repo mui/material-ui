@@ -69,7 +69,6 @@ const MobileStepperRoot = styled(Paper, {
 const MobileStepperDots = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dots',
-  overridesResolver: (props, styles) => styles.dots,
 })({
   variants: [
     {
@@ -120,7 +119,6 @@ const MobileStepperDot = styled('div', {
 const MobileStepperProgress = styled(LinearProgress, {
   name: 'MuiMobileStepper',
   slot: 'Progress',
-  overridesResolver: (props, styles) => styles.progress,
 })({
   variants: [
     {

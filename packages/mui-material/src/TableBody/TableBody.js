@@ -21,7 +21,6 @@ const useUtilityClasses = (ownerState) => {
 const TableBodyRoot = styled('tbody', {
   name: 'MuiTableBody',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   display: 'table-row-group',
 });

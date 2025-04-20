@@ -130,7 +130,6 @@ const SpeedDialActionStaticTooltip = styled('span', {
 const SpeedDialActionStaticTooltipLabel = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltipLabel',
-  overridesResolver: (props, styles) => styles.staticTooltipLabel,
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',

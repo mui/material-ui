@@ -8,7 +8,6 @@ const Stack = createStack({
   createStyledComponent: styled('div', {
     name: 'MuiStack',
     slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
   }),
   useThemeProps: (inProps) => useDefaultProps({ props: inProps, name: 'MuiStack' }),
 });

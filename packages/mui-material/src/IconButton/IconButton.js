@@ -155,7 +155,6 @@ const IconButtonRoot = styled(ButtonBase, {
 const IconButtonLoadingIndicator = styled('span', {
   name: 'MuiIconButton',
   slot: 'LoadingIndicator',
-  overridesResolver: (props, styles) => styles.loadingIndicator,
 })(({ theme }) => ({
   display: 'none',
   position: 'absolute',

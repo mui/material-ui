@@ -66,7 +66,6 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
 const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
 })(
   memoTheme(({ theme }) => ({
     fontFamily: theme.typography.fontFamily,

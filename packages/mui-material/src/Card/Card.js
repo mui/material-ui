@@ -22,7 +22,6 @@ const useUtilityClasses = (ownerState) => {
 const CardRoot = styled(Paper, {
   name: 'MuiCard',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   overflow: 'hidden',
 });

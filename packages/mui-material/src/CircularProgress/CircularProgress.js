@@ -116,7 +116,6 @@ const CircularProgressRoot = styled('span', {
 const CircularProgressSVG = styled('svg', {
   name: 'MuiCircularProgress',
   slot: 'Svg',
-  overridesResolver: (props, styles) => styles.svg,
 })({
   display: 'block', // Keeps the progress centered
 });

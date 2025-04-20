@@ -92,7 +92,6 @@ const CollapseRoot = styled('div', {
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
-  overridesResolver: (props, styles) => styles.wrapper,
 })({
   // Hack to get children with a negative margin to not falsify the height computation.
   display: 'flex',
@@ -113,7 +112,6 @@ const CollapseWrapper = styled('div', {
 const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',
-  overridesResolver: (props, styles) => styles.wrapperInner,
 })({
   width: '100%',
   variants: [
