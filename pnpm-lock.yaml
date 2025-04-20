@@ -744,7 +744,7 @@ importers:
         version: 4.1.4
       '@toolpad/core':
         specifier: ^0.14.0
-        version: 0.14.0(0a05548204c044b7bc6c75d486ee00fb)
+        version: 0.14.0(98aa50b3d2fb65b27df2e44c4df0d9c9)
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
@@ -869,8 +869,8 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-router:
-        specifier: ^7.5.0
-        version: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^7.5.1
+        version: 7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-runner:
         specifier: ^1.0.5
         version: 1.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1832,8 +1832,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       react-router:
-        specifier: ^7.5.0
-        version: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^7.5.1
+        version: 7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sinon:
         specifier: ^19.0.5
         version: 19.0.5
@@ -2268,8 +2268,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0
       react-router:
-        specifier: ^7.5.0
-        version: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^7.5.1
+        version: 7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-window:
         specifier: ^1.8.11
         version: 1.8.11(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -11862,8 +11862,8 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  react-router@7.5.0:
-    resolution: {integrity: sha512-estOHrRlDMKdlQa6Mj32gIks4J+AxNsYoE0DbTTxiMy2mPzZuWSDU+N85/r1IlNR7kGfznF3VCUlvc5IUO+B9g==}
+  react-router@7.5.1:
+    resolution: {integrity: sha512-/jjU3fcYNd2bwz9Q0xt5TwyiyoO8XjSEFXJY4O/lMAlkGTHWuHRAbR9Etik+lSDqMC7A7mz3UlXzgYT6Vl58sA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react: '>=18'
@@ -17724,7 +17724,7 @@ snapshots:
       '@theme-ui/css': 0.17.2(@emotion/react@11.13.5(@types/react@19.1.2)(react@19.1.0))
       react: 19.1.0
 
-  '@toolpad/core@0.14.0(0a05548204c044b7bc6c75d486ee00fb)':
+  '@toolpad/core@0.14.0(98aa50b3d2fb65b27df2e44c4df0d9c9)':
     dependencies:
       '@babel/runtime': 7.27.0
       '@mui/icons-material': link:packages/mui-icons-material/build
@@ -17745,7 +17745,7 @@ snapshots:
       react: 19.1.0
     optionalDependencies:
       next: 15.3.1(@babel/core@7.26.10)(@opentelemetry/api@1.8.0)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react-router: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react-router: 7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
@@ -17829,7 +17829,8 @@ snapshots:
 
   '@types/cookie@0.4.1': {}
 
-  '@types/cookie@0.6.0': {}
+  '@types/cookie@0.6.0':
+    optional: true
 
   '@types/cors@2.8.12': {}
 
@@ -25386,9 +25387,8 @@ snapshots:
       '@remix-run/router': 1.23.0
       react: 19.1.0
 
-  react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  react-router@7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@types/cookie': 0.6.0
       cookie: 1.0.2
       react: 19.1.0
       set-cookie-parser: 2.7.1
