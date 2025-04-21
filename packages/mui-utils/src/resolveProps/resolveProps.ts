@@ -55,6 +55,8 @@ export default function resolveProps<
             defaultProps[propName] as string,
             props[propName] as string,
           ) as T[keyof T];
+        } else if (output[propName] === undefined) {
+          output[propName] = defaultProps[propName];
         }
       } else if (propName === 'style') {
         if (mergeClassNameAndStyle) {
@@ -62,6 +64,8 @@ export default function resolveProps<
             ...(defaultProps[propName] as React.CSSProperties),
             ...(props[propName] as React.CSSProperties),
           } as T[keyof T];
+        } else if (output[propName] === undefined) {
+          output[propName] = defaultProps[propName];
         }
       } else if (output[propName] === undefined) {
         output[propName] = defaultProps[propName];
