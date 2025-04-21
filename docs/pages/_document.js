@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
             content={getMetaThemeColor('dark')}
             media="(prefers-color-scheme: dark)"
           />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="icon" href="/static/favicon.ico" />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
           {/* SEO */}
