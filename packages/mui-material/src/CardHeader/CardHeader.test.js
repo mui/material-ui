@@ -5,6 +5,7 @@ import { typographyClasses } from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import CardHeader, { cardHeaderClasses as classes } from '@mui/material/CardHeader';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<CardHeader />', () => {
@@ -105,5 +106,32 @@ describe('<CardHeader />', () => {
       expect(subHeader).to.have.class(typographyClasses.root);
       expect(subHeader).to.have.class(typographyClasses.body2);
     });
+  });
+
+  it('should merge className and style from props and from the theme', () => {
+    const cardHeader = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            mergeClassNameAndStyle: true,
+            MuiCardHeader: {
+              className: 'test-class-1',
+              style: { backgroundColor: 'red' },
+            },
+          },
+        })}
+      >
+        <CardHeader
+          title="Title"
+          subheader="Subheader"
+          className="test-class-2"
+          style={{ color: 'blue' }}
+        />
+      </ThemeProvider>,
+    ).container.firstChild;
+    const wrapper = cardHeader.firstChild;
+    expect(wrapper).to.have.class('test-class-1 test-class-2');
+    expect(wrapper).to.have.style('background-color', 'red');
+    expect(wrapper).to.have.style('color', 'blue');
   });
 });
