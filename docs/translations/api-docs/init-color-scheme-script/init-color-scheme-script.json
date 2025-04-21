@@ -1,7 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "attribute": { "description": "DOM attribute for applying color scheme." },
+    "attribute": { "description": "DOM attribute for applying a color scheme." },
     "colorSchemeNode": {
       "description": "The node (provided as string) used to attach the color-scheme attribute."
     },
@@ -9,10 +9,10 @@
       "description": "localStorage key used to store <code>colorScheme</code>."
     },
     "defaultDarkColorScheme": {
-      "description": "The default color scheme to be used on the dark mode."
+      "description": "The default color scheme to be used in dark mode."
     },
     "defaultLightColorScheme": {
-      "description": "The default color scheme to be used on the light mode."
+      "description": "The default color scheme to be used in light mode."
     },
     "defaultMode": {
       "description": "The default mode when the storage is empty (user&#39;s first visit)."

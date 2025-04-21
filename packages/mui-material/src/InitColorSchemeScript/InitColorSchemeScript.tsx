@@ -17,12 +17,12 @@ export interface InitColorSchemeScriptProps {
    */
   defaultMode?: 'system' | 'light' | 'dark';
   /**
-   * The default color scheme to be used on the light mode.
+   * The default color scheme to be used in light mode.
    * @default 'light'
    */
   defaultLightColorScheme?: string;
   /**
-   * The default color scheme to be used on the dark mode.
+   * The default color scheme to be used in dark mode.
    * @default 'dark'
    */
   defaultDarkColorScheme?: string;
@@ -42,7 +42,7 @@ export interface InitColorSchemeScriptProps {
    */
   colorSchemeStorageKey?: string;
   /**
-   * DOM attribute for applying color scheme.
+   * DOM attribute for applying a color scheme.
    * @default 'data-mui-color-scheme'
    * @example '.mode-%s' // for class based color scheme
    * @example '[data-mode-%s]' // for data-attribute without '='
@@ -94,7 +94,7 @@ InitColorSchemeScript.propTypes /* remove-proptypes */ = {
   // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
   // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * DOM attribute for applying color scheme.
+   * DOM attribute for applying a color scheme.
    * @default 'data-mui-color-scheme'
    * @example '.mode-%s' // for class based color scheme
    * @example '[data-mode-%s]' // for data-attribute without '='
@@ -111,12 +111,12 @@ InitColorSchemeScript.propTypes /* remove-proptypes */ = {
    */
   colorSchemeStorageKey: PropTypes.string,
   /**
-   * The default color scheme to be used on the dark mode.
+   * The default color scheme to be used in dark mode.
    * @default 'dark'
    */
   defaultDarkColorScheme: PropTypes.string,
   /**
-   * The default color scheme to be used on the light mode.
+   * The default color scheme to be used in light mode.
    * @default 'light'
    */
   defaultLightColorScheme: PropTypes.string,
