@@ -104,7 +104,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Tailwind CSS IntelliSense for VS Code
 
-Follow the [Tailwind CSS IntelliSense installation guide](https://tailwindcss.com/docs/editor-setup#intellisense-for-vs-code) and then add the following configuration to your [VS Code `settings.json`](https://code.visualstudio.com/docs/editor/settings#_settings-json-file) file:
+The official [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension requires extra configuration to work properly when customizing the interior slots of Material UI components.
+After installing the extension, add the following line to your [VS Code `settings.json`](https://code.visualstudio.com/docs/editor/settings#_settings-json-file) file:
 
 ```json
 {
@@ -113,7 +114,7 @@ Follow the [Tailwind CSS IntelliSense installation guide](https://tailwindcss.c
 }
 ```
 
-This enables Tailwind CSS IntelliSense when customizing slots in Material UI components as shown in the image below.
+Now you should see the autocomplete and syntax highlighting features when using the `slotProps` prop, as shown in the screenshot below:
 
 ![A preview of Tailwind CSS Intellisense](/static/material-ui/tailwind-intellisense.jpg)
 
