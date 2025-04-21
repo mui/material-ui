@@ -68,9 +68,8 @@
       "description": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component."
     },
     "rows": { "description": "Number of rows to display when multiline option is set to true." },
-    "slots": {
-      "description": "The components used for each slot inside.<br>This prop is an alias for the <code>components</code> prop, which will be deprecated in the future."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "startAdornment": { "description": "Start <code>InputAdornment</code> for this component." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
