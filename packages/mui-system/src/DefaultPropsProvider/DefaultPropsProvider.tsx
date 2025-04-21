@@ -43,12 +43,12 @@ function getThemeProps<
 
   if (config.defaultProps) {
     // compatible with v5 signature
-    return resolveProps(config.defaultProps, props);
+    return resolveProps(config.defaultProps, props, true);
   }
 
   if (!config.styleOverrides && !config.variants) {
     // v6 signature, no property 'defaultProps'
-    return resolveProps(config as any, props);
+    return resolveProps(config as any, props, true);
   }
   return props;
 }
