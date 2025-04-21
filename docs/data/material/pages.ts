@@ -123,7 +123,7 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-css-baseline', title: 'CSS Baseline' },
           {
             pathname: '/material-ui/react-init-color-scheme-script',
-            title: 'Init Color Scheme Script',
+            title: 'InitColorSchemeScript',
           },
           { pathname: '/material-ui/react-modal' },
           { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },

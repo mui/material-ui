@@ -7,21 +7,18 @@ githubSource: packages/mui-material/src/InitColorSchemeScript
 
 # InitColorSchemeScript
 
-<p class="description">InitColorSchemeScript component removes the dark mode flicker for server-side rendering application.</p>
+<p class="description">The InitColorSchemeScript component eliminates dark mode flickering in server-side-rendered applications.</p>
 
 ## Introduction
 
-`InitColorSchemeScript` component is used to remove the dark mode flicker for server-side rendering (SSR) applications.
-It is a script that runs before React to attach an attribute based on user preference.
+The `InitColorSchemeScript` component is used to remove the dark mode flicker that can occur in server-side-rendered (SSR) applications.
+This script that runs before React to attach an attribute based on the user preference so that the correct color mode is applied on first render.
 
-It is recommended to use this component whenever:
-
-- The application supports light and dark modes.
-- The application is server rendered (SSR).
+For the best user experience, you should implement this component in any server-rendered Material UI app that supports both light and dark modes.
 
 ## Basics
 
-You need to enable CSS variables with `colorSchemeSelector: 'data'` in your theme.
+First, enable CSS variables with `colorSchemeSelector: 'data'` in your theme.
 
 ```js
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -39,11 +36,11 @@ function App() {
 
 Then, render the `InitColorSchemeScript` component as the first child of the `<body>` tag.
 
-Below are the location for rendering `InitColorSchemeScript` component for a specific framework.
+The sections below detail where to render the `InitColorSchemeScript` component when working with Next.js.
 
 ### Next.js App Router
 
-Place the `InitColorSchemeScript` component in the `layout.tsx` file:
+Place the `InitColorSchemeScript` component in the root `layout` file:
 
 ```js title="src/app/layout.tsx"
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
@@ -62,7 +59,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 
 ### Next.js Pages Router
 
-Place the `InitColorSchemeScript` component in the `_document.tsx` file:
+Place the `InitColorSchemeScript` component in a custom `_document` file:
 
 ```js title="pages/_document.tsx"
 import { Html, Head, Main, NextScript } from 'next/document';
@@ -86,13 +83,13 @@ export default function MyDocument(props) {
 
 ### Class attribute
 
-To attach class to DOM element, set the `attribute` prop to `"class"`.
+To attach classes to DOM elements, set the `attribute` prop to `"class"`.
 
 ```js
 <InitColorSchemeScript attribute="class" />
 ```
 
-The color scheme node (default to `html`) will be set to the class name based on the user preference.
+This sets the class name on the color scheme node (which defaults to `<html>`) according to the user's system preference.
 
 ```html
 <html class="dark"></html>
@@ -100,7 +97,7 @@ The color scheme node (default to `html`) will be set to the class name based on
 
 ### Arbitrary attribute
 
-To attach arbitrary attribute to DOM element, use `%s` as a placeholder in the `attribute` prop.
+To attach arbitrary attributes to DOM elements, use `%s` as a placeholder on the `attribute` prop.
 
 ```js
 <InitColorSchemeScript attribute="[data-theme='%s']" /> // <html data-theme="dark">
@@ -109,9 +106,9 @@ To attach arbitrary attribute to DOM element, use `%s` as a placeholder in the `
 
 ### Default mode
 
-Set this prop to specify the default mode when the user first visits the page.
+Set the `defaultMode` prop to specify the default mode when the user first visits the page.
 
-For example, if you want first-visit users to see dark mode, set the `defaultMode` prop to `"dark"`.
+For example, if you want users to see the dark mode on their first visit, set the `defaultMode` prop to `"dark"`.
 
 ```js
 <InitColorSchemeScript defaultMode="dark" />
