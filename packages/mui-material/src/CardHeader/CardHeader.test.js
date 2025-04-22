@@ -118,6 +118,11 @@ describe('<CardHeader />', () => {
               defaultProps: {
                 className: 'test-class-1',
                 style: { margin: '10px' },
+                slotProps: {
+                  title: {
+                    className: 'title-class-1',
+                  },
+                },
               },
             },
           },
@@ -128,6 +133,11 @@ describe('<CardHeader />', () => {
           subheader="Subheader"
           className="test-class-2"
           style={{ padding: '10px' }}
+          slotProps={{
+            title: {
+              className: 'title-class-2',
+            },
+          }}
         />
       </ThemeProvider>,
     );
