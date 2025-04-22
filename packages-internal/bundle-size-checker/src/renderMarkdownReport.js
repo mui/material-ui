@@ -34,7 +34,7 @@ const byteSizeChangeFormatter = new Intl.NumberFormat(undefined, {
  * @param {number|null} relative - The relative change as a Number
  * @returns {string} Formatted size change string with symbol
  */
-function getSymbol(relative) {
+function getChangeIcon(relative) {
   if (relative === null) {
     // eslint-disable-next-line no-template-curly-in-string
     return '$${\\color{yellow}▲}$$';
@@ -91,7 +91,7 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
   const changeParsed = formatChange(parsed.absoluteDiff, parsed.relativeDiff);
   const changeGzip = formatChange(gzip.absoluteDiff, gzip.relativeDiff);
 
-  return `${getSymbol(parsed.relativeDiff)} **${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
+  return `${getChangeIcon(parsed.relativeDiff)} **${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
 }
 
 /**
