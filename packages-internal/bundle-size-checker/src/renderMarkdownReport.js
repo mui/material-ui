@@ -103,25 +103,11 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
 /**
  * Generates a Markdown report for bundle size changes
  * @param {ComparisonResult} comparison - Comparison result from calculateSizeDiff
- * @param {Object} options - Additional options
- * @param {number} options.prNumber - PR number
- * @param {string} options.baseRef - Base branch name
- * @param {string} options.baseCommit - Base commit SHA
- * @param {string} options.circleciBuildNumber - CircleCI build number
+ * @param {Object} [options] - Additional options
  * @param {number} [options.visibleLimit=10] - Number of entries to show before collapsing
  * @returns {string} Markdown report
  */
-export function renderMarkdownReport(
-  comparison,
-  { prNumber, baseRef, baseCommit, circleciBuildNumber, visibleLimit = 10 },
-) {
-  // Generate query param for detailed comparison URLs
-  const detailedComparisonQuery = `circleCIBuildNumber=${circleciBuildNumber}&baseRef=${baseRef}&baseCommit=${baseCommit}&prNumber=${prNumber}`;
-
-  // URLs for detailed comparison tools
-  const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
-  const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
-
+export function renderMarkdownReport(comparison, { visibleLimit = 10 } = {}) {
   const hasChanges = comparison.entries.some(
     (entry) => entry.parsed.absoluteDiff !== 0 || entry.gzip.absoluteDiff !== 0,
   );
@@ -139,31 +125,42 @@ export function renderMarkdownReport(
 
   let markdownContent = '';
 
-  if (changedEntries.length > 0) {
-    const importantChanges = visibleEntries.map(generateEmphasizedChange);
-    const hiddenChanges = hiddenEntries.map(generateEmphasizedChange);
+  const importantChanges = visibleEntries.map(generateEmphasizedChange);
+  const hiddenChanges = hiddenEntries.map(generateEmphasizedChange);
 
-    // Add important changes to markdown
-    if (importantChanges.length > 0) {
-      // Show the most significant changes first, up to the visible limit
-      const visibleChanges = importantChanges.slice(0, visibleLimit);
-      markdownContent += `${visibleChanges.join('\n')}`;
+  // Add important changes to markdown
+  if (importantChanges.length > 0) {
+    // Show the most significant changes first, up to the visible limit
+    const visibleChanges = importantChanges.slice(0, visibleLimit);
+    markdownContent += `${visibleChanges.join('\n')}`;
 
-      // If there are more changes, add them in a collapsible details section
-      if (hiddenChanges.length > 0) {
-        markdownContent += `\n<details>\n<summary>Show ${hiddenChanges.length} more bundle changes</summary>\n\n`;
-        markdownContent += `${hiddenChanges.join('\n')}\n\n`;
-        markdownContent += `</details>`;
-      }
-
-      markdownContent += `\n\n`;
+    // If there are more changes, add them in a collapsible details section
+    if (hiddenChanges.length > 0) {
+      markdownContent += `\n<details>\n<summary>Show ${hiddenChanges.length} more bundle changes</summary>\n\n`;
+      markdownContent += `${hiddenChanges.join('\n')}\n\n`;
+      markdownContent += `</details>`;
     }
-
-    // Add links to detailed tools
-    markdownContent += `[Details of bundle changes](${detailedComparisonUrl})`;
-  } else {
-    markdownContent += `[No bundle size changes](${detailedComparisonUrl})`;
   }
 
   return markdownContent;
+}
+
+/**
+ *
+ * @param {Object} prInfo
+ * @param {number} prInfo.number - The pull request number
+ * @param {Object} prInfo.base - The base branch of the pull request
+ * @param {string} prInfo.base.ref - The base branch name
+ * @param {string} prInfo.base.sha - The base branch SHA
+ * @param {string} circleciBuildNumber - The CircleCI build number
+ * @returns
+ */
+export function getDetailsUrl(prInfo, circleciBuildNumber) {
+  const detailedComparisonQuery = `circleCIBuildNumber=${circleciBuildNumber}&baseRef=${prInfo.base.ref}&baseCommit=${prInfo.base.sha}&prNumber=${prInfo.number}`;
+
+  // URLs for detailed comparison tools
+  const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
+  const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
+
+  return detailedComparisonUrl;
 }

@@ -6,6 +6,7 @@ import {
   calculateSizeDiff,
 } from '@mui/internal-bundle-size-checker';
 import * as fs from 'fs/promises';
+import { getDetailsUrl } from '@mui/internal-bundle-size-checker/src/renderMarkdownReport';
 
 declare const danger: (typeof dangerModule)['danger'];
 declare const markdown: (typeof dangerModule)['markdown'];
@@ -35,29 +36,28 @@ async function reportBundleSize() {
     fs.readFile('./size-snapshot.json', 'utf-8').then((data) => JSON.parse(data)),
   ]);
 
-  let content = `## Bundle size report\n\n`;
+  let markdownContent = `## Bundle size report\n\n`;
 
   if (!baseSnapshot) {
-    content += `_:no_entry_sign: No bundle size snapshot found for base commit ${baseCommit}._\n\n`;
+    markdownContent += `_:no_entry_sign: No bundle size snapshot found for base commit ${baseCommit}._\n\n`;
   }
 
   const sizeDiff = calculateSizeDiff(baseSnapshot ?? {}, prSnapshot);
+
+  const report = await renderMarkdownReport(sizeDiff);
+
+  markdownContent += report;
 
   if (!process.env.CIRCLE_BUILD_NUM) {
     throw new Error('CIRCLE_BUILD_NUM is not defined');
   }
 
-  const report = await renderMarkdownReport(sizeDiff, {
-    prNumber: danger.github.pr.number,
-    baseRef: danger.github.pr.base.ref,
-    baseCommit,
-    circleciBuildNumber: process.env.CIRCLE_BUILD_NUM,
-  });
+  const circleciBuildNumber = process.env.CIRCLE_BUILD_NUM;
 
-  content += report;
+  markdownContent += `\n\n[Details of bundle changes](${getDetailsUrl(danger.github.pr, circleciBuildNumber)})`;
 
   // Use the markdown function to publish the report
-  markdown(content);
+  markdown(markdownContent);
 }
 
 function addDeployPreviewUrls() {
