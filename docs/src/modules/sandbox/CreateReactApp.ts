@@ -5,11 +5,13 @@ export const getHtml = ({
   language,
   codeStyling,
   raw,
+  main,
 }: {
   title: string;
   language: string;
   codeStyling?: 'Tailwind' | 'MUI System';
   raw?: string;
+  main?: string;
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -84,6 +86,7 @@ export const getHtml = ({
   </head>
   <body>
     <div id="root"></div>
+    ${main ? `<script type="module" src="${main}"></script>` : ''}
   </body>
 </html>`;
 };
