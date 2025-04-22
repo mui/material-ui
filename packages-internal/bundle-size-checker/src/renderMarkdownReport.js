@@ -30,26 +30,32 @@ const byteSizeChangeFormatter = new Intl.NumberFormat(undefined, {
 });
 
 /**
+ *
+ * @param {'▲' | '▼'} symbol
+ * @param {'yellow'|'red'|'blue'|'green'} color
+ * @returns
+ */
+function formatSymbol(symbol, color) {
+  return `\${\\tiny{\\color{${color}}${symbol}}}$`;
+}
+
+/**
  * Generates a symbol based on the relative change value.
  * @param {number|null} relative - The relative change as a Number
  * @returns {string} Formatted size change string with symbol
  */
 function getChangeIcon(relative) {
   if (relative === null) {
-    // eslint-disable-next-line no-template-curly-in-string
-    return '$${\\color{yellow}▲}$$';
+    return formatSymbol('▲', 'yellow');
   }
   if (relative === -1) {
-    // eslint-disable-next-line no-template-curly-in-string
-    return '$${\\color{blue}▼}$$';
+    return formatSymbol('▼', 'blue');
   }
   if (relative < 0) {
-    // eslint-disable-next-line no-template-curly-in-string
-    return '$${\\color{green}▼}$$';
+    return formatSymbol('▼', 'green');
   }
   if (relative > 0) {
-    // eslint-disable-next-line no-template-curly-in-string
-    return '$${\\color{red}▲}$$';
+    return formatSymbol('▲', 'red');
   }
   return '';
 }
