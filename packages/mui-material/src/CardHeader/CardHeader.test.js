@@ -109,7 +109,7 @@ describe('<CardHeader />', () => {
   });
 
   it('should merge className and style from props and from the theme if mergeClassNameAndStyle is true', () => {
-    render(
+    const { container } = render(
       <ThemeProvider
         theme={createTheme({
           components: {
@@ -153,17 +153,17 @@ describe('<CardHeader />', () => {
         />
       </ThemeProvider>,
     );
-    const cardHeader = document.querySelector(`.${classes.root}`);
+    const cardHeader = container.querySelector(`.${classes.root}`);
     expect(cardHeader).to.have.class('theme-class');
     expect(cardHeader).to.have.class('component-class');
     expect(cardHeader).to.have.class('theme-slot-props-root-class');
     expect(cardHeader).to.have.class('slot-props-root-class');
-    expect(cardHeader).to.have.style('margin', '10px'); // from theme
-    expect(cardHeader).to.have.style('padding', '10px'); // from props
-    expect(cardHeader).to.have.style('font-weight', 'bold'); // from props slotProps
-    expect(cardHeader).to.have.style('font-size', '10px'); // from theme slotProps
+    expect(cardHeader.style.margin).to.equal('10px'); // from theme
+    expect(cardHeader.style.padding).to.equal('10px'); // from props
+    expect(cardHeader.style.fontWeight).to.equal('bold'); // from props slotProps
+    expect(cardHeader.style.fontSize).to.equal('10px'); // from theme slotProps
 
-    const title = cardHeader.querySelector(`.${classes.title}`);
+    const title = container.querySelector(`.${classes.title}`);
     expect(title).to.have.class('theme-slot-props-title-class');
     expect(title).to.have.class('slot-props-title-class');
   });
