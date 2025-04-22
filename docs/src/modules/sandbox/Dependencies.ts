@@ -19,7 +19,7 @@ const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
  *
  * @param deps - list of dependency as `name => version`
  */
-function addTypeDeps(deps: Record<string, string>): void {
+function addTypeDeps(deps: Record<string, string>, devDeps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
     .filter((name) => !packagesWithBundledTypes.includes(name))
     // All the MUI packages come with bundled types
@@ -33,14 +33,17 @@ function addTypeDeps(deps: Record<string, string>): void {
       resolvedName = name.slice(1).replace('/', '__');
     }
 
-    deps[`@types/${resolvedName}`] = 'latest';
+    devDeps[`@types/${resolvedName}`] = 'latest';
   });
 }
 
 type Demo = Pick<DemoData, 'productId' | 'raw' | 'codeVariant' | 'relativeModules'>;
 
-export default function SandboxDependencies(demo: Demo, options?: { commitRef?: string }) {
-  const { commitRef } = options || {};
+export default function SandboxDependencies(
+  demo: Demo,
+  options?: { commitRef?: string; devDeps?: Record<string, string> },
+) {
+  const { commitRef, devDeps = {} } = options || {};
 
   /**
    * @param packageName - The name of a package living inside this repository.
@@ -149,11 +152,6 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
 
   const dependencies = extractDependencies();
 
-  if (demo.codeVariant === CODE_VARIANTS.TS) {
-    addTypeDeps(dependencies);
-    dependencies.typescript = 'latest';
-  }
-
   if (!demo.productId && !dependencies['@mui/material']) {
     // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
     const name = '@mui/material';
@@ -163,9 +161,12 @@ export default function SandboxDependencies(demo: Demo, options?: { commitRef?: 
     dependencies[name] = versions[name] ? versions[name] : 'latest';
   }
 
-  const devDependencies = {
-    'react-scripts': 'latest',
-  };
+  const devDependencies: Record<string, string> = { ...devDeps };
+
+  if (demo.codeVariant === CODE_VARIANTS.TS) {
+    addTypeDeps(dependencies, devDependencies);
+    dependencies.typescript = 'latest';
+  }
 
   return { dependencies, devDependencies };
 }

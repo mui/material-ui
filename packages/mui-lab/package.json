@@ -51,7 +51,7 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.1.1",
+    "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",

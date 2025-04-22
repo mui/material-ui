@@ -154,6 +154,7 @@
     "/material-ui/guides/composition": "Composition",
     "/material-ui/guides/content-security-policy": "Content Security Policy",
     "/material-ui/integrations": "Integrations",
+    "/material-ui/integrations/tailwindcss/tailwindcss-v4": "Tailwind CSS v4 integration",
     "/material-ui/integrations/nextjs": "Next.js integration",
     "/material-ui/integrations/routing": "Routing libraries",
     "/material-ui/integrations/styled-components": "Usage with styled-components",
