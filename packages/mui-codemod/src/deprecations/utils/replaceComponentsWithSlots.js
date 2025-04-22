@@ -179,7 +179,7 @@ function replaceDefaultPropsComponentsPropsProp(j, defaultPropsPathCollection) {
  * If there are duplicated values, the slots values will be used.
  *
  * @param {import('jscodeshift')} j
- * @param {{ element: import('jscodeshift').JSXElement }} options
+ * @param {{ element: import('jscodeshift').JSXElement, packageName?: string }} options
  *
  * @example <Component componentsProps={{ root: { 'testid': 'root-id'} }} /> => <Component slotProps={{ root: { 'testid': 'root-id'} }} />
  */
