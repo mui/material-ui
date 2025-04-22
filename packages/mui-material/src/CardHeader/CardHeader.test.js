@@ -119,6 +119,9 @@ describe('<CardHeader />', () => {
                 className: 'test-class-1',
                 style: { margin: '10px' },
                 slotProps: {
+                  root: {
+                    className: 'root-class-1',
+                  },
                   title: {
                     className: 'title-class-1',
                   },
@@ -144,6 +147,7 @@ describe('<CardHeader />', () => {
     const cardHeader = document.querySelector(`.${classes.root}`);
     expect(cardHeader).to.have.class('test-class-1');
     expect(cardHeader).to.have.class('test-class-2');
+    expect(cardHeader).to.have.class('root-class-1');
     expect(cardHeader).to.have.style('margin', '10px');
     expect(cardHeader).to.have.style('padding', '10px');
 

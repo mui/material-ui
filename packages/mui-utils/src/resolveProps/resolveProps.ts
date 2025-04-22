@@ -53,8 +53,8 @@ export default function resolveProps<
       } else if (propName === 'className') {
         if (mergeClassNameAndStyle) {
           output[propName] = clsx(
-            defaultProps[propName] as string,
-            props[propName] as string,
+            defaultProps?.[propName] as string,
+            props?.[propName] as string,
           ) as T[keyof T];
         } else if (output[propName] === undefined) {
           output[propName] = defaultProps[propName];
@@ -62,8 +62,8 @@ export default function resolveProps<
       } else if (propName === 'style') {
         if (mergeClassNameAndStyle) {
           output[propName] = {
-            ...(defaultProps[propName] as React.CSSProperties),
-            ...(props[propName] as React.CSSProperties),
+            ...(defaultProps?.[propName] ?? {} as React.CSSProperties),
+            ...(props?.[propName] ?? {} as React.CSSProperties),
           } as T[keyof T];
         } else if (output[propName] === undefined) {
           output[propName] = defaultProps[propName];
