@@ -53,10 +53,10 @@ function getSymbol(absolute) {
  */
 function formatRelativeChange(value) {
   if (value === null) {
-    return '(new)';
+    return 'new';
   }
   if (value === -1) {
-    return '(removed)';
+    return 'removed';
   }
   return displayPercentFormatter.format(value);
 }
