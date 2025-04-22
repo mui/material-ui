@@ -121,6 +121,9 @@ describe('<CardHeader />', () => {
                 slotProps: {
                   root: {
                     className: 'theme-slot-props-root-class',
+                    style: {
+                      fontSize: '10px',
+                    },
                   },
                   title: {
                     className: 'theme-slot-props-title-class',
@@ -142,6 +145,9 @@ describe('<CardHeader />', () => {
             },
             root: {
               className: 'slot-props-root-class',
+              style: {
+                fontWeight: 'bold',
+              },
             },
           }}
         />
@@ -152,8 +158,10 @@ describe('<CardHeader />', () => {
     expect(cardHeader).to.have.class('component-class');
     expect(cardHeader).to.have.class('theme-slot-props-root-class');
     expect(cardHeader).to.have.class('slot-props-root-class');
-    expect(cardHeader).to.have.style('margin', '10px');
-    expect(cardHeader).to.have.style('padding', '10px');
+    expect(cardHeader).to.have.style('margin', '10px'); // from theme
+    expect(cardHeader).to.have.style('padding', '10px'); // from props
+    expect(cardHeader).to.have.style('font-weight', 'bold'); // from props slotProps
+    expect(cardHeader).to.have.style('font-size', '10px'); // from theme slotProps
 
     const title = cardHeader.querySelector(`.${classes.title}`);
     expect(title).to.have.class('theme-slot-props-title-class');
