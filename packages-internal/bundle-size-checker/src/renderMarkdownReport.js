@@ -140,7 +140,7 @@ export function renderMarkdownReport(
     if (importantChanges.length > 0) {
       // Show the most significant changes first, up to the visible limit
       const visibleChanges = importantChanges.slice(0, visibleLimit);
-      markdownContent += `${visibleChanges.join('\n')}\n\n`;
+      markdownContent += `${visibleChanges.join('\n')}\n`;
 
       // If there are more changes, add them in a collapsible details section
       if (hiddenChanges.length > 0) {
