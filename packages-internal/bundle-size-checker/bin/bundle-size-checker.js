@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-import '../create.js';
+import '../src/create.js';

@@ -4,7 +4,7 @@
   "private": true,
   "description": "Bundle size checker for MUI packages",
   "type": "module",
-  "main": "./index.js",
+  "main": "./src/index.js",
   "bin": {
     "bundle-size-checker": "./bin/bundle-size-checker.js"
   },
