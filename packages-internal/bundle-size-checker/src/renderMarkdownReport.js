@@ -1,9 +1,7 @@
-import { calculateSizeDiff } from './sizeDiff.js';
-
 /**
- * @typedef {import('./sizeDiff').Size} Size
- * @typedef {import('./sizeDiff').SizeSnapshot} SizeSnapshot
- * @typedef {import('./sizeDiff').ComparisonResult} ComparisonResult
+ * @typedef {import('./sizeDiff.js').Size} Size
+ * @typedef {import('./sizeDiff.js').SizeSnapshot} SizeSnapshot
+ * @typedef {import('./sizeDiff.js').ComparisonResult} ComparisonResult
  */
 
 const displayPercentFormatter = new Intl.NumberFormat(undefined, {
@@ -90,35 +88,6 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
 }
 
 /**
- * Fetches data from a URL with error handling
- * @param {string} url - URL to fetch
- * @returns {Promise<Object|null>} - Parsed JSON response or null on error
- */
-async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-      return null;
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(`Error fetching ${url}:`, error);
-    return null;
-  }
-}
-
-/**
- * Constructs S3 URLs for size snapshots based on commit SHAs
- * @param {string} sha - Commit SHA
- * @returns {string} S3 URL for the size snapshot
- */
-function constructS3Url(sha) {
-  // Following CircleCI structure pattern for S3 URLs
-  return `https://s3.eu-central-1.amazonaws.com/mui-org-ci/artifacts/mui/material-ui/${sha}/size-snapshot.json`;
-}
-
-/**
  * Generates a Markdown report for bundle size changes
  * @param {ComparisonResult} comparison - Comparison result from calculateSizeDiff
  * @param {Object} options - Additional options
@@ -128,7 +97,10 @@ function constructS3Url(sha) {
  * @param {number} [options.visibleLimit=10] - Number of entries to show before collapsing
  * @returns {string} Markdown report
  */
-function generateMarkdownReport(comparison, { prNumber, baseRef, baseCommit, visibleLimit = 10 }) {
+export function renderMarkdownReport(
+  comparison,
+  { prNumber, baseRef, baseCommit, visibleLimit = 10 },
+) {
   // Generate query param for detailed comparison URLs
   const detailedComparisonQuery = `baseRef=${baseRef}&baseCommit=${baseCommit}&prNumber=${prNumber}`;
 
@@ -178,58 +150,4 @@ function generateMarkdownReport(comparison, { prNumber, baseRef, baseCommit, vis
   }
 
   return markdownContent;
-}
-
-/**
- * Fetches size snapshots for a PR and generates a markdown report
- * @param {Object} prInfo - PR information
- * @param {number} prInfo.number - PR number
- * @param {Object} prInfo.base - Base branch information
- * @param {string} prInfo.base.sha - Base commit SHA
- * @param {string} prInfo.base.ref - Base branch name
- * @param {Object} prInfo.head - Head branch information
- * @param {string} prInfo.head.sha - Head commit SHA
- * @param {string} prInfo.head.ref - Head branch name
- * @returns {Promise<string>} Markdown report string
- */
-export async function getPRBundleSizeDiff(prInfo) {
-  const prNumber = prInfo.number;
-
-  // Extract base and head SHAs
-  const baseCommit = prInfo.base.sha;
-  const headCommit = prInfo.head.sha;
-  const baseRef = prInfo.base.ref;
-
-  // Construct S3 URLs
-  const baseSnapshotUrl = constructS3Url(baseCommit);
-  const headSnapshotUrl = constructS3Url(headCommit);
-
-  // Fetch snapshots in parallel
-  const [baseSnapshot, headSnapshot] = await Promise.all([
-    /** @type {Promise<SizeSnapshot>} */ (fetchData(baseSnapshotUrl)),
-    /** @type {Promise<SizeSnapshot>} */ (fetchData(headSnapshotUrl)),
-  ]);
-
-  let report = '';
-
-  // Check if snapshots were found
-  if (!baseSnapshot) {
-    report += `_:warning: No bundle size snapshot found for base commit ${baseCommit}._\n\n`;
-  }
-
-  if (!headSnapshot) {
-    throw new Error(`Couldn't find bundle size snapshot for head commit ${headCommit}.`);
-  }
-
-  // Calculate size differences
-  const comparison = calculateSizeDiff(baseSnapshot ?? {}, headSnapshot);
-
-  // Generate markdown report
-  report += generateMarkdownReport(comparison, {
-    prNumber,
-    baseRef,
-    baseCommit,
-  });
-
-  return report;
 }
