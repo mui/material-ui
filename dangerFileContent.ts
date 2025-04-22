@@ -28,7 +28,7 @@ async function reportBundleSize() {
   const baseCommit = danger.github.pr.base.sha;
 
   const [baseSnapshot, prSnapshot] = await Promise.all([
-    fetchSnapshot('mui/material-ui', baseCommit),
+    fetchSnapshot('mui/material-ui', baseCommit).catch(() => null),
     fs.readFile('./size-snapshot.json', 'utf-8').then((data) => JSON.parse(data)),
   ]);
 
