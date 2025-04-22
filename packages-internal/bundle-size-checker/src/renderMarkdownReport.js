@@ -113,7 +113,7 @@ export function renderMarkdownReport(
   );
 
   if (!hasChanges) {
-    return `## Bundle size report\n\nNo bundle size changes detected.`;
+    return `No bundle size changes detected.`;
   }
 
   const changedEntries = comparison.entries.filter(
@@ -123,7 +123,7 @@ export function renderMarkdownReport(
   const visibleEntries = changedEntries.slice(0, visibleLimit);
   const hiddenEntries = changedEntries.slice(visibleLimit);
 
-  let markdownContent = '## Bundle size report\n\n';
+  let markdownContent = '';
 
   if (changedEntries.length > 0) {
     const importantChanges = visibleEntries.map(generateEmphasizedChange);
