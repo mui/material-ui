@@ -43,11 +43,15 @@ async function reportBundleSize() {
 
   const sizeDiff = calculateSizeDiff(baseSnapshot ?? {}, prSnapshot);
 
+  if (!process.env.CIRCLE_BUILD_NUM) {
+    throw new Error('CIRCLE_BUILD_NUM is not defined');
+  }
+
   const report = await renderMarkdownReport(sizeDiff, {
     prNumber: danger.github.pr.number,
     baseRef: danger.github.pr.base.ref,
     baseCommit,
-    circleciBuildNumber: process.env.CIRCLE_BUILD_NUM || '',
+    circleciBuildNumber: process.env.CIRCLE_BUILD_NUM,
   });
 
   content += report;
