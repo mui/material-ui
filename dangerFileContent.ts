@@ -47,7 +47,7 @@ async function reportBundleSize() {
     prNumber: danger.github.pr.number,
     baseRef: danger.github.pr.base.ref,
     baseCommit,
-    circleciBuildNumber: process.env.CIRCLE_BUILD_NUM,
+    circleciBuildNumber: process.env.CIRCLE_BUILD_NUM || '',
   });
 
   content += report;
