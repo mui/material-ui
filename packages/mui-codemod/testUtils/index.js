@@ -49,4 +49,44 @@ export function describeJscodeshiftTransform({ transformName, transform, testCas
       });
     });
   });
+
+  describe(`[package] ${transformName}`, () => {
+    testCases.forEach((testCase) => {
+      it('transforms as needed', () => {
+        const actual = transform(
+          { source: read(dirname, testCase.actual) },
+          { jscodeshift },
+          {
+            packageName: '@org/ui/material',
+            ...testCase.options,
+            printOptions: {
+              ...testCase.options?.printOptions,
+              lineTerminator: EOL,
+            },
+          },
+        );
+
+        const expected = read(dirname, testCase.expected);
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read(dirname, testCase.expected) },
+          { jscodeshift },
+          {
+            packageName: '@org/ui/material',
+            ...testCase.options,
+            printOptions: {
+              ...testCase.options?.printOptions,
+              lineTerminator: EOL,
+            },
+          },
+        );
+
+        const expected = read(dirname, testCase.expected);
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+  });
 }
