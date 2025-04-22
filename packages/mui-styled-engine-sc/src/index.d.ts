@@ -182,9 +182,7 @@ export type StyledComponent<
 // any doesn't count as assignable to never in the extends clause, and we default A to never
 export type AnyStyledComponent =
   | StyledComponent<any, any, any, any>
-  | StyledComponent<any, any, any>
-  | React.FunctionComponent<any>
-  | React.ComponentType<any>;
+  | StyledComponent<any, any, any>;
 
 export type StyledComponentInnerComponent<C extends AnyStyledComponent> =
   C extends StyledComponent<infer I, any, any, any>
@@ -320,6 +318,32 @@ export interface ThemedBaseStyledInterface<
   MuiStyledOptions extends object,
   Theme extends object,
 > extends ThemedStyledComponentFactories<Theme> {
+  <
+    C extends AnyStyledComponent,
+    ForwardedProps extends keyof PropsOf<StyledComponentInnerComponent<C>> = keyof PropsOf<
+      StyledComponentInnerComponent<C>
+    >,
+  >(
+    component: C,
+    options: FilteringStyledOptions<PropsOf<StyledComponentInnerComponent<C>>, ForwardedProps> &
+      MuiStyledOptions,
+  ): CreateStyledComponent<
+    Pick<PropsOf<StyledComponentInnerComponent<C>>, ForwardedProps>,
+    StyledComponentInnerOtherProps<C>,
+    {},
+    Theme
+  >;
+
+  <C extends AnyStyledComponent>(
+    component: C,
+    options?: StyledConfig<PropsOf<StyledComponentInnerComponent<C>>> & MuiStyledOptions,
+  ): CreateStyledComponent<
+    PropsOf<StyledComponentInnerComponent<C>>,
+    StyledComponentInnerOtherProps<C>,
+    {},
+    Theme
+  >;
+
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
