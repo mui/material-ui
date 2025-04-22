@@ -40,6 +40,16 @@ Examples:
   npx @mui/codemod@latest v5.0.0/preset-safe src --parser=flow
 ```
 
+### package name
+
+Use this flag if you have a custom package name that reexports Material UI components. For example:
+
+```bash
+npx @mui/codemod@latest --packageName="@org/ui"
+```
+
+The snippet above will look for `@org/ui` instead of `@mui/material` in the codemod.
+
 ### jscodeshift options
 
 To pass more options directly to jscodeshift, use `--jscodeshift="..."`. For example:
