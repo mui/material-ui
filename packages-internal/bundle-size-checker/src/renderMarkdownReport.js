@@ -140,14 +140,16 @@ export function renderMarkdownReport(
     if (importantChanges.length > 0) {
       // Show the most significant changes first, up to the visible limit
       const visibleChanges = importantChanges.slice(0, visibleLimit);
-      markdownContent += `${visibleChanges.join('\n')}\n`;
+      markdownContent += `${visibleChanges.join('\n')}`;
 
       // If there are more changes, add them in a collapsible details section
       if (hiddenChanges.length > 0) {
-        markdownContent += `<details>\n<summary>Show ${hiddenChanges.length} more bundle changes</summary>\n\n`;
+        markdownContent += `\n<details>\n<summary>Show ${hiddenChanges.length} more bundle changes</summary>\n\n`;
         markdownContent += `${hiddenChanges.join('\n')}\n\n`;
-        markdownContent += `</details>\n\n`;
+        markdownContent += `</details>`;
       }
+
+      markdownContent += `\n\n`;
     }
 
     // Add links to detailed tools
