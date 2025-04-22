@@ -38,7 +38,7 @@ async function reportBundleSize() {
   let content = `## Bundle size report\n\n`;
 
   if (!baseSnapshot) {
-    content += `_:warning: No bundle size snapshot found for base commit ${baseCommit}._\n\n`;
+    content += `_:prohibited: No bundle size snapshot found for base commit ${baseCommit}._\n\n`;
   }
 
   const sizeDiff = calculateSizeDiff(baseSnapshot ?? {}, prSnapshot);
