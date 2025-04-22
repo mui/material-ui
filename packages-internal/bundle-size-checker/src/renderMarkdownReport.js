@@ -76,10 +76,9 @@ function formatRelativeChange(value) {
  * @returns {string} Formatted percentage string with emoji
  */
 function formatChange(absolute, relative) {
-  const symbol = getSymbol(relative);
   const formattedAbsolute = byteSizeChangeFormatter.format(absolute);
   const formattedChange = formatRelativeChange(relative);
-  return `${symbol} ${formattedAbsolute} (${formattedChange})`;
+  return `${formattedAbsolute} (${formattedChange})`;
 }
 
 /**
@@ -92,7 +91,7 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
   const changeParsed = formatChange(parsed.absoluteDiff, parsed.relativeDiff);
   const changeGzip = formatChange(gzip.absoluteDiff, gzip.relativeDiff);
 
-  return `**${bundle}**: parsed: ${changeParsed}, gzip: ${changeGzip}`;
+  return `**${bundle}**: ${getSymbol(parsed.relativeDiff)} parsed: ${changeParsed}, gzip: ${changeGzip}`;
 }
 
 /**
