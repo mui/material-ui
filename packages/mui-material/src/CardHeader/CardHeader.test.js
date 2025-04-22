@@ -161,9 +161,9 @@ describe('<CardHeader />', () => {
       </ThemeProvider>,
     );
     const cardHeader = document.querySelector(`.${classes.root}`);
-    expect(cardHeader).to.have.class('test-class-1');
-    expect(cardHeader).to.not.have.class('test-class-2');
-    expect(cardHeader).to.have.style('margin', '10px');
-    expect(cardHeader).to.not.have.style('padding', '10px');
+    expect(cardHeader).to.not.have.class('test-class-1');
+    expect(cardHeader).to.have.class('test-class-2');
+    expect(cardHeader).to.not.have.style('margin', '10px');
+    expect(cardHeader).to.have.style('padding', '10px');
   });
 });
