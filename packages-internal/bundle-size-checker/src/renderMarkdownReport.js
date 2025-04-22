@@ -30,16 +30,24 @@ const byteSizeChangeFormatter = new Intl.NumberFormat(undefined, {
 });
 
 /**
- * Generates a symbol based on the absolute change value.
- * @param {number} absolute - The absolute change as a Number
+ * Generates a symbol based on the relative change value.
+ * @param {number|null} relative - The relative change as a Number
  * @returns {string} Formatted size change string with symbol
  */
-function getSymbol(absolute) {
-  if (absolute < 0) {
+function getSymbol(relative) {
+  if (relative === null) {
+    // eslint-disable-next-line no-template-curly-in-string
+    return '$${\\color{yellow}▲}$$';
+  }
+  if (relative === -1) {
+    // eslint-disable-next-line no-template-curly-in-string
+    return '$${\\color{blue}▼}$$';
+  }
+  if (relative < 0) {
     // eslint-disable-next-line no-template-curly-in-string
     return '$${\\color{green}▼}$$';
   }
-  if (absolute > 0) {
+  if (relative > 0) {
     // eslint-disable-next-line no-template-curly-in-string
     return '$${\\color{red}▲}$$';
   }
@@ -68,7 +76,7 @@ function formatRelativeChange(value) {
  * @returns {string} Formatted percentage string with emoji
  */
 function formatChange(absolute, relative) {
-  const symbol = getSymbol(absolute);
+  const symbol = getSymbol(relative);
   const formattedAbsolute = byteSizeChangeFormatter.format(absolute);
   const formattedChange = formatRelativeChange(relative);
   return `${symbol} ${formattedAbsolute} (${formattedChange})`;
