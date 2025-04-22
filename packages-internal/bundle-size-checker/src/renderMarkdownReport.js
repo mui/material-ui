@@ -78,7 +78,7 @@ function formatRelativeChange(value) {
 function formatChange(absolute, relative) {
   const formattedAbsolute = byteSizeChangeFormatter.format(absolute);
   const formattedChange = formatRelativeChange(relative);
-  return `${formattedAbsolute} (${formattedChange})`;
+  return `${formattedAbsolute} <sup>(${formattedChange})</sup>`;
 }
 
 /**
