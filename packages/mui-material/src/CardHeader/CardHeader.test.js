@@ -136,6 +136,10 @@ describe('<CardHeader />', () => {
     expect(cardHeader).to.have.class('test-class-2');
     expect(cardHeader).to.have.style('margin', '10px');
     expect(cardHeader).to.have.style('padding', '10px');
+
+    const title = cardHeader.querySelector(`.${classes.title}`);
+    expect(title).to.have.class('title-class-1');
+    expect(title).to.have.class('title-class-2');
   });
 
   it('should not merge className and style from props and from the theme if mergeClassNameAndStyle is false', () => {
@@ -175,5 +179,9 @@ describe('<CardHeader />', () => {
     expect(cardHeader).to.have.class('test-class-2');
     expect(cardHeader).to.not.have.style('margin', '10px');
     expect(cardHeader).to.have.style('padding', '10px');
+
+    const title = cardHeader.querySelector(`.${classes.title}`);
+    expect(title).to.not.have.class('title-class-1');
+    expect(title).to.have.class('title-class-2');
   });
 });
