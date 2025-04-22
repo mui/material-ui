@@ -116,14 +116,14 @@ describe('<CardHeader />', () => {
             mergeClassNameAndStyle: true,
             MuiCardHeader: {
               defaultProps: {
-                className: 'test-class-1',
+                className: 'theme-class',
                 style: { margin: '10px' },
                 slotProps: {
                   root: {
-                    className: 'root-class-1',
+                    className: 'theme-slot-props-root-class',
                   },
                   title: {
-                    className: 'title-class-1',
+                    className: 'theme-slot-props-title-class',
                   },
                 },
               },
@@ -134,26 +134,30 @@ describe('<CardHeader />', () => {
         <CardHeader
           title="Title"
           subheader="Subheader"
-          className="test-class-2"
+          className="component-class"
           style={{ padding: '10px' }}
           slotProps={{
             title: {
-              className: 'title-class-2',
+              className: 'slot-props-title-class',
+            },
+            root: {
+              className: 'slot-props-root-class',
             },
           }}
         />
       </ThemeProvider>,
     );
     const cardHeader = document.querySelector(`.${classes.root}`);
-    expect(cardHeader).to.have.class('test-class-1');
-    expect(cardHeader).to.have.class('test-class-2');
-    expect(cardHeader).to.have.class('root-class-1');
+    expect(cardHeader).to.have.class('theme-class');
+    expect(cardHeader).to.have.class('component-class');
+    expect(cardHeader).to.have.class('theme-slot-props-root-class');
+    expect(cardHeader).to.have.class('slot-props-root-class');
     expect(cardHeader).to.have.style('margin', '10px');
     expect(cardHeader).to.have.style('padding', '10px');
 
     const title = cardHeader.querySelector(`.${classes.title}`);
-    expect(title).to.have.class('title-class-1');
-    expect(title).to.have.class('title-class-2');
+    expect(title).to.have.class('theme-slot-props-title-class');
+    expect(title).to.have.class('slot-props-title-class');
   });
 
   it('should not merge className and style from props and from the theme if mergeClassNameAndStyle is false', () => {
