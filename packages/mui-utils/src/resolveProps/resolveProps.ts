@@ -45,6 +45,7 @@ export default function resolveProps<
               (output[propName] as Record<string, unknown>)[slotPropName] = resolveProps(
                 (defaultSlotProps as Record<string, any>)[slotPropName],
                 (slotProps as Record<string, any>)[slotPropName],
+                mergeClassNameAndStyle,
               );
             }
           }
