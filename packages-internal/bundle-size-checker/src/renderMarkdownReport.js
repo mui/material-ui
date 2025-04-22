@@ -136,7 +136,7 @@ export function renderMarkdownReport(
       markdownContent += `${visibleChanges.join('\n')}\n\n`;
 
       // If there are more changes, add them in a collapsible details section
-      if (importantChanges.length > visibleLimit) {
+      if (hiddenChanges.length > 0) {
         markdownContent += `<details>\n<summary>Show ${hiddenChanges.length} more bundle changes</summary>\n\n`;
         markdownContent += `${hiddenChanges.join('\n')}\n\n`;
         markdownContent += `</details>\n\n`;
