@@ -70,7 +70,7 @@ Diamond sponsors are those who have pledged \$1,500/month or more to MUI.
 via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p>
-  <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
+  <a href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=288" alt="tidelift.com" title="Tidelift: Enterprise-ready open-source software." loading="lazy" /></a>
   &nbsp;
   <a href="https://www.text-em-all.com/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=288" alt="text-em-all.com" title="Text-em-all: Mass text messaging and automated calling." height="96" width="96" loading="lazy"></a>
   &nbsp;

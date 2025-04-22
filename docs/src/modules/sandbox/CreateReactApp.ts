@@ -4,10 +4,12 @@ export const getHtml = ({
   title,
   language,
   raw,
+  main,
 }: {
   title: string;
   language: string;
   raw?: string;
+  main?: string;
 }) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -32,6 +34,7 @@ export const getHtml = ({
   </head>
   <body>
     <div id="root"></div>
+    ${main ? `<script type="module" src="${main}"></script>` : ''}
   </body>
 </html>`;
 };

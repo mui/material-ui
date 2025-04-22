@@ -7,6 +7,10 @@ import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
 import { DemoData, CodeVariant } from 'docs/src/modules/sandbox/types';
 
+const CSB_DEV_DEPENDENCIES = {
+  'react-scripts': 'latest',
+};
+
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
     .replace(/\+/g, '-') // Convert '+' to '-'
@@ -71,6 +75,7 @@ function createReactApp(demoData: DemoData) {
 
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    devDeps: CSB_DEV_DEPENDENCIES,
   });
 
   files['package.json'] = {
@@ -163,6 +168,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      devDeps: CSB_DEV_DEPENDENCIES,
     },
   );
 
@@ -250,6 +256,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      devDeps: CSB_DEV_DEPENDENCIES,
     },
   );
 
