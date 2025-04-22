@@ -138,7 +138,7 @@ import 'exceljs';
   });
 
   it('can collect required @types packages', () => {
-    const { dependencies } = SandboxDependencies({
+    const { dependencies, devDependencies } = SandboxDependencies({
       raw: s1,
       codeVariant: 'TS',
     });
@@ -153,16 +153,19 @@ import 'exceljs';
       // #npm-tag-reference
       '@mui/material': 'latest',
       '@mui/base': 'latest',
+      typescript: 'latest',
+    });
+
+    expect(devDependencies).to.deep.equal({
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
-      typescript: 'latest',
     });
   });
 
   it('should handle @types correctly', () => {
-    const { dependencies } = SandboxDependencies({
+    const { dependencies, devDependencies } = SandboxDependencies({
       raw: `import utils from '../utils';`,
       codeVariant: 'TS',
     });
@@ -174,9 +177,12 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       // #npm-tag-reference
       '@mui/material': 'latest',
+      typescript: 'latest',
+    });
+
+    expect(devDependencies).to.deep.equal({
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
-      typescript: 'latest',
     });
   });
 
@@ -533,8 +539,6 @@ export default function EmailExample() {
       '@mui/joy': 'latest',
       '@mui/material': 'latest',
       '@mui/system': 'latest',
-      '@types/react': 'latest',
-      '@types/react-dom': 'latest',
       typescript: 'latest',
     });
   });
