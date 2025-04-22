@@ -989,7 +989,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
   'data-grid/aggregation': yes,
-  'data-grid/pivoting': pending,
+  'data-grid/pivoting': yes,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
