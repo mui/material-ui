@@ -108,7 +108,7 @@ describe('<CardHeader />', () => {
     });
   });
 
-  it('should merge className and style from props and from the theme', () => {
+  it('should merge className and style from props and from the theme if mergeClassNameAndStyle is true', () => {
     render(
       <ThemeProvider
         theme={createTheme({
@@ -136,5 +136,34 @@ describe('<CardHeader />', () => {
     expect(cardHeader).to.have.class('test-class-2');
     expect(cardHeader).to.have.style('margin', '10px');
     expect(cardHeader).to.have.style('padding', '10px');
+  });
+
+  it('should not merge className and style from props and from the theme if mergeClassNameAndStyle is false', () => {
+    render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiCardHeader: {
+              defaultProps: {
+                className: 'test-class-1',
+                style: { margin: '10px' },
+              },
+            },
+          },
+        })}
+      >
+        <CardHeader
+          title="Title"
+          subheader="Subheader"
+          className="test-class-2"
+          style={{ padding: '10px' }}
+        />
+      </ThemeProvider>,
+    );
+    const cardHeader = document.querySelector(`.${classes.root}`);
+    expect(cardHeader).to.have.class('test-class-1');
+    expect(cardHeader).to.not.have.class('test-class-2');
+    expect(cardHeader).to.have.style('margin', '10px');
+    expect(cardHeader).to.not.have.style('padding', '10px');
   });
 });
