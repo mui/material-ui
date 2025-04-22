@@ -45,7 +45,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.1",
+    "@types/react": "^19.1.2",
     "chai": "^4.5.0",
     "react": "^19.1.0"
   },

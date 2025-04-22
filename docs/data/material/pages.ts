@@ -260,6 +260,11 @@ const pages: MuiPage[] = [
     title: 'Integrations',
     children: [
       {
+        pathname: '/material-ui/integrations/tailwindcss/tailwindcss-v4',
+        title: 'Tailwind CSS v4 integration',
+        newFeature: true,
+      },
+      {
         pathname: '/material-ui/integrations/nextjs',
         title: 'Next.js integration',
         newFeature: true,
