@@ -107,15 +107,16 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
  * @param {number} options.prNumber - PR number
  * @param {string} options.baseRef - Base branch name
  * @param {string} options.baseCommit - Base commit SHA
+ * @param {string} options.circleciBuildNumber - CircleCI build number
  * @param {number} [options.visibleLimit=10] - Number of entries to show before collapsing
  * @returns {string} Markdown report
  */
 export function renderMarkdownReport(
   comparison,
-  { prNumber, baseRef, baseCommit, visibleLimit = 10 },
+  { prNumber, baseRef, baseCommit, circleciBuildNumber, visibleLimit = 10 },
 ) {
   // Generate query param for detailed comparison URLs
-  const detailedComparisonQuery = `baseRef=${baseRef}&baseCommit=${baseCommit}&prNumber=${prNumber}`;
+  const detailedComparisonQuery = `circleCIBuildNumber=${circleciBuildNumber}&baseRef=${baseRef}&baseCommit=${baseCommit}&prNumber=${prNumber}`;
 
   // URLs for detailed comparison tools
   const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
