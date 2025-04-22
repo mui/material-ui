@@ -52,9 +52,11 @@ export function describeJscodeshiftTransform({ transformName, transform, testCas
 
   describe(`[package] ${transformName}`, () => {
     testCases.forEach((testCase) => {
+      const actualPath = testCase.actual.replace('actual.js', 'package.actual.js');
+      const expectedPath = testCase.expected.replace('expected.js', 'package.expected.js');
       it('transforms as needed', () => {
         const actual = transform(
-          { source: read(dirname, testCase.actual) },
+          { source: read(dirname, actualPath) },
           { jscodeshift },
           {
             packageName: '@org/ui/material',
@@ -66,13 +68,13 @@ export function describeJscodeshiftTransform({ transformName, transform, testCas
           },
         );
 
-        const expected = read(dirname, testCase.expected);
+        const expected = read(dirname, expectedPath);
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
         const actual = transform(
-          { source: read(dirname, testCase.expected) },
+          { source: read(dirname, expectedPath) },
           { jscodeshift },
           {
             packageName: '@org/ui/material',
@@ -84,7 +86,7 @@ export function describeJscodeshiftTransform({ transformName, transform, testCas
           },
         );
 
-        const expected = read(dirname, testCase.expected);
+        const expected = read(dirname, expectedPath);
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
