@@ -184,14 +184,12 @@ function replaceDefaultPropsComponentsPropsProp(j, defaultPropsPathCollection) {
  * @example <Component componentsProps={{ root: { 'testid': 'root-id'} }} /> => <Component slotProps={{ root: { 'testid': 'root-id'} }} />
  */
 export default function replaceComponentsWithSlots(j, options) {
-  const { root, componentName } = options;
-
-  findComponentJSX(j, { root, componentName }, (elementPath) => {
+  findComponentJSX(j, options, (elementPath) => {
     replaceJsxComponentsProp(j, elementPath);
     replaceJsxComponentsPropsProp(j, elementPath.node);
   });
 
-  const defaultPropsPathCollection = findComponentDefaultProps(j, { root, componentName });
+  const defaultPropsPathCollection = findComponentDefaultProps(j, options);
 
   replaceDefaultPropsComponentsProp(j, defaultPropsPathCollection);
   replaceDefaultPropsComponentsPropsProp(j, defaultPropsPathCollection);
