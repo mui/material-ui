@@ -115,7 +115,7 @@ async function fetchData(url) {
  */
 function constructS3Url(sha) {
   // Following CircleCI structure pattern for S3 URLs
-  return `https://mui-org.s3.amazonaws.com/artifacts/mui/material-ui/${sha}/size-snapshot.json`;
+  return `https://s3.eu-central-1.amazonaws.com/mui-org-ci/artifacts/mui/material-ui/${sha}/size-snapshot.json`;
 }
 
 /**
