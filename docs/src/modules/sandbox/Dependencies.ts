@@ -8,6 +8,7 @@ const packagesWithBundledTypes = [
   'dayjs',
   'clsx',
   '@react-spring/web',
+  'prop-types-compat',
 ];
 const muiNpmOrgs = ['@mui', '@base_ui', '@pigment-css', '@toolpad'];
 

@@ -43,7 +43,7 @@ const styles = theme => ({
       // #npm-tag-reference
       '@mui/material': 'latest',
       '@mui/base': 'latest',
-      'prop-types': 'latest',
+      'prop-types-compat': 'latest',
     });
   });
 
@@ -76,7 +76,7 @@ const suggestions = [
       '@mui/material': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
-      'prop-types': 'latest',
+      'prop-types-compat': 'latest',
       'react-draggable': 'latest',
     });
   });
@@ -99,7 +99,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
     expect(dependencies).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
-      'prop-types': 'latest',
+      'prop-types-compat': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
@@ -127,7 +127,7 @@ import 'exceljs';
     expect(dependencies).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
-      'prop-types': 'latest',
+      'prop-types-compat': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       // #npm-tag-reference
@@ -146,7 +146,7 @@ import 'exceljs';
     expect(dependencies).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
-      'prop-types': 'latest',
+      'prop-types-compat': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
@@ -158,7 +158,6 @@ import 'exceljs';
 
     expect(devDependencies).to.deep.equal({
       '@types/foo-bar__bip': 'latest',
-      '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
     });
