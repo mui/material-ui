@@ -121,6 +121,10 @@ const pages: MuiPage[] = [
             title: 'Click-Away Listener',
           },
           { pathname: '/material-ui/react-css-baseline', title: 'CSS Baseline' },
+          {
+            pathname: '/material-ui/react-init-color-scheme-script',
+            title: 'InitColorSchemeScript',
+          },
           { pathname: '/material-ui/react-modal' },
           { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },
           { pathname: '/material-ui/react-popover' },
