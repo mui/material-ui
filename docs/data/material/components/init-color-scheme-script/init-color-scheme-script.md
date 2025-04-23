@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/InitColorSchemeScript
 ## Introduction
 
 The `InitColorSchemeScript` component is used to remove the dark mode flicker that can occur in server-side-rendered (SSR) applications.
-This script that runs before React to attach an attribute based on the user preference so that the correct color mode is applied on first render.
+This script runs before React to attach an attribute based on the user preference so that the correct color mode is applied on first render.
 
 For the best user experience, you should implement this component in any server-rendered Material UI app that supports both light and dark modes.
 
