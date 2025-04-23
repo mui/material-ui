@@ -42,7 +42,7 @@ Examples:
 
 ### package name
 
-Use this flag if you have a custom package name that reexports Material UI components. For example:
+Use this flag if you have a custom package name that reexports Material UI components. For example:
 
 ```bash
 npx @mui/codemod@latest --packageName="@org/ui"
