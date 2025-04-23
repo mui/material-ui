@@ -34,8 +34,9 @@ export default defineConfig(async () => {
   return {
     entrypoints: [
       // List of packages and components to measure
-      '@mui/material',
-      '@mui/material/Button',
+      '@mui/material', // Will bundle `import * as ... from '@mui/material'`
+      '@mui/material/Button', // Will bundle `import * as ... from '@mui/material/Button'`
+      '@mui/material#Button', // Will bundle `import Button from '@mui/material'`
       // ...
     ],
     // Optional upload configuration
