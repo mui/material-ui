@@ -16,18 +16,19 @@ const rootDir = process.cwd();
 
 /**
  * Creates webpack configuration for bundle size checking
- * @param {string} entry - Entry point string
+ * @param {string} entryName - Entry point string
  * @param {CommandLineArgs} args
  * @returns {import('webpack').Configuration}
  */
-function createWebpackConfig(entry, args) {
+function createWebpackConfig(entryName, args) {
   const analyzerMode = args.analyze ? 'static' : 'disabled';
   const concatenateModules = !args.accurateBundles;
 
-  const entryName = entry;
   const [importSrc, importName] = entryName.split('#');
 
-  const importSpec = importName ? `{ ${importName} as foo }` : '* as foo';
+  const entryContent = importName
+    ? `import { ${importName} as foo } from '${importSrc}';console.log(foo);`
+    : `import * as foo from '${importSrc}';console.log(foo);`;
 
   /**
    * @type {import('webpack').Configuration}
@@ -83,7 +84,7 @@ function createWebpackConfig(entry, args) {
       // This format is a data: url combined with inline matchResource to obtain a virtual entry.
       // See https://github.com/webpack/webpack/issues/6437#issuecomment-874466638
       // See https://webpack.js.org/api/loaders/#inline-matchresource
-      [entryName]: `./index.js!=!data:text/javascript,import ${importSpec} from '${importSrc}';console.log(foo);`,
+      [entryName]: `./index.js!=!data:text/javascript,${entryContent}`,
     },
     // TODO: 'browserslist:modern'
     // See https://github.com/webpack/webpack/issues/14203

@@ -61,9 +61,8 @@ async function run(argv) {
 
   const config = await loadConfig(rootDir);
 
-  const bundleSizes = Object.fromEntries([
-    ...(await getWebpackSizes({ analyze, accurateBundles }, config)),
-  ]);
+  const webpackSizes = await getWebpackSizes({ analyze, accurateBundles }, config);
+  const bundleSizes = Object.fromEntries(webpackSizes.sort((a, b) => a[0].localeCompare(b[0])));
 
   // Ensure output directory exists
   await fse.mkdirp(path.dirname(snapshotDestPath));

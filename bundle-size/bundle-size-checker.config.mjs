@@ -29,8 +29,7 @@ export default defineConfig(async () => {
     return `@mui/lab/${componentName}`;
   });
 
-  // Determine if we're in a CI environment and if it's a PR
-  const isPullRequest = process.env.CIRCLE_PULL_REQUEST ? true : false;
+  const isPullRequest = !!process.env.CIRCLE_PULL_REQUEST;
 
   // Return the complete entrypoints configuration
   return {
