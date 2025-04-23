@@ -44,7 +44,7 @@
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
-    "prop-types": "^15.8.1"
+    "prop-types-compat": "^15.8.2"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",

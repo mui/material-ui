@@ -30,7 +30,7 @@
     "html-webpack-plugin": "^5.6.3",
     "lodash": "^4.17.21",
     "playwright": "^1.51.1",
-    "prop-types": "^15.8.1",
+    "prop-types-compat": "^15.8.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-is": "^19.1.0",

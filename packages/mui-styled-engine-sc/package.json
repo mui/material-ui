@@ -41,7 +41,7 @@
     "@types/hoist-non-react-statics": "^3.3.6",
     "csstype": "^3.1.3",
     "hoist-non-react-statics": "^3.3.2",
-    "prop-types": "^15.8.1"
+    "prop-types-compat": "^15.8.2"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",

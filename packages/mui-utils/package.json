@@ -42,7 +42,7 @@
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.14",
     "clsx": "^2.1.1",
-    "prop-types": "^15.8.1",
+    "prop-types-compat": "^15.8.2",
     "react-is": "^19.1.0"
   },
   "devDependencies": {

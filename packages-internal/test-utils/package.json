@@ -51,7 +51,7 @@
     "lodash": "^4.17.21",
     "mocha": "^11.1.0",
     "playwright": "^1.51.1",
-    "prop-types": "^15.8.1",
+    "prop-types-compat": "^15.8.2",
     "sinon": "^19.0.5"
   },
   "devDependencies": {
