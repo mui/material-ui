@@ -8,7 +8,7 @@ import path from 'path';
 /**
  * Attempts to load and parse a single config file
  * @param {string} configPath - Path to the configuration file
- * @returns {Promise<{entrypoints: string[]} | null>} The parsed config or null if file doesn't exist
+ * @returns {Promise<BundleSizeCheckerConfig | null>} The parsed config or null if file doesn't exist
  * @throws {Error} If the file exists but has invalid format
  */
 async function loadConfigFile(configPath) {
@@ -43,7 +43,7 @@ async function loadConfigFile(configPath) {
 /**
  * Attempts to load the config file from the given directory
  * @param {string} rootDir - The directory to search for the config file
- * @returns {Promise<{entrypoints: string[]}>} A promise that resolves to the config object
+ * @returns {Promise<BundleSizeCheckerConfig>} A promise that resolves to the config object
  */
 export async function loadConfig(rootDir) {
   const configPaths = [

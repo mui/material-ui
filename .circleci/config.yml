@@ -658,12 +658,12 @@ jobs:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
           region: ${AWS_REGION_ARTIFACTS}
-          
+
       - run:
           name: create and upload a size snapshot
           command: pnpm size:snapshot
           environment:
-            CI: "true"
+            CI: 'true'
             # Export AWS credentials so they're available to the bundle-size-checker
             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_ARTIFACTS
             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
@@ -685,7 +685,7 @@ jobs:
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
       # === LEGACY END ===
-      
+
       # Keep the artifact storage as a CircleCI artifact
       - store_artifacts:
           name: persist size snapshot as pipeline artifact

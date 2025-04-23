@@ -15,9 +15,10 @@ const rootDir = process.cwd();
 /**
  * creates size snapshot for every bundle that built with webpack
  * @param {CommandLineArgs} args
+ * @param {BundleSizeCheckerConfig} config - The loaded configuration
  * @returns {Promise<Array<[string, { parsed: number, gzip: number }]>>}
  */
-async function getWebpackSizes(args) {
+async function getWebpackSizes(args, config) {
   const worker = new Piscina({
     filename: new URL('./worker.js', import.meta.url).href,
     maxThreads: MAX_CONCURRENCY,
@@ -25,8 +26,6 @@ async function getWebpackSizes(args) {
   // Clean and recreate the build directory
   const buildDir = path.join(rootDir, 'build');
   await fse.emptyDir(buildDir);
-
-  const config = await loadConfig(rootDir);
 
   if (
     !config ||
@@ -60,8 +59,10 @@ async function run(argv) {
 
   const snapshotDestPath = output ? path.resolve(output) : path.join(rootDir, 'size-snapshot.json');
 
+  const config = await loadConfig(rootDir);
+
   const bundleSizes = Object.fromEntries([
-    ...(await getWebpackSizes({ analyze, accurateBundles })),
+    ...(await getWebpackSizes({ analyze, accurateBundles }, config)),
   ]);
 
   // Ensure output directory exists
@@ -74,9 +75,10 @@ async function run(argv) {
   // Upload the snapshot if upload configuration is provided
   if (config && config.upload) {
     try {
+      // eslint-disable-next-line no-console
       console.log('Uploading bundle size snapshot to S3...');
       await uploadSnapshot(snapshotDestPath, config.upload);
-    } catch (error) {
+    } catch (/** @type {any} */ error) {
       console.error('Failed to upload bundle size snapshot:', error.message);
       // Exit with error code to indicate failure
       process.exit(1);

@@ -18,6 +18,7 @@ bundle-size-checker [options]
 ```
 
 Options:
+
 - `--analyze`: Creates a webpack-bundle-analyzer report for each bundle
 - `--accurateBundles`: Displays used bundles accurately at the cost of more CPU cycles
 - `--output`, `-o`: Path to output the size snapshot JSON file
@@ -40,9 +41,9 @@ export default defineConfig(async () => {
     // Optional upload configuration
     upload: {
       project: 'organization/repository',
-      branch: 'main',             // Optional, defaults to current git branch
-      isPullRequest: false        // Optional, defaults to false
-    }
+      branch: 'main', // Optional, defaults to current git branch
+      isPullRequest: false, // Optional, defaults to false
+    },
   };
 });
 ```
@@ -52,15 +53,18 @@ export default defineConfig(async () => {
 When the `upload` configuration is provided, the snapshot will be uploaded to S3 after generation.
 
 The snapshot will be uploaded to:
+
 ```
 s3://mui-org-ci/artifacts/{project}/{commit-sha}/size-snapshot.json
 ```
 
 The following tags will be applied:
+
 - `isPullRequest`: 'yes' or 'no'
 - `branch`: The branch name
 
 Required AWS environment variables:
+
 - `AWS_ACCESS_KEY_ID` or `AWS_ACCESS_KEY_ID_ARTIFACTS`
 - `AWS_SECRET_ACCESS_KEY` or `AWS_SECRET_ACCESS_KEY_ARTIFACTS`
 - `AWS_REGION` or `AWS_REGION_ARTIFACTS` (defaults to 'eu-central-1')

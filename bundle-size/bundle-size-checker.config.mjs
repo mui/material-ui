@@ -31,7 +31,7 @@ export default defineConfig(async () => {
 
   // Determine if we're in a CI environment and if it's a PR
   const isPullRequest = process.env.CIRCLE_PULL_REQUEST ? true : false;
-  
+
   // Return the complete entrypoints configuration
   return {
     entrypoints: [
@@ -55,8 +55,8 @@ export default defineConfig(async () => {
       upload: {
         project: 'mui/material-ui',
         branch: process.env.CIRCLE_BRANCH,
-        isPullRequest
-      }
-    })
+        isPullRequest,
+      },
+    }),
   };
 });

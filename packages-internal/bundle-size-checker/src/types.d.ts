@@ -29,8 +29,8 @@ interface WebpackStats {
 
 // Upload configuration
 interface UploadConfig {
-  project: string;   // The project name (e.g., "mui/material-ui")
-  branch?: string;   // Optional branch name (defaults to current Git branch)
+  project: string; // The project name (e.g., "mui/material-ui")
+  branch?: string; // Optional branch name (defaults to current Git branch)
   isPullRequest?: boolean; // Whether this is a pull request build (defaults to false)
 }
 
