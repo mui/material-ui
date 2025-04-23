@@ -1,6 +1,9 @@
 import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
+import Box from "@mui/material/Box";
 import { DefaultizedPieValueType } from "@mui/x-charts/models";
+import { fontWeight } from "@mui/system";
+import { light } from "@mui/material/styles/createPalette";
 
 
 export default function BasePie(props) {
@@ -11,7 +14,7 @@ export default function BasePie(props) {
     : {
         direction: "column",
         position: {
-          vertical: "bottom",
+          vertical: "middle",
           horizontal: "right"
         }
       };
@@ -25,8 +28,9 @@ export default function BasePie(props) {
   };
   const startAngle = props.angle ? props.angle : 0;
   const endAngle = props.angle ? 360 + props.angle : 360;
-  const margin = props.margin || { right: 260, bottom: 10, top: -80 };
+  const margin = props.margin || { right: 260, bottom: 10, top: 10 };
   return (
+    <Box sx={{ width: '100%' }}>
     <PieChart
       margin={margin}
       
@@ -37,6 +41,7 @@ export default function BasePie(props) {
           paddingAngle: 2,
           cornerRadius: 6,
           innerRadius: 70,
+          outerRadius: 150,
           startAngle: startAngle,
           endAngle: endAngle
         }
@@ -52,9 +57,19 @@ export default function BasePie(props) {
         "--ChartsLegend-rootOffsetX": "25px",
         "--ChartsLegend-rootOffsetY": "-380px"
       }}
+      slotProps={{
+        legend: {
+          labelStyle: {
+            fontSize: 14,
+            fill: 'black',
+            fontWeight: 'light',
+          },
+        },
+      }}
       legend={legend}
-      width={600}
-      height={500}
+      // width={500}
+      height={400}
     />
+    </Box>
   );
 }

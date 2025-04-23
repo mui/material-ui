@@ -36,7 +36,7 @@ const data = [
     stronglyDisagree: 1.19,
     disagree: 5.2,
     neutral: 14.95,
-    agree: 52.96,
+    agree: 52.95,
     stronglyAgree: 25.71
   },
   {

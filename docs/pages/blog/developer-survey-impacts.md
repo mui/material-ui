@@ -35,6 +35,7 @@ Here's what we've learned.
   - [Where is your company based? (Country or Region)](#where-is-your-company-based-country-or-region)
   - [How many front-end or full-stack developers are on your team?](#how-many-front-end-or-full-stack-developers-are-on-your-team)
   - [How many front-end or full-stack developers are in your company?](#how-many-front-end-or-full-stack-developers-are-in-your-company)
+  - [How many total employees work at your company?](#how-many-total-employees-work-at-your-company)
 - [Community technical environment](#community-technical-environment)
   - [How experienced do you consider yourself in the following technologies?](#how-experienced-do-you-consider-yourself-in-the-following-technologies)
   - [What styling solutions are you using?](#what-styling-solutions-are-you-using)
@@ -114,7 +115,7 @@ Our NPS decreased 6 points, and roughly 5% of the community stopped being a prom
 
 ### What are your most important criteria for choosing a UI library?
 
-When it comes to community priorities for choosing a library, “design and look and feel” still ranks first when looking the percentages for the first priority. But overall, documentation quality reached for the first time the highest score. The score is based on the weight of the option overall in all the answers.
+When it comes to community priorities for choosing a library, "design and look and feel" still ranks first when looking the percentages for the first priority. But overall, documentation quality reached for the first time the highest score. The score is based on the weight of the option overall in all the answers.
 Documentation along with design and customizability, are paramount to both the community and MUI.
 
 {{"chart": "2024/MostImportantCriteriaToPickLibrary"}}
@@ -132,7 +133,7 @@ We also see a big opportunity to reach those that are already interested in tryi
 
 {{"chart": "2024/HowSatisfied"}}
 
-<p class="blog-description">1161 respondents.</p>
+<p class="blog-description">1161 respondents.</p>
 
 ### What is the main benefit you receive from using MUI libraries?
 
@@ -181,7 +182,7 @@ We're now testing a priority support offering that covers Material UI, Base UI a
 
 {{"chart": "2024/MUIInitiatives"}}
 
-<p class="blog-description">1094 respondents.</p>
+<p class="blog-description">1094 respondents.</p>
 
 ## Community workspaces
 
@@ -224,7 +225,7 @@ Most developers are comfortable with Javascript and React. However, we see a dro
 
 {{"chart": "2024/HowComfortableWithTechnologies"}}
 
-<p class="blog-description">1077 respondents.</p>
+<p class="blog-description">1077 respondents.</p>
 
 ### What styling solutions are you using?
 
@@ -234,13 +235,13 @@ We hear you, and we want to provide the best platform to connect with your favor
 
 {{"chart": "2024/WhatStylingSolutions"}}
 
-<p class="blog-description">1074 respondents.</p>
+<p class="blog-description">1074 respondents.</p>
 
 ### What other UI libraries do you use? What would you say are their strongest and weakest points?
 
 {{"chart": "2024/WhatOtherLibrariesDoYouUse"}}
 
-<p class="blog-description">354 respondents.</p>
+<p class="blog-description">354 respondents.</p>
 
 ## Experience with MUI X
 

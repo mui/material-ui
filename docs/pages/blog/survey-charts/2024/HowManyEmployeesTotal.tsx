@@ -1,6 +1,5 @@
 import * as React from "react";
 import BasePercentageHorizontalBar from "./BasePercentageHorizontalBar";
-import BasePie from "./BasePie";
 
 const data = [
   { id: 0, label: "51-200", value: 175 },

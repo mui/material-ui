@@ -1,5 +1,4 @@
 import * as React from "react";
-import { BarChart } from "@mui/x-charts/BarChart";
 import BasePercentageHorizontalBar from "./BasePercentageHorizontalBar";
 
 const data = [

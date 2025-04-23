@@ -43,7 +43,7 @@ const data = [
     label: "I like using kitchen sink examples",
     stronglyDisagree: 2.37,
     disagree: 6.24,
-    neutral: 44.18,
+    neutral: 44.16,
     agree: 32.36,
     stronglyAgree: 14.87
   }
