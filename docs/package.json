@@ -127,7 +127,6 @@
     "@types/json2mq": "^0.2.2",
     "@types/node": "^20.17.30",
     "@types/nprogress": "^0.2.3",
-    "@types/prop-types": "^15.7.14",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@types/react-swipeable-views": "^0.13.6",
