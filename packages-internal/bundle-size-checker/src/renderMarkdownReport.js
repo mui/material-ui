@@ -87,7 +87,7 @@ function formatRelativeChange(value) {
 function formatChange(absolute, relative) {
   const formattedAbsolute = byteSizeChangeFormatter.format(absolute);
   const formattedChange = formatRelativeChange(relative);
-  return `${formattedAbsolute}<sup>(${formattedChange})</sup>`;
+  return `${getChangeIcon(relative)}${formattedAbsolute}<sup>(${formattedChange})</sup>`;
 }
 
 /**
@@ -100,7 +100,7 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
   const changeParsed = formatChange(parsed.absoluteDiff, parsed.relativeDiff);
   const changeGzip = formatChange(gzip.absoluteDiff, gzip.relativeDiff);
 
-  return `**${bundle}**&emsp;&emsp;&emsp;**parsed:**${getChangeIcon(parsed.relativeDiff)}${changeParsed}&emsp;**gzip:**${getChangeIcon(gzip.relativeDiff)}${changeGzip}`;
+  return `**${bundle}**&emsp;&emsp;&emsp;**parsed:**${changeParsed}&emsp;**gzip:**${changeGzip}`;
 }
 
 /**
@@ -118,12 +118,10 @@ function renderMarkdownReportContent(
 ) {
   let markdownContent = '';
 
-  markdownContent += `**Total Size Change:** ${getChangeIcon(
-    comparison.totals.totalParsedPercent,
-  )} ${formatChange(
+  markdownContent += `**Total Size Change:**${formatChange(
     comparison.totals.totalParsed,
     comparison.totals.totalParsedPercent,
-  )} - **Total Gzip Change:** ${getChangeIcon(comparison.totals.totalGzipPercent)} ${formatChange(
+  )} - **Total Gzip Change:**${formatChange(
     comparison.totals.totalGzip,
     comparison.totals.totalGzipPercent,
   )}\n`;
