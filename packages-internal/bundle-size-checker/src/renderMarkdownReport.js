@@ -87,7 +87,7 @@ function formatRelativeChange(value) {
 function formatChange(absolute, relative) {
   const formattedAbsolute = byteSizeChangeFormatter.format(absolute);
   const formattedChange = formatRelativeChange(relative);
-  return `${formattedAbsolute} <sup>(${formattedChange})</sup>`;
+  return `${formattedAbsolute}<sup>(${formattedChange})</sup>`;
 }
 
 /**
@@ -100,7 +100,7 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
   const changeParsed = formatChange(parsed.absoluteDiff, parsed.relativeDiff);
   const changeGzip = formatChange(gzip.absoluteDiff, gzip.relativeDiff);
 
-  return `- **${bundle} - parsed:** ${getChangeIcon(parsed.relativeDiff)} ${changeParsed}, **gzip:** ${getChangeIcon(gzip.relativeDiff)} ${changeGzip}`;
+  return `**${bundle}**&emsp;&emsp;&emsp;**parsed:**${getChangeIcon(parsed.relativeDiff)}${changeParsed}&emsp;**gzip:**${getChangeIcon(gzip.relativeDiff)}${changeGzip}`;
 }
 
 /**
