@@ -39,7 +39,7 @@ const byteSizeChangeFormatter = new Intl.NumberFormat(undefined, {
  * @returns
  */
 function formatSymbol(symbol, color) {
-  return `\${\\tiny{\\color{${color}}${symbol}}}$`;
+  return `<sup>\${\\tiny{\\color{${color}}${symbol}}}$</sup>`;
 }
 
 /**
