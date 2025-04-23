@@ -73,11 +73,7 @@ export default function PageViewsBarChart() {
           height={250}
           margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
           grid={{ horizontal: true }}
-          slotProps={{
-            legend: {
-              hidden: true,
-            },
-          }}
+          hideLegend
         />
       </CardContent>
     </Card>

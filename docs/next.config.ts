@@ -190,6 +190,9 @@ export default withDocsInfra({
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : '',
   },
+  // Ensure CSS from the Data Grid packages is included in the build:
+  // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
+  transpilePackages: ['@mui/x-data-grid', '@mui/x-data-grid-pro', '@mui/x-data-grid-premium'],
   distDir: 'export',
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.

@@ -170,6 +170,9 @@ export default function XHero() {
                         fontSize: '1.25rem',
                       },
                     },
+                    [`& .MuiDataGrid-aggregationColumnHeaderLabel`]: {
+                      fontWeight: 'normal',
+                    },
                     [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
                       {
                         outline: 'none',

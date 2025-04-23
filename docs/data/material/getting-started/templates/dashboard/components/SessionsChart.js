@@ -140,11 +140,7 @@ export default function SessionsChart() {
               fill: "url('#direct')",
             },
           }}
-          slotProps={{
-            legend: {
-              hidden: true,
-            },
-          }}
+          hideLegend
         >
           <AreaGradient color={theme.palette.primary.dark} id="organic" />
           <AreaGradient color={theme.palette.primary.main} id="referral" />

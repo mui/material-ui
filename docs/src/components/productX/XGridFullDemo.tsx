@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { red, green, yellow, blue } from '@mui/material/colors';
 import { alpha } from '@mui/material/styles';
-import { DataGridPro, GridToolbar, GridPaginationModel } from '@mui/x-data-grid-pro';
+import { DataGridPro, GridPaginationModel } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
@@ -269,15 +269,13 @@ export default function XGridFullDemo() {
           <DataGridPro
             {...data}
             initialState={{ density: 'compact' }}
-            slots={{
-              toolbar: GridToolbar,
-            }}
             loading={loading}
             checkboxSelection
             disableRowSelectionOnClick
             pageSizeOptions={pageSizeOptions}
             {...pagination}
             onPaginationModelChange={handlePaginationModelChange}
+            showToolbar
           />
         </Paper>
       </Frame.Demo>
