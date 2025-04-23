@@ -661,13 +661,11 @@ jobs:
 
       - run:
           name: create and upload a size snapshot
-          command: pnpm size:snapshot
-          environment:
-            CI: 'true'
-            # Export AWS credentials so they're available to the bundle-size-checker
-            AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_ARTIFACTS
-            AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-            AWS_REGION: $AWS_REGION_ARTIFACTS
+          command: |
+            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
+            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
+            export AWS_REGION=$AWS_REGION_ARTIFACTS
+            pnpm size:snapshot
 
       # === LEGACY START ===
       # remove once the UI can handle the new format
