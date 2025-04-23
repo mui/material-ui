@@ -117,10 +117,10 @@ export function renderMarkdownReport(
 
   markdownContent += `**Total Size Change:** ${getChangeIcon(
     comparison.totals.totalParsedPercent,
-  )}} ${formatChange(
+  )} ${formatChange(
     comparison.totals.totalParsed,
     comparison.totals.totalParsedPercent,
-  )} - **Total Gzip Change:** ${getChangeIcon(comparison.totals.totalGzipPercent)}} ${formatChange(
+  )} - **Total Gzip Change:** ${getChangeIcon(comparison.totals.totalGzipPercent)} ${formatChange(
     comparison.totals.totalGzip,
     comparison.totals.totalGzipPercent,
   )}\n`;
