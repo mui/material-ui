@@ -77,7 +77,9 @@ async function run(argv) {
     try {
       // eslint-disable-next-line no-console
       console.log('Uploading bundle size snapshot to S3...');
-      await uploadSnapshot(snapshotDestPath, config.upload);
+      const { key } = await uploadSnapshot(snapshotDestPath, config.upload);
+      // eslint-disable-next-line no-console
+      console.log(`Bundle size snapshot uploaded to S3 with key: ${key}`);
     } catch (/** @type {any} */ error) {
       console.error('Failed to upload bundle size snapshot:', error.message);
       // Exit with error code to indicate failure
