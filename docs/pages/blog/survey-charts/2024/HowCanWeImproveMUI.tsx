@@ -1,32 +1,33 @@
-import * as React from "react";
-import BasePercentageHorizontalBar from "./BasePercentageHorizontalBar";
+import * as React from 'react';
+import BasePercentageHorizontalBar from './BasePercentageHorizontalBar';
+
 const data = [
-  { id: 1, label: "More components", value: 89 },
-  { id: 2, label: "Improve docs", value: 53 },
-  { id: 3, label: "More examples", value: 50 },
-  { id: 4, label: "More customization", value: 50 },
-  { id: 5, label: "Improve theming/styling", value: 41 },
-  { id: 6, label: "More features", value: 24 },
-  { id: 7, label: "Performance", value: 23 },
-  { id: 8, label: "Bundle size", value: 20 },
-  { id: 9, label: "Improve pricing", value: 14 },
-  { id: 10, label: "Improve dx", value: 14 },
-  { id: 11, label: "Charts", value: 13 },
-  { id: 12, label: "Improve datagrid", value: 12 },
-  { id: 13, label: "Theming/style docs", value: 12 },
-  { id: 14, label: "Keep up with material spec.", value: 12 },
-  { id: 15, label: "Improve typescript support", value: 11 },
-  { id: 16, label: "More tutorials / articles", value: 11 },
-  { id: 17, label: "Improve date pickers", value: 11 },
-  { id: 18, label: "Improve markup", value: 11 },
-  { id: 19, label: "Improve design", value: 10 },
-  { id: 20, label: "More in-depth documentation", value: 9 },
-  { id: 21, label: "Pain with migration", value: 9 },
-  { id: 22, label: "More designs", value: 9 },
-  { id: 23, label: "Joy ui", value: 8 },
-  { id: 24, label: "Improve ssr support", value: 8 },
-  { id: 25, label: "Improve tailwind support", value: 8 }
-  /*{ id: 26, label: "Product communication", value: 8 },
+  { id: 1, label: 'More components', value: 89 },
+  { id: 2, label: 'Improve docs', value: 53 },
+  { id: 3, label: 'More examples', value: 50 },
+  { id: 4, label: 'More customization', value: 50 },
+  { id: 5, label: 'Improve theming/styling', value: 41 },
+  { id: 6, label: 'More features', value: 24 },
+  { id: 7, label: 'Performance', value: 23 },
+  { id: 8, label: 'Bundle size', value: 20 },
+  { id: 9, label: 'Improve pricing', value: 14 },
+  { id: 10, label: 'Improve dx', value: 14 },
+  { id: 11, label: 'Charts', value: 13 },
+  { id: 12, label: 'Improve datagrid', value: 12 },
+  { id: 13, label: 'Theming/style docs', value: 12 },
+  { id: 14, label: 'Keep up with material spec.', value: 12 },
+  { id: 15, label: 'Improve typescript support', value: 11 },
+  { id: 16, label: 'More tutorials / articles', value: 11 },
+  { id: 17, label: 'Improve date pickers', value: 11 },
+  { id: 18, label: 'Improve markup', value: 11 },
+  { id: 19, label: 'Improve design', value: 10 },
+  { id: 20, label: 'More in-depth documentation', value: 9 },
+  { id: 21, label: 'Pain with migration', value: 9 },
+  { id: 22, label: 'More designs', value: 9 },
+  { id: 23, label: 'Joy ui', value: 8 },
+  { id: 24, label: 'Improve ssr support', value: 8 },
+  { id: 25, label: 'Improve tailwind support', value: 8 },
+  /* { id: 26, label: "Product communication", value: 8 },
   {
     id: 27,
     label: "Integration with other ecosystems (vue/svelte/etc)",
@@ -87,7 +88,7 @@ const data = [
   { id: 80, label: "Long term support", value: 1 },
   { id: 81, label: "Improved typescript support", value: 1 },
   { id: 82, label: "Input fields", value: 1 },
-  { id: 83, label: "More themes out-of-the-box", value: 1 }*/
+  { id: 83, label: "More themes out-of-the-box", value: 1 } */
 ];
 
 export default function HowCanWeImproveMUI() {

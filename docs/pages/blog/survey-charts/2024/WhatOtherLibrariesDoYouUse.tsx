@@ -1,18 +1,18 @@
-import * as React from "react";
-import BasePercentageHorizontalBar from "./BasePercentageHorizontalBar";
+import * as React from 'react';
+import BasePercentageHorizontalBar from './BasePercentageHorizontalBar';
 
 const otherLibraries = [
-  { id: 1, label: "Bootstrap", value: 50 },
-  { id: 2, label: "Tailwind", value: 43 },
-  { id: 3, label: "Ant Design", value: 31 },
-  { id: 4, label: "Chakra UI", value: 25 },
-  { id: 5, label: "Mantine", value: 17 },
-  { id: 6, label: "React Native frameworks", value: 10 },
-  { id: 7, label: "Nivo", value: 6 },
-  { id: 8, label: "Devextreme", value: 5 },
-  { id: 9, label: "Vuetify", value: 4 },
-  { id: 10, label: "In house solution", value: 4 }
-  /*{ id:11, label:'Fluentui', value:4},
+  { id: 1, label: 'Bootstrap', value: 50 },
+  { id: 2, label: 'Tailwind', value: 43 },
+  { id: 3, label: 'Ant Design', value: 31 },
+  { id: 4, label: 'Chakra UI', value: 25 },
+  { id: 5, label: 'Mantine', value: 17 },
+  { id: 6, label: 'React Native frameworks', value: 10 },
+  { id: 7, label: 'Nivo', value: 6 },
+  { id: 8, label: 'Devextreme', value: 5 },
+  { id: 9, label: 'Vuetify', value: 4 },
+  { id: 10, label: 'In house solution', value: 4 },
+  /* { id:11, label:'Fluentui', value:4},
 { id:12, label:'Angular material', value:4},
 { id:13, label:'Radix ui', value:4},
 { id:14, label:'Formik', value:3},
@@ -63,21 +63,21 @@ const otherLibraries = [
 { id:59, label:'Headless ui', value:1},
 { id:60, label:'React-table', value:1},
 { id:61, label:'React native elements', value:1},
-{ id:62, label:'Prime', value:1},*/
+{ id:62, label:'Prime', value:1}, */
 ];
 
 const strongestPoints = [
-  { id: 1, label: "Customization", value: 26 },
-  { id: 2, label: "Easy to use", value: 16 },
-  { id: 3, label: "Large portfolio of components / features", value: 14 },
-  { id: 4, label: "Good looking", value: 13 },
-  { id: 5, label: "Charts", value: 6 },
-  { id: 6, label: "Enterprise needs", value: 6 },
-  { id: 7, label: "Performance", value: 5 },
-  { id: 8, label: "Documentation", value: 4 },
-  { id: 9, label: "Animation", value: 3 },
-  { id: 10, label: "Good for forms", value: 2 }
-  /*{ id: 11, label: "Audience is familiar", value: 2 },
+  { id: 1, label: 'Customization', value: 26 },
+  { id: 2, label: 'Easy to use', value: 16 },
+  { id: 3, label: 'Large portfolio of components / features', value: 14 },
+  { id: 4, label: 'Good looking', value: 13 },
+  { id: 5, label: 'Charts', value: 6 },
+  { id: 6, label: 'Enterprise needs', value: 6 },
+  { id: 7, label: 'Performance', value: 5 },
+  { id: 8, label: 'Documentation', value: 4 },
+  { id: 9, label: 'Animation', value: 3 },
+  { id: 10, label: 'Good for forms', value: 2 },
+  /* { id: 11, label: "Audience is familiar", value: 2 },
   { id: 12, label: "Rich components", value: 2 },
   { id: 13, label: "Ux", value: 2 },
   { id: 14, label: "Fast development", value: 2 },
@@ -89,21 +89,21 @@ const strongestPoints = [
   { id: 20, label: "Support", value: 1 },
   { id: 21, label: "Free", value: 1 },
   { id: 22, label: "Dx", value: 1 },
-  { id: 23, label: "Open source", value: 1 }*/
+  { id: 23, label: "Open source", value: 1 } */
 ];
 
 const weakPoints = [
-  { id: 1, label: "Customization", value: 19 },
-  { id: 2, label: "Poor documentation", value: 16 },
-  { id: 3, label: "Lacking features", value: 11 },
-  { id: 4, label: "Poor looking", value: 7 },
-  { id: 5, label: "Not modern", value: 7 },
-  { id: 6, label: "High entry barrier", value: 4 },
-  { id: 7, label: "Less answers on the internet", value: 4 },
-  { id: 8, label: "Clutter code", value: 3 },
-  { id: 9, label: "Expensive to maintain", value: 3 },
-  { id: 10, label: "Bloated style", value: 3 }
-  /*{ id: 11, label: "Css files", value: 3 },
+  { id: 1, label: 'Customization', value: 19 },
+  { id: 2, label: 'Poor documentation', value: 16 },
+  { id: 3, label: 'Lacking features', value: 11 },
+  { id: 4, label: 'Poor looking', value: 7 },
+  { id: 5, label: 'Not modern', value: 7 },
+  { id: 6, label: 'High entry barrier', value: 4 },
+  { id: 7, label: 'Less answers on the internet', value: 4 },
+  { id: 8, label: 'Clutter code', value: 3 },
+  { id: 9, label: 'Expensive to maintain', value: 3 },
+  { id: 10, label: 'Bloated style', value: 3 },
+  /* { id: 11, label: "Css files", value: 3 },
   { id: 12, label: "Not great in react", value: 2 },
   { id: 13, label: "Standard looking", value: 2 },
   { id: 14, label: "Poor support", value: 2 },
@@ -118,7 +118,7 @@ const weakPoints = [
   { id: 23, label: "Missing updates", value: 1 },
   { id: 24, label: "Ux", value: 1 },
   { id: 25, label: "Friction on updates", value: 1 },
-  { id: 26, label: "Documentation", value: 1 }*/
+  { id: 26, label: "Documentation", value: 1 } */
 ];
 
 export default function WhatOtherLibrariesDoYouUse() {

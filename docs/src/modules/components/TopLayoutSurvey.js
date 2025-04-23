@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Demo from './Demo';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
 import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
-import { BarChart } from '@mui/x-charts/BarChart';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -335,10 +333,10 @@ export default function TopLayoutSurvey(props) {
   const splitMarkdownIntoSubChunks = (markdown) => {
     // Regex to match chart placeholders like {{chart: ...}}
     const placeholderRegex = /<p>\{\{&quot;chart&quot;:\s*&quot;([^&]+)&quot;\}\}<\/p>/g;
-  
+
     const chunks = [];
     let lastIndex = 0;
-  
+
     markdown.replace(placeholderRegex, (match, chartPath, offset) => {
       if (offset > lastIndex) {
         chunks.push(markdown.slice(lastIndex, offset));
@@ -346,17 +344,19 @@ export default function TopLayoutSurvey(props) {
       chunks.push({ chart: chartPath });
       lastIndex = offset + match.length;
     });
-  
+
     if (lastIndex < markdown.length) {
       chunks.push(markdown.slice(lastIndex));
     }
-  
+
     return chunks;
   };
-  
+
   const renderContent = (chunk, index) => {
     if (typeof chunk === 'string') {
-      const matchMarkdownChunk = chunk.match(/<p>\{\{&quot;chart&quot;:\s*&quot;([^&]+)&quot;\}\}<\/p>/);
+      const matchMarkdownChunk = chunk.match(
+        /<p>\{\{&quot;chart&quot;:\s*&quot;([^&]+)&quot;\}\}<\/p>/,
+      );
 
       if (matchMarkdownChunk) {
         const subChunks = splitMarkdownIntoSubChunks(chunk);
@@ -376,19 +376,23 @@ export default function TopLayoutSurvey(props) {
               />
             );
           }
-      
+
           if (subChunk.chart) {
             // Render chart component
-            console.log('Rendering chart sub-chunk:', subChunk.chart);
-      
+            // console.log('Rendering chart sub-chunk:', subChunk.chart);
+
             const relativePath = subChunk.chart;
             let LoadedComponent;
-      
+
             try {
-              LoadedComponent = require(`docs/pages/blog/survey-charts/${relativePath}.jsx`).default;
+              LoadedComponent = require(
+                `docs/pages/blog/survey-charts/${relativePath}.jsx`,
+              ).default;
             } catch (error) {
               try {
-                LoadedComponent = require(`docs/pages/blog/survey-charts/${relativePath}.tsx`).default;
+                LoadedComponent = require(
+                  `docs/pages/blog/survey-charts/${relativePath}.tsx`,
+                ).default;
               } catch (innerError) {
                 console.error(`Failed to load chart: ${relativePath}`, innerError);
                 return (
@@ -398,14 +402,14 @@ export default function TopLayoutSurvey(props) {
                 );
               }
             }
-      
+
             return (
               <React.Fragment key={`sub-chart-${index}-${subIndex}`}>
                 <LoadedComponent />
               </React.Fragment>
             );
           }
-      
+
           console.warn('Unknown sub-chunk type:', subChunk);
           return null; // Skip rendering for unrecognized sub-chunks
         });
@@ -556,7 +560,7 @@ export default function TopLayoutSurvey(props) {
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
-            console.log("index", index, "chunk", chunk)
+            // console.log('index', index, 'chunk', chunk);
             return renderContent(chunk, index);
           })}
         </AppContainer>
