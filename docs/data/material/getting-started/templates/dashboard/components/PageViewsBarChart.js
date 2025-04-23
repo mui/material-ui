@@ -70,7 +70,7 @@ export default function PageViewsBarChart() {
             },
           ]}
           height={250}
-          margin={{ left: 50, right: 0, top: 20, bottom: 20 }}
+          margin={{ left: 0, right: 0, top: 20, bottom: 0 }}
           grid={{ horizontal: true }}
           hideLegend
         />
