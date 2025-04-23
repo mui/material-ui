@@ -54,7 +54,7 @@ When the `upload` configuration is provided, the snapshot will be uploaded to S3
 
 The snapshot will be uploaded to:
 
-```
+```bash
 s3://mui-org-ci/artifacts/{project}/{commit-sha}/size-snapshot.json
 ```
 
