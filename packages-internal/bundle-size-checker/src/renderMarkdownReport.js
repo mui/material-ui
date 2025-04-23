@@ -105,25 +105,48 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
  * @param {ComparisonResult} comparison - Comparison result from calculateSizeDiff
  * @param {Object} [options] - Additional options
  * @param {number} [options.visibleLimit=10] - Number of entries to show before collapsing
+ * @param {number} [options.parsedSizeChangeThreshold=300] - Threshold for parsed size change by which to show the entry
+ * @param {number} [options.gzipSizeChangeThreshold=100] - Threshold for gzipped size change by which to show the entry
  * @returns {string} Markdown report
  */
-export function renderMarkdownReport(comparison, { visibleLimit = 10 } = {}) {
-  const hasChanges = comparison.entries.some(
-    (entry) => entry.parsed.absoluteDiff !== 0 || entry.gzip.absoluteDiff !== 0,
-  );
+export function renderMarkdownReport(
+  comparison,
+  { visibleLimit = 10, parsedSizeChangeThreshold = 300, gzipSizeChangeThreshold = 100 } = {},
+) {
+  let markdownContent = '';
 
-  if (!hasChanges) {
-    return `No bundle size changes detected.`;
-  }
+  markdownContent += `**Total Size Change:** ${getChangeIcon(
+    comparison.totals.totalParsedPercent,
+  )}} ${formatChange(
+    comparison.totals.totalParsed,
+    comparison.totals.totalParsedPercent,
+  )} - **Total Gzip Change:** ${getChangeIcon(comparison.totals.totalGzipPercent)}} ${formatChange(
+    comparison.totals.totalGzip,
+    comparison.totals.totalGzipPercent,
+  )}\n`;
+
+  markdownContent += `Files: ${comparison.fileCounts.total} total (${
+    comparison.fileCounts.added
+  } added, ${comparison.fileCounts.removed} removed, ${comparison.fileCounts.changed} changed)\n\n`;
 
   const changedEntries = comparison.entries.filter(
-    (entry) => entry.parsed.absoluteDiff !== 0 || entry.gzip.absoluteDiff !== 0,
+    (entry) => entry.parsed.absoluteDiff > 0 || entry.gzip.absoluteDiff > 0,
   );
 
-  const visibleEntries = changedEntries.slice(0, visibleLimit);
-  const hiddenEntries = changedEntries.slice(visibleLimit);
+  const visibleEntries = [];
+  const hiddenEntries = [];
 
-  let markdownContent = '';
+  for (const entry of changedEntries) {
+    const { parsed, gzip } = entry;
+    const isSignificantChange =
+      Math.abs(parsed.absoluteDiff) > parsedSizeChangeThreshold ||
+      Math.abs(gzip.absoluteDiff) > gzipSizeChangeThreshold;
+    if (isSignificantChange && visibleEntries.length < visibleLimit) {
+      visibleEntries.push(entry);
+    } else {
+      hiddenEntries.push(entry);
+    }
+  }
 
   const importantChanges = visibleEntries.map(generateEmphasizedChange);
   const hiddenChanges = hiddenEntries.map(generateEmphasizedChange);
