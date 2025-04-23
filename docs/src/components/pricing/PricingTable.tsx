@@ -1596,11 +1596,11 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('charts/gauge')}
           {divider}
-          {renderNestedRow('charts/heatmap')}
+          {renderNestedRow('charts/radar')}
           {divider}
           {renderNestedRow('charts/treemap')}
           {divider}
-          {renderNestedRow('charts/radar')}
+          {renderNestedRow('charts/heatmap')}
           {divider}
           {renderNestedRow('charts/funnel')}
           {divider}
