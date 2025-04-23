@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 function Grid(props) {
   const { spacing } = props;
   return <div>spacing: {spacing}</div>;

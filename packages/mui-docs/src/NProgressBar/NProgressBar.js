@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import NProgress from 'nprogress';
 import { NoSsr } from '@mui/base/NoSsr';
 import { exactProp } from '@mui/utils';

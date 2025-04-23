@@ -14,7 +14,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
 } from '@mui/utils';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import * as React from 'react';
 import { getMasonryUtilityClass } from './masonryClasses';
 

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 function Foo(props) {
   return <div {...props}></div>;
 }

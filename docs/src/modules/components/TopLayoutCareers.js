@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { styled, alpha } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';

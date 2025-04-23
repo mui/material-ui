@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { logReactMetrics } from './utils';
 
 // Get all the scenarios

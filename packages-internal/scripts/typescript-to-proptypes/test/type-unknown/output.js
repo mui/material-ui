@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 function Select(props) {
   const { value, variant } = props;
   return <div></div>;

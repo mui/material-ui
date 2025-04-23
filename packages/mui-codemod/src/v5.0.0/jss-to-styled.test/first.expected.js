@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -31,14 +31,10 @@ const classes = {
   white: `${PREFIX}-white`,
   content: `${PREFIX}-content`,
   contentOpened: `${PREFIX}-contentOpened`,
-  item: `${PREFIX}-item`
+  item: `${PREFIX}-item`,
 };
 
-const StyledAppBar = styled(AppBar)((
-  {
-    theme
-  }
-) => ({
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
   [`& .${classes.grow}`]: {
     display: 'block',
     flexGrow: 1,
@@ -141,7 +137,7 @@ const StyledAppBar = styled(AppBar)((
     [theme.breakpoints.up('sm')]: {
       marginRight: theme.spacing(2),
     },
-  }
+  },
 }));
 
 class AppAppBar extends React.Component {
@@ -176,11 +172,11 @@ class AppAppBar extends React.Component {
   };
 
   render() {
-    const {  children, essential, position, user } = this.props;
+    const { children, essential, position, user } = this.props;
     const { menuOpen } = this.state;
 
     return (
-      (<StyledAppBar essential={essential} position={position}>
+      <StyledAppBar essential={essential} position={position}>
         <div className={clsx(classes.wrap, { [classes.wrapOpened]: menuOpen })}>
           <Link to="/" aria-label="Back to homepage" color="inherit">
             <Logo color={menuOpen ? 'inherit' : 'textPrimary'} />
@@ -237,7 +233,7 @@ class AppAppBar extends React.Component {
             </div>
           )}
         </div>
-      </StyledAppBar>)
+      </StyledAppBar>
     );
   }
 }
@@ -250,7 +246,4 @@ AppAppBar.propTypes = {
   user: PropTypes.object,
 };
 
-export default compose(
-  
-  connect((state) => ({ user: state.data.user })),
-)(AppAppBar);
+export default compose(connect((state) => ({ user: state.data.user })))(AppAppBar);

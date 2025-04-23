@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import * as React from 'react';
 import { expect } from 'chai';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { createRenderer, waitFor } from '@mui/internal-test-utils';
 import elementTypeAcceptingRef from './elementTypeAcceptingRef';
 

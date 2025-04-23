@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { createGlobalStyle } from 'styled-components';
 
 function isEmpty(obj) {

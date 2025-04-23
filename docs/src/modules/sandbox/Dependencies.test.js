@@ -12,7 +12,7 @@ describe('Dependencies', () => {
 
   const s1 = `
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { withStyles } from '@mui/material/styles';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -50,7 +50,7 @@ const styles = theme => ({
   it('should handle * dependencies', () => {
     const source = `
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import * as _ from '@unexisting/thing';
 import Draggable from 'react-draggable';
 import match from 'autosuggest-highlight/match';
@@ -84,7 +84,7 @@ const suggestions = [
   it('should support direct import', () => {
     const source = `
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import Grid from '@mui/material/Grid';
 import { withStyles } from '@mui/material/styles';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -111,7 +111,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
   it('should support import for side effect', () => {
     const source = `
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import '@mui/material/Grid';
 import '@mui/material/styles';
 import '@mui/lab/AdapterDateFns';

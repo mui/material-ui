@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 
 export default function StyledEngineProvider(props) {
   const { injectFirst, children } = props;

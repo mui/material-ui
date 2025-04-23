@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import clsx from 'clsx';
 import { styled } from '@mui/material/styles';
 import MuiTextField from '@mui/material/TextField';

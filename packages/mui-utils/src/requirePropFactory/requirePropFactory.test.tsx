@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { expect } from 'chai';
 import requirePropFactory from './requirePropFactory';
 

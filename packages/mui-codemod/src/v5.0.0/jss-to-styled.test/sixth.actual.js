@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';

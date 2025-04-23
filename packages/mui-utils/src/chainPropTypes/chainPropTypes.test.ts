@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import chainPropTypes from './chainPropTypes';
 
 describe('chainPropTypes', () => {

@@ -4,7 +4,7 @@ import MuiPaper from '@mui/material/Paper';
 import copy from 'clipboard-copy';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import Grid from '@mui/material/Grid';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';

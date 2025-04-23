@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import Autocomplete from '@mui/joy/Autocomplete';
 import { Typography, styled } from '@mui/joy';
 

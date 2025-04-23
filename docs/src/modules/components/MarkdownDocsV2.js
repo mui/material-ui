@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { useRouter } from 'next/router';
 import kebabCase from 'lodash/kebabCase';
 import { exactProp } from '@mui/utils';

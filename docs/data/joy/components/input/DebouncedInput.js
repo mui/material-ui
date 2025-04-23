@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import Box from '@mui/joy/Box';

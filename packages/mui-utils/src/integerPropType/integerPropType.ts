@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 
 export function getTypeByValue(value: any): string {
   const valueType = typeof value;

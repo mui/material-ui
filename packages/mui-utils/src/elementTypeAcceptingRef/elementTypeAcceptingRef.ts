@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import chainPropTypes from '../chainPropTypes';
 
 function isClassComponent(elementType: Function) {

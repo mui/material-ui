@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { FixedSizeList } from 'react-window';
 import { Popper } from '@mui/base/Popper';
 import Autocomplete from '@mui/joy/Autocomplete';

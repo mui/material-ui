@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { GlobalStyles as MuiGlobalStyles, Interpolation } from '@mui/styled-engine';
 import useTheme from '../useTheme';
 import { Theme as SystemTheme } from '../createTheme';

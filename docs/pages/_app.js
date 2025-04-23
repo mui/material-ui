@@ -3,7 +3,7 @@ import 'docs/src/modules/components/bootstrap';
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
 import NextHead from 'next/head';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { useRouter } from 'next/router';
 import { LicenseInfo } from '@mui/x-license';
 import materialPkgJson from '@mui/material/package.json';

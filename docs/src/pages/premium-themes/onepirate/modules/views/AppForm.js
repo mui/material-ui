@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Paper from '../components/Paper';

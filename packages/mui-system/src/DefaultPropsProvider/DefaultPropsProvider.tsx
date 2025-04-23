@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import resolveProps from '@mui/utils/resolveProps';
 
 const PropsContext = React.createContext<Record<string, any> | undefined>(undefined);

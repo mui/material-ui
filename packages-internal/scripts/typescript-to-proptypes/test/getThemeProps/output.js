@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 function Modal(inProps) {
   const props = getThemeProps({ props: inProps });
   const { onKeyDown, ...other } = props;

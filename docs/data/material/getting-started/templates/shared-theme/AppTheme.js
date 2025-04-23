@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import { inputsCustomizations } from './customizations/inputs';

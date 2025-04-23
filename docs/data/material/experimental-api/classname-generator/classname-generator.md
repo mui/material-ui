@@ -161,7 +161,7 @@ Import the initializer in `/pages/_app.js`.
 ```diff
 +import './MuiClassNameSetup';
  import * as React from 'react';
- import PropTypes from 'prop-types';
+ import PropTypes from 'prop-types-compat';
  import Head from 'next/head';
 
  export default function MyApp(props) {

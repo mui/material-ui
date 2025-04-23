@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
