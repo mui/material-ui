@@ -15,6 +15,6 @@ const pigmentConfig = {
 export default defineConfig({
   plugins: [react(), pigment(pigmentConfig)],
   optimizeDeps: {
-    include: ['prop-types', 'react-is', 'hoist-non-react-statics'],
+    include: ['prop-types-compat', 'react-is', 'hoist-non-react-statics'],
   },
 });

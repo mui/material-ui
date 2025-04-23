@@ -98,7 +98,7 @@ async function transpileFile(tsxPath, project) {
     }
     const { code } = await babel.transformAsync(source, transformOptions);
 
-    if (/import \w* from 'prop-types'/.test(code)) {
+    if (/import \w* from 'prop-types-compat'/.test(code)) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
     }
 

@@ -1,4 +1,4 @@
-import { Validator } from 'prop-types';
+import { Validator } from 'prop-types-compat';
 
 export default function deprecatedPropType<T>(
   validator: Validator<T>,
