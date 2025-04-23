@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import * as ReactDOMServer from 'react-dom/server';
-import PropTypes from 'prop-types-compat';
+import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
