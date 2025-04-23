@@ -29,6 +29,9 @@ export default defineConfig(async () => {
     return `@mui/lab/${componentName}`;
   });
 
+  // Determine if we're in a CI environment and if it's a PR
+  const isPullRequest = process.env.CIRCLE_PULL_REQUEST ? true : false;
+  
   // Return the complete entrypoints configuration
   return {
     entrypoints: [
@@ -47,5 +50,13 @@ export default defineConfig(async () => {
       '@mui/material/useScrollTrigger',
       '@mui/utils',
     ],
+    // Only add upload config when in CI environment
+    ...(process.env.CI && {
+      upload: {
+        project: 'mui/material-ui',
+        branch: process.env.CIRCLE_BRANCH,
+        isPullRequest
+      }
+    })
   };
 });

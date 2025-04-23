@@ -27,6 +27,19 @@ interface WebpackStats {
   };
 }
 
+// Upload configuration
+interface UploadConfig {
+  project: string;   // The project name (e.g., "mui/material-ui")
+  branch?: string;   // Optional branch name (defaults to current Git branch)
+  isPullRequest?: boolean; // Whether this is a pull request build (defaults to false)
+}
+
+// Bundle size checker config
+interface BundleSizeCheckerConfig {
+  entrypoints: string[];
+  upload?: UploadConfig;
+}
+
 // Command line argument types
 interface CommandLineArgs {
   analyze?: boolean;

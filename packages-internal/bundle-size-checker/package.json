@@ -12,7 +12,9 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.515.0",
     "compression-webpack-plugin": "^10.0.0",
+    "execa": "^7.2.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "piscina": "^4.2.1",

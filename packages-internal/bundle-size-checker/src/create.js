@@ -6,6 +6,7 @@ import fse from 'fs-extra';
 import yargs from 'yargs';
 import Piscina from 'piscina';
 import { loadConfig } from './configLoader.js';
+import { uploadSnapshot } from './uploadSnapshot.js';
 
 const MAX_CONCURRENCY = Math.min(8, os.cpus().length);
 
@@ -69,6 +70,18 @@ async function run(argv) {
 
   // eslint-disable-next-line no-console
   console.log(`Bundle size snapshot written to ${snapshotDestPath}`);
+
+  // Upload the snapshot if upload configuration is provided
+  if (config && config.upload) {
+    try {
+      console.log('Uploading bundle size snapshot to S3...');
+      await uploadSnapshot(snapshotDestPath, config.upload);
+    } catch (error) {
+      console.error('Failed to upload bundle size snapshot:', error.message);
+      // Exit with error code to indicate failure
+      process.exit(1);
+    }
+  }
 }
 
 yargs(process.argv.slice(2))
