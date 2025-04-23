@@ -100,7 +100,7 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
   const changeParsed = formatChange(parsed.absoluteDiff, parsed.relativeDiff);
   const changeGzip = formatChange(gzip.absoluteDiff, gzip.relativeDiff);
 
-  return `${getChangeIcon(parsed.relativeDiff)} **${bundle}**: parsed: ${changeParsed} - gzip: ${changeGzip}`;
+  return `- **${bundle} - parsed:** ${getChangeIcon(parsed.relativeDiff)} ${changeParsed}, **gzip:** ${getChangeIcon(gzip.relativeDiff)} ${changeGzip}`;
 }
 
 /**
