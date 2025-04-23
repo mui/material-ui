@@ -1773,7 +1773,7 @@ importers:
       csstype:
         specifier: ^3.1.3
         version: 3.1.3
-      prop-types:
+      prop-types-compat:
         specifier: ^15.8.1
         version: 15.8.1
       react-is:
@@ -11577,6 +11577,9 @@ packages:
   promzard@1.0.2:
     resolution: {integrity: sha512-2FPputGL+mP3jJ3UZg/Dl9YOkovB7DX0oOr+ck5QbZ5MtORtds8k/BZdn+02peDLI8/YWbmzx34k5fA+fHvCVQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  prop-types-compat@15.8.1:
+    resolution: {integrity: sha512-JfEoycMw6yTOHkhOOlS55BHv/2CaSadk+QziQp9/6C+3MhUnQr4Vxydzzh6tLv6c5aHBwjX5zz8A2ALkyvCVvw==}
 
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
@@ -25020,6 +25023,11 @@ snapshots:
   promzard@1.0.2:
     dependencies:
       read: 3.0.1
+
+  prop-types-compat@15.8.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
 
   prop-types@15.8.1:
     dependencies:
