@@ -4,6 +4,9 @@
  * @typedef {import('./sizeDiff.js').ComparisonResult} ComparisonResult
  */
 
+import { calculateSizeDiff } from './sizeDiff.js';
+import { fetchSnapshot } from './fetchSnapshot.js';
+
 const displayPercentFormatter = new Intl.NumberFormat(undefined, {
   style: 'percent',
   signDisplay: 'exceptZero',
@@ -109,7 +112,7 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
  * @param {number} [options.gzipSizeChangeThreshold=100] - Threshold for gzipped size change by which to show the entry
  * @returns {string} Markdown report
  */
-export function renderMarkdownReport(
+function renderMarkdownReportContent(
   comparison,
   { visibleLimit = 10, parsedSizeChangeThreshold = 300, gzipSizeChangeThreshold = 100 } = {},
 ) {
@@ -175,15 +178,57 @@ export function renderMarkdownReport(
  * @param {Object} prInfo.base - The base branch of the pull request
  * @param {string} prInfo.base.ref - The base branch name
  * @param {string} prInfo.base.sha - The base branch SHA
- * @param {string} circleciBuildNumber - The CircleCI build number
+ * @param {string} [circleciBuildNumber] - The CircleCI build number
+ * @returns {URL}
+ */
+function getDetailsUrl(prInfo, circleciBuildNumber) {
+  const detailedComparisonUrl = new URL('https://mui-dashboard.netlify.app/size-comparison');
+  detailedComparisonUrl.searchParams.set('baseRef', prInfo.base.ref);
+  detailedComparisonUrl.searchParams.set('baseCommit', prInfo.base.sha);
+  detailedComparisonUrl.searchParams.set('prNumber', String(prInfo.number));
+  if (circleciBuildNumber) {
+    detailedComparisonUrl.searchParams.set('circleCIBuildNumber', circleciBuildNumber);
+  }
+  return detailedComparisonUrl;
+}
+
+/**
+ *
+ * @param {Object} prInfo
+ * @param {number} prInfo.number - The pull request number
+ * @param {Object} prInfo.base - The base branch of the pull request
+ * @param {string} prInfo.base.ref - The base branch name
+ * @param {string} prInfo.base.sha - The base branch SHA
+ * @param {Object} prInfo.head - The head branch of the pull request
+ * @param {string} prInfo.head.ref - The head branch name
+ * @param {string} prInfo.head.sha - The head branch SHA
+ * @param {string} [circleciBuildNumber] - The CircleCI build number
  * @returns
  */
-export function getDetailsUrl(prInfo, circleciBuildNumber) {
-  const detailedComparisonQuery = `circleCIBuildNumber=${circleciBuildNumber}&baseRef=${prInfo.base.ref}&baseCommit=${prInfo.base.sha}&prNumber=${prInfo.number}`;
+export async function renderMarkdownReport(prInfo, circleciBuildNumber) {
+  let markdownContent = '';
 
-  // URLs for detailed comparison tools
-  const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
-  const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
+  const baseCommit = prInfo.base.sha;
+  const prCommit = prInfo.head.sha;
+  const [baseSnapshot, prSnapshot] = await Promise.all([
+    fetchSnapshot('mui/material-ui', baseCommit).catch((error) => {
+      console.error(`Error fetching base snapshot: ${error}`);
+      return null;
+    }),
+    fetchSnapshot('mui/material-ui', prCommit),
+  ]);
 
-  return detailedComparisonUrl;
+  if (!baseSnapshot) {
+    markdownContent += `_:no_entry_sign: No bundle size snapshot found for base commit ${baseCommit}._\n\n`;
+  }
+
+  const sizeDiff = calculateSizeDiff(baseSnapshot ?? {}, prSnapshot);
+
+  const report = await renderMarkdownReportContent(sizeDiff);
+
+  markdownContent += report;
+
+  markdownContent += `\n\n[Details of bundle changes](${getDetailsUrl(prInfo, circleciBuildNumber)})`;
+
+  return markdownContent;
 }

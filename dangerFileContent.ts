@@ -1,12 +1,6 @@
 import type * as dangerModule from 'danger';
 import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
-import {
-  renderMarkdownReport,
-  fetchSnapshot,
-  calculateSizeDiff,
-} from '@mui/internal-bundle-size-checker';
-import * as fs from 'fs/promises';
-import { getDetailsUrl } from '@mui/internal-bundle-size-checker/src/renderMarkdownReport';
+import { renderMarkdownReport } from '@mui/internal-bundle-size-checker';
 
 declare const danger: (typeof dangerModule)['danger'];
 declare const markdown: (typeof dangerModule)['markdown'];
@@ -26,27 +20,7 @@ Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${cir
 // These functions are no longer needed as they've been moved to the prSizeDiff.js module
 
 async function reportBundleSize() {
-  const baseCommit = danger.github.pr.base.sha;
-
-  const [baseSnapshot, prSnapshot] = await Promise.all([
-    fetchSnapshot('mui/material-ui', baseCommit).catch((error) => {
-      console.error(`Error fetching base snapshot: ${error}`);
-      return null;
-    }),
-    fs.readFile('./size-snapshot.json', 'utf-8').then((data) => JSON.parse(data)),
-  ]);
-
   let markdownContent = `## Bundle size report\n\n`;
-
-  if (!baseSnapshot) {
-    markdownContent += `_:no_entry_sign: No bundle size snapshot found for base commit ${baseCommit}._\n\n`;
-  }
-
-  const sizeDiff = calculateSizeDiff(baseSnapshot ?? {}, prSnapshot);
-
-  const report = await renderMarkdownReport(sizeDiff);
-
-  markdownContent += report;
 
   if (!process.env.CIRCLE_BUILD_NUM) {
     throw new Error('CIRCLE_BUILD_NUM is not defined');
@@ -54,7 +28,7 @@ async function reportBundleSize() {
 
   const circleciBuildNumber = process.env.CIRCLE_BUILD_NUM;
 
-  markdownContent += `\n\n[Details of bundle changes](${getDetailsUrl(danger.github.pr, circleciBuildNumber)})`;
+  markdownContent += renderMarkdownReport(danger.github.pr, circleciBuildNumber);
 
   // Use the markdown function to publish the report
   markdown(markdownContent);
