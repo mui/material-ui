@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
 import useTimeout from '@mui/utils/useTimeout';

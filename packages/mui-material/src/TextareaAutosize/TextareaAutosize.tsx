@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import {
   unstable_debounce as debounce,
   unstable_useForkRef as useForkRef,

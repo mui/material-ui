@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import debounce from '../utils/debounce';
 import { ownerWindow, unstable_useEnhancedEffect as useEnhancedEffect } from '../utils';
 

@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import clsx from 'clsx';
 import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';

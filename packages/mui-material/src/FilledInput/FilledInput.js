@@ -2,7 +2,7 @@
 import * as React from 'react';
 import deepmerge from '@mui/utils/deepmerge';
 import refType from '@mui/utils/refType';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import composeClasses from '@mui/utils/composeClasses';
 import InputBase from '../InputBase';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';

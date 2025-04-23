@@ -1,5 +1,5 @@
 'use client';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { createContainer } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';

@@ -1,7 +1,7 @@
 'use client';
 /* eslint-disable jsx-a11y/aria-role */
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';

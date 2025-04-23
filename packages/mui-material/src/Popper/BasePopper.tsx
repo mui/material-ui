@@ -9,7 +9,7 @@ import {
   unstable_useForkRef as useForkRef,
 } from '@mui/utils';
 import { createPopper, Instance, Modifier, Placement, State, VirtualElement } from '@popperjs/core';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import composeClasses from '@mui/utils/composeClasses';
 import useSlotProps from '@mui/utils/useSlotProps';
 import Portal from '../Portal';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { act, createRenderer, fireEvent, within, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';

@@ -1,7 +1,7 @@
 'use client';
 // @inheritedComponent IconButton
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';

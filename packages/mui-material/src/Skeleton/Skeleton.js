@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import { keyframes, css, styled } from '../zero-styled';

@@ -1,5 +1,5 @@
 'use client';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { createGrid } from '@mui/system/Grid';
 import { SxProps, SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/types';

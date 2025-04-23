@@ -2,7 +2,7 @@
 import composeClasses from '@mui/utils/composeClasses';
 import integerPropType from '@mui/utils/integerPropType';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import * as React from 'react';
 import { isFragment } from 'react-is';
 import ImageListContext from '../ImageList/ImageListContext';

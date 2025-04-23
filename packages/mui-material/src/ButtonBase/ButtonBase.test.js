@@ -11,7 +11,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';

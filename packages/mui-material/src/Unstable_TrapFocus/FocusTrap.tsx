@@ -1,7 +1,7 @@
 'use client';
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import {
   exactProp,
   elementAcceptingRef,

@@ -1,5 +1,5 @@
 'use client';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { createStack } from '@mui/system';
 import styled from '../styles/styled';
 import { useDefaultProps } from '../DefaultPropsProvider';

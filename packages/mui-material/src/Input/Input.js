@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import composeClasses from '@mui/utils/composeClasses';
 import deepmerge from '@mui/utils/deepmerge';
 import refType from '@mui/utils/refType';

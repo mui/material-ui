@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { GlobalStyles as SystemGlobalStyles } from '@mui/system';
 import defaultTheme from '../styles/defaultTheme';
 import THEME_ID from '../styles/identifier';

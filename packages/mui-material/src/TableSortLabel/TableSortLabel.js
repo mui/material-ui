@@ -1,7 +1,7 @@
 'use client';
 import composeClasses from '@mui/utils/composeClasses';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import * as React from 'react';
 import ButtonBase from '../ButtonBase';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';

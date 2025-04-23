@@ -1,6 +1,6 @@
 'use client';
 import { createBox } from '@mui/system';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { createTheme } from '../styles';
 import THEME_ID from '../styles/identifier';

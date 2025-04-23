@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { Transition } from 'react-transition-group';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';

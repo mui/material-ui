@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import clsx from 'clsx';
 import { alpha } from '@mui/system/colorManipulator';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';

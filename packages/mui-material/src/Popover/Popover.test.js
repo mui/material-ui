@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import Modal, { modalClasses } from '@mui/material/Modal';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Popover, { popoverClasses as classes, PopoverPaper } from '@mui/material/Popover';

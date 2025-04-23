@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { fireEvent, createRenderer } from '@mui/internal-test-utils';
 import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';

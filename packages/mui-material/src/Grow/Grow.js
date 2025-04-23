@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import useTimeout from '@mui/utils/useTimeout';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import getReactElementRef from '@mui/utils/getReactElementRef';

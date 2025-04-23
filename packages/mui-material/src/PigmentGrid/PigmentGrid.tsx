@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types-compat';
 import { OverridableComponent, OverrideProps } from '@mui/types';
 import { SxProps } from '@mui/system';
 // @ts-ignore
