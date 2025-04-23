@@ -106,6 +106,7 @@
     "utils": "Utils",
     "/material-ui/react-click-away-listener": "Click-Away Listener",
     "/material-ui/react-css-baseline": "CSS Baseline",
+    "/material-ui/react-init-color-scheme-script": "InitColorSchemeScript",
     "/material-ui/react-modal": "Modal",
     "/material-ui/react-no-ssr": "No SSR",
     "/material-ui/react-popover": "Popover",
