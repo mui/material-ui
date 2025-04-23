@@ -6,6 +6,7 @@ import fse from 'fs-extra';
 import yargs from 'yargs';
 import Piscina from 'piscina';
 import { loadConfig } from './configLoader.js';
+import { uploadSnapshot } from './uploadSnapshot.js';
 
 const MAX_CONCURRENCY = Math.min(8, os.cpus().length);
 
@@ -14,9 +15,10 @@ const rootDir = process.cwd();
 /**
  * creates size snapshot for every bundle that built with webpack
  * @param {CommandLineArgs} args
+ * @param {BundleSizeCheckerConfig} config - The loaded configuration
  * @returns {Promise<Array<[string, { parsed: number, gzip: number }]>>}
  */
-async function getWebpackSizes(args) {
+async function getWebpackSizes(args, config) {
   const worker = new Piscina({
     filename: new URL('./worker.js', import.meta.url).href,
     maxThreads: MAX_CONCURRENCY,
@@ -24,8 +26,6 @@ async function getWebpackSizes(args) {
   // Clean and recreate the build directory
   const buildDir = path.join(rootDir, 'build');
   await fse.emptyDir(buildDir);
-
-  const config = await loadConfig(rootDir);
 
   if (
     !config ||
@@ -59,8 +59,10 @@ async function run(argv) {
 
   const snapshotDestPath = output ? path.resolve(output) : path.join(rootDir, 'size-snapshot.json');
 
+  const config = await loadConfig(rootDir);
+
   const bundleSizes = Object.fromEntries([
-    ...(await getWebpackSizes({ analyze, accurateBundles })),
+    ...(await getWebpackSizes({ analyze, accurateBundles }, config)),
   ]);
 
   // Ensure output directory exists
@@ -69,6 +71,21 @@ async function run(argv) {
 
   // eslint-disable-next-line no-console
   console.log(`Bundle size snapshot written to ${snapshotDestPath}`);
+
+  // Upload the snapshot if upload configuration is provided
+  if (config && config.upload) {
+    try {
+      // eslint-disable-next-line no-console
+      console.log('Uploading bundle size snapshot to S3...');
+      const { key } = await uploadSnapshot(snapshotDestPath, config.upload);
+      // eslint-disable-next-line no-console
+      console.log(`Bundle size snapshot uploaded to S3 with key: ${key}`);
+    } catch (/** @type {any} */ error) {
+      console.error('Failed to upload bundle size snapshot:', error.message);
+      // Exit with error code to indicate failure
+      process.exit(1);
+    }
+  }
 }
 
 yargs(process.argv.slice(2))

@@ -654,24 +654,18 @@ jobs:
       - run:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
-      - run:
-          name: create a size snapshot
-          command: pnpm size:snapshot
-
       - aws-cli/setup:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
           region: ${AWS_REGION_ARTIFACTS}
+
       - run:
-          # We'll add a bucket lifecycle policy to delete objects tagged as "pull_request" after 30 days.
-          name: Determine S3 object tags based on whether this is a PR
+          name: create and upload a size snapshot
           command: |
-            if [[ -n "${CIRCLE_PULL_REQUEST}" ]]; then
-              echo "export S3_OBJECT_TYPE_TAG=pull_request" >> $BASH_ENV
-            else
-              echo "export S3_OBJECT_TYPE_TAG=base" >> $BASH_ENV
-            fi
-            echo "export S3_OBJECT_BRANCH_TAG=<< pipeline.git.branch >>" >> $BASH_ENV
+            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
+            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
+            export AWS_REGION=$AWS_REGION_ARTIFACTS
+            pnpm size:snapshot
 
       # === LEGACY START ===
       # remove once the UI can handle the new format
@@ -688,24 +682,13 @@ jobs:
                 arguments: --content-type application/json
                 from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
+      # === LEGACY END ===
+
+      # Keep the artifact storage as a CircleCI artifact
       - store_artifacts:
           name: persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-      # === LEGACY END ===
-
-      # persist size snapshot on S3 (new format = <bucket-prefix>/<repository>/<sha1>/size-snapshot.json)
-      - aws-s3/copy:
-          arguments: --content-type application/json
-          from: size-snapshot.json
-          to: s3://mui-org-ci/artifacts/mui/material-ui/$CIRCLE_SHA1/
-      - run:
-          name: Tag size-snapshot.json
-          command: |
-            aws s3api put-object-tagging \
-              --bucket mui-org-ci \
-              --key artifacts/mui/material-ui/$CIRCLE_SHA1/size-snapshot.json \
-              --tagging "TagSet=[{Key=type,Value=$S3_OBJECT_TYPE_TAG},{Key=branch,Value=$S3_OBJECT_BRANCH_TAG}]"
 
       - run:
           name: Run danger on PRs
