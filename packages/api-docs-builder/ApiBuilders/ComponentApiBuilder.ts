@@ -735,14 +735,19 @@ export default async function generateComponentApi(
   let reactApi: ComponentReactApi;
 
   try {
-    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
-      filename,
-    });
+    reactApi = docgenParse(
+      src.replace(/prop-types-compat/gm, 'prop-types'),
+      null,
+      defaultHandlers.concat(muiDefaultPropsHandler),
+      {
+        filename,
+      },
+    );
   } catch (error) {
     // fallback to default logic if there is no `create*` definition.
     if ((error as Error).message === 'No suitable component definition found.') {
       reactApi = docgenParse(
-        src,
+        src.replace(/prop-types-compat/gm, 'prop-types'),
         (ast) => {
           let node;
           // TODO migrate to react-docgen v6, using Babel AST now
