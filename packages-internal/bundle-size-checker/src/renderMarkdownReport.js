@@ -133,7 +133,7 @@ function renderMarkdownReportContent(
   } added, ${comparison.fileCounts.removed} removed, ${comparison.fileCounts.changed} changed)\n\n`;
 
   const changedEntries = comparison.entries.filter(
-    (entry) => entry.parsed.absoluteDiff > 0 || entry.gzip.absoluteDiff > 0,
+    (entry) => Math.abs(entry.parsed.absoluteDiff) > 0 || Math.abs(entry.gzip.absoluteDiff) > 0,
   );
 
   const visibleEntries = [];
