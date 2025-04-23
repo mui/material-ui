@@ -60,7 +60,7 @@ function getChangeIcon(relative) {
   if (relative > 0) {
     return formatSymbol('▲', 'red');
   }
-  return '';
+  return ' ';
 }
 
 /**
@@ -100,7 +100,7 @@ function generateEmphasizedChange({ id: bundle, parsed, gzip }) {
   const changeParsed = formatChange(parsed.absoluteDiff, parsed.relativeDiff);
   const changeGzip = formatChange(gzip.absoluteDiff, gzip.relativeDiff);
 
-  return `**${bundle}**&emsp;&emsp;&emsp;**parsed:**${changeParsed}&emsp;**gzip:**${changeGzip}`;
+  return `**${bundle}**&emsp;**parsed:**${changeParsed} **gzip:**${changeGzip}`;
 }
 
 /**
