@@ -16,10 +16,14 @@ const classes = {
   root: `${PREFIX}-root`,
   icon: `${PREFIX}-icon`,
   badge: `${PREFIX}-badge`,
-  transparentBadge: `${PREFIX}-transparentBadge`,
+  transparentBadge: `${PREFIX}-transparentBadge`
 };
 
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
+const StyledIconButton = styled(IconButton)((
+  {
+    theme
+  }
+) => ({
   [`&.${classes.root}`]: {
     padding: 8,
     '&&&': {
@@ -41,7 +45,7 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
   [`& .${classes.transparentBadge}`]: {
     backgroundColor: theme.palette.common.white,
     color: theme.palette.primary.main,
-  },
+  }
 }));
 
 // eslint-disable-next-line react/display-name
@@ -50,7 +54,7 @@ const LinkToCart = React.forwardRef((linkProps, ref) => (
 ));
 
 function AppAppBarCart(props) {
-  const { className, variant, cart, transparent } = props;
+  const {  className, variant, cart, transparent } = props;
   const count = cart.count || 0;
 
   return variant === 'text' ? (
@@ -90,4 +94,7 @@ AppAppBarCart.defaultProps = {
   variant: 'icon',
 };
 
-export default recompose.compose(connect((state) => ({ cart: state.data.cart })))(AppAppBarCart);
+export default recompose.compose(
+  
+  connect((state) => ({ cart: state.data.cart })),
+)(AppAppBarCart);
