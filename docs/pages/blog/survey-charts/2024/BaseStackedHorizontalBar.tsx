@@ -25,7 +25,7 @@ export default function BaseStackedHorizontalBar(props) {
     
   });
   
-  console.log("series", series);
+  // console.log("series", series);
   return (
     <Box sx={{ width: '100%' }}>
     <BarChart

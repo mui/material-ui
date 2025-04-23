@@ -2,30 +2,40 @@ import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import Box from "@mui/material/Box";
 import { DefaultizedPieValueType } from "@mui/x-charts/models";
-import { fontWeight } from "@mui/system";
-import { light } from "@mui/material/styles/createPalette";
+// import { fontWeight } from "@mui/system";
+// import { light } from "@mui/material/styles/createPalette";
 
+interface DataItem {
+  label: string;
+  value: number;
+}
 
-export default function BasePie(props) {
+export default function BasePie(props: { data: DataItem[], angle: number, margin: Object, legend: Object } ) {
   const data = props.data;
 
-  const legend = props.legend
-    ? props.legend
-    : {
-        direction: "column",
-        position: {
-          vertical: "middle",
-          horizontal: "right"
-        }
-      };
+  // const legend = props.legend
+  //   ? props.legend
+  //   : {
+  //       direction: "column",
+  //       position: {
+  //         vertical: "middle",
+  //         horizontal: "right"
+  //       },
+  //       labelStyle: {
+  //         fontSize: 14,
+  //         fill: 'black',
+  //         fontWeight: 'light',
+  //       },
+  //     };
 
   
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
 
-  const getArcLabel = (params: DefaultizedPieValueType) => {
+  const getArcLabel = (params: DefaultizedPieValueType ) => {
     const percent = params.value / TOTAL;
     return percent > 0.04 ? `${(percent * 100).toFixed(2)}%` : "";
   };
+
   const startAngle = props.angle ? props.angle : 0;
   const endAngle = props.angle ? 360 + props.angle : 360;
   const margin = props.margin || { right: 260, bottom: 10, top: 10 };
@@ -33,7 +43,6 @@ export default function BasePie(props) {
     <Box sx={{ width: '100%' }}>
     <PieChart
       margin={margin}
-      
       series={[
         {
           data: data,
@@ -64,9 +73,10 @@ export default function BasePie(props) {
             fill: 'black',
             fontWeight: 'light',
           },
-        },
+        }
+        ,
       }}
-      legend={legend}
+      // legend={legend}
       // width={500}
       height={400}
     />

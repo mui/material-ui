@@ -13,7 +13,13 @@ import Box from "@mui/material/Box";
 //   return tickValues;
 // }
 
-function XBar(props) {
+interface DataItem {
+  label: string;
+  value: number;
+}
+
+
+function XBar(props: {data: DataItem[]}) {
   const data = props.data;
   const dataX = data.map((d) => d.label);
   const dataY = data.map((d) => d.value);
@@ -30,7 +36,7 @@ function XBar(props) {
   );
 }
 
-export default function BaseHorizontalBar(props) {
+export default function BaseHorizontalBar(props: {data: DataItem[]}) {
   const { data } = props;
   return <XBar data={data} />;
 }

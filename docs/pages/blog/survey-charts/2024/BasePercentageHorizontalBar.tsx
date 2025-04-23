@@ -23,10 +23,15 @@ import Box from "@mui/material/Box";
 //   return tickValues;
 // }
 
-function XBar(props) {
+interface DataItem {
+  label: string;
+  value: number;
+}
+
+function XBar(props: { data: DataItem[] }) {
   const data = props.data;
   const dataY = data.map((d) => d.label);
-  const dataX = data.map((d) => `${d.value}%`);
+  const dataX = data.map((d) => (d.value));
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -42,9 +47,10 @@ function XBar(props) {
     <BarChart
       margin={{ top: 5, right: 10, bottom: 50, left: 200 }}
       yAxis={[{ scaleType: "band", data: dataY, tickPlacement: 'middle' }]}
-      series={[{ type: 'bar', data: dataX }]}
+      series={[{ type: 'bar', data: dataX, valueFormatter: (value) => `${value}%`}]}
       height={400}
       layout="horizontal"
+      
       // slotProps={{
       //   legend: {
       //     sx: {
@@ -75,12 +81,13 @@ function XBar(props) {
 }
 
 
-export default function BasePercentageHorizontalBar(props) {
+
+export default function BasePercentageHorizontalBar(props: {data: DataItem[], total: number}) {
   const { data, total } = props;
 
   const dataWithPercentage = data.map((d) => ({
     ...d,
-    value: ((d.value / total) * 100).toFixed(2),
+    value: parseFloat(((d.value / total) * 100).toFixed(2)),
     originalValue: d.value
   }));
 
