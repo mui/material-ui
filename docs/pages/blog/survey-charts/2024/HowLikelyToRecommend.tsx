@@ -8,5 +8,12 @@ const data = [
 ];
 
 export default function HowLikelyToRecommend() {
-  return <BasePercentageHorizontalBar yAxisWidth={80} height={300} data={data} total={1167} />;
+  return (
+    <BasePercentageHorizontalBar
+      // yAxisWidth={80}
+      // height={300}
+      data={data}
+      total={1167}
+    />
+  );
 }

@@ -10,5 +10,11 @@ const data = [
 ];
 
 export default function HowManyInternalApps() {
-  return <BasePercentageHorizontalBar yAxisWidth={80} data={data} total={775} />;
+  return (
+    <BasePercentageHorizontalBar
+      // yAxisWidth={80}
+      data={data}
+      total={775}
+    />
+  );
 }

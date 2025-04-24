@@ -11,5 +11,11 @@ const data = [
 ];
 
 export default function HowManyInternalAppUsers() {
-  return <BasePercentageHorizontalBar yAxisWidth={80} data={data} total={724} />;
+  return (
+    <BasePercentageHorizontalBar
+      // yAxisWidth={80}
+      data={data}
+      total={724}
+    />
+  );
 }

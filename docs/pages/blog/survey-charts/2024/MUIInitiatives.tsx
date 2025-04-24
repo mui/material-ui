@@ -77,6 +77,15 @@ const barProperties = [
   },
 ];
 
+const totalAnswers = 1094;
+
 export default function MUIInitiatives() {
-  return <BaseStackedHorizontalBar data={data} barProperties={barProperties} yAxisWidth={160} />;
+  return (
+    <BaseStackedHorizontalBar
+      data={data}
+      barProperties={barProperties}
+      total={totalAnswers}
+      // yAxisWidth={160}
+    />
+  );
 }

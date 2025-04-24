@@ -95,9 +95,9 @@ export default function HowCanWeImproveMUI() {
   return (
     <BasePercentageHorizontalBar
       total={716}
-      yAxisWidth={140}
-      height={1000}
-      minLabelValue={1.4}
+      // yAxisWidth={140}
+      // height={1000}
+      // minLabelValue={1.4}
       data={data}
     />
   );

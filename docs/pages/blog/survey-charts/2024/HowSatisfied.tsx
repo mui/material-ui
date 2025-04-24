@@ -86,6 +86,10 @@ const barProperties = [
   },
 ];
 
+const totalAnswers = 1161;
+
 export default function HowSatisfied() {
-  return <BaseStackedHorizontalBar data={data} barProperties={barProperties} />;
+  return (
+    <BaseStackedHorizontalBar data={data} total={totalAnswers} barProperties={barProperties} />
+  );
 }

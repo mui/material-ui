@@ -2,8 +2,8 @@ import * as React from 'react';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import Box from '@mui/material/Box';
 import { DefaultizedPieValueType } from '@mui/x-charts/models';
-// import { fontWeight } from "@mui/system";
-// import { light } from "@mui/material/styles/createPalette";
+import type { ChartsLegendProps } from '@mui/x-charts/ChartsLegend';
+import Typography from '@mui/material/Typography';
 
 interface DataItem {
   label: string;
@@ -12,9 +12,9 @@ interface DataItem {
 
 export default function BasePie(props: {
   data: DataItem[];
-  angle: number;
+  angle?: number;
   margin?: Object;
-  legend?: Object;
+  legend?: Partial<ChartsLegendProps>;
   height?: number;
 }) {
   const data = props.data;
@@ -23,7 +23,7 @@ export default function BasePie(props: {
   const height = props.height || 400;
   const legend = props.legend
     ? props.legend
-    : {
+    : ({
         direction: 'column',
         position: {
           vertical: 'middle',
@@ -34,7 +34,7 @@ export default function BasePie(props: {
           fill: 'black',
           fontWeight: 'light',
         },
-      };
+      } as Partial<ChartsLegendProps>);
 
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
 
@@ -47,7 +47,7 @@ export default function BasePie(props: {
   const endAngle = props.angle ? 360 + props.angle : 360;
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', position: 'relative', textAlign: 'center' }}>
       <PieChart
         margin={margin}
         height={height}
@@ -78,6 +78,22 @@ export default function BasePie(props: {
           legend: { ...legend },
         }}
       />
+      <Box sx={{ position: 'absolute', bottom: 10, width: '100%', fontSize: 14 }}>
+        <Typography
+          sx={(theme) => ({
+            fontSize: theme.typography.pxToRem(13),
+            marginTop: 8,
+            textAlign: 'center',
+            color: (theme.vars || theme).palette.grey[700],
+            '& a': {
+              color: 'inherit',
+              textDecoration: 'underline',
+            },
+          })}
+        >
+          {TOTAL} respondents.
+        </Typography>
+      </Box>
     </Box>
   );
 }

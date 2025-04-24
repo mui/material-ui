@@ -59,6 +59,10 @@ const barProperties = [
   },
 ];
 
+const totalAnswers = 1077;
+
 export default function HowComfortableWithTechnologies() {
-  return <BaseStackedHorizontalBar data={data} barProperties={barProperties} />;
+  return (
+    <BaseStackedHorizontalBar data={data} barProperties={barProperties} total={totalAnswers} />
+  );
 }

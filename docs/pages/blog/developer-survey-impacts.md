@@ -61,8 +61,6 @@ Overall, the community is more diverse, and virtually every other category had t
 
 {{"chart": "2024/CommunityJobs"}}
 
-<p class="blog-description">1907 respondents.</p>
-
 ### How did you first hear about MUI?
 
 The majority of community members heard about MUI through their workplaces, indicating MUI's widespread use in various companies. Interestingly but not surpring, a substantial number of people are learning about MUI through online videos.
@@ -72,23 +70,17 @@ Thank you, and let us know what you're making!
 
 {{"chart": "2024/FirstHearAboutMUI"}}
 
-<p class="blog-description">1895 respondents.</p>
-
 ### What are you building?
 
 Almost half of the community, around 45%, are engaged in building enterprise products on a variety of usages; 41% are involved in user-facing dashboards, and 35% are using MUI products to quickly build internal tools.
 
 {{"chart": "2024/WhatCommunityIsBuilding"}}
 
-<p class="blog-description">1899 respondents.</p>
-
 ### Who are you building the app for?
 
 Very similar to the previous survey, a significant proportion of the community (65%) is developing products for the companies they work at, but we've seen a significant rise in work for clients, from 12% previously to over 45% in 2022.
 
 {{"chart": "2024/WhoCommunityBuildsFor"}}
-
-<p class="blog-description">1896 respondents.</p>
 
 ## About Your Needs
 
@@ -98,8 +90,6 @@ If MUI ceased to exist, 64% of the community would be very disappointed. A very 
 This rise is within the survey's margin of error, though. Our goal is to continuously focus on user feedback and innovating our offerings to get a more significant increase in the future.
 
 {{"chart": "2024/HowDisappointingWithoutMUI"}}
-
-<p class="blog-description">1163 respondents.</p>
 
 ### How likely is it that you would recommend MUI to a friend or colleague?
 
@@ -111,16 +101,12 @@ Our NPS decreased 6 points, and roughly 5% of the community stopped being a prom
 
 {{"chart": "2024/HowLikelyToRecommend"}}
 
-<p class="blog-description">1163 respondents.</p>
-
 ### What are your most important criteria for choosing a UI library?
 
 When it comes to community priorities for choosing a library, "design and look and feel" still ranks first when looking the percentages for the first priority. But overall, documentation quality reached for the first time the highest score. The score is based on the weight of the option overall in all the answers.
 Documentation along with design and customizability, are paramount to both the community and MUI.
 
 {{"chart": "2024/MostImportantCriteriaToPickLibrary"}}
-
-<p class="blog-description">1151 respondents.</p>
 
 ### How satisfied are you with MUI products?
 
@@ -132,8 +118,6 @@ It is crucial for us to increase the visibility of these tools and encourage mor
 We also see a big opportunity to reach those that are already interested in trying other MUI products.
 
 {{"chart": "2024/HowSatisfied"}}
-
-<p class="blog-description">1161 respondents.</p>
 
 ### What is the main benefit you receive from using MUI libraries?
 
@@ -147,8 +131,6 @@ The following chart is the top 20 most flagged benefits.
 
 {{"chart": "2024/BenefitsMUI"}}
 
-<p class="blog-description">826 respondents</p>
-
 ### How can we improve MUI for you?
 
 There's a clear desire for More components, and Charts is the top1 mention in this regard.
@@ -160,16 +142,12 @@ Here are the Top 25 Categorized community requests.
 
 {{"chart": "2024/HowCanWeImproveMUI"}}
 
-<p class="blog-description">716 respondents</p>
-
 ### Please rate the following statements (our differentiators)
 
 We are pleased to know that 88% of the community finds it easy to create visually appealing UIs using MUI.
 However, we are keen to understand and address the concerns of the 10% who find the components not as easily customizable; we passionately want to fix your pain points, and we're exploring BaseUI and other solutions to bring a concrete answer to your needs.
 
 {{"chart": "2024/MUIDiferentiators"}}
-
-<p class="blog-description">1107 respondents</p>
 
 ### Please rate the following statements (our initiatives)
 
@@ -182,8 +160,6 @@ We're now testing a priority support offering that covers Material UI, Base UI a
 
 {{"chart": "2024/MUIInitiatives"}}
 
-<p class="blog-description">1094 respondents.</p>
-
 ## Community workspaces
 
 ### Where is your company based? (Country or Region)
@@ -193,15 +169,11 @@ This likely means that the channels we use to reach the community might be a bit
 
 {{"chart": "2024/WhereAreCompaniesBased"}}
 
-<p class="blog-description">1068 respondents</p>
-
 ### How many front-end or full-stack developers are on your team?
 
 Teams with more than 5 developers are the most common, followed by teams with a single developer responsible for UIs.
 
 {{"chart": "2024/HowManyFETeam"}}
-
-<p class="blog-description">1077 respondents.</p>
 
 ### How many front-end or full-stack developers are in your company?
 
@@ -209,13 +181,9 @@ Almost half, 48%, of the respondents, work in small tech departments with up to 
 
 {{"chart": "2024/HowManyFECompany"}}
 
-<p class="blog-description">1069 respondents.</p>
-
 ### How many total employees work at your company?
 
 {{"chart": "2024/HowManyEmployeesTotal"}}
-
-<p class="blog-description">1068 respondent</p>
 
 ## Community technical environment
 
@@ -225,8 +193,6 @@ Most developers are comfortable with Javascript and React. However, we see a dro
 
 {{"chart": "2024/HowComfortableWithTechnologies"}}
 
-<p class="blog-description">1077 respondents.</p>
-
 ### What styling solutions are you using?
 
 It is encouraging to see that 79% have adopted the MUI System to build styles, indicating a positive shift away from the legacy style system.
@@ -235,13 +201,9 @@ We hear you, and we want to provide the best platform to connect with your favor
 
 {{"chart": "2024/WhatStylingSolutions"}}
 
-<p class="blog-description">1074 respondents.</p>
-
 ### What other UI libraries do you use? What would you say are their strongest and weakest points?
 
 {{"chart": "2024/WhatOtherLibrariesDoYouUse"}}
-
-<p class="blog-description">354 respondents.</p>
 
 ## Experience with MUI X
 
@@ -251,8 +213,6 @@ Over 65% of the community uses MUI X components, showcasing the popularity and v
 
 {{"chart": "2024/UsingMUIX"}}
 
-<p class="blog-description">1108 respondents.</p>
-
 ### What benefits do you get from the Data Grid?
 
 The survey results highlight that development speed is an important benefit the community get.
@@ -260,8 +220,6 @@ Surprisingly, column management emerged as the top use case among users of the c
 The community seem to value a lot the ability to effectively control and manipulate data presentation on the user level.
 
 {{"chart": "2024/BenefitsDataGrid"}}
-
-<p class="blog-description">323 respondents.</p>
 
 ### How can we improve MUI X for you?
 
@@ -274,13 +232,9 @@ Your Feedback also indicate a specific pain point with server-side integration, 
 
 {{"chart": "2024/HowCanWeImproveMUIX"}}
 
-<p class="blog-description">123 respondents.</p>
-
 ### What challenges do you face today that, if solved, could make you consider purchasing a commercial license?
 
 {{"chart": "2024/WhatChallengesMakeYouConsiderCommercialLicense"}}
-
-<p class="blog-description">124 respondents.</p>
 
 ### Is a perpetual license in development important for you?
 
@@ -288,8 +242,6 @@ All our licenses, MIT and Commercial, are already perpetual in production.
 But we understand the importance of providing a perpetual alternative in development mode, as indicated by 77% of the community. Considering your feedback, We're bringing more alternative to the current model, so you can use MUI X libraries on the model that best suits your requirements. You can already access a perpetual in development license in our [pricing page](https://www.mui.com/pricing/).
 
 {{"chart": "2024/PerpetualLicenseImportance"}}
-
-<p class="blog-description">436 respondents.</p>
 
 ## Perception of low code tools
 
@@ -299,15 +251,11 @@ Our survey revealed that over 60% of respondents have not been exposed to low-co
 
 {{"chart": "2024/LowCodeToolsFamiliarity"}}
 
-<p class="blog-description">955 respondents.</p>
-
 ### What are your 3 most important features in a low-code tool to build admin apps?
 
 The ability to import and export code freely and easily emerged as a key expectation for low code for our community members, along with great documentation and look and feel of the output. We are attempting to address them through [MUI Toolpad](https://mui.com/toolpad/).
 
 {{"chart": "2024/MostImportantLowCodeTools"}}
-
-<p class="blog-description">467 respondents.</p>
 
 ### How many internal apps (interfaces for business operation) do you currently have in your organization?
 
@@ -315,21 +263,15 @@ About 60% of respondents have between 1-5 internal applications within their com
 
 {{"chart": "2024/HowManyInternalApps"}}
 
-<p class="blog-description">775 respondents.</p>
-
 ### How many people have access to the above apps?
 
 {{"chart": "2024/HowManyInternalAppUsers"}}
-
-<p class="blog-description">724 respondents.</p>
 
 ### How do your existing internal tools integrate the front end with the back end?
 
 The vast majority, 88%, utilize REST APIs as the backend for their internal applications, reflecting the popularity of this approach.
 
 {{"chart": "2024/ServerAPIs"}}
-
-<p class="blog-description">790 respondents.</p>
 
 ### Which low-code products did you use?
 
@@ -338,8 +280,6 @@ The community uses a wide variety of low-code products for use cases like intern
 Note: It was a broad question and in the chart below, we only showed products whose occurence was 3 or more. Apart from these, 90 more such tools were mentioned!
 
 {{"chart": "2024/LowCodeToolsNames"}}
-
-<p class="blog-description">160 respondents.</p>
 
 ## Conclusion
 

@@ -12,5 +12,11 @@ const data = [
 ];
 
 export default function HowManyFECompany() {
-  return <BasePercentageHorizontalBar yAxisWidth={130} data={data} total={1069} />;
+  return (
+    <BasePercentageHorizontalBar
+      // yAxisWidth={130}
+      data={data}
+      total={1069}
+    />
+  );
 }

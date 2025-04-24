@@ -10,5 +10,11 @@ const data = [
 ];
 
 export default function LowCodeToolsFamiliarity() {
-  return <BasePercentageHorizontalBar yAxisWidth={140} total={955} data={data} />;
+  return (
+    <BasePercentageHorizontalBar
+      // yAxisWidth={140}
+      total={955}
+      data={data}
+    />
+  );
 }

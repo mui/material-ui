@@ -86,6 +86,15 @@ const barProperties = [
   },
 ];
 
+const totalAnswers = 1107;
+
 export default function MUIDiferentiators() {
-  return <BaseStackedHorizontalBar data={data} barProperties={barProperties} yAxisWidth={180} />;
+  return (
+    <BaseStackedHorizontalBar
+      data={data}
+      total={totalAnswers}
+      barProperties={barProperties}
+      // yAxisWidth={180}
+    />
+  );
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 // import { ResponsiveChartContainer } from '@mui/x-charts/ResponsiveChartContainer';
 
 // function roundToNearest(num) {
@@ -28,16 +29,23 @@ interface DataItem {
   value: number;
 }
 
-function XBar(props: { data: DataItem[]; margin?: Object; height?: number }) {
+interface ExtendedDataItem extends DataItem {
+  originalValue: number;
+  total: number;
+}
+
+function XBar(props: { data: ExtendedDataItem[]; margin?: Object; height?: number }) {
   const data = props.data;
   const dataY = data.map((d) => d.label);
   const dataX = data.map((d) => d.value);
 
-  const margin = props.margin || { top: 5, right: 10, bottom: 50, left: 200 };
+  const TOTAL = props.data.length > 0 ? props.data[0].total : 0;
+
+  const margin = props.margin || { top: 5, right: 10, bottom: 80, left: 200 };
   const height = props.height || 400;
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', position: 'relative', textAlign: 'center' }}>
       {/* <Box sx={{
   ' .MuiChartsAxis-tickLabel': {
     maxWidth: 200,
@@ -79,6 +87,22 @@ function XBar(props: { data: DataItem[]; margin?: Object; height?: number }) {
         // }}
       />
       {/* </Box> */}
+      <Box sx={{ position: 'absolute', bottom: 10, width: '100%', fontSize: 14 }}>
+        <Typography
+          sx={(theme) => ({
+            fontSize: theme.typography.pxToRem(13),
+            marginTop: 8,
+            textAlign: 'center',
+            color: (theme.vars || theme).palette.grey[700],
+            '& a': {
+              color: 'inherit',
+              textDecoration: 'underline',
+            },
+          })}
+        >
+          {TOTAL} respondents.
+        </Typography>
+      </Box>
     </Box>
   );
 }
@@ -90,6 +114,7 @@ export default function BasePercentageHorizontalBar(props: { data: DataItem[]; t
     ...d,
     value: parseFloat(((d.value / total) * 100).toFixed(2)),
     originalValue: d.value,
+    total: props.total,
   }));
 
   return <XBar data={dataWithPercentage} />;

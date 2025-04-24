@@ -49,14 +49,19 @@ export default function BenefitsDataGrid() {
   return (
     <React.Fragment>
       <h2>MIT</h2>
-      <BasePercentageHorizontalBar total={323} yAxisWidth={170} formattedData data={mitData} />
+      <BasePercentageHorizontalBar
+        total={323}
+        // yAxisWidth={170}
+        // formattedData
+        data={mitData}
+      />
       <h2>Commercial</h2>
       <BasePercentageHorizontalBar
         total={239}
-        yAxisWidth={170}
+        // yAxisWidth={170}
         data={commercialData}
-        formattedData
-        height={900}
+        // formattedData
+        // height={900}
       />
     </React.Fragment>
   );

@@ -38,9 +38,9 @@ export default function BenefitsMUI() {
   return (
     <BasePercentageHorizontalBar
       total={826}
-      yAxisWidth={140}
-      height={800}
-      minLabelValue={4}
+      // yAxisWidth={140}
+      // height={800}
+      // minLabelValue={4}
       data={data}
     />
   );
