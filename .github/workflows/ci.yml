@@ -66,3 +66,12 @@ jobs:
         run: |
           git remote -v
           pnpm release:tag --dryRun
+
+  codecov-step:
+    name: Codecov
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload coverage to Codecov
+        run: pnpm codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN || ''}}
