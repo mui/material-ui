@@ -144,7 +144,7 @@ export interface InputBaseProps
    *
    * Notice that the first argument (event) might be undefined.
    */
-  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   /**
    * Callback fired when the value is changed.
    *
