@@ -148,12 +148,13 @@ Make sure that your application is still running without errors, and commit the 
 Install the Material UI v5 packages.
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
-npm install @mui/material @mui/styles
+npm install @mui/material@^5.0.0 @mui/styles@^5.0.0
 ```
 
 ```bash yarn
-yarn add @mui/material @mui/styles
+yarn add @mui/material@^5.0.0 @mui/styles@^5.0.0
 ```
 
 </codeblock>
@@ -163,12 +164,13 @@ If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to ins
 ### `@material-ui/lab`
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
-npm install @mui/lab
+npm install @mui/lab@^5.0.0-alpha
 ```
 
 ```bash yarn
-yarn add @mui/lab
+yarn add @mui/lab@^5.0.0-alpha
 ```
 
 </codeblock>
@@ -176,12 +178,13 @@ yarn add @mui/lab
 ### `@material-ui/icons`
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
-npm install @mui/icons-material
+npm install @mui/icons-material@^5.0.0
 ```
 
 ```bash yarn
-yarn add @mui/icons-material
+yarn add @mui/icons-material@^5.0.0
 ```
 
 </codeblock>

@@ -22,15 +22,15 @@ To install and save in your `package.json` dependencies, run one of the followin
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/lab @mui/material
+npm install @mui/lab@^5.0.0-alpha @mui/material@^5.0.0
 ```
 
 ```bash yarn
-yarn add @mui/lab @mui/material
+yarn add @mui/lab@^5.0.0-alpha @mui/material@^5.0.0
 ```
 
 ```bash pnpm
-pnpm add @mui/lab @mui/material
+pnpm add @mui/lab@^5.0.0-alpha @mui/material@^5.0.0
 ```
 
 </codeblock>
