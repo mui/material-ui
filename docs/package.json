@@ -94,7 +94,7 @@
     "react-final-form": "^6.5.9",
     "react-imask": "^7.6.1",
     "react-intersection-observer": "^9.16.0",
-    "react-is": "^19.1.0",
+    "react-is": "^18.3.1 || ^19.1.0",
     "react-number-format": "^5.4.4",
     "react-router": "^7.5.1",
     "react-runner": "^1.0.5",

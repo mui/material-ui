@@ -43,7 +43,7 @@
     "@types/prop-types": "^15.7.14",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^19.1.0"
+    "react-is": "^18.3.1 || ^19.1.0"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
