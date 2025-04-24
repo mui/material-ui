@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { DefaultizedPieValueType } from '@mui/x-charts/models';
 import type { ChartsLegendProps } from '@mui/x-charts/ChartsLegend';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 
 interface DataItem {
   label: string;
@@ -17,6 +18,7 @@ export default function BasePie(props: {
   legend?: Partial<ChartsLegendProps>;
   height?: number;
 }) {
+  const theme = useTheme();
   const data = props.data;
 
   const margin = props.margin || { right: 260, bottom: 10, top: 10 };
@@ -31,7 +33,7 @@ export default function BasePie(props: {
         },
         labelStyle: {
           fontSize: 14,
-          fill: 'black',
+          fill: theme.palette.text.secondary,
           fontWeight: 'light',
         },
       } as Partial<ChartsLegendProps>);
@@ -64,13 +66,12 @@ export default function BasePie(props: {
           },
         ]}
         sx={{
-          [`& .${pieArcLabelClasses.root}`]: {
+          [`& .${pieArcLabelClasses.root}`]: () => ({
             fill: 'white',
-            fontSize: 16,
+            fontSize: theme.typography.pxToRem(16),
             fontWeight: 400,
-            fontFamily: 'Montserrat',
             pointerEvents: 'none',
-          },
+          }),
           '--ChartsLegend-rootOffsetX': '25px',
           '--ChartsLegend-rootOffsetY': '-380px',
         }}
@@ -80,7 +81,7 @@ export default function BasePie(props: {
       />
       <Box sx={{ position: 'absolute', bottom: 10, width: '100%', fontSize: 14 }}>
         <Typography
-          sx={(theme) => ({
+          sx={() => ({
             fontSize: theme.typography.pxToRem(13),
             marginTop: 8,
             textAlign: 'center',

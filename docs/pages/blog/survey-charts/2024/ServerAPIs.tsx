@@ -9,5 +9,10 @@ const data = [
 ];
 
 export default function ServerAPIs() {
-  return <BasePercentageHorizontalBar yAxisWidth={90} data={data} total={790} minLabelValue={5} />;
+  return <BasePercentageHorizontalBar 
+  // yAxisWidth={90} 
+  data={data} 
+  total={790} 
+  // minLabelValue={5}
+   />;
 }

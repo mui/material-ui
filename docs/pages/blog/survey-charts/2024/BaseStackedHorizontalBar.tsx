@@ -53,11 +53,16 @@ export default function BaseStackedHorizontalBar(props: {
       // Ensure the value is a number or null, default to null if undefined or not a number
       return typeof value === 'number' ? value : null;
     });
-    return { data: barPropertyData, label: p.label, stack: 'stack' };
+    return {
+      data: barPropertyData,
+      label: p.label,
+      stack: 'stack',
+      valueFormatter: (value: number | null) => (value === null ? '' : `${value}%`),
+    };
   });
 
   const TOTAL = props.total;
-  const margin = props.margin || { top: 5, right: 10, bottom: 125, left: 200 };
+  const margin = props.margin || { top: 5, right: 10, bottom: 125, left: 150 };
   const height = props.height || 500;
 
   const legend = props.legend
@@ -75,11 +80,31 @@ export default function BaseStackedHorizontalBar(props: {
         },
       } as Partial<ChartsLegendProps>);
 
+  // ---- Add truncation logic ----
+  const MAX_LABEL_LENGTH = 20; // Adjust as needed
+
+  const truncateLabel = (label: string) => {
+    if (label.length > MAX_LABEL_LENGTH) {
+      return `${label.substring(0, MAX_LABEL_LENGTH)}...`;
+    }
+    return label;
+  };
+  // -----------------------------
+
   // console.log("series", series);
   return (
     <Box sx={{ width: '100%', position: 'relative', textAlign: 'center' }}>
       <BarChart
-        yAxis={[{ scaleType: 'band', data: dataX, tickPlacement: 'middle' }]}
+        yAxis={[{
+          scaleType: 'band',
+          data: dataX, // Ensure this uses original labels
+          tickPlacement: 'middle',
+          // Add axis valueFormatter with conditional logic
+          valueFormatter: (label, context) =>
+            context.location === 'tick'
+              ? truncateLabel(label) // Truncated for axis tick
+              : label, // Full label for tooltip header
+        }]}
         series={series}
         height={height}
         layout="horizontal"

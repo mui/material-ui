@@ -25,12 +25,33 @@ function XBar(props: { data: DataItem[]; margin?: Object; height?: number; total
   const dataY = data.map((d) => d.value);
 
   const TOTAL = props.total;
-  const margin = props.margin || { top: 5, right: 10, bottom: 80, left: 200 };
+  const margin = props.margin || { top: 5, right: 10, bottom: 80, left: 150 };
   const height = props.height || 400;
+
+  // ---- Add truncation logic ----
+  const MAX_LABEL_LENGTH = 20; // Adjust as needed
+
+  const truncateLabel = (label: string) => {
+    if (label.length > MAX_LABEL_LENGTH) {
+      return `${label.substring(0, MAX_LABEL_LENGTH)}...`;
+    }
+    return label;
+  };
+  // -----------------------------
+
   return (
     <Box sx={{ width: '100%', position: 'relative', textAlign: 'center' }}>
       <BarChart
-        yAxis={[{ scaleType: 'band', data: dataX, tickPlacement: 'middle' }]}
+        yAxis={[{
+          scaleType: 'band',
+          data: dataX, // Use original labels
+          tickPlacement: 'middle',
+          // Add axis valueFormatter with conditional logic
+          valueFormatter: (label, context) =>
+            context.location === 'tick'
+              ? truncateLabel(label) // Truncated for axis tick
+              : label, // Full label for tooltip header
+        }]}
         series={[{ data: dataY }]}
         height={height}
         margin={margin}

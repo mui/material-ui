@@ -385,11 +385,14 @@ export default function TopLayoutSurvey(props) {
             let LoadedComponent;
 
             try {
+              // eslint issues to be fixed later
+              // eslint-disable-next-line import/no-dynamic-require, global-require
               LoadedComponent = require(
                 `docs/pages/blog/survey-charts/${relativePath}.jsx`,
               ).default;
             } catch (error) {
               try {
+                // eslint-disable-next-line import/no-dynamic-require, global-require
                 LoadedComponent = require(
                   `docs/pages/blog/survey-charts/${relativePath}.tsx`,
                 ).default;
