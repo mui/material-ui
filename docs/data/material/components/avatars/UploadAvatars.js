@@ -4,6 +4,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 
 export default function UploadAvatars() {
   const [avatarSrc, setAvatarSrc] = React.useState(undefined);
+
   const handleAvatarChange = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -15,9 +16,11 @@ export default function UploadAvatars() {
       reader.readAsDataURL(file);
     }
   };
+
   return (
     <ButtonBase
       component="label"
+      role={undefined}
       tabIndex={-1} // prevent label from tab focus
       aria-label="Avatar image"
       sx={{
@@ -31,6 +34,7 @@ export default function UploadAvatars() {
       <Avatar alt="Upload new avatar" src={avatarSrc} />
       <input
         type="file"
+        accept="image/*"
         style={{
           border: 0,
           clip: 'rect(0 0 0 0)',
