@@ -262,6 +262,50 @@ export default function GlobalCssSliderDeep() {
 }
 ```
 
+### Custom pseudo-classes with CSS Modules
+
+Material UI utilizes global classes to indicate component states. When using CSS Modules, all styles are locally scoped by default, which means targeting these global classes requires a different approach.
+
+To override or customize these global classes in combination with your own local ones, you can use the `:global` selector.
+
+The following example shows how to apply a custom style when a list item is selected, combining the `.Mui-selected` global class with a locally scoped class from a CSS Module:
+
+```css title="CssModulesSliderCustomPseudoClasses.css"
+.myListItem {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Only applies styles when both .Mui-selected and the local class are present */
+:global(.Mui-selected).myListItem {
+  background-color: #1976d2;
+  color: white;
+}
+```
+
+```jsx title="CssModulesSliderCustomPseudoClasses.js"
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import styles from './MyList.module.css';
+
+export default function MyList() {
+  return (
+    <List>
+      <ListItem className={styles.myListItem} selected>
+        <ListItemText primary="Selected item" />
+      </ListItem>
+      <ListItem className={styles.myListItem}>
+        <ListItemText primary="Regular item" />
+      </ListItem>
+    </List>
+  );
+}
+```
+
+This allows you to apply custom styles only when the component is in a specific Material UI state while still use CSS Modules.
+
 ## Styled Components
 
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star)
