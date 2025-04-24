@@ -72,7 +72,7 @@ You will own the following responsibilities:
 
 Depending on the day, you'll:
 
-- **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
+- **Interact with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier-to-understand error messages, and writing documentation and blog posts about features you ship.
