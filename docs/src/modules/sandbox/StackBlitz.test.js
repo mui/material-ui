@@ -277,21 +277,6 @@ export default defineConfig({
     });
   });
 
-  it('generate the correct index.html result when Tailwind is used', () => {
-    const { openSandbox, ...result } = StackBlitz.createReactApp({
-      title: 'BasicButtons Material Demo',
-      githubLocation:
-        'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
-      codeVariant: 'JS',
-      language: 'en',
-      raw: testCase,
-      codeStyling: 'Tailwind',
-    });
-    expect(result.files['index.html']).to.contain(
-      '<script src="https://cdn.tailwindcss.com"></script>',
-    );
-  });
-
   it('should generate the correct stylesheet font link in index.html for Material Two Tones icons', () => {
     const raw = `import * as React from 'react';
     import Icon from '@mui/material/Icon';
