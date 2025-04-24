@@ -79,6 +79,7 @@ module.exports = function getBabelConfig(api) {
       'babel-plugin-transform-react-remove-prop-types',
       {
         mode: 'unsafe-wrap',
+        libraries: ['prop-types-compat'],
       },
     ],
     [

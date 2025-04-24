@@ -26,7 +26,10 @@ module.exports = {
       plugins: [
         '@babel/plugin-transform-react-constant-elements',
         ['babel-plugin-react-remove-properties'],
-        ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
+        [
+          'babel-plugin-transform-react-remove-prop-types',
+          { mode: 'remove', libraries: ['prop-types-compat'] },
+        ],
       ],
     },
   },
