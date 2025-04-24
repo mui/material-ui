@@ -27,16 +27,17 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 Run one of the following commands to install it and save it to your `package.json` dependencies:
 
 <codeblock storageKey="package-manager">
+
 ```bash npm
-npm install @mui/icons-material
+npm install @mui/icons-material@^5.0.0
 ```
 
 ```bash yarn
-yarn add @mui/icons-material
+yarn add @mui/icons-material@^5.0.0
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material
+pnpm add @mui/icons-material@^5.0.0
 ```
 
 </codeblock>
