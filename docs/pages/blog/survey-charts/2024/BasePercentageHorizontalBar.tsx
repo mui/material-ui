@@ -35,7 +35,7 @@ interface ExtendedDataItem extends DataItem {
 }
 
 function XBar(props: { data: ExtendedDataItem[]; margin?: Object; height?: number }) {
-  const data = props.data;
+  const data = props.data || [];
   const dataY = data.map((d) => d.label);
   const dataX = data.map((d) => d.value);
 
@@ -58,27 +58,29 @@ function XBar(props: { data: ExtendedDataItem[]; margin?: Object; height?: numbe
       <BarChart
         margin={margin}
         height={height}
-        yAxis={[{
-          scaleType: 'band',
-          data: dataY,
-          tickPlacement: 'middle',
-          valueFormatter: (label, context) =>
-            context.location === 'tick'
-              ? truncateLabel(label)
-              : label,
-        }]}
-        series={[{
-          type: 'bar',
-          data: dataX,
-          valueFormatter: (value, context) => {
-            const dataIndex = context.dataIndex;
-            if (dataIndex === undefined || dataIndex < 0 || dataIndex >= props.data.length) {
-              return '';
-            }
-            const originalItem = props.data[dataIndex];
-            return `${originalItem.value.toFixed(2)}% (${originalItem.originalValue} respondents)`;
+        yAxis={[
+          {
+            scaleType: 'band',
+            data: dataY,
+            tickPlacement: 'middle',
+            valueFormatter: (label, context) =>
+              context.location === 'tick' ? truncateLabel(label) : label,
           },
-        }]}
+        ]}
+        series={[
+          {
+            type: 'bar',
+            data: dataX,
+            valueFormatter: (value, context) => {
+              const dataIndex = context.dataIndex;
+              if (dataIndex === undefined || dataIndex < 0 || dataIndex >= props.data.length) {
+                return '';
+              }
+              const originalItem = props.data[dataIndex];
+              return `${originalItem.value.toFixed(2)}% (${originalItem.originalValue} respondents)`;
+            },
+          },
+        ]}
         layout="horizontal"
       />
       <Box sx={{ position: 'absolute', bottom: 10, width: '100%', fontSize: 14 }}>
@@ -104,7 +106,7 @@ function XBar(props: { data: ExtendedDataItem[]; margin?: Object; height?: numbe
 export default function BasePercentageHorizontalBar(props: { data: DataItem[]; total: number }) {
   const { data, total } = props;
 
-  const dataWithPercentage = data.map((d) => ({
+  const dataWithPercentage = (data || []).map((d) => ({
     ...d,
     value: parseFloat(((d.value / total) * 100).toFixed(2)),
     originalValue: d.value,

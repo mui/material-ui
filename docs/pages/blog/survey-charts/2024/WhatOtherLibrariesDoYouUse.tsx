@@ -127,22 +127,22 @@ export default function WhatOtherLibrariesDoYouUse() {
       <BasePercentageHorizontalBar
         total={354}
         data={otherLibraries}
-        minLabelValue={1.2}
-        yAxisWidth={140}
+        // minLabelValue={1.2}
+        // yAxisWidth={140}
       />
       <h2>Strongest points</h2>
       <BasePercentageHorizontalBar
         total={354}
         data={strongestPoints}
-        minLabelValue={1}
-        yAxisWidth={140}
+        // minLabelValue={1}
+        // yAxisWidth={140}
       />
       <h2>Weak points</h2>
       <BasePercentageHorizontalBar
         total={354}
         data={weakPoints}
-        minLabelValue={1}
-        yAxisWidth={140}
+        // minLabelValue={1}
+        // yAxisWidth={140}
       />
     </React.Fragment>
   );

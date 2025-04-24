@@ -20,9 +20,9 @@ interface DataItem {
 }
 
 function XBar(props: { data: DataItem[]; margin?: Object; height?: number; total?: number }) {
-  const data = props.data;
-  const dataX = data.map((d) => d.label);
-  const dataY = data.map((d) => d.value);
+  const data = props.data || []; // Fallback to an empty array
+  const dataX = Array.isArray(data) ? data.map((d) => d.label) : [];
+  const dataY = Array.isArray(data) ? data.map((d) => d.value) : [];
 
   const TOTAL = props.total;
   const margin = props.margin || { top: 5, right: 10, bottom: 80, left: 150 };
@@ -42,16 +42,18 @@ function XBar(props: { data: DataItem[]; margin?: Object; height?: number; total
   return (
     <Box sx={{ width: '100%', position: 'relative', textAlign: 'center' }}>
       <BarChart
-        yAxis={[{
-          scaleType: 'band',
-          data: dataX, // Use original labels
-          tickPlacement: 'middle',
-          // Add axis valueFormatter with conditional logic
-          valueFormatter: (label, context) =>
-            context.location === 'tick'
-              ? truncateLabel(label) // Truncated for axis tick
-              : label, // Full label for tooltip header
-        }]}
+        yAxis={[
+          {
+            scaleType: 'band',
+            data: dataX, // Use original labels
+            tickPlacement: 'middle',
+            // Add axis valueFormatter with conditional logic
+            valueFormatter: (label, context) =>
+              context.location === 'tick'
+                ? truncateLabel(label) // Truncated for axis tick
+                : label, // Full label for tooltip header
+          },
+        ]}
         series={[{ data: dataY }]}
         height={height}
         margin={margin}
@@ -78,6 +80,6 @@ function XBar(props: { data: DataItem[]; margin?: Object; height?: number; total
 }
 
 export default function BaseHorizontalBar(props: { data: DataItem[]; total?: number }) {
-  const { data, total } = props;
+  const { data = [], total } = props; // Provide a default empty array for data
   return <XBar data={data} total={total} />;
 }

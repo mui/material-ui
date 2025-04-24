@@ -32,5 +32,11 @@ const data = [
 ];
 
 export default function WhereAreCompaniesBased() {
-  return <BasePercentageHorizontalBar yAxisWidth={85} total={1068} data={data} />;
+  return (
+    <BasePercentageHorizontalBar
+      // yAxisWidth={85}
+      total={1068}
+      data={data}
+    />
+  );
 }

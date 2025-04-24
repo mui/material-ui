@@ -45,21 +45,22 @@ export default function BaseStackedHorizontalBar(props: {
   height?: number;
   total: number;
 }) {
-  const { data, barProperties } = props;
-  const dataX = data.map((d) => d.label);
-  const series = barProperties.map((p) => {
-    const barPropertyData = data.map((d) => {
-      const value = d[p.property];
-      // Ensure the value is a number or null, default to null if undefined or not a number
-      return typeof value === 'number' ? value : null;
-    });
-    return {
-      data: barPropertyData,
-      label: p.label,
-      stack: 'stack',
-      valueFormatter: (value: number | null) => (value === null ? '' : `${value}%`),
-    };
-  });
+  const { data = [], barProperties = [] } = props;
+  const dataX = Array.isArray(data) ? data.map((d) => d.label) : [];
+  const series = Array.isArray(barProperties)
+    ? barProperties.map((p) => {
+        const barPropertyData = data.map((d) => {
+          const value = d[p.property];
+          return typeof value === 'number' ? value : null;
+        });
+        return {
+          data: barPropertyData,
+          label: p.label,
+          stack: 'stack',
+          valueFormatter: (value: number | null) => (value === null ? '' : `${value}%`),
+        };
+      })
+    : [];
 
   const TOTAL = props.total;
   const margin = props.margin || { top: 5, right: 10, bottom: 125, left: 150 };
@@ -95,16 +96,18 @@ export default function BaseStackedHorizontalBar(props: {
   return (
     <Box sx={{ width: '100%', position: 'relative', textAlign: 'center' }}>
       <BarChart
-        yAxis={[{
-          scaleType: 'band',
-          data: dataX, // Ensure this uses original labels
-          tickPlacement: 'middle',
-          // Add axis valueFormatter with conditional logic
-          valueFormatter: (label, context) =>
-            context.location === 'tick'
-              ? truncateLabel(label) // Truncated for axis tick
-              : label, // Full label for tooltip header
-        }]}
+        yAxis={[
+          {
+            scaleType: 'band',
+            data: dataX, // Ensure this uses original labels
+            tickPlacement: 'middle',
+            // Add axis valueFormatter with conditional logic
+            valueFormatter: (label, context) =>
+              context.location === 'tick'
+                ? truncateLabel(label) // Truncated for axis tick
+                : label, // Full label for tooltip header
+          },
+        ]}
         series={series}
         height={height}
         layout="horizontal"

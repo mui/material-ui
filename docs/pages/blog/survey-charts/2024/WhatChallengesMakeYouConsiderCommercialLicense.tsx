@@ -33,10 +33,10 @@ export default function WhatChallengesMakeYouConsiderCommercialLicense() {
   return (
     <BasePercentageHorizontalBar
       total={124}
-      yAxisWidth={130}
-      minLabelValue={3}
+      // yAxisWidth={130}
+      // minLabelValue={3}
       data={data}
-      height={600}
+      // height={600}
     />
   );
 }

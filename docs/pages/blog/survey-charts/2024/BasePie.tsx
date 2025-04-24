@@ -19,7 +19,7 @@ export default function BasePie(props: {
   height?: number;
 }) {
   const theme = useTheme();
-  const data = props.data;
+  const data = props.data || [];
 
   const margin = props.margin || { right: 260, bottom: 10, top: 10 };
   const height = props.height || 400;
@@ -38,7 +38,7 @@ export default function BasePie(props: {
         },
       } as Partial<ChartsLegendProps>);
 
-  const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
+  const TOTAL = Array.isArray(data) ? data.map((item) => item.value).reduce((a, b) => a + b, 0) : 0;
 
   const getArcLabel = (params: DefaultizedPieValueType) => {
     const percent = params.value / TOTAL;
