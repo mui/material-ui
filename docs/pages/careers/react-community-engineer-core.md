@@ -39,7 +39,7 @@ For additional details about the culture, you can check our [careers](https://mu
 We need a Community Engineer to solve friction points of users.
 We face challenges on multiple fronts:
 
-- As a result of this growth, we (will) have more users questions and feedback coming in than ever before.
+- As the library grows, we (will) have more users questions and feedback coming in than ever before.
 - The rapid growth of new products is stretching our developers too thin.
 - Software engineers at MUI are tasked with doing support, however, they could benefit from the help of a dedicated person per project, for instance to improve the workflows and tooling.
 
