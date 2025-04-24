@@ -50,7 +50,7 @@ We need talented people to keep up with the demands of our exigent community!
 
 ### Why this is interesting
 
-You will be a key member of the Developer Experience's team and will directly impact customer satisfaction and success.
+You will be a key member of the Core team and will directly impact the project's roadmap.
 You will troubleshoot and depending on your bandwidth also fix complex issues related to MUI.
 At MUI a Community Engineer is considered a developer, it's a person that enjoys optimizing what already exists but is also eager to help our users with features that are requested by the community.
 
