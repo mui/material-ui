@@ -15,9 +15,7 @@ export default function XGridGlobalStyles({
         {
           [selector]: {
             '& .MuiDataGrid-root': {
-              border: 'none',
               fontSize: '0.75rem',
-              borderRadius: '0px',
               '--DataGrid-rowBorderColor': (theme.vars || theme).palette.grey[200],
               // toolbar
               // style GridToolbar

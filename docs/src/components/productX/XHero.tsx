@@ -352,7 +352,7 @@ export default function XHero() {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={[startDate, endDate]}
+                  defaultValue={[startDate, endDate]}
                 />
               </LocalizationProvider>
             </Paper>

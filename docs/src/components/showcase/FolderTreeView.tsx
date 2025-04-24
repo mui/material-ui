@@ -231,6 +231,7 @@ export default function TreeViewDemo() {
       defaultExpandedItems={['1', '1.1', '1.2', '1.2.2']}
       defaultSelectedItems="1.1"
       sx={{ height: 'fit-content', flexGrow: 1, p: 1 }}
+      itemChildrenIndentation={0}
       slots={{
         item: CustomTreeItem,
         endIcon: CustomEndIcon,

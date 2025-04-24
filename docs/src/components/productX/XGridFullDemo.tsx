@@ -186,16 +186,12 @@ export default function XGridFullDemo() {
           variant="outlined"
           sx={[
             {
-              overflow: 'hidden',
               borderRadius: '8px',
+
               height: { xs: 320, sm: 500 },
               '& .MuiDataGrid-root': {
-                bgcolor: '#fff',
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                 '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
-                '& .MuiDataGrid-cell': {
-                  bgcolor: 'grey.50',
-                },
                 '& .MuiChip-root.Rejected': {
                   color: red[800],
                   backgroundColor: red[50],
@@ -235,10 +231,6 @@ export default function XGridFullDemo() {
             (theme) =>
               theme.applyDarkStyles({
                 '& .MuiDataGrid-root': {
-                  bgcolor: 'primaryDark.900',
-                  '& .MuiDataGrid-cell': {
-                    bgcolor: 'primaryDark.800',
-                  },
                   '& .MuiDataGrid-footerContainer': {
                     borderColor: 'primaryDark.600',
                   },
