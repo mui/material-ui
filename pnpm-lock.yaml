@@ -492,12 +492,12 @@ importers:
       '@mui/utils':
         specifier: workspace:^
         version: link:../../packages/mui-utils/build
+      '@playwright/test':
+        specifier: ^1.52.0
+        version: 1.52.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      playwright:
-        specifier: ^1.52.0
-        version: 1.52.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -577,6 +577,9 @@ importers:
       '@mui/system':
         specifier: workspace:^
         version: link:../packages/mui-system/build
+      '@playwright/test':
+        specifier: ^1.52.0
+        version: 1.52.0
       '@styled-system/css':
         specifier: ^5.1.5
         version: 5.1.5
@@ -595,9 +598,6 @@ importers:
       jss:
         specifier: ^10.10.0
         version: 10.10.0
-      playwright:
-        specifier: ^1.52.0
-        version: 1.52.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -929,6 +929,9 @@ importers:
       '@mui/internal-test-utils':
         specifier: workspace:^
         version: link:../packages-internal/test-utils
+      '@playwright/test':
+        specifier: ^1.52.0
+        version: 1.52.0
       '@types/autosuggest-highlight':
         specifier: ^3.2.3
         version: 3.2.3
@@ -989,9 +992,6 @@ importers:
       marked:
         specifier: ^15.0.8
         version: 15.0.8
-      playwright:
-        specifier: ^1.52.0
-        version: 1.52.0
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -1139,6 +1139,9 @@ importers:
       '@emotion/react':
         specifier: ^11.13.5
         version: 11.13.5(@types/react@19.1.2)(react@19.1.0)
+      '@playwright/test':
+        specifier: ^1.52.0
+        version: 1.52.0
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1172,9 +1175,6 @@ importers:
       mocha:
         specifier: ^11.1.0
         version: 11.1.0
-      playwright:
-        specifier: ^1.52.0
-        version: 1.52.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -1822,9 +1822,6 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
-      playwright:
-        specifier: ^1.52.0
-        version: 1.52.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -2252,9 +2249,6 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
-      playwright:
-        specifier: ^1.52.0
-        version: 1.52.0
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -6195,8 +6189,8 @@ packages:
   '@types/webfontloader@1.6.38':
     resolution: {integrity: sha512-kUaF72Fv202suFx6yBrwXqeVRMx7hGtJTesyESZgn9sEPCUeDXm2p0SiyS1MTqW74nQP4p7JyrOCwZ7pNFns4w==}
 
-  '@types/webxr@0.5.21':
-    resolution: {integrity: sha512-geZIAtLzjGmgY2JUi6VxXdCrTb99A7yP49lxLr2Nm/uIK0PkkxcEi4OGhoGDO4pxCf3JwGz2GiJL2Ej4K2bKaA==}
+  '@types/webxr@0.5.22':
+    resolution: {integrity: sha512-Vr6Stjv5jPRqH690f5I5GLjVk8GSsoQSYJ2FVd/3jJF7KaqfwPi3ehfBS96mlQ2kPCwZaX6U0rG2+NGHBKkA/A==}
 
   '@types/ws@8.5.13':
     resolution: {integrity: sha512-osM/gWBTPKgHV8XkTunnegTRIsvF6owmf5w+JtAfOw472dptdm0dlGv4xCt6GwQRcC2XVOvvRE/0bAoQcL2QkA==}
@@ -8889,8 +8883,8 @@ packages:
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
 
-  flow-parser@0.267.0:
-    resolution: {integrity: sha512-eBgyFHiT/CHevT225CVQbwnAwRKLjqgtkkpDBMvNGV2C/Tz8x4Zr9FZeWed/cSWhRTiUhH7MXpIWSHkrzvaqdA==}
+  flow-parser@0.268.0:
+    resolution: {integrity: sha512-URZmPy/jKDDIJUHUfC+5KNwaPcfONTL3R8xltQWVEoCKLWowVebEBg89nbAnYHNo6ev8KzKWFpOROfHZdaCoxA==}
     engines: {node: '>=0.4.0'}
 
   fn.name@1.1.0:
@@ -13731,8 +13725,8 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
-  type-fest@4.39.1:
-    resolution: {integrity: sha512-uW9qzd66uyHYxwyVBYiwS4Oi0qZyUqwjU+Oevr6ZogYiXt99EOYtwvzMSLw1c3lYo2HzJsep/NB23iEVEgjG/w==}
+  type-fest@4.40.0:
+    resolution: {integrity: sha512-ABHZ2/tS2JkvH1PEjxFDTUWC8dB5OsIGZP4IFLhR293GqT5Y5qB1WwL2kMPYhQW9DVgVD8Hd7I8gjwPIf5GFkw==}
     engines: {node: '>=16'}
 
   type-is@1.6.18:
@@ -18112,7 +18106,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.0
       '@types/react-reconciler': 0.26.7
-      '@types/webxr': 0.5.21
+      '@types/webxr': 0.5.22
       base64-js: 1.5.1
       buffer: 6.0.3
       its-fine: 1.2.5(@types/react@19.1.2)(react@19.1.0)
@@ -18890,7 +18884,7 @@ snapshots:
 
   '@types/webfontloader@1.6.38': {}
 
-  '@types/webxr@0.5.21': {}
+  '@types/webxr@0.5.22': {}
 
   '@types/ws@8.5.13':
     dependencies:
@@ -21300,7 +21294,7 @@ snapshots:
 
   dot-prop@9.0.0:
     dependencies:
-      type-fest: 4.39.1
+      type-fest: 4.40.0
 
   dotenv-expand@11.0.7:
     dependencies:
@@ -22386,7 +22380,7 @@ snapshots:
 
   flow-enums-runtime@0.0.6: {}
 
-  flow-parser@0.267.0: {}
+  flow-parser@0.268.0: {}
 
   fn.name@1.1.0: {}
 
@@ -23652,7 +23646,7 @@ snapshots:
       '@babel/register': 7.25.9(@babel/core@7.26.10)
       babel-core: 7.0.0-bridge.0(@babel/core@7.26.10)
       chalk: 4.1.2
-      flow-parser: 0.267.0
+      flow-parser: 0.268.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
@@ -23675,7 +23669,7 @@ snapshots:
       '@babel/preset-flow': 7.25.9(@babel/core@7.26.10)
       '@babel/preset-typescript': 7.27.0(@babel/core@7.26.10)
       '@babel/register': 7.25.9(@babel/core@7.26.10)
-      flow-parser: 0.267.0
+      flow-parser: 0.268.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
@@ -25168,7 +25162,7 @@ snapshots:
       path-to-regexp: 6.3.0
       picocolors: 1.1.1
       strict-event-emitter: 0.5.1
-      type-fest: 4.39.1
+      type-fest: 4.40.0
       yargs: 17.7.2
     optionalDependencies:
       typescript: 5.8.3
@@ -25942,7 +25936,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.26.2
       index-to-position: 1.1.0
-      type-fest: 4.39.1
+      type-fest: 4.40.0
 
   parse-link-header@2.0.0:
     dependencies:
@@ -26775,7 +26769,7 @@ snapshots:
     dependencies:
       find-up-simple: 1.0.1
       read-pkg: 9.0.1
-      type-fest: 4.39.1
+      type-fest: 4.40.0
 
   read-pkg-up@3.0.0:
     dependencies:
@@ -26806,7 +26800,7 @@ snapshots:
       '@types/normalize-package-data': 2.4.4
       normalize-package-data: 6.0.2
       parse-json: 8.3.0
-      type-fest: 4.39.1
+      type-fest: 4.40.0
       unicorn-magic: 0.1.0
 
   read@3.0.1:
@@ -28267,7 +28261,7 @@ snapshots:
 
   type-fest@2.19.0: {}
 
-  type-fest@4.39.1: {}
+  type-fest@4.40.0: {}
 
   type-is@1.6.18:
     dependencies:
