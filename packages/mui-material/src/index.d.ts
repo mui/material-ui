@@ -43,7 +43,6 @@ export type InternalStandardProps<
 
 export namespace PropTypes {
   // keeping the type structure for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
@@ -466,3 +465,5 @@ export { default as generateUtilityClasses } from './generateUtilityClasses';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 export * from './Unstable_TrapFocus';
+
+export { default as InitColorSchemeScript } from './InitColorSchemeScript';

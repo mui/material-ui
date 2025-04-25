@@ -9,7 +9,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@mui/base": "workspace:^",
+    "@mui/base": "5.0.0-beta.70",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
@@ -17,26 +17,26 @@
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
     "clsx": "^2.1.1",
-    "playwright": "^1.51.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@playwright/test": "^1.52.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-error-boundary": "^5.0.0",
     "react-router-dom": "^6.30.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.26.3",
-    "@babel/preset-typescript": "^7.26.0",
+    "@babel/preset-typescript": "^7.27.0",
     "@pigment-css/vite-plugin": "0.0.30",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
     "@types/webfontloader": "^1.6.38",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^4.4.1",
     "postcss": "^8.5.3",
     "postcss-combine-media-query": "^1.0.1",
-    "vite": "5.4.15",
+    "vite": "5.4.18",
     "vite-plugin-node-polyfills": "0.23.0",
-    "vite-plugin-pages": "^0.32.5"
+    "vite-plugin-pages": "^0.33.0"
   },
   "nx": {
     "targets": {

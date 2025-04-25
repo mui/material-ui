@@ -106,8 +106,8 @@ async function postFeedbackOnSlack(data) {
     rating,
     comment,
     currentLocationURL: window.location.href,
-    commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
-    commmentSectionTitle: commentedSection.text,
+    commentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
+    commentSectionTitle: commentedSection.text,
     githubRepo: process.env.SOURCE_CODE_REPO,
     productId,
   };

@@ -258,6 +258,9 @@ describe('replaceUrl', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/material-ui/react-buttons')).to.equal(
       `/material-ui/guides/minimizing-bundle-size/`,
     );
+    expect(replaceUrl(`/integrations/tailwindcss/`, '/material-ui')).to.equal(
+      `/material-ui/integrations/tailwindcss/`,
+    );
     expect(
       replaceUrl(`/components/data-grid/getting-started/#main-content`, '/x/react-data-grid'),
     ).to.equal(`/x/react-data-grid/getting-started/#main-content`);

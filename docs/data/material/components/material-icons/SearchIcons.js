@@ -607,7 +607,7 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500 }}>
+    <Grid container sx={{ minHeight: 500, width: '100%' }}>
       <Grid
         size={{
           xs: 12,

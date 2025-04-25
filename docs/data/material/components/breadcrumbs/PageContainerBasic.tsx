@@ -38,8 +38,8 @@ function useDemoRouter(initialPath: string): Router {
 }
 
 const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
+  backgroundColor: (theme.vars || theme).palette.action.hover,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
   height,
   content: '" "',
 }));
@@ -75,9 +75,6 @@ function CustomPageHeader() {
 
 const demoTheme = createTheme({
   colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'data-mui-color-scheme',
-  },
 });
 
 export default function PageContainerBasic(props: any) {

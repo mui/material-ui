@@ -92,7 +92,7 @@ Target the `.Mui-selected` global class name to customize the special state of t
 <MenuItem selected className="MenuItem">
 ```
 
-If you'd like to learn more about this topic, we recommend checking out [the MDN Web Docs on CSS Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity).
+If you'd like to learn more about this topic, we recommend checking out [the MDN Web Docs on CSS Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Specificity).
 
 #### Why do I need to increase specificity to override one component state?
 

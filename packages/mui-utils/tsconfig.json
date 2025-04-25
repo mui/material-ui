@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "allowJs": false,
     "types": ["react", "mocha", "node"]
   },
   "include": ["src/**/*"]

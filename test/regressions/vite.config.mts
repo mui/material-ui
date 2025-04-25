@@ -8,6 +8,10 @@ const WORKSPACE_ROOT = path.resolve(currentDirectory, '../../');
 
 // https://vite.dev/config/
 export default defineConfig({
+  esbuild: {
+    minifyIdentifiers: false,
+    keepNames: true,
+  },
   plugins: [
     {
       // Unfortunatelly necessary as we opted to write our jsx in js files
@@ -46,7 +50,6 @@ export default defineConfig({
       '@mui/styles': path.resolve(WORKSPACE_ROOT, './packages/mui-styles/src'),
       '@mui/system': path.resolve(WORKSPACE_ROOT, './packages/mui-system/src'),
       '@mui/private-theming': path.resolve(WORKSPACE_ROOT, './packages/mui-private-theming/src'),
-      '@mui/base': path.resolve(WORKSPACE_ROOT, './packages/mui-base/src'),
       '@mui/utils': path.resolve(WORKSPACE_ROOT, './packages/mui-utils/src'),
       '@mui/material-nextjs': path.resolve(WORKSPACE_ROOT, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(WORKSPACE_ROOT, './packages/mui-joy/src'),

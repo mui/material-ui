@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, renderHook } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme, useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
@@ -44,6 +44,22 @@ describe('ThemeProvider', () => {
         </ThemeProvider>,
       ),
     ).not.toWarnDev();
+  });
+
+  it('theme should be stable between renders if created outside of component', () => {
+    const theme = createTheme();
+    const themeContext = renderHook(
+      () => {
+        return useTheme();
+      },
+      {
+        wrapper: ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>,
+      },
+    );
+    const firstRender = themeContext.result.current;
+    themeContext.rerender();
+    const secondRender = themeContext.result.current;
+    expect(firstRender).to.equal(secondRender);
   });
 
   describe('light & dark', () => {

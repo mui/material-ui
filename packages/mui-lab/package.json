@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "7.0.0-beta.9",
+  "version": "7.0.0-beta.11",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -28,8 +28,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
@@ -40,7 +39,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10",
+    "@babel/runtime": "^7.27.0",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
     "@mui/utils": "workspace:^",
@@ -52,13 +51,13 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "sinon": "^19.0.4"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sinon": "^19.0.5"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

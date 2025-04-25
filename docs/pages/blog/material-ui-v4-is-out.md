@@ -143,7 +143,7 @@ Documentation was reported as the 3rd most critical pain point in the Developer 
 
 You may be afraid that using Material UI's components will bloat and slow down your website/application. Would you be better off writing your own components? Well, it's our mission to make this cost as minimal as possible 🚀.
 
-- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
+- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
 
 ```js
 import {

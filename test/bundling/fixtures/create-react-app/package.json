@@ -25,7 +25,7 @@
   "devDependencies": {
     "concurrently": "7.4.0",
     "cross-env": "7.0.3",
-    "playwright": "1.51.1",
+    "@playwright/test": "1.52.0",
     "serve": "14.2.4"
   },
   "browserslist": {
@@ -42,7 +42,6 @@
   },
   "pnpm": {
     "overrides": {
-      "@mui/base": "file:../../../../packed/@mui/base.tgz",
       "@mui/material": "file:../../../../packed/@mui/material.tgz",
       "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
       "@mui/lab": "file:../../../../packed/@mui/lab.tgz",

@@ -29,16 +29,7 @@ const noop = () => {};
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const manager = new ModalManager();
-/**
- *
- * Demos:
- *
- * - [Modal](https://mui.com/base-ui/react-modal/#hook)
- *
- * API:
- *
- * - [useModal API](https://mui.com/base-ui/react-modal/hooks-api/#use-modal)
- */
+
 function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,

@@ -29,7 +29,7 @@ export interface MenuSlots {
   root: React.ElementType;
   /**
    * The component used for the paper.
-   * @default Paper
+   * @default PopoverPaper
    */
   paper: React.ElementType;
   /**

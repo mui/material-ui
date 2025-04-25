@@ -65,7 +65,7 @@ export interface BaseSelectProps<Value = unknown>
    */
   input?: React.ReactElement<unknown, any>;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps?: InputProps['inputProps'];

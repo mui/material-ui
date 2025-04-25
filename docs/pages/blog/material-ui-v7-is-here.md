@@ -14,12 +14,39 @@ It is designed to be straightforward to upgrade to.
 
 ## Improved ESM support
 
-The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
-This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
+The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`. The package layout was previously faux-ESM.
+
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load Material UI packages from ES modules under Node.js.
+More details in [mui/material-ui#43938](https://github.com/mui/material-ui/issues/43938).
+
+For example, you can see how all the warnings that [publint.dev](https://publint.dev/) reports with v6 are fixed in v7:
+
+<figure>
+  <img src="/static/blog/material-ui-v7-is-here/publint-before.png" width="1244" height="880" loading="lazy" alt="" style="width: 400px" />
+  <figcaption><a href="https://publint.dev/@mui/material@6.4.11">Before v6</a></figcaption>
+</figure>
+
+<figure>
+  <img src="/static/blog/material-ui-v7-is-here/publint-after.png" width="1260" height="906" loading="lazy" alt="" style="width: 400px" />
+  <figcaption><a href="https://publint.dev/@mui/material@7.0.0">After v7</a></figcaption>
+</figure>
+
+This new package layout might create breaking changes for some users, especially those depending on private APIs of the library. Refer to the [migration guide](/material-ui/migration/upgrade-to-v7/#package-layout-updated) for more details.
 
 ## Completed the slot pattern implementation
 
 The API for replacing or modifying component inner elements is now standardized, and all relevant components use the `slots` and `slotProps` props for greater flexibility and consistency.
+For example:
+
+```diff
+ <Accordion
+-  TransitionComponent={CustomTransition}
+-  TransitionProps={{ unmountOnExit: true }}
++  slots={{ transition: CustomTransition }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
 A [guide about this pattern](/material-ui/customization/overriding-component-structure/) has been added to the documentation.
 
 ## Opt-in support for CSS layers
