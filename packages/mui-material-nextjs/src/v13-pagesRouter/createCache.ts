@@ -2,33 +2,28 @@ import createCache from '@emotion/cache';
 
 const isBrowser = typeof document !== 'undefined';
 
-function extractAndMoveLayers(cssText: string) {
-  // Quick check if @layer exists
-  if (!cssText.includes('@layer')) {
-    return cssText;
+function plugin(element: any) {
+  if (
+    // case I: not wrapped by `@layer mui`
+    (!element.root && element.type !== '@layer') ||
+    // case II: wrapped by `@layer mui`
+    (element.parent &&
+      element.parent.value === '@layer mui' &&
+      element.type !== '@layer' &&
+      element.type !== 'decl')
+  ) {
+    const child = { ...element, parent: element, root: element };
+    Object.assign(element, {
+      children: [child],
+      length: 6,
+      parent: !element.root ? null : element.parent,
+      root: !element.root ? null : element.root,
+      props: ['base'],
+      return: '',
+      type: '@layer',
+      value: `@layer base`,
+    });
   }
-
-  // This regex uses a non-greedy approach to match from @layer to the closing brace
-  // [\s\S]*? means "match any character including newlines, non-greedy"
-  const layerRegex = /@layer\s+[\w-]+\s*{([\s\S]*?)(?:}(?!\s*[,;])|};)/g;
-
-  // Find all layer declarations
-  const layers = [];
-  let match;
-  let modifiedCss = cssText;
-
-  // Use exec in a loop to find all matches
-  // eslint-disable-next-line no-cond-assign
-  while ((match = layerRegex.exec(cssText)) !== null) {
-    const fullMatch = match[0];
-    layers.push(fullMatch);
-
-    // Remove the matched layer from the CSS
-    modifiedCss = modifiedCss.replace(fullMatch, '');
-  }
-
-  // Combine extracted layers with remaining CSS
-  return `@layer mui{${modifiedCss}}${layers.join('')}`;
 }
 
 // On the client side, Create a meta tag at the top of the <head> and set it as insertionPoint.
@@ -48,16 +43,17 @@ export default function createEmotionCache(
 
   const { enableCssLayer, ...rest } = options ?? {};
 
-  const emotionCache = createCache({ key: 'mui', insertionPoint, ...rest });
+  const emotionCache = createCache({
+    key: 'mui',
+    insertionPoint,
+    ...rest,
+    stylisPlugins: [plugin],
+  });
   if (enableCssLayer) {
     const prevInsert = emotionCache.insert;
     emotionCache.insert = (...args) => {
       if (!args[1].styles.startsWith('@layer')) {
-        if (args[1].styles.includes('@layer')) {
-          args[1].styles = extractAndMoveLayers(args[1].styles);
-        } else {
-          args[1].styles = `@layer mui {${args[1].styles}}`;
-        }
+        args[1].styles = `@layer mui {${args[1].styles}}`;
       }
       return prevInsert(...args);
     };

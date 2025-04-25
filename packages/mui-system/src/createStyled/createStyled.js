@@ -196,7 +196,7 @@ export default function createStyled(input = {}) {
           for (const slotKey in styleOverrides) {
             resolvedStyleOverrides[slotKey] = theme.experimental_dedicatedCssLayer
               ? {
-                  '@layer mui-theme': processStyle(props, styleOverrides[slotKey]),
+                  '@layer theme': processStyle(props, styleOverrides[slotKey]),
                 }
               : processStyle(props, styleOverrides[slotKey]);
           }
@@ -214,7 +214,7 @@ export default function createStyled(input = {}) {
           }
           if (theme.experimental_dedicatedCssLayer) {
             return {
-              '@layer mui-theme': processStyleVariants(props, themeVariants),
+              '@layer theme': processStyleVariants(props, themeVariants),
             };
           }
           return processStyleVariants(props, themeVariants);
