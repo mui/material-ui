@@ -16,7 +16,7 @@ function sleep(duration) {
  * Attempts page.goto with retries
  *
  * @remarks The server and runner can be started up simultaneously
- * @param {import('playwright').Page} page
+ * @param {import('@playwright/test').Page} page
  * @param {string} url
  * @returns {boolean}
  */
