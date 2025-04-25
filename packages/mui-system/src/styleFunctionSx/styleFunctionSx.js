@@ -128,7 +128,7 @@ export function unstable_createStyleFunctionSx() {
         }
       });
 
-      if (!nested) {
+      if (!nested && theme.experimental_dedicatedCssLayer) {
         return {
           '@layer mui-sx': sortContainerQueries(
             theme,
