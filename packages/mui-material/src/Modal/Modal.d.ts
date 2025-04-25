@@ -151,6 +151,7 @@ export interface ModalOwnProps {
    * @default false
    */
   keepMounted?: boolean;
+  mountNode?: PortalProps['container'];
   /**
    * Callback fired when the backdrop is clicked.
    * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
