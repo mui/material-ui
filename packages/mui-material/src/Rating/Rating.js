@@ -78,7 +78,7 @@ const RatingRoot = styled('span', {
   // Required to position the pristine input absolutely
   position: 'relative',
   fontSize: theme.typography.pxToRem(24),
-  color: '#faaf00',
+  color: theme.palette.warning.main,
   cursor: 'pointer',
   textAlign: 'left',
   width: 'min-content',
@@ -149,7 +149,7 @@ const RatingIcon = styled('span', {
     transform: 'scale(1.2)',
   }),
   ...(ownerState.iconEmpty && {
-    color: (theme.vars || theme).palette.action.disabled,
+    color: theme.palette.action.active,
   }),
 }));
 
