@@ -121,7 +121,7 @@ You can find the other perks & benefits on the [careers](https://mui.com/careers
 
 ## How to apply
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/f28a1482-22fb-4cf8-9263-092ec0f81657/application?utm_source=ZNRrPGBkqO)
 
 Don't meet every requirement?
 Apply anyway!
