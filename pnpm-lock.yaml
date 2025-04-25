@@ -34,8 +34,8 @@ importers:
         specifier: ^9.6.0
         version: 9.6.0(encoding@0.1.13)
       '@mui/internal-bundle-size-checker':
-        specifier: workspace:*
-        version: link:packages-internal/bundle-size-checker
+        specifier: github:mui/mui-public#bundle-size-checker&path:./packages/bundle-size-checker
+        version: https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
       '@netlify/functions':
         specifier: ^3.0.4
         version: 3.0.4
@@ -641,8 +641,8 @@ importers:
   bundle-size:
     dependencies:
       '@mui/internal-bundle-size-checker':
-        specifier: workspace:*
-        version: link:../packages-internal/bundle-size-checker
+        specifier: github:mui/mui-public#bundle-size-checker&path:./packages/bundle-size-checker
+        version: https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
@@ -1069,52 +1069,6 @@ importers:
       '@types/resolve':
         specifier: ^1.20.6
         version: 1.20.6
-
-  packages-internal/bundle-size-checker:
-    dependencies:
-      '@aws-sdk/client-s3':
-        specifier: ^3.515.0
-        version: 3.787.0
-      '@aws-sdk/credential-providers':
-        specifier: ^3.787.0
-        version: 3.787.0
-      compression-webpack-plugin:
-        specifier: ^10.0.0
-        version: 10.0.0(webpack@5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0)))
-      execa:
-        specifier: ^7.2.0
-        version: 7.2.0
-      fast-glob:
-        specifier: ^3.3.2
-        version: 3.3.3
-      fs-extra:
-        specifier: ^11.2.0
-        version: 11.3.0
-      piscina:
-        specifier: ^4.2.1
-        version: 4.9.2
-      terser-webpack-plugin:
-        specifier: ^5.3.10
-        version: 5.3.14(webpack@5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0)))
-      webpack:
-        specifier: ^5.90.3
-        version: 5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
-      webpack-bundle-analyzer:
-        specifier: ^4.10.1
-        version: 4.10.2
-      yargs:
-        specifier: ^17.7.2
-        version: 17.7.2
-    devDependencies:
-      '@types/webpack':
-        specifier: ^5.28.5
-        version: 5.28.5(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
-      '@types/webpack-bundle-analyzer':
-        specifier: ^4.7.0
-        version: 4.7.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
-      '@types/yargs':
-        specifier: ^17.0.33
-        version: 17.0.33
 
   packages-internal/docs-utils:
     dependencies:
@@ -4453,6 +4407,11 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
+  '@mui/internal-bundle-size-checker@https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker':
+    resolution: {path: ./packages/bundle-size-checker, tarball: https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581}
+    version: 1.0.0
+    hasBin: true
+
   '@mui/joy@5.0.0-beta.22':
     resolution: {integrity: sha512-XFJd/cWXqt9MMlaUh10QQH893YaRw2CORYRhQovXvaJk7mmt/Sc4q3Fb7ANCXf4xMUPdwqdnvawLkAOAKVHuXg==}
     engines: {node: '>=12.0.0'}
@@ -6430,12 +6389,6 @@ packages:
 
   '@types/webfontloader@1.6.38':
     resolution: {integrity: sha512-kUaF72Fv202suFx6yBrwXqeVRMx7hGtJTesyESZgn9sEPCUeDXm2p0SiyS1MTqW74nQP4p7JyrOCwZ7pNFns4w==}
-
-  '@types/webpack-bundle-analyzer@4.7.0':
-    resolution: {integrity: sha512-c5i2ThslSNSG8W891BRvOd/RoCjI2zwph8maD22b1adtSns20j+0azDDMCK06DiVrzTgnwiDl5Ntmu1YRJw8Sg==}
-
-  '@types/webpack@5.28.5':
-    resolution: {integrity: sha512-wR87cgvxj3p6D0Crt1r5avwqffqPXUkNlnQ1mjU93G7gCuFjufZR4I6j8cz5g1F1tTYpfOOFvly+cmIQwL9wvw==}
 
   '@types/webxr@0.5.21':
     resolution: {integrity: sha512-geZIAtLzjGmgY2JUi6VxXdCrTb99A7yP49lxLr2Nm/uIK0PkkxcEi4OGhoGDO4pxCf3JwGz2GiJL2Ej4K2bKaA==}
@@ -16945,6 +16898,28 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
+  '@mui/internal-bundle-size-checker@https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))':
+    dependencies:
+      '@aws-sdk/client-s3': 3.787.0
+      '@aws-sdk/credential-providers': 3.787.0
+      compression-webpack-plugin: 10.0.0(webpack@5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0)))
+      execa: 7.2.0
+      fast-glob: 3.3.3
+      fs-extra: 11.3.0
+      piscina: 4.9.2
+      terser-webpack-plugin: 5.3.14(webpack@5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0)))
+      webpack: 5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
+      webpack-bundle-analyzer: 4.10.2
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@swc/core'
+      - aws-crt
+      - bufferutil
+      - esbuild
+      - uglify-js
+      - utf-8-validate
+      - webpack-cli
+
   '@mui/joy@5.0.0-beta.22(@emotion/react@11.13.5(@types/react@19.1.2)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.2)(react@19.1.0))(@types/react@19.1.2)(react@19.1.0))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.27.0
@@ -19371,28 +19346,6 @@ snapshots:
   '@types/uuid@10.0.0': {}
 
   '@types/webfontloader@1.6.38': {}
-
-  '@types/webpack-bundle-analyzer@4.7.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))':
-    dependencies:
-      '@types/node': 20.17.30
-      tapable: 2.2.1
-      webpack: 5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-      - webpack-cli
-
-  '@types/webpack@5.28.5(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))':
-    dependencies:
-      '@types/node': 20.17.30
-      tapable: 2.2.1
-      webpack: 5.98.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-      - webpack-cli
 
   '@types/webxr@0.5.21': {}
 

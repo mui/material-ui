@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^9.6.0",
-    "@mui/internal-bundle-size-checker": "workspace:*",
+    "@mui/internal-bundle-size-checker": "github:mui/mui-public#bundle-size-checker&path:./packages/bundle-size-checker",
     "@netlify/functions": "^3.0.4",
     "@slack/bolt": "^4.2.1",
     "babel-plugin-transform-import-meta": "^2.3.2",
