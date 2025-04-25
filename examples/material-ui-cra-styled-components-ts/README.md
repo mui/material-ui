@@ -20,7 +20,7 @@ Alternatively, to skip this configuration, you can set `skipLibCheck: true` in y
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra-styled-components-ts
@@ -36,7 +36,7 @@ npm start
 
 ## CodeSandbox
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts).
 
