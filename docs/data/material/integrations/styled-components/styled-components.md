@@ -100,7 +100,7 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 
 We provide boilerplate examples of Create React App with Material UI and styled-components in both JavaScript and TypeScript:
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 - [Material UI + CRA + styled-components (JavaScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
 - [Material UI + CRA + styled-components (TypeScript)](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)

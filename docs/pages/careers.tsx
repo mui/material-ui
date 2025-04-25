@@ -23,19 +23,13 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Staff Engineer — Pigment CSS',
-        description:
-          'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
-        url: '/careers/staff-engineer-pigment-css/',
-      },
-      {
         title: 'React Engineer — Docs-infra',
         description:
           'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
         url: '/careers/react-engineer-docs-infra/',
       },
       {
-        title: 'Code infra Engineer',
+        title: 'Frontend Engineer — Code-infra',
         description:
           'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
         url: '/careers/code-infra-engineer/',

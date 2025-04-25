@@ -50,7 +50,7 @@
     "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
     "mocha": "^11.1.0",
-    "playwright": "^1.51.1",
+    "@playwright/test": "^1.52.0",
     "prop-types": "^15.8.1",
     "sinon": "^19.0.5"
   },

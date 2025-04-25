@@ -1,11 +1,11 @@
 import * as path from 'path';
 import * as fse from 'fs-extra';
-import * as playwright from 'playwright';
+import { chromium } from '@playwright/test';
 
 async function main() {
   const baseUrl = 'http://localhost:5001/fixtures';
   const screenshotDir = path.resolve('test/regressions/screenshots/chrome');
-  const browser = await playwright.chromium.launch({
+  const browser = await chromium.launch({
     args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
