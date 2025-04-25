@@ -29,7 +29,6 @@
     "fs-extra": "^11.3.0",
     "html-webpack-plugin": "^5.6.3",
     "lodash": "^4.17.21",
-    "playwright": "^1.52.0",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
