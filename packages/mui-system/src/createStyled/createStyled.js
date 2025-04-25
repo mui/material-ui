@@ -194,7 +194,9 @@ export default function createStyled(input = {}) {
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           // eslint-disable-next-line guard-for-in
           for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
+            resolvedStyleOverrides[slotKey] = {
+              '@layer mui-theme': processStyle(props, styleOverrides[slotKey]),
+            };
           }
 
           return overridesResolver(props, resolvedStyleOverrides);
@@ -208,7 +210,9 @@ export default function createStyled(input = {}) {
           if (!themeVariants) {
             return null;
           }
-          return processStyleVariants(props, themeVariants);
+          return {
+            '@layer mui-theme': processStyleVariants(props, themeVariants),
+          };
         });
       }
 

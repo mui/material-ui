@@ -52,7 +52,18 @@ export default function AppRouterCacheProvider(props: AppRouterCacheProviderProp
     // Override the insert method to support streaming SSR with flush().
     cache.insert = (...args) => {
       if (options?.enableCssLayer && !args[1].styles.startsWith('@layer')) {
-        args[1].styles = `@layer mui {${args[1].styles}}`;
+        if (args[1].styles.includes('@layer')) {
+          // Regular expression to match @layer declarations
+          const layerRegex = /@layer\s+[\w-]+\s*{[^{}]*}/g;
+
+          // Find all @layer declarations
+          const layers = args[1].styles.match(layerRegex) || [];
+
+          // avoid nested @layer
+          args[1].styles = `@layer mui {${args[1].styles.replace(layerRegex, '')}}${layers.join('')}`;
+        } else {
+          args[1].styles = `@layer mui {${args[1].styles}}`;
+        }
       }
       const [selector, serialized] = args;
       if (cache.inserted[serialized.name] === undefined) {

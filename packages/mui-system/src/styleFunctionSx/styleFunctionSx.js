@@ -76,7 +76,7 @@ export function unstable_createStyleFunctionSx() {
   }
 
   function styleFunctionSx(props) {
-    const { sx, theme = {} } = props || {};
+    const { sx, theme = {}, nested } = props || {};
 
     if (!sx) {
       return null; // Emotion & styled-components will neglect null
@@ -117,7 +117,7 @@ export function unstable_createStyleFunctionSx() {
               }));
 
               if (objectsHaveSameKeys(breakpointsValues, value)) {
-                css[styleKey] = styleFunctionSx({ sx: value, theme });
+                css[styleKey] = styleFunctionSx({ sx: value, theme, nested: true });
               } else {
                 css = merge(css, breakpointsValues);
               }
@@ -127,6 +127,15 @@ export function unstable_createStyleFunctionSx() {
           }
         }
       });
+
+      if (!nested) {
+        return {
+          '@layer mui-sx': sortContainerQueries(
+            theme,
+            removeUnusedBreakpoints(breakpointsKeys, css),
+          ),
+        };
+      }
 
       return sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css));
     }

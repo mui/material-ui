@@ -87,8 +87,16 @@ function getCache(injectFirst, enableCssLayer) {
     if (enableCssLayer) {
       const prevInsert = emotionCache.insert;
       emotionCache.insert = (...args) => {
-        if (!args[1].styles.startsWith('@layer')) {
+        if (args[1].styles.includes('@layer')) {
+          // Regular expression to match @layer declarations
+          const layerRegex = /@layer\s+[\w-]+\s*{[^{}]*}/g;
+
+          // Find all @layer declarations
+          const layers = args[1].styles.match(layerRegex) || [];
+
           // avoid nested @layer
+          args[1].styles = `@layer mui {${args[1].styles.replace(layerRegex, '')}}${layers.join('')}`;
+        } else {
           args[1].styles = `@layer mui {${args[1].styles}}`;
         }
         return prevInsert(...args);
