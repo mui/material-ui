@@ -81,7 +81,3 @@ node 14.0
 # same as `node`
 [test]
 node 14.0
-
-# same as `node`
-[benchmark]
-node 14.0
