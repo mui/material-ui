@@ -178,7 +178,7 @@ module.exports = function getBabelConfig(api) {
             },
           ],
         ],
-      }
+      },
     },
   };
 };
