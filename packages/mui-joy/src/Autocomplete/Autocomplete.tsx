@@ -2,12 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  chainPropTypes,
-  integerPropType,
-  unstable_useForkRef as useForkRef,
-  unstable_capitalize as capitalize,
-} from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
+import capitalize from '@mui/utils/capitalize';
+import chainPropTypes from '@mui/utils/chainPropTypes';
+import integerPropType from '@mui/utils/integerPropType';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/useAutocomplete';
 import { Popper } from '@mui/base/Popper';

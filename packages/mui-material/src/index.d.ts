@@ -456,7 +456,7 @@ export * from './GlobalStyles';
 
 export * from './version';
 
-export { unstable_composeClasses } from '@mui/utils';
+export { default as unstable_composeClasses } from '@mui/utils/composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';

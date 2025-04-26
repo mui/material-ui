@@ -496,7 +496,13 @@ module.exports = /** @type {Config} */ ({
         'no-restricted-imports': [
           'error',
           {
-            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            paths: [
+              ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+              {
+                name: '@mui/utils',
+                message: OneLevelImportMessage,
+              },
+            ],
           },
         ],
         // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
