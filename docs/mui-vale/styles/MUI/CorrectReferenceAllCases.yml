@@ -6,13 +6,13 @@ ignorecase: true # There is only one correct way to spell those, so we want to m
 # swap maps tokens in form of bad: good
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
-  ' api': API
+  ' api': ' API'
   typescript: TypeScript
-  ' ts': TypeScript
+  ' ts': ' TypeScript'
   javascript: JavaScript
-  ' js': JavaScript
-  ' css ': CSS
-  ' html ': HTML
+  ' js': ' JavaScript'
+  ' css ': ' CSS '
+  ' html ': ' HTML '
   NPM: npm # https://css-tricks.com/start-sentence-npm/
   Github: GitHub
   StackOverflow: Stack Overflow
@@ -31,7 +31,7 @@ swap:
   Material 3: Material Design 3
   VSCode: VS Code
   VS Code: VS Code
-  'Codesandbox ': CodeSandbox
+  'Codesandbox ': 'CodeSandbox '
   code sandbox: CodeSandbox
   Stackblitz: StackBlitz
   Webpack: webpack # https://twitter.com/wSokra/status/855800490713649152

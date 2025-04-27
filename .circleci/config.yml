@@ -198,7 +198,7 @@ jobs:
           name: Install Vale
           command: |
             #!/bin/bash
-            VALE_STR_CLI_VERSION=3.3.0
+            VALE_STR_CLI_VERSION=3.11.2
 
             # set smart sudo
             if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
