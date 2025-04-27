@@ -31,8 +31,8 @@ importers:
   .:
     dependencies:
       '@googleapis/sheets':
-        specifier: ^9.6.0
-        version: 9.6.0(encoding@0.1.13)
+        specifier: ^9.7.0
+        version: 9.7.0(encoding@0.1.13)
       '@netlify/functions':
         specifier: ^3.1.2
         version: 3.1.2(encoding@0.1.13)(rollup@4.40.0)
@@ -3986,8 +3986,8 @@ packages:
     resolution: {integrity: sha512-9KMSDtJ/sIov+5pcH+CAfiJXSiuYgN0KLKQFg0HHWR2DwcjGYkcbmhoZcWsaOWOqq4kihN1l7wX91UoRxxKKTQ==}
     engines: {node: '>=18.0.0'}
 
-  '@googleapis/sheets@9.6.0':
-    resolution: {integrity: sha512-nppWh4ckXxvnFf1ILfaDO6fdoK1aMDzr8DWbb1x9dtx61dgiX7aQrDeZ9QICa+tDsFeWI6WSsS6lGFJkBgoRjQ==}
+  '@googleapis/sheets@9.7.0':
+    resolution: {integrity: sha512-laFp4BBpVzQKZuUsXG7QBZyWNtpV8SGyG+Yupjm2EfDuFuWb197zwvznyjmrIAGeEpsz11ktLpTti7+0a/2Y2Q==}
     engines: {node: '>=12.0.0'}
 
   '@hapi/hoek@9.3.0':
@@ -16233,7 +16233,7 @@ snapshots:
       '@gitbeaker/core': 38.12.1
       '@gitbeaker/requester-utils': 38.12.1
 
-  '@googleapis/sheets@9.6.0(encoding@0.1.13)':
+  '@googleapis/sheets@9.7.0(encoding@0.1.13)':
     dependencies:
       googleapis-common: 7.0.0(encoding@0.1.13)
     transitivePeerDependencies:
