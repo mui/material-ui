@@ -13,10 +13,11 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Extract Vale version from .vale.ini
+      - name: Extract Vale version from pnpm-lock.yaml
         id: vale-version
         run: |
-          VERSION=$(awk '/^ValeVersion/ {print $3}' .vale.ini)
+          # Extract version from lock file
+          VERSION=$(awk -F"@|'" '/@vvago\/vale@/ {print $4}' pnpm-lock.yaml | head -n1)
           echo "Extracted Vale version: $VERSION"
           echo "vale_version=$VERSION" >> $GITHUB_OUTPUT
       - uses: errata-ai/vale-action@d89dee975228ae261d22c15adcd03578634d429c # v2.1.1
