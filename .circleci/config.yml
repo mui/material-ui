@@ -198,7 +198,8 @@ jobs:
           name: Install Vale
           command: |
             #!/bin/bash
-            VALE_STR_CLI_VERSION=3.11.2
+            # extract ValeVersion from .vale.ini
+            VALE_STR_CLI_VERSION=$(awk '/^ValeVersion/ {print $3}' ".vale.ini")
 
             # set smart sudo
             if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi

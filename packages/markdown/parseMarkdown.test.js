@@ -128,7 +128,7 @@ title: "Our docs just got a major upgrade—here's what that means for you"
 ---
     `),
       ).to.deep.equal({
-        title: 'Our docs just got a major upgrade—here\'s what that means for you',
+        title: "Our docs just got a major upgrade—here's what that means for you",
         components: [],
         hooks: [],
       });
