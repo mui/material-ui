@@ -16,6 +16,8 @@ jobs:
       - uses: errata-ai/vale-action@d89dee975228ae261d22c15adcd03578634d429c # v2.1.1
         continue-on-error: true # GitHub Action flag needed until https://github.com/errata-ai/vale-action/issues/89 is fixed
         with:
+          # To keep in sync with VALE_STR_CLI_VERSION
+          version: 3.11.2
           # Errors should be more visible
           fail_on_error: true
           # The other reports don't work, not really https://github.com/reviewdog/reviewdog#reporters

@@ -4,6 +4,7 @@ description: Learn how we migrated our library's codebase to React 19 while main
 date: 2025-02-25
 authors: ['arminmeh']
 tags: ['MUI X']
+manualCard: false
 ---
 
 As maintainers of a popular set of React UI components, we planned to migrate our library's codebase to React 19 as soon as possible after its stable release, which came at the end of 2024.
