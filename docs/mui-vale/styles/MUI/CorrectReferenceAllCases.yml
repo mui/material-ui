@@ -21,9 +21,9 @@ swap:
   Tailwind CSS: Tailwind CSS
   Heat map: Heatmap
   Tree map: Treemap
-  Sparkline Chart: Sparkline
-  Gauge Chart: Gauge
-  Treemap Chart: Treemap
+  Sparkline Chart: Sparkline chart
+  Gauge Chart: Gauge chart
+  Treemap Chart: Treemap chart
   sub-component: subcomponent
   sub-components: subcomponents
   use-case: use case
