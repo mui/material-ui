@@ -12,6 +12,7 @@ import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled } = ownerState;
@@ -223,7 +224,16 @@ const SwitchThumb = styled('span', {
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiSwitch' });
-  const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
+  const {
+    className,
+    color = 'primary',
+    edge = false,
+    size = 'medium',
+    sx,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
@@ -233,10 +243,40 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const icon = <SwitchThumb className={classes.thumb} ownerState={ownerState} />;
+
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    className: clsx(classes.root, className),
+    elementType: SwitchRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      sx,
+    },
+  });
+
+  const [ThumbSlot, thumbSlotProps] = useSlot('thumb', {
+    className: classes.thumb,
+    elementType: SwitchThumb,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const icon = <ThumbSlot {...thumbSlotProps} />;
+
+  const [TrackSlot, trackSlotProps] = useSlot('track', {
+    className: classes.track,
+    elementType: SwitchTrack,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
-    <SwitchRoot className={clsx(classes.root, className)} sx={sx} ownerState={ownerState}>
+    <RootSlot {...rootSlotProps}>
       <SwitchSwitchBase
         type="checkbox"
         icon={icon}
@@ -248,9 +288,25 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
           ...classes,
           root: classes.switchBase,
         }}
+        slots={{
+          ...(slots.switchBase && { root: slots.switchBase }),
+          ...(slots.input && { input: slots.input }),
+        }}
+        slotProps={{
+          ...(slotProps.switchBase && {
+            root:
+              typeof slotProps.switchBase === 'function'
+                ? slotProps.switchBase(ownerState)
+                : slotProps.switchBase,
+          }),
+          ...(slotProps.input && {
+            input:
+              typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
+          }),
+        }}
       />
-      <SwitchTrack className={classes.track} ownerState={ownerState} />
-    </SwitchRoot>
+      <TrackSlot {...trackSlotProps} />
+    </RootSlot>
   );
 });
 
@@ -315,11 +371,13 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
   /**
    * Pass a ref to the `input` element.
+   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputRef: refType,
   /**
@@ -344,6 +402,28 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    switchBase: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    switchBase: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

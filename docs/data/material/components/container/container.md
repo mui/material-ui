@@ -35,7 +35,7 @@ The max-width matches the min-width of the current breakpoint.
 <Container fixed>
 ```
 
-## Toolpad (Beta)
+## Experimental APIs - Toolpad
 
 ### Page Container
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -10,22 +10,10 @@ import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
   {
-    src: '/static/sponsors/octopus-square.svg',
-    name: 'Octopus Deploy',
-    description: 'A unified DevOps automation platform for your team.',
-    href: 'https://octopus.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',
     href: 'https://www.doit.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: '/static/sponsors/marblism-square.svg',
-    name: 'Marblism',
-    description: 'Generate fully functional web apps using AI.',
-    href: 'https://www.marblism.com/?utm_source=mui',
   },
 ];
 

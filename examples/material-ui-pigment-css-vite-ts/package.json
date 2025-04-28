@@ -12,8 +12,12 @@
   "dependencies": {
     "@mui/material": "latest",
     "@mui/material-pigment-css": "latest",
+    "@pigment-css/react": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-is": "latest",
+    "prop-types": "latest",
+    "hoist-non-react-statics": "latest"
   },
   "devDependencies": {
     "@pigment-css/vite-plugin": "latest",

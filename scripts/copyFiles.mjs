@@ -1,16 +1,9 @@
 /* eslint-disable no-console */
 import path from 'path';
-import {
-  createModulePackages,
-  createPackageFile,
-  includeFileInBuild,
-  prepend,
-  typescriptCopy,
-} from './copyFilesUtils.mjs';
+import { createPackageFile, includeFileInBuild, prepend } from './copyFilesUtils.mjs';
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
-const srcPath = path.join(packagePath, './src');
 
 async function addLicense(packageData) {
   const license = `/**
@@ -22,7 +15,7 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['./index.js', './modern/index.js', './node/index.js'].map(async (file) => {
+    ['./index.js', './esm/index.js', './modern/index.js', './node/index.js'].map(async (file) => {
       try {
         await prepend(path.resolve(buildPath, file), license);
       } catch (err) {
@@ -39,10 +32,7 @@ async function addLicense(packageData) {
 async function run() {
   const extraFiles = process.argv.slice(2);
   try {
-    // TypeScript
-    await typescriptCopy({ from: srcPath, to: buildPath });
-
-    const packageData = await createPackageFile();
+    const packageData = await createPackageFile(true);
 
     await Promise.all(
       ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
@@ -52,8 +42,6 @@ async function run() {
     );
 
     await addLicense(packageData);
-
-    await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
     console.error(err);
     process.exit(1);

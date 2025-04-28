@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
 
@@ -9,8 +10,80 @@ export interface SwitchPropsSizeOverrides {}
 
 export interface SwitchPropsColorOverrides {}
 
+export interface SwitchRootSlotPropsOverrides {}
+export interface SwitchTrackSlotPropsOverrides {}
+export interface SwitchThumbSlotPropsOverrides {}
+export interface SwitchSwitchBaseSlotPropsOverrides {}
+export interface SwitchInputSlotPropsOverrides {}
+
+export interface SwitchSlots {
+  /**
+   * The component that renders the root slot.
+   * @default 'span'
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the track slot.
+   * @default 'span'
+   */
+  track: React.ElementType;
+  /**
+   * The component that renders the thumb slot.
+   * @default 'span'
+   */
+  thumb: React.ElementType;
+  /**
+   * The component that renders the switchBase slot.
+   * @default SwitchBase
+   */
+  switchBase: React.ElementType;
+  /**
+   * The component that renders the switchBase's input slot.
+   * @default SwitchBaseInput
+   */
+  input: React.ElementType;
+}
+
+export type SwitchSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  SwitchSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the span element.
+     */
+    root: SlotProps<'span', SwitchRootSlotPropsOverrides, SwitchOwnerState>;
+    /**
+     * Props forwarded to the track slot.
+     * By default, the avaible props are based on the span element.
+     */
+    track: SlotProps<'span', SwitchTrackSlotPropsOverrides, SwitchOwnerState>;
+    /**
+     * Props forwarded to the thumb slot.
+     * By default, the avaible props are based on the span element.
+     */
+    thumb: SlotProps<'span', SwitchThumbSlotPropsOverrides, SwitchOwnerState>;
+    /**
+     * Props forwarded to the switchBase slot.
+     * By default, the avaible props are based on the internal SwitchBase component.
+     */
+    switchBase: SlotProps<
+      React.ElementType<SwitchBaseProps>,
+      SwitchSwitchBaseSlotPropsOverrides,
+      SwitchOwnerState
+    >;
+    /**
+     * Props forwarded to the input slot.
+     * By default, the avaible props are based on the input element.
+     */
+    input: SlotProps<'input', SwitchInputSlotPropsOverrides, SwitchOwnerState>;
+  }
+>;
+
+export interface SwitchOwnerState extends Omit<SwitchProps, 'slots' | 'slotProps'> {}
+
 export interface SwitchProps
-  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon'> {
+  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'slots' | 'slotProps'>,
+    SwitchSlotsAndSlotProps {
   /**
    * The icon to display when the component is checked.
    */

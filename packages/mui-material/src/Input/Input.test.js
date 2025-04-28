@@ -27,6 +27,7 @@ describe('<Input />', () => {
       'componentProp',
       'componentsProp',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 

@@ -4,6 +4,48 @@ import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+
+export interface TableSortLabelRootSlotPropsOverrides {}
+
+export interface TableSortLabelIconSlotPropsOverrides {}
+
+export interface TableSortLabelSlots {
+  /**
+   * The component that renders the root slot.
+   * @default span
+   */
+  root?: React.ElementType;
+  /**
+   * The component that renders the icon slot.
+   * @default ArrowDownwardIcon
+   */
+  icon?: React.ElementType;
+}
+
+export type TableSortLabelSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  TableSortLabelSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     */
+    root: SlotProps<
+      React.ElementType<React.HTMLAttributes<HTMLSpanElement>>,
+      TableSortLabelRootSlotPropsOverrides,
+      TableSortLabelOwnerState
+    >;
+    /**
+     * Props forwarded to the icon slot.
+     */
+    icon: SlotProps<
+      React.ElementType<React.SVGAttributes<SVGSVGElement>>,
+      TableSortLabelIconSlotPropsOverrides,
+      TableSortLabelOwnerState
+    >;
+  }
+>;
+
+export interface TableSortLabelOwnerState extends TableSortLabelOwnProps {}
 
 export interface TableSortLabelOwnProps {
   /**
@@ -46,7 +88,7 @@ export type TableSortLabelTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'span',
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & TableSortLabelOwnProps;
+  props: AdditionalProps & TableSortLabelOwnProps & TableSortLabelSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }>;
 

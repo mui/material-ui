@@ -279,7 +279,7 @@ section.
 
 ### 18. Which JavaScript framework are you using, if any?
 
-<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom Webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
+<img src="/static/blog/2020-survey/18.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Pie chart: 57.34% Create React App, 16.40% Custom webpack, 12.35% Next.js, 5.40% Gatsby, 8.51% Other." />
 
 ### 19. What styling system are you using?
 
@@ -315,5 +315,8 @@ We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
-<img src="/static/blog/2019-developer-survey-results/vote.gif" style="width: 550px; margin-bottom: 8px;" alt="How to upvote on GitHub" />
+<video autoplay muted loop playsinline width="2914" height="1440">
+  <source src="/static/blog/2019-developer-survey-results/vote.mp4" type="video/mp4" />
+</video>
+
 <p class="blog-description">Help us prioritize by upvoting.</p>

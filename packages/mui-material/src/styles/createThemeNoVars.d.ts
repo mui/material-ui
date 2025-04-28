@@ -7,7 +7,7 @@ import {
 } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
-import { Typography, TypographyOptions } from './createTypography';
+import { TypographyVariants, TypographyVariantsOptions } from './createTypography';
 import { Shadows } from './shadows';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
@@ -58,18 +58,18 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
-  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
+  typography?: TypographyVariantsOptions | ((palette: Palette) => TypographyVariantsOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
   unstable_sxConfig?: SxConfig;
 }
 
-interface BaseTheme extends SystemTheme {
+export interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette & (CssThemeVariables extends { enabled: true } ? CssVarsPalette : {});
   shadows: Shadows;
   transitions: Transitions;
-  typography: Typography;
+  typography: TypographyVariants;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
 }
@@ -106,12 +106,6 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
   unstable_sxConfig: SxConfig;
 }
-
-/**
- * @deprecated
- * Use `import { createTheme } from '@mui/material/styles'` instead.
- */
-export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
 
 /**
  * Generate a theme base on the options received.

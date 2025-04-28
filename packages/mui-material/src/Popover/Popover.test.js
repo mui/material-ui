@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, stub, match } from 'sinon';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
-import Modal from '@mui/material/Modal';
+import Modal, { modalClasses } from '@mui/material/Modal';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Popover, { popoverClasses as classes, PopoverPaper } from '@mui/material/Popover';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -43,6 +43,13 @@ const ReplacementPaper = styled(Paper, {
   backgroundColor: 'red',
 });
 
+const CustomTransition = React.forwardRef(function CustomTransition(
+  { in: inProp, appear, onEnter, onEntering, onExited, ownerState, ...props },
+  ref,
+) {
+  return <div data-testid="custom" ref={ref} {...props} />;
+});
+
 describe('<Popover />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -62,6 +69,17 @@ describe('<Popover />', () => {
         testWithComponent: React.forwardRef((props, ref) => (
           <ReplacementPaper ref={ref} {...props} data-testid="custom" />
         )),
+      },
+      backdrop: {
+        expectedClassName: modalClasses.backdrop,
+        testWithElement: React.forwardRef(({ invisible, ownerState, ...props }, ref) => (
+          <i ref={ref} {...props} />
+        )),
+      },
+      transition: {
+        expectedClassName: null,
+        testWithComponent: CustomTransition,
+        testWithElement: CustomTransition,
       },
     },
     skip: [

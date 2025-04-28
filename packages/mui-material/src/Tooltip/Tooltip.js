@@ -7,7 +7,6 @@ import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import isFocusVisible from '@mui/utils/isFocusVisible';
-import appendOwnerState from '@mui/utils/appendOwnerState';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -19,6 +18,7 @@ import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
 import useControlled from '../utils/useControlled';
+import useSlot from '../utils/useSlot';
 import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
 
 function round(value) {
@@ -339,7 +339,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     slotProps = {},
     slots = {},
     title,
-    TransitionComponent: TransitionComponentProp = Grow,
+    TransitionComponent: TransitionComponentProp,
     TransitionProps,
     ...other
   } = props;
@@ -385,7 +385,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         title !== '' &&
         childNode.tagName.toLowerCase() === 'button'
       ) {
-        console.error(
+        console.warn(
           [
             'MUI: You are providing a disabled `button` child to the Tooltip component.',
             'A disabled element does not fire events.',
@@ -652,6 +652,18 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     }
   }
 
+  const ownerState = {
+    ...props,
+    isRtl,
+    arrow,
+    disableInteractive,
+    placement,
+    PopperComponentProp,
+    touch: ignoreNonTouchEvents.current,
+  };
+
+  const resolvedPopperProps =
+    typeof slotProps.popper === 'function' ? slotProps.popper(ownerState) : slotProps.popper;
   const popperOptions = React.useMemo(() => {
     let tooltipModifiers = [
       {
@@ -668,72 +680,73 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       tooltipModifiers = tooltipModifiers.concat(PopperProps.popperOptions.modifiers);
     }
 
+    if (resolvedPopperProps?.popperOptions?.modifiers) {
+      tooltipModifiers = tooltipModifiers.concat(resolvedPopperProps.popperOptions.modifiers);
+    }
+
     return {
       ...PopperProps.popperOptions,
+      ...resolvedPopperProps?.popperOptions,
       modifiers: tooltipModifiers,
     };
-  }, [arrowRef, PopperProps]);
-
-  const ownerState = {
-    ...props,
-    isRtl,
-    arrow,
-    disableInteractive,
-    placement,
-    PopperComponentProp,
-    touch: ignoreNonTouchEvents.current,
-  };
+  }, [arrowRef, PopperProps.popperOptions, resolvedPopperProps?.popperOptions]);
 
   const classes = useUtilityClasses(ownerState);
-
-  const PopperComponent = slots.popper ?? components.Popper ?? TooltipPopper;
-  const TransitionComponent =
-    slots.transition ?? components.Transition ?? TransitionComponentProp ?? Grow;
-  const TooltipComponent = slots.tooltip ?? components.Tooltip ?? TooltipTooltip;
-  const ArrowComponent = slots.arrow ?? components.Arrow ?? TooltipArrow;
-
-  const popperProps = appendOwnerState(
-    PopperComponent,
-    {
-      ...PopperProps,
-      ...(slotProps.popper ?? componentsProps.popper),
-      className: clsx(
-        classes.popper,
-        PopperProps?.className,
-        (slotProps.popper ?? componentsProps.popper)?.className,
-      ),
+  const resolvedTransitionProps =
+    typeof slotProps.transition === 'function'
+      ? slotProps.transition(ownerState)
+      : slotProps.transition;
+  const externalForwardedProps = {
+    slots: {
+      popper: components.Popper,
+      transition: components.Transition ?? TransitionComponentProp,
+      tooltip: components.Tooltip,
+      arrow: components.Arrow,
+      ...slots,
     },
-    ownerState,
-  );
-
-  const transitionProps = appendOwnerState(
-    TransitionComponent,
-    { ...TransitionProps, ...(slotProps.transition ?? componentsProps.transition) },
-    ownerState,
-  );
-
-  const tooltipProps = appendOwnerState(
-    TooltipComponent,
-    {
-      ...(slotProps.tooltip ?? componentsProps.tooltip),
-      className: clsx(classes.tooltip, (slotProps.tooltip ?? componentsProps.tooltip)?.className),
+    slotProps: {
+      arrow: slotProps.arrow ?? componentsProps.arrow,
+      popper: { ...PopperProps, ...(resolvedPopperProps ?? componentsProps.popper) }, // resolvedPopperProps can be spread because it's already an object
+      tooltip: slotProps.tooltip ?? componentsProps.tooltip,
+      transition: {
+        ...TransitionProps,
+        ...(resolvedTransitionProps ?? componentsProps.transition),
+      },
     },
-    ownerState,
-  );
+  };
 
-  const tooltipArrowProps = appendOwnerState(
-    ArrowComponent,
-    {
-      ...(slotProps.arrow ?? componentsProps.arrow),
-      className: clsx(classes.arrow, (slotProps.arrow ?? componentsProps.arrow)?.className),
-    },
+  const [PopperSlot, popperSlotProps] = useSlot('popper', {
+    elementType: TooltipPopper,
+    externalForwardedProps,
     ownerState,
-  );
+    className: clsx(classes.popper, PopperProps?.className),
+  });
+
+  const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
+    elementType: Grow,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [TooltipSlot, tooltipSlotProps] = useSlot('tooltip', {
+    elementType: TooltipTooltip,
+    className: classes.tooltip,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ArrowSlot, arrowSlotProps] = useSlot('arrow', {
+    elementType: TooltipArrow,
+    className: classes.arrow,
+    externalForwardedProps,
+    ownerState,
+    ref: setArrowRef,
+  });
 
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      <PopperComponent
+      <PopperSlot
         as={PopperComponentProp ?? Popper}
         placement={placement}
         anchorEl={
@@ -755,22 +768,22 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         id={id}
         transition
         {...interactiveWrapperListeners}
-        {...popperProps}
+        {...popperSlotProps}
         popperOptions={popperOptions}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
-          <TransitionComponent
+          <TransitionSlot
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
-            {...transitionProps}
+            {...transitionSlotProps}
           >
-            <TooltipComponent {...tooltipProps}>
+            <TooltipSlot {...tooltipSlotProps}>
               {title}
-              {arrow ? <ArrowComponent {...tooltipArrowProps} ref={setArrowRef} /> : null}
-            </TooltipComponent>
-          </TransitionComponent>
+              {arrow ? <ArrowSlot {...arrowSlotProps} /> : null}
+            </TooltipSlot>
+          </TransitionSlot>
         )}
-      </PopperComponent>
+      </PopperSlot>
     </React.Fragment>
   );
 });
@@ -800,7 +813,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -814,7 +827,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -909,6 +922,9 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * @default 'bottom'
    */
   placement: PropTypes.oneOf([
+    'auto-end',
+    'auto-start',
+    'auto',
     'bottom-end',
     'bottom-start',
     'bottom',
@@ -924,33 +940,27 @@ Tooltip.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the popper.
-   * @default Popper
+   * @deprecated use the `slots.popper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Popper`](https://mui.com/material-ui/api/popper/) element.
+   * @deprecated use the `slotProps.popper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   PopperProps: PropTypes.object,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
-    arrow: PropTypes.object,
-    popper: PropTypes.object,
-    tooltip: PropTypes.object,
-    transition: PropTypes.object,
+    arrow: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    tooltip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
-   *
-   * This prop is an alias for the `components` prop, which will be deprecated in the future.
-   *
    * @default {}
    */
   slots: PropTypes.shape({
@@ -974,12 +984,14 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @default Grow
+   * @deprecated use the `slots.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @default {}
    */
   TransitionProps: PropTypes.object,
 };

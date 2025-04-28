@@ -45,8 +45,17 @@ export default function SideMenu() {
         <SelectContent />
       </Box>
       <Divider />
-      <MenuContent />
-      <CardAlert />
+      <Box
+        sx={{
+          overflow: 'auto',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <MenuContent />
+        <CardAlert />
+      </Box>
       <Stack
         direction="row"
         sx={{

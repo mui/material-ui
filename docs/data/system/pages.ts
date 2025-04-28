@@ -47,8 +47,12 @@ const pages: readonly MuiPage[] = [
     title: 'Migration',
     children: [
       {
+        pathname: '/system/migration/upgrade-to-v7',
+        title: 'Upgrade to v7',
+      },
+      {
         pathname: '/system/migration/migrating-to-v6',
-        title: 'Migrating to v6',
+        title: 'Upgrade to v6',
       },
     ],
   },
@@ -76,9 +80,9 @@ const pages: readonly MuiPage[] = [
     title: 'Styles',
     legacy: true,
     children: [
-      { pathname: '/system/styles/basics' },
-      { pathname: '/system/styles/advanced' },
-      { pathname: '/system/styles/api', title: 'APIs' },
+      { pathname: 'https://v6.mui.com/system/styles/basics/', title: 'Basics' },
+      { pathname: 'https://v6.mui.com/system/styles/advanced/', title: 'Advanced' },
+      { pathname: 'https://v6.mui.com/system/styles/api/', title: 'APIs' },
     ],
   },
 ];

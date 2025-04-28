@@ -1,18 +1,27 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
-import { CssVarsProvider, extendTheme, useTheme } from '@mui/material/styles';
+import {
+  CssVarsProvider,
+  extendTheme,
+  useTheme,
+  ThemeProvider,
+  createTheme,
+  useColorScheme,
+} from '@mui/material/styles';
 
 describe('[Material UI] ThemeProviderWithVars', () => {
   let originalMatchmedia;
   const { render } = createRenderer();
-  const storage = {};
+  let storage = {};
 
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
+    // clear the localstorage
+    storage = {};
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: (key) => storage[key],
         setItem: (key, value) => {
@@ -359,5 +368,186 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       borderBottomLeftRadius: '16px',
       borderBottomRightRadius: '16px',
     });
+  });
+
+  it('warns when using `setMode` without configuring `colorSchemeSelector`', () => {
+    function Test() {
+      const { setMode } = useColorScheme();
+      return <button onClick={() => setMode('dark')}>Dark</button>;
+    }
+    render(
+      <ThemeProvider
+        theme={createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } })}
+      >
+        <Test />
+      </ThemeProvider>,
+    );
+
+    expect(() => {
+      fireEvent.click(screen.getByText('Dark'));
+    }).toErrorDev([
+      'MUI: The `setMode` function has no effect if `colorSchemeSelector` is `media` (`media` is the default value).\nTo toggle the mode manually, please configure `colorSchemeSelector` to use a class or data attribute.\nTo learn more, visit https://mui.com/material-ui/customization/css-theme-variables/configuration/#toggling-dark-mode-manually',
+    ]);
+  });
+
+  it('do not warn when using `setMode` with `colorSchemeSelector` that is not `media`', () => {
+    function Test() {
+      const { setMode } = useColorScheme();
+      return <button onClick={() => setMode('dark')}>Dark</button>;
+    }
+    render(
+      <ThemeProvider
+        theme={createTheme({
+          cssVariables: { colorSchemeSelector: 'class' },
+          colorSchemes: { light: true, dark: true },
+        })}
+      >
+        <Test />
+      </ThemeProvider>,
+    );
+
+    expect(() => {
+      fireEvent.click(screen.getByText('Dark'));
+    }).not.toErrorDev();
+  });
+
+  it('theme should remain the same when ThemeProvider rerenders', () => {
+    const theme = createTheme({ cssVariables: true });
+
+    function Inner() {
+      const upperTheme = useTheme();
+      const themeRef = React.useRef(upperTheme);
+      const [changed, setChanged] = React.useState(false);
+      React.useEffect(() => {
+        if (themeRef.current !== upperTheme) {
+          setChanged(true);
+        }
+      }, [upperTheme]);
+      return changed ? <div data-testid="theme-changed" /> : null;
+    }
+    function App() {
+      const [, setState] = React.useState({});
+      const rerender = () => setState({});
+      return (
+        <ThemeProvider theme={theme}>
+          <button onClick={() => rerender()}>rerender</button>
+          <Inner />
+        </ThemeProvider>
+      );
+    }
+    render(<App />);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(screen.queryByTestId('theme-changed')).to.equal(null);
+  });
+
+  it('theme does not change with CSS variables', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: { colorSchemeSelector: 'class' },
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme}>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+  });
+
+  it('palette mode should change if not using CSS variables', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode} {theme.palette.primary.main}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: false,
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme}>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text(
+      `${reactMajor >= 19 ? 2 : 1} light ${createTheme().palette.primary.main}`,
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text(
+      `${reactMajor >= 19 ? 3 : 2} dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
+    );
+  });
+
+  it('`forceThemeRerender` recalculates the theme', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: { colorSchemeSelector: 'class' },
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme} forceThemeRerender>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 2 : 1} light`);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text(`${reactMajor >= 19 ? 3 : 2} dark`);
   });
 });

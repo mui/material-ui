@@ -1,4 +1,4 @@
-export { unstable_ClassNameGenerator } from '@mui/utils';
+export { default as unstable_ClassNameGenerator } from '@mui/utils/ClassNameGenerator';
 export { default as capitalize } from './capitalize';
 export { default as createChainedFunction } from './createChainedFunction';
 export { default as createSvgIcon } from './createSvgIcon';
@@ -16,4 +16,5 @@ export { default as unsupportedProp } from './unsupportedProp';
 export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
+export { default as mergeSlotProps } from './mergeSlotProps';
 export * from './types';

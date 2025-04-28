@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import CardHeader, { CardHeaderProps, CardHeaderTypeMap } from '@mui/material/CardHeader';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> =
@@ -306,3 +307,49 @@ function mixedTypographyPropsTest() {
     subheaderTypographyProps={{ component: CustomComponent, numberProp: 2 }}
   />;
 }
+
+<CardHeader
+  slotProps={{
+    root: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    action: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    avatar: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    content: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    title: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+    subheader: {
+      component: 'div',
+      className: 'flex',
+      'data-testid': 'hello',
+    },
+  }}
+/>;
+const CustomSlot = styled('div')({});
+<CardHeader
+  slots={{
+    action: CustomSlot,
+    avatar: CustomSlot,
+    content: CustomSlot,
+    root: CustomSlot,
+    subheader: CustomSlot,
+    title: CustomSlot,
+  }}
+/>;

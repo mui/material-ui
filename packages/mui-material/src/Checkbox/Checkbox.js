@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
@@ -14,8 +13,9 @@ import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
-
 import { useDefaultProps } from '../DefaultPropsProvider';
+import { mergeSlotProps } from '../utils';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, indeterminate, color, size } = ownerState;
@@ -124,6 +124,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     size = 'medium',
     disableRipple = false,
     className,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -140,27 +142,43 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <CheckboxRoot
-      type="checkbox"
-      inputProps={{
-        'data-indeterminate': indeterminate,
-        ...inputProps,
-      }}
-      icon={React.cloneElement(icon, {
+  const externalInputProps = slotProps.input ?? inputProps;
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: CheckboxRoot,
+    className: clsx(classes.root, className),
+    shouldForwardComponentProp: true,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      type: 'checkbox',
+      icon: React.cloneElement(icon, {
         fontSize: icon.props.fontSize ?? size,
-      })}
-      checkedIcon={React.cloneElement(indeterminateIcon, {
+      }),
+      checkedIcon: React.cloneElement(indeterminateIcon, {
         fontSize: indeterminateIcon.props.fontSize ?? size,
-      })}
-      ownerState={ownerState}
-      ref={ref}
-      className={clsx(classes.root, className)}
-      disableRipple={disableRipple}
-      {...other}
-      classes={classes}
-    />
-  );
+      }),
+      disableRipple,
+      slots,
+      slotProps: {
+        input: mergeSlotProps(
+          typeof externalInputProps === 'function'
+            ? externalInputProps(ownerState)
+            : externalInputProps,
+          {
+            'data-indeterminate': indeterminate,
+          },
+        ),
+      },
+    },
+  });
+
+  return <RootSlot {...rootSlotProps} classes={classes} />;
 });
 
 Checkbox.propTypes /* remove-proptypes */ = {
@@ -232,13 +250,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   indeterminateIcon: PropTypes.node,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: refType,
   /**
    * Callback fired when the state is changed.
    *
@@ -260,6 +275,22 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

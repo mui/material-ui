@@ -12,6 +12,10 @@ import * as ripple from '../../test/ripple';
 describe('<Checkbox />', () => {
   const { render } = createRenderer();
 
+  function CustomRoot({ checkedIcon, ownerState, disableRipple, slots, slotProps, ...props }) {
+    return <div {...props} />;
+  }
+
   describeConformance(<Checkbox checked />, () => ({
     classes,
     inheritComponent: ButtonBase,
@@ -20,6 +24,15 @@ describe('<Checkbox />', () => {
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
     refInstanceof: window.HTMLSpanElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomRoot,
+      },
+      input: {
+        expectedClassName: classes.input,
+      },
+    },
     skip: ['componentProp', 'componentsProp', 'rootClass'],
   }));
 

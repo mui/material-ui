@@ -1,16 +1,16 @@
 # Migrating to Pigment CSS
 
-<p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
+<p class="description">This guide helps you integrate Pigment CSS with Material UI.</p>
 
 :::warning
 Pigment CSS is currently in the early alpha stage of development. We're actively working on improving its performance and stability. If you find any problem, please open a [GitHub issue](https://github.com/mui/pigment-css/issues).
 :::
 
-Before going through this guide, make sure you have [upgraded to Material UI v6](/material-ui/migration/upgrade-to-v6/).
+Before going through this guide, make sure you have [upgraded to Material UI v7](/material-ui/migration/upgrade-to-v7/) (or [v6](/material-ui/migration/upgrade-to-v6/)).
 
 ## Introduction
 
-The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction).
+The default styling engine of Material UI is [Emotion](https://emotion.sh/docs/introduction).
 It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client-side.
 It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
 
@@ -21,7 +21,7 @@ It can work alongside Emotion to ease the migration process, but it is recommend
 
 Pigment CSS can be used with one of the following frameworks:
 
-- [Next.js App Router](https://nextjs.org/docs/app) with Webpack v5 (Turbopack is not supported yet)
+- [Next.js App Router](https://nextjs.org/docs/app) with webpack v5 (Turbopack is not supported yet)
 - [Vite](https://vite.dev/)
 
 ## Installation
@@ -31,15 +31,15 @@ First, install the Material UI wrapper package for Pigment CSS:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-pigment-css
+npm install @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash pnpm
-pnpm add @mui/material-pigment-css
+pnpm add @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash yarn
-yarn add @mui/material-pigment-css
+yarn add @mui/material-pigment-css @pigment-css/react
 ```
 
 </codeblock>

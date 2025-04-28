@@ -1,10 +1,16 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
+import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/colorManipulator';
 import CssBaseline from '@mui/material/CssBaseline';
+import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+// @ts-ignore to bypass type checking in MUI X repo
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
+// @ts-ignore to bypass type checking in MUI X repo
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 
 declare module '@mui/material/styles' {
@@ -15,13 +21,7 @@ declare module '@mui/material/styles' {
 
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
-
-const theme = createTheme({
-  experimentalColorMix: 'display-p3',
-  cssVariables: {
-    cssVarPrefix: 'muidocs',
-    colorSchemeSelector: 'data-mui-color-scheme',
-  },
+const themeOptions = {
   colorSchemes: {
     light: {
       palette: lightPalette,
@@ -49,12 +49,114 @@ const theme = createTheme({
     },
   }),
   ...getThemedComponents(),
-});
+};
 
-export default function BrandingCssVarsProvider(props: { children: React.ReactNode }) {
-  const { children } = props;
+export function setDocsColors(primary: Record<string, string>, secondary: Record<string, string>) {
+  function injectPalette(prefix: string, palette: string, color: string) {
+    // simplified logic of `createPalette` to avoid `useTheme`.
+    const light = lighten(color, 0.2);
+    const dark = darken(color, 0.3);
+    const contrastText = getContrastRatio(color, '#fff') >= 3 ? '#fff' : 'rgba(0, 0, 0, 0.87)';
+
+    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-main`, color);
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-mainChannel`,
+      colorChannel(color),
+    );
+    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-light`, light);
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-lightChannel`,
+      colorChannel(light),
+    );
+    document.documentElement.style.setProperty(`--${prefix}-palette-${palette}-dark`, dark);
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-darkChannel`,
+      colorChannel(dark),
+    );
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-contrastText`,
+      contrastText,
+    );
+    document.documentElement.style.setProperty(
+      `--${prefix}-palette-${palette}-contrastTextChannel`,
+      colorChannel(contrastText),
+    );
+  }
+  if (typeof document !== 'undefined') {
+    injectPalette('muidocs', 'primary', primary.main);
+    injectPalette('muidocs', 'secondary', secondary.main);
+
+    ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].forEach((key) => {
+      document.documentElement.style.setProperty(`--muidocs-palette-primary-${key}`, primary[key]);
+      document.documentElement.style.setProperty(
+        `--muidocs-palette-secondary-${key}`,
+        secondary[key],
+      );
+    });
+
+    injectPalette('mui', 'primary', primary.main);
+    injectPalette('mui', 'secondary', secondary.main);
+  }
+}
+
+export function resetDocsColor() {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-main');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-main');
+    document.documentElement.style.removeProperty('--mui-palette-primary-main');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-main');
+
+    ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].forEach((key) => {
+      document.documentElement.style.removeProperty(`--muidocs-palette-primary-${key}`);
+      document.documentElement.style.removeProperty(`--muidocs-palette-secondary-${key}`);
+    });
+  }
+}
+
+export function setDocsSpacing(value: number) {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.setProperty('--muidocs-spacing', `${value}px`);
+    document.documentElement.style.setProperty('--mui-spacing', `${value}px`);
+  }
+}
+
+export function resetDocsSpacing() {
+  if (typeof document !== 'undefined') {
+    document.documentElement.style.removeProperty('--muidocs-spacing');
+    document.documentElement.style.removeProperty('--mui-spacing');
+  }
+}
+
+export default function BrandingCssVarsProvider(props: {
+  children: React.ReactNode;
+  direction?: 'ltr' | 'rtl';
+}) {
+  const { direction = 'ltr', children } = props;
+  const { asPath } = useRouter();
+  const { canonicalAs } = pathnameToLanguage(asPath);
+  const theme = React.useMemo(() => {
+    return createTheme({
+      cssVariables: {
+        cssVarPrefix: 'muidocs',
+        colorSchemeSelector: 'data-mui-color-scheme',
+      },
+      direction,
+      ...themeOptions,
+    });
+  }, [direction]);
+  useEnhancedEffect(() => {
+    const nextPaletteColors = JSON.parse(getCookie('paletteColors') || 'null');
+    if (nextPaletteColors) {
+      setDocsColors(nextPaletteColors.primary, nextPaletteColors.secondary);
+    }
+  }, []);
   return (
-    <ThemeProvider theme={theme} disableTransitionOnChange>
+    <ThemeProvider
+      theme={theme}
+      disableTransitionOnChange
+      // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
+      forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
+    >
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink />

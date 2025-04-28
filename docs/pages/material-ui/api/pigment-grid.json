@@ -64,6 +64,6 @@
   "muiName": "MuiPigmentGrid",
   "filename": "/packages/mui-material/src/PigmentGrid/PigmentGrid.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-grid2/\">Grid version 2</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid</a></li></ul>",
   "cssComponent": false
 }

@@ -133,7 +133,6 @@ const DividerRoot = styled('div', {
         props: ({ ownerState }) => !!ownerState.children,
         style: {
           display: 'flex',
-          whiteSpace: 'nowrap',
           textAlign: 'center',
           border: 0,
           borderTopStyle: 'solid',
@@ -206,6 +205,7 @@ const DividerWrapper = styled('span', {
     display: 'inline-block',
     paddingLeft: `calc(${theme.spacing(1)} * 1.2)`,
     paddingRight: `calc(${theme.spacing(1)} * 1.2)`,
+    whiteSpace: 'nowrap',
     variants: [
       {
         props: {

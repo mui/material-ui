@@ -1,7 +1,9 @@
 import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
+import Accordion, { accordionClasses } from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionDetails, {
+  accordionDetailsClasses,
+} from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Fade from '@mui/material/Fade';
@@ -23,18 +25,18 @@ export default function AccordionTransition() {
         sx={[
           expanded
             ? {
-                '& .MuiAccordion-region': {
+                [`& .${accordionClasses.region}`]: {
                   height: 'auto',
                 },
-                '& .MuiAccordionDetails-root': {
+                [`& .${accordionDetailsClasses.root}`]: {
                   display: 'block',
                 },
               }
             : {
-                '& .MuiAccordion-region': {
+                [`& .${accordionClasses.region}`]: {
                   height: 0,
                 },
-                '& .MuiAccordionDetails-root': {
+                [`& .${accordionDetailsClasses.root}`]: {
                   display: 'none',
                 },
               },
@@ -45,7 +47,7 @@ export default function AccordionTransition() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography>Custom transition using Fade</Typography>
+          <Typography component="span">Custom transition using Fade</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -60,7 +62,7 @@ export default function AccordionTransition() {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          <Typography>Default transition using Collapse</Typography>
+          <Typography component="span">Default transition using Collapse</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

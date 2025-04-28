@@ -8,10 +8,10 @@ import Grid from '@mui/material-pigment-css/Grid';
 import composeClasses from '@mui/utils/composeClasses';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import {
-  generateDirectionClasses,
-  generateSizeClassNames,
-  generateSpacingClassNames,
-} from '@mui/system/Grid/gridGenerator';
+  unstable_generateDirectionClasses as generateDirectionClasses,
+  unstable_generateSizeClassNames as generateSizeClassNames,
+  unstable_generateSpacingClassNames as generateSpacingClassNames,
+} from '@mui/system/Grid';
 import { Breakpoint, Theme } from '../styles';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
@@ -116,13 +116,13 @@ const useUtilityClasses = (ownerState: GridBaseProps) => {
     ],
   };
 
-  return composeClasses(slots, (slot: string) => generateUtilityClass('MuiGrid2', slot), {});
+  return composeClasses(slots, (slot: string) => generateUtilityClass('MuiGrid', slot), {});
 };
 /**
  *
  * Demos:
  *
- * - [Grid version 2](https://mui.com/material-ui/react-grid2/)
+ * - [Grid](https://mui.com/material-ui/react-grid/)
  *
  * API:
  *

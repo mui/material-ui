@@ -4,11 +4,30 @@ import { spy } from 'sinon';
 import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
+import { modalClasses } from '@mui/material/Modal';
 import { getAnchor, isHorizontal } from './Drawer';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Drawer />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
+
+  const CustomPaper = React.forwardRef(
+    ({ className, children, ownerState, square, ...props }, ref) => (
+      <i className={className} ref={ref} {...props} data-testid="custom">
+        {children}
+      </i>
+    ),
+  );
+
+  const CustomBackdrop = React.forwardRef(({ transitionDuration, ownerState, ...props }, ref) => (
+    <i ref={ref} data-testid="custom" {...props} />
+  ));
+
+  const CustomTransition = React.forwardRef(
+    ({ onEnter, onExit, onExited, appear, in: inProp, ownerState, ...props }, ref) => (
+      <i ref={ref} data-testid="custom" {...props} />
+    ),
+  );
 
   describeConformance(
     <Drawer open disablePortal>
@@ -19,10 +38,48 @@ describe('<Drawer />', () => {
       inheritComponent: 'div',
       render,
       muiName: 'MuiDrawer',
-      testVariantProps: { variant: 'persistent' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+          testWithComponent: null,
+          testWithElement: null,
+        },
+        paper: {
+          expectedClassName: classes.paper,
+          testWithComponent: CustomPaper,
+          testWithElement: null, // already tested with CustomPaper
+        },
+        backdrop: { expectedClassName: modalClasses.backdrop, testWithElement: CustomBackdrop },
+        transition: {
+          expectedClassName: null,
+          testWithComponent: CustomTransition,
+          testWithElement: CustomTransition,
+        },
+      },
       skip: ['componentProp', 'componentsProp', 'themeVariants'],
+    }),
+  );
+
+  // For `permanent` variant, the root is a div instead of a Modal.
+  describeConformance(
+    <Drawer variant="permanent">
+      <div />
+    </Drawer>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      muiName: 'MuiDrawer',
+      testVariantProps: { variant: 'persistent' },
+      refInstanceof: window.HTMLDivElement,
+      slots: {
+        docked: {
+          expectedClassName: classes.docked,
+        },
+      },
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 
@@ -332,6 +389,27 @@ describe('<Drawer />', () => {
       expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
         zIndex: String(theme.zIndex.drawer),
       });
+    });
+  });
+
+  describe('prop: anchor', () => {
+    it('should set correct class name on the root element', () => {
+      const { setProps } = render(
+        <Drawer open anchor="left">
+          <div />
+        </Drawer>,
+      );
+
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorLeft);
+
+      setProps({ anchor: 'right' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorRight);
+
+      setProps({ anchor: 'top' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorTop);
+
+      setProps({ anchor: 'bottom' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorBottom);
     });
   });
 });

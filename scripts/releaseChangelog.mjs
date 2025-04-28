@@ -37,6 +37,7 @@ function filterCommit(commitsItem) {
   return (
     // Filter renovate dependencies updates
     !commitMessage.startsWith('Bump') &&
+    !commitMessage.startsWith('Lock file maintenance') &&
     // Filter website changes, no implications for library users
     !commitMessage.startsWith('[website]')
   );
@@ -213,7 +214,7 @@ yargs(process.argv.slice(2))
           type: 'string',
         })
         .option('release', {
-          // #default-branch-switch
+          // #target-branch-reference
           default: 'master',
           describe: 'Ref which we want to release',
           type: 'string',

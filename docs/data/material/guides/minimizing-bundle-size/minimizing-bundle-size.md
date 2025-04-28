@@ -13,7 +13,7 @@ Combined with [dangerJS](https://danger.systems/js/) we can inspect
 
 Tree-shaking Material UI works out of the box in modern frameworks.
 Material UI exposes its full API on the top-level `@mui` imports.
-If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
+If you're using ES modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), parcel you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@mui/material';
@@ -198,57 +198,3 @@ It will perform the following diffs:
 -import TextField from '@mui/material/TextField';
 +import { Button, TextField } from '@mui/material';
 ```
-
-## Available bundles
-
-### Default bundle
-
-The packages published on npm are **transpiled** with [Babel](https://github.com/babel/babel), optimized for performance with the [supported platforms](/material-ui/getting-started/supported-platforms/).
-
-A [modern bundle](#modern-bundle) is also available.
-
-### How to use custom bundles?
-
-:::error
-You are strongly discouraged to:
-
-- Import from any of the custom bundles directly. Do not do this:
-
-  ```js
-  import { Button } from '@mui/material/modern';
-  ```
-
-  You have no guarantee that the dependencies use the `modern` bundle, leading to module duplication in your JavaScript files.
-
-- Import from any of the undocumented files or folders. Do not do this:
-
-  ```js
-  import { Button } from '@mui/material/esm';
-  ```
-
-  You have no guarantee that these imports will continue to work from one version to the next.
-
-  :::
-
-A great way to use these bundles is to configure bundler aliases, for example with [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
-
-```js
-{
-  resolve: {
-    alias: {
-      '@mui/material': '@mui/material/modern',
-      '@mui/styled-engine': '@mui/styled-engine/modern',
-      '@mui/system': '@mui/system/modern',
-      '@mui/base': '@mui/base/modern',
-      '@mui/utils': '@mui/utils/modern',
-      '@mui/lab': '@mui/lab/modern',
-    }
-  }
-}
-```
-
-### Modern bundle
-
-The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
-It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
-This can be used to make separate bundles targeting different browsers.

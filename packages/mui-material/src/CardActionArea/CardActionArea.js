@@ -8,6 +8,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -66,22 +67,51 @@ const CardActionAreaFocusHighlight = styled('span', {
 
 const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiCardActionArea' });
-  const { children, className, focusVisibleClassName, ...other } = props;
+  const {
+    children,
+    className,
+    focusVisibleClassName,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: CardActionAreaRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    shouldForwardComponentProp: true,
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+    additionalProps: {
+      focusVisibleClassName: clsx(focusVisibleClassName, classes.focusVisible),
+    },
+  });
+
+  const [FocusHighlightSlot, focusHighlightProps] = useSlot('focusHighlight', {
+    elementType: CardActionAreaFocusHighlight,
+    externalForwardedProps,
+    ownerState,
+    ref,
+    className: classes.focusHighlight,
+  });
+
   return (
-    <CardActionAreaRoot
-      className={clsx(classes.root, className)}
-      focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {children}
-      <CardActionAreaFocusHighlight className={classes.focusHighlight} ownerState={ownerState} />
-    </CardActionAreaRoot>
+      <FocusHighlightSlot {...focusHighlightProps} />
+    </RootSlot>
   );
 });
 
@@ -106,6 +136,22 @@ CardActionArea.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    focusHighlight: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    focusHighlight: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

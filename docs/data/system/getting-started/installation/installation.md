@@ -30,7 +30,7 @@ Please note that [react](https://www.npmjs.com/package/react) is a peer dependen
 
 ```json
 "peerDependencies": {
-  "react": "^17.0.0 || ^18.0.0"
+  "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
 },
 ```
 
@@ -39,7 +39,7 @@ Please note that [react](https://www.npmjs.com/package/react) is a peer dependen
 MUI System uses [Emotion](https://emotion.sh/docs/introduction) as its default styling engine.
 If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 
