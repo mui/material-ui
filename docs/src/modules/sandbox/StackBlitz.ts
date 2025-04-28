@@ -66,7 +66,6 @@ export default defineConfig({
       {
         name: 'mui-demo',
         private: true,
-        version: '0.0.0',
         type: 'module',
         scripts: {
           dev: 'vite',
