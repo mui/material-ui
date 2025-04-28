@@ -145,7 +145,7 @@
     "@typescript-eslint/parser": "^8.31.0",
     "@vitejs/plugin-react": "^4.4.1",
     "@vitest/browser": "^3.1.2",
-    "@vitest/coverage-v8": "^3.1.1",
+    "@vitest/coverage-v8": "^3.1.2",
     "babel-loader": "^9.2.1",
     "babel-plugin-istanbul": "^7.0.0",
     "babel-plugin-module-resolver": "^5.0.2",
