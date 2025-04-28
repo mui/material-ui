@@ -483,10 +483,11 @@ If a value depends on a variable, you need to move it to a CSS variable inside i
         borderRadius: '50%',
         width: `max(6px - var(--offset), 3px)`,
         height: `max(6px - var(--offset), 3px)`,
-        bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
+        bgcolor: `var(--bg)`,
       }}
       style={{
         '--offset': `${index}px`,
+        '--bg': index === 0 ? 'var(--mui-palette-primary-solidBg)' : 'var(--mui-palette-background-level3)',
       }}
     />
   ))}
