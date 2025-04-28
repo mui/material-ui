@@ -208,7 +208,7 @@
     "vite": "^6.0.7",
     "vitest": "^3.1.1",
     "vitest-fail-on-console": "^0.7.1",
-    "webpack": "^5.98.0",
+    "webpack": "^5.99.7",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
     "yargs": "^17.7.2"
