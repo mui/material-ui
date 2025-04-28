@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 
 const theme = createTheme({
-  experimentalColorMix: 'srgb',
+  colorSpace: 'srgb',
   cssVariables: true,
   colorSchemes: {
     light: {

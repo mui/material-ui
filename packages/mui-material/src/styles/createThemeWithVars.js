@@ -123,7 +123,7 @@ function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
  */
 export default function createThemeWithVars(options = {}, ...args) {
   const {
-    experimentalColorMix,
+    colorSpace,
     colorSchemes: colorSchemesInput = { light: true },
     defaultColorScheme: defaultColorSchemeInput,
     disableCssColorScheme = false,
@@ -175,6 +175,7 @@ export default function createThemeWithVars(options = {}, ...args) {
   }
 
   let theme = {
+    colorSpace,
     defaultColorScheme,
     ...muiTheme,
     cssVarPrefix,
@@ -207,7 +208,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     }
 
     function colorMix(method, color, coefficient) {
-      if (experimentalColorMix) {
+      if (colorSpace) {
         let mixer;
         if (method === safeAlpha) {
           mixer = `transparent ${((1 - coefficient) * 100).toFixed(0)}%`;
@@ -218,7 +219,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         if (method === safeLighten) {
           mixer = `#fff ${(coefficient * 100).toFixed(0)}%`;
         }
-        return `color-mix(in ${experimentalColorMix}, ${color}, ${mixer})`;
+        return `color-mix(in ${colorSpace}, ${color}, ${mixer})`;
       }
       return method(color, coefficient);
     }
@@ -255,36 +256,28 @@ export default function createThemeWithVars(options = {}, ...args) {
         palette.Alert,
         'errorFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.error.contrastText
-            : palette.getContrastText(palette.error.main),
+          colorSpace ? palette.error.contrastText : palette.getContrastText(palette.error.main),
         ),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.info.contrastText
-            : palette.getContrastText(palette.info.main),
+          colorSpace ? palette.info.contrastText : palette.getContrastText(palette.info.main),
         ),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.success.contrastText
-            : palette.getContrastText(palette.success.main),
+          colorSpace ? palette.success.contrastText : palette.getContrastText(palette.success.main),
         ),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.warning.contrastText
-            : palette.getContrastText(palette.warning.main),
+          colorSpace ? palette.warning.contrastText : palette.getContrastText(palette.warning.main),
         ),
       );
       setColor(palette.Alert, 'errorStandardBg', colorMix(safeLighten, palette.error.light, 0.9));
@@ -356,7 +349,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         palette.SnackbarContent,
         'color',
         silent(() =>
-          experimentalColorMix
+          colorSpace
             ? getCssVar('palette-text-primary')
             : palette.getContrastText(snackbarContentBackground),
         ),
@@ -416,36 +409,28 @@ export default function createThemeWithVars(options = {}, ...args) {
         palette.Alert,
         'errorFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.error.contrastText
-            : palette.getContrastText(palette.error.dark),
+          colorSpace ? palette.error.contrastText : palette.getContrastText(palette.error.dark),
         ),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.info.contrastText
-            : palette.getContrastText(palette.info.dark),
+          colorSpace ? palette.info.contrastText : palette.getContrastText(palette.info.dark),
         ),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.success.contrastText
-            : palette.getContrastText(palette.success.dark),
+          colorSpace ? palette.success.contrastText : palette.getContrastText(palette.success.dark),
         ),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
         silent(() =>
-          experimentalColorMix
-            ? palette.warning.contrastText
-            : palette.getContrastText(palette.warning.dark),
+          colorSpace ? palette.warning.contrastText : palette.getContrastText(palette.warning.dark),
         ),
       );
       setColor(palette.Alert, 'errorStandardBg', colorMix(safeDarken, palette.error.light, 0.9));
@@ -515,7 +500,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         palette.SnackbarContent,
         'color',
         silent(() =>
-          experimentalColorMix
+          colorSpace
             ? getCssVar('palette-text-primary')
             : palette.getContrastText(snackbarContentBackground),
         ),

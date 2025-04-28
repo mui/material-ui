@@ -36,8 +36,8 @@ function attachColorScheme(
 function attachColorManipulators(theme: Theme) {
   Object.assign(theme, {
     alpha(color: string, coefficient: number) {
-      if (theme.experimentalColorMix) {
-        return `color-mix(in ${theme.experimentalColorMix}, ${color}, transparent ${((1 - coefficient) * 100).toFixed(0)}%)`;
+      if (theme.colorSpace) {
+        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, transparent ${((1 - coefficient) * 100).toFixed(0)}%)`;
       }
       if (theme.vars || color.startsWith('var')) {
         return `rgba(${color.slice(0, -1)}Channel) / ${coefficient})`;
@@ -45,8 +45,8 @@ function attachColorManipulators(theme: Theme) {
       return systemAlpha(color, coefficient);
     },
     lighten(color: string, coefficient: number) {
-      if (theme.experimentalColorMix) {
-        return `color-mix(in ${theme.experimentalColorMix}, ${color}, #fff ${(coefficient * 100).toFixed(0)}%)`;
+      if (theme.colorSpace) {
+        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, #fff ${(coefficient * 100).toFixed(0)}%)`;
       }
       if (color.startsWith('var')) {
         return color;
@@ -54,8 +54,8 @@ function attachColorManipulators(theme: Theme) {
       return systemLighten(color, coefficient);
     },
     darken(color: string, coefficient: number) {
-      if (theme.experimentalColorMix) {
-        return `color-mix(in ${theme.experimentalColorMix}, ${color}, #000 ${(coefficient * 100).toFixed(0)}%)`;
+      if (theme.colorSpace) {
+        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, #000 ${(coefficient * 100).toFixed(0)}%)`;
       }
       if (color.startsWith('var')) {
         return color;

@@ -331,6 +331,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
 export interface ThemeVars {
+  colorSpace: string;
   font: ExtractTypographyTokens<Theme['typography']>;
   palette: Omit<
     ColorSystem['palette'],

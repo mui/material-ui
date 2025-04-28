@@ -11,6 +11,7 @@ import { ThemeOptionsContext, highDensity } from 'docs/src/modules/components/Th
 import BrandingCssVarsProvider from './BrandingCssVarsProvider';
 
 const defaultTheme = createTheme({
+  colorSpace: 'hsl',
   colorSchemes: { light: true, dark: true },
   cssVariables: {
     colorSchemeSelector: 'data-mui-color-scheme',
@@ -68,6 +69,7 @@ export function DemoInstanceThemeProvider({
   const theme = React.useMemo(() => {
     const resultTheme = createTheme(
       {
+        colorSpace: 'hsl',
         cssVariables: {
           colorSchemeSelector: 'data-mui-color-scheme',
         },

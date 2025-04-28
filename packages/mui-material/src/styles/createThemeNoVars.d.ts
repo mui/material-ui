@@ -33,7 +33,7 @@ type CssVarsOptions = CssThemeVariables extends {
   : {};
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
-  experimentalColorMix?: // https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method
+  colorSpace?: // https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method
   // <rectangular-color-space>
   | 'srgb'
     | 'srgb-linear'
@@ -100,7 +100,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
-  experimentalColorMix?: string;
+  colorSpace?: string;
   cssVariables?: false;
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;
