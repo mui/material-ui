@@ -206,7 +206,7 @@
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "vite": "^6.0.7",
-    "vitest": "^3.1.1",
+    "vitest": "^3.1.2",
     "vitest-fail-on-console": "^0.7.1",
     "webpack": "^5.99.7",
     "webpack-bundle-analyzer": "^4.10.2",
