@@ -1,5 +1,6 @@
 {
   "name": "material-ui-pigment-css-vite",
+  "version": "7.0.0",
   "private": true,
   "type": "module",
   "scripts": {
