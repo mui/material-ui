@@ -487,7 +487,10 @@ If a value depends on a variable, you need to move it to a CSS variable inside i
       }}
       style={{
         '--offset': `${index}px`,
-        '--bg': index === 0 ? 'var(--mui-palette-primary-solidBg)' : 'var(--mui-palette-background-level3)',
+        '--bg':
+          index === 0
+            ? 'var(--mui-palette-primary-solidBg)'
+            : 'var(--mui-palette-background-level3)',
       }}
     />
   ))}
