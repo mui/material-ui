@@ -128,9 +128,12 @@ export function unstable_createStyleFunctionSx() {
         }
       });
 
-      if (!nested && theme.experimental_dedicatedCssLayer) {
+      if (!nested && theme.experimental_nestedCssLayer) {
         return {
-          '@layer sx': sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css)),
+          '@layer mui.sx': sortContainerQueries(
+            theme,
+            removeUnusedBreakpoints(breakpointsKeys, css),
+          ),
         };
       }
 

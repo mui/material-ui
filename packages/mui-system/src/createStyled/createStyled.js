@@ -194,9 +194,9 @@ export default function createStyled(input = {}) {
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           // eslint-disable-next-line guard-for-in
           for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = theme.experimental_dedicatedCssLayer
+            resolvedStyleOverrides[slotKey] = theme.experimental_nestedCssLayer
               ? {
-                  '@layer theme': processStyle(props, styleOverrides[slotKey]),
+                  '@layer mui.theme': processStyle(props, styleOverrides[slotKey]),
                 }
               : processStyle(props, styleOverrides[slotKey]);
           }
@@ -212,9 +212,9 @@ export default function createStyled(input = {}) {
           if (!themeVariants) {
             return null;
           }
-          if (theme.experimental_dedicatedCssLayer) {
+          if (theme.experimental_nestedCssLayer) {
             return {
-              '@layer theme': processStyleVariants(props, themeVariants),
+              '@layer mui.theme': processStyleVariants(props, themeVariants),
             };
           }
           return processStyleVariants(props, themeVariants);

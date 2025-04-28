@@ -2,26 +2,85 @@ import createCache from '@emotion/cache';
 
 const isBrowser = typeof document !== 'undefined';
 
+function isMuiLayerAsParent(element: any) {
+  return element.parent && element.parent.value === '@layer mui';
+}
+
 function plugin(element: any) {
-  if (
-    // case I: not wrapped by `@layer mui`
-    (!element.root && element.type !== '@layer') ||
-    // case II: wrapped by `@layer mui`
-    (element.parent &&
-      element.parent.value === '@layer mui' &&
-      element.type !== '@layer' &&
-      element.type !== 'decl')
-  ) {
+  if (element.type === '@layer') {
+    return;
+  }
+  if (isMuiLayerAsParent(element) && element.type !== '@layer' && element.type !== 'decl') {
     const child = { ...element, parent: element, root: element };
     Object.assign(element, {
       children: [child],
       length: 6,
-      parent: !element.root ? null : element.parent,
-      root: !element.root ? null : element.root,
-      props: ['base'],
+      props: ['mui.base'],
       return: '',
       type: '@layer',
-      value: `@layer base`,
+      value: `@layer mui.base`,
+    });
+  }
+
+  // wrap all elements in the root selector to @layer mui.base
+  if (!element.parent && !element.root && element.type === 'rule' && element.children.length) {
+    const children = [];
+    for (let i = element.children.length - 1; i >= 0; i -= 1) {
+      const child = element.children[i];
+      if (child.type === 'decl') {
+        children.unshift(element.children.splice(i, 1)[0]);
+      }
+    }
+    element.children.unshift({
+      root: null,
+      length: 6,
+      props: ['mui.base'],
+      return: '',
+      type: '@layer',
+      value: `@layer mui.base`,
+      parent: element,
+      children,
+    });
+  }
+
+  // for root pseudo selector and other @* selectors
+  if (
+    element.parent &&
+    !element.parent.parent &&
+    !element.parent.root &&
+    element.parent.type === 'rule'
+  ) {
+    if (element.type === 'rule' && !element.root) {
+      const child = { ...element, parent: element, root: element };
+      Object.assign(element, {
+        children: [child],
+        length: 6,
+        props: ['mui.base'],
+        return: '',
+        type: '@layer',
+        value: `@layer mui.base`,
+        parent: null,
+        root: null,
+      });
+    }
+  }
+  if (
+    (!element.parent || (element.parent && element.parent.type !== '@layer')) &&
+    element.type.startsWith('@') &&
+    element.type !== '@layer'
+  ) {
+    const child = {
+      children: element.children,
+      length: 6,
+      props: ['mui.base'],
+      return: '',
+      type: '@layer',
+      value: `@layer mui.base`,
+      parent: element,
+      root: null,
+    };
+    Object.assign(element, {
+      children: [child],
     });
   }
 }
