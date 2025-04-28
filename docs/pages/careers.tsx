@@ -23,10 +23,10 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Community Engineer — Material UI',
+        title: 'React Engineer Maintainer — Material UI',
         description:
           'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
-        url: '/careers/react-community-engineer-core/',
+        url: '/careers/react-engineer-maintainer-core/',
       },
       {
         title: 'React Engineer — Docs-infra',

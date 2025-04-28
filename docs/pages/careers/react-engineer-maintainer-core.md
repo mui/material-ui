@@ -1,4 +1,4 @@
-# React Community Engineer — Material UI
+# React Engineer Maintainer — Material UI
 
 <p class="description">You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.</p>
 
