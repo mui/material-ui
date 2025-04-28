@@ -137,7 +137,7 @@
     "chai": "^4.5.0",
     "cross-fetch": "^4.1.0",
     "gm": "^1.25.1",
-    "marked": "^15.0.8",
+    "marked": "^15.0.11",
     "@playwright/test": "^1.52.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.1.4",
