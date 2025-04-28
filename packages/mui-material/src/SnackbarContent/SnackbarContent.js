@@ -9,6 +9,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
+import { light, dark } from '../styles/createPalette';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -30,12 +31,16 @@ const SnackbarContentRoot = styled(Paper, {
   memoTheme(({ theme }) => {
     const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
     const backgroundColor = emphasize(theme.palette.background.default, emphasis);
+    let color;
+    if (theme.colorSpace) {
+      color = theme.palette.mode === 'light' ? dark.text.primary : light.text.primary;
+    } else {
+      color = theme.palette.getContrastText(backgroundColor); // TODO: remove `getContrastText` in v8
+    }
 
     return {
       ...theme.typography.body2,
-      color: theme.vars
-        ? theme.vars.palette.SnackbarContent.color
-        : theme.palette.getContrastText(backgroundColor),
+      color: theme.vars ? theme.vars.palette.SnackbarContent.color : color,
       backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
       display: 'flex',
       alignItems: 'center',

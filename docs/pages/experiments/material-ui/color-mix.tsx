@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 
 const theme = createTheme({
-  colorSpace: 'srgb',
-  cssVariables: true,
+  colorSpace: 'oklch',
+  // cssVariables: true,
   colorSchemes: {
     light: {
       palette: {

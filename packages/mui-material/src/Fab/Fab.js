@@ -65,9 +65,10 @@ const FabRoot = styled(ButtonBase, {
     '&:active': {
       boxShadow: (theme.vars || theme).shadows[12],
     },
-    color: theme.vars
-      ? theme.vars.palette.grey[900]
-      : theme.palette.getContrastText?.(theme.palette.grey[300]),
+    color:
+      theme.vars || theme.colorSpace
+        ? (theme.vars || theme).palette.grey[900]
+        : theme.palette.getContrastText?.(theme.palette.grey[300]),
     backgroundColor: (theme.vars || theme).palette.grey[300],
     '&:hover': {
       backgroundColor: (theme.vars || theme).palette.grey.A100,
