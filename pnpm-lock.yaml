@@ -194,8 +194,8 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       danger:
-        specifier: ^12.3.4
-        version: 12.3.4(encoding@0.1.13)
+        specifier: ^13.0.4
+        version: 13.0.4(encoding@0.1.13)
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -5079,9 +5079,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@octokit/auth-token@2.5.0':
-    resolution: {integrity: sha512-r5FVUJCOLl19AxiuZD2VRZ/ORjp/4IN98Of6YJoJOkY75CIBuYfmiNHGrDwXr+aLGG55igl9QrxX3hbiXlLb+g==}
-
   '@octokit/auth-token@4.0.0':
     resolution: {integrity: sha512-tY/msAuJo6ARbK6SPIxZrPBms3xPbfwBrulZe0Wtr/DIY9lje2HeV1uoebShn6mx7SjCHif6EjMvoREj+gZ+SA==}
     engines: {node: '>= 18'}
@@ -5089,9 +5086,6 @@ packages:
   '@octokit/auth-token@5.1.1':
     resolution: {integrity: sha512-rh3G3wDO8J9wSjfI436JUKzHIxq8NaiL0tVeB2aXmG6p/9859aUOAjA9pmSPNGGZxfwmaJ9ozOJImuNVJdpvbA==}
     engines: {node: '>= 18'}
-
-  '@octokit/core@3.6.0':
-    resolution: {integrity: sha512-7RKRKuA4xTjMhY+eG3jthb3hlZCsOwg3rztWh75Xc+ShDWOfDDATWbeZpAHBNRpm4Tv9WgBMOy1zEJYXG6NJ7Q==}
 
   '@octokit/core@5.2.0':
     resolution: {integrity: sha512-1LFfa/qnMQvEOAdzlQymH0ulepxbxnCYAKJZfMci/5XJyIHWgEYnDmgnKakbTh7CH2tFQ5O60oYDvns4i9RAIg==}
@@ -5105,15 +5099,9 @@ packages:
     resolution: {integrity: sha512-nBRBMpKPhQUxCsQQeW+rCJ/OPSMcj3g0nfHn01zGYZXuNDvvXudF/TYY6APj5THlurerpFN4a/dQAIAaM6BYhA==}
     engines: {node: '>= 18'}
 
-  '@octokit/endpoint@6.0.12':
-    resolution: {integrity: sha512-lF3puPwkQWGfkMClXb4k/eUT/nZKQfxinRWJrdZaJO85Dqwo/G0yOC434Jr2ojwafWJMYqFGFa5ms4jJUgujdA==}
-
   '@octokit/endpoint@9.0.6':
     resolution: {integrity: sha512-H1fNTMA57HbkFESSt3Y9+FBICv+0jFceJFPWDePYlR/iMGrwM5ph+Dd4XRQs+8X+PUFURLQgX9ChPfhJ/1uNQw==}
     engines: {node: '>= 18'}
-
-  '@octokit/graphql@4.8.0':
-    resolution: {integrity: sha512-0gv+qLSBLKF0z8TKaSKTsS39scVKF9dbMxJpj3U0vC7wjNWFuIpL/z76Qe2fiuCbDRcJSavkXsVtMS6/dtQQsg==}
 
   '@octokit/graphql@7.1.1':
     resolution: {integrity: sha512-3mkDltSfcDUoa176nlGoA32RGjeWjl3K7F/BwHwRMJUW/IteSa4bnSV8p2ThNkcIcZU2umkZWxwETSSCJf2Q7g==}
@@ -5122,9 +5110,6 @@ packages:
   '@octokit/graphql@8.1.2':
     resolution: {integrity: sha512-bdlj/CJVjpaz06NBpfHhp4kGJaRZfz7AzC+6EwUImRtrwIw8dIgJ63Xg0OzV9pRn3rIzrt5c2sa++BL0JJ8GLw==}
     engines: {node: '>= 18'}
-
-  '@octokit/openapi-types@12.11.0':
-    resolution: {integrity: sha512-VsXyi8peyRq9PqIz/tpqiL2w3w80OgVMwBHltTml3LmVvXiphgeqmY9mvBw9Wu7e0QWk/fqD37ux8yP5uVekyQ==}
 
   '@octokit/openapi-types@23.0.1':
     resolution: {integrity: sha512-izFjMJ1sir0jn0ldEKhZ7xegCTj/ObmEDlEfpFrx4k/JyZSMRHbO3/rBwgE7f3m2DHt+RrNGIVw4wSmwnm3t/g==}
@@ -5143,16 +5128,6 @@ packages:
     engines: {node: '>= 18'}
     peerDependencies:
       '@octokit/core': '5'
-
-  '@octokit/plugin-paginate-rest@2.21.3':
-    resolution: {integrity: sha512-aCZTEf0y2h3OLbrgKkrfFdjRL6eSOo8komneVQJnYecAxIej7Bafor2xhuDJOIFau4pk0i/P28/XgtbyPF0ZHw==}
-    peerDependencies:
-      '@octokit/core': '>=2'
-
-  '@octokit/plugin-request-log@1.0.4':
-    resolution: {integrity: sha512-mLUsMkgP7K/cnFEw07kWqXGF5LKrOkD+lhCrKvPHXWDywAwuDUeDwWBpc69XK3pNX0uKiVt8g5z96PJ6z9xCFA==}
-    peerDependencies:
-      '@octokit/core': '>=3'
 
   '@octokit/plugin-request-log@4.0.1':
     resolution: {integrity: sha512-GihNqNpGHorUrO7Qa9JbAl0dbLnqJVrV8OXe2Zm5/Y4wFkZQDfTreBzVmiRfJVfE4mClXdihHnbpyyO9FSX4HA==}
@@ -5178,14 +5153,6 @@ packages:
     peerDependencies:
       '@octokit/core': ^5
 
-  '@octokit/plugin-rest-endpoint-methods@5.16.2':
-    resolution: {integrity: sha512-8QFz29Fg5jDuTPXVtey05BLm7OB+M8fnvE64RNegzX7U+5NUXcOcnpTIK0YfSHBg8gYd0oxIq3IZTe9SfPZiRw==}
-    peerDependencies:
-      '@octokit/core': '>=3'
-
-  '@octokit/request-error@2.1.0':
-    resolution: {integrity: sha512-1VIvgXxs9WHSjicsRwq8PlR2LR2x6DwsJAaFgzdi0JfJoGSO8mYI/cHJQ+9FbN21aa+DrgNLnwObmyeSC8Rmpg==}
-
   '@octokit/request-error@5.1.1':
     resolution: {integrity: sha512-v9iyEQJH6ZntoENr9/yXxjuezh4My67CBSu9r6Ve/05Iu5gNgnisNWOsoJHTP6k0Rr0+HQIpnH+kyammu90q/g==}
     engines: {node: '>= 18'}
@@ -5194,9 +5161,6 @@ packages:
     resolution: {integrity: sha512-69NIppAwaauwZv6aOzb+VVLwt+0havz9GT5YplkeJv7fG7a40qpLt/yZKyiDxAhgz0EtgNdNcb96Z0u+Zyuy2g==}
     engines: {node: '>= 18'}
 
-  '@octokit/request@5.6.3':
-    resolution: {integrity: sha512-bFJl0I1KVc9jYTe9tdGGpAMPy32dLBXXo1dS/YwSCTL/2nd9XeHsY616RE3HPXDVk+a+dBuzyz5YdlXwcDTr2A==}
-
   '@octokit/request@8.4.1':
     resolution: {integrity: sha512-qnB2+SY3hkCmBxZsR/MPCybNmbJe4KAlfWErXq+rBKkQJlbjdJeS85VI9r8UqeLYLvnAenU8Q1okM/0MBsAGXw==}
     engines: {node: '>= 18'}
@@ -5204,9 +5168,6 @@ packages:
   '@octokit/request@9.2.2':
     resolution: {integrity: sha512-dZl0ZHx6gOQGcffgm1/Sf6JfEpmh34v3Af2Uci02vzUYz6qEN6zepoRtmybWXIGXFIK8K9ylE3b+duCWqhArtg==}
     engines: {node: '>= 18'}
-
-  '@octokit/rest@18.12.0':
-    resolution: {integrity: sha512-gDPiOHlyGavxr72y0guQEhLsemgVjwRePayJ+FcKc2SJqKUbxbkvf5kAZEWA/MKvsfYlQAMVzNJE3ezQcxMJ2Q==}
 
   '@octokit/rest@20.1.2':
     resolution: {integrity: sha512-GmYiltypkHHtihFwPRxlaorG5R9VAHuk/vbszVoRTGXnAsY60wYLkh/E2XiFmdZmqrisw+9FaazS1i5SbdWYgA==}
@@ -5218,9 +5179,6 @@ packages:
 
   '@octokit/types@13.8.0':
     resolution: {integrity: sha512-x7DjTIbEpEWXK99DMd01QfWy0hd5h4EN+Q7shkdKds3otGQP+oWE/y0A76i1OvH9fygo4ddvNf7ZvF0t78P98A==}
-
-  '@octokit/types@6.41.0':
-    resolution: {integrity: sha512-eJ2jbzjdijiL3B4PrSQaSjuF2sPEQPVCPzBvTHJD9Nz+9dw2SGH4K4xeQJ77YfTq5bRQ+bD8wT11JbeDPmxmGg==}
 
   '@open-draft/deferred-promise@2.2.0':
     resolution: {integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==}
@@ -7875,8 +7833,8 @@ packages:
   damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
 
-  danger@12.3.4:
-    resolution: {integrity: sha512-esr6iowAryWjWkMzOKyOmMRkamPkDRhC6OAj2tO48i0oobObdP0d8I/YE+qSj9m+/RRcrhaKnysvPL51eW1m3w==}
+  danger@13.0.4:
+    resolution: {integrity: sha512-IAdQ5nSJyIs4zKj6AN35ixt2B0Ce3WZUm3IFe/CMnL/Op7wV7IGg4D348U0EKNaNPP58QgXbdSk9pM+IXP1QXg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -8674,10 +8632,6 @@ packages:
     resolution: {integrity: sha512-EHlpxMCpHWSAh1dgS6bVeoLAXGnJNdR93aabr4QCGbzOM73o5XmRfM/e5FUqsw3aagP8S8XEWUWFAxnRBnAF0Q==}
     engines: {node: ^18.19.0 || >=20.5.0}
 
-  expand-tilde@2.0.2:
-    resolution: {integrity: sha512-A5EmesHW6rfnZ9ysHQjPdJRni0SRar0tjtG5MNtm9n5TUvsYU8oozprtRD4AqHxcZWWlVuAmQo2nWKfN9oyjTw==}
-    engines: {node: '>=0.10.0'}
-
   expect-type@1.2.1:
     resolution: {integrity: sha512-/kP8CAwxzLVEeFrMm4kMmy4CCDlpipyA7MYLVrdJIkV0fYF0UaigQHRsxHiuY/GEea+bh4KSv3TIlgr+2UL6bw==}
     engines: {node: '>=12.0.0'}
@@ -8695,10 +8649,6 @@ packages:
 
   exsolve@1.0.4:
     resolution: {integrity: sha512-xsZH6PXaER4XoV+NiT7JHp1bJodJVT+cxeSH1G0f0tlT0lJqYuHUP3bUx2HtfTDvOagMINYp8rsqusxud3RXhw==}
-
-  extend-shallow@2.0.1:
-    resolution: {integrity: sha512-zCnTtlxNoAiDc3gqY2aYAWFx7XWWiasuF2K8Me5WbN8otHKTUKBwjPtNpRs/rbUZm7KxWAaNj7P1a/p52GbVug==}
-    engines: {node: '>=0.10.0'}
 
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
@@ -8971,10 +8921,6 @@ packages:
   fs-constants@1.0.0:
     resolution: {integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==}
 
-  fs-exists-sync@0.1.0:
-    resolution: {integrity: sha512-cR/vflFyPZtrN6b38ZyWxpWdhlXrzZEBawlpBQMq7033xVY7/kg0GDMBK5jg8lDYQckdJ5x/YC88lM3C7VMsLg==}
-    engines: {node: '>=0.10.0'}
-
   fs-extra@11.3.0:
     resolution: {integrity: sha512-Z4XaCL6dUDHfP/jT25jJKMmtxvuwbkrD1vNSMFlo9lNLY2c5FHYSQgHPRZUjAB26TpDEoW9HCOgplrdbaPV/ew==}
     engines: {node: '>=14.14'}
@@ -9108,10 +9054,6 @@ packages:
 
   get-tsconfig@4.7.5:
     resolution: {integrity: sha512-ZCuZCnlqNzjb4QprAzXKdpp/gh6KTxSJuw3IBsPnV/7fV4NxC9ckB+vPTt8w7fJA0TaSD7c55BR47JD6MEDyDw==}
-
-  git-config-path@1.0.1:
-    resolution: {integrity: sha512-KcJ2dlrrP5DbBnYIZ2nlikALfRhKzNSX0stvv3ImJ+fvC4hXKoV+U+74SV0upg+jlQZbrtQzc0bu6/Zh+7aQbg==}
-    engines: {node: '>=0.10.0'}
 
   git-raw-commits@3.0.0:
     resolution: {integrity: sha512-b5OHmZ3vAgGrDn/X0kS+9qCfNKWe4K/jFnhwzVWWg0/k5eLa3060tZShrRg8Dja5kPc+YjS0Gc6y7cRr44Lpjw==}
@@ -9557,6 +9499,10 @@ packages:
     resolution: {integrity: sha512-X7rqawQBvfdjS10YU1y1YVreA3SsLrW9dX2CewP2EbBJM4ypVNLDkO5y04gejPwKIY9lR+7r9gn3rFPt/kmWFg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  ini@5.0.0:
+    resolution: {integrity: sha512-+N0ngpO3e7cRUWOJAS7qw0IZIVc6XPrW4MlFBdD066F2L4k1L6ker3hLqSq7iXxU5tgS4WGkIUElWn5vogAEnw==}
+    engines: {node: ^18.17.0 || >=20.5.0}
+
   init-package-json@6.0.3:
     resolution: {integrity: sha512-Zfeb5ol+H+eqJWHTaGca9BovufyGeIfr4zaaBorPmJBMrJ+KBnN+kQx2ZtXdsotUTgldHmHQV44xvUWOUA7E2w==}
     engines: {node: ^16.14.0 || >=18.0.0}
@@ -9673,10 +9619,6 @@ packages:
 
   is-electron@2.2.2:
     resolution: {integrity: sha512-FO/Rhvz5tuw4MCWkpMzHFKWD2LsfHzIb7i6MdPYZ/KW7AlxawyLkqdy+jPZP1WubqEADE3O4FUENlJHDfQASRg==}
-
-  is-extendable@0.1.1:
-    resolution: {integrity: sha512-5BMULNob1vgFX6EjQw5izWDxrecWK9AM72rugNr0TFldMOi0fj6Jk+zeKIt0xGj4cEfQIJth4w3OKWOJ4f+AFw==}
-    engines: {node: '>=0.10.0'}
 
   is-extendable@1.0.1:
     resolution: {integrity: sha512-arnXMxT1hhoKo9k1LZdmlNyJdDDfy2v0fXjFlmok4+i8ul/6WlbVge9bhM74OpNPQPMGUToDtz+KXa1PneJxOA==}
@@ -10758,8 +10700,8 @@ packages:
     resolution: {integrity: sha512-aisnrDP4GNe06UcKFnV5bfMNPBUw4jsLGaWwWfnH3v02GnBuXX2MCVn5RbrWo0j3pczUilYblq7fQ7Nw2t5XKw==}
     engines: {node: '>= 0.8'}
 
-  memfs-or-file-map-to-github-branch@1.2.1:
-    resolution: {integrity: sha512-I/hQzJ2a/pCGR8fkSQ9l5Yx+FQ4e7X6blNHyWBm2ojeFLT3GVzGkTj7xnyWpdclrr7Nq4dmx3xrvu70m3ypzAQ==}
+  memfs-or-file-map-to-github-branch@1.3.0:
+    resolution: {integrity: sha512-AzgIEodmt51dgwB3TmihTf1Fh2SmszdZskC6trFHy4v71R5shLmdjJSYI7ocVfFa7C/TE6ncb0OZ9eBg2rmkBQ==}
 
   memoize-one@5.2.1:
     resolution: {integrity: sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==}
@@ -11717,10 +11659,6 @@ packages:
 
   parse-entities@4.0.2:
     resolution: {integrity: sha512-GG2AQYWoLgL877gQIKeRPGO1xF9+eG1ujIb5soS5gPvLQ1y2o8FL90w2QWNdf9I361Mpp7726c+lj3U0qK1uGw==}
-
-  parse-git-config@2.0.3:
-    resolution: {integrity: sha512-Js7ueMZOVSZ3tP8C7E3KZiHv6QQl7lnJ+OkbxoaFazzSa2KyEHqApfGbU3XboUgUnq4ZuUmskUpYKTNx01fm5A==}
-    engines: {node: '>=6'}
 
   parse-github-url@1.0.2:
     resolution: {integrity: sha512-kgBf6avCbO3Cn6+RnzRGLkUsv4ZVqv/VfAYkRsyBcgkshNvVBkRn1FEZcW0Jb+npXQWm2vHPnnOqFteZxRRGNw==}
@@ -17489,25 +17427,9 @@ snapshots:
   '@nx/nx-win32-x64-msvc@20.8.1':
     optional: true
 
-  '@octokit/auth-token@2.5.0':
-    dependencies:
-      '@octokit/types': 6.41.0
-
   '@octokit/auth-token@4.0.0': {}
 
   '@octokit/auth-token@5.1.1': {}
-
-  '@octokit/core@3.6.0(encoding@0.1.13)':
-    dependencies:
-      '@octokit/auth-token': 2.5.0
-      '@octokit/graphql': 4.8.0(encoding@0.1.13)
-      '@octokit/request': 5.6.3(encoding@0.1.13)
-      '@octokit/request-error': 2.1.0
-      '@octokit/types': 6.41.0
-      before-after-hook: 2.2.3
-      universal-user-agent: 6.0.1
-    transitivePeerDependencies:
-      - encoding
 
   '@octokit/core@5.2.0':
     dependencies:
@@ -17534,24 +17456,10 @@ snapshots:
       '@octokit/types': 13.8.0
       universal-user-agent: 7.0.2
 
-  '@octokit/endpoint@6.0.12':
-    dependencies:
-      '@octokit/types': 6.41.0
-      is-plain-object: 5.0.0
-      universal-user-agent: 6.0.1
-
   '@octokit/endpoint@9.0.6':
     dependencies:
       '@octokit/types': 13.8.0
       universal-user-agent: 6.0.1
-
-  '@octokit/graphql@4.8.0(encoding@0.1.13)':
-    dependencies:
-      '@octokit/request': 5.6.3(encoding@0.1.13)
-      '@octokit/types': 6.41.0
-      universal-user-agent: 6.0.1
-    transitivePeerDependencies:
-      - encoding
 
   '@octokit/graphql@7.1.1':
     dependencies:
@@ -17564,8 +17472,6 @@ snapshots:
       '@octokit/request': 9.2.2
       '@octokit/types': 13.8.0
       universal-user-agent: 7.0.2
-
-  '@octokit/openapi-types@12.11.0': {}
 
   '@octokit/openapi-types@23.0.1': {}
 
@@ -17580,15 +17486,6 @@ snapshots:
     dependencies:
       '@octokit/core': 5.2.0
       '@octokit/types': 13.8.0
-
-  '@octokit/plugin-paginate-rest@2.21.3(@octokit/core@3.6.0(encoding@0.1.13))':
-    dependencies:
-      '@octokit/core': 3.6.0(encoding@0.1.13)
-      '@octokit/types': 6.41.0
-
-  '@octokit/plugin-request-log@1.0.4(@octokit/core@3.6.0(encoding@0.1.13))':
-    dependencies:
-      '@octokit/core': 3.6.0(encoding@0.1.13)
 
   '@octokit/plugin-request-log@4.0.1(@octokit/core@5.2.0)':
     dependencies:
@@ -17608,18 +17505,6 @@ snapshots:
       '@octokit/core': 5.2.0
       '@octokit/types': 13.8.0
 
-  '@octokit/plugin-rest-endpoint-methods@5.16.2(@octokit/core@3.6.0(encoding@0.1.13))':
-    dependencies:
-      '@octokit/core': 3.6.0(encoding@0.1.13)
-      '@octokit/types': 6.41.0
-      deprecation: 2.3.1
-
-  '@octokit/request-error@2.1.0':
-    dependencies:
-      '@octokit/types': 6.41.0
-      deprecation: 2.3.1
-      once: 1.4.0
-
   '@octokit/request-error@5.1.1':
     dependencies:
       '@octokit/types': 13.8.0
@@ -17629,17 +17514,6 @@ snapshots:
   '@octokit/request-error@6.1.7':
     dependencies:
       '@octokit/types': 13.8.0
-
-  '@octokit/request@5.6.3(encoding@0.1.13)':
-    dependencies:
-      '@octokit/endpoint': 6.0.12
-      '@octokit/request-error': 2.1.0
-      '@octokit/types': 6.41.0
-      is-plain-object: 5.0.0
-      node-fetch: 2.7.0(encoding@0.1.13)
-      universal-user-agent: 6.0.1
-    transitivePeerDependencies:
-      - encoding
 
   '@octokit/request@8.4.1':
     dependencies:
@@ -17655,15 +17529,6 @@ snapshots:
       '@octokit/types': 13.8.0
       fast-content-type-parse: 2.0.1
       universal-user-agent: 7.0.2
-
-  '@octokit/rest@18.12.0(encoding@0.1.13)':
-    dependencies:
-      '@octokit/core': 3.6.0(encoding@0.1.13)
-      '@octokit/plugin-paginate-rest': 2.21.3(@octokit/core@3.6.0(encoding@0.1.13))
-      '@octokit/plugin-request-log': 1.0.4(@octokit/core@3.6.0(encoding@0.1.13))
-      '@octokit/plugin-rest-endpoint-methods': 5.16.2(@octokit/core@3.6.0(encoding@0.1.13))
-    transitivePeerDependencies:
-      - encoding
 
   '@octokit/rest@20.1.2':
     dependencies:
@@ -17682,10 +17547,6 @@ snapshots:
   '@octokit/types@13.8.0':
     dependencies:
       '@octokit/openapi-types': 23.0.1
-
-  '@octokit/types@6.41.0':
-    dependencies:
-      '@octokit/openapi-types': 12.11.0
 
   '@open-draft/deferred-promise@2.2.0':
     optional: true
@@ -21000,10 +20861,10 @@ snapshots:
 
   damerau-levenshtein@1.0.8: {}
 
-  danger@12.3.4(encoding@0.1.13):
+  danger@13.0.4(encoding@0.1.13):
     dependencies:
       '@gitbeaker/rest': 38.12.1
-      '@octokit/rest': 18.12.0(encoding@0.1.13)
+      '@octokit/rest': 20.1.2
       async-retry: 1.2.3
       chalk: 2.4.2
       commander: 2.20.3
@@ -21014,6 +20875,7 @@ snapshots:
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
       hyperlinker: 1.0.0
+      ini: 5.0.0
       json5: 2.2.3
       jsonpointer: 5.0.1
       jsonwebtoken: 9.0.0
@@ -21023,14 +20885,13 @@ snapshots:
       lodash.keys: 4.2.0
       lodash.mapvalues: 4.6.0
       lodash.memoize: 4.1.2
-      memfs-or-file-map-to-github-branch: 1.2.1(encoding@0.1.13)
+      memfs-or-file-map-to-github-branch: 1.3.0
       micromatch: 4.0.8
       node-cleanup: 2.1.2
       node-fetch: 2.7.0(encoding@0.1.13)
       override-require: 1.1.1
       p-limit: 2.3.0
       parse-diff: 0.7.1
-      parse-git-config: 2.0.3
       parse-github-url: 1.0.2
       parse-link-header: 2.0.0
       pinpoint: 1.1.0
@@ -22098,10 +21959,6 @@ snapshots:
       strip-final-newline: 4.0.0
       yoctocolors: 2.0.2
 
-  expand-tilde@2.0.2:
-    dependencies:
-      homedir-polyfill: 1.0.3
-
   expect-type@1.2.1: {}
 
   exponential-backoff@3.1.2: {}
@@ -22180,10 +22037,6 @@ snapshots:
       - supports-color
 
   exsolve@1.0.4: {}
-
-  extend-shallow@2.0.1:
-    dependencies:
-      is-extendable: 0.1.1
 
   extend@3.0.2: {}
 
@@ -22479,8 +22332,6 @@ snapshots:
 
   fs-constants@1.0.0: {}
 
-  fs-exists-sync@0.1.0: {}
-
   fs-extra@11.3.0:
     dependencies:
       graceful-fs: 4.2.11
@@ -22637,12 +22488,6 @@ snapshots:
   get-tsconfig@4.7.5:
     dependencies:
       resolve-pkg-maps: 1.0.0
-
-  git-config-path@1.0.1:
-    dependencies:
-      extend-shallow: 2.0.1
-      fs-exists-sync: 0.1.0
-      homedir-polyfill: 1.0.3
 
   git-raw-commits@3.0.0:
     dependencies:
@@ -23159,6 +23004,8 @@ snapshots:
 
   ini@4.1.3: {}
 
+  ini@5.0.0: {}
+
   init-package-json@6.0.3:
     dependencies:
       '@npmcli/package-json': 5.2.0
@@ -23287,8 +23134,6 @@ snapshots:
   is-docker@3.0.0: {}
 
   is-electron@2.2.2: {}
-
-  is-extendable@0.1.1: {}
 
   is-extendable@1.0.1:
     dependencies:
@@ -24612,11 +24457,9 @@ snapshots:
 
   media-typer@1.1.0: {}
 
-  memfs-or-file-map-to-github-branch@1.2.1(encoding@0.1.13):
+  memfs-or-file-map-to-github-branch@1.3.0:
     dependencies:
-      '@octokit/rest': 18.12.0(encoding@0.1.13)
-    transitivePeerDependencies:
-      - encoding
+      '@octokit/rest': 21.1.1
 
   memoize-one@5.2.1: {}
 
@@ -25954,12 +25797,6 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
       is-hexadecimal: 2.0.1
-
-  parse-git-config@2.0.3:
-    dependencies:
-      expand-tilde: 2.0.2
-      git-config-path: 1.0.1
-      ini: 1.3.8
 
   parse-github-url@1.0.2: {}
 
