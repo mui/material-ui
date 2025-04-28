@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
-<<<<<<< HEAD
-=======
-import { alpha } from '@mui/system/colorManipulator';
 import { unstable_useId as useId } from '../utils';
->>>>>>> f0f35788416cd36b6c4c6b77820aafd6323c9b30
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
