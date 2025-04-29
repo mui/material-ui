@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import '@mui/x-charts/themeAugmentation';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import '@mui/docs/branding';
 
 const data = [
   { label: 'India', value: 50000 },
