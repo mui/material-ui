@@ -30,7 +30,7 @@ export default function App() {
     <Container maxWidth="sm">
       <div className="my-4">
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Material UI Vite example with Tailwind CSS in TypeScript
+          Material UI Vite example with Tailwind CSS v3 in TypeScript
         </Typography>
         <Slider
           className="my-4"
