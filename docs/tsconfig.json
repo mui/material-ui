@@ -1,17 +1,16 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,
     "moduleResolution": "bundler",
-    /* files are emitted by babel */
-    "baseUrl": "../",
+    "jsx": "react-jsx",
+    "module": "es2022",
     "noEmit": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "include": ["src", "data"],
+  "include": ["data"],
   "exclude": ["docs/.next", "docs/export", "node_modules"]
 }
