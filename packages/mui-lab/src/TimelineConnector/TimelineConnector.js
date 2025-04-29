@@ -19,7 +19,6 @@ const useUtilityClasses = (ownerState) => {
 const TimelineConnectorRoot = styled('span', {
   name: 'MuiTimelineConnector',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => {
   return {
     width: 2,

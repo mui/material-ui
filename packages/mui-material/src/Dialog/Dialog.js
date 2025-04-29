@@ -46,7 +46,6 @@ const useUtilityClasses = (ownerState) => {
 const DialogRoot = styled(Modal, {
   name: 'MuiDialog',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   '@media print': {
     // Use !important to override the Modal inline-style.
@@ -405,9 +404,6 @@ Dialog.propTypes /* remove-proptypes */ = {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })

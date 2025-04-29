@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormControl, { formControlClasses as classes } from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';

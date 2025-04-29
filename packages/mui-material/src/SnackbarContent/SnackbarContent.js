@@ -25,7 +25,6 @@ const useUtilityClasses = (ownerState) => {
 const SnackbarContentRoot = styled(Paper, {
   name: 'MuiSnackbarContent',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => {
     const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
@@ -54,7 +53,6 @@ const SnackbarContentRoot = styled(Paper, {
 const SnackbarContentMessage = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Message',
-  overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
 });
@@ -62,7 +60,6 @@ const SnackbarContentMessage = styled('div', {
 const SnackbarContentAction = styled('div', {
   name: 'MuiSnackbarContent',
   slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
 })({
   display: 'flex',
   alignItems: 'center',

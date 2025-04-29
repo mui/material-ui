@@ -83,7 +83,6 @@ const AvatarRoot = styled('div', {
 const AvatarImg = styled('img', {
   name: 'MuiAvatar',
   slot: 'Img',
-  overridesResolver: (props, styles) => styles.img,
 })({
   width: '100%',
   height: '100%',
@@ -99,7 +98,6 @@ const AvatarImg = styled('img', {
 const AvatarFallback = styled(Person, {
   name: 'MuiAvatar',
   slot: 'Fallback',
-  overridesResolver: (props, styles) => styles.fallback,
 })({
   width: '75%',
   height: '75%',
