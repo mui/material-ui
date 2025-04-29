@@ -134,7 +134,7 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
 @import 'tailwindcss';
 
 @theme inline {
-  /* Material UI typography */
+  /* Material UI typography */
   --font-h1: var(--mui-font-h1);
   --font-h2: var(--mui-font-h2);
   --font-h3: var(--mui-font-h3);
@@ -156,14 +156,14 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   --letter-spacing-body1: 0.00938em;
   --letter-spacing-body2: 0.01071em;
 
-  /* Material UI breakpoints */
+  /* Material UI breakpoints */
   --breakpoint-sm: 37.5rem; /* 600px */
   --breakpoint-md: 56.25rem; /* 900px */
   --breakpoint-lg: 75rem; /* 1200px */
   --breakpoint-xl: 96rem; /* 1536px */
   --breakpoint-2xl: 120rem; /* 1920px */
 
-  /* Material UI theme colors */
+  /* Material UI theme colors */
   --color-primary: rgb(var(--mui-palette-primary-mainChannel));
   --color-primary-light: rgb(var(--mui-palette-primary-lightChannel));
   --color-primary-dark: rgb(var(--mui-palette-primary-darkChannel));
@@ -174,7 +174,7 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   --color-secondary-dark: rgb(var(--mui-palette-secondary-darkChannel));
   --color-secondary-contrast: rgb(var(--mui-palette-secondary-contrastTextChannel));
 
-  /* Material UI status colors */
+  /* Material UI status colors */
   --color-info: rgb(var(--mui-palette-info-mainChannel));
   --color-info-light: rgb(var(--mui-palette-info-lightChannel));
   --color-info-dark: rgb(var(--mui-palette-info-darkChannel));
@@ -195,7 +195,7 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   --color-warning-dark: rgb(var(--mui-palette-warning-darkChannel));
   --color-warning-contrast: rgb(var(--mui-palette-warning-contrastTextChannel));
 
-  /* Material UI text & common colors */
+  /* Material UI text & common colors */
   --color-text-primary: rgb(var(--mui-palette-text-primaryChannel));
   --color-text-secondary: rgb(var(--mui-palette-text-secondaryChannel));
   --color-text-disabled: var(--mui-palette-text-disabled);
@@ -203,18 +203,18 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   --color-common-onBackground: var(--mui-palette-common-onBackground);
   --color-divider: var(--mui-palette-divider);
 
-  /* Material UI background colors */
+  /* Material UI background colors */
   --color-background-default: rgb(var(--mui-palette-background-defaultChannel));
   --color-background-paper: rgb(var(--mui-palette-background-paperChannel));
 
-  /* Material UI action colors */
+  /* Material UI action colors */
   --color-action-active: var(--mui-palette-action-active);
   --color-action-hover: var(--mui-palette-action-hover);
   --color-action-selected: var(--mui-palette-action-selected);
   --color-action-disabled: var(--mui-palette-action-disabled);
   --color-action-focus: var(--mui-palette-action-focus);
 
-  /* Material UI gray scale */
+  /* Material UI gray scale */
   --color-gray-50: var(--mui-palette-grey-50);
   --color-gray-100: var(--mui-palette-grey-100);
   --color-gray-200: var(--mui-palette-grey-200);
@@ -230,7 +230,7 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   --color-gray-A400: var(--mui-palette-grey-A400);
   --color-gray-A700: var(--mui-palette-grey-A700);
 
-  /* Material UI Component Colors */
+  /* Material UI Component Colors */
   /* Alert */
   --color-Alert-error: var(--mui-palette-Alert-errorColor);
   --color-Alert-info: var(--mui-palette-Alert-infoColor);
@@ -321,7 +321,7 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   /* Tooltip */
   --color-Tooltip-bg: var(--mui-palette-Tooltip-bg);
 
-  /* Material UI shadows */
+  /* Material UI shadows */
   --shadow-1: var(--mui-shadows-1);
   --shadow-2: var(--mui-shadows-2);
   --shadow-3: var(--mui-shadows-3);
@@ -347,14 +347,14 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   --shadow-23: var(--mui-shadows-23);
   --shadow-24: var(--mui-shadows-24);
 
-  /* Material UI opacity */
+  /* Material UI opacity */
   --opacity-activated: calc(100% * var(--mui-palette-action-activatedOpacity));
   --opacity-disabled: calc(100% * var(--mui-palette-action-disabledOpacity));
   --opacity-focus: calc(100% * var(--mui-palette-action-focusOpacity));
   --opacity-hover: calc(100% * var(--mui-palette-action-hoverOpacity));
   --opacity-selected: calc(100% * var(--mui-palette-action-selectedOpacity));
 
-  /* Material UI overlays */
+  /* Material UI overlays */
   --overlay-1: var(--mui-overlays-1);
   --overlay-2: var(--mui-overlays-2);
   --overlay-3: var(--mui-overlays-3);
@@ -381,7 +381,7 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   --overlay-24: var(--mui-overlays-24);
 }
 
-/* Material UI base styles */
+/* Material UI base styles */
 @layer base {
   h1 {
     font: var(--mui-font-h1);
@@ -415,17 +415,17 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
   }
 }
 
-/* Material UI typography utilities */
+/* Material UI typography utilities */
 @utility typography-* {
   font: --value(--font- *);
 }
 
-/* Material UI overlay utilities */
+/* Material UI overlay utilities */
 @utility overlay-* {
   background-image: --value(--overlay- *);
 }
 
-/* Material UI elevation utilities */
+/* Material UI elevation utilities */
 @utility elevation-* {
   background-image: --value(--overlay- *);
   box-shadow: --value(--shadow- *);
