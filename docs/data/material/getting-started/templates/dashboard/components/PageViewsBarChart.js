@@ -9,12 +9,6 @@ import { useTheme } from '@mui/material/styles';
 
 export default function PageViewsBarChart() {
   const theme = useTheme();
-  const colorPalette = [
-    (theme.vars || theme).palette.primary.dark,
-    (theme.vars || theme).palette.primary.main,
-    (theme.vars || theme).palette.primary.light,
-  ];
-
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
@@ -41,7 +35,11 @@ export default function PageViewsBarChart() {
         </Stack>
         <BarChart
           borderRadius={8}
-          colors={colorPalette}
+          colors={[
+            (theme.vars || theme).palette.primary.dark,
+            (theme.vars || theme).palette.primary.main,
+            (theme.vars || theme).palette.primary.light,
+          ]}
           xAxis={[
             {
               scaleType: 'band',

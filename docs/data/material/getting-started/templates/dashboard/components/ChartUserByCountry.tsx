@@ -114,13 +114,6 @@ function PieCenterLabel({ primaryText, secondaryText }: PieCenterLabelProps) {
   );
 }
 
-const colors = [
-  'hsl(220, 20%, 65%)',
-  'hsl(220, 20%, 42%)',
-  'hsl(220, 20%, 35%)',
-  'hsl(220, 20%, 25%)',
-];
-
 export default function ChartUserByCountry() {
   return (
     <Card
@@ -133,7 +126,12 @@ export default function ChartUserByCountry() {
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <PieChart
-            colors={colors}
+            colors={[
+              'hsl(220, 20%, 65%)',
+              'hsl(220, 20%, 42%)',
+              'hsl(220, 20%, 35%)',
+              'hsl(220, 20%, 25%)',
+            ]}
             margin={{
               left: 80,
               right: 80,

@@ -31,7 +31,7 @@ function renderSparklineCell(params) {
     <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
       <SparkLineChart
         data={value}
-        width={colDef.computedWidth || 100}
+        sx={{ width: colDef.computedWidth || 100 }}
         height={32}
         plotType="bar"
         showHighlight
