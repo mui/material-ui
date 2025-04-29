@@ -35,7 +35,7 @@ importers:
         version: 9.6.0(encoding@0.1.13)
       '@mui/internal-bundle-size-checker':
         specifier: github:mui/mui-public#bundle-size-checker&path:./packages/bundle-size-checker
-        version: https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
+        version: https://codeload.github.com/mui/mui-public/tar.gz/e81ad6cfa78b3bca1c5de0195604f0544b1a8c2b#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
       '@netlify/functions':
         specifier: ^3.1.2
         version: 3.1.2(encoding@0.1.13)(rollup@4.40.0)
@@ -640,9 +640,6 @@ importers:
 
   bundle-size:
     dependencies:
-      '@mui/internal-bundle-size-checker':
-        specifier: github:mui/mui-public#bundle-size-checker&path:./packages/bundle-size-checker
-        version: https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))
       '@mui/lab':
         specifier: workspace:*
         version: link:../packages/mui-lab/build
@@ -658,6 +655,10 @@ importers:
       '@mui/utils':
         specifier: workspace:*
         version: link:../packages/mui-utils/build
+    devDependencies:
+      '@mui/bundle-size-checker':
+        specifier: github:mui/mui-public#bundle-size-checker&path:./packages/bundle-size-checker
+        version: '@mui/internal-bundle-size-checker@https://codeload.github.com/mui/mui-public/tar.gz/e81ad6cfa78b3bca1c5de0195604f0544b1a8c2b#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))'
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.3
@@ -4561,8 +4562,8 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
-  '@mui/internal-bundle-size-checker@https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker':
-    resolution: {path: ./packages/bundle-size-checker, tarball: https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581}
+  '@mui/internal-bundle-size-checker@https://codeload.github.com/mui/mui-public/tar.gz/e81ad6cfa78b3bca1c5de0195604f0544b1a8c2b#path:./packages/bundle-size-checker':
+    resolution: {path: ./packages/bundle-size-checker, tarball: https://codeload.github.com/mui/mui-public/tar.gz/e81ad6cfa78b3bca1c5de0195604f0544b1a8c2b}
     version: 1.0.0
     hasBin: true
 
@@ -17646,7 +17647,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
-  '@mui/internal-bundle-size-checker@https://codeload.github.com/mui/mui-public/tar.gz/4d551b5e95b5ec09624f8ee71fc68dd7b653d581#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))':
+  '@mui/internal-bundle-size-checker@https://codeload.github.com/mui/mui-public/tar.gz/e81ad6cfa78b3bca1c5de0195604f0544b1a8c2b#path:./packages/bundle-size-checker(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.98.0))':
     dependencies:
       '@aws-sdk/client-s3': 3.787.0
       '@aws-sdk/credential-providers': 3.787.0
