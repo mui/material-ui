@@ -45,7 +45,7 @@ export default function XChartsDemo() {
               { data: [15, 25, 30, 50] },
               { data: [60, 50, 15, 25] },
             ]}
-            sx={{ height: 290 }}
+            height={290}
             xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
             margin={{ top: 10, bottom: 0, left: 0, right: 10 }}
             colors={blueberryTwilightPaletteLight}
