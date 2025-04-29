@@ -19,7 +19,6 @@ const useUtilityClasses = (ownerState) => {
 const TimelineSeparatorRoot = styled('div', {
   name: 'MuiTimelineSeparator',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   display: 'flex',
   flexDirection: 'column',

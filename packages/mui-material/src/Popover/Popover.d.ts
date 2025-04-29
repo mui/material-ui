@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/utils';
+import { SlotComponentProps } from '@mui/utils/types';
 import { BackdropProps, InternalStandardProps as StandardProps } from '..';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalProps } from '../Modal';

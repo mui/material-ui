@@ -55,6 +55,7 @@ export default [
   { pathname: '/material-ui/api/image-list' },
   { pathname: '/material-ui/api/image-list-item' },
   { pathname: '/material-ui/api/image-list-item-bar' },
+  { pathname: '/material-ui/api/init-color-scheme-script' },
   { pathname: '/material-ui/api/input' },
   { pathname: '/material-ui/api/input-adornment' },
   { pathname: '/material-ui/api/input-base' },
