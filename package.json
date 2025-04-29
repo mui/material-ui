@@ -48,7 +48,7 @@
     "eslint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.?(c|m)[jt]s?(x)\" --ignore-path .gitignore",
     "markdownlint": "markdownlint-cli2 \"**/*.md\"",
-    "valelint": "git ls-files | grep -h \".md$\" | xargs pnpm vale --filter='.Level==\"error\"'",
+    "valelint": "pnpm vale sync && git ls-files | grep -h \".md$\" | xargs pnpm vale --filter='.Level==\"error\"'",
     "prettier": "pretty-quick --ignore-path .eslintignore --branch master",
     "prettier:all": "prettier --write . --ignore-path .eslintignore",
     "size:snapshot": "node --max-old-space-size=4096 ./scripts/sizeSnapshot/create",
