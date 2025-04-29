@@ -1,7 +1,8 @@
 import { exec } from 'child_process';
 import type * as dangerModule from 'danger';
+import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
+// eslint-disable-next-line import/no-relative-packages
 import { loadComparison } from './scripts/sizeSnapshot';
-import replaceUrl from './packages/api-docs-builder/utils/replaceUrl';
 
 declare const danger: (typeof dangerModule)['danger'];
 declare const markdown: (typeof dangerModule)['markdown'];
@@ -141,7 +142,7 @@ async function reportBundleSize() {
   const comparison = await loadLastComparison(upstreamRef);
 
   const detailedComparisonQuery = `circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
-  const detailedComparisonToolpadUrl = `https://tools-public.mui.com/prod/pages/h71gdad?${detailedComparisonQuery}`;
+  const detailedComparisonToolpadUrl = `https://tools-public.mui.com/prod/pages/bundleSizes?${detailedComparisonQuery}`;
   const detailedComparisonRoute = `/size-comparison?${detailedComparisonQuery}`;
   const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
 

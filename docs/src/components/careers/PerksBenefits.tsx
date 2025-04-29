@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -118,15 +118,15 @@ export default function PerksBenefits() {
           <Box sx={{ maxWidth: 500 }}>
             {[
               ['100% remote work', 'Our entire company is globally distributed.'],
+              ['Time off', 'We provide 33 days of paid time off globally.'],
               [
                 'Retreats',
-                'We meet up every 8 months for a week of working & having fun together!',
+                'We meet up every 8+ months for a week of working & having fun together!',
               ],
               [
                 'Equipment',
-                'We provide the hardware of your choice (initial grant of $2,500 USD).',
+                'We let you choose the hardware of your choice (within a given budget).',
               ],
-              ['Time off', 'We provide 33 days of paid time off globally.'],
             ].map((textArray) => (
               <Box
                 key={textArray[0]}

@@ -7,7 +7,7 @@ manualCard: true
 tags: ['MUI X', 'Product']
 ---
 
-<img src="/static/blog/mui-x-v6/card.png" alt="" style="margin-bottom: 16px;" width="2560" height="1280" />
+<img src="/static/blog/mui-x-v6/card.png" alt="" width="2560" height="1280" />
 
 [MUI X v6.0.0](https://github.com/mui/mui-x/releases/tag/v6.0.0) is finally here with many improvements, new features, customization abilities, and a more robust foundation to accommodate the changes we want to deliver next.
 
@@ -151,7 +151,7 @@ See it in action:
 </video>
 </a>
 
-This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date) UIs provided by platforms like macOS and Windows on the web.
+This design is heavily inspired by the [native date picker](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date) UIs provided by platforms like macOS and Windows on the web.
 
 ### Birthday picker
 
@@ -208,7 +208,7 @@ export default function CustomStaticDatePicker() {
 
 Many end-users complained, and we completely agree, the [clock view](/x/react-date-pickers/time-clock/) is not the ideal time-picking experience on Desktop, so we removed it as a default view.
 
-<img src="/static/blog/mui-x-v6/clock.png" loading="lazy" alt="Date Range shortcuts." width="518" height="496" style="width: 259px; margin-bottom: 24px;" />
+<img src="/static/blog/mui-x-v6/clock.png" loading="lazy" alt="Date Range shortcuts." width="518" height="496" style="width: 259px;" />
 
 <p class="blog-description">The clock picker, still present on mobile.</p>
 
@@ -239,10 +239,10 @@ End-users can more easily change the start and end dates.
 
 ## Installation and migration
 
-If this is your first try with MUI X, you can jump in the getting started section:
+If this is your first time using MUI X, you can jump in the getting started section:
 
-- [Data Grid](/x/react-data-grid/getting-started/)
-- [Date Pickers](/x/react-date-pickers/getting-started/)
+- [Data Grid](/x/react-data-grid/)
+- [Date Pickers](/x/react-date-pickers/)
 
 If you're coming from previous versions, we recommend you check our migration guide from MUI X v5 with the complete list of breaking changes:
 

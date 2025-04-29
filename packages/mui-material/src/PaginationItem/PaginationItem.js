@@ -16,7 +16,6 @@ import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import useSlot from '../utils/useSlot';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
-
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const overridesResolver = (props, styles) => {
@@ -287,7 +286,6 @@ const PaginationItemPage = styled(ButtonBase, {
 const PaginationItemPageIcon = styled('div', {
   name: 'MuiPaginationItem',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })(
   memoTheme(({ theme }) => ({
     fontSize: theme.typography.pxToRem(20),
@@ -463,7 +461,7 @@ PaginationItem.propTypes /* remove-proptypes */ = {
    * It's recommended to use the `slots` prop instead.
    *
    * @default {}
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   components: PropTypes.shape({
     first: PropTypes.elementType,

@@ -14,8 +14,8 @@ import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import AppTheme from '../shared-theme/AppTheme';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { GoogleIcon, FacebookIcon, SitemarkIcon } from './components/CustomIcons';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -194,18 +194,6 @@ export default function SignUp(props) {
             >
               Sign up
             </Button>
-            <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
-              <span>
-                <Link
-                  href="/material-ui/getting-started/templates/sign-in/"
-                  variant="body2"
-                  sx={{ alignSelf: 'center' }}
-                >
-                  Sign in
-                </Link>
-              </span>
-            </Typography>
           </Box>
           <Divider>
             <Typography sx={{ color: 'text.secondary' }}>or</Typography>
@@ -227,6 +215,16 @@ export default function SignUp(props) {
             >
               Sign up with Facebook
             </Button>
+            <Typography sx={{ textAlign: 'center' }}>
+              Already have an account?{' '}
+              <Link
+                href="/material-ui/getting-started/templates/sign-in/"
+                variant="body2"
+                sx={{ alignSelf: 'center' }}
+              >
+                Sign in
+              </Link>
+            </Typography>
           </Box>
         </Card>
       </SignUpContainer>

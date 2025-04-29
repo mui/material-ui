@@ -4,7 +4,7 @@
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-cra
@@ -20,7 +20,7 @@ npm start
 
 or:
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/github/mui/material-ui/tree/master/examples/material-ui-cra)
 
@@ -28,15 +28,15 @@ or:
 
 ## The idea behind the example
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 This example demonstrates how you can use [Create React App](https://github.com/facebookincubator/create-react-app) with Material UI.
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v6.
+It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI.
 If you prefer, you can [use styled-components instead](https://mui.com/material-ui/integrations/interoperability/#styled-components).
 
 ## What's next?
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 You now have a working example project.
 You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.

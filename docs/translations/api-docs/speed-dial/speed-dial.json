@@ -73,10 +73,10 @@
     "directionUp": {
       "description": "Styles applied to the root element if direction=&quot;up&quot;"
     },
-    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
-    "root": { "description": "Styles applied to the root element." }
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" }
   },
   "slotDescriptions": {
+    "root": "The component that renders the root slot.",
     "transition": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

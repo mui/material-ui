@@ -92,7 +92,6 @@ const CollapseRoot = styled('div', {
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
-  overridesResolver: (props, styles) => styles.wrapper,
 })({
   // Hack to get children with a negative margin to not falsify the height computation.
   display: 'flex',
@@ -113,7 +112,6 @@ const CollapseWrapper = styled('div', {
 const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',
-  overridesResolver: (props, styles) => styles.wrapperInner,
 })({
   width: '100%',
   variants: [
@@ -308,7 +306,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
       timeout={timeout === 'auto' ? null : timeout}
       {...other}
     >
-      {(state, childProps) => (
+      {/* Destructure child props to prevent the component's "ownerState" from being overridden by incomingOwnerState. */}
+      {(state, { ownerState: incomingOwnerState, ...restChildProps }) => (
         <CollapseRoot
           as={component}
           className={clsx(
@@ -324,10 +323,8 @@ const Collapse = React.forwardRef(function Collapse(inProps, ref) {
             ...style,
           }}
           ref={handleRef}
-          {...childProps}
-          // `ownerState` is set after `childProps` to override any existing `ownerState` property in `childProps`
-          // that might have been forwarded from the Transition component.
           ownerState={{ ...ownerState, state }}
+          {...restChildProps}
         >
           <CollapseWrapper
             ownerState={{ ...ownerState, state }}

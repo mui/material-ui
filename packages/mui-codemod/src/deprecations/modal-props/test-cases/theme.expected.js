@@ -52,3 +52,19 @@ fn({
     },
   },
 });
+
+fn({
+  MuiModal: {
+    defaultProps: {
+      slots: {
+        backdrop: Backdrop
+      },
+
+      slotProps: {
+        backdrop: {
+          timeout: 500,
+        }
+      }
+    },
+  },
+});

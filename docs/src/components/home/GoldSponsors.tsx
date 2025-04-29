@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
 import { Link } from '@mui/docs/Link';
@@ -15,27 +15,7 @@ const GOLDs = [
     src: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
-  },
-  {
-    src: 'https://avatars.githubusercontent.com/u/251374?s=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/251374?s=120 3x',
-    name: 'Spotify',
-    description: 'Music service for accessing millions of songs.',
-    href: 'https://open.spotify.com?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
-    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/120.png 3x',
-    name: 'Icons8',
-    description: 'API for icons, photos, illustrations, and music.',
-    href: 'https://icons8.com?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://rxdb.info/files/logo/logo_text.svg',
-    name: 'RxDB',
-    description: 'Local-first JavaScript database.',
-    href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=opencollective&utm_campaign=opencollective-mui',
+    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
@@ -51,27 +31,8 @@ const GOLDs = [
     description: 'Send text messages, calls, and emails.',
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
-  {
-    src: 'https://images.opencollective.com/copycopterai/e167216/logo/40.png',
-    srcSet: 'https://images.opencollective.com/copycopterai/e167216/logo/120.png 3x',
-    name: 'Copycopter.ai',
-    description: 'Turn prompts into videos at ultra speed.',
-    href: 'https://copycopter.ai/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/route4me/71fb6fa/avatar/40.png',
-    srcSet: 'https://images.opencollective.com/route4me/71fb6fa/avatar/120.png 3x',
-    name: 'Route4Me',
-    description: 'Trusted last mile route planning and optimization.',
-    href: 'https://route4me.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
 ];
 const BACKLINKs = [
-  {
-    name: 'MegaFamous',
-    description: 'Buy Instagram followers and likes.',
-    href: 'https://megafamous.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
   {
     name: 'Goread.io',
     description: 'Instagram followers, likes, views, and comments.',
@@ -91,6 +52,16 @@ const BACKLINKs = [
     name: 'Views4You',
     description: 'Social media growth services.',
     href: 'https://views4you.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Poprey',
+    description: 'Buy Instagram likes with crypto.',
+    href: 'https://poprey.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'SocialWick',
+    description: 'Buy Instagram followers.',
+    href: 'https://www.socialwick.com/instagram/followers',
   },
 ];
 

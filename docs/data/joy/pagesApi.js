@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   { pathname: '/joy-ui/api/accordion' },
   { pathname: '/joy-ui/api/accordion-details' },
   { pathname: '/joy-ui/api/accordion-group' },

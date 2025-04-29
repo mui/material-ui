@@ -4,7 +4,7 @@ description: Check out the new pricing updates and how to transition to the new 
 date: 2024-08-01T08:00:00.000Z
 authors: ['josefreitas', 'oliviertassinari']
 tags: ['MUI X', 'Product']
-manualCard: true
+manualCard: false
 ---
 
 Today, we are sharing some important updates to the MUI X product offerings and pricing structure.
@@ -24,6 +24,8 @@ Since the release of this component, we launched several new components and feat
 
 We will soon release the first Pro features of the [Charts](/x/react-charts/) and [Tree View](/x/react-tree-view/).
 These new features will only be available under the updated pricing: moving forward, each developer requires a license. So, for example, 50 developers will need 50 licenses.
+
+<img src="/static/blog/mui-x-sep-2024-price-update/compare.png" width="1086" height="646" loading="lazy" alt="" style="border: 0; width: 543px;" />
 
 ### Grandfathering current customers
 

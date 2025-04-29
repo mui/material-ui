@@ -1,3 +1,5 @@
+import movePropIntoSlotProps from '../utils/movePropIntoSlotProps';
+import movePropIntoSlots from '../utils/movePropIntoSlots';
 import replaceComponentsWithSlots from '../utils/replaceComponentsWithSlots';
 
 /**
@@ -10,6 +12,20 @@ export default function transformer(file, api, options) {
   const printOptions = options.printOptions;
 
   replaceComponentsWithSlots(j, { root, componentName: 'Modal' });
+
+  movePropIntoSlots(j, {
+    root,
+    componentName: 'Modal',
+    propName: 'BackdropComponent',
+    slotName: 'backdrop',
+  });
+
+  movePropIntoSlotProps(j, {
+    root,
+    componentName: 'Modal',
+    propName: 'BackdropProps',
+    slotName: 'backdrop',
+  });
 
   return root.toSource(printOptions);
 }

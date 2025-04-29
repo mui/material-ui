@@ -3,16 +3,5 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true
-  },
-  "references": [
-    {
-      "path": "../../packages/mui-system/tsconfig.build.json"
-    },
-    {
-      "path": "../../packages/mui-base/tsconfig.build.json"
-    },
-    {
-      "path": "../../packages/mui-material/tsconfig.build.json"
-    }
-  ]
+  }
 }

@@ -1,7 +1,8 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import exactProp from '@mui/utils/exactProp';
 import { NoSsrProps } from './NoSsr.types';
 
 /**
@@ -38,8 +39,8 @@ function NoSsr(props: NoSsrProps): React.JSX.Element {
     }
   }, [defer]);
 
-  // We need the Fragment here to force react-docgen to recognise NoSsr as a component.
-  return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
+  // TODO casting won't be needed at one point https://github.com/DefinitelyTyped/DefinitelyTyped/pull/65135
+  return (mountedState ? children : fallback) as React.JSX.Element;
 }
 
 NoSsr.propTypes /* remove-proptypes */ = {

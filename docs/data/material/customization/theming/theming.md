@@ -106,7 +106,7 @@ function DeepChild() {
 
 ## Nesting the theme
 
-[You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
+[You can nest](https://v6.mui.com/system/styles/advanced/#theme-nesting) multiple theme providers.
 
 {{"demo": "ThemeNesting.js"}}
 
