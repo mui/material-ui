@@ -10,13 +10,6 @@ import Stack from '@mui/material/Stack';
 import '@mui/x-charts/themeAugmentation';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
-import {
-  IndiaFlag,
-  UsaFlag,
-  BrazilFlag,
-  GlobeFlag,
-} from '../internals/components/CustomIcons';
-
 const data = [
   { label: 'India', value: 50000 },
   { label: 'USA', value: 35000 },
@@ -28,25 +21,25 @@ const countries = [
   {
     name: 'India',
     value: 50,
-    flag: <IndiaFlag />,
+    flag: null,
     color: 'hsl(220, 25%, 65%)',
   },
   {
     name: 'USA',
     value: 35,
-    flag: <UsaFlag />,
+    flag: null,
     color: 'hsl(220, 25%, 45%)',
   },
   {
     name: 'Brazil',
     value: 10,
-    flag: <BrazilFlag />,
+    flag: null,
     color: 'hsl(220, 25%, 30%)',
   },
   {
     name: 'Other',
     value: 5,
-    flag: <GlobeFlag />,
+    flag: null,
     color: 'hsl(220, 25%, 20%)',
   },
 ];
