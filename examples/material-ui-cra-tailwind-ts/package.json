@@ -1,6 +1,6 @@
 {
   "name": "material-ui-cra-tailwind-ts",
-  "version": "5.0.0",
+  "version": "7.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",

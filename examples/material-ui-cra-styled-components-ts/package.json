@@ -1,6 +1,6 @@
 {
   "name": "material-ui-cra-styled-components-ts",
-  "version": "5.0.0",
+  "version": "7.0.0",
   "private": true,
   "dependencies": {
     "@mui/lab": "latest",
