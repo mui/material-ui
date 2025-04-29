@@ -38,7 +38,6 @@ const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
 const ReplacementPaper = styled(Paper, {
   name: 'ReplacementPaper',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({
   backgroundColor: 'red',
 });

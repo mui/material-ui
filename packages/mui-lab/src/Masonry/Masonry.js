@@ -163,9 +163,6 @@ export const getStyle = ({ ownerState, theme }) => {
 const MasonryRoot = styled('div', {
   name: 'MuiMasonry',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    return [styles.root];
-  },
 })(getStyle);
 
 const Masonry = React.forwardRef(function Masonry(inProps, ref) {

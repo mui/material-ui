@@ -33,9 +33,8 @@ const useUtilityClasses = (ownerState) => {
 
 const styledRootConfig = {
   name: 'MuiSelect',
-  overridesResolver: (props, styles) => styles.root,
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'variant',
   slot: 'Root',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'variant',
 };
 
 const StyledInput = styled(Input, styledRootConfig)('');
