@@ -164,7 +164,7 @@ But if you need to customize Babel (for example, to use babel-plugin-transform-i
 1. Install dependencies:
 
 ```bash
-npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-plugin-transform-imports 
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-plugin-transform-imports
 ```
 
 2. Create a `.babelrc` file in the root directory:
