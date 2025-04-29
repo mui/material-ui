@@ -53,7 +53,6 @@ const StyledText = styled('text', {
 })<StyledTextProps>(({ theme }) => ({
   textAnchor: 'middle',
   dominantBaseline: 'central',
-  fill: (theme.vars || theme).palette.text.secondary,
   variants: [
     {
       props: {
