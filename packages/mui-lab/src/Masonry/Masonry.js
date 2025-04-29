@@ -8,11 +8,9 @@ import {
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import {
-  deepmerge,
-  unstable_useForkRef as useForkRef,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-} from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import deepmerge from '@mui/utils/deepmerge';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
