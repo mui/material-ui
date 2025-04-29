@@ -2,7 +2,15 @@ import capitalize from '@mui/utils/capitalize';
 import type { CSSObject } from '@mui/styled-engine';
 import responsivePropType from '../responsivePropType';
 import { handleBreakpoints } from '../breakpoints';
-import type { StyleFunction } from '../Box';
+
+export type StyleFunction<Props> = (props: Props) => any;
+
+export type PropsFor<SomeStyleFunction> =
+  SomeStyleFunction extends StyleFunction<infer Props> ? Props : never;
+
+export type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<
+  Partial<Record<PropKey, any>>
+> & { filterProps: string[] };
 
 export type TransformFunction = (
   cssValue: unknown,
