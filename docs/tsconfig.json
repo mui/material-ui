@@ -10,8 +10,7 @@
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "incremental": true
+    "esModuleInterop": true
   },
   "include": ["src", "data"],
   "exclude": ["docs/.next", "docs/export", "node_modules"]
