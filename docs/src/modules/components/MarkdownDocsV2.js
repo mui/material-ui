@@ -218,6 +218,9 @@ export default function MarkdownDocsV2(props) {
     return false;
   });
 
+  // eslint-disable-next-line no-console
+  console.log('router', router);
+
   const scopedDemo = router.query.scopedDemo;
   if (scopedDemo) {
     const isJoy = canonicalAs.startsWith('/joy-ui/');
