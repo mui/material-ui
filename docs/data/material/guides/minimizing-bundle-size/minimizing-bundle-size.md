@@ -35,19 +35,6 @@ import Delete from '@mui/icons-material/Delete';
 
 This approach avoids loading unnecessary parts of the package and does not require any special configuration. It is also the default used in all our official examples and demos.
 
-### Import boundaries
-
-We support first- and second-level imports only. Deeper imports are considered private APIs and may lead to issues like module duplication or breakage during upgrades:
-
-```js
-// ✅ OK
-import Tabs from '@mui/material/Tabs';
-import AddIcon from '@mui/icons-material/Add';
-
-// ❌ Not OK
-import TabIndicator from '@mui/material/Tabs/TabIndicator';
-```
-
 ## Enforce best practices with ESLint
 
 To prevent accidental deep imports, you can use the `no-restricted-imports` rule in your ESLint configuration:
