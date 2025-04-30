@@ -4,12 +4,8 @@ import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 import '@mui/x-charts/themeAugmentation';
 
-export const getDesignTokens = () => ({}) as ThemeOptions;
-
-export const brandingDarkTheme = createTheme(getDesignTokens());
-
-const colors: string[] = [];
+createTheme({} as ThemeOptions);
 
 export default function ChartUserByCountry() {
-  return <PieChart colors={colors} series={[]} />;
+  return <PieChart colors={[]} series={[]} />;
 }

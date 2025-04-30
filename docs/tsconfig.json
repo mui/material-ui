@@ -3,28 +3,12 @@
     "allowJs": true,
     "isolatedModules": true,
     "moduleResolution": "bundler",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "module": "esnext",
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "baseUrl": "..",
-    "paths": {
-      "@mui/material": ["./packages/mui-material/src"],
-      "@mui/material/package.json": ["./packages/mui-material/package.json"],
-      "@mui/material/*": ["./packages/mui-material/src/*"],
-      "@mui/styled-engine": ["./packages/mui-styled-engine/src"],
-      "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
-      "@mui/system": ["./packages/mui-system/src"],
-      "@mui/system/package.json": ["./packages/mui-system/package.json"],
-      "@mui/system/*": ["./packages/mui-system/src/*"],
-      "@mui/types": ["./packages/mui-types/src"],
-      "@mui/private-theming": ["./packages/mui-private-theming/src"],
-      "@mui/private-theming/*": ["./packages/mui-private-theming/src/*"],
-      "@mui/utils": ["./packages/mui-utils/src"],
-      "@mui/utils/*": ["./packages/mui-utils/src/*"]
-    }
+    "esModuleInterop": true
   },
   "include": ["data"],
   "exclude": ["docs/.next", "docs/export", "node_modules"]
