@@ -65,7 +65,6 @@ export default defineConfig({
     'index.html': CRA.getHtml({ ...demoData, main: `/src/index.${ext}` }),
     'package.json': JSON.stringify(
       {
-        version: process.env.LIB_VERSION,
         private: true,
         description,
         type: 'module',

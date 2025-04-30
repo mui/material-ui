@@ -80,7 +80,6 @@ function createReactApp(demoData: DemoData) {
 
   files['package.json'] = {
     content: {
-      version: process.env.LIB_VERSION,
       private: true,
       description,
       dependencies,
@@ -173,7 +172,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 
   files['package.json'] = {
     content: {
-      version: process.env.LIB_VERSION,
       private: true,
       description,
       dependencies,
@@ -260,7 +258,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 
   files['package.json'] = {
     content: {
-      version: process.env.LIB_VERSION,
       private: true,
       description,
       dependencies,
