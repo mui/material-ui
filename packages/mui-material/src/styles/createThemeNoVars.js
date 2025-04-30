@@ -21,6 +21,7 @@ function createThemeNoVars(options = {}, ...args) {
     transitions: transitionsInput = {},
     typography: typographyInput = {},
     shape: shapeInput,
+    colorSpace,
     ...other
   } = options;
 
@@ -37,7 +38,7 @@ function createThemeNoVars(options = {}, ...args) {
     );
   }
 
-  const palette = createPalette(paletteInput);
+  const palette = createPalette({ ...paletteInput, colorSpace });
   const systemTheme = systemCreateTheme(options);
 
   let muiTheme = deepmerge(systemTheme, {

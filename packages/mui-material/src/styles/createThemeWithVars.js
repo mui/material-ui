@@ -85,7 +85,7 @@ const silent = (fn) => {
 
 export const createGetCssVar = (cssVarPrefix = 'mui') => systemCreateGetCssVar(cssVarPrefix);
 
-function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
+function attachColorScheme(colorSpace, colorSchemes, scheme, restTheme, colorScheme) {
   if (!scheme) {
     return undefined;
   }
@@ -95,12 +95,14 @@ function attachColorScheme(colorSchemes, scheme, restTheme, colorScheme) {
     colorSchemes[colorScheme] = createColorScheme({
       ...scheme,
       palette: { mode, ...scheme?.palette },
+      colorSpace,
     });
     return undefined;
   }
   const { palette, ...muiTheme } = createThemeNoVars({
     ...restTheme,
     palette: { mode, ...scheme?.palette },
+    colorSpace,
   });
   colorSchemes[colorScheme] = {
     ...scheme,
@@ -164,21 +166,23 @@ export default function createThemeWithVars(options = {}, ...args) {
     );
   }
 
+  const colorSpaceVar = cssVarPrefix ? `var(--${cssVarPrefix}-colorSpace)` : `var(--colorSpace)`;
+
   // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
-  const muiTheme = attachColorScheme(colorSchemes, defaultScheme, input, defaultColorScheme);
+  const muiTheme = attachColorScheme(colorSpaceVar, defaultScheme, input, defaultColorScheme);
 
   if (builtInLight && !colorSchemes.light) {
-    attachColorScheme(colorSchemes, builtInLight, undefined, 'light');
+    attachColorScheme(colorSpaceVar, colorSchemes, builtInLight, undefined, 'light');
   }
 
   if (builtInDark && !colorSchemes.dark) {
-    attachColorScheme(colorSchemes, builtInDark, undefined, 'dark');
+    attachColorScheme(colorSpaceVar, colorSchemes, builtInDark, undefined, 'dark');
   }
 
   let theme = {
-    colorSpace,
     defaultColorScheme,
     ...muiTheme,
+    colorSpace,
     cssVarPrefix,
     colorSchemeSelector: selector,
     rootSelector,

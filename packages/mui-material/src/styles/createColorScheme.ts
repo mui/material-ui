@@ -22,14 +22,15 @@ export function getOverlays(mode: 'light' | 'dark') {
   return mode === 'dark' ? defaultDarkOverlays : [];
 }
 
-export default function createColorScheme(options: ColorSystemOptions) {
+export default function createColorScheme(options: ColorSystemOptions & { colorSpace?: string }) {
   const {
     palette: paletteInput = { mode: 'light' } as PaletteOptions, // need to cast to avoid module augmentation test
     opacity,
     overlays,
+    colorSpace,
     ...rest
   } = options;
-  const palette = createPalette(paletteInput);
+  const palette = createPalette({ ...paletteInput, colorSpace });
   return {
     palette,
     opacity: { ...getOpacity(palette.mode), ...opacity },

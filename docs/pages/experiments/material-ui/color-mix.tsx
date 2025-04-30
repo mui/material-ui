@@ -21,15 +21,18 @@ const theme = createTheme({
       palette: {
         primary: {
           main: 'oklch(81% 0.50 78)',
-          light: 'oklch(70% 0.50 78)',
-          dark: 'oklch(49% 0.50 78)',
-          contrastText: '#fff',
+          // light: 'oklch(70% 0.50 78)',
+          // dark: 'oklch(49% 0.50 78)',
+          // contrastText: '#fff',
         },
         info: {
           main: 'oklch(81% 0.50 78)',
-          light: 'oklch(70% 0.50 78)',
-          dark: 'oklch(49% 0.50 78)',
-          contrastText: '#fff',
+          // light: 'oklch(70% 0.50 78)',
+          // dark: 'oklch(49% 0.50 78)',
+          // contrastText: '#fff',
+        },
+        Alert: {
+          infoFilledBg: 'oklch(21% 0.50 78)',
         },
       },
     },
@@ -80,6 +83,22 @@ export default function ColorMix() {
           <Alert severity="success">This is a success alert — check it out!</Alert>
           <Alert severity="warning">This is a warning alert — check it out!</Alert>
           <Alert severity="error">This is an error alert — check it out!</Alert>
+        </Stack>
+
+        <Stack spacing={2}>
+          <Alert severity="info" variant="filled">
+            This is an info alert — check it out!
+          </Alert>
+          <Alert severity="success" variant="filled">
+            {' '}
+            This is a success alert — check it out!
+          </Alert>
+          <Alert severity="warning" variant="filled">
+            This is a warning alert — check it out!
+          </Alert>
+          <Alert severity="error" variant="filled">
+            This is an error alert — check it out!
+          </Alert>
         </Stack>
       </Box>
     </ThemeProvider>
