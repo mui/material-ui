@@ -58,7 +58,6 @@ describe('StackBlitz', () => {
         'package.json': `{
   "name": "mui-demo",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -169,7 +168,6 @@ export default defineConfig({
         'package.json': `{
   "name": "mui-demo",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

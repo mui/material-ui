@@ -14,7 +14,7 @@ async function emitDeclarations(tsconfig: string, outDir: string) {
   await $$`tsc -p ${tsconfig} --outDir ${outDir} --declaration --emitDeclarationOnly`;
 }
 
-async function addImportExtensions(folder: string, removeCss: boolean) {
+async function postProcessImports(folder: string, removeCss: boolean) {
   // eslint-disable-next-line no-console
   console.log(`Adding import extensions`);
   const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: folder });
@@ -26,13 +26,9 @@ async function addImportExtensions(folder: string, removeCss: boolean) {
     ['@babel/plugin-syntax-typescript', { dts: true }],
     ['@mui/internal-babel-plugin-resolve-imports'],
   ];
+
   if (removeCss) {
-    babelPlugins.push([
-      'babel-plugin-transform-remove-imports',
-      {
-        test: /\.css$/,
-      },
-    ]);
+    babelPlugins.push(['babel-plugin-transform-remove-imports', { test: /\.css$/ }]);
   }
 
   await Promise.all(
@@ -112,7 +108,7 @@ async function main(argv: HandlerArgv) {
     await emitDeclarations(tsconfigPath, esmOrOutDir);
   }
 
-  await addImportExtensions(esmOrOutDir, argv.removeCss);
+  await postProcessImports(esmOrOutDir, argv.removeCss);
 
   await Promise.all(
     argv.copy.map((copy) => copyDeclarations(esmOrOutDir, path.join(packageRoot, copy))),
