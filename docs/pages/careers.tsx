@@ -23,13 +23,19 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Staff Engineer — Pigment CSS',
+        title: 'React Engineer — Material UI Maintainer',
         description:
-          'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
-        url: '/careers/staff-engineer-pigment-css/',
+          'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
+        url: '/careers/react-engineer-material-ui-maintainer/',
       },
       {
-        title: 'Code infra Engineer',
+        title: 'React Engineer — Docs-infra',
+        description:
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
+      },
+      {
+        title: 'Frontend Engineer — Code-infra',
         description:
           'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
         url: '/careers/code-infra-engineer/',
@@ -40,18 +46,18 @@ const openRolesData = [
       //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
       //   url: '/careers/react-engineer-x-charts/',
       // },
-      {
-        title: 'React Engineer — eXplore',
-        description:
-          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
-        url: '/careers/react-engineer-explore/',
-      },
-      {
-        title: 'React Engineer — X',
-        description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
-      },
+      // {
+      //   title: 'React Engineer — eXplore',
+      //   description:
+      //     'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+      //   url: '/careers/react-engineer-explore/',
+      // },
+      // {
+      //   title: 'React Engineer — X',
+      //   description:
+      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x/',
+      // },
     ],
   },
   {
@@ -68,12 +74,6 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      // {
-      //   title: 'React Engineer — Docs-infra',
-      //   description:
-      //     'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-      //   url: '/careers/react-engineer-docs-infra/',
-      // },
       {
         title: 'React Tech Lead — Core',
         description:

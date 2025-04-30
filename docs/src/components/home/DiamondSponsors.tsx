@@ -10,12 +10,6 @@ import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
   {
-    src: '/static/sponsors/octopus-square.svg',
-    name: 'Octopus Deploy',
-    description: 'A unified DevOps automation platform for your team.',
-    href: 'https://octopus.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Technology and cloud expertise to buy, optimize and manage public cloud.',

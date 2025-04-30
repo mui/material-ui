@@ -1,6 +1,5 @@
 {
   "name": "envinfo-test-project",
-  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.5",
@@ -12,6 +11,6 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.12"
+    "@types/react": "^19.1.2"
   }
 }

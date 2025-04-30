@@ -1,6 +1,5 @@
 {
   "name": "@app/pigment-css-next-app",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,7 +9,6 @@
   },
   "dependencies": {
     "@emotion/cache": "latest",
-    "@mui/base": "workspace:^",
     "@mui/icons-material": "workspace:^",
     "@mui/lab": "workspace:^",
     "@mui/material": "workspace:^",
@@ -24,11 +22,11 @@
   },
   "devDependencies": {
     "@pigment-css/nextjs-plugin": "0.0.30",
-    "@types/node": "^20.17.28",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
+    "@types/node": "^20.17.32",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
     "eslint": "^8.57.1",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "nx": {
     "targets": {

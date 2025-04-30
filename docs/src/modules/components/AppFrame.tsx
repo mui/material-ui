@@ -213,7 +213,7 @@ export default function AppFrame(props: AppFrameProps) {
             >
               <SvgHamburgerMenu />
             </NavIconButton>
-            <Box sx={{ display: { md: 'flex', lg: 'none' } }}>
+            <Box sx={{ display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
               <LogoWithCopyMenu
                 logo={productIdentifier.logo}
                 logoSvgString={productIdentifier.logoSvg}

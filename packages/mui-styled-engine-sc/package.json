@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -26,8 +26,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
@@ -47,10 +46,10 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.0.12",
+    "@types/react": "^19.1.2",
     "chai": "^4.5.0",
     "react": "^19.1.0",
-    "styled-components": "^6.1.16"
+    "styled-components": "^6.1.17"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

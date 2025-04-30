@@ -22,7 +22,7 @@
     "react-docgen": "^5.4.3",
     "recast": "^0.23.9",
     "remark": "^15.0.1",
-    "typescript": "^5.8.2",
+    "typescript": "^5.8.3",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.17.28",
+    "@types/node": "^20.17.32",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",

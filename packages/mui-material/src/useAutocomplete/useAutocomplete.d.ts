@@ -338,22 +338,26 @@ export type AutocompleteInputChangeReason =
   | 'selectOption'
   | 'removeOption';
 
+export type AutocompleteGetItemProps<Multiple extends boolean | undefined> = Multiple extends true
+  ? (args: { index: number }) => {
+      key: number;
+      'data-item-index': number;
+      tabIndex: -1;
+      onDelete: (event: any) => void;
+    }
+  : (args?: { index?: number }) => {
+      'data-item-index': number;
+      tabIndex: -1;
+      onDelete: (event: any) => void;
+    };
+
 export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
   'data-tag-index': number;
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
-/**
- *
- * Demos:
- *
- * - [Autocomplete](https://mui.com/base-ui/react-autocomplete/#hook)
- *
- * API:
- *
- * - [useAutocomplete API](https://mui.com/base-ui/react-autocomplete/hooks-api/#use-autocomplete)
- */
+
 export function useAutocomplete<
   Value,
   Multiple extends boolean | undefined = false,
@@ -410,11 +414,17 @@ export interface UseAutocompleteReturnValue<
    */
   getClearProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
+   * An item props getter
+   */
+  getItemProps: AutocompleteGetItemProps<Multiple>;
+  /**
    * Resolver for the popup icon's props.
    * @returns props that should be spread on the popup icon
    */
   getPopupIndicatorProps: () => React.HTMLAttributes<HTMLButtonElement>;
   /**
+   * @deprecated Use `getItemProps` instead
+   *
    * A tag props getter.
    */
   getTagProps: AutocompleteGetTagProps;
@@ -469,6 +479,12 @@ export interface UseAutocompleteReturnValue<
    */
   setAnchorEl: () => void;
   /**
+   * Index of the focused item for the component.
+   */
+  focusedItem: number;
+  /**
+   * @deprecated Use `focusedItem` instead
+   *
    * Index of the focused tag for the component.
    */
   focusedTag: number;

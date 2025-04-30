@@ -117,7 +117,6 @@ const SpeedDialRoot = styled('div', {
 const SpeedDialFab = styled(Fab, {
   name: 'MuiSpeedDial',
   slot: 'Fab',
-  overridesResolver: (props, styles) => styles.fab,
 })({
   pointerEvents: 'auto',
 });

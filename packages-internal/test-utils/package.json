@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -40,17 +40,17 @@
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.2.0",
+    "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "chai": "^4.5.0",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.3.0",
-    "jsdom": "^26.0.0",
+    "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
     "mocha": "^11.1.0",
-    "playwright": "^1.51.1",
+    "@playwright/test": "^1.52.0",
     "prop-types": "^15.8.1",
     "sinon": "^19.0.5"
   },
@@ -59,10 +59,10 @@
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
     "@types/sinon": "^17.0.4",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

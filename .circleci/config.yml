@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@5.2.0
+  aws-cli: circleci/aws-cli@5.3.2
   aws-s3: circleci/aws-s3@4.1.1
 
 parameters:
@@ -194,44 +194,10 @@ jobs:
           name: Lint Markdown
           command: pnpm markdownlint
       - run:
-          # See https://circleci.com/developer/orbs/orb/circleci/vale as reference
-          name: Install Vale
-          command: |
-            #!/bin/bash
-            VALE_STR_CLI_VERSION=3.3.0
-
-            # set smart sudo
-            if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
-
-            mkdir /tmp/vale-extract
-            cd /tmp/vale-extract
-            GZIPPED_OUTPUT="vale.tar.gz"
-            BINARY_URL=https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_Linux_64-bit.tar.gz
-            curl -sSL "$BINARY_URL" -o "${GZIPPED_OUTPUT}"
-
-            if [ ! -s "${GZIPPED_OUTPUT}" ]; then
-              echo "Downloaded file is empty"
-              rm "${GZIPPED_OUTPUT}"
-              exit 1
-            fi
-
-            tar -xzf "${GZIPPED_OUTPUT}"
-            $SUDO mv vale /usr/local/bin
-            rm "${GZIPPED_OUTPUT}"
-
-            # validate installation
-            if [[ -z "$(command -v vale)" ]]; then
-              echo "vale installation failed"
-              exit 1
-            else
-              echo "vale installation successful"
-              vale --version
-              exit 0
-            fi
-      - run:
           name: Lint writing style
           command: |
-            vale sync
+            # Or use https://circleci.com/developer/orbs/orb/circleci/vale as reference to install Vale
+            pnpm vale sync
             pnpm valelint
   test_static:
     <<: *default-job
@@ -290,7 +256,6 @@ jobs:
           name: Test module augmentation
           command: |
             pnpm --filter @mui/material typescript:module-augmentation
-            pnpm --filter @mui/base typescript:module-augmentation
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
       - run:
@@ -363,7 +328,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -391,7 +356,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -403,7 +368,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -416,7 +381,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -441,7 +406,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -514,7 +479,7 @@ jobs:
   test_bundling_next_webpack4:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -532,7 +497,7 @@ jobs:
   test_bundling_next_webpack5:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -550,7 +515,7 @@ jobs:
   test_bundling_create_react_app:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -568,7 +533,7 @@ jobs:
   test_bundling_snowpack:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -586,7 +551,7 @@ jobs:
   test_bundling_vite:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -604,7 +569,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -622,7 +587,7 @@ jobs:
   test_bundling_gatsby:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
         environment:
           GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
@@ -723,7 +688,7 @@ jobs:
   test_benchmark:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.51.1-noble
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:

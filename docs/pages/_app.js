@@ -6,12 +6,10 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { LicenseInfo } from '@mui/x-license';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
+import materialPkgJson from '@mui/material/package.json';
+import joyPkgJson from '@mui/joy/package.json';
+import systemPkgJson from '@mui/system/package.json';
 import generalDocsPages from 'docs/data/docs/pages';
-import basePages from 'docs/data/base/pages';
 import docsInfraPages from 'docs/data/docs-infra/pages';
 import materialPages from 'docs/data/material/pages';
 import joyPages from 'docs/data/joy/pages';
@@ -21,7 +19,6 @@ import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
-import { CodeStylingProvider } from 'docs/src/modules/utils/codeStylingSolution';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
@@ -33,10 +30,6 @@ import SvgMuiLogomark, {
   muiSvgLogoString,
   muiSvgWordmarkString,
 } from 'docs/src/icons/SvgMuiLogomark';
-import SvgBaseUiLogo, {
-  baseSvgLogoString,
-  baseSvgWordmarkString,
-} from 'docs/src/icons/SvgBaseUiLogo';
 import './global.css';
 import '../public/static/components-gallery/base-theme.css';
 import * as config from '../config';
@@ -229,17 +222,6 @@ function AppWrapper(props) {
       };
     }
 
-    if (productId === 'base-ui') {
-      return {
-        metadata: '',
-        name: 'MUI Base',
-        logo: SvgBaseUiLogo,
-        logoSvg: baseSvgLogoString,
-        wordmarkSvg: baseSvgWordmarkString,
-        versions: [{ text: `v${basePkgJson.version}`, current: true }],
-      };
-    }
-
     if (productId === 'core') {
       return {
         metadata: '',
@@ -294,9 +276,7 @@ function AppWrapper(props) {
 
   const pageContextValue = React.useMemo(() => {
     let pages = generalDocsPages;
-    if (productId === 'base-ui') {
-      pages = basePages;
-    } else if (productId === 'material-ui') {
+    if (productId === 'material-ui') {
       pages = materialPages;
     } else if (productId === 'joy-ui') {
       pages = joyPages;
@@ -342,18 +322,16 @@ function AppWrapper(props) {
         translations={pageProps.translations}
       >
         <CodeCopyProvider>
-          <CodeStylingProvider>
-            <CodeVariantProvider>
-              <PageContext.Provider value={pageContextValue}>
-                <ThemeProvider>
-                  <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                    {children}
-                    <GoogleAnalytics />
-                  </DocsStyledEngineProvider>
-                </ThemeProvider>
-              </PageContext.Provider>
-            </CodeVariantProvider>
-          </CodeStylingProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={pageContextValue}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                  <GoogleAnalytics />
+                </DocsStyledEngineProvider>
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
         </CodeCopyProvider>
       </DocsProvider>
     </React.Fragment>
