@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import Slider from '@mui/material/Slider';
+import PopoverMenu from './PopoverMenu';
 import ProTip from './ProTip';
 
 function Copyright() {
@@ -18,7 +19,8 @@ function Copyright() {
       <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{' '}
-      {new Date().getFullYear()}.
+      {new Date().getFullYear()}
+      {'.'}
     </Typography>
   );
 }
@@ -26,13 +28,20 @@ function Copyright() {
 export default function App() {
   return (
     <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
+      <div className="my-4">
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Material UI Vite example in TypeScript
+          Material UI Vite example with Tailwind CSS in TypeScript
         </Typography>
+        <Slider
+          className="my-4"
+          defaultValue={30}
+          classes={{ active: 'shadow-none' }}
+          slotProps={{ thumb: { className: 'hover:shadow-none' } }}
+        />
+        <PopoverMenu />
         <ProTip />
         <Copyright />
-      </Box>
+      </div>
     </Container>
   );
 }
