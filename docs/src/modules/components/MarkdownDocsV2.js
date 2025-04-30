@@ -8,6 +8,7 @@ import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiConte
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
@@ -42,6 +43,7 @@ export default function MarkdownDocsV2(props) {
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
 
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
     disableAd = false,
     disableToc = false,
