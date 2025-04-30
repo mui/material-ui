@@ -1,6 +1,5 @@
 {
   "name": "benchmark",
-  "version": "5.0.0",
   "private": true,
   "scripts": {
     "browser": "pnpm webpack --config browser/webpack.config.js && node browser/scripts/benchmark.js",

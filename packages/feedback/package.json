@@ -1,11 +1,10 @@
 {
   "name": "feedback",
-  "version": "5.0.0",
+  "private": true,
   "description": "Store and retrieve page ratings and comments",
   "main": "./index.js",
   "license": "MIT",
   "author": "MUI Team",
-  "private": true,
   "files": [
     "*.js"
   ],

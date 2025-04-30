@@ -1,7 +1,7 @@
 {
   "name": "material-ui-vite-ts",
+  "version": "7.0.0",
   "private": true,
-  "version": "5.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
