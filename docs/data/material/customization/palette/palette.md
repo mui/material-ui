@@ -149,6 +149,10 @@ const theme = createTheme({
 
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
+:::warning
+The supported color formats are `hex`, `rgb`, and `hsl`. If you want to use other formats, such as `oklch`, check out the [Custom color space](#custom-color-space) section.
+:::
+
 <!-- #target-branch-reference -->
 
 If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this.
@@ -244,6 +248,22 @@ declare module '@mui/material/Button' {
   }
 }
 ```
+
+## Custom color space
+
+To use color spaces other than `hex`, `rgb`, or `hsl`, set `colorSpace` with a [value](https://developer.mozilla.org/en-US/docs/Glossary/Color_space) to the theme options.
+
+{{"demo": "CustomColorSpace.js", "defaultCodeOpen": false}}
+
+### Caveats
+
+Once a custom color space is set, Material UI uses the CSS `color-mix()` instead of Javascript function to manipulate colors for the default styles.
+
+- The auto-generated `contrastText` token always be `#fff` regardless of the `main` color.
+- Alert component with `filled` variant uses `contrastText` token for the color instead of using `theme.palette.getContrastText()` to calculate the color.
+- AppBar component with `default` color uses `text.primary` token instead of `theme.palette.getContrastText()` to calculate the color.
+- Fab component with `default` color uses `grey.900` token instead of `theme.palette.getContrastText()` to calculate the color.
+- SnackbarContent component uses `text.primary` token instead of `theme.palette.getContrastText()` to calculate the color.
 
 ## Adding color tokens
 
