@@ -13,13 +13,22 @@
     "directory": "packages-internal/babel-plugin-resolve-imports"
   },
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages-internal/babel-plugin-resolve-imports/**/*.test.?(c|m)[jt]s?(x)'"
+  },
   "dependencies": {
     "resolve": "^1.22.10"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.23.3",
     "@types/babel__core": "^7.20.5",
-    "@types/resolve": "^1.20.6"
+    "@types/chai": "^4.3.6",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^18.19.22",
+    "@types/resolve": "^1.20.6",
+    "babel-plugin-tester": "^11.0.4",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0"
   },
   "peerDependencies": {
     "@babel/core": "7"

@@ -98,6 +98,15 @@ module.exports = function plugin({ types: t }, { outExtension }) {
         const source = path.get('argument');
         doResolve(source, state);
       },
+      CallExpression(path, state) {
+        const callee = path.get('callee');
+        if (callee.isImport()) {
+          const source = path.get('arguments')[0];
+          if (source.isStringLiteral()) {
+            doResolve(source, state);
+          }
+        }
+      },
       ImportExpression(path, state) {
         const source = path.get('source');
         if (source.isStringLiteral()) {
