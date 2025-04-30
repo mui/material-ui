@@ -11,7 +11,7 @@ There are examples for the following styling solutions:
 - [Styled Components](#styled-components)
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
-- [Tailwind CSS](#tailwind-css)
+- [Tailwind CSS v3](#tailwind-css-v3)
 - [~~JSS~~ TSS](#jss-tss)
 
 ## Plain CSS
@@ -272,7 +272,7 @@ export default function GlobalCssSliderDeep() {
 By default, Material UI components come with Emotion as their style engine.
 If, however, you would like to use styled-components, you can configure your app by following the [styled-components guide](/material-ui/integrations/styled-components/) or starting with one of the example projects:
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 - [Create React App with styled-components](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components)
 - [Create React App with styled-components and TypeScript](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts)
@@ -573,14 +573,18 @@ It works exactly like styled components. You can [use the same guide](/material-
 
 It works exactly like styled components. You can [use the same guide](/material-ui/integrations/interoperability/#styled-components).
 
-## Tailwind CSS
+## Tailwind CSS v3
 
 ![stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/tailwindcss)
 
+:::info
+For Tailwind CSS v4, please refer to the [v4 integration guide](/material-ui/integrations/tailwindcss/tailwindcss-v4/).
+:::
+
 ### Setup
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 If you are used to Tailwind CSS and want to use it together with the Material UI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-tailwind-ts) example project.
 If you use a different framework, or already have set up your project, follow these steps:

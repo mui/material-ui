@@ -456,7 +456,7 @@ export * from './GlobalStyles';
 
 export * from './version';
 
-export { unstable_composeClasses } from '@mui/utils';
+export { default as unstable_composeClasses } from '@mui/utils/composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
@@ -465,3 +465,5 @@ export { default as generateUtilityClasses } from './generateUtilityClasses';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 export * from './Unstable_TrapFocus';
+
+export { default as InitColorSchemeScript } from './InitColorSchemeScript';
