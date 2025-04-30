@@ -53,9 +53,9 @@ To prevent accidental deep imports, you can use the `no-restricted-imports` rule
 }
 ```
 
-## Avoid vscode auto-importing from barrel files
+## Avoid VS Code auto-importing from barrel files
 
-To prevent vscode from automatically importing from `@mui/material`, you can use the `typescript.autoImportSpecifierExcludeRegexes` in the vscode project configuration:
+To prevent VS Code from automatically importing from `@mui/material`, you can use the `typescript.autoImportSpecifierExcludeRegexes` in the VS Code project configuration:
 
 ```json
 // .vscode/settings.json
