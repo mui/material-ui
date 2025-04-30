@@ -47,15 +47,6 @@ const examples = [
     link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts',
     src: '/static/images/examples/tailwindcss.svg',
   },
-  // {
-  //   name: 'styled-components',
-  //   label: 'View JavaScript',
-  //   tsLabel: 'View TypeScript',
-  //   link: 'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components',
-  //   tsLink:
-  //     'https://github.com/mui/material-ui/tree/master/examples/material-ui-cra-styled-components-ts',
-  //   src: '/static/images/examples/styled.png',
-  // },
   {
     name: 'Preact',
     label: 'View JavaScript',
