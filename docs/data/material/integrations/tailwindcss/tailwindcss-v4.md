@@ -432,16 +432,18 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
 }
 ```
 
-Then you can start using the new classes, for example:
+Then you can start using the new classes—for example:
 
 - The class `typography-h1` produces `font: var(--mui-font-h1);`
 - The class `text-primary` produces `color: rgb(var(--mui-palette-primary-mainChannel));`
+
+So when you add these classes to an element…
 
 ```js title="App.tsx"
 <div className="typography-h1 text-primary">Hello world</div>
 ```
 
-will produce the following CSS:
+…the CSS looks like this:
 
 ```css
 @layer utilities {
@@ -457,7 +459,7 @@ will produce the following CSS:
 
 ### Playground
 
-You can try the [Tailwind CSS Playground](https://play.tailwindcss.com/f1ZIr0qSNG) to explore the classes from Material UI theme tokens.
+Visit the [Tailwind CSS Playground](https://play.tailwindcss.com/f1ZIr0qSNG) to explore the classes from Material UI theme tokens.
 
 ## Troubleshooting
 
