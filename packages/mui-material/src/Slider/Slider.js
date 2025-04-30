@@ -126,7 +126,6 @@ export const SliderRoot = styled('span', {
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
-  overridesResolver: (props, styles) => styles.rail,
 })({
   display: 'block',
   position: 'absolute',
@@ -164,7 +163,6 @@ export const SliderRail = styled('span', {
 export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
-  overridesResolver: (props, styles) => styles.track,
 })(
   memoTheme(({ theme }) => {
     return {
@@ -342,7 +340,6 @@ export const SliderThumb = styled('span', {
 const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
-  overridesResolver: (props, styles) => styles.valueLabel,
 })(
   memoTheme(({ theme }) => ({
     zIndex: 1,
@@ -492,7 +489,6 @@ export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
-  overridesResolver: (props, styles) => styles.markLabel,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,

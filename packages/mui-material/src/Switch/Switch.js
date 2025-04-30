@@ -189,7 +189,6 @@ const SwitchSwitchBase = styled(SwitchBase, {
 const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
-  overridesResolver: (props, styles) => styles.track,
 })(
   memoTheme(({ theme }) => ({
     height: '100%',
@@ -211,7 +210,6 @@ const SwitchTrack = styled('span', {
 const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
-  overridesResolver: (props, styles) => styles.thumb,
 })(
   memoTheme(({ theme }) => ({
     boxShadow: (theme.vars || theme).shadows[1],

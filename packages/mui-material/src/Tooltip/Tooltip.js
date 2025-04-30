@@ -270,7 +270,6 @@ const TooltipTooltip = styled('div', {
 const TooltipArrow = styled('span', {
   name: 'MuiTooltip',
   slot: 'Arrow',
-  overridesResolver: (props, styles) => styles.arrow,
 })(
   memoTheme(({ theme }) => ({
     overflow: 'hidden',
