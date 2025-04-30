@@ -1,8 +1,14 @@
 import * as React from 'react';
-import { PieChart } from '@mui/x-charts/PieChart';
+import { PieChart, PieChartProps } from '@mui/x-charts/PieChart';
 import { createTheme, ThemeOptions } from '@mui/material/styles';
 
-import '@mui/x-charts/themeAugmentation';
+interface ChartsComponentsPropsList {
+  MuiPieChart: PieChartProps;
+}
+
+declare module '@mui/material/styles' {
+  interface ComponentsPropsList extends ChartsComponentsPropsList {}
+}
 
 createTheme({} as ThemeOptions);
 
