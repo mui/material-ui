@@ -3,6 +3,11 @@ import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
 import systemCreateTheme from '@mui/system/createTheme';
+import {
+  alpha as systemAlpha,
+  lighten as systemLighten,
+  darken as systemDarken,
+} from '@mui/system/colorManipulator';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
@@ -11,6 +16,38 @@ import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
+
+function attachColorManipulators(theme) {
+  Object.assign(theme, {
+    alpha(color, coefficient) {
+      if (theme.colorSpace) {
+        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, transparent ${((1 - coefficient) * 100).toFixed(0)}%)`;
+      }
+      if (theme.vars || color.startsWith('var')) {
+        return `rgba(${color.slice(0, -1)}Channel) / ${coefficient})`;
+      }
+      return systemAlpha(color, coefficient);
+    },
+    lighten(color, coefficient) {
+      if (theme.colorSpace) {
+        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, #fff ${(coefficient * 100).toFixed(0)}%)`;
+      }
+      if (color.startsWith('var')) {
+        return color;
+      }
+      return systemLighten(color, coefficient);
+    },
+    darken(color, coefficient) {
+      if (theme.colorSpace) {
+        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, #000 ${(coefficient * 100).toFixed(0)}%)`;
+      }
+      if (color.startsWith('var')) {
+        return color;
+      }
+      return systemDarken(color, coefficient);
+    },
+  });
+}
 
 function createThemeNoVars(options = {}, ...args) {
   const {
@@ -126,6 +163,8 @@ function createThemeNoVars(options = {}, ...args) {
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
+
+  attachColorManipulators(muiTheme);
 
   return muiTheme;
 }
