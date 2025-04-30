@@ -169,7 +169,13 @@ export default function createThemeWithVars(options = {}, ...args) {
   const colorSpaceVar = cssVarPrefix ? `var(--${cssVarPrefix}-colorSpace)` : `var(--colorSpace)`;
 
   // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
-  const muiTheme = attachColorScheme(colorSpaceVar, defaultScheme, input, defaultColorScheme);
+  const muiTheme = attachColorScheme(
+    colorSpaceVar,
+    colorSchemes,
+    defaultScheme,
+    input,
+    defaultColorScheme,
+  );
 
   if (builtInLight && !colorSchemes.light) {
     attachColorScheme(colorSpaceVar, colorSchemes, builtInLight, undefined, 'light');
