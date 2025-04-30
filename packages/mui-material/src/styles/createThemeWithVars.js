@@ -24,6 +24,7 @@ import createColorScheme, { getOpacity, getOverlays } from './createColorScheme'
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
+import { light, dark } from './createPalette';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -343,15 +344,15 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Slider, 'infoTrack', colorMix(safeLighten, palette.info.main, 0.62));
       setColor(palette.Slider, 'successTrack', colorMix(safeLighten, palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', colorMix(safeLighten, palette.warning.main, 0.62));
-      const snackbarContentBackground = safeEmphasize(palette.background.default, 0.8);
+      const snackbarContentBackground = colorSpace
+        ? colorMix(safeDarken, palette.background.default, 0.8)
+        : safeEmphasize(palette.background.default, 0.8);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
         'color',
         silent(() =>
-          colorSpace
-            ? getCssVar('palette-text-primary')
-            : palette.getContrastText(snackbarContentBackground),
+          colorSpace ? dark.text.primary : palette.getContrastText(snackbarContentBackground),
         ),
       );
       setColor(
@@ -494,15 +495,15 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Slider, 'infoTrack', colorMix(safeDarken, palette.info.main, 0.5));
       setColor(palette.Slider, 'successTrack', colorMix(safeDarken, palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', colorMix(safeDarken, palette.warning.main, 0.5));
-      const snackbarContentBackground = safeEmphasize(palette.background.default, 0.98);
+      const snackbarContentBackground = colorSpace
+        ? colorMix(safeLighten, palette.background.default, 0.98)
+        : safeEmphasize(palette.background.default, 0.98);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
         'color',
         silent(() =>
-          colorSpace
-            ? getCssVar('palette-text-primary')
-            : palette.getContrastText(snackbarContentBackground),
+          colorSpace ? light.text.primary : palette.getContrastText(snackbarContentBackground),
         ),
       );
       setColor(

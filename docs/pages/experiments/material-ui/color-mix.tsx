@@ -1,13 +1,21 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Fab from '@mui/material/Fab';
+import MenuIcon from '@mui/icons-material/Menu';
+import Snackbar from '@mui/material/Snackbar';
 
 const theme = createTheme({
   colorSpace: 'oklch',
-  // cssVariables: true,
+  cssVariables: true,
   colorSchemes: {
     light: {
       palette: {
@@ -25,12 +33,14 @@ const theme = createTheme({
         },
       },
     },
+    dark: true,
   },
 });
 
 export default function ColorMix() {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Box
         sx={{
           display: 'grid',
@@ -39,6 +49,24 @@ export default function ColorMix() {
           p: 2,
         }}
       >
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              News
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+
+        <Fab>
+          <MenuIcon />
+        </Fab>
+
+        <Snackbar open autoHideDuration={6000} message="Note archived" />
+
         <Stack spacing={2}>
           <Button variant="outlined">Text</Button>
           <Button variant="contained">Text</Button>
