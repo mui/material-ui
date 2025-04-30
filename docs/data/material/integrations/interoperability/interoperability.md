@@ -581,7 +581,7 @@ For Tailwind CSS v4, please refer to the [v4 integration guide](/material-ui/in
 
 <!-- #target-branch-reference -->
 
-To use Tailwind CSS with Material UI components, you can start by cloning the [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts) built with Vite and TypeScript.
+To use Tailwind CSS with Material UI components, you can start by cloning the [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts) built with Vite and TypeScript.
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation/framework-guides.

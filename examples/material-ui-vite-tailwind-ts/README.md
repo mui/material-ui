@@ -1,4 +1,4 @@
-# Material UI - Vite example with Tailwind CSS in TypeScript
+# Material UI - Vite example with Tailwind CSS in TypeScript
 
 ## How to use
 
@@ -28,7 +28,7 @@ or:
 
 ## The idea behind the example
 
-This example demonstrates how you can use [Tailwind CSS](https://tailwindcss.com/) and [Vite](https://github.com/vitejs/vite) together with Material UI.
+This example demonstrates how you can use [Tailwind CSS](https://tailwindcss.com/) and [Vite](https://github.com/vitejs/vite) together with Material UI.
 It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI.
 
 ## What's next?
