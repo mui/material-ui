@@ -11,12 +11,13 @@ import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
-import AppFrame, { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
+import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
 import MuiBaseDeprecation from 'docs/src/components/productBaseUI/MuiBaseDeprecation';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { DemoPageThemeProvider } from 'docs/src/theming';
 
 function getHookTranslatedHeader(t, header) {
   const translations = {
@@ -219,21 +220,11 @@ export default function MarkdownDocsV2(props) {
 
   const scopedDemo = router.query.scopedDemo;
   if (scopedDemo) {
+    const isJoy = canonicalAs.startsWith('/joy-ui/');
     return (
-      <AppFrame disableDrawer>
-        <GlobalStyles
-          styles={{
-            ':root': {
-              '--MuiDocs-navDrawer-width': '300px',
-            },
-          }}
-        />
-        <div
-          style={{
-            'margin-top': `${AppFrameHeight}px`,
-            width: '100%',
-          }}
-        >
+      <DemoPageThemeProvider hasJoy={isJoy}>
+        <GlobalStyles />
+        <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
           <RichMarkdownElement
             activeTab={activeTab}
             demoComponents={demoComponents}
@@ -244,12 +235,11 @@ export default function MarkdownDocsV2(props) {
             renderedMarkdownOrDemo={{
               demo: scopedDemo,
               hideToolbar: true,
-              height: `calc(100vh - ${AppFrameHeight}px)`,
               bg: false,
             }}
           />
         </div>
-      </AppFrame>
+      </DemoPageThemeProvider>
     );
   }
 
