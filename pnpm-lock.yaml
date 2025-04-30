@@ -1036,6 +1036,9 @@ importers:
         specifier: ^1.22.10
         version: 1.22.10
     devDependencies:
+      '@babel/preset-typescript':
+        specifier: ^7.27.0
+        version: 7.27.0(@babel/core@7.26.10)
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
@@ -12146,6 +12149,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qjobs@1.2.0:
