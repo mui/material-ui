@@ -6,25 +6,9 @@
 
 Material UI's maintainers take bundle size very seriously. Size snapshots are taken on every commit for every package and critical parts of those packages. Combined with [dangerJS](https://danger.systems/js/), we can inspect [detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
+## Avoid barrel imports
+
 Modern bundlers already tree-shake unused code in production builds, so you don't need to worry about it when using top-level imports. The real performance concern is during **development**, where **barrel imports** like `@mui/material` or `@mui/icons-material` can cause significantly **slower startup and rebuild times**.
-
-## Avoid barrel imports in development
-
-Tree-shaking works in production whether or not you use barrel imports. But in development, importing from these re-export files results in loading the entire package, which slows things down.
-
-This is especially true when using `@mui/icons-material`, where named imports can be up to six times slower than default path-based imports:
-
-```js
-// 🐌 Slower in dev
-import { Delete } from '@mui/icons-material';
-
-// 🚀 Faster in dev
-import Delete from '@mui/icons-material/Delete';
-```
-
-## Use path imports
-
-Use path-based imports to reduce the amount of code processed by your development server:
 
 ```js
 // ✅ Preferred
@@ -37,6 +21,16 @@ Instead of:
 ```js
 // ❌ Slower in dev
 import { Button, TextField } from '@mui/material';
+```
+
+This is especially true when using `@mui/icons-material`, where named imports can be up to six times slower than default path-based imports:
+
+```js
+// 🐌 Slower in dev
+import { Delete } from '@mui/icons-material';
+
+// 🚀 Faster in dev
+import Delete from '@mui/icons-material/Delete';
 ```
 
 This approach avoids loading unnecessary parts of the package and does not require any special configuration. It is also the default used in all our official examples and demos.
@@ -59,15 +53,27 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 To prevent accidental deep imports, you can use the `no-restricted-imports` rule in your ESLint configuration:
 
 ```json
+// .eslintrc
 {
   "rules": {
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*"]
+        "patterns": [{ "regex": "^@mui/[^/]+$" }]
       }
     ]
   }
+}
+```
+
+## Avoid vscode auto-importing from barrel files
+
+To prevent vscode from automatically importing from `@mui/material`, you can use the `typescript.autoImportSpecifierExcludeRegexes` in the vscode project configuration:
+
+```json
+// .vscode/settings.json
+{
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^@mui/[^/]+$"]
 }
 ```
 
