@@ -98,6 +98,21 @@ function addLightOrDark(intent, direction, shade, tonalOffset) {
   }
 }
 
+function mixLightOrDark(colorSpace, intent, direction, shade, tonalOffset) {
+  const tonalOffsetLight = tonalOffset.light || tonalOffset;
+  const tonalOffsetDark = tonalOffset.dark || tonalOffset * 1.5;
+
+  if (!intent[direction]) {
+    if (intent.hasOwnProperty(shade)) {
+      intent[direction] = intent[shade];
+    } else if (direction === 'light') {
+      intent.light = `color-mix(in ${colorSpace}, ${intent.main}, #fff ${(tonalOffsetLight * 100).toFixed(0)}%)`;
+    } else if (direction === 'dark') {
+      intent.dark = `color-mix(in ${colorSpace}, ${intent.main}, #000 ${(tonalOffsetDark * 100).toFixed(0)}%)`;
+    }
+  }
+}
+
 function getDefaultPrimary(mode = 'light') {
   if (mode === 'dark') {
     return {
@@ -189,7 +204,13 @@ function getDefaultWarning(mode = 'light') {
 }
 
 export default function createPalette(palette) {
-  const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
+  const {
+    mode = 'light',
+    contrastThreshold = 3,
+    tonalOffset = 0.2,
+    colorSpace,
+    ...other
+  } = palette;
 
   const primary = palette.primary || getDefaultPrimary(mode);
   const secondary = palette.secondary || getDefaultSecondary(mode);
@@ -255,10 +276,15 @@ export default function createPalette(palette) {
       );
     }
 
-    addLightOrDark(color, 'light', lightShade, tonalOffset);
-    addLightOrDark(color, 'dark', darkShade, tonalOffset);
+    if (colorSpace) {
+      mixLightOrDark(colorSpace, color, 'light', lightShade, tonalOffset);
+      mixLightOrDark(colorSpace, color, 'dark', darkShade, tonalOffset);
+    } else {
+      addLightOrDark(color, 'light', lightShade, tonalOffset);
+      addLightOrDark(color, 'dark', darkShade, tonalOffset);
+    }
     if (!color.contrastText) {
-      color.contrastText = getContrastText(color.main);
+      color.contrastText = colorSpace ? common.white : getContrastText(color.main);
     }
 
     return color;
