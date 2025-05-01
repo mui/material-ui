@@ -1,5 +1,4 @@
 import type { CSSObject } from '@mui/system';
-import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
 
