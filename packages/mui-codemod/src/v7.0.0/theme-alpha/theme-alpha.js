@@ -3,7 +3,7 @@
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api, options) {
-  if (file.path.endsWith('.d.ts')) {
+  if (file.path?.endsWith('.d.ts')) {
     return file.source;
   }
   const j = api.jscodeshift;
