@@ -674,6 +674,24 @@ describe('createTheme', () => {
       );
     });
 
+    it('[CSS variables] `alpha()` should work with string and number coefficient', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / 0.5)',
+      );
+      expect(theme.alpha(theme.vars.palette.primary.main, '0.5 + 0.3')).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / calc(0.5 + 0.3))',
+      );
+      expect(
+        theme.alpha(
+          theme.vars.palette.primary.main,
+          `${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}`,
+        ),
+      ).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / calc(var(--mui-palette-action-selectedOpacity, 0.08) + var(--mui-palette-action-hoverOpacity, 0.04)))',
+      );
+    });
+
     it('[color space] should use CSS color-mix for manipulating colors', () => {
       const theme = createTheme({
         colorSpace: 'oklch',
