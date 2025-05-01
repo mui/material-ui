@@ -40,12 +40,12 @@ const TableRowRoot = styled('tr', {
     [`&.${tableRowClasses.selected}`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
-        theme.palette.action.selectedOpacity,
+        (theme.vars || theme).palette.action.selectedOpacity,
       ),
       '&:hover': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
         ),
       },
     },

@@ -64,7 +64,7 @@ const IconButtonRoot = styled(ButtonBase, {
         style: {
           '--IconButton-hoverBg': theme.alpha(
             (theme.vars || theme).palette.action.active,
-            theme.palette.action.hoverOpacity,
+            (theme.vars || theme).palette.action.hoverOpacity,
           ),
           '&:hover': {
             backgroundColor: 'var(--IconButton-hoverBg)',
@@ -124,7 +124,7 @@ const IconButtonRoot = styled(ButtonBase, {
           style: {
             '--IconButton-hoverBg': theme.alpha(
               (theme.vars || theme).palette[color].main,
-              theme.palette.action.hoverOpacity,
+              (theme.vars || theme).palette.action.hoverOpacity,
             ),
           },
         })),

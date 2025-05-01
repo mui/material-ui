@@ -57,7 +57,7 @@ const RadioRoot = styled(SwitchBase, {
           '&:hover': {
             backgroundColor: theme.alpha(
               (theme.vars || theme).palette.action.active,
-              theme.palette.action.hoverOpacity,
+              (theme.vars || theme).palette.action.hoverOpacity,
             ),
           },
         },
@@ -70,7 +70,7 @@ const RadioRoot = styled(SwitchBase, {
             '&:hover': {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette[color].main,
-                theme.palette.action.hoverOpacity,
+                (theme.vars || theme).palette.action.hoverOpacity,
               ),
             },
           },

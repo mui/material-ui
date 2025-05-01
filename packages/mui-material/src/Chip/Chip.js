@@ -199,7 +199,7 @@ const ChipRoot = styled('div', {
             [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.action.selected,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
               ),
             },
           },
@@ -225,13 +225,13 @@ const ChipRoot = styled('div', {
             '&:hover': {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.action.selected,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
               ),
             },
             [`&.${chipClasses.focusVisible}`]: {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.action.selected,
-                theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
               ),
             },
             '&:active': {
@@ -294,13 +294,13 @@ const ChipRoot = styled('div', {
               [`&.${chipClasses.clickable}:hover`]: {
                 backgroundColor: theme.alpha(
                   (theme.vars || theme).palette[color].main,
-                  theme.palette.action.hoverOpacity,
+                  (theme.vars || theme).palette.action.hoverOpacity,
                 ),
               },
               [`&.${chipClasses.focusVisible}`]: {
                 backgroundColor: theme.alpha(
                   (theme.vars || theme).palette[color].main,
-                  theme.palette.action.focusOpacity,
+                  (theme.vars || theme).palette.action.focusOpacity,
                 ),
               },
               [`& .${chipClasses.deleteIcon}`]: {

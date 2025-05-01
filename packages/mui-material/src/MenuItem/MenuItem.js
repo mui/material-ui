@@ -77,25 +77,25 @@ const MenuItemRoot = styled(ButtonBase, {
     [`&.${menuItemClasses.selected}`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
-        theme.palette.action.selectedOpacity,
+        (theme.vars || theme).palette.action.selectedOpacity,
       ),
       [`&.${menuItemClasses.focusVisible}`]: {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
         ),
       },
     },
     [`&.${menuItemClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          theme.palette.action.selectedOpacity,
+          (theme.vars || theme).palette.action.selectedOpacity,
         ),
       },
     },

@@ -366,12 +366,12 @@ const AutocompleteListbox = styled('ul', {
       '&[aria-selected="true"]': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          theme.palette.action.selectedOpacity,
+          (theme.vars || theme).palette.action.selectedOpacity,
         ),
         [`&.${autocompleteClasses.focused}`]: {
           backgroundColor: theme.alpha(
             (theme.vars || theme).palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
           ),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
@@ -381,7 +381,7 @@ const AutocompleteListbox = styled('ul', {
         [`&.${autocompleteClasses.focusVisible}`]: {
           backgroundColor: theme.alpha(
             (theme.vars || theme).palette.primary.main,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+            `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
           ),
         },
       },

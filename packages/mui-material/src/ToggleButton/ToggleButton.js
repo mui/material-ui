@@ -57,7 +57,7 @@ const ToggleButtonRoot = styled(ButtonBase, {
       // Reset on mouse devices
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.text.primary,
-        theme.palette.action.hoverOpacity,
+        (theme.vars || theme).palette.action.hoverOpacity,
       ),
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -71,18 +71,18 @@ const ToggleButtonRoot = styled(ButtonBase, {
             color: (theme.vars || theme).palette.text.primary,
             backgroundColor: theme.alpha(
               (theme.vars || theme).palette.text.primary,
-              theme.palette.action.selectedOpacity,
+              (theme.vars || theme).palette.action.selectedOpacity,
             ),
             '&:hover': {
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette.text.primary,
-                theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+                `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
               ),
               // Reset on touch devices, it doesn't add specificity
               '@media (hover: none)': {
                 backgroundColor: theme.alpha(
                   (theme.vars || theme).palette.text.primary,
-                  theme.palette.action.selectedOpacity,
+                  (theme.vars || theme).palette.action.selectedOpacity,
                 ),
               },
             },
@@ -98,18 +98,18 @@ const ToggleButtonRoot = styled(ButtonBase, {
               color: (theme.vars || theme).palette[color].main,
               backgroundColor: theme.alpha(
                 (theme.vars || theme).palette[color].main,
-                theme.palette.action.selectedOpacity,
+                (theme.vars || theme).palette.action.selectedOpacity,
               ),
               '&:hover': {
                 backgroundColor: theme.alpha(
                   (theme.vars || theme).palette[color].main,
-                  theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+                  `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
                 ),
                 // Reset on touch devices, it doesn't add specificity
                 '@media (hover: none)': {
                   backgroundColor: theme.alpha(
                     (theme.vars || theme).palette[color].main,
-                    theme.palette.action.selectedOpacity,
+                    (theme.vars || theme).palette.action.selectedOpacity,
                   ),
                 },
               },

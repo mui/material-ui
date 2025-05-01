@@ -80,25 +80,25 @@ const ListItemButtonRoot = styled(ButtonBase, {
     [`&.${listItemButtonClasses.selected}`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
-        theme.palette.action.selectedOpacity,
+        (theme.vars || theme).palette.action.selectedOpacity,
       ),
       [`&.${listItemButtonClasses.focusVisible}`]: {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.focusOpacity}`,
         ),
       },
     },
     [`&.${listItemButtonClasses.selected}:hover`]: {
       backgroundColor: theme.alpha(
         (theme.vars || theme).palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        `${(theme.vars || theme).palette.action.selectedOpacity} + ${(theme.vars || theme).palette.action.hoverOpacity}`,
       ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: theme.alpha(
           (theme.vars || theme).palette.primary.main,
-          theme.palette.action.selectedOpacity,
+          (theme.vars || theme).palette.action.selectedOpacity,
         ),
       },
     },

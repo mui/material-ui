@@ -185,12 +185,12 @@ const ButtonRoot = styled(ButtonBase, {
                   '--variant-containedBg': (theme.vars || theme).palette[color].dark,
                   '--variant-textBg': theme.alpha(
                     (theme.vars || theme).palette[color].main,
-                    theme.palette.action.hoverOpacity,
+                    (theme.vars || theme).palette.action.hoverOpacity,
                   ),
                   '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
                   '--variant-outlinedBg': theme.alpha(
                     (theme.vars || theme).palette[color].main,
-                    theme.palette.action.hoverOpacity,
+                    (theme.vars || theme).palette.action.hoverOpacity,
                   ),
                 },
               },
@@ -213,11 +213,11 @@ const ButtonRoot = styled(ButtonBase, {
                   : inheritContainedHoverBackgroundColor,
                 '--variant-textBg': theme.alpha(
                   (theme.vars || theme).palette.text.primary,
-                  theme.palette.action.hoverOpacity,
+                  (theme.vars || theme).palette.action.hoverOpacity,
                 ),
                 '--variant-outlinedBg': theme.alpha(
                   (theme.vars || theme).palette.text.primary,
-                  theme.palette.action.hoverOpacity,
+                  (theme.vars || theme).palette.action.hoverOpacity,
                 ),
               },
             },
