@@ -1,7 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
   "version": "7.0.2",
-  "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
   "main": "./src/index.js",
