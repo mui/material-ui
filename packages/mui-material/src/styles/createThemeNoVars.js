@@ -17,32 +17,38 @@ import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
 
+function coefficientToPercentage(coefficient, inverted) {
+  if (typeof coefficient === 'number') {
+    return inverted
+      ? `${((1 - coefficient) * 100).toFixed(0)}%`
+      : `${(coefficient * 100).toFixed(0)}%`;
+  }
+  if (inverted) {
+    return `calc(100% - 100% * (${coefficient}))`;
+  }
+  return `calc((${coefficient}) * 100%)`;
+}
+
 function attachColorManipulators(theme) {
   Object.assign(theme, {
     alpha(color, coefficient) {
       if (this.colorSpace) {
-        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, transparent ${((1 - coefficient) * 100).toFixed(0)}%)`;
+        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, transparent ${coefficientToPercentage(coefficient)})`;
       }
-      if (this.vars || color.startsWith('var')) {
+      if (this.vars) {
         return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)/g, 'var(--$1Channel)')} / ${coefficient})`;
       }
       return systemAlpha(color, coefficient);
     },
     lighten(color, coefficient) {
       if (this.colorSpace) {
-        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #fff ${(coefficient * 100).toFixed(0)}%)`;
-      }
-      if (color.startsWith('var')) {
-        return color;
+        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #fff ${coefficientToPercentage(coefficient)})`;
       }
       return systemLighten(color, coefficient);
     },
     darken(color, coefficient) {
       if (this.colorSpace) {
-        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #000 ${(coefficient * 100).toFixed(0)}%)`;
-      }
-      if (color.startsWith('var')) {
-        return color;
+        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #000 ${coefficientToPercentage(coefficient)})`;
       }
       return systemDarken(color, coefficient);
     },
