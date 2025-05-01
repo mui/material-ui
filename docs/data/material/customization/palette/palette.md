@@ -257,7 +257,7 @@ To use color spaces other than `hex`, `rgb`, or `hsl`, set `colorSpace` with a [
 
 ### Caveats
 
-Once a custom color space is set, Material UI uses the CSS `color-mix()` instead of Javascript function to manipulate colors for the default styles.
+Once a custom color space is set, Material UI uses the CSS `color-mix()` instead of JavaScript function to manipulate colors for the default styles.
 
 - The auto-generated `contrastText` token always be `#fff` regardless of the `main` color.
 - Alert component with `filled` variant uses `contrastText` token for the color instead of using `theme.palette.getContrastText()` to calculate the color.
