@@ -216,7 +216,7 @@ export default function MarkdownDocsV2(props) {
   });
 
   // eslint-disable-next-line no-console
-  console.log('router', router);
+  console.log('router.query.scopedDemo', router.query.scopedDemo);
 
   const scopedDemo = router.query.scopedDemo;
   if (scopedDemo) {
