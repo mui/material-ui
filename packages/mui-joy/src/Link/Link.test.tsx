@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import Link, { LinkClassKey, linkClasses as classes } from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';

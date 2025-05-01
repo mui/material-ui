@@ -67,7 +67,6 @@
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
     "lodash": "^4.17.21",
-    "playwright": "^1.51.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.5.1",

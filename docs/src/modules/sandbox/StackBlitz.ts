@@ -2,7 +2,7 @@ import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import { CodeStyling, CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
+import { CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 
 function ensureExtension(file: string, extension: string): string {
@@ -66,7 +66,6 @@ export default defineConfig({
       {
         name: 'mui-demo',
         private: true,
-        version: '0.0.0',
         type: 'module',
         scripts: {
           dev: 'vite',
@@ -123,7 +122,6 @@ function createJoyTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-  codeStyling?: CodeStyling;
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
@@ -132,7 +130,7 @@ function createJoyTemplate(templateData: {
     '',
   );
 
-  const demoData: DemoData = { codeStyling: 'MUI System', ...templateData, raw, language: 'en' };
+  const demoData: DemoData = { ...templateData, raw, language: 'en' };
 
   // Get dependencies
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
@@ -203,7 +201,6 @@ function createMaterialTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-  codeStyling?: CodeStyling;
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
@@ -212,7 +209,7 @@ function createMaterialTemplate(templateData: {
     '',
   );
 
-  const demoData: DemoData = { codeStyling: 'MUI System', ...templateData, raw, language: 'en' };
+  const demoData: DemoData = { ...templateData, raw, language: 'en' };
 
   // Get dependencies
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {

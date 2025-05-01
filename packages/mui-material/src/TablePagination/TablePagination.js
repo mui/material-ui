@@ -21,7 +21,6 @@ import useSlot from '../utils/useSlot';
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => ({
     overflow: 'auto',
@@ -62,7 +61,6 @@ const TablePaginationToolbar = styled(Toolbar, {
 const TablePaginationSpacer = styled('div', {
   name: 'MuiTablePagination',
   slot: 'Spacer',
-  overridesResolver: (props, styles) => styles.spacer,
 })({
   flex: '1 1 100%',
 });
@@ -70,7 +68,6 @@ const TablePaginationSpacer = styled('div', {
 const TablePaginationSelectLabel = styled('p', {
   name: 'MuiTablePagination',
   slot: 'SelectLabel',
-  overridesResolver: (props, styles) => styles.selectLabel,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
@@ -104,13 +101,11 @@ const TablePaginationSelect = styled(Select, {
 const TablePaginationMenuItem = styled(MenuItem, {
   name: 'MuiTablePagination',
   slot: 'MenuItem',
-  overridesResolver: (props, styles) => styles.menuItem,
 })({});
 
 const TablePaginationDisplayedRows = styled('p', {
   name: 'MuiTablePagination',
   slot: 'DisplayedRows',
-  overridesResolver: (props, styles) => styles.displayedRows,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,

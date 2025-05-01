@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { integerPropType } from '@mui/utils';
+import integerPropType from '@mui/utils/integerPropType';
 import { getTypeByValue } from './integerPropType';
 
 describe('integerPropType', () => {

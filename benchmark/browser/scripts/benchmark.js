@@ -3,7 +3,7 @@
 const path = require('path');
 const http = require('http');
 const fse = require('fs-extra');
-const playwright = require('playwright');
+const { chromium } = require('@playwright/test');
 const handler = require('serve-handler');
 
 const PORT = 1122;
@@ -34,7 +34,7 @@ function createServer(options) {
 }
 
 async function createBrowser() {
-  const browser = await playwright.chromium.launch();
+  const browser = await chromium.launch();
 
   return {
     openPage: async (url) => {
@@ -92,7 +92,7 @@ const printMeasure = (name, stats, baseline) => {
 };
 
 /**
- * @param {{ openPage: (url: any) => Promise<import('playwright').Page>}} browser
+ * @param {{ openPage: (url: any) => Promise<import('@playwright/test').Page>}} browser
  * @param {string} testCaseName
  * @param {string} testCase
  * @param {*} baseline

@@ -1,5 +1,5 @@
 ---
-title: Upcoming changes to MUI X pricing in 2024
+title: Upcoming changes to MUI X pricing in 2024
 description: Check out the new pricing updates and how to transition to the new model.
 date: 2024-08-01T08:00:00.000Z
 authors: ['josefreitas', 'oliviertassinari']
