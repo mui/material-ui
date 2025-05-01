@@ -706,7 +706,7 @@ describe('createTheme', () => {
         `color-mix(in oklch, oklch(0.65 0.3 28.95), transparent 50%)`,
       );
       expect(theme.alpha(theme.palette.primary.main, '0.12 + 0.08')).to.equal(
-        `color-mix(in oklch, oklch(0.65 0.3 28.95), transparent calc((0.12 + 0.08) * 100%))`,
+        `color-mix(in oklch, oklch(0.65 0.3 28.95), transparent calc(100% - 100% * (0.12 + 0.08)))`,
       );
       expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
         `color-mix(in oklch, oklch(0.65 0.3 28.95), #fff 50%)`,

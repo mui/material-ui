@@ -34,7 +34,7 @@ function attachColorManipulators(theme) {
     alpha(color, coefficient) {
       const obj = this || theme;
       if (obj.colorSpace) {
-        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, transparent ${coefficientToPercentage(coefficient)})`;
+        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, transparent ${coefficientToPercentage(coefficient, true)})`;
       }
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables
