@@ -233,7 +233,10 @@
     "@pigment-css/react": "0.0.30",
     "@pigment-css/unplugin": "0.0.30",
     "@pigment-css/nextjs-plugin": "0.0.30",
-    "@pigment-css/vite-plugin": "0.0.30"
+    "@pigment-css/vite-plugin": "0.0.30",
+    "@wyw-in-js/shared": "0.6.0",
+    "@wyw-in-js/transform": "0.6.0",
+    "@wyw-in-js/processor-utils": "0.6.0"
   },
   "nyc": {
     "include": [

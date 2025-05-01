@@ -20,6 +20,9 @@ overrides:
   '@pigment-css/unplugin': 0.0.30
   '@pigment-css/nextjs-plugin': 0.0.30
   '@pigment-css/vite-plugin': 0.0.30
+  '@wyw-in-js/shared': 0.6.0
+  '@wyw-in-js/transform': 0.6.0
+  '@wyw-in-js/processor-utils': 0.6.0
 
 patchedDependencies:
   styled-components:
@@ -6413,16 +6416,16 @@ packages:
     resolution: {integrity: sha512-ueFCcIPaMgtuYDS9u0qlUoEvj6GiSsKrwnOLPp9SshqjtcRaR1IEHRjoReq3sXNydsF5i0ZnmuYgXq9dV53t0g==}
     engines: {node: '>=18.0.0'}
 
-  '@wyw-in-js/processor-utils@0.5.5':
-    resolution: {integrity: sha512-L3IcAfoowhM0fw9Cnv2CNzfjWNLKpYl2CFqam6NvwpiXNR1kXz/GpO0AOiKvCs5h4Ps5kWxE2e8knXLpk8q/2g==}
+  '@wyw-in-js/processor-utils@0.6.0':
+    resolution: {integrity: sha512-5YAZMUmF+S2HaqheKfew6ybbYBMnF10PjIgI7ieyuFxCohyqJNF4xdo6oHftv2z5Z4vCQ0OZHtDOQyDImBYwmg==}
     engines: {node: '>=16.0.0'}
 
-  '@wyw-in-js/shared@0.5.5':
-    resolution: {integrity: sha512-Wnvp3RGfynHk81lrp/0fA+Yv5yuIr2Ej13N3lawQeqbK4KlMag3P9npyIljGrEiwK2Bv4byHuXsJFgLI0Fo8bw==}
+  '@wyw-in-js/shared@0.6.0':
+    resolution: {integrity: sha512-BozBos29AuMWOvjjKf+bYYN+Vku0Nar6+y5oxrJXIZzUEKiWTVnIxO256vi8cUBGfo/DH44o+qZTkkdSN2pPXw==}
     engines: {node: '>=16.0.0'}
 
-  '@wyw-in-js/transform@0.5.5':
-    resolution: {integrity: sha512-XMZjhS8poHpxfPg41rkc6eh3Mr2BZAFM7OzYN4jPZUicpJKv7uQAU2dLEqnyDcDllo04LbZIryb2fXwpr+pqPw==}
+  '@wyw-in-js/transform@0.6.0':
+    resolution: {integrity: sha512-/Rxw8e3KcmSjnqWs/6flmpcNTa4jLw8NViIyNwqem498AfSWXrPnYf3RyjWed9zDVL72q7Xjei6TcRqMupl3Eg==}
     engines: {node: '>=16.0.0'}
 
   '@xtuc/ieee754@1.2.0':
@@ -17579,9 +17582,9 @@ snapshots:
       '@emotion/styled': 11.13.5(@emotion/react@11.13.5(@types/react@19.1.2)(react@19.1.0))(@types/react@19.1.2)(react@19.1.0)
       '@mui/system': 6.4.1(@emotion/react@11.13.5(@types/react@19.1.2)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.2)(react@19.1.0))(@types/react@19.1.2)(react@19.1.0))(@types/react@19.1.2)(react@19.1.0)
       '@mui/utils': 6.4.8(@types/react@19.1.2)(react@19.1.0)
-      '@wyw-in-js/processor-utils': 0.5.5
-      '@wyw-in-js/shared': 0.5.5
-      '@wyw-in-js/transform': 0.5.5(typescript@5.8.3)
+      '@wyw-in-js/processor-utils': 0.6.0
+      '@wyw-in-js/shared': 0.6.0
+      '@wyw-in-js/transform': 0.6.0(typescript@5.8.3)
       clsx: 2.1.1
       cssesc: 3.0.0
       csstype: 3.1.3
@@ -17599,8 +17602,8 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.10
       '@pigment-css/react': 0.0.30(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)
-      '@wyw-in-js/shared': 0.5.5
-      '@wyw-in-js/transform': 0.5.5(typescript@5.8.3)
+      '@wyw-in-js/shared': 0.6.0
+      '@wyw-in-js/transform': 0.6.0(typescript@5.8.3)
       babel-plugin-define-var: 0.1.0
       unplugin: 1.15.0(webpack-sources@3.2.3)
     transitivePeerDependencies:
@@ -17615,8 +17618,8 @@ snapshots:
       '@babel/core': 7.26.10
       '@babel/preset-typescript': 7.27.0(@babel/core@7.26.10)
       '@pigment-css/react': 0.0.30(@types/react@19.1.2)(react@19.1.0)(typescript@5.8.3)
-      '@wyw-in-js/shared': 0.5.5
-      '@wyw-in-js/transform': 0.5.5(typescript@5.8.3)
+      '@wyw-in-js/shared': 0.6.0
+      '@wyw-in-js/transform': 0.6.0(typescript@5.8.3)
       babel-plugin-define-var: 0.1.0
       vite: 5.4.18(@types/node@20.17.32)(lightningcss@1.29.2)(terser@5.39.0)
     transitivePeerDependencies:
@@ -19135,14 +19138,14 @@ snapshots:
       '@whatwg-node/promise-helpers': 1.3.1
       tslib: 2.8.1
 
-  '@wyw-in-js/processor-utils@0.5.5':
+  '@wyw-in-js/processor-utils@0.6.0':
     dependencies:
       '@babel/generator': 7.27.0
-      '@wyw-in-js/shared': 0.5.5
+      '@wyw-in-js/shared': 0.6.0
     transitivePeerDependencies:
       - supports-color
 
-  '@wyw-in-js/shared@0.5.5':
+  '@wyw-in-js/shared@0.6.0':
     dependencies:
       debug: 4.4.0(supports-color@8.1.1)
       find-up: 5.0.0
@@ -19150,7 +19153,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@wyw-in-js/transform@0.5.5(typescript@5.8.3)':
+  '@wyw-in-js/transform@0.6.0(typescript@5.8.3)':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/generator': 7.27.0
@@ -19159,8 +19162,8 @@ snapshots:
       '@babel/template': 7.27.0
       '@babel/traverse': 7.27.0
       '@babel/types': 7.27.0
-      '@wyw-in-js/processor-utils': 0.5.5
-      '@wyw-in-js/shared': 0.5.5
+      '@wyw-in-js/processor-utils': 0.6.0
+      '@wyw-in-js/shared': 0.6.0
       babel-merge: 3.0.0(@babel/core@7.26.10)
       cosmiconfig: 8.3.6(typescript@5.8.3)
       happy-dom: 15.11.6
