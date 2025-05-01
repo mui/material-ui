@@ -8,8 +8,7 @@
     "noEmit": false,
     "emitDeclarationOnly": true,
     "outDir": "build/esm",
-    "rootDir": "./src",
-    "skipLibCheck": true
+    "rootDir": "./src"
   },
   "include": ["./src/**/*.ts*"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],

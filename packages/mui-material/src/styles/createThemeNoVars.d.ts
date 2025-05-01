@@ -57,26 +57,24 @@ export interface BaseTheme extends SystemTheme {
 // shut off automatic exporting for the `BaseTheme` above
 export {};
 
-type CssVarsThemeProperties = Pick<
-  CssVarsTheme,
-  | 'applyStyles'
-  | 'colorSchemes'
-  | 'colorSchemeSelector'
-  | 'rootSelector'
-  | 'cssVarPrefix'
-  | 'defaultColorScheme'
-  | 'getCssVar'
-  | 'getColorSchemeSelector'
-  | 'generateThemeVars'
-  | 'generateStyleSheets'
-  | 'generateSpacing'
-  | 'shouldSkipGeneratingVar'
-  | 'vars'
->;
-
 type CssVarsProperties = CssThemeVariables extends { enabled: true }
-  ? CssVarsThemeProperties
-  : Partial<CssVarsThemeProperties>;
+  ? Pick<
+      CssVarsTheme,
+      | 'applyStyles'
+      | 'colorSchemes'
+      | 'colorSchemeSelector'
+      | 'rootSelector'
+      | 'cssVarPrefix'
+      | 'defaultColorScheme'
+      | 'getCssVar'
+      | 'getColorSchemeSelector'
+      | 'generateThemeVars'
+      | 'generateStyleSheets'
+      | 'generateSpacing'
+      | 'shouldSkipGeneratingVar'
+      | 'vars'
+    >
+  : Partial<Pick<CssVarsTheme, 'vars'>>;
 
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
