@@ -12,6 +12,14 @@ describe('@mui/codemod', () => {
           actual: '/test-cases/actual.js',
           expected: '/test-cases/expected.js',
         },
+        {
+          actual: '/test-cases/opacity-var.actual.js',
+          expected: '/test-cases/opacity-var.expected.js',
+        },
+        {
+          actual: '/test-cases/opacity-calc.actual.js',
+          expected: '/test-cases/opacity-calc.expected.js',
+        },
       ],
     });
   });

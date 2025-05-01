@@ -23,6 +23,16 @@ export default function transformer(file, api, options) {
         j.identifier('theme'),
       );
     }
+    if (node.type === 'BinaryExpression') {
+      return j.templateLiteral(
+        [
+          j.templateElement({ raw: '', cooked: '' }, false),
+          j.templateElement({ raw: ' + ', cooked: ' + ' }, false),
+          j.templateElement({ raw: '', cooked: '' }, true),
+        ],
+        [replaceThemeWithVars(node.left), replaceThemeWithVars(node.right)],
+      )
+    }
     return node;
   }
 
