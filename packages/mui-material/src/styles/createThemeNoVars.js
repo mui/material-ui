@@ -20,17 +20,17 @@ import { stringifyTheme } from './stringifyTheme';
 function attachColorManipulators(theme) {
   Object.assign(theme, {
     alpha(color, coefficient) {
-      if (theme.colorSpace) {
-        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, transparent ${((1 - coefficient) * 100).toFixed(0)}%)`;
+      if (this.colorSpace) {
+        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, transparent ${((1 - coefficient) * 100).toFixed(0)}%)`;
       }
-      if (theme.vars || color.startsWith('var')) {
-        return `rgba(${color.slice(0, -1)}Channel) / ${coefficient})`;
+      if (this.vars || color.startsWith('var')) {
+        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)/g, 'var(--$1Channel)')} / ${coefficient})`;
       }
       return systemAlpha(color, coefficient);
     },
     lighten(color, coefficient) {
-      if (theme.colorSpace) {
-        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, #fff ${(coefficient * 100).toFixed(0)}%)`;
+      if (this.colorSpace) {
+        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #fff ${(coefficient * 100).toFixed(0)}%)`;
       }
       if (color.startsWith('var')) {
         return color;
@@ -38,8 +38,8 @@ function attachColorManipulators(theme) {
       return systemLighten(color, coefficient);
     },
     darken(color, coefficient) {
-      if (theme.colorSpace) {
-        return `color-mix(in ${(theme.vars || theme).colorSpace}, ${color}, #000 ${(coefficient * 100).toFixed(0)}%)`;
+      if (this.colorSpace) {
+        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #000 ${(coefficient * 100).toFixed(0)}%)`;
       }
       if (color.startsWith('var')) {
         return color;
