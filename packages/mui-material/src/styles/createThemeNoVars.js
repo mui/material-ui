@@ -39,7 +39,7 @@ function attachColorManipulators(theme) {
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables
         // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
-        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
+        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
       }
       return systemAlpha(color, coefficient);
     },

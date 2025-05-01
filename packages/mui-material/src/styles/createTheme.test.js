@@ -692,6 +692,19 @@ describe('createTheme', () => {
       );
     });
 
+    it('[CSS variables] `alpha()` should work with fallbacks', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha('var(--mui-palette-text-primary, rgba(0 0 0 / 0.87))', 0.5)).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
+      );
+      expect(theme.alpha('var(--mui-palette-text-primary, var(--foo))', 0.5)).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
+      );
+      expect(
+        theme.alpha('var(--mui-palette-text-primary, var(--foo, hsl(0 0 0 / 100%)))', 0.5),
+      ).to.equal('rgba(var(--mui-palette-text-primaryChannel) / 0.5)');
+    });
+
     it('[color space] should use CSS color-mix for manipulating colors', () => {
       const theme = createTheme({
         colorSpace: 'oklch',
