@@ -32,10 +32,11 @@ function coefficientToPercentage(coefficient, inverted) {
 function attachColorManipulators(theme) {
   Object.assign(theme, {
     alpha(color, coefficient) {
-      if (this.colorSpace) {
-        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, transparent ${coefficientToPercentage(coefficient)})`;
+      const obj = this || theme;
+      if (obj.colorSpace) {
+        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, transparent ${coefficientToPercentage(coefficient)})`;
       }
-      if (this.vars) {
+      if (obj.vars) {
         // To preserve the behavior of the CSS theme variables
         // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
         return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
@@ -43,14 +44,16 @@ function attachColorManipulators(theme) {
       return systemAlpha(color, coefficient);
     },
     lighten(color, coefficient) {
-      if (this.colorSpace) {
-        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #fff ${coefficientToPercentage(coefficient)})`;
+      const obj = this || theme;
+      if (obj.colorSpace) {
+        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, #fff ${coefficientToPercentage(coefficient)})`;
       }
       return systemLighten(color, coefficient);
     },
     darken(color, coefficient) {
-      if (this.colorSpace) {
-        return `color-mix(in ${(this.vars || this).colorSpace}, ${color}, #000 ${coefficientToPercentage(coefficient)})`;
+      const obj = this || theme;
+      if (obj.colorSpace) {
+        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, #000 ${coefficientToPercentage(coefficient)})`;
       }
       return systemDarken(color, coefficient);
     },
