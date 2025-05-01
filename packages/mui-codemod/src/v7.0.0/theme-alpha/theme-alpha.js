@@ -37,7 +37,7 @@ export default function transformer(file, api, options) {
           path.replace(
             j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('alpha')), [
               replaceThemeWithVars(path.node.alternate.arguments[0]),
-              path.node.alternate.arguments[1],
+              replaceThemeWithVars(path.node.alternate.arguments[1]),
             ]),
           );
         }
