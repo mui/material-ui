@@ -63,12 +63,15 @@ export default withDocsInfra({
             'notistack',
             '@mui/x-data-grid',
             '@mui/x-data-grid-pro',
+            '@mui/x-data-grid-premium',
             '@mui/x-date-pickers',
             '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
             '@mui/x-charts',
+            '@mui/x-charts-pro',
             '@mui/x-tree-view',
-            '@mui/x-license-pro',
+            '@mui/x-tree-view-pro',
+            '@mui/x-license',
             '@toolpad/core',
           ].some((dep) => request.startsWith(dep));
 
