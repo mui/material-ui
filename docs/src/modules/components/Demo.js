@@ -373,6 +373,7 @@ export default function Demo(props) {
     () => ({
       maxWidth: demoOptions.maxWidth,
       height: demoOptions.height,
+      width: '100%',
     }),
     [demoOptions.height, demoOptions.maxWidth],
   );
