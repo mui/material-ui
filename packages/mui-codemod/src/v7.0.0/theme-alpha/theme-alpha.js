@@ -10,7 +10,7 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  function replaceThemeWithVars(node) {
+  function replaceThemeWithVars(node, objectName) {
     if (node.type === 'MemberExpression') {
       let deepnode = node;
       while (deepnode.object && deepnode.object.type === 'MemberExpression') {
@@ -19,8 +19,8 @@ export default function transformer(file, api, options) {
 
       deepnode.object = j.logicalExpression(
         '||',
-        j.memberExpression(j.identifier('theme'), j.identifier('vars')),
-        j.identifier('theme'),
+        j.memberExpression(j.identifier(objectName), j.identifier('vars')),
+        j.identifier(objectName),
       );
     }
     if (node.type === 'BinaryExpression') {
@@ -30,7 +30,7 @@ export default function transformer(file, api, options) {
           j.templateElement({ raw: ' + ', cooked: ' + ' }, false),
           j.templateElement({ raw: '', cooked: '' }, true),
         ],
-        [replaceThemeWithVars(node.left), replaceThemeWithVars(node.right)],
+        [replaceThemeWithVars(node.left, objectName), replaceThemeWithVars(node.right, objectName)],
       );
     }
     return node;
@@ -38,17 +38,20 @@ export default function transformer(file, api, options) {
 
   root.find(j.ConditionalExpression).forEach((path) => {
     if (path.node.test.type === 'MemberExpression') {
-      if (path.node.test.object.name === 'theme' && path.node.test.property.name === 'vars') {
+      if (path.node.test.property.name === 'vars') {
         if (
           path.node.alternate.type === 'CallExpression' &&
           path.node.alternate.callee.name === 'alpha' &&
           path.node.consequent.type === 'TemplateLiteral'
         ) {
           path.replace(
-            j.callExpression(j.memberExpression(j.identifier('theme'), j.identifier('alpha')), [
-              replaceThemeWithVars(path.node.alternate.arguments[0]),
-              replaceThemeWithVars(path.node.alternate.arguments[1]),
-            ]),
+            j.callExpression(
+              j.memberExpression(j.identifier(path.node.test.object.name), j.identifier('alpha')),
+              [
+                replaceThemeWithVars(path.node.alternate.arguments[0], path.node.test.object.name),
+                replaceThemeWithVars(path.node.alternate.arguments[1], path.node.test.object.name),
+              ],
+            ),
           );
         }
       }

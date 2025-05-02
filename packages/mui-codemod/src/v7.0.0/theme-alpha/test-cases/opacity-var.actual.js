@@ -27,3 +27,9 @@ export const DigitalClockItem = styled(MenuItem, {
       : alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
   },
 }));
+
+function transform(t) {
+  const backgroundBackdrop = t.vars
+    ? `rgba(${t.vars.palette.background.defaultChannel} / ${t.vars.palette.action.disabledOpacity})`
+    : alpha(t.palette.background.default, t.palette.action.disabledOpacity);
+}

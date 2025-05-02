@@ -29,3 +29,10 @@ export const DigitalClockItem = styled(MenuItem, {
     ),
   },
 }));
+
+function transform(t) {
+  const backgroundBackdrop = t.alpha(
+    (t.vars || t).palette.background.default,
+    (t.vars || t).palette.action.disabledOpacity
+  );
+}
