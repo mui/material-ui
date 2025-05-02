@@ -1,4 +1,6 @@
 import { ErrorBoundary } from 'react-error-boundary';
+import * as React from 'react';
+import * as ReactDOMClient from 'react-dom/client';
 
 import MaterialUILayout from '../../Layout';
 import ActiveLastBreadcrumb from '../../../../../docs/data/material/components/breadcrumbs/ActiveLastBreadcrumb';
@@ -9,6 +11,20 @@ import CustomizedBreadcrumbs from '../../../../../docs/data/material/components/
 import IconBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/IconBreadcrumbs';
 import RouterBreadcrumbs from '../../../../../docs/data/material/components/breadcrumbs/RouterBreadcrumbs';
 import { ErrorBoundaryFallback } from '../../components/ErrorBoundaryFallback';
+
+/**
+ * Mounting it separately because react-router v7 does not support nesting different routers.
+ */
+function BreadCrumbsDemo() {
+  const rootElement = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (rootElement.current) {
+      ReactDOMClient.createRoot(rootElement.current).render(<RouterBreadcrumbs />);
+    }
+  }, []);
+  return <div ref={rootElement} />;
+}
 
 export default function Breadcrumbs() {
   return (
@@ -54,7 +70,7 @@ export default function Breadcrumbs() {
         <h2> Router Breadcrumbs</h2>
         <div className="demo-container">
           <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <RouterBreadcrumbs />
+            <BreadCrumbsDemo />
           </ErrorBoundary>
         </div>
       </section>
