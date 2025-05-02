@@ -43,6 +43,10 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ColorToggleButton.js"}}
 
+## Spacing
+
+{{"demo": "SpacingToggleButton.js"}}
+
 ## Vertical buttons
 
 The buttons can be stacked vertically with the `orientation` prop set to "vertical".
