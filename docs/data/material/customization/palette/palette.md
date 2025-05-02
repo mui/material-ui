@@ -251,13 +251,17 @@ declare module '@mui/material/Button' {
 
 ## Custom color space
 
-To use color spaces other than `hex`, `rgb`, or `hsl`, set `colorSpace` with a [value](https://developer.mozilla.org/en-US/docs/Glossary/Color_space) to the theme options.
+Starting from v7.2.0, if you want to [customize color tokens](#provide-tokens-manually) outside of `hex`, `rgb` and `hsl` color spaces, you must set the `colorSpace` to the theme options.
+
+The supported color spaces are `srgb`, `hsl`, `hwb`, `oklch` and `oklab`.
 
 {{"demo": "CustomColorSpace.js", "defaultCodeOpen": false}}
 
 ### Caveats
 
-Once a custom color space is set, Material UI uses the CSS `color-mix()` instead of JavaScript function to manipulate colors for the default styles.
+Once a custom color space is set, Material UI uses the CSS functions instead of JavaScript to manipulate colors for the default styles.
+
+Below are some caveats to be aware of when using a custom color space:
 
 - The auto-generated `contrastText` token always be `#fff` regardless of the `main` color.
 - Alert component with `filled` variant uses `contrastText` token for the color instead of using `theme.palette.getContrastText()` to calculate the color.
