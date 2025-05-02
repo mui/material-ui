@@ -29,6 +29,22 @@ function coefficientToPercentage(coefficient, inverted) {
   return `calc((${coefficient}) * 100%)`;
 }
 
+// This can be removed when moved to `color-mix()` entirely.
+const parseAddition = (str) => {
+  if (!Number.isNaN(+str)) {
+    return +str;
+  }
+  const numbers = str.match(/\d*\.?\d+/g);
+  if (!numbers) {
+    return 0;
+  }
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i += 1) {
+    sum += +numbers[i];
+  }
+  return sum;
+};
+
 function attachColorManipulators(theme) {
   Object.assign(theme, {
     alpha(color, coefficient) {
@@ -41,7 +57,7 @@ function attachColorManipulators(theme) {
         // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
         return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
       }
-      return systemAlpha(color, coefficient);
+      return systemAlpha(color, parseAddition(coefficient));
     },
     lighten(color, coefficient) {
       const obj = this || theme;

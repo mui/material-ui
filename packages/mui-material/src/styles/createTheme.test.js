@@ -674,6 +674,13 @@ describe('createTheme', () => {
       );
     });
 
+    it('[default] `alpha()` should work with coefficient as string', () => {
+      const theme = createTheme();
+      expect(theme.alpha(theme.palette.primary.main, '0.3+0.2')).to.equal(
+        systemAlpha(theme.palette.primary.main, 0.5),
+      );
+    });
+
     it('[CSS variables] `alpha()` should work with string and number coefficient', () => {
       const theme = createTheme({ cssVariables: true });
       expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
