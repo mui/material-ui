@@ -338,11 +338,11 @@ If you need the grid to grow to the full width, you can use the `sx` prop:
 
 ```diff
 -<Grid container>
-+<Grid2 container sx={{ width: '100%' }}>
++<Grid container sx={{ width: '100%' }}>
 
  // alternatively, if the Grid's parent is a flex container:
 -<Grid container>
-+<Grid2 container sx={{ flexGrow: 1 }}>
++<Grid container sx={{ flexGrow: 1 }}>
 ```
 
 ### ListItem
