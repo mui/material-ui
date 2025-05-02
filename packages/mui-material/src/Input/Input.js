@@ -94,7 +94,7 @@ const InputRoot = styled(InputBaseRoot, {
               borderBottom: `1px solid ${bottomLineColor}`,
               left: 0,
               bottom: 0,
-              content: '"\\00a0"',
+              content: '" "',
               position: 'absolute',
               right: 0,
               transition: theme.transitions.create('border-bottom-color', {

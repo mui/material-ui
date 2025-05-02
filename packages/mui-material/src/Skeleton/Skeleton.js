@@ -116,7 +116,7 @@ const SkeletonRoot = styled('span', {
               radiusUnit
             }`,
             '&:empty:before': {
-              content: '"\\00a0"',
+              content: '" "',
             },
           },
         },
