@@ -398,7 +398,7 @@ jobs:
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
-      # Persist reports for inspection in https://mui-dashboard.netlify.app/
+      # Persist reports for inspection in https://frontend-public.mui.com/
       - store_artifacts:
           # see karma.conf.profile.js reactProfilerReporter.outputDir
           path: tmp/react-profiler-report/karma

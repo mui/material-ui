@@ -4,7 +4,6 @@
   "description": "Store and retrieve page ratings and comments",
   "main": "./index.js",
   "license": "MIT",
-  "author": "MUI Team",
   "files": [
     "*.js"
   ],

@@ -1,7 +1,6 @@
 {
   "name": "docs",
   "private": true,
-  "author": "MUI Team",
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./export && cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=8192 next build && pnpm build-sw",

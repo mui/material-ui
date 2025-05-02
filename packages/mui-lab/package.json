@@ -1,9 +1,8 @@
 {
   "name": "@mui/lab",
   "version": "7.0.0-beta.11",
-  "private": false,
   "author": "MUI Team",
-  "description": "Laboratory for new MUI modules.",
+  "description": "Laboratory for new Material UI modules.",
   "main": "./src/index.js",
   "keywords": [
     "react",
