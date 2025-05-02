@@ -7,7 +7,7 @@ ignorecase: true # There is only one correct way to spell those, so we want to m
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
   ' api': ' API'
-  typescript: TypeScript
+  'typescript ': 'TypeScript '
   ' ts': ' TypeScript'
   javascript: JavaScript
   ' js': ' JavaScript'
