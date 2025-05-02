@@ -54,17 +54,17 @@ function ButtonGroup({
           [`& .${toggleButtonGroupClasses.firstButton}, & .${toggleButtonGroupClasses.middleButton}`]:
             {
               borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
-              borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+              borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
             },
           [`& .${toggleButtonGroupClasses.lastButton}, & .${toggleButtonGroupClasses.middleButton}`]:
             {
-              borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+              borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
               borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-              borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+              borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
             },
           [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled}, & .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
             {
-              borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+              borderTop: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
             },
         }),
       })}
