@@ -33,7 +33,7 @@ type CssVarsOptions = CssThemeVariables extends {
   : {};
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
-  colorSpace?: 'srgb' | 'hsl' | 'hwb' | 'oklch' | 'oklab';
+  colorSpace?: 'srgb' | 'hsl' | 'hwb' | 'oklch' | 'oklab' | (string & {});
   mixins?: MixinsOptions;
   components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
