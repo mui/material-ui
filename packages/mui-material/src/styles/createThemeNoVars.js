@@ -68,10 +68,6 @@ function attachColorManipulators(theme) {
         if (fn && channel) {
           return `${fn}(from ${color} ${channel} / ${coefficientToPercentage(coefficient)})`;
         }
-        throw /* minify-error */ new Error(
-          `MUI: unsupported \`${obj.colorSpace}\` color space.\n` +
-            'The following color spaces are supported: srgb, hsl, hwb, oklch, oklab.',
-        );
       }
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables

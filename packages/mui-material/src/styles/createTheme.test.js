@@ -736,22 +736,6 @@ describe('createTheme', () => {
       );
     });
 
-    it('[color space] should throw unsupported color space', () => {
-      const theme = createTheme({
-        colorSpace: 'display-p3',
-        palette: {
-          primary: {
-            main: 'color(display-p3 0.65 0.3 28.95)',
-          },
-        },
-      });
-
-      expect(() => theme.alpha(theme.palette.primary.main, 0.5)).to.throw(
-        'MUI: unsupported `display-p3` color space.\n' +
-          'The following color spaces are supported: srgb, hsl, hwb, oklch, oklab.',
-      );
-    });
-
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {
       const theme = createTheme({
         cssVariables: true,
