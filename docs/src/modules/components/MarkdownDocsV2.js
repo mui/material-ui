@@ -215,10 +215,17 @@ export default function MarkdownDocsV2(props) {
     return false;
   });
 
-  // eslint-disable-next-line no-console
-  console.log('router.query.scopedDemo', router.query.scopedDemo);
+  let scopedDemo = router.query.scopedDemo;
 
-  const scopedDemo = router.query.scopedDemo;
+  if (!router.isReady && typeof window !== 'undefined') {
+    scopedDemo = new URLSearchParams(window.location.search).get('scopedDemo');
+  }
+
+  // eslint-disable-next-line no-console
+  console.log('router.isReady', router.isReady);
+  // eslint-disable-next-line no-console
+  console.log('scopedDemo', scopedDemo);
+
   if (scopedDemo) {
     const isJoy = canonicalAs.startsWith('/joy-ui/');
     return (
