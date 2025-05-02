@@ -243,7 +243,7 @@ function DemoSandbox(props) {
               {children}
             </DemoIframe>
           ) : (
-            <div {...other}>{children}</div>
+            children
           )}
         </DemoInstanceThemeProvider>
       )}
