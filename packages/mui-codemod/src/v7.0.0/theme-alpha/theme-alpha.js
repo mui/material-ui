@@ -31,7 +31,7 @@ export default function transformer(file, api, options) {
           j.templateElement({ raw: '', cooked: '' }, true),
         ],
         [replaceThemeWithVars(node.left), replaceThemeWithVars(node.right)],
-      )
+      );
     }
     return node;
   }
