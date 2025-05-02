@@ -17,14 +17,9 @@ import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
 
-function coefficientToPercentage(coefficient, inverted) {
+function coefficientToPercentage(coefficient) {
   if (typeof coefficient === 'number') {
-    return inverted
-      ? `${((1 - coefficient) * 100).toFixed(0)}%`
-      : `${(coefficient * 100).toFixed(0)}%`;
-  }
-  if (inverted) {
-    return `calc(100% - 100% * (${coefficient}))`;
+    return `${(coefficient * 100).toFixed(0)}%`;
   }
   return `calc((${coefficient}) * 100%)`;
 }
@@ -45,12 +40,38 @@ const parseAddition = (str) => {
   return sum;
 };
 
+const colorFunctions = {
+  srgb: 'rgb',
+  hsl: 'hsl',
+  hwb: 'hwb',
+  oklab: 'oklab',
+  oklch: 'oklch',
+  'display-p3': 'color',
+};
+
+const spaceChannels = {
+  srgb: 'r g b',
+  hsl: 'h s l',
+  hwb: 'h w b',
+  oklab: 'l a b',
+  oklch: 'l c h',
+  'display-p3': '',
+};
+
 function attachColorManipulators(theme) {
   Object.assign(theme, {
     alpha(color, coefficient) {
       const obj = this || theme;
       if (obj.colorSpace) {
-        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, transparent ${coefficientToPercentage(coefficient, true)})`;
+        const fn = colorFunctions[obj.colorSpace];
+        const channel = spaceChannels[obj.colorSpace];
+        if (fn && channel) {
+          return `${fn}(from ${color} ${channel} / ${coefficientToPercentage(coefficient)})`;
+        }
+        throw /* minify-error */ new Error(
+          `MUI: unsupported \`${obj.colorSpace}\` color space.\n` +
+            'The following color spaces are supported: srgb, hsl, hwb, oklch, oklab.',
+        );
       }
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables

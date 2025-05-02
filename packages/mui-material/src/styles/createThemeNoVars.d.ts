@@ -33,26 +33,7 @@ type CssVarsOptions = CssThemeVariables extends {
   : {};
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
-  colorSpace?: // https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method
-  // <rectangular-color-space>
-  | 'srgb'
-    | 'srgb-linear'
-    | 'display-p3'
-    | 'a98-rgb'
-    | 'prophoto-rgb'
-    | 'rec2020'
-    | 'lab'
-    | 'oklab'
-    | 'xyz'
-    | 'xyz-d50'
-    | 'xyz-d65'
-    // <polar-color-space>
-    | 'hsl'
-    | 'hwb'
-    | 'lch'
-    | 'oklch'
-    // custom-color-space
-    | (string & {});
+  colorSpace?: 'srgb' | 'hsl' | 'hwb' | 'oklch' | 'oklab';
   mixins?: MixinsOptions;
   components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
