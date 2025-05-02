@@ -347,6 +347,11 @@ type AutocompleteOwnProps<
      * @default 'outlined'
      */
     variant?: OverridableStringUnion<VariantProp, AutocompletePropsVariantOverrides>;
+    /**
+     * If `true`, suppresses the warning when using a `textarea` element as the input.
+     * @default false
+     */
+    suppressTextareaWarning?: boolean;
   };
 
 /**

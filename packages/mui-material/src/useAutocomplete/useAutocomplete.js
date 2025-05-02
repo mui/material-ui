@@ -111,6 +111,7 @@ function useAutocomplete(props) {
     renderValue,
     selectOnFocus = !props.freeSolo,
     value: valueProp,
+    suppressTextareaWarning = false,
   } = props;
 
   const id = useId(idProp);
@@ -571,13 +572,18 @@ function useAutocomplete(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
-        if (inputRef.current && inputRef.current.nodeName === 'TEXTAREA') {
+        if (
+          inputRef.current &&
+          inputRef.current.nodeName === 'TEXTAREA' &&
+          !suppressTextareaWarning
+        ) {
           console.warn(
             [
               `A textarea element was provided to ${componentName} where input was expected.`,
               `This is not a supported scenario but it may work under certain conditions.`,
               `A textarea keyboard navigation may conflict with Autocomplete controls (for example enter and arrow keys).`,
               `Make sure to test keyboard navigation and add custom event handlers if necessary.`,
+              `You can suppress this warning by setting the \`suppressTextareaWarning\` prop to true.`,
             ].join('\n'),
           );
         } else {
@@ -593,7 +599,7 @@ function useAutocomplete(props) {
           );
         }
       }
-    }, [componentName]);
+    }, [componentName, suppressTextareaWarning]);
   }
 
   React.useEffect(() => {
