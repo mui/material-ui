@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
@@ -8,19 +9,10 @@ import ToggleButtonGroup, {
   toggleButtonGroupClasses,
 } from '@mui/material/ToggleButtonGroup';
 
-function ButtonGroup({
-  gap,
-  orientation,
-}: {
-  gap: string | number;
-  orientation: 'horizontal' | 'vertical';
-}) {
-  const [alignment, setAlignment] = React.useState<string | null>('left');
+function ButtonGroup({ gap, orientation }) {
+  const [alignment, setAlignment] = React.useState('left');
 
-  const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string | null,
-  ) => {
+  const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
 
@@ -84,6 +76,11 @@ function ButtonGroup({
     </ToggleButtonGroup>
   );
 }
+
+ButtonGroup.propTypes = {
+  gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
+};
 
 export default function SpacingToggleButton() {
   return (
