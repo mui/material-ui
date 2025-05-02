@@ -61,7 +61,7 @@ function ButtonGroup({ gap, orientation }) {
         }),
       })}
     >
-      <ToggleButton value="left" aria-label="left aligned" disabled>
+      <ToggleButton value="left" aria-label="left aligned">
         <FormatAlignLeftIcon />
       </ToggleButton>
       <ToggleButton value="center" aria-label="centered">
