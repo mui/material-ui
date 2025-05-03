@@ -217,7 +217,7 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
         display: 'grid',
         gap: { xs: 3, lg: 6 },
         py: 4,
-        gridTemplateColumns: '1fr 1fr 1fr',
+        gridTemplateColumns: '1fr 1fr',
         '& .MuiAvatar-root': {
           width: { xs: 80, sm: 100 },
           height: { xs: 80, sm: 100 },
