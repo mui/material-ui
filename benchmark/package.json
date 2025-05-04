@@ -21,7 +21,7 @@
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
     "docs": "workspace:^",
-    "express": "^4.21.2",
+    "express": "^5.1.0",
     "fs-extra": "^11.3.0",
     "jss": "^10.10.0",
     "@playwright/test": "^1.52.0",
