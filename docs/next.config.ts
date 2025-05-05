@@ -62,7 +62,7 @@ export default withDocsInfra({
           const { request } = ctx;
 
           const hasDependencyOnRepoPackages = [
-            'notistack',
+            'material-ui-popup-state',
             // Assume any X dependencies depend on a package defined in this repository.
             '@mui/x-',
             '@toolpad/core',
