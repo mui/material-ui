@@ -120,13 +120,12 @@ const ButtonRoot = styled(ButtonBase, {
       [`&.${buttonClasses.disabled}`]: {
         color: (theme.vars || theme).palette.action.disabled,
       },
-      backgroundColor: 'red',
       variants: [
         {
           props: { variant: 'contained' },
           style: {
             color: `var(--variant-containedColor)`,
-            backgroundColor: 'red',
+            backgroundColor: `var(--variant-containedBg)`,
             boxShadow: (theme.vars || theme).shadows[2],
             '&:hover': {
               boxShadow: (theme.vars || theme).shadows[4],
@@ -144,7 +143,7 @@ const ButtonRoot = styled(ButtonBase, {
             [`&.${buttonClasses.disabled}`]: {
               color: (theme.vars || theme).palette.action.disabled,
               boxShadow: (theme.vars || theme).shadows[0],
-              backgroundColor: 'red',
+              backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
             },
           },
         },
@@ -154,7 +153,7 @@ const ButtonRoot = styled(ButtonBase, {
             padding: '5px 15px',
             border: '1px solid currentColor',
             borderColor: `var(--variant-outlinedBorder, currentColor)`,
-            backgroundColor: 'red',
+            backgroundColor: `var(--variant-outlinedBg)`,
             color: `var(--variant-outlinedColor)`,
             [`&.${buttonClasses.disabled}`]: {
               border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
@@ -166,7 +165,7 @@ const ButtonRoot = styled(ButtonBase, {
           style: {
             padding: '6px 8px',
             color: `var(--variant-textColor)`,
-            backgroundColor: 'red',
+            backgroundColor: `var(--variant-textBg)`,
           },
         },
         ...Object.entries(theme.palette)
