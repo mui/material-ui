@@ -44,12 +44,12 @@ export default withDocsInfra({
     }
 
     // If a module is an webpack "external" the webpack aliases configured are not used.
-    // next includes node_modules in webpack externals, some of those have dependencies
+    // Next.js includes node_modules in webpack externals, some of those have dependencies
     // on the aliases we defined above.
     // So we need tell webpack to not consider those packages as externals.
     if (
       options.isServer &&
-      // Next executes this twice on the server with React 18 (once per runtime).
+      // Next.js executes this twice on the server with React 18 (once per runtime).
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
