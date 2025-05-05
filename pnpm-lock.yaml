@@ -508,8 +508,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       react-error-boundary:
-        specifier: ^5.0.0
-        version: 5.0.0(react@19.1.0)
+        specifier: ^6.0.0
+        version: 6.0.0(react@19.1.0)
       react-router-dom:
         specifier: ^6.30.0
         version: 6.30.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -12199,8 +12199,8 @@ packages:
       react: '>= 16.3.0'
       react-dom: '>= 16.3.0'
 
-  react-error-boundary@5.0.0:
-    resolution: {integrity: sha512-tnjAxG+IkpLephNcePNA7v6F/QpWLH8He65+DmedchDwg162JZqx4NmbXj0mlAYVVEd81OW7aFhmbsScYfiAFQ==}
+  react-error-boundary@6.0.0:
+    resolution: {integrity: sha512-gdlJjD7NWr0IfkPlaREN2d9uUZUlksrfOx7SX62VRerwXbMY6ftGCIZua1VG1aXFNOimhISsTq+Owp725b9SiA==}
     peerDependencies:
       react: '>=16.13.1'
 
@@ -26241,7 +26241,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  react-error-boundary@5.0.0(react@19.1.0):
+  react-error-boundary@6.0.0(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       react: 19.1.0
