@@ -21,14 +21,6 @@ Feel free to submit a pull request and the maintainers will work with you to wri
   - Create a Material UI app in minutes.
   - Templates, authentication, database integration, subscription payments, and more.
 
-- [ScaffoldHub](https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1):
-  - Tool for building web applications.
-  - Choose your framework and library (React with Material UI).
-  - Choose your database (SQL, MongoDB or Firestore).
-  - Model your database and application with the intuitive GUI.
-  - Generate your application, including a complete scaffolded backend.
-  - Preview your application online and download the generated code.
-
 ## Third-party theming tools
 
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design 2 palette generator tool.
