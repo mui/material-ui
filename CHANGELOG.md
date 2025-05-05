@@ -8,7 +8,7 @@ _May 5, 2025_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Tailwind CSS v4 integration with Material UI, check out the [setup guide](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/).
+- 🎉 Material UI now works with **Tailwind CSS v4**! check out the [setup guide](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/).
 
 ### `@mui/material@7.1.0`
 
