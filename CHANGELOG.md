@@ -8,7 +8,7 @@ _May 5, 2025_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Material UI now works with **Tailwind CSS v4**! check out the [setup guide](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/).
+- 🎉 Material UI now works with **Tailwind CSS v4**! Check out the [setup guide](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/).
 
 ### `@mui/material@7.1.0`
 
@@ -16,7 +16,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [OutlinedInput] Add missing `notchedOutline` slot (#45917) @siriwatknp
 - [Snackbar] Skip default behavior when defaultMuiPrevent… (#45629) @sai6855
 - [Avatar] Fix img slot types and add missing slots (#45483) @siriwatknp
-- [material][Badge] Replace useSlotProps with useSlot hook (#45871) @sai6855
+- [Badge] Replace useSlotProps with useSlot hook (#45871) @sai6855
 - [BottomNavigationAction] Add slots and slotProps (#45776) @sai6855
 - [CardActionArea] Add slots and slotProps (#45866) @sai6855
 - [useMediaQuery] Add warning and docs for using `useMediaQuery('print')` (#44790) @good-jinu
@@ -31,12 +31,12 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### `@mui/system@7.1.0`
 
-- [system] Fix `@mui/system` types organization (#45860) @Janpot
+- Fix `@mui/system` types organization (#45860) @Janpot
 
 ### `@mui/styled-engine@7.1.0`
 
-- [styled-engine] Infer `ownerState` from props in `styled` (#46083) @siriwatknp
-- [styled-engine] Fix style overrides variants type (#45478) @siriwatknp
+- Infer `ownerState` from props in `styled` (#46083) @siriwatknp
+- Fix style overrides variants type (#45478) @siriwatknp
 
 ### Docs
 
