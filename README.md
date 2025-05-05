@@ -91,6 +91,8 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://images.opencollective.com/instagram-followers-socialwick/ac6033a/logo/256.png" alt="socialwick.com/instagram/followers" title="SocialWick: Buy Instagram followers." loading="lazy" />SocialWick</a>
   &nbsp;
+ <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="26" width="26" src="https://www.follower24.de/img/footer-uber.svg" alt="follower24.de" title="Follower24: Social media success." loading="lazy" />Follower24</a>
+  &nbsp;
 </p>
 
 Gold sponsors are those who have pledged \$500/month or more to MUI.
