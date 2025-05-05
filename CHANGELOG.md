@@ -14,7 +14,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 - [InputBase] Text cursor jumps several lines up when inserting text fragment with new line at the end (#45246) @yermartee
 - [OutlinedInput] Add missing `notchedOutline` slot (#45917) @siriwatknp
-- [Snackbar] Skip default behaviour when defaultMuiPrevent… (#45629) @sai6855
+- [Snackbar] Skip default behavior when defaultMuiPrevent… (#45629) @sai6855
 - [Avatar] Fix img slot types and add missing slots (#45483) @siriwatknp
 - [material][Badge] Replace useSlotProps with useSlot hook (#45871) @sai6855
 - [BottomNavigationAction] Add slots and slotProps (#45776) @sai6855
@@ -51,7 +51,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - Add `InitColorSchemeScript` docs and API (#45927) @siriwatknp
 - Add Tailwind CSS v4 integration guide (#45906) @siriwatknp
 - Fix 301 links to the system v6 (#45931) @oliviertassinari
-- Add notification for MUI X v8 announcement (#45942) @joserodolfofreitas
+- Add notification for MUI X v8 announcement (#45942) @joserodolfofreitas
 - Fix som 301 redirections (ae84b35) @oliviertassinari
 - Fix some 301 redirections (057384e) @oliviertassinari
 - Fix logo is not centered on small screens (#45920) @crabsim
@@ -64,8 +64,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [blog] Improve setup to create crisp videos (#45971) @oliviertassinari
 - [blog] Add more content to 'Material UI v7 is here' (#45905) @oliviertassinari
 - [blog] Fix migration link on v8 announcement (#45945) @joserodolfofreitas
-- [blog] Update MUI X v8 blogpost release date (#45944) @joserodolfofreitas
-- [blog] Introducing MUI X v8 (#45670) @joserodolfofreitas
+- [blog] Update MUI X v8 blogpost release date (#45944) @joserodolfofreitas
+- [blog] Introducing MUI X v8 (#45670) @joserodolfofreitas
 - [core] Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
 - [core] Add security label to dependabot PRs (0a5c027) @oliviertassinari
 - [core] Remove unecessary versions (#46034) @oliviertassinari
