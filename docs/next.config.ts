@@ -61,9 +61,12 @@ export default withDocsInfra({
         (ctx, callback) => {
           const { request } = ctx;
 
-          const hasDependencyOnRepoPackages = ['notistack', '@mui/x-', '@toolpad/core'].some(
-            (dep) => request.startsWith(dep),
-          );
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            // Assume any X dependencies depend on a package defined in this repository.
+            '@mui/x-',
+            '@toolpad/core',
+          ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
