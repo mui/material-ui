@@ -542,8 +542,8 @@ importers:
         specifier: ^8.5.3
         version: 8.5.3
       postcss-combine-media-query:
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^2.0.0
+        version: 2.0.0(postcss@8.5.3)
       vite:
         specifier: 5.4.18
         version: 5.4.18(@types/node@20.17.32)(lightningcss@1.29.2)(terser@5.39.0)
@@ -11782,9 +11782,6 @@ packages:
   pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
 
-  picocolors@0.2.1:
-    resolution: {integrity: sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==}
-
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -11868,8 +11865,11 @@ packages:
     peerDependencies:
       postcss: ^8.0.0
 
-  postcss-combine-media-query@1.0.1:
-    resolution: {integrity: sha512-DFSXuYy3ltDkC2esIF0ORoS9DCjlyfWhtoQkG9brZMuJY1ABOER95sm3dvccR6IEgSrYX4RgqiHD4Lq3JGrxyw==}
+  postcss-combine-media-query@2.0.0:
+    resolution: {integrity: sha512-LrztcKEbp/zR2TjLjkgK+Ji/37bY7vDKPjkdJ9L1Zb/pJtuovQlvxK0yeCJHeKUeyT9CwnnchJrZ8SMZ/s8Peg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
 
   postcss-import@16.1.0:
     resolution: {integrity: sha512-7hsAZ4xGXl4MW+OKEWCnF6T5jqBw80/EE9aXg1r2yyn1RsVEU8EtKXbijEODa+rg7iih4bKf7vlvTGYR4CnPNg==}
@@ -11929,10 +11929,6 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       postcss: ^8.2.9
-
-  postcss@7.0.39:
-    resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
-    engines: {node: '>=6.0.0'}
 
   postcss@8.4.31:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
@@ -25819,8 +25815,6 @@ snapshots:
 
   pend@1.2.0: {}
 
-  picocolors@0.2.1: {}
-
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -25901,9 +25895,9 @@ snapshots:
       - jiti
       - tsx
 
-  postcss-combine-media-query@1.0.1:
+  postcss-combine-media-query@2.0.0(postcss@8.5.3):
     dependencies:
-      postcss: 7.0.39
+      postcss: 8.5.3
 
   postcss-import@16.1.0(postcss@8.5.3):
     dependencies:
@@ -25956,11 +25950,6 @@ snapshots:
       is-url-superb: 4.0.0
       postcss: 8.5.3
       quote-unquote: 1.0.0
-
-  postcss@7.0.39:
-    dependencies:
-      picocolors: 0.2.1
-      source-map: 0.6.1
 
   postcss@8.4.31:
     dependencies:
