@@ -204,7 +204,7 @@
     "stylelint-config-standard": "^37.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
-    "tsx": "^4.19.3",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vite": "^6.0.7",
     "vitest": "^3.1.2",
