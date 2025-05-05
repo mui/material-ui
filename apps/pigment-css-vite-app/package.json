@@ -24,8 +24,8 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.26.3",
-    "@babel/preset-typescript": "^7.27.0",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
     "@pigment-css/vite-plugin": "0.0.30",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.3",
