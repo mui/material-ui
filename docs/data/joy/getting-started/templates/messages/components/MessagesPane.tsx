@@ -15,7 +15,6 @@ type MessagesPaneProps = {
 export default function MessagesPane(props: MessagesPaneProps) {
   const { chat } = props;
   const [chatMessages, setChatMessages] = React.useState(chat.messages);
-  const [textAreaValue, setTextAreaValue] = React.useState('');
 
   React.useEffect(() => {
     setChatMessages(chat.messages);
@@ -65,9 +64,7 @@ export default function MessagesPane(props: MessagesPaneProps) {
         </Stack>
       </Box>
       <MessageInput
-        textAreaValue={textAreaValue}
-        setTextAreaValue={setTextAreaValue}
-        onSubmit={() => {
+        onSubmit={(textAreaValue) => {
           const newId = chatMessages.length + 1;
           const newIdString = newId.toString();
           setChatMessages([

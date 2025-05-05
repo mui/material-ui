@@ -12,17 +12,16 @@ import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBullete
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 export type MessageInputProps = {
-  textAreaValue: string;
-  setTextAreaValue: (value: string) => void;
-  onSubmit: () => void;
+  onSubmit: (textAreaValue: string) => void;
 };
 
 export default function MessageInput(props: MessageInputProps) {
-  const { textAreaValue, setTextAreaValue, onSubmit } = props;
+  const { onSubmit } = props;
+  const [textAreaValue, setTextAreaValue] = React.useState('');
   const textAreaRef = React.useRef<HTMLDivElement>(null);
   const handleClick = () => {
     if (textAreaValue.trim() !== '') {
-      onSubmit();
+      onSubmit(textAreaValue);
       setTextAreaValue('');
     }
   };
