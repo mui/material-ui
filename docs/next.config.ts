@@ -43,9 +43,10 @@ export default withDocsInfra({
       );
     }
 
-    // next includes node_modules in webpack externals. Some of those have dependencies
-    // on the aliases defined above. If a module is an external those aliases won't be used.
-    // We need tell webpack to not consider those packages as externals.
+    // If a module is an webpack "external" the webpack aliases configured are not used.
+    // next includes node_modules in webpack externals, some of those have dependencies
+    // on the aliases we defined above.
+    // So we need tell webpack to not consider those packages as externals.
     if (
       options.isServer &&
       // Next executes this twice on the server with React 18 (once per runtime).
@@ -59,19 +60,10 @@ export default withDocsInfra({
         // @ts-ignore
         (ctx, callback) => {
           const { request } = ctx;
+
           const hasDependencyOnRepoPackages = [
             'notistack',
-            '@mui/x-data-grid',
-            '@mui/x-data-grid-pro',
-            '@mui/x-data-grid-premium',
-            '@mui/x-date-pickers',
-            '@mui/x-date-pickers-pro',
-            '@mui/x-data-grid-generator',
-            '@mui/x-charts',
-            '@mui/x-charts-pro',
-            '@mui/x-tree-view',
-            '@mui/x-tree-view-pro',
-            '@mui/x-license',
+            '@mui/x-',
             '@toolpad/core',
           ].some((dep) => request.startsWith(dep));
 
