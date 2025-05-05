@@ -217,12 +217,12 @@ export default function MarkdownDocsV2(props) {
 
   let scopedDemo = router.query.scopedDemo;
 
-  if (!router.isReady && typeof window !== 'undefined') {
+  if (scopedDemo === undefined && typeof window !== 'undefined') {
+    // In production, the next router query params are `undefined` on the first render
+    // Fall back to window.location to get query params ASAP
     scopedDemo = new URLSearchParams(window.location.search).get('scopedDemo');
   }
 
-  // eslint-disable-next-line no-console
-  console.log('router.isReady', router.isReady);
   // eslint-disable-next-line no-console
   console.log('scopedDemo', scopedDemo);
 
