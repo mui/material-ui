@@ -14,13 +14,6 @@ Feel free to submit a pull request and the maintainers will work with you to wri
 - [React-admin](https://github.com/marmelab/react-admin): A front-end framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
 - [Refine](https://github.com/refinedev/refine): An open source, headless React meta-framework for the rapid development of web applications.
 
-### Paid starters
-
-- [Divjoy](https://divjoy.com?via=material-ui):
-
-  - Create a Material UI app in minutes.
-  - Templates, authentication, database integration, subscription payments, and more.
-
 ## Third-party theming tools
 
 - [Material palette generator](https://m2.material.io/inline-tools/color/): The official Material Design 2 palette generator tool.
