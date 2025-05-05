@@ -61,7 +61,7 @@ const BACKLINKs = [
   {
     name: 'SocialWick',
     description: 'Buy Instagram followers.',
-    href: 'https://www.socialwick.com/instagram/followers/',
+    href: 'https://www.socialwick.com/instagram/followers',
   },
   {
     name: 'Follower24',
