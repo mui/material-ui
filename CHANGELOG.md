@@ -45,11 +45,11 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [Menu] Update `paper` slot JSDoc default from `Paper` to `PopoverPaper` (#45722) @andreachiera
 - [examples] Remove create-react-app usages (#45426) @CodeLeom
 - Add `AccordionSummary` to the v5 breaking change migration (#45947) @siriwatknp
-- Update CSS variable usage in migration guide for Pigment CSS (#46033) @sai6855
+- Update CSS variable usage in migration guide for Pigment CSS (#46033) @sai6855
 - Fix docs API dark mode color (#46086) @alexfauquette
-- Add a guide for extending Material UI classes in Tailwind CSS (#46039) @siriwatknp
+- Add a guide for extending Material UI classes in Tailwind CSS (#46039) @siriwatknp
 - Add `InitColorSchemeScript` docs and API (#45927) @siriwatknp
-- Add Tailwind CSS v4 integration guide (#45906) @siriwatknp
+- Add Tailwind CSS v4 integration guide (#45906) @siriwatknp
 - Fix 301 links to the system v6 (#45931) @oliviertassinari
 - Add notification for MUI X v8 announcement (#45942) @joserodolfofreitas
 - Fix som 301 redirections (ae84b35) @oliviertassinari
@@ -62,7 +62,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 ### Core
 
 - [blog] Improve setup to create crisp videos (#45971) @oliviertassinari
-- [blog] Add more content to 'Material UI v7 is here' (#45905) @oliviertassinari
+- [blog] Add more content to 'Material UI v7 is here' (#45905) @oliviertassinari
 - [blog] Fix migration link on v8 announcement (#45945) @joserodolfofreitas
 - [blog] Update MUI X v8 blogpost release date (#45944) @joserodolfofreitas
 - [blog] Introducing MUI X v8 (#45670) @joserodolfofreitas
