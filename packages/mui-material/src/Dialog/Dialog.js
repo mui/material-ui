@@ -325,7 +325,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     elementType: DialogContainer,
     externalForwardedProps,
     ownerState,
-    className: clsx(classes.container),
+    className: classes.container,
   });
 
   const [TransitionSlot, transitionSlotProps] = useSlot('transition', {
