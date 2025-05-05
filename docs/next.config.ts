@@ -60,7 +60,6 @@ export default withDocsInfra({
         // @ts-ignore
         (ctx, callback) => {
           const { request } = ctx;
-
           const hasDependencyOnRepoPackages = [
             'material-ui-popup-state',
             // Assume any X dependencies depend on a package defined in this repository.
