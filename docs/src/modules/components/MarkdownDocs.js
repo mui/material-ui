@@ -5,6 +5,9 @@ import { Ad, AdGuest } from '@mui/docs/Ad';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
+import { useRouter } from 'next/router';
+import { DemoPageThemeProvider } from 'docs/src/theming';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 export default function MarkdownDocs(props) {
   const {
@@ -14,10 +17,45 @@ export default function MarkdownDocs(props) {
     docs,
     demoComponents,
     srcComponents,
+    enableOpenInNewTab = false,
   } = props;
 
   const userLanguage = useUserLanguage();
   const localizedDoc = docs[userLanguage] || docs.en;
+
+  const router = useRouter();
+  const isBrowser = typeof window !== 'undefined';
+  let scopedDemo = router.query.scopedDemo;
+  if (scopedDemo === undefined && isBrowser) {
+    scopedDemo = new URLSearchParams(window.location.search).get('scopedDemo');
+  }
+
+  if (scopedDemo) {
+    if (isBrowser) {
+      document.body.style.visibility = 'initial';
+    }
+    const canonicalAs = router.asPath || '';
+    const isJoy = canonicalAs.startsWith('/joy-ui/');
+    return (
+      <DemoPageThemeProvider hasJoy={isJoy}>
+        <GlobalStyles />
+        <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
+          <RichMarkdownElement
+            demoComponents={demoComponents}
+            demos={demos}
+            disableAd={disableAd}
+            localizedDoc={localizedDoc}
+            srcComponents={srcComponents}
+            renderedMarkdownOrDemo={{
+              demo: scopedDemo,
+              hideToolbar: true,
+              bg: false,
+            }}
+          />
+        </div>
+      </DemoPageThemeProvider>
+    );
+  }
 
   return (
     <AppLayoutDocs
@@ -46,6 +84,7 @@ export default function MarkdownDocs(props) {
           localizedDoc={localizedDoc}
           renderedMarkdownOrDemo={renderedMarkdownOrDemo}
           srcComponents={srcComponents}
+          enableOpenInNewTab={enableOpenInNewTab}
         />
       ))}
     </AppLayoutDocs>
