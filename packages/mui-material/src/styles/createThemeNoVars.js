@@ -40,34 +40,12 @@ const parseAddition = (str) => {
   return sum;
 };
 
-const colorFunctions = {
-  srgb: 'rgb',
-  hsl: 'hsl',
-  hwb: 'hwb',
-  oklab: 'oklab',
-  oklch: 'oklch',
-  'display-p3': 'color',
-};
-
-const spaceChannels = {
-  srgb: 'r g b',
-  hsl: 'h s l',
-  hwb: 'h w b',
-  oklab: 'l a b',
-  oklch: 'l c h',
-  'display-p3': '',
-};
-
 function attachColorManipulators(theme) {
   Object.assign(theme, {
     alpha(color, coefficient) {
       const obj = this || theme;
       if (obj.colorSpace) {
-        const fn = colorFunctions[obj.colorSpace];
-        const channel = spaceChannels[obj.colorSpace];
-        if (fn && channel) {
-          return `${fn}(from ${color} ${channel} / ${coefficientToPercentage(coefficient)})`;
-        }
+        return `oklch(from ${color} l c h / ${coefficient})`;
       }
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables

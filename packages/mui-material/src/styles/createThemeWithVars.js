@@ -24,7 +24,7 @@ import createColorScheme, { getOpacity, getOverlays } from './createColorScheme'
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
-import { light, dark } from './createPalette';
+import { light, dark, colorContrast } from './createPalette';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -126,11 +126,12 @@ function attachColorScheme(colorSpace, colorSchemes, scheme, restTheme, colorSch
  */
 export default function createThemeWithVars(options = {}, ...args) {
   const {
-    colorSpace,
     colorSchemes: colorSchemesInput = { light: true },
     defaultColorScheme: defaultColorSchemeInput,
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    experimental_relativeColor = false,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
       ? 'media'
@@ -166,14 +167,15 @@ export default function createThemeWithVars(options = {}, ...args) {
     );
   }
 
-  let colorSpaceVar;
-  if (colorSpace) {
-    colorSpaceVar = cssVarPrefix ? `var(--${cssVarPrefix}-colorSpace)` : `var(--colorSpace)`;
+  // The reason to use `oklch` is that it is the most perceptually uniform color space and widely supported.
+  let colorSpace;
+  if (experimental_relativeColor) {
+    colorSpace = 'oklch';
   }
 
   // Create the palette for the default color scheme, either `light`, `dark`, or custom color scheme.
   const muiTheme = attachColorScheme(
-    colorSpaceVar,
+    colorSpace,
     colorSchemes,
     defaultScheme,
     input,
@@ -181,17 +183,16 @@ export default function createThemeWithVars(options = {}, ...args) {
   );
 
   if (builtInLight && !colorSchemes.light) {
-    attachColorScheme(colorSpaceVar, colorSchemes, builtInLight, undefined, 'light');
+    attachColorScheme(colorSpace, colorSchemes, builtInLight, undefined, 'light');
   }
 
   if (builtInDark && !colorSchemes.dark) {
-    attachColorScheme(colorSpaceVar, colorSchemes, builtInDark, undefined, 'dark');
+    attachColorScheme(colorSpace, colorSchemes, builtInDark, undefined, 'dark');
   }
 
   let theme = {
     defaultColorScheme,
     ...muiTheme,
-    colorSpace,
     cssVarPrefix,
     colorSchemeSelector: selector,
     rootSelector,
@@ -269,30 +270,22 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.Alert,
         'errorFilledColor',
-        silent(() =>
-          colorSpace ? palette.error.contrastText : palette.getContrastText(palette.error.main),
-        ),
+        silent(() => palette.getContrastText(palette.error.main)),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
-        silent(() =>
-          colorSpace ? palette.info.contrastText : palette.getContrastText(palette.info.main),
-        ),
+        silent(() => palette.getContrastText(palette.info.main)),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
-        silent(() =>
-          colorSpace ? palette.success.contrastText : palette.getContrastText(palette.success.main),
-        ),
+        silent(() => palette.getContrastText(palette.success.main)),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
-        silent(() =>
-          colorSpace ? palette.warning.contrastText : palette.getContrastText(palette.warning.main),
-        ),
+        silent(() => palette.getContrastText(palette.warning.main)),
       );
       setColor(palette.Alert, 'errorStandardBg', colorMix(safeLighten, palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', colorMix(safeLighten, palette.info.light, 0.9));
@@ -345,7 +338,9 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.Skeleton,
         'bg',
-        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
+        colorSpace
+          ? colorMix(safeAlpha, palette.text.primary, 0.11)
+          : `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.11)`,
       );
       setColor(palette.Slider, 'primaryTrack', colorMix(safeLighten, palette.primary.main, 0.62));
       setColor(
@@ -422,30 +417,22 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.Alert,
         'errorFilledColor',
-        silent(() =>
-          colorSpace ? palette.error.contrastText : palette.getContrastText(palette.error.dark),
-        ),
+        silent(() => palette.getContrastText(palette.error.dark)),
       );
       setColor(
         palette.Alert,
         'infoFilledColor',
-        silent(() =>
-          colorSpace ? palette.info.contrastText : palette.getContrastText(palette.info.dark),
-        ),
+        silent(() => palette.getContrastText(palette.info.dark)),
       );
       setColor(
         palette.Alert,
         'successFilledColor',
-        silent(() =>
-          colorSpace ? palette.success.contrastText : palette.getContrastText(palette.success.dark),
-        ),
+        silent(() => palette.getContrastText(palette.success.dark)),
       );
       setColor(
         palette.Alert,
         'warningFilledColor',
-        silent(() =>
-          colorSpace ? palette.warning.contrastText : palette.getContrastText(palette.warning.dark),
-        ),
+        silent(() => palette.getContrastText(palette.warning.dark)),
       );
       setColor(palette.Alert, 'errorStandardBg', colorMix(safeDarken, palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', colorMix(safeDarken, palette.info.light, 0.9));
@@ -500,7 +487,9 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(
         palette.Skeleton,
         'bg',
-        `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
+        colorSpace
+          ? colorMix(safeAlpha, palette.text.primary, 0.13)
+          : `rgba(${setCssVarColor('palette-text-primaryChannel')} / 0.13)`,
       );
       setColor(palette.Slider, 'primaryTrack', colorMix(safeDarken, palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', colorMix(safeDarken, palette.secondary.main, 0.5));
@@ -562,58 +551,72 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
 
-    // MUI X - DataGrid needs this token.
-    setColorChannel(palette.background, 'default');
+    if (!colorSpace) {
+      // MUI X - DataGrid needs this token.
+      setColorChannel(palette.background, 'default');
 
-    // added for consistency with the `background.default` token
-    setColorChannel(palette.background, 'paper');
+      // added for consistency with the `background.default` token
+      setColorChannel(palette.background, 'paper');
 
-    setColorChannel(palette.common, 'background');
-    setColorChannel(palette.common, 'onBackground');
+      setColorChannel(palette.common, 'background');
+      setColorChannel(palette.common, 'onBackground');
 
-    setColorChannel(palette, 'divider');
+      setColorChannel(palette, 'divider');
 
-    Object.keys(palette).forEach((color) => {
-      const colors = palette[color];
+      Object.keys(palette).forEach((color) => {
+        const colors = palette[color];
 
-      // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
+        // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
 
-      if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
-        // Silent the error for custom palettes.
-        if (colors.main) {
-          setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
+        if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
+          // Silent the error for custom palettes.
+          if (colors.main) {
+            setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
+          }
+          if (colors.light) {
+            setColor(palette[color], 'lightChannel', safeColorChannel(toRgb(colors.light)));
+          }
+          if (colors.dark) {
+            setColor(palette[color], 'darkChannel', safeColorChannel(toRgb(colors.dark)));
+          }
+          if (colors.contrastText) {
+            setColor(
+              palette[color],
+              'contrastTextChannel',
+              safeColorChannel(toRgb(colors.contrastText)),
+            );
+          }
+
+          if (color === 'text') {
+            // Text colors: text.primary, text.secondary
+            setColorChannel(palette[color], 'primary');
+            setColorChannel(palette[color], 'secondary');
+          }
+
+          if (color === 'action') {
+            // Action colors: action.active, action.selected
+            if (colors.active) {
+              setColorChannel(palette[color], 'active');
+            }
+            if (colors.selected) {
+              setColorChannel(palette[color], 'selected');
+            }
+          }
         }
-        if (colors.light) {
-          setColor(palette[color], 'lightChannel', safeColorChannel(toRgb(colors.light)));
-        }
-        if (colors.dark) {
-          setColor(palette[color], 'darkChannel', safeColorChannel(toRgb(colors.dark)));
-        }
-        if (colors.contrastText) {
-          setColor(
-            palette[color],
-            'contrastTextChannel',
-            safeColorChannel(toRgb(colors.contrastText)),
+      });
+    } else {
+      Object.keys(palette).forEach((color) => {
+        const colors = palette[color];
+        if (colors.main && colors.contrastText) {
+          // replace hardcoded `main` color in contrastText with CSS variable
+          palette[color].contrastText = colorContrast(
+            cssVarPrefix
+              ? `var(--${cssVarPrefix}-palette-${color}-main)`
+              : `var(--palette-${color}-main)`,
           );
         }
-
-        if (color === 'text') {
-          // Text colors: text.primary, text.secondary
-          setColorChannel(palette[color], 'primary');
-          setColorChannel(palette[color], 'secondary');
-        }
-
-        if (color === 'action') {
-          // Action colors: action.active, action.selected
-          if (colors.active) {
-            setColorChannel(palette[color], 'active');
-          }
-          if (colors.selected) {
-            setColorChannel(palette[color], 'selected');
-          }
-        }
-      }
-    });
+      });
+    }
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
@@ -623,6 +626,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     disableCssColorScheme,
     shouldSkipGeneratingVar,
     getSelector: defaultGetSelector(theme),
+    enableRelativeColor: experimental_relativeColor,
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
   theme.vars = vars;

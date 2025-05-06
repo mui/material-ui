@@ -203,6 +203,10 @@ function getDefaultWarning(mode = 'light') {
   };
 }
 
+export function colorContrast(background) {
+  return `oklch(from ${background} var(--__l) 0 h / var(--__a))`;
+}
+
 export default function createPalette(palette) {
   const {
     mode = 'light',
@@ -224,7 +228,7 @@ export default function createPalette(palette) {
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
     if (colorSpace) {
-      return `oklch(from ${background} var(--__l) 0 h / var(--__a))`;
+      return colorContrast(background);
     }
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold

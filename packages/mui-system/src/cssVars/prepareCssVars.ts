@@ -12,6 +12,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     prefix?: string;
     colorSchemeSelector?: 'media' | 'class' | 'data' | string;
     disableCssColorScheme?: boolean;
+    enableRelativeColor?: boolean;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
     getSelector?: (
       colorScheme: keyof T['colorSchemes'] | undefined,
@@ -23,6 +24,7 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
     getSelector = defaultGetSelector,
     disableCssColorScheme,
     colorSchemeSelector: selector,
+    enableRelativeColor,
   } = parserConfig;
   // @ts-ignore - ignore components do not exist
   const { colorSchemes = {}, components, defaultColorScheme = 'light', ...otherTheme } = theme;
@@ -127,6 +129,16 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
           : { ...css };
       insertStyleSheet(getSelector(key as keyof T['colorSchemes'], { ...finalCss }), finalCss);
     });
+
+    if (enableRelativeColor) {
+      stylesheets.push({
+        ':root': {
+          // use double underscore to indicate that these are private variables
+          '--__l': 'clamp(0, (l / 0.7 - 1) * -infinity, 1)',
+          '--__a': 'clamp(0.87, (l / 0.7 - 1) * -infinity, 1)', // 0.87 is the default alpha value for black text.
+        },
+      });
+    }
 
     return stylesheets;
   };
