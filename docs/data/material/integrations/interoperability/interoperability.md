@@ -473,7 +473,7 @@ export default function CssModulesPriority() {
 
 ### Deeper elements
 
-When styling a Slider, you may need to target child elements like the thumb. Material UI components often use increased specificity for child elements (e.g., `.parent .child`). CSS Modules scopes class names, so the generated class names will not match Material UI's.
+When styling a Slider, you may need to target child elements like the thumb. Material UI components often use increased specificity for child elements (for example, `.parent .child`). CSS Modules scopes class names, so the generated class names will not match Material UI's.
 
 To apply styles to Material UI classes from CSS Modules, use the `:global` selector.
 
@@ -547,7 +547,7 @@ export default function CssModulesSliderDeep2() {
 
 ### Targeting Material UI state classes with CSS Modules
 
-Material UI uses global class names to indicate component states (e.g., `.Mui-selected`, `.Mui-disabled`). Since CSS Modules scope styles locally, targeting these global state classes requires `:global`.
+Material UI uses global class names to indicate component states (for example, `.Mui-selected`, `.Mui-disabled`). Since CSS Modules scope styles locally, targeting these global state classes requires `:global`.
 
 Here's how to apply styles conditionally, based on Material UI state classes:
 
