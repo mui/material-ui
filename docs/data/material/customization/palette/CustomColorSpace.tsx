@@ -7,7 +7,10 @@ import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 
 const theme = createTheme({
-  colorSpace: 'oklch',
+  cssVariables: {
+    experimental_relativeColor: true,
+    cssVarPrefix: 'colorSpace',
+  },
   palette: {
     primary: {
       main: 'oklch(0.65 0.3 28.95)',
