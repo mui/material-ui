@@ -103,18 +103,16 @@ const AppBarRoot = styled(Paper, {
           '--AppBar-background': theme.vars
             ? theme.vars.palette.AppBar.defaultBg
             : theme.palette.grey[100],
-          '--AppBar-color':
-            theme.vars || theme.colorSpace
-              ? (theme.vars || theme).palette.text.primary
-              : theme.palette.getContrastText(theme.palette.grey[100]), // TODO: remove `getContrastText` in v8 because `theme.palette.grey[100]` always light
+          '--AppBar-color': theme.vars
+            ? theme.vars.palette.text.primary
+            : theme.palette.getContrastText(theme.palette.grey[100]),
           ...theme.applyStyles('dark', {
             '--AppBar-background': theme.vars
               ? theme.vars.palette.AppBar.defaultBg
               : theme.palette.grey[900],
-            '--AppBar-color':
-              theme.vars || theme.colorSpace
-                ? (theme.vars || theme).palette.text.primary
-                : theme.palette.getContrastText(theme.palette.grey[900]), // TODO: remove `getContrastText` in v8 because `theme.palette.grey[100]` always dark
+            '--AppBar-color': theme.vars
+              ? theme.vars.palette.text.primary
+              : theme.palette.getContrastText(theme.palette.grey[900]),
           }),
         },
       },
