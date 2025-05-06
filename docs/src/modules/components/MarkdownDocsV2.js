@@ -39,6 +39,8 @@ function getHookTranslatedHeader(t, header) {
   return translations[header] || header;
 }
 
+const isBrowser = typeof window !== 'undefined';
+
 export default function MarkdownDocsV2(props) {
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
@@ -217,7 +219,7 @@ export default function MarkdownDocsV2(props) {
 
   let scopedDemo = router.query.scopedDemo;
 
-  if (scopedDemo === undefined && typeof window !== 'undefined') {
+  if (scopedDemo === undefined && isBrowser) {
     // In production, the next router query params are `undefined` on the first render
     // Fall back to window.location to get query params ASAP
     scopedDemo = new URLSearchParams(window.location.search).get('scopedDemo');
@@ -226,8 +228,12 @@ export default function MarkdownDocsV2(props) {
   // eslint-disable-next-line no-console
   console.log('scopedDemo', scopedDemo);
 
-  if (scopedDemo) {
+  if (scopedDemo !== undefined) {
     const isJoy = canonicalAs.startsWith('/joy-ui/');
+    if (isBrowser) {
+      // Undo the document.body.style.visibility = 'hidden'; in _document.js
+      document.body.style.visibility = 'initial';
+    }
     return (
       <DemoPageThemeProvider hasJoy={isJoy}>
         <GlobalStyles />
