@@ -134,8 +134,9 @@ function prepareCssVars<T extends DefaultCssVarsTheme, ThemeVars extends Record<
       stylesheets.push({
         ':root': {
           // use double underscore to indicate that these are private variables
-          '--__l': 'clamp(0, (l / 0.7 - 1) * -infinity, 1)',
-          '--__a': 'clamp(0.87, (l / 0.7 - 1) * -infinity, 1)', // 0.87 is the default alpha value for black text.
+          '--__l-threshold': '0.7',
+          '--__l': 'clamp(0, (l / var(--__l-threshold) - 1) * -infinity, 1)',
+          '--__a': 'clamp(0.87, (l / var(--__l-threshold) - 1) * -infinity, 1)', // 0.87 is the default alpha value for black text.
         },
       });
     }

@@ -123,7 +123,7 @@ export default function createTheme(
     colorSchemesInput.light = true;
   }
 
-  const theme = createThemeWithVars(
+  return createThemeWithVars(
     {
       ...rest,
       colorSchemes: colorSchemesInput,
@@ -132,6 +132,4 @@ export default function createTheme(
     },
     ...args,
   );
-
-  return theme;
 }

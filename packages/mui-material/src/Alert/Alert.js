@@ -108,9 +108,7 @@ const AlertRoot = styled(Paper, {
                       theme.palette.mode === 'dark'
                         ? theme.palette[color].dark
                         : theme.palette[color].main,
-                    color: theme.colorSpace
-                      ? theme.palette[color].contrastText
-                      : theme.palette.getContrastText(theme.palette[color].main),
+                    color: theme.palette.getContrastText(theme.palette[color].main),
                   }),
             },
           })),

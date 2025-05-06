@@ -89,7 +89,6 @@ export interface Theme extends BaseTheme, CssVarsProperties {
   alpha: (color: string, value: number | string) => string;
   lighten: (color: string, coefficient: number | string) => string;
   darken: (color: string, coefficient: number | string) => string;
-  contrast: (color: string) => string;
 }
 
 /**
