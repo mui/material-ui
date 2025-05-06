@@ -7,5 +7,9 @@ packages:
   - test/moduleResolution
   - apps/*
   - scripts/sizeSnapshot
+
 patchedDependencies:
   styled-components: patches/styled-components.patch
+
+onlyBuiltDependencies:
+  - '@vvago/vale'
