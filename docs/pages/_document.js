@@ -175,7 +175,7 @@ export default class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-              if (window.location.search.includes('scopedDemo')) {
+              if ((new URLSearchParams(window.location.search)).get('scopedDemo')) {
                 document.body.style.visibility = 'hidden';
               }`,
             }}

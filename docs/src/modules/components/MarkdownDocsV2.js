@@ -225,15 +225,12 @@ export default function MarkdownDocsV2(props) {
     scopedDemo = new URLSearchParams(window.location.search).get('scopedDemo');
   }
 
-  // eslint-disable-next-line no-console
-  console.log('scopedDemo', scopedDemo);
-
-  if (scopedDemo !== undefined) {
-    const isJoy = canonicalAs.startsWith('/joy-ui/');
+  if (scopedDemo) {
     if (isBrowser) {
       // Undo the document.body.style.visibility = 'hidden'; in _document.js
       document.body.style.visibility = 'initial';
     }
+    const isJoy = canonicalAs.startsWith('/joy-ui/');
     return (
       <DemoPageThemeProvider hasJoy={isJoy}>
         <GlobalStyles />
