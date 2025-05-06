@@ -1,5 +1,5 @@
 ---
-title: 'The 2019 Material UI Developer Survey: here's what we discovered'
+title: "The 2019 Material UI Developer Survey: here's what we discovered"
 description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
@@ -327,5 +327,8 @@ We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.
 
-<img src="/static/blog/2019-developer-survey-results/vote.gif" style="display: block; margin: 0 auto;" alt="How to upvote on GitHub" />
+<video autoplay muted loop playsinline width="2914" height="1440">
+  <source src="/static/blog/2019-developer-survey-results/vote.mp4" type="video/mp4" />
+</video>
+
 <p class="blog-description">Help us prioritize by upvoting.</p>

@@ -2,13 +2,11 @@
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  exactProp,
-  elementAcceptingRef,
-  unstable_useForkRef as useForkRef,
-  unstable_ownerDocument as ownerDocument,
-  unstable_getReactElementRef as getReactElementRef,
-} from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
+import ownerDocument from '@mui/utils/ownerDocument';
+import getReactElementRef from '@mui/utils/getReactElementRef';
+import exactProp from '@mui/utils/exactProp';
+import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
 import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable

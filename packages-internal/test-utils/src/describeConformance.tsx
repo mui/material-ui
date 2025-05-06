@@ -386,7 +386,7 @@ function testSlotsProp(
       });
     }
 
-    // For testing Material UI components v5, and v6. Likely to be removed in v7.
+    // For testing Material UI components v5, and v6. Likely to be removed in a future major release.
     if (
       testLegacyComponentsProp === true ||
       (Array.isArray(testLegacyComponentsProp) && testLegacyComponentsProp.includes(slotName))

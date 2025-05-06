@@ -155,7 +155,7 @@ const theme = createTheme();
           },
         },
       },
-      MuiGrid2: {
+      MuiGrid: {
         styleOverrides: {
           root: {
             justifyContent: 'space-between',
@@ -218,6 +218,7 @@ const theme = createTheme();
             variants: [
               {
                 props: ({ ownerState }) => ownerState.color === 'primary',
+                style: {},
               },
             ],
           }),
@@ -260,6 +261,27 @@ const theme = createTheme();
     cssVariables: {
       rootSelector: ':host',
       colorSchemeSelector: 'class',
+    },
+  });
+}
+
+// Invalid variant
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          // @ts-expect-error invalid variant
+          root: {
+            variants: [
+              {
+                props: { variant: 'not-a-variant' },
+                style: { border: 0 },
+              },
+            ],
+          },
+        },
+      },
     },
   });
 }

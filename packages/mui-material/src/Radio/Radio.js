@@ -127,6 +127,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     disableRipple = false,
     slots = {},
     slotProps = {},
+    inputProps,
     ...other
   } = props;
 
@@ -166,6 +167,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     }
   }
 
+  const externalInputProps = slotProps.input ?? inputProps;
+
   const [RootSlot, rootSlotProps] = useSlot('root', {
     ref,
     elementType: RadioRoot,
@@ -197,7 +200,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       slotProps: {
         // Do not forward `slotProps.root` again because it's already handled by the `RootSlot` in this file.
         input:
-          typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
+          typeof externalInputProps === 'function'
+            ? externalInputProps(ownerState)
+            : externalInputProps,
       },
     },
   });
@@ -256,13 +261,13 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
-   * @deprecated Use `slotProps.input` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
   /**
    * Pass a ref to the `input` element.
-   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputRef: refType,
   /**

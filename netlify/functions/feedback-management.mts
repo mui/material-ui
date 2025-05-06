@@ -106,7 +106,7 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
 
     const channelId = channel?.id;
 
-    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
+    const { comment, currentLocationURL = '', commentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -121,7 +121,7 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
       range: 'Deleted messages!A:D',
       valueInputOption: 'USER_ENTERED',
       resource: {
-        values: [[username, comment, currentLocationURL, commmentSectionURL]],
+        values: [[username, comment, currentLocationURL, commentSectionURL]],
       },
     });
 
@@ -150,7 +150,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
     } = body as BlockAction<ButtonAction>;
 
     const channelId = channel?.id;
-    const { comment, currentLocationURL = '', commmentSectionURL = '' } = JSON.parse(value);
+    const { comment, currentLocationURL = '', commentSectionURL = '' } = JSON.parse(value);
 
     const googleAuth = new JWT({
       email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
@@ -165,7 +165,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
       range: 'Sheet1!A:D',
       valueInputOption: 'USER_ENTERED',
       updates: {
-        values: [[username, comment, currentLocationURL, commmentSectionURL]],
+        values: [[username, comment, currentLocationURL, commentSectionURL]],
       },
     });
 
@@ -198,24 +198,22 @@ export const handler: Handler = async (event, context, callback) => {
         rating,
         comment,
         currentLocationURL,
-        commmentSectionURL: inCommmentSectionURL,
-        commmentSectionTitle,
+        commentSectionURL: inCommentSectionURL,
+        commentSectionTitle,
         githubRepo,
         productId,
       } = data;
 
       // The design feedback alert was removed in https://github.com/mui/material-ui/pull/39691
       // This dead code is here to simplify the creation of special feedback channel
-      const isDesignFeedback = inCommmentSectionURL.includes('#new-docs-api-feedback');
-      const commmentSectionURL = isDesignFeedback ? '' : inCommmentSectionURL;
+      const isDesignFeedback = inCommentSectionURL.includes('#new-docs-api-feedback');
+      const commentSectionURL = isDesignFeedback ? '' : inCommentSectionURL;
 
       const simpleSlackMessage = [
         `New comment ${rating === 1 ? '👍' : ''}${rating === 0 ? '👎' : ''}`,
         `>${comment.split('\n').join('\n>')}`,
         `sent from ${currentLocationURL}${
-          commmentSectionTitle
-            ? ` (from section <${commmentSectionURL}|${commmentSectionTitle})>`
-            : ''
+          commentSectionTitle ? ` (from section <${commentSectionURL}|${commentSectionTitle})>` : ''
         }`,
       ].join('\n\n');
 
@@ -224,7 +222,7 @@ export const handler: Handler = async (event, context, callback) => {
         body: `Feedback received:
 ${comment}
 
-from ${commmentSectionURL}
+from ${commentSectionURL}
 `,
       });
 
@@ -260,7 +258,7 @@ from ${commmentSectionURL}
                 value: JSON.stringify({
                   comment,
                   currentLocationURL,
-                  commmentSectionURL,
+                  commentSectionURL,
                 }),
                 action_id: 'save_message',
               },
@@ -273,7 +271,7 @@ from ${commmentSectionURL}
                 value: JSON.stringify({
                   comment,
                   currentLocationURL,
-                  commmentSectionURL,
+                  commentSectionURL,
                 }),
                 style: 'danger',
                 action_id: 'delete_action',

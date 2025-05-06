@@ -188,7 +188,11 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
       externalForwardedProps,
       getSlotProps: (handlers) => ({
         onClickAway: (...params) => {
+          const event = params[0];
           handlers.onClickAway?.(...params);
+          if (event?.defaultMuiPrevented) {
+            return;
+          }
           onClickAway(...params);
         },
       }),
@@ -288,12 +292,12 @@ Snackbar.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * Props applied to the `ClickAwayListener` element.
-   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.clickAwayListener` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
    * Props applied to the [`SnackbarContent`](https://mui.com/material-ui/api/snackbar-content/) element.
-   * @deprecated Use `slotProps.content` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.content` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ContentProps: PropTypes.object,
   /**
@@ -397,7 +401,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
@@ -420,7 +424,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated Use `slotProps.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps: PropTypes.object,

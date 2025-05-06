@@ -30,7 +30,9 @@ The following steps must be proposed as a pull request.
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable
 3. Update the root `/package.json`'s version
-4. Run `pnpm release:version`. Keep the package versions of stable public packages the same as the root `package.json` version.
+4. Run `pnpm release:version`. Keep in mind:
+   1. Only packages that have changes since the last release should have their version bumped.
+   2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
@@ -48,7 +50,7 @@ Force push if necessary.
 
 ### Announce
 
-Follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
+After the docs is live, follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
 
 ## Deploy documentation without a release
 

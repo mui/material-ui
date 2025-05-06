@@ -127,7 +127,6 @@ export const SliderRoot = styled('span', {
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
-  overridesResolver: (props, styles) => styles.rail,
 })({
   display: 'block',
   position: 'absolute',
@@ -165,7 +164,6 @@ export const SliderRail = styled('span', {
 export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
-  overridesResolver: (props, styles) => styles.track,
 })(
   memoTheme(({ theme }) => {
     return {
@@ -343,7 +341,6 @@ export const SliderThumb = styled('span', {
 const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
-  overridesResolver: (props, styles) => styles.valueLabel,
 })(
   memoTheme(({ theme }) => ({
     zIndex: 1,
@@ -493,7 +490,6 @@ export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
-  overridesResolver: (props, styles) => styles.markLabel,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
@@ -929,7 +925,7 @@ Slider.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -947,7 +943,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

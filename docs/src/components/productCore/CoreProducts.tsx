@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Section from 'docs/src/layouts/Section';
 import { InfoCard } from '@mui/docs/InfoCard';
 import { Theme } from '@mui/material/styles';

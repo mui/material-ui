@@ -7,6 +7,11 @@ import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface ListItemTextSlots {
   /**
+   * The component that renders the root slot.
+   * @default 'div'
+   */
+  root?: React.ElementType;
+  /**
    * The component that renders the primary slot.
    * @default Typography
    */
@@ -21,6 +26,11 @@ export interface ListItemTextSlots {
 export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
   ListItemTextSlots,
   {
+    /**
+     * Props forwared to the root slot.
+     * By default, the available props are based on `div` element.
+     */
+    root: SlotProps<'div', {}, ListItemTextOwnerState>;
     /**
      * Props forwared to the primary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
@@ -70,7 +80,7 @@ export interface ListItemTextProps<
   /**
    * These props will be forwarded to the primary typography component
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.primary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   primaryTypographyProps?: TypographyProps<
     PrimaryTypographyComponent,
@@ -83,7 +93,7 @@ export interface ListItemTextProps<
   /**
    * These props will be forwarded to the secondary typography component
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   secondaryTypographyProps?: TypographyProps<
     SecondaryTypographyComponent,
@@ -99,11 +109,11 @@ export interface ListItemTextProps<
  *
  * Demos:
  *
- * - [Lists](https://next.mui.com/material-ui/react-list/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
  *
  * API:
  *
- * - [ListItemText API](https://next.mui.com/material-ui/api/list-item-text/)
+ * - [ListItemText API](https://mui.com/material-ui/api/list-item-text/)
  */
 export default function ListItemText<
   PrimaryTypographyComponent extends React.ElementType = 'span',

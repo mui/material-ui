@@ -58,7 +58,6 @@ const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
   name: 'MuiSelect',
   slot: 'NativeInput',
-  overridesResolver: (props, styles) => styles.nativeInput,
 })({
   bottom: 0,
   left: 0,
@@ -556,16 +555,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           horizontal: 'center',
         }}
         {...MenuProps}
-        MenuListProps={{
-          'aria-labelledby': labelId,
-          role: 'listbox',
-          'aria-multiselectable': multiple ? 'true' : undefined,
-          disableListWrap: true,
-          id: listboxId,
-          ...MenuProps.MenuListProps,
-        }}
         slotProps={{
           ...MenuProps.slotProps,
+          list: {
+            'aria-labelledby': labelId,
+            role: 'listbox',
+            'aria-multiselectable': multiple ? 'true' : undefined,
+            disableListWrap: true,
+            id: listboxId,
+            ...MenuProps.MenuListProps,
+          },
           paper: {
             ...paperProps,
             style: {

@@ -1,4 +1,3 @@
-import { AvatarGroupProps } from '../AvatarGroup';
 import { LoadingButtonProps } from '../LoadingButton';
 import { TabListProps } from '../TabList';
 import { TabPanelProps } from '../TabPanel';
@@ -12,7 +11,6 @@ import { TimelineSeparatorProps } from '../TimelineSeparator';
 import { MasonryProps } from '../Masonry';
 
 export interface LabComponentsPropsList {
-  MuiAvatarGroup: AvatarGroupProps;
   MuiLoadingButton: LoadingButtonProps;
   MuiMasonry: MasonryProps;
   MuiTabList: TabListProps;

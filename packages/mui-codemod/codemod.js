@@ -17,8 +17,8 @@ async function runJscodeshiftTransform(transform, files, flags, codemodFlags) {
   const paths = [
     path.resolve(__dirname, './src', `${transform}/index.js`),
     path.resolve(__dirname, './src', `${transform}.js`),
-    path.resolve(__dirname, './node', `${transform}/index.js`),
-    path.resolve(__dirname, './node', `${transform}.js`),
+    path.resolve(__dirname, './', `${transform}/index.js`),
+    path.resolve(__dirname, './', `${transform}.js`),
   ];
 
   let transformerPath;
@@ -107,7 +107,7 @@ async function runPostcssTransform(transform, files) {
   // local postcss plugins are loaded through config files https://github.com/postcss/postcss-load-config/issues/17#issuecomment-253125559
   const paths = [
     path.resolve(__dirname, './src', `${transform}/postcss.config.js`),
-    path.resolve(__dirname, './node', `${transform}/postcss.config.js`),
+    path.resolve(__dirname, './', `${transform}/postcss.config.js`),
   ];
 
   let configPath;
