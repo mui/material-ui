@@ -61,21 +61,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 ### Core
 
-- [blog] Improve setup to create crisp videos (#45971) @oliviertassinari
-- [blog] Add more content to 'Material UI v7 is here' (#45905) @oliviertassinari
-- [blog] Fix migration link on v8 announcement (#45945) @joserodolfofreitas
-- [blog] Update MUI X v8 blogpost release date (#45944) @joserodolfofreitas
-- [blog] Introducing MUI X v8 (#45670) @joserodolfofreitas
-- [core] Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
-- [core] Add security label to dependabot PRs (0a5c027) @oliviertassinari
-- [core] Remove unecessary versions (#46034) @oliviertassinari
-- [core] Remove redundant overrides resolver (#45970) @romgrk
-- [core] Fix duplicate branch reference (#45915) @oliviertassinari
-- [core] Fix outdated <link rel="shortcut icon" (#45916) @oliviertassinari
-- [core] Fix redirection chains (#45930) @oliviertassinari
-- [core] Run pnpm docs:sync-team (beee09f) @oliviertassinari
-- [core] Add `pkg.pr.new` publishing (#42984) @Aslemammad
-- [core] Remove @mui/base from the master branch (#45857) @mnajdova
 - [code-infra] Give a stable name to dev tool app (3889ded) @oliviertassinari
 - [code-infra] Normalize author package in org (8135638) @oliviertassinari
 - [code-infra] Correct some manually curated .d.ts files (#46054) @Janpot
@@ -89,6 +74,32 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [code-infra] Clean up bundle size checker (#45622) @Janpot
 - [code-infra] Fix `StrictMode` effects not being called twice in React 19 tests (#45812) @bernardobelchior
 - [code-infra] Convert `@mui/utils` to typescript (#45671) @Janpot
+- [core] Fix internal version duplication (#46051) @oliviertassinari
+- [core] Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
+- [core] Add security label to dependabot PRs (0a5c027) @oliviertassinari
+- [core] Remove unecessary versions (#46034) @oliviertassinari
+- [core] Remove redundant overrides resolver (#45970) @romgrk
+- [core] Fix duplicate branch reference (#45915) @oliviertassinari
+- [core] Fix outdated <link rel="shortcut icon" (#45916) @oliviertassinari
+- [core] Fix redirection chains (#45930) @oliviertassinari
+- [core] Run pnpm docs:sync-team (beee09f) @oliviertassinari
+- [core] Add `pkg.pr.new` publishing (#42984) @Aslemammad
+- [core] Remove @mui/base from the master branch (#45857) @mnajdova
+- [docs][Dialog] Remove deprecated props usage in demos (#45923) @sai6855
+- [docs] Fix docs API dark mode color (#46086) @alexfauquette
+- [docs] Add a guide for extending Material UI classes in Tailwind CSS (#46039) @siriwatknp
+- [docs] Add `InitColorSchemeScript` docs and API (#45927) @siriwatknp
+- [docs] Add Tailwind CSS v4 integration guide (#45906) @siriwatknp
+- [docs] Fix 301 links to the system v6 (#45931) @oliviertassinari
+- [docs] Add notification for MUI X v8 announcement (#45942) @joserodolfofreitas
+- [docs] Fix som 301 redirections (ae84b35) @oliviertassinari
+- [docs] Fix some 301 redirections (057384e) @oliviertassinari
+- [docs] Fix logo is not centered on small screens (#45920) @crabsim
+- [docs] Fix line break typo (a2a62d5) @oliviertassinari
+- [docs] Fix markdown typo in templates.md (#45914) @scyzoryck
+- [docs] Add Next.js App Router guide for custom classnames (#45852) @siriwatknp
+- [docs-infra] Improve export into sandbox package.json (#46044) @oliviertassinari
+- [docs-infra] Update feedback Node.js to v22 (#46064) @oliviertassinari
 - [docs-infra] Normalize netlify.toml in org (b101d5c) @oliviertassinari
 - [docs-infra] Uniformize Vale between repositories (0f79796) @oliviertassinari
 - [docs-infra] Fix Vale no longer working (#46029) @oliviertassinari
