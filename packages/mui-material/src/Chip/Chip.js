@@ -459,7 +459,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <CancelIcon className={clsx(classes.deleteIcon)} onClick={handleDeleteIconClick} />
+        <CancelIcon className={classes.deleteIcon} onClick={handleDeleteIconClick} />
       );
   }
 
@@ -501,7 +501,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       {...other}
     >
       {avatar || icon}
-      <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
+      <ChipLabel className={classes.label} ownerState={ownerState}>
         {label}
       </ChipLabel>
       {deleteIcon}
