@@ -4,7 +4,7 @@
 
 <!-- generated comparing v7.0.2..master -->
 
-_May 5, 2025_
+_May 6, 2025_
 
 A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
@@ -14,7 +14,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 
 - [InputBase] Text cursor jumps several lines up when inserting text fragment with new line at the end (#45246) @yermartee
 - [OutlinedInput] Add missing `notchedOutline` slot (#45917) @siriwatknp
-- [Snackbar] Skip default behavior when defaultMuiPrevent… (#45629) @sai6855
+- [Snackbar] Skip default `onClickAway` behavior when `defaultMuiPrevented` is provided (#45629) @sai6855
 - [Avatar] Fix img slot types and add missing slots (#45483) @siriwatknp
 - [Badge] Replace useSlotProps with useSlot hook (#45871) @sai6855
 - [BottomNavigationAction] Add slots and slotProps (#45776) @sai6855
@@ -85,19 +85,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [core] Run pnpm docs:sync-team (beee09f) @oliviertassinari
 - [core] Add `pkg.pr.new` publishing (#42984) @Aslemammad
 - [core] Remove @mui/base from the master branch (#45857) @mnajdova
-- [docs][Dialog] Remove deprecated props usage in demos (#45923) @sai6855
-- [docs] Fix docs API dark mode color (#46086) @alexfauquette
-- [docs] Add a guide for extending Material UI classes in Tailwind CSS (#46039) @siriwatknp
-- [docs] Add `InitColorSchemeScript` docs and API (#45927) @siriwatknp
-- [docs] Add Tailwind CSS v4 integration guide (#45906) @siriwatknp
-- [docs] Fix 301 links to the system v6 (#45931) @oliviertassinari
-- [docs] Add notification for MUI X v8 announcement (#45942) @joserodolfofreitas
-- [docs] Fix som 301 redirections (ae84b35) @oliviertassinari
-- [docs] Fix some 301 redirections (057384e) @oliviertassinari
-- [docs] Fix logo is not centered on small screens (#45920) @crabsim
-- [docs] Fix line break typo (a2a62d5) @oliviertassinari
-- [docs] Fix markdown typo in templates.md (#45914) @scyzoryck
-- [docs] Add Next.js App Router guide for custom classnames (#45852) @siriwatknp
 - [docs-infra] Improve export into sandbox package.json (#46044) @oliviertassinari
 - [docs-infra] Update feedback Node.js to v22 (#46064) @oliviertassinari
 - [docs-infra] Normalize netlify.toml in org (b101d5c) @oliviertassinari
