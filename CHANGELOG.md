@@ -74,17 +74,6 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [code-infra] Clean up bundle size checker (#45622) @Janpot
 - [code-infra] Fix `StrictMode` effects not being called twice in React 19 tests (#45812) @bernardobelchior
 - [code-infra] Convert `@mui/utils` to typescript (#45671) @Janpot
-- [core] Fix internal version duplication (#46051) @oliviertassinari
-- [core] Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
-- [core] Add security label to dependabot PRs (0a5c027) @oliviertassinari
-- [core] Remove unecessary versions (#46034) @oliviertassinari
-- [core] Remove redundant overrides resolver (#45970) @romgrk
-- [core] Fix duplicate branch reference (#45915) @oliviertassinari
-- [core] Fix outdated <link rel="shortcut icon" (#45916) @oliviertassinari
-- [core] Fix redirection chains (#45930) @oliviertassinari
-- [core] Run pnpm docs:sync-team (beee09f) @oliviertassinari
-- [core] Add `pkg.pr.new` publishing (#42984) @Aslemammad
-- [core] Remove @mui/base from the master branch (#45857) @mnajdova
 - [docs-infra] Improve export into sandbox package.json (#46044) @oliviertassinari
 - [docs-infra] Update feedback Node.js to v22 (#46064) @oliviertassinari
 - [docs-infra] Normalize netlify.toml in org (b101d5c) @oliviertassinari
@@ -94,6 +83,17 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [docs-infra] StackBlitz WebContainer demos (#45924) @Janpot
 - [docs-infra] Fix feedback management (#45872) @alexfauquette
 - [test] Replace `playwright` with `@playwright/test` (#45998) @ZeeshanTamboli
+- Fix internal version duplication (#46051) @oliviertassinari
+- Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
+- Add security label to dependabot PRs (0a5c027) @oliviertassinari
+- Remove unecessary versions (#46034) @oliviertassinari
+- Remove redundant overrides resolver (#45970) @romgrk
+- Fix duplicate branch reference (#45915) @oliviertassinari
+- Fix outdated <link rel="shortcut icon" (#45916) @oliviertassinari
+- Fix redirection chains (#45930) @oliviertassinari
+- Run pnpm docs:sync-team (beee09f) @oliviertassinari
+- Add `pkg.pr.new` publishing (#42984) @Aslemammad
+- Remove @mui/base from the master branch (#45857) @mnajdova
 
 All contributors of this release in alphabetical order: @alexfauquette, @andreachiera, @Aslemammad, @bernardobelchior, @CodeLeom, @crabsim, @Demianeen, @good-jinu, @Janpot, @joserodolfofreitas, @mnajdova, @Nayeem-XTREME, @oliviertassinari, @renovate[bot], @romgrk, @sai6855, @scyzoryck, @siriwatknp, @SuyashShukla0007, @yermartee, @ZeeshanTamboli
 
