@@ -685,19 +685,6 @@ jobs:
           command: pnpm danger ci --fail-on-errors
           environment:
             DANGER_COMMAND: reportBundleSize
-  test_benchmark:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
-      - run: pnpm benchmark:browser
-      - store_artifacts:
-          name: Publish benchmark results as a pipeline artifact.
-          path: tmp/benchmarks
-          destination: benchmarks
 workflows:
   version: 2
   pipeline:
@@ -965,10 +952,4 @@ workflows:
                 - v6.x
     jobs:
       - test_types_next:
-          <<: *default-context
-  benchmark:
-    when:
-      equal: [benchmark, << pipeline.parameters.workflow >>]
-    jobs:
-      - test_benchmark:
           <<: *default-context
