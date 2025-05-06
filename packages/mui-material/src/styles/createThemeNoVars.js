@@ -45,7 +45,7 @@ function attachColorManipulators(theme) {
     alpha(color, coefficient) {
       const obj = this || theme;
       if (obj.colorSpace) {
-        return `oklch(from ${color} l c h / ${coefficient})`;
+        return `oklch(from ${color} l c h / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
       }
       if (obj.vars) {
         // To preserve the behavior of the CSS theme variables

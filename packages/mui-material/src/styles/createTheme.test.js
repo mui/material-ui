@@ -723,10 +723,10 @@ describe('createTheme', () => {
       });
 
       expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
-        'oklch(from oklch(0.65 0.3 28.95) l c h / 50%)',
+        'oklch(from oklch(0.65 0.3 28.95) l c h / 0.5)',
       );
       expect(theme.alpha(theme.palette.primary.main, '0.12 + 0.08')).to.equal(
-        'oklch(from oklch(0.65 0.3 28.95) l c h / calc((0.12 + 0.08) * 100%))',
+        'oklch(from oklch(0.65 0.3 28.95) l c h / calc(0.12 + 0.08))',
       );
       expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
         'color-mix(in oklch, oklch(0.65 0.3 28.95), #fff 50%)',
@@ -738,8 +738,9 @@ describe('createTheme', () => {
 
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {
       const theme = createTheme({
-        cssVariables: true,
-        colorSpace: 'oklch',
+        cssVariables: {
+          experimental_relativeColor: true,
+        },
         palette: {
           primary: {
             main: 'oklch(0.65 0.3 28.95)',
@@ -748,7 +749,7 @@ describe('createTheme', () => {
       });
 
       expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
-        'oklch(from oklch(0.65 0.3 28.95) l c h / 50%)',
+        'oklch(from oklch(0.65 0.3 28.95) l c h / 0.5)',
       );
       expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
         'color-mix(in var(--mui-colorSpace, oklch), oklch(0.65 0.3 28.95), #fff 50%)',
@@ -760,8 +761,9 @@ describe('createTheme', () => {
 
     it('[color space with CSS variables] should use CSS for manipulating vars', () => {
       const theme = createTheme({
-        cssVariables: true,
-        colorSpace: 'oklch',
+        cssVariables: {
+          experimental_relativeColor: true,
+        },
         palette: {
           primary: {
             main: 'oklch(0.65 0.3 28.95)',
@@ -769,14 +771,40 @@ describe('createTheme', () => {
         },
       });
 
-      expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
-        'oklch(from var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)) l c h / 50%)',
+      expect(theme.alpha(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'oklch(from var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)) l c h / 0.3)',
       );
-      expect(theme.lighten(theme.vars.palette.primary.main, 0.5)).to.equal(
-        'color-mix(in var(--mui-colorSpace, oklch), var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #fff 50%)',
+      expect(theme.lighten(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'color-mix(in var(--mui-colorSpace, oklch), var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #fff 30%)',
       );
-      expect(theme.darken(theme.vars.palette.primary.main, 0.5)).to.equal(
-        'color-mix(in var(--mui-colorSpace, oklch), var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #000 50%)',
+      expect(theme.darken(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'color-mix(in var(--mui-colorSpace, oklch), var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #000 30%)',
+      );
+    });
+
+    it('mixing color space', () => {
+      const theme = createTheme({
+        cssVariables: {
+          experimental_relativeColor: true,
+        },
+        palette: {
+          primary: {
+            main: 'oklch(0.65 0.3 28.95)',
+          },
+          secondary: {
+            main: 'hsl(0 0% 100%)',
+          },
+        },
+      });
+
+      expect(theme.alpha(theme.palette.secondary.main, 0.2)).to.equal(
+        'oklch(from hsl(0 0% 100%) l c h / 0.2)',
+      );
+      expect(theme.lighten(theme.palette.secondary.main, 0.2)).to.equal(
+        'color-mix(in var(--mui-colorSpace, oklch), hsl(0 0% 100%), #fff 20%)',
+      );
+      expect(theme.darken(theme.palette.secondary.main, 0.2)).to.equal(
+        'color-mix(in var(--mui-colorSpace, oklch), hsl(0 0% 100%), #000 20%)',
       );
     });
   });
