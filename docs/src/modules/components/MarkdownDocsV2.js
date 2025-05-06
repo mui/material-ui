@@ -323,6 +323,7 @@ MarkdownDocsV2.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  enableOpenInNewTab: PropTypes.bool,
   hooksApiDescriptions: PropTypes.object,
   hooksApiPageContents: PropTypes.object,
   srcComponents: PropTypes.object,

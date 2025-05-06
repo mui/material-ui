@@ -655,6 +655,7 @@ DemoToolbar.propTypes = {
   demoName: PropTypes.string.isRequired,
   demoOptions: PropTypes.object.isRequired,
   demoSourceId: PropTypes.string,
+  enableOpenInNewTab: PropTypes.bool,
   hasNonSystemDemos: PropTypes.string,
   initialFocusRef: PropTypes.shape({ current: PropTypes.object }).isRequired,
   onCodeOpenChange: PropTypes.func.isRequired,

@@ -637,5 +637,6 @@ Demo.propTypes = {
    */
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
+  enableOpenInNewTab: PropTypes.bool,
   githubLocation: PropTypes.string.isRequired,
 };

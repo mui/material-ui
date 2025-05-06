@@ -97,6 +97,7 @@ MarkdownDocs.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  enableOpenInNewTab: PropTypes.bool,
   srcComponents: PropTypes.object,
 };
 
