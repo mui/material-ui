@@ -218,7 +218,21 @@ describe('createPalette()', () => {
       expect(palette.primary.main).to.equal('oklch(0.5 0.5 0)');
       expect(palette.primary.light).to.equal('color-mix(in oklch, oklch(0.5 0.5 0), #fff 20%)');
       expect(palette.primary.dark).to.equal('color-mix(in oklch, oklch(0.5 0.5 0), #000 30%)');
-      expect(palette.primary.contrastText).to.equal('#fff');
+    });
+
+    it('should use oklch relative color for contrast text', () => {
+      const palette = createPalette({
+        colorSpace: 'oklch',
+        primary: {
+          main: 'color(display-p3 0.5 0.5 0)',
+        },
+      });
+      expect(palette.primary.contrastText).to.equal(
+        'oklch(from color(display-p3 0.5 0.5 0) var(--__l) 0 h / var(--__a))',
+      );
+      expect(palette.getContrastText('color(display-p3 0.8 0.8 0)')).to.equal(
+        'oklch(from color(display-p3 0.8 0.8 0) var(--__l) 0 h / var(--__a))',
+      );
     });
 
     it('should use color-mix with tonal when using color space', () => {

@@ -223,6 +223,9 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
+    if (colorSpace) {
+      return `oklch(from ${background} var(--__l) 0 h / var(--__a))`;
+    }
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold
         ? dark.text.primary
@@ -284,7 +287,7 @@ export default function createPalette(palette) {
       addLightOrDark(color, 'dark', darkShade, tonalOffset);
     }
     if (!color.contrastText) {
-      color.contrastText = colorSpace ? common.white : getContrastText(color.main);
+      color.contrastText = getContrastText(color.main);
     }
 
     return color;
