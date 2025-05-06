@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "7.0.2",
+  "version": "7.1.0",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "main": "./src/index.ts",

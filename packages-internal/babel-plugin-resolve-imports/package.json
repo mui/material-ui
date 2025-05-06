@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-babel-plugin-resolve-imports",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "MUI Team",
   "description": "Babel plugin that resolves import specifiers to their actual output file.",
   "main": "./index.js",

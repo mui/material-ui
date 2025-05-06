@@ -1,12 +1,11 @@
 {
   "name": "@mui/monorepo",
-  "version": "7.0.2",
+  "version": "7.1.0",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "proptypes": "tsx ./scripts/generateProptypes.ts",
     "deduplicate": "pnpm dedupe",
-    "benchmark:browser": "pnpm --filter benchmark browser",
     "build": "lerna run build --ignore docs",
     "build:ci": "lerna run build --ignore docs --ignore @app/pigment-css-next-app --concurrency 8 --skip-nx-cache",
     "build:public": "lerna run --no-private build",

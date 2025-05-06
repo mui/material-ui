@@ -399,8 +399,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 
 ![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
-It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the
-bundling solution people are using.
+It's hard to know the market share of [this styling solution](https://github.com/css-modules/css-modules) as it's dependent on the bundling solution people are using.
 
 {{"demo": "StyledComponents.js", "hideToolbar": true}}
 
@@ -449,7 +448,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from Material UI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from Material UI. To ensure the correct injection order, use the `prepend` option:
 
 ```jsx
 import * as React from 'react';
@@ -470,18 +469,15 @@ export default function CssModulesPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/-/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components with `StyleSheetManager` and a custom `target`, ensure that the target is the first element in the HTML `<head>`. See the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/-/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package for an example.
 
 ### Deeper elements
 
-If you attempt to style the Slider,
-you will likely need to affect some of the Slider's child elements, for example the thumb.
-In Material UI, all child elements have an increased specificity of 2: `.parent .child {}`. When writing overrides, you need to do the same.
-It's important to keep in mind that CSS Modules adds an unique id to each class, and that id won't be present on the Material UI provided children class. To escape from that, CSS Modules provides a functionality, the `:global` selector.
+When styling a Slider, you may need to target child elements like the thumb. Material UI components often use increased specificity for child elements (for example, `.parent .child`). CSS Modules scopes class names, so the generated class names will not match Material UI's.
 
-The following examples override the slider's `thumb` style in addition to the custom styles on the slider itself.
+To apply styles to Material UI classes from CSS Modules, use the `:global` selector.
 
-{{"demo": "StyledComponentsDeep.js", "hideToolbar": true}}
+#### Using `:global`
 
 ```css title="CssModulesSliderDeep1.module.css"
 .slider {
@@ -492,16 +488,16 @@ The following examples override the slider's `thumb` style in addition to the cu
   color: #2e8b57;
 }
 
-.slider :global .MuiSlider-thumb {
+.slider :global(.MuiSlider-thumb) {
   border-radius: 1px;
 }
 ```
 
 ```jsx title="CssModulesSliderDeep1.js"
 import * as React from 'react';
+import Slider from '@mui/material/Slider';
 // webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
-import Slider from '@mui/material/Slider';
 
 export default function CssModulesSliderDeep1() {
   return (
@@ -513,7 +509,7 @@ export default function CssModulesSliderDeep1() {
 }
 ```
 
-The above demo relies on the [default `className` values](https://v6.mui.com/system/styles/advanced/), but you can provide your own class name with the `slotProps` API.
+#### Using `slotProps`
 
 ```css title="CssModulesSliderDeep2.module.css"
 .slider {
@@ -531,9 +527,9 @@ The above demo relies on the [default `className` values](https://v6.mui.com/sys
 
 ```jsx title="CssModulesSliderDeep2.js"
 import * as React from 'react';
+import Slider from '@mui/material/Slider';
 // webpack, Parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
-import Slider from '@mui/material/Slider';
 
 export default function CssModulesSliderDeep2() {
   return (
@@ -548,6 +544,48 @@ export default function CssModulesSliderDeep2() {
   );
 }
 ```
+
+### Targeting Material UI state classes with CSS Modules
+
+Material UI uses global class names to indicate component states (for example, `.Mui-selected`, `.Mui-disabled`). Since CSS Modules scope styles locally, targeting these global state classes requires `:global`.
+
+Here's how to apply styles conditionally, based on Material UI state classes:
+
+```css title="MyList.module.css"
+.myListItem {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Combine global state class with a locally scoped class */
+:global(.Mui-selected).myListItem {
+  background-color: #1976d2;
+  color: white;
+}
+```
+
+```jsx title="CssModulesSliderCustomPseudoClasses.js"
+import * as React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import styles from './MyList.module.css';
+
+export default function MyList() {
+  return (
+    <List>
+      <ListItem className={styles.myListItem} selected>
+        <ListItemText primary="Selected item" />
+      </ListItem>
+      <ListItem className={styles.myListItem}>
+        <ListItemText primary="Regular item" />
+      </ListItem>
+    </List>
+  );
+}
+```
+
+This technique allows you to maintain modular styles while responding to dynamic states set by Material UI's global class names.
 
 ## Emotion
 

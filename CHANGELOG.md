@@ -1,5 +1,102 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.1.0
+
+<!-- generated comparing v7.0.2..master -->
+
+_May 6, 2025_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 Material UI now works with **Tailwind CSS v4**! Check out the [setup guide](https://mui.com/material-ui/integrations/tailwindcss/tailwindcss-v4/).
+
+### `@mui/material@7.1.0`
+
+- [InputBase] Text cursor jumps several lines up when inserting text fragment with new line at the end (#45246) @yermartee
+- [OutlinedInput] Add missing `notchedOutline` slot (#45917) @siriwatknp
+- [Snackbar] Skip default `onClickAway` behavior when `defaultMuiPrevented` is provided (#45629) @sai6855
+- [Avatar] Fix img slot types and add missing slots (#45483) @siriwatknp
+- [Badge] Replace useSlotProps with useSlot hook (#45871) @sai6855
+- [BottomNavigationAction] Add slots and slotProps (#45776) @sai6855
+- [CardActionArea] Add slots and slotProps (#45866) @sai6855
+- [useMediaQuery] Add warning and docs for using `useMediaQuery('print')` (#44790) @good-jinu
+- Remove unnecessary clsx usages (#46084) @sai6855
+- Corrected generic type definition in `SelectChangeEvent` (#45941) @SuyashShukla0007
+- Fix theme object changes between renders (#45863) @siriwatknp
+
+### `@mui/material-nextjs@7.1.0`
+
+- Add option to enable CSS layers for pages router (#45596) @siriwatknp
+- Do not wrap `@layer` order rules in App Router (#45864) @Nayeem-XTREME
+
+### `@mui/system@7.1.0`
+
+- Fix `@mui/system` types organization (#45860) @Janpot
+
+### `@mui/styled-engine@7.1.0`
+
+- Infer `ownerState` from props in `styled` (#46083) @siriwatknp
+- Fix style overrides variants type (#45478) @siriwatknp
+
+### Docs
+
+- [Avatar] Add avatar upload demo (#45986) @Demianeen
+- [Dialog] Remove deprecated props usage in demos (#45923) @sai6855
+- [Menu] Update `paper` slot JSDoc default from `Paper` to `PopoverPaper` (#45722) @andreachiera
+- [examples] Remove create-react-app usages (#45426) @CodeLeom
+- Add `AccordionSummary` to the v5 breaking change migration (#45947) @siriwatknp
+- Update CSS variable usage in migration guide for Pigment CSS (#46033) @sai6855
+- Fix docs API dark mode color (#46086) @alexfauquette
+- Add a guide for extending Material UI classes in Tailwind CSS (#46039) @siriwatknp
+- Add `InitColorSchemeScript` docs and API (#45927) @siriwatknp
+- Add Tailwind CSS v4 integration guide (#45906) @siriwatknp
+- Fix 301 links to the system v6 (#45931) @oliviertassinari
+- Add notification for MUI X v8 announcement (#45942) @joserodolfofreitas
+- Fix som 301 redirections (ae84b35) @oliviertassinari
+- Fix some 301 redirections (057384e) @oliviertassinari
+- Fix logo is not centered on small screens (#45920) @crabsim
+- Fix line break typo (a2a62d5) @oliviertassinari
+- Fix markdown typo in templates.md (#45914) @scyzoryck
+- Add Next.js App Router guide for custom classnames (#45852) @siriwatknp
+
+### Core
+
+- [code-infra] Give a stable name to dev tool app (3889ded) @oliviertassinari
+- [code-infra] Normalize author package in org (8135638) @oliviertassinari
+- [code-infra] Correct some manually curated .d.ts files (#46054) @Janpot
+- [code-infra] Align deps versions (#46048) @Janpot
+- [code-infra] Fix dynamic import in imports resolver (#46046) @Janpot
+- [code-infra] Eliminate `@mui/utils` deep imports (#46004) @Janpot
+- [code-infra] Expand renovate.json for react types (#45935) @Janpot
+- [code-infra] Make Argos upload script reusable (#45883) @Janpot
+- [code-infra] Disallow redundant window prefixes for globals (#45880) @Janpot
+- [code-infra] Remove type generation of modern build (#45912) @Janpot
+- [code-infra] Clean up bundle size checker (#45622) @Janpot
+- [code-infra] Fix `StrictMode` effects not being called twice in React 19 tests (#45812) @bernardobelchior
+- [code-infra] Convert `@mui/utils` to typescript (#45671) @Janpot
+- [docs-infra] Improve export into sandbox package.json (#46044) @oliviertassinari
+- [docs-infra] Update feedback Node.js to v22 (#46064) @oliviertassinari
+- [docs-infra] Normalize netlify.toml in org (b101d5c) @oliviertassinari
+- [docs-infra] Uniformize Vale between repositories (0f79796) @oliviertassinari
+- [docs-infra] Fix Vale no longer working (#46029) @oliviertassinari
+- [docs-infra] Remove demo styling switch (#45926) @Janpot
+- [docs-infra] StackBlitz WebContainer demos (#45924) @Janpot
+- [docs-infra] Fix feedback management (#45872) @alexfauquette
+- [test] Replace `playwright` with `@playwright/test` (#45998) @ZeeshanTamboli
+- Fix internal version duplication (#46051) @oliviertassinari
+- Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
+- Add security label to dependabot PRs (0a5c027) @oliviertassinari
+- Remove unecessary versions (#46034) @oliviertassinari
+- Remove redundant overrides resolver (#45970) @romgrk
+- Fix duplicate branch reference (#45915) @oliviertassinari
+- Fix outdated <link rel="shortcut icon" (#45916) @oliviertassinari
+- Fix redirection chains (#45930) @oliviertassinari
+- Run pnpm docs:sync-team (beee09f) @oliviertassinari
+- Add `pkg.pr.new` publishing (#42984) @Aslemammad
+- Remove @mui/base from the master branch (#45857) @mnajdova
+
+All contributors of this release in alphabetical order: @alexfauquette, @andreachiera, @Aslemammad, @bernardobelchior, @CodeLeom, @crabsim, @Demianeen, @good-jinu, @Janpot, @joserodolfofreitas, @mnajdova, @Nayeem-XTREME, @oliviertassinari, @renovate[bot], @romgrk, @sai6855, @scyzoryck, @siriwatknp, @SuyashShukla0007, @yermartee, @ZeeshanTamboli
+
 ## 7.0.2
 
 _Apr 9, 2025_
