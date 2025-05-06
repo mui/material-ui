@@ -56,9 +56,8 @@ describe('StackBlitz', () => {
   </body>
 </html>`,
         'package.json': `{
-  "name": "mui-demo",
   "private": true,
-  "version": "0.0.0",
+  "description": "https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -167,9 +166,8 @@ export default defineConfig({
   </body>
 </html>`,
         'package.json': `{
-  "name": "mui-demo",
   "private": true,
-  "version": "0.0.0",
+  "description": "https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx",
   "type": "module",
   "scripts": {
     "dev": "vite",
