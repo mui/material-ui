@@ -132,6 +132,7 @@ export default withDocsInfra({
                   {
                     loader: require.resolve('@mui/internal-markdown/loader'),
                     options: {
+                      enableOpenInNewTab: true,
                       workspaceRoot,
                       ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
                       languagesInProgress: LANGUAGES_IN_PROGRESS,

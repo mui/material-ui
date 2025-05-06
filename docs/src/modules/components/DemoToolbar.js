@@ -287,6 +287,7 @@ export default function DemoToolbar(props) {
     onResetDemoClick,
     openDemoSource,
     showPreview,
+    enableOpenInNewTab,
   } = props;
 
   const setCodeVariant = useSetCodeVariant();
@@ -521,23 +522,25 @@ export default function DemoToolbar(props) {
               </DemoTooltip>
             </React.Fragment>
           )}
-          <DemoTooltip title={t('openInNewTab')} placement="bottom">
-            <IconButton
-              data-ga-event-category="demo"
-              data-ga-event-label={demo.gaLabel}
-              data-ga-event-action="openInNewTab"
-              onClick={() => {
-                const url = new URL(window.location.href);
-                url.hash = '';
-                url.searchParams.set('scopedDemo', demoOptions.demo);
-                window.open(url.toString(), '_blank');
-              }}
-              {...getControlProps(5)}
-              sx={{ borderRadius: 1 }}
-            >
-              <OpenInNewIcon />
-            </IconButton>
-          </DemoTooltip>
+          {enableOpenInNewTab && (
+            <DemoTooltip title={t('openInNewTab')} placement="bottom">
+              <IconButton
+                data-ga-event-category="demo"
+                data-ga-event-label={demo.gaLabel}
+                data-ga-event-action="openInNewTab"
+                onClick={() => {
+                  const url = new URL(window.location.href);
+                  url.hash = '';
+                  url.searchParams.set('scopedDemo', demoOptions.demo);
+                  window.open(url.toString(), '_blank');
+                }}
+                {...getControlProps(5)}
+                sx={{ borderRadius: 1 }}
+              >
+                <OpenInNewIcon />
+              </IconButton>
+            </DemoTooltip>
+          )}
           <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton
               data-ga-event-category="demo"

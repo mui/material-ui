@@ -57,6 +57,7 @@ export default function MarkdownDocsV2(props) {
     componentsApiPageContents,
     hooksApiDescriptions,
     hooksApiPageContents,
+    enableOpenInNewTab = false,
   } = props;
 
   const userLanguage = useUserLanguage();
@@ -191,6 +192,7 @@ export default function MarkdownDocsV2(props) {
         localizedDoc={localizedDoc}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
         srcComponents={srcComponents}
+        enableOpenInNewTab={enableOpenInNewTab}
       />,
     );
     i += 1;
@@ -293,6 +295,7 @@ export default function MarkdownDocsV2(props) {
                 localizedDoc={localizedDoc}
                 renderedMarkdownOrDemo={renderedMarkdownOrDemo}
                 srcComponents={srcComponents}
+                enableOpenInNewTab={enableOpenInNewTab}
               />
             ))}
         {activeTab === 'components-api' && (
