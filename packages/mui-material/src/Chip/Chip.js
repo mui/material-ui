@@ -519,6 +519,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     },
     ownerState,
     ref: handleRef,
+    shouldForwardComponentProp: true,
     className: clsx(classes.root, className),
     additionalProps: {
       disabled: clickable && disabled ? true : undefined,
