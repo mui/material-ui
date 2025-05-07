@@ -1,7 +1,7 @@
 import * as url from 'url';
 import * as path from 'path';
 import * as fse from 'fs-extra';
-import * as playwright from 'playwright';
+import { chromium } from '@playwright/test';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -9,7 +9,7 @@ async function main() {
   const baseUrl = 'http://localhost:5001';
   const screenshotDir = path.resolve(currentDirectory, './screenshots/chrome');
 
-  const browser = await playwright.chromium.launch({
+  const browser = await chromium.launch({
     args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,

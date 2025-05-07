@@ -1,12 +1,11 @@
 {
   "name": "@mui-internal/tests",
-  "version": "5.0.0",
   "private": true,
   "scripts": {
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.27.0",
+    "@babel/runtime": "^7.27.1",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@mui/base": "5.0.0-beta.70",
@@ -17,7 +16,7 @@
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@playwright/test": "1.51.1",
+    "@playwright/test": "1.52.0",
     "@testing-library/dom": "^10.4.0",
     "@types/chai": "^4.3.20",
     "@types/react": "^19.1.2",
@@ -29,7 +28,6 @@
     "fs-extra": "^11.3.0",
     "html-webpack-plugin": "^5.6.3",
     "lodash": "^4.17.21",
-    "playwright": "^1.51.1",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -41,7 +39,7 @@
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.98.0",
+    "webpack": "^5.99.7",
     "yargs": "^17.7.2"
   },
   "dependencies": {

@@ -86,3 +86,7 @@ You can change the spacing between avatars using the `spacing` prop. You can use
 ## With badge
 
 {{"demo": "BadgeAvatars.js"}}
+
+## Avatar upload
+
+{{"demo": "UploadAvatars.js"}}
