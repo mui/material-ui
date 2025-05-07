@@ -3,15 +3,16 @@ import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
 import { escapeCell, escapeEntities, joinUnionTypes } from '../buildApi';
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
+  const { raw = '' } = type;
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
-  const match = type.raw.match(marker);
-  const startIndex = type.raw.search(marker);
+  const match = raw.match(marker);
+  const startIndex = raw.search(marker);
   if (match) {
     const offset = match[0].length;
 
     return {
-      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
-      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
+      propTypes: raw.substring(startIndex + offset, raw.indexOf(',')),
+      explanation: recast.parse(raw).program.body[0].expression.arguments[1].value,
     };
   }
 
@@ -33,14 +34,14 @@ export function getChained(type: PropTypeDescriptor) {
         }
         export default Foo
       `,
-        null,
-        null,
-        // helps react-docgen pickup babel.config.js
-        { filename: './' },
-      );
+        {
+          // helps react-docgen pickup babel.config.js
+          filename: './',
+        },
+      )[0];
       return {
-        type: parsed.props.bar.type,
-        required: parsed.props.bar.required,
+        type: parsed.props?.bar.type,
+        required: parsed.props?.bar.required,
       };
     }
   }
@@ -57,11 +58,11 @@ function isRefType(type: PropTypeDescriptor): boolean {
 }
 
 function isIntegerType(type: PropTypeDescriptor): boolean {
-  return type.raw.startsWith('integerPropType');
+  return !!type.raw && type.raw.startsWith('integerPropType');
 }
 
 export function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return /^elementAcceptingRef/.test(type.raw);
+  return !!type.raw && /^elementAcceptingRef/.test(type.raw);
 }
 
 export default function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
@@ -95,7 +96,7 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
       }
 
       const chained = getChained(type);
-      if (chained !== false) {
+      if (chained !== false && chained.type) {
         return generatePropTypeDescription(chained.type);
       }
 
@@ -103,9 +104,9 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
     }
 
     case 'shape':
-      return `{ ${Object.keys(type.value)
+      return `{ ${Object.keys(type.value as Record<string, PropTypeDescriptor>)
         .map((subValue) => {
-          const subType = type.value[subValue];
+          const subType = (type.value as Record<string, PropTypeDescriptor>)[subValue];
           return `${subValue}${subType.required ? '' : '?'}: ${generatePropTypeDescription(
             subType,
           )}`;
@@ -114,26 +115,26 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
 
     case 'union':
       return joinUnionTypes(
-        type.value.map((type2) => {
+        (type.value as readonly PropTypeDescriptor[]).map((type2) => {
           return generatePropTypeDescription(type2) ?? '';
         }),
       );
     case 'enum':
       return joinUnionTypes(
-        type.value.map((type2) => {
+        (type.value as readonly { name: 'string'; value: string }[]).map((type2) => {
           return escapeCell(type2.value);
         }),
       );
 
     case 'arrayOf': {
-      return `Array${escapeEntities('<')}${generatePropTypeDescription(type.value)}${escapeEntities('>')}`;
+      return `Array${escapeEntities('<')}${generatePropTypeDescription(type.value as PropTypeDescriptor)}${escapeEntities('>')}`;
     }
 
     case 'instanceOf': {
-      if (type.value.startsWith('typeof')) {
-        return /typeof (.*) ===/.exec(type.value)![1];
+      if ((type.value as string).startsWith('typeof')) {
+        return /typeof (.*) ===/.exec(type.value as string)![1];
       }
-      return type.value;
+      return type.value as string | undefined;
     }
 
     default:

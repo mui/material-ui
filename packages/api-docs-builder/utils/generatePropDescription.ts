@@ -57,15 +57,16 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
 }
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
+  const { raw = '' } = type;
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
-  const match = type.raw.match(marker);
-  const startIndex = type.raw.search(marker);
+  const match = raw.match(marker);
+  const startIndex = raw.search(marker);
   if (match) {
     const offset = match[0].length;
 
     return {
-      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
-      explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
+      propTypes: raw.substring(startIndex + offset, raw.indexOf(',')),
+      explanation: recast.parse(raw).program.body[0].expression.arguments[1].value,
     };
   }
 

@@ -1,4 +1,4 @@
-import { ReactDocgenApi } from 'react-docgen';
+import { Documentation as ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
 import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
@@ -37,7 +37,7 @@ interface CommonReactApi extends ReactDocgenApi {
 }
 
 export interface PropsTableItem {
-  default: string | undefined;
+  default: unknown;
   required: boolean | undefined;
   type: { name: string; description: string | undefined };
   deprecated: true | undefined;

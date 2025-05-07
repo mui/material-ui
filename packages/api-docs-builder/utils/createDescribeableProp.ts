@@ -22,7 +22,7 @@ export type CreateDescribeablePropSettings = {
  * @param propName
  */
 export default function createDescribeableProp(
-  prop: PropDescriptor,
+  prop: PropDescriptor & { jsdocDefaultValue?: { computed?: boolean; value: string } },
   propName: string,
   settings: CreateDescribeablePropSettings = {},
 ): DescribeablePropDescriptor | null {
@@ -30,7 +30,7 @@ export default function createDescribeableProp(
 
   const { propsWithoutDefaultVerification = [] } = settings;
 
-  const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
+  const renderedDefaultValue = (defaultValue?.value as string).replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
     renderedDefaultValue &&
       // Ignore "large" default values that would break the table layout.
@@ -86,6 +86,6 @@ export default function createDescribeableProp(
     annotation,
     defaultValue: renderDefaultValue ? renderedDefaultValue! : null,
     required: Boolean(required),
-    type,
+    type: type!,
   };
 }

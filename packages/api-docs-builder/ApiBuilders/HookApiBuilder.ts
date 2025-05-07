@@ -1,10 +1,10 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
+import type { Documentation, FileState } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
@@ -423,29 +423,57 @@ export default async function generateHookApi(
     customAnnotation,
   } = hooksInfo;
 
+  const { getHookImports = defaultGetHookImports, translationPagesDirectory } = projectSettings;
+
   const { shouldSkip, EOL, src } = readFile();
 
   if (shouldSkip) {
     return null;
   }
 
-  const reactApi: HookReactApi = docgenParse(
-    src,
-    (ast) => {
+  function toHookReactApi(doc: Documentation): HookReactApi {
+    return {
+      ...doc,
+      name,
+      filename,
+      apiPathname,
+      src,
+      imports: getHookImports?.(name, filename) ?? [],
+      EOL,
+      description: doc.description ?? '',
+      demos: getDemos(),
+      parametersTable: {},
+      returnValueTable: {},
+      parameters: [],
+      returnValue: [],
+      translations: {
+        hookDescription: '',
+        deprecationInfo: undefined,
+        parametersDescriptions: {},
+        returnValueDescriptions: {},
+      },
+      deprecated: undefined,
+    };
+  }
+
+  const documentation = docgenParse(src, {
+    resolver: (file: FileState) => {
       let node;
-      astTypes.visit(ast, {
-        visitFunctionDeclaration: (functionPath) => {
+      file.traverse({
+        FunctionDeclaration: (functionPath) => {
           if (functionPath.node?.id?.name === name) {
             node = functionPath;
           }
-          return false;
+          functionPath.skip();
         },
       });
-      return node;
+      return node ? [node] : [];
     },
-    defaultHandlers,
-    { filename },
-  );
+    handlers: defaultHandlers,
+    filename,
+  })[0];
+
+  const reactApi: HookReactApi = toHookReactApi(documentation);
 
   const parameters = await extractInfoFromType(`${upperFirst(name)}Parameters`, project);
   const returnValue = await extractInfoFromType(`${upperFirst(name)}ReturnValue`, project);
@@ -465,14 +493,6 @@ export default async function generateHookApi(
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
 
-  const { getHookImports = defaultGetHookImports, translationPagesDirectory } = projectSettings;
-  reactApi.filename = filename;
-  reactApi.name = name;
-  reactApi.imports = getHookImports(name, filename);
-  reactApi.apiPathname = apiPathname;
-  reactApi.EOL = EOL;
-  reactApi.demos = getDemos();
-  reactApi.customAnnotation = customAnnotation;
   if (reactApi.demos.length === 0) {
     // TODO: Enable this error once all public hooks are documented
     // throw new Error(
