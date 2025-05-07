@@ -106,7 +106,9 @@ export type Interpolation<Props> =
   | (CSSObject & {
       variants?: Array<{
         props:
-          | Partial<Props>
+          | (Props extends { ownerState: infer O }
+              ? Partial<Omit<Props, 'ownerState'> & O>
+              : Partial<Props>)
           | ((
               props: Partial<Props> & {
                 ownerState: Partial<Props>;

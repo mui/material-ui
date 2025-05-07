@@ -29,6 +29,7 @@ describe('CodeSandbox', () => {
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
+          private: true,
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js',
           dependencies: {
@@ -120,6 +121,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     expect(result.files).to.deep.equal({
       'package.json': {
         content: {
+          private: true,
           description:
             'https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx',
           dependencies: {
@@ -136,7 +138,6 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
             '@types/react': 'latest',
             '@types/react-dom': 'latest',
           },
-          main: 'index.tsx',
           scripts: {
             build: 'react-scripts build',
             eject: 'react-scripts eject',

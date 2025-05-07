@@ -1,12 +1,11 @@
 {
   "name": "@mui-internal/tests",
-  "version": "5.0.0",
   "private": true,
   "scripts": {
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.27.0",
+    "@babel/runtime": "^7.27.1",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@mui/base": "5.0.0-beta.70",
@@ -40,7 +39,7 @@
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.98.0",
+    "webpack": "^5.99.7",
     "yargs": "^17.7.2"
   },
   "dependencies": {

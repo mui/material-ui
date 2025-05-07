@@ -1,13 +1,11 @@
 'use client';
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
-import {
-  unstable_setRef as setRef,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useControlled as useControlled,
-  unstable_useId as useId,
-  usePreviousProps,
-} from '@mui/utils';
+import setRef from '@mui/utils/setRef';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useControlled from '@mui/utils/useControlled';
+import useId from '@mui/utils/useId';
+import usePreviousProps from '@mui/utils/usePreviousProps';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 function stripDiacritics(string) {

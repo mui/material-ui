@@ -80,6 +80,7 @@ function createReactApp(demoData: DemoData) {
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -89,9 +90,6 @@ function createReactApp(demoData: DemoData) {
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(demoData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 
@@ -174,6 +172,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -183,9 +182,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(templateData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 
@@ -262,6 +258,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -271,9 +268,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(templateData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 
