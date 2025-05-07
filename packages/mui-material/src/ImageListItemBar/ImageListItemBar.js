@@ -130,7 +130,6 @@ const ImageListItemBarTitleWrap = styled('div', {
 const ImageListItemBarTitle = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Title',
-  overridesResolver: (props, styles) => styles.title,
 })(
   memoTheme(({ theme }) => {
     return {
@@ -146,7 +145,6 @@ const ImageListItemBarTitle = styled('div', {
 const ImageListItemBarSubtitle = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Subtitle',
-  overridesResolver: (props, styles) => styles.subtitle,
 })(
   memoTheme(({ theme }) => {
     return {

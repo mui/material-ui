@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-nex
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-nextjs-ts
@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 or:
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
 

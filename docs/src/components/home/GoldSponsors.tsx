@@ -63,6 +63,11 @@ const BACKLINKs = [
     description: 'Buy Instagram followers.',
     href: 'https://www.socialwick.com/instagram/followers',
   },
+  {
+    name: 'Follower24',
+    description: 'Social media success.',
+    href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {
