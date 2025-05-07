@@ -695,36 +695,20 @@ workflows:
           <<: *default-context
       - test_unit:
           <<: *default-context
-          requires:
-            - checkout
       - test_lint:
           <<: *default-context
-          requires:
-            - checkout
       - test_static:
           <<: *default-context
-          requires:
-            - checkout
       - test_types:
           <<: *default-context
-          requires:
-            - checkout
       - test_browser:
           <<: *default-context
-          requires:
-            - checkout
       - test_regressions:
           <<: *default-context
-          requires:
-            - checkout
       - test_e2e:
           <<: *default-context
-          requires:
-            - checkout
       - test_bundle_size_monitor:
           <<: *default-context
-          requires:
-            - checkout
   e2e-website:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
@@ -733,8 +717,6 @@ workflows:
           <<: *default-context
       - test_e2e_website:
           <<: *default-context
-          requires:
-            - checkout
 
   bundling:
     when:
