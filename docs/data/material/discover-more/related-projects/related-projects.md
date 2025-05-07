@@ -7,9 +7,7 @@ The MUI org and developers from the community have built some excellent supplem
 Do you have a project that you think should be featured here?
 Feel free to submit a pull request and the maintainers will work with you to write the description.
 
-## Third-party app starters
-
-### Admin frameworks
+## Third-party admin frameworks
 
 - [React-admin](https://github.com/marmelab/react-admin): A front-end framework for building data-driven applications running in the browser on top of REST/GraphQL APIs.
 - [Refine](https://github.com/refinedev/refine): An open source, headless React meta-framework for the rapid development of web applications.
