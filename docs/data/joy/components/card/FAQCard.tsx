@@ -32,7 +32,7 @@ export default function FAQCard() {
           px: 'var(--Card-padding)',
         }}
       >
-        <Typography fontSize="xl4" fontWeight="xl" textColor="#fff">
+        <Typography textColor="#fff" sx={{ fontSize: 'xl4', fontWeight: 'xl' }}>
           89
         </Typography>
         <Typography textColor="primary.200">
@@ -48,7 +48,7 @@ export default function FAQCard() {
         </AspectRatio>
         <CardContent>
           <Typography level="title-lg">Need Some Help?</Typography>
-          <Typography fontSize="sm" sx={{ mt: 0.5 }}>
+          <Typography sx={{ fontSize: 'sm', mt: 0.5 }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
             tempor.
           </Typography>

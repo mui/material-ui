@@ -6,7 +6,5 @@
       children: <DarkMode />,
     },
   }}
-  sx={{
-    '--Switch-thumbSize': '16px',
-  }}
+  sx={{ '--Switch-thumbSize': '16px' }}
 />

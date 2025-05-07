@@ -55,7 +55,7 @@ export default function BasicTimeline() {
           1
         </Box>
         <Box sx={{ ml: 2, flex: 1 }}>
-          <Typography variant="body2" color="text.primary" gutterBottom>
+          <Typography variant="body2" gutterBottom sx={{ color: 'text.primary' }}>
             Install one of our production-ready libraries to get your next app started inevitably
             successful:
           </Typography>
@@ -111,7 +111,7 @@ export default function BasicTimeline() {
                 <TimelineDot />
                 <TimelineConnector />
               </TimelineSeparator>
-              <TimelineContent>Base UI</TimelineContent>
+              <TimelineContent>MUI Base</TimelineContent>
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>

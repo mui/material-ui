@@ -168,27 +168,6 @@ export default {
     'TreeView',
     'useAutocomplete',
   ],
-  '@mui/styles': [
-    'createGenerateClassName',
-    'createStyles',
-    // Types only
-    // 'defaultTheme',
-    // private
-    // 'getStylesCreator',
-    'getThemeProps',
-    'jssPreset',
-    'makeStyles',
-    'mergeClasses',
-    'propsToClassKey',
-    'ServerStyleSheets',
-    'styled',
-    'StylesProvider',
-    'ThemeProvider',
-    'useTheme',
-    'useThemeVariants',
-    'withStyles',
-    'withTheme',
-  ],
   '@mui/system': [
     'borders',
     'breakpoints',

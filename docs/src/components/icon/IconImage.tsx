@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { useTheme, styled, Theme } from '@mui/material/styles';
+import { styled, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { SxProps } from '@mui/system';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
 export type IconImageProps = {
   name:
@@ -23,7 +24,6 @@ export type IconImageProps = {
     | 'companies/unity'
     | 'companies/shutterstock'
     | 'companies/southwest'
-    | 'companies/boeing'
     | 'companies/siemens'
     | 'companies/deloitte'
     | 'companies/apple'
@@ -35,12 +35,13 @@ export type IconImageProps = {
     | 'companies/ebay'
     | 'companies/samsung'
     | 'companies/volvo'
+    | 'companies/tesla'
     | string;
   height?: number;
   mode?: '' | 'light' | 'dark';
   sx?: SxProps<Theme>;
   width?: number;
-} & Omit<JSX.IntrinsicElements['img'], 'ref'>;
+} & Omit<React.JSX.IntrinsicElements['img'], 'ref'>;
 
 const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
@@ -48,7 +49,7 @@ let neverHydrated = true;
 
 export default function IconImage(props: IconImageProps) {
   const { height: heightProp, name, width: widthProp, mode: modeProp, ...other } = props;
-  const theme = useTheme();
+  const themeOptions = React.useContext(ThemeOptionsContext);
   const [firstRender, setFirstRender] = React.useState(true);
   React.useEffect(() => {
     setFirstRender(false);
@@ -56,7 +57,7 @@ export default function IconImage(props: IconImageProps) {
   }, []);
   let defaultWidth;
   let defaultHeight;
-  const mode = modeProp ?? (theme.palette.mode as any);
+  const mode = modeProp ?? themeOptions.paletteMode;
 
   if (name.startsWith('product-')) {
     defaultWidth = 36;
@@ -64,7 +65,7 @@ export default function IconImage(props: IconImageProps) {
   } else if (name.startsWith('pricing/x-plan-')) {
     defaultWidth = 13;
     defaultHeight = 15;
-  } else if (['pricing/yes', 'pricing/no', 'pricing/time'].indexOf(name) !== -1) {
+  } else if (['pricing/yes', 'pricing/no', 'pricing/time'].includes(name)) {
     defaultWidth = 18;
     defaultHeight = 18;
   }

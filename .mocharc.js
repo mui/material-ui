@@ -10,7 +10,7 @@ module.exports = {
   recursive: true,
   timeout: (process.env.CIRCLECI === 'true' ? 5 : 2) * 1000, // Circle CI has low-performance CPUs.
   reporter: 'dot',
-  require: ['@mui-internal/test-utils/setupBabel', '@mui-internal/test-utils/setupJSDOM'],
+  require: ['@mui/internal-test-utils/setupBabel', '@mui/internal-test-utils/setupJSDOM'],
   'watch-ignore': [
     // default
     '.git',
@@ -20,4 +20,7 @@ module.exports = {
     '**/build/**',
     'docs/.next/**',
   ],
+  // detect-modules doesn't work with @babel/register
+  // https://github.com/babel/babel/issues/6737
+  'node-option': ['no-experimental-detect-module'],
 };

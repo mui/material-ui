@@ -1,0 +1,32 @@
+{
+  "props": {
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "disableGutters": { "type": { "name": "bool" }, "default": "false" },
+    "fixed": { "type": { "name": "bool" }, "default": "false" },
+    "maxWidth": {
+      "type": {
+        "name": "enum",
+        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
+      },
+      "default": "'lg'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    }
+  },
+  "name": "PigmentContainer",
+  "imports": [
+    "import PigmentContainer from '@mui/material/PigmentContainer';",
+    "import { PigmentContainer } from '@mui/material';"
+  ],
+  "classes": [],
+  "muiName": "MuiPigmentContainer",
+  "filename": "/packages/mui-material/src/PigmentContainer/PigmentContainer.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-container/\">Container</a></li></ul>",
+  "cssComponent": false
+}

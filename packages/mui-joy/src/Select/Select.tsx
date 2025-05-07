@@ -3,7 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverrideProps, DefaultComponentProps } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useForkRef from '@mui/utils/useForkRef';
 import { Popper, PopperProps } from '@mui/base/Popper';
 import { useSelect, SelectProvider, SelectValue } from '@mui/base/useSelect';
 import { SelectOption } from '@mui/base/useOption';
@@ -375,6 +376,7 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -387,7 +389,8 @@ const Select = React.forwardRef(function Select<OptionValue extends {}, Multiple
 
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
+  const color =
+    inProps.color ?? (formControl?.error ? 'danger' : (formControl?.color ?? colorProp));
 
   const renderValue: (option: SelectValue<SelectOption<OptionValue>, Multiple>) => React.ReactNode =
     renderValueProp ?? defaultRenderValue;
@@ -626,12 +629,12 @@ interface SelectComponent {
       component: C;
       multiple?: Multiple;
     } & OverrideProps<SelectTypeMap<OptionValue, Multiple>, C>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   <OptionValue extends {}, Multiple extends boolean = false>(
     props: {
       multiple?: Multiple;
     } & DefaultComponentProps<SelectTypeMap<OptionValue, Multiple>>,
-  ): JSX.Element | null;
+  ): React.JSX.Element | null;
   propTypes?: any;
 }
 

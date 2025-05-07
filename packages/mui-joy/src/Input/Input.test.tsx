@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, act, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, screen, act, fireEvent } from '@mui/internal-test-utils';
 import Input, { inputClasses as classes } from '@mui/joy/Input';
 import { ThemeProvider, extendTheme } from '@mui/joy/styles';
 import FormControl from '@mui/joy/FormControl';

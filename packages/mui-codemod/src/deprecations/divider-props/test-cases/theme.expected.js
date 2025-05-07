@@ -1,9 +1,21 @@
 fn({
   MuiDivider: {
+    defaultProps: {},
+  },
+});
+fn({
+  MuiDivider: {
+    defaultProps: {
+      className: 'my-class'
+    },
+  },
+});
+fn({
+  MuiDivider: {
     defaultProps: {
       sx: {
         opacity: "0.6"
-      },
+      }
     },
   },
 });
@@ -11,23 +23,24 @@ fn({
   MuiDivider: {
     defaultProps: {
       className: 'my-class',
-      sx: {
-        opacity: "0.6"
-      },
-    },
-  },
-});
-fn({
-  MuiDivider: {
-    defaultProps: {
-      className: 'my-class',
-      sx: {
-        opacity: "0.6"
-      },
-    },
-  },
-});
 
+      sx: {
+        opacity: "0.6"
+      }
+    },
+  },
+});
+fn({
+  MuiDivider: {
+    defaultProps: {
+      className: 'my-class',
+
+      sx: {
+        opacity: "0.6"
+      }
+    },
+  },
+});
 fn({
   MuiDivider: {
     defaultProps: {
@@ -39,7 +52,6 @@ fn({
     },
   },
 });
-
 fn({
   MuiDivider: {
     defaultProps: {
@@ -52,11 +64,16 @@ fn({
     },
   },
 });
-
 fn({
   MuiDivider: {
     defaultProps: {
       className: 'my-class',
     },
   },
+});
+fn({
+  MuiDivider: {},
+});
+fn({
+  MuiDivider: 123,
 });

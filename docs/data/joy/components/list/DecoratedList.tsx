@@ -10,9 +10,7 @@ export default function DecoratedList() {
       <Typography
         id="decorated-list-demo"
         level="body-xs"
-        textTransform="uppercase"
-        fontWeight="lg"
-        mb={1}
+        sx={{ textTransform: 'uppercase', fontWeight: 'lg', mb: 1 }}
       >
         Ingredients
       </Typography>

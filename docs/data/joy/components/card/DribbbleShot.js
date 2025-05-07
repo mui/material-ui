@@ -14,14 +14,7 @@ import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
 
 export default function DribbbleShot() {
   return (
-    <Card
-      variant="plain"
-      sx={{
-        width: 300,
-        bgcolor: 'initial',
-        p: 0,
-      }}
-    >
+    <Card variant="plain" sx={{ width: 300, bgcolor: 'initial', p: 0 }}>
       <Box sx={{ position: 'relative' }}>
         <AspectRatio ratio="4/3">
           <figure>
@@ -105,11 +98,7 @@ export default function DribbbleShot() {
           variant="outlined"
           color="neutral"
           size="sm"
-          sx={{
-            borderRadius: 'sm',
-            py: 0.25,
-            px: 0.5,
-          }}
+          sx={{ borderRadius: 'sm', py: 0.25, px: 0.5 }}
         >
           Featured
         </Chip>

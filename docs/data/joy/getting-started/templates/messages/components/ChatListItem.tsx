@@ -32,11 +32,7 @@ export default function ChatListItem(props: ChatListItemProps) {
           }}
           selected={selected}
           color="neutral"
-          sx={{
-            flexDirection: 'column',
-            alignItems: 'initial',
-            gap: 1,
-          }}
+          sx={{ flexDirection: 'column', alignItems: 'initial', gap: 1 }}
         >
           <Stack direction="row" spacing={1.5}>
             <AvatarWithStatus online={sender.online} src={sender.avatar} />
@@ -44,19 +40,14 @@ export default function ChatListItem(props: ChatListItemProps) {
               <Typography level="title-sm">{sender.name}</Typography>
               <Typography level="body-sm">{sender.username}</Typography>
             </Box>
-            <Box
-              sx={{
-                lineHeight: 1.5,
-                textAlign: 'right',
-              }}
-            >
+            <Box sx={{ lineHeight: 1.5, textAlign: 'right' }}>
               {messages[0].unread && (
                 <CircleIcon sx={{ fontSize: 12 }} color="primary" />
               )}
               <Typography
                 level="body-xs"
-                display={{ xs: 'none', md: 'block' }}
                 noWrap
+                sx={{ display: { xs: 'none', md: 'block' } }}
               >
                 5 mins ago
               </Typography>

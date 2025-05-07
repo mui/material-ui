@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/system';
-import Grid from '@mui/system/Unstable_Grid';
+import Grid from '@mui/system/Grid';
 
 declare module '@mui/system' {
   interface BreakpointOverrides {
@@ -29,23 +29,27 @@ const theme = createTheme({
 
 <ThemeProvider theme={theme}>
   <Grid
-    mobile={1}
-    tablet={2}
-    laptop={3}
-    desktop={4}
-    mobileOffset={1}
-    tabletOffset={2}
-    laptopOffset={3}
-    desktopOffset={4}
+    size={{
+      mobile: 1,
+      tablet: 2,
+      laptop: 3,
+      desktop: 4,
+    }}
+    offset={{
+      mobile: 1,
+      tablet: 2,
+      laptop: 3,
+      desktop: 4,
+    }}
   />
 </ThemeProvider>;
 
 <ThemeProvider theme={theme}>
   {/* @ts-expect-error unknown desk */}
-  <Grid desk={4} />
+  <Grid size={{ desk: 4 }} />
 </ThemeProvider>;
 
 <ThemeProvider theme={theme}>
   {/* @ts-expect-error unknown deskOffset */}
-  <Grid deskOffset={4} />
+  <Grid offset={{ desk: 4 }} />
 </ThemeProvider>;

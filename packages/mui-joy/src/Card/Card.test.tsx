@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider } from '@mui/joy/styles';
 import Card, { cardClasses as classes, CardClassKey } from '@mui/joy/Card';
 import describeConformance from '../../test/describeConformance';

@@ -108,6 +108,12 @@
       "isGlobal": false
     },
     {
+      "key": "selected",
+      "className": "Mui-selected",
+      "description": "State class applied to the root element if `selected={true}`.",
+      "isGlobal": true
+    },
+    {
       "key": "vertical",
       "className": "MuiToggleButtonGroup-vertical",
       "description": "Styles applied to the root element if `orientation=\"vertical\"`.",

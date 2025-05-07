@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IMaskInput } from 'react-imask';
-import { NumericFormat, NumericFormatProps } from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 import Stack from '@mui/material/Stack';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -25,30 +25,6 @@ const TextMaskCustom = React.forwardRef<HTMLInputElement, CustomProps>(
         inputRef={ref}
         onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
         overwrite
-      />
-    );
-  },
-);
-
-const NumericFormatCustom = React.forwardRef<NumericFormatProps, CustomProps>(
-  function NumericFormatCustom(props, ref) {
-    const { onChange, ...other } = props;
-
-    return (
-      <NumericFormat
-        {...other}
-        getInputRef={ref}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        thousandSeparator
-        valueIsNumericString
-        prefix="$"
       />
     );
   },
@@ -79,16 +55,15 @@ export default function FormattedInputs() {
           inputComponent={TextMaskCustom as any}
         />
       </FormControl>
-      <TextField
-        label="react-number-format"
+      <NumericFormat
         value={values.numberformat}
         onChange={handleChange}
-        name="numberformat"
-        id="formatted-numberformat-input"
-        InputProps={{
-          inputComponent: NumericFormatCustom as any,
-        }}
+        customInput={TextField}
+        thousandSeparator
+        valueIsNumericString
+        prefix="$"
         variant="standard"
+        label="react-number-format"
       />
     </Stack>
   );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useAutocomplete } from '@mui/base/useAutocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 import { styled } from '@mui/system';
 
 const Label = styled('label')({
@@ -8,8 +8,12 @@ const Label = styled('label')({
 
 const Input = styled('input')(({ theme }) => ({
   width: 200,
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
-  color: theme.palette.mode === 'light' ? '#000' : '#fff',
+  backgroundColor: '#fff',
+  color: '#000',
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#000',
+    color: '#fff',
+  }),
 }));
 
 const Listbox = styled('ul')(({ theme }) => ({
@@ -19,7 +23,7 @@ const Listbox = styled('ul')(({ theme }) => ({
   zIndex: 1,
   position: 'absolute',
   listStyle: 'none',
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
+  backgroundColor: '#fff',
   overflow: 'auto',
   maxHeight: 200,
   border: '1px solid rgba(0,0,0,.25)',
@@ -32,6 +36,9 @@ const Listbox = styled('ul')(({ theme }) => ({
     backgroundColor: '#2977f5',
     color: 'white',
   },
+  ...theme.applyStyles('dark', {
+    backgroundColor: '#000',
+  }),
 }));
 
 export default function UseAutocomplete() {
@@ -56,9 +63,14 @@ export default function UseAutocomplete() {
       </div>
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
-          {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>{option.title}</li>
-          ))}
+          {groupedOptions.map((option, index) => {
+            const { key, ...optionProps } = getOptionProps({ option, index });
+            return (
+              <li key={key} {...optionProps}>
+                {option.title}
+              </li>
+            );
+          })}
         </Listbox>
       ) : null}
     </div>

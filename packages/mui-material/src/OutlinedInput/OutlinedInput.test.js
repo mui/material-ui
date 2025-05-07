@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import OutlinedInput, { outlinedInputClasses as classes } from '@mui/material/OutlinedInput';
 import InputBase from '@mui/material/InputBase';
@@ -9,7 +9,11 @@ import describeConformance from '../../test/describeConformance';
 describe('<OutlinedInput />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<OutlinedInput />, () => ({
+  const CustomNotchedOutline = React.forwardRef(({ notched, ownerState, ...props }, ref) => (
+    <i ref={ref} data-testid="custom" {...props} />
+  ));
+
+  describeConformance(<OutlinedInput label="Label" />, () => ({
     classes,
     inheritComponent: InputBase,
     render,
@@ -18,16 +22,21 @@ describe('<OutlinedInput />', () => {
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'contained', fullWidth: true },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
-    testLegacyComponentsProp: true,
+    testLegacyComponentsProp: ['root', 'input'],
     slots: {
       // can't test with DOM element as InputBase places an ownerState prop on it unconditionally.
       root: { expectedClassName: classes.root, testWithElement: null },
       input: { expectedClassName: classes.input, testWithElement: null },
+      notchedOutline: {
+        expectedClassName: classes.notchedOutline,
+        testWithElement: CustomNotchedOutline,
+      },
     },
     skip: [
       'componentProp',
       'componentsProp',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 

@@ -2,9 +2,9 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { styled, alpha, lighten } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import ExpandIcon from '@mui/icons-material/ExpandMore';
-import CollapseIcon from '@mui/icons-material/ChevronRight';
-import { TreeView } from '@mui/x-tree-view/TreeView';
+import ChevronDownIcon from '@mui/icons-material/ExpandMoreRounded';
+import ChevronRightIcon from '@mui/icons-material/ChevronRightRounded';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem as MuiTreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import { blue, blueDark } from '@mui/docs/branding';
 
@@ -81,6 +81,7 @@ function ObjectEntryLabel(props: { objectKey: string; objectValue: any }) {
 
   return (
     <React.Fragment>
+      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
       {`${objectKey}: `}
       {type === 'color' ? (
         <Color style={{ borderColor: lighten(label, 0.7) }}>
@@ -94,6 +95,10 @@ function ObjectEntryLabel(props: { objectKey: string; objectValue: any }) {
       <span className={clsx('token', tokenType)}>{label}</span>
     </React.Fragment>
   );
+}
+
+function CustomEndIcon() {
+  return <div style={{ width: 24 }} />;
 }
 
 const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
@@ -116,9 +121,9 @@ const TreeItem = styled(MuiTreeItem)(({ theme }) => ({
   },
 }));
 
-function ObjectEntry(props: { nodeId: string; objectKey: string; objectValue: any }) {
-  const { nodeId, objectKey, objectValue } = props;
-  const keyPrefix = nodeId;
+function ObjectEntry(props: { itemId: string; objectKey: string; objectValue: any }) {
+  const { itemId, objectKey, objectValue } = props;
+  const keyPrefix = itemId;
   let children = null;
 
   if (
@@ -132,7 +137,7 @@ function ObjectEntry(props: { nodeId: string; objectKey: string; objectValue: an
             return (
               <ObjectEntry
                 key={key}
-                nodeId={`${keyPrefix}.${key}`}
+                itemId={`${keyPrefix}.${key}`}
                 objectKey={key}
                 objectValue={objectValue[key]}
               />
@@ -142,7 +147,7 @@ function ObjectEntry(props: { nodeId: string; objectKey: string; objectValue: an
 
   return (
     <TreeItem
-      nodeId={nodeId}
+      itemId={itemId}
       label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
     >
       {children}
@@ -150,11 +155,11 @@ function ObjectEntry(props: { nodeId: string; objectKey: string; objectValue: an
   );
 }
 
-function computeNodeIds(object: Record<string, any>, prefix: string) {
+function computeItemIds(object: Record<string, any>, prefix: string) {
   if ((object !== null && typeof object === 'object') || typeof object === 'function') {
     const ids: Array<string> = [];
     Object.keys(object).forEach((key) => {
-      ids.push(`${prefix}${key}`, ...computeNodeIds(object[key], `${prefix}${key}.`));
+      ids.push(`${prefix}${key}`, ...computeItemIds(object[key], `${prefix}${key}.`));
     });
 
     return ids;
@@ -162,16 +167,16 @@ function computeNodeIds(object: Record<string, any>, prefix: string) {
   return [];
 }
 
-export function useNodeIdsLazy(object: Record<string, any>) {
-  const [allNodeIds, setAllNodeIds] = React.useState<Array<string>>([]);
+export function useItemIdsLazy(object: Record<string, any>) {
+  const [allItemIds, setAllItemIds] = React.useState<Array<string>>([]);
   // technically we want to compute them lazily until we need them (expand all)
   // yielding is good enough. technically we want to schedule the computation
   // with low pri  and upgrade the priority later
   React.useEffect(() => {
-    setAllNodeIds(computeNodeIds(object, ''));
+    setAllItemIds(computeItemIds(object, ''));
   }, [object]);
 
-  return allNodeIds;
+  return allItemIds;
 }
 
 const keyPrefix = '$ROOT';
@@ -193,19 +198,20 @@ export default function ThemeViewer({
   );
   // for default*  to take effect we need to remount
   const key = React.useMemo(() => defaultExpanded.join(''), [defaultExpanded]);
-
   return (
-    <TreeView
+    <SimpleTreeView
       key={key}
-      defaultCollapseIcon={<ExpandIcon />}
-      defaultEndIcon={<div style={{ width: 24 }} />}
-      defaultExpanded={defaultExpanded}
-      defaultExpandIcon={<CollapseIcon />}
+      slots={{
+        expandIcon: ChevronRightIcon,
+        collapseIcon: ChevronDownIcon,
+        endIcon: CustomEndIcon,
+      }}
+      defaultExpandedItems={defaultExpanded}
       {...other}
       sx={{
         color: '#FFF',
         p: 1.5,
-        bgcolor: 'hsl(210, 35%, 9%)', // one-off code container color
+        bgcolor: 'hsl(210, 25%, 9%)', // one-off code container color
         borderRadius: 3,
         border: `1px solid ${blueDark[700]}`,
       }}
@@ -214,12 +220,12 @@ export default function ThemeViewer({
         return (
           <ObjectEntry
             key={objectKey}
-            nodeId={`${keyPrefix}.${objectKey}`}
+            itemId={`${keyPrefix}.${objectKey}`}
             objectKey={objectKey}
             objectValue={data[objectKey]}
           />
         );
       })}
-    </TreeView>
+    </SimpleTreeView>
   );
 }

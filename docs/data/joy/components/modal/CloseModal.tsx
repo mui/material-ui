@@ -19,27 +19,16 @@ export default function CloseModal() {
           alert(`Reason: ${reason}`);
           setOpen(false);
         }}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        <Sheet
-          variant="outlined"
-          sx={{
-            minWidth: 300,
-            borderRadius: 'md',
-            p: 3,
-          }}
-        >
+        <Sheet variant="outlined" sx={{ minWidth: 300, borderRadius: 'md', p: 3 }}>
           <ModalClose variant="outlined" />
           <Typography
             component="h2"
             id="close-modal-title"
             level="h4"
             textColor="inherit"
-            fontWeight="lg"
+            sx={{ fontWeight: 'lg' }}
           >
             Modal title
           </Typography>

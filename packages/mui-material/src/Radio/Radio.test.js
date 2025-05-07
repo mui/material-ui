@@ -1,14 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import Radio, { radioClasses as classes } from '@mui/material/Radio';
 import FormControl from '@mui/material/FormControl';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import switchBaseClasses from '../internal/switchBaseClasses';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Radio />', () => {
   const { render } = createRenderer();
+
+  function CustomRoot({ checkedIcon, ownerState, disableRipple, slots, slotProps, ...props }) {
+    return <div {...props} />;
+  }
 
   describeConformance(<Radio />, () => ({
     classes,
@@ -17,6 +22,15 @@ describe('<Radio />', () => {
     muiName: 'MuiRadio',
     testVariantProps: { color: 'secondary' },
     refInstanceof: window.HTMLSpanElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomRoot,
+      },
+      input: {
+        expectedClassName: switchBaseClasses.input,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 
@@ -127,5 +141,11 @@ describe('<Radio />', () => {
         paddingRight: '2px',
       });
     });
+  });
+
+  it('deprecated `inputProps` should work', () => {
+    render(<Radio inputProps={{ 'aria-label': 'A' }} />);
+
+    expect(screen.queryByRole('radio', { name: 'A' })).not.to.equal(null);
   });
 });

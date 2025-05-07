@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import Typography from '../Typography';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import DialogContext from '../Dialog/DialogContext';
-
-const useThemeProps = createUseThemeProps('MuiDialogTitle');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -23,14 +22,13 @@ const useUtilityClasses = (ownerState) => {
 const DialogTitleRoot = styled(Typography, {
   name: 'MuiDialogTitle',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   padding: '16px 24px',
   flex: '0 0 auto',
 });
 
 const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiDialogTitle',
   });

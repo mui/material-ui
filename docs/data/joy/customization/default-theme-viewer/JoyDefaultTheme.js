@@ -3,7 +3,7 @@ import { extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ThemeViewer, {
-  useNodeIdsLazy,
+  useItemIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
 
 const defaultTheme = extendTheme();
@@ -39,7 +39,7 @@ export default function JoyDefaultTheme() {
   }, []);
 
   const data = defaultTheme;
-  const allNodeIds = useNodeIdsLazy(data);
+  const allNodeIds = useItemIdsLazy(data);
   React.useDebugValue(allNodeIds);
 
   return (

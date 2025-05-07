@@ -5,16 +5,17 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Avatar, { avatarClasses } from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
+import useSlot from '../utils/useSlot';
 
 const SPACINGS = {
   small: -16,
   medium: -8,
 };
-
-const useThemeProps = createUseThemeProps('MuiAlert');
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -30,25 +31,26 @@ const useUtilityClasses = (ownerState) => {
 const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
-  overridesResolver: (props, styles) => ({
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-    ...styles.root,
-  }),
-})(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'row-reverse',
-  [`& .${avatarClasses.root}`]: {
-    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
-    boxSizing: 'content-box',
-    marginLeft: 'var(--AvatarGroup-spacing, -8px)',
-    '&:last-child': {
-      marginLeft: 0,
-    },
+  overridesResolver: (props, styles) => {
+    return [{ [`& .${avatarGroupClasses.avatar}`]: styles.avatar }, styles.root];
   },
-}));
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    [`& .${avatarClasses.root}`]: {
+      border: `2px solid ${(theme.vars || theme).palette.background.default}`,
+      boxSizing: 'content-box',
+      marginLeft: 'var(--AvatarGroup-spacing, -8px)',
+      '&:last-child': {
+        marginLeft: 0,
+      },
+    },
+  })),
+);
 
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
-  const props = useThemeProps({
+  const props = useDefaultProps({
     props: inProps,
     name: 'MuiAvatarGroup',
   });
@@ -57,10 +59,11 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
-    componentsProps = {},
+    componentsProps,
     max = 5,
     renderSurplus,
     slotProps = {},
+    slots = {},
     spacing = 'medium',
     total,
     variant = 'circular',
@@ -105,12 +108,34 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const additionalAvatarSlotProps = slotProps.additionalAvatar ?? componentsProps.additionalAvatar;
+  let marginValue;
 
-  const marginValue =
-    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
-      ? SPACINGS[ownerState.spacing]
-      : -ownerState.spacing || -8;
+  if (ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined) {
+    marginValue = SPACINGS[ownerState.spacing];
+  } else if (ownerState.spacing === 0) {
+    marginValue = 0;
+  } else {
+    marginValue = -ownerState.spacing || SPACINGS.medium;
+  }
+
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      surplus: slotProps.additionalAvatar ?? componentsProps?.additionalAvatar,
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [SurplusSlot, surplusProps] = useSlot('surplus', {
+    elementType: Avatar,
+    externalForwardedProps,
+    className: classes.avatar,
+    ownerState,
+    additionalProps: {
+      variant,
+    },
+  });
 
   return (
     <AvatarGroupRoot
@@ -119,20 +144,12 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      style={{
+        '--AvatarGroup-spacing': `${marginValue}px`, // marginValue is always defined
+        ...other.style,
+      }}
     >
-      {extraAvatars ? (
-        <Avatar
-          variant={variant}
-          {...additionalAvatarSlotProps}
-          className={clsx(classes.avatar, additionalAvatarSlotProps?.className)}
-          style={{
-            '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
-            ...other.style,
-          }}
-        >
-          {extraAvatarsElement}
-        </Avatar>
-      ) : null}
+      {extraAvatars ? <SurplusSlot {...surplusProps}>{extraAvatarsElement}</SurplusSlot> : null}
       {children
         .slice(0, maxAvatars)
         .reverse()
@@ -173,9 +190,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * You can override the existing props or add new ones.
    *
    * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
    *
-   * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,
@@ -203,15 +219,19 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   renderSurplus: PropTypes.func,
   /**
-   * The extra props for the slot components.
-   * You can override the existing props or add new ones.
-   *
-   * This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
-   *
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,
+    surplus: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    surplus: PropTypes.elementType,
   }),
   /**
    * Spacing between avatars.

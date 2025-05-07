@@ -12,9 +12,7 @@ export default function ExampleThumbChild() {
           children: <DarkMode />,
         },
       }}
-      sx={{
-        '--Switch-thumbSize': '16px',
-      }}
+      sx={{ '--Switch-thumbSize': '16px' }}
     />
   );
 }

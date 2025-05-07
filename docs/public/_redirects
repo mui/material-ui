@@ -4,11 +4,9 @@
 /trash / 301
 /spam / 301
 /sign-up / 301
+/auth* / 301
 
 /size-snapshot https://s3.eu-central-1.amazonaws.com/mui-org-ci/artifacts/master/latest/size-snapshot.json 200
-
-# To add when we finish work on v6
-# https://next.mui.com/* https://mui.com/:splat 301!
 
 # For links that we can't edit later on, for example hosted in the code published on npm
 /r/styles-instance-warning /material-ui/getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
@@ -23,13 +21,14 @@
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants 302
 /r/migration-v4 /material-ui/migration/migration-v4/ 302
 /r/discord https://discord.com/invite/tewQuNeUyS 302
+/r/pigment /blog/introducing-pigment-css/ 302
 
 # Legacy redirection
 # Added in chronological order (the last line is the most recent one)
 # To be removed 3+ years after being introduced
 # 2019
 /css-in-js/* /styles/:splat 301
-/customization/css-in-js/ /system/styles/basics/ 301
+/customization/css-in-js/ https://v6.mui.com/system/styles/basics/ 301
 /customization/overrides/ /material-ui/customization/how-to-customize/ 301
 /demos/selection-controls/ /material-ui/react-radio-button/ 301
 /demos/* /components/:splat 301
@@ -41,7 +40,7 @@
 /lab/* /components/:splat 301
 /layout/basics/ /material-ui/guides/responsive-ui/ 301
 /layout/breakpoints/ /material-ui/customization/breakpoints/ 301
-/layout/css-in-js/ /system/styles/basics/ 301
+/layout/css-in-js/ https://v6.mui.com/system/styles/basics/ 301
 /layout/* /components/:splat 301
 /page-layout-examples/* /material-ui/getting-started/templates/:splat 301
 /style/color/ /material-ui/customization/color/ 301
@@ -51,7 +50,7 @@
 /utils/modals/ /material-ui/react-modal/ 301
 /utils/popovers/ /material-ui/react-popover/ 301
 /utils/* /components/:splat 301
-/api/mui-theme-provider/ /system/styles/api/ 301
+/api/mui-theme-provider/ https://v6.mui.com/system/styles/api/ 301
 /components/expansion-panels/ /material-ui/react-accordion/ 301
 /api/expansion-panel/ /material-ui/api/accordion/ 301
 /:lang/api/expansion-panel/ /:lang/material-ui/api/accordion/ 301
@@ -184,7 +183,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /zh/api/time-picker/ /zh/x/api/date-pickers/time-picker/ 301
 /pt/api/time-picker/ /pt/x/api/date-pickers/time-picker/ 301
 /styles/* /system/styles/:splat 301
-/:lang/styles/* /:lang/system/styles/:splat 301
+/pt/styles/* /pt/system/styles/:splat 301
+/zh/styles/* /zh/system/styles/:splat 301
 /getting-started/* /material-ui/getting-started/:splat 301
 /pt/getting-started/* /pt/material-ui/getting-started/:splat 301
 /zh/getting-started/* /zh/material-ui/getting-started/:splat 301
@@ -210,12 +210,12 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/transitions/ /material-ui/transitions/ 301
 /pt/components/transitions/ /pt/material-ui/transitions/ 301
 /zh/components/transitions/ /zh/material-ui/transitions/ 301
-/components/pickers/ /x/react-date-pickers/getting-started/ 301
-/pt/components/pickers/ /pt/x/react-date-pickers/getting-started/ 301
-/zh/components/pickers/ /zh/x/react-date-pickers/getting-started/ 301
-/material-ui/lab-date-and-time-pickers/ /x/react-date-pickers/getting-started/ 301
-/pt/material-ui/lab-date-and-time-pickers/ /pt/x/react-date-pickers/getting-started/ 301
-/zh/material-ui/lab-date-and-time-pickers/ /zh/x/react-date-pickers/getting-started/ 301
+/components/pickers/ /x/react-date-pickers/ 301
+/pt/components/pickers/ /pt/x/react-date-pickers/ 301
+/zh/components/pickers/ /zh/x/react-date-pickers/ 301
+/material-ui/lab-date-and-time-pickers/ /x/react-date-pickers/ 301
+/pt/material-ui/lab-date-and-time-pickers/ /pt/x/react-date-pickers/ 301
+/zh/material-ui/lab-date-and-time-pickers/ /zh/x/react-date-pickers/ 301
 /components/about-the-lab/ /material-ui/about-the-lab/ 301
 /pt/components/about-the-lab/ /pt/material-ui/about-the-lab/ 301
 /zh/components/about-the-lab/ /zh/material-ui/about-the-lab/ 301
@@ -507,6 +507,16 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /material-ui/guides/right-to-left/ /material-ui/customization/right-to-left/ 301
 /material-ui/guides/pickers-migration/ /material-ui/migration/pickers-migration/ 301
 /material-ui/guides/styled-components/ /material-ui/integrations/styled-components/ 301
+/material-ui/experimental-api/css-theme-variables/migration/ /material-ui/migration/upgrade-to-v6/#cssvarsprovider-and-extendtheme 301
+/material-ui/experimental-api/css-theme-variables/overview/ /material-ui/customization/css-theme-variables/overview/ 301
+/material-ui/experimental-api/css-theme-variables/usage/ /material-ui/customization/css-theme-variables/usage/ 301
+/material-ui/experimental-api/css-theme-variables/customization/ /material-ui/customization/css-theme-variables/configuration/ 301
+/base-ui/ https://base-ui.com/ 301
+#2025
+/system/styles/basics/ https://v6.mui.com/system/styles/basics/ 301
+/system/styles/advanced/ https://v6.mui.com/system/styles/advanced/ 301
+/system/styles/api/ https://v6.mui.com/system/styles/api/ 301
+/base-ui/* https://v6.mui.com/base-ui/:splat 301
 
 # Proxies
 
@@ -528,12 +538,14 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## Toolpad
+/toolpad/core/templates/nextjs-dashboard/_next/* https://toolpad-core-nextjs-themed.vercel.app/_next/:splat 200
+/toolpad/core/templates/nextjs-dashboard/* https://toolpad-core-nextjs-themed.vercel.app/:splat 200
 /static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
 /toolpad/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
 
-### MUI Design kits
-/figma/getting-started/ https://mui-org.notion.site/MUI-for-Figma-docs-4eb22360388047a9a31fc19d300a285e 302
+### MUI Design Kits
+/figma/getting-started/ /material-ui/design-resources/material-ui-for-figma/ 302
 /r/material-ui-figma-* https://mui-store.netlify.app/r/material-ui-figma-:splat 200
 /r/joy-ui-figma-* https://mui-store.netlify.app/r/joy-ui-figma-:splat 200

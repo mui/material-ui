@@ -4,11 +4,14 @@ title: React Accordion component
 components: Accordion, AccordionDetails, AccordionGroup, AccordionSummary
 githubLabel: 'component: accordion'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+unstyled: https://base-ui.com/react/components/accordion
 ---
 
 # Accordion
 
 <p class="description">Accordions let users show and hide sections of related content on a page.</p>
+
+{{"component": "@mui/docs/ComponentLinkHeader"}}
 
 ## Introduction
 

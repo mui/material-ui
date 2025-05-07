@@ -4,8 +4,13 @@
 </div>
 {groupedOptions.length > 0 ? (
   <Listbox {...getListboxProps()}>
-    {(groupedOptions as typeof top100Films).map((option, index) => (
-      <li {...getOptionProps({ option, index })}>{option.title}</li>
-    ))}
+    {groupedOptions.map((option, index) => {
+      const { key, ...optionProps } = getOptionProps({ option, index });
+      return (
+        <li key={key} {...optionProps}>
+          {option.title}
+        </li>
+      );
+    })}
   </Listbox>
 ) : null}

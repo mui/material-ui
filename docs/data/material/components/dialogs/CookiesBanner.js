@@ -32,13 +32,13 @@ export default function CookiesBanner() {
       </AppBar>
       <Container component="main" sx={{ pt: 3 }}>
         <Toolbar />
-        <Typography paragraph>
+        <Typography sx={{ marginBottom: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
           imperdiet.
         </Typography>
-        <Typography paragraph>
+        <Typography sx={{ marginBottom: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
           enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -67,27 +67,25 @@ export default function CookiesBanner() {
           >
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
-              justifyContent="space-between"
-              gap={2}
+              sx={{ justifyContent: 'space-between', gap: 2 }}
             >
               <Box
-                sx={{
-                  flexShrink: 1,
-                  alignSelf: { xs: 'flex-start', sm: 'center' },
-                }}
+                sx={{ flexShrink: 1, alignSelf: { xs: 'flex-start', sm: 'center' } }}
               >
-                <Typography fontWeight="bold">This website uses cookies</Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>
+                  This website uses cookies
+                </Typography>
                 <Typography variant="body2">
                   example.com relies on cookies to improve your experience.
                 </Typography>
               </Box>
               <Stack
-                gap={2}
                 direction={{
                   xs: 'row-reverse',
                   sm: 'row',
                 }}
                 sx={{
+                  gap: 2,
                   flexShrink: 0,
                   alignSelf: { xs: 'flex-end', sm: 'center' },
                 }}

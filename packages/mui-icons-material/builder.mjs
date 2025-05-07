@@ -66,7 +66,7 @@ function removeNoise(input, prevInput = null) {
   let output = input;
 
   noises.forEach(([search, replace]) => {
-    if (output.indexOf(search) !== -1) {
+    if (output.includes(search)) {
       output = output.replace(search, replace);
     }
   });
@@ -245,7 +245,7 @@ export async function handler(options) {
     renameFilter = renameFilterModule.default;
   }
   if (typeof renameFilter !== 'function') {
-    throw Error('renameFilter must be a function');
+    throw new Error('renameFilter must be a function');
   }
   await fse.ensureDir(options.outputDir);
 

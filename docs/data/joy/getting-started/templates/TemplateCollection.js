@@ -26,11 +26,11 @@ import sourceJoyTemplates from 'docs/src/modules/joy/sourceJoyTemplates';
 const authors = {
   MUI: {
     name: 'MUI',
-    link: 'https://twitter.com/MUI_hq',
+    link: 'https://x.com/MUI_hq',
   },
   SteveEberger: {
     name: 'Steve Ernstberger',
-    link: 'https://twitter.com/SteveEberger',
+    link: 'https://x.com/SteveEberger',
   },
 };
 
@@ -88,7 +88,7 @@ const templates = [
     author: authors.MUI,
     design: {
       name: 'Frames X',
-      link: 'https://framesxdesign.com/product',
+      link: 'https://framesxdesign.com/',
     },
   },
 ];
@@ -127,73 +127,68 @@ export default function TemplateCollection() {
               >
                 <Box
                   sx={(theme) => ({
-                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}.jpg)`,
+                    background: 'var(--template-name)',
                     [theme.getColorSchemeSelector('dark')]: {
-                      background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
+                      background: 'var(--template-name-dark)',
                     },
                   })}
+                  style={{
+                    '--template-name': `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}.jpg)`,
+                    '--template-name-dark': `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${template.name}-dark.jpg)`,
+                  }}
                 />
-                <NextLink
+                <Link
                   href={`/joy-ui/getting-started/templates/${template.name}/`}
-                  passHref
-                  legacyBehavior
+                  tabIndex={-1}
+                  component={NextLink}
+                  overlay
+                  aria-hidden
+                  data-ga-event-category="joy-template"
+                  data-ga-event-label={template.name}
+                  data-ga-event-action="preview-img"
+                  sx={[
+                    (theme) => ({
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexDirection: 'column',
+                      gap: 1,
+                      transition: '0.15s',
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      opacity: 0,
+                      top: 0,
+                      left: 0,
+                      bgcolor: `rgba(${theme.vars.palette.primary.lightChannel} / 0.3)`,
+                      backdropFilter: 'blur(4px)',
+                      '&:hover, &:focus': {
+                        opacity: 1,
+                      },
+                      [theme.getColorSchemeSelector('dark')]: {
+                        bgcolor: `rgba(${theme.vars.palette.primary.darkChannel} / 0.3)`,
+                      },
+                    }),
+                  ]}
                 >
-                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <Link
-                    tabIndex={-1}
-                    overlay
-                    aria-hidden
-                    data-ga-event-category="joy-template"
-                    data-ga-event-label={template.name}
-                    data-ga-event-action="preview-img"
-                    sx={[
-                      (theme) => ({
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        gap: 1,
-                        transition: '0.15s',
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
-                        opacity: 0,
-                        top: 0,
-                        left: 0,
-                        bgcolor: `rgba(${theme.vars.palette.primary.lightChannel} / 0.3)`,
-                        backdropFilter: 'blur(4px)',
-                        '&:hover, &:focus': {
-                          opacity: 1,
-                        },
-                        [theme.getColorSchemeSelector('dark')]: {
-                          bgcolor: `rgba(${theme.vars.palette.primary.darkChannel} / 0.3)`,
-                        },
-                      }),
-                    ]}
+                  <Visibility />
+                  <Typography
+                    textColor="text.primary"
+                    sx={{ fontWeight: 'bold', fontFamily: 'IBM Plex Sans' }}
                   >
-                    <Visibility />
-                    <Typography
-                      fontWeight="bold"
-                      fontFamily="IBM Plex Sans"
-                      textColor="text.primary"
-                    >
-                      View live preview
-                    </Typography>
-                  </Link>
-                </NextLink>
+                    View live preview
+                  </Typography>
+                </Link>
               </AspectRatio>
             </CardOverflow>
-            <CardContent
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
+            <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
               <Typography
                 component="h3"
-                fontFamily="IBM Plex Sans"
-                fontSize="lg"
-                fontWeight="xl"
+                sx={{
+                  fontFamily: 'IBM Plex Sans',
+                  fontSize: 'lg',
+                  fontWeight: 'xl',
+                }}
               >
                 {startCase(template.name)}
               </Typography>
@@ -209,8 +204,7 @@ export default function TemplateCollection() {
                 {template.author && (
                   <Typography
                     level="body-sm"
-                    fontWeight="md"
-                    fontFamily="IBM Plex Sans"
+                    sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
                   >
                     Built by{' '}
                     <Link
@@ -226,16 +220,14 @@ export default function TemplateCollection() {
                   <React.Fragment>
                     <Typography
                       level="caption"
-                      fontWeight="md"
                       textColor="text.tertiary"
-                      sx={{ mx: 0.5 }}
+                      sx={{ fontWeight: 'md', mx: 0.5 }}
                     >
                       •
                     </Typography>
                     <Typography
                       level="body-sm"
-                      fontWeight="md"
-                      fontFamily="IBM Plex Sans"
+                      sx={{ fontWeight: 'md', fontFamily: 'IBM Plex Sans' }}
                     >
                       Designed by{' '}
                       <Link
@@ -258,26 +250,21 @@ export default function TemplateCollection() {
                   gap: 1.5,
                 }}
               >
-                <NextLink
+                <Button
                   href={`https://github.com/mui/material-ui/tree/master/docs/data/joy/getting-started/templates/${template.name}`}
-                  passHref
-                  legacyBehavior
+                  component={NextLink}
+                  variant="outlined"
+                  color="neutral"
+                  fullWidth
+                  startDecorator={<CodeRoundedIcon />}
+                  aria-label="Source code"
+                  data-ga-event-category="joy-template"
+                  data-ga-event-label={template.name}
+                  data-ga-event-action="preview"
+                  sx={{ fontFamily: 'IBM Plex Sans' }}
                 >
-                  <Button
-                    component="a"
-                    variant="outlined"
-                    color="neutral"
-                    fullWidth
-                    startDecorator={<CodeRoundedIcon />}
-                    aria-label="Source code"
-                    data-ga-event-category="joy-template"
-                    data-ga-event-label={template.name}
-                    data-ga-event-action="preview"
-                    sx={{ fontFamily: 'IBM Plex Sans' }}
-                  >
-                    Source
-                  </Button>
-                </NextLink>
+                  Source
+                </Button>
                 <Button
                   variant="outlined"
                   color="neutral"

@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
-import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -19,7 +18,7 @@ const theme = createTheme({ direction: 'rtl' });
 
 export default function PositionedSnackbar() {
   return (
-    <StyleSheetManager stylisPlugins={[rtlPluginSc]}>
+    <StyleSheetManager stylisPlugins={[rtlPlugin]}>
       <CacheProvider value={cacheRtl}>
         <ThemeProvider theme={theme}>
           <Box dir="rtl" sx={{ width: window?.innerWidth, height: '100vh' }}>

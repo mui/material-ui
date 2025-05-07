@@ -4,14 +4,14 @@ import Textarea from '@mui/joy/Textarea';
 import Stack from '@mui/joy/Stack';
 
 export default function TextareaRef() {
-  const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const handleTextareaFocus = () => {
     textareaRef.current?.focus();
   };
 
   return (
-    <Stack direction="row" gap={1}>
+    <Stack direction="row" sx={{ gap: 1 }}>
       <Textarea
         placeholder="Placeholder"
         slotProps={{ textarea: { ref: textareaRef } }}

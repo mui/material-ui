@@ -2,7 +2,7 @@
 
 <p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
 
-When the server receives the request, it renders the required component(s) into an HTML string, and then sends it as a response to the client.
+When the server receives the request, it renders the required component(s) into an HTML string and then sends it as a response to the client.
 From that point on, the client takes over rendering duties.
 
 ## Material UI on the server
@@ -80,7 +80,7 @@ app.listen(port);
 The first thing that we need to do on every request is to create a new `emotion cache`.
 
 When rendering, we will wrap `App`, the root component,
-inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/system/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](https://v6.mui.com/system/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://react.dev/reference/react-dom/server/renderToString).
 
@@ -208,7 +208,7 @@ function Main() {
   );
 }
 
-ReactDOM.hydrate(<Main />, document.querySelector('#root'));
+ReactDOM.hydrateRoot(document.querySelector('#root'), <Main />);
 ```
 
 ## Reference implementations

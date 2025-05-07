@@ -14,11 +14,15 @@ Here are the most significant improvements in November:
 
 - 👤 We have improved the Avatar's loading experience ([#1871](https://github.com/mui/material-ui/pull/18711)).
 
-  ![Loading avatar before](/static/blog/november-2019-update/loading-avatar-before.gif)
+  <video autoplay muted loop playsinline width="872" height="154">
+    <source src="/static/blog/november-2019-update/loading-avatar-before.mp4" type="video/mp4" />
+  </video>
 
   <p class="blog-description">Before</p>
 
-  ![Loading avatar after](/static/blog/november-2019-update/loading-avatar-after.gif)
+  <video autoplay muted loop playsinline width="872" height="154">
+    <source src="/static/blog/november-2019-update/loading-avatar-after.mp4" type="video/mp4" />
+  </video>
 
   <p class="blog-description">After</p>
 

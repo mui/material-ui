@@ -19,7 +19,7 @@
     "ChipProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.chip</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slotProps.chip</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "clearIcon": { "type": { "name": "node" }, "default": "<ClearIcon fontSize=\"small\" />" },
@@ -32,7 +32,8 @@
         "name": "shape",
         "description": "{ clearIndicator?: object, paper?: object, popper?: object, popupIndicator?: object }"
       },
-      "default": "{}"
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>slotProps</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": {
       "type": { "name": "custom", "description": "any" },
@@ -82,7 +83,7 @@
     },
     "groupBy": {
       "type": { "name": "func" },
-      "signature": { "type": "function(options: Value) => string", "describedArgs": ["options"] }
+      "signature": { "type": "function(option: Value) => string", "describedArgs": ["option"] }
     },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
@@ -100,12 +101,12 @@
       "type": { "name": "elementType" },
       "default": "'ul'",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.listbox</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slotProps.listbox.component</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "ListboxProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.listbox</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slotProps.listbox</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "loading": { "type": { "name": "bool" }, "default": "false" },
     "loadingText": { "type": { "name": "node" }, "default": "'Loading…'" },
@@ -153,13 +154,13 @@
       "type": { "name": "elementType" },
       "default": "Paper",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.paper</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slots.paper</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "PopperComponent": {
       "type": { "name": "elementType" },
       "default": "Popper",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.popper</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slots.popper</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
     "readOnly": { "type": { "name": "bool" }, "default": "false" },
@@ -179,9 +180,18 @@
     },
     "renderTags": {
       "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>renderValue</code> prop instead",
       "signature": {
         "type": "function(value: Array<Value>, getTagProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getTagProps", "ownerState"]
+      }
+    },
+    "renderValue": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: AutocompleteRenderValue<Value, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },

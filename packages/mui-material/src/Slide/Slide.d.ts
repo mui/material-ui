@@ -11,7 +11,7 @@ export interface SlideProps extends TransitionProps {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * An HTML element, or a function that returns one.
    * It's used to set the container the Slide is transitioning from.
@@ -61,4 +61,4 @@ export interface SlideProps extends TransitionProps {
  * - [Slide API](https://mui.com/material-ui/api/slide/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export default function Slide(props: SlideProps): JSX.Element;
+export default function Slide(props: SlideProps): React.JSX.Element;

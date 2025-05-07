@@ -1,6 +1,7 @@
 import * as React from 'react';
-import getInitColorSchemeScript from './getInitColorSchemeScript';
-import { Mode, Result } from './useCurrentColorScheme';
+import InitColorSchemeScript from '../InitColorSchemeScript';
+import { Result } from './useCurrentColorScheme';
+import type { StorageManager } from './localStorageManager';
 
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
@@ -30,15 +31,16 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
   /**
-   * Design system default mode
-   * @default 'light'
-   */
-  defaultMode?: Mode;
-  /**
    * Disable CSS transitions when switching between modes or color schemes
    * @default false
    */
   disableTransitionOnChange?: boolean;
+  /**
+   * If `true`, theme values are recalculated when the mode changes.
+   * The `theme.colorSchemes.{mode}.*` nodes will be shallow merged to the top-level of the theme.
+   * @default false
+   */
+  forceThemeRerender?: boolean;
 }
 
 type Identify<I extends string | undefined, T> = I extends string ? T | { [k in I]: T } : T;
@@ -53,10 +55,18 @@ export interface CreateCssVarsProviderResult<
         theme?: Identify<
           Identifier,
           {
+            cssVariables?: false;
             cssVarPrefix?: string;
-            colorSchemes: Record<ColorScheme, Record<string, any>>;
+            colorSchemes: Partial<Record<ColorScheme, any>>;
+            colorSchemeSelector?: 'media' | 'class' | 'data' | string;
           }
         >;
+        /**
+         * The default mode when the storage is empty,
+         * require the theme to have `colorSchemes` with light and dark.
+         * @default 'system'
+         */
+        defaultMode?: 'light' | 'dark' | 'system';
         /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
@@ -68,10 +78,10 @@ export interface CreateCssVarsProviderResult<
          */
         colorSchemeNode?: Element | null;
         /**
-         * The CSS selector for attaching the generated custom properties
-         * @default ':root'
+         * The storage manager to be used for storing the mode and color scheme.
+         * @default using `window.localStorage`
          */
-        colorSchemeSelector?: string;
+        storageManager?: StorageManager | null;
         /**
          * The window that attaches the 'storage' event listener
          * @default window
@@ -90,9 +100,9 @@ export interface CreateCssVarsProviderResult<
         disableStyleSheetGeneration?: boolean;
       }
     >,
-  ) => React.ReactElement;
+  ) => React.JSX.Element;
   useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
-  getInitColorSchemeScript: typeof getInitColorSchemeScript;
+  getInitColorSchemeScript: typeof InitColorSchemeScript;
 }
 
 export default function createCssVarsProvider<

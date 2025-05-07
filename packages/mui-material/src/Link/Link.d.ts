@@ -25,7 +25,7 @@ export interface LinkOwnProps extends DistributiveOmit<LinkBaseProps, 'classes'>
    */
   sx?: SxProps<Theme>;
   /**
-   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](https://mui.com/material-ui/api/typography/) element.
    */
   TypographyClasses?: TypographyOwnProps['classes'];
   /**

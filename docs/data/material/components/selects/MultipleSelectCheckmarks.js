@@ -60,7 +60,7 @@ export default function MultipleSelectCheckmarks() {
         >
           {names.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
+              <Checkbox checked={personName.includes(name)} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}

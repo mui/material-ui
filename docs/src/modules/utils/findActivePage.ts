@@ -22,7 +22,7 @@ export default function findActivePage(
       map[childPathname] = child;
 
       const isChildApiPathname =
-        child.pathname.indexOf('components-api') >= 0 || child.pathname.indexOf('hooks-api') >= 0;
+        child.pathname.includes('components-api') || child.pathname.includes('hooks-api');
 
       if (!isChildApiPathname && mapParent[childPathname]) {
         throw new Error(`Duplicated pathname ${child.pathname} in pages`);

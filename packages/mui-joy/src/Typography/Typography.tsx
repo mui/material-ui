@@ -2,10 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isMuiElement as isMuiElement,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isMuiElement from '@mui/utils/isMuiElement';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { TypographyTypeMap, TypographyProps, TypographyOwnerState } from './TypographyProps';
@@ -111,7 +109,7 @@ const TypographyRoot = styled('span', {
     ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
     fontSize: `var(--Typography-fontSize, ${
       ownerState.level && ownerState.level !== 'inherit'
-        ? theme.typography[ownerState.level]?.fontSize ?? 'inherit'
+        ? (theme.typography[ownerState.level]?.fontSize ?? 'inherit')
         : 'inherit'
     })`,
     ...(ownerState.noWrap && {
@@ -194,7 +192,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     ...other
   } = props;
 
-  const color = inProps.color ?? (variant ? colorProp ?? 'neutral' : colorProp);
+  const color = inProps.color ?? (variant ? (colorProp ?? 'neutral') : colorProp);
 
   const level = nesting || inheriting ? inProps.level || 'inherit' : levelProp;
 
@@ -250,8 +248,8 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         )}
 
         {hasSkeleton
-          ? React.cloneElement(children as React.ReactElement, {
-              variant: (children as React.ReactElement).props.variant || 'inline',
+          ? React.cloneElement(children as React.ReactElement<any>, {
+              variant: (children as React.ReactElement<any>).props.variant || 'inline',
             })
           : children}
         {endDecorator && <SlotEndDecorator {...endDecoratorProps}>{endDecorator}</SlotEndDecorator>}

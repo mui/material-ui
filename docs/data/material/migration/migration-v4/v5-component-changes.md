@@ -33,6 +33,34 @@ As the core components use Emotion as their style engine, the props used by Emot
 <MuiComponent component={SomeOtherComponent} as="button" />
 ```
 
+## AccordionSummary
+
+### Rename `expandIcon` to `expandIconWrapper`
+
+This change was made to make it clearer that the element is a wrapper around the icon, not the icon itself.
+
+Update the CSS class name and the theme overrides accordingly.
+
+```diff
+-'.MuiAccordionSummary-expandIcon': {
++'.MuiAccordionSummary-expandIconWrapper': {
+```
+
+```diff
+ createTheme({
+   components: {
+     MuiAccordionSummary: {
+       styleOverrides: {
+-        expandIcon: {
++        expandIconWrapper: {
+          // ...
+         },
+       },
+     },
+   },
+ });
+```
+
 ## AppBar
 
 ### Fix z-index issues
@@ -75,7 +103,7 @@ Move the component from the lab to the core. The component is now stable.
 
 ### Remove debug prop
 
-Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://x.com/sulco/status/1305841873945272321), or React devtools prop setter.
 
 ### Update `renderOption`
 
@@ -744,7 +772,7 @@ The props `alignItems`, `alignContent`, and `justifyContent`—along with their 
 
 These props are now considered part of MUI System, not the `Grid` component itself.
 
-If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
+If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](https://v5.mui.com/material-ui/customization/theme-components/#overrides-based-on-props).
 
 ```diff
  const theme = createTheme({
@@ -772,13 +800,13 @@ If you need negative margins on all sides, we recommend using the new Grid v2 in
 
 ```diff
 - import Grid from '@mui/material/Grid';
-+ import Grid from '@mui/material/Unstable_Grid2';
++ import Grid from '@mui/material/Grid2';
 ```
 
-To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/#whats-changed) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
+To learn more about Grid2, check out the [Grid2 component doc](/material-ui/react-grid/) and the [upgrade guide](/material-ui/migration/upgrade-to-grid-v2/).
 
 :::info
-Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
+Grid2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
 :::
 
 ## GridList
@@ -1255,7 +1283,7 @@ This component has been removed.
 
 You can get a reference to the underlying DOM node of our components via `ref` prop.
 
-The component relied on [`ReactDOM.findDOMNode`](https://react.dev/reference/react-dom/findDOMNode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
+The component relied on [`ReactDOM.findDOMNode`](https://legacy.reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://react.dev/reference/react/StrictMode#warning-about-deprecated-finddomnode-usage).
 
 :::success
 This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
@@ -1862,7 +1890,7 @@ The following classes and style overrides keys were removed:
 
 These props are now considered part of MUISystem rather than the `Typography` component itself.
 
-If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
+If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](https://v5.mui.com/material-ui/customization/theme-components/#overrides-based-on-props).
 
 For example:
 

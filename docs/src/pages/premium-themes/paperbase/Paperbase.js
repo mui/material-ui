@@ -11,7 +11,7 @@ import Header from './Header';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant="body2" align="center" sx={{ color: 'text.secondary' }}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -190,7 +190,6 @@ export default function Paperbase() {
               onClose={handleDrawerToggle}
             />
           )}
-
           <Navigator
             PaperProps={{ style: { width: drawerWidth } }}
             sx={{ display: { sm: 'block', xs: 'none' } }}

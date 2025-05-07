@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { isValidElementType } from 'react-is';
+
 // https://github.com/sindresorhus/is-plain-obj/blob/main/index.js
 export function isPlainObject(item: unknown): item is Record<keyof any, unknown> {
   if (typeof item !== 'object' || item === null) {
@@ -19,7 +22,7 @@ export interface DeepmergeOptions {
 }
 
 function deepClone<T>(source: T): T | Record<keyof any, unknown> {
-  if (!isPlainObject(source)) {
+  if (React.isValidElement(source) || isValidElementType(source) || !isPlainObject(source)) {
     return source;
   }
 
@@ -32,6 +35,24 @@ function deepClone<T>(source: T): T | Record<keyof any, unknown> {
   return output;
 }
 
+/**
+ * Merge objects deeply.
+ * It will shallow copy React elements.
+ *
+ * If `options.clone` is set to `false` the source object will be merged directly into the target object.
+ *
+ * @example
+ * ```ts
+ * deepmerge({ a: { b: 1 }, d: 2 }, { a: { c: 2 }, d: 4 });
+ * // => { a: { b: 1, c: 2 }, d: 4 }
+ * ````
+ *
+ * @param target The target object.
+ * @param source The source object.
+ * @param options The merge options.
+ * @param options.clone Set to `false` to merge the source object directly into the target object.
+ * @returns The merged object.
+ */
 export default function deepmerge<T>(
   target: T,
   source: unknown,
@@ -41,12 +62,14 @@ export default function deepmerge<T>(
 
   if (isPlainObject(target) && isPlainObject(source)) {
     Object.keys(source).forEach((key) => {
-      // Avoid prototype pollution
-      if (key === '__proto__') {
-        return;
-      }
-
-      if (isPlainObject(source[key]) && key in target && isPlainObject(target[key])) {
+      if (React.isValidElement(source[key]) || isValidElementType(source[key])) {
+        (output as Record<keyof any, unknown>)[key] = source[key];
+      } else if (
+        isPlainObject(source[key]) &&
+        // Avoid prototype pollution
+        Object.prototype.hasOwnProperty.call(target, key) &&
+        isPlainObject(target[key])
+      ) {
         // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
         (output as Record<keyof any, unknown>)[key] = deepmerge(target[key], source[key], options);
       } else if (options.clone) {

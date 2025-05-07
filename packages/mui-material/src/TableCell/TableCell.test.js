@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -31,16 +31,6 @@ describe('<TableCell />', () => {
         </table>,
       );
       return { container: container.firstChild.firstChild.firstChild, ...other };
-    },
-    wrapMount: (mount) => (node) => {
-      const wrapper = mount(
-        <table>
-          <tbody>
-            <tr>{node}</tr>
-          </tbody>
-        </table>,
-      );
-      return wrapper.find('tr').childAt(0);
     },
     muiName: 'MuiTableCell',
     testVariantProps: { variant: 'body' },

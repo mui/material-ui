@@ -1,42 +1,50 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { create } from 'jss';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { jssPreset, StylesProvider } from '@mui/styles';
-import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
-import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import rtl from 'jss-rtl';
+import { ThemeProvider as SystemThemeProvider } from '@mui/system';
+import { extendTheme, useColorScheme as useJoyColorScheme } from '@mui/joy/styles';
+import { createTheme, useTheme, styled } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from '@mui/docs/i18n';
-import { getDesignTokens } from '@mui/docs/branding';
-import { highDensity } from 'docs/src/modules/components/ThemeContext';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import { DemoInstanceThemeProvider } from 'docs/src/theming';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
 
-const iframeDefaultJoyTheme = extendTheme({
-  cssVarPrefix: 'demo-iframe',
-});
+let globalInjectThemeCache;
+
+function JoyIframeObserver({ document, isolated }) {
+  const { mode, systemMode } = useJoyColorScheme();
+  React.useEffect(() => {
+    if (!isolated) {
+      document.documentElement.setAttribute('data-joy-color-scheme', systemMode || mode);
+    }
+  }, [document, mode, systemMode, isolated]);
+  return null;
+}
+JoyIframeObserver.propTypes = {
+  document: PropTypes.object.isRequired,
+  isolated: PropTypes.bool,
+};
 
 function FramedDemo(props) {
-  const { children, document, productId } = props;
+  const { children, document, isJoy, isolated } = props;
+  const themeOptions = React.useContext(ThemeOptionsContext);
 
   const theme = useTheme();
-  React.useEffect(() => {
-    document.body.dir = theme.direction;
-  }, [document, theme.direction]);
 
-  const { jss, sheetsManager } = React.useMemo(() => {
-    return {
-      jss: create({
-        plugins: [...jssPreset().plugins, rtl()],
-        insertionPoint: document.head,
-      }),
-      sheetsManager: new Map(),
-    };
-  }, [document]);
+  React.useEffect(() => {
+    if (!isolated) {
+      document.body.setAttribute('dir', theme.direction);
+      document.documentElement.style.colorScheme = themeOptions.paletteMode;
+      document.documentElement.setAttribute('data-mui-color-scheme', themeOptions.paletteMode);
+    }
+  }, [document, isolated, theme.direction, themeOptions.paletteMode]);
 
   const cache = React.useMemo(
     () =>
@@ -51,37 +59,41 @@ function FramedDemo(props) {
 
   const getWindow = React.useCallback(() => document.defaultView, [document]);
 
-  const Wrapper = productId === 'joy-ui' ? CssVarsProvider : React.Fragment;
-  const wrapperProps =
-    productId === 'joy-ui'
-      ? {
-          documentNode: document,
-          colorSchemeNode: document.documentElement,
-          theme: iframeDefaultJoyTheme,
-        }
-      : {};
+  // This theme only used for generating CSS variables, NOT with the React context (ThemeProvider).
+  const iframeTheme = React.useMemo(() => {
+    if (isolated) {
+      return null;
+    }
+    return isJoy
+      ? extendTheme()
+      : createTheme({
+          colorSchemes: { light: true, dark: true },
+          cssVariables: {
+            colorSchemeSelector: 'data-mui-color-scheme',
+          },
+        });
+  }, [isJoy, isolated]);
 
   return (
-    <StylesProvider jss={jss} sheetsManager={sheetsManager}>
-      <StyleSheetManager
-        target={document.head}
-        stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
-      >
-        <CacheProvider value={cache}>
-          <Wrapper {...wrapperProps}>
-            {React.cloneElement(children, {
-              window: getWindow,
-            })}
-          </Wrapper>
-        </CacheProvider>
-      </StyleSheetManager>
-    </StylesProvider>
+    <StyleSheetManager
+      target={document.head}
+      stylisPlugins={theme.direction === 'rtl' ? [rtlPlugin] : []}
+    >
+      <CacheProvider value={cache}>
+        {iframeTheme && <GlobalStyles styles={iframeTheme.generateStyleSheets?.() || []} />}
+        {React.cloneElement(children, {
+          window: getWindow,
+        })}
+        {isJoy && <JoyIframeObserver document={document} isolated={isolated} />}
+      </CacheProvider>
+    </StyleSheetManager>
   );
 }
 FramedDemo.propTypes = {
   children: PropTypes.node,
   document: PropTypes.object.isRequired,
-  productId: PropTypes.string,
+  isJoy: PropTypes.bool,
+  isolated: PropTypes.bool,
 };
 
 const Iframe = styled('iframe')(({ theme }) => ({
@@ -93,7 +105,7 @@ const Iframe = styled('iframe')(({ theme }) => ({
 }));
 
 function DemoIframe(props) {
-  const { children, name, productId, ...other } = props;
+  const { children, name, isJoy, isolated, ...other } = props;
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -123,7 +135,7 @@ function DemoIframe(props) {
       <Iframe onLoad={onLoad} ref={frameRef} title={`${name} demo`} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
-            <FramedDemo document={document} productId={productId}>
+            <FramedDemo document={document} isJoy={isJoy} isolated={isolated}>
               {children}
             </FramedDemo>,
             document.body,
@@ -135,76 +147,105 @@ function DemoIframe(props) {
 
 DemoIframe.propTypes = {
   children: PropTypes.node.isRequired,
+  isJoy: PropTypes.bool,
+  isolated: PropTypes.bool,
   name: PropTypes.string.isRequired,
-  productId: PropTypes.string,
 };
 
-// Use the default Material UI theme for the demos
-function getTheme(outerTheme) {
-  const brandingDesignTokens = getDesignTokens(outerTheme.palette.mode);
-  const isCustomized =
-    outerTheme.palette.primary?.main &&
-    outerTheme.palette.primary.main !== brandingDesignTokens.palette.primary.main;
-  const resultTheme = createTheme(
-    {
-      palette: {
-        mode: outerTheme.palette.mode || 'light',
-        ...(isCustomized && {
-          // Apply color from the color playground
-          primary: { main: outerTheme.palette.primary.main },
-          secondary: { main: outerTheme.palette.secondary.main },
-        }),
-      },
-    },
-    // To make DensityTool playground works
-    // check from MuiFormControl because brandingTheme does not customize this component
-    outerTheme.components?.MuiFormControl?.defaultProps?.margin === 'dense' ? highDensity : {},
-  );
-  if (outerTheme.direction) {
-    resultTheme.direction = outerTheme.direction;
-  }
-  if (outerTheme.spacing) {
-    resultTheme.spacing = outerTheme.spacing;
-  }
-  return resultTheme;
+function IsolatedDemo({ children, cssVarPrefix, colorSchemeNode, window }) {
+  return React.cloneElement(children, {
+    window,
+    cssVarPrefix,
+    colorSchemeNode: window ? window().document.documentElement : colorSchemeNode,
+    colorSchemeSelector: 'class',
+    documentNode: window ? window().document : undefined,
+    disableNestedContext: true,
+    storageManager: null,
+  });
 }
 
-// TODO: Let demos decide whether they need JSS
-const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-  insertionPoint:
-    typeof window !== 'undefined' ? document.querySelector('#insertion-point-jss') : null,
-});
+IsolatedDemo.propTypes = {
+  children: PropTypes.node.isRequired,
+  /**
+   * The node to attach the selector. Ignored if `window` is provided.
+   */
+  colorSchemeNode: PropTypes.object,
+  /**
+   * The CSS variables prefix will be the name of the demo to avoid clashing with other demos
+   * because the generated CSS variables are global (always contain `:root`).
+   */
+  cssVarPrefix: PropTypes.string,
+  /**
+   * Provided by `DemoIframe`.
+   * If `window` is provided, the `colorSchemeNode` will be set to the html tag of the iframe.
+   */
+  window: PropTypes.func,
+};
 
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
  */
 function DemoSandbox(props) {
-  const {
-    children: childrenProp,
-    iframe = false,
-    name,
-    onResetDemoClick,
-    productId,
-    ...other
-  } = props;
-  const Sandbox = iframe ? DemoIframe : React.Fragment;
-  const sandboxProps = iframe ? { name, productId, ...other } : {};
+  const { children, iframe = false, id, name, onResetDemoClick, isJoy, isolated, ...other } = props;
+  const [injectTheme, setInjectTheme] = React.useState();
+  const [root, setRoot] = React.useState();
+
+  React.useEffect(() => {
+    setRoot(document.getElementById(id));
+  }, [id]);
 
   const t = useTranslate();
 
-  // `childrenProp` needs to be a child of `Sandbox` since the iframe implementation rely on `cloneElement`.
-  const children = <Sandbox {...sandboxProps}>{childrenProp}</Sandbox>;
+  useEnhancedEffect(() => {
+    async function setupMaterialUITheme() {
+      if (typeof window.getInjectTheme === 'function') {
+        if (!globalInjectThemeCache) {
+          window.React = React;
+          const jsx = await import('react/jsx-runtime');
+          window.jsx = jsx;
+          globalInjectThemeCache = window.getInjectTheme();
+        }
+        setInjectTheme(globalInjectThemeCache);
+      }
+    }
+    setupMaterialUITheme();
+  }, []);
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      {productId === 'joy-ui' ? (
-        children
+      {isolated ? (
+        // Place ThemeProvider from MUI System here to disconnect the theme inheritance for Material UI and Joy UI
+        // The demo will need to handle the ThemeProvider itself.
+        <SystemThemeProvider
+          theme={(upperTheme) => ({
+            direction: upperTheme.direction, // required for internal ThemeProvider
+            vars: upperTheme.vars, // required for styling Iframe
+          })}
+        >
+          {iframe ? (
+            <DemoIframe name={name} isJoy={isJoy} isolated={isolated} {...other}>
+              {/* `children` needs to be a child of `DemoIframe` since the iframe implementation rely on `cloneElement`. */}
+              {/* the `colorSchemeNode` will be provided by DemoIframe through `window` prop */}
+              <IsolatedDemo cssVarPrefix={name}>{children}</IsolatedDemo>
+            </DemoIframe>
+          ) : (
+            <IsolatedDemo cssVarPrefix={name} colorSchemeNode={root}>
+              {children}
+            </IsolatedDemo>
+          )}
+        </SystemThemeProvider>
       ) : (
-        <StylesProvider jss={jss}>
-          <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>{children}</ThemeProvider>
-        </StylesProvider>
+        <DemoInstanceThemeProvider runtimeTheme={injectTheme}>
+          {iframe ? (
+            <DemoIframe name={name} isJoy={isJoy} {...other}>
+              {/* `children` needs to be a child of `DemoIframe` since the iframe implementation rely on `cloneElement`. */}
+              {children}
+            </DemoIframe>
+          ) : (
+            children
+          )}
+        </DemoInstanceThemeProvider>
       )}
     </DemoErrorBoundary>
   );
@@ -212,10 +253,12 @@ function DemoSandbox(props) {
 
 DemoSandbox.propTypes = {
   children: PropTypes.node.isRequired,
+  id: PropTypes.string.isRequired,
   iframe: PropTypes.bool,
+  isJoy: PropTypes.bool,
+  isolated: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,
-  productId: PropTypes.string,
 };
 
 export default React.memo(DemoSandbox);

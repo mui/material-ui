@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import copy from 'clipboard-copy';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
-import { styled as joyStyled } from '@mui/joy/styles';
 import { Tabs } from '@mui/base/Tabs';
 import { TabPanel } from '@mui/base/TabPanel';
 import { unstable_useId as useId } from '@mui/utils';
@@ -12,20 +12,20 @@ import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import { CodeTab, CodeTabList } from '@mui/docs/HighlightedCodeWithTabs';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import LibraryAddCheckRoundedIcon from '@mui/icons-material/LibraryAddCheckRounded';
 import DemoSandbox from 'docs/src/modules/components/DemoSandbox';
 import ReactRunner from 'docs/src/modules/components/ReactRunner';
 import DemoEditor from 'docs/src/modules/components/DemoEditor';
 import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
-import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
-import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
-import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
-import { CodeTab, CodeTabList } from 'docs/src/modules/components/HighlightedCodeWithTabs';
+import { AdCarbonInline } from '@mui/docs/Ad';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -42,7 +42,7 @@ function DemoToolbarFallback() {
   const t = useTranslate();
 
   // Sync with styles from DemoToolbar, we can't import the styles
-  return <Box sx={{ height: 40 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
+  return <Box sx={{ height: 42 }} aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
 function getDemoName(location) {
@@ -52,7 +52,7 @@ function getDemoName(location) {
       location.split('/').pop();
 }
 
-function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
+function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
@@ -63,99 +63,47 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
     if (canonicalAs.startsWith('/joy-ui/')) {
       productId = 'joy-ui';
       name = 'Joy UI';
-    } else if (canonicalAs.startsWith('/base-ui/')) {
-      productId = 'base-ui';
-      name = 'Base UI';
     } else if (canonicalAs.startsWith('/x/')) {
       name = 'MUI X';
     }
 
     let codeOptions = {};
-    if (codeStyling === CODE_STYLING.SYSTEM) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-          raw: demo.rawTS,
-          module: demo.moduleTS,
-          Component: demo.tsx ?? null,
-          sourceLanguage: 'tsx',
-        };
-        if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
-        }
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation,
-          raw: demo.raw,
-          module: demo.module,
-          Component: demo.js,
-          sourceLanguage: 'jsx',
-        };
-        if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
-        }
-      }
-    } else if (codeStyling === CODE_STYLING.TAILWIND) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
-          raw: demo.rawTailwindTS,
-          module: demo.moduleTS,
-          Component: demo.tsxTailwind,
-          sourceLanguage: 'tsx',
-        };
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
-          raw: demo.rawTailwind ?? demo.raw,
-          module: demo.module,
-          Component: demo.jsTailwind ?? demo.js,
-          sourceLanguage: 'jsx',
-        };
-      }
-    } else if (codeStyling === CODE_STYLING.CSS) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawCSSTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
-          raw: demo.rawCSSTS,
-          module: demo.moduleTS,
-          Component: demo.tsxCSS,
-          sourceLanguage: 'tsx',
-        };
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
-          raw: demo.rawCSS ?? demo.raw,
-          module: demo.module,
-          Component: demo.jsCSS ?? demo.js,
-          sourceLanguage: 'jsx',
-        };
-      }
-    }
 
-    let jsxPreview = demo.jsxPreview;
-    if (codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview) {
-      jsxPreview = demo.tailwindJsxPreview;
-    } else if (codeStyling === CODE_STYLING.CSS && demo.cssJsxPreview) {
-      jsxPreview = demo.cssJsxPreview;
+    if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.TS,
+        githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+        raw: demo.rawTS,
+        module: demo.moduleTS,
+        Component: demo.tsx ?? null,
+        sourceLanguage: 'tsx',
+      };
+      if (demo.relativeModules) {
+        codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
+      }
+    } else {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.JS,
+        githubLocation,
+        raw: demo.raw,
+        module: demo.module,
+        Component: demo.js,
+        sourceLanguage: 'jsx',
+      };
+      if (demo.relativeModules) {
+        codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
+      }
     }
 
     return {
       scope: demo.scope,
-      jsxPreview,
+      jsxPreview: demo.jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       productId,
       language: userLanguage,
-      codeStyling,
     };
-  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage, codeStyling]);
+  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
 }
 
 function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
@@ -207,137 +155,121 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const DemoRootMaterial = styled('div', {
+const DemoRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
-})(({ theme, hideToolbar, bg }) => ({
+})(({ theme }) => ({
   position: 'relative',
   margin: 'auto',
   display: 'flex',
   justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-    ...(bg === 'gradient' && {
-      padding: theme.spacing(12, 8),
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    ...theme.applyDarkStyles({
-      backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
-    }),
-  }),
-  /* Similar to the outlined one but without padding. Ideal for playground demos. */
-  ...(bg === 'playground' && {
-    backgroundColor: (theme.vars || theme).palette.background.paper,
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    overflow: 'auto',
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: alpha((theme.vars || theme).palette.grey[50], 0.5),
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    ...theme.applyDarkStyles({
-      backgroundColor: alpha((theme.vars || theme).palette.primaryDark[700], 0.4),
-    }),
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    overflow: 'auto',
-    padding: theme.spacing(4, 2),
-    border: `1px solid ${(theme.vars || theme).palette.divider}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundClip: 'padding-box',
-    backgroundColor: alpha(theme.palette.primary[50], 0.2),
-    backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha((theme.vars || theme).palette.primary[100], 0.2)} 70%)`,
-    ...theme.applyDarkStyles({
-      backgroundColor: (theme.vars || theme).palette.primaryDark[900],
-      backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha((theme.vars || theme).palette.primary[900], 0.3)} 80%)`,
-    }),
-  }),
-}));
-
-const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
-})(({ theme, hideToolbar, bg }) => ({
-  position: 'relative',
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    border: `1px solid`,
-    borderColor: grey[100],
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundColor: 'transparent',
-    ...theme.applyDarkStyles({
-      borderColor: alpha(blueDark[500], 0.3),
-      backgroundColor: alpha(theme.palette.neutral[900], 0.8),
-    }),
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.level2,
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: 12,
+  variants: [
+    {
+      props: ({ hideToolbar }) => hideToolbar,
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          borderRadius: 12,
+        },
+      },
     },
-    borderRadius: 0,
-    padding: theme.spacing(0),
-    overflow: 'auto',
-    backgroundColor: alpha(blue[50], 0.5),
-    border: `1px solid`,
-    borderColor: grey[100],
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
-      radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-      radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
-      radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%),
-      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
-    ...theme.applyDarkStyles({
-      backgroundColor: alpha(blue[900], 0.1),
-      borderColor: alpha(blueDark[700], 1),
-      backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-        blueDark[700],
-        0.5,
-      )} 0px, transparent 50%),
-    radial-gradient(at 80% 0%, ${alpha(blue[900], 0.3)} 0px, transparent 50%),
-    radial-gradient(at 0% 95%,  ${alpha(blue[900], 0.5)} 0px, transparent 50%),
-    radial-gradient(at 0% 5%, ${alpha(blue[900], 0.5)} 0px, transparent 35%),
-    radial-gradient(at 93% 85%, ${alpha(blue[900], 0.3)} 0px, transparent 50%);`,
-    }),
-  }),
+    {
+      props: ({ hideToolbar }) => !hideToolbar,
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          borderRadius: '12px 12px 0 0',
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'outlined',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          borderLeftWidth: 1,
+          borderRightWidth: 1,
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'inline',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(0),
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'gradient',
+      },
+      style: {
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(12, 8),
+          borderLeftWidth: 1,
+          borderRightWidth: 1,
+        },
+      },
+    },
+    {
+      props: {
+        bg: 'outlined',
+      },
+      style: {
+        padding: theme.spacing(3),
+        backgroundColor: (theme.vars || theme).palette.background.paper,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        ...theme.applyDarkStyles({
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
+        }),
+      },
+    },
+    {
+      props: {
+        bg: 'playground',
+      },
+      style: {
+        backgroundColor: (theme.vars || theme).palette.background.paper,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        overflow: 'auto',
+      },
+    },
+    {
+      props: {
+        bg: true,
+      },
+      style: {
+        padding: theme.spacing(3),
+        backgroundColor: alpha(theme.palette.grey[50], 0.5),
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        ...theme.applyDarkStyles({
+          backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+        }),
+      },
+    },
+    {
+      props: {
+        bg: 'gradient',
+      },
+      style: {
+        overflow: 'auto',
+        padding: theme.spacing(4, 2),
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        backgroundClip: 'padding-box',
+        backgroundColor: alpha(theme.palette.primary[50], 0.2),
+        backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 40%, ${alpha(theme.palette.primary[100], 0.2)} 70%)`,
+        ...theme.applyDarkStyles({
+          backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+          backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha(theme.palette.primary[900], 0.3)} 80%)`,
+        }),
+      },
+    },
+  ],
 }));
 
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
@@ -349,9 +281,6 @@ const DemoCodeViewer = styled(HighlightedCode)(() => ({
     borderRadius: 0,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
-  },
-  '& .MuiCode-copy': {
-    display: 'none',
   },
 }));
 
@@ -377,14 +306,14 @@ const selectionOverride = (theme) => ({
     borderColor: (theme.vars || theme).palette.primary[200],
     ...theme.applyDarkStyles({
       color: (theme.vars || theme).palette.primary[200],
-      backgroundColor: alpha((theme.vars || theme).palette.primary[900], 0.4),
+      backgroundColor: alpha(theme.palette.primary[900], 0.4),
       borderColor: (theme.vars || theme).palette.primary[800],
     }),
   },
 });
 
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation, mode } = props;
+  const { demo, demoOptions, disableAd, githubLocation } = props;
 
   if (process.env.NODE_ENV !== 'production') {
     if (demoOptions.hideToolbar === false) {
@@ -422,7 +351,9 @@ export default function Demo(props) {
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
         'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
-        `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
+        // This regex intentionally excludes the dot character in the Kleene star to prevent ReDoS
+        // See https://github.com/mui/material-ui/issues/44078
+        `{{"demo": "${demoOptions.demo.replace(/\.([^.]*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",
         `{{"demo": "${demoOptions.demo}", "hideToolbar": true, …}}.`,
@@ -432,9 +363,8 @@ export default function Demo(props) {
 
   const t = useTranslate();
   const codeVariant = useCodeVariant();
-  const styleSolution = useCodeStyling();
 
-  const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
+  const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
@@ -483,9 +413,6 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
-
-  const DemoRoot = demoData.productId === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = demoData.productId === 'joy-ui' ? BrandingProvider : React.Fragment;
 
   const isPreview = !codeOpen && showPreview;
 
@@ -557,31 +484,41 @@ export default function Demo(props) {
     demoData.relativeModules,
   ]);
 
+  const [copiedContent, setCopiedContent] = React.useState(false);
+
+  const handleCopyClick = async () => {
+    try {
+      const activeTabData = tabs[activeTab];
+      await copy(activeTabData.raw);
+      setCopiedContent(true);
+      setTimeout(() => {
+        setCopiedContent(false);
+      }, 1000);
+    } catch (error) {
+      console.error('Code content not copied', error);
+    }
+  };
+
   return (
     <Root>
       <AnchorLink id={demoName} />
       <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
-        <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
-          <InitialFocus
-            aria-label={t('initialFocusLabel')}
-            action={initialFocusRef}
-            tabIndex={-1}
-          />
-        </Wrapper>
+        <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
+          id={demoId}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
-          productId={demoData.productId}
+          isolated={demoOptions.isolated}
+          isJoy={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {/* TODO: Wrapper shouldn't be needed, it should already be at the top of the docs page */}
       {demoOptions.hideToolbar ? null : (
-        <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+        <React.Fragment>
           {Object.keys(stylingSolutionMapping).map((key) => (
             <React.Fragment key={key}>
               <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
@@ -596,6 +533,10 @@ export default function Demo(props) {
                 <DemoToolbar
                   codeOpen={codeOpen}
                   codeVariant={codeVariant}
+                  copyIcon={
+                    copiedContent ? <LibraryAddCheckRoundedIcon /> : <ContentCopyRoundedIcon />
+                  }
+                  copyButtonOnClick={handleCopyClick}
                   hasNonSystemDemos={hasNonSystemDemos}
                   demo={demo}
                   demoData={demoData}
@@ -646,6 +587,11 @@ export default function Demo(props) {
                         'data-ga-event-label': demo.gaLabel,
                         'data-ga-event-action': 'copy-click',
                       }}
+                      sx={{
+                        '& .MuiCode-copy': {
+                          display: 'none',
+                        },
+                      }}
                     />
                   ) : (
                     <DemoEditor
@@ -677,7 +623,7 @@ export default function Demo(props) {
             </Collapse>
           </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
-        </Wrapper>
+        </React.Fragment>
       )}
     </Root>
   );
@@ -691,5 +637,4 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  mode: PropTypes.string, // temporary, just to make Joy docs work.
 };

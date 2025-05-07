@@ -21,7 +21,9 @@ const LinearProgressBar1 = styled('span', {
       variant: 'buffer'
     },
     style: {
-      '&:hover': {}
+      backgroundColor:
+        (theme.vars || theme).palette[ownerState.color].light,
+      '&:hover': {},
     }
   }, {
     props: (
@@ -32,14 +34,6 @@ const LinearProgressBar1 = styled('span', {
     ) => variant === 'buffer' && ownerState.color !== 'normal',
     style: {
       backgroundColor: 'currentColor'
-    }
-  }, {
-    props: {
-      variant: 'buffer',
-      color: 'normal'
-    },
-    style: {
-      backgroundColor: (theme.vars || theme).palette[ownerState.color].light
     }
   }, {
     props: (
@@ -66,21 +60,22 @@ const LinearProgressBar1 = styled('span', {
   }, {
     props: (
       {
+        ownerState
+      }
+    ) => ownerState.variant !== 'buffer',
+    style: {
+      backgroundColor:
+        (theme.vars || theme).palette[ownerState.color].main,
+    }
+  }, {
+    props: (
+      {
         ownerState,
         color
       }
     ) => ownerState.variant !== 'buffer' && color === 'inherit',
     style: {
       backgroundColor: 'currentColor'
-    }
-  }, {
-    props: (
-      {
-        ownerState
-      }
-    ) => ownerState.variant !== 'buffer' && ownerState.color !== 'inherit',
-    style: {
-      backgroundColor: (theme.vars || theme).palette[ownerState.color].main
     }
   }]
 }));
@@ -91,6 +86,7 @@ const ExpandMore = styled((props) => {
 })(({
   theme
 }) => ({
+  transform: 'rotate(180deg)',
   marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
@@ -104,16 +100,7 @@ const ExpandMore = styled((props) => {
     style: {
       transform: 'rotate(0deg)'
     }
-  }, {
-    props: (
-      {
-        expand
-      }
-    ) => !!expand,
-    style: {
-      transform: 'rotate(180deg)'
-    }
-  }],
+  }]
 }));
 
 const Main = styled('main', {

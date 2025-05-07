@@ -23,7 +23,7 @@ export default function SelectMinWidth() {
         </Option>
         <Option value="Maltese dog">Maltese dog</Option>
       </Select>
-      <Typography level="body-xs" textAlign="center" sx={{ mt: 1 }}>
+      <Typography level="body-xs" sx={{ textAlign: 'center', mt: 1 }}>
         Width is fixed at 100px
       </Typography>
     </Box>

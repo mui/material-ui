@@ -13,7 +13,7 @@
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design.
 Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
-We're a company of 31+ people as of late 2023, and we're growing.
+We're a company of 35+ people as of early 2024, and we're growing.
 
 ## The products
 
@@ -58,6 +58,8 @@ Check out [The Radiating Circles of DX](https://dx.tips/circles) to better under
 From the perspective of that framework, you would pioneer the Content layer while contributing to the Docs and Product layers depending on where the problem is best solved (the closer to the root the better).
 
 ### Key responsibilities
+
+Depending on the day, you'll:
 
 - Create inspiring educational materials (demo apps, how-to guides, integration examples, tutorials) for devs of all skill levels
 - Seek out and implement improvements to the documentation
@@ -109,7 +111,7 @@ For the right candidate:
 ## Benefits and compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
+We are ready to pay top market rates for a person who can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-and-benefits) page.
 
 ## How to apply

@@ -63,7 +63,7 @@ export default function usePagination(props = {}) {
       boundaryCount + siblingCount * 2 + 2,
     ),
     // Less than endPages
-    endPages.length > 0 ? endPages[0] - 2 : count - 1,
+    count - boundaryCount - 1,
   );
 
   // Basic list of items to render
@@ -124,7 +124,7 @@ export default function usePagination(props = {}) {
           page: item,
           selected: item === page,
           disabled,
-          'aria-current': item === page ? 'true' : undefined,
+          'aria-current': item === page ? 'page' : undefined,
         }
       : {
           onClick: (event) => {
@@ -135,7 +135,7 @@ export default function usePagination(props = {}) {
           selected: false,
           disabled:
             disabled ||
-            (item.indexOf('ellipsis') === -1 &&
+            (!item.includes('ellipsis') &&
               (item === 'next' || item === 'last' ? page >= count : page <= 1)),
         };
   });

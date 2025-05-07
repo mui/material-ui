@@ -11,7 +11,7 @@ const views = ['quilt', 'module', 'agenda', 'week', 'sidebar'] as const;
 
 type View = (typeof views)[number];
 
-const viewIcons: Record<View, React.ReactElement> = {
+const viewIcons: Record<View, React.ReactElement<unknown>> = {
   quilt: <ViewQuiltRounded />,
   module: <ViewModuleRounded />,
   agenda: <ViewAgendaRounded />,

@@ -15,7 +15,7 @@ Material UI v4 has finally arrived. We are so excited about this release, as it
 
 ![TypeScript switch](/static/blog/material-ui-v4-is-out/banner.png)
 
-<p class="blog-description">https://mui.com/</p>
+<p class="blog-description">https://material-ui.com/</p>
 
 ## Summary
 
@@ -67,7 +67,7 @@ import { StylesProvider } from '@mui/styles';
 
 - **classes boilerplate**. Early in the v1 effort, we [decided](https://github.com/oliviertassinari/a-journey-toward-better-style) to use a CSS-in-JS styling solution: [JSS](https://cssinjs.org/). The large majority of the CSS-in-JS solutions output non-deterministic class names, for example `.fHmkjM`. This design decision helps the isolation of the style of each component, however, it makes the overrides harder. We introduced a `classes` API in v1 to target all our elements as an attempt to mitigate this problem.
   We have observed the use of this API for months and have seen many people struggling with it. It can be challenging to apply the class name on the right element and requires boilerplate as well.
-  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](/system/styles/advanced/), while keeping the `classes` API working as before 💅.
+  As an attempt to further improve the situation, we have changed the class name generation to [output global class names](https://v6.mui.com/system/styles/advanced/), while keeping the `classes` API working as before 💅.
 
 ![styled-components](/static/blog/material-ui-v4-is-out/styled-components.png)
 
@@ -143,7 +143,7 @@ Documentation was reported as the 3rd most critical pain point in the Developer 
 
 You may be afraid that using Material UI's components will bloat and slow down your website/application. Would you be better off writing your own components? Well, it's our mission to make this cost as minimal as possible 🚀.
 
-- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
+- **Tree shaking**. Material UI v4 is the first version to support native tree shaking with ES modules. This has one important DX benefit—you can now use destructured imports when importing multiple components:
 
 ```js
 import {
@@ -201,7 +201,7 @@ function MyButton() {
   <p class="blog-description">React Dev Tools output for one Typography element in production (<a href="https://github.com/mui/material-ui/pull/15023">this POC</a> might further improve the situation).</p>
 
 - **Concurrent mode**. React has shared its [release timeline](https://legacy.reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) for the important features coming into React. [Concurrent mode](https://legacy.reactjs.org/blog/2018/11/27/react-16-roadmap.html#react-16x-q2-2019-the-one-with-concurrent-mode) should be released within the next few months. Concurrent Mode lets React apps be more responsive by rendering component trees without blocking the main thread. We have worked on getting ready for it. Most of the work was related to fixing the [<React.StrictMode>](https://legacy.reactjs.org/docs/strict-mode.html) warnings. You should soon be able to leverage it 🔥.
-- **Shallow tests.** We have removed the majority of our internal shallow tests to rely on [full mount tests](https://twitter.com/dan_abramov/status/1109461529227866112).
+- **Shallow tests.** We have removed the majority of our internal shallow tests to rely on [full mount tests](https://x.com/dan_abramov/status/1109461529227866112).
 
 ### Material Design
 
@@ -254,7 +254,7 @@ An example of the new spacing helper API.
 
 <p class="blog-description">Inline mode</p>
 
-- A new [@mui/styles](/system/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
+- A new [@mui/styles](https://v6.mui.com/system/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
 
 ```jsx
 import * as React from 'react';

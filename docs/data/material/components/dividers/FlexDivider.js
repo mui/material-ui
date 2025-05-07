@@ -8,7 +8,7 @@ export default function FlexDivider() {
   return (
     <Box
       sx={{
-        display: 'flex',
+        display: 'inline-flex',
         alignItems: 'center',
         border: '1px solid',
         borderColor: 'divider',

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Paper, { paperClasses } from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import MobileStepper, { mobileStepperClasses as classes } from '@mui/material/MobileStepper';
@@ -26,7 +26,15 @@ describe('<MobileStepper />', () => {
     ),
   };
 
-  describeConformance(<MobileStepper {...defaultProps} />, () => ({
+  function CustomPaper({ square, ownerState, ...other }) {
+    return <i data-testid="custom" {...other} />;
+  }
+
+  function CustomDot({ dotActive, ownerState, ...other }) {
+    return <i data-testid="custom" {...other} />;
+  }
+
+  describeConformance(<MobileStepper {...defaultProps} steps={1} />, () => ({
     classes,
     inheritComponent: Paper,
     render,
@@ -35,7 +43,43 @@ describe('<MobileStepper />', () => {
     testDeepOverrides: { slotName: 'dot', slotClassName: classes.dot },
     testStateOverrides: { prop: 'position', value: 'static', styleKey: 'positionStatic' },
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithComponent: CustomPaper,
+        testWithElement: CustomPaper,
+      },
+      dots: {
+        expectedClassName: classes.dots,
+      },
+      dot: {
+        expectedClassName: classes.dot,
+        testWithComponent: CustomDot,
+        testWithElement: CustomDot,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
+  }));
+
+  describeConformance(<MobileStepper {...defaultProps} steps={1} variant="progress" />, () => ({
+    inheritComponent: Paper,
+    render,
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithComponent: CustomPaper,
+        testWithElement: CustomPaper,
+      },
+      progress: {
+        expectedClassName: classes.progress,
+      },
+    },
+    only: [
+      'slotPropsProp',
+      'slotPropsCallback',
+      'slotPropsCallbackWithPropsAsOwnerState',
+      'slotsProp',
+    ],
   }));
 
   it('should render a Paper with 0 elevation', () => {

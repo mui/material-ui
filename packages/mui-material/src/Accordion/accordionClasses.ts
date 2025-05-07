@@ -4,6 +4,8 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 export interface AccordionClasses {
   /** Styles applied to the root element. */
   root: string;
+  /** Styles applied to the heading element. */
+  heading: string;
   /** Styles applied to the root element unless `square={true}`. */
   rounded: string;
   /** State class applied to the root element if `expanded={true}`. */
@@ -24,6 +26,7 @@ export function getAccordionUtilityClass(slot: string): string {
 
 const accordionClasses: AccordionClasses = generateUtilityClasses('MuiAccordion', [
   'root',
+  'heading',
   'rounded',
   'expanded',
   'disabled',

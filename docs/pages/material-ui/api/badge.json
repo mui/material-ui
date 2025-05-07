@@ -3,7 +3,7 @@
     "anchorOrigin": {
       "type": {
         "name": "shape",
-        "description": "{ horizontal: 'left'<br>&#124;&nbsp;'right', vertical: 'bottom'<br>&#124;&nbsp;'top' }"
+        "description": "{ horizontal?: 'left'<br>&#124;&nbsp;'right', vertical?: 'bottom'<br>&#124;&nbsp;'top' }"
       },
       "default": "{\n  vertical: 'top',\n  horizontal: 'right',\n}"
     },
@@ -22,7 +22,7 @@
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "componentsProps": {
       "type": {
@@ -31,7 +31,7 @@
       },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "use the <code>slotProps</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "invisible": { "type": { "name": "bool" }, "default": "false" },
     "max": { "type": { "name": "number" }, "default": "99" },
@@ -68,6 +68,20 @@
   },
   "name": "Badge",
   "imports": ["import Badge from '@mui/material/Badge';", "import { Badge } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "span",
+      "class": "MuiBadge-root"
+    },
+    {
+      "name": "badge",
+      "description": "The component that renders the badge.",
+      "default": "span",
+      "class": "MuiBadge-badge"
+    }
+  ],
   "classes": [
     {
       "key": "anchorOriginBottomLeft",
@@ -142,12 +156,6 @@
       "isGlobal": false
     },
     {
-      "key": "badge",
-      "className": "MuiBadge-badge",
-      "description": "Styles applied to the badge `span` element.",
-      "isGlobal": false
-    },
-    {
       "key": "colorError",
       "className": "MuiBadge-colorError",
       "description": "Styles applied to the badge `span` element if `color=\"error\"`.",
@@ -205,12 +213,6 @@
       "key": "overlapRectangular",
       "className": "MuiBadge-overlapRectangular",
       "description": "Styles applied to the badge `span` element if `overlap=\"rectangular\"`.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiBadge-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     },
     {

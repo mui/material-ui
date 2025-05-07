@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Link as RouterLink, MemoryRouter } from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+import { Link as RouterLink, MemoryRouter, StaticRouter } from 'react-router';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -54,7 +53,7 @@ const theme = createTheme({
 
 export default function LinkRouterWithTheme() {
   return (
-    <Stack sx={{ typography: 'body1' }} alignItems="center" spacing={1}>
+    <Stack spacing={1} sx={{ alignItems: 'center', typography: 'body1' }}>
       <ThemeProvider theme={theme}>
         <Router>
           <Link href="/">Link</Link>

@@ -155,6 +155,16 @@ const theme = createTheme();
           },
         },
       },
+      MuiGrid: {
+        styleOverrides: {
+          root: {
+            justifyContent: 'space-between',
+          },
+          container: {
+            justifyContent: 'space-between',
+          },
+        },
+      },
     },
   });
 }
@@ -208,6 +218,7 @@ const theme = createTheme();
             variants: [
               {
                 props: ({ ownerState }) => ownerState.color === 'primary',
+                style: {},
               },
             ],
           }),
@@ -240,6 +251,37 @@ const theme = createTheme();
     shape: {
       // @ts-expect-error invalid borderRadius string value in theme
       borderRadius: '5px',
+    },
+  });
+}
+
+// CSS variables for shadow DOM
+{
+  createTheme({
+    cssVariables: {
+      rootSelector: ':host',
+      colorSchemeSelector: 'class',
+    },
+  });
+}
+
+// Invalid variant
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          // @ts-expect-error invalid variant
+          root: {
+            variants: [
+              {
+                props: { variant: 'not-a-variant' },
+                style: { border: 0 },
+              },
+            ],
+          },
+        },
+      },
     },
   });
 }

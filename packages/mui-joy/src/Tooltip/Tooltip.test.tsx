@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, act } from '@mui-internal/test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { createRenderer, act } from '@mui/internal-test-utils';
+import capitalize from '@mui/utils/capitalize';
 import { PopperProps } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';
@@ -50,8 +50,12 @@ describe('<Tooltip />', () => {
         'componentProp',
         'componentsProp',
         'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
+        // Props are spread to root and children
+        // We cannot use the standard propsSpread test which relies on data-testid only on the root
+        'propsSpread',
+        // Props are spread to root and children
+        // We cannot use the standard mergeClassName test which relies on data-testid only on the root
+        'mergeClassName',
       ],
     }),
   );

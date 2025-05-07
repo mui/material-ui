@@ -4,7 +4,7 @@ import {
   createRenderer,
   screen,
   strictModeDoubleLoggingSuppressed,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 import describeConformance from '../../test/describeConformance';
 
@@ -30,6 +30,8 @@ describe('<LinearProgress />', () => {
     expect(progressbar).to.have.class(classes.indeterminate);
     expect(progressbar.children[0]).to.have.class(classes.bar1Indeterminate);
     expect(progressbar.children[1]).to.have.class(classes.bar2Indeterminate);
+    expect(progressbar.children[0]).to.have.class(classes.bar1);
+    expect(progressbar.children[1]).to.have.class(classes.bar2);
   });
 
   it('should render for the primary color by default', () => {

@@ -21,9 +21,11 @@ export default function FreeSolo() {
           <TextField
             {...params}
             label="Search input"
-            InputProps={{
-              ...params.InputProps,
-              type: 'search',
+            slotProps={{
+              input: {
+                ...params.InputProps,
+                type: 'search',
+              },
             }}
           />
         )}

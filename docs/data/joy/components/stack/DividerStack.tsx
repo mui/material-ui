@@ -23,7 +23,7 @@ export default function DividerStack() {
         direction="row"
         divider={<Divider orientation="vertical" />}
         spacing={2}
-        justifyContent="center"
+        sx={{ justifyContent: 'center' }}
       >
         <Item>Item 1</Item>
         <Item>Item 2</Item>

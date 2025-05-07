@@ -41,27 +41,8 @@ export type InternalStandardProps<
     style?: React.CSSProperties;
   };
 
-export type PaletteMode = 'light' | 'dark';
-export interface Color {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-  A100: string;
-  A200: string;
-  A400: string;
-  A700: string;
-}
-
 export namespace PropTypes {
   // keeping the type structure for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-shadow, @typescript-eslint/no-unused-vars
   type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
@@ -221,17 +202,14 @@ export * from './FormHelperText';
 export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
+export { default as GridLegacy } from './GridLegacy';
+export { GridLegacyProps, GridLegacyTypeMap } from './GridLegacy';
+
 export { default as Grid } from './Grid';
 export * from './Grid';
 
-export { default as Unstable_Grid2 } from './Unstable_Grid2';
-export * from './Unstable_Grid2';
-
 export { default as Grow } from './Grow';
 export * from './Grow';
-
-export { default as Hidden } from './Hidden';
-export * from './Hidden';
 
 export { default as Icon } from './Icon';
 export * from './Icon';
@@ -476,12 +454,9 @@ export * from './useAutocomplete';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
-/**
- * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
- */
-export { StyledEngineProvider } from './styles';
+export * from './version';
 
-export { unstable_composeClasses } from '@mui/base/composeClasses';
+export { default as unstable_composeClasses } from '@mui/utils/composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
@@ -490,3 +465,5 @@ export { default as generateUtilityClasses } from './generateUtilityClasses';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 export * from './Unstable_TrapFocus';
+
+export { default as InitColorSchemeScript } from './InitColorSchemeScript';

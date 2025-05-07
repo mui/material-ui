@@ -8,6 +8,8 @@ components: AspectRatio
 
 <p class="description">The Aspect Ratio component resizes its contents to match the desired ratio.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Aspect Ratio is a wrapper component for quickly resizing content to conform to your preferred ratio of width to height.

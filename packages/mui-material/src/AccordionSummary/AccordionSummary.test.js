@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
 } from '@mui/material/AccordionSummary';
@@ -9,18 +9,34 @@ import Accordion from '@mui/material/Accordion';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 
+const CustomButtonBase = React.forwardRef(({ focusVisible, ...props }, ref) => (
+  <ButtonBase ref={ref} {...props} />
+));
+
 describe('<AccordionSummary />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<AccordionSummary />, () => ({
+  describeConformance(<AccordionSummary expandIcon="expand" />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiAccordionSummary',
     testVariantProps: { disabled: true },
     testDeepOverrides: { slotName: 'content', slotClassName: classes.content },
     skip: ['componentProp', 'componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomButtonBase,
+      },
+      content: {
+        expectedClassName: classes.content,
+      },
+      expandIconWrapper: {
+        expectedClassName: classes.expandIconWrapper,
+      },
+    },
   }));
 
   it('renders the children inside the .content element', () => {
@@ -98,7 +114,12 @@ describe('<AccordionSummary />', () => {
     expect(handleChange.callCount).to.equal(1);
   });
 
-  it('calls onFocusVisible if focused visibly', () => {
+  it('calls onFocusVisible if focused visibly', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      // JSDOM doesn't support :focus-visible
+      this.skip();
+    }
+
     const handleFocusVisible = spy();
     const { getByRole } = render(<AccordionSummary onFocusVisible={handleFocusVisible} />);
     // simulate pointer device

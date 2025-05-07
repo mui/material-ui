@@ -26,11 +26,11 @@ export default function ProductCard() {
         <Typography level="body-xs">Bluetooth Headset</Typography>
         <Link
           href="#product-card"
-          fontWeight="md"
           color="neutral"
           textColor="text.primary"
           overlay
           endDecorator={<ArrowOutwardIcon />}
+          sx={{ fontWeight: 'md' }}
         >
           Super Rockez A400
         </Link>

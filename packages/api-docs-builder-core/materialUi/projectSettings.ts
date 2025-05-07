@@ -2,11 +2,17 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
-import {
-  unstable_generateUtilityClass as generateUtilityClass,
-  unstable_isGlobalState as isGlobalState,
-} from '@mui/utils';
+import generateUtilityClass, { isGlobalState } from '@mui/utils/generateUtilityClass';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
+
+const generateClassName = (componentName: string, slot: string, globalStatePrefix = 'Mui') => {
+  if (componentName === 'MuiSwipeableDrawer') {
+    // SwipeableDrawer uses Drawer classes without modifying them
+    return generateUtilityClass('MuiDrawer', slot, globalStatePrefix);
+  }
+
+  return generateUtilityClass(componentName, slot, globalStatePrefix);
+};
 
 export const projectSettings: ProjectSettings = {
   output: {
@@ -16,7 +22,12 @@ export const projectSettings: ProjectSettings = {
     {
       name: 'material',
       rootPath: path.join(process.cwd(), 'packages/mui-material'),
-      entryPointPath: 'src/index.d.ts',
+      entryPointPath: [
+        'src/index.d.ts',
+        'src/PigmentStack/PigmentStack.tsx',
+        'src/PigmentContainer/PigmentContainer.tsx',
+        'src/PigmentGrid/PigmentGrid.tsx',
+      ],
     },
     {
       name: 'lab',
@@ -28,9 +39,11 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return filename.match(/(ThemeProvider|CssVarsProvider|Grid2)/) !== null;
+    return filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider)/) !== null;
   },
   translationPagesDirectory: 'docs/translations/api-docs',
-  generateClassName: generateUtilityClass,
+  generateClassName,
   isGlobalClassName: isGlobalState,
+  // #host-reference
+  baseApiUrl: 'https://mui.com',
 };

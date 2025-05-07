@@ -1,11 +1,14 @@
 import * as React from 'react';
+import standardNavIcons from './modules/components/AppNavIcons';
+
+export type MuiPageIcon = keyof typeof standardNavIcons | React.ComponentType;
 
 export interface MuiPage {
   pathname: string;
   query?: object;
   children?: MuiPage[];
   disableDrawer?: boolean;
-  icon?: string | React.ComponentType;
+  icon?: MuiPageIcon;
   /**
    * Indicates if the pages are regarding some legacy API.
    */
@@ -57,6 +60,10 @@ export interface MuiPage {
    * Indicates the item is in beta release.
    */
   beta?: boolean;
+  /**
+   * Indicates if the pages are regarding some deprecated API.
+   */
+  deprecated?: boolean;
 }
 
 export interface OrderedMuiPage extends MuiPage {

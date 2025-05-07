@@ -10,7 +10,7 @@ export default function CompanyRegistrationStepper() {
   return (
     <Stepper
       orientation="vertical"
-      sx={{
+      sx={(theme) => ({
         '--Stepper-verticalGap': '2.5rem',
         '--StepIndicator-size': '2.5rem',
         '--Step-gap': '1rem',
@@ -25,7 +25,7 @@ export default function CompanyRegistrationStepper() {
           [`& .${stepIndicatorClasses.root}`]: {
             border: '4px solid',
             borderColor: '#fff',
-            boxShadow: (theme) => `0 0 0 1px ${theme.vars.palette.primary[500]}`,
+            boxShadow: `0 0 0 1px ${theme.vars.palette.primary[500]}`,
           },
         },
         [`& .${stepClasses.disabled} *`]: {
@@ -36,7 +36,7 @@ export default function CompanyRegistrationStepper() {
           letterSpacing: '1px',
           fontSize: '10px',
         },
-      }}
+      })}
     >
       <Step
         completed

@@ -11,11 +11,11 @@ Toolpad helps full-stack engineers build internal tools quickly.
 Internal tools encompass data-intensive CRUD interfaces, analytics dashboards, or custom apps that make teams productive.
 Toolpad offers a low-code, GUI-based, code-friendly way of building apps and comes as an npm package that can be imported into an existing codebase.
 
-We've been dogfooding [Toolpad](https://mui.com/toolpad/) at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
+We've been dogfooding [Toolpad Studio](https://mui.com/toolpad/studio/) at MUI to build our internal tools, and it has proven beneficial for us to easily assemble well-organized, centrally located KPI dashboards and operations apps.
 In this blog post, we'll discuss four such apps, and explain how we used Toolpad to turn our ideas into reality.
 
 <a href="https://tools-public.mui.com/prod/pages/OverviewPage">
-<img alt="MUI public app for tracking KPIs" src="/static/blog/toolpad-use-cases/tools-public.png" width="2400" height="1394" />
+  <img alt="MUI public app for tracking KPIs" src="/static/blog/toolpad-use-cases/tools-public.png" width="2400" height="1394" />
 </a>
 
 ## Problems tackled through Toolpad
@@ -55,7 +55,7 @@ Other KPI pages also use this health badge and pre-built Chart components to com
 
 The video below demonstrates the usage of this app in dev mode:
 
-<video controls width="100%" height="auto" style="contain" alt="zendesk first reply in devmode">
+<video controls width="100%" height="auto" alt="zendesk first reply in devmode">
   <source src="/static/blog/toolpad-use-cases/zendesk-first-reply-dev.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
@@ -74,7 +74,7 @@ In the Toolpad app, the operations team can view a table of all customers who ne
 They select one, email them from Zendesk, and update the status to `CONTACTED`, which is then written back to the database.
 This is a private app for internal use that can't be shared, but the following video gives a quick demo:
 
-<video controls width="100%" height="auto" style="contain" alt="overdue invoice page">
+<video controls width="100%" height="auto" alt="overdue invoice page">
   <source src="/static/blog/toolpad-use-cases/overdue-invoice.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -89,7 +89,7 @@ Our operations team is responsible for paying contributors, but the script prove
 We solved this problem by importing the script into Toolpad and creating a UI for it.
 The video below shows how a user can select the dates, run the script, and receive text that's properly formatted to copy and paste directly into Slack communications:
 
-<video controls width="100%" height="auto" style="contain" alt="contributor payout page">
+<video controls width="100%" height="auto" alt="contributor payout page">
   <source src="/static/blog/toolpad-use-cases/contributor-payout.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -104,5 +104,5 @@ Internal apps are often very specific to the needs of the organization, but hope
 - Do you wish you didn't have to do any maintenance on the front ends of your internal tools?
 
 Toolpad handles state management, data fetching, routing, and UI creation, and it can be imported directly into your code base to save you time.
-I encourage you to check out more [examples](https://mui.com/toolpad/studio/examples/) and visit our [GitHub repository](https://github.com/mui/mui-toolpad/) to evaluate the product.
+I encourage you to check out more [examples](https://mui.com/toolpad/studio/examples/) and visit the [GitHub repository](https://github.com/mui/toolpad/) to evaluate the product.
 In case you need any further information, feel free to reach out to the team at toolpad@mui.com.

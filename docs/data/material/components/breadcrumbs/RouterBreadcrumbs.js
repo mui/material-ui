@@ -17,7 +17,7 @@ import {
   Routes,
   MemoryRouter,
   useLocation,
-} from 'react-router-dom';
+} from 'react-router';
 
 const breadcrumbNameMap = {
   '/inbox': 'Inbox',
@@ -69,7 +69,7 @@ function Page() {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
         return last ? (
-          <Typography color="text.primary" key={to}>
+          <Typography key={to} sx={{ color: 'text.primary' }}>
             {breadcrumbNameMap[to]}
           </Typography>
         ) : (
@@ -96,10 +96,7 @@ export default function RouterBreadcrumbs() {
           <Route path="*" element={<Page />} />
         </Routes>
         <Box
-          sx={{
-            bgcolor: 'background.paper',
-            mt: 1,
-          }}
+          sx={{ bgcolor: 'background.paper', mt: 1 }}
           component="nav"
           aria-label="mailbox folders"
         >

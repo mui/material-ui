@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import HTMLElementType from '@mui/utils/HTMLElementType';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
-import { useSlotProps } from '@mui/base/utils';
-import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';
 import composeClasses from '@mui/utils/composeClasses';
 import FocusTrap from '../Unstable_TrapFocus';
 import Portal from '../Portal';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import Backdrop from '../Backdrop';
+import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
-
-const useThemeProps = createUseThemeProps('MuiModal');
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -34,29 +34,28 @@ const ModalRoot = styled('div', {
 
     return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-})(({ theme }) => ({
-  position: 'fixed',
-  zIndex: (theme.vars || theme).zIndex.modal,
-  right: 0,
-  bottom: 0,
-  top: 0,
-  left: 0,
-  variants: [
-    {
-      props: ({ ownerState }) => !ownerState.open && ownerState.exited,
-      style: {
-        visibility: 'hidden',
+})(
+  memoTheme(({ theme }) => ({
+    position: 'fixed',
+    zIndex: (theme.vars || theme).zIndex.modal,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    left: 0,
+    variants: [
+      {
+        props: ({ ownerState }) => !ownerState.open && ownerState.exited,
+        style: {
+          visibility: 'hidden',
+        },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const ModalBackdrop = styled(Backdrop, {
   name: 'MuiModal',
   slot: 'Backdrop',
-  overridesResolver: (props, styles) => {
-    return styles.backdrop;
-  },
 })({
   zIndex: -1,
 });
@@ -75,7 +74,7 @@ const ModalBackdrop = styled(Backdrop, {
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiModal', props: inProps });
+  const props = useDefaultProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
     BackdropProps,
@@ -95,13 +94,12 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
-    onBackdropClick,
     onClose,
     onTransitionEnter,
     onTransitionExited,
     open,
-    slotProps,
-    slots,
+    slotProps = {},
+    slots = {},
     // eslint-disable-next-line react/prop-types
     theme,
     ...other
@@ -152,48 +150,52 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     childProps.onExited = onExited;
   }
 
-  const RootSlot = slots?.root ?? components.Root ?? ModalRoot;
-  const BackdropSlot = slots?.backdrop ?? components.Backdrop ?? BackdropComponent;
-
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const backdropSlotProps = slotProps?.backdrop ?? componentsProps.backdrop;
-
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
-    getSlotProps: getRootProps,
-    additionalProps: {
-      ref,
-      as: component,
+  const externalForwardedProps = {
+    slots: {
+      root: components.Root,
+      backdrop: components.Backdrop,
+      ...slots,
     },
+    slotProps: {
+      ...componentsProps,
+      ...slotProps,
+    },
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    ref,
+    elementType: ModalRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      component,
+    },
+    getSlotProps: getRootProps,
     ownerState,
     className: clsx(
       className,
-      rootSlotProps?.className,
       classes?.root,
       !ownerState.open && ownerState.exited && classes?.hidden,
     ),
   });
 
-  const backdropProps = useSlotProps({
-    elementType: BackdropSlot,
-    externalSlotProps: backdropSlotProps,
+  const [BackdropSlot, backdropProps] = useSlot('backdrop', {
+    ref: BackdropProps?.ref,
+    elementType: BackdropComponent,
+    externalForwardedProps,
+    shouldForwardComponentProp: true,
     additionalProps: BackdropProps,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
-        onClick: (e) => {
-          if (onBackdropClick) {
-            onBackdropClick(e);
-          }
+        onClick: (event) => {
           if (otherHandlers?.onClick) {
-            otherHandlers.onClick(e);
+            otherHandlers.onClick(event);
           }
         },
       });
     },
-    className: clsx(backdropSlotProps?.className, BackdropProps?.className, classes?.backdrop),
+    className: clsx(BackdropProps?.className, classes?.backdrop),
     ownerState,
   });
 
@@ -203,12 +205,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   return (
     <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
-      {/*
-       * Marking an element with the role presentation indicates to assistive technology
-       * that this element should be ignored; it exists to support the web application and
-       * is not meant for humans to interact with directly.
-       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-       */}
       <RootSlot {...rootProps}>
         {!hideBackdrop && BackdropComponent ? <BackdropSlot {...backdropProps} /> : null}
         <FocusTrap
@@ -237,16 +233,13 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](https://mui.com/material-ui/api/backdrop/) element.
    * @deprecated Use `slotProps.backdrop` instead.
    */
   BackdropProps: PropTypes.object,
@@ -275,8 +268,7 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -288,8 +280,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -362,11 +353,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
-  /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.

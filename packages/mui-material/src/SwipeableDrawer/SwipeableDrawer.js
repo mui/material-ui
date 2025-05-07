@@ -3,16 +3,18 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import elementTypeAcceptingRef from '@mui/utils/elementTypeAcceptingRef';
-import useThemeProps from '@mui/system/useThemeProps';
-import { NoSsr } from '@mui/base';
+import NoSsr from '../NoSsr';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import useForkRef from '../utils/useForkRef';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
-import useTheme from '../styles/useTheme';
+import { useTheme } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getTransitionProps } from '../transitions/utils';
+import { mergeSlotProps } from '../utils';
+import useSlot from '../utils/useSlot';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to
@@ -135,7 +137,7 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
-  const props = useThemeProps({ name: 'MuiSwipeableDrawer', props: inProps });
+  const props = useDefaultProps({ name: 'MuiSwipeableDrawer', props: inProps });
   const theme = useTheme();
   const transitionDurationDefault = {
     enter: theme.transitions.duration.enteringScreen,
@@ -159,6 +161,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     swipeAreaWidth = 20,
     transitionDuration = transitionDurationDefault,
     variant = 'temporary', // Mobile first.
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -188,7 +192,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       const { mode = null, changeTransition = true } = options;
 
       const anchorRtl = getAnchor(theme, anchor);
-      const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchorRtl) !== -1 ? 1 : -1;
+      const rtlTranslateMultiplier = ['right', 'bottom'].includes(anchorRtl) ? 1 : -1;
       const horizontalSwipe = isHorizontal(anchor);
 
       const transform = horizontalSwipe
@@ -238,6 +242,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     if (!touchDetected.current) {
       return;
     }
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- claimedSwipeInstance is a singleton
     claimedSwipeInstance = null;
     touchDetected.current = false;
     ReactDOM.flushSync(() => {
@@ -583,6 +588,23 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     }
   }, [open]);
 
+  const [SwipeAreaSlot, swipeAreaSlotProps] = useSlot('swipeArea', {
+    ref: swipeAreaRef,
+    elementType: SwipeArea,
+    ownerState: props,
+    externalForwardedProps: {
+      slots,
+      slotProps: {
+        swipeArea: SwipeAreaProps,
+        ...slotProps,
+      },
+    },
+    additionalProps: {
+      width: swipeAreaWidth,
+      anchor,
+    },
+  });
+
   return (
     <React.Fragment>
       <Drawer
@@ -601,28 +623,29 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
           ...ModalPropsProp,
         }}
         hideBackdrop={hideBackdrop}
-        PaperProps={{
-          ...PaperProps,
-          style: {
-            pointerEvents: variant === 'temporary' && !open && !allowSwipeInChildren ? 'none' : '',
-            ...PaperProps.style,
-          },
-          ref: handleRef,
-        }}
         anchor={anchor}
         transitionDuration={calculatedDurationRef.current || transitionDuration}
         onClose={onClose}
         ref={ref}
+        slots={slots}
+        slotProps={{
+          ...slotProps,
+          backdrop: mergeSlotProps(slotProps.backdrop ?? BackdropProps, {
+            ref: backdropRef,
+          }),
+          paper: mergeSlotProps(slotProps.paper ?? PaperProps, {
+            style: {
+              pointerEvents:
+                variant === 'temporary' && !open && !allowSwipeInChildren ? 'none' : '',
+            },
+            ref: handleRef,
+          }),
+        }}
         {...other}
       />
       {!disableSwipeToOpen && variant === 'temporary' && (
         <NoSsr>
-          <SwipeArea
-            anchor={anchor}
-            ref={swipeAreaRef}
-            width={swipeAreaWidth}
-            {...SwipeAreaProps}
-          />
+          <SwipeAreaSlot {...swipeAreaSlotProps} />
         </NoSsr>
       )}
     </React.Fragment>
@@ -723,7 +746,32 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
     style: PropTypes.object,
   }),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    docked: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    paper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    swipeArea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    backdrop: PropTypes.elementType,
+    docked: PropTypes.elementType,
+    paper: PropTypes.elementType,
+    root: PropTypes.elementType,
+    swipeArea: PropTypes.elementType,
+    transition: PropTypes.elementType,
+  }),
+  /**
    * The element is used to intercept the touch events on the edge.
+   * @deprecated use the `slotProps.swipeArea` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SwipeAreaProps: PropTypes.object,
   /**

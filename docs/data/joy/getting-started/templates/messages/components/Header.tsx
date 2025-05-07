@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <Sheet
       sx={{
-        display: { xs: 'flex', sm: 'none' },
+        display: { sm: 'flex', md: 'none' },
         alignItems: 'center',
         justifyContent: 'space-between',
         position: 'fixed',

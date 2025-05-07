@@ -40,13 +40,17 @@ export interface PaginationProps
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
-   * @param {number} page The page number to format.
-   * @param {bool} selected If true, the current page is selected.
+   * @param {number | null} page The page number to format.
+   * @param {boolean} selected If true, the current page is selected.
    * @returns {string}
    */
-  getItemAriaLabel?: (type: UsePaginationItem['type'], page: number, selected: boolean) => string;
+  getItemAriaLabel?: (
+    type: UsePaginationItem['type'],
+    page: UsePaginationItem['page'],
+    selected: UsePaginationItem['selected'],
+  ) => string;
 
   /**
    * Render the item.
@@ -86,4 +90,4 @@ export interface PaginationProps
  *
  * - [Pagination API](https://mui.com/material-ui/api/pagination/)
  */
-export default function Pagination(props: PaginationProps): JSX.Element;
+export default function Pagination(props: PaginationProps): React.JSX.Element;

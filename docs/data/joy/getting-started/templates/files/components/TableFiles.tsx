@@ -15,10 +15,7 @@ export default function TableFiles() {
         size="sm"
         borderAxis="none"
         variant="soft"
-        sx={{
-          '--TableCell-paddingX': '1rem',
-          '--TableCell-paddingY': '1rem',
-        }}
+        sx={{ '--TableCell-paddingX': '1rem', '--TableCell-paddingY': '1rem' }}
       >
         <thead>
           <tr>

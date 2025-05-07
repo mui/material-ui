@@ -1,5 +1,5 @@
 ---
-title: Introducing Toolpad: MUI's low-code admin builder
+title: "Introducing Toolpad: MUI's low-code admin builder"
 description: Assemble admin panels and internal tools faster than ever before with Toolpad—now in beta.
 date: 2023-07-24T00:00:00.000Z
 authors: ['prakhargupta']
@@ -10,7 +10,7 @@ tags: ['Product', 'Toolpad']
 It's been over a year since we released the first version of Toolpad. Today, we're excited to take the next step on that journey with the release of Toolpad Beta. If you aren't familiar with Toolpad yet, it's an admin panel builder catering to the internal tooling needs of an organization, designed for developers who want to build a functional application quickly. It harnesses the speed of a UI builder for the front end and closely integrates into your back end. If this excites you, then read on!
 
 <a href="https://mui.com/toolpad/studio/examples/basic-crud-app/">
-<img alt="Introducing Toolpad" src="/static/blog/2023-toolpad-beta-announcement/intro.png" width="2400" height="1200" />
+  <img alt="Introducing Toolpad" src="/static/blog/2023-toolpad-beta-announcement/intro.png" width="2400" height="1200" />
 </a>
 
 ## Why did we decide to build Toolpad?
@@ -35,7 +35,7 @@ Toolpad is not ideal for building static web pages, mobile apps, or customer-fac
 
 Before the arrival of Toolpad, the MUI organization primarily catered to the front-end needs of the development process. Our products were mostly useful for React engineers or designers, but we saw many full-stack engineers use our advanced components for data-intensive apps. These highly customizable components are well-suited for complex apps, but not all apps require the same level of customization: for example, internal tools just need basic theming.
 
-<img alt="Toolpad personas" src="/static/blog/2023-toolpad-beta-announcement/personas.png" loading="lazy" width="2076" height="900" style="margin-bottom:24px;" />
+<img alt="Toolpad personas" src="/static/blog/2023-toolpad-beta-announcement/personas.png" loading="lazy" width="2400" height="1394" />
 
 Toolpad is for you if you're a full-stack or back-end developer who builds, manages, and integrates data pipelines, server-side logic, databases, microservices, and APIs—and knows the most about them. Sharing these endpoints with and maintaining the internal documentation for the front-end teams is a hassle that lasts forever. Toolpad empowers you to take the next step and build the UI you need using our drag-and-drop editor, without losing any part of your normal development workflow.
 
@@ -93,12 +93,12 @@ In this domain, there are two categories of products:
 Toolpad is solely focused on professional developers. As much as we are low-code, we are equally code-friendly. Providing the basic functionality that you expect from an open-source tool is non-negotiable for us—we will always prioritize your best interests over all else.
 With nearly a decade of experience building developer tools, we understand the long-term benefits of cultivating a close relationship with our community of users.
 
-Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VSCode. It's the best of both worlds!
+Lastly, Toolpad is the only product that offers a drag-and-drop UI builder closely integrated with your favorite IDE, such as VS Code. It's the best of both worlds!
 
 ## How can I use Toolpad?
 
 Toolpad is available as an npm package. Follow the [Installation guide](https://mui.com/toolpad/studio/getting-started/installation/) in the docs to get started.
-You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/).
+You can learn more about Toolpad by visiting the [home page](https://mui.com/toolpad/studio/).
 
 <img alt="Toolpad documentation and instructions on how to use it" src="/static/blog/2023-toolpad-beta-announcement/docs.png" loading="lazy" width="2400" height="1394" />
 
@@ -107,9 +107,9 @@ You can learn more about Toolpad by visiting the [home page](https://mui.com/too
 We plan to continue to iterate on our vision of helping you as a developer to increase the speed and efficiency of your workflow. We want to optimize for the biggest pains that you face when building admin apps.
 Your input is crucial to helping us shape the roadmap from here.
 
-The best places to stay up-to-date about what we're currently working on are [GitHub issues](https://github.com/mui/mui-toolpad) and our [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
+The best places to stay up-to-date about what the team is currently working on are [GitHub issues](https://github.com/mui/toolpad) and the [public roadmap](https://github.com/orgs/mui/projects/9/views/1).
 
-If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X/Twitter](https://twitter.com/MUI_Toolpad).
+If you have any questions or would like to share feedback, you can directly contact the team at toolpad@mui.com or reach us on [X/Twitter](https://x.com/MUI_Toolpad).
 You can also engage in conversation on our [Discord](https://mui.com/r/discord/) server.
 
 If you'd like an in-depth demo to discuss your use case, please feel free to [schedule a meeting with me on Calendly](https://calendly.com/prakhar-mui).

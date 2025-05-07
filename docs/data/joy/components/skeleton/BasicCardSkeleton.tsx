@@ -12,7 +12,7 @@ export default function BasicCardSkeleton() {
   return (
     <Card variant="outlined" sx={{ width: 320 }}>
       <div>
-        <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
+        <Typography level="h2" sx={{ fontSize: 'md', mb: 0.5 }}>
           <Skeleton>Yosemite National Park</Skeleton>
         </Typography>
         <Typography level="body-sm">
@@ -44,7 +44,7 @@ export default function BasicCardSkeleton() {
           <Typography level="body-xs">
             <Skeleton>Total price:</Skeleton>
           </Typography>
-          <Typography fontSize="lg" fontWeight="lg">
+          <Typography sx={{ fontSize: 'lg', fontWeight: 'lg' }}>
             <Skeleton>$2,900</Skeleton>
           </Typography>
         </div>

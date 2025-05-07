@@ -51,8 +51,10 @@ export default function SignUp() {
         <Button sx={{ mt: 1 }}>Create account</Button>
         <Typography
           endDecorator={<Link href="/">Log in</Link>}
-          fontSize="sm"
-          sx={{ alignSelf: 'center' }}
+          sx={{
+            fontSize: 'sm',
+            alignSelf: 'center',
+          }}
         >
           Already have an account?
         </Typography>

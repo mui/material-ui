@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import StepIcon, { stepIconClasses as classes } from '@mui/material/StepIcon';
+import SvgIcon from '@mui/material/SvgIcon';
 import describeConformance from '../../test/describeConformance';
 
 describe('<StepIcon />', () => {
@@ -9,7 +10,7 @@ describe('<StepIcon />', () => {
 
   describeConformance(<StepIcon icon={1} />, () => ({
     classes,
-    inheritComponent: 'svg',
+    inheritComponent: SvgIcon,
     render,
     muiName: 'MuiStepIcon',
     testVariantProps: { completed: true },

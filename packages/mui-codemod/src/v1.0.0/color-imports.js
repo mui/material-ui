@@ -31,7 +31,7 @@ function colorAccent(colorIdentifier) {
  * @param {string} colorPalette
  */
 function colorImportPath(colorPalette) {
-  return commonColors.indexOf(colorPalette) !== -1 ? 'common' : colorPalette;
+  return commonColors.includes(colorPalette) ? 'common' : colorPalette;
 }
 
 /**
@@ -89,7 +89,7 @@ function transformMemberImports(j, root, importPath, targetPath) {
           const colorIdentifier = j.identifier(colorModuleName);
 
           // import color module (if not already imported)
-          if (importDeclarations.map((p) => p.source.value).indexOf(modulePath) === -1) {
+          if (!importDeclarations.map((p) => p.source.value).includes(modulePath)) {
             importDeclarations.push(
               j.importDeclaration(
                 [j.importDefaultSpecifier(colorIdentifier)],

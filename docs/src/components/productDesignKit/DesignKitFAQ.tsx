@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Paper from '@mui/material/Paper';
@@ -68,11 +68,11 @@ const faqData = [
     ),
   },
   {
-    summary: 'Figma or Sketch or Adobe XD?',
+    summary: 'Figma or Sketch?',
     detail: (
       <React.Fragment>
-        We aim to keep feature parity between the Figma, Sketch, and Adobe XD kits where possible.
-        We have a 50% off coupon for past customers who want to switch between them.
+        We aim to keep feature parity between the Figma and Sketch kits where possible. We have a
+        50% off coupon for past customers who want to switch between them.
       </React.Fragment>
     ),
   },
@@ -127,7 +127,7 @@ export default function DesignKitFAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography variant="body2" fontWeight="bold" component="h3">
+          <Typography variant="body2" component="h3" sx={{ fontWeight: 'bold' }}>
             {faq.summary}
           </Typography>
         </AccordionSummary>
@@ -135,8 +135,7 @@ export default function DesignKitFAQ() {
           <Typography
             component="div"
             variant="body2"
-            color="text.secondary"
-            sx={{ '& ul': { pl: 2 } }}
+            sx={{ color: 'text.secondary', '& ul': { pl: 2 } }}
           >
             {faq.detail}
           </Typography>
@@ -146,16 +145,16 @@ export default function DesignKitFAQ() {
   }
   return (
     <Section>
-      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }} id="faq">
+      <Typography id="faq" variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
         </Grid>
-        <Grid xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           {renderItem(3)}
           {renderItem(4)}
           <Paper
@@ -173,10 +172,14 @@ export default function DesignKitFAQ() {
               }),
             })}
           >
-            <Typography variant="body2" color="text.primary" fontWeight="bold" gutterBottom>
+            <Typography
+              variant="body2"
+              gutterBottom
+              sx={{ color: 'text.primary', fontWeight: 'bold' }}
+            >
               Got any questions unanswered or need more help?
             </Typography>
-            <Typography variant="body2" color="text.primary" gutterBottom>
+            <Typography variant="body2" gutterBottom sx={{ color: 'text.primary' }}>
               From community help to premium business support, we&apos;re here to help.
             </Typography>
             <Button

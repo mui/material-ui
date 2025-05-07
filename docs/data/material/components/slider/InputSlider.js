@@ -35,18 +35,18 @@ export default function InputSlider() {
       <Typography id="input-slider" gutterBottom>
         Volume
       </Typography>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item>
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+        <Grid>
           <VolumeUp />
         </Grid>
-        <Grid item xs>
+        <Grid size="grow">
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
           />
         </Grid>
-        <Grid item>
+        <Grid>
           <Input
             value={value}
             size="small"

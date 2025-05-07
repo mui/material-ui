@@ -27,8 +27,10 @@ function renderRow(props) {
     );
   }
 
+  const { key, ...optionProps } = dataSet[0];
+
   return (
-    <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
+    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
       {`#${dataSet[2] + 1} - ${dataSet[1]}`}
     </Typography>
   );
@@ -147,7 +149,11 @@ export default function Virtualize() {
       renderGroup={(params) => params}
       slots={{
         popper: StyledPopper,
-        listbox: ListboxComponent,
+      }}
+      slotProps={{
+        listbox: {
+          component: ListboxComponent,
+        },
       }}
     />
   );

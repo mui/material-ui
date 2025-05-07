@@ -18,9 +18,11 @@ export default function InteractiveStack() {
   const jsx = `
 <Stack
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
   spacing={${spacing}}
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
@@ -28,23 +30,23 @@ export default function InteractiveStack() {
     <Stack sx={{ flexGrow: 1 }}>
       <Stack
         direction={direction}
-        justifyContent={justifyContent}
-        alignItems={alignItems}
         spacing={spacing}
-        sx={{ height: 240 }}
+        sx={{ justifyContent, alignItems, height: 240 }}
       >
         {[0, 1, 2].map((value) => (
           <Paper
             key={value}
-            sx={{
+            sx={(theme) => ({
               p: 2,
               pt: value + 1,
               pb: value + 1,
               color: 'text.secondary',
               typography: 'body2',
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-            }}
+              backgroundColor: '#fff',
+              ...theme.applyStyles('dark', {
+                backgroundColor: '#1A2027',
+              }),
+            })}
           >
             {`Item ${value + 1}`}
           </Paper>
@@ -52,7 +54,7 @@ export default function InteractiveStack() {
       </Stack>
       <Paper sx={{ p: 2 }}>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">direction</FormLabel>
               <RadioGroup
@@ -83,7 +85,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">alignItems</FormLabel>
               <RadioGroup
@@ -123,7 +125,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">justifyContent</FormLabel>
               <RadioGroup
@@ -168,7 +170,7 @@ export default function InteractiveStack() {
               </RadioGroup>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">spacing</FormLabel>
               <RadioGroup

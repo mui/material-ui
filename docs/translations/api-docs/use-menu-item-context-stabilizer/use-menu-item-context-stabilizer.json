@@ -1,5 +1,0 @@
-{
-  "hookDescription": "Stabilizes the ListContext value for the MenuItem component, so it doesn't change when sibling items update.\n\n@param id The id of the MenuItem. If undefined, it will be generated with useId.\n@returns The stable ListContext value and the id of the MenuItem.",
-  "parametersDescriptions": {},
-  "returnValueDescriptions": {}
-}

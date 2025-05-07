@@ -171,7 +171,7 @@ yarn add @material-ui/styles
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
 
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://mui.com/system/spacing/#transformation).
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](/system/spacing/#transformation).
 
 - [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 

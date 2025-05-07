@@ -22,7 +22,7 @@ This guide will walk you through how to build this statistics component, which a
 
 ### 1. Create the component slots
 
-Slots let you customize each individual element of the component by targeting its respective name in the [theme's styleOverrides](/material-ui/customization/theme-components/#theme-style-overrides) and [theme's variants](/material-ui/customization/theme-components/#creating-new-component-variants).
+Slots let you customize each individual element of the component by targeting its respective name in the [theme's styleOverrides](/material-ui/customization/theme-components/#theme-style-overrides) and [theme's variants](/material-ui/customization/theme-components/#variants).
 
 This statistics component is composed of three slots:
 

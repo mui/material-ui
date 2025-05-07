@@ -50,7 +50,7 @@ export default function ThemeTabs() {
         ]}
       >
         <Tab label="Material UI" />
-        <Tab label="Base UI" />
+        <Tab label="MUI Base" />
         <Tab label="Joy UI" />
       </Tabs>
     </Fade>

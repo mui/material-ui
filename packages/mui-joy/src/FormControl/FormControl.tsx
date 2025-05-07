@@ -3,7 +3,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
+import useId from '@mui/utils/useId';
+import capitalize from '@mui/utils/capitalize';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -128,6 +129,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
 
   let registerEffect: undefined | (() => () => void);
   if (process.env.NODE_ENV !== 'production') {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const registeredInput = React.useRef(false);
     registerEffect = () => {

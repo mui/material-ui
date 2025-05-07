@@ -3,11 +3,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import AddIcon from '../internal/svg-icons/Add';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
-
-const useThemeProps = createUseThemeProps('MuiSpeedDialIcon');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, open, openIcon } = ownerState;
@@ -39,52 +39,54 @@ const SpeedDialIconRoot = styled('span', {
       styles.root,
     ];
   },
-})(({ theme }) => ({
-  height: 24,
-  [`& .${speedDialIconClasses.icon}`]: {
-    transition: theme.transitions.create(['transform', 'opacity'], {
-      duration: theme.transitions.duration.short,
-    }),
-  },
-  [`& .${speedDialIconClasses.openIcon}`]: {
-    position: 'absolute',
-    transition: theme.transitions.create(['transform', 'opacity'], {
-      duration: theme.transitions.duration.short,
-    }),
-    opacity: 0,
-    transform: 'rotate(-45deg)',
-  },
-  variants: [
-    {
-      props: ({ ownerState }) => ownerState.open,
-      style: {
-        [`& .${speedDialIconClasses.icon}`]: {
-          transform: 'rotate(45deg)',
+})(
+  memoTheme(({ theme }) => ({
+    height: 24,
+    [`& .${speedDialIconClasses.icon}`]: {
+      transition: theme.transitions.create(['transform', 'opacity'], {
+        duration: theme.transitions.duration.short,
+      }),
+    },
+    [`& .${speedDialIconClasses.openIcon}`]: {
+      position: 'absolute',
+      transition: theme.transitions.create(['transform', 'opacity'], {
+        duration: theme.transitions.duration.short,
+      }),
+      opacity: 0,
+      transform: 'rotate(-45deg)',
+    },
+    variants: [
+      {
+        props: ({ ownerState }) => ownerState.open,
+        style: {
+          [`& .${speedDialIconClasses.icon}`]: {
+            transform: 'rotate(45deg)',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.open && ownerState.openIcon,
-      style: {
-        [`& .${speedDialIconClasses.icon}`]: {
-          opacity: 0,
+      {
+        props: ({ ownerState }) => ownerState.open && ownerState.openIcon,
+        style: {
+          [`& .${speedDialIconClasses.icon}`]: {
+            opacity: 0,
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) => ownerState.open,
-      style: {
-        [`& .${speedDialIconClasses.openIcon}`]: {
-          transform: 'rotate(0deg)',
-          opacity: 1,
+      {
+        props: ({ ownerState }) => ownerState.open,
+        style: {
+          [`& .${speedDialIconClasses.openIcon}`]: {
+            transform: 'rotate(0deg)',
+            opacity: 1,
+          },
         },
       },
-    },
-  ],
-}));
+    ],
+  })),
+);
 
 const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialIcon' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSpeedDialIcon' });
   const { className, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
   const ownerState = props;

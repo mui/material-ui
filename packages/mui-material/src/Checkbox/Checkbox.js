@@ -2,7 +2,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha } from '@mui/system/colorManipulator';
 import SwitchBase from '../internal/SwitchBase';
@@ -12,9 +11,12 @@ import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckB
 import capitalize from '../utils/capitalize';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
-import { createUseThemeProps, styled } from '../zero-styled';
-
-const useThemeProps = createUseThemeProps('MuiCheckbox');
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { useDefaultProps } from '../DefaultPropsProvider';
+import { mergeSlotProps } from '../utils';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, indeterminate, color, size } = ownerState;
@@ -50,65 +52,67 @@ const CheckboxRoot = styled(SwitchBase, {
       ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme }) => ({
-  color: (theme.vars || theme).palette.text.secondary,
-  variants: [
-    {
-      props: { color: 'default', disableRipple: false },
-      style: {
-        '&:hover': {
-          backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        },
-      },
-    },
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
-      .map(([color]) => ({
-        props: { color, disableRipple: false },
+})(
+  memoTheme(({ theme }) => ({
+    color: (theme.vars || theme).palette.text.secondary,
+    variants: [
+      {
+        props: { color: 'default', disableRipple: false },
         style: {
           '&:hover': {
             backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
-          },
-        },
-      })),
-    ...Object.entries(theme.palette)
-      .filter(([, palette]) => palette.main)
-      .map(([color]) => ({
-        props: { color },
-        style: {
-          [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
-            color: (theme.vars || theme).palette[color].main,
-          },
-          [`&.${checkboxClasses.disabled}`]: {
-            color: (theme.vars || theme).palette.action.disabled,
-          },
-        },
-      })),
-    {
-      // Should be last to override other colors
-      props: { disableRipple: false },
-      style: {
-        // Reset on touch devices, it doesn't add specificity
-        '&:hover': {
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+              ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
+              : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
           },
         },
       },
-    },
-  ],
-}));
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color, disableRipple: false },
+          style: {
+            '&:hover': {
+              backgroundColor: theme.vars
+                ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+                : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+            },
+          },
+        })),
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
+              color: (theme.vars || theme).palette[color].main,
+            },
+            [`&.${checkboxClasses.disabled}`]: {
+              color: (theme.vars || theme).palette.action.disabled,
+            },
+          },
+        })),
+      {
+        // Should be last to override other colors
+        props: { disableRipple: false },
+        style: {
+          // Reset on touch devices, it doesn't add specificity
+          '&:hover': {
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+        },
+      },
+    ],
+  })),
+);
 
 const defaultCheckedIcon = <CheckBoxIcon />;
 const defaultIcon = <CheckBoxOutlineBlankIcon />;
 const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiCheckbox' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiCheckbox' });
   const {
     checkedIcon = defaultCheckedIcon,
     color = 'primary',
@@ -119,6 +123,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     size = 'medium',
     disableRipple = false,
     className,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -135,26 +141,43 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <CheckboxRoot
-      type="checkbox"
-      inputProps={{
-        'data-indeterminate': indeterminate,
-        ...inputProps,
-      }}
-      icon={React.cloneElement(icon, {
+  const externalInputProps = slotProps.input ?? inputProps;
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: CheckboxRoot,
+    className: clsx(classes.root, className),
+    shouldForwardComponentProp: true,
+    externalForwardedProps: {
+      slots,
+      slotProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      type: 'checkbox',
+      icon: React.cloneElement(icon, {
         fontSize: icon.props.fontSize ?? size,
-      })}
-      checkedIcon={React.cloneElement(indeterminateIcon, {
+      }),
+      checkedIcon: React.cloneElement(indeterminateIcon, {
         fontSize: indeterminateIcon.props.fontSize ?? size,
-      })}
-      ownerState={ownerState}
-      ref={ref}
-      className={clsx(classes.root, className)}
-      {...other}
-      classes={classes}
-    />
-  );
+      }),
+      disableRipple,
+      slots,
+      slotProps: {
+        input: mergeSlotProps(
+          typeof externalInputProps === 'function'
+            ? externalInputProps(ownerState)
+            : externalInputProps,
+          {
+            'data-indeterminate': indeterminate,
+          },
+        ),
+      },
+    },
+  });
+
+  return <RootSlot {...rootSlotProps} classes={classes} />;
 });
 
 Checkbox.propTypes /* remove-proptypes */ = {
@@ -226,13 +249,10 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   indeterminateIcon: PropTypes.node,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: refType,
   /**
    * Callback fired when the state is changed.
    *
@@ -254,6 +274,22 @@ Checkbox.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

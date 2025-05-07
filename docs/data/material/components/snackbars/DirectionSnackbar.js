@@ -39,11 +39,11 @@ export default function DirectionSnackbar() {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleClick(TransitionUp)}>Up</Button>
       </Box>
-      <Grid container justifyContent="center">
-        <Grid item xs={6}>
+      <Grid container sx={{ justifyContent: 'center' }}>
+        <Grid size={6}>
           <Button onClick={handleClick(TransitionRight)}>Left</Button>
         </Grid>
-        <Grid item xs={6} textAlign="right">
+        <Grid sx={{ textAlign: 'right' }} size={6}>
           <Button onClick={handleClick(TransitionLeft)}>Right</Button>
         </Grid>
       </Grid>
@@ -53,7 +53,7 @@ export default function DirectionSnackbar() {
       <Snackbar
         open={open}
         onClose={handleClose}
-        TransitionComponent={transition}
+        slots={{ transition }}
         message="I love snacks"
         key={transition ? transition.name : ''}
       />

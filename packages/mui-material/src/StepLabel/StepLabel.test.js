@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography from '@mui/material/Typography';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -20,6 +20,7 @@ describe('<StepLabel />', () => {
     testVariantProps: { error: true },
     slots: {
       label: { expectedClassName: classes.label },
+      root: { expectedClassName: classes.root },
     },
     skip: ['componentProp', 'componentsProp'],
   }));

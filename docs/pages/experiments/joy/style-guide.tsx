@@ -62,7 +62,7 @@ function ColorSchemePicker() {
 
 function ColorToken({ name, value }: { name: string; value: string }) {
   const [color, setColor] = React.useState('');
-  const ref = React.useRef<HTMLDivElement | null>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     if (ref.current && typeof window !== 'undefined') {
       const style = window.getComputedStyle(ref.current);
@@ -73,14 +73,7 @@ function ColorToken({ name, value }: { name: string; value: string }) {
     <div>
       <Box
         ref={ref}
-        sx={{
-          borderRadius: 'sm',
-          bgcolor: value,
-          width: 64,
-          height: 64,
-          mb: 1,
-          boxShadow: 'sm',
-        }}
+        sx={{ borderRadius: 'sm', bgcolor: value, width: 64, height: 64, mb: 1, boxShadow: 'sm' }}
       />
       <Typography level="body-xs">{name}</Typography>
       <Typography level="body-xs">{color}</Typography>
@@ -161,7 +154,7 @@ function TypographyScale() {
 
 export default function JoyStyleGuide() {
   return (
-    <CssVarsProvider defaultMode="system">
+    <CssVarsProvider>
       <Container>
         <Box
           sx={{

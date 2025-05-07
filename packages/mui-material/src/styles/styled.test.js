@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import createTheme from './createTheme';
 import styled from './styled';
 import ThemeProvider from './ThemeProvider';
@@ -168,10 +168,10 @@ describe('styled', () => {
         },
       });
 
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       Test = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
@@ -197,7 +197,6 @@ describe('styled', () => {
       const CustomTest = styled('div', {
         name: 'MuiTest',
         slot: 'Rect',
-        overridesResolver: (props, styles) => styles.rect,
       })({
         width: '200px',
         height: '300px',
@@ -290,7 +289,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
       })`
         width: 200px;
         height: 300px;
@@ -315,7 +313,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
         skipVariantsResolver: false,
       })`
         width: 200px;
@@ -429,10 +426,10 @@ describe('styled', () => {
     });
 
     it('should respect the skipSx option', () => {
-      const testOverridesResolver = (props, styles) => ({
-        ...styles.root,
-        ...(props.variant && styles[props.variant]),
-      });
+      const testOverridesResolver = (props, styles) => [
+        styles.root,
+        props.variant && styles[props.variant],
+      ];
 
       const TestNoSx = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',

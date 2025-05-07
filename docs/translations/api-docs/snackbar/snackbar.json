@@ -16,7 +16,7 @@
       "description": "Props applied to the <code>ClickAwayListener</code> element."
     },
     "ContentProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/snackbar-content/\"><code>SnackbarContent</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/snackbar-content/\"><code>SnackbarContent</code></a> element."
     },
     "disableWindowBlurListener": {
       "description": "If <code>true</code>, the <code>autoHideDuration</code> timer will expire even if the window is not focused."
@@ -36,11 +36,13 @@
     "resumeHideDuration": {
       "description": "The number of milliseconds to wait before dismissing after user interaction. If <code>autoHideDuration</code> prop isn&#39;t specified, it does nothing. If <code>autoHideDuration</code> prop is specified but <code>resumeHideDuration</code> isn&#39;t, we default to <code>autoHideDuration / 2</code> ms."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "TransitionComponent": {
-      "description": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
+      "description": "The component used for the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
     },
     "transitionDuration": {
       "description": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
@@ -79,7 +81,12 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>anchorOrigin={{ 'top', 'right' }}</code>"
-    },
-    "root": { "description": "Styles applied to the root element." }
+    }
+  },
+  "slotDescriptions": {
+    "clickAwayListener": "The component that renders the clickAwayListener slot.",
+    "content": "The component that renders the content slot.",
+    "root": "The component that renders the root slot.",
+    "transition": "The component that renders the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
 }

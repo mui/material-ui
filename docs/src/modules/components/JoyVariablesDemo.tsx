@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
@@ -33,7 +34,7 @@ function formatSx(sx: { [k: string]: string | number }) {
 interface SlotVariablesProps {
   slot: string;
   data: Array<DataItem>;
-  renderField: (item: DataItem) => React.ReactElement;
+  renderField: (item: DataItem) => React.ReactElement<unknown>;
   defaultOpen?: boolean;
 }
 
@@ -48,8 +49,6 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         aria-controls={`section-${slot}`}
         component="button"
         underline="none"
-        fontSize="sm"
-        fontWeight="lg"
         endDecorator={
           <KeyboardArrowDown
             sx={{ transition: '0.2s', transform: open ? 'rotate(-180deg)' : undefined }}
@@ -57,6 +56,8 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
         }
         onClick={() => setOpen(!open)}
         sx={{
+          fontSize: 'sm',
+          fontWeight: 'lg',
           pb: 1,
           justifyContent: 'space-between',
           color: open ? 'text.primary' : 'text.tertiary',
@@ -70,12 +71,7 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
           role="region"
           aria-labelledby={`accordion-${slot}`}
           id={`section-${slot}`}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexWrap: 'wrap',
-            gap: 1,
-          }}
+          sx={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', gap: 1 }}
         >
           {data.map((item) => renderField(item))}
         </Box>
@@ -88,7 +84,7 @@ export default function JoyVariablesDemo(props: {
   componentName: string;
   childrenAccepted?: boolean;
   data: Array<DataItem | [string, Array<DataItem>, { defaultOpen?: boolean } | undefined]>;
-  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement;
+  renderDemo: (sx: { [k: string]: string | number }) => React.ReactElement<unknown>;
   renderCode?: (formattedSx: string) => string;
 }) {
   const { componentName, data = [], childrenAccepted = false, renderCode } = props;
@@ -120,14 +116,7 @@ export default function JoyVariablesDemo(props: {
           },
         })}
       >
-        <Box
-          sx={{
-            flexGrow: 1,
-            m: 'auto',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
+        <Box sx={{ flexGrow: 1, m: 'auto', display: 'flex', alignItems: 'center' }}>
           {props.renderDemo(sx)}
         </Box>
         <BrandingProvider mode="dark">
@@ -164,7 +153,7 @@ export default function JoyVariablesDemo(props: {
               alignItems: 'center',
             }}
           >
-            <Typography fontWeight="lg" sx={{ fontFamily: 'General Sans' }}>
+            <Typography sx={{ fontWeight: 'lg', fontFamily: 'General Sans' }}>
               CSS variables
             </Typography>
             <IconButton
@@ -182,14 +171,7 @@ export default function JoyVariablesDemo(props: {
             </IconButton>
           </Box>
           <Divider sx={{ opacity: 0.5 }} />
-          <Box
-            sx={{
-              p: 3,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 1,
-            }}
-          >
+          <Box sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 1 }}>
             {data.map((dataItem) => {
               function renderField(item: DataItem) {
                 const resolvedValue = sx[item.var] || item.defaultValue;
@@ -211,7 +193,7 @@ export default function JoyVariablesDemo(props: {
                       endDecorator={
                         <React.Fragment>
                           {typeof resolvedValue === 'string' && (
-                            <Typography level="body-xs" mr={0.5}>
+                            <Typography level="body-xs" sx={{ mr: 0.5 }}>
                               px
                             </Typography>
                           )}

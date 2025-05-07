@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import ListItemText, { listItemTextClasses as classes } from '@mui/material/ListItemText';
 import describeConformance from '../../test/describeConformance';
@@ -8,13 +8,24 @@ import describeConformance from '../../test/describeConformance';
 describe('<ListItemText />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<ListItemText>Conformance?</ListItemText>, () => ({
+  describeConformance(<ListItemText primary="Primary" secondary="Secondary" />, () => ({
     classes,
     inheritComponent: 'div',
     render,
     muiName: 'MuiListItemText',
     testVariantProps: { inset: true },
     refInstanceof: window.HTMLDivElement,
+    slots: {
+      primary: {
+        expectedClassName: classes.primary,
+      },
+      secondary: {
+        expectedClassName: classes.secondary,
+      },
+      root: {
+        expectedClassName: classes.root,
+      },
+    },
     skip: ['componentProp', 'componentsProp'],
   }));
 

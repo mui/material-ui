@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup, { avatarGroupClasses as classes } from '@mui/material/AvatarGroup';
 import describeConformance from '../../test/describeConformance';
@@ -21,17 +21,45 @@ describe('<AvatarGroup />', () => {
       muiName: 'MuiAvatarGroup',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
-      testLegacyComponentsProp: true,
+      slots: {
+        surplus: { expectedClassName: classes.avatar },
+      },
+      skip: ['componentsProp'],
+    }),
+  );
+
+  // test additionalAvatar slot separately
+  describeConformance(
+    <AvatarGroup max={2}>
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
+      <Avatar src="/fake.png" />
+    </AvatarGroup>,
+    () => ({
+      classes,
+      render,
+      muiName: 'MuiAvatarGroup',
       slots: {
         additionalAvatar: { expectedClassName: classes.avatar },
       },
-      skip: [
-        'componentsProp',
-        'slotsProp',
-        'slotPropsCallback', // not supported yet
-      ],
+      only: ['slotPropsProp'],
     }),
   );
+
+  it('should render avatars with spacing of 0px when spacing is 0', () => {
+    const { container } = render(
+      <AvatarGroup spacing={0}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+
+    const avatarGroupRoot = container.firstChild;
+    const avatarGroupStyle = avatarGroupRoot.style.getPropertyValue('--AvatarGroup-spacing');
+
+    expect(avatarGroupStyle).to.equal('0px');
+  });
 
   it('should display all the avatars', () => {
     const { container } = render(

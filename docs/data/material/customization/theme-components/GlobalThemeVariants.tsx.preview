@@ -1,4 +1,4 @@
-<ThemeProvider theme={theme}>
+<ThemeProvider theme={customTheme}>
   <Button variant="dashed" sx={{ m: 1 }}>
     Dashed
   </Button>

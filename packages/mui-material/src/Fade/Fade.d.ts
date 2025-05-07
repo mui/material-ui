@@ -11,7 +11,7 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
   /**
    * A single child content element.
    */
-  children: React.ReactElement<any, any>;
+  children: React.ReactElement<unknown, any>;
   /**
    * The transition timing function.
    * You may specify a single easing or a object containing enter and exit values.
@@ -46,4 +46,4 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
  * - [Fade API](https://mui.com/material-ui/api/fade/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
-export default function Fade(props: FadeProps): JSX.Element;
+export default function Fade(props: FadeProps): React.JSX.Element;

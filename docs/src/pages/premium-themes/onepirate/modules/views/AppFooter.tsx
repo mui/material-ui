@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/GridLegacy';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
@@ -54,9 +54,8 @@ export default function AppFooter() {
             <Grid
               container
               direction="column"
-              justifyContent="flex-end"
               spacing={2}
-              sx={{ height: 120 }}
+              sx={{ justifyContent: 'flex-end', height: 120 }}
             >
               <Grid item sx={{ display: 'flex' }}>
                 <Box component="a" href="https://mui.com/" sx={iconStyle}>
@@ -65,7 +64,7 @@ export default function AppFooter() {
                     alt="Facebook"
                   />
                 </Box>
-                <Box component="a" href="https://twitter.com/MUI_hq" sx={iconStyle}>
+                <Box component="a" href="https://x.com/MUI_hq" sx={iconStyle}>
                   <img src="/static/themes/onepirate/appFooterTwitter.png" alt="X" />
                 </Box>
               </Grid>

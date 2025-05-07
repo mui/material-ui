@@ -9,6 +9,8 @@ components: Skeleton, AspectRatio, Avatar, Typography
 
 <p class="description">Skeletons are preview placeholders for components that haven't loaded yet, reducing load-time frustration.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 Skeletons provide users an expectation of what the UI looks like while data loads.

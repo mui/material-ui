@@ -42,6 +42,7 @@ export function useApiPageOption(
   const [option, setOption] = React.useState(getOption(storageKey, defaultValue));
 
   useEnhancedEffect(() => {
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- useEnhancedEffect uses useEffect under the hood
     neverHydrated = false;
     const newOption = getOption(storageKey, defaultValue);
     setOption(newOption);
@@ -116,7 +117,8 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         sx={{ height: '1.875rem', p: '6px 4px 6px 8px', textTransform: 'capitalize' }}
       >
         <Box component="span" sx={{ fontWeight: 'medium', mr: 0.5 }}>
-          View:
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {'View:'}
         </Box>
         {displayOption}
       </Button>
@@ -135,10 +137,11 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="table"
         >
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {'Table'}
           <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'table' ? 1 : 0 }}
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'table' ? 1 : 0 }}
           />
-          Table
         </MenuItem>
         <MenuItem
           value="expanded"
@@ -148,10 +151,11 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="expanded"
         >
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {'Expanded list'}
           <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'expanded' ? 1 : 0 }}
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'expanded' ? 1 : 0 }}
           />
-          Expanded list
         </MenuItem>
         <MenuItem
           value="collapsed"
@@ -161,10 +165,11 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="collapsed"
         >
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+          {'Collapsed list'}
           <CheckIcon
-            sx={{ fontSize: '0.85rem', mr: 1, opacity: displayOption === 'collapsed' ? 1 : 0 }}
+            sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'collapsed' ? 1 : 0 }}
           />
-          Collapsed list
         </MenuItem>
       </Menu>
     </React.Fragment>

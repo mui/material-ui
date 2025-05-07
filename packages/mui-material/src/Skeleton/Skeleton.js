@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
-import { keyframes, css, createUseThemeProps, styled } from '../zero-styled';
+import { keyframes, css, styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import { getSkeletonUtilityClass } from './skeletonClasses';
-
-const useThemeProps = createUseThemeProps('MuiSkeleton');
 
 const useUtilityClasses = (ownerState) => {
   const { classes, variant, animation, hasChildren, width, height } = ownerState;
@@ -68,7 +68,9 @@ const pulseAnimation =
 const waveAnimation =
   typeof waveKeyframe !== 'string'
     ? css`
-        animation: ${waveKeyframe} 2s linear 0.5s infinite;
+        &::after {
+          animation: ${waveKeyframe} 2s linear 0.5s infinite;
+        }
       `
     : null;
 
@@ -87,120 +89,124 @@ const SkeletonRoot = styled('span', {
       ownerState.hasChildren && !ownerState.height && styles.heightAuto,
     ];
   },
-})(({ theme }) => {
-  const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
-  const radiusValue = toUnitless(theme.shape.borderRadius);
+})(
+  memoTheme(({ theme }) => {
+    const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
+    const radiusValue = toUnitless(theme.shape.borderRadius);
 
-  return {
-    display: 'block',
-    // Create a "on paper" color with sufficient contrast retaining the color
-    backgroundColor: theme.vars
-      ? theme.vars.palette.Skeleton.bg
-      : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
-    height: '1.2em',
-    variants: [
-      {
-        props: {
-          variant: 'text',
-        },
-        style: {
-          marginTop: 0,
-          marginBottom: 0,
-          height: 'auto',
-          transformOrigin: '0 55%',
-          transform: 'scale(1, 0.60)',
-          borderRadius: `${radiusValue}${radiusUnit}/${
-            Math.round((radiusValue / 0.6) * 10) / 10
-          }${radiusUnit}`,
-          '&:empty:before': {
-            content: '"\\00a0"',
+    return {
+      display: 'block',
+      // Create a "on paper" color with sufficient contrast retaining the color
+      backgroundColor: theme.vars
+        ? theme.vars.palette.Skeleton.bg
+        : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
+      height: '1.2em',
+      variants: [
+        {
+          props: {
+            variant: 'text',
+          },
+          style: {
+            marginTop: 0,
+            marginBottom: 0,
+            height: 'auto',
+            transformOrigin: '0 55%',
+            transform: 'scale(1, 0.60)',
+            borderRadius: `${radiusValue}${radiusUnit}/${Math.round((radiusValue / 0.6) * 10) / 10}${
+              radiusUnit
+            }`,
+            '&:empty:before': {
+              content: '"\\00a0"',
+            },
           },
         },
-      },
-      {
-        props: {
-          variant: 'circular',
-        },
-        style: {
-          borderRadius: '50%',
-        },
-      },
-      {
-        props: {
-          variant: 'rounded',
-        },
-        style: {
-          borderRadius: (theme.vars || theme).shape.borderRadius,
-        },
-      },
-      {
-        props: ({ ownerState }) => ownerState.hasChildren,
-        style: {
-          '& > *': {
-            visibility: 'hidden',
+        {
+          props: {
+            variant: 'circular',
+          },
+          style: {
+            borderRadius: '50%',
           },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.hasChildren && !ownerState.width,
-        style: {
-          maxWidth: 'fit-content',
+        {
+          props: {
+            variant: 'rounded',
+          },
+          style: {
+            borderRadius: (theme.vars || theme).shape.borderRadius,
+          },
         },
-      },
-      {
-        props: ({ ownerState }) => ownerState.hasChildren && !ownerState.height,
-        style: {
-          height: 'auto',
+        {
+          props: ({ ownerState }) => ownerState.hasChildren,
+          style: {
+            '& > *': {
+              visibility: 'hidden',
+            },
+          },
         },
-      },
-      {
-        props: {
-          animation: 'pulse',
+        {
+          props: ({ ownerState }) => ownerState.hasChildren && !ownerState.width,
+          style: {
+            maxWidth: 'fit-content',
+          },
         },
-        style: pulseAnimation || {
-          animation: `${pulseKeyframe} 2s ease-in-out 0.5s infinite`,
+        {
+          props: ({ ownerState }) => ownerState.hasChildren && !ownerState.height,
+          style: {
+            height: 'auto',
+          },
         },
-      },
-      {
-        props: {
-          animation: 'wave',
+        {
+          props: {
+            animation: 'pulse',
+          },
+          style: pulseAnimation || {
+            animation: `${pulseKeyframe} 2s ease-in-out 0.5s infinite`,
+          },
         },
-        style: {
-          position: 'relative',
-          overflow: 'hidden',
-          /* Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196 */
-          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
-          '&::after': {
-            background: `linear-gradient(
+        {
+          props: {
+            animation: 'wave',
+          },
+          style: {
+            position: 'relative',
+            overflow: 'hidden',
+            /* Fix bug in Safari https://bugs.webkit.org/show_bug.cgi?id=68196 */
+            WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+            '&::after': {
+              background: `linear-gradient(
                 90deg,
                 transparent,
                 ${(theme.vars || theme).palette.action.hover},
                 transparent
               )`,
-            content: '""',
-            position: 'absolute',
-            transform: 'translateX(-100%)' /* Avoid flash during server-side hydration */,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            top: 0,
+              content: '""',
+              position: 'absolute',
+              transform: 'translateX(-100%)' /* Avoid flash during server-side hydration */,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              top: 0,
+            },
           },
         },
-      },
-      {
-        props: {
-          animation: 'wave',
+        {
+          props: {
+            animation: 'wave',
+          },
+          style: waveAnimation || {
+            '&::after': {
+              animation: `${waveKeyframe} 2s linear 0.5s infinite`,
+            },
+          },
         },
-        style: waveAnimation || {
-          animation: `${waveKeyframe} 2s linear 0.5s infinite`,
-        },
-      },
-    ],
-  };
-});
+      ],
+    };
+  }),
+);
 
 const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSkeleton' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiSkeleton' });
   const {
     animation = 'pulse',
     className,

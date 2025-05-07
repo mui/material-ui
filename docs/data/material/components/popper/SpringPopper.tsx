@@ -4,7 +4,7 @@ import Popper from '@mui/material/Popper';
 import { useSpring, animated } from '@react-spring/web';
 
 interface FadeProps {
-  children?: React.ReactElement;
+  children?: React.ReactElement<unknown>;
   in?: boolean;
   onEnter?: () => void;
   onExited?: () => void;
@@ -28,6 +28,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
   });
 
   return (
+    // @ts-expect-error https://github.com/pmndrs/react-spring/issues/2341
     <animated.div ref={ref} style={style} {...other}>
       {children}
     </animated.div>

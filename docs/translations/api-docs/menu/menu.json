@@ -13,7 +13,7 @@
       "description": "When opening the menu will not focus the active item but the <code>[role=&quot;menu&quot;]</code> unless <code>autoFocus</code> is also set to <code>false</code>. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications."
     },
     "MenuListProps": {
-      "description": "Props applied to the <a href=\"/material-ui/api/menu-list/\"><code>MenuList</code></a> element."
+      "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/menu-list/\"><code>MenuList</code></a> element."
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
@@ -24,11 +24,9 @@
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
     "PopoverClasses": {
-      "description": "<code>classes</code> prop applied to the <a href=\"/material-ui/api/popover/\"><code>Popover</code></a> element."
+      "description": "<code>classes</code> prop applied to the <a href=\"https://mui.com/material-ui/api/popover/\"><code>Popover</code></a> element."
     },
-    "slotProps": {
-      "description": "The extra props for the slot components. You can override the existing props or add new ones."
-    },
+    "slotProps": { "description": "The props used for each slot inside." },
     "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
@@ -43,15 +41,12 @@
       "description": "The variant to use. Use <code>menu</code> to prevent selected items from impacting the initial focus."
     }
   },
-  "classDescriptions": {
-    "list": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the List component via <code>MenuList</code>"
-    },
-    "paper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Paper component"
-    },
-    "root": { "description": "Styles applied to the root element." }
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "backdrop": "The component used for the backdrop slot.",
+    "list": "The component used for the list.",
+    "paper": "The component used for the paper.",
+    "root": "The component used for the popper.",
+    "transition": "The component used for the transition slot."
   }
 }

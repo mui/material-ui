@@ -3,13 +3,20 @@ fn({
     defaultProps: {
       slots: {
         paper: CustomPaper,
-        popper: CustomPopper,
-        listbox: CustomListbox
+        popper: CustomPopper
       },
 
       slotProps: {
-        listbox: { height: 12 },
-        chip: { height: 10 }
+        clearIndicator: { width: 10 },
+        paper: { width: 12 },
+        popper: { width: 14 },
+        popupIndicator: { width: 16 },
+        chip: { height: 10 },
+
+        listbox: {
+          component: CustomListbox,
+          ...{ height: 12 }
+        }
       }
     },
   },
@@ -19,15 +26,26 @@ fn({
   MuiAutocomplete: {
     defaultProps: {
       slotProps: {
-        popupIndicator: { width: 20 },
-        listbox: { height: 12 },
-        chip: { height: 10 }
+        clearIndicator: { width: 10 },
+        paper: { width: 12 },
+        popper: { width: 14 },
+
+        popupIndicator: {
+          ...{ width: 16 },
+          ...{ width: 20 }
+        },
+
+        chip: { height: 10 },
+
+        listbox: {
+          component: CustomListbox,
+          ...{ height: 12 }
+        }
       },
 
       slots: {
         paper: CustomPaper,
-        popper: CustomPopper,
-        listbox: CustomListbox
+        popper: CustomPopper
       }
     },
   },

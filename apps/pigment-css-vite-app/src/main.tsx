@@ -4,11 +4,10 @@ import { BrowserRouter as Router, useLocation, useRoutes } from 'react-router-do
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
 import CssBaseline from '@mui/material/CssBaseline';
-import { css } from '@pigment-css/react';
-import Box from '@pigment-css/react/Box';
+import { css } from '@mui/material-pigment-css';
 import { ErrorBoundary } from 'react-error-boundary';
 import routes from '~react-pages';
-import '@pigment-css/react/styles.css';
+import '@mui/material-pigment-css/styles.css';
 import { ErrorBoundaryFallback } from './components/ErrorBoundaryFallback';
 
 function App() {
@@ -17,8 +16,7 @@ function App() {
     <ErrorBoundary key={location.pathname} FallbackComponent={ErrorBoundaryFallback}>
       <React.Suspense
         fallback={
-          <Box
-            as="div"
+          <div
             className={css`
               width: 100vw;
               height: 100vh;
@@ -28,7 +26,7 @@ function App() {
             `}
           >
             <CircularProgress size={100} variant="indeterminate" />
-          </Box>
+          </div>
         }
       >
         {useRoutes(routes)}

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
 import describeConformance from '../../test/describeConformance';
 
 /**
@@ -20,18 +21,22 @@ function userClick(element) {
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function findBackdrop(view) {
   return view.getByRole('dialog').parentElement;
 }
 
 /**
- * @param {typeof import('@mui-internal/test-utils').screen} view
+ * @param {typeof import('@mui/internal-test-utils').screen} view
  */
 function clickBackdrop(view) {
   userClick(findBackdrop(view));
 }
+
+const CustomFade = React.forwardRef(function CustomFade(props, ref) {
+  return <Fade {...props} ref={ref} data-testid="custom" />;
+});
 
 describe('<Dialog />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -48,15 +53,57 @@ describe('<Dialog />', () => {
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
-      ],
+      slots: {
+        transition: {
+          expectedClassName: classes.transition,
+          testWithComponent: CustomFade,
+          testWithElement: null,
+        },
+        root: {
+          expectedClassName: classes.root,
+          testWithElement: null,
+        },
+        backdrop: {
+          expectedClassName: classes.backdrop,
+          testWithElement: null,
+        },
+        container: {
+          expectedClassName: classes.container,
+          testWithElement: null,
+          testWithComponent: CustomFade,
+        },
+        paper: {
+          expectedClassName: classes.paper,
+          testWithElement: null,
+        },
+      },
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
+
+  it('should work correctly when using css selectors for scroll="body"', () => {
+    render(
+      <Dialog open scroll="body">
+        foo
+      </Dialog>,
+    );
+
+    expect(document.querySelector(`.${classes.scrollBody} > .${classes.paper}`)).to.not.equal(null);
+    expect(classes.paperScrollBody).to.not.equal(null);
+  });
+
+  it('should work correctly when using css selectors for scroll="paper"', () => {
+    render(
+      <Dialog open scroll="paper">
+        foo
+      </Dialog>,
+    );
+
+    expect(document.querySelector(`.${classes.scrollPaper} > .${classes.paper}`)).to.not.equal(
+      null,
+    );
+    expect(classes.paperScrollPaper).to.not.equal(null);
+  });
 
   it('should render with a TransitionComponent', () => {
     const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);
@@ -94,7 +141,7 @@ describe('<Dialog />', () => {
 
     // keyDown not targetted at anything specific
     // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-    fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+    fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
     clock.tick(100);
@@ -113,10 +160,10 @@ describe('<Dialog />', () => {
 
     // Actual Behavior when "あ" (Japanese) is entered and press the Esc for IME cancellation.
     fireEvent.change(textbox, { target: { value: 'あ' } });
-    fireEvent.keyDown(textbox, { key: 'Esc', keyCode: 229 });
+    fireEvent.keyDown(textbox, { key: 'Escape', keyCode: 229 });
     expect(onClose.callCount).to.equal(0);
 
-    fireEvent.keyDown(textbox, { key: 'Esc' });
+    fireEvent.keyDown(textbox, { key: 'Escape' });
     expect(onClose.callCount).to.equal(1);
   });
 
@@ -149,7 +196,7 @@ describe('<Dialog />', () => {
       dialog.click();
       // keyDown is not targetted at anything specific.
       // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target
-      fireEvent.keyDown(document.activeElement, { key: 'Esc' });
+      fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     });
 
     expect(onClose.callCount).to.equal(0);
@@ -165,69 +212,16 @@ describe('<Dialog />', () => {
       expect(findBackdrop(screen)).to.have.attribute('role', 'presentation');
     });
 
-    it('calls onBackdropClick and onClose when clicked', () => {
-      const onBackdropClick = spy();
+    it('calls onClose when clicked', () => {
       const onClose = spy();
       render(
-        <Dialog
-          onClose={(event, reason) => {
-            onClose();
-            if (reason === 'backdropClick') {
-              onBackdropClick();
-            }
-          }}
-          open
-        >
+        <Dialog onClose={onClose} open>
           foo
         </Dialog>,
       );
 
       clickBackdrop(screen);
-      expect(onBackdropClick.callCount).to.equal(1);
       expect(onClose.callCount).to.equal(1);
-    });
-
-    it('calls onBackdropClick when onClick callback also exists', () => {
-      const onBackdropClick = spy();
-      const onClick = spy();
-      render(
-        <Dialog
-          onClick={onClick}
-          onClose={(event, reason) => {
-            if (reason === 'backdropClick') {
-              onBackdropClick();
-            }
-          }}
-          open
-        >
-          foo
-        </Dialog>,
-      );
-
-      clickBackdrop(screen);
-      expect(onBackdropClick.callCount).to.equal(1);
-      expect(onClick.callCount).to.equal(1);
-    });
-
-    it('should ignore the backdrop click if the event did not come from the backdrop', () => {
-      const onBackdropClick = spy();
-      const { getByRole } = render(
-        <Dialog
-          onClose={(event, reason) => {
-            if (reason === 'backdropClick') {
-              onBackdropClick();
-            }
-          }}
-          open
-        >
-          <div tabIndex={-1}>
-            <h2>my dialog</h2>
-          </div>
-        </Dialog>,
-      );
-
-      userClick(getByRole('heading'));
-      expect(onBackdropClick.callCount).to.equal(0);
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {
@@ -324,6 +318,35 @@ describe('<Dialog />', () => {
       );
       expect(getByTestId('paper')).not.to.have.class(classes.paperFullScreen);
     });
+
+    it('scrolls if overflown on the Y axis', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const ITEM_HEIGHT = 100;
+      const ITEM_COUNT = 10;
+
+      const { getByTestId } = render(
+        <Dialog
+          open
+          fullScreen
+          PaperProps={{ 'data-testid': 'paper', sx: { height: ITEM_HEIGHT } }}
+        >
+          {Array.from(Array(ITEM_COUNT).keys()).map((item) => (
+            <div key={item} style={{ flexShrink: 0, height: ITEM_HEIGHT }}>
+              {item}
+            </div>
+          ))}
+        </Dialog>,
+      );
+      const paperElement = getByTestId('paper');
+      expect(paperElement.scrollTop).to.equal(0);
+      expect(paperElement.clientHeight).to.equal(ITEM_HEIGHT);
+      expect(paperElement.scrollHeight).to.equal(ITEM_HEIGHT * ITEM_COUNT);
+      fireEvent.scroll(paperElement, { target: { scrollTop: ITEM_HEIGHT } });
+      expect(paperElement.scrollTop).to.equal(ITEM_HEIGHT);
+    });
   });
 
   describe('prop: PaperProps.className', () => {
@@ -352,6 +375,20 @@ describe('<Dialog />', () => {
       expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
       const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
       expect(label).to.have.text('Choose either one');
+    });
+
+    it('should add the aria-modal="true" by default', function test() {
+      const { getByRole } = render(<Dialog open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'true');
+    });
+
+    it('should render the custom aria-modal prop if provided', function test() {
+      const { getByRole } = render(<Dialog aria-modal="false" open />);
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-modal', 'false');
     });
   });
 

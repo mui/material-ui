@@ -39,4 +39,111 @@ So, it renders the "outlined" background variant.
 
 ## Multiple Tabs demo
 
-{{"demo": "DemoMultiTabs.js" }}
+{{"demo": "DemoMultiTabs.js", "bg": "inline" }}
+
+## Isolated demo
+
+Isolated demos are disconnected from the page's theme and color scheme.
+They are like mini apps within the documentation.
+
+When `isolated: true` is set to the demo options, the demo will get props for creating isolated demo.
+Those props should be passed to the `ThemeProvider` of the demo.
+
+### Basic theme
+
+```js title="DemoIsolated.js"
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+
+function ModeToggle() {
+  const { mode, setMode } = useColorScheme();
+}
+
+export default function DemoIsolated(props) {
+  return (
+    <ThemeProvider
+      {...props}
+      theme={createTheme({
+        // ...custom theme
+      })}
+    >
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
+### Mode toggle with CSS variables
+
+{{"demo": "DemoModeToggle.js", "isolated": true, "bg": "inline" }}
+
+```js title="DemoModeToggle.js"
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+
+function ModeToggle() {
+  const { mode, setMode } = useColorScheme();
+}
+
+export default function DemoModeToggle(props) {
+  return (
+    <ThemeProvider
+      {...props}
+      theme={createTheme({
+        colorSchemes: { light: true, dark: true },
+        cssVariables: {
+          // required to make the demo isolated
+          cssVarPrefix: props.cssVarPrefix,
+          colorSchemeSelector: props.colorSchemeSelector || 'class',
+        },
+      })}
+    >
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
+:::info
+The demo with `isolated` will always set to `system` mode when refresh the page. It will not store the selected mode to the local storage.
+:::
+
+### Custom theme with CSS variables
+
+Provide custom palettes to light and/or dark color schemes.
+
+{{"demo": "DemoModeToggleCustomTheme.js", "isolated": true, "bg": "inline", "theme": "dark" }}
+
+```js title="DemoModeToggleCustomTheme.js"
+import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
+
+export default function DemoModeToggleCustomTheme(props) {
+  const theme = createTheme({
+    cssVariables: {
+      cssVarPrefix: props.cssVarPrefix,
+      colorSchemeSelector: props.colorSchemeSelector || 'class',
+    },
+    colorSchemes: {
+      light: {
+        palette: {
+          // ...custom palette
+        },
+      },
+      dark: {
+        palette: {
+          // ...custom palette
+        },
+      },
+    },
+  });
+  return (
+    <ThemeProvider {...props} theme={theme}>
+      ...
+    </ThemeProvider>
+  );
+}
+```
+
+### Iframe demo
+
+`isolated: true` can be used with iframe demos. The difference is that the node to attach the color scheme selector will be the `html` of the iframe instead of the demo container.
+
+{{"demo": "DemoModeToggleIframe.js", "bg": "inline", "defaultCodeOpen": false, "iframe": true, "isolated": true }}

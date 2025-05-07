@@ -1,0 +1,14 @@
+<List component="nav" sx={{ maxWidth: 320 }}>
+  <ListItemButton>
+    <ListItemDecorator>
+      <Image />
+    </ListItemDecorator>
+    Add another image
+  </ListItemButton>
+  <ListItemButton>
+    <ListItemDecorator>
+      <Videocam />
+    </ListItemDecorator>
+    Add another video
+  </ListItemButton>
+</List>

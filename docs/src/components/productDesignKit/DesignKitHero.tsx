@@ -19,18 +19,22 @@ export default function TemplateHero() {
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography
-            fontWeight="bold"
             variant="body2"
-            sx={(theme) => ({
-              color: 'primary.600',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'start' },
-              '& > *': { mr: 1 },
-              ...theme.applyDarkStyles({
-                color: 'primary.400',
+            sx={[
+              {
+                fontWeight: 'bold',
+              },
+              (theme) => ({
+                color: 'primary.600',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: { xs: 'center', md: 'start' },
+                '& > *': { mr: 1 },
+                ...theme.applyDarkStyles({
+                  color: 'primary.400',
+                }),
               }),
-            })}
+            ]}
           >
             <IconImage width={28} height={28} loading="eager" name="product-designkits" /> Design
             Kits
@@ -40,7 +44,7 @@ export default function TemplateHero() {
             <br /> in your favorite
             <br /> <GradientText>design tool</GradientText>
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
+          <Typography sx={{ color: 'text.secondary', mb: 3, maxWidth: 450 }}>
             Pick your favorite design tool to enjoy and use Material UI components. Boost
             consistency and facilitate communication when working with developers.
           </Typography>

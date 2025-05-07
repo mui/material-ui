@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { unstable_createCssVarsProvider as createCssVarsProvider, createBox } from '@mui/system';
+import { createCssVarsTheme } from '@mui/system/cssVars';
 
 const Box = createBox();
 
 const { CssVarsProvider } = createCssVarsProvider({
-  theme: {
+  theme: createCssVarsTheme({
     colorSchemes: {
       light: {
         background: {
@@ -12,7 +13,7 @@ const { CssVarsProvider } = createCssVarsProvider({
         },
       },
     },
-  },
+  }),
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { styled } from '@mui/material/styles';
 import FilledInput, { filledInputClasses as classes } from '@mui/material/FilledInput';
 import InputBase from '@mui/material/InputBase';
@@ -28,6 +28,7 @@ describe('<FilledInput />', () => {
       'componentProp',
       'componentsProp',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 
@@ -74,5 +75,35 @@ describe('<FilledInput />', () => {
     const Adornment = styled('div')({});
     render(<FilledInput endAdornment={<Adornment />} slotProps={{}} />);
     render(<FilledInput startAdornment={<Adornment />} slotProps={{}} />);
+  });
+
+  it('should not have following classes', () => {
+    render(
+      <FilledInput
+        size="small"
+        multiline
+        startAdornment="start"
+        endAdornment="end"
+        type="search"
+      />,
+    );
+
+    expect(document.querySelector('.MuiFilledInput-inputSizeSmall')).to.equal(null);
+    expect(document.querySelector('.MuiFilledInput-inputMultiline')).to.equal(null);
+    expect(document.querySelector('.MuiFilledInput-inputAdornedStart')).to.equal(null);
+    expect(document.querySelector('.MuiFilledInput-inputAdornedEnd')).to.equal(null);
+    expect(document.querySelector('.MuiFilledInput-inputTypeSearch')).to.equal(null);
+  });
+
+  it('should have following classes', () => {
+    const { container } = render(
+      <FilledInput hiddenLabel multiline size="small" startAdornment="start" endAdornment="end" />,
+    );
+    const root = container.firstChild;
+    expect(root).to.have.class(classes.hiddenLabel);
+    expect(root).to.have.class(classes.multiline);
+    expect(root).to.have.class(classes.sizeSmall);
+    expect(root).to.have.class(classes.adornedEnd);
+    expect(root).to.have.class(classes.adornedStart);
   });
 });

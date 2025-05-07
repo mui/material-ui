@@ -17,34 +17,36 @@ export default function InteractiveGrid() {
 <Grid
   container
   direction="${direction}"
-  justifyContent="${justifyContent}"
-  alignItems="${alignItems}"
+  sx={{
+    justifyContent: "${justifyContent}",
+    alignItems: "${alignItems}",
+  }}
 >
 `;
 
   return (
     <Grid sx={{ flexGrow: 1 }} container>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Grid
-          sx={{ height: 300, pb: 2 }}
           container
           spacing={2}
-          alignItems={alignItems}
           direction={direction}
-          justifyContent={justifyContent}
+          sx={{ alignItems, justifyContent, height: 300, pb: 2 }}
         >
           {[0, 1, 2].map((value) => (
-            <Grid key={value} item>
+            <Grid key={value}>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   p: 2,
-                  backgroundColor: (theme) =>
-                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                  backgroundColor: '#fff',
                   height: '100%',
                   color: 'text.secondary',
                   pt: `${(value + 1) * 10}px`,
                   pb: `${(value + 1) * 10}px`,
-                }}
+                  ...theme.applyStyles('dark', {
+                    backgroundColor: '#1A2027',
+                  }),
+                })}
               >
                 {`Cell ${value + 1}`}
               </Paper>
@@ -52,10 +54,10 @@ export default function InteractiveGrid() {
           ))}
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Paper sx={{ p: 2 }}>
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <FormControl component="fieldset">
                 <FormLabel component="legend">direction</FormLabel>
                 <RadioGroup
@@ -86,7 +88,7 @@ export default function InteractiveGrid() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <FormControl component="fieldset">
                 <FormLabel component="legend">justifyContent</FormLabel>
                 <RadioGroup
@@ -131,7 +133,7 @@ export default function InteractiveGrid() {
                 </RadioGroup>
               </FormControl>
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <FormControl component="fieldset">
                 <FormLabel component="legend">alignItems</FormLabel>
                 <RadioGroup
@@ -174,7 +176,7 @@ export default function InteractiveGrid() {
           </Grid>
         </Paper>
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <HighlightedCode code={jsx} language="jsx" />
       </Grid>
     </Grid>

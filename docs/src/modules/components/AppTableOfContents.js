@@ -32,7 +32,7 @@ const Nav = styled('nav')(({ theme }) => ({
 const NavLabel = styled(Typography)(({ theme }) => ({
   padding: theme.spacing(1, 0, 1, 1.4),
   fontSize: theme.typography.pxToRem(11),
-  fontWeight: theme.typography.fontWeightBold,
+  fontWeight: theme.typography.fontWeightSemiBold,
   textTransform: 'uppercase',
   letterSpacing: '.1rem',
   color: (theme.vars || theme).palette.text.tertiary,
@@ -45,9 +45,8 @@ const NavList = styled(Typography)({
 });
 
 const NavItem = styled(Link, {
-  shouldForwardProp: (prop) =>
-    prop !== 'active' && prop !== 'secondary' && prop !== 'secondarySubItem',
-})(({ active, secondary, secondarySubItem, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'active' && prop !== 'level',
+})(({ theme }) => {
   const activeStyles = {
     borderLeftColor: (theme.vars || theme).palette.primary[200],
     color: (theme.vars || theme).palette.primary[600],
@@ -64,18 +63,11 @@ const NavItem = styled(Link, {
       color: (theme.vars || theme).palette.primary[400],
     },
   };
-  let paddingLeft = '12px';
-  if (secondary) {
-    paddingLeft = 3;
-  }
-  if (secondarySubItem) {
-    paddingLeft = 4.5;
-  }
 
   return [
     {
       boxSizing: 'border-box',
-      padding: theme.spacing('6px', 0, '6px', paddingLeft),
+      padding: '6px 0 6px 12px',
       borderLeft: `1px solid transparent`,
       display: 'block',
       fontSize: theme.typography.pxToRem(13),
@@ -86,11 +78,36 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[400],
         color: (theme.vars || theme).palette.grey[600],
       },
-      ...(!active && {
-        color: (theme.vars || theme).palette.text.primary,
-      }),
       // TODO: We probably want `aria-current="location"` instead.
-      ...(active && activeStyles),
+      variants: [
+        {
+          props: ({ active }) => !!active,
+          style: [activeStyles, theme.applyDarkStyles(activeDarkStyles)],
+        },
+        {
+          props: ({ active }) => !active,
+          style: [
+            {
+              color: (theme.vars || theme).palette.text.primary,
+            },
+            theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.grey[500],
+            }),
+          ],
+        },
+        {
+          props: ({ level }) => level === 2,
+          style: {
+            padding: `6px 0 6px ${theme.spacing(3)}`,
+          },
+        },
+        {
+          props: ({ level }) => level === 3,
+          style: {
+            padding: `6px 0 6px ${theme.spacing(4.5)}`,
+          },
+        },
+      ],
       '&:active': activeStyles,
     },
     theme.applyDarkStyles({
@@ -98,10 +115,6 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[500],
         color: (theme.vars || theme).palette.grey[200],
       },
-      ...(!active && {
-        color: (theme.vars || theme).palette.grey[500],
-      }),
-      ...(active && activeDarkStyles),
       '&:active': activeDarkStyles,
     }),
   ];
@@ -228,15 +241,14 @@ export default function AppTableOfContents(props) {
     [],
   );
 
-  const itemLink = (item, secondary, secondarySubItem) => (
+  const itemLink = (item, level) => (
     <NavItem
       display="block"
       href={`#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
-      secondary={secondary}
-      secondarySubItem={secondarySubItem}
+      level={level}
     >
       <span dangerouslySetInnerHTML={{ __html: item.text }} />
     </NavItem>
@@ -244,7 +256,6 @@ export default function AppTableOfContents(props) {
 
   return (
     <Nav aria-label={t('pageTOC')}>
-      <TableOfContentsBanner />
       <NoSsr>
         {showJobAd && (
           <Link
@@ -278,15 +289,17 @@ export default function AppTableOfContents(props) {
                 }),
             ]}
           >
-            <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+            <Typography
+              component="span"
+              variant="button"
+              sx={{ fontWeight: '500', color: 'text.primary' }}
+            >
               {'🚀 Join the MUI team!'}
             </Typography>
             <Typography
               component="span"
               variant="caption"
-              fontWeight="normal"
-              color="text.secondary"
-              sx={{ mt: 0.5 }}
+              sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
               {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}
@@ -300,18 +313,16 @@ export default function AppTableOfContents(props) {
           <NavList component="ul">
             {toc.map((item) => (
               <li key={item.text}>
-                {itemLink(item)}
+                {itemLink(item, 1)}
                 {item.children.length > 0 ? (
                   <NavList as="ul">
                     {item.children.map((subitem) => (
                       <li key={subitem.text}>
-                        {itemLink(subitem, true)}
+                        {itemLink(subitem, 2)}
                         {subitem.children?.length > 0 ? (
                           <NavList as="ul">
                             {subitem.children.map((nestedSubItem) => (
-                              <li key={nestedSubItem.text}>
-                                {itemLink(nestedSubItem, false, true)}
-                              </li>
+                              <li key={nestedSubItem.text}>{itemLink(nestedSubItem, 3)}</li>
                             ))}
                           </NavList>
                         ) : null}
@@ -325,6 +336,7 @@ export default function AppTableOfContents(props) {
         </React.Fragment>
       ) : null}
       <DiamondSponsors />
+      <TableOfContentsBanner />
     </Nav>
   );
 }

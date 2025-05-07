@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';
-import { useBadge } from '@mui/base/useBadge';
-import { useSlotProps } from '@mui/base/utils';
-import { styled, createUseThemeProps } from '../zero-styled';
+import useBadge from './useBadge';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
+import useSlot from '../utils/useSlot';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
-
-const useThemeProps = createUseThemeProps('MuiBadge');
 
 const useUtilityClasses = (ownerState) => {
   const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
@@ -39,7 +40,6 @@ const useUtilityClasses = (ownerState) => {
 const BadgeRoot = styled('span', {
   name: 'MuiBadge',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   position: 'relative',
   display: 'inline-flex',
@@ -66,190 +66,192 @@ const BadgeBadge = styled('span', {
       ownerState.invisible && styles.invisible,
     ];
   },
-})(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  alignContent: 'center',
-  alignItems: 'center',
-  position: 'absolute',
-  boxSizing: 'border-box',
-  fontFamily: theme.typography.fontFamily,
-  fontWeight: theme.typography.fontWeightMedium,
-  fontSize: theme.typography.pxToRem(12),
-  minWidth: RADIUS_STANDARD * 2,
-  lineHeight: 1,
-  padding: '0 6px',
-  height: RADIUS_STANDARD * 2,
-  borderRadius: RADIUS_STANDARD,
-  zIndex: 1, // Render the badge on top of potential ripples.
-  transition: theme.transitions.create('transform', {
-    easing: theme.transitions.easing.easeInOut,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  variants: [
-    ...Object.keys((theme.vars ?? theme).palette)
-      .filter(
-        (key) =>
-          (theme.vars ?? theme).palette[key].main &&
-          (theme.vars ?? theme).palette[key].contrastText,
-      )
-      .map((color) => ({
-        props: { color },
+})(
+  memoTheme(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    boxSizing: 'border-box',
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.fontWeightMedium,
+    fontSize: theme.typography.pxToRem(12),
+    minWidth: RADIUS_STANDARD * 2,
+    lineHeight: 1,
+    padding: '0 6px',
+    height: RADIUS_STANDARD * 2,
+    borderRadius: RADIUS_STANDARD,
+    zIndex: 1, // Render the badge on top of potential ripples.
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter(['contrastText']))
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            backgroundColor: (theme.vars || theme).palette[color].main,
+            color: (theme.vars || theme).palette[color].contrastText,
+          },
+        })),
+      {
+        props: { variant: 'dot' },
         style: {
-          backgroundColor: (theme.vars || theme).palette[color].main,
-          color: (theme.vars || theme).palette[color].contrastText,
-        },
-      })),
-    {
-      props: { variant: 'dot' },
-      style: {
-        borderRadius: RADIUS_DOT,
-        height: RADIUS_DOT * 2,
-        minWidth: RADIUS_DOT * 2,
-        padding: 0,
-      },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'top' &&
-        ownerState.anchorOrigin.horizontal === 'right' &&
-        ownerState.overlap === 'rectangular',
-      style: {
-        top: 0,
-        right: 0,
-        transform: 'scale(1) translate(50%, -50%)',
-        transformOrigin: '100% 0%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(50%, -50%)',
+          borderRadius: RADIUS_DOT,
+          height: RADIUS_DOT * 2,
+          minWidth: RADIUS_DOT * 2,
+          padding: 0,
         },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'bottom' &&
-        ownerState.anchorOrigin.horizontal === 'right' &&
-        ownerState.overlap === 'rectangular',
-      style: {
-        bottom: 0,
-        right: 0,
-        transform: 'scale(1) translate(50%, 50%)',
-        transformOrigin: '100% 100%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(50%, 50%)',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'top' &&
+          ownerState.anchorOrigin.horizontal === 'right' &&
+          ownerState.overlap === 'rectangular',
+        style: {
+          top: 0,
+          right: 0,
+          transform: 'scale(1) translate(50%, -50%)',
+          transformOrigin: '100% 0%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(50%, -50%)',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'top' &&
-        ownerState.anchorOrigin.horizontal === 'left' &&
-        ownerState.overlap === 'rectangular',
-      style: {
-        top: 0,
-        left: 0,
-        transform: 'scale(1) translate(-50%, -50%)',
-        transformOrigin: '0% 0%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(-50%, -50%)',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'bottom' &&
+          ownerState.anchorOrigin.horizontal === 'right' &&
+          ownerState.overlap === 'rectangular',
+        style: {
+          bottom: 0,
+          right: 0,
+          transform: 'scale(1) translate(50%, 50%)',
+          transformOrigin: '100% 100%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(50%, 50%)',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'bottom' &&
-        ownerState.anchorOrigin.horizontal === 'left' &&
-        ownerState.overlap === 'rectangular',
-      style: {
-        bottom: 0,
-        left: 0,
-        transform: 'scale(1) translate(-50%, 50%)',
-        transformOrigin: '0% 100%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(-50%, 50%)',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'top' &&
+          ownerState.anchorOrigin.horizontal === 'left' &&
+          ownerState.overlap === 'rectangular',
+        style: {
+          top: 0,
+          left: 0,
+          transform: 'scale(1) translate(-50%, -50%)',
+          transformOrigin: '0% 0%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(-50%, -50%)',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'top' &&
-        ownerState.anchorOrigin.horizontal === 'right' &&
-        ownerState.overlap === 'circular',
-      style: {
-        top: '14%',
-        right: '14%',
-        transform: 'scale(1) translate(50%, -50%)',
-        transformOrigin: '100% 0%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(50%, -50%)',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'bottom' &&
+          ownerState.anchorOrigin.horizontal === 'left' &&
+          ownerState.overlap === 'rectangular',
+        style: {
+          bottom: 0,
+          left: 0,
+          transform: 'scale(1) translate(-50%, 50%)',
+          transformOrigin: '0% 100%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(-50%, 50%)',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'bottom' &&
-        ownerState.anchorOrigin.horizontal === 'right' &&
-        ownerState.overlap === 'circular',
-      style: {
-        bottom: '14%',
-        right: '14%',
-        transform: 'scale(1) translate(50%, 50%)',
-        transformOrigin: '100% 100%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(50%, 50%)',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'top' &&
+          ownerState.anchorOrigin.horizontal === 'right' &&
+          ownerState.overlap === 'circular',
+        style: {
+          top: '14%',
+          right: '14%',
+          transform: 'scale(1) translate(50%, -50%)',
+          transformOrigin: '100% 0%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(50%, -50%)',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'top' &&
-        ownerState.anchorOrigin.horizontal === 'left' &&
-        ownerState.overlap === 'circular',
-      style: {
-        top: '14%',
-        left: '14%',
-        transform: 'scale(1) translate(-50%, -50%)',
-        transformOrigin: '0% 0%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(-50%, -50%)',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'bottom' &&
+          ownerState.anchorOrigin.horizontal === 'right' &&
+          ownerState.overlap === 'circular',
+        style: {
+          bottom: '14%',
+          right: '14%',
+          transform: 'scale(1) translate(50%, 50%)',
+          transformOrigin: '100% 100%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(50%, 50%)',
+          },
         },
       },
-    },
-    {
-      props: ({ ownerState }) =>
-        ownerState.anchorOrigin.vertical === 'bottom' &&
-        ownerState.anchorOrigin.horizontal === 'left' &&
-        ownerState.overlap === 'circular',
-      style: {
-        bottom: '14%',
-        left: '14%',
-        transform: 'scale(1) translate(-50%, 50%)',
-        transformOrigin: '0% 100%',
-        [`&.${badgeClasses.invisible}`]: {
-          transform: 'scale(0) translate(-50%, 50%)',
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'top' &&
+          ownerState.anchorOrigin.horizontal === 'left' &&
+          ownerState.overlap === 'circular',
+        style: {
+          top: '14%',
+          left: '14%',
+          transform: 'scale(1) translate(-50%, -50%)',
+          transformOrigin: '0% 0%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(-50%, -50%)',
+          },
         },
       },
-    },
-    {
-      props: { invisible: true },
-      style: {
-        transition: theme.transitions.create('transform', {
-          easing: theme.transitions.easing.easeInOut,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
+      {
+        props: ({ ownerState }) =>
+          ownerState.anchorOrigin.vertical === 'bottom' &&
+          ownerState.anchorOrigin.horizontal === 'left' &&
+          ownerState.overlap === 'circular',
+        style: {
+          bottom: '14%',
+          left: '14%',
+          transform: 'scale(1) translate(-50%, 50%)',
+          transformOrigin: '0% 100%',
+          [`&.${badgeClasses.invisible}`]: {
+            transform: 'scale(0) translate(-50%, 50%)',
+          },
+        },
       },
-    },
-  ],
-}));
+      {
+        props: { invisible: true },
+        style: {
+          transition: theme.transitions.create('transform', {
+            easing: theme.transitions.easing.easeInOut,
+            duration: theme.transitions.duration.leavingScreen,
+          }),
+        },
+      },
+    ],
+  })),
+);
+
+function getAnchorOrigin(anchorOrigin) {
+  return {
+    vertical: anchorOrigin?.vertical ?? 'top',
+    horizontal: anchorOrigin?.horizontal ?? 'right',
+  };
+}
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
+  const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
+    anchorOrigin: anchorOriginProp,
     className,
     classes: classesProp,
     component,
@@ -281,7 +283,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   });
 
   const prevProps = usePreviousProps({
-    anchorOrigin: anchorOriginProp,
+    anchorOrigin: getAnchorOrigin(anchorOriginProp),
     color: colorProp,
     overlap: overlapProp,
     variant: variantProp,
@@ -293,10 +295,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const {
     color = colorProp,
     overlap = overlapProp,
-    anchorOrigin = anchorOriginProp,
+    anchorOrigin: anchorOriginPropProp,
     variant = variantProp,
   } = invisible ? prevProps : props;
 
+  const anchorOrigin = getAnchorOrigin(anchorOriginPropProp);
   const displayValue = variant !== 'dot' ? displayValueFromHook : undefined;
 
   const ownerState = {
@@ -315,29 +318,36 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   // support both `slots` and `components` for backward compatibility
-  const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
-  const BadgeSlot = slots?.badge ?? components.Badge ?? BadgeBadge;
+  const externalForwardedProps = {
+    slots: {
+      root: slots?.root ?? components.Root,
+      badge: slots?.badge ?? components.Badge,
+    },
+    slotProps: {
+      root: slotProps?.root ?? componentsProps.root,
+      badge: slotProps?.badge ?? componentsProps.badge,
+    },
+  };
 
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const badgeSlotProps = slotProps?.badge ?? componentsProps.badge;
-
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: BadgeRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
     },
     ownerState,
-    className: clsx(rootSlotProps?.className, classes.root, className),
+    className: clsx(classes.root, className),
+    ref,
+    additionalProps: {
+      as: component,
+    },
   });
 
-  const badgeProps = useSlotProps({
-    elementType: BadgeSlot,
-    externalSlotProps: badgeSlotProps,
+  const [BadgeSlot, badgeProps] = useSlot('badge', {
+    elementType: BadgeBadge,
+    externalForwardedProps,
     ownerState,
-    className: clsx(classes.badge, badgeSlotProps?.className),
+    className: classes.badge,
   });
 
   return (
@@ -361,8 +371,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * }
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
+    horizontal: PropTypes.oneOf(['left', 'right']),
+    vertical: PropTypes.oneOf(['bottom', 'top']),
   }),
   /**
    * The content rendered within the badge.
@@ -398,7 +408,7 @@ Badge.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -410,7 +420,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -439,7 +449,7 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   showZero: PropTypes.bool,
   /**
-   * The props used for each slot inside the Badge.
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -447,8 +457,7 @@ Badge.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Badge.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({

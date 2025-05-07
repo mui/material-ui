@@ -73,13 +73,11 @@ interface ButtonProps {
 const ButtonRoot = styled('button', {
   name: 'MuiButton',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonProps }>({});
 
 const ButtonIcon = styled('span', {
   name: 'MuiButton',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: ButtonProps }>({});
 
 function Button({
@@ -125,8 +123,8 @@ function Button({
             return styles;
           },
           startIcon: ({ ownerState: { startIcon, endIcon } }) => [
-            startIcon && { marginRight: 8 },
-            endIcon && { marginLeft: 8 },
+            !!startIcon && { marginRight: 8 },
+            !!endIcon && { marginLeft: 8 },
           ],
         },
       },

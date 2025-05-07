@@ -7,11 +7,13 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { alpha, darken, lighten } from '@mui/system/colorManipulator';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import SwitchBase from '../internal/SwitchBase';
-import { styled, createUseThemeProps } from '../zero-styled';
+import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-
-const useThemeProps = createUseThemeProps('MuiSwitch');
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled } = ownerState;
@@ -106,7 +108,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     ];
   },
 })(
-  ({ theme }) => ({
+  memoTheme(({ theme }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
@@ -137,8 +139,8 @@ const SwitchSwitchBase = styled(SwitchBase, {
       left: '-100%',
       width: '300%',
     },
-  }),
-  ({ theme }) => ({
+  })),
+  memoTheme(({ theme }) => ({
     '&:hover': {
       backgroundColor: theme.vars
         ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
@@ -150,7 +152,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
     },
     variants: [
       ...Object.entries(theme.palette)
-        .filter(([, value]) => value.main && value.light) // check all the used fields in the style below
+        .filter(createSimplePaletteValueFilter(['light'])) // check all the used fields in the style below
         .map(([color]) => ({
           props: { color },
           style: {
@@ -180,44 +182,55 @@ const SwitchSwitchBase = styled(SwitchBase, {
           },
         })),
     ],
-  }),
+  })),
 );
 
 const SwitchTrack = styled('span', {
   name: 'MuiSwitch',
   slot: 'Track',
-  overridesResolver: (props, styles) => styles.track,
-})(({ theme }) => ({
-  height: '100%',
-  width: '100%',
-  borderRadius: 14 / 2,
-  zIndex: -1,
-  transition: theme.transitions.create(['opacity', 'background-color'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  backgroundColor: theme.vars
-    ? theme.vars.palette.common.onBackground
-    : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
-  opacity: theme.vars
-    ? theme.vars.opacity.switchTrack
-    : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
-}));
+})(
+  memoTheme(({ theme }) => ({
+    height: '100%',
+    width: '100%',
+    borderRadius: 14 / 2,
+    zIndex: -1,
+    transition: theme.transitions.create(['opacity', 'background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    backgroundColor: theme.vars
+      ? theme.vars.palette.common.onBackground
+      : `${theme.palette.mode === 'light' ? theme.palette.common.black : theme.palette.common.white}`,
+    opacity: theme.vars
+      ? theme.vars.opacity.switchTrack
+      : `${theme.palette.mode === 'light' ? 0.38 : 0.3}`,
+  })),
+);
 
 const SwitchThumb = styled('span', {
   name: 'MuiSwitch',
   slot: 'Thumb',
-  overridesResolver: (props, styles) => styles.thumb,
-})(({ theme }) => ({
-  boxShadow: (theme.vars || theme).shadows[1],
-  backgroundColor: 'currentColor',
-  width: 20,
-  height: 20,
-  borderRadius: '50%',
-}));
+})(
+  memoTheme(({ theme }) => ({
+    boxShadow: (theme.vars || theme).shadows[1],
+    backgroundColor: 'currentColor',
+    width: 20,
+    height: 20,
+    borderRadius: '50%',
+  })),
+);
 
 const Switch = React.forwardRef(function Switch(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
-  const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
+  const props = useDefaultProps({ props: inProps, name: 'MuiSwitch' });
+  const {
+    className,
+    color = 'primary',
+    edge = false,
+    size = 'medium',
+    sx,
+    slots = {},
+    slotProps = {},
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
@@ -227,10 +240,40 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-  const icon = <SwitchThumb className={classes.thumb} ownerState={ownerState} />;
+
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    className: clsx(classes.root, className),
+    elementType: SwitchRoot,
+    externalForwardedProps,
+    ownerState,
+    additionalProps: {
+      sx,
+    },
+  });
+
+  const [ThumbSlot, thumbSlotProps] = useSlot('thumb', {
+    className: classes.thumb,
+    elementType: SwitchThumb,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const icon = <ThumbSlot {...thumbSlotProps} />;
+
+  const [TrackSlot, trackSlotProps] = useSlot('track', {
+    className: classes.track,
+    elementType: SwitchTrack,
+    externalForwardedProps,
+    ownerState,
+  });
 
   return (
-    <SwitchRoot className={clsx(classes.root, className)} sx={sx} ownerState={ownerState}>
+    <RootSlot {...rootSlotProps}>
       <SwitchSwitchBase
         type="checkbox"
         icon={icon}
@@ -242,9 +285,25 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
           ...classes,
           root: classes.switchBase,
         }}
+        slots={{
+          ...(slots.switchBase && { root: slots.switchBase }),
+          ...(slots.input && { input: slots.input }),
+        }}
+        slotProps={{
+          ...(slotProps.switchBase && {
+            root:
+              typeof slotProps.switchBase === 'function'
+                ? slotProps.switchBase(ownerState)
+                : slotProps.switchBase,
+          }),
+          ...(slotProps.input && {
+            input:
+              typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
+          }),
+        }}
       />
-      <SwitchTrack className={classes.track} ownerState={ownerState} />
-    </SwitchRoot>
+      <TrackSlot {...trackSlotProps} />
+    </RootSlot>
   );
 });
 
@@ -309,11 +368,13 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
+   * @deprecated Use `slotProps.input` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputProps: PropTypes.object,
   /**
    * Pass a ref to the `input` element.
+   * @deprecated Use `slotProps.input.ref` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   inputRef: refType,
   /**
@@ -338,6 +399,28 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    switchBase: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+    switchBase: PropTypes.elementType,
+    thumb: PropTypes.elementType,
+    track: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

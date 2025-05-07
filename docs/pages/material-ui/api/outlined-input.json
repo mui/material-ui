@@ -11,7 +11,9 @@
     },
     "components": {
       "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
-      "default": "{}"
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
@@ -40,8 +42,18 @@
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: object, notchedOutline?: func<br>&#124;&nbsp;object, root?: object }"
+      },
+      "default": "{}"
+    },
     "slots": {
-      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, notchedOutline?: elementType, root?: elementType }"
+      },
       "default": "{}"
     },
     "startAdornment": { "type": { "name": "node" } },

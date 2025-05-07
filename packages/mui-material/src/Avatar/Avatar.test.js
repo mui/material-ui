@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent } from '@mui-internal/test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -20,6 +20,14 @@ describe('<Avatar />', () => {
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'variant', value: 'rounded', styleKey: 'rounded' },
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      fallback: {
+        expectedClassName: classes.fallback,
+      },
+    },
     skip: ['componentsProp'],
   }));
 
@@ -61,6 +69,20 @@ describe('<Avatar />', () => {
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
+    });
+
+    it('should pass slots.img to `useLoaded` hook', () => {
+      const originalImage = global.Image;
+      const image = {};
+      global.Image = function Image() {
+        return image;
+      };
+
+      render(<Avatar src="/fake.png" slotProps={{ img: { crossOrigin: 'anonymous' } }} />);
+
+      expect(image.crossOrigin).to.equal('anonymous');
+
+      global.Image = originalImage;
     });
   });
 

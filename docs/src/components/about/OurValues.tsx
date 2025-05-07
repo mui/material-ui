@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -13,7 +13,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const values = [
   {
-    title: 'Put community first 💙',
+    title: 'User obsessed 💙',
     description: "We never lose sight of who we're serving and why.",
     lightIcon: 'url(/static/branding/about/illustrations/community-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/community-dark.svg)',
@@ -21,7 +21,7 @@ const values = [
     height: 84,
   },
   {
-    title: 'Avoid bureaucracy 🚫',
+    title: 'Keep it simple 🚫',
     description: "We're so not corporate — and we like it that way.",
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',
@@ -70,15 +70,14 @@ export default function OurValues() {
       </Button>
       <Grid container spacing={3} sx={{ mt: { xs: 1, sm: 2 } }}>
         {values.map(({ title, description, darkIcon, lightIcon, height, width }) => (
-          <Grid key={title} xs={12} md={3}>
+          <Grid key={title} size={{ xs: 12, md: 3 }}>
             <Paper
               variant="outlined"
               sx={(theme) => ({
-                p: 4,
+                p: 2.5,
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'space-between',
                 gap: 1.5,
                 background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 ...theme.applyDarkStyles({
@@ -90,39 +89,45 @@ export default function OurValues() {
             >
               <Box sx={{ height: 94 }}>
                 <Box
-                  width={width}
-                  height={height}
-                  sx={(theme) => ({
-                    background: `${lightIcon}`,
-                    ...theme.applyDarkStyles({
-                      background: `${darkIcon}`,
+                  sx={[
+                    {
+                      width,
+                      height,
+                    },
+                    (theme) => ({
+                      background: `${lightIcon}`,
+                      ...theme.applyDarkStyles({
+                        background: `${darkIcon}`,
+                      }),
                     }),
-                  })}
+                  ]}
                 />
               </Box>
               <Box sx={{ flexGrow: 1 }}>
                 <Typography
-                  fontWeight="bold"
                   component="h3"
                   variant="body2"
-                  sx={(theme) => ({
-                    mb: 0.5,
-                    color: (theme.vars || theme).palette.text.primary,
-                    '&::first-letter': {
-                      mr: 0.1,
-                      fontSize: theme.typography.pxToRem(16),
-                      color: (theme.vars || theme).palette.primary.main,
+                  sx={[
+                    {
+                      fontWeight: 'semiBold',
                     },
-                    ...theme.applyDarkStyles({
+                    (theme) => ({
+                      mb: 0.5,
+                      color: (theme.vars || theme).palette.text.primary,
                       '&::first-letter': {
-                        color: (theme.vars || theme).palette.primary[400],
+                        color: (theme.vars || theme).palette.primary.main,
                       },
+                      ...theme.applyDarkStyles({
+                        '&::first-letter': {
+                          color: (theme.vars || theme).palette.primary[400],
+                        },
+                      }),
                     }),
-                  })}
+                  ]}
                 >
                   {title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {description}
                 </Typography>
               </Box>

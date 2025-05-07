@@ -19,7 +19,7 @@ export default function GlobalVariantComponents() {
         alignItems: 'center',
       }}
     >
-      <Typography level="body-sm" justifySelf="flex-end">
+      <Typography level="body-sm" sx={{ justifySelf: 'flex-end' }}>
         Button:
       </Typography>
       <Button variant="solid" color="primary">
@@ -34,7 +34,7 @@ export default function GlobalVariantComponents() {
       <Button variant="plain" color="primary">
         Plain
       </Button>
-      <Typography level="body-sm" justifySelf="flex-end">
+      <Typography level="body-sm" sx={{ justifySelf: 'flex-end' }}>
         Chip:
       </Typography>
       <Chip variant="solid" size="sm" color="primary">
@@ -49,7 +49,7 @@ export default function GlobalVariantComponents() {
       <Chip variant="plain" size="sm" color="primary">
         Plain
       </Chip>
-      <Typography level="body-sm" justifySelf="flex-end">
+      <Typography level="body-sm" sx={{ justifySelf: 'flex-end' }}>
         Checkbox:
       </Typography>
       <Checkbox variant="solid" defaultChecked label="Solid" />

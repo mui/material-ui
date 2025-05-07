@@ -5,90 +5,98 @@ export default function Height() {
   return (
     <Box sx={{ height: 100, width: '100%' }}>
       <Box
-        sx={{
+        sx={(theme) => ({
           height: '25%',
           width: 120,
           display: 'inline-block',
           p: 1,
           mx: 1,
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: 'grey.100',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
           textAlign: 'center',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         Height 25%
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           height: '50%',
           width: 120,
           display: 'inline-block',
           p: 1,
           mx: 1,
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: 'grey.100',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
           textAlign: 'center',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         Height 50%
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           height: '75%',
           width: 120,
           display: 'inline-block',
           p: 1,
           mx: 1,
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: 'grey.100',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
           textAlign: 'center',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         Height 75%
       </Box>
       <Box
-        sx={{
+        sx={(theme) => ({
           height: '100%',
           width: 120,
           display: 'inline-block',
           p: 1,
           mx: 1,
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          bgcolor: 'grey.100',
+          color: 'grey.800',
           border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderColor: 'grey.300',
           borderRadius: 2,
           fontSize: '0.875rem',
           fontWeight: '700',
           textAlign: 'center',
-        }}
+          ...theme.applyStyles('dark', {
+            bgcolor: '#101010',
+            color: 'grey.300',
+            borderColor: 'grey.800',
+          }),
+        })}
       >
         Height 100%
       </Box>

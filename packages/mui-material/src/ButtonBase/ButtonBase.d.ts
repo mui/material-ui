@@ -5,6 +5,8 @@ import { TouchRippleActions, TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 import { ButtonBaseClasses } from './buttonBaseClasses';
 
+export { TouchRippleActions, TouchRippleProps };
+
 export interface ButtonBaseOwnProps {
   /**
    * A ref for imperative actions.
@@ -105,7 +107,7 @@ export interface ExtendButtonBaseTypeMap<TypeMap extends OverridableTypeMap> {
 
 export type ExtendButtonBase<TypeMap extends OverridableTypeMap> = ((
   props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<TypeMap>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<TypeMap>>;
 
 /**

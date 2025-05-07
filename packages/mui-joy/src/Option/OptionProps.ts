@@ -48,7 +48,7 @@ export interface OptionTypeMap<P = {}, D extends React.ElementType = 'li'> {
      * A text representation of the option's content.
      * Used for keyboard text navigation matching.
      */
-    label?: string | React.ReactElement;
+    label?: string | React.ReactElement<any>;
     /**
      * The [global variant](https://mui.com/joy-ui/main-features/global-variants/) to use.
      * @default 'plain'
@@ -100,5 +100,5 @@ export interface OptionOwnerState extends ApplyColorInversion<Omit<OptionProps, 
 
 export type ExtendOption<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendOptionTypeMap<M>, 'a'>,
-) => JSX.Element) &
+) => React.JSX.Element) &
   OverridableComponent<ExtendOptionTypeMap<M>>;

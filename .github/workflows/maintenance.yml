@@ -4,15 +4,17 @@ on:
   # So that PRs touching the same files as the push are updated
   push:
     branches:
+      # #target-branch-reference
       - master
-      - next
+      - v6.x
   # So that the `dirtyLabel` is removed if conflicts are resolved
   # Could put too much strain on rate limit
   # If we hit the rate limit too often remove this event
   pull_request_target:
     branches:
+      # #target-branch-reference
       - master
-      - next
+      - v6.x
     types: [synchronize]
 
 permissions: {}
@@ -29,7 +31,7 @@ jobs:
     steps:
       - run: echo "${{ github.actor }}"
       - name: check if prs are dirty
-        uses: eps1lon/actions-label-merge-conflict@fd1f295ee7443d13745804bc49fe158e240f6c6e # v2.1.0
+        uses: eps1lon/actions-label-merge-conflict@1df065ebe6e3310545d4f4c4e862e43bdca146f0 # v3.0.3
         with:
           dirtyLabel: 'PR: out-of-date'
           removeOnDirtyLabel: 'PR: ready to ship'

@@ -34,9 +34,9 @@ export default function EmailExample() {
       <Stack
         id="tab-bar"
         direction="row"
-        justifyContent="space-around"
         spacing={1}
         sx={{
+          justifyContent: 'space-around',
           display: { xs: 'flex', sm: 'none' },
           zIndex: '999',
           bottom: 0,
@@ -84,12 +84,12 @@ export default function EmailExample() {
         </Button>
       </Stack>
       <Layout.Root
-        sx={{
-          ...(drawerOpen && {
+        sx={[
+          drawerOpen && {
             height: '100vh',
             overflow: 'hidden',
-          }),
-        }}
+          },
+        ]}
       >
         <Layout.Header>
           <Header />

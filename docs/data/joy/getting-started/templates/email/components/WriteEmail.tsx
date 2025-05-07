@@ -23,25 +23,27 @@ const WriteEmail = React.forwardRef<HTMLDivElement, WriteEmailProps>(
     return (
       <Sheet
         ref={ref}
-        sx={{
-          alignItems: 'center',
-          px: 1.5,
-          py: 1.5,
-          ml: 'auto',
-          width: { xs: '100dvw', md: 600 },
-          flexGrow: 1,
-          border: '1px solid',
-          borderRadius: '8px 8px 0 0',
-          backgroundColor: 'background.level1',
-          borderColor: 'neutral.outlinedBorder',
-          boxShadow: 'lg',
-          zIndex: 1000,
-          position: 'fixed',
-          bottom: 0,
-          right: 24,
-          transform: open ? 'translateY(0)' : 'translateY(100%)',
-          transition: 'transform 0.3s ease',
-        }}
+        sx={[
+          {
+            alignItems: 'center',
+            px: 1.5,
+            py: 1.5,
+            ml: 'auto',
+            width: { xs: '100dvw', md: 600 },
+            flexGrow: 1,
+            border: '1px solid',
+            borderRadius: '8px 8px 0 0',
+            backgroundColor: 'background.level1',
+            borderColor: 'neutral.outlinedBorder',
+            boxShadow: 'lg',
+            zIndex: 1000,
+            position: 'fixed',
+            bottom: 0,
+            right: 24,
+            transition: 'transform 0.3s ease',
+          },
+          open ? { transform: 'translateY(0)' } : { transform: 'translateY(100%)' },
+        ]}
       >
         <Box sx={{ mb: 2 }}>
           <Typography level="title-sm">New message</Typography>
@@ -67,10 +69,10 @@ const WriteEmail = React.forwardRef<HTMLDivElement, WriteEmailProps>(
               endDecorator={
                 <Stack
                   direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  flexGrow={1}
                   sx={{
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexGrow: 1,
                     py: 1,
                     pr: 1,
                     borderTop: '1px solid',

@@ -14,7 +14,7 @@ If you think you've found a bug, or you have a new feature idea:
 
 ### New issue guidelines
 
-- Please follow one the issue templates provided on GitHub.
+- Please follow one of the issue templates provided on GitHub.
 - Please begin the title with "[component-name]" (if relevant), and use a succinct description that helps others find similar issues.
   - ❌ _"It doesn't work"_
   - ✅ _"[button] Add support for {{new feature}}"_
@@ -33,10 +33,10 @@ You can browse the documentation, find an example close to your use case, and th
 
 <a href="/material-ui/react-button/#basic-button">
 <span class="only-light-mode">
-<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 <span class="only-dark-mode">
-<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 </a>
 
@@ -72,18 +72,22 @@ This includes issues introduced by external sources, like browser upgrades or ch
 
 ### Supported versions
 
-- Material UI v5: ✅ Stable major (Continuous support)
-- [Material UI v4](https://v4.mui.com/): ⚠️ Long-term support (Guaranteed Support for security issues and regressions).
-- [Material UI v3](https://v3.mui.com/): 🅧 No longer supported.
-- Material UI v2: 🅧 Never existed.
-- [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
-- [Material UI v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+| Material UI version | Release    | Supported                                                          |
+| ------------------: | :--------- | :----------------------------------------------------------------- |
+|              ^7.0.0 | 2025-03-26 | ✅ Stable major (Continuous support)                               |
+|              ^6.0.0 | 2024-08-26 | ⚠️ Long-term support (Support for security issues and regressions) |
+|              ^5.0.0 | 2021-09-16 | ❌                                                                 |
+|              ^4.0.0 | 2019-06-23 | ❌                                                                 |
+|              ^3.0.0 | 2018-08-27 | ❌                                                                 |
+|              ^2.0.0 | /          | ❌                                                                 |
+|              ^1.0.0 | 2018-06-18 | ❌                                                                 |
+|             <=1.0.0 | 2014-10-05 | ❌                                                                 |
 
 ## Community
 
 ### Social media
 
-The Material UI community is active on both [X/Twitter](https://twitter.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
+The Material UI community is active on both [X/Twitter](https://x.com/MaterialUI) and [LinkedIn](https://www.linkedin.com/company/mui/).
 These are great platforms to share what you're working on and connect with other developers.
 
 ### Discord
@@ -105,7 +109,7 @@ Keep in mind that the work must be directly related to Material UI's products�
 
 Our contracting price starts at $200/hour or $1,500/day.
 
-[Send us an email](mailto:custom-work@mui.com) summarizing of your needs, and we'll let you know whether we can help (or else try to suggest alternatives).
+[Send us an email](mailto:custom-work@mui.com) summarizing your needs, and we'll let you know whether we can help (or else try to suggest alternatives).
 
 ## Tidelift subscription
 
@@ -119,10 +123,10 @@ That means less time grappling with esoteric open-source trivia, and more time b
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+  href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
 Learn more about Tidelift</a>
 and
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/solutions/schedule-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">request a demo today</a>.
+  href="https://www.sonarsource.com/tidelift-request-demo/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">request a demo today</a>.

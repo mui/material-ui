@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
-import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
@@ -14,7 +13,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
@@ -116,10 +115,45 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/16889233',
     github: 'DiegoAndai',
   },
+  alelthomas: {
+    name: 'Ale Thomas',
+    avatar: 'https://avatars.githubusercontent.com/u/93217218',
+    github: 'alelthomas',
+  },
   DavidCnoops: {
     name: 'David Cnoops',
     avatar: 'https://avatars.githubusercontent.com/u/28001064',
     github: 'DavidCnoops',
+  },
+  brijeshb42: {
+    name: 'Brijesh Bittu',
+    avatar: 'https://avatars.githubusercontent.com/u/717550?',
+    github: 'brijeshb42',
+  },
+  aarongarciah: {
+    name: 'Aarón García',
+    avatar: 'https://avatars.githubusercontent.com/u/7225802?',
+    github: 'aarongarciah',
+  },
+  zanivan: {
+    name: 'Victor Zanivan Monteiro',
+    avatar: 'https://avatars.githubusercontent.com/u/37222944?',
+    github: 'zanivan',
+  },
+  romgrk: {
+    name: 'Romain Gregoire',
+    avatar: 'https://avatars.githubusercontent.com/u/1423607',
+    github: 'romgrk',
+  },
+  arminmeh: {
+    name: 'Armin Mehinović',
+    avatar: 'https://avatars.githubusercontent.com/u/4390250',
+    github: 'arminmeh',
+  },
+  janpot: {
+    name: 'Jan Potoms',
+    avatar: 'https://avatars.githubusercontent.com/u/2109932',
+    github: 'Janpot',
   },
 };
 
@@ -179,8 +213,10 @@ const Root = styled('div')(
       lineHeight: 1.7,
       '& img, & video': {
         border: '1px solid',
+        // Avoid border to change inline style width properties
+        boxSizing: 'content-box',
         borderColor: (theme.vars || theme).palette.grey[200],
-        borderRadius: 12,
+        borderRadius: 8,
         display: 'block',
         margin: 'auto',
         marginBottom: 16,
@@ -280,7 +316,6 @@ const Root = styled('div')(
 );
 
 export default function TopLayoutBlog(props) {
-  const theme = useTheme();
   const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
@@ -375,9 +410,9 @@ export default function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="primary"
             variant="body2"
             className={classes.back}
+            sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
@@ -413,16 +448,15 @@ export default function TopLayoutBlog(props) {
                       }?s=${36 * 3} 3x`}
                     />
                     <div>
-                      <Typography variant="body2" fontWeight="500">
+                      <Typography variant="body2" sx={{ fontWeight: '500' }}>
                         {authors[author].name}
                       </Typography>
                       <Link
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noopener"
-                        color="primary"
                         variant="body2"
-                        sx={{ fontWeight: 500 }}
+                        sx={{ color: 'primary', fontWeight: 500 }}
                       >
                         @{authors[author].github}
                       </Link>
@@ -443,8 +477,6 @@ export default function TopLayoutBlog(props) {
                 disableAd
                 localizedDoc={docs.en}
                 renderedMarkdownOrDemo={chunk}
-                theme={theme}
-                WrapperComponent={React.Fragment}
               />
             );
           })}

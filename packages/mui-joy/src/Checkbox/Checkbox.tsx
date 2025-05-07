@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
+import useId from '@mui/utils/useId';
+import capitalize from '@mui/utils/capitalize';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps } from '../styles';
@@ -246,6 +247,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -274,7 +276,8 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const activeVariant = variantProp || 'solid';
   const inactiveVariant = variantProp || 'outlined';
   const variant = isCheckboxActive ? activeVariant : inactiveVariant;
-  const color = inProps.color || (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
+  const color =
+    inProps.color || (formControl?.error ? 'danger' : (formControl?.color ?? colorProp));
 
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';

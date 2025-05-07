@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as playwright from 'playwright';
+import { Page, Browser, chromium, ElementHandle } from '@playwright/test';
 import type {
   ByRoleMatcher,
   ByRoleOptions,
@@ -7,8 +7,8 @@ import type {
   MatcherOptions,
   SelectorMatcherOptions,
 } from '@testing-library/dom';
-import '@mui-internal/test-utils/initMatchers';
-import '@mui-internal/test-utils/initPlaywrightMatchers';
+import '@mui/internal-test-utils/initMatchers';
+import '@mui/internal-test-utils/initPlaywrightMatchers';
 
 function sleep(duration: number): Promise<void> {
   return new Promise<void>((resolve) => {
@@ -22,19 +22,13 @@ interface PlaywrightScreen {
   getByLabelText: (
     labelText: Matcher,
     options?: SelectorMatcherOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
-  getByRole: (
-    role: ByRoleMatcher,
-    options?: ByRoleOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
-  getByTestId: (
-    testId: string,
-    options?: MatcherOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  ) => Promise<ElementHandle<HTMLElement>>;
+  getByRole: (role: ByRoleMatcher, options?: ByRoleOptions) => Promise<ElementHandle<HTMLElement>>;
+  getByTestId: (testId: string, options?: MatcherOptions) => Promise<ElementHandle<HTMLElement>>;
   getByText: (
     text: Matcher,
     options?: SelectorMatcherOptions,
-  ) => Promise<playwright.ElementHandle<HTMLElement>>;
+  ) => Promise<ElementHandle<HTMLElement>>;
 }
 
 /**
@@ -44,7 +38,7 @@ interface PlaywrightScreen {
  * @param page
  * @param url
  */
-async function attemptGoto(page: playwright.Page, url: string): Promise<boolean> {
+async function attemptGoto(page: Page, url: string): Promise<boolean> {
   const maxAttempts = 10;
   const retryTimeoutMS = 250;
 
@@ -65,8 +59,8 @@ async function attemptGoto(page: playwright.Page, url: string): Promise<boolean>
 
 describe('e2e', () => {
   const baseUrl = 'http://localhost:5001';
-  let browser: playwright.Browser;
-  let page: playwright.Page;
+  let browser: Browser;
+  let page: Page;
   const screen: PlaywrightScreen = {
     getByLabelText: (...inputArgs) => {
       return page.evaluateHandle(
@@ -102,7 +96,7 @@ describe('e2e', () => {
   before(async function beforeHook() {
     this.timeout(20000);
 
-    browser = await playwright.chromium.launch({
+    browser = await chromium.launch({
       headless: true,
     });
     page = await browser.newPage();

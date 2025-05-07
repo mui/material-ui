@@ -25,11 +25,13 @@ export default function ExampleButtonCheckbox() {
       {['Mobile', 'Laptop', 'Monitor'].map((item) => (
         <ListItem key={item}>
           <ListItemDecorator
-            sx={{
-              zIndex: 2,
-              pointerEvents: 'none',
-              ...(value.includes(item) && { color: 'text.primary' }),
-            }}
+            sx={[
+              {
+                zIndex: 2,
+                pointerEvents: 'none',
+              },
+              value.includes(item) && { color: 'text.primary' },
+            ]}
           >
             {
               {

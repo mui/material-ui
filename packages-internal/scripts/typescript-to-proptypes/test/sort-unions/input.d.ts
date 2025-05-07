@@ -11,4 +11,4 @@ export interface Props {
   only?: Breakpoint | Breakpoint[];
 }
 
-export default function Hidden(props: Props): JSX.Element;
+export default function Hidden(props: Props): React.JSX.Element;

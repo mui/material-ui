@@ -33,11 +33,7 @@ export default function TabsSticky() {
       aria-label="Sticky tabs"
       value={sticky}
       onChange={(event, newValue) => setSticky(newValue)}
-      sx={{
-        p: 1,
-        maxHeight: 200,
-        overflowY: 'auto',
-      }}
+      sx={{ p: 1, maxHeight: 200, overflowY: 'auto' }}
     >
       {sticky === 'top' ? items : items.reverse()}
     </Tabs>

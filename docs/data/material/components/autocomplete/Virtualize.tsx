@@ -26,8 +26,10 @@ function renderRow(props: ListChildComponentProps) {
     );
   }
 
+  const { key, ...optionProps } = dataSet[0];
+
   return (
-    <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
+    <Typography key={key} component="li" {...optionProps} noWrap style={inlineStyle}>
       {`#${dataSet[2] + 1} - ${dataSet[1]}`}
     </Typography>
   );
@@ -56,9 +58,13 @@ const ListboxComponent = React.forwardRef<
   React.HTMLAttributes<HTMLElement>
 >(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData: React.ReactElement[] = [];
-  (children as React.ReactElement[]).forEach(
-    (item: React.ReactElement & { children?: React.ReactElement[] }) => {
+  const itemData: React.ReactElement<unknown>[] = [];
+  (children as React.ReactElement<unknown>[]).forEach(
+    (
+      item: React.ReactElement<unknown> & {
+        children?: React.ReactElement<unknown>[];
+      },
+    ) => {
       itemData.push(item);
       itemData.push(...(item.children || []));
     },
@@ -71,7 +77,7 @@ const ListboxComponent = React.forwardRef<
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child: React.ReactElement) => {
+  const getChildSize = (child: React.ReactElement<unknown>) => {
     if (child.hasOwnProperty('group')) {
       return 48;
     }
@@ -149,7 +155,11 @@ export default function Virtualize() {
       renderGroup={(params) => params as any}
       slots={{
         popper: StyledPopper,
-        listbox: ListboxComponent,
+      }}
+      slotProps={{
+        listbox: {
+          component: ListboxComponent,
+        },
       }}
     />
   );

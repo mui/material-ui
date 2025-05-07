@@ -10,8 +10,8 @@ import {
   Link,
   matchPath,
   useLocation,
-} from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+  StaticRouter,
+} from 'react-router';
 
 function Router(props: { children?: React.ReactNode }) {
   const { children } = props;
@@ -61,7 +61,7 @@ function CurrentRoute() {
   const location = useLocation();
 
   return (
-    <Typography variant="body2" sx={{ pb: 2 }} color="text.secondary">
+    <Typography variant="body2" sx={{ color: 'text.secondary', pb: 2 }}>
       Current route: {location.pathname}
     </Typography>
   );

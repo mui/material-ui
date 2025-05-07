@@ -85,15 +85,15 @@ export default function ThemeAccordion() {
             <Box sx={{ display: 'flex' }}>
               <FontDownloadRoundedIcon fontSize="small" />
               <div>
-                <Typography fontWeight={500}>Typography</Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography sx={{ fontWeight: 500 }}>Typography</Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   Fonts used in this website revamp project.
                 </Typography>
               </div>
             </Box>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Tag line headings (h1, h2) use General Sans, whereas the rest of the website use IBM
               Plex Sans.
             </Typography>
@@ -114,7 +114,7 @@ export default function ThemeAccordion() {
               <Folder fontSize="small" />
               <div>
                 <Typography>Hacks</Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   Some of our secrets to make this website.
                 </Typography>
               </div>

@@ -20,6 +20,17 @@
       },
       "default": "'anchorEl'"
     },
+    "BackdropComponent": {
+      "type": { "name": "elementType" },
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slots.backdrop</code> instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
+    "BackdropProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.backdrop</code> instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
@@ -36,12 +47,15 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ paper?: elementType, root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: elementType, paper?: elementType, root?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {
@@ -58,7 +72,12 @@
       },
       "default": "{\n  vertical: 'top',\n  horizontal: 'left',\n}"
     },
-    "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
+    "TransitionComponent": {
+      "type": { "name": "elementType" },
+      "default": "Grow",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slots.transition</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "transitionDuration": {
       "type": {
         "name": "union",
@@ -66,27 +85,45 @@
       },
       "default": "'auto'"
     },
-    "TransitionProps": { "type": { "name": "object" }, "default": "{}" }
+    "TransitionProps": {
+      "type": { "name": "object" },
+      "default": "{}",
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps.transition</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    }
   },
   "name": "Popover",
   "imports": [
     "import Popover from '@mui/material/Popover';",
     "import { Popover } from '@mui/material';"
   ],
-  "classes": [
+  "slots": [
     {
-      "key": "paper",
-      "className": "MuiPopover-paper",
-      "description": "Styles applied to the Paper component.",
-      "isGlobal": false
+      "name": "root",
+      "description": "The component used for the root slot.",
+      "default": "Modal",
+      "class": "MuiPopover-root"
     },
     {
-      "key": "root",
-      "className": "MuiPopover-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
+      "name": "paper",
+      "description": "The component used for the paper slot.",
+      "default": "Paper",
+      "class": "MuiPopover-paper"
+    },
+    {
+      "name": "transition",
+      "description": "The component used for the transition slot.",
+      "default": "Grow",
+      "class": null
+    },
+    {
+      "name": "backdrop",
+      "description": "The component used for the backdrop slot.",
+      "default": "Backdrop",
+      "class": null
     }
   ],
+  "classes": [],
   "spread": true,
   "themeDefaultProps": false,
   "muiName": "MuiPopover",

@@ -6,4 +6,4 @@ interface Props {
   type?: 'button' | 'reset' | 'submit';
 }
 
-export function Foo(props: Props): JSX.Element;
+export function Foo(props: Props): React.JSX.Element;

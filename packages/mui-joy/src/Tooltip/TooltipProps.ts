@@ -47,7 +47,7 @@ export interface TooltipTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * Tooltip reference element.
        */
-      children: React.ReactElement;
+      children: React.ReactElement<any>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'

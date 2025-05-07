@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import FormLabel, { formLabelClasses as classes } from '@mui/joy/FormLabel';
 import describeConformance from '../../test/describeConformance';

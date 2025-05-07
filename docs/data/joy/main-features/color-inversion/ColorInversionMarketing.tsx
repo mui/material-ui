@@ -39,26 +39,28 @@ export default function ColorInversionMarketing() {
       variant={solid ? 'solid' : 'soft'}
       color={color}
       invertedColors
-      sx={{
-        flexGrow: 1,
-        position: 'relative',
-        display: 'flex',
-        bgcolor: solid ? shade(800) : shade(100),
-        p: '6rem 3rem',
-        borderRadius: 'md',
-        overflow: 'clip',
-        '&::after': {
-          content: `""`,
-          display: 'block',
-          width: '20rem',
-          height: '40rem',
-          background: `linear-gradient(to top, ${gradient1}, ${gradient2})`,
-          position: 'absolute',
-          transform: 'rotate(-45deg)',
-          top: { xs: '-80%', sm: '-95%', md: '-65%', lg: '-70%' },
-          right: { xs: '-70%', sm: '-15%' },
+      sx={[
+        {
+          flexGrow: 1,
+          position: 'relative',
+          display: 'flex',
+          p: '6rem 3rem',
+          borderRadius: 'md',
+          overflow: 'clip',
+          '&::after': {
+            content: `""`,
+            display: 'block',
+            width: '20rem',
+            height: '40rem',
+            background: `linear-gradient(to top, ${gradient1}, ${gradient2})`,
+            position: 'absolute',
+            transform: 'rotate(-45deg)',
+            top: { xs: '-80%', sm: '-95%', md: '-65%', lg: '-70%' },
+            right: { xs: '-70%', sm: '-15%' },
+          },
         },
-      }}
+        solid ? { bgcolor: shade(800) } : { bgcolor: shade(100) },
+      ]}
     >
       <div>
         <Typography level="h1" component="h2" sx={textColor}>
@@ -67,29 +69,22 @@ export default function ColorInversionMarketing() {
         <Typography sx={{ mt: 1, mb: 2, ...textColor }}>
           Instant access to the power of the Joy UI library.
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 1,
-          }}
-        >
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
           <Button
             endDecorator={<ArrowForwardIcon fontSize="md" />}
-            sx={{
-              ...buttonStyles,
-              '&:active': { bgcolor: solid ? shade(200) : shade(700) },
-            }}
+            sx={[
+              { ...buttonStyles },
+              solid
+                ? { '&:active': { bgcolor: shade(200) } }
+                : { '&:active': { bgcolor: shade(700) } },
+            ]}
           >
             Install
           </Button>
           <Button
             variant="plain"
             endDecorator={<ArrowForwardIcon fontSize="md" />}
-            sx={{
-              ...textColor,
-              ...buttonStyles,
-            }}
+            sx={{ ...textColor, ...buttonStyles }}
           >
             See the docs
           </Button>

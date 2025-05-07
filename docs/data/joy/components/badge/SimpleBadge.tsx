@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 export default function SimpleBadge() {
   return (
     <Badge>
-      <Typography fontSize="xl">🛒</Typography>
+      <Typography sx={{ fontSize: 'xl' }}>🛒</Typography>
     </Badge>
   );
 }

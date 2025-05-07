@@ -155,6 +155,96 @@ describe('system spacing', () => {
       expect(output).to.deep.equal({ padding: '-2em' });
     });
 
+    it('should support CSS variables single value', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: 'var(--mui-spacing)',
+          },
+        },
+        p: 1,
+      });
+      expect(output).to.deep.equal({ padding: 'var(--mui-spacing)' });
+    });
+
+    it('should support CSS variables single value as decimal', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: 'var(--mui-spacing)',
+          },
+        },
+        p: 0.2,
+      });
+      expect(output).to.deep.equal({ padding: 'calc(0.2 * var(--mui-spacing))' });
+    });
+
+    it('should support CSS variables single value more than 1', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: 'var(--mui-spacing)',
+          },
+        },
+        p: 3,
+      });
+      expect(output).to.deep.equal({ padding: 'calc(3 * var(--mui-spacing))' });
+    });
+
+    it('should support CSS variables single value as zero', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: 'var(--mui-spacing)',
+          },
+        },
+        p: 0,
+      });
+      expect(output).to.deep.equal({ padding: 0 });
+    });
+
+    it('should support CSS variables array', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: [
+              'var(--mui-spacing-0)',
+              'var(--mui-spacing-1)',
+              'var(--mui-spacing-2)',
+              'var(--mui-spacing-3)',
+              'var(--mui-spacing-4)',
+            ],
+          },
+        },
+        p: 2,
+      });
+      expect(output).to.deep.equal({ padding: 'var(--mui-spacing-2)' });
+    });
+
+    it('should support CSS variables array with negative value', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: ['var(--mui-spacing-0)', 'var(--mui-spacing-1)', 'var(--mui-spacing-2)'],
+          },
+        },
+        p: -2,
+      });
+      expect(output).to.deep.equal({ padding: 'calc(-1 * var(--mui-spacing-2))' });
+    });
+
+    it('should support CSS variables array with zero value', () => {
+      const output = spacing({
+        theme: {
+          vars: {
+            spacing: ['var(--mui-spacing-0)', 'var(--mui-spacing-1)', 'var(--mui-spacing-2)'],
+          },
+        },
+        p: 0,
+      });
+      expect(output).to.deep.equal({ padding: 'var(--mui-spacing-0)' });
+    });
+
     it('should support breakpoints', () => {
       const output1 = spacing({
         p: [1, 2],

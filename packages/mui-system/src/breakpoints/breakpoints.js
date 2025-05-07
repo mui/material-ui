@@ -58,7 +58,7 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
         }
       }
       // key is breakpoint
-      else if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
+      else if (Object.keys(themeBreakpoints.values || values).includes(breakpoint)) {
         const mediaKey = themeBreakpoints.up(breakpoint);
         acc[mediaKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
       } else {

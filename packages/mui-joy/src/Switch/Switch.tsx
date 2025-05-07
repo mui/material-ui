@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { unstable_composeClasses as composeClasses } from '@mui/base/composeClasses';
 import { useSwitch } from '@mui/base/useSwitch';
 import { styled, useThemeProps, Theme } from '../styles';
@@ -259,6 +259,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
+    // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- process.env never changes
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (registerEffect) {
@@ -270,7 +271,8 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   }
 
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? (formControl?.error ? 'danger' : formControl?.color ?? colorProp);
+  const color =
+    inProps.color ?? (formControl?.error ? 'danger' : (formControl?.color ?? colorProp));
 
   const useSwitchProps = {
     disabled: inProps.disabled ?? formControl?.disabled ?? disabledExternalProp,

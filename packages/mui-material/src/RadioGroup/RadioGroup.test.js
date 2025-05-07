@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, screen } from '@mui-internal/test-utils';
+import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup, { useRadioGroup, radioGroupClasses as classes } from '@mui/material/RadioGroup';
@@ -12,6 +12,7 @@ describe('<RadioGroup />', () => {
   const { render } = createRenderer();
 
   describeConformance(<RadioGroup value="" />, () => ({
+    render,
     classes: {},
     inheritComponent: FormGroup,
     refInstanceof: window.HTMLDivElement,
@@ -119,7 +120,7 @@ describe('<RadioGroup />', () => {
   });
 
   describe('imperative focus()', () => {
-    it('should focus the first non-disabled radio', () => {
+    it('should focus the first non-disabled radio', async () => {
       const actionsRef = React.createRef();
       const oneRadioOnFocus = spy();
 
@@ -131,7 +132,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 
@@ -161,7 +162,7 @@ describe('<RadioGroup />', () => {
       expect(twoRadioOnFocus.callCount).to.equal(0);
     });
 
-    it('should focus the selected radio', () => {
+    it('should focus the selected radio', async () => {
       const actionsRef = React.createRef();
       const twoRadioOnFocus = spy();
 
@@ -174,14 +175,14 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 
       expect(twoRadioOnFocus.callCount).to.equal(1);
     });
 
-    it('should focus the non-disabled radio rather than the disabled selected radio', () => {
+    it('should focus the non-disabled radio rather than the disabled selected radio', async () => {
       const actionsRef = React.createRef();
       const threeRadioOnFocus = spy();
 
@@ -194,7 +195,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 

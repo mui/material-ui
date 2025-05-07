@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer } from '@mui-internal/test-utils';
+import { createRenderer, reactMajor, screen, within } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
 import ButtonBase from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
+import * as ripple from '../../test/ripple';
 
 describe('<IconButton />', () => {
   const { render } = createRenderer();
@@ -30,19 +31,21 @@ describe('<IconButton />', () => {
     expect(getByTestId('icon')).to.have.class(childClassName);
   });
 
-  it('should have a ripple by default', () => {
-    const { container } = render(
+  it('should have a ripple', async () => {
+    const { container, getByRole } = render(
       <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  it('can disable the ripple and hover effect', () => {
-    const { container } = render(
+  it('can disable the ripple and hover effect', async () => {
+    const { container, getByRole } = render(
       <IconButton disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
         book
       </IconButton>,
     );
+    await ripple.startTouch(getByRole('button'));
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
@@ -105,7 +108,12 @@ describe('<IconButton />', () => {
     });
   });
 
-  it('should raise a warning about onClick in children because of Firefox', () => {
+  it('should raise a warning about onClick in children because of Firefox', function test() {
+    if (reactMajor >= 19) {
+      // React 19 removed prop types support
+      this.skip();
+    }
+
     expect(() => {
       PropTypes.checkPropTypes(
         IconButton.propTypes,
@@ -132,5 +140,90 @@ describe('<IconButton />', () => {
         <IconButton />
       </ThemeProvider>
     )).not.to.throw();
+  });
+
+  it('should disable ripple if disableRipple:true is set in MuiButtonBase', async () => {
+    const { container, getByRole } = render(
+      <ThemeProvider
+        theme={createTheme({
+          components: {
+            MuiButtonBase: {
+              defaultProps: {
+                disableRipple: true,
+              },
+            },
+          },
+        })}
+      >
+        <IconButton TouchRippleProps={{ className: 'touch-ripple' }}>book</IconButton>,
+      </ThemeProvider>,
+    );
+    await ripple.startTouch(getByRole('button'));
+    expect(container.querySelector('.touch-ripple')).to.equal(null);
+  });
+
+  describe('prop: loading', () => {
+    it('does not render the wrapper by default', () => {
+      render(<IconButton />);
+
+      const button = screen.getByRole('button');
+      expect(button).to.have.property('disabled', false);
+      expect(button.firstChild).to.equal(null);
+    });
+
+    it('disables the button', () => {
+      render(<IconButton loading />);
+
+      const button = screen.getByRole('button');
+      expect(button).to.have.property('tabIndex', -1);
+      expect(button).to.have.property('disabled', true);
+    });
+
+    it('cannot be enabled while `loading`', () => {
+      render(<IconButton disabled={false} loading />);
+
+      expect(screen.getByRole('button')).to.have.property('disabled', true);
+    });
+
+    it('renders a progressbar that is labelled by the button', () => {
+      render(<IconButton loading>Submit</IconButton>);
+
+      const button = screen.getByRole('button');
+      const progressbar = within(button).getByRole('progressbar');
+      expect(progressbar).toHaveAccessibleName('Submit');
+    });
+
+    it('has no id when `loading=false` and no `id` prop is present`', () => {
+      const id = 'some-id';
+      render(
+        <React.Fragment>
+          <IconButton />
+          <IconButton id={id} />
+        </React.Fragment>,
+      );
+
+      const buttons = screen.getAllByRole('button');
+
+      expect(buttons[0]).not.to.have.attribute('id');
+      expect(buttons[1]).to.have.attribute('id', id);
+    });
+  });
+
+  describe('prop: loadingIndicator', () => {
+    it('is not rendered by default', () => {
+      render(<IconButton loadingIndicator="loading">Test</IconButton>);
+
+      expect(screen.getByRole('button')).to.have.text('Test');
+    });
+
+    it('is rendered before the children when `loading`', () => {
+      render(
+        <IconButton loadingIndicator="loading…" loading>
+          Test
+        </IconButton>,
+      );
+
+      expect(screen.getByRole('button')).to.have.text('loading…Test');
+    });
   });
 });

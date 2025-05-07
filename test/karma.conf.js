@@ -1,5 +1,5 @@
 const path = require('path');
-const playwright = require('playwright');
+const playwright = require('@playwright/test');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
@@ -119,7 +119,7 @@ module.exports = function setKarmaConfig(config) {
           'process.env.TEST_GATE': JSON.stringify(process.env.TEST_GATE),
         }),
         new webpack.ProvidePlugin({
-          // required by enzyme > cheerio > parse5 > util
+          // required by code accessing `process.env` in the browser
           process: 'process/browser.js',
         }),
       ],
@@ -155,11 +155,9 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/icons-material': './packages/mui-icons-material/lib',
                         '@mui/lab': './packages/mui-lab/src',
                         '@mui/styled-engine': './packages/mui-styled-engine/src',
-                        '@mui/styles': './packages/mui-styles/src',
                         '@mui/system': './packages/mui-system/src',
                         '@mui/private-theming': './packages/mui-private-theming/src',
                         '@mui/utils': './packages/mui-utils/src',
-                        '@mui/base': './packages/mui-base/src',
                         '@mui/material-nextjs': './packages/mui-material-nextjs/src',
                         '@mui/joy': './packages/mui-joy/src',
                       },
@@ -189,10 +187,8 @@ module.exports = function setKarmaConfig(config) {
           // needed by sourcemap
           fs: false,
           path: false,
-          // needed by enzyme > cheerio
+          // Exclude polyfill and treat 'stream' as an empty module since it is not required. next -> gzip-size relies on it.
           stream: false,
-          // required by enzyme > cheerio > parse5
-          util: require.resolve('util/'),
           vm: false,
         },
       },

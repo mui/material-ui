@@ -3,8 +3,7 @@
 <p class="description">Every Material UI component available so far.</p>
 
 Material UI aims to provide building blocks for developers to create great user interfaces using the Material Design guidelines as a reference, which we strive to follow where practical.
-That doesn't mean we support every component or every feature.
-We often apply common sense and the latest around web development wherever their guidelines are missing or contradictory.
+The library doesn't necessarily implement the exact specs of every component or feature—where official guidelines are incomplete or contradictory, maintainers apply common sense along with the latest standards in web development.
 
 ## Inputs
 

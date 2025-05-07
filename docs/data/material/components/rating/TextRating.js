@@ -20,13 +20,7 @@ export default function TextRating() {
   const value = 3.5;
 
   return (
-    <Box
-      sx={{
-        width: 200,
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
       <Rating
         name="text-feedback"
         value={value}

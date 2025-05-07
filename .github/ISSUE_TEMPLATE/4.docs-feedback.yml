@@ -42,3 +42,9 @@ body:
     attributes:
       label: Context
       description: What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world.
+  - type: markdown
+    attributes:
+      value: |
+        ## :heart: Love Material UI?
+
+        Consider donating $10 to sustain our open-source work: [https://opencollective.com/mui-org](https://opencollective.com/mui-org).

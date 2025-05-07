@@ -19,12 +19,12 @@ const rows = [
 export default function TableColumnPinning() {
   return (
     <Box sx={{ width: '100%' }}>
-      <Typography level="body-sm" textAlign="center" sx={{ pb: 2 }}>
+      <Typography level="body-sm" sx={{ textAlign: 'center', pb: 2 }}>
         ← Scroll direction →
       </Typography>
       <Sheet
         variant="outlined"
-        sx={{
+        sx={(theme) => ({
           '--TableCell-height': '40px',
           // the number is the amount of the header rows.
           '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
@@ -34,8 +34,7 @@ export default function TableColumnPinning() {
           '--TableRow-stripeBackground': 'rgba(0 0 0 / 0.04)',
           '--TableRow-hoverBackground': 'rgba(0 0 0 / 0.08)',
           overflow: 'auto',
-          background: (theme) =>
-            `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
+          background: `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
             linear-gradient(to right, rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
             radial-gradient(
               farthest-side at 0 50%,
@@ -55,7 +54,7 @@ export default function TableColumnPinning() {
           backgroundPosition:
             'var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height), var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height)',
           backgroundColor: 'background.surface',
-        }}
+        })}
       >
         <Table
           borderAxis="bothBetween"

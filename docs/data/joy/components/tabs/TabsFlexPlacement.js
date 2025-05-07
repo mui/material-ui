@@ -43,11 +43,7 @@ export default function TabsFlexPlacement() {
         orientation={direction.startsWith('row') ? 'vertical' : 'horizontal'}
         aria-label="Placement indicator tabs"
         defaultValue="a"
-        sx={{
-          gridColumn: '1/-1',
-          height: 180,
-          flexDirection: direction,
-        }}
+        sx={{ gridColumn: '1/-1', height: 180, flexDirection: direction }}
       >
         <TabList underlinePlacement={placement}>
           <Tab indicatorPlacement={placement} value="a">

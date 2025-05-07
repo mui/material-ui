@@ -21,10 +21,13 @@ export type MUIStyledComponent<
  * For internal usage in `@mui/system` package
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function internal_processStyles(
+export function internal_mutateStyles(
   tag: React.ElementType,
   processor: (styles: any) => any,
 ): void;
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
 
 export interface SerializedStyles {
   name: string;
@@ -56,17 +59,7 @@ export interface CSSOthersObjectForCSSObject {
 }
 
 // Omit variants as a key, because we have a special handling for it
-export interface CSSObject
-  extends CSSPropertiesWithMultiValues,
-    CSSPseudos,
-    Omit<CSSOthersObject, 'variants'> {}
-
-interface CSSObjectWithVariants<Props> extends Omit<CSSObject, 'variants'> {
-  variants: Array<{
-    props: Props | ((props: Props) => boolean);
-    style: CSSObject;
-  }>;
-}
+export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export interface ComponentSelector {
   __emotion_styles: any;
@@ -101,8 +94,31 @@ export interface FunctionInterpolation<Props> {
 export interface ArrayInterpolation<Props> extends ReadonlyArray<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
-  | InterpolationPrimitive
-  | CSSObjectWithVariants<Props>
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | ComponentSelector
+  | Keyframes
+  | SerializedStyles
+  | CSSPropertiesWithMultiValues
+  | (CSSObject & {
+      variants?: Array<{
+        props:
+          | (Props extends { ownerState: infer O }
+              ? Partial<Omit<Props, 'ownerState'> & O>
+              : Partial<Props>)
+          | ((
+              props: Partial<Props> & {
+                ownerState: Partial<Props>;
+              },
+            ) => boolean);
+        style:
+          | CSSObject
+          | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
+      }>;
+    })
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;
 
@@ -200,20 +216,22 @@ export interface CreateMUIStyled<
   ): CreateStyledComponent<PropsOf<C> & MUIStyledCommonProps, {}, {}, Theme>;
 
   <
-    Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
+    Tag extends keyof React.JSX.IntrinsicElements,
+    ForwardedProps extends
+      keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<React.JSX.IntrinsicElements[Tag], ForwardedProps> &
+      MuiStyledOptions,
   ): CreateStyledComponent<
     MUIStyledCommonProps,
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>,
+    Pick<React.JSX.IntrinsicElements[Tag], ForwardedProps>,
     {},
     Theme
   >;
 
-  <Tag extends keyof JSX.IntrinsicElements>(
+  <Tag extends keyof React.JSX.IntrinsicElements>(
     tag: Tag,
     options?: StyledOptions<MUIStyledCommonProps> & MuiStyledOptions,
-  ): CreateStyledComponent<MUIStyledCommonProps, JSX.IntrinsicElements[Tag], {}, Theme>;
+  ): CreateStyledComponent<MUIStyledCommonProps, React.JSX.IntrinsicElements[Tag], {}, Theme>;
 }

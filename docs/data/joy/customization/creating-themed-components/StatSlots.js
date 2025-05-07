@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/joy/styles';
 
 const StatRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -38,37 +38,13 @@ export default function StatSlots() {
     >
       <StatValue sx={{ outline: '1px solid #ff5252', position: 'relative' }}>
         19,267
-        <Label
-          sx={{
-            right: 0,
-            top: 4,
-            transform: 'translateX(100%)',
-          }}
-        >
-          value
-        </Label>
+        <Label sx={{ right: 0, top: 4, transform: 'translateX(100%)' }}>value</Label>
       </StatValue>
       <StatUnit sx={{ outline: '1px solid #ff5252', position: 'relative' }}>
         Active users / month
-        <Label
-          sx={{
-            right: 0,
-            top: 2,
-            transform: 'translateX(100%)',
-          }}
-        >
-          unit
-        </Label>
+        <Label sx={{ right: 0, top: 2, transform: 'translateX(100%)' }}>unit</Label>
       </StatUnit>
-      <Label
-        sx={{
-          left: -4,
-          top: 4,
-          transform: 'translateX(-100%)',
-        }}
-      >
-        root
-      </Label>
+      <Label sx={{ left: -4, top: 4, transform: 'translateX(-100%)' }}>root</Label>
     </StatRoot>
   );
 }

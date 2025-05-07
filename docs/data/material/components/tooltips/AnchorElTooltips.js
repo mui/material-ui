@@ -23,16 +23,18 @@ export default function AnchorElTooltips() {
       title="Add"
       placement="top"
       arrow
-      PopperProps={{
-        popperRef,
-        anchorEl: {
-          getBoundingClientRect: () => {
-            return new DOMRect(
-              positionRef.current.x,
-              areaRef.current.getBoundingClientRect().y,
-              0,
-              0,
-            );
+      slotProps={{
+        popper: {
+          popperRef,
+          anchorEl: {
+            getBoundingClientRect: () => {
+              return new DOMRect(
+                positionRef.current.x,
+                areaRef.current.getBoundingClientRect().y,
+                0,
+                0,
+              );
+            },
           },
         },
       }}
@@ -40,11 +42,7 @@ export default function AnchorElTooltips() {
       <Box
         ref={areaRef}
         onMouseMove={handleMouseMove}
-        sx={{
-          bgcolor: 'primary.main',
-          color: 'primary.contrastText',
-          p: 2,
-        }}
+        sx={{ bgcolor: 'primary.main', color: 'primary.contrastText', p: 2 }}
       >
         Hover
       </Box>

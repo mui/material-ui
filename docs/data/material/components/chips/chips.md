@@ -4,6 +4,7 @@ title: React Chip component
 components: Chip
 githubLabel: 'component: chip'
 materialDesign: https://m2.material.io/components/chips
+githubSource: packages/mui-material/src/Chip
 ---
 
 # Chip

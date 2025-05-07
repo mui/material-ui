@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Box, ThemeProvider } from '@mui/material';
+import Box from '@mui/material/Box';
+import { ThemeProvider } from '@mui/material/styles';
 
 export default function BoxSx() {
   return (

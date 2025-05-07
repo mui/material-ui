@@ -70,9 +70,7 @@ export default function Navigation() {
         <List
           aria-labelledby="nav-list-tags"
           size="sm"
-          sx={{
-            '--ListItemDecorator-size': '32px',
-          }}
+          sx={{ '--ListItemDecorator-size': '32px' }}
         >
           <ListItem>
             <ListItemButton>

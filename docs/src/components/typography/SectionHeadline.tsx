@@ -11,21 +11,21 @@ interface SectionHeadlineProps {
    */
   inverted?: boolean;
   overline?: React.ReactNode;
-  title: string | React.ReactElement;
+  title: string | React.ReactElement<React.HTMLAttributes<HTMLElement>>;
 }
 
 export default function SectionHeadline(props: SectionHeadlineProps) {
   const { alwaysCenter = false, description, id, inverted = false, overline, title } = props;
   return (
-    <Box sx={{ m: alwaysCenter ? 'auto' : 'none' }}>
+    <Box sx={{ m: alwaysCenter ? 'auto' : null }}>
       {overline && (
         <Typography
           id={id}
           component="h2"
           variant="body2"
-          fontWeight="bold"
-          color="primary.main"
           sx={{
+            fontWeight: 'bold',
+            color: 'primary.main',
             mb: 1,
             ...(alwaysCenter && {
               textAlign: 'center',

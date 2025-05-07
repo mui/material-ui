@@ -12,7 +12,7 @@ const styles = ({ theme }: { theme: Theme }) =>
   ({
     [`& .${snackbarContentClasses.root}`]: {
       backgroundColor: theme.palette.secondary.light,
-      color: theme.palette.text.primary,
+      color: (theme.vars || theme).palette.text.primary,
       flexWrap: 'inherit',
       [theme.breakpoints.up('md')]: {
         borderTopLeftRadius: 0,
@@ -21,18 +21,22 @@ const styles = ({ theme }: { theme: Theme }) =>
         borderBottomLeftRadius: 4,
       },
     },
+
     [`& .${snackbarContentClasses.message}`]: {
       fontSize: 16,
       display: 'flex',
       alignItems: 'center',
     },
+
     [`& .${snackbarContentClasses.action}`]: {
       paddingLeft: theme.spacing(2),
     },
+
     '& .MuiSnackbarContent-info': {
       flexShrink: 0,
       marginRight: theme.spacing(2),
     },
+
     '& .MuiSnackbarContent-close': {
       padding: theme.spacing(1),
     },

@@ -130,6 +130,7 @@ function checkType({
       case 'React.ReactElement': {
         return createElementType({ jsDoc, elementType: 'element' });
       }
+      case 'React.ComponentType':
       case 'React.ElementType': {
         return createElementType({
           jsDoc,
@@ -154,6 +155,12 @@ function checkType({
       }
       case 'RegExp': {
         return createInstanceOfType({ jsDoc, instance: 'RegExp' });
+      }
+      case 'URL': {
+        return createInstanceOfType({ jsDoc, instance: 'URL' });
+      }
+      case 'URLSearchParams': {
+        return createInstanceOfType({ jsDoc, instance: 'URLSearchParams' });
       }
       case 'Date': {
         if (!project.shouldUseObjectForDate?.({ name })) {
@@ -371,6 +378,7 @@ function checkSymbol({
     const name = declaration.type.typeName.getText();
     if (
       name === 'React.ElementType' ||
+      name === 'React.ComponentType' ||
       name === 'React.JSXElementConstructor' ||
       name === 'React.ReactElement'
     ) {

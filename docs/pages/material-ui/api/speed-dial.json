@@ -30,11 +30,17 @@
     "open": { "type": { "name": "bool" } },
     "openIcon": { "type": { "name": "node" } },
     "slotProps": {
-      "type": { "name": "shape", "description": "{ transition?: func<br>&#124;&nbsp;object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "slots": {
-      "type": { "name": "shape", "description": "{ transition?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: elementType, transition?: elementType }"
+      },
       "default": "{}"
     },
     "sx": {
@@ -46,9 +52,9 @@
     },
     "TransitionComponent": {
       "type": { "name": "elementType" },
-      "default": "Zoom\n* @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)",
+      "default": "Zoom\n* @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in a future major release. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "transitionDuration": {
       "type": {
@@ -60,7 +66,7 @@
     "TransitionProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in a future major release. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     }
   },
   "name": "SpeedDial",
@@ -70,9 +76,15 @@
   ],
   "slots": [
     {
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "'div'",
+      "class": "MuiSpeedDial-root"
+    },
+    {
       "name": "transition",
-      "description": "The component that renders the transition.\n[Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
-      "default": "{}",
+      "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
+      "default": "Zoom",
       "class": null
     }
   ],
@@ -117,12 +129,6 @@
       "key": "fab",
       "className": "MuiSpeedDial-fab",
       "description": "Styles applied to the Fab component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiSpeedDial-root",
-      "description": "Styles applied to the root element.",
       "isGlobal": false
     }
   ],

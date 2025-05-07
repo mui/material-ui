@@ -48,12 +48,12 @@ export default function DottedConnector() {
       >
         <Typography
           level="h4"
-          fontWeight="xl"
           endDecorator={
-            <Typography fontSize="sm" fontWeight="normal">
+            <Typography sx={{ fontSize: 'sm', fontWeight: 'normal' }}>
               Preliminary
             </Typography>
           }
+          sx={{ fontWeight: 'xl' }}
         >
           01
         </Typography>
@@ -69,12 +69,12 @@ export default function DottedConnector() {
       >
         <Typography
           level="h4"
-          fontWeight="xl"
           endDecorator={
-            <Typography fontSize="sm" fontWeight="normal">
+            <Typography sx={{ fontSize: 'sm', fontWeight: 'normal' }}>
               Your details
             </Typography>
           }
+          sx={{ fontWeight: 'xl' }}
         >
           02
         </Typography>
@@ -90,12 +90,12 @@ export default function DottedConnector() {
       >
         <Typography
           level="h4"
-          fontWeight="xl"
           endDecorator={
-            <Typography fontSize="sm" fontWeight="normal">
+            <Typography sx={{ fontSize: 'sm', fontWeight: 'normal' }}>
               KYC
             </Typography>
           }
+          sx={{ fontWeight: 'xl' }}
         >
           03
         </Typography>
@@ -107,12 +107,12 @@ export default function DottedConnector() {
       >
         <Typography
           level="h4"
-          fontWeight="xl"
           endDecorator={
-            <Typography fontSize="sm" fontWeight="normal">
+            <Typography sx={{ fontSize: 'sm', fontWeight: 'normal' }}>
               KYC
             </Typography>
           }
+          sx={{ fontWeight: 'xl' }}
         >
           04
         </Typography>

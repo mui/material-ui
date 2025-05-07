@@ -46,7 +46,7 @@ export default function SelectGroupedOptions() {
             sx={{ '--ListItemDecorator-size': '28px' }}
           >
             <ListItem id={`select-group-${name}`} sticky>
-              <Typography level="body-xs" textTransform="uppercase">
+              <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
                 {name} ({animals.length})
               </Typography>
             </ListItem>

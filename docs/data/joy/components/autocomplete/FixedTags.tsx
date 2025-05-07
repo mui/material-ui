@@ -18,7 +18,7 @@ export default function FixedTags() {
         onChange={(event, newValue) => {
           setValue([
             ...fixedOptions,
-            ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
+            ...newValue.filter((option) => !fixedOptions.includes(option)),
           ]);
         }}
         options={top100Films}
@@ -30,7 +30,7 @@ export default function FixedTags() {
               color="neutral"
               sx={{ minWidth: 0 }}
               {...getTagProps({ index })}
-              disabled={fixedOptions.indexOf(option) !== -1}
+              disabled={fixedOptions.includes(option)}
             >
               {option.title}
             </Chip>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { TabsProps } from '@mui/base/Tabs';
 import { useTabs, TabsProvider as BaseTabsProvider } from '@mui/base/useTabs';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -21,12 +21,11 @@ describe('Joy <TabList />', () => {
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
-    wrapMount: (mount) => (node) => mount(<TabsProvider defaultValue={0}>{node}</TabsProvider>),
     ThemeProvider,
     muiName: 'JoyTabList',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'solid' },
-    skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
+    skip: ['componentsProp', 'classesRoot'],
     slots: {
       root: {
         expectedClassName: classes.root,

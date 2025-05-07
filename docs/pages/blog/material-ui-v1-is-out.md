@@ -9,7 +9,7 @@ manualCard: true
 
 > React components that implement Google's Material Design.
 
-![Our new [documentation](https://mui.com/) header & logo by @hai-cea](https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png)
+<img src="https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png" width="1025" height="342" alt="Our new [documentation](https://mui.com/) header & logo by @hai-cea" />
 
 <p class="blog-description">Our new documentation header & logo by @hai-cea</p>
 
@@ -43,7 +43,7 @@ We want Material UI to become whatever is generally useful for application deve
 We know the ease of use is a critical part of user acquisition. The more users we have, the more likely we can make the project sustainable. Improving the ease of use comes in different flavors:
 
 - **Onboarding**. We have reduced the onboarding friction as much as possible. We know the onboarding is a critical step for user acquisition. The onboarding friction comes in different flavors:
-  We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom Webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
+  We have reduced the number of installation steps needed. It should be as simple as 1. npm install @mui/material and 2. import Button from '@mui/material/Button'; . We don't ask for polyfill, custom webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
 
 - **Examples**. We are hosting [example projects](https://github.com/mui/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/vercel/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), and CDN.
 
@@ -105,7 +105,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 ## Premium themes
 
-We have shipped the long-awaited Material UI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://mui.com/store/) from [Creative Tim](https://mui.com/store/contributors/creative-tim/). More are coming.
+We have shipped the long-awaited Material UI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://mui.com/store/) from [Creative Tim](https://mui.com/store/authors/creative-tim/). More are coming.
 
 ![Creative Tim themes](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
 
@@ -128,4 +128,4 @@ Material UI is an MIT-licensed open-source project. It's an independent project
 ![Our gold sponsors](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*fx_BaOxYY0ZJo3n9iXI1Jg.png)<p class="blog-description">Our gold sponsors</p>
 
 - GitHub: https://github.com/mui/material-ui ⭐
-- X: https://twitter.com/MUI_hq
+- X: https://x.com/MUI_hq

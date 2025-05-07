@@ -7,6 +7,8 @@ import { getLineFeed } from '@mui/internal-docs-utils';
 import { replaceComponentLinks } from './utils/replaceUrl';
 import { TypeScriptProject } from './utils/createTypeScriptProject';
 
+export type { ComponentInfo, HookInfo } from './types/utils.types';
+
 /**
  * TODO: this should really be fixed in findPagesMarkdown().
  * Plus replaceComponentLinks() shouldn't exist in the first place,
@@ -95,7 +97,7 @@ export function parseFile(filename: string) {
   return {
     src,
     shouldSkip:
-      filename.indexOf('internal') !== -1 ||
+      filename.includes('internal') ||
       !!src.match(/@ignore - internal component\./) ||
       !!src.match(/@ignore - internal hook\./) ||
       !!src.match(/@ignore - do not document\./),
@@ -104,70 +106,6 @@ export function parseFile(filename: string) {
     inheritedComponent: src.match(/\/\/ @inheritedComponent (.*)/)?.[1],
   };
 }
-
-export type ComponentInfo = {
-  /**
-   * Full path to the source file.
-   */
-  filename: string;
-  /**
-   * Component name as imported in the docs, in the global MUI namespace.
-   */
-  name: string;
-  /**
-   * Component name with `Mui` prefix, in the global HTML page namespace.
-   */
-  muiName: string;
-  /**
-   * The name of the slots interface. By default we consider `${componentName}Slots`.
-   */
-  slotInterfaceName?: string;
-  apiPathname: string;
-  readFile: () => {
-    src: string;
-    spread: boolean;
-    shouldSkip: boolean;
-    EOL: string;
-    inheritedComponent?: string;
-  };
-  getInheritance: (inheritedComponent?: string) => null | {
-    /**
-     * Component name
-     */
-    name: string;
-    /**
-     * API pathname
-     */
-    apiPathname: string;
-  };
-  getDemos: () => Array<{ demoPageTitle: string; demoPathname: string }>;
-  apiPagesDirectory: string;
-  /**
-   * The path to import specific layout config of the page if needed.
-   */
-  layoutConfigPath?: string;
-  skipApiGeneration?: boolean;
-  /**
-   * If `true`, the component's name match one of the MUI System components.
-   */
-  isSystemComponent?: boolean;
-};
-
-export type HookInfo = {
-  /**
-   * Full path to the source file.
-   */
-  filename: string;
-  /**
-   * Hook name as imported in the docs, in the global MUI namespace.
-   */
-  name: string;
-  apiPathname: string;
-  readFile: ComponentInfo['readFile'];
-  getDemos: ComponentInfo['getDemos'];
-  apiPagesDirectory: string;
-  skipApiGeneration?: boolean;
-};
 
 export function getApiPath(
   demos: Array<{ demoPageTitle: string; demoPathname: string }>,

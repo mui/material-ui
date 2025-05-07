@@ -5,22 +5,20 @@ import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';
 import { BackdropClasses } from './backdropClasses';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
 
 export interface BackdropSlots {
   /**
    * The component that renders the root.
    * @default 'div'
    */
-  root?: React.ElementType;
+  root: React.ElementType;
   /**
    * The component that renders the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
    */
-  transition?: React.JSXElementConstructor<
-    TransitionProps & { children: React.ReactElement<any, any> }
-  >;
+  transition: React.ElementType;
 }
 export interface BackdropComponentsPropsOverrides {}
 
@@ -29,14 +27,18 @@ export interface BackdropTransitionSlotPropsOverrides {}
 export type BackdropSlotsAndSlotProps = CreateSlotsAndSlotProps<
   BackdropSlots,
   {
-    root: SlotProps<
-      React.ElementType<HTMLDivElement>,
-      BackdropComponentsPropsOverrides,
-      BackdropOwnerState
-    >;
-    transition: SlotProps<
-      React.JSXElementConstructor<TransitionProps>,
-      BackdropTransitionSlotPropsOverrides,
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the div element.
+     */
+    root: SlotProps<'div', BackdropComponentsPropsOverrides, BackdropOwnerState>;
+    /**
+     * Props forwarded to the transition slot.
+     * By default, the avaible props are based on the [Fade](https://mui.com/material-ui/api/fade/#props) component.
+     */
+    transition: SlotComponentProps<
+      React.ElementType,
+      TransitionProps & BackdropTransitionSlotPropsOverrides,
       BackdropOwnerState
     >;
   }
@@ -52,8 +54,7 @@ export interface BackdropOwnProps
   /**
    * The components used for each slot inside.
    *
-   * This prop is an alias for the `slots` prop.
-   * It's recommended to use the `slots` prop instead.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -64,8 +65,7 @@ export interface BackdropOwnProps
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * This prop is an alias for the `slotProps` prop.
-   * It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -97,13 +97,13 @@ export interface BackdropOwnProps
   transitionDuration?: TransitionProps['timeout'];
   /**
    * The component used for the transition.
-   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Fade
-   * @deprecated Use `slots.transition` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & {
-      children: React.ReactElement<any, any>;
+      children: React.ReactElement<unknown, any>;
     }
   >;
 }

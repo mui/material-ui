@@ -9,6 +9,8 @@ githubLabel: 'component: Typography'
 
 <p class="description">The Typography component helps present design and content clearly and efficiently.</p>
 
+{{"component": "@mui/docs/ComponentLinkHeader"}}
+
 ## Introduction
 
 The Typography component helps maintain a consistent design by providing a limited set of values to choose from and convenient props for building common designs faster.

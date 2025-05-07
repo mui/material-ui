@@ -5,10 +5,11 @@ import {
   act,
   createRenderer,
   fireEvent,
+  reactMajor,
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-} from '@mui-internal/test-utils';
+} from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';
@@ -46,7 +47,7 @@ function hasRightScrollButton(container) {
 
 describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = navigator.userAgent === 'node.js';
+  const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
   const { clock, render, renderToString } = createRenderer();
 
@@ -70,6 +71,20 @@ describe('<Tabs />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testStateOverrides: { prop: 'orientation', value: 'vertical', styleKey: 'vertical' },
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      scroller: {
+        expectedClassName: classes.scroller,
+      },
+      list: {
+        expectedClassName: classes.list,
+      },
+      indicator: {
+        expectedClassName: classes.indicator,
+      },
+    },
     skip: ['componentsProp', 'themeVariants'],
   }));
 
@@ -177,8 +192,8 @@ describe('<Tabs />', () => {
         scrollButtons
         textColor="secondary"
         slots={{
-          StartScrollButtonIcon: ArrowBackIcon,
-          EndScrollButtonIcon: ArrowForwardIcon,
+          startScrollButtonIcon: ArrowBackIcon,
+          endScrollButtonIcon: ArrowForwardIcon,
         }}
         slotProps={{
           endScrollButtonIcon: (ownerState) => ({
@@ -357,11 +372,11 @@ describe('<Tabs />', () => {
           );
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
+          // React Strict Mode runs mount effects twice
+          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
-          // React 18 Strict Effects run mount effects twice
-          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
+          // React Strict Mode runs mount effects twice
+          reactMajor >= 18 && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
         ]);
@@ -459,7 +474,7 @@ describe('<Tabs />', () => {
       expect(handleChange.callCount).to.equal(0);
     });
 
-    it('when `selectionFollowsFocus` should call if an unselected tab gets focused', () => {
+    it('when `selectionFollowsFocus` should call if an unselected tab gets focused', async () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
@@ -469,7 +484,7 @@ describe('<Tabs />', () => {
       );
       const [, lastTab] = getAllByRole('tab');
 
-      act(() => {
+      await act(async () => {
         lastTab.focus();
       });
 
@@ -477,7 +492,7 @@ describe('<Tabs />', () => {
       expect(handleChange.firstCall.args[1]).to.equal(1);
     });
 
-    it('when `selectionFollowsFocus` should not call if an selected tab gets focused', () => {
+    it('when `selectionFollowsFocus` should not call if an selected tab gets focused', async () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Tabs value={0} onChange={handleChange} selectionFollowsFocus>
@@ -487,7 +502,7 @@ describe('<Tabs />', () => {
       );
       const [firstTab] = getAllByRole('tab');
 
-      act(() => {
+      await act(async () => {
         firstTab.focus();
       });
 
@@ -912,7 +927,7 @@ describe('<Tabs />', () => {
 
       describe(`when focus is on a tab element in a ${orientation} ${direction} tablist`, () => {
         describe(previousItemKey, () => {
-          it('moves focus to the last tab without activating it if focus is on the first tab', () => {
+          it('moves focus to the last tab without activating it if focus is on the first tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -929,7 +944,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               firstTab.focus();
             });
 
@@ -941,7 +956,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('when `selectionFollowsFocus` moves focus to the last tab while activating it if focus is on the first tab', () => {
+          it('when `selectionFollowsFocus` moves focus to the last tab while activating it if focus is on the first tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -959,7 +974,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               firstTab.focus();
             });
 
@@ -972,7 +987,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('moves focus to the previous tab without activating it', () => {
+          it('moves focus to the previous tab without activating it', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -989,7 +1004,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, secondTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1001,7 +1016,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('when `selectionFollowsFocus` moves focus to the previous tab while activating it', () => {
+          it('when `selectionFollowsFocus` moves focus to the previous tab while activating it', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -1019,7 +1034,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, secondTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1032,7 +1047,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('skips over disabled tabs', () => {
+          it('skips over disabled tabs', async () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
@@ -1048,7 +1063,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               lastTab.focus();
             });
 
@@ -1061,7 +1076,7 @@ describe('<Tabs />', () => {
         });
 
         describe(nextItemKey, () => {
-          it('moves focus to the first tab without activating it if focus is on the last tab', () => {
+          it('moves focus to the first tab without activating it if focus is on the last tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -1078,7 +1093,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               lastTab.focus();
             });
 
@@ -1090,7 +1105,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('when `selectionFollowsFocus` moves focus to the first tab while activating it if focus is on the last tab', () => {
+          it('when `selectionFollowsFocus` moves focus to the first tab while activating it if focus is on the last tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -1108,7 +1123,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               lastTab.focus();
             });
 
@@ -1121,7 +1136,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('moves focus to the next tab without activating it it', () => {
+          it('moves focus to the next tab without activating it it', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -1138,7 +1153,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [, secondTab, lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1150,7 +1165,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('when `selectionFollowsFocus` moves focus to the next tab while activating it it', () => {
+          it('when `selectionFollowsFocus` moves focus to the next tab while activating it it', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
             const { getAllByRole } = render(
@@ -1168,7 +1183,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [, secondTab, lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               secondTab.focus();
             });
 
@@ -1181,7 +1196,7 @@ describe('<Tabs />', () => {
             expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
           });
 
-          it('skips over disabled tabs', () => {
+          it('skips over disabled tabs', async () => {
             const handleKeyDown = spy();
             const { getAllByRole } = render(
               <Tabs
@@ -1197,7 +1212,7 @@ describe('<Tabs />', () => {
               { wrapper },
             );
             const [firstTab, , lastTab] = getAllByRole('tab');
-            act(() => {
+            await act(async () => {
               firstTab.focus();
             });
 
@@ -1213,7 +1228,7 @@ describe('<Tabs />', () => {
 
     describe('when focus is on a tab regardless of orientation', () => {
       describe('Home', () => {
-        it('moves focus to the first tab without activating it', () => {
+        it('moves focus to the first tab without activating it', async () => {
           const handleChange = spy();
           const handleKeyDown = spy();
           const { getAllByRole } = render(
@@ -1224,7 +1239,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          act(() => {
+          await act(async () => {
             lastTab.focus();
           });
 
@@ -1236,7 +1251,7 @@ describe('<Tabs />', () => {
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
 
-        it('when `selectionFollowsFocus` moves focus to the first tab without activating it', () => {
+        it('when `selectionFollowsFocus` moves focus to the first tab without activating it', async () => {
           const handleChange = spy();
           const handleKeyDown = spy();
           const { getAllByRole } = render(
@@ -1247,7 +1262,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          act(() => {
+          await act(async () => {
             lastTab.focus();
           });
 
@@ -1260,7 +1275,7 @@ describe('<Tabs />', () => {
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
 
-        it('moves focus to first non-disabled tab', () => {
+        it('moves focus to first non-disabled tab', async () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
@@ -1270,7 +1285,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [, secondTab, lastTab] = getAllByRole('tab');
-          act(() => {
+          await act(async () => {
             lastTab.focus();
           });
 
@@ -1283,7 +1298,7 @@ describe('<Tabs />', () => {
       });
 
       describe('End', () => {
-        it('moves focus to the last tab without activating it', () => {
+        it('moves focus to the last tab without activating it', async () => {
           const handleChange = spy();
           const handleKeyDown = spy();
           const { getAllByRole } = render(
@@ -1294,7 +1309,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          act(() => {
+          await act(async () => {
             firstTab.focus();
           });
 
@@ -1306,7 +1321,7 @@ describe('<Tabs />', () => {
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
 
-        it('when `selectionFollowsFocus` moves focus to the last tab without activating it', () => {
+        it('when `selectionFollowsFocus` moves focus to the last tab without activating it', async () => {
           const handleChange = spy();
           const handleKeyDown = spy();
           const { getAllByRole } = render(
@@ -1317,7 +1332,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, , lastTab] = getAllByRole('tab');
-          act(() => {
+          await act(async () => {
             firstTab.focus();
           });
 
@@ -1330,7 +1345,7 @@ describe('<Tabs />', () => {
           expect(handleKeyDown.firstCall.args[0]).to.have.property('defaultPrevented', true);
         });
 
-        it('moves focus to first non-disabled tab', () => {
+        it('moves focus to first non-disabled tab', async () => {
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Tabs onKeyDown={handleKeyDown} selectionFollowsFocus value={2}>
@@ -1340,7 +1355,7 @@ describe('<Tabs />', () => {
             </Tabs>,
           );
           const [firstTab, secondTab] = getAllByRole('tab');
-          act(() => {
+          await act(async () => {
             firstTab.focus();
           });
 
@@ -1365,6 +1380,30 @@ describe('<Tabs />', () => {
         '0',
         '-1',
       ]);
+    });
+
+    ['Alt', 'Shift', 'Ctrl', 'Meta'].forEach((modifierKey) => {
+      it(`does not navigate when ${modifierKey} is pressed with ArrowLeft`, async () => {
+        const { getAllByRole } = render(
+          <Tabs value={1}>
+            <Tab />
+            <Tab />
+          </Tabs>,
+        );
+
+        const [firstTab, secondTab] = getAllByRole('tab');
+        await act(async () => {
+          secondTab.focus();
+        });
+
+        fireEvent.keyDown(secondTab, {
+          key: 'ArrowLeft',
+          [`${modifierKey.toLowerCase()}Key`]: true,
+        });
+
+        expect(secondTab).toHaveFocus();
+        expect(firstTab).not.toHaveFocus();
+      });
     });
   });
 
@@ -1437,6 +1476,67 @@ describe('<Tabs />', () => {
       fireEvent.click(deleteButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
+    });
+  });
+
+  describe('scrollButton slot', () => {
+    it('should render start and end scroll buttons', () => {
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slotProps={{
+            scrollButtons: { 'data-testid': 'scroll-button', className: 'foo' },
+          }}
+        />,
+      );
+      expect(screen.getAllByTestId('scroll-button')).to.have.length(2);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class('foo');
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
+    });
+
+    it('should render a custom scroll button', () => {
+      function CustomButton({ ownerState, slots, slotProps, ...props }) {
+        return <button data-testid="scroll-button" {...props} />;
+      }
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slots={{
+            scrollButtons: CustomButton,
+          }}
+          slotProps={{
+            scrollButtons: { className: 'foo' },
+          }}
+        />,
+      );
+      expect(screen.getAllByTestId('scroll-button')).to.have.length(2);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[0]).to.have.class('foo');
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class(classes.scrollButtons);
+      expect(screen.getAllByTestId('scroll-button')[1]).to.have.class('foo');
+    });
+
+    it('should render a start and end scroll button icons', () => {
+      render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          scrollButtons
+          slotProps={{
+            startScrollButtonIcon: { 'data-testid': 'start-scroll-button-icon', className: 'foo' },
+            endScrollButtonIcon: { 'data-testid': 'end-scroll-button-icon', className: 'bar' },
+          }}
+        />,
+      );
+
+      expect(screen.getByTestId('start-scroll-button-icon')).to.have.class('foo');
+      expect(screen.getByTestId('end-scroll-button-icon')).to.have.class('bar');
     });
   });
 });
