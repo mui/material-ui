@@ -6,6 +6,7 @@ on:
       # Renovate branches are always Pull Requests.
       # We don't need to run CI twice (push+pull_request)
       - 'renovate/**'
+      - 'dependabot/**'
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
