@@ -117,29 +117,6 @@ commands:
           command: pnpm install
 
 jobs:
-  checkout:
-    <<: *default-job
-    steps:
-      - checkout
-      - install_js
-      - when:
-          # Install can be "dirty" when running with non-default versions of React
-          condition:
-            equal: [<< parameters.react-version >>, stable]
-          steps:
-            - run:
-                name: Should not have any git not staged
-                command: git add -A && git diff --exit-code --staged
-            - run:
-                name: '`pnpm dedupe` was run?'
-                command: |
-                  # #target-branch-reference
-                  if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
-                  then
-                      echo "No changes to dependencies detected. Skipping..."
-                  else
-                      pnpm dedupe --check
-                  fi
   test_unit:
     <<: *default-job
     steps:
@@ -204,6 +181,16 @@ jobs:
     steps:
       - checkout
       - install_js
+      - run:
+          name: '`pnpm dedupe` was run?'
+          command: |
+            # #target-branch-reference
+            if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
+            then
+                echo "No changes to dependencies detected. Skipping..."
+            else
+                pnpm dedupe --check
+            fi
       - run:
           name: '`pnpm prettier` changes committed?'
           command: pnpm prettier --check
@@ -691,8 +678,6 @@ workflows:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_unit:
           <<: *default-context
       - test_lint:
@@ -713,8 +698,6 @@ workflows:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_e2e_website:
           <<: *default-context
 
