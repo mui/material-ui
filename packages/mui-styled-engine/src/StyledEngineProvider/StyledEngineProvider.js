@@ -59,35 +59,6 @@ if (typeof document === 'object') {
   }
 }
 
-function extractAndMoveLayers(cssText) {
-  // Quick check if @layer exists
-  if (!cssText.includes('@layer')) {
-    return cssText;
-  }
-
-  // This regex uses a non-greedy approach to match from @layer to the closing brace
-  // [\s\S]*? means "match any character including newlines, non-greedy"
-  const layerRegex = /@layer\s+[\w-]+\s*{([\s\S]*?)(?:}(?!\s*[,;])|};)/g;
-
-  // Find all layer declarations
-  const layers = [];
-  let match;
-  let modifiedCss = cssText;
-
-  // Use exec in a loop to find all matches
-  // eslint-disable-next-line no-cond-assign
-  while ((match = layerRegex.exec(cssText)) !== null) {
-    const fullMatch = match[0];
-    layers.push(fullMatch);
-
-    // Remove the matched layer from the CSS
-    modifiedCss = modifiedCss.replace(fullMatch, '');
-  }
-
-  // Combine extracted layers with remaining CSS
-  return `@layer mui{${modifiedCss}}${layers.join('')}`;
-}
-
 function getCache(injectFirst, enableCssLayer) {
   if (injectFirst || enableCssLayer) {
     /**
@@ -116,9 +87,8 @@ function getCache(injectFirst, enableCssLayer) {
     if (enableCssLayer) {
       const prevInsert = emotionCache.insert;
       emotionCache.insert = (...args) => {
-        if (args[1].styles.includes('@layer')) {
-          args[1].styles = extractAndMoveLayers(args[1].styles);
-        } else {
+        if (!args[1].styles.startsWith('@layer')) {
+          // avoid nested @layer
           args[1].styles = `@layer mui {${args[1].styles}}`;
         }
         return prevInsert(...args);
