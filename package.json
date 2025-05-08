@@ -51,7 +51,7 @@
     "prettier": "pretty-quick --ignore-path .eslintignore --branch master",
     "prettier:all": "prettier --write . --ignore-path .eslintignore",
     "size:snapshot": "pnpm -F ./bundle-size check",
-    "size:why": "pnpm size:snapshot --analyze",
+    "size:why": "pnpm size:snapshot --analyze --accurateBundles",
     "start": "pnpm install && pnpm docs:dev",
     "test": "node scripts/test.mjs",
     "tc": "nx run nx_test_tc",

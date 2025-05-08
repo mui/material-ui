@@ -29,8 +29,6 @@ export default defineConfig(async () => {
     return `@mui/lab/${componentName}`;
   });
 
-  const isPullRequest = !!process.env.CIRCLE_PULL_REQUEST;
-
   // Return the complete entrypoints configuration
   return {
     entrypoints: [
