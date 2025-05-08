@@ -130,10 +130,7 @@ export function unstable_createStyleFunctionSx() {
 
       if (!nested && theme.experimental_nestedCssLayer) {
         return {
-          '@layer mui.sx': sortContainerQueries(
-            theme,
-            removeUnusedBreakpoints(breakpointsKeys, css),
-          ),
+          '@layer sx': sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css)),
         };
       }
 

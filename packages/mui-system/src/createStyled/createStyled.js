@@ -1,4 +1,7 @@
-import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  internal_mutateStyles as mutateStyles,
+  internal_serializeStyles as serializeStyles,
+} from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -28,7 +31,7 @@ function attachTheme(props, themeId, defaultTheme) {
   props.theme = isObjectEmpty(props.theme) ? defaultTheme : props.theme[themeId] || props.theme;
 }
 
-function processStyle(props, style) {
+function processStyle(props, style, layerName) {
   /*
    * Style types:
    *  - null/undefined
@@ -41,7 +44,7 @@ function processStyle(props, style) {
   const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
-    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle));
+    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle, layerName));
   }
 
   if (Array.isArray(resolvedStyle?.variants)) {
@@ -50,20 +53,28 @@ function processStyle(props, style) {
       rootStyle = resolvedStyle.style;
     } else {
       const { variants, ...otherStyles } = resolvedStyle;
-      rootStyle = otherStyles;
+      rootStyle = serializeStyles(otherStyles);
+      if (layerName) {
+        rootStyle.styles = `@layer ${layerName}{${rootStyle.styles}}`;
+      }
     }
 
-    return processStyleVariants(props, resolvedStyle.variants, [rootStyle]);
+    return processStyleVariants(props, resolvedStyle.variants, [rootStyle], layerName);
   }
 
   if (resolvedStyle?.isProcessed) {
     return resolvedStyle.style;
   }
 
-  return resolvedStyle;
+  const serialized = serializeStyles(resolvedStyle);
+  if (layerName) {
+    serialized.styles = `@layer ${layerName}{${serialized.styles}}`;
+  }
+
+  return serialized;
 }
 
-function processStyleVariants(props, variants, results = []) {
+function processStyleVariants(props, variants, results = [], layerName = undefined) {
   let mergedState; // We might not need it, initialized lazily
 
   variantLoop: for (let i = 0; i < variants.length; i += 1) {
@@ -84,9 +95,17 @@ function processStyleVariants(props, variants, results = []) {
 
     if (typeof variant.style === 'function') {
       mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-      results.push(variant.style(mergedState));
+      const serialized = serializeStyles(variant.style(mergedState));
+      if (layerName) {
+        serialized.styles = `@layer ${layerName}-variants{${serialized.styles}}`;
+      }
+      results.push(serialized);
     } else {
-      results.push(variant.style);
+      const serialized = serializeStyles(variant.style);
+      if (layerName) {
+        serialized.styles = `@layer ${layerName}-variants{${serialized.styles}}`;
+      }
+      results.push(serialized);
     }
   }
 
@@ -157,16 +176,16 @@ export default function createStyled(input = {}) {
       // which are basically components used as a selectors.
       if (typeof style === 'function' && style.__emotion_real !== style) {
         return function styleFunctionProcessor(props) {
-          return processStyle(props, style);
+          return processStyle(props, style, 'base');
         };
       }
       if (isPlainObject(style)) {
-        const serialized = preprocessStyles(style);
+        const serialized = preprocessStyles(style, 'base');
         if (!serialized.variants) {
           return serialized.style;
         }
         return function styleObjectProcessor(props) {
-          return processStyle(props, serialized);
+          return processStyle(props, serialized, 'base');
         };
       }
       return style;
@@ -194,11 +213,7 @@ export default function createStyled(input = {}) {
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           // eslint-disable-next-line guard-for-in
           for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = theme.experimental_nestedCssLayer
-              ? {
-                  '@layer mui.theme': processStyle(props, styleOverrides[slotKey]),
-                }
-              : processStyle(props, styleOverrides[slotKey]);
+            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey], 'theme');
           }
 
           return overridesResolver(props, resolvedStyleOverrides);
@@ -212,12 +227,7 @@ export default function createStyled(input = {}) {
           if (!themeVariants) {
             return null;
           }
-          if (theme.experimental_nestedCssLayer) {
-            return {
-              '@layer mui.theme': processStyleVariants(props, themeVariants),
-            };
-          }
-          return processStyleVariants(props, themeVariants);
+          return processStyleVariants(props, themeVariants, [], 'theme');
         });
       }
 

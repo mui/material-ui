@@ -1,11 +1,15 @@
 import { internal_serializeStyles } from '@mui/styled-engine';
 
-export default function preprocessStyles(input: any) {
+export default function preprocessStyles(input: any, layerName?: string) {
   const { variants, ...style } = input;
 
+  const serialized = internal_serializeStyles(style) as any;
+  if (layerName) {
+    serialized.styles = `@layer ${layerName}{${serialized.styles}}`;
+  }
   const result = {
     variants,
-    style: internal_serializeStyles(style) as any,
+    style: serialized,
     isProcessed: true,
   };
 
@@ -18,6 +22,9 @@ export default function preprocessStyles(input: any) {
     variants.forEach((variant: any) => {
       if (typeof variant.style !== 'function') {
         variant.style = internal_serializeStyles(variant.style);
+        if (layerName) {
+          variant.style.styles = `@layer ${layerName}-variants{${variant.style.styles}}`;
+        }
       }
     });
   }
