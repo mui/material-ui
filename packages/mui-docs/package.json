@@ -1,7 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "7.0.2",
-  "private": false,
+  "version": "7.1.0",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "main": "./src/index.js",
@@ -34,7 +33,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.0",
+    "@babel/runtime": "^7.27.1",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",

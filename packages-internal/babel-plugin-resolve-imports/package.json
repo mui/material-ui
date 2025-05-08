@@ -1,8 +1,8 @@
 {
   "name": "@mui/internal-babel-plugin-resolve-imports",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "MUI Team",
-  "description": "babel plugin that resolves import specifiers to their actual output file.",
+  "description": "Babel plugin that resolves import specifiers to their actual output file.",
   "main": "./index.js",
   "exports": {
     ".": "./index.js"
@@ -20,8 +20,8 @@
     "resolve": "^1.22.10"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-typescript": "^7.25.9",
-    "@babel/preset-typescript": "^7.27.0",
+    "@babel/plugin-syntax-typescript": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
     "@types/babel__core": "^7.20.5",
     "@types/chai": "^4.3.20",
     "@types/node": "^20.17.32",

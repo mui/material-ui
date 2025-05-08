@@ -1,9 +1,8 @@
 {
   "name": "@mui/types",
-  "version": "7.4.1",
-  "private": false,
+  "version": "7.4.2",
   "author": "MUI Team",
-  "description": "Utility types for MUI.",
+  "description": "Utility types for Material UI.",
   "types": "./index.d.ts",
   "keywords": [
     "react",
@@ -39,7 +38,7 @@
     "directory": "build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.0"
+    "@babel/runtime": "^7.27.1"
   },
   "devDependencies": {
     "@mui/types": "workspace:*",

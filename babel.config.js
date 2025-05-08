@@ -179,16 +179,6 @@ module.exports = function getBabelConfig(api) {
           ],
         ],
       },
-      benchmark: {
-        plugins: [
-          [
-            'babel-plugin-module-resolver',
-            {
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
     },
   };
 };
