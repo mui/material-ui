@@ -49,13 +49,6 @@ export default defineConfig(async () => {
       '@mui/material/useScrollTrigger',
       '@mui/utils',
     ],
-    // Only add upload config when in CI environment
-    ...(process.env.CI && {
-      upload: {
-        project: 'mui/material-ui',
-        branch: process.env.CIRCLE_BRANCH,
-        isPullRequest,
-      },
-    }),
+    upload: !!process.env.CI,
   };
 });
