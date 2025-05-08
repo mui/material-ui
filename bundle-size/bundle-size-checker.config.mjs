@@ -9,6 +9,20 @@ import { defineConfig } from '@mui/internal-bundle-size-checker';
 
 const rootDir = path.resolve(import.meta.dirname, '..');
 
+// This function creates an entrypoint object for a given package ID.
+// We use this to define externals to provide continuity with the previous
+// configuration.
+// TODO: remove externals in a separate PR tor ely on package peer dependencies
+function createEntrypoint(id) {
+  const [importSpec, importedName] = id.split('#');
+  return {
+    id,
+    import: importSpec,
+    importedNames: importedName ? [importedName] : undefined,
+    externals: ['react', 'react-dom'],
+  };
+}
+
 /**
  * Generates the entrypoints configuration by scanning the project structure.
  */
@@ -46,7 +60,7 @@ export default defineConfig(async () => {
       '@mui/material/useMediaQuery',
       '@mui/material/useScrollTrigger',
       '@mui/utils',
-    ],
+    ].map((id) => createEntrypoint(id)),
     upload: !!process.env.CI,
   };
 });
