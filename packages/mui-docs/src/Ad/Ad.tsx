@@ -37,12 +37,6 @@ const disableAd =
   process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
 const inHouseAds = [
   {
-    name: 'scaffoldhub',
-    link: 'https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1',
-    img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material UI web-app.',
-  },
-  {
     name: 'templates',
     link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/ads-in-house/themes-2.jpg',
