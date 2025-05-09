@@ -127,7 +127,7 @@ export default function SessionsChart() {
             },
           ]}
           height={250}
-          margin={{ left: 0, right: 20, top: 20, bottom: 0 }}
+          margin={{ left: 5, right: 20, top: 20, bottom: 0 }}
           grid={{ horizontal: true }}
           sx={{
             '& .MuiAreaElement-series-organic': {
