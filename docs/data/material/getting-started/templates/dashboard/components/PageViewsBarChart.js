@@ -49,6 +49,7 @@ export default function PageViewsBarChart() {
               data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
             },
           ]}
+          yAxis={[{ width: 50 }]}
           series={[
             {
               id: 'page-views',

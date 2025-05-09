@@ -76,6 +76,7 @@ export default function SessionsChart() {
               tickInterval: (index, i) => (i + 1) % 5 === 0,
             },
           ]}
+          yAxis={[{ width: 50 }]}
           series={[
             {
               id: 'direct',
