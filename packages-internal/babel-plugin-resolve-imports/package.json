@@ -23,11 +23,11 @@
     "@babel/plugin-syntax-typescript": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
     "@types/babel__core": "^7.20.5",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.2",
     "@types/node": "^20.17.32",
     "@types/resolve": "^1.20.6",
     "babel-plugin-tester": "^11.0.4",
-    "chai": "^4.5.0"
+    "chai": "^5.2.0"
   },
   "peerDependencies": {
     "@babel/core": "7"
