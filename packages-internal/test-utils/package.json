@@ -23,7 +23,8 @@
     "./setupJSDOM": "./build/setupJSDOM.js",
     "./setupKarma": "./build/setupKarma.js",
     "./chaiPlugin": "./build/chaiPlugin.js",
-    "./setupVitest": "./build/setupVitest.js"
+    "./setupVitest": "./build/setupVitest.js",
+    "./describeSkipIf": "./build/describeSkipIf.js"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
