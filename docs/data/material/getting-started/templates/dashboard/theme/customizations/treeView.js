@@ -4,7 +4,7 @@ import { gray, brand } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const treeViewCustomizations = {
-  MuiTreeItem2: {
+  MuiTreeItem: {
     styleOverrides: {
       root: ({ theme }) => ({
         position: 'relative',
