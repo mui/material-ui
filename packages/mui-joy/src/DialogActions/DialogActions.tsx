@@ -43,7 +43,7 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
     component = 'div',
     children,
     buttonFlex,
-    orientation = 'horizontal-reverse',
+    orientation = 'horizontal',
     slots = {},
     slotProps = {},
     ...other
@@ -91,9 +91,9 @@ DialogActions.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The component orientation.
-   * @default 'horizontal-reverse'
+   * @default 'horizontal'
    */
-  orientation: PropTypes.oneOf(['horizontal-reverse', 'horizontal', 'vertical']),
+  orientation: PropTypes.oneOf(['horizontal','horizontal-reverse', 'vertical']),
   /**
    * The props used for each slot inside.
    * @default {}
