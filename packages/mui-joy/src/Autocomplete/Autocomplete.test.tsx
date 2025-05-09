@@ -1931,7 +1931,8 @@ describe('Joy <Autocomplete />', () => {
 
       await user.click(screen.getByText('Reset'));
 
-      const expectedCallCount = reactMajor === 18 ? 4 : 2;
+      // eslint-disable-next-line no-nested-ternary
+      const expectedCallCount = reactMajor >= 19 ? 3 : reactMajor === 18 ? 4 : 2;
 
       expect(handleInputChange.callCount).to.equal(expectedCallCount);
       expect(handleInputChange.args[expectedCallCount - 1][1]).to.equal(options[1].name);
@@ -2209,7 +2210,8 @@ describe('Joy <Autocomplete />', () => {
 
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
+        // eslint-disable-next-line no-nested-ternary
+        reactMajor >= 19 ? 5 : reactMajor >= 18 ? 4 : 3,
       );
       if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);
@@ -2223,7 +2225,8 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 5 : 4,
+        // eslint-disable-next-line no-nested-ternary
+        reactMajor >= 19 ? 6 : reactMajor >= 18 ? 5 : 4,
       );
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
@@ -2240,7 +2243,8 @@ describe('Joy <Autocomplete />', () => {
       fireEvent.mouseMove(firstOption);
       expect(handleHighlightChange.callCount).to.equal(
         // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
+        // eslint-disable-next-line no-nested-ternary
+        reactMajor >= 19 ? 5 : reactMajor >= 18 ? 4 : 3,
       );
       if (reactMajor >= 18) {
         expect(handleHighlightChange.args[2][0]).to.equal(undefined);

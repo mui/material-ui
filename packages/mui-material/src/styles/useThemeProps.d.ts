@@ -11,6 +11,33 @@ export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
   ? Props
   : {};
 
+/**
+ * Merges input `props` with the `defaultProps` for a component that were defined in the theme.
+ *
+ * The `defaultProps` are defined in the theme under `theme.components[componentName].defaultProps`.
+ *
+ * @example
+ *
+ * ```tsx
+ * const createTheme = () => ({
+ *   components: {
+ *     MuiStat: {
+ *       defaultProps: {
+ *         variant: 'outlined',
+ *       },
+ *     },
+ *   },
+ * });
+ *
+ * function Stat(props) {
+ *   const themeProps = useThemeProps({ props, name: 'MuiStat' });
+ *   return <div {...themeProps} />;
+ * }
+ * ```
+ *
+ * @param params.props The input props
+ * @param params.name The name of the component as defined in the theme
+ */
 export default function useThemeProps<
   Theme extends ThemeWithProps,
   Props,

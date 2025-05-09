@@ -79,7 +79,7 @@ We're looking for someone with both strong front-end and back-end skills. More i
 
 ### Required
 
-- **Expertise in the modern JavaScript ecosystem**. Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, Webpack, and Babel.
+- **Expertise in the modern JavaScript ecosystem**. Toolpad is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **Expertise in backend development**. Toolpad interfaces with multiple databases, both SQL and NoSQL, as well as APIs such as REST and GraphQL. You'll need to be comfortable in learning and integrating new backend technologies fast. You'll need to have a good understanding of distributed systems and some knowledge of CRDTs is a plus.
 - **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.

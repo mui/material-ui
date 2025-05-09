@@ -1,7 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "6.1.6",
-  "private": false,
+  "version": "7.1.0",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
   "main": "./src/index.js",
@@ -26,20 +25,20 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
-    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js",
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.0",
+    "@babel/runtime": "^7.27.1",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -49,20 +48,20 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
     "@types/chai": "^4.3.20",
-    "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.12",
-    "@types/sinon": "^17.0.3",
+    "@types/prop-types": "^15.7.14",
+    "@types/react": "^19.1.2",
+    "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
-    "fast-glob": "^3.3.2",
+    "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
-    "react": "^18.3.1",
-    "sinon": "^19.0.2",
-    "styled-components": "^6.1.13"
+    "react": "^19.1.0",
+    "sinon": "^19.0.5",
+    "styled-components": "^6.1.17"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

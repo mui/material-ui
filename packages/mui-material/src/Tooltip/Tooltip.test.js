@@ -33,6 +33,10 @@ describe('<Tooltip />', () => {
     );
   }
 
+  const TestTooltipSlot = React.forwardRef(function TestTooltipSlot({ ownerState, ...props }, ref) {
+    return <div data-testid="custom" ref={ref} {...props} />;
+  });
+
   describeConformance(
     <Tooltip title="Hello World" arrow open>
       <button type="submit">Hello World</button>
@@ -53,15 +57,14 @@ describe('<Tooltip />', () => {
           testWithElement: null,
         },
         transition: { testWithElement: null },
-        tooltip: { expectedClassName: classes.tooltip, testWithElement: null },
+        tooltip: {
+          expectedClassName: classes.tooltip,
+          testWithComponent: TestTooltipSlot,
+          testWithElement: TestTooltipSlot,
+        },
         arrow: { expectedClassName: classes.arrow },
       },
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        'slotPropsCallback', // not supported yet
-      ],
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 
@@ -697,7 +700,7 @@ describe('<Tooltip />', () => {
             </button>
           </Tooltip>,
         );
-      }).toErrorDev('MUI: You are providing a disabled `button` child to the Tooltip component');
+      }).toWarnDev('MUI: You are providing a disabled `button` child to the Tooltip component');
     });
 
     it('should not raise a warning when we are controlled', () => {
@@ -839,6 +842,82 @@ describe('<Tooltip />', () => {
                   fn: () => {},
                 },
               ],
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedComputeStylesModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'foo',
+      );
+
+      expect(appliedComputeStylesModifier).not.to.equal(undefined);
+    });
+  });
+
+  describe('prop: slotProps.popper', () => {
+    it('should merge popperOptions with arrow modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'arrow',
+                    options: {
+                      padding: 8,
+                    },
+                  },
+                ],
+              },
+            },
+          }}
+        >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const appliedArrowModifier = popperRef.current.state.orderedModifiers.find(
+        (modifier) => modifier.name === 'arrow',
+      );
+
+      expect(appliedArrowModifier).not.to.equal(undefined);
+      expect(appliedArrowModifier.enabled).to.equal(true);
+      expect(appliedArrowModifier.options.padding).to.equal(8);
+    });
+
+    it('should merge popperOptions with custom modifier', () => {
+      const popperRef = React.createRef();
+      render(
+        <Tooltip
+          title="Hello World"
+          open
+          arrow
+          slotProps={{
+            popper: {
+              popperRef,
+              popperOptions: {
+                modifiers: [
+                  {
+                    name: 'foo',
+                    enabled: true,
+                    phase: 'main',
+                    fn: () => {},
+                  },
+                ],
+              },
             },
           }}
         >
@@ -1225,6 +1304,50 @@ describe('<Tooltip />', () => {
           arrow
           componentsProps={{ arrow: { 'data-testid': 'CustomArrow' } }}
         >
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(screen.getByTestId('CustomArrow')).toBeVisible();
+    });
+  });
+
+  describe('prop: slots', () => {
+    it('can render a different Popper component', () => {
+      function CustomPopper() {
+        return <div data-testid="CustomPopper" />;
+      }
+      render(
+        <Tooltip title="Hello World" open slots={{ popper: CustomPopper }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(screen.getByTestId('CustomPopper')).toBeVisible();
+    });
+
+    it('can render a different Tooltip component', () => {
+      const CustomTooltip = React.forwardRef((props, ref) => (
+        <div data-testid="CustomTooltip" ref={ref} />
+      ));
+      render(
+        <Tooltip title="Hello World" open slots={{ tooltip: CustomTooltip }}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      expect(screen.getByTestId('CustomTooltip')).toBeVisible();
+    });
+
+    it('can render a different Arrow component', () => {
+      const CustomArrow = React.forwardRef((props, ref) => (
+        <div data-testid="CustomArrow" ref={ref} />
+      ));
+      render(
+        <Tooltip title="Hello World" open arrow slots={{ arrow: CustomArrow }}>
           <button id="testChild" type="submit">
             Hello World
           </button>

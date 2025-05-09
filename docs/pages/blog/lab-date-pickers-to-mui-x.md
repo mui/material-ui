@@ -20,7 +20,7 @@ This means we'll be dedicating even more time and effort to these complex compon
 
 Date and Time Pickers are interface controls that enable the user to select a date (or time) from a menu.
 
-<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" style="width: 796px; margin-top: 16px;" alt="Date and Time Picker component" />
+<img src="/static/blog/lab-date-pickers-to-mui-x/date-time-picker.png" width="2400" height="1240" loading="lazy" alt="Date and Time Picker component" />
 
 <p class="blog-description">Date and Time Pickers using the default Material UI design</p>
 
@@ -89,7 +89,7 @@ npx @mui/codemod@latest v5.0.0/date-pickers-moved-to-x <path>
 
 ## Where is the Date and Time Picker documentation?
 
-You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/getting-started/).
+You can find the documentation for the picker components in the [MUI X docs](/x/react-date-pickers/).
 
 ## What's next for the Date and Time Pickers?
 

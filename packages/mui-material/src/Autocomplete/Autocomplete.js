@@ -228,7 +228,6 @@ const AutocompleteRoot = styled('div', {
 const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'EndAdornment',
-  overridesResolver: (props, styles) => styles.endAdornment,
 })({
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
@@ -240,7 +239,6 @@ const AutocompleteEndAdornment = styled('div', {
 const AutocompleteClearIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'ClearIndicator',
-  overridesResolver: (props, styles) => styles.clearIndicator,
 })({
   marginRight: -2,
   padding: 4,
@@ -250,10 +248,11 @@ const AutocompleteClearIndicator = styled(IconButton, {
 const AutocompletePopupIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
-  overridesResolver: ({ ownerState }, styles) => ({
-    ...styles.popupIndicator,
-    ...(ownerState.popupOpen && styles.popupIndicatorOpen),
-  }),
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.popupIndicator, ownerState.popupOpen && styles.popupIndicatorOpen];
+  },
 })({
   padding: 2,
   marginRight: -2,
@@ -296,7 +295,6 @@ const AutocompletePopper = styled(Popper, {
 const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
@@ -307,7 +305,6 @@ const AutocompletePaper = styled(Paper, {
 const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Loading',
-  overridesResolver: (props, styles) => styles.loading,
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
@@ -318,7 +315,6 @@ const AutocompleteLoading = styled('div', {
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
-  overridesResolver: (props, styles) => styles.noOptions,
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
@@ -326,10 +322,9 @@ const AutocompleteNoOptions = styled('div', {
   })),
 );
 
-const AutocompleteListbox = styled('div', {
+const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
-  overridesResolver: (props, styles) => styles.listbox,
 })(
   memoTheme(({ theme }) => ({
     listStyle: 'none',
@@ -401,7 +396,6 @@ const AutocompleteListbox = styled('div', {
 const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
   slot: 'GroupLabel',
-  overridesResolver: (props, styles) => styles.groupLabel,
 })(
   memoTheme(({ theme }) => ({
     backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -412,7 +406,6 @@ const AutocompleteGroupLabel = styled(ListSubheader, {
 const AutocompleteGroupUl = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'GroupUl',
-  overridesResolver: (props, styles) => styles.groupUl,
 })({
   padding: 0,
   [`& .${autocompleteClasses.option}`]: {
@@ -485,6 +478,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    renderValue,
     selectOnFocus = !props.freeSolo,
     size = 'medium',
     slots = {},
@@ -500,7 +494,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getInputLabelProps,
     getPopupIndicatorProps,
     getClearProps,
-    getTagProps,
+    getItemProps,
     getListboxProps,
     getOptionProps,
     value,
@@ -509,7 +503,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     id,
     popupOpen,
     focused,
-    focusedTag,
+    focusedItem,
     anchorEl,
     setAnchorEl,
     inputValue,
@@ -535,7 +529,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     getOptionLabel,
     hasClearIcon,
     hasPopupIcon,
-    inputFocused: focusedTag === -1,
+    inputFocused: focusedItem === -1,
     popupOpen,
     size,
   };
@@ -588,29 +582,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   let startAdornment;
 
-  if (multiple && value.length > 0) {
-    const getCustomizedTagProps = (params) => ({
-      className: classes.tag,
-      disabled,
-      ...getTagProps(params),
-    });
+  const getCustomizedItemProps = (params) => ({
+    className: classes.tag,
+    disabled,
+    ...getItemProps(params),
+  });
 
-    if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
-    } else {
-      startAdornment = value.map((option, index) => {
-        const { key, ...customTagProps } = getCustomizedTagProps({ index });
-        return (
-          <Chip
-            key={key}
-            label={getOptionLabel(option)}
-            size={size}
-            {...customTagProps}
-            {...externalForwardedProps.slotProps.chip}
-          />
-        );
-      });
-    }
+  if (renderTags && multiple && value.length > 0) {
+    startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
+  } else if (renderValue && value) {
+    startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
+  } else if (multiple && value.length > 0) {
+    startAdornment = value.map((option, index) => {
+      const { key, ...customItemProps } = getCustomizedItemProps({ index });
+      return (
+        <Chip
+          key={key}
+          label={getOptionLabel(option)}
+          size={size}
+          {...customItemProps}
+          {...externalForwardedProps.slotProps.chip}
+        />
+      );
+    });
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
@@ -669,56 +663,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const clearIndicatorSlotProps = externalForwardedProps.slotProps.clearIndicator;
   const popupIndicatorSlotProps = externalForwardedProps.slotProps.popupIndicator;
-
-  const renderAutocompletePopperChildren = (children) => (
-    <AutocompletePopper as={PopperSlot} {...popperProps}>
-      <AutocompletePaper as={PaperSlot} {...paperProps}>
-        {children}
-      </AutocompletePaper>
-    </AutocompletePopper>
-  );
-
-  let autocompletePopper = null;
-  if (groupedOptions.length > 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      // TODO v7: remove `as` prop and move ListboxComponentProp to externalForwardedProps or remove ListboxComponentProp entirely
-      // https://github.com/mui/material-ui/pull/43994#issuecomment-2401945800
-      <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
-        {groupedOptions.map((option, index) => {
-          if (groupBy) {
-            return renderGroup({
-              key: option.key,
-              group: option.group,
-              children: option.options.map((option2, index2) =>
-                renderListOption(option2, option.index + index2),
-              ),
-            });
-          }
-          return renderListOption(option, index);
-        })}
-      </ListboxSlot>,
-    );
-  } else if (loading && groupedOptions.length === 0) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-        {loadingText}
-      </AutocompleteLoading>,
-    );
-  } else if (groupedOptions.length === 0 && !freeSolo && !loading) {
-    autocompletePopper = renderAutocompletePopperChildren(
-      <AutocompleteNoOptions
-        className={classes.noOptions}
-        ownerState={ownerState}
-        role="presentation"
-        onMouseDown={(event) => {
-          // Prevent input blur when interacting with the "no options" content
-          event.preventDefault();
-        }}
-      >
-        {noOptionsText}
-      </AutocompleteNoOptions>,
-    );
-  }
 
   return (
     <React.Fragment>
@@ -784,7 +728,46 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {anchorEl ? autocompletePopper : null}
+      {anchorEl ? (
+        <AutocompletePopper as={PopperSlot} {...popperProps}>
+          <AutocompletePaper as={PaperSlot} {...paperProps}>
+            {loading && groupedOptions.length === 0 ? (
+              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
+                {loadingText}
+              </AutocompleteLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <AutocompleteNoOptions
+                className={classes.noOptions}
+                ownerState={ownerState}
+                role="presentation"
+                onMouseDown={(event) => {
+                  // Prevent input blur when interacting with the "no options" content
+                  event.preventDefault();
+                }}
+              >
+                {noOptionsText}
+              </AutocompleteNoOptions>
+            ) : null}
+            {groupedOptions.length > 0 ? (
+              <ListboxSlot as={ListboxComponentProp} {...listboxProps}>
+                {groupedOptions.map((option, index) => {
+                  if (groupBy) {
+                    return renderGroup({
+                      key: option.key,
+                      group: option.group,
+                      children: option.options.map((option2, index2) =>
+                        renderListOption(option2, option.index + index2),
+                      ),
+                    });
+                  }
+                  return renderListOption(option, index);
+                })}
+              </ListboxSlot>
+            ) : null}
+          </AutocompletePaper>
+        </AutocompletePopper>
+      ) : null}
     </React.Fragment>
   );
 });
@@ -828,6 +811,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
    * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
+   * @deprecated Use `slotProps.chip` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps: PropTypes.object,
   /**
@@ -872,7 +856,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   closeText: PropTypes.string,
   /**
    * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
@@ -992,7 +976,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {Value} options The options to group.
+   * @param {Value} option The Autocomplete option.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -1035,10 +1019,12 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the listbox.
    * @default 'ul'
+   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent: PropTypes.elementType,
   /**
    * Props applied to the Listbox element.
+   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps: PropTypes.object,
   /**
@@ -1088,7 +1074,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {Value} option The highlighted option.
-   * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`, `"touch"`.
+   * @param {string} reason Can be: `"keyboard"`, `"mouse"`, `"touch"`.
    */
   onHighlightChange: PropTypes.func,
   /**
@@ -1133,11 +1119,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * The component used to render the body of the popup.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent: PropTypes.elementType,
   /**
    * The component used to position the popup.
    * @default Popper
+   * @deprecated Use `slots.popper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent: PropTypes.elementType,
   /**
@@ -1175,7 +1163,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   renderOption: PropTypes.func,
   /**
-   * Render the selected value.
+   * Render the selected value when doing multiple selections.
+   *
+   * @deprecated Use `renderValue` prop instead
    *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
@@ -1183,6 +1173,15 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * Renders the selected value(s) as rich content in the input for both single and multiple selections.
+   *
+   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {function} getItemProps The value item props.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderValue: PropTypes.func,
   /**
    * If `true`, the input's text is selected on focus.
    * It helps the user clear the selected value.

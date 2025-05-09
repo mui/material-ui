@@ -1,6 +1,6 @@
 import { ReactDocgenApi } from 'react-docgen';
 import { JSDocTagInfo } from 'typescript';
-import { ComponentInfo, Slot, HookInfo, SeeMore } from './utils.types';
+import { ComponentInfo, Slot, HookInfo, SeeMore, ApiItemDescription } from './utils.types';
 
 export type AdditionalPropsInfo = {
   cssApi?: boolean;
@@ -33,6 +33,7 @@ interface CommonReactApi extends ReactDocgenApi {
    */
   apiDocsTranslationFolder?: string;
   deprecated: true | undefined;
+  customAnnotation?: string;
 }
 
 export interface PropsTableItem {
@@ -56,6 +57,8 @@ export interface PropsTranslations {
     [key: string]: ClassDescription;
   };
   slotDescriptions?: { [key: string]: string };
+  cssVariablesDescriptions?: { [key: string]: string };
+  dataAttributesDescriptions?: { [key: string]: string };
 }
 
 interface PropDescription {
@@ -91,6 +94,8 @@ export interface ComponentReactApi extends CommonReactApi {
   themeDefaultProps: boolean | undefined | null;
   classes: ComponentClassDefinition[];
   slots: Slot[];
+  cssVariables: { [key: string]: ApiItemDescription };
+  dataAttributes: { [key: string]: ApiItemDescription };
   propsTable: _.Dictionary<PropsTableItem>;
   translations: PropsTranslations;
 }
@@ -100,6 +105,8 @@ export interface ComponentApiContent {
   name: string;
   imports: string[];
   slots?: Slot[];
+  cssVariables?: { [key: string]: ApiItemDescription };
+  dataAttributes?: { [key: string]: ApiItemDescription };
   classes: ComponentClassDefinition[];
   spread: boolean | undefined;
   themeDefaultProps: boolean | null | undefined;

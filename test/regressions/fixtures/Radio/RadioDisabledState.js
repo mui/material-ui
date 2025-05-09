@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Radio from '@mui/material/Radio';
 
-export default function RadioButtonsDisabled() {
+export default function RadioDisabledState() {
   const [selectedValue, setSelectedValue] = React.useState('a');
 
   const handleChange = (event) => {

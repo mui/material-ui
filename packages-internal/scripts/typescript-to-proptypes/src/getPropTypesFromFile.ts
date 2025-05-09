@@ -130,6 +130,7 @@ function checkType({
       case 'React.ReactElement': {
         return createElementType({ jsDoc, elementType: 'element' });
       }
+      case 'React.ComponentType':
       case 'React.ElementType': {
         return createElementType({
           jsDoc,
@@ -377,6 +378,7 @@ function checkSymbol({
     const name = declaration.type.typeName.getText();
     if (
       name === 'React.ElementType' ||
+      name === 'React.ComponentType' ||
       name === 'React.JSXElementConstructor' ||
       name === 'React.ReactElement'
     ) {

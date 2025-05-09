@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeSkipIf } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Portal, { PortalProps } from '@mui/material/Portal';
 
 describe('<Portal />', () => {
@@ -37,6 +38,7 @@ describe('<Portal />', () => {
         <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
+        { strict: reactMajor <= 18 },
       );
       const mountNode = document.querySelector('.woofPortal');
       expect(refSpy.args).to.deep.equal([[mountNode]]);
@@ -50,6 +52,7 @@ describe('<Portal />', () => {
         <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
+        { strict: reactMajor <= 18 },
       );
       const mountNode = document.querySelector('.woofPortal');
       expect(refSpy.args).to.deep.equal([[mountNode]]);

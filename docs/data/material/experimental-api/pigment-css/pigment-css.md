@@ -30,7 +30,7 @@ cd pigment-css-nextjs-ts
 ```
 
 ```bash Vite
-curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2 pigment-css/examples/pigment-css-vite-ts
+curl https://codeload.github.com/mui/pigment-css/tar.gz/master | tar -xz --strip=2 pigment-css-master/examples/pigment-css-vite-ts
 cd pigment-css-vite-ts
 ```
 
@@ -48,8 +48,8 @@ npm install --save-dev @pigment-css/nextjs-plugin
 ```
 
 ```bash Vite
-npm install @pigment-css/react@next
-npm install --save-dev @pigment-css/vite-plugin@next
+npm install @pigment-css/react
+npm install --save-dev @pigment-css/vite-plugin
 ```
 
 </codeblock>

@@ -13,7 +13,7 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 | :----- | :------ | :----- | :------------- | :----------- |
 | >= 121 | >= 115  | >= 109 | >= 15.4        | >= 15.4      |
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/-/.browserslistrc#L12-L27) (check the `stable` entry).
 
@@ -37,9 +37,9 @@ Have a look at the older [versions](https://mui.com/versions/) for backward comp
 
 ## TypeScript
 
-Material UI requires a minimum version of TypeScript 4.7.
+Material UI requires a minimum version of TypeScript 4.9.
 This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.
 
-## Webpack
+## webpack
 
-The minimium required version of webpack to bundle applications that use Material UI is v5. Webpack <= v4 can't bundle Material UI untranspiled as it uses features such as the [null coalscing operator (`??`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) and [optional chaining (`?.`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining).
+The minimium required version of webpack to bundle applications that use Material UI is v5. webpack <= v4 can't bundle Material UI untranspiled as it uses features such as the [null coalscing operator (`??`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) and [optional chaining (`?.`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining).

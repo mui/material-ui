@@ -4,7 +4,7 @@ import {
   DocumentHeadTags,
   DocumentHeadTagsProps,
   documentGetInitialProps,
-} from '@mui/material-nextjs/v14-pagesRouter';
+} from '@mui/material-nextjs/v15-pagesRouter';
 import theme, { roboto } from '../src/theme';
 
 export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps) {
@@ -13,7 +13,7 @@ export default function MyDocument(props: DocumentProps & DocumentHeadTagsProps)
       <Head>
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
         <meta name="emotion-insertion-point" content="" />
         <DocumentHeadTags {...props} />
       </Head>

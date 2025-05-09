@@ -52,3 +52,19 @@ fn({
     },
   },
 });
+
+fn({
+  MuiListItem: {
+    defaultProps: {
+      slots: {
+        root: Container
+      },
+
+      slotProps: {
+        root: {
+          id: 'test',
+        }
+      }
+    },
+  },
+});

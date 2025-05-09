@@ -23,12 +23,14 @@ const useUtilityClasses = (ownerState) => {
 const FormControlRoot = styled('div', {
   name: 'MuiFormControl',
   slot: 'Root',
-  overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...styles[`margin${capitalize(ownerState.margin)}`],
-      ...(ownerState.fullWidth && styles.fullWidth),
-    };
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[`margin${capitalize(ownerState.margin)}`],
+      ownerState.fullWidth && styles.fullWidth,
+    ];
   },
 })({
   display: 'inline-flex',
@@ -191,6 +193,14 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     };
   }
 
+  const onFilled = React.useCallback(() => {
+    setFilled(true);
+  }, []);
+
+  const onEmpty = React.useCallback(() => {
+    setFilled(false);
+  }, []);
+
   const childContext = React.useMemo(() => {
     return {
       adornedStart,
@@ -206,15 +216,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
       onBlur: () => {
         setFocused(false);
       },
-      onEmpty: () => {
-        setFilled(false);
-      },
-      onFilled: () => {
-        setFilled(true);
-      },
       onFocus: () => {
         setFocused(true);
       },
+      onEmpty,
+      onFilled,
       registerEffect,
       required,
       variant,
@@ -229,6 +235,8 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     fullWidth,
     hiddenLabel,
     registerEffect,
+    onEmpty,
+    onFilled,
     required,
     size,
     variant,

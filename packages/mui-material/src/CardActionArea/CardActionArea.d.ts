@@ -1,9 +1,46 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
-import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { SlotProps, CreateSlotsAndSlotProps, Theme } from '..';
+import {
+  ButtonBaseProps,
+  ButtonBaseTypeMap,
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { CardActionAreaClasses } from './cardActionAreaClasses';
+
+export interface CardActionAreaSlots {
+  /**
+   * The component that renders the root.
+   * @default ButtonBase
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the focusHighlight.
+   * @default span
+   */
+  focusHighlight: React.ElementType;
+}
+
+export type CardActionAreaSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  CardActionAreaSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the span element.
+     */
+    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, CardActionAreaOwnerState>;
+    /**
+     * Props forwarded to the focusHighlight slot.
+     * By default, the avaible props are based on the span element.
+     */
+    focusHighlight: SlotProps<'span', {}, CardActionAreaOwnerState>;
+  }
+>;
+
+export interface CardActionAreaOwnerState
+  extends Omit<CardActionAreaProps, 'slots' | 'slotProps'> {}
 
 export interface CardActionAreaOwnProps {
   /**
@@ -21,7 +58,7 @@ export type CardActionAreaTypeMap<
   AdditionalProps,
   RootComponent extends React.ElementType,
 > = ExtendButtonBaseTypeMap<{
-  props: AdditionalProps & CardActionAreaOwnProps;
+  props: AdditionalProps & CardActionAreaOwnProps & CardActionAreaSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }>;
 

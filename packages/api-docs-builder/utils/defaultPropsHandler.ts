@@ -131,6 +131,11 @@ function getExplicitPropsDeclaration(
 ): NodePath | undefined {
   const functionNode = getRenderBody(componentDefinition, importer);
 
+  // No function body available to inspect.
+  if (!functionNode.value) {
+    return undefined;
+  }
+
   let propsPath: NodePath | undefined;
   // visitVariableDeclarator, can't use visit body.node since it looses scope information
   functionNode

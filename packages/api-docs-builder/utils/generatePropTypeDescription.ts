@@ -1,6 +1,6 @@
 import * as recast from 'recast';
 import { parse as docgenParse, PropTypeDescriptor } from 'react-docgen';
-import escapeCell from './escapeCell';
+import { escapeCell, escapeEntities, joinUnionTypes } from '../buildApi';
 
 function getDeprecatedInfo(type: PropTypeDescriptor) {
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
@@ -113,26 +113,20 @@ export default function generatePropTypeDescription(type: PropTypeDescriptor): s
         .join(', ')} }`;
 
     case 'union':
-      return (
-        type.value
-          .map((type2) => {
-            return generatePropTypeDescription(type2);
-          })
-          // Display one value per line as it's better for visibility.
-          .join('<br>&#124;&nbsp;')
+      return joinUnionTypes(
+        type.value.map((type2) => {
+          return generatePropTypeDescription(type2) ?? '';
+        }),
       );
     case 'enum':
-      return (
-        type.value
-          .map((type2) => {
-            return escapeCell(type2.value);
-          })
-          // Display one value per line as it's better for visibility.
-          .join('<br>&#124;&nbsp;')
+      return joinUnionTypes(
+        type.value.map((type2) => {
+          return escapeCell(type2.value);
+        }),
       );
 
     case 'arrayOf': {
-      return `Array&lt;${generatePropTypeDescription(type.value)}&gt;`;
+      return `Array${escapeEntities('<')}${generatePropTypeDescription(type.value)}${escapeEntities('>')}`;
     }
 
     case 'instanceOf': {

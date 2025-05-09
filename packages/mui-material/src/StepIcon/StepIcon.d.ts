@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps, SvgIconOwnProps } from '..';
 import { Theme } from '../styles';
 import { StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  // TODO v7: extend React.HTMLAttributes<SVGSVGElement> as svg is root component of StepIcon not div
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'color' | 'children'>,
+    Omit<SvgIconOwnProps, 'children'> {
   /**
    * Whether this step is active.
    * @default false
@@ -46,5 +48,6 @@ export type StepIconClasskey = keyof NonNullable<StepIconProps['classes']>;
  * API:
  *
  * - [StepIcon API](https://mui.com/material-ui/api/step-icon/)
+ * - inherits [SvgIcon API](https://mui.com/material-ui/api/svg-icon/)
  */
 export default function StepIcon(props: StepIconProps): React.JSX.Element;

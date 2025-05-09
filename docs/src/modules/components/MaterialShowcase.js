@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
@@ -437,7 +437,7 @@ const sortFunctions = {
   stars: sortFactory('stars'),
 };
 
-export default function Showcase() {
+export default function MaterialShowcase() {
   const [sortFunctionName, setSortFunctionName] = React.useState('similarWebVisits');
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useTranslate();
@@ -470,7 +470,7 @@ export default function Showcase() {
           .filter((item) => item[sortFunctionName] !== undefined)
           .sort(sortFunction)
           .map((app) => (
-            <Grid key={app.title} item size={{ xs: 12, sm: 6 }}>
+            <Grid key={app.title} size={{ xs: 12, sm: 6 }}>
               {app.image ? (
                 <Card
                   variant="outlined"

@@ -41,74 +41,91 @@ module.exports = function plugin({ types: t }, { outExtension }) {
   const cache = new Map();
   const extensions = ['.ts', '.tsx', '.js', '.jsx'];
   const extensionsSet = new Set(extensions);
+
+  /**
+   *
+   * @param {babel.NodePath<babel.types.StringLiteral>} importSource
+   * @param {babel.PluginPass} state
+   */
+  function doResolve(importSource, state) {
+    const importedPath = importSource.node.value;
+
+    if (!importedPath.startsWith('.')) {
+      // Only handle relative imports
+      return;
+    }
+
+    if (!state.filename) {
+      throw new Error('filename is not defined');
+    }
+
+    const importerPath = state.filename;
+    const importerDir = nodePath.dirname(importerPath);
+    // start from fully resolved import path
+    const absoluteImportPath = nodePath.resolve(importerDir, importedPath);
+
+    let resolvedPath = cache.get(absoluteImportPath);
+
+    if (!resolvedPath) {
+      // resolve to actual file
+      resolvedPath = resolve(absoluteImportPath, { extensions });
+
+      if (!resolvedPath) {
+        throw new Error(`could not resolve "${importedPath}" from "${state.filename}"`);
+      }
+
+      const resolvedExtension = nodePath.extname(resolvedPath);
+      if (outExtension && extensionsSet.has(resolvedExtension)) {
+        // replace extension
+        resolvedPath = nodePath.resolve(
+          nodePath.dirname(resolvedPath),
+          nodePath.basename(resolvedPath, resolvedExtension) + outExtension,
+        );
+      }
+
+      cache.set(absoluteImportPath, resolvedPath);
+    }
+
+    const relativeResolvedPath = nodePath.relative(importerDir, resolvedPath);
+    const importSpecifier = pathToNodeImportSpecifier(relativeResolvedPath);
+
+    importSource.replaceWith(t.stringLiteral(importSpecifier));
+  }
+
   return {
     visitor: {
-      ImportOrExportDeclaration(path, state) {
-        if (path.isExportDefaultDeclaration()) {
-          // Can't export default from an import specifier
-          return;
-        }
-
-        if (
-          (path.isExportDeclaration() && path.node.exportKind === 'type') ||
-          (path.isImportDeclaration() && path.node.importKind === 'type')
-        ) {
-          // Ignore type imports, they will get compiled away anyway
-          return;
-        }
-
-        const source =
-          /** @type {babel.NodePath<babel.types.StringLiteral | null | undefined> } */ (
-            path.get('source')
-          );
-
-        if (!source.node) {
-          // Ignore import without source
-          return;
-        }
-
-        const importedPath = source.node.value;
-
-        if (!importedPath.startsWith('.')) {
-          // Only handle relative imports
-          return;
-        }
-
-        if (!state.filename) {
-          throw new Error('filename is not defined');
-        }
-
-        const importerPath = state.filename;
-        const importerDir = nodePath.dirname(importerPath);
-        // start from fully resolved import path
-        const absoluteImportPath = nodePath.resolve(importerDir, importedPath);
-
-        let resolvedPath = cache.get(absoluteImportPath);
-
-        if (!resolvedPath) {
-          // resolve to actual file
-          resolvedPath = resolve(absoluteImportPath, { extensions });
-
-          if (!resolvedPath) {
-            throw new Error(`could not resolve "${importedPath}" from "${state.filename}"`);
+      TSImportType(path, state) {
+        const source = path.get('argument');
+        doResolve(source, state);
+      },
+      CallExpression(path, state) {
+        const callee = path.get('callee');
+        if (callee.isImport()) {
+          const source = path.get('arguments')[0];
+          if (source.isStringLiteral()) {
+            doResolve(source, state);
           }
-
-          const resolvedExtension = nodePath.extname(resolvedPath);
-          if (outExtension && extensionsSet.has(resolvedExtension)) {
-            // replace extension
-            resolvedPath = nodePath.resolve(
-              nodePath.dirname(resolvedPath),
-              nodePath.basename(resolvedPath, resolvedExtension) + outExtension,
-            );
-          }
-
-          cache.set(absoluteImportPath, resolvedPath);
         }
-
-        const relativeResolvedPath = nodePath.relative(importerDir, resolvedPath);
-        const importSpecifier = pathToNodeImportSpecifier(relativeResolvedPath);
-
-        source.replaceWith(t.stringLiteral(importSpecifier));
+      },
+      ImportExpression(path, state) {
+        const source = path.get('source');
+        if (source.isStringLiteral()) {
+          doResolve(source, state);
+        }
+      },
+      ImportDeclaration(path, state) {
+        const source = path.get('source');
+        doResolve(source, state);
+      },
+      ExportNamedDeclaration(path, state) {
+        const source = path.get('source');
+        if (source.isStringLiteral()) {
+          doResolve(source, state);
+        }
+      },
+      ExportAllDeclaration(path, state) {
+        const source = path.get('source');
+        doResolve(source, state);
       },
     },
   };

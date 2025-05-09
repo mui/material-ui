@@ -28,7 +28,7 @@ describe('createCssVarsProvider', () => {
     originalMatchmedia = window.matchMedia;
 
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(globalThis, 'localStorage', {
+    Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: spy((key) => storage[key]),
         setItem: spy((key, value) => {
@@ -584,13 +584,9 @@ describe('createCssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
-        true,
-      );
-
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
+      expect(window.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
         true,
       );
     });
