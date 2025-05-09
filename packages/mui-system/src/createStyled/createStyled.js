@@ -7,7 +7,7 @@ import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
 import createTheme from '../createTheme';
 import styleFunctionSx from '../styleFunctionSx';
-import preprocessStyles from '../preprocessStyles';
+import preprocessStyles, { shallowLayer } from '../preprocessStyles';
 
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-labels */
@@ -53,10 +53,7 @@ function processStyle(props, style, layerName) {
       rootStyle = resolvedStyle.style;
     } else {
       const { variants, ...otherStyles } = resolvedStyle;
-      rootStyle = serializeStyles(otherStyles);
-      if (layerName) {
-        rootStyle.styles = `@layer ${layerName}{${rootStyle.styles}}`;
-      }
+      rootStyle = shallowLayer(serializeStyles(otherStyles), layerName);
     }
 
     return processStyleVariants(props, resolvedStyle.variants, [rootStyle], layerName);
@@ -66,10 +63,7 @@ function processStyle(props, style, layerName) {
     return resolvedStyle.style;
   }
 
-  const serialized = serializeStyles(resolvedStyle);
-  if (layerName) {
-    serialized.styles = `@layer ${layerName}{${serialized.styles}}`;
-  }
+  const serialized = shallowLayer(serializeStyles(resolvedStyle), layerName);
 
   return serialized;
 }
@@ -95,16 +89,14 @@ function processStyleVariants(props, variants, results = [], layerName = undefin
 
     if (typeof variant.style === 'function') {
       mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-      const serialized = serializeStyles(variant.style(mergedState));
-      if (layerName) {
-        serialized.styles = `@layer ${layerName}-variants{${serialized.styles}}`;
-      }
+      const serialized = shallowLayer(
+        serializeStyles(variant.style(mergedState)),
+        layerName,
+        'variants',
+      );
       results.push(serialized);
     } else {
-      const serialized = serializeStyles(variant.style);
-      if (layerName) {
-        serialized.styles = `@layer ${layerName}-variants{${serialized.styles}}`;
-      }
+      const serialized = shallowLayer(serializeStyles(variant.style), layerName, 'variants');
       results.push(serialized);
     }
   }
