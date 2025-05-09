@@ -1,21 +1,11 @@
 import { internal_serializeStyles } from '@mui/styled-engine';
 
-export function shallowLayer(serialized: any, layerName?: string, suffix?: string) {
-  if (layerName && !serialized.styles.startsWith('@layer')) {
-    // only add the layer if it is not already there.
-    const rule = String(serialized.styles);
-    serialized.styles = `@layer ${layerName}${suffix ? `-${suffix}` : ''}{${rule}}`;
-  }
-  return serialized;
-}
-
-export default function preprocessStyles(input: any, layerName?: string) {
+export default function preprocessStyles(input: any) {
   const { variants, ...style } = input;
 
-  const serialized = shallowLayer(internal_serializeStyles(style), layerName) as any;
   const result = {
     variants,
-    style: serialized,
+    style: internal_serializeStyles(style) as any,
     isProcessed: true,
   };
 
@@ -27,11 +17,7 @@ export default function preprocessStyles(input: any, layerName?: string) {
   if (variants) {
     variants.forEach((variant: any) => {
       if (typeof variant.style !== 'function') {
-        variant.style = shallowLayer(
-          internal_serializeStyles(variant.style),
-          layerName,
-          'variants',
-        );
+        variant.style = internal_serializeStyles(variant.style);
       }
     });
   }

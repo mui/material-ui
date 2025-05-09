@@ -42,7 +42,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
   unstable_sxConfig?: SxConfig;
-  experimental_nestedCssLayer?: boolean;
+  experimental_modularCssLayers?: boolean;
 }
 
 export interface BaseTheme extends SystemTheme {
