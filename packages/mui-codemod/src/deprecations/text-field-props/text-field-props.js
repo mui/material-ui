@@ -11,6 +11,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'TextField',
     propName: 'InputProps',
     slotName: 'input',
@@ -18,6 +19,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'TextField',
     propName: 'inputProps',
     slotName: 'htmlInput',
@@ -25,6 +27,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'TextField',
     propName: 'SelectProps',
     slotName: 'select',
@@ -32,6 +35,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'TextField',
     propName: 'InputLabelProps',
     slotName: 'inputLabel',
@@ -39,6 +43,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'TextField',
     propName: 'FormHelperTextProps',
     slotName: 'formHelperText',

@@ -12,7 +12,11 @@ export default function transformer(file, api, options) {
     const replacementSelectorPrefix = '&';
     root
       .find(j.ImportDeclaration)
-      .filter((path) => path.node.source.value.match(/^@mui\/material\/StepConnector$/))
+      .filter((path) =>
+        path.node.source.value.match(
+          new RegExp(`^${options.packageName || '@mui/material'}(/StepConnector)?$`),
+        ),
+      )
       .forEach((path) => {
         path.node.specifiers.forEach((specifier) => {
           if (

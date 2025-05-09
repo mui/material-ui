@@ -12,12 +12,14 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Tabs',
     propName: 'ScrollButtonComponent',
     slotName: 'scrollButton',
   });
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Tabs',
     propName: 'TabScrollButtonProps',
     slotName: 'scrollButton',
@@ -25,6 +27,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Tabs',
     propName: 'TabIndicatorProps',
     slotName: 'indicator',

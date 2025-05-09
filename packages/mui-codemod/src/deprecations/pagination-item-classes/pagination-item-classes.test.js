@@ -39,6 +39,33 @@ describe('@mui/codemod', () => {
         });
       });
 
+      describe('[package] js-transform', () => {
+        it('transforms props as needed', () => {
+          const actual = jsTransform(
+            { source: read('./test-cases/package.actual.js') },
+            { jscodeshift },
+            {
+              printOptions: { quote: 'double', trailingComma: true },
+              packageName: '@org/ui/material',
+            },
+          );
+
+          const expected = read('./test-cases/package.expected.js');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+
+        it('should be idempotent', () => {
+          const actual = jsTransform(
+            { source: read('./test-cases/package.expected.js') },
+            { jscodeshift },
+            { packageName: '@org/ui/material' },
+          );
+
+          const expected = read('./test-cases/package.expected.js');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+      });
+
       describe('css-transform', () => {
         it('transforms classes as needed', async () => {
           const actual = await postcssProcessor.process(read('./test-cases/actual.css'), {

@@ -11,10 +11,15 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  replaceComponentsWithSlots(j, { root, componentName: 'StepLabel' });
+  replaceComponentsWithSlots(j, {
+    root,
+    packageName: options.packageName,
+    componentName: 'StepLabel',
+  });
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'StepLabel',
     propName: 'StepIconComponent',
     slotName: 'stepIcon',
@@ -22,6 +27,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'StepLabel',
     propName: 'StepIconProps',
     slotName: 'stepIcon',

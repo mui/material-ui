@@ -11,10 +11,11 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  replaceComponentsWithSlots(j, { root, componentName: 'Modal' });
+  replaceComponentsWithSlots(j, { root, packageName: options.packageName, componentName: 'Modal' });
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Modal',
     propName: 'BackdropComponent',
     slotName: 'backdrop',
@@ -22,6 +23,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Modal',
     propName: 'BackdropProps',
     slotName: 'backdrop',

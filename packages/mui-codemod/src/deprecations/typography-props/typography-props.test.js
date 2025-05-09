@@ -61,5 +61,29 @@ describe('@mui/codemod', () => {
         expect(actual).to.not.equal(expected);
       });
     });
+
+    describe('[package] typography-props', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/package.actual.js') },
+          { jscodeshift },
+          { packageName: '@org/ui/material' },
+        );
+
+        const expected = read('./test-cases/package.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/package.expected.js') },
+          { jscodeshift },
+          { packageName: '@org/ui/material' },
+        );
+
+        const expected = read('./test-cases/package.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });
