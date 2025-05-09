@@ -25,6 +25,17 @@
       "default": "'medium'"
     },
     "skipFocusWhenDisabled": { "type": { "name": "bool" }, "default": "false" },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ label?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": { "name": "shape", "description": "{ label?: elementType, root?: elementType }" },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -42,6 +53,20 @@
   },
   "name": "Chip",
   "imports": ["import Chip from '@mui/material/Chip';", "import { Chip } from '@mui/material';"],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root.",
+      "default": "div",
+      "class": "MuiChip-root"
+    },
+    {
+      "name": "label",
+      "description": "The component that renders the label.",
+      "default": "span",
+      "class": "MuiChip-label"
+    }
+  ],
   "classes": [
     {
       "key": "avatar",
@@ -288,12 +313,6 @@
       "isDeprecated": true
     },
     {
-      "key": "label",
-      "className": "MuiChip-label",
-      "description": "Styles applied to the label `span` element.",
-      "isGlobal": false
-    },
-    {
       "key": "labelMedium",
       "className": "MuiChip-labelMedium",
       "description": "Styles applied to the label `span` element if `size=\"medium\"`.",
@@ -326,12 +345,6 @@
       "description": "Styles applied to the root element if `variant=\"outlined\"` and `color=\"secondary\"`.",
       "isGlobal": false,
       "isDeprecated": true
-    },
-    {
-      "key": "root",
-      "className": "MuiChip-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     },
     {
       "key": "sizeMedium",

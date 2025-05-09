@@ -28,6 +28,8 @@
     "skipFocusWhenDisabled": {
       "description": "If <code>true</code>, allows the disabled chip to escape focus. If <code>false</code>, allows the disabled chip to receive focus."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -235,10 +237,6 @@
       "conditions": "<code>size=\"small\"</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/chip/#chip-classes-icon\">.MuiChip-icon</a> and <a href=\"/material-ui/api/chip/#chip-classes-sizeSmall\">.MuiChip-sizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
-    "label": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label <code>span</code> element"
-    },
     "labelMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the label <code>span</code> element",
@@ -268,7 +266,6 @@
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>",
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/chip/#chip-classes-outlined\">.MuiChip-outlined</a> and <a href=\"/material-ui/api/chip/#chip-classes-colorSecondary\">.MuiChip-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
-    "root": { "description": "Styles applied to the root element." },
     "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -279,5 +276,9 @@
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
     }
+  },
+  "slotDescriptions": {
+    "label": "The component that renders the label.",
+    "root": "The component that renders the root."
   }
 }

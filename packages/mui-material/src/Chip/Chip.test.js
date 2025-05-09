@@ -30,6 +30,14 @@ describe('<Chip />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     skip: ['componentsProp'],
+    slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      label: {
+        expectedClassName: classes.label,
+      },
+    },
   }));
 
   describe('text only', () => {
