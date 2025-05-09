@@ -75,6 +75,63 @@ yarn add @types/react@<version> @types/react-dom@<version>
 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
+## React 18 and below
+
+If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
+
+For example, if you are using `react@18.3.1`, do the following steps:
+
+1. Install `react-is@18.3.1`.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react-is@18.3.1
+```
+
+```bash pnpm
+pnpm add react-is@18.3.1
+```
+
+```bash yarn
+yarn add react-is@18.3.1
+```
+
+</codeblock>
+
+2. Set the resolutions or overrides in the `package.json`.
+
+<codeblock storageKey="package-manager">
+
+```json npm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json pnpm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json yarn
+{
+  …
+  "resolutions": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+</codeblock>
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
