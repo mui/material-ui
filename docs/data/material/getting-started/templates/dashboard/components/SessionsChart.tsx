@@ -74,6 +74,7 @@ export default function SessionsChart() {
               scaleType: 'point',
               data,
               tickInterval: (index, i) => (i + 1) % 5 === 0,
+              height: 24,
             },
           ]}
           yAxis={[{ width: 50 }]}
@@ -122,7 +123,7 @@ export default function SessionsChart() {
             },
           ]}
           height={250}
-          margin={{ left: 5, right: 20, top: 20, bottom: 0 }}
+          margin={{ left: 0, right: 20, top: 20, bottom: 0 }}
           grid={{ horizontal: true }}
           sx={{
             '& .MuiAreaElement-series-organic': {

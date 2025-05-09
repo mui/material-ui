@@ -47,6 +47,7 @@ export default function PageViewsBarChart() {
               scaleType: 'band',
               categoryGapRatio: 0.5,
               data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+              height: 24,
             },
           ]}
           yAxis={[{ width: 50 }]}
