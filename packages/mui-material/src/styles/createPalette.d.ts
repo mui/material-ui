@@ -124,6 +124,7 @@ export interface Channels {
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
 
 export interface PaletteOptions {
+  colorSpace?: string;
   primary?: PaletteColorOptions;
   secondary?: PaletteColorOptions;
   error?: PaletteColorOptions;
