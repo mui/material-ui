@@ -77,25 +77,26 @@ export function getCookie(name: string): string | undefined {
  * pathname is a reference to Next.js's pathname, the name of page in the filesystem
  * https://nextjs.org/docs/api-reference/next/router
  */
-export function pathnameToLanguage(pathname: string): {
+export function pathnameToLanguage(pathname?: string): {
   userLanguage: string;
   canonicalAs: string;
   canonicalAsServer: string;
   canonicalPathname: string;
 } {
   let userLanguage;
-  const userLanguageCandidate = pathname.substring(1, 3);
+  const path = typeof pathname === 'string' ? pathname : '';
+  const userLanguageCandidate = path.substring(1, 3);
 
   if (
     [...LANGUAGES, 'zh'].includes(userLanguageCandidate) &&
-    pathname.startsWith(`/${userLanguageCandidate}/`)
+    path.startsWith(`/${userLanguageCandidate}/`)
   ) {
     userLanguage = userLanguageCandidate;
   } else {
     userLanguage = 'en';
   }
 
-  const canonicalAs = userLanguage === 'en' ? pathname : pathname.substring(3);
+  const canonicalAs = userLanguage === 'en' ? path : path.substring(3);
   // Remove hash as it's never sent to the server
   // https://github.com/vercel/next.js/issues/25202
   const canonicalAsServer = canonicalAs.replace(/#(.*)$/, '');
