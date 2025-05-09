@@ -517,10 +517,12 @@ export function buildTheme(): ThemeOptions {
 const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('light');
 const { palette: darkPalette } = getDesignTokens('dark');
 const defaultTheme = extendTheme({
+  experimental_modularCssLayers: true,
   colorSchemes: { light: true, dark: true },
   colorSchemeSelector: 'data-mui-color-scheme',
 });
 export const customTheme = extendTheme({
+  experimental_modularCssLayers: true,
   cssVarPrefix: 'muidocs',
   colorSchemeSelector: 'data-mui-color-scheme',
   colorSchemes: {

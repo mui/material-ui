@@ -1,4 +1,7 @@
-import styledEngineStyled, { internal_mutateStyles as mutateStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  internal_mutateStyles as mutateStyles,
+  internal_serializeStyles as serializeStyles,
+} from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -17,6 +20,15 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+function shallowLayer(serialized, layerName, suffix) {
+  if (layerName && !serialized.styles.startsWith('@layer')) {
+    // only add the layer if it is not already there.
+    const rule = String(serialized.styles);
+    serialized.styles = `@layer ${layerName}${suffix ? `-${suffix}` : ''}{${rule}}`;
+  }
+  return serialized;
+}
+
 function defaultOverridesResolver(slot) {
   if (!slot) {
     return null;
@@ -28,7 +40,7 @@ function attachTheme(props, themeId, defaultTheme) {
   props.theme = isObjectEmpty(props.theme) ? defaultTheme : props.theme[themeId] || props.theme;
 }
 
-function processStyle(props, style) {
+function processStyle(props, style, layerName) {
   /*
    * Style types:
    *  - null/undefined
@@ -41,29 +53,29 @@ function processStyle(props, style) {
   const resolvedStyle = typeof style === 'function' ? style(props) : style;
 
   if (Array.isArray(resolvedStyle)) {
-    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle));
+    return resolvedStyle.flatMap((subStyle) => processStyle(props, subStyle, layerName));
   }
 
   if (Array.isArray(resolvedStyle?.variants)) {
     let rootStyle;
     if (resolvedStyle.isProcessed) {
-      rootStyle = resolvedStyle.style;
+      rootStyle = layerName ? shallowLayer(resolvedStyle.style, layerName) : resolvedStyle.style;
     } else {
       const { variants, ...otherStyles } = resolvedStyle;
-      rootStyle = otherStyles;
+      rootStyle = layerName ? shallowLayer(serializeStyles(otherStyles), layerName) : otherStyles;
     }
 
-    return processStyleVariants(props, resolvedStyle.variants, [rootStyle]);
+    return processStyleVariants(props, resolvedStyle.variants, [rootStyle], layerName);
   }
 
   if (resolvedStyle?.isProcessed) {
     return resolvedStyle.style;
   }
 
-  return resolvedStyle;
+  return layerName ? shallowLayer(serializeStyles(resolvedStyle), layerName) : resolvedStyle;
 }
 
-function processStyleVariants(props, variants, results = []) {
+function processStyleVariants(props, variants, results = [], layerName = undefined) {
   let mergedState; // We might not need it, initialized lazily
 
   variantLoop: for (let i = 0; i < variants.length; i += 1) {
@@ -84,9 +96,17 @@ function processStyleVariants(props, variants, results = []) {
 
     if (typeof variant.style === 'function') {
       mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
-      results.push(variant.style(mergedState));
+      results.push(
+        layerName
+          ? shallowLayer(serializeStyles(variant.style(mergedState)), layerName, 'variants')
+          : variant.style(mergedState),
+      );
     } else {
-      results.push(variant.style);
+      results.push(
+        layerName
+          ? shallowLayer(serializeStyles(variant.style), layerName, 'variants')
+          : variant.style,
+      );
     }
   }
 
@@ -120,6 +140,8 @@ export default function createStyled(input = {}) {
       overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
       ...options
     } = inputOptions;
+
+    const layerName = componentName ? 'default' : 'custom';
 
     // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
@@ -157,16 +179,26 @@ export default function createStyled(input = {}) {
       // which are basically components used as a selectors.
       if (typeof style === 'function' && style.__emotion_real !== style) {
         return function styleFunctionProcessor(props) {
-          return processStyle(props, style);
+          return processStyle(
+            props,
+            style,
+            props.theme.experimental_modularCssLayers ? layerName : undefined,
+          );
         };
       }
       if (isPlainObject(style)) {
         const serialized = preprocessStyles(style);
-        if (!serialized.variants) {
-          return serialized.style;
-        }
         return function styleObjectProcessor(props) {
-          return processStyle(props, serialized);
+          if (!serialized.variants) {
+            return props.theme.experimental_modularCssLayers
+              ? shallowLayer(serialized.style, layerName)
+              : serialized.style;
+          }
+          return processStyle(
+            props,
+            serialized,
+            props.theme.experimental_modularCssLayers ? layerName : undefined,
+          );
         };
       }
       return style;
@@ -194,7 +226,11 @@ export default function createStyled(input = {}) {
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           // eslint-disable-next-line guard-for-in
           for (const slotKey in styleOverrides) {
-            resolvedStyleOverrides[slotKey] = processStyle(props, styleOverrides[slotKey]);
+            resolvedStyleOverrides[slotKey] = processStyle(
+              props,
+              styleOverrides[slotKey],
+              props.theme.experimental_modularCssLayers ? 'theme' : undefined,
+            );
           }
 
           return overridesResolver(props, resolvedStyleOverrides);
@@ -208,7 +244,12 @@ export default function createStyled(input = {}) {
           if (!themeVariants) {
             return null;
           }
-          return processStyleVariants(props, themeVariants);
+          return processStyleVariants(
+            props,
+            themeVariants,
+            [],
+            props.theme.experimental_modularCssLayers ? 'theme' : undefined,
+          );
         });
       }
 
