@@ -22,7 +22,7 @@ export default function unstable_memoTheme<T>(styleFn: ThemeStyleFunction<T>) {
     if (value === undefined || props.theme !== lastTheme) {
       arg.theme = props.theme;
 
-      value = preprocessStyles(styleFn(arg), 'base');
+      value = preprocessStyles(styleFn(arg));
 
       lastValue = value;
       lastTheme = props.theme;
