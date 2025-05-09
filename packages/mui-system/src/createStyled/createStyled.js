@@ -141,6 +141,8 @@ export default function createStyled(input = {}) {
       ...options
     } = inputOptions;
 
+    const layerName = componentName ? 'default' : 'custom';
+
     // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
       inputSkipVariantsResolver !== undefined
@@ -180,7 +182,7 @@ export default function createStyled(input = {}) {
           return processStyle(
             props,
             style,
-            props.theme.experimental_modularCssLayers ? 'base' : undefined,
+            props.theme.experimental_modularCssLayers ? layerName : undefined,
           );
         };
       }
@@ -189,13 +191,13 @@ export default function createStyled(input = {}) {
         return function styleObjectProcessor(props) {
           if (!serialized.variants) {
             return props.theme.experimental_modularCssLayers
-              ? shallowLayer(serialized.style, 'base')
+              ? shallowLayer(serialized.style, layerName)
               : serialized.style;
           }
           return processStyle(
             props,
             serialized,
-            props.theme.experimental_modularCssLayers ? 'base' : undefined,
+            props.theme.experimental_modularCssLayers ? layerName : undefined,
           );
         };
       }

@@ -27,7 +27,7 @@ export default function StyledEngineProvider(props) {
   return (
     <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
       <CacheProvider value={emotionCache}>
-        <GlobalStyles styles="@layer theme, docsearch, mui, mui.base, mui.base-variants, mui.theme, mui.theme-variants, mui.sx, utilities;" />
+        <GlobalStyles styles="@layer theme, docsearch, mui, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.custom, mui.custom-variants, mui.sx, utilities;" />
         {children}
       </CacheProvider>
     </StyleSheetManager>
