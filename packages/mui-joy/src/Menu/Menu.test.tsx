@@ -21,7 +21,7 @@ const testContext: DropdownContextValue = {
 };
 
 describe('Joy <Menu />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  const { render } = createRenderer();
 
   describeConformance(<Menu />, () => ({
     classes,

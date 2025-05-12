@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { useFakeTimers } from 'sinon';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Dialog from '@mui/material/Dialog';
@@ -8,7 +9,18 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
 describe('<Select> integration', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   describe('with Dialog', () => {
     function SelectAndDialog() {
@@ -52,8 +64,8 @@ describe('<Select> integration', () => {
       // Now, let's close the select component
       await act(async () => {
         getByTestId('select-backdrop').click();
+        await timer?.tickAsync(0);
       });
-      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -74,8 +86,8 @@ describe('<Select> integration', () => {
       // Now, let's close the select component
       await act(async () => {
         options[2].click();
+        await timer?.tickAsync(0);
       });
-      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -125,7 +137,9 @@ describe('<Select> integration', () => {
         trigger.focus();
       });
       fireEvent.keyDown(trigger, { key: 'Enter' });
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });

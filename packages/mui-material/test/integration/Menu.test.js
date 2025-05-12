@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { useFakeTimers } from 'sinon';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -69,22 +70,33 @@ function ButtonMenu(props) {
 ButtonMenu.propTypes = { selectedIndex: PropTypes.number };
 
 describe('<Menu /> integration', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
 
-  it('is part of the DOM by default but hidden', () => {
-    const { getByRole } = render(<ButtonMenu />);
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
+
+  it('is part of the DOM by default but hidden', async () => {
+    const { getByRole } = await render(<ButtonMenu />);
 
     expect(getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
-  it('does not gain any focus when mounted ', () => {
-    const { getByRole } = render(<ButtonMenu />);
+  it('does not gain any focus when mounted ', async () => {
+    const { getByRole } = await render(<ButtonMenu />);
 
     expect(getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
   });
 
   it('should focus the first item on open', async () => {
-    const { getByRole, getAllByRole } = render(<ButtonMenu />);
+    const { getByRole, getAllByRole } = await render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
     await act(async () => {
@@ -96,7 +108,7 @@ describe('<Menu /> integration', () => {
   });
 
   it('changes focus according to keyboard navigation', async () => {
-    const { getAllByRole, getByRole } = render(<ButtonMenu />);
+    const { getAllByRole, getByRole } = await render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
     await act(async () => {
@@ -125,7 +137,7 @@ describe('<Menu /> integration', () => {
   });
 
   it('focuses the selected item when opening', async () => {
-    const { getAllByRole, getByRole } = render(<ButtonMenu selectedIndex={2} />);
+    const { getAllByRole, getByRole } = await render(<ButtonMenu selectedIndex={2} />);
 
     const button = getByRole('button', { name: 'open menu' });
     await act(async () => {
@@ -141,8 +153,8 @@ describe('<Menu /> integration', () => {
       return <Menu anchorEl={document.body} open {...props} />;
     }
 
-    specify('[variant=menu] will focus the first item if nothing is selected', () => {
-      const { getAllByRole } = render(
+    specify('[variant=menu] will focus the first item if nothing is selected', async () => {
+      const { getAllByRole } = await render(
         <OpenMenu variant="menu">
           <MenuItem />
           <MenuItem />
@@ -157,8 +169,8 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] will focus the first item if nothing is selected', () => {
-      const { getAllByRole } = render(
+    specify('[variant=selectedMenu] will focus the first item if nothing is selected', async () => {
+      const { getAllByRole } = await render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
           <MenuItem />
@@ -174,8 +186,8 @@ describe('<Menu /> integration', () => {
     });
 
     // no case for variant=selectedMenu
-    specify('[variant=menu] prioritizes `autoFocus` on `MenuItem`', () => {
-      const { getAllByRole } = render(
+    specify('[variant=menu] prioritizes `autoFocus` on `MenuItem`', async () => {
+      const { getAllByRole } = await render(
         <OpenMenu variant="menu">
           <MenuItem />
           <MenuItem />
@@ -190,8 +202,8 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=menu] ignores `selected` on `MenuItem`', () => {
-      const { getAllByRole } = render(
+    specify('[variant=menu] ignores `selected` on `MenuItem`', async () => {
+      const { getAllByRole } = await render(
         <OpenMenu variant="menu">
           <MenuItem />
           <MenuItem selected />
@@ -206,8 +218,8 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] focuses the `selected` `MenuItem`', () => {
-      const { getAllByRole } = render(
+    specify('[variant=selectedMenu] focuses the `selected` `MenuItem`', async () => {
+      const { getAllByRole } = await render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
           <MenuItem selected />
@@ -222,8 +234,8 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', () => {
-      const { getAllByRole } = render(
+    specify('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', async () => {
+      const { getAllByRole } = await render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
           <MenuItem selected tabIndex={2} />
@@ -243,8 +255,8 @@ describe('<Menu /> integration', () => {
     // it's debatable whether disabled items should still be focusable
     specify(
       '[variant=selectedMenu] focuses the first non-disabled item if the selected menuitem is disabled',
-      () => {
-        const { getAllByRole } = render(
+      async () => {
+        const { getAllByRole } = await render(
           <OpenMenu variant="selectedMenu">
             <MenuItem disabled />
             <MenuItem />
@@ -265,8 +277,8 @@ describe('<Menu /> integration', () => {
     // no case for menu
     // TODO: should this even change focus? I would guess that autoFocus={false}
     // means "developer: I take care of focus don't steal it from me"
-    specify('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', () => {
-      const { getAllByRole, getByTestId } = render(
+    specify('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', async () => {
+      const { getAllByRole, getByTestId } = await render(
         <OpenMenu autoFocus={false} variant="selectedMenu" PaperProps={{ 'data-testid': 'Paper' }}>
           <MenuItem />
           <MenuItem selected />
@@ -281,8 +293,8 @@ describe('<Menu /> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    specify('[variant=selectedMenu] focuses nothing when it is closed and mounted', () => {
-      const { getByRole } = render(<ButtonMenu selectedIndex={1} variant="selectedMenu" />);
+    specify('[variant=selectedMenu] focuses nothing when it is closed and mounted', async () => {
+      const { getByRole } = await render(<ButtonMenu selectedIndex={1} variant="selectedMenu" />);
 
       expect(getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
     });
@@ -290,7 +302,7 @@ describe('<Menu /> integration', () => {
     specify(
       '[variant=selectedMenu] focuses the selected item when opening when it was already mounted',
       async () => {
-        const { getAllByRole, getByRole } = render(
+        const { getAllByRole, getByRole } = await render(
           <ButtonMenu selectedIndex={1} variant="selectedMenu" />,
         );
 
@@ -309,7 +321,7 @@ describe('<Menu /> integration', () => {
   });
 
   it('closes the menu when Tabbing while the list is active', async () => {
-    render(<ButtonMenu />);
+    await render(<ButtonMenu />);
 
     const trigger = screen.getByRole('button');
     await act(async () => {
@@ -319,13 +331,15 @@ describe('<Menu /> integration', () => {
 
     // react-transition-group uses one commit per state transition so we need to wait a bit
     fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
-    clock.tick(0);
+    await act(async () => {
+      await timer?.tickAsync(0);
+    });
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();
   });
 
   it('closes the menu when the backdrop is clicked', async () => {
-    const { getByRole, getByTestId } = render(<ButtonMenu />);
+    const { getByRole, getByTestId } = await render(<ButtonMenu />);
     const button = getByRole('button');
     await act(async () => {
       button.focus();

@@ -11,7 +11,7 @@ import ListDivider from '@mui/joy/ListDivider';
 import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Select />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  const { render } = createRenderer();
 
   describeConformance(<Select startDecorator="1" endDecorator="1" />, () => ({
     render,

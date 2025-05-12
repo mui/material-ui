@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, match } from 'sinon';
+import { spy, stub, match, useFakeTimers } from 'sinon';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import Modal, { modalClasses } from '@mui/material/Modal';
@@ -50,7 +50,18 @@ const CustomTransition = React.forwardRef(function CustomTransition(
 });
 
 describe('<Popover />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   describeConformance(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -92,7 +103,7 @@ describe('<Popover />', () => {
   }));
 
   describe('root node', () => {
-    it('should render a Modal with an invisible backdrop as the root node', () => {
+    it('should render a Modal with an invisible backdrop as the root node', async () => {
       function TestBackdrop(props) {
         const { open, invisible } = props;
         if (!open) {
@@ -133,7 +144,7 @@ describe('<Popover />', () => {
       expect(screen.getByTestId('children')).not.to.equal(null);
     });
 
-    it('hide its children immediately when closing but transition them out', () => {
+    it('hide its children immediately when closing but transition them out', async () => {
       const { setProps } = render(
         <Popover open anchorEl={document.createElement('div')} transitionDuration={1974}>
           <div data-testid="children" />
@@ -144,7 +155,9 @@ describe('<Popover />', () => {
 
       expect(screen.getByTestId('children')).toBeInaccessible();
 
-      clock.tick(1974);
+      await act(async () => {
+        await timer?.tickAsync(1974);
+      });
 
       expect(screen.queryByTestId('children')).to.equal(null);
     });
@@ -227,7 +240,7 @@ describe('<Popover />', () => {
       );
     });
 
-    it('should fire Popover transition event callbacks', () => {
+    it('should fire Popover transition event callbacks', async () => {
       const handleEnter = spy();
       const handleEntering = spy();
       const handleEntered = spy();
@@ -270,7 +283,9 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
 
       expect({
         onEnter: handleEnter.callCount,
@@ -308,7 +323,9 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
 
       expect({
         onEnter: handleEnter.callCount,
@@ -498,7 +515,7 @@ describe('<Popover />', () => {
   describe('positioning on an anchor', () => {
     let anchorEl;
 
-    function openPopover(anchorOrigin) {
+    async function openPopover(anchorOrigin) {
       render(
         <Popover
           anchorEl={anchorEl}
@@ -510,7 +527,9 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
     }
 
     beforeEach(() => {
@@ -529,8 +548,8 @@ describe('<Popover />', () => {
       document.body.removeChild(anchorEl);
     });
 
-    it('should be positioned over the top left of the anchor', () => {
-      openPopover({ vertical: 'top', horizontal: 'left' });
+    it('should be positioned over the top left of the anchor', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'left' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.top <= 16 ? 16 : anchorRect.top;
@@ -538,8 +557,8 @@ describe('<Popover />', () => {
       expect(screen.getByTestId('paper')).toHaveInlineStyle({ top: `${top}px`, left: `${left}px` });
     });
 
-    it('should be positioned over the center left of the anchor', () => {
-      openPopover({ vertical: 'center', horizontal: 'left' });
+    it('should be positioned over the center left of the anchor', async () => {
+      await openPopover({ vertical: 'center', horizontal: 'left' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const anchorTop = anchorRect.top + anchorRect.height / 2;
@@ -548,8 +567,8 @@ describe('<Popover />', () => {
       expect(screen.getByTestId('paper')).toHaveInlineStyle({ top: `${top}px`, left: `${left}px` });
     });
 
-    it('should be positioned over the bottom left of the anchor', () => {
-      openPopover({ vertical: 'bottom', horizontal: 'left' });
+    it('should be positioned over the bottom left of the anchor', async () => {
+      await openPopover({ vertical: 'bottom', horizontal: 'left' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
@@ -557,8 +576,8 @@ describe('<Popover />', () => {
       expect(screen.getByTestId('paper')).toHaveInlineStyle({ top: `${top}px`, left: `${left}px` });
     });
 
-    it('should be positioned over the center center of the anchor', () => {
-      openPopover({ vertical: 'center', horizontal: 'center' });
+    it('should be positioned over the center center of the anchor', async () => {
+      await openPopover({ vertical: 'center', horizontal: 'center' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const anchorTop = anchorRect.top + anchorRect.height / 2;
@@ -568,16 +587,16 @@ describe('<Popover />', () => {
       expect(screen.getByTestId('paper')).toHaveInlineStyle({ top: `${top}px`, left: `${left}px` });
     });
 
-    it('should be positioned over the top right of the anchor', () => {
-      openPopover({ vertical: 'top', horizontal: 'right' });
+    it('should be positioned over the top right of the anchor', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'right' });
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.top <= 16 ? 16 : anchorRect.top;
       const left = anchorRect.right <= 16 ? 16 : anchorRect.right;
       expect(screen.getByTestId('paper')).toHaveInlineStyle({ top: `${top}px`, left: `${left}px` });
     });
 
-    it('should be positioned over the bottom right of the anchor', () => {
-      openPopover({ vertical: 'bottom', horizontal: 'right' });
+    it('should be positioned over the bottom right of the anchor', async () => {
+      await openPopover({ vertical: 'bottom', horizontal: 'right' });
 
       const anchorRect = anchorEl.getBoundingClientRect();
       const top = anchorRect.bottom <= 16 ? 16 : anchorRect.bottom;
@@ -639,7 +658,7 @@ describe('<Popover />', () => {
   describe('prop anchorReference="anchorPosition"', () => {
     const anchorPosition = { top: 300, left: 500 };
 
-    function openPopover(anchorOrigin) {
+    async function openPopover(anchorOrigin) {
       render(
         <Popover
           anchorEl={document.createElement('div')}
@@ -653,11 +672,13 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
       );
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
     }
 
-    it('should be positioned according to the passed coordinates', () => {
-      openPopover();
+    it('should be positioned according to the passed coordinates', async () => {
+      await openPopover();
 
       expect(screen.getByTestId('paper')).toHaveInlineStyle({
         top: `${anchorPosition.top}px`,
@@ -665,8 +686,8 @@ describe('<Popover />', () => {
       });
     });
 
-    it('should ignore the anchorOrigin prop when being positioned', () => {
-      openPopover({ vertical: 'top', horizontal: 'right' });
+    it('should ignore the anchorOrigin prop when being positioned', async () => {
+      await openPopover({ vertical: 'top', horizontal: 'right' });
 
       expect(screen.getByTestId('paper')).toHaveInlineStyle({
         top: `${anchorPosition.top}px`,
@@ -676,7 +697,7 @@ describe('<Popover />', () => {
   });
 
   describe('prop anchorReference="none"', () => {
-    it('should not try to change the position', () => {
+    it('should not try to change the position', async () => {
       const anchorEl = document.createElement('div');
       render(
         <Popover
@@ -715,7 +736,7 @@ describe('<Popover />', () => {
       window.innerHeight = windowInnerHeight;
     });
 
-    it('should recalculate position if the popover is open', () => {
+    it('should recalculate position if the popover is open', async () => {
       let element;
       const anchorEl = document.createElement('div');
       stub(anchorEl, 'getBoundingClientRect').callsFake(() => ({
@@ -745,7 +766,9 @@ describe('<Popover />', () => {
 
       window.innerHeight = windowInnerHeight * 2;
       window.dispatchEvent(new window.Event('resize'));
-      clock.tick(166);
+      await act(async () => {
+        await timer?.tickAsync(166);
+      });
 
       const afterStyle = {
         top: element.style.top,
@@ -755,7 +778,7 @@ describe('<Popover />', () => {
       expect(beforeStyle).not.to.deep.equal(afterStyle);
     });
 
-    it('should not recalculate position if the popover is closed', () => {
+    it('should not recalculate position if the popover is closed', async () => {
       let element;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
@@ -786,7 +809,9 @@ describe('<Popover />', () => {
       window.innerHeight = windowInnerHeight * 2;
       window.dispatchEvent(new window.Event('resize'));
       setProps({ open: false });
-      clock.tick(166);
+      await act(async () => {
+        await timer?.tickAsync(166);
+      });
 
       const afterStyle = {
         top: element.style.top,
@@ -836,7 +861,9 @@ describe('<Popover />', () => {
       await act(async () => {
         popoverActions.updatePosition();
       });
-      clock.tick(166);
+      await act(async () => {
+        await timer?.tickAsync(166);
+      });
 
       const afterStyle = {
         top: element.style.top,
