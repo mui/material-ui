@@ -22,6 +22,7 @@ const Parent2 = styled('div')({
 export default function ComponentSelector() {
   return (
     <div>
+      <Child>I am blue.</Child>
       <Parent>
         <Child>I am red (literal).</Child>
       </Parent>
