@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
@@ -39,7 +39,18 @@ const CustomFade = React.forwardRef(function CustomFade(props, ref) {
 });
 
 describe('<Dialog />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   describeConformance(
     <Dialog open disablePortal>
@@ -144,7 +155,9 @@ describe('<Dialog />', () => {
     fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
-    clock.tick(100);
+    await act(async () => {
+      await timer?.tickAsync(100);
+    });
 
     expect(queryByRole('dialog')).to.equal(null);
   });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import {
   ErrorBoundary,
   act,
@@ -22,7 +22,18 @@ import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Select />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   describeConformance(<Select value="" />, () => ({
     classes,
@@ -838,7 +849,7 @@ describe('<Select />', () => {
   });
 
   describe('prop: MenuProps', () => {
-    it('should apply additional props to the Menu component', () => {
+    it('should apply additional props to the Menu component', async () => {
       const onEntered = spy();
       const { getByRole } = render(
         <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
@@ -847,11 +858,15 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('combobox'));
-      clock.tick(99);
+      await act(async () => {
+        await timer?.tickAsync(99);
+      });
 
       expect(onEntered.callCount).to.equal(0);
 
-      clock.tick(1);
+      await act(async () => {
+        await timer?.tickAsync(1);
+      });
 
       expect(onEntered.callCount).to.equal(1);
     });
@@ -959,7 +974,7 @@ describe('<Select />', () => {
   });
 
   describe('prop: renderValue', () => {
-    it('should use the prop to render the value', () => {
+    it('should use the prop to render the value', async () => {
       const renderValue = (x) => `0b${x.toString(2)}`;
       const { getByRole } = render(
         <Select renderValue={renderValue} value={4}>
@@ -1037,7 +1052,9 @@ describe('<Select />', () => {
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
       expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
 
       expect(queryByRole('listbox', { hidden: true })).to.equal(null);
     });
