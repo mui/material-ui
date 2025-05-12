@@ -58,7 +58,6 @@ export interface CSSOthersObjectForCSSObject {
   [propertiesName: string]: CSSInterpolation;
 }
 
-// Omit variants as a key, because we have a special handling for it
 export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
 export interface ComponentSelector {
@@ -93,6 +92,21 @@ export interface FunctionInterpolation<Props> {
 
 export interface ArrayInterpolation<Props> extends ReadonlyArray<Interpolation<Props>> {}
 
+export interface VariantsPropsAndStyle<Props> {
+  props:
+    | (Props extends { ownerState: infer O }
+        ? Partial<Omit<Props, 'ownerState'> & O>
+        : Partial<Props>)
+    | ((
+        props: Partial<Props> & {
+          ownerState: Partial<Props>;
+        },
+      ) => boolean);
+  style:
+    | CSSObject
+    | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
+}
+
 export type Interpolation<Props> =
   | null
   | undefined
@@ -104,20 +118,7 @@ export type Interpolation<Props> =
   | SerializedStyles
   | CSSPropertiesWithMultiValues
   | (CSSObject & {
-      variants?: Array<{
-        props:
-          | (Props extends { ownerState: infer O }
-              ? Partial<Omit<Props, 'ownerState'> & O>
-              : Partial<Props>)
-          | ((
-              props: Partial<Props> & {
-                ownerState: Partial<Props>;
-              },
-            ) => boolean);
-        style:
-          | CSSObject
-          | ((args: Props extends { theme: any } ? { theme: Props['theme'] } : any) => CSSObject);
-      }>;
+      variants?: Array<VariantsPropsAndStyle<Props>>;
     })
   | ArrayInterpolation<Props>
   | FunctionInterpolation<Props>;

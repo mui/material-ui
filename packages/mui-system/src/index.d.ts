@@ -50,6 +50,7 @@ export {
   keyframes,
   StyledEngineProvider,
   Interpolation,
+  VariantsPropsAndStyle,
   CSSInterpolation,
   CSSObject,
 } from '@mui/styled-engine';
