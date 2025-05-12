@@ -90,7 +90,7 @@ describe('<Link />', () => {
 
       expect(anchor).not.to.have.class(classes.focusVisible);
 
-      focusVisible(anchor);
+      await focusVisible(anchor);
 
       expect(anchor).to.have.class(classes.focusVisible);
 
