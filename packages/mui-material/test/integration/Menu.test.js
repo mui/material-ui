@@ -277,21 +277,28 @@ describe('<Menu /> integration', () => {
     // no case for menu
     // TODO: should this even change focus? I would guess that autoFocus={false}
     // means "developer: I take care of focus don't steal it from me"
-    specify('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', async () => {
-      const { getAllByRole, getByTestId } = await render(
-        <OpenMenu autoFocus={false} variant="selectedMenu" PaperProps={{ 'data-testid': 'Paper' }}>
-          <MenuItem />
-          <MenuItem selected />
-          <MenuItem />
-        </OpenMenu>,
-      );
-      const menuitems = getAllByRole('menuitem');
+    specify(
+      '[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`',
+      async () => {
+        const { getAllByRole, getByTestId } = await render(
+          <OpenMenu
+            autoFocus={false}
+            variant="selectedMenu"
+            PaperProps={{ 'data-testid': 'Paper' }}
+          >
+            <MenuItem />
+            <MenuItem selected />
+            <MenuItem />
+          </OpenMenu>,
+        );
+        const menuitems = getAllByRole('menuitem');
 
-      expect(getByTestId('Paper')).toHaveFocus();
-      expect(menuitems[0]).to.have.property('tabIndex', -1);
-      expect(menuitems[1]).to.have.property('tabIndex', 0);
-      expect(menuitems[2]).to.have.property('tabIndex', -1);
-    });
+        expect(getByTestId('Paper')).toHaveFocus();
+        expect(menuitems[0]).to.have.property('tabIndex', -1);
+        expect(menuitems[1]).to.have.property('tabIndex', 0);
+        expect(menuitems[2]).to.have.property('tabIndex', -1);
+      },
+    );
 
     specify('[variant=selectedMenu] focuses nothing when it is closed and mounted', async () => {
       const { getByRole } = await render(<ButtonMenu selectedIndex={1} variant="selectedMenu" />);
