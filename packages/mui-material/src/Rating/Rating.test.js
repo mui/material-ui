@@ -193,14 +193,14 @@ describe('<Rating />', () => {
     expect(checked.value).to.equal('2');
   });
 
-  it('has a customization point for the label of the empty value when it is active', () => {
+  it('has a customization point for the label of the empty value when it is active', async () => {
     const { container } = render(
       <Rating classes={{ labelEmptyValueActive: 'customized' }} name="" value={null} />,
     );
 
     expect(container.querySelector('.customized')).to.equal(null);
 
-    act(() => {
+    await act(async () => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
         return radio.checked;
       });
@@ -211,7 +211,7 @@ describe('<Rating />', () => {
     expect(container.querySelector('.customized')).to.have.tagName('label');
   });
 
-  it('should apply labelEmptyValueActive styles from theme', function test() {
+  it('should apply labelEmptyValueActive styles from theme', async function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
@@ -233,7 +233,7 @@ describe('<Rating />', () => {
       </ThemeProvider>,
     );
 
-    act(() => {
+    await act(async () => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
         return radio.checked;
       });
@@ -335,7 +335,7 @@ describe('<Rating />', () => {
         formData: [['rating', '']],
       },
     ].forEach((testData, testNumber) => {
-      it(`submits the expected form data #${testNumber + 1}`, () => {
+      it(`submits the expected form data #${testNumber + 1}`, async () => {
         /**
          * @type FormData
          */
@@ -354,7 +354,7 @@ describe('<Rating />', () => {
         );
         const submitter = document.querySelector('button[type="submit"]');
 
-        act(() => {
+        await act(async () => {
           // form.submit() would not run form validation
           submitter.click();
         });

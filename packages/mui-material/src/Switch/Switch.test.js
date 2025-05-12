@@ -20,6 +20,7 @@ describe('<Switch />', () => {
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
     ],
+
     slots: {
       root: {
         expectedClassName: classes.root,
@@ -112,11 +113,11 @@ describe('<Switch />', () => {
     expect(getByTestId('icon')).toBeVisible();
   });
 
-  specify('the Checked state changes after change events', () => {
+  specify('the Checked state changes after change events', async () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
     // how a user would trigger it
-    act(() => {
+    await act(async () => {
       getByRole('checkbox').click();
       fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
     });

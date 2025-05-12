@@ -40,12 +40,12 @@ describe('<RadioGroup />', () => {
     expect(handleBlur.callCount).to.equal(1);
   });
 
-  it('should fire the onKeyDown callback', () => {
+  it('should fire the onKeyDown callback', async () => {
     const handleKeyDown = spy();
     const { getByRole } = render(<RadioGroup tabIndex={-1} value="" onKeyDown={handleKeyDown} />);
     const radiogroup = getByRole('radiogroup');
 
-    act(() => {
+    await act(async () => {
       radiogroup.focus();
     });
 
@@ -139,7 +139,7 @@ describe('<RadioGroup />', () => {
       expect(oneRadioOnFocus.callCount).to.equal(1);
     });
 
-    it('should not focus any radios if all are disabled', () => {
+    it('should not focus any radios if all are disabled', async () => {
       const actionsRef = React.createRef();
       const zeroRadioOnFocus = spy();
       const oneRadioOnFocus = spy();
@@ -153,7 +153,7 @@ describe('<RadioGroup />', () => {
         </RadioGroup>,
       );
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
 
@@ -208,11 +208,11 @@ describe('<RadioGroup />', () => {
       expect(threeRadioOnFocus.callCount).to.equal(1);
     });
 
-    it('should be able to focus with no radios', () => {
+    it('should be able to focus with no radios', async () => {
       const actionsRef = React.createRef();
       render(<RadioGroup actions={actionsRef} value="" />);
 
-      act(() => {
+      await act(async () => {
         actionsRef.current.focus();
       });
     });
@@ -363,19 +363,19 @@ describe('<RadioGroup />', () => {
       });
 
       describe('onChange', () => {
-        it('should set the value state', () => {
+        it('should set the value state', async () => {
           const radioGroupRef = React.createRef();
           render(<RadioGroupControlled ref={radioGroupRef} defaultValue="zero" />);
 
           expect(radioGroupRef.current).to.have.property('value', 'zero');
 
-          act(() => {
+          await act(async () => {
             radioGroupRef.current.onChange({ target: { value: 'one' } });
           });
 
           expect(radioGroupRef.current).to.have.property('value', 'one');
 
-          act(() => {
+          await act(async () => {
             radioGroupRef.current.onChange({ target: { value: 'two' } });
           });
 

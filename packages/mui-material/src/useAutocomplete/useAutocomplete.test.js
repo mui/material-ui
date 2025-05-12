@@ -303,6 +303,7 @@ describe('useAutocomplete', () => {
         aboveErrorUlElementMessage,
         aboveErrorTestComponentMessage,
       ],
+
       18: [
         nodeErrorMessage,
         muiErrorMessage,
@@ -313,6 +314,7 @@ describe('useAutocomplete', () => {
         aboveErrorTestComponentMessage,
         aboveErrorTestComponentMessage,
       ],
+
       19: [
         muiErrorMessage,
         muiErrorMessage,
@@ -335,7 +337,7 @@ describe('useAutocomplete', () => {
   });
 
   describe('prop: freeSolo', () => {
-    it('should not reset if the component value does not change on blur', () => {
+    it('should not reset if the component value does not change on blur', async () => {
       function Test(props) {
         const { options } = props;
         const { getInputProps } = useAutocomplete({ options, open: true, freeSolo: true });
@@ -345,7 +347,7 @@ describe('useAutocomplete', () => {
       render(<Test options={['foo', 'bar']} />);
       const input = screen.getByRole('combobox');
 
-      act(() => {
+      await act(async () => {
         fireEvent.change(input, { target: { value: 'free' } });
         input.blur();
       });

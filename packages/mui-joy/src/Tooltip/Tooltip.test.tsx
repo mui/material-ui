@@ -138,7 +138,7 @@ describe('<Tooltip />', () => {
 
   describe('focus', () => {
     // https://github.com/mui/mui-x/issues/12248
-    it('should support event handlers with extra parameters', () => {
+    it('should support event handlers with extra parameters', async () => {
       const handleFocus = spy((event, extra) => extra);
       const handleBlur = spy((event, ...params) => params);
 
@@ -167,14 +167,14 @@ describe('<Tooltip />', () => {
       );
       const input = getByRole('textbox');
 
-      act(() => {
+      await act(async () => {
         input.focus();
       });
 
       expect(handleFocus.callCount).to.equal(1);
       expect(handleFocus.returnValues[0]).to.equal('focus');
 
-      act(() => {
+      await act(async () => {
         input.blur();
       });
 

@@ -29,7 +29,7 @@ const TestComponent = <T,>({ value: valueProp, defaultValue, children }: TestCom
 describe('useControlled', () => {
   const { render } = createRenderer();
 
-  it('works correctly when is not controlled', () => {
+  it('works correctly when is not controlled', async () => {
     let valueState = 0;
     let setValueState: React.Dispatch<React.SetStateAction<number | undefined>>;
     render(
@@ -43,7 +43,7 @@ describe('useControlled', () => {
     );
     expect(valueState).to.equal(1);
 
-    act(() => {
+    await act(async () => {
       setValueState(2);
     });
 

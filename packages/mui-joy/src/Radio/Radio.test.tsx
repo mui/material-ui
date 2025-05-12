@@ -98,11 +98,11 @@ describe('<Radio />', () => {
     expect(getByRole('radio')).to.have.property('disabled', true);
   });
 
-  it('the Checked state changes after change events', () => {
+  it('the Checked state changes after change events', async () => {
     const { getByRole } = render(<Radio defaultChecked />);
 
     // how a user would trigger it
-    act(() => {
+    await act(async () => {
       getByRole('radio').click();
       fireEvent.change(getByRole('radio'), { target: { checked: '' } });
     });
@@ -148,7 +148,7 @@ describe('<Radio />', () => {
     expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
   });
 
-  it('should be checked when changing the value', () => {
+  it('should be checked when changing the value', async () => {
     const { getByRole } = render(
       <RadioGroup defaultValue={1}>
         <Radio name="0" value={0} />
@@ -158,13 +158,13 @@ describe('<Radio />', () => {
 
     expect(getByRole('radio', { checked: true })).to.have.property('value', '1');
 
-    act(() => {
+    await act(async () => {
       getByRole('radio', { checked: false }).click();
     });
 
     expect(getByRole('radio', { checked: true })).to.have.property('value', '0');
 
-    act(() => {
+    await act(async () => {
       getByRole('radio', { checked: false }).click();
     });
 

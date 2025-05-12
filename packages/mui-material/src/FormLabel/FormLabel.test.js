@@ -86,7 +86,7 @@ describe('<FormLabel />', () => {
         return null;
       });
 
-      it(`should have the focused class`, () => {
+      it(`should have the focused class`, async () => {
         const formControlRef = React.createRef();
         const { container } = render(
           <FormControl error>
@@ -97,13 +97,13 @@ describe('<FormLabel />', () => {
 
         expect(container.querySelector('label')).not.to.have.class(classes.focused);
 
-        act(() => {
+        await act(async () => {
           formControlRef.current.onFocus();
         });
         expect(container.querySelector('label')).to.have.class(classes.focused);
       });
 
-      it('should be overridden by props', () => {
+      it('should be overridden by props', async () => {
         const formControlRef = React.createRef();
         function Wrapper({ children }) {
           return (
@@ -117,7 +117,7 @@ describe('<FormLabel />', () => {
         const { container, setProps } = render(<FormLabel data-testid="FormLabel" />, {
           wrapper: Wrapper,
         });
-        act(() => {
+        await act(async () => {
           formControlRef.current.onFocus();
         });
 

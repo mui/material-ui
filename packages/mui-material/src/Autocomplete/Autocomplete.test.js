@@ -49,6 +49,7 @@ describe('<Autocomplete />', () => {
       open
       renderInput={(params) => <TextField {...params} />}
     />,
+
     () => ({
       classes,
       inheritComponent: 'div',
@@ -75,6 +76,7 @@ describe('<Autocomplete />', () => {
       open
       renderInput={(params) => <TextField {...params} />}
     />,
+
     () => ({
       classes,
       render,
@@ -95,6 +97,7 @@ describe('<Autocomplete />', () => {
       open
       renderInput={(params) => <TextField {...params} />}
     />,
+
     () => ({
       classes,
       render,
@@ -158,20 +161,20 @@ describe('<Autocomplete />', () => {
   });
 
   describe('combobox', () => {
-    it('should clear the input when blur', () => {
+    it('should clear the input when blur', async () => {
       const { getByRole } = render(
         <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
       );
       const input = getByRole('combobox');
 
-      act(() => {
+      await act(async () => {
         input.focus();
         fireEvent.change(document.activeElement, { target: { value: 'a' } });
       });
 
       expect(input.value).to.equal('a');
 
-      act(() => {
+      await act(async () => {
         document.activeElement.blur();
       });
       expect(input.value).to.equal('');
@@ -295,7 +298,7 @@ describe('<Autocomplete />', () => {
     });
 
     // https://github.com/mui/material-ui/issues/34998
-    it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', function test() {
+    it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -313,7 +316,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = getByRole('combobox');
-      act(() => {
+      await act(async () => {
         textbox.focus();
       });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -392,7 +395,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: limitTags', () => {
-    it('show all items on focus', () => {
+    it('show all items on focus', async () => {
       const { container, getAllByRole, getByRole } = render(
         <Autocomplete
           multiple
@@ -407,7 +410,7 @@ describe('<Autocomplete />', () => {
       // include hidden clear button because JSDOM thinks it's visible
       expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(4);
 
-      act(() => {
+      await act(async () => {
         getByRole('combobox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
@@ -417,7 +420,7 @@ describe('<Autocomplete />', () => {
       }
     });
 
-    it('show 0 item on close when set 0 to limitTags', () => {
+    it('show 0 item on close when set 0 to limitTags', async () => {
       const { container, getAllByRole, getByRole } = render(
         <Autocomplete
           multiple
@@ -432,7 +435,7 @@ describe('<Autocomplete />', () => {
       // include hidden clear button because JSDOM thinks it's visible
       expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(2);
 
-      act(() => {
+      await act(async () => {
         getByRole('combobox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
@@ -444,7 +447,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: filterSelectedOptions', () => {
-    it('when the last item is selected, highlights the new last item', () => {
+    it('when the last item is selected, highlights the new last item', async () => {
       const { getByRole } = render(
         <Autocomplete
           filterSelectedOptions
@@ -459,7 +462,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'three');
       fireEvent.keyDown(textbox, { key: 'Enter' }); // selects the last option (three)
 
-      act(() => {
+      await act(async () => {
         textbox.blur();
         textbox.focus(); // opens the listbox again
       });
@@ -468,7 +471,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: autoSelect', () => {
-    it('should not clear on blur when value does not match any option', () => {
+    it('should not clear on blur when value does not match any option', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       render(
@@ -485,7 +488,7 @@ describe('<Autocomplete />', () => {
       fireEvent.change(textbox, { target: { value: 'o' } });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.change(textbox, { target: { value: 'oo' } });
-      act(() => {
+      await act(async () => {
         textbox.blur();
       });
 
@@ -493,7 +496,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal('oo');
     });
 
-    it('should add new value when autoSelect & multiple on blur', () => {
+    it('should add new value when autoSelect & multiple on blur', async () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       render(
@@ -509,7 +512,7 @@ describe('<Autocomplete />', () => {
       );
       const textbox = screen.getByRole('combobox');
 
-      act(() => {
+      await act(async () => {
         fireEvent.change(textbox, { target: { value: 't' } });
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
         textbox.blur();
@@ -519,7 +522,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal(options);
     });
 
-    it('should add new value when autoSelect & multiple & freeSolo on blur', () => {
+    it('should add new value when autoSelect & multiple & freeSolo on blur', async () => {
       const handleChange = spy();
       render(
         <Autocomplete
@@ -533,7 +536,7 @@ describe('<Autocomplete />', () => {
       );
 
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
-      act(() => {
+      await act(async () => {
         document.activeElement.blur();
       });
 
@@ -543,7 +546,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: multiple', () => {
-    it('should not crash', () => {
+    it('should not crash', async () => {
       const { getByRole } = render(
         <Autocomplete
           openOnFocus
@@ -554,7 +557,7 @@ describe('<Autocomplete />', () => {
       );
       const input = getByRole('combobox');
 
-      act(() => {
+      await act(async () => {
         input.focus();
         document.activeElement.blur();
         input.focus();
@@ -769,6 +772,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} required />}
             value={[]}
           />
+
           <button type="submit">Submit</button>
         </form>,
       );
@@ -795,6 +799,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} required />}
             value={['one']}
           />
+
           <button type="submit">Submit</button>
         </form>,
       );
@@ -1245,7 +1250,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: clearOnBlur', () => {
-    it('should clear on blur', () => {
+    it('should clear on blur', async () => {
       render(
         <Autocomplete
           clearOnBlur
@@ -1256,13 +1261,13 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
       expect(document.activeElement.value).to.equal('test');
-      act(() => {
+      await act(async () => {
         textbox.blur();
       });
       expect(textbox.value).to.equal('');
     });
 
-    it('should not clear on blur', () => {
+    it('should not clear on blur', async () => {
       render(
         <Autocomplete
           clearOnBlur={false}
@@ -1273,13 +1278,13 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
       expect(document.activeElement.value).to.equal('test');
-      act(() => {
+      await act(async () => {
         textbox.blur();
       });
       expect(textbox.value).to.equal('test');
     });
 
-    it('should not clear on blur with `multiple` enabled', () => {
+    it('should not clear on blur with `multiple` enabled', async () => {
       render(
         <Autocomplete
           multiple
@@ -1292,7 +1297,7 @@ describe('<Autocomplete />', () => {
       const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
       expect(document.activeElement.value).to.equal('test');
-      act(() => {
+      await act(async () => {
         textbox.blur();
       });
       expect(textbox.value).to.equal('test');
@@ -1404,7 +1409,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: openOnFocus', () => {
-    it('enables open on input focus', () => {
+    it('enables open on input focus', async () => {
       const { getByRole } = render(
         <Autocomplete
           options={['one', 'two', 'three']}
@@ -1421,7 +1426,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(textbox);
       expect(textbox).to.have.attribute('aria-expanded', 'false');
 
-      act(() => {
+      await act(async () => {
         document.activeElement.blur();
       });
 
@@ -1694,7 +1699,7 @@ describe('<Autocomplete />', () => {
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
 
-    it('should close the popup when disabled is true', () => {
+    it('should close the popup when disabled is true', async () => {
       const { setProps } = render(
         <Autocomplete
           options={['one', 'two', 'three']}
@@ -1702,7 +1707,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         textbox.focus();
       });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -1711,7 +1716,7 @@ describe('<Autocomplete />', () => {
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
 
-    it('should not crash when autoSelect & freeSolo are set, text is focused & disabled gets truthy', () => {
+    it('should not crash when autoSelect & freeSolo are set, text is focused & disabled gets truthy', async () => {
       const { setProps } = render(
         <Autocomplete
           autoSelect
@@ -1722,7 +1727,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const textbox = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         textbox.focus();
       });
       setProps({ disabled: true });
@@ -1785,6 +1790,7 @@ describe('<Autocomplete />', () => {
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },
       ];
+
       const options = [
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },
@@ -1821,6 +1827,7 @@ describe('<Autocomplete />', () => {
         { group: 2, value: 'F' },
         { group: 1, value: 'C' },
       ];
+
       expect(() => {
         render(
           <Autocomplete
@@ -2037,6 +2044,7 @@ describe('<Autocomplete />', () => {
           label: 'one',
         },
       ];
+
       const handleChange = spy();
       const { getByRole } = render(
         <Autocomplete
@@ -2175,7 +2183,7 @@ describe('<Autocomplete />', () => {
       expect(textbox.selectionEnd).to.equal(3);
     });
 
-    it('should focus the input when clicking on the open action', () => {
+    it('should focus the input when clicking on the open action', async () => {
       const { getByRole, queryByTitle } = render(
         <Autocomplete
           value="one"
@@ -2188,7 +2196,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(textbox);
       expect(textbox).toHaveFocus();
 
-      act(() => {
+      await act(async () => {
         textbox.blur();
       });
       fireEvent.click(queryByTitle('Open'));
@@ -2232,7 +2240,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('should not focus when tooltip clicked', () => {
+    it('should not focus when tooltip clicked', async () => {
       const { getByRole, getByText } = render(
         <Autocomplete
           options={['one', 'two', 'three']}
@@ -2259,7 +2267,7 @@ describe('<Autocomplete />', () => {
       const textbox = getByRole('combobox');
       const tooltip = getByText('tooltip');
 
-      act(() => {
+      await act(async () => {
         fireEvent.click(tooltip);
       });
 
@@ -2528,7 +2536,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][3]).to.deep.equal({ option: options[2] });
     });
 
-    it('provides a reason and details on blur', () => {
+    it('provides a reason and details on blur', async () => {
       const handleChange = spy();
       const options = ['one', 'two', 'three'];
       render(
@@ -2543,7 +2551,7 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      act(() => {
+      await act(async () => {
         textbox.blur();
       });
 
@@ -2610,6 +2618,7 @@ describe('<Autocomplete />', () => {
               renderInput={(params) => <TextField {...params} autoFocus />}
               value={value}
             />
+
             <button onClick={() => setValue(options[1])} type="button">
               Reset
             </button>
@@ -3229,7 +3238,7 @@ describe('<Autocomplete />', () => {
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
 
-    it('should focus on input when clicked', () => {
+    it('should focus on input when clicked', async () => {
       render(
         <Autocomplete
           readOnly
@@ -3243,7 +3252,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(textbox);
       expect(textbox).toHaveFocus();
 
-      act(() => {
+      await act(async () => {
         textbox.blur();
       });
       fireEvent.click(screen.queryByTitle('Open'));
@@ -3264,7 +3273,7 @@ describe('<Autocomplete />', () => {
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
 
-    it('should not be able to delete the tag when multiple=true', () => {
+    it('should not be able to delete the tag when multiple=true', async () => {
       const { container } = render(
         <Autocomplete
           readOnly
@@ -3279,7 +3288,7 @@ describe('<Autocomplete />', () => {
       expect(chip).not.to.have.class(chipClasses.deletable);
 
       const textbox = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         textbox.focus();
       });
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
@@ -3287,7 +3296,7 @@ describe('<Autocomplete />', () => {
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
 
-    it('should not be able to delete the tag using Backspace when using renderValue', () => {
+    it('should not be able to delete the tag using Backspace when using renderValue', async () => {
       const { container } = render(
         <Autocomplete
           readOnly
@@ -3304,7 +3313,7 @@ describe('<Autocomplete />', () => {
       expect(chip).not.to.have.class(chipClasses.deletable);
 
       const textbox = screen.getByRole('combobox');
-      act(() => {
+      await act(async () => {
         textbox.focus();
       });
 
@@ -3443,7 +3452,7 @@ describe('<Autocomplete />', () => {
   });
 
   // https://github.com/mui/material-ui/issues/36212
-  it('should preserve scrollTop position of the listbox when adding new options on mobile', function test() {
+  it('should preserve scrollTop position of the listbox when adding new options on mobile', async function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       this.skip();
     }
@@ -3466,7 +3475,7 @@ describe('<Autocomplete />', () => {
     expect(listbox).to.have.property('scrollTop', 0);
 
     const options = getAllByRole('option');
-    act(() => {
+    await act(async () => {
       fireEvent.touchStart(options[1]);
       listbox.scrollBy(0, 60);
       setProps({ options: getOptions(10) });

@@ -582,14 +582,14 @@ describe('<Slide />', () => {
     describe('resize', () => {
       clock.withFakeTimers();
 
-      it('should recompute the correct position', () => {
+      it('should recompute the correct position', async () => {
         const { container } = render(
           <Slide direction="up" in={false}>
             <div id="testChild">Foo</div>
           </Slide>,
         );
 
-        act(() => {
+        await act(async () => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
         clock.tick(166);
@@ -615,9 +615,9 @@ describe('<Slide />', () => {
         expect(element.style.transform).to.equal(`translateY(${global.innerHeight - 780}px)`);
       });
 
-      it('should do nothing when visible', () => {
+      it('should do nothing when visible', async () => {
         render(<Slide {...defaultProps} />);
-        act(() => {
+        await act(async () => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
         clock.tick(166);

@@ -76,11 +76,11 @@ describe('<ChipDelete />', () => {
   });
 
   describe('Chip onDelete', () => {
-    it('should call onDelete function when backspace, enter or delete is pressed', () => {
+    it('should call onDelete function when backspace, enter or delete is pressed', async () => {
       const handleDelete = spy();
       const { getByRole } = render(<ChipDelete onDelete={handleDelete} onClick={() => {}} />);
       const chipDelete = getByRole('button');
-      act(() => {
+      await act(async () => {
         chipDelete.focus();
       });
       fireEvent.keyDown(chipDelete, { key: 'Backspace' });
@@ -90,13 +90,13 @@ describe('<ChipDelete />', () => {
       expect(handleDelete.callCount).to.equal(4);
     });
 
-    it('should not call onDelete function when ChipDelete is disabled', () => {
+    it('should not call onDelete function when ChipDelete is disabled', async () => {
       const handleDelete = spy();
       const { getByRole } = render(
         <ChipDelete disabled onDelete={handleDelete} onClick={() => {}} />,
       );
       const chipDelete = getByRole('button');
-      act(() => {
+      await act(async () => {
         chipDelete.focus();
       });
       fireEvent.click(chipDelete);

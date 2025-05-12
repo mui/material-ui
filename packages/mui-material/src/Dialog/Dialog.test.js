@@ -12,8 +12,8 @@ import describeConformance from '../../test/describeConformance';
  * more comprehensive simulation of a user click (mousedown + click)
  * @param {HTMLElement} element
  */
-function userClick(element) {
-  act(() => {
+async function userClick(element) {
+  await act(async () => {
     fireEvent.mouseDown(element);
     fireEvent.mouseUp(element);
     element.click();
@@ -116,7 +116,7 @@ describe('<Dialog />', () => {
     expect(getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
-  it('calls onClose when pressing Esc and removes the content after the specified duration', () => {
+  it('calls onClose when pressing Esc and removes the content after the specified duration', async () => {
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);
@@ -135,7 +135,7 @@ describe('<Dialog />', () => {
     const dialog = getByRole('dialog');
     expect(dialog).not.to.equal(null);
 
-    act(() => {
+    await act(async () => {
       dialog.click();
     });
 
@@ -167,7 +167,7 @@ describe('<Dialog />', () => {
     expect(onClose.callCount).to.equal(1);
   });
 
-  it('can ignore backdrop click and Esc keydown', () => {
+  it('can ignore backdrop click and Esc keydown', async () => {
     function DialogWithBackdropClickDisabled(props) {
       const { onClose, ...other } = props;
       function handleClose(event, reason) {
@@ -192,7 +192,7 @@ describe('<Dialog />', () => {
     const dialog = getByRole('dialog');
     expect(dialog).not.to.equal(null);
 
-    act(() => {
+    await act(async () => {
       dialog.click();
       // keyDown is not targetted at anything specific.
       // eslint-disable-next-line material-ui/disallow-active-element-as-key-event-target

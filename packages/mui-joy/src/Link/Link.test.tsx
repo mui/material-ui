@@ -8,8 +8,8 @@ import Typography from '@mui/joy/Typography';
 import { ThemeProvider, TypographySystem } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
 
-function focusVisible(element: HTMLAnchorElement | null) {
-  act(() => {
+async function focusVisible(element: HTMLAnchorElement | null) {
+  await act(async () => {
     element?.blur();
     document.dispatchEvent(new window.Event('keydown'));
     element?.focus();
@@ -75,7 +75,7 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', function test() {
+    it('should add the focusVisible class when focused', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -90,7 +90,7 @@ describe('<Link />', () => {
 
       expect(anchor).to.have.class(classes.focusVisible);
 
-      act(() => {
+      await act(async () => {
         anchor?.blur();
       });
 

@@ -215,7 +215,7 @@ describe('useCurrentColorScheme', () => {
       });
     });
 
-    it('defaultMode=`system`', () => {
+    it('defaultMode=`system`', async () => {
       function Data() {
         const data = useCurrentColorScheme({
           defaultMode: 'system',
@@ -235,7 +235,7 @@ describe('useCurrentColorScheme', () => {
         colorScheme: 'light',
       });
 
-      act(() => {
+      await act(async () => {
         trigger({ matches: true }); // system matches 'prefers-color-scheme: dark'
       });
 
@@ -366,7 +366,7 @@ describe('useCurrentColorScheme', () => {
       });
     });
 
-    it('change both light & dark color scheme at the same time', () => {
+    it('change both light & dark color scheme at the same time', async () => {
       function Data() {
         const { setColorScheme, ...data } = useCurrentColorScheme({
           defaultMode: 'system',
@@ -392,7 +392,7 @@ describe('useCurrentColorScheme', () => {
         colorScheme: 'paper',
       });
 
-      act(() => {
+      await act(async () => {
         trigger({ matches: true }); // system matches 'prefers-color-scheme: dark'
       });
 
@@ -515,6 +515,7 @@ describe('useCurrentColorScheme', () => {
               data-testid="dark"
               onClick={() => setColorScheme({ light: 'light-dim', dark: 'dark-dim' })}
             />
+
             <button
               data-testid="reset"
               onClick={() => setColorScheme({ light: null, dark: null })}
@@ -636,7 +637,7 @@ describe('useCurrentColorScheme', () => {
       });
     });
 
-    it('storage mode changes from `light` to `dark`', () => {
+    it('storage mode changes from `light` to `dark`', async () => {
       function Data() {
         const { ...data } = useCurrentColorScheme({
           defaultLightColorScheme: 'light',
@@ -647,7 +648,7 @@ describe('useCurrentColorScheme', () => {
       }
       const { container } = render(<Data />);
 
-      act(() => {
+      await act(async () => {
         eventHandlers
           .get('storage')
           .broadcastEvent?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'dark' });
@@ -661,7 +662,7 @@ describe('useCurrentColorScheme', () => {
       });
     });
 
-    it('storage mode changes from `light` to `auto`', () => {
+    it('storage mode changes from `light` to `auto`', async () => {
       window.matchMedia = createMatchMedia(true); // system matches 'prefers-color-scheme: dark'
       function Data() {
         const { ...data } = useCurrentColorScheme({
@@ -673,7 +674,7 @@ describe('useCurrentColorScheme', () => {
       }
       const { container } = render(<Data />);
 
-      act(() => {
+      await act(async () => {
         eventHandlers
           .get('storage')
           .broadcastEvent?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'system' });
@@ -688,7 +689,7 @@ describe('useCurrentColorScheme', () => {
       });
     });
 
-    it('storage mode is deleted', () => {
+    it('storage mode is deleted', async () => {
       storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
       function Data() {
         const { ...data } = useCurrentColorScheme({
@@ -701,7 +702,7 @@ describe('useCurrentColorScheme', () => {
       }
       const { container } = render(<Data />);
 
-      act(() => {
+      await act(async () => {
         eventHandlers
           .get('storage')
           .broadcastEvent?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: null });
@@ -716,7 +717,7 @@ describe('useCurrentColorScheme', () => {
       });
     });
 
-    it('storage lightColorScheme & darkColorScheme changes', () => {
+    it('storage lightColorScheme & darkColorScheme changes', async () => {
       function Data() {
         const { ...data } = useCurrentColorScheme({
           defaultMode: 'system',
@@ -728,7 +729,7 @@ describe('useCurrentColorScheme', () => {
       }
       const { container } = render(<Data />);
 
-      act(() => {
+      await act(async () => {
         eventHandlers.get('storage').broadcastEvent?.({
           key: `${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`,
           newValue: 'light-dim',
@@ -743,14 +744,14 @@ describe('useCurrentColorScheme', () => {
         colorScheme: 'light-dim',
       });
 
-      act(() => {
+      await act(async () => {
         eventHandlers.get('storage').broadcastEvent?.({
           key: `${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`,
           newValue: 'dark-dim',
         });
       });
 
-      act(() => {
+      await act(async () => {
         trigger({ matches: true });
       });
 
@@ -879,7 +880,7 @@ describe('useCurrentColorScheme', () => {
       expect(storageManager({ key: DEFAULT_MODE_STORAGE_KEY }).get()).to.equal('dark');
     });
 
-    it('handle subscription', () => {
+    it('handle subscription', async () => {
       function Data() {
         const { setMode, ...data } = useCurrentColorScheme({
           storageManager,
@@ -900,7 +901,7 @@ describe('useCurrentColorScheme', () => {
       }
       const { container } = render(<Data />);
 
-      act(() => {
+      await act(async () => {
         eventHandlers.get('storage').broadcastEvent?.({
           key: DEFAULT_MODE_STORAGE_KEY,
           newValue: 'dark',

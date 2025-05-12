@@ -72,10 +72,10 @@ describe('<InputBase />', () => {
       expect(textarea).to.have.value('Hello');
     });
 
-    it('should preserve state when changing rows', () => {
+    it('should preserve state when changing rows', async () => {
       const { setProps } = render(<InputBase multiline />);
       const textarea = screen.getByRole('textbox', { hidden: false });
-      act(() => {
+      await act(async () => {
         textarea.focus();
       });
 
@@ -93,14 +93,14 @@ describe('<InputBase />', () => {
       expect(input).to.have.class(classes.disabled);
     });
 
-    it('should reset the focused state if getting disabled', () => {
+    it('should reset the focused state if getting disabled', async () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const { container, setProps } = render(
         <InputBase onBlur={handleBlur} onFocus={handleFocus} />,
       );
 
-      act(() => {
+      await act(async () => {
         container.querySelector('input').focus();
       });
       expect(handleFocus.callCount).to.equal(1);
@@ -130,7 +130,7 @@ describe('<InputBase />', () => {
     });
   });
 
-  it('should fire event callbacks', () => {
+  it('should fire event callbacks', async () => {
     const handleChange = spy();
     const handleFocus = spy();
     const handleBlur = spy();
@@ -149,7 +149,7 @@ describe('<InputBase />', () => {
 
     // simulating user input: gain focus, key input (keydown, (input), change, keyup), blur
 
-    act(() => {
+    await act(async () => {
       input.focus();
     });
     expect(handleFocus.callCount).to.equal(1);
@@ -163,7 +163,7 @@ describe('<InputBase />', () => {
     fireEvent.keyUp(input, { key: 'a' });
     expect(handleKeyUp.callCount).to.equal(1);
 
-    act(() => {
+    await act(async () => {
       input.blur();
     });
     expect(handleBlur.callCount).to.equal(1);
@@ -391,7 +391,7 @@ describe('<InputBase />', () => {
     });
 
     describe('focused', () => {
-      it('prioritizes context focus', () => {
+      it('prioritizes context focus', async () => {
         const FormController = React.forwardRef((props, ref) => {
           const { onBlur, onFocus } = useFormControl();
 
@@ -407,25 +407,25 @@ describe('<InputBase />', () => {
           </FormControl>,
         );
 
-        act(() => {
+        await act(async () => {
           getByRole('textbox').focus();
         });
         expect(getByTestId('root')).to.have.class(classes.focused);
 
-        act(() => {
+        await act(async () => {
           controlRef.current.onBlur();
         });
 
         expect(getByTestId('root')).not.to.have.class(classes.focused);
 
-        act(() => {
+        await act(async () => {
           controlRef.current.onFocus();
         });
 
         expect(getByTestId('root')).to.have.class(classes.focused);
       });
 
-      it('propagates focused state', () => {
+      it('propagates focused state', async () => {
         function FocusedStateLabel(props) {
           const { focused } = useFormControl();
           return <label {...props}>focused: {String(focused)}</label>;
@@ -438,12 +438,12 @@ describe('<InputBase />', () => {
         );
         expect(getByTestId('label')).to.have.text('focused: false');
 
-        act(() => {
+        await act(async () => {
           getByRole('textbox').focus();
         });
         expect(getByTestId('label')).to.have.text('focused: true');
 
-        act(() => {
+        await act(async () => {
           getByRole('textbox').blur();
         });
         expect(getByTestId('label')).to.have.text('focused: false');
