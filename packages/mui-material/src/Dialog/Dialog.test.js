@@ -30,8 +30,8 @@ function findBackdrop(view) {
 /**
  * @param {typeof import('@mui/internal-test-utils').screen} view
  */
-function clickBackdrop(view) {
-  userClick(findBackdrop(view));
+async function clickBackdrop(view) {
+  await userClick(findBackdrop(view));
 }
 
 const CustomFade = React.forwardRef(function CustomFade(props, ref) {
@@ -201,7 +201,7 @@ describe('<Dialog />', () => {
 
     expect(onClose.callCount).to.equal(0);
 
-    clickBackdrop(screen);
+    await clickBackdrop(screen);
     expect(onClose.callCount).to.equal(0);
   });
 
@@ -212,7 +212,7 @@ describe('<Dialog />', () => {
       expect(findBackdrop(screen)).to.have.attribute('role', 'presentation');
     });
 
-    it('calls onClose when clicked', () => {
+    it('calls onClose when clicked', async () => {
       const onClose = spy();
       render(
         <Dialog onClose={onClose} open>
@@ -220,7 +220,7 @@ describe('<Dialog />', () => {
         </Dialog>,
       );
 
-      clickBackdrop(screen);
+      await clickBackdrop(screen);
       expect(onClose.callCount).to.equal(1);
     });
 
