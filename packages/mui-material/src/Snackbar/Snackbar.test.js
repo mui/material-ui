@@ -302,12 +302,16 @@ describe('<Snackbar />', () => {
     },
     {
       type: 'keyboard',
-      enter: async (container) => await act(async () => container.querySelector('button').focus()),
-      leave: async (container) => await act(async () => container.querySelector('button').blur()),
+      enter: async (container) => {
+        await act(async () => container.querySelector('button').focus());
+      },
+      leave: async (container) => {
+        await act(async () => container.querySelector('button').blur());
+      },
     },
   ].forEach((userInteraction) => {
     describe(`interacting with ${userInteraction.type}`, () => {
-      it('should be able to interrupt the timer', () => {
+      it('should be able to interrupt the timer', async () => {
         const handleMouseEnter = spy();
         const handleMouseLeave = spy();
         const handleBlur = spy();
@@ -332,7 +336,7 @@ describe('<Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        await userInteraction.enter(container.querySelector('div'));
 
         if (userInteraction.type === 'keyboard') {
           expect(handleFocus.callCount).to.equal(1);
@@ -341,7 +345,7 @@ describe('<Snackbar />', () => {
         }
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        await userInteraction.leave(container.querySelector('div'));
 
         if (userInteraction.type === 'keyboard') {
           expect(handleBlur.callCount).to.equal(1);
@@ -356,7 +360,7 @@ describe('<Snackbar />', () => {
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
       });
 
-      it('should not call onClose with not timeout after user interaction', () => {
+      it('should not call onClose with not timeout after user interaction', async () => {
         const handleClose = spy();
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
@@ -375,9 +379,9 @@ describe('<Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        await userInteraction.enter(container.querySelector('div'));
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        await userInteraction.leave(container.querySelector('div'));
 
         expect(handleClose.callCount).to.equal(0);
 
@@ -386,7 +390,7 @@ describe('<Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
       });
 
-      it('should call onClose when timer done after user interaction', () => {
+      it('should call onClose when timer done after user interaction', async () => {
         const handleClose = spy();
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
@@ -405,9 +409,9 @@ describe('<Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         clock.tick(autoHideDuration / 2);
-        userInteraction.enter(container.querySelector('div'));
+        await userInteraction.enter(container.querySelector('div'));
         clock.tick(autoHideDuration / 2);
-        userInteraction.leave(container.querySelector('div'));
+        await userInteraction.leave(container.querySelector('div'));
 
         expect(handleClose.callCount).to.equal(0);
 
@@ -417,7 +421,7 @@ describe('<Snackbar />', () => {
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
       });
 
-      it('should call onClose immediately after user interaction when 0', () => {
+      it('should call onClose immediately after user interaction when 0', async () => {
         const handleClose = spy();
         const autoHideDuration = 6e3;
         const resumeHideDuration = 0;
@@ -436,9 +440,9 @@ describe('<Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        userInteraction.enter(container.querySelector('div'));
+        await userInteraction.enter(container.querySelector('div'));
         clock.tick(100);
-        userInteraction.leave(container.querySelector('div'));
+        await userInteraction.leave(container.querySelector('div'));
         clock.tick(resumeHideDuration);
 
         expect(handleClose.callCount).to.equal(1);

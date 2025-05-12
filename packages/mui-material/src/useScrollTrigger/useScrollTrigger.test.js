@@ -114,23 +114,26 @@ describe('useScrollTrigger', () => {
       expect(container.textContent).to.include('Custom container');
     });
 
-    it('should not trigger from window scroll events with ref', () => {
+    it('should not trigger from window scroll events with ref', async () => {
       render(<Test customContainer />);
-      [101, 200, 300, -10, 100, 101, 99, 200, 199, 0, 1, -1, 150].forEach((offset, i) => {
-        dispatchScroll(offset);
+      for (const [i, offset] of [
+        101, 200, 300, -10, 100, 101, 99, 200, 199, 0, 1, -1, 150,
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(offset);
         expect(getTriggerValue()).to.equal('false', `Index: ${i} Offset: ${offset}`);
-      });
+      }
     });
 
-    it('should trigger above default threshold with ref', () => {
+    it('should trigger above default threshold with ref', async () => {
       render(<Test customContainer />);
-      dispatchScroll(300, getContainer());
+      await dispatchScroll(300, getContainer());
       expect(getTriggerValue()).to.equal('true');
     });
 
-    it('should have correct hysteresis triggering threshold with ref', () => {
+    it('should have correct hysteresis triggering threshold with ref', async () => {
       render(<Test customContainer />);
-      [
+      for (const [index, test] of [
         { offset: 100, result: 'false' },
         { offset: 101, result: 'true' },
         { offset: 100, result: 'false' },
@@ -148,15 +151,16 @@ describe('useScrollTrigger', () => {
         { offset: 3, result: 'false' },
         { offset: 103, result: 'true' },
         { offset: 102, result: 'false' },
-      ].forEach((test, index) => {
-        dispatchScroll(test.offset, getContainer());
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(test.offset, getContainer());
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
 
-    it('should have correct hysteresis triggering with default threshold with ref', () => {
+    it('should have correct hysteresis triggering with default threshold with ref', async () => {
       render(<Test customContainer disableHysteresis />);
-      [
+      for (const [index, test] of [
         { offset: 100, result: 'false' },
         { offset: 101, result: 'true' },
         { offset: 200, result: 'true' },
@@ -173,15 +177,16 @@ describe('useScrollTrigger', () => {
         { offset: -3, result: 'false' },
         { offset: 3, result: 'false' },
         { offset: 103, result: 'true' },
-      ].forEach((test, index) => {
-        dispatchScroll(test.offset, getContainer());
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(test.offset, getContainer());
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
 
-    it('should have correct hysteresis triggering with custom threshold with ref', () => {
+    it('should have correct hysteresis triggering with custom threshold with ref', async () => {
       render(<Test customContainer disableHysteresis threshold={50} />);
-      [
+      for (const [index, test] of [
         { offset: 100, result: 'true' },
         { offset: 101, result: 'true' },
         { offset: 101, result: 'true' },
@@ -196,15 +201,16 @@ describe('useScrollTrigger', () => {
         { offset: -50, result: 'false' },
         { offset: 50, result: 'false' },
         { offset: 51, result: 'true' },
-      ].forEach((test, index) => {
-        dispatchScroll(test.offset, getContainer());
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(test.offset, getContainer());
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
 
-    it('should not trigger at exact threshold value with ref', () => {
+    it('should not trigger at exact threshold value with ref', async () => {
       render(<Test customContainer threshold={100} />);
-      [
+      for (const [index, test] of [
         { offset: 100, result: 'false' },
         { offset: 99, result: 'false' },
         { offset: 100, result: 'false' },
@@ -212,30 +218,32 @@ describe('useScrollTrigger', () => {
         { offset: 100, result: 'false' },
         { offset: 99, result: 'false' },
         { offset: 100, result: 'false' },
-      ].forEach((test, index) => {
-        dispatchScroll(test.offset, getContainer());
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(test.offset, getContainer());
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
 
-    it('should not trigger at exact threshold value with hysteresis disabled with ref', () => {
+    it('should not trigger at exact threshold value with hysteresis disabled with ref', async () => {
       render(<Test customContainer disableHysteresis threshold={100} />);
-      [
+      for (const [index, test] of [
         { offset: 100, result: 'false' },
         { offset: 99, result: 'false' },
         { offset: 100, result: 'false' },
         { offset: 101, result: 'true' },
         { offset: 100, result: 'false' },
         { offset: 99, result: 'false' },
-      ].forEach((test, index) => {
-        dispatchScroll(test.offset, getContainer());
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(test.offset, getContainer());
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
 
-    it('should correctly evaluate sequential scroll events with identical scrollY offsets with ref', () => {
+    it('should correctly evaluate sequential scroll events with identical scrollY offsets with ref', async () => {
       render(<Test customContainer threshold={199} />);
-      [
+      for (const [index, test] of [
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
@@ -244,15 +252,16 @@ describe('useScrollTrigger', () => {
         { offset: 199, result: 'false' },
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
-      ].forEach((test, index) => {
-        dispatchScroll(test.offset, getContainer());
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(test.offset, getContainer());
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
 
-    it('should correctly evaluate sequential scroll events with identical scrollY offsets and hysteresis disabled with ref', () => {
+    it('should correctly evaluate sequential scroll events with identical scrollY offsets and hysteresis disabled with ref', async () => {
       render(<Test customContainer disableHysteresis threshold={199} />);
-      [
+      for (const [index, test] of [
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
@@ -261,21 +270,22 @@ describe('useScrollTrigger', () => {
         { offset: 199, result: 'false' },
         { offset: 200, result: 'true' },
         { offset: 200, result: 'true' },
-      ].forEach((test, index) => {
-        dispatchScroll(test.offset, getContainer());
+      ].entries()) {
+        // eslint-disable-next-line no-await-in-loop
+        await dispatchScroll(test.offset, getContainer());
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
 
     it('should correctly evaluate scroll events on page first load', () => {
-      [
+      for (const [index, test] of [
         { offset: 101, result: 'true' },
         { offset: 100, result: 'false' },
-      ].forEach((test, index) => {
+      ].entries()) {
         window.pageYOffset = test.offset;
         render(<Test threshold={100} />);
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
-      });
+      }
     });
   });
 });
