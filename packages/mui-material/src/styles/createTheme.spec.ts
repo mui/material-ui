@@ -1,4 +1,9 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import {
+  createTheme,
+  ThemeOptions,
+  type ComponentsVariants,
+  type Theme,
+} from '@mui/material/styles';
 
 const theme = createTheme();
 
@@ -279,6 +284,31 @@ const theme = createTheme();
                 style: { border: 0 },
               },
             ],
+          },
+        },
+      },
+    },
+  });
+}
+
+// Using ComponentVariants to define variants separately
+const alertVariants: ComponentsVariants<Theme>['MuiAlert'] = [
+  {
+    props: { severity: 'info' },
+    style: ({ theme: themeParam }) => ({
+      backgroundColor: '#60a5fa',
+      color: themeParam.palette.info.main,
+    }),
+  },
+];
+
+{
+  createTheme({
+    components: {
+      MuiAlert: {
+        styleOverrides: {
+          root: {
+            variants: alertVariants,
           },
         },
       },
