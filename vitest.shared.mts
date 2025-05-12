@@ -17,7 +17,7 @@ export default {
     },
     fakeTimers: {
       // We use performance.now in the codebase
-      toFake: [...configDefaults.fakeTimers.toFake, 'performance'],
+      toFake: [...(configDefaults.fakeTimers.toFake ?? []), 'performance'],
     },
     browser: {
       enabled: false, // enabled through CLI

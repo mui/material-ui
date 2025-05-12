@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, match } from 'sinon';
+import { spy, stub, match, useFakeTimers } from 'sinon';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import Modal, { modalClasses } from '@mui/material/Modal';
@@ -11,6 +11,8 @@ import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 import styled from '../styles/styled';
 import describeConformance from '../../test/describeConformance';
+
+/** @typedef {import('sinon').SinonFakeTimers} SinonFakeTimers */
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {
   const handleMocks = React.useCallback((paperInstance) => {
@@ -50,7 +52,19 @@ const CustomTransition = React.forwardRef(function CustomTransition(
 });
 
 describe('<Popover />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { render } = createRenderer();
+
+  // TODO: temporary for vitest. Can move to `vi.useFakeTimers`
+  /** @type {SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers();
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
 
   describeConformance(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -133,7 +147,7 @@ describe('<Popover />', () => {
       expect(screen.getByTestId('children')).not.to.equal(null);
     });
 
-    it('hide its children immediately when closing but transition them out', () => {
+    it('hide its children immediately when closing but transition them out', async () => {
       const { setProps } = render(
         <Popover open anchorEl={document.createElement('div')} transitionDuration={1974}>
           <div data-testid="children" />
@@ -144,7 +158,9 @@ describe('<Popover />', () => {
 
       expect(screen.getByTestId('children')).toBeInaccessible();
 
-      clock.tick(1974);
+      await act(async () => {
+        await timer.tickAsync(1974);
+      });
 
       expect(screen.queryByTestId('children')).to.equal(null);
     });
@@ -227,7 +243,7 @@ describe('<Popover />', () => {
       );
     });
 
-    it('should fire Popover transition event callbacks', () => {
+    it('should fire Popover transition event callbacks', async () => {
       const handleEnter = spy();
       const handleEntering = spy();
       const handleEntered = spy();
@@ -270,7 +286,9 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      clock.tick(0);
+      await act(async () => {
+        await timer.tickAsync(0);
+      });
 
       expect({
         onEnter: handleEnter.callCount,
@@ -308,7 +326,9 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      clock.tick(0);
+      await act(async () => {
+        await timer.tickAsync(0);
+      });
 
       expect({
         onEnter: handleEnter.callCount,
@@ -509,8 +529,9 @@ describe('<Popover />', () => {
         >
           <div />
         </Popover>,
+
+        timer.tick(0),
       );
-      clock.tick(0);
     }
 
     beforeEach(() => {
@@ -652,8 +673,9 @@ describe('<Popover />', () => {
         >
           <div />
         </Popover>,
+
+        timer.tick(0),
       );
-      clock.tick(0);
     }
 
     it('should be positioned according to the passed coordinates', () => {
@@ -715,7 +737,7 @@ describe('<Popover />', () => {
       window.innerHeight = windowInnerHeight;
     });
 
-    it('should recalculate position if the popover is open', () => {
+    it('should recalculate position if the popover is open', async () => {
       let element;
       const anchorEl = document.createElement('div');
       stub(anchorEl, 'getBoundingClientRect').callsFake(() => ({
@@ -744,8 +766,11 @@ describe('<Popover />', () => {
       };
 
       window.innerHeight = windowInnerHeight * 2;
-      window.dispatchEvent(new window.Event('resize'));
-      clock.tick(166);
+
+      await act(async () => {
+        window.dispatchEvent(new window.Event('resize'));
+        await timer.tickAsync(166);
+      });
 
       const afterStyle = {
         top: element.style.top,
@@ -755,7 +780,7 @@ describe('<Popover />', () => {
       expect(beforeStyle).not.to.deep.equal(afterStyle);
     });
 
-    it('should not recalculate position if the popover is closed', () => {
+    it('should not recalculate position if the popover is closed', async () => {
       let element;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
@@ -785,8 +810,14 @@ describe('<Popover />', () => {
 
       window.innerHeight = windowInnerHeight * 2;
       window.dispatchEvent(new window.Event('resize'));
-      setProps({ open: false });
-      clock.tick(166);
+
+      await act(async () => {
+        setProps({ open: false });
+      });
+
+      await act(async () => {
+        await timer.tickAsync(166);
+      });
 
       const afterStyle = {
         top: element.style.top,
@@ -796,7 +827,7 @@ describe('<Popover />', () => {
       expect(beforeStyle).to.deep.equal(afterStyle);
     });
 
-    it('should be able to manually recalculate position', () => {
+    it('should be able to manually recalculate position', async () => {
       let element;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
@@ -833,10 +864,13 @@ describe('<Popover />', () => {
 
       expect(typeof popoverActions.updatePosition === 'function').to.equal(true);
 
-      act(() => {
+      await act(async () => {
         popoverActions.updatePosition();
       });
-      clock.tick(166);
+
+      await act(async () => {
+        await timer.tickAsync(166);
+      });
 
       const afterStyle = {
         top: element.style.top,
