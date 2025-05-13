@@ -41,7 +41,7 @@
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^19.1.2",
+    "@types/react": "^19.1.4",
     "next": "^15.3.2",
     "react": "^19.1.0"
   },
