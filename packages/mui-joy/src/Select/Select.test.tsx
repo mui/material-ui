@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers, SinonFakeTimers } from 'sinon';
+import { spy, stub } from 'sinon';
 import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
@@ -11,16 +11,6 @@ import ListDivider from '@mui/joy/ListDivider';
 import describeConformance from '../../test/describeConformance';
 
 describe('Joy <Select />', () => {
-  let timer: SinonFakeTimers | null = null;
-
-  beforeEach(() => {
-    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
-  });
-
-  afterEach(() => {
-    timer?.restore();
-  });
-
   const { render } = createRenderer();
 
   describeConformance(<Select startDecorator="1" endDecorator="1" />, () => ({

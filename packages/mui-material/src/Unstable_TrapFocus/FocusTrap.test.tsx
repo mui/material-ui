@@ -14,11 +14,13 @@ describe('<FocusTrap />', () => {
 
   let initialFocus: HTMLElement | null = null;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     initialFocus = document.createElement('button');
     initialFocus.tabIndex = 0;
     document.body.appendChild(initialFocus);
-    initialFocus!.focus();
+    await act(async () => {
+      initialFocus!.focus();
+    });
   });
 
   afterEach(() => {
