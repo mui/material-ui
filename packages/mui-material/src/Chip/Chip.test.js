@@ -688,17 +688,17 @@ describe('<Chip />', () => {
         expect(chip).not.to.have.class(classes.focusVisible);
       }
 
-      focusVisible(chip);
+      await focusVisible(chip);
 
       expect(chip).to.have.class(classes.focusVisible);
     });
 
-    it('should reset the focused state', () => {
+    it('should reset the focused state', async () => {
       const { container, setProps } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);
 
       simulatePointerDevice();
-      focusVisible(chip);
+      await focusVisible(chip);
 
       expect(chip).to.have.class(classes.focusVisible);
 

@@ -126,7 +126,7 @@ describe('useIsFocusVisible', () => {
       await act(async () => {
         button!.blur();
       });
-      focusVisible(button!);
+      await focusVisible(button!);
 
       expect(button!.classList.contains('focus-visible')).to.equal(true);
     });

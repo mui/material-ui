@@ -256,7 +256,7 @@ describe('<ButtonBase />', () => {
     });
 
     describe('interactions', () => {
-      it('should not have a focus ripple by default', () => {
+      it('should not have a focus ripple by default', async () => {
         const { getByRole } = render(
           <ButtonBase
             TouchRippleProps={{
@@ -269,7 +269,7 @@ describe('<ButtonBase />', () => {
         const button = getByRole('button');
         simulatePointerDevice();
 
-        focusVisible(button);
+        await focusVisible(button);
 
         expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(0);
       });
@@ -744,7 +744,7 @@ describe('<ButtonBase />', () => {
       expect(getByText('Hello')).to.have.property('disabled', true);
     });
 
-    it('should reset the focused state', function test() {
+    it('should reset the focused state', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -754,7 +754,7 @@ describe('<ButtonBase />', () => {
       const button = getByText('Hello');
       simulatePointerDevice();
 
-      focusVisible(button);
+      await focusVisible(button);
 
       expect(button).to.have.class(classes.focusVisible);
 
@@ -839,12 +839,12 @@ describe('<ButtonBase />', () => {
         expect(button).not.to.have.class(classes.focusVisible);
       }
 
-      focusVisible(button);
+      await focusVisible(button);
 
       expect(button).to.have.class(classes.focusVisible);
     });
 
-    it('removes focus-visible if focus is re-targetted', function test() {
+    it('removes focus-visible if focus is re-targetted', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -887,14 +887,14 @@ describe('<ButtonBase />', () => {
       const focusRetarget = getByText('you cannot escape me');
       simulatePointerDevice();
 
-      focusVisible(buttonBase);
+      await focusVisible(buttonBase);
 
       expect(focusRetarget).toHaveFocus();
       expect(eventLog).to.deep.equal(['focus-visible', 'focus', 'blur']);
       expect(buttonBase).not.to.have.class(classes.focusVisible);
     });
 
-    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', function test() {
+    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -908,7 +908,7 @@ describe('<ButtonBase />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(getByRole('button'));
+      await focusVisible(getByRole('button'));
 
       expect(onFocusVisibleSpy.calledOnce).to.equal(true);
       expect(onFocusVisibleSpy.firstCall.args).to.have.lengthOf(1);
