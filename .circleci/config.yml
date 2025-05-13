@@ -72,7 +72,6 @@ commands:
           name: Set npm registry public signing keys
           command: |
             echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
-
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -87,31 +86,26 @@ commands:
                 name: Install pnpm package manager
                 # See https://stackoverflow.com/a/73411601
                 command: corepack enable --install-directory ~/bin
-
       - run:
           name: View install environment
           command: |
             node --version
             pnpm --version
-
   install_js:
     parameters:
       browsers:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
-
     steps:
       - setup_corepack:
           browsers: << parameters.browsers >>
-
       - run:
           name: Resolve React version
           command: |
             pnpm use-react-version
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-
       - run:
           name: Install js dependencies
           command: pnpm install
@@ -251,7 +245,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:stable && pnpm -r build:types  
+            pnpm -r build:stable && pnpm -r build:types
             git --no-pager diff
       - run:
           name: Any defect declaration files?
@@ -285,14 +279,12 @@ jobs:
             set +e
             pnpm typescript:ci
             exit 0
-
       - restore_cache:
           name: Restore generated declaration files
           keys:
             # We assume that the target branch is `next` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
             - typescript-declaration-files-next
-
       - run:
           name: Diff declaration files
           command: |
@@ -301,7 +293,6 @@ jobs:
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             pnpm -r build:types
             git --no-pager diff
-
       - run:
           name: Log defect declaration files
           command: |
@@ -431,7 +422,6 @@ jobs:
           root: packed
           paths:
             - '*'
-
   test_bundling_node_cjs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
@@ -591,7 +581,6 @@ jobs:
       - run:
           name: Test fixture
           command: pnpm start
-
   test_bundle_size_monitor:
     <<: *default-job
     steps:
@@ -700,7 +689,6 @@ workflows:
     jobs:
       - test_e2e_website:
           <<: *default-context
-
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
@@ -743,7 +731,6 @@ workflows:
           <<: *default-context
           requires:
             - test_bundling_prepare
-
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
