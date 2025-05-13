@@ -524,12 +524,10 @@ describe('<Tooltip />', () => {
         );
       }
 
-      const { setProps } = await act(async () =>
-        render(
-          <AutoFocus />,
-          // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-          { strictEffects: false },
-        ),
+      const { setProps } = render(
+        <AutoFocus />,
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+        { strictEffects: false },
       );
 
       setProps({ open: true });
