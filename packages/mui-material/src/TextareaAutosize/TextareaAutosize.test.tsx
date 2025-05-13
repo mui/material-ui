@@ -2,13 +2,13 @@ import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import {
-  describeSkipIf,
   act,
   screen,
   waitFor,
   createRenderer,
   fireEvent,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 function getStyleValue(value: string) {

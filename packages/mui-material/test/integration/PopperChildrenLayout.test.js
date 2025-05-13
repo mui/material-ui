@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeSkipIf } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Collapse from '@mui/material/Collapse';
 import Fade from '@mui/material/Fade';
 import Grow from '@mui/material/Grow';

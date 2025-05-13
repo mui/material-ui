@@ -9,8 +9,8 @@ import {
   screen,
   strictModeDoubleLoggingSuppressed,
   waitFor,
-  describeSkipIf,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import { svgIconClasses } from '@mui/material/SvgIcon';

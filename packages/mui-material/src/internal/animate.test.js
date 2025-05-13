@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { describeSkipIf } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import animate from './animate';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);

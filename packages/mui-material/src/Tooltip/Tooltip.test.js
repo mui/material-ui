@@ -10,8 +10,8 @@ import {
   focusVisible,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
-  describeSkipIf,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';

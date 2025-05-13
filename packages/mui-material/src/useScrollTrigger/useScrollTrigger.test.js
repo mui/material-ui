@@ -6,8 +6,8 @@ import {
   createRenderer,
   RenderCounter,
   screen,
-  describeSkipIf,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
