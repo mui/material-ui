@@ -915,7 +915,7 @@ importers:
         specifier: ^3.5.3
         version: 3.5.3
       tailwindcss:
-        specifier: ^4.1.5
+        specifier: ^4.1.6
         version: 4.1.6
       yargs:
         specifier: ^17.7.2
