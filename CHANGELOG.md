@@ -86,7 +86,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - Fix internal version duplication (#46051) @oliviertassinari
 - Avoid the need for `@mui/material/themeCssVarsAugmentation` (#46053) @Janpot
 - Add security label to dependabot PRs (0a5c027) @oliviertassinari
-- Remove unecessary versions (#46034) @oliviertassinari
+- Remove unnecessary versions (#46034) @oliviertassinari
 - Remove redundant overrides resolver (#45970) @romgrk
 - Fix duplicate branch reference (#45915) @oliviertassinari
 - Fix outdated <link rel="shortcut icon" (#45916) @oliviertassinari
@@ -267,7 +267,7 @@ A big thanks to the 4 contributors who made this release possible.
 ### Core
 
 - [blog] Clarify the difference between the two Pro plans (#45266) @oliviertassinari
-- [code-infra] Allow specifying a custom error formatter module for error minifcation (#45291) @Janpot
+- [code-infra] Allow specifying a custom error formatter module for error minification (#45291) @Janpot
 - [code-infra] Make `getVersionEnvVariables` reusable for other repos (#45562) @Janpot
 - [code-infra] Update peer dependency of `@mui/utils` in `@mui/docs` (#45561) @Janpot
 - Add StackBlitz template to issue template (#45504) @Janpot
