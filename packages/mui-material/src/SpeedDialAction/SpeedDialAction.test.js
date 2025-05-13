@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act } from '@mui/internal-test-utils';
+import { useFakeTimers } from 'sinon';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
@@ -16,7 +17,18 @@ const CustomTooltip = React.forwardRef(({ onOpen, onClose, ownerState, ...props 
 ));
 
 describe('<SpeedDialAction />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   describeConformance(
     <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
@@ -44,7 +56,7 @@ describe('<SpeedDialAction />', () => {
     }),
   );
 
-  it('should be able to change the Tooltip classes', () => {
+  it('should be able to change the Tooltip classes', async () => {
     const { getByText, container } = render(
       <SpeedDialAction
         icon={<Icon>add</Icon>}
@@ -55,12 +67,14 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    clock.tick(100);
+    await act(async () => {
+      await timer?.tickAsync(100);
+    });
 
     expect(getByText('placeholder')).to.have.class('bar');
   });
 
-  it('should be able to change the slotProps.tooltip.classes', () => {
+  it('should be able to change the slotProps.tooltip.classes', async () => {
     const { getByText, container } = render(
       <SpeedDialAction
         icon={<Icon>add</Icon>}
@@ -75,7 +89,9 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    clock.tick(100);
+    await act(async () => {
+      await timer?.tickAsync(100);
+    });
 
     expect(getByText('placeholder')).to.have.class('bar');
   });

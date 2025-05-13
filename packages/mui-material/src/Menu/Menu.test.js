@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import {
   createRenderer,
@@ -23,7 +23,20 @@ const CustomTransition = React.forwardRef(function CustomTransition(
 });
 
 describe('<Menu />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    // Handles the warning about an update to a component that is not wrapped in act
+    // by preventing setTimeout to run
+    timer = useFakeTimers({ toFake: ['setTimeout'] });
+  });
+
+  afterEach(async () => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   describeConformance(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,

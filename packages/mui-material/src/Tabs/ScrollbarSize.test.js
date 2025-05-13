@@ -1,11 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { spy, stub, useFakeTimers } from 'sinon';
+import { createRenderer, act } from '@mui/internal-test-utils';
 import ScrollbarSize from './ScrollbarSize';
 
 describe('<ScrollbarSize />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   describe('mount', () => {
     it('should call on initial load', () => {
@@ -17,7 +28,7 @@ describe('<ScrollbarSize />', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should call on first resize event', () => {
+    it('should call on first resize event', async () => {
       const onChange = spy();
       const { container } = render(<ScrollbarSize onChange={onChange} />);
       stub(container.firstChild, 'offsetHeight').get(() => 20);
@@ -26,12 +37,14 @@ describe('<ScrollbarSize />', () => {
       onChange.resetHistory();
 
       window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
+      await act(async () => {
+        await timer?.tickAsync(166);
+      });
       expect(onChange.callCount).to.equal(1);
       expect(onChange.args[0][0]).to.equal(20);
     });
 
-    it('should not call if height has not changed from previous resize', () => {
+    it('should not call if height has not changed from previous resize', async () => {
       const onChange = spy();
       const { container } = render(<ScrollbarSize onChange={onChange} />);
       stub(container.firstChild, 'offsetHeight').get(() => 20);
@@ -40,9 +53,13 @@ describe('<ScrollbarSize />', () => {
       onChange.resetHistory();
 
       window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
+      await act(async () => {
+        await timer?.tickAsync(166);
+      });
       window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
+      await act(async () => {
+        await timer?.tickAsync(166);
+      });
       expect(onChange.callCount).to.equal(1);
       expect(onChange.args[0][0]).to.equal(20);
     });

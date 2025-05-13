@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   createRenderer,
   act,
@@ -16,7 +16,18 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SpeedDial />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   const icon = <Icon>font_icon</Icon>;
   function FakeAction() {
@@ -86,7 +97,7 @@ describe('<SpeedDial />', () => {
     expect(actions.map((element) => element.className)).not.to.contain('is-closed');
   });
 
-  it('should reset the state of the tooltip when the speed dial is closed while it is open', () => {
+  it('should reset the state of the tooltip when the speed dial is closed while it is open', async () => {
     const { queryByRole, getByRole, getAllByRole } = render(
       <SpeedDial icon={icon} ariaLabel="mySpeedDial">
         <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction1" />
@@ -97,19 +108,27 @@ describe('<SpeedDial />', () => {
     const actions = getAllByRole('menuitem');
 
     fireEvent.mouseEnter(fab);
-    clock.runAll();
+    await act(async () => {
+      await timer?.tickAsync(Infinity);
+    });
     expect(fab).to.have.attribute('aria-expanded', 'true');
 
     fireEvent.mouseOver(actions[0]);
-    clock.runAll();
+    await act(async () => {
+      await timer?.tickAsync(Infinity);
+    });
     expect(queryByRole('tooltip')).not.to.equal(null);
 
     fireEvent.mouseLeave(actions[0]);
-    clock.runAll();
+    await act(async () => {
+      await timer?.tickAsync(Infinity);
+    });
     expect(fab).to.have.attribute('aria-expanded', 'false');
 
     fireEvent.mouseEnter(fab);
-    clock.runAll();
+    await act(async () => {
+      await timer?.tickAsync(Infinity);
+    });
     expect(queryByRole('tooltip')).to.equal(null);
     expect(fab).to.have.attribute('aria-expanded', 'true');
   });
@@ -161,7 +180,7 @@ describe('<SpeedDial />', () => {
       ['left', 'tooltipPlacementTop'],
       ['right', 'tooltipPlacementTop'],
     ].forEach(([direction, className]) => {
-      it(`should place the tooltip in the correct position when direction=${direction}`, () => {
+      it(`should place the tooltip in the correct position when direction=${direction}`, async () => {
         const { getByRole, getAllByRole } = render(
           <SpeedDial {...defaultProps} open direction={direction.toLowerCase()}>
             <SpeedDialAction icon={icon} tooltipTitle="action1" />
@@ -170,7 +189,9 @@ describe('<SpeedDial />', () => {
         );
         const actions = getAllByRole('menuitem');
         fireEvent.mouseOver(actions[0]);
-        clock.runAll();
+        await act(async () => {
+          await timer?.tickAsync(Infinity);
+        });
         expect(getByRole('tooltip').firstChild).to.have.class(tooltipClasses[className]);
       });
     });
@@ -188,8 +209,8 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       await act(async () => {
         fab.focus();
+        await timer?.tickAsync(1);
       });
-      clock.tick();
 
       expect(handleOpen.callCount).to.equal(1);
       const actions = getAllByRole('menuitem');
@@ -217,23 +238,29 @@ describe('<SpeedDial />', () => {
 
       await act(async () => {
         fab.focus();
+        await timer?.tickAsync(Infinity);
       });
-      clock.runAll();
 
       expect(fab).to.have.attribute('aria-expanded', 'true');
 
       fireEvent.keyDown(fab, { key: 'ArrowUp' });
-      clock.runAll();
+      await act(async () => {
+        await timer?.tickAsync(Infinity);
+      });
       expect(queryByRole('tooltip')).not.to.equal(null);
 
       fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
-      clock.runAll();
+      await act(async () => {
+        await timer?.tickAsync(Infinity);
+      });
 
       expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'false');
       expect(fab).toHaveFocus();
 
-      clock.runAll();
+      await act(async () => {
+        await timer?.tickAsync(Infinity);
+      });
 
       expect(queryByRole('tooltip')).to.equal(null);
       expect(fab).to.have.attribute('aria-expanded', 'false');

@@ -277,6 +277,9 @@ importers:
       karma-sourcemap-loader:
         specifier: ^0.4.0
         version: 0.4.0
+      karma-spec-reporter:
+        specifier: ^0.0.36
+        version: 0.0.36(karma@6.4.4)
       karma-webpack:
         specifier: ^5.0.0
         version: 5.0.0(webpack@5.99.7)
@@ -9889,6 +9892,11 @@ packages:
 
   karma-sourcemap-loader@0.4.0:
     resolution: {integrity: sha512-xCRL3/pmhAYF3I6qOrcn0uhbQevitc2DERMPH82FMnG+4WReoGcGFZb1pURf2a5apyrOHRdvD+O6K7NljqKHyA==}
+
+  karma-spec-reporter@0.0.36:
+    resolution: {integrity: sha512-11bvOl1x6ryKZph7kmbmMpbi8vsngEGxGOoeTlIcDaH3ab3j8aPJnZ+r+K/SS0sBSGy5VGkGYO2+hLct7hw/6w==}
+    peerDependencies:
+      karma: '>=0.9'
 
   karma-webpack@5.0.0:
     resolution: {integrity: sha512-+54i/cd3/piZuP3dr54+NcFeKOPnys5QeM1IY+0SPASwrtHsliXUiCL50iW+K9WWA7RvamC4macvvQ86l3KtaA==}
@@ -23060,6 +23068,11 @@ snapshots:
   karma-sourcemap-loader@0.4.0:
     dependencies:
       graceful-fs: 4.2.11
+
+  karma-spec-reporter@0.0.36(karma@6.4.4):
+    dependencies:
+      colors: 1.4.0
+      karma: 6.4.4
 
   karma-webpack@5.0.0(webpack@5.99.7):
     dependencies:

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
+import { useFakeTimers } from 'sinon';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
@@ -9,7 +10,19 @@ import describeConformance from '../../test/describeConformance';
 
 describe('<Popper />', () => {
   let rtlTheme;
-  const { clock, render } = createRenderer({ clock: 'fake' });
+
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,
@@ -207,9 +220,7 @@ describe('<Popper />', () => {
   });
 
   describe('prop: transition', () => {
-    clock.withFakeTimers();
-
-    it('should work', () => {
+    it('should work', async () => {
       const { queryByRole, getByRole, setProps } = render(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
@@ -223,7 +234,9 @@ describe('<Popper />', () => {
       expect(getByRole('tooltip')).to.have.text('Hello World');
 
       setProps({ anchorEl: null, open: false });
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -266,9 +279,7 @@ describe('<Popper />', () => {
   });
 
   describe('display', () => {
-    clock.withFakeTimers();
-
-    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', () => {
+    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', async () => {
       const { getByRole, setProps } = render(
         <Popper {...defaultProps} open={false} keepMounted transition disablePortal>
           {({ TransitionProps }) => (
@@ -282,10 +293,14 @@ describe('<Popper />', () => {
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
 
       setProps({ open: true });
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
 
       setProps({ open: false });
-      clock.tick(0);
+      await act(async () => {
+        await timer?.tickAsync(0);
+      });
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
     });
   });

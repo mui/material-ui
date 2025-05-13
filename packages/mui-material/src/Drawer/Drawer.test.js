@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { spy, useFakeTimers } from 'sinon';
+import { createRenderer, screen, act } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { modalClasses } from '@mui/material/Modal';
@@ -9,7 +9,18 @@ import { getAnchor, isHorizontal } from './Drawer';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Drawer />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   const CustomPaper = React.forwardRef(
     ({ className, children, ownerState, square, ...props }, ref) => (
@@ -133,7 +144,7 @@ describe('<Drawer />', () => {
         expect(backdropRoot).toHaveComputedStyle({ transitionDuration: '0.001s' });
       });
 
-      it('delay the slide transition to complete using values provided via prop', () => {
+      it('delay the slide transition to complete using values provided via prop', async () => {
         const handleEntered = spy();
         const { setProps } = render(
           <Drawer
@@ -149,7 +160,9 @@ describe('<Drawer />', () => {
 
         expect(handleEntered.callCount).to.equal(0);
 
-        clock.tick(transitionDuration.enter);
+        await act(async () => {
+          await timer?.tickAsync(transitionDuration.enter);
+        });
 
         expect(handleEntered.callCount).to.equal(1);
       });
@@ -193,7 +206,7 @@ describe('<Drawer />', () => {
         </Drawer>
       );
 
-      it('should open and close', () => {
+      it('should open and close', async () => {
         const { setProps } = render(drawerElement);
 
         setProps({ open: true });
@@ -201,7 +214,9 @@ describe('<Drawer />', () => {
         expect(screen.getByTestId('child')).not.to.equal(null);
 
         setProps({ open: false });
-        clock.tick(transitionDuration);
+        await act(async () => {
+          await timer?.tickAsync(transitionDuration);
+        });
 
         expect(screen.queryByTestId('child')).to.equal(null);
       });
@@ -220,7 +235,7 @@ describe('<Drawer />', () => {
       expect(container.firstChild).to.have.class(classes.docked);
     });
 
-    it('should render Slide > Paper inside the div', () => {
+    it('should render Slide > Paper inside the div', async () => {
       const transitionDuration = 123;
       const handleEntered = spy();
       const { container, setProps } = render(
@@ -238,7 +253,9 @@ describe('<Drawer />', () => {
 
       expect(handleEntered.callCount).to.equal(0);
 
-      clock.tick(transitionDuration);
+      await act(async () => {
+        await timer?.tickAsync(transitionDuration);
+      });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(container.firstChild.firstChild).to.have.class(classes.paper);

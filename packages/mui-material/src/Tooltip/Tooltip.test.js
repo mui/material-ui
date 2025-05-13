@@ -21,7 +21,9 @@ describe('<Tooltip />', () => {
   let timer = null;
 
   beforeEach(() => {
-    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+    timer = useFakeTimers({
+      toFake: ['setTimeout', 'clearTimeout', 'Date'],
+    });
     testReset();
   });
 
@@ -524,13 +526,16 @@ describe('<Tooltip />', () => {
         );
       }
 
-      const { setProps } = render(
-        <AutoFocus />,
-        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-        { strictEffects: false },
+      const { setProps } = await act(async () =>
+        render(
+          <AutoFocus />,
+          // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+          { strictEffects: false },
+        ),
       );
 
       setProps({ open: true });
+
       await act(async () => {
         await timer?.tickAsync(100);
       });
@@ -556,9 +561,10 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
+
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
 
       await act(async () => {
@@ -583,8 +589,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = screen.getByRole('button');
-      focusVisible(children);
-
+      await focusVisible(children);
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
       await act(async () => {
@@ -598,12 +603,14 @@ describe('<Tooltip />', () => {
       });
       await act(async () => {
         await timer?.tickAsync(5);
+      });
+      await act(async () => {
         await timer?.tickAsync(6);
       });
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(children);
+      await focusVisible(children);
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -632,7 +639,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
       await act(async () => {
         await timer?.tickAsync(enterDelay);
       });
@@ -647,6 +654,8 @@ describe('<Tooltip />', () => {
 
       await act(async () => {
         await timer?.tickAsync(leaveDelay);
+      });
+      await act(async () => {
         await timer?.tickAsync(transitionTimeout);
       });
 
@@ -1041,7 +1050,7 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('opens on focus-visible', () => {
+    it('opens on focus-visible', async () => {
       const eventLog = [];
       render(
         <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
@@ -1052,7 +1061,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
