@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { spy } from 'sinon';
+import { spy, SinonFakeTimers, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { act, createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
@@ -21,6 +21,16 @@ const testContext: DropdownContextValue = {
 };
 
 describe('Joy <Menu />', () => {
+  let timer: SinonFakeTimers | null = null;
+
+  beforeEach(() => {
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+  });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
   const { render } = createRenderer();
 
   describeConformance(<Menu />, () => ({
