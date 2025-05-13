@@ -103,7 +103,7 @@
     "react-virtuoso": "^4.12.7",
     "react-window": "^1.8.11",
     "rimraf": "^6.0.1",
-    "styled-components": "^6.1.17",
+    "styled-components": "^6.1.18",
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
     "use-count-up": "^3.0.1",
