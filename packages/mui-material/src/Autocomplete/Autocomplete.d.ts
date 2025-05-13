@@ -334,10 +334,14 @@ export interface AutocompleteProps<
   renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode;
   /**
    * Render the input.
+   * 
+   *Note: The `renderInput` prop must return a `TextField` component or a component that correctly handles `inputRef` and `inputProps`.
+   *Using components like `DatePicker` or `Select` directly here may cause runtime errors and unexpected behavior.
    *
    * @param {object} params
    * @returns {ReactNode}
    */
+
   renderInput: (params: AutocompleteRenderInputParams) => React.ReactNode;
   /**
    * Render the option, use `getOptionLabel` by default.
