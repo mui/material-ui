@@ -21,9 +21,7 @@ describe('<Tooltip />', () => {
   let timer = null;
 
   beforeEach(() => {
-    timer = useFakeTimers({
-      toFake: ['setTimeout', 'clearTimeout', 'Date'],
-    });
+    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
     testReset();
   });
 
