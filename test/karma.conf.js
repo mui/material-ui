@@ -200,10 +200,10 @@ module.exports = function setKarmaConfig(config) {
     customLaunchers: {
       chromeHeadless: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox'],
+        flags: ['--no-sandbox', '--use-mock-keychain'],
       },
     },
-    singleRun: CI,
+    singleRun: true,
   };
 
   let newConfig = baseConfig;

@@ -29,7 +29,16 @@ describe('<Menu />', () => {
   beforeEach(() => {
     // Handles the warning about an update to a component that is not wrapped in act
     // by preventing setTimeout to run
-    timer = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'Date'] });
+    timer = useFakeTimers({
+      toFake: [
+        'performance',
+        'setTimeout',
+        'clearTimeout',
+        'Date',
+        'requestAnimationFrame',
+        'cancelAnimationFrame',
+      ],
+    });
   });
 
   afterEach(async () => {
