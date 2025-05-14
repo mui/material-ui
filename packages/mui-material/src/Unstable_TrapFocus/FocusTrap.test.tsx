@@ -292,7 +292,7 @@ describe('<FocusTrap />', () => {
   describe('interval', () => {
     clock.withFakeTimers();
 
-    it('contains the focus if the active element is removed', () => {
+    it('contains the focus if the active element is removed', async () => {
       function WithRemovableElement({ hideButton = false }) {
         return (
           <FocusTrap open>
@@ -317,12 +317,12 @@ describe('<FocusTrap />', () => {
 
       setProps({ hideButton: true });
       expect(screen.getByTestId('root')).not.toHaveFocus();
-      clock.tick(500); // wait for the interval check to kick in.
+      await act(async () => clock.tick(500)); // wait for the interval check to kick in.
       expect(screen.getByTestId('root')).toHaveFocus();
     });
 
     describe('prop: disableAutoFocus', () => {
-      it('should not trap', () => {
+      it('should not trap', async () => {
         const { getByRole } = render(
           <div>
             <input />
@@ -332,7 +332,7 @@ describe('<FocusTrap />', () => {
           </div>,
         );
 
-        clock.tick(500); // trigger an interval call
+        await act(async () => clock.tick(500)); // trigger an interval call
         expect(initialFocus).toHaveFocus();
 
         act(() => {

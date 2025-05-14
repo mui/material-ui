@@ -738,7 +738,7 @@ describe('<Tabs />', () => {
       });
     });
 
-    it('should horizontally scroll by width of partially visible item', () => {
+    it('should horizontally scroll by width of partially visible item', async () => {
       const { container, getByRole, getAllByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab style={{ width: 220, minWidth: 'auto' }} />
@@ -756,11 +756,11 @@ describe('<Tabs />', () => {
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      clock.tick(1000);
+      await act(async () => clock.tick(1000));
       expect(tablistContainer.scrollLeft).equal(200);
     });
 
-    it('should vertically scroll by width of partially visible item', () => {
+    it('should vertically scroll by width of partially visible item', async () => {
       const { container, getByRole, getAllByRole } = render(
         <Tabs
           value={0}
@@ -784,7 +784,7 @@ describe('<Tabs />', () => {
 
       tablistContainer.scrollTop = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      clock.tick(1000);
+      await act(async () => clock.tick(1000));
       expect(tablistContainer.scrollTop).equal(48);
     });
   });
@@ -792,7 +792,7 @@ describe('<Tabs />', () => {
   describe('scroll into view behavior', () => {
     clock.withFakeTimers();
 
-    it('should scroll left tab into view', function test() {
+    it('should scroll left tab into view', async function test() {
       if (isJSDOM) {
         this.skip();
       }
@@ -821,7 +821,7 @@ describe('<Tabs />', () => {
         right: 30,
       });
       forceUpdate();
-      clock.tick(1000);
+      await act(async () => clock.tick(1000));
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
   });

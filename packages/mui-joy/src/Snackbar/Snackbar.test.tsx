@@ -19,9 +19,9 @@ describe('Joy <Snackbar />', () => {
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
    * React bug: https://github.com/facebook/react/issues/20074
    */
-  function render(...args: [React.ReactElement<any>]) {
+  async function render(...args: [React.ReactElement<any>]) {
     const result = clientRender(...args);
-    clock.tick(0);
+    await act(async () => clock.tick(0));
     return result;
   }
 
@@ -30,7 +30,7 @@ describe('Joy <Snackbar />', () => {
       Hello World!
     </Snackbar>,
     () => ({
-      render,
+      render: clientRender,
       classes,
       ThemeProvider,
       muiName: 'JoySnackbar',
@@ -46,9 +46,9 @@ describe('Joy <Snackbar />', () => {
   );
 
   describe('prop: onClose', () => {
-    it('should be called when clicking away', () => {
+    it('should be called when clicking away', async () => {
       const handleClose = spy();
-      render(
+      await render(
         <Snackbar open onClose={handleClose}>
           Message
         </Snackbar>,
@@ -61,9 +61,9 @@ describe('Joy <Snackbar />', () => {
       expect(handleClose.args[0]).to.deep.equal([event, 'clickaway']);
     });
 
-    it('should be called when pressing Escape', () => {
+    it('should be called when pressing Escape', async () => {
       const handleClose = spy();
-      render(
+      await render(
         <Snackbar open onClose={handleClose}>
           Message
         </Snackbar>,
@@ -74,10 +74,10 @@ describe('Joy <Snackbar />', () => {
       expect(handleClose.args[0][1]).to.equal('escapeKeyDown');
     });
 
-    it('can limit which Snackbars are closed when pressing Escape', () => {
+    it('can limit which Snackbars are closed when pressing Escape', async () => {
       const handleCloseA = spy((event) => event.preventDefault());
       const handleCloseB = spy();
-      render(
+      await render(
         <React.Fragment>
           <Snackbar open onClose={handleCloseA}>
             Message A
@@ -96,10 +96,10 @@ describe('Joy <Snackbar />', () => {
   });
 
   describe('prop: autoHideDuration', () => {
-    it('should call onClose when the timer is done', () => {
+    it('should call onClose when the timer is done', async () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      const { setProps } = render(
+      const { setProps } = await render(
         <Snackbar open={false} onClose={handleClose} autoHideDuration={autoHideDuration}>
           Message
         </Snackbar>,
@@ -109,35 +109,35 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration);
+      await act(async () => clock.tick(autoHideDuration));
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
 
-    it('calls onClose at timeout even if the prop changes', () => {
+    it('calls onClose at timeout even if the prop changes', async () => {
       const handleClose1 = spy();
       const handleClose2 = spy();
       const autoHideDuration = 2e3;
-      const { setProps } = render(
+      const { setProps } = await render(
         <Snackbar open={false} onClose={handleClose1} autoHideDuration={autoHideDuration}>
           Message
         </Snackbar>,
       );
 
       setProps({ open: true });
-      clock.tick(autoHideDuration / 2);
+      await act(async () => clock.tick(autoHideDuration / 2));
       setProps({ open: true, onClose: handleClose2 });
-      clock.tick(autoHideDuration / 2);
+      await act(async () => clock.tick(autoHideDuration / 2));
 
       expect(handleClose1.callCount).to.equal(0);
       expect(handleClose2.callCount).to.equal(1);
     });
 
-    it('should not call onClose when the autoHideDuration is reset', () => {
+    it('should not call onClose when the autoHideDuration is reset', async () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      const { setProps } = render(
+      const { setProps } = await render(
         <Snackbar open={false} onClose={handleClose} autoHideDuration={autoHideDuration}>
           Message
         </Snackbar>,
@@ -147,17 +147,17 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration / 2);
+      await act(async () => clock.tick(autoHideDuration / 2));
       setProps({ autoHideDuration: undefined });
-      clock.tick(autoHideDuration / 2);
+      await act(async () => clock.tick(autoHideDuration / 2));
 
       expect(handleClose.callCount).to.equal(0);
     });
 
-    it('should not call onClose if autoHideDuration is undefined', () => {
+    it('should not call onClose if autoHideDuration is undefined', async () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      render(
+      await render(
         <Snackbar open onClose={handleClose} autoHideDuration={undefined}>
           Message
         </Snackbar>,
@@ -165,16 +165,16 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration);
+      await act(async () => clock.tick(autoHideDuration));
 
       expect(handleClose.callCount).to.equal(0);
     });
 
-    it('should not call onClose if autoHideDuration is null', () => {
+    it('should not call onClose if autoHideDuration is null', async () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
 
-      render(
+      await render(
         <Snackbar open onClose={handleClose} autoHideDuration={null}>
           Message
         </Snackbar>,
@@ -182,16 +182,16 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration);
+      await act(async () => clock.tick(autoHideDuration));
 
       expect(handleClose.callCount).to.equal(0);
     });
 
-    it('should not call onClose when closed', () => {
+    it('should not call onClose when closed', async () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
 
-      const { setProps } = render(
+      const { setProps } = await render(
         <Snackbar open onClose={handleClose} autoHideDuration={autoHideDuration}>
           Message
         </Snackbar>,
@@ -199,9 +199,9 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration / 2);
+      await act(async () => clock.tick(autoHideDuration / 2));
       setProps({ open: false });
-      clock.tick(autoHideDuration / 2);
+      await act(async () => clock.tick(autoHideDuration / 2));
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -220,7 +220,7 @@ describe('Joy <Snackbar />', () => {
     },
   ].forEach((userInteraction) => {
     describe(`interacting with ${userInteraction.type}`, () => {
-      it('should be able to interrupt the timer', () => {
+      it('should be able to interrupt the timer', async () => {
         const handleMouseEnter = spy();
         const handleMouseLeave = spy();
         const handleBlur = spy();
@@ -228,7 +228,7 @@ describe('Joy <Snackbar />', () => {
         const handleClose = spy();
         const autoHideDuration = 2e3;
 
-        const { container } = render(
+        const { container } = await render(
           <Snackbar
             endDecorator={<button>undo</button>}
             open
@@ -245,7 +245,7 @@ describe('Joy <Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        clock.tick(autoHideDuration / 2);
+        await act(async () => clock.tick(autoHideDuration / 2));
         userInteraction.enter(container.querySelector('div')!);
 
         if (userInteraction.type === 'keyboard') {
@@ -254,7 +254,7 @@ describe('Joy <Snackbar />', () => {
           expect(handleMouseEnter.callCount).to.equal(1);
         }
 
-        clock.tick(autoHideDuration / 2);
+        await act(async () => clock.tick(autoHideDuration / 2));
         userInteraction.leave(container.querySelector('div')!);
 
         if (userInteraction.type === 'keyboard') {
@@ -264,18 +264,18 @@ describe('Joy <Snackbar />', () => {
         }
         expect(handleClose.callCount).to.equal(0);
 
-        clock.tick(2e3);
+        await act(async () => clock.tick(2e3));
 
         expect(handleClose.callCount).to.equal(1);
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
       });
 
-      it('should not call onClose with not timeout after user interaction', () => {
+      it('should not call onClose with not timeout after user interaction', async () => {
         const handleClose = spy();
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
 
-        const { container } = render(
+        const { container } = await render(
           <Snackbar
             endDecorator={<button>undo</button>}
             open
@@ -289,24 +289,24 @@ describe('Joy <Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        clock.tick(autoHideDuration / 2);
+        await act(async () => clock.tick(autoHideDuration / 2));
         userInteraction.enter(container.querySelector('div')!);
-        clock.tick(autoHideDuration / 2);
+        await act(async () => clock.tick(autoHideDuration / 2));
         userInteraction.leave(container.querySelector('div')!);
 
         expect(handleClose.callCount).to.equal(0);
 
-        clock.tick(2e3);
+        await act(async () => clock.tick(2e3));
 
         expect(handleClose.callCount).to.equal(0);
       });
 
-      it('should call onClose when timer done after user interaction', () => {
+      it('should call onClose when timer done after user interaction', async () => {
         const handleClose = spy();
         const autoHideDuration = 2e3;
         const resumeHideDuration = 3e3;
 
-        const { container } = render(
+        const { container } = await render(
           <Snackbar
             endDecorator={<button>undo</button>}
             open
@@ -320,24 +320,24 @@ describe('Joy <Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        clock.tick(autoHideDuration / 2);
+        await act(async () => clock.tick(autoHideDuration / 2));
         userInteraction.enter(container.querySelector('div')!);
-        clock.tick(autoHideDuration / 2);
+        await act(async () => clock.tick(autoHideDuration / 2));
         userInteraction.leave(container.querySelector('div')!);
 
         expect(handleClose.callCount).to.equal(0);
 
-        clock.tick(resumeHideDuration);
+        await act(async () => clock.tick(resumeHideDuration));
 
         expect(handleClose.callCount).to.equal(1);
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
       });
 
-      it('should call onClose immediately after user interaction when 0', () => {
+      it('should call onClose immediately after user interaction when 0', async () => {
         const handleClose = spy();
         const autoHideDuration = 6e3;
         const resumeHideDuration = 0;
-        const { setProps, container } = render(
+        const { setProps, container } = await render(
           <Snackbar
             endDecorator={<button>undo</button>}
             open
@@ -354,9 +354,9 @@ describe('Joy <Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         userInteraction.enter(container.querySelector('div')!);
-        clock.tick(100);
+        await act(async () => clock.tick(100));
         userInteraction.leave(container.querySelector('div')!);
-        clock.tick(resumeHideDuration);
+        await act(async () => clock.tick(resumeHideDuration));
 
         expect(handleClose.callCount).to.equal(1);
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -365,10 +365,10 @@ describe('Joy <Snackbar />', () => {
   });
 
   describe('prop: disableWindowBlurListener', () => {
-    it('should pause auto hide when not disabled and window lost focus', () => {
+    it('should pause auto hide when not disabled and window lost focus', async () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      render(
+      await render(
         <Snackbar
           open
           onClose={handleClose}
@@ -389,7 +389,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration);
+      await act(async () => clock.tick(autoHideDuration));
 
       expect(handleClose.callCount).to.equal(0);
 
@@ -403,16 +403,16 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration);
+      await act(async () => clock.tick(autoHideDuration));
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
     });
 
-    it('should not pause auto hide when disabled and window lost focus', () => {
+    it('should not pause auto hide when disabled and window lost focus', async () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
-      render(
+      await render(
         <Snackbar
           open
           onClose={handleClose}
@@ -430,7 +430,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      clock.tick(autoHideDuration);
+      await act(async () => clock.tick(autoHideDuration));
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -438,13 +438,13 @@ describe('Joy <Snackbar />', () => {
   });
 
   describe('prop: open', () => {
-    it('should not render anything when closed', () => {
-      const { container } = render(<Snackbar open={false}>Hello World!</Snackbar>);
+    it('should not render anything when closed', async () => {
+      const { container } = await render(<Snackbar open={false}>Hello World!</Snackbar>);
       expect(container).to.have.text('');
     });
 
-    it('should be able show it after mounted', () => {
-      const { container, setProps } = render(<Snackbar open={false}>Hello World!</Snackbar>);
+    it('should be able show it after mounted', async () => {
+      const { container, setProps } = await render(<Snackbar open={false}>Hello World!</Snackbar>);
       expect(container).to.have.text('');
       setProps({ open: true });
       expect(container).to.have.text('Hello World!');

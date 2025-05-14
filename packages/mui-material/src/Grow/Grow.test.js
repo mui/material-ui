@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, act } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grow from '@mui/material/Grow';
@@ -38,7 +38,7 @@ describe('<Grow />', () => {
   describe('calls the appropriate callbacks for each transition', () => {
     clock.withFakeTimers();
 
-    it('calls the appropriate callbacks for each transition', () => {
+    it('calls the appropriate callbacks for each transition', async () => {
       const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
@@ -78,7 +78,7 @@ describe('<Grow />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => clock.tick(1000));
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
@@ -100,7 +100,7 @@ describe('<Grow />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => clock.tick(1000));
 
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
@@ -129,7 +129,7 @@ describe('<Grow />', () => {
         expect(handleEnter.args[0][0].style.transition).to.match(new RegExp(`${enterDuration}ms`));
       });
 
-      it('should delay based on height when timeout is auto', () => {
+      it('should delay based on height when timeout is auto', async () => {
         const handleEntered = spy();
         const theme = createTheme({
           transitions: {
@@ -176,11 +176,11 @@ describe('<Grow />', () => {
 
         expect(handleEntered.callCount).to.equal(0);
 
-        clock.tick(0);
+        await act(async () => clock.tick(0));
 
         expect(handleEntered.callCount).to.equal(0);
 
-        clock.tick(autoTransitionDuration);
+        await act(async () => clock.tick(autoTransitionDuration));
 
         expect(handleEntered.callCount).to.equal(1);
 
@@ -193,12 +193,12 @@ describe('<Grow />', () => {
 
         expect(handleEntered2.callCount).to.equal(0);
 
-        clock.tick(0);
+        await act(async () => clock.tick(0));
 
         expect(handleEntered2.callCount).to.equal(1);
       });
 
-      it('should use timeout as delay when timeout is number', () => {
+      it('should use timeout as delay when timeout is number', async () => {
         const timeout = 10;
         const handleEntered = spy();
 
@@ -206,18 +206,18 @@ describe('<Grow />', () => {
 
         expect(handleEntered.callCount).to.equal(0);
 
-        clock.tick(0);
+        await act(async () => clock.tick(0));
 
         expect(handleEntered.callCount).to.equal(0);
 
-        clock.tick(timeout);
+        await act(async () => clock.tick(timeout));
 
         expect(handleEntered.callCount).to.equal(1);
       });
     });
 
     describe('onExit', () => {
-      it('should delay based on height when timeout is auto', () => {
+      it('should delay based on height when timeout is auto', async () => {
         const handleExited = spy();
         const { setProps } = render(
           <Grow in timeout="auto" onExited={handleExited}>
@@ -225,35 +225,35 @@ describe('<Grow />', () => {
           </Grow>,
         );
 
-        clock.tick(0);
+        await act(async () => clock.tick(0));
 
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(0);
+        await act(async () => clock.tick(0));
 
         expect(handleExited.callCount).to.equal(1);
       });
 
-      it('should use timeout as delay when timeout is number', () => {
+      it('should use timeout as delay when timeout is number', async () => {
         const timeout = 20;
         const handleExited = spy();
         const { setProps } = render(
           <Grow {...defaultProps} timeout={timeout} onExited={handleExited} />,
         );
 
-        clock.tick(timeout);
+        await act(async () => clock.tick(timeout));
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(0);
+        await act(async () => clock.tick(0));
 
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(timeout);
+        await act(async () => clock.tick(timeout));
 
         expect(handleExited.callCount).to.equal(1);
       });

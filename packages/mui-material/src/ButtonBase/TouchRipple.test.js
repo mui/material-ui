@@ -178,7 +178,7 @@ describe('<TouchRipple />', () => {
   describe('mobile', () => {
     clock.withFakeTimers();
 
-    it('should delay the display of the ripples', () => {
+    it('should delay the display of the ripples', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
@@ -191,12 +191,12 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE);
+      await act(async () => clock.tick(DELAY_RIPPLE));
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE);
+      await act(async () => clock.tick(DELAY_RIPPLE));
       act(() => {
         instance.stop({ type: 'touchend' }, cb);
       });
@@ -205,7 +205,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should trigger the ripple for short touch interactions', () => {
+    it('should trigger the ripple for short touch interactions', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
@@ -218,7 +218,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE / 2);
+      await act(async () => clock.tick(DELAY_RIPPLE / 2));
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
@@ -230,13 +230,13 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(1);
+      await act(async () => clock.tick(1));
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should interrupt the ripple schedule', () => {
+    it('should interrupt the ripple schedule', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
@@ -246,12 +246,12 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE / 2);
+      await act(async () => clock.tick(DELAY_RIPPLE / 2));
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       instance.stop({ type: 'touchmove' });
-      clock.tick(DELAY_RIPPLE);
+      await act(async () => clock.tick(DELAY_RIPPLE));
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
     });

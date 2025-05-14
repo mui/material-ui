@@ -619,7 +619,7 @@ describe('<MenuList> integration', () => {
     describe('time', () => {
       clock.withFakeTimers();
 
-      it('should reset the character buffer after 500ms', () => {
+      it('should reset the character buffer after 500ms', async () => {
         render(
           <MenuList autoFocus>
             <MenuItem>Worm</MenuItem>
@@ -628,7 +628,7 @@ describe('<MenuList> integration', () => {
         );
 
         fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-        clock.tick(501);
+        await act(async () => clock.tick(501));
         fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
         expect(screen.getByText('Ordinary')).toHaveFocus();
       });

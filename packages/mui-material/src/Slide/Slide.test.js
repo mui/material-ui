@@ -58,7 +58,7 @@ describe('<Slide />', () => {
   describe('transition lifecycle', () => {
     clock.withFakeTimers();
 
-    it('tests', () => {
+    it('tests', async () => {
       const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
@@ -100,7 +100,7 @@ describe('<Slide />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => clock.tick(1000));
       expect(handleEntered.callCount).to.equal(1);
 
       setProps({ in: false });
@@ -111,7 +111,7 @@ describe('<Slide />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => clock.tick(1000));
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });
@@ -582,7 +582,7 @@ describe('<Slide />', () => {
     describe('resize', () => {
       clock.withFakeTimers();
 
-      it('should recompute the correct position', () => {
+      it('should recompute the correct position', async () => {
         const { container } = render(
           <Slide direction="up" in={false}>
             <div id="testChild">Foo</div>
@@ -592,7 +592,7 @@ describe('<Slide />', () => {
         act(() => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
-        clock.tick(166);
+        await act(async () => clock.tick(166));
 
         const child = container.querySelector('#testChild');
         expect(child.style.transform).not.to.equal(undefined);
@@ -615,12 +615,12 @@ describe('<Slide />', () => {
         expect(element.style.transform).to.equal(`translateY(${globalThis.innerHeight - 780}px)`);
       });
 
-      it('should do nothing when visible', () => {
+      it('should do nothing when visible', async () => {
         render(<Slide {...defaultProps} />);
         act(() => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
-        clock.tick(166);
+        await act(async () => clock.tick(166));
       });
     });
   });

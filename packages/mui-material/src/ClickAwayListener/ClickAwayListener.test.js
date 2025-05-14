@@ -24,24 +24,24 @@ describe('<ClickAwayListener />', () => {
    * We have to defer the effect manually like `useEffect` would so we have to flush the effect manually instead of relying on `act()`.
    * React bug: https://github.com/facebook/react/issues/20074
    */
-  function render(...args) {
+  async function render(...args) {
     const result = clientRender(...args);
-    clock.tick(0);
+    await act(async () => clock.tick(0));
     return result;
   }
 
-  it('should render the children', () => {
+  it('should render the children', async () => {
     const children = <span />;
-    const { container } = render(
+    const { container } = await render(
       <ClickAwayListener onClickAway={() => {}}>{children}</ClickAwayListener>,
     );
     expect(container.querySelectorAll('span').length).to.equal(1);
   });
 
   describe('prop: onClickAway', () => {
-    it('should be called when clicking away', () => {
+    it('should be called when clicking away', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway}>
           <span />
         </ClickAwayListener>,
@@ -52,9 +52,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.args[0].length).to.equal(1);
     });
 
-    it('should not be called when clicking inside', () => {
+    it('should not be called when clicking inside', async () => {
       const handleClickAway = spy();
-      const { container } = render(
+      const { container } = await render(
         <ClickAwayListener onClickAway={handleClickAway}>
           <span />
         </ClickAwayListener>,
@@ -64,9 +64,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(0);
     });
 
-    it('should be called when preventDefault is `true`', () => {
+    it('should be called when preventDefault is `true`', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway}>
           <span />
         </ClickAwayListener>,
@@ -80,9 +80,9 @@ describe('<ClickAwayListener />', () => {
       document.body.removeEventListener('click', preventDefault);
     });
 
-    it('should not be called when clicking inside a portaled element', () => {
+    it('should not be called when clicking inside a portaled element', async () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+      const { getByText } = await render(
         <ClickAwayListener onClickAway={handleClickAway}>
           <div>
             <Portal>
@@ -96,9 +96,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(0);
     });
 
-    it('should be called when clicking inside a portaled element and `disableReactTree` is `true`', () => {
+    it('should be called when clicking inside a portaled element and `disableReactTree` is `true`', async () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+      const { getByText } = await render(
         <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
           <div>
             <Portal>
@@ -112,9 +112,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(1);
     });
 
-    it('should not be called even if the event propagation is stopped', () => {
+    it('should not be called even if the event propagation is stopped', async () => {
       const handleClickAway = spy();
-      const { getByText } = render(
+      const { getByText } = await render(
         <ClickAwayListener onClickAway={handleClickAway} disableReactTree>
           <div>
             <div
@@ -159,7 +159,7 @@ describe('<ClickAwayListener />', () => {
     });
 
     ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
-      it(`should not be called when ${eventListenerName} mounted the listener`, () => {
+      it(`should not be called when ${eventListenerName} mounted the listener`, async () => {
         function Test() {
           const [open, setOpen] = React.useState(false);
 
@@ -177,7 +177,7 @@ describe('<ClickAwayListener />', () => {
             </React.Fragment>
           );
         }
-        render(<Test />);
+        await render(<Test />);
 
         fireDiscreteEvent.click(screen.getByTestId('trigger'));
 
@@ -185,7 +185,7 @@ describe('<ClickAwayListener />', () => {
       });
     });
 
-    it('should be called if an element is interleaved between mousedown and mouseup', () => {
+    it('should be called if an element is interleaved between mousedown and mouseup', async () => {
       /**
        * @param {Element} element
        * @returns {Element[]}
@@ -240,7 +240,7 @@ describe('<ClickAwayListener />', () => {
           </ClickAwayListener>
         );
       }
-      render(<ClickAwayListenerMouseDownPortal />);
+      await render(<ClickAwayListenerMouseDownPortal />);
       const mouseDownTarget = screen.getByTestId('trigger');
 
       fireDiscreteEvent.mouseDown(mouseDownTarget);
@@ -255,9 +255,9 @@ describe('<ClickAwayListener />', () => {
   });
 
   describe('prop: mouseEvent', () => {
-    it('should not call `props.onClickAway` when `props.mouseEvent` is `false`', () => {
+    it('should not call `props.onClickAway` when `props.mouseEvent` is `false`', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} mouseEvent={false}>
           <span />
         </ClickAwayListener>,
@@ -266,9 +266,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(0);
     });
 
-    it('should call `props.onClickAway` when mouse down is triggered', () => {
+    it('should call `props.onClickAway` when mouse down is triggered', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} mouseEvent="onMouseDown">
           <span />
         </ClickAwayListener>,
@@ -280,9 +280,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.args[0].length).to.equal(1);
     });
 
-    it('should call `props.onClickAway` when mouse up is triggered', () => {
+    it('should call `props.onClickAway` when mouse up is triggered', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} mouseEvent="onMouseUp">
           <span />
         </ClickAwayListener>,
@@ -294,9 +294,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.args[0].length).to.equal(1);
     });
 
-    it('should call `props.onClickAway` when pointer down is triggered', () => {
+    it('should call `props.onClickAway` when pointer down is triggered', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} mouseEvent="onPointerDown">
           <span />
         </ClickAwayListener>,
@@ -308,9 +308,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.args[0].length).to.equal(1);
     });
 
-    it('should call `props.onClickAway` when pointer up is triggered', () => {
+    it('should call `props.onClickAway` when pointer up is triggered', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} mouseEvent="onPointerUp">
           <span />
         </ClickAwayListener>,
@@ -324,9 +324,9 @@ describe('<ClickAwayListener />', () => {
   });
 
   describe('prop: touchEvent', () => {
-    it('should not call `props.onClickAway` when `props.touchEvent` is `false`', () => {
+    it('should not call `props.onClickAway` when `props.touchEvent` is `false`', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} touchEvent={false}>
           <span />
         </ClickAwayListener>,
@@ -335,9 +335,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(0);
     });
 
-    it('should call `props.onClickAway` when the appropriate touch event is triggered', () => {
+    it('should call `props.onClickAway` when the appropriate touch event is triggered', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchStart">
           <span />
         </ClickAwayListener>,
@@ -349,9 +349,9 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.args[0].length).to.equal(1);
     });
 
-    it('should ignore `touchend` when preceded by `touchmove` event', () => {
+    it('should ignore `touchend` when preceded by `touchmove` event', async () => {
       const handleClickAway = spy();
-      render(
+      await render(
         <ClickAwayListener onClickAway={handleClickAway} touchEvent="onTouchEnd">
           <span />
         </ClickAwayListener>,
@@ -368,10 +368,10 @@ describe('<ClickAwayListener />', () => {
     });
   });
 
-  it('should handle null child', () => {
+  it('should handle null child', async () => {
     const Child = React.forwardRef(() => null);
     const handleClickAway = spy();
-    render(
+    await render(
       <ClickAwayListener onClickAway={handleClickAway}>
         <Child />
       </ClickAwayListener>,
@@ -386,7 +386,7 @@ describe('<ClickAwayListener />', () => {
     ['onClickCapture', false],
     ['onClickCapture', true],
   ].forEach(([eventName, disableReactTree]) => {
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, function test() {
+    it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, async function test() {
       if (!new Event('click').composedPath) {
         this.skip();
       }
@@ -404,7 +404,7 @@ describe('<ClickAwayListener />', () => {
           </React.Fragment>
         );
       }
-      render(<Test />);
+      await render(<Test />);
 
       act(() => {
         screen.getByRole('button').click();
@@ -413,7 +413,7 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(1);
     });
 
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`, function test() {
+    it(`when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`, async function test() {
       if (!new Event('click').composedPath) {
         this.skip();
       }
@@ -429,7 +429,7 @@ describe('<ClickAwayListener />', () => {
           </ClickAwayListener>
         );
       }
-      render(<Test />);
+      await render(<Test />);
 
       act(() => {
         screen.getByRole('button').click();

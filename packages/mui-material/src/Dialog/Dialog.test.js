@@ -116,7 +116,7 @@ describe('<Dialog />', () => {
     expect(getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
-  it('calls onClose when pressing Esc and removes the content after the specified duration', () => {
+  it('calls onClose when pressing Esc and removes the content after the specified duration', async () => {
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);
@@ -144,7 +144,7 @@ describe('<Dialog />', () => {
     fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
-    clock.tick(100);
+    await act(async () => clock.tick(100));
 
     expect(queryByRole('dialog')).to.equal(null);
   });

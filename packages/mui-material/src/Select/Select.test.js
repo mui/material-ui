@@ -838,7 +838,7 @@ describe('<Select />', () => {
   });
 
   describe('prop: MenuProps', () => {
-    it('should apply additional props to the Menu component', () => {
+    it('should apply additional props to the Menu component', async () => {
       const onEntered = spy();
       const { getByRole } = render(
         <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">
@@ -847,11 +847,11 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('combobox'));
-      clock.tick(99);
+      await act(async () => clock.tick(99));
 
       expect(onEntered.callCount).to.equal(0);
 
-      clock.tick(1);
+      await act(async () => clock.tick(1));
 
       expect(onEntered.callCount).to.equal(1);
     });
@@ -1037,7 +1037,7 @@ describe('<Select />', () => {
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
       expect(getByRole('listbox', { hidden: true })).toBeInaccessible();
-      clock.tick(0);
+      await act(async () => clock.tick(0));
 
       expect(queryByRole('listbox', { hidden: true })).to.equal(null);
     });

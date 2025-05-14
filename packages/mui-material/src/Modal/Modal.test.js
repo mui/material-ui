@@ -470,7 +470,7 @@ describe('<Modal />', () => {
     describe('focus stealing', () => {
       clock.withFakeTimers();
 
-      it('does not steal focus from other frames', function test() {
+      it('does not steal focus from other frames', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // TODO: Unclear why this fails. Not important
           // since a browser test gives us more confidence anyway
@@ -528,7 +528,7 @@ describe('<Modal />', () => {
           getByTestId('foreign-input').focus();
         });
         // wait for the `contain` interval check to kick in.
-        clock.tick(500);
+        await act(async () => clock.tick(500));
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });

@@ -189,7 +189,7 @@ describe('<SpeedDial />', () => {
       await act(async () => {
         fab.focus();
       });
-      clock.tick();
+      await act(async () => clock.tick());
 
       expect(handleOpen.callCount).to.equal(1);
       const actions = getAllByRole('menuitem');

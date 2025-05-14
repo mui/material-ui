@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
-import {
-  act,
-  screen,
-  waitFor,
-  createRenderer,
-  fireEvent,
-} from '@mui/internal-test-utils';
+import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
@@ -185,7 +179,7 @@ describe('<TextareaAutosize />', () => {
     describe('resize', () => {
       clock.withFakeTimers();
 
-      it('should handle the resize event', () => {
+      it('should handle the resize event', async () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
         const shadow = container.querySelector('textarea[aria-hidden=true]')!;
@@ -202,7 +196,7 @@ describe('<TextareaAutosize />', () => {
         });
         window.dispatchEvent(new window.Event('resize', {}));
 
-        clock.tick(166);
+        await act(async () => clock.tick(166));
 
         expect(input.style).to.have.property('height', '30px');
         expect(input.style).to.have.property('overflow', 'hidden');

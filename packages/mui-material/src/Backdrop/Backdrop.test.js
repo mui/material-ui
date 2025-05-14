@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { createRenderer, act } from '@mui/internal-test-utils';
 import Backdrop, { backdropClasses as classes } from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 import describeConformance from '../../test/describeConformance';
@@ -39,7 +39,7 @@ describe('<Backdrop />', () => {
   describe('prop: transitionDuration', () => {
     clock.withFakeTimers();
 
-    it('delays appearance of its children', () => {
+    it('delays appearance of its children', async () => {
       const handleEntered = spy();
       render(
         <Backdrop open transitionDuration={1954} onEntered={handleEntered}>
@@ -49,7 +49,7 @@ describe('<Backdrop />', () => {
 
       expect(handleEntered.callCount).to.equal(0);
 
-      clock.tick(1954);
+      await act(async () => clock.tick(1954));
 
       expect(handleEntered.callCount).to.equal(1);
     });

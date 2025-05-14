@@ -38,7 +38,7 @@ describe('<Select> integration', () => {
       );
     }
 
-    it('should focus the selected item', () => {
+    it('should focus the selected item', async () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       const trigger = getByRole('combobox');
@@ -53,13 +53,13 @@ describe('<Select> integration', () => {
       act(() => {
         getByTestId('select-backdrop').click();
       });
-      clock.tick(0);
+      await act(async () => clock.tick(0));
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
     });
 
-    it('should be able to change the selected item', () => {
+    it('should be able to change the selected item', async () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       const trigger = getByRole('combobox');
@@ -75,7 +75,7 @@ describe('<Select> integration', () => {
       act(() => {
         options[2].click();
       });
-      clock.tick(0);
+      await act(async () => clock.tick(0));
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -102,7 +102,7 @@ describe('<Select> integration', () => {
     // displaying it as "active". WAI-ARIA authoring practices do not consider the
     // the trigger part of the widget while a native <select /> will outline the trigger
     // as well
-    it('is displayed as focused while open', () => {
+    it('is displayed as focused while open', async () => {
       const { getByTestId, getByRole } = render(
         <FormControl>
           <InputLabel classes={{ focused: 'focused-label' }} data-testid="label">
@@ -125,7 +125,7 @@ describe('<Select> integration', () => {
         trigger.focus();
       });
       fireEvent.keyDown(trigger, { key: 'Enter' });
-      clock.tick(0);
+      await act(async () => clock.tick(0));
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });

@@ -98,7 +98,7 @@ describe('<Collapse />', () => {
       stub(collapse.firstChild, 'clientHeight').get(() => 666);
     });
 
-    it('should run in', () => {
+    it('should run in', async () => {
       setProps({ in: true });
       expect(nodeEnterHeightStyle).to.equal('0px');
       expect(handleEnter.args[0][0]).to.equal(collapse);
@@ -110,14 +110,14 @@ describe('<Collapse />', () => {
       expect(handleAddEndListener.callCount).to.equal(1);
       expect(handleAddEndListener.args[0][0]).to.equal(collapse);
       expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
-      clock.tick(300);
+      await act(async () => clock.tick(300));
 
       expect(handleEntered.args[0][0].style.height).to.equal('auto');
       expect(handleEntered.args[0][1]).to.equal(false);
       expect(handleEntered.callCount).to.equal(1);
     });
 
-    it('should run out', () => {
+    it('should run out', async () => {
       setProps({ in: true });
       setProps({ in: false });
 
@@ -125,10 +125,10 @@ describe('<Collapse />', () => {
       expect(handleExiting.args[0][0].style.height).to.equal('0px');
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(collapse);
-      clock.tick(300);
+      await act(async () => clock.tick(300));
 
       expect(handleExited.args[0][0].style.height).to.equal('0px');
-      clock.tick(300);
+      await act(async () => clock.tick(300));
 
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(collapse);
@@ -138,7 +138,7 @@ describe('<Collapse />', () => {
   describe('prop: timeout', () => {
     clock.withFakeTimers();
 
-    it('should delay based on height when timeout is auto', () => {
+    it('should delay based on height when timeout is auto', async () => {
       const theme = createTheme({
         transitions: {
           getAutoHeightDuration: (n) => n,
@@ -166,10 +166,10 @@ describe('<Collapse />', () => {
 
       const autoTransitionDuration = 10;
       expect(next1.callCount).to.equal(0);
-      clock.tick(0);
+      await act(async () => clock.tick(0));
 
       expect(next1.callCount).to.equal(0);
-      clock.tick(autoTransitionDuration);
+      await act(async () => clock.tick(autoTransitionDuration));
 
       expect(next1.callCount).to.equal(1);
 
@@ -182,12 +182,12 @@ describe('<Collapse />', () => {
       renderProps2.setProps({ in: true });
 
       expect(next2.callCount).to.equal(0);
-      clock.tick(0);
+      await act(async () => clock.tick(0));
 
       expect(next2.callCount).to.equal(1);
     });
 
-    it('should use timeout as delay when timeout is number', () => {
+    it('should use timeout as delay when timeout is number', async () => {
       const timeout = 10;
       const next = spy();
       const { setProps } = render(
@@ -199,14 +199,10 @@ describe('<Collapse />', () => {
       setProps({ in: true });
 
       expect(next.callCount).to.equal(0);
-      act(() => {
-        clock.tick(0);
-      });
+      await act(async () => clock.tick(0));
 
       expect(next.callCount).to.equal(0);
-      act(() => {
-        clock.tick(timeout);
-      });
+      await act(async () => clock.tick(timeout));
 
       expect(next.callCount).to.equal(1);
     });
