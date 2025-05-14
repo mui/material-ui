@@ -541,7 +541,9 @@ describe('<Tooltip />', () => {
 
       setProps({ open: true });
 
-      timer?.tick(100);
+      await act(async () => {
+        await timer?.tickAsync(100);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(handleFocus.callCount).to.equal(1);
