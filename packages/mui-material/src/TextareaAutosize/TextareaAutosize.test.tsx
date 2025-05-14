@@ -127,25 +127,15 @@ describe('<TextareaAutosize />', () => {
         </div>
       );
     }
-    console.log(1);
     const { container } = render(<App />);
-    console.log(2);
     const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
-    console.log(3);
     const button = screen.getByRole('button');
-    console.log(4);
     expect(parseInt(input.style.height, 10)).to.be.within(30, 32);
-    console.log(5);
     fireEvent.click(button);
-    console.log(6);
     await raf();
-    console.log(7);
     await raf();
-    console.log(8);
     await act(async () => {});
-    console.log(9);
     expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
-    console.log(10);
   });
 
   describe('layout', () => {
