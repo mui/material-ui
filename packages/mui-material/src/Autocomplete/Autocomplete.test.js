@@ -3597,5 +3597,21 @@ describe('<Autocomplete />', () => {
 
       expect(textbox).toHaveFocus();
     });
+
+    it('should allow 0 zero number (0) value to render', () => {
+      const { container } = render(
+        <Autocomplete
+          defaultValue={0}
+          options={[0, 1, 2]}
+          getOptionLabel={(option) => option.toString()}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      expect(container.querySelector(`.${chipClasses.root}`)).to.have.text('0');
+    });
   });
 });
