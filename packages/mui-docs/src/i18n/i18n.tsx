@@ -51,9 +51,6 @@ const UserLanguageContext = React.createContext<UserLanguageContextValue>({
   userLanguage: '',
   setUserLanguage: () => {},
 });
-if (process.env.NODE_ENV !== 'production') {
-  UserLanguageContext.displayName = 'UserLanguage';
-}
 
 export interface UserLanguageProviderProps {
   children: React.ReactNode;

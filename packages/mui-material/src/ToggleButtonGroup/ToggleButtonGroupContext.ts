@@ -17,8 +17,4 @@ interface ToggleButtonGroupContextType {
  */
 const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextType>({});
 
-if (process.env.NODE_ENV !== 'production') {
-  ToggleButtonGroupContext.displayName = 'ToggleButtonGroupContext';
-}
-
 export default ToggleButtonGroupContext;

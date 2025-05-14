@@ -12,8 +12,4 @@ export interface RadioGroupContextValue {
  */
 const RadioGroupContext = React.createContext<RadioGroupContextValue | undefined>(undefined);
 
-if (process.env.NODE_ENV !== 'production') {
-  RadioGroupContext.displayName = 'RadioGroupContext';
-}
-
 export default RadioGroupContext;

@@ -7,8 +7,4 @@ import * as React from 'react';
  */
 const ImageListContext = React.createContext({});
 
-if (process.env.NODE_ENV !== 'production') {
-  ImageListContext.displayName = 'ImageListContext';
-}
-
 export default ImageListContext;

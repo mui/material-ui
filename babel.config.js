@@ -93,6 +93,7 @@ module.exports = function getBabelConfig(api) {
         ],
       },
     ],
+    '@mui-public/babel-plugin-display-name',
     [
       '@mui/internal-babel-plugin-minify-errors',
       {

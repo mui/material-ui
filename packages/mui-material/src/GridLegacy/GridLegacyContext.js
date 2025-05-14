@@ -6,8 +6,4 @@ import * as React from 'react';
  */
 const GridLegacyContext = React.createContext();
 
-if (process.env.NODE_ENV !== 'production') {
-  GridLegacyContext.displayName = 'GridLegacyContext';
-}
-
 export default GridLegacyContext;

@@ -20,10 +20,6 @@ import { TypographySystem } from '../styles/types';
  */
 export const TypographyNestedContext = React.createContext(false);
 
-if (process.env.NODE_ENV !== 'production') {
-  TypographyNestedContext.displayName = 'TypographyNestedContext';
-}
-
 /**
  * @internal
  * Typography's level will be inherit within this context unless an explicit `level` prop is provided.
@@ -31,10 +27,6 @@ if (process.env.NODE_ENV !== 'production') {
  * This is used in components, for example Table, to inherit the parent's size by default.
  */
 export const TypographyInheritContext = React.createContext(false);
-
-if (process.env.NODE_ENV !== 'production') {
-  TypographyInheritContext.displayName = 'TypographyInheritContext';
-}
 
 const useUtilityClasses = (ownerState: TypographyOwnerState) => {
   const { gutterBottom, noWrap, level, color, variant } = ownerState;

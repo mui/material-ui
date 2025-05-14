@@ -87,15 +87,7 @@ export const DispatchContext = React.createContext<React.ActionDispatch<any>>(()
   throw new Error('Forgot to wrap component in `ThemeProvider`');
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  DispatchContext.displayName = 'ThemeDispatchContext';
-}
-
 export const ThemeOptionsContext = React.createContext(themeInitialOptions);
-
-if (process.env.NODE_ENV !== 'production') {
-  ThemeOptionsContext.displayName = 'ThemeOptionsContext';
-}
 
 export function ThemeProvider(props: React.PropsWithChildren) {
   const { children } = props;
