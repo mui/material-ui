@@ -3598,7 +3598,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).toHaveFocus();
     });
 
-    it('should allow 0 zero number (0) value to render', () => {
+    it('should allow zero number (0) as a value to render', () => {
       const { container } = render(
         <Autocomplete
           defaultValue={0}
