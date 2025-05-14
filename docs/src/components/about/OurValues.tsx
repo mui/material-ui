@@ -13,7 +13,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const values = [
   {
-    title: 'User obsessed 💙',
+    title: 'User-obsessed 💙',
     description: "We never lose sight of who we're serving and why.",
     lightIcon: 'url(/static/branding/about/illustrations/community-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/community-dark.svg)',
