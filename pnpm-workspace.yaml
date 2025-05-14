@@ -1,5 +1,4 @@
 packages:
-  - benchmark
   - packages/*
   - packages/mui-envinfo/test
   - packages-internal/*

@@ -33,7 +33,7 @@ export default function SliderValueLabel(props: SliderValueLabelProps) {
   return React.cloneElement(
     children,
     {
-      className: clsx(children.props.className),
+      className: children.props.className,
     },
     <React.Fragment>
       {children.props.children}

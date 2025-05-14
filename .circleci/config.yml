@@ -72,7 +72,6 @@ commands:
           name: Set npm registry public signing keys
           command: |
             echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
-
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -87,59 +86,31 @@ commands:
                 name: Install pnpm package manager
                 # See https://stackoverflow.com/a/73411601
                 command: corepack enable --install-directory ~/bin
-
       - run:
           name: View install environment
           command: |
             node --version
             pnpm --version
-
   install_js:
     parameters:
       browsers:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
-
     steps:
       - setup_corepack:
           browsers: << parameters.browsers >>
-
       - run:
           name: Resolve React version
           command: |
             pnpm use-react-version
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-
       - run:
           name: Install js dependencies
           command: pnpm install
 
 jobs:
-  checkout:
-    <<: *default-job
-    steps:
-      - checkout
-      - install_js
-      - when:
-          # Install can be "dirty" when running with non-default versions of React
-          condition:
-            equal: [<< parameters.react-version >>, stable]
-          steps:
-            - run:
-                name: Should not have any git not staged
-                command: git add -A && git diff --exit-code --staged
-            - run:
-                name: '`pnpm dedupe` was run?'
-                command: |
-                  # #target-branch-reference
-                  if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
-                  then
-                      echo "No changes to dependencies detected. Skipping..."
-                  else
-                      pnpm dedupe --check
-                  fi
   test_unit:
     <<: *default-job
     steps:
@@ -205,6 +176,16 @@ jobs:
       - checkout
       - install_js
       - run:
+          name: '`pnpm dedupe` was run?'
+          command: |
+            # #target-branch-reference
+            if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
+            then
+                echo "No changes to dependencies detected. Skipping..."
+            else
+                pnpm dedupe --check
+            fi
+      - run:
           name: '`pnpm prettier` changes committed?'
           command: pnpm prettier --check
       - run:
@@ -264,7 +245,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:stable && pnpm -r build:types  
+            pnpm -r build:stable && pnpm -r build:types
             git --no-pager diff
       - run:
           name: Any defect declaration files?
@@ -298,14 +279,12 @@ jobs:
             set +e
             pnpm typescript:ci
             exit 0
-
       - restore_cache:
           name: Restore generated declaration files
           keys:
             # We assume that the target branch is `next` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
             - typescript-declaration-files-next
-
       - run:
           name: Diff declaration files
           command: |
@@ -314,7 +293,6 @@ jobs:
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             pnpm -r build:types
             git --no-pager diff
-
       - run:
           name: Log defect declaration files
           command: |
@@ -398,7 +376,7 @@ jobs:
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
-      # Persist reports for inspection in https://mui-dashboard.netlify.app/
+      # Persist reports for inspection in https://frontend-public.mui.com/
       - store_artifacts:
           # see karma.conf.profile.js reactProfilerReporter.outputDir
           path: tmp/react-profiler-report/karma
@@ -444,7 +422,6 @@ jobs:
           root: packed
           paths:
             - '*'
-
   test_bundling_node_cjs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
@@ -604,7 +581,6 @@ jobs:
       - run:
           name: Test fixture
           command: pnpm start
-
   test_bundle_size_monitor:
     <<: *default-job
     steps:
@@ -685,70 +661,34 @@ jobs:
           command: pnpm danger ci --fail-on-errors
           environment:
             DANGER_COMMAND: reportBundleSize
-  test_benchmark:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
-      - run: pnpm benchmark:browser
-      - store_artifacts:
-          name: Publish benchmark results as a pipeline artifact.
-          path: tmp/benchmarks
-          destination: benchmarks
 workflows:
   version: 2
   pipeline:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_unit:
           <<: *default-context
-          requires:
-            - checkout
       - test_lint:
           <<: *default-context
-          requires:
-            - checkout
       - test_static:
           <<: *default-context
-          requires:
-            - checkout
       - test_types:
           <<: *default-context
-          requires:
-            - checkout
       - test_browser:
           <<: *default-context
-          requires:
-            - checkout
       - test_regressions:
           <<: *default-context
-          requires:
-            - checkout
       - test_e2e:
           <<: *default-context
-          requires:
-            - checkout
       - test_bundle_size_monitor:
           <<: *default-context
-          requires:
-            - checkout
   e2e-website:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_e2e_website:
           <<: *default-context
-          requires:
-            - checkout
-
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
@@ -791,7 +731,6 @@ workflows:
           <<: *default-context
           requires:
             - test_bundling_prepare
-
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
@@ -965,10 +904,4 @@ workflows:
                 - v6.x
     jobs:
       - test_types_next:
-          <<: *default-context
-  benchmark:
-    when:
-      equal: [benchmark, << pipeline.parameters.workflow >>]
-    jobs:
-      - test_benchmark:
           <<: *default-context

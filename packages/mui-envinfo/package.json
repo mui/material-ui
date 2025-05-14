@@ -1,9 +1,8 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.36",
-  "private": false,
+  "version": "2.0.37",
   "author": "MUI Team",
-  "description": "Logs infos about the environment relevant to @mui/*",
+  "description": "Logs infos about the environment relevant to @mui/*.",
   "bin": "./envinfo.js",
   "repository": {
     "type": "git",

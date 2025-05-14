@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^8.56.12",
-    "@typescript-eslint/parser": "^8.31.0",
+    "@typescript-eslint/parser": "^8.31.1",
     "eslint": "^8.57.1"
   },
   "peerDependencies": {
