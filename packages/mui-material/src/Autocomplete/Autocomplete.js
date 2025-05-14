@@ -590,7 +590,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (renderTags && multiple && value.length > 0) {
     startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
-  } else if (renderValue && value) {
+  } else if (renderValue && value != null) {
     startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
   } else if (multiple && value.length > 0) {
     startAdornment = value.map((option, index) => {
