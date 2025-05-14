@@ -166,7 +166,9 @@
       "description": "Render the group.",
       "typeDescriptions": { "params": "The group to render." }
     },
-    "renderInput": { "description": "Render the input." },
+    "renderInput": {
+      "description": "Render the input.<br><strong>Note:</strong> The <code>renderInput</code> prop must return a <code>TextField</code> component or a compatible custom component that correctly forwards <code>InputProps.ref</code> and spreads <code>inputProps</code>. This ensures proper integration with the Autocomplete&#39;s internal logic (e.g., focus management and keyboard navigation).<br>Avoid using components like <code>DatePicker</code> or <code>Select</code> directly, as they may not forward the required props, leading to runtime errors or unexpected behavior."
+    },
     "renderOption": {
       "description": "Render the option, use <code>getOptionLabel</code> by default.",
       "typeDescriptions": {
