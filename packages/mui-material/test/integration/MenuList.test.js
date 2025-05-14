@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   act,
   createRenderer,
@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 
 describe('<MenuList> integration', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   specify('the MenuItems have the `menuitem` role', () => {
     const { getAllByRole } = render(
@@ -617,9 +617,27 @@ describe('<MenuList> integration', () => {
     });
 
     describe('time', () => {
-      clock.withFakeTimers();
+      /** @type {import('sinon').SinonFakeTimers | null} */
+      let timer = null;
 
-      it('should reset the character buffer after 500ms', () => {
+      beforeEach(() => {
+        timer = useFakeTimers({
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
+
+      it('should reset the character buffer after 500ms', async () => {
         render(
           <MenuList autoFocus>
             <MenuItem>Worm</MenuItem>
@@ -628,7 +646,11 @@ describe('<MenuList> integration', () => {
         );
 
         fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-        clock.tick(501);
+
+        await act(async () => {
+          await timer?.tickAsync(501);
+        });
+
         fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
         expect(screen.getByText('Ordinary')).toHaveFocus();
       });

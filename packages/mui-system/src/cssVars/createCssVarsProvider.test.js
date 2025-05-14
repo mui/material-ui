@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { spy, useFakeTimers } from 'sinon';
+import { createRenderer, screen, fireEvent, act } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createCssVarsTheme from './createCssVarsTheme';
 import createCssVarsProvider, { DISABLE_CSS_TRANSITION } from './createCssVarsProvider';
@@ -12,7 +12,7 @@ import {
 import useTheme from '../useTheme';
 
 describe('createCssVarsProvider', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
   let originalMatchmedia;
   let storage = {};
   const createMatchMedia = (matches) => () => ({
@@ -245,13 +245,31 @@ describe('createCssVarsProvider', () => {
     });
 
     describe('[option]: `disableTransitionOnChange`', () => {
-      clock.withFakeTimers();
+      /** @type {import('sinon').SinonFakeTimers | null} */
+      let timer = null;
+
+      beforeEach(() => {
+        timer = useFakeTimers({
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
 
       beforeEach(() => {
         document.head.replaceChildren([]);
       });
 
-      it('disable all css transitions when switching between modes, given `disableTransitionOnChange` is true', () => {
+      it('disable all css transitions when switching between modes, given `disableTransitionOnChange` is true', async () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: createCssVarsTheme({
             colorSchemes: { light: {}, dark: {} },
@@ -276,7 +294,9 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        clock.runToLast();
+        await act(async () => {
+          await timer?.runToLastAsync();
+        });
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
@@ -286,13 +306,15 @@ describe('createCssVarsProvider', () => {
         );
         expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
 
-        clock.runToLast();
+        await act(async () => {
+          await timer?.runToLastAsync();
+        });
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
       });
 
-      it('disable all css transitions when switching between color schemes, given `disableTransitionOnChange` is true', () => {
+      it('disable all css transitions when switching between color schemes, given `disableTransitionOnChange` is true', async () => {
         const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
           theme: createCssVarsTheme({
             colorSchemes: { light: {}, dark: {} },
@@ -317,7 +339,9 @@ describe('createCssVarsProvider', () => {
             <Consumer />
           </CssVarsProvider>,
         );
-        clock.runToLast();
+        await act(async () => {
+          await timer?.runToLastAsync();
+        });
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );
@@ -327,7 +351,9 @@ describe('createCssVarsProvider', () => {
         );
         expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
 
-        clock.runToLast();
+        await act(async () => {
+          await timer?.runToLastAsync();
+        });
         expect(document.head.children[document.head.children.length - 1]?.textContent).not.to.equal(
           DISABLE_CSS_TRANSITION,
         );

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
+import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
@@ -10,7 +11,7 @@ interface GenericProps {
 }
 
 describe('<FocusTrap />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   let initialFocus: HTMLElement | null = null;
 
@@ -35,7 +36,7 @@ describe('<FocusTrap />', () => {
         </div>
       </FocusTrap>,
       // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-      { strictEffects: false },
+      { strict: false, strictEffects: false },
     );
 
     expect(getByTestId('auto-focus')).toHaveFocus();
@@ -54,7 +55,7 @@ describe('<FocusTrap />', () => {
         </div>
       </FocusTrap>,
       // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076s
-      { strictEffects: false },
+      { strict: false, strictEffects: false },
     );
 
     expect(getByTestId('auto-focus')).toHaveFocus();
@@ -198,6 +199,7 @@ describe('<FocusTrap />', () => {
     const { setProps } = render(<Test />, {
       // Strict Effects interferes with the premise of the test.
       // It would trigger a focus restore (i.e. a blur event)
+      strict: false,
       strictEffects: false,
     });
 
@@ -290,7 +292,27 @@ describe('<FocusTrap />', () => {
   });
 
   describe('interval', () => {
-    clock.withFakeTimers();
+    let timer: SinonFakeTimers | null = null;
+
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
 
     it('contains the focus if the active element is removed', async () => {
       function WithRemovableElement({ hideButton = false }) {
@@ -317,7 +339,12 @@ describe('<FocusTrap />', () => {
 
       setProps({ hideButton: true });
       expect(screen.getByTestId('root')).not.toHaveFocus();
-      clock.tick(500); // wait for the interval check to kick in.
+
+      // wait for the interval check to kick in.
+      await act(async () => {
+        await timer?.tickAsync(500);
+      });
+
       expect(screen.getByTestId('root')).toHaveFocus();
     });
 
@@ -332,7 +359,9 @@ describe('<FocusTrap />', () => {
           </div>,
         );
 
-        clock.tick(500); // trigger an interval call
+        await act(async () => {
+          await timer?.tickAsync(500); // trigger an interval call
+        });
         expect(initialFocus).toHaveFocus();
 
         await act(async () => {

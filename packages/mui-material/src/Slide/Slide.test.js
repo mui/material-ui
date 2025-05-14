@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub } from 'sinon';
+import { spy, stub, useFakeTimers } from 'sinon';
 import { act, createRenderer } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -10,7 +10,7 @@ import { useForkRef } from '../utils';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Slide />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   const defaultProps = {
     in: true,
@@ -56,9 +56,30 @@ describe('<Slide />', () => {
   });
 
   describe('transition lifecycle', () => {
-    clock.withFakeTimers();
+    /** @type {import('sinon').SinonFakeTimers | null} */
+    let timer = null;
 
-    it('tests', () => {
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
+
+    it('tests', async () => {
       const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
@@ -100,7 +121,9 @@ describe('<Slide />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => {
+        await timer?.tickAsync(1000);
+      });
       expect(handleEntered.callCount).to.equal(1);
 
       setProps({ in: false });
@@ -111,7 +134,9 @@ describe('<Slide />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => {
+        await timer?.tickAsync(1000);
+      });
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });
@@ -580,7 +605,25 @@ describe('<Slide />', () => {
     });
 
     describe('resize', () => {
-      clock.withFakeTimers();
+      /** @type {import('sinon').SinonFakeTimers | null} */
+      let timer = null;
+
+      beforeEach(() => {
+        timer = useFakeTimers({
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
 
       it('should recompute the correct position', async () => {
         const { container } = render(
@@ -592,7 +635,9 @@ describe('<Slide />', () => {
         await act(async () => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
-        clock.tick(166);
+        await act(async () => {
+          await timer?.tickAsync(166);
+        });
 
         const child = container.querySelector('#testChild');
         expect(child.style.transform).not.to.equal(undefined);
@@ -620,7 +665,9 @@ describe('<Slide />', () => {
         await act(async () => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
-        clock.tick(166);
+        await act(async () => {
+          await timer?.tickAsync(166);
+        });
       });
     });
   });

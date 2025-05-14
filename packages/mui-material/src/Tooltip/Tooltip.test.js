@@ -536,14 +536,12 @@ describe('<Tooltip />', () => {
       const { setProps } = render(
         <AutoFocus />,
         // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-        { strictEffects: false },
+        { strict: false, strictEffects: false },
       );
 
       setProps({ open: true });
 
-      await act(async () => {
-        await timer?.tickAsync(100);
-      });
+      timer?.tick(100);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(handleFocus.callCount).to.equal(1);

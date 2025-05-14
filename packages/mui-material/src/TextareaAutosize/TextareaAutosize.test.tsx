@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import sinon, { spy, stub } from 'sinon';
+import sinon, { spy, stub, useFakeTimers, SinonFakeTimers } from 'sinon';
 import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
@@ -32,7 +32,7 @@ async function raf() {
 }
 
 describe('<TextareaAutosize />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   // For https://github.com/mui/material-ui/pull/33238
   it('should not crash when unmounting with Suspense', async () => {
@@ -127,14 +127,25 @@ describe('<TextareaAutosize />', () => {
         </div>
       );
     }
+    console.log(1);
     const { container } = render(<App />);
+    console.log(2);
     const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
+    console.log(3);
     const button = screen.getByRole('button');
+    console.log(4);
     expect(parseInt(input.style.height, 10)).to.be.within(30, 32);
+    console.log(5);
     fireEvent.click(button);
+    console.log(6);
     await raf();
+    console.log(7);
     await raf();
+    console.log(8);
+    await act(async () => {});
+    console.log(9);
     expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
+    console.log(10);
   });
 
   describe('layout', () => {
@@ -181,9 +192,27 @@ describe('<TextareaAutosize />', () => {
     });
 
     describe('resize', () => {
-      clock.withFakeTimers();
+      let timer: SinonFakeTimers | null = null;
 
-      it('should handle the resize event', () => {
+      beforeEach(() => {
+        timer = useFakeTimers({
+          shouldClearNativeTimers: true,
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
+
+      it('should handle the resize event', async () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
         const shadow = container.querySelector('textarea[aria-hidden=true]')!;
@@ -198,9 +227,13 @@ describe('<TextareaAutosize />', () => {
           scrollHeight: 30,
           lineHeight: 15,
         });
-        window.dispatchEvent(new window.Event('resize', {}));
+        await act(async () => {
+          window.dispatchEvent(new window.Event('resize', {}));
+        });
 
-        clock.tick(166);
+        await act(async () => {
+          await timer?.tickAsync(166);
+        });
 
         expect(input.style).to.have.property('height', '30px');
         expect(input.style).to.have.property('overflow', 'hidden');

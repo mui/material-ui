@@ -18,7 +18,6 @@ import {
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import { useFakeTimers } from 'sinon';
 import reactMajor from './reactMajor';
 
 interface Interaction {
@@ -346,149 +345,25 @@ const isVitest =
   // VITEST_BROWSER_DEBUG is present on vitest in browser mode.
   typeof process.env.VITEST_BROWSER_DEBUG !== 'undefined';
 
-function createVitestClock(
-  defaultMode: 'fake' | 'real',
-  config: ClockConfig,
-  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
-): Clock {
-  if (defaultMode === 'fake') {
-    beforeEach(() => {
-      vi.useFakeTimers(options);
-      if (config) {
-        vi.setSystemTime(config);
-      }
-    });
-    afterEach(() => {
-      vi.useRealTimers();
-    });
-  } else {
-    beforeEach(() => {
-      if (config) {
-        vi.setSystemTime(config);
-      }
-    });
-    afterEach(() => {
-      vi.useRealTimers();
-    });
-  }
-
+function createClock(): Clock {
   return {
-    withFakeTimers: () => {
-      beforeEach(() => {
-        vi.useFakeTimers(options);
-      });
-      afterEach(() => {
-        vi.useRealTimers();
-      });
-    },
-    runToLast: () => {
-      traceSync('runToLast', () => {
-        rtlAct(() => {
-          vi.runOnlyPendingTimers();
-        });
-      });
-    },
-    isReal() {
-      return !vi.isFakeTimers();
-    },
-    restore() {
-      vi.useRealTimers();
-    },
-    tick(timeoutMS: number) {
-      traceSync('tick', () => {
-        rtlAct(() => {
-          vi.advanceTimersByTime(timeoutMS);
-        });
-      });
+    tick() {
+      throw new Error('Unsupported');
     },
     runAll() {
-      traceSync('runAll', () => {
-        rtlAct(() => {
-          vi.runAllTimers();
-        });
-      });
-    },
-  };
-}
-
-function createClock(
-  defaultMode: 'fake' | 'real',
-  config: ClockConfig,
-  options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
-): Clock {
-  if (isVitest) {
-    return createVitestClock(defaultMode, config, options, vi);
-  }
-
-  let clock: ReturnType<typeof useFakeTimers> | null = null;
-
-  let mode = defaultMode;
-
-  beforeEach(() => {
-    if (mode === 'fake') {
-      clock = useFakeTimers({
-        now: config,
-        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
-        // Technically we'd want to reset all modules between tests but we don't have that technology.
-        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
-        shouldClearNativeTimers: true,
-        ...options,
-      });
-    }
-  });
-
-  afterEach(() => {
-    clock?.restore();
-    clock = null;
-  });
-
-  return {
-    tick(timeoutMS: number) {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      traceSync('tick', () => {
-        rtlAct(() => {
-          clock!.tick(timeoutMS);
-        });
-      });
-    },
-    runAll() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      traceSync('runAll', () => {
-        rtlAct(() => {
-          clock!.runAll();
-        });
-      });
+      throw new Error('Unsupported');
     },
     runToLast() {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      traceSync('runToLast', () => {
-        rtlAct(() => {
-          clock!.runToLast();
-        });
-      });
+      throw new Error('Unsupported');
     },
     isReal() {
-      return setTimeout.hasOwnProperty('clock') === false;
+      throw new Error('Unsupported');
     },
     withFakeTimers() {
-      before(() => {
-        mode = 'fake';
-      });
-
-      after(() => {
-        mode = defaultMode;
-      });
+      throw new Error('Unsupported');
     },
     restore() {
-      clock?.restore();
+      throw new Error('Unsupported');
     },
   };
 }
@@ -504,12 +379,6 @@ export interface Renderer {
 
 export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 'strictEffects'> {
   /**
-   * @default 'real'
-   */
-  clock?: 'fake' | 'real';
-  clockConfig?: ClockConfig;
-  clockOptions?: Parameters<typeof createClock>[2];
-  /**
    * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
    * @default {}
    */
@@ -517,17 +386,11 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
-  const {
-    clock: clockMode = 'real',
-    clockConfig,
-    strict: globalStrict = true,
-    strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi || {},
-    clockOptions,
-  } = globalOptions;
+  const { strict: globalStrict = true, strictEffects: globalStrictEffects = globalStrict } =
+    globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
-  const clock = createClock(clockMode, clockConfig, clockOptions, vi);
+  const clock = createClock();
 
   /**
    * Flag whether `createRenderer` was called in a suite i.e. describe() block.
@@ -605,18 +468,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   });
 
   afterEach(() => {
-    if (!clock.isReal()) {
-      const error = new Error(
-        "Can't cleanup before fake timers are restored.\n" +
-          'Be sure to:\n' +
-          '  1. Only use `clock` from `createRenderer`.\n' +
-          '  2. Call `createRenderer` in a suite and not any test hook (for example `beforeEach`) or test itself (for example `it`).',
-      );
-      // Use saved stack otherwise the stack trace will not include the test location.
-      error.stack = createClientRenderStack;
-      throw error;
-    }
-
     cleanup();
     profiler.report();
     profiler = null!;
