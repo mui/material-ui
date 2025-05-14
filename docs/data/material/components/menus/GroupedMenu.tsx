@@ -30,8 +30,10 @@ export default function GroupedMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'basic-button',
+          },
         }}
       >
         <ListSubheader>Category 1</ListSubheader>

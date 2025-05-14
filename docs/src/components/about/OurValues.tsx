@@ -13,7 +13,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const values = [
   {
-    title: 'Put community first 💙',
+    title: 'User obsessed 💙',
     description: "We never lose sight of who we're serving and why.",
     lightIcon: 'url(/static/branding/about/illustrations/community-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/community-dark.svg)',
@@ -21,7 +21,7 @@ const values = [
     height: 84,
   },
   {
-    title: 'Avoid bureaucracy 🚫',
+    title: 'Keep it simple 🚫',
     description: "We're so not corporate—and we like it that way.",
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',

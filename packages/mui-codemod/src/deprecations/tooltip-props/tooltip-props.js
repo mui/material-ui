@@ -11,10 +11,15 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  replaceComponentsWithSlots(j, { root, componentName: 'Tooltip' });
+  replaceComponentsWithSlots(j, {
+    root,
+    packageName: options.packageName,
+    componentName: 'Tooltip',
+  });
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Tooltip',
     propName: 'PopperComponent',
     slotName: 'popper',
@@ -22,6 +27,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Tooltip',
     propName: 'PopperProps',
     slotName: 'popper',
@@ -29,6 +35,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlots(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Tooltip',
     propName: 'TransitionComponent',
     slotName: 'transition',
@@ -36,6 +43,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'Tooltip',
     propName: 'TransitionProps',
     slotName: 'transition',
