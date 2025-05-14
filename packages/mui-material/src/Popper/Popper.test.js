@@ -16,10 +16,13 @@ describe('<Popper />', () => {
 
   beforeEach(() => {
     timer = useFakeTimers({
+      shouldClearNativeTimers: true,
       toFake: [
         'performance',
         'setTimeout',
         'clearTimeout',
+        'setInterval',
+        'clearInterval',
         'Date',
         'requestAnimationFrame',
         'cancelAnimationFrame',

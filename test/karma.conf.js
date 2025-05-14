@@ -42,6 +42,17 @@ const AVERAGE_KARMA_BUILD = 1 / 6;
 // CircleCI accepts up to 83 concurrent builds.
 const MAX_CIRCLE_CI_CONCURRENCY = 83;
 
+const testFilePatterns = [
+  'packages/mui-material/test/integration/**/*.test.*',
+  'packages/mui-material/src/**/*.test.*',
+  'packages/mui-lab/src/**/*.test.*',
+  'packages/mui-styled-engine/src/**/*.test.*',
+  'packages/mui-styled-engine-sc/src/**/*.test.*',
+  'packages/mui-system/src/**/*.test.*',
+  'packages/mui-utils/src/**/*.test.*',
+  'packages/mui-joy/src/**/*.test.*',
+];
+
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
@@ -67,10 +78,11 @@ module.exports = function setKarmaConfig(config) {
     },
     frameworks: ['mocha', 'webpack'],
     files: [
-      {
-        pattern: 'test/karma.tests.js',
+      'test/setupKarma.js',
+      ...testFilePatterns.map((pattern) => ({
+        pattern,
         watched: false,
-      },
+      })),
       {
         pattern: 'test/assets/*.png',
         watched: false,
@@ -98,7 +110,8 @@ module.exports = function setKarmaConfig(config) {
     logLevel: config.LOG_INFO,
     port: 9876,
     preprocessors: {
-      'test/karma.tests.js': ['webpack', 'sourcemap'],
+      'test/setupKarma.js': ['webpack', 'sourcemap'],
+      ...Object.fromEntries(testFilePatterns.map((pattern) => [pattern, ['webpack', 'sourcemap']])),
     },
     proxies: {
       '/fake.png': '/base/test/assets/fake.png',

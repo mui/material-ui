@@ -191,6 +191,8 @@ describe('<TextareaAutosize />', () => {
             'performance',
             'setTimeout',
             'clearTimeout',
+            'setInterval',
+            'clearInterval',
             'Date',
             'requestAnimationFrame',
             'cancelAnimationFrame',

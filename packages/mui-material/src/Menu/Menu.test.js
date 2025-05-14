@@ -30,10 +30,13 @@ describe('<Menu />', () => {
     // Handles the warning about an update to a component that is not wrapped in act
     // by preventing setTimeout to run
     timer = useFakeTimers({
+      shouldClearNativeTimers: true,
       toFake: [
         'performance',
         'setTimeout',
         'clearTimeout',
+        'setInterval',
+        'clearInterval',
         'Date',
         'requestAnimationFrame',
         'cancelAnimationFrame',
