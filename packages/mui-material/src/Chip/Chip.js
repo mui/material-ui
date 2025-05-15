@@ -515,11 +515,11 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     elementType: ChipRoot,
     externalForwardedProps: {
       ...externalForwardedProps,
+      component,
       ...other,
     },
     ownerState,
     ref: handleRef,
-    shouldForwardComponentProp: true,
     className: clsx(classes.root, className),
     additionalProps: {
       disabled: clickable && disabled ? true : undefined,
@@ -551,7 +551,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   });
 
   return (
-    <RootSlot as={component} {...rootProps}>
+    <RootSlot {...rootProps}>
       {avatar || icon}
       <LabelSlot {...labelProps}>{label}</LabelSlot>
       {deleteIcon}
