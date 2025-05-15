@@ -32,7 +32,7 @@ export interface HighlightedCodeProps {
   sx?: SxProps;
 }
 
-export const HighlightedCode = (props: HighlightedCodeProps) => {
+export function HighlightedCode(props: HighlightedCodeProps) {
   const {
     code,
     copyButtonHidden = false,
@@ -68,4 +68,4 @@ export const HighlightedCode = (props: HighlightedCodeProps) => {
       </div>
     </Component>
   );
-};
+}
