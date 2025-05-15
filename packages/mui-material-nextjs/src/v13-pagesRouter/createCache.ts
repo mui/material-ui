@@ -19,12 +19,7 @@ export default function createEmotionCache(
 
   const { enableCssLayer, ...rest } = options ?? {};
 
-  const emotionCache = createCache({
-    key: 'mui',
-    insertionPoint,
-    ...rest,
-    // stylisPlugins: [plugin],
-  });
+  const emotionCache = createCache({ key: 'mui', insertionPoint, ...rest });
   if (enableCssLayer) {
     const prevInsert = emotionCache.insert;
     emotionCache.insert = (...args) => {
