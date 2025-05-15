@@ -590,7 +590,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (renderTags && multiple && value.length > 0) {
     startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
-  } else if (renderValue && value) {
+  } else if (renderValue && value != null) {
     startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
   } else if (multiple && value.length > 0) {
     startAdornment = value.map((option, index) => {
@@ -1147,6 +1147,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   renderGroup: PropTypes.func,
   /**
    * Render the input.
+   *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
    *
    * @param {object} params
    * @returns {ReactNode}
