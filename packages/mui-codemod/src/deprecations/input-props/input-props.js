@@ -9,7 +9,7 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  replaceComponentsWithSlots(j, { root, componentName: 'Input' });
+  replaceComponentsWithSlots(j, { root, packageName: options.packageName, componentName: 'Input' });
 
   return root.toSource(printOptions);
 }

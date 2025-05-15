@@ -79,8 +79,10 @@ export default function CustomizedMenus() {
       </Button>
       <StyledMenu
         id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'demo-customized-button',
+          },
         }}
         anchorEl={anchorEl}
         open={open}
