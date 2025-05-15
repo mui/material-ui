@@ -32,6 +32,7 @@ describe('<TablePaginationActions />', () => {
         'componentProp',
         'themeDefaultProps',
         'themeStyleOverrides',
+        'themeVariants',
       ],
     }),
   );
