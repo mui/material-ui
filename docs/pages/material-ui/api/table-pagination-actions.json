@@ -74,7 +74,10 @@
     }
   ],
   "classes": [],
+  "spread": true,
+  "themeDefaultProps": true,
   "muiName": "MuiTablePaginationActions",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/TablePaginationActions/TablePaginationActions.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-pagination/\">Pagination</a></li></ul>",
