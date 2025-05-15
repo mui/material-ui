@@ -170,6 +170,9 @@ export default function XHero() {
                         fontSize: '1.25rem',
                       },
                     },
+                    [`& .MuiDataGrid-aggregationColumnHeaderLabel`]: {
+                      fontWeight: 'normal',
+                    },
                     [`& .MuiDataGrid-columnHeader:focus, & .MuiDataGrid-columnHeader:focus-within`]:
                       {
                         outline: 'none',
@@ -349,7 +352,7 @@ export default function XHero() {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
-                  value={[startDate, endDate]}
+                  defaultValue={[startDate, endDate]}
                 />
               </LocalizationProvider>
             </Paper>
