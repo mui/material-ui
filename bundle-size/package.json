@@ -5,7 +5,6 @@
     "check": "NODE_OPTIONS=\"--max-old-space-size=4096\" bundle-size-checker --output ../size-snapshot.json"
   },
   "devDependencies": {
-    "@mui/internal-bundle-size-checker": "github:mui/mui-public#bundle-size-checker&path:./packages/bundle-size-checker",
     "fast-glob": "^3.3.2",
     "path": "^0.12.7"
   },
