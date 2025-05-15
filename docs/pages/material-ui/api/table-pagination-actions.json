@@ -1,0 +1,82 @@
+{
+  "props": {
+    "getItemAriaLabel": {
+      "type": { "name": "func" },
+      "required": true,
+      "signature": { "type": "function(type: string) => string", "describedArgs": ["type"] }
+    },
+    "backIconButtonProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.previousButton</code> instead."
+    },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "disabled": { "type": { "name": "bool" }, "default": "false" },
+    "nextIconButtonProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>slotProps.nextButton</code> instead."
+    }
+  },
+  "name": "TablePaginationActions",
+  "imports": [
+    "import TablePaginationActions from '@mui/material/TablePaginationActions';",
+    "import { TablePaginationActions } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "firstButton",
+      "description": "The component that renders the first button.",
+      "default": "IconButton",
+      "class": null
+    },
+    {
+      "name": "lastButton",
+      "description": "The component that renders the last button.",
+      "default": "IconButton",
+      "class": null
+    },
+    {
+      "name": "nextButton",
+      "description": "The component that renders the next button.",
+      "default": "IconButton",
+      "class": null
+    },
+    {
+      "name": "previousButton",
+      "description": "The component that renders the previous button.",
+      "default": "IconButton",
+      "class": null
+    },
+    {
+      "name": "firstButtonIcon",
+      "description": "The component that renders the first button icon.",
+      "default": "FirstPageIcon",
+      "class": null
+    },
+    {
+      "name": "lastButtonIcon",
+      "description": "The component that renders the last button icon.",
+      "default": "LastPageIcon",
+      "class": null
+    },
+    {
+      "name": "nextButtonIcon",
+      "description": "The component that renders the next button icon.",
+      "default": "KeyboardArrowRight",
+      "class": null
+    },
+    {
+      "name": "previousButtonIcon",
+      "description": "The component that renders the previous button icon.",
+      "default": "KeyboardArrowLeft",
+      "class": null
+    }
+  ],
+  "classes": [],
+  "muiName": "MuiTablePaginationActions",
+  "filename": "/packages/mui-material/src/TablePaginationActions/TablePaginationActions.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-pagination/\">Pagination</a></li></ul>",
+  "cssComponent": false
+}

@@ -92,7 +92,16 @@ export interface TablePaginationActionsSlots {
    */
   previousButtonIcon?: React.ElementType;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ *
+ * API:
+ *
+ * - [TablePaginationActions API](https://mui.com/material-ui/api/table-pagination-actions/)
+ */
 declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
 
 export default TablePaginationActions;
