@@ -136,6 +136,7 @@ export default function BrandingCssVarsProvider(props: {
   const { canonicalAs } = pathnameToLanguage(asPath);
   const theme = React.useMemo(() => {
     return createTheme({
+      experimental_modularCssLayers: true,
       cssVariables: {
         cssVarPrefix: 'muidocs',
         colorSchemeSelector: 'data-mui-color-scheme',
