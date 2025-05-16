@@ -171,6 +171,16 @@ export default class MyDocument extends Document {
           <JoyInitColorSchemeScript defaultMode="system" />
           <Main />
           <script
+            // Avoid doc page being rendered before the page is hydrated and the demo is rendered
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `
+              if ((new URLSearchParams(window.location.search)).get('scopedDemo')) {
+                document.body.style.visibility = 'hidden';
+              }`,
+            }}
+          />
+          <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
