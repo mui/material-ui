@@ -26,14 +26,7 @@ describe('<TablePaginationActions />', () => {
       render,
       muiName: 'MuiTablePaginationActions',
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentsProp',
-        'rootClass',
-        'componentProp',
-        'themeDefaultProps',
-        'themeStyleOverrides',
-        'themeVariants',
-      ],
+      skip: ['componentsProp', 'rootClass', 'componentProp', 'themeVariants'],
     }),
   );
 });
