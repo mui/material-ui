@@ -88,9 +88,9 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
-      '@mui-public/babel-plugin-display-name':
-        specifier: github:romgrk/mui-public#feat-babel-plugin-display-name&path:./packages/babel-plugin-display-name
-        version: '@probablyup/babel-plugin-react-displayname@https://codeload.github.com/romgrk/mui-public/tar.gz/33f5309e6858fc222e3f8d01eaa328fb55ec0ea2#path:./packages/babel-plugin-display-name(@babel/core@7.27.1)(@babel/preset-react@7.27.1(@babel/core@7.27.1))'
+      '@mui/internal-babel-plugin-display-name':
+        specifier: github:mui/mui-public#master&path:./packages/babel-plugin-display-name
+        version: https://codeload.github.com/mui/mui-public/tar.gz/ac464b595b7639013f6b44ff14807d1467b2d1fb#path:./packages/babel-plugin-display-name(@babel/core@7.27.1)(@babel/preset-react@7.27.1(@babel/core@7.27.1))
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4132,6 +4132,13 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
+  '@mui/internal-babel-plugin-display-name@https://codeload.github.com/mui/mui-public/tar.gz/ac464b595b7639013f6b44ff14807d1467b2d1fb#path:./packages/babel-plugin-display-name':
+    resolution: {path: ./packages/babel-plugin-display-name, tarball: https://codeload.github.com/mui/mui-public/tar.gz/ac464b595b7639013f6b44ff14807d1467b2d1fb}
+    version: 0.0.0
+    peerDependencies:
+      '@babel/core': ^7.27.1
+      '@babel/preset-react': ^7.27.1
+
   '@mui/joy@5.0.0-beta.22':
     resolution: {integrity: sha512-XFJd/cWXqt9MMlaUh10QQH893YaRw2CORYRhQovXvaJk7mmt/Sc4q3Fb7ANCXf4xMUPdwqdnvawLkAOAKVHuXg==}
     engines: {node: '>=12.0.0'}
@@ -4969,13 +4976,6 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
-
-  '@probablyup/babel-plugin-react-displayname@https://codeload.github.com/romgrk/mui-public/tar.gz/33f5309e6858fc222e3f8d01eaa328fb55ec0ea2#path:./packages/babel-plugin-display-name':
-    resolution: {path: ./packages/babel-plugin-display-name, tarball: https://codeload.github.com/romgrk/mui-public/tar.gz/33f5309e6858fc222e3f8d01eaa328fb55ec0ea2}
-    version: 1.0.3
-    peerDependencies:
-      '@babel/core': ^7.27.1
-      '@babel/preset-react': ^7.27.1
 
   '@react-native-community/cli-clean@14.1.0':
     resolution: {integrity: sha512-/C4j1yntLo6faztNgZnsDtgpGqa6j0+GYrxOY8LqaKAN03OCnoeUUKO6w78dycbYSGglc1xjJg2RZI/M2oF2AA==}
@@ -16047,6 +16047,15 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
+  '@mui/internal-babel-plugin-display-name@https://codeload.github.com/mui/mui-public/tar.gz/ac464b595b7639013f6b44ff14807d1467b2d1fb#path:./packages/babel-plugin-display-name(@babel/core@7.27.1)(@babel/preset-react@7.27.1(@babel/core@7.27.1))':
+    dependencies:
+      '@babel/core': 7.27.1
+      '@babel/helper-module-imports': 7.27.1
+      '@babel/helper-plugin-utils': 7.27.1
+      '@babel/preset-react': 7.27.1(@babel/core@7.27.1)
+    transitivePeerDependencies:
+      - supports-color
+
   '@mui/joy@5.0.0-beta.22(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.27.1
@@ -17052,15 +17061,6 @@ snapshots:
   '@polka/url@1.0.0-next.28': {}
 
   '@popperjs/core@2.11.8': {}
-
-  '@probablyup/babel-plugin-react-displayname@https://codeload.github.com/romgrk/mui-public/tar.gz/33f5309e6858fc222e3f8d01eaa328fb55ec0ea2#path:./packages/babel-plugin-display-name(@babel/core@7.27.1)(@babel/preset-react@7.27.1(@babel/core@7.27.1))':
-    dependencies:
-      '@babel/core': 7.27.1
-      '@babel/helper-module-imports': 7.27.1
-      '@babel/helper-plugin-utils': 7.27.1
-      '@babel/preset-react': 7.27.1(@babel/core@7.27.1)
-    transitivePeerDependencies:
-      - supports-color
 
   '@react-native-community/cli-clean@14.1.0':
     dependencies:
