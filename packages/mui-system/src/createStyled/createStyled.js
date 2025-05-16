@@ -152,22 +152,26 @@ export default function createStyled(input = {}) {
     });
 
     const transformStyle = (style) => {
-      // On the server Emotion doesn't use React.forwardRef for creating components, so the created
-      // component stays as a function. This condition makes sure that we do not interpolate functions
-      // which are basically components used as a selectors.
-      if (typeof style === 'function' && style.__emotion_real !== style) {
-        return function styleFunctionProcessor(props) {
-          return processStyle(props, style);
-        };
-      }
-      if (isPlainObject(style)) {
-        const serialized = preprocessStyles(style);
-        if (!serialized.variants) {
-          return serialized.style;
+      // - On the server Emotion doesn't use React.forwardRef for creating components, so the created
+      //   component stays as a function. This condition makes sure that we do not interpolate functions
+      //   which are basically components used as a selectors.
+      // - `style` could be a styled component from a babel plugin for component selectors, This condition
+      //   makes sure that we do not interpolate them.
+      if (style.__emotion_real !== style) {
+        if (typeof style === 'function') {
+          return function styleFunctionProcessor(props) {
+            return processStyle(props, style);
+          };
         }
-        return function styleObjectProcessor(props) {
-          return processStyle(props, serialized);
-        };
+        if (isPlainObject(style)) {
+          const serialized = preprocessStyles(style);
+          if (!serialized.variants) {
+            return serialized.style;
+          }
+          return function styleObjectProcessor(props) {
+            return processStyle(props, serialized);
+          };
+        }
       }
       return style;
     };
