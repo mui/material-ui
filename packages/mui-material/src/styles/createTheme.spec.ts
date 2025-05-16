@@ -285,3 +285,17 @@ const theme = createTheme();
     },
   });
 }
+
+{
+  createTheme({
+    components: {
+      MuiTablePaginationActions: {
+        styleOverrides: {
+          root: {
+            color: 'red',
+          },
+        },
+      },
+    },
+  });
+}

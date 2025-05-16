@@ -406,6 +406,9 @@ export * from './TableHead';
 export { default as TablePagination } from './TablePagination';
 export * from './TablePagination';
 
+export { default as TablePaginationActions } from './TablePaginationActions';
+export * from './TablePaginationActions';
+
 export { default as TableRow } from './TableRow';
 export * from './TableRow';
 

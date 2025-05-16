@@ -2,7 +2,10 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TablePaginationActionsProps, TablePaginationActionsSlots } from './TablePaginationActions';
+import {
+  TablePaginationActionsProps,
+  TablePaginationActionsSlots,
+} from '../TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';

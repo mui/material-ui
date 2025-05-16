@@ -540,6 +540,11 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiTablePagination'];
     variants?: ComponentsVariants<Theme>['MuiTablePagination'];
   };
+  MuiTablePaginationActions?: {
+    defaultProps?: ComponentsProps['MuiTablePaginationActions'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiTablePaginationActions'];
+    variants?: ComponentsVariants<Theme>['MuiTablePaginationActions'];
+  };
   MuiTableRow?: {
     defaultProps?: ComponentsProps['MuiTableRow'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTableRow'];
