@@ -388,6 +388,20 @@ These updates may lead to unexpected changes to your app's layout.
 Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
 
+#### Container width
+
+The updated Grid component doesn't grow to the full width of the container by default.
+If you need the grid to grow to the full width, you can use the `sx` prop:
+
+```diff
+-<Grid container>
++<Grid container sx={{ width: '100%' }}>
+
+ // alternatively, if the Grid's parent is a flex container:
+-<Grid container>
++<Grid container sx={{ flexGrow: 1 }}>
+```
+
 ### ListItem
 
 `ListItem`'s props `autoFocus`, `button`, `disabled`, and `selected`, deprecated in v5, have been removed. To replace the `button` prop, use `ListItemButton` instead. The other removed props are available in the `ListItemButton` component as well.
