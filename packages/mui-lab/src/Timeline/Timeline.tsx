@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import { styled, useThemeProps } from '@mui/material/styles';
 import TimelineContext from './TimelineContext';
 import { TimelineClassKey, getTimelineUtilityClass } from './timelineClasses';
@@ -21,8 +21,8 @@ const useUtilityClasses = (ownerState: OwnerState) => {
   return composeClasses(slots, getTimelineUtilityClass, classes);
 };
 
-const TimelineRoot = styled('ul' as const, {
-  name: 'MuiTimeline' as const,
+const TimelineRoot = styled('ul', {
+  name: 'MuiTimeline',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;

@@ -101,7 +101,7 @@ const SVG_ICON_CLASS = 'svg-icon';
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
-  color: theme.palette.text.secondary,
+  color: (theme.vars ?? theme).palette.text.secondary,
   margin: '0 4px',
   '& > div': {
     flexGrow: 1,
@@ -116,7 +116,7 @@ const StyledIcon = styled('span')(({ theme }) => ({
     height: iconWidth,
     boxSizing: 'content-box',
     cursor: 'pointer',
-    color: theme.palette.text.primary,
+    color: (theme.vars ?? theme).palette.text.primary,
     border: '1px solid transparent',
     fontSize: iconWidth,
     borderRadius: '12px',
@@ -126,8 +126,8 @@ const StyledIcon = styled('span')(({ theme }) => ({
     padding: theme.spacing(2),
     margin: theme.spacing(0.5, 0),
     '&:hover': {
-      backgroundColor: theme.palette.background.default,
-      borderColor: theme.palette.primary.light,
+      backgroundColor: (theme.vars ?? theme).palette.background.default,
+      borderColor: (theme.vars ?? theme).palette.primary.light,
     },
   },
 }));
@@ -263,7 +263,7 @@ const Title = styled(Typography)(({ theme }) => ({
 
 const CanvasComponent = styled('div')(({ theme }) => ({
   fontSize: 210,
-  color: theme.palette.text.primary,
+  color: (theme.vars ?? theme).palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
   backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
@@ -292,7 +292,7 @@ const ContextComponent = styled('div', {
         contextColor: 'primary',
       },
       style: {
-        color: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -300,8 +300,8 @@ const ContextComponent = styled('div', {
         contextColor: 'primaryInverse',
       },
       style: {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.main,
+        color: (theme.vars ?? theme).palette.primary.contrastText,
+        backgroundColor: (theme.vars ?? theme).palette.primary.main,
       },
     },
     {
@@ -309,7 +309,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimary',
       },
       style: {
-        color: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -317,8 +317,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textPrimaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.primary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.primary,
       },
     },
     {
@@ -326,7 +326,7 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondary',
       },
       style: {
-        color: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.text.secondary,
       },
     },
     {
@@ -334,8 +334,8 @@ const ContextComponent = styled('div', {
         contextColor: 'textSecondaryInverse',
       },
       style: {
-        color: theme.palette.background.paper,
-        backgroundColor: theme.palette.text.secondary,
+        color: (theme.vars ?? theme).palette.background.paper,
+        backgroundColor: (theme.vars ?? theme).palette.text.secondary,
       },
     },
   ],
@@ -376,8 +376,10 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
-              TransitionProps={{
-                onExited: () => setCopied1(false),
+              slotProps={{
+                transition: {
+                  onExited: () => setCopied1(false),
+                },
               }}
             >
               <Title component="span" variant="inherit" onClick={handleClick(1)}>
@@ -388,7 +390,9 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           <Tooltip
             placement="top"
             title={copied2 ? t('copied') : t('clickToCopy')}
-            TransitionProps={{ onExited: () => setCopied2(false) }}
+            slotProps={{
+              transition: { onExited: () => setCopied2(false) },
+            }}
           >
             <Markdown
               copyButtonHidden
@@ -406,17 +410,17 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </ImportLink>
           <DialogContent>
             <Grid container>
-              <Grid item xs>
+              <Grid size="grow">
                 <Grid container sx={{ justifyContent: 'center' }}>
                   <CanvasComponent as={selectedIcon.Component} />
                 </Grid>
               </Grid>
-              <Grid item xs>
+              <Grid size="grow">
                 <Grid
                   container
                   sx={{ alignItems: 'flex-end', justifyContent: 'center' }}
                 >
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -424,12 +428,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                       />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize medium">
                       <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
                   </Grid>
-                  <Grid item>
+                  <Grid>
                     <Tooltip title="fontSize large">
                       <FontSizeComponent
                         as={selectedIcon.Component}
@@ -502,7 +506,7 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   width: '100%',
   borderRadius: '12px',
   border: '1px solid',
-  borderColor: theme.palette.divider,
+  borderColor: (theme.vars ?? theme).palette.divider,
   boxShadow: 'none',
 }));
 
@@ -603,8 +607,13 @@ export default function SearchIcons() {
   );
 
   return (
-    <Grid container sx={{ minHeight: 500 }}>
-      <Grid item xs={12} sm={3}>
+    <Grid container sx={{ minHeight: 500, width: '100%' }}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 3,
+        }}
+      >
         <Form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the style
@@ -628,7 +637,12 @@ export default function SearchIcons() {
           </RadioGroup>
         </Form>
       </Grid>
-      <Grid item xs={12} sm={9}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 9,
+        }}
+      >
         <Paper>
           <IconButton sx={{ padding: '10px' }} aria-label="search">
             <SearchIcon />

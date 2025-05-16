@@ -18,7 +18,7 @@
     "icon": { "description": "The icon to display when the component is unchecked." },
     "id": { "description": "The id of the <code>input</code> element." },
     "inputProps": {
-      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element."
+      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes\">Attributes</a> applied to the <code>input</code> element."
     },
     "inputRef": { "description": "Pass a ref to the <code>input</code> element." },
     "onChange": {
@@ -33,6 +33,8 @@
     "size": {
       "description": "The size of the component. <code>small</code> is equivalent to the dense switch styling."
     },
+    "slotProps": { "description": "The props used for each slot inside." },
+    "slots": { "description": "The components used for each slot inside." },
     "sx": {
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
@@ -69,11 +71,6 @@
       "nodeName": "the root element",
       "conditions": "<code>edge=\"start\"</code>"
     },
-    "input": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal SwitchBase component&#39;s input element"
-    },
-    "root": { "description": "Styles applied to the root element." },
     "sizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -83,14 +80,13 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>size=\"small\"</code>"
-    },
-    "switchBase": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal <code>SwitchBase</code> component&#39;s <code>root</code> class"
-    },
-    "thumb": {
-      "description": "Styles used to create the thumb passed to the internal <code>SwitchBase</code> component <code>icon</code> prop."
-    },
-    "track": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the track element" }
+    }
+  },
+  "slotDescriptions": {
+    "input": "The component that renders the switchBase&#39;s input slot.",
+    "root": "The component that renders the root slot.",
+    "switchBase": "The component that renders the switchBase slot.",
+    "thumb": "The component that renders the thumb slot.",
+    "track": "The component that renders the track slot."
   }
 }

@@ -1,7 +1,6 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import capitalize from '../utils/capitalize';
@@ -11,6 +10,7 @@ import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
 import ButtonBase from '../ButtonBase';
 import { getSwitchBaseUtilityClass } from './switchBaseClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, checked, disabled, edge } = ownerState;
@@ -81,7 +81,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     autoFocus,
     checked: checkedProp,
     checkedIcon,
-    className,
     defaultChecked,
     disabled: disabledProp,
     disableFocusRipple = false,
@@ -99,6 +98,8 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     tabIndex,
     type,
     value,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
   const [checked, setCheckedState] = useControlled({
@@ -166,41 +167,78 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      input: inputProps,
+      ...slotProps,
+    },
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    elementType: SwitchBaseRoot,
+    className: classes.root,
+    shouldForwardComponentProp: true,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      component: 'span',
+      ...other,
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onFocus: (event) => {
+        handlers.onFocus?.(event);
+        handleFocus(event);
+      },
+      onBlur: (event) => {
+        handlers.onBlur?.(event);
+        handleBlur(event);
+      },
+    }),
+    ownerState,
+    additionalProps: {
+      centerRipple: true,
+      focusRipple: !disableFocusRipple,
+      disabled,
+      role: undefined,
+      tabIndex: null,
+    },
+  });
+
+  const [InputSlot, inputSlotProps] = useSlot('input', {
+    ref: inputRef,
+    elementType: SwitchBaseInput,
+    className: classes.input,
+    externalForwardedProps,
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onChange: (event) => {
+        handlers.onChange?.(event);
+        handleInputChange(event);
+      },
+    }),
+    ownerState,
+    additionalProps: {
+      autoFocus,
+      checked: checkedProp,
+      defaultChecked,
+      disabled,
+      id: hasLabelFor ? id : undefined,
+      name,
+      readOnly,
+      required,
+      tabIndex,
+      type,
+      ...(type === 'checkbox' && value === undefined ? {} : { value }),
+    },
+  });
+
   return (
-    <SwitchBaseRoot
-      component="span"
-      className={clsx(classes.root, className)}
-      centerRipple
-      focusRipple={!disableFocusRipple}
-      disabled={disabled}
-      tabIndex={null}
-      role={undefined}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      ownerState={ownerState}
-      ref={ref}
-      {...other}
-    >
-      <SwitchBaseInput
-        autoFocus={autoFocus}
-        checked={checkedProp}
-        defaultChecked={defaultChecked}
-        className={classes.input}
-        disabled={disabled}
-        id={hasLabelFor ? id : undefined}
-        name={name}
-        onChange={handleInputChange}
-        readOnly={readOnly}
-        ref={inputRef}
-        required={required}
-        ownerState={ownerState}
-        tabIndex={tabIndex}
-        type={type}
-        {...(type === 'checkbox' && value === undefined ? {} : { value })}
-        {...inputProps}
-      />
+    <RootSlot {...rootSlotProps}>
+      <InputSlot {...inputSlotProps} />
       {checked ? checkedIcon : icon}
-    </SwitchBaseRoot>
+    </RootSlot>
   );
 });
 
@@ -257,7 +295,7 @@ SwitchBase.propTypes = {
    */
   id: PropTypes.string,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    */
   inputProps: PropTypes.object,
   /**
@@ -292,6 +330,22 @@ SwitchBase.propTypes = {
    * If `true`, the `input` element is required.
    */
   required: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    input: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -11,8 +11,8 @@ import {
   Link,
   matchPath,
   useLocation,
-} from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+  StaticRouter,
+} from 'react-router';
 
 function Router(props) {
   const { children } = props;

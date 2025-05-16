@@ -55,7 +55,7 @@
   "muiName": "MuiStepIcon",
   "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-material/src/StepIcon/StepIcon.js",
-  "inheritance": null,
+  "inheritance": { "component": "SvgIcon", "pathname": "/material-ui/api/svg-icon/" },
   "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
   "cssComponent": false
 }

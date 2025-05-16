@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
+import { createTheme, styled } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -8,7 +8,7 @@ import LayersIcon from '@mui/icons-material/Layers';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { PageContainer } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 
 const NAVIGATION = [
   {
@@ -56,9 +56,11 @@ const NAVIGATION = [
   },
 ];
 
-const demoTheme = extendTheme({
+const demoTheme = createTheme({
   colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class',
+  cssVariables: {
+    colorSchemeSelector: 'class',
+  },
   breakpoints: {
     values: {
       xs: 0,
@@ -97,7 +99,7 @@ export default function DashboardLayoutBasic(props) {
   const router = useDemoRouter('/dashboard');
 
   // Remove this const when copying and pasting into your project.
-  const demoWindow = window !== undefined ? window() : undefined;
+  const demoWindow = window ? window() : undefined;
 
   return (
     <AppProvider

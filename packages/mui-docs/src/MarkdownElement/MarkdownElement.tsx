@@ -32,11 +32,7 @@ const Root = styled('div')(
       overflow: 'auto',
       WebkitOverflowScrolling: 'touch',
       fontSize: lightTheme.typography.pxToRem(13),
-      maxWidth: 'calc(100vw - 32px)',
       maxHeight: '400px',
-      [lightTheme.breakpoints.up('md')]: {
-        maxWidth: 'calc(100vw - 32px - 16px)',
-      },
     },
     '& code': {
       ...lightTheme.typography.body2,
@@ -141,7 +137,7 @@ const Root = styled('div')(
       // Allows to remove link arrows for images
       display: 'none',
     },
-    '& .Ad-root a::after': {
+    '& .ad.description a::after': {
       // Remove link arrow for ads
       display: 'none',
     },
@@ -563,6 +559,9 @@ const Root = styled('div')(
       transition: theme.transitions.create(['background', 'borderColor', 'display'], {
         duration: theme.transitions.duration.shortest,
       }),
+      '@media (max-width: 640px)': {
+        display: 'none',
+      },
       '& .MuiCode-copied-label': {
         display: 'none',
       },

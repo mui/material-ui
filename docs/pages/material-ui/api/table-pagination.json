@@ -60,14 +60,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { firstButton?: object, firstButtonIcon?: object, lastButton?: object, lastButtonIcon?: object, nextButton?: object, nextButtonIcon?: object, previousButton?: object, previousButtonIcon?: object }, select?: object }"
+        "description": "{ actions?: { firstButton?: object, firstButtonIcon?: object, lastButton?: object, lastButtonIcon?: object, nextButton?: object, nextButtonIcon?: object, previousButton?: object, previousButtonIcon?: object }, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: { firstButton?: elementType, firstButtonIcon?: elementType, lastButton?: elementType, lastButtonIcon?: elementType, nextButton?: elementType, nextButtonIcon?: elementType, previousButton?: elementType, previousButtonIcon?: elementType } }"
+        "description": "{ actions?: { firstButton?: elementType, firstButtonIcon?: elementType, lastButton?: elementType, lastButtonIcon?: elementType, nextButton?: elementType, nextButtonIcon?: elementType, previousButton?: elementType, previousButtonIcon?: elementType }, displayedRows?: elementType, menuItem?: elementType, root?: elementType, select?: elementType, selectLabel?: elementType, spacer?: elementType, toolbar?: elementType }"
       },
       "default": "{}"
     },
@@ -84,41 +84,60 @@
     "import TablePagination from '@mui/material/TablePagination';",
     "import { TablePagination } from '@mui/material';"
   ],
+  "slots": [
+    {
+      "name": "root",
+      "description": "The component that renders the root slot.\n[Follow this guide](https://mui.com/material-ui/api/table-cell/#props) to learn more about the requirements for this component.",
+      "default": "TableCell",
+      "class": "MuiTablePagination-root"
+    },
+    {
+      "name": "toolbar",
+      "description": "The component that renders the toolbar slot.\n[Follow this guide](https://mui.com/material-ui/api/toolbar/#props) to learn more about the requirements for this component.",
+      "default": "Toolbar",
+      "class": "MuiTablePagination-toolbar"
+    },
+    {
+      "name": "spacer",
+      "description": "The tag that renders the spacer slot.",
+      "default": "'div'",
+      "class": "MuiTablePagination-spacer"
+    },
+    {
+      "name": "selectLabel",
+      "description": "The tag that renders the selectLabel slot.",
+      "default": "'p'",
+      "class": "MuiTablePagination-selectLabel"
+    },
+    {
+      "name": "select",
+      "description": "The component that renders the select slot.\n[Follow this guide](https://mui.com/material-ui/api/select/#props) to learn more about the requirements for this component.",
+      "default": "Select",
+      "class": "MuiTablePagination-select"
+    },
+    {
+      "name": "menuItem",
+      "description": "The component that renders the select slot.\n[Follow this guide](https://mui.com/material-ui/api/menu-item/#props) to learn more about the requirements for this component.",
+      "default": "MenuItem",
+      "class": "MuiTablePagination-menuItem"
+    },
+    {
+      "name": "displayedRows",
+      "description": "The tag that renders the displayedRows slot.",
+      "default": "'p'",
+      "class": "MuiTablePagination-displayedRows"
+    },
+    {
+      "name": "actions",
+      "description": "The slots that passed to the actions slot.",
+      "class": "MuiTablePagination-actions"
+    }
+  ],
   "classes": [
-    {
-      "key": "actions",
-      "className": "MuiTablePagination-actions",
-      "description": "Styles applied to the internal `TablePaginationActions` component.",
-      "isGlobal": false
-    },
-    {
-      "key": "displayedRows",
-      "className": "MuiTablePagination-displayedRows",
-      "description": "Styles applied to the displayed rows Typography element.",
-      "isGlobal": false
-    },
     {
       "key": "input",
       "className": "MuiTablePagination-input",
       "description": "Styles applied to the Select component `root` element.",
-      "isGlobal": false
-    },
-    {
-      "key": "menuItem",
-      "className": "MuiTablePagination-menuItem",
-      "description": "Styles applied to the MenuItem component.",
-      "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiTablePagination-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
-    },
-    {
-      "key": "select",
-      "className": "MuiTablePagination-select",
-      "description": "Styles applied to the Select component `select` class.",
       "isGlobal": false
     },
     {
@@ -128,27 +147,9 @@
       "isGlobal": false
     },
     {
-      "key": "selectLabel",
-      "className": "MuiTablePagination-selectLabel",
-      "description": "Styles applied to the select label Typography element.",
-      "isGlobal": false
-    },
-    {
       "key": "selectRoot",
       "className": "MuiTablePagination-selectRoot",
       "description": "Styles applied to the Select component `root` element.",
-      "isGlobal": false
-    },
-    {
-      "key": "spacer",
-      "className": "MuiTablePagination-spacer",
-      "description": "Styles applied to the spacer element.",
-      "isGlobal": false
-    },
-    {
-      "key": "toolbar",
-      "className": "MuiTablePagination-toolbar",
-      "description": "Styles applied to the Toolbar component.",
       "isGlobal": false
     }
   ],

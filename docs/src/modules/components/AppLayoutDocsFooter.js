@@ -39,9 +39,9 @@ const FooterLink = styled(Link)(({ theme }) => {
     display: 'flex',
     alignItems: 'center',
     gap: 2,
-    fontFamily: (theme.vars || theme).typography.fontFamily,
-    fontSize: (theme.vars || theme).typography.pxToRem(13),
-    fontWeight: (theme.vars || theme).typography.fontWeightMedium,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: theme.typography.fontWeightMedium,
     color: (theme.vars || theme).palette.primary[600],
     '& > svg': { fontSize: '13px', transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
@@ -57,6 +57,8 @@ const FooterLink = styled(Link)(({ theme }) => {
  */
 
 /**
+ * This function is flattening the pages tree and extracts all the leaves that are internal pages.
+ * To extract the leaves, it skips all the nodes that have at least one child.
  * @param {MuiPage[]} pages
  * @param {MuiPage[]} [current]
  * @returns {OrderedMuiPage[]}
@@ -64,10 +66,10 @@ const FooterLink = styled(Link)(({ theme }) => {
 function orderedPages(pages, current = []) {
   return pages
     .reduce((items, item) => {
-      if (item.children && item.children.length > 1) {
+      if (item.children && item.children.length > 0) {
         items = orderedPages(item.children, items);
       } else {
-        items.push(item.children && item.children.length === 1 ? item.children[0] : item);
+        items.push(item);
       }
       return items;
     }, current)
@@ -104,8 +106,8 @@ async function postFeedbackOnSlack(data) {
     rating,
     comment,
     currentLocationURL: window.location.href,
-    commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
-    commmentSectionTitle: commentedSection.text,
+    commentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
+    commentSectionTitle: commentedSection.text,
     githubRepo: process.env.SOURCE_CODE_REPO,
     productId,
   };
@@ -190,18 +192,17 @@ async function getUserFeedback(id) {
 }
 
 async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
-  const data = {
-    id: getCookie('feedbackId'),
-    page,
-    rating,
-    comment,
-    version: process.env.LIB_VERSION,
-    language,
-  };
+  const resultSlack = await postFeedbackOnSlack({ rating, comment, commentedSection, productId });
 
-  const resultSlack = await postFeedbackOnSlack({ ...data, productId, commentedSection });
   if (rating !== undefined) {
-    const resultVote = await postFeedback(data);
+    const resultVote = await postFeedback({
+      id: getCookie('feedbackId'),
+      page,
+      rating,
+      comment,
+      version: process.env.LIB_VERSION,
+      language,
+    });
     if (resultVote) {
       document.cookie = `feedbackId=${resultVote.id};path=/;max-age=31536000`;
       setTimeout(async () => {

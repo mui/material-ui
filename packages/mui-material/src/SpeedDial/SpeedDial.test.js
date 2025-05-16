@@ -35,7 +35,7 @@ describe('<SpeedDial />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSpeedDial',
     testVariantProps: { direction: 'right' },
-    slots: { transition: { testWithElement: null } },
+    slots: { transition: { testWithElement: null }, root: { expectedClassName: classes.root } },
     skip: [
       'componentProp', // react-transition-group issue
       'componentsProp',

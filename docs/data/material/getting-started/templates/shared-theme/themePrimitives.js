@@ -160,7 +160,7 @@ export const getDesignTokens = (mode) => {
       },
     },
     typography: {
-      fontFamily: ['"Inter", "sans-serif"'].join(','),
+      fontFamily: 'Inter, sans-serif',
       h1: {
         fontSize: defaultTheme.typography.pxToRem(48),
         fontWeight: 600,
@@ -318,7 +318,7 @@ export const colorSchemes = {
 };
 
 export const typography = {
-  fontFamily: ['"Inter", "sans-serif"'].join(','),
+  fontFamily: 'Inter, sans-serif',
   h1: {
     fontSize: defaultTheme.typography.pxToRem(48),
     fontWeight: 600,
@@ -372,7 +372,9 @@ export const shape = {
 };
 
 const defaultShadows = [
-  'var(--mui-palette-baseShadow)',
-  ...defaultTheme.shadows.slice(1),
+  'none',
+  'var(--template-palette-baseShadow)',
+  ...defaultTheme.shadows.slice(2),
 ];
+
 export const shadows = defaultShadows;

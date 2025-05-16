@@ -17,7 +17,7 @@ import {
   Routes,
   MemoryRouter,
   useLocation,
-} from 'react-router-dom';
+} from 'react-router';
 
 const breadcrumbNameMap = {
   '/inbox': 'Inbox',

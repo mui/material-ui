@@ -11,9 +11,7 @@ declare module '@mui/material/styles' {
   interface Theme {
     applyDarkStyles: ApplyDarkStyles;
   }
-}
 
-declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
     100: string;
@@ -40,17 +38,15 @@ declare module '@mui/material/styles/createPalette' {
   interface TypeText {
     tertiary: string;
   }
-}
 
-declare module '@mui/material/styles/createTypography' {
-  interface TypographyOptions {
+  interface TypographyVariantsOptions {
     fontWeightSemiBold?: number;
     fontWeightExtraBold?: number;
     fontFamilyCode?: string;
     fontFamilySystem?: string;
   }
 
-  interface Typography {
+  interface TypographyVariants {
     fontWeightSemiBold: number;
     fontWeightExtraBold: number;
     fontFamilyCode: string;
@@ -514,7 +510,7 @@ export function getThemedComponents(): ThemeOptions {
             transition: 'all 100ms ease-in',
             '&:focus-visible': {
               outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-              outlineOffset: '2px',
+              outlineOffset: 2,
             },
           }),
         },
@@ -1051,7 +1047,7 @@ export function getThemedComponents(): ThemeOptions {
             },
             '&:focus-visible': {
               outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-              outlineOffset: '2px',
+              outlineOffset: 2,
             },
           }),
         },
@@ -1340,7 +1336,7 @@ export function getThemedComponents(): ThemeOptions {
                   },
                   '&:focus-visible': {
                     outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-                    outlineOffset: '2px',
+                    outlineOffset: 2,
                   },
                 },
                 ':is(a&), :is(button&)': {
@@ -1405,7 +1401,7 @@ export function getThemedComponents(): ThemeOptions {
             {
               textTransform: 'none',
               fontWeight: theme.typography.fontWeightMedium,
-              color: theme.palette.text.secondary,
+              color: (theme.vars || theme).palette.text.secondary,
               borderColor: theme.palette.grey[200],
               ...(ownerState.size === 'small' && {
                 padding: '0.375rem 0.75rem',
@@ -1454,17 +1450,22 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiSwitch: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             width: 32,
             height: 20,
             padding: 0,
+            borderRadius: 10,
+            '&:has(input:focus-visible)': {
+              outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
+              outlineOffset: 2,
+            },
             '& .MuiSwitch-switchBase': {
               '&.Mui-checked': {
                 transform: 'translateX(12px)',
                 color: '#fff',
               },
             },
-          },
+          }),
           switchBase: {
             height: 20,
             width: 20,

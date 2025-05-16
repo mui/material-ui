@@ -1,24 +1,34 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
+import { Theme } from '@mui/material/styles';
 import { Link } from '@mui/docs/Link';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
+const linkStyleOverrides = (theme: Theme) => ({
+  color: 'inherit',
+  textDecorationColor: 'currentColor',
+  '&:hover': {
+    color: (theme.vars || theme).palette.primary[200],
+  },
+  ...theme.applyDarkStyles({
+    color: 'inherit',
+    '&:hover': {
+      color: (theme.vars || theme).palette.primary[200],
+    },
+  }),
+});
+
 function getSurveyMessage() {
   return (
     <React.Fragment>
-      {`🚀 Influence MUI's 2024 roadmap! Participate in the latest`}
+      {`🚀 Influence MUI's 2025 roadmap! Participate in the latest`}
       &nbsp;
       <Link
-        href="https://tally.so/r/3Ex4PN?source=website"
+        href="https://tally.so/r/mObbvk?source=website"
         target="_blank"
         underline="always"
-        sx={{
-          color: 'inherit',
-          '&:hover': {
-            opacity: 0.9,
-          },
-        }}
+        sx={linkStyleOverrides}
       >
         Developer Survey →
       </Link>
@@ -36,12 +46,7 @@ function getDefaultHiringMessage() {
         href={ROUTES.careers}
         target="_blank"
         underline="always"
-        sx={{
-          color: 'inherit',
-          '&:hover': {
-            opacity: 0.9,
-          },
-        }}
+        sx={linkStyleOverrides}
       >
         Check the careers page →
       </Link>
@@ -50,7 +55,7 @@ function getDefaultHiringMessage() {
 }
 
 export default function AppHeaderBanner() {
-  const showSurveyMessage = false;
+  const showSurveyMessage = true;
   const bannerMessage = showSurveyMessage ? getSurveyMessage() : getDefaultHiringMessage();
 
   return FEATURE_TOGGLE.enable_website_banner ? (

@@ -10,9 +10,12 @@ const getTextDecoration = <T extends Theme>({
   ownerState: { color: string };
 }) => {
   const transformedColor = ownerState.color;
-  const color = (getPath(theme, `palette.${transformedColor}`, false) ||
+  // check the `main` color first for a custom palette, then fallback to the color itself
+  const color = (getPath(theme, `palette.${transformedColor}.main`, false) ||
+    getPath(theme, `palette.${transformedColor}`, false) ||
     ownerState.color) as string;
-  const channelColor = getPath(theme, `palette.${transformedColor}Channel`) as string | null;
+  const channelColor = (getPath(theme, `palette.${transformedColor}.mainChannel`) ||
+    getPath(theme, `palette.${transformedColor}Channel`)) as string | null;
   if ('vars' in theme && channelColor) {
     return `rgba(${channelColor} / 0.4)`;
   }

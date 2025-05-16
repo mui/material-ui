@@ -1,5 +1,5 @@
 'use client';
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/utils';
+import ClassNameGenerator from '@mui/utils/ClassNameGenerator';
 
 export { default as capitalize } from './capitalize';
 export { default as createChainedFunction } from './createChainedFunction';
@@ -18,6 +18,7 @@ export { default as unsupportedProp } from './unsupportedProp';
 export { default as useControlled } from './useControlled';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
+export { default as mergeSlotProps } from './mergeSlotProps';
 // TODO: remove this export once ClassNameGenerator is stable
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const unstable_ClassNameGenerator = {

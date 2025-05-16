@@ -41,6 +41,7 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
   });
 
   return (
+    // @ts-expect-error https://github.com/pmndrs/react-spring/issues/2341
     <animated.div ref={ref} style={style} {...other}>
       {React.cloneElement(children, { onClick })}
     </animated.div>

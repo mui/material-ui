@@ -21,7 +21,7 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   components?: {
@@ -30,7 +30,7 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
   /**
    * The props used for each slot inside the Popper.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   componentsProps?: BasePopperProps['slotProps'];
@@ -43,7 +43,6 @@ export interface PopperProps extends Omit<BasePopperProps, 'direction'> {
 const PopperRoot = styled(BasePopper, {
   name: 'MuiPopper',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 /**
@@ -145,7 +144,7 @@ Popper.propTypes /* remove-proptypes */ = {
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   components: PropTypes.shape({
@@ -154,7 +153,7 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside the Popper.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
    * @default {}
    */
   componentsProps: PropTypes.shape({

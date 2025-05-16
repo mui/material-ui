@@ -5,7 +5,7 @@ declare module '@mui/material/Paper' {
     highlighted: true;
   }
 }
-declare module '@mui/material/styles/createPalette' {
+declare module '@mui/material/styles' {
   interface ColorRange {
     50: string;
     100: string;
@@ -183,7 +183,7 @@ export const getDesignTokens = (mode: PaletteMode) => {
       },
     },
     typography: {
-      fontFamily: ['"Inter", "sans-serif"'].join(','),
+      fontFamily: 'Inter, sans-serif',
       h1: {
         fontSize: defaultTheme.typography.pxToRem(48),
         fontWeight: 600,
@@ -341,7 +341,7 @@ export const colorSchemes = {
 };
 
 export const typography = {
-  fontFamily: ['"Inter", "sans-serif"'].join(','),
+  fontFamily: 'Inter, sans-serif',
   h1: {
     fontSize: defaultTheme.typography.pxToRem(48),
     fontWeight: 600,
@@ -395,5 +395,9 @@ export const shape = {
 };
 
 // @ts-ignore
-const defaultShadows: Shadows = ['var(--mui-palette-baseShadow)', ...defaultTheme.shadows.slice(1)];
+const defaultShadows: Shadows = [
+  'none',
+  'var(--template-palette-baseShadow)',
+  ...defaultTheme.shadows.slice(2),
+];
 export const shadows = defaultShadows;

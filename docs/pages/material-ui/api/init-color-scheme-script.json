@@ -1,0 +1,31 @@
+{
+  "props": {
+    "attribute": { "type": { "name": "string" }, "default": "'data-mui-color-scheme'" },
+    "colorSchemeNode": { "type": { "name": "string" }, "default": "'document.documentElement'" },
+    "colorSchemeStorageKey": { "type": { "name": "string" }, "default": "'mui-color-scheme'" },
+    "defaultDarkColorScheme": { "type": { "name": "string" }, "default": "'dark'" },
+    "defaultLightColorScheme": { "type": { "name": "string" }, "default": "'light'" },
+    "defaultMode": {
+      "type": {
+        "name": "enum",
+        "description": "'dark'<br>&#124;&nbsp;'light'<br>&#124;&nbsp;'system'"
+      },
+      "default": "'system'"
+    },
+    "modeStorageKey": { "type": { "name": "string" }, "default": "'mui-mode'" },
+    "nonce": { "type": { "name": "string" } }
+  },
+  "name": "InitColorSchemeScript",
+  "imports": [
+    "import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';",
+    "import { InitColorSchemeScript } from '@mui/material';"
+  ],
+  "classes": [],
+  "spread": true,
+  "themeDefaultProps": null,
+  "muiName": "MuiInitColorSchemeScript",
+  "filename": "/packages/mui-material/src/InitColorSchemeScript/InitColorSchemeScript.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/react-init-color-scheme-script/\">InitColorSchemeScript</a></li></ul>",
+  "cssComponent": false
+}

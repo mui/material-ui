@@ -5,7 +5,7 @@
 [CSS variables](https://www.w3.org/TR/css-variables-1/) are a modern cross-browser feature that let you declare variables in CSS and reuse them in other properties.
 
 :::info
-If this is your first time encountering CSS variables, you should check out [the MDN Web Docs on CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) before continuing here.
+If this is your first time encountering CSS variables, you should check out [the MDN Web Docs on CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties) before continuing here.
 :::
 
 ## Introduction
@@ -188,6 +188,8 @@ Now, the Button's `backgroundColor`, `borderColor` and text `color` values will 
 
 For framework- or language-specific setup instructions, see [CSS theme variables—Usage—Server-side rendering](/material-ui/customization/css-theme-variables/usage/).
 For framework or language specific setup, see [this](/material-ui/customization/css-theme-variables/usage/)
+
+<!-- #target-branch-reference -->
 
 See the complete usage of `createCssVarsProvider` in [Material UI](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/ThemeProviderWithVars.tsx) and [Joy UI](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/CssVarsProvider.tsx).
 

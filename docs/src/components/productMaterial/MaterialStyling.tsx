@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import DevicesOtherRoundedIcon from '@mui/icons-material/DevicesOtherRounded';
 import SwitchAccessShortcutRoundedIcon from '@mui/icons-material/SwitchAccessShortcutRounded';
@@ -66,9 +66,9 @@ const scrollTo = [27, 10, 4];
 
 export default function MaterialStyling() {
   const [index, setIndex] = React.useState(0);
-  const objectRef = React.useRef<HTMLDivElement | null>(null);
+  const objectRef = React.useRef<HTMLDivElement>(null);
   const { dragging, getDragHandlers } = useResizeHandle(objectRef, { minWidth: '253px' });
-  const infoRef = React.useRef<HTMLDivElement | null>(null);
+  const infoRef = React.useRef<HTMLDivElement>(null);
 
   const getSelectedProps = (i: number) => ({
     selected: index === i,

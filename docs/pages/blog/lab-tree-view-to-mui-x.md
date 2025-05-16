@@ -24,7 +24,7 @@ The Tree View is a component to represent hierarchical data presented as nodes i
 
 The component allows to select one or multiple nodes.
 
-<video preload="metadata" style="margin-bottom: 16px;" autoplay muted loop>
+<video autoplay muted loop playsinline width="1500" height="554">
   <source src="/static/blog/lab-tree-view-to-mui-x/treeview.mov" type="video/mp4">
 </video>
 

@@ -36,6 +36,26 @@ describe('getTextDecoration', () => {
       );
       expect(() => getTextDecoration({ theme, ownerState: { color: 'yellow' } })).to.throw();
     });
+
+    it('work with a custom palette', () => {
+      const customTheme = createTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              myColor: theme.palette.augmentColor({ color: { main: '#bbbbbb' } }),
+            },
+          },
+          dark: {
+            palette: {
+              myColor: theme.palette.augmentColor({ color: { main: '#aaaaaa' } }),
+            },
+          },
+        },
+      });
+      expect(getTextDecoration({ theme: customTheme, ownerState: { color: 'myColor' } })).to.equal(
+        'rgba(187, 187, 187, 0.4)',
+      );
+    });
   });
 
   describe('CSS variables', () => {

@@ -1,11 +1,6 @@
 /* eslint-env node */
-// eslint-ignore-next-line import/no-unresolved
 import { withPigment } from '@pigment-css/nextjs-plugin';
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
-
-const { extendTheme } = require('@mui/material/styles');
+import { extendTheme } from '@mui/material/styles';
 
 /**
  * @typedef {import('@pigment-css/nextjs-plugin').PigmentOptions} PigmentOptions

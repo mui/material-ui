@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -66,10 +66,10 @@ export default function MainGrid() {
         <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
           <HighlightedCard />
         </Grid>
-        <Grid size={{ sm: 12, md: 6 }}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <SessionsChart />
         </Grid>
-        <Grid size={{ sm: 12, md: 6 }}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <PageViewsBarChart />
         </Grid>
       </Grid>
@@ -77,7 +77,7 @@ export default function MainGrid() {
         Details
       </Typography>
       <Grid container spacing={2} columns={12}>
-        <Grid size={{ md: 12, lg: 9 }}>
+        <Grid size={{ xs: 12, lg: 9 }}>
           <CustomizedDataGrid />
         </Grid>
         <Grid size={{ xs: 12, lg: 3 }}>

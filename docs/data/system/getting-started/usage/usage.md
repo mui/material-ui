@@ -156,7 +156,7 @@ Runtime performance takes a hit.
 | c. Render 1,000 styled components | `<StyledDiv>`         |           181ms |
 | d. Render 1,000 Box               | `<Box sx={…}>`        |           296ms |
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 Visit the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of the metrics above.
 

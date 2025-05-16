@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useAutocomplete } from '@mui/base/useAutocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 import { styled } from '@mui/system';
 
 const Label = styled('label')({
@@ -63,7 +63,7 @@ export default function UseAutocomplete() {
       </div>
       {groupedOptions.length > 0 ? (
         <Listbox {...getListboxProps()}>
-          {(groupedOptions as typeof top100Films).map((option, index) => {
+          {groupedOptions.map((option, index) => {
             const { key, ...optionProps } = getOptionProps({ option, index });
             return (
               <li key={key} {...optionProps}>

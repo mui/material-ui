@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
@@ -138,11 +138,6 @@ export function MaterialDesignKitInfo() {
           <img
             src="/static/branding/design-kits/sketch-logo.svg"
             alt="Sketch logo."
-            loading="lazy"
-          />
-          <img
-            src="/static/branding/design-kits/adobexd-logo.svg"
-            alt="Adobe XD logo."
             loading="lazy"
           />
         </Box>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { RadioClasses } from './radioClasses';
 
@@ -9,8 +10,49 @@ export interface RadioPropsSizeOverrides {}
 
 export interface RadioPropsColorOverrides {}
 
+export interface RadioRootSlotPropsOverrides {}
+
+export interface RadioInputSlotPropsOverrides {}
+
+export interface RadioSlots {
+  /**
+   * The component that renders the root slot.
+   * @default SwitchBase
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the input slot.
+   * @default SwitchBase's input
+   */
+  input: React.ElementType;
+}
+
+export type RadioSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  RadioSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the span element.
+     */
+    root: SlotProps<
+      React.ElementType<SwitchBaseProps>,
+      RadioRootSlotPropsOverrides,
+      RadioOwnerState
+    >;
+    /**
+     * Props forwarded to the input slot.
+     * By default, the avaible props are based on the input element.
+     */
+    input: SlotProps<'input', RadioInputSlotPropsOverrides, RadioOwnerState>;
+  }
+>;
+
 export interface RadioProps
-  extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
+  extends StandardProps<
+      SwitchBaseProps,
+      'checkedIcon' | 'color' | 'icon' | 'type' | 'slots' | 'slotProps'
+    >,
+    RadioSlotsAndSlotProps {
   /**
    * The icon to display when the component is checked.
    * @default <RadioButtonIcon checked />
@@ -50,6 +92,8 @@ export interface RadioProps
    */
   sx?: SxProps<Theme>;
 }
+
+export interface RadioOwnerState extends Omit<RadioProps, 'slots' | 'slotProps'> {}
 
 /**
  *

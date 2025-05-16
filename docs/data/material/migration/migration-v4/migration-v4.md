@@ -114,7 +114,7 @@ Make sure that your application is still running without errors, and commit the 
 
 Before upgrading to v5, please make sure that `ThemeProvider` is defined at the root of your application and in tests—even if you are using the default theme—and `useStyles` is _not_ called before `ThemeProvider`.
 
-Eventually you may want to [migrate from JSS to Emotion](/material-ui/migration/migrating-from-jss/), but in the meantime you can continue to use JSS with the `@mui/styles` package.
+Eventually you will want to [migrate from JSS to Emotion](/material-ui/migration/migrating-from-jss/), but in the meantime you can continue to use the older JSS-based utilities with the deprecated `@mui/styles` package.
 This package requires `ThemeProvider`.
 
 The root of your application should look something like this:

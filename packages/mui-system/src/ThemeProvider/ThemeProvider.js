@@ -63,13 +63,16 @@ function ThemeProvider(props) {
 
   const engineTheme = useThemeScoping(themeId, upperTheme, localTheme);
   const privateTheme = useThemeScoping(themeId, upperPrivateTheme, localTheme, true);
-  const rtlValue = engineTheme.direction === 'rtl';
-
+  const rtlValue = (themeId ? engineTheme[themeId] : engineTheme).direction === 'rtl';
   return (
     <MuiThemeProvider theme={privateTheme}>
       <StyledEngineThemeContext.Provider value={engineTheme}>
         <RtlProvider value={rtlValue}>
-          <DefaultPropsProvider value={engineTheme?.components}>{children}</DefaultPropsProvider>
+          <DefaultPropsProvider
+            value={themeId ? engineTheme[themeId].components : engineTheme.components}
+          >
+            {children}
+          </DefaultPropsProvider>
         </RtlProvider>
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>

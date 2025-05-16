@@ -9,7 +9,7 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: (theme.vars ?? theme).palette.text.secondary,
   ...theme.applyStyles('dark', {
     backgroundColor: '#1A2027',
   }),
@@ -19,14 +19,14 @@ export default function AutoGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
-        <Grid item xs>
-          <Item>xs</Item>
+        <Grid size="grow">
+          <Item>size=grow</Item>
         </Grid>
-        <Grid item xs={6}>
-          <Item>xs=6</Item>
+        <Grid size={6}>
+          <Item>size=6</Item>
         </Grid>
-        <Grid item xs>
-          <Item>xs</Item>
+        <Grid size="grow">
+          <Item>size=grow</Item>
         </Grid>
       </Grid>
     </Box>

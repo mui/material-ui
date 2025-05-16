@@ -33,12 +33,13 @@ const useUtilityClasses = (ownerState) => {
 export const FormLabelRoot = styled('label', {
   name: 'MuiFormLabel',
   slot: 'Root',
-  overridesResolver: ({ ownerState }, styles) => {
-    return {
-      ...styles.root,
-      ...(ownerState.color === 'secondary' && styles.colorSecondary),
-      ...(ownerState.filled && styles.filled),
-    };
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [
+      styles.root,
+      ownerState.color === 'secondary' && styles.colorSecondary,
+      ownerState.filled && styles.filled,
+    ];
   },
 })(
   memoTheme(({ theme }) => ({
@@ -76,7 +77,6 @@ export const FormLabelRoot = styled('label', {
 const AsteriskComponent = styled('span', {
   name: 'MuiFormLabel',
   slot: 'Asterisk',
-  overridesResolver: (props, styles) => styles.asterisk,
 })(
   memoTheme(({ theme }) => ({
     [`&.${formLabelClasses.error}`]: {

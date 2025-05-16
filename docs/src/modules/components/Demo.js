@@ -4,7 +4,6 @@ import copy from 'clipboard-copy';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
-import { styled as joyStyled } from '@mui/joy/styles';
 import { Tabs } from '@mui/base/Tabs';
 import { TabPanel } from '@mui/base/TabPanel';
 import { unstable_useId as useId } from '@mui/utils';
@@ -22,13 +21,11 @@ import DemoEditor from 'docs/src/modules/components/DemoEditor';
 import DemoEditorError from 'docs/src/modules/components/DemoEditorError';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
-import { useCodeStyling } from 'docs/src/modules/utils/codeStylingSolution';
-import { CODE_VARIANTS, CODE_STYLING } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { AdCarbonInline } from '@mui/docs/Ad';
-import { BrandingProvider, blue, blueDark, grey } from '@mui/docs/branding';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -55,7 +52,7 @@ function getDemoName(location) {
       location.split('/').pop();
 }
 
-function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
+function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
   const router = useRouter();
   const { canonicalAs } = pathnameToLanguage(router.asPath);
@@ -66,99 +63,47 @@ function useDemoData(codeVariant, demo, githubLocation, codeStyling) {
     if (canonicalAs.startsWith('/joy-ui/')) {
       productId = 'joy-ui';
       name = 'Joy UI';
-    } else if (canonicalAs.startsWith('/base-ui/')) {
-      productId = 'base-ui';
-      name = 'Base UI';
     } else if (canonicalAs.startsWith('/x/')) {
       name = 'MUI X';
     }
 
     let codeOptions = {};
-    if (codeStyling === CODE_STYLING.SYSTEM) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
-          raw: demo.rawTS,
-          module: demo.moduleTS,
-          Component: demo.tsx ?? null,
-          sourceLanguage: 'tsx',
-        };
-        if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
-        }
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation,
-          raw: demo.raw,
-          module: demo.module,
-          Component: demo.js,
-          sourceLanguage: 'jsx',
-        };
-        if (demo.relativeModules) {
-          codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
-        }
-      }
-    } else if (codeStyling === CODE_STYLING.TAILWIND) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawTailwindTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.tsx'),
-          raw: demo.rawTailwindTS,
-          module: demo.moduleTS,
-          Component: demo.tsxTailwind,
-          sourceLanguage: 'tsx',
-        };
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/tailwind/index.js'),
-          raw: demo.rawTailwind ?? demo.raw,
-          module: demo.module,
-          Component: demo.jsTailwind ?? demo.js,
-          sourceLanguage: 'jsx',
-        };
-      }
-    } else if (codeStyling === CODE_STYLING.CSS) {
-      if (codeVariant === CODE_VARIANTS.TS && demo.rawCSSTS) {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.TS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.tsx'),
-          raw: demo.rawCSSTS,
-          module: demo.moduleTS,
-          Component: demo.tsxCSS,
-          sourceLanguage: 'tsx',
-        };
-      } else {
-        codeOptions = {
-          codeVariant: CODE_VARIANTS.JS,
-          githubLocation: githubLocation.replace(/\/system\/index\.js$/, '/css/index.js'),
-          raw: demo.rawCSS ?? demo.raw,
-          module: demo.module,
-          Component: demo.jsCSS ?? demo.js,
-          sourceLanguage: 'jsx',
-        };
-      }
-    }
 
-    let jsxPreview = demo.jsxPreview;
-    if (codeStyling === CODE_STYLING.TAILWIND && demo.tailwindJsxPreview) {
-      jsxPreview = demo.tailwindJsxPreview;
-    } else if (codeStyling === CODE_STYLING.CSS && demo.cssJsxPreview) {
-      jsxPreview = demo.cssJsxPreview;
+    if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.TS,
+        githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
+        raw: demo.rawTS,
+        module: demo.moduleTS,
+        Component: demo.tsx ?? null,
+        sourceLanguage: 'tsx',
+      };
+      if (demo.relativeModules) {
+        codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.TS];
+      }
+    } else {
+      codeOptions = {
+        codeVariant: CODE_VARIANTS.JS,
+        githubLocation,
+        raw: demo.raw,
+        module: demo.module,
+        Component: demo.js,
+        sourceLanguage: 'jsx',
+      };
+      if (demo.relativeModules) {
+        codeOptions.relativeModules = demo.relativeModules[CODE_VARIANTS.JS];
+      }
     }
 
     return {
       scope: demo.scope,
-      jsxPreview,
+      jsxPreview: demo.jsxPreview,
       ...codeOptions,
       title: `${getDemoName(githubLocation)} demo — ${name}`,
       productId,
       language: userLanguage,
-      codeStyling,
     };
-  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage, codeStyling]);
+  }, [canonicalAs, codeVariant, demo, githubLocation, userLanguage]);
 }
 
 function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActive }) {
@@ -210,7 +155,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-const DemoRootMaterial = styled('div', {
+const DemoRoot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
 })(({ theme }) => ({
   position: 'relative',
@@ -327,73 +272,6 @@ const DemoRootMaterial = styled('div', {
   ],
 }));
 
-const DemoRootJoy = joyStyled('div', {
-  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
-})(({ theme, hideToolbar, bg }) => ({
-  position: 'relative',
-  margin: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  [theme.breakpoints.up('sm')]: {
-    borderRadius: hideToolbar ? 12 : '12px 12px 0 0',
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-  },
-  /* Isolate the demo with an outline. */
-  ...(bg === 'outlined' && {
-    padding: theme.spacing(3),
-    border: `1px solid`,
-    borderColor: grey[100],
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    backgroundColor: 'transparent',
-    ...theme.applyDarkStyles({
-      borderColor: alpha(blueDark[500], 0.3),
-      backgroundColor: alpha(theme.palette.neutral[900], 0.8),
-    }),
-  }),
-  /* Prepare the background to display an inner elevation. */
-  ...(bg === true && {
-    padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.level2,
-  }),
-  /* Mostly meant for introduction demos. */
-  ...(bg === 'gradient' && {
-    [theme.breakpoints.up('sm')]: {
-      borderRadius: 12,
-    },
-    borderRadius: 0,
-    padding: theme.spacing(0),
-    overflow: 'auto',
-    backgroundColor: alpha(blue[50], 0.5),
-    border: `1px solid`,
-    borderColor: grey[100],
-    backgroundImage: `radial-gradient(at 51% 52%, ${alpha(blue[50], 0.5)} 0px, transparent 50%),
-      radial-gradient(at 80% 0%, #FFFFFF 0px, transparent 20%),
-      radial-gradient(at 0% 95%, ${alpha(blue[100], 0.3)}, transparent 40%),
-      radial-gradient(at 0% 20%, ${blue[50]} 0px, transparent 50%),
-      radial-gradient(at 93% 85%, ${alpha(blue[100], 0.2)} 0px, transparent 50%);`,
-    ...theme.applyDarkStyles({
-      backgroundColor: alpha(blue[900], 0.1),
-      borderColor: alpha(blueDark[700], 1),
-      backgroundImage: `radial-gradient(at 51% 52%, ${alpha(
-        blueDark[700],
-        0.5,
-      )} 0px, transparent 50%),
-    radial-gradient(at 80% 0%, ${alpha(blue[900], 0.3)} 0px, transparent 50%),
-    radial-gradient(at 0% 95%,  ${alpha(blue[900], 0.5)} 0px, transparent 50%),
-    radial-gradient(at 0% 5%, ${alpha(blue[900], 0.5)} 0px, transparent 35%),
-    radial-gradient(at 93% 85%, ${alpha(blue[900], 0.3)} 0px, transparent 50%);`,
-    }),
-  }),
-}));
-
 const DemoCodeViewer = styled(HighlightedCode)(() => ({
   '& pre': {
     margin: 0,
@@ -435,7 +313,7 @@ const selectionOverride = (theme) => ({
 });
 
 export default function Demo(props) {
-  const { demo, demoOptions, disableAd, githubLocation, mode } = props;
+  const { demo, demoOptions, disableAd, githubLocation } = props;
 
   if (process.env.NODE_ENV !== 'production') {
     if (demoOptions.hideToolbar === false) {
@@ -473,7 +351,9 @@ export default function Demo(props) {
         `The following demos use TS directly: ${demoOptions.demo}.`,
         '',
         'Please run "pnpm docs:typescript:formatted" to generate a JS version and reference it:',
-        `{{"demo": "${demoOptions.demo.replace(/\.(.*)$/, '.js')}", …}}.`,
+        // This regex intentionally excludes the dot character in the Kleene star to prevent ReDoS
+        // See https://github.com/mui/material-ui/issues/44078
+        `{{"demo": "${demoOptions.demo.replace(/\.([^.]*)$/, '.js')}", …}}.`,
         '',
         "Otherwise, if it's not a code demo hide the toolbar:",
         `{{"demo": "${demoOptions.demo}", "hideToolbar": true, …}}.`,
@@ -483,9 +363,8 @@ export default function Demo(props) {
 
   const t = useTranslate();
   const codeVariant = useCodeVariant();
-  const styleSolution = useCodeStyling();
 
-  const demoData = useDemoData(codeVariant, demo, githubLocation, styleSolution);
+  const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const hasNonSystemDemos = demo.rawTailwind || demo.rawTailwindTS || demo.rawCSS || demo.rawCSSTs;
 
@@ -534,9 +413,6 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
   const adVisibility = showAd && !disableAd && !demoOptions.disableAd;
-
-  const DemoRoot = demoData.productId === 'joy-ui' ? DemoRootJoy : DemoRootMaterial;
-  const Wrapper = demoData.productId === 'joy-ui' ? BrandingProvider : React.Fragment;
 
   const isPreview = !codeOpen && showPreview;
 
@@ -627,27 +503,22 @@ export default function Demo(props) {
     <Root>
       <AnchorLink id={demoName} />
       <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
-        <Wrapper {...(demoData.productId === 'joy-ui' && { mode })}>
-          <InitialFocus
-            aria-label={t('initialFocusLabel')}
-            action={initialFocusRef}
-            tabIndex={-1}
-          />
-        </Wrapper>
+        <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
+          id={demoId}
           style={demoSandboxedStyle}
           iframe={demoOptions.iframe}
-          usesCssVarsTheme={demoData.productId === 'joy-ui'}
+          isolated={demoOptions.isolated}
+          isJoy={demoData.productId === 'joy-ui'}
           name={demoName}
           onResetDemoClick={resetDemo}
         >
           {demoElement}
         </DemoSandbox>
       </DemoRoot>
-      {/* TODO: Wrapper shouldn't be needed, it should already be at the top of the docs page */}
       {demoOptions.hideToolbar ? null : (
-        <Wrapper {...(demoData.productId === 'joy-ui' ? { mode } : {})}>
+        <React.Fragment>
           {Object.keys(stylingSolutionMapping).map((key) => (
             <React.Fragment key={key}>
               <AnchorLink id={`${stylingSolutionMapping[key]}-${demoName}.js`} />
@@ -752,7 +623,7 @@ export default function Demo(props) {
             </Collapse>
           </Tabs>
           {adVisibility ? <AdCarbonInline /> : null}
-        </Wrapper>
+        </React.Fragment>
       )}
     </Root>
   );
@@ -766,5 +637,4 @@ Demo.propTypes = {
   demoOptions: PropTypes.object.isRequired,
   disableAd: PropTypes.bool.isRequired,
   githubLocation: PropTypes.string.isRequired,
-  mode: PropTypes.string, // temporary, just to make Joy docs work.
 };
