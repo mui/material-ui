@@ -754,14 +754,14 @@ describe('<Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    it('should fail validation if a required field has no value', function test() {
+    it('should fail validation if a required field has no value', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
 
       const handleSubmit = spy((event) => event.preventDefault());
-      render(
+      const { user } = render(
         <form onSubmit={handleSubmit}>
           <Autocomplete
             multiple
@@ -773,12 +773,12 @@ describe('<Autocomplete />', () => {
         </form>,
       );
 
-      screen.getByRole('button', { name: 'Submit' }).click();
+      await user.click(screen.getByRole('button', { name: 'Submit' }));
 
       expect(handleSubmit.callCount).to.equal(0);
     });
 
-    it('should fail validation if a required field has a value', function test() {
+    it('should fail validation if a required field has a value', async function test() {
       // Unclear how native Constraint validation can be enabled for `multiple`
       if (/jsdom/.test(window.navigator.userAgent)) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
@@ -787,7 +787,7 @@ describe('<Autocomplete />', () => {
       }
 
       const handleSubmit = spy((event) => event.preventDefault());
-      render(
+      const { user } = render(
         <form onSubmit={handleSubmit}>
           <Autocomplete
             multiple
@@ -799,7 +799,7 @@ describe('<Autocomplete />', () => {
         </form>,
       );
 
-      screen.getByRole('button', { name: 'Submit' }).click();
+      await user.click(screen.getByRole('button', { name: 'Submit' }));
 
       expect(handleSubmit.callCount).to.equal(0);
     });

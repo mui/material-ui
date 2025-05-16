@@ -944,7 +944,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: previousItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -974,7 +976,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: previousItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1004,7 +1008,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1034,7 +1040,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1063,7 +1071,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
@@ -1093,7 +1103,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: nextItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1123,7 +1135,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: nextItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1153,7 +1167,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1183,7 +1199,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1212,7 +1230,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
@@ -1468,20 +1488,20 @@ describe('<Tabs />', () => {
           </React.Fragment>
         );
       }
-      const { container, getByTestId, getAllByRole } = render(<DynamicTabs />);
+      const { container, getByTestId, getAllByRole, user } = render(<DynamicTabs />);
       const addButton = getByTestId('add');
       const deleteButton = getByTestId('delete');
 
-      fireEvent.click(addButton);
+      await user.click(addButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
 
       const tabs = getAllByRole('tab');
       const lastTab = tabs[tabs.length - 1];
-      fireEvent.click(lastTab);
+      await user.click(lastTab);
       await pause(400);
 
-      fireEvent.click(deleteButton);
+      await user.click(deleteButton);
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(false);
     });

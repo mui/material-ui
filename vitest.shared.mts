@@ -1,13 +1,35 @@
-import { configDefaults, UserWorkspaceConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 import * as path from 'path';
+import react from '@vitejs/plugin-react';
+import { Plugin, transformWithEsbuild } from 'vite';
+
+function forceJsxForJsFiles(): Plugin {
+  return {
+    name: 'force-jsx-loader-for-js',
+    enforce: 'pre',
+    transform(code, id) {
+      if (id.endsWith('.js')) {
+        return transformWithEsbuild(code, id, {
+          loader: 'jsx',
+          sourcemap: true,
+        });
+      }
+    },
+  };
+}
 
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
-export default {
+export default defineConfig({
+  plugins: [react(), forceJsxForJsFiles()],
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    'process.env.CI': process.env.CI ? JSON.stringify(process.env.CI) : 'undefined',
+  },
   test: {
     exclude: ['node_modules', 'build', '**/*.spec.*'],
     globals: true,
-    setupFiles: [path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest')],
+    setupFiles: [path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts')],
     environment: 'jsdom',
     environmentOptions: {
       jsdom: {
@@ -21,13 +43,18 @@ export default {
     },
     browser: {
       enabled: false, // enabled through CLI
-      name: 'chromium',
       provider: 'playwright',
-      headless: !!process.env.CI,
+      headless: false,
       viewport: {
         width: 1024,
         height: 896,
       },
+      instances: [
+        {
+          browser: 'chromium',
+          headless: !!process.env.CI,
+        },
+      ],
     },
     env: {
       VITEST: 'true',
@@ -50,10 +77,4 @@ export default {
       '@mui/material-nextjs': path.resolve(MONOREPO_ROOT, './packages/mui-material-nextjs/src'),
     },
   },
-  // @mui/material writes JSX in js
-  esbuild: {
-    loader: 'tsx',
-    include: /.*\.[jt]sx?$/,
-    exclude: [],
-  },
-} satisfies UserWorkspaceConfig;
+});

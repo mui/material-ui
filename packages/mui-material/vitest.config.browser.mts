@@ -5,8 +5,8 @@ export default mergeConfig(
   sharedConfig,
   defineProject({
     test: {
+      name: 'browser:@mui/material',
       browser: {
-        ...sharedConfig.test.browser,
         enabled: true,
       },
     },
