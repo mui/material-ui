@@ -122,6 +122,8 @@
     "@babel/register": "^7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
+    "@mui/internal-babel-plugin-resolve-imports": "https://pkg.pr.new/@mui/internal-babel-plugin-resolve-imports@fbcdc67",
+    "@mui/internal-babel-plugin-minify-errors": "https://pkg.pr.new/@mui/internal-babel-plugin-minify-errors@fbcdc67",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
