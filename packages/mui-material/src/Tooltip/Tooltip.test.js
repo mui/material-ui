@@ -18,18 +18,11 @@ import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {
-  let clock = null;
+  const { render, clock } = createRenderer({ clock: 'fake' });
 
   beforeEach(() => {
     testReset();
-    clock = useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
   });
-
-  afterEach(async () => {
-    clock.restore();
-  });
-
-  const { render } = createRenderer();
 
   function TestPopper(props) {
     const { children, className, 'data-testid': testId } = props;

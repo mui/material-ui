@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, stub, match, useFakeTimers } from 'sinon';
+import { spy, stub, match } from 'sinon';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import PropTypes from 'prop-types';
 import Modal, { modalClasses } from '@mui/material/Modal';
@@ -52,19 +52,7 @@ const CustomTransition = React.forwardRef(function CustomTransition(
 });
 
 describe('<Popover />', () => {
-  const { render } = createRenderer();
-
-  // TODO: temporary for vitest. Can move to `vi.useFakeTimers`
-  /** @type {SinonFakeTimers | null} */
-  let timer = null;
-
-  beforeEach(() => {
-    timer = useFakeTimers();
-  });
-
-  afterEach(() => {
-    timer?.restore();
-  });
+  const { render, clock } = createRenderer({ clock: 'fake' });
 
   describeConformance(<Popover anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
@@ -158,9 +146,7 @@ describe('<Popover />', () => {
 
       expect(screen.getByTestId('children')).toBeInaccessible();
 
-      await act(async () => {
-        await timer.tickAsync(1974);
-      });
+      clock.tick(1974);
 
       expect(screen.queryByTestId('children')).to.equal(null);
     });
@@ -286,9 +272,7 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      await act(async () => {
-        await timer.tickAsync(0);
-      });
+      clock.tick(0);
 
       expect({
         onEnter: handleEnter.callCount,
@@ -326,9 +310,7 @@ describe('<Popover />', () => {
         onExited: 0,
       });
 
-      await act(async () => {
-        await timer.tickAsync(0);
-      });
+      clock.tick(0);
 
       expect({
         onEnter: handleEnter.callCount,
@@ -530,7 +512,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
 
-        timer.tick(0),
+        clock.tick(0),
       );
     }
 
@@ -674,7 +656,7 @@ describe('<Popover />', () => {
           <div />
         </Popover>,
 
-        timer.tick(0),
+        clock.tick(0),
       );
     }
 
@@ -767,10 +749,8 @@ describe('<Popover />', () => {
 
       window.innerHeight = windowInnerHeight * 2;
 
-      await act(async () => {
-        window.dispatchEvent(new window.Event('resize'));
-        await timer.tickAsync(166);
-      });
+      window.dispatchEvent(new window.Event('resize'));
+      clock.tick(166);
 
       const afterStyle = {
         top: element.style.top,
@@ -815,9 +795,7 @@ describe('<Popover />', () => {
         setProps({ open: false });
       });
 
-      await act(async () => {
-        await timer.tickAsync(166);
-      });
+      clock.tick(166);
 
       const afterStyle = {
         top: element.style.top,
@@ -868,9 +846,7 @@ describe('<Popover />', () => {
         popoverActions.updatePosition();
       });
 
-      await act(async () => {
-        await timer.tickAsync(166);
-      });
+      clock.tick(166);
 
       const afterStyle = {
         top: element.style.top,

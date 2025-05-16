@@ -468,7 +468,7 @@ function createClock(
   if (isVitest) {
     return createVitestClock(defaultMode, config, options, vi);
   }
-
+  throw new Error('fwrjkehlkjn');
   let clock: ReturnType<typeof useFakeTimers> | null = null;
 
   let mode = defaultMode;
