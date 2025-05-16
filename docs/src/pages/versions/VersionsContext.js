@@ -9,8 +9,4 @@ import * as React from 'react';
  */
 const VersionsContext = React.createContext(null);
 
-if (process.env.NODE_ENV !== 'production') {
-  VersionsContext.displayName = 'VersionsContext';
-}
-
 export default VersionsContext;

@@ -17,8 +17,4 @@ const ToggleButtonGroupContext = React.createContext<ToggleButtonGroupContextTyp
   undefined,
 );
 
-if (process.env.NODE_ENV !== 'production') {
-  ToggleButtonGroupContext.displayName = 'ToggleButtonGroupContext';
-}
-
 export default ToggleButtonGroupContext;

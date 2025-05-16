@@ -16,10 +16,6 @@ export interface StepContextType {
  */
 const StepContext = React.createContext<StepContextType | {}>({});
 
-if (process.env.NODE_ENV !== 'production') {
-  StepContext.displayName = 'StepContext';
-}
-
 /**
  * Returns the current StepContext or an empty object if no StepContext
  * has been defined in the component tree.

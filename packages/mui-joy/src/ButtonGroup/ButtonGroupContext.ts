@@ -13,8 +13,4 @@ interface IButtonGroupContext {
  */
 const ButtonGroupContext = React.createContext<IButtonGroupContext>({});
 
-if (process.env.NODE_ENV !== 'production') {
-  ButtonGroupContext.displayName = 'ButtonGroupContext';
-}
-
 export default ButtonGroupContext;
