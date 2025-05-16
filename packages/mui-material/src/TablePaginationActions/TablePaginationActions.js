@@ -2,6 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRtl } from '@mui/system/RtlProvider';
+import composeClasses from '@mui/utils/composeClasses';
+import clsx from 'clsx';
 import { styled } from '../zero-styled';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
@@ -9,6 +11,17 @@ import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import IconButton from '../IconButton';
 import LastPageIconDefault from '../internal/svg-icons/LastPage';
 import FirstPageIconDefault from '../internal/svg-icons/FirstPage';
+import { getTablePaginationActionsUtilityClass } from './tablePaginationActionsClasses';
+
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTablePaginationActionsUtilityClass, classes);
+};
 
 const TablePaginationActionsRoot = styled('div', {
   name: 'MuiTablePaginationActions',
@@ -20,6 +33,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
 
   const {
     backIconButtonProps,
+    className,
     count,
     disabled = false,
     getItemAriaLabel,
@@ -35,6 +49,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   } = props;
 
   const isRtl = useRtl();
+
+  const ownerState = props;
+
+  const classes = useUtilityClasses(ownerState);
 
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);
@@ -72,7 +90,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const lastButtonSlotProps = isRtl ? slotProps.firstButton : slotProps.lastButton;
 
   return (
-    <TablePaginationActionsRoot ref={ref} {...other}>
+    <TablePaginationActionsRoot ref={ref} className={clsx(classes.root, className)} {...other}>
       {showFirstButton && (
         <FirstButtonSlot
           onClick={handleFirstPageButtonClick}
@@ -153,6 +171,10 @@ TablePaginationActions.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * @ignore
    */

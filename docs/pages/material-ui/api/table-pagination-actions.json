@@ -75,7 +75,7 @@
   ],
   "classes": [],
   "spread": true,
-  "themeDefaultProps": false,
+  "themeDefaultProps": true,
   "muiName": "MuiTablePaginationActions",
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/TablePaginationActions/TablePaginationActions.js",

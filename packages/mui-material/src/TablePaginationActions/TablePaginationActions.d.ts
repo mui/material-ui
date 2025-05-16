@@ -12,6 +12,7 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * Override or extend the styles applied to the component.
    */
   classes?: {};
+  className?: string;
   count: number;
   /**
    * If `true`, the component is disabled.
