@@ -628,7 +628,7 @@ describe('<MenuList> integration', () => {
         );
 
         fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-        await act(async () => clock.tick(501));
+        clock.tick(501);
         fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
         expect(screen.getByText('Ordinary')).toHaveFocus();
       });

@@ -756,7 +756,7 @@ describe('<Tabs />', () => {
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      await act(async () => clock.tick(1000));
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).equal(200);
     });
 
@@ -784,7 +784,7 @@ describe('<Tabs />', () => {
 
       tablistContainer.scrollTop = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      await act(async () => clock.tick(1000));
+      clock.tick(1000);
       expect(tablistContainer.scrollTop).equal(48);
     });
   });
@@ -926,7 +926,7 @@ describe('<Tabs />', () => {
           it('moves focus to the last tab without activating it if focus is on the first tab', async () => {
             const handleChange = spy();
             const handleKeyDown = spy();
-            const { getAllByRole } = render(
+            const { getAllByRole, user } = render(
               <Tabs
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
@@ -944,7 +944,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: previousItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -974,7 +976,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: previousItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1004,7 +1008,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1034,7 +1040,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1063,7 +1071,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: previousItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: previousItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
@@ -1093,7 +1103,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: nextItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1123,7 +1135,9 @@ describe('<Tabs />', () => {
               lastTab.focus();
             });
 
-            fireEvent.keyDown(lastTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(lastTab, { key: nextItemKey });
+            });
 
             expect(firstTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1153,7 +1167,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(0);
@@ -1183,7 +1199,9 @@ describe('<Tabs />', () => {
               secondTab.focus();
             });
 
-            fireEvent.keyDown(secondTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(secondTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleChange.callCount).to.equal(1);
@@ -1212,7 +1230,9 @@ describe('<Tabs />', () => {
               firstTab.focus();
             });
 
-            fireEvent.keyDown(firstTab, { key: nextItemKey });
+            await act(async () => {
+              fireEvent.keyDown(firstTab, { key: nextItemKey });
+            });
 
             expect(lastTab).toHaveFocus();
             expect(handleKeyDown.callCount).to.equal(1);
@@ -1239,7 +1259,9 @@ describe('<Tabs />', () => {
             lastTab.focus();
           });
 
-          fireEvent.keyDown(lastTab, { key: 'Home' });
+          await act(async () => {
+            fireEvent.keyDown(lastTab, { key: 'Home' });
+          });
 
           expect(firstTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(0);
@@ -1262,7 +1284,9 @@ describe('<Tabs />', () => {
             lastTab.focus();
           });
 
-          fireEvent.keyDown(lastTab, { key: 'Home' });
+          await act(async () => {
+            fireEvent.keyDown(lastTab, { key: 'Home' });
+          });
 
           expect(firstTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(1);
@@ -1285,7 +1309,9 @@ describe('<Tabs />', () => {
             lastTab.focus();
           });
 
-          fireEvent.keyDown(lastTab, { key: 'Home' });
+          await act(async () => {
+            fireEvent.keyDown(lastTab, { key: 'Home' });
+          });
 
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);
@@ -1309,7 +1335,9 @@ describe('<Tabs />', () => {
             firstTab.focus();
           });
 
-          fireEvent.keyDown(firstTab, { key: 'End' });
+          await act(async () => {
+            fireEvent.keyDown(firstTab, { key: 'End' });
+          });
 
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(0);
@@ -1332,7 +1360,9 @@ describe('<Tabs />', () => {
             firstTab.focus();
           });
 
-          fireEvent.keyDown(firstTab, { key: 'End' });
+          await act(async () => {
+            fireEvent.keyDown(firstTab, { key: 'End' });
+          });
 
           expect(lastTab).toHaveFocus();
           expect(handleChange.callCount).to.equal(1);
@@ -1355,7 +1385,9 @@ describe('<Tabs />', () => {
             firstTab.focus();
           });
 
-          fireEvent.keyDown(firstTab, { key: 'End' });
+          await act(async () => {
+            fireEvent.keyDown(firstTab, { key: 'End' });
+          });
 
           expect(secondTab).toHaveFocus();
           expect(handleKeyDown.callCount).to.equal(1);

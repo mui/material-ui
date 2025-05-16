@@ -325,6 +325,11 @@ export interface Clock {
    */
   tick(timeoutMS: number): void;
   /**
+   * Tick the clock ahead `timeoutMS` milliseconds, async.
+   * @param timeoutMS
+   */
+  tickAsync(timeoutMS: number): Promise<void>;
+  /**
    * Returns true if we're running with "real" i.e. native timers.
    */
   isReal(): boolean;
@@ -350,11 +355,28 @@ function createVitestClock(
   defaultMode: 'fake' | 'real',
   config: ClockConfig,
   options: Exclude<Parameters<typeof useFakeTimers>[0], number | Date>,
-  vi: any,
+  vi: import('vitest').VitestUtils,
 ): Clock {
   if (defaultMode === 'fake') {
     beforeEach(() => {
-      vi.useFakeTimers(options);
+      vi.useFakeTimers({
+        now: config,
+        // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+        // Technically we'd want to reset all modules between tests but we don't have that technology.
+        // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+        shouldClearNativeTimers: true,
+        toFake: [
+          'setTimeout',
+          'setInterval',
+          'clearTimeout',
+          'clearInterval',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+          'performance',
+          'Date',
+        ],
+        ...options,
+      });
       if (config) {
         vi.setSystemTime(config);
       }
@@ -376,7 +398,27 @@ function createVitestClock(
   return {
     withFakeTimers: () => {
       beforeEach(() => {
-        vi.useFakeTimers(options);
+        vi.useFakeTimers({
+          now: config,
+          // useIsFocusVisible schedules a global timer that needs to persist regardless of whether components are mounted or not.
+          // Technically we'd want to reset all modules between tests but we don't have that technology.
+          // In the meantime just continue to clear native timers like with did for the past years when using `sinon` < 8.
+          shouldClearNativeTimers: true,
+          toFake: [
+            'setTimeout',
+            'setInterval',
+            'clearTimeout',
+            'clearInterval',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+            'performance',
+            'Date',
+          ],
+          ...options,
+        });
+        if (config) {
+          vi.setSystemTime(config);
+        }
       });
       afterEach(() => {
         vi.useRealTimers();
@@ -400,6 +442,11 @@ function createVitestClock(
         rtlAct(() => {
           vi.advanceTimersByTime(timeoutMS);
         });
+      });
+    },
+    async tickAsync(timeoutMS: number) {
+      await rtlAct(async () => {
+        await vi.advanceTimersByTimeAsync(timeoutMS);
       });
     },
     runAll() {
@@ -453,6 +500,14 @@ function createClock(
         rtlAct(() => {
           clock!.tick(timeoutMS);
         });
+      });
+    },
+    async tickAsync(timeoutMS: number) {
+      if (clock === null) {
+        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
+      }
+      await rtlAct(async () => {
+        await clock!.tickAsync(timeoutMS);
       });
     },
     runAll() {

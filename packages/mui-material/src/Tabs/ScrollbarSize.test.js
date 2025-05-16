@@ -26,7 +26,7 @@ describe('<ScrollbarSize />', () => {
       onChange.resetHistory();
 
       window.dispatchEvent(new window.Event('resize', {}));
-      await act(async () => clock.tick(166));
+      clock.tick(166);
       expect(onChange.callCount).to.equal(1);
       expect(onChange.args[0][0]).to.equal(20);
     });
