@@ -325,11 +325,6 @@ export interface Clock {
    */
   tick(timeoutMS: number): void;
   /**
-   * Tick the clock ahead `timeoutMS` milliseconds, async.
-   * @param timeoutMS
-   */
-  tickAsync(timeoutMS: number): Promise<void>;
-  /**
    * Returns true if we're running with "real" i.e. native timers.
    */
   isReal(): boolean;
@@ -444,11 +439,6 @@ function createVitestClock(
         });
       });
     },
-    async tickAsync(timeoutMS: number) {
-      await rtlAct(async () => {
-        await vi.advanceTimersByTimeAsync(timeoutMS);
-      });
-    },
     runAll() {
       traceSync('runAll', () => {
         rtlAct(() => {
@@ -468,7 +458,7 @@ function createClock(
   if (isVitest) {
     return createVitestClock(defaultMode, config, options, vi);
   }
-  throw new Error('fwrjkehlkjn');
+
   let clock: ReturnType<typeof useFakeTimers> | null = null;
 
   let mode = defaultMode;
@@ -500,14 +490,6 @@ function createClock(
         rtlAct(() => {
           clock!.tick(timeoutMS);
         });
-      });
-    },
-    async tickAsync(timeoutMS: number) {
-      if (clock === null) {
-        throw new Error(`Can't advance the real clock. Did you mean to call this on fake clock?`);
-      }
-      await rtlAct(async () => {
-        await clock!.tickAsync(timeoutMS);
       });
     },
     runAll() {
