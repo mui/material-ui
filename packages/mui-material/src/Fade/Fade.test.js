@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import { createRenderer } from '@mui/internal-test-utils';
+import { spy, useFakeTimers } from 'sinon';
+import { createRenderer, act } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Fade />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   const defaultProps = {
     in: true,
@@ -30,9 +30,30 @@ describe('<Fade />', () => {
   }));
 
   describe('transition lifecycle', () => {
-    clock.withFakeTimers();
+    /** @type {import('sinon').SinonFakeTimers | null} */
+    let timer = null;
 
-    it('calls the appropriate callbacks for each transition', () => {
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
+
+    it('calls the appropriate callbacks for each transition', async () => {
       const handleEnter = spy();
       const handleEntering = spy();
       const handleEntered = spy();
@@ -65,7 +86,9 @@ describe('<Fade />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => {
+        await timer?.tickAsync(1000);
+      });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
@@ -82,7 +105,9 @@ describe('<Fade />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      await act(async () => {
+        await timer?.tickAsync(1000);
+      });
 
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);

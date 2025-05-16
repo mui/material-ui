@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   act,
   createRenderer,
@@ -49,7 +49,7 @@ describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
-  const { clock, render, renderToString } = createRenderer();
+  const { render, renderToString } = createRenderer();
 
   before(function beforeHook() {
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -707,10 +707,31 @@ describe('<Tabs />', () => {
   });
 
   describe('scroll button behavior', () => {
-    clock.withFakeTimers();
+    /** @type {import('sinon').SinonFakeTimers | null} */
+    let timer = null;
+
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
 
     it('should scroll visible items', async function test() {
-      clock.restore();
+      timer?.restore();
       if (isJSDOM) {
         this.skip();
       }
@@ -742,7 +763,7 @@ describe('<Tabs />', () => {
       });
     });
 
-    it('should horizontally scroll by width of partially visible item', () => {
+    it('should horizontally scroll by width of partially visible item', async () => {
       const { container, getByRole, getAllByRole } = render(
         <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
           <Tab style={{ width: 220, minWidth: 'auto' }} />
@@ -760,11 +781,13 @@ describe('<Tabs />', () => {
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      clock.tick(1000);
+      await act(async () => {
+        await timer?.tickAsync(1000);
+      });
       expect(tablistContainer.scrollLeft).equal(200);
     });
 
-    it('should vertically scroll by width of partially visible item', () => {
+    it('should vertically scroll by width of partially visible item', async () => {
       const { container, getByRole, getAllByRole } = render(
         <Tabs
           value={0}
@@ -788,15 +811,38 @@ describe('<Tabs />', () => {
 
       tablistContainer.scrollTop = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      clock.tick(1000);
+      await act(async () => {
+        await timer?.tickAsync(1000);
+      });
       expect(tablistContainer.scrollTop).equal(48);
     });
   });
 
   describe('scroll into view behavior', () => {
-    clock.withFakeTimers();
+    /** @type {import('sinon').SinonFakeTimers | null} */
+    let timer = null;
 
-    it('should scroll left tab into view', function test() {
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
+
+    it('should scroll left tab into view', async function test() {
       if (isJSDOM) {
         this.skip();
       }
@@ -825,7 +871,9 @@ describe('<Tabs />', () => {
         right: 30,
       });
       forceUpdate();
-      clock.tick(1000);
+      await act(async () => {
+        await timer?.tickAsync(1000);
+      });
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
   });

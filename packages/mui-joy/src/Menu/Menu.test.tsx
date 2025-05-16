@@ -21,7 +21,7 @@ const testContext: DropdownContextValue = {
 };
 
 describe('Joy <Menu />', () => {
-  const { render } = createRenderer({ clock: 'fake' });
+  const { render } = createRenderer();
 
   describeConformance(<Menu />, () => ({
     classes,
@@ -54,7 +54,7 @@ describe('Joy <Menu />', () => {
     expect(screen.getByTestId('popover')).to.have.tagName('ul');
   });
 
-  it('should pass onClose prop to Popover', () => {
+  it('should pass onClose prop to Popover', async () => {
     const handleClose = spy();
     render(
       <Dropdown open onOpenChange={handleClose}>
@@ -67,7 +67,7 @@ describe('Joy <Menu />', () => {
 
     const item = screen.getByRole('menuitem');
 
-    act(() => {
+    await act(async () => {
       item.focus();
     });
 

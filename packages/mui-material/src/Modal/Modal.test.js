@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { act, createRenderer, fireEvent, within, screen } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -10,7 +10,7 @@ import Modal, { modalClasses as classes } from '@mui/material/Modal';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Modal />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   let savedBodyStyle;
 
@@ -249,14 +249,14 @@ describe('<Modal />', () => {
   });
 
   describe('event: keydown', () => {
-    it('when mounted, TopModal and event not esc should not call given functions', () => {
+    it('when mounted, TopModal and event not esc should not call given functions', async () => {
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <Modal open onClose={onCloseSpy}>
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
-      act(() => {
+      await act(async () => {
         getByTestId('modal').focus();
       });
 
@@ -267,7 +267,7 @@ describe('<Modal />', () => {
       expect(onCloseSpy).to.have.property('callCount', 0);
     });
 
-    it('should call onClose when Esc is pressed and stop event propagation', () => {
+    it('should call onClose when Esc is pressed and stop event propagation', async () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
@@ -277,7 +277,7 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      act(() => {
+      await act(async () => {
         getByTestId('modal').focus();
       });
 
@@ -289,7 +289,7 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
+    it('should not call onClose when `disableEscapeKeyDown={true}`', async () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
@@ -299,7 +299,7 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      act(() => {
+      await act(async () => {
         getByTestId('modal').focus();
       });
 
@@ -355,7 +355,7 @@ describe('<Modal />', () => {
     // Test case for https://github.com/mui/material-ui/issues/15180
     // TODO: how does this relate to `keepMounted`
     // TODO: never finishes
-    it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
+    it('should remove the transition children in the DOM when closed whilst transition status is entering', async () => {
       class OpenClose extends React.Component {
         state = {
           open: false,
@@ -387,7 +387,7 @@ describe('<Modal />', () => {
       const { queryByTestId, getByRole } = render(<OpenClose />);
       expect(queryByTestId('children')).to.equal(null);
 
-      act(() => {
+      await act(async () => {
         getByRole('button').click();
       });
 
@@ -398,11 +398,11 @@ describe('<Modal />', () => {
   describe('focus', () => {
     let initialFocus = null;
 
-    beforeEach(() => {
+    beforeEach(async () => {
       initialFocus = document.createElement('button');
       initialFocus.tabIndex = 0;
       document.body.appendChild(initialFocus);
-      act(() => {
+      await act(async () => {
         initialFocus.focus();
       });
     });
@@ -433,7 +433,7 @@ describe('<Modal />', () => {
           </div>
         </Modal>,
         // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-        { strictEffects: false },
+        { strict: false, strictEffects: false },
       );
 
       expect(getByTestId('auto-focus')).toHaveFocus();
@@ -468,9 +468,30 @@ describe('<Modal />', () => {
     });
 
     describe('focus stealing', () => {
-      clock.withFakeTimers();
+      /** @type {import('sinon').SinonFakeTimers | null} */
+      let timer = null;
 
-      it('does not steal focus from other frames', function test() {
+      beforeEach(() => {
+        timer = useFakeTimers({
+          shouldClearNativeTimers: true,
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'setInterval',
+            'clearInterval',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
+
+      it('does not steal focus from other frames', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // TODO: Unclear why this fails. Not important
           // since a browser test gives us more confidence anyway
@@ -524,18 +545,41 @@ describe('<Modal />', () => {
           </React.Fragment>,
         );
 
-        act(() => {
+        await act(async () => {
           getByTestId('foreign-input').focus();
         });
         // wait for the `contain` interval check to kick in.
-        clock.tick(500);
+        await act(async () => {
+          await timer?.tickAsync(500);
+        });
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
     });
 
     describe('when starting open and closing immediately', () => {
-      clock.withFakeTimers();
+      /** @type {import('sinon').SinonFakeTimers | null} */
+      let timer = null;
+
+      beforeEach(() => {
+        timer = useFakeTimers({
+          shouldClearNativeTimers: true,
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'setInterval',
+            'clearInterval',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
 
       // Test case for https://github.com/mui/material-ui/issues/12831
       it('should unmount the children ', () => {
@@ -561,7 +605,28 @@ describe('<Modal />', () => {
   });
 
   describe('two modal at the same time', () => {
-    clock.withFakeTimers();
+    /** @type {import('sinon').SinonFakeTimers | null} */
+    let timer = null;
+
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
 
     it('should open and close', () => {
       function TestCase(props) {
@@ -593,7 +658,7 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
     });
 
-    it('should open and close with Transitions', () => {
+    it('should open and close with Transitions', async () => {
       function TestCase(props) {
         return (
           <React.Fragment>
@@ -618,14 +683,20 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      clock.runToLast();
+
+      await act(async () => {
+        await timer?.runToLastAsync();
+      });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', 'hidden');
 
       setProps({ open: false });
-      clock.runToLast();
+
+      await act(async () => {
+        await timer?.runToLastAsync();
+      });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExited.callCount).to.equal(1);
@@ -657,9 +728,30 @@ describe('<Modal />', () => {
   });
 
   describe('prop: closeAfterTransition', () => {
-    clock.withFakeTimers();
+    /** @type {import('sinon').SinonFakeTimers | null} */
+    let timer = null;
 
-    it('when true it should close after Transition has finished', () => {
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
+
+    it('when true it should close after Transition has finished', async () => {
       function TestCase(props) {
         return (
           <Modal open={props.open} closeAfterTransition>
@@ -693,7 +785,10 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      clock.runToLast();
+
+      await act(async () => {
+        await timer?.runToLastAsync();
+      });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
@@ -707,8 +802,8 @@ describe('<Modal />', () => {
       expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', 'hidden');
 
-      act(() => {
-        clock.runToLast();
+      await act(async () => {
+        await timer?.runToLastAsync();
       });
 
       expect(handleEntered.callCount).to.equal(1);
@@ -717,7 +812,7 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
     });
 
-    it('when false it should close before Transition has finished', () => {
+    it('when false it should close before Transition has finished', async () => {
       function TestCase(props) {
         return (
           <Modal open={props.open} closeAfterTransition={false}>
@@ -751,7 +846,10 @@ describe('<Modal />', () => {
       expect(document.body.style).to.have.property('overflow', '');
 
       setProps({ open: true });
-      clock.runToLast();
+
+      await act(async () => {
+        await timer?.runToLastAsync();
+      });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(0);
@@ -765,7 +863,9 @@ describe('<Modal />', () => {
       expect(handleExited.callCount).to.equal(0);
       expect(document.body.style).to.have.property('overflow', '');
 
-      clock.runToLast();
+      await act(async () => {
+        await timer?.runToLastAsync();
+      });
 
       expect(handleEntered.callCount).to.equal(1);
       expect(handleExiting.callCount).to.equal(1);

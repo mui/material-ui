@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { useFakeTimers } from 'sinon';
 import { act, createRenderer } from '@mui/internal-test-utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 import describeConformance from '../../test/describeConformance';
@@ -7,7 +8,7 @@ import describeConformance from '../../test/describeConformance';
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   /**
    * @param {object} other props to spread to TouchRipple
@@ -58,10 +59,10 @@ describe('<TouchRipple />', () => {
   }));
 
   describe('prop: center', () => {
-    it('should compute the right ripple dimensions', () => {
+    it('should compute the right ripple dimensions', async () => {
       const { instance, queryRipple } = renderTouchRipple({ center: true });
 
-      act(() => {
+      await act(async () => {
         instance.start(
           {},
           {
@@ -76,48 +77,48 @@ describe('<TouchRipple />', () => {
     });
   });
 
-  it('should create individual ripples', () => {
+  it('should create individual ripples', async () => {
     const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
     expect(queryAllActiveRipples()).to.have.lengthOf(0);
     expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-    act(() => {
+    await act(async () => {
       instance.start({ clientX: 0, clientY: 0 }, cb);
     });
 
     expect(queryAllActiveRipples()).to.have.lengthOf(1);
     expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-    act(() => {
+    await act(async () => {
       instance.start({ clientX: 0, clientY: 0 }, cb);
     });
 
     expect(queryAllActiveRipples()).to.have.lengthOf(2);
     expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-    act(() => {
+    await act(async () => {
       instance.start({ clientX: 0, clientY: 0 }, cb);
     });
 
     expect(queryAllActiveRipples()).to.have.lengthOf(3);
     expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-    act(() => {
+    await act(async () => {
       instance.stop({ type: 'mouseup' });
     });
 
     expect(queryAllActiveRipples()).to.have.lengthOf(2);
     expect(queryAllStoppingRipples()).to.have.lengthOf(1);
 
-    act(() => {
+    await act(async () => {
       instance.stop({ type: 'mouseup' });
     });
 
     expect(queryAllActiveRipples()).to.have.lengthOf(1);
     expect(queryAllStoppingRipples()).to.have.lengthOf(2);
 
-    act(() => {
+    await act(async () => {
       instance.stop({ type: 'mouseup' });
     });
 
@@ -126,10 +127,10 @@ describe('<TouchRipple />', () => {
   });
 
   describe('creating unique ripples', () => {
-    it('should create a ripple', () => {
+    it('should create a ripple', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
-      act(() => {
+      await act(async () => {
         instance.start(
           {},
           {
@@ -144,10 +145,10 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
     });
 
-    it('should ignore a mousedown event after a touchstart event', () => {
+    it('should ignore a mousedown event after a touchstart event', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
-      act(() => {
+      await act(async () => {
         instance.start({ type: 'touchstart' }, cb);
         instance.start({ type: 'mousedown' }, cb);
       });
@@ -156,7 +157,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
     });
 
-    it('should create a specific ripple', () => {
+    it('should create a specific ripple', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples, queryRipple } =
         renderTouchRipple({
           center: true,
@@ -164,7 +165,7 @@ describe('<TouchRipple />', () => {
       const clientX = 1;
       const clientY = 1;
 
-      act(() => {
+      await act(async () => {
         instance.start({ clientX, clientY }, { fakeElement: true }, cb);
       });
 
@@ -176,28 +177,51 @@ describe('<TouchRipple />', () => {
   });
 
   describe('mobile', () => {
-    clock.withFakeTimers();
+    /** @type {import('sinon').SinonFakeTimers | null} */
+    let timer = null;
 
-    it('should delay the display of the ripples', () => {
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
+
+    it('should delay the display of the ripples', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
+      await act(async () => {
         instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
       });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE);
+      await act(async () => {
+        await timer?.tickAsync(DELAY_RIPPLE);
+      });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE);
-      act(() => {
+      await act(async () => {
+        await timer?.tickAsync(DELAY_RIPPLE);
         instance.stop({ type: 'touchend' }, cb);
       });
 
@@ -205,38 +229,42 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should trigger the ripple for short touch interactions', () => {
+    it('should trigger the ripple for short touch interactions', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
+      await act(async () => {
         instance.start({ touches: [], clientX: 0, clientY: 0 }, { fakeElement: true }, cb);
       });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE / 2);
+      await act(async () => {
+        await timer?.tickAsync(DELAY_RIPPLE / 2);
+      });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      act(() => {
+      await act(async () => {
         instance.stop({ type: 'touchend' }, cb);
       });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(1);
+      await act(async () => {
+        await timer?.tickAsync(1);
+      });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should interrupt the ripple schedule', () => {
+    it('should interrupt the ripple schedule', async () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
@@ -246,17 +274,21 @@ describe('<TouchRipple />', () => {
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      clock.tick(DELAY_RIPPLE / 2);
+      await act(async () => {
+        await timer?.tickAsync(DELAY_RIPPLE / 2);
+      });
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
-      instance.stop({ type: 'touchmove' });
-      clock.tick(DELAY_RIPPLE);
+      await act(async () => {
+        instance.stop({ type: 'touchmove' });
+        await timer?.tickAsync(DELAY_RIPPLE);
+      });
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
     });
 
-    it('should not leak on multi-touch', function multiTouchTest() {
+    it('should not leak on multi-touch', async function multiTouchTest() {
       const { instance, unmount } = renderTouchRipple();
 
       instance.start({ type: 'touchstart', touches: [{}] }, () => {});
@@ -265,7 +297,9 @@ describe('<TouchRipple />', () => {
 
       // expect this to run gracefully without
       // "react state update on an unmounted component"
-      clock.runAll();
+      await act(async () => {
+        await timer?.runAllAsync();
+      });
     });
 
     it('should handle empty event.touches', () => {

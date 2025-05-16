@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { spy } from 'sinon';
+import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { createRenderer, act, fireEvent, within } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -8,7 +8,7 @@ import Modal, { modalClasses as classes, ModalProps } from '@mui/joy/Modal';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Modal />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   describeConformance(
     <Modal open>
@@ -178,14 +178,14 @@ describe('<Modal />', () => {
   });
 
   describe('event: keydown', () => {
-    it('when mounted, TopModal and event not esc should not call given functions', () => {
+    it('when mounted, TopModal and event not esc should not call given functions', async () => {
       const onCloseSpy = spy();
       const { getByTestId } = render(
         <Modal open onClose={onCloseSpy}>
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
-      act(() => {
+      await act(async () => {
         getByTestId('modal').focus();
       });
 
@@ -196,7 +196,7 @@ describe('<Modal />', () => {
       expect(onCloseSpy).to.have.property('callCount', 0);
     });
 
-    it('should call onClose when Esc is pressed and stop event propagation', () => {
+    it('should call onClose when Esc is pressed and stop event propagation', async () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
@@ -206,7 +206,7 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      act(() => {
+      await act(async () => {
         getByTestId('modal').focus();
       });
 
@@ -218,7 +218,7 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
+    it('should not call onClose when `disableEscapeKeyDown={true}`', async () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(
@@ -228,7 +228,7 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      act(() => {
+      await act(async () => {
         getByTestId('modal').focus();
       });
 
@@ -285,11 +285,11 @@ describe('<Modal />', () => {
   describe('focus', () => {
     let initialFocus: null | HTMLButtonElement = null;
 
-    beforeEach(() => {
+    beforeEach(async () => {
       initialFocus = document.createElement('button');
       initialFocus.tabIndex = 0;
       document.body.appendChild(initialFocus);
-      act(() => {
+      await act(async () => {
         initialFocus?.focus();
       });
     });
@@ -320,7 +320,7 @@ describe('<Modal />', () => {
           </div>
         </Modal>,
         // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-        { strictEffects: false },
+        { strict: false, strictEffects: false },
       );
 
       expect(getByTestId('auto-focus')).toHaveFocus();
@@ -355,9 +355,29 @@ describe('<Modal />', () => {
     });
 
     describe('focus stealing', () => {
-      clock.withFakeTimers();
+      let timer: SinonFakeTimers | null = null;
 
-      it('does not steal focus from other frames', function test() {
+      beforeEach(() => {
+        timer = useFakeTimers({
+          shouldClearNativeTimers: true,
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'setInterval',
+            'clearInterval',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
+
+      it('does not steal focus from other frames', async function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // TODO: Unclear why this fails. Not important
           // since a browser test gives us more confidence anyway
@@ -412,18 +432,40 @@ describe('<Modal />', () => {
           </React.Fragment>,
         );
 
-        act(() => {
+        await act(async () => {
           getByTestId('foreign-input').focus();
         });
         // wait for the `contain` interval check to kick in.
-        clock.tick(500);
+        await act(async () => {
+          timer?.tickAsync(500);
+        });
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
     });
 
     describe('when starting open and closing immediately', () => {
-      clock.withFakeTimers();
+      let timer: SinonFakeTimers | null = null;
+
+      beforeEach(() => {
+        timer = useFakeTimers({
+          shouldClearNativeTimers: true,
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'setInterval',
+            'clearInterval',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
 
       // Test case for https://github.com/mui/material-ui/issues/12831
       it('should unmount the children ', () => {
@@ -447,7 +489,27 @@ describe('<Modal />', () => {
   });
 
   describe('two modal at the same time', () => {
-    clock.withFakeTimers();
+    let timer: SinonFakeTimers | null = null;
+
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
 
     it('should open and close', () => {
       function TestCase(props: { open: boolean }) {

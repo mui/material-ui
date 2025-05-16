@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
+import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
@@ -10,15 +11,15 @@ interface GenericProps {
 }
 
 describe('<FocusTrap />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   let initialFocus: HTMLElement | null = null;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     initialFocus = document.createElement('button');
     initialFocus.tabIndex = 0;
     document.body.appendChild(initialFocus);
-    act(() => {
+    await act(async () => {
       initialFocus!.focus();
     });
   });
@@ -27,7 +28,7 @@ describe('<FocusTrap />', () => {
     document.body.removeChild(initialFocus!);
   });
 
-  it('should return focus to the root', () => {
+  it('should return focus to the root', async () => {
     const { getByTestId } = render(
       <FocusTrap open>
         <div tabIndex={-1} data-testid="root">
@@ -35,18 +36,18 @@ describe('<FocusTrap />', () => {
         </div>
       </FocusTrap>,
       // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-      { strictEffects: false },
+      { strict: false, strictEffects: false },
     );
 
     expect(getByTestId('auto-focus')).toHaveFocus();
 
-    act(() => {
+    await act(async () => {
       initialFocus!.focus();
     });
     expect(getByTestId('root')).toHaveFocus();
   });
 
-  it('should not return focus to the children when disableEnforceFocus is true', () => {
+  it('should not return focus to the children when disableEnforceFocus is true', async () => {
     const { getByTestId } = render(
       <FocusTrap open disableEnforceFocus>
         <div tabIndex={-1}>
@@ -54,12 +55,12 @@ describe('<FocusTrap />', () => {
         </div>
       </FocusTrap>,
       // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076s
-      { strictEffects: false },
+      { strict: false, strictEffects: false },
     );
 
     expect(getByTestId('auto-focus')).toHaveFocus();
 
-    act(() => {
+    await act(async () => {
       initialFocus!.focus();
     });
 
@@ -113,7 +114,7 @@ describe('<FocusTrap />', () => {
     expect(screen.getByTestId('root')).toHaveFocus();
   });
 
-  it('does not steal focus from a portaled element if any prop but open changes', () => {
+  it('does not steal focus from a portaled element if any prop but open changes', async () => {
     function Test(props: GenericProps) {
       return (
         <FocusTrap disableAutoFocus open {...props}>
@@ -125,7 +126,7 @@ describe('<FocusTrap />', () => {
     }
     const { setProps } = render(<Test />);
     const portaledTextbox = screen.getByTestId('portal-input');
-    act(() => {
+    await act(async () => {
       portaledTextbox.focus();
     });
 
@@ -150,7 +151,7 @@ describe('<FocusTrap />', () => {
     expect(portaledTextbox).toHaveFocus();
   });
 
-  it('undesired: lazy root does not get autofocus', () => {
+  it('undesired: lazy root does not get autofocus', async () => {
     let mountDeferredComponent: React.DispatchWithoutAction;
     const DeferredComponent = React.forwardRef<HTMLDivElement>(
       function DeferredComponent(props, ref) {
@@ -172,7 +173,7 @@ describe('<FocusTrap />', () => {
 
     expect(initialFocus).toHaveFocus();
 
-    act(() => {
+    await act(async () => {
       mountDeferredComponent();
     });
 
@@ -198,6 +199,7 @@ describe('<FocusTrap />', () => {
     const { setProps } = render(<Test />, {
       // Strict Effects interferes with the premise of the test.
       // It would trigger a focus restore (i.e. a blur event)
+      strict: false,
       strictEffects: false,
     });
 
@@ -208,7 +210,7 @@ describe('<FocusTrap />', () => {
     expect(eventLog).to.deep.equal([]);
   });
 
-  it('does not focus if isEnabled returns false', () => {
+  it('does not focus if isEnabled returns false', async () => {
     function Test(props: GenericProps) {
       return (
         <div>
@@ -222,14 +224,14 @@ describe('<FocusTrap />', () => {
     const { setProps, getByRole } = render(<Test />, { strict: reactMajor <= 18 });
     expect(screen.getByTestId('root')).toHaveFocus();
 
-    act(() => {
+    await act(async () => {
       getByRole('textbox').focus();
     });
     expect(getByRole('textbox')).not.toHaveFocus();
 
     setProps({ isEnabled: () => false });
 
-    act(() => {
+    await act(async () => {
       getByRole('textbox').focus();
     });
     expect(getByRole('textbox')).toHaveFocus();
@@ -290,9 +292,29 @@ describe('<FocusTrap />', () => {
   });
 
   describe('interval', () => {
-    clock.withFakeTimers();
+    let timer: SinonFakeTimers | null = null;
 
-    it('contains the focus if the active element is removed', () => {
+    beforeEach(() => {
+      timer = useFakeTimers({
+        shouldClearNativeTimers: true,
+        toFake: [
+          'performance',
+          'setTimeout',
+          'clearTimeout',
+          'setInterval',
+          'clearInterval',
+          'Date',
+          'requestAnimationFrame',
+          'cancelAnimationFrame',
+        ],
+      });
+    });
+
+    afterEach(() => {
+      timer?.restore();
+    });
+
+    it('contains the focus if the active element is removed', async () => {
       function WithRemovableElement({ hideButton = false }) {
         return (
           <FocusTrap open>
@@ -310,19 +332,24 @@ describe('<FocusTrap />', () => {
       const { setProps } = render(<WithRemovableElement />);
 
       expect(screen.getByTestId('root')).toHaveFocus();
-      act(() => {
+      await act(async () => {
         screen.getByTestId('hide-button').focus();
       });
       expect(screen.getByTestId('hide-button')).toHaveFocus();
 
       setProps({ hideButton: true });
       expect(screen.getByTestId('root')).not.toHaveFocus();
-      clock.tick(500); // wait for the interval check to kick in.
+
+      // wait for the interval check to kick in.
+      await act(async () => {
+        await timer?.tickAsync(500);
+      });
+
       expect(screen.getByTestId('root')).toHaveFocus();
     });
 
     describe('prop: disableAutoFocus', () => {
-      it('should not trap', () => {
+      it('should not trap', async () => {
         const { getByRole } = render(
           <div>
             <input />
@@ -332,16 +359,18 @@ describe('<FocusTrap />', () => {
           </div>,
         );
 
-        clock.tick(500); // trigger an interval call
+        await act(async () => {
+          await timer?.tickAsync(500); // trigger an interval call
+        });
         expect(initialFocus).toHaveFocus();
 
-        act(() => {
+        await act(async () => {
           getByRole('textbox').focus();
         });
         expect(getByRole('textbox')).toHaveFocus();
       });
 
-      it('should trap once the focus moves inside', () => {
+      it('should trap once the focus moves inside', async () => {
         render(
           <div>
             <input data-testid="outside-input" />
@@ -355,25 +384,25 @@ describe('<FocusTrap />', () => {
 
         expect(initialFocus).toHaveFocus();
 
-        act(() => {
+        await act(async () => {
           screen.getByTestId('outside-input').focus();
         });
         expect(screen.getByTestId('outside-input')).toHaveFocus();
 
         // the trap activates
-        act(() => {
+        await act(async () => {
           screen.getByTestId('focus-input').focus();
         });
         expect(screen.getByTestId('focus-input')).toHaveFocus();
 
         // the trap prevent to escape
-        act(() => {
+        await act(async () => {
           screen.getByTestId('outside-input').focus();
         });
         expect(screen.getByTestId('root')).toHaveFocus();
       });
 
-      it('should restore the focus', () => {
+      it('should restore the focus', async () => {
         function Test(props: GenericProps) {
           return (
             <div>
@@ -390,13 +419,13 @@ describe('<FocusTrap />', () => {
         const { setProps } = render(<Test />);
 
         // set the expected focus restore location
-        act(() => {
+        await act(async () => {
           screen.getByTestId('outside-input').focus();
         });
         expect(screen.getByTestId('outside-input')).toHaveFocus();
 
         // the trap activates
-        act(() => {
+        await act(async () => {
           screen.getByTestId('root').focus();
         });
         expect(screen.getByTestId('root')).toHaveFocus();

@@ -46,7 +46,7 @@ describe('<ToggleButtonGroup />', () => {
     expect(secondButton).to.have.property('disabled', true);
   });
 
-  it('should toggle the state when immediate children is not button', () => {
+  it('should toggle the state when immediate children is not button', async () => {
     function CustomButton() {
       return <Button value="custom-button">Custom button</Button>;
     }
@@ -80,17 +80,17 @@ describe('<ToggleButtonGroup />', () => {
     const { getAllByRole } = render(<ToggleGroup />);
 
     const [firstButton, secondButton, thirdButton, fourthButton] = getAllByRole('button');
-    act(() => {
+    await act(async () => {
       firstButton.click();
     });
     expect(handleChange.args[0][1]).to.have.members(['tooltip-button']);
     expect(firstButton).to.have.attribute('aria-pressed', 'true');
-    act(() => {
+    await act(async () => {
       secondButton.click();
     });
     expect(handleChange.args[1][1]).to.have.members(['tooltip-button', 'custom-button']);
     expect(secondButton).to.have.attribute('aria-pressed', 'true');
-    act(() => {
+    await act(async () => {
       thirdButton.click();
     });
     expect(handleChange.args[2][1]).to.have.members([
@@ -99,7 +99,7 @@ describe('<ToggleButtonGroup />', () => {
       'custom-iconbutton',
     ]);
     expect(thirdButton).to.have.attribute('aria-pressed', 'true');
-    act(() => {
+    await act(async () => {
       fourthButton.click();
     });
     expect(handleChange.args[3][1]).to.have.members([

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import sinon, { spy, stub } from 'sinon';
+import sinon, { spy, stub, useFakeTimers, SinonFakeTimers } from 'sinon';
 import { act, screen, waitFor, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
@@ -32,7 +32,7 @@ async function raf() {
 }
 
 describe('<TextareaAutosize />', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   // For https://github.com/mui/material-ui/pull/33238
   it('should not crash when unmounting with Suspense', async () => {
@@ -79,7 +79,7 @@ describe('<TextareaAutosize />', () => {
     }
     const { container } = render(<App />);
     const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
-    act(() => {
+    await act(async () => {
       input.focus();
     });
     const activeElement = document.activeElement!;
@@ -134,6 +134,7 @@ describe('<TextareaAutosize />', () => {
     fireEvent.click(button);
     await raf();
     await raf();
+    await act(async () => {});
     expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
   });
 
@@ -181,9 +182,29 @@ describe('<TextareaAutosize />', () => {
     });
 
     describe('resize', () => {
-      clock.withFakeTimers();
+      let timer: SinonFakeTimers | null = null;
 
-      it('should handle the resize event', () => {
+      beforeEach(() => {
+        timer = useFakeTimers({
+          shouldClearNativeTimers: true,
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'setInterval',
+            'clearInterval',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
+
+      it('should handle the resize event', async () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
         const shadow = container.querySelector('textarea[aria-hidden=true]')!;
@@ -198,16 +219,20 @@ describe('<TextareaAutosize />', () => {
           scrollHeight: 30,
           lineHeight: 15,
         });
-        window.dispatchEvent(new window.Event('resize', {}));
+        await act(async () => {
+          window.dispatchEvent(new window.Event('resize', {}));
+        });
 
-        clock.tick(166);
+        await act(async () => {
+          await timer?.tickAsync(166);
+        });
 
         expect(input.style).to.have.property('height', '30px');
         expect(input.style).to.have.property('overflow', 'hidden');
       });
     });
 
-    it('should update when uncontrolled', () => {
+    it('should update when uncontrolled', async () => {
       const handleChange = spy();
       const { container } = render(<TextareaAutosize onChange={handleChange} />);
       const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
@@ -221,7 +246,7 @@ describe('<TextareaAutosize />', () => {
         scrollHeight: 30,
         lineHeight: 15,
       });
-      act(() => {
+      await act(async () => {
         input.focus();
       });
       const activeElement = document.activeElement!;
@@ -395,7 +420,7 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
-    it('should compute the correct height if padding-right is greater than 0px', () => {
+    it('should compute the correct height if padding-right is greater than 0px', async () => {
       const paddingRight = 50;
       const { container, forceUpdate } = render(<TextareaAutosize style={{ paddingRight }} />);
       const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
@@ -418,7 +443,7 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
 
-      act(() => {
+      await act(async () => {
         input.focus();
       });
       const activeElement = document.activeElement!;

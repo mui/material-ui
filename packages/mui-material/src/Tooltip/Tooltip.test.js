@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   act,
   createRenderer,
@@ -17,11 +17,31 @@ import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  /** @type {import('sinon').SinonFakeTimers | null} */
+  let timer = null;
 
   beforeEach(() => {
+    timer = useFakeTimers({
+      shouldClearNativeTimers: true,
+      toFake: [
+        'performance',
+        'setTimeout',
+        'clearTimeout',
+        'setInterval',
+        'clearInterval',
+        'Date',
+        'requestAnimationFrame',
+        'cancelAnimationFrame',
+      ],
+    });
     testReset();
   });
+
+  afterEach(() => {
+    timer?.restore();
+  });
+
+  const { render } = createRenderer();
 
   function TestPopper(props) {
     const { children, className, 'data-testid': testId } = props;
@@ -283,7 +303,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should respond to external events', () => {
+  it('should respond to external events', async () => {
     const transitionTimeout = 10;
     const enterDelay = 100;
     render(
@@ -300,19 +320,25 @@ describe('<Tooltip />', () => {
     expect(screen.queryByRole('tooltip')).to.equal(null);
 
     fireEvent.mouseOver(screen.getByRole('button'));
-    clock.tick(enterDelay);
+    await act(async () => {
+      await timer?.tickAsync(enterDelay);
+    });
 
     expect(screen.getByRole('tooltip')).toBeVisible();
 
     fireEvent.mouseLeave(screen.getByRole('button'));
     // Tooltip schedules timeout even with no delay
-    clock.tick(0);
-    clock.tick(transitionTimeout);
+    await act(async () => {
+      await timer?.tickAsync(0);
+    });
+    await act(async () => {
+      await timer?.tickAsync(transitionTimeout);
+    });
 
     expect(screen.queryByRole('tooltip')).to.equal(null);
   });
 
-  it('should be controllable', () => {
+  it('should be controllable', async () => {
     const eventLog = [];
 
     const { setProps } = render(
@@ -337,18 +363,22 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(screen.getByRole('button'));
-    clock.tick(100);
+    await act(async () => {
+      await timer?.tickAsync(100);
+    });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open']);
     setProps({ open: true });
 
     fireEvent.mouseLeave(screen.getByRole('button'));
-    clock.tick(0);
+    await act(async () => {
+      await timer?.tickAsync(0);
+    });
 
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
 
-  it('should not call onOpen again if already open', () => {
+  it('should not call onOpen again if already open', async () => {
     const eventLog = [];
     render(
       <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
@@ -359,12 +389,14 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal([]);
 
     fireEvent.mouseOver(screen.getByTestId('trigger'));
-    clock.tick(100);
+    await act(async () => {
+      await timer?.tickAsync(100);
+    });
 
     expect(eventLog).to.deep.equal(['mouseover']);
   });
 
-  it('should not call onClose if already closed', () => {
+  it('should not call onClose if already closed', async () => {
     const eventLog = [];
     render(
       <Tooltip title="Hello World" onClose={() => eventLog.push('close')} open={false}>
@@ -373,12 +405,14 @@ describe('<Tooltip />', () => {
     );
 
     fireEvent.mouseLeave(screen.getByTestId('trigger'));
-    clock.tick(0);
+    await act(async () => {
+      await timer?.tickAsync(0);
+    });
 
     expect(eventLog).to.deep.equal(['mouseleave']);
   });
 
-  it('is dismissible by pressing Escape', () => {
+  it('is dismissible by pressing Escape', async () => {
     const handleClose = spy();
     const transitionTimeout = 0;
     render(
@@ -399,7 +433,9 @@ describe('<Tooltip />', () => {
       document.activeElement,
       { key: 'Escape' },
     );
-    clock.tick(transitionTimeout);
+    await act(async () => {
+      await timer?.tickAsync(transitionTimeout);
+    });
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -435,7 +471,9 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       fireEvent.touchStart(screen.getByRole('button'));
-      clock.tick(enterTouchDelay + enterDelay);
+      await act(async () => {
+        await timer?.tickAsync(enterTouchDelay + enterDelay);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
@@ -443,8 +481,12 @@ describe('<Tooltip />', () => {
       await act(async () => {
         screen.getByRole('button').blur();
       });
-      clock.tick(leaveTouchDelay);
-      clock.tick(transitionTimeout);
+      await act(async () => {
+        await timer?.tickAsync(leaveTouchDelay);
+      });
+      await act(async () => {
+        await timer?.tickAsync(transitionTimeout);
+      });
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
@@ -475,7 +517,7 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', function test() {
+    it('should handle autoFocus + onFocus forwarding', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -497,11 +539,14 @@ describe('<Tooltip />', () => {
       const { setProps } = render(
         <AutoFocus />,
         // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
-        { strictEffects: false },
+        { strict: false, strictEffects: false },
       );
 
       setProps({ open: true });
-      clock.tick(100);
+
+      await act(async () => {
+        await timer?.tickAsync(100);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(handleFocus.callCount).to.equal(1);
@@ -524,12 +569,15 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
+
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
       expect(queryByRole('tooltip')).to.equal(null);
 
-      clock.tick(111);
+      await act(async () => {
+        await timer?.tickAsync(111);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
@@ -549,28 +597,33 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = screen.getByRole('button');
-      focusVisible(children);
-
+      await focusVisible(children);
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      clock.tick(111);
+      await act(async () => {
+        await timer?.tickAsync(111);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       await act(async () => {
         document.activeElement.blur();
       });
-      clock.tick(5);
-      clock.tick(6);
+      await act(async () => {
+        await timer?.tickAsync(5);
+      });
+      await act(async () => {
+        await timer?.tickAsync(6);
+      });
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(children);
+      await focusVisible(children);
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
       await act(async () => {
-        clock.tick(30);
+        await timer?.tickAsync(30);
       });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
@@ -594,8 +647,10 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
-      clock.tick(enterDelay);
+      await focusVisible(screen.getByRole('button'));
+      await act(async () => {
+        await timer?.tickAsync(enterDelay);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
@@ -605,8 +660,12 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      clock.tick(leaveDelay);
-      clock.tick(transitionTimeout);
+      await act(async () => {
+        await timer?.tickAsync(leaveDelay);
+      });
+      await act(async () => {
+        await timer?.tickAsync(transitionTimeout);
+      });
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
@@ -723,7 +782,7 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: disableInteractive', () => {
-    it('when false should keep the overlay open if the popper element is hovered', () => {
+    it('when false should keep the overlay open if the popper element is hovered', async () => {
       render(
         <Tooltip
           title="Hello World"
@@ -738,7 +797,9 @@ describe('<Tooltip />', () => {
       );
 
       fireEvent.mouseOver(screen.getByRole('button'));
-      clock.tick(100);
+      await act(async () => {
+        await timer?.tickAsync(100);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
@@ -747,12 +808,14 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(screen.getByRole('tooltip'));
-      clock.tick(111 + 10);
+      await act(async () => {
+        await timer?.tickAsync(111 + 10);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('when `true` should not keep the overlay open if the popper element is hovered', () => {
+    it('when `true` should not keep the overlay open if the popper element is hovered', async () => {
       render(
         <Tooltip
           title="Hello World"
@@ -767,7 +830,9 @@ describe('<Tooltip />', () => {
       );
 
       fireEvent.mouseOver(screen.getByRole('button'));
-      clock.tick(100);
+      await act(async () => {
+        await timer?.tickAsync(100);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
@@ -776,7 +841,9 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(screen.getByRole('tooltip'));
-      clock.tick(111 + 10);
+      await act(async () => {
+        await timer?.tickAsync(111 + 10);
+      });
 
       expect(screen.getByRole('tooltip')).not.toBeVisible();
     });
@@ -991,7 +1058,7 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('opens on focus-visible', () => {
+    it('opens on focus-visible', async () => {
       const eventLog = [];
       render(
         <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
@@ -1002,7 +1069,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
@@ -1031,7 +1098,9 @@ describe('<Tooltip />', () => {
       await act(async () => {
         button.blur();
       });
-      clock.tick(transitionTimeout);
+      await act(async () => {
+        await timer?.tickAsync(transitionTimeout);
+      });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['blur', 'close']);
@@ -1381,7 +1450,7 @@ describe('<Tooltip />', () => {
       document.body.style.WebkitUserSelect = prevWebkitUserSelect;
     });
 
-    it('prevents text-selection during touch-longpress', () => {
+    it('prevents text-selection during touch-longpress', async () => {
       const enterTouchDelay = 700;
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
@@ -1403,7 +1472,9 @@ describe('<Tooltip />', () => {
 
       expect(document.body.style.WebkitUserSelect).to.equal('none');
 
-      clock.tick(enterTouchDelay + enterDelay);
+      await act(async () => {
+        await timer?.tickAsync(enterTouchDelay + enterDelay);
+      });
       expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
 

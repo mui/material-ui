@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, useFakeTimers } from 'sinon';
 import {
   act,
   createRenderer,
@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 
 describe('<MenuList> integration', () => {
-  const { clock, render } = createRenderer();
+  const { render } = createRenderer();
 
   specify('the MenuItems have the `menuitem` role', () => {
     const { getAllByRole } = render(
@@ -110,7 +110,7 @@ describe('<MenuList> integration', () => {
       expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
-    it('should leave tabIndex on the first item after blur', () => {
+    it('should leave tabIndex on the first item after blur', async () => {
       const handleBlur = spy();
       const { getAllByRole } = render(
         <MenuList autoFocusItem onBlur={handleBlur}>
@@ -122,7 +122,7 @@ describe('<MenuList> integration', () => {
 
       expect(document.activeElement).not.to.equal(null);
 
-      act(() => {
+      await act(async () => {
         document.activeElement.blur();
       });
 
@@ -136,7 +136,7 @@ describe('<MenuList> integration', () => {
       expect(menuitems[2]).not.toHaveFocus();
     });
 
-    it('can imperatively focus the first item', () => {
+    it('can imperatively focus the first item', async () => {
       const { getAllByRole } = render(
         <MenuList autoFocusItem>
           <MenuItem selected>Menu Item 1</MenuItem>
@@ -146,7 +146,7 @@ describe('<MenuList> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      act(() => {
+      await act(async () => {
         menuitems[0].focus();
       });
 
@@ -471,7 +471,7 @@ describe('<MenuList> integration', () => {
       innerTextSupported = element.innerText !== undefined;
     });
 
-    it('selects the first item starting with the character', () => {
+    it('selects the first item starting with the character', async () => {
       const { getByRole, getByText } = render(
         <MenuList>
           <MenuItem>Arizona</MenuItem>
@@ -479,7 +479,7 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
       const menu = getByRole('menu');
-      act(() => {
+      await act(async () => {
         menu.focus();
       });
 
@@ -488,7 +488,7 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arizona')).toHaveFocus();
     });
 
-    it('should cycle through items when repeating initial character', () => {
+    it('should cycle through items when repeating initial character', async () => {
       const { getAllByRole, getByText } = render(
         <MenuList>
           <MenuItem>Arizona</MenuItem>
@@ -498,7 +498,7 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
       const menuitems = getAllByRole('menuitem');
-      act(() => {
+      await act(async () => {
         menuitems[0].focus();
       });
 
@@ -512,14 +512,14 @@ describe('<MenuList> integration', () => {
       expect(getByText('aardvark')).toHaveFocus();
     });
 
-    it('selects the next item starting with the typed character', () => {
+    it('selects the next item starting with the typed character', async () => {
       const { getByText } = render(
         <MenuList>
           <MenuItem>Arizona</MenuItem>
           <MenuItem>Arcansas</MenuItem>
         </MenuList>,
       );
-      act(() => {
+      await act(async () => {
         getByText('Arizona').focus();
       });
 
@@ -582,7 +582,7 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arizona')).toHaveFocus();
     });
 
-    it("should not move focus if focus starts on descendant and the key doesn't match", () => {
+    it("should not move focus if focus starts on descendant and the key doesn't match", async () => {
       const { getByText } = render(
         <MenuList>
           <MenuItem>Arizona</MenuItem>
@@ -592,7 +592,7 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
       const button = getByText('Focusable Descendant');
-      act(() => {
+      await act(async () => {
         button.focus();
       });
 
@@ -617,9 +617,30 @@ describe('<MenuList> integration', () => {
     });
 
     describe('time', () => {
-      clock.withFakeTimers();
+      /** @type {import('sinon').SinonFakeTimers | null} */
+      let timer = null;
 
-      it('should reset the character buffer after 500ms', () => {
+      beforeEach(() => {
+        timer = useFakeTimers({
+          shouldClearNativeTimers: true,
+          toFake: [
+            'performance',
+            'setTimeout',
+            'clearTimeout',
+            'setInterval',
+            'clearInterval',
+            'Date',
+            'requestAnimationFrame',
+            'cancelAnimationFrame',
+          ],
+        });
+      });
+
+      afterEach(() => {
+        timer?.restore();
+      });
+
+      it('should reset the character buffer after 500ms', async () => {
         render(
           <MenuList autoFocus>
             <MenuItem>Worm</MenuItem>
@@ -628,7 +649,11 @@ describe('<MenuList> integration', () => {
         );
 
         fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-        clock.tick(501);
+
+        await act(async () => {
+          await timer?.tickAsync(501);
+        });
+
         fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
         expect(screen.getByText('Ordinary')).toHaveFocus();
       });
