@@ -79,7 +79,7 @@ describe('<TextareaAutosize />', () => {
     }
     const { container } = render(<App />);
     const input = container.querySelector<HTMLTextAreaElement>('textarea')!;
-    act(() => {
+    await act(async () => {
       input.focus();
     });
     const activeElement = document.activeElement!;
@@ -207,7 +207,7 @@ describe('<TextareaAutosize />', () => {
       });
     });
 
-    it('should update when uncontrolled', () => {
+    it('should update when uncontrolled', async () => {
       const handleChange = spy();
       const { container } = render(<TextareaAutosize onChange={handleChange} />);
       const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
@@ -221,7 +221,7 @@ describe('<TextareaAutosize />', () => {
         scrollHeight: 30,
         lineHeight: 15,
       });
-      act(() => {
+      await act(async () => {
         input.focus();
       });
       const activeElement = document.activeElement!;
@@ -395,7 +395,7 @@ describe('<TextareaAutosize />', () => {
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
-    it('should compute the correct height if padding-right is greater than 0px', () => {
+    it('should compute the correct height if padding-right is greater than 0px', async () => {
       const paddingRight = 50;
       const { container, forceUpdate } = render(<TextareaAutosize style={{ paddingRight }} />);
       const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
@@ -418,7 +418,7 @@ describe('<TextareaAutosize />', () => {
         lineHeight,
       });
 
-      act(() => {
+      await act(async () => {
         input.focus();
       });
       const activeElement = document.activeElement!;
