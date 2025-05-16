@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, act } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Ripple from './Ripple';
 import classes from './touchRippleClasses';
 
@@ -82,7 +82,7 @@ describe('<Ripple />', () => {
   describe('pulsating and stopping 2', () => {
     clock.withFakeTimers();
 
-    it('handleExit should trigger a timer', async () => {
+    it('handleExit should trigger a timer', () => {
       const handleExited = spy();
       const { setProps } = render(
         <Ripple
@@ -104,7 +104,7 @@ describe('<Ripple />', () => {
       expect(handleExited.callCount).to.equal(1);
     });
 
-    it('unmount should defuse the handleExit timer', async () => {
+    it('unmount should defuse the handleExit timer', () => {
       const handleExited = spy();
       const { setProps, unmount } = render(
         <Ripple

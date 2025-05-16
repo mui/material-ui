@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, act } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -32,7 +32,7 @@ describe('<Fade />', () => {
   describe('transition lifecycle', () => {
     clock.withFakeTimers();
 
-    it('calls the appropriate callbacks for each transition', async () => {
+    it('calls the appropriate callbacks for each transition', () => {
       const handleEnter = spy();
       const handleEntering = spy();
       const handleEntered = spy();
@@ -90,7 +90,7 @@ describe('<Fade />', () => {
   });
 
   describe('prop: appear', () => {
-    it('should work when initially hidden, appear=true', async () => {
+    it('should work when initially hidden, appear=true', () => {
       const { container } = render(
         <Fade in={false} appear>
           <div>Foo</div>

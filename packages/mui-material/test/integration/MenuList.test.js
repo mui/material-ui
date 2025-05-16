@@ -619,7 +619,7 @@ describe('<MenuList> integration', () => {
     describe('time', () => {
       clock.withFakeTimers();
 
-      it('should reset the character buffer after 500ms', async () => {
+      it('should reset the character buffer after 500ms', () => {
         render(
           <MenuList autoFocus>
             <MenuItem>Worm</MenuItem>

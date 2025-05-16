@@ -116,7 +116,7 @@ describe('<Dialog />', () => {
     expect(getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
-  it('calls onClose when pressing Esc and removes the content after the specified duration', async () => {
+  it('calls onClose when pressing Esc and removes the content after the specified duration', () => {
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);

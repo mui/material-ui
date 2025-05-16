@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen, act } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
@@ -209,7 +209,7 @@ describe('<Popper />', () => {
   describe('prop: transition', () => {
     clock.withFakeTimers();
 
-    it('should work', async () => {
+    it('should work', () => {
       const { queryByRole, getByRole, setProps } = render(
         <Popper {...defaultProps} transition>
           {({ TransitionProps }) => (
@@ -268,7 +268,7 @@ describe('<Popper />', () => {
   describe('display', () => {
     clock.withFakeTimers();
 
-    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', async () => {
+    it('should keep display:none when not toggled and transition/keepMounted/disablePortal props are set', () => {
       const { getByRole, setProps } = render(
         <Popper {...defaultProps} open={false} keepMounted transition disablePortal>
           {({ TransitionProps }) => (

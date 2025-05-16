@@ -369,7 +369,7 @@ describe('<SwitchBase />', () => {
   });
 
   describe('focus/blur', () => {
-    it('forwards focus/blur events and notifies the FormControl', async () => {
+    it('forwards focus/blur events and notifies the FormControl', () => {
       function FocusMonitor(props) {
         const { focused } = useFormControl();
 
@@ -391,14 +391,14 @@ describe('<SwitchBase />', () => {
       );
       const checkbox = getByRole('checkbox');
 
-      await act(async () => {
+      act(() => {
         checkbox.focus();
       });
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: true');
       expect(handleFocus.callCount).to.equal(1);
 
-      await act(async () => {
+      act(() => {
         checkbox.blur();
       });
 

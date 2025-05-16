@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, act } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@mui/material/Zoom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -32,7 +32,7 @@ describe('<Zoom />', () => {
   describe('transition lifecycle', () => {
     clock.withFakeTimers();
 
-    it('tests', async () => {
+    it('tests', () => {
       const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();

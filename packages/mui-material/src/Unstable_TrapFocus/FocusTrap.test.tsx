@@ -292,7 +292,7 @@ describe('<FocusTrap />', () => {
   describe('interval', () => {
     clock.withFakeTimers();
 
-    it('contains the focus if the active element is removed', async () => {
+    it('contains the focus if the active element is removed', () => {
       function WithRemovableElement({ hideButton = false }) {
         return (
           <FocusTrap open>
@@ -322,7 +322,7 @@ describe('<FocusTrap />', () => {
     });
 
     describe('prop: disableAutoFocus', () => {
-      it('should not trap', async () => {
+      it('should not trap', () => {
         const { getByRole } = render(
           <div>
             <input />

@@ -18,7 +18,7 @@ import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Tooltip />', () => {
-  const { render, clock } = createRenderer({ clock: 'fake' });
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   beforeEach(() => {
     testReset();
@@ -284,7 +284,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  it('should respond to external events', async () => {
+  it('should respond to external events', () => {
     const transitionTimeout = 10;
     const enterDelay = 100;
     render(
@@ -313,7 +313,7 @@ describe('<Tooltip />', () => {
     expect(screen.queryByRole('tooltip')).to.equal(null);
   });
 
-  it('should be controllable', async () => {
+  it('should be controllable', () => {
     const eventLog = [];
 
     const { setProps } = render(
@@ -349,7 +349,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseover', 'open', 'mouseleave', 'close']);
   });
 
-  it('should not call onOpen again if already open', async () => {
+  it('should not call onOpen again if already open', () => {
     const eventLog = [];
     render(
       <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
@@ -365,7 +365,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseover']);
   });
 
-  it('should not call onClose if already closed', async () => {
+  it('should not call onClose if already closed', () => {
     const eventLog = [];
     render(
       <Tooltip title="Hello World" onClose={() => eventLog.push('close')} open={false}>
@@ -379,7 +379,7 @@ describe('<Tooltip />', () => {
     expect(eventLog).to.deep.equal(['mouseleave']);
   });
 
-  it('is dismissible by pressing Escape', async () => {
+  it('is dismissible by pressing Escape', () => {
     const handleClose = spy();
     const transitionTimeout = 0;
     render(
@@ -441,7 +441,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       fireEvent.touchEnd(screen.getByRole('button'));
-      await act(async () => {
+      await act(() => {
         screen.getByRole('button').blur();
       });
       clock.tick(leaveTouchDelay);
@@ -510,7 +510,7 @@ describe('<Tooltip />', () => {
   });
 
   describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: delay', () => {
-    it('should take the enterDelay into account', async () => {
+    it('should take the enterDelay into account', () => {
       const { queryByRole } = render(
         <Tooltip title="Hello World" enterDelay={111}>
           <button id="testChild" type="submit">
@@ -551,7 +551,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      await act(() => {
         document.activeElement.blur();
       });
       clock.tick(5);
@@ -563,7 +563,7 @@ describe('<Tooltip />', () => {
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
+      await act(() => {
         clock.tick(30);
       });
 
@@ -593,7 +593,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      await act(() => {
         screen.getByRole('button').blur();
       });
 
@@ -647,14 +647,14 @@ describe('<Tooltip />', () => {
       );
       const button = screen.getByRole('button');
 
-      await act(async () => {
+      await act(() => {
         button.focus();
       });
 
       expect(handleBlur.callCount).to.equal(0);
       expect(handleFocus.callCount).to.equal(1);
 
-      await act(async () => {
+      await act(() => {
         button.blur();
       });
 
@@ -717,7 +717,7 @@ describe('<Tooltip />', () => {
   });
 
   describe('prop: disableInteractive', () => {
-    it('when false should keep the overlay open if the popper element is hovered', async () => {
+    it('when false should keep the overlay open if the popper element is hovered', () => {
       render(
         <Tooltip
           title="Hello World"
@@ -746,7 +746,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it('when `true` should not keep the overlay open if the popper element is hovered', async () => {
+    it('when `true` should not keep the overlay open if the popper element is hovered', () => {
       render(
         <Tooltip
           title="Hello World"
@@ -967,7 +967,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
+      await act(() => {
         screen.getByRole('button').focus();
       });
 
@@ -1012,10 +1012,10 @@ describe('<Tooltip />', () => {
       );
       const button = screen.getByRole('button');
 
-      await act(async () => {
+      await act(() => {
         button.focus();
       });
-      await act(async () => {
+      await act(() => {
         button.blur();
       });
       clock.tick(transitionTimeout);
@@ -1044,7 +1044,7 @@ describe('<Tooltip />', () => {
       );
       const input = screen.getByRole('textbox');
 
-      await act(async () => {
+      await act(() => {
         input.focus();
       });
 
@@ -1077,14 +1077,14 @@ describe('<Tooltip />', () => {
       );
       const input = screen.getByRole('textbox');
 
-      await act(async () => {
+      await act(() => {
         input.focus();
       });
 
       expect(handleFocus.callCount).to.equal(1);
       expect(handleFocus.returnValues[0]).to.equal('focus');
 
-      await act(async () => {
+      await act(() => {
         input.blur();
       });
 
@@ -1368,7 +1368,7 @@ describe('<Tooltip />', () => {
       document.body.style.WebkitUserSelect = prevWebkitUserSelect;
     });
 
-    it('prevents text-selection during touch-longpress', async () => {
+    it('prevents text-selection during touch-longpress', () => {
       const enterTouchDelay = 700;
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
@@ -1391,7 +1391,6 @@ describe('<Tooltip />', () => {
       expect(document.body.style.WebkitUserSelect).to.equal('none');
 
       clock.tick(enterTouchDelay + enterDelay);
-
       expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
 

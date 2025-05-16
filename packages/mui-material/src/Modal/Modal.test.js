@@ -470,7 +470,7 @@ describe('<Modal />', () => {
     describe('focus stealing', () => {
       clock.withFakeTimers();
 
-      it('does not steal focus from other frames', async function test() {
+      it('does not steal focus from other frames', function test() {
         if (/jsdom/.test(window.navigator.userAgent)) {
           // TODO: Unclear why this fails. Not important
           // since a browser test gives us more confidence anyway

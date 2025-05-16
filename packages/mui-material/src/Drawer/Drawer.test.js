@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, act } from '@mui/internal-test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { modalClasses } from '@mui/material/Modal';
@@ -133,7 +133,7 @@ describe('<Drawer />', () => {
         expect(backdropRoot).toHaveComputedStyle({ transitionDuration: '0.001s' });
       });
 
-      it('delay the slide transition to complete using values provided via prop', async () => {
+      it('delay the slide transition to complete using values provided via prop', () => {
         const handleEntered = spy();
         const { setProps } = render(
           <Drawer
@@ -193,7 +193,7 @@ describe('<Drawer />', () => {
         </Drawer>
       );
 
-      it('should open and close', async () => {
+      it('should open and close', () => {
         const { setProps } = render(drawerElement);
 
         setProps({ open: true });
@@ -220,7 +220,7 @@ describe('<Drawer />', () => {
       expect(container.firstChild).to.have.class(classes.docked);
     });
 
-    it('should render Slide > Paper inside the div', async () => {
+    it('should render Slide > Paper inside the div', () => {
       const transitionDuration = 123;
       const handleEntered = spy();
       const { container, setProps } = render(

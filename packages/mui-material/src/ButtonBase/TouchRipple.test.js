@@ -178,7 +178,7 @@ describe('<TouchRipple />', () => {
   describe('mobile', () => {
     clock.withFakeTimers();
 
-    it('should delay the display of the ripples', async () => {
+    it('should delay the display of the ripples', () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
@@ -205,7 +205,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should trigger the ripple for short touch interactions', async () => {
+    it('should trigger the ripple for short touch interactions', () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);
@@ -236,7 +236,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(1);
     });
 
-    it('should interrupt the ripple schedule', async () => {
+    it('should interrupt the ripple schedule', () => {
       const { instance, queryAllActiveRipples, queryAllStoppingRipples } = renderTouchRipple();
 
       expect(queryAllActiveRipples()).to.have.lengthOf(0);

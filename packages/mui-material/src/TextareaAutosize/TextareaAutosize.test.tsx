@@ -179,7 +179,7 @@ describe('<TextareaAutosize />', () => {
     describe('resize', () => {
       clock.withFakeTimers();
 
-      it('should handle the resize event', async () => {
+      it('should handle the resize event', () => {
         const { container } = render(<TextareaAutosize />);
         const input = container.querySelector<HTMLTextAreaElement>('textarea[aria-hidden=null]')!;
         const shadow = container.querySelector('textarea[aria-hidden=true]')!;

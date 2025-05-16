@@ -838,7 +838,7 @@ describe('<Select />', () => {
   });
 
   describe('prop: MenuProps', () => {
-    it('should apply additional props to the Menu component', async () => {
+    it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
         <Select MenuProps={{ TransitionProps: { onEntered }, transitionDuration: 100 }} value="10">

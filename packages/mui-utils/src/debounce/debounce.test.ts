@@ -13,7 +13,7 @@ describe('debounce', () => {
     clock.restore();
   });
 
-  it('should debounce', async () => {
+  it('should debounce', () => {
     const handler = spy();
     const expectedContext = { foo: 'bar' };
     let actualContext: any;
@@ -31,7 +31,7 @@ describe('debounce', () => {
     expect(actualContext).to.equal(expectedContext);
   });
 
-  it('should clear a pending task', async () => {
+  it('should clear a pending task', () => {
     const handler = spy();
     const debounced = debounce(handler);
 

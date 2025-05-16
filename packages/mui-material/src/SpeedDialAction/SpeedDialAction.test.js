@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, act } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
@@ -44,7 +44,7 @@ describe('<SpeedDialAction />', () => {
     }),
   );
 
-  it('should be able to change the Tooltip classes', async () => {
+  it('should be able to change the Tooltip classes', () => {
     const { getByText, container } = render(
       <SpeedDialAction
         icon={<Icon>add</Icon>}
@@ -60,7 +60,7 @@ describe('<SpeedDialAction />', () => {
     expect(getByText('placeholder')).to.have.class('bar');
   });
 
-  it('should be able to change the slotProps.tooltip.classes', async () => {
+  it('should be able to change the slotProps.tooltip.classes', () => {
     const { getByText, container } = render(
       <SpeedDialAction
         icon={<Icon>add</Icon>}

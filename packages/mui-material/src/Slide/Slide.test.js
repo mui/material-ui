@@ -58,7 +58,7 @@ describe('<Slide />', () => {
   describe('transition lifecycle', () => {
     clock.withFakeTimers();
 
-    it('tests', async () => {
+    it('tests', () => {
       const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
@@ -582,7 +582,7 @@ describe('<Slide />', () => {
     describe('resize', () => {
       clock.withFakeTimers();
 
-      it('should recompute the correct position', async () => {
+      it('should recompute the correct position', () => {
         const { container } = render(
           <Slide direction="up" in={false}>
             <div id="testChild">Foo</div>
@@ -615,7 +615,7 @@ describe('<Slide />', () => {
         expect(element.style.transform).to.equal(`translateY(${globalThis.innerHeight - 780}px)`);
       });
 
-      it('should do nothing when visible', async () => {
+      it('should do nothing when visible', () => {
         render(<Slide {...defaultProps} />);
         act(() => {
           window.dispatchEvent(new window.Event('resize', {}));

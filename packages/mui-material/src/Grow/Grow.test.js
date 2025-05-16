@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, act } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { Transition } from 'react-transition-group';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Grow from '@mui/material/Grow';
@@ -38,7 +38,7 @@ describe('<Grow />', () => {
   describe('calls the appropriate callbacks for each transition', () => {
     clock.withFakeTimers();
 
-    it('calls the appropriate callbacks for each transition', async () => {
+    it('calls the appropriate callbacks for each transition', () => {
       const handleAddEndListener = spy();
       const handleEnter = spy();
       const handleEntering = spy();
@@ -129,7 +129,7 @@ describe('<Grow />', () => {
         expect(handleEnter.args[0][0].style.transition).to.match(new RegExp(`${enterDuration}ms`));
       });
 
-      it('should delay based on height when timeout is auto', async () => {
+      it('should delay based on height when timeout is auto', () => {
         const handleEntered = spy();
         const theme = createTheme({
           transitions: {
@@ -198,7 +198,7 @@ describe('<Grow />', () => {
         expect(handleEntered2.callCount).to.equal(1);
       });
 
-      it('should use timeout as delay when timeout is number', async () => {
+      it('should use timeout as delay when timeout is number', () => {
         const timeout = 10;
         const handleEntered = spy();
 
@@ -217,7 +217,7 @@ describe('<Grow />', () => {
     });
 
     describe('onExit', () => {
-      it('should delay based on height when timeout is auto', async () => {
+      it('should delay based on height when timeout is auto', () => {
         const handleExited = spy();
         const { setProps } = render(
           <Grow in timeout="auto" onExited={handleExited}>
@@ -237,7 +237,7 @@ describe('<Grow />', () => {
         expect(handleExited.callCount).to.equal(1);
       });
 
-      it('should use timeout as delay when timeout is number', async () => {
+      it('should use timeout as delay when timeout is number', () => {
         const timeout = 20;
         const handleExited = spy();
         const { setProps } = render(
