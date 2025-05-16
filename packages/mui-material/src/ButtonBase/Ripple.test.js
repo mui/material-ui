@@ -98,9 +98,9 @@ describe('<Ripple />', () => {
       );
 
       setProps({ in: false });
-      await act(async () => clock.tick(549));
+      clock.tick(549);
       expect(handleExited.callCount).to.equal(0);
-      await act(async () => clock.tick(1));
+      clock.tick(1);
       expect(handleExited.callCount).to.equal(1);
     });
 
@@ -121,7 +121,7 @@ describe('<Ripple />', () => {
 
       setProps({ in: false });
       unmount();
-      await act(async () => clock.tick(550));
+      clock.tick(550);
       expect(handleExited.callCount).to.equal(0);
     });
   });

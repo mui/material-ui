@@ -144,7 +144,7 @@ describe('<Dialog />', () => {
     fireEvent.keyDown(document.activeElement, { key: 'Escape' });
     expect(onClose.calledOnce).to.equal(true);
 
-    await act(async () => clock.tick(100));
+    clock.tick(100);
 
     expect(queryByRole('dialog')).to.equal(null);
   });

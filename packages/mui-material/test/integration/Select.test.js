@@ -53,7 +53,7 @@ describe('<Select> integration', () => {
       act(() => {
         getByTestId('select-backdrop').click();
       });
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -75,7 +75,7 @@ describe('<Select> integration', () => {
       act(() => {
         options[2].click();
       });
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       expect(queryByRole('listbox')).to.equal(null);
       expect(trigger).toHaveFocus();
@@ -125,7 +125,7 @@ describe('<Select> integration', () => {
         trigger.focus();
       });
       fireEvent.keyDown(trigger, { key: 'Enter' });
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });

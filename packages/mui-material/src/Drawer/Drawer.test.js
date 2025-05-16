@@ -149,7 +149,7 @@ describe('<Drawer />', () => {
 
         expect(handleEntered.callCount).to.equal(0);
 
-        await act(async () => clock.tick(transitionDuration.enter));
+        clock.tick(transitionDuration.enter);
 
         expect(handleEntered.callCount).to.equal(1);
       });
@@ -201,7 +201,7 @@ describe('<Drawer />', () => {
         expect(screen.getByTestId('child')).not.to.equal(null);
 
         setProps({ open: false });
-        await act(async () => clock.tick(transitionDuration));
+        clock.tick(transitionDuration);
 
         expect(screen.queryByTestId('child')).to.equal(null);
       });
@@ -238,7 +238,7 @@ describe('<Drawer />', () => {
 
       expect(handleEntered.callCount).to.equal(0);
 
-      await act(async () => clock.tick(transitionDuration));
+      clock.tick(transitionDuration);
 
       expect(handleEntered.callCount).to.equal(1);
       expect(container.firstChild.firstChild).to.have.class(classes.paper);

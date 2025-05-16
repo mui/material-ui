@@ -528,7 +528,7 @@ describe('<Modal />', () => {
           getByTestId('foreign-input').focus();
         });
         // wait for the `contain` interval check to kick in.
-        await act(async () => clock.tick(500));
+        clock.tick(500);
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });

@@ -100,7 +100,7 @@ describe('<Slide />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      await act(async () => clock.tick(1000));
+      clock.tick(1000);
       expect(handleEntered.callCount).to.equal(1);
 
       setProps({ in: false });
@@ -111,7 +111,7 @@ describe('<Slide />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      await act(async () => clock.tick(1000));
+      clock.tick(1000);
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });
@@ -592,7 +592,7 @@ describe('<Slide />', () => {
         act(() => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
-        await act(async () => clock.tick(166));
+        clock.tick(166);
 
         const child = container.querySelector('#testChild');
         expect(child.style.transform).not.to.equal(undefined);
@@ -620,7 +620,7 @@ describe('<Slide />', () => {
         act(() => {
           window.dispatchEvent(new window.Event('resize', {}));
         });
-        await act(async () => clock.tick(166));
+        clock.tick(166);
       });
     });
   });

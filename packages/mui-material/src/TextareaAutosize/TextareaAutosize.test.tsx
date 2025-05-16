@@ -196,7 +196,7 @@ describe('<TextareaAutosize />', () => {
         });
         window.dispatchEvent(new window.Event('resize', {}));
 
-        await act(async () => clock.tick(166));
+        clock.tick(166);
 
         expect(input.style).to.have.property('height', '30px');
         expect(input.style).to.have.property('overflow', 'hidden');

@@ -21,7 +21,7 @@ describe('Joy <Snackbar />', () => {
    */
   async function render(...args: [React.ReactElement<any>]) {
     const result = clientRender(...args);
-    await act(async () => clock.tick(0));
+    clock.tick(0);
     return result;
   }
 
@@ -109,7 +109,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration));
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -126,9 +126,9 @@ describe('Joy <Snackbar />', () => {
       );
 
       setProps({ open: true });
-      await act(async () => clock.tick(autoHideDuration / 2));
+      clock.tick(autoHideDuration / 2);
       setProps({ open: true, onClose: handleClose2 });
-      await act(async () => clock.tick(autoHideDuration / 2));
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose1.callCount).to.equal(0);
       expect(handleClose2.callCount).to.equal(1);
@@ -147,9 +147,9 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration / 2));
+      clock.tick(autoHideDuration / 2);
       setProps({ autoHideDuration: undefined });
-      await act(async () => clock.tick(autoHideDuration / 2));
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -165,7 +165,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration));
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -182,7 +182,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration));
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -199,9 +199,9 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration / 2));
+      clock.tick(autoHideDuration / 2);
       setProps({ open: false });
-      await act(async () => clock.tick(autoHideDuration / 2));
+      clock.tick(autoHideDuration / 2);
 
       expect(handleClose.callCount).to.equal(0);
     });
@@ -245,7 +245,7 @@ describe('Joy <Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        await act(async () => clock.tick(autoHideDuration / 2));
+        clock.tick(autoHideDuration / 2);
         userInteraction.enter(container.querySelector('div')!);
 
         if (userInteraction.type === 'keyboard') {
@@ -254,7 +254,7 @@ describe('Joy <Snackbar />', () => {
           expect(handleMouseEnter.callCount).to.equal(1);
         }
 
-        await act(async () => clock.tick(autoHideDuration / 2));
+        clock.tick(autoHideDuration / 2);
         userInteraction.leave(container.querySelector('div')!);
 
         if (userInteraction.type === 'keyboard') {
@@ -264,7 +264,7 @@ describe('Joy <Snackbar />', () => {
         }
         expect(handleClose.callCount).to.equal(0);
 
-        await act(async () => clock.tick(2e3));
+        clock.tick(2e3);
 
         expect(handleClose.callCount).to.equal(1);
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -289,14 +289,14 @@ describe('Joy <Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        await act(async () => clock.tick(autoHideDuration / 2));
+        clock.tick(autoHideDuration / 2);
         userInteraction.enter(container.querySelector('div')!);
-        await act(async () => clock.tick(autoHideDuration / 2));
+        clock.tick(autoHideDuration / 2);
         userInteraction.leave(container.querySelector('div')!);
 
         expect(handleClose.callCount).to.equal(0);
 
-        await act(async () => clock.tick(2e3));
+        clock.tick(2e3);
 
         expect(handleClose.callCount).to.equal(0);
       });
@@ -320,14 +320,14 @@ describe('Joy <Snackbar />', () => {
 
         expect(handleClose.callCount).to.equal(0);
 
-        await act(async () => clock.tick(autoHideDuration / 2));
+        clock.tick(autoHideDuration / 2);
         userInteraction.enter(container.querySelector('div')!);
-        await act(async () => clock.tick(autoHideDuration / 2));
+        clock.tick(autoHideDuration / 2);
         userInteraction.leave(container.querySelector('div')!);
 
         expect(handleClose.callCount).to.equal(0);
 
-        await act(async () => clock.tick(resumeHideDuration));
+        clock.tick(resumeHideDuration);
 
         expect(handleClose.callCount).to.equal(1);
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -354,9 +354,9 @@ describe('Joy <Snackbar />', () => {
         expect(handleClose.callCount).to.equal(0);
 
         userInteraction.enter(container.querySelector('div')!);
-        await act(async () => clock.tick(100));
+        clock.tick(100);
         userInteraction.leave(container.querySelector('div')!);
-        await act(async () => clock.tick(resumeHideDuration));
+        clock.tick(resumeHideDuration);
 
         expect(handleClose.callCount).to.equal(1);
         expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -389,7 +389,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration));
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(0);
 
@@ -403,7 +403,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration));
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);
@@ -430,7 +430,7 @@ describe('Joy <Snackbar />', () => {
 
       expect(handleClose.callCount).to.equal(0);
 
-      await act(async () => clock.tick(autoHideDuration));
+      clock.tick(autoHideDuration);
 
       expect(handleClose.callCount).to.equal(1);
       expect(handleClose.args[0]).to.deep.equal([null, 'timeout']);

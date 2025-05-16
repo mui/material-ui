@@ -110,7 +110,7 @@ describe('<Collapse />', () => {
       expect(handleAddEndListener.callCount).to.equal(1);
       expect(handleAddEndListener.args[0][0]).to.equal(collapse);
       expect(typeof handleAddEndListener.args[0][1]).to.equal('function');
-      await act(async () => clock.tick(300));
+      clock.tick(300);
 
       expect(handleEntered.args[0][0].style.height).to.equal('auto');
       expect(handleEntered.args[0][1]).to.equal(false);
@@ -125,10 +125,10 @@ describe('<Collapse />', () => {
       expect(handleExiting.args[0][0].style.height).to.equal('0px');
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(collapse);
-      await act(async () => clock.tick(300));
+      clock.tick(300);
 
       expect(handleExited.args[0][0].style.height).to.equal('0px');
-      await act(async () => clock.tick(300));
+      clock.tick(300);
 
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(collapse);
@@ -166,10 +166,10 @@ describe('<Collapse />', () => {
 
       const autoTransitionDuration = 10;
       expect(next1.callCount).to.equal(0);
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       expect(next1.callCount).to.equal(0);
-      await act(async () => clock.tick(autoTransitionDuration));
+      clock.tick(autoTransitionDuration);
 
       expect(next1.callCount).to.equal(1);
 
@@ -182,7 +182,7 @@ describe('<Collapse />', () => {
       renderProps2.setProps({ in: true });
 
       expect(next2.callCount).to.equal(0);
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       expect(next2.callCount).to.equal(1);
     });
@@ -199,10 +199,10 @@ describe('<Collapse />', () => {
       setProps({ in: true });
 
       expect(next.callCount).to.equal(0);
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       expect(next.callCount).to.equal(0);
-      await act(async () => clock.tick(timeout));
+      clock.tick(timeout);
 
       expect(next.callCount).to.equal(1);
     });

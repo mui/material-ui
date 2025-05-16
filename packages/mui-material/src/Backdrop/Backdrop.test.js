@@ -49,7 +49,7 @@ describe('<Backdrop />', () => {
 
       expect(handleEntered.callCount).to.equal(0);
 
-      await act(async () => clock.tick(1954));
+      clock.tick(1954);
 
       expect(handleEntered.callCount).to.equal(1);
     });

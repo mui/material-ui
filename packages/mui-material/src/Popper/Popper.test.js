@@ -223,7 +223,7 @@ describe('<Popper />', () => {
       expect(getByRole('tooltip')).to.have.text('Hello World');
 
       setProps({ anchorEl: null, open: false });
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       expect(queryByRole('tooltip')).to.equal(null);
     });
@@ -282,10 +282,10 @@ describe('<Popper />', () => {
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
 
       setProps({ open: true });
-      await act(async () => clock.tick(0));
+      clock.tick(0);
 
       setProps({ open: false });
-      await act(async () => clock.tick(0));
+      clock.tick(0);
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
     });
   });

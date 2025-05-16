@@ -317,7 +317,7 @@ describe('<FocusTrap />', () => {
 
       setProps({ hideButton: true });
       expect(screen.getByTestId('root')).not.toHaveFocus();
-      await act(async () => clock.tick(500)); // wait for the interval check to kick in.
+      clock.tick(500); // wait for the interval check to kick in.
       expect(screen.getByTestId('root')).toHaveFocus();
     });
 
@@ -332,7 +332,7 @@ describe('<FocusTrap />', () => {
           </div>,
         );
 
-        await act(async () => clock.tick(500)); // trigger an interval call
+        clock.tick(500); // trigger an interval call
         expect(initialFocus).toHaveFocus();
 
         act(() => {

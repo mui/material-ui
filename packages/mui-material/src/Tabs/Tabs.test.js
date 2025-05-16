@@ -821,7 +821,7 @@ describe('<Tabs />', () => {
         right: 30,
       });
       forceUpdate();
-      await act(async () => clock.tick(1000));
+      clock.tick(1000);
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
   });

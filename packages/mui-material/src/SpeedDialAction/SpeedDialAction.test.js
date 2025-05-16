@@ -55,7 +55,7 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    await act(async () => clock.tick(100));
+    clock.tick(100);
 
     expect(getByText('placeholder')).to.have.class('bar');
   });
@@ -75,7 +75,7 @@ describe('<SpeedDialAction />', () => {
     );
 
     fireEvent.mouseOver(container.querySelector('button'));
-    await act(async () => clock.tick(100));
+    clock.tick(100);
 
     expect(getByText('placeholder')).to.have.class('bar');
   });

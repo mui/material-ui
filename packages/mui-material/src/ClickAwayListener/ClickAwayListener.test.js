@@ -26,7 +26,7 @@ describe('<ClickAwayListener />', () => {
    */
   async function render(...args) {
     const result = clientRender(...args);
-    await act(async () => clock.tick(0));
+    clock.tick(0);
     return result;
   }
 
