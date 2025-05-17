@@ -8,12 +8,17 @@ function forceJsxForJsFiles(): Plugin {
     name: 'force-jsx-loader-for-js',
     enforce: 'pre',
     transform(code, id) {
-      if (id.endsWith('.js')) {
-        return transformWithEsbuild(code, id, {
-          loader: 'jsx',
-        });
+      if (id.includes('/node_modules/')) {
+        return null;
       }
-      return null;
+
+      if (!id.endsWith('.js')) {
+        return null;
+      }
+
+      return transformWithEsbuild(code, id, {
+        loader: 'jsx',
+      });
     },
   };
 }
@@ -61,6 +66,7 @@ export default defineConfig({
     },
   },
   resolve: {
+    dedupe: ['react', 'react-dom'],
     alias: {
       '@mui/internal-test-utils': path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src'),
       '@mui/material': path.resolve(MONOREPO_ROOT, './packages/mui-material/src'),
