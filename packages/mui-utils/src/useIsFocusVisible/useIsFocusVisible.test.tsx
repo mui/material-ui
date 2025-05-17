@@ -8,6 +8,7 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import useIsFocusVisible, { teardown as teardownFocusVisible } from './useIsFocusVisible';
 import useForkRef from '../useForkRef';
 
@@ -64,14 +65,8 @@ describe('useIsFocusVisible', () => {
     teardownFocusVisible(document);
   });
 
-  describe('focus inside shadowRoot', () => {
-    before(function beforeHook() {
-      // Only run on HeadlessChrome which has native shadowRoot support.
-      if (!/HeadlessChrome/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
+  const isHeadlessChrome = /HeadlessChrome/.test(window.navigator.userAgent);
+  describeSkipIf(!isHeadlessChrome)('focus inside shadowRoot', () => {
     let rootElement: HTMLDivElement;
     let reactRoot: ReactDOMClient.Root;
 

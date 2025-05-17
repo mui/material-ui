@@ -11,6 +11,7 @@ import {
   programmaticFocusTriggersFocusVisible,
   reactMajor,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
@@ -440,7 +441,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
 
       fireEvent.touchEnd(screen.getByRole('button'));
-      await act(async () => {
+      await act(() => {
         screen.getByRole('button').blur();
       });
       clock.tick(leaveTouchDelay);
@@ -475,7 +476,7 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', function test() {
+    it('should handle autoFocus + onFocus forwarding', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -508,15 +509,8 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: delay', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
-    it('should take the enterDelay into account', async () => {
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: delay', () => {
+    it('should take the enterDelay into account', () => {
       const { queryByRole } = render(
         <Tooltip title="Hello World" enterDelay={111}>
           <button id="testChild" type="submit">
@@ -557,7 +551,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      await act(() => {
         document.activeElement.blur();
       });
       clock.tick(5);
@@ -569,7 +563,7 @@ describe('<Tooltip />', () => {
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
+      await act(() => {
         clock.tick(30);
       });
 
@@ -599,7 +593,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      await act(() => {
         screen.getByRole('button').blur();
       });
 
@@ -653,14 +647,14 @@ describe('<Tooltip />', () => {
       );
       const button = screen.getByRole('button');
 
-      await act(async () => {
+      await act(() => {
         button.focus();
       });
 
       expect(handleBlur.callCount).to.equal(0);
       expect(handleFocus.callCount).to.equal(1);
 
-      await act(async () => {
+      await act(() => {
         button.blur();
       });
 
@@ -962,14 +956,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('focus', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">
@@ -980,7 +967,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      await act(async () => {
+      await act(() => {
         screen.getByRole('button').focus();
       });
 
@@ -1025,10 +1012,10 @@ describe('<Tooltip />', () => {
       );
       const button = screen.getByRole('button');
 
-      await act(async () => {
+      await act(() => {
         button.focus();
       });
-      await act(async () => {
+      await act(() => {
         button.blur();
       });
       clock.tick(transitionTimeout);
@@ -1057,7 +1044,7 @@ describe('<Tooltip />', () => {
       );
       const input = screen.getByRole('textbox');
 
-      await act(async () => {
+      await act(() => {
         input.focus();
       });
 
@@ -1090,14 +1077,14 @@ describe('<Tooltip />', () => {
       );
       const input = screen.getByRole('textbox');
 
-      await act(async () => {
+      await act(() => {
         input.focus();
       });
 
       expect(handleFocus.callCount).to.equal(1);
       expect(handleFocus.returnValues[0]).to.equal('focus');
 
-      await act(async () => {
+      await act(() => {
         input.blur();
       });
 

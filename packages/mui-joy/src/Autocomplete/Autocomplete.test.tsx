@@ -531,7 +531,7 @@ describe('Joy <Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    it('should fail validation if a required field has no value', function test() {
+    it('should fail validation if a required field has no value', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
@@ -932,7 +932,7 @@ describe('Joy <Autocomplete />', () => {
     it('should ignore keydown event until the IME is confirmed', function test() {
       // TODO: Often times out in Firefox 78.
       // Is this slow because of testing-library or because of the implementation?
-      this.timeout(4000);
+      this?.timeout?.(4000);
 
       const { getByRole } = render(<Autocomplete open options={['가1', '가2']} autoFocus />);
       const textbox = getByRole('combobox');
