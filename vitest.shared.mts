@@ -83,4 +83,28 @@ export default defineConfig({
       '@mui/material-nextjs': path.resolve(MONOREPO_ROOT, './packages/mui-material-nextjs/src'),
     },
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      plugins: [
+        {
+          name: 'js-as-jsx',
+          setup(build) {
+            build.onLoad({ filter: /\.js$/ }, async (args) => {
+              if (args.path.includes('/node_modules/')) {
+                return null;
+              }
+
+              const fs = await import('fs/promises');
+              const contents = await fs.readFile(args.path, 'utf8');
+
+              return {
+                contents,
+                loader: 'jsx',
+              };
+            });
+          },
+        },
+      ],
+    },
+  },
 });

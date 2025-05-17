@@ -538,19 +538,19 @@ describe('Joy <Autocomplete />', () => {
       }
 
       const handleSubmit = spy((event) => event.preventDefault());
-      render(
+      const { user } = render(
         <form onSubmit={handleSubmit}>
           <Autocomplete multiple options={['one', 'two']} required value={[]} />
           <button type="submit">Submit</button>
         </form>,
       );
 
-      screen.getByRole('button', { name: 'Submit' }).click();
+      await user.click(screen.getByRole('button', { name: 'Submit' }));
 
       expect(handleSubmit.callCount).to.equal(0);
     });
 
-    it('should fail validation if a required field has a value', function test() {
+    it('should fail validation if a required field has a value', async function test() {
       // Unclear how native Constraint validation can be enabled for `multiple`
       if (/jsdom/.test(window.navigator.userAgent)) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
@@ -559,14 +559,14 @@ describe('Joy <Autocomplete />', () => {
       }
 
       const handleSubmit = spy((event) => event.preventDefault());
-      render(
+      const { user } = render(
         <form onSubmit={handleSubmit}>
           <Autocomplete multiple options={['one', 'two']} required value={['one']} />
           <button type="submit">Submit</button>
         </form>,
       );
 
-      screen.getByRole('button', { name: 'Submit' }).click();
+      await user.click(screen.getByRole('button', { name: 'Submit' }));
 
       expect(handleSubmit.callCount).to.equal(0);
     });
