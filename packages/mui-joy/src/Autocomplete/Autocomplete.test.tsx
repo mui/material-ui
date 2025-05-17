@@ -531,7 +531,7 @@ describe('Joy <Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    it.only('should fail validation if a required field has no value', async function test() {
+    it('should fail validation if a required field has no value', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();

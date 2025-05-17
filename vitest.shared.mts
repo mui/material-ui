@@ -11,9 +11,9 @@ function forceJsxForJsFiles(): Plugin {
       if (id.endsWith('.js')) {
         return transformWithEsbuild(code, id, {
           loader: 'jsx',
-          sourcemap: true,
         });
       }
+      return null;
     },
   };
 }
