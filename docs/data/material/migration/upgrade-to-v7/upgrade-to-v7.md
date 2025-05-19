@@ -296,6 +296,15 @@ npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
 
+### TablePaginationActions types import path changed
+
+The import path for the types has changed from `@mui/material/TablePagination/TablePaginationActions` to `@mui/material/TablePaginationActions`.
+
+```diff
+- import type { TablePaginationActionsProps } from '@mui/material/TablePagination/TablePaginationActions';
++ import type { TablePaginationActionsProps } from '@mui/material/TablePaginationActions';
+```
+
 ### Theme behavior changes
 
 When CSS theme variables is enabled with built-in light and dark color schemes, the theme no longer changes between modes.
