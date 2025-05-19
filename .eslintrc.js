@@ -280,6 +280,24 @@ module.exports = /** @type {Config} */ ({
     'id-denylist': ['error', 'e'],
   },
   overrides: [
+    ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
+      (packageName) => ({
+        files: [`packages/${packageName}/**/*.?(c|m)[jt]s?(x)`],
+        excludedFiles: ['*.test.*', '*.spec.*'],
+        rules: {
+          'material-ui/no-restricted-resolved-imports': [
+            'error',
+            [
+              {
+                pattern: `*/packages/${packageName}/src/index.*`,
+                message:
+                  "Don't import from the package index. Import the specific module directly instead.",
+              },
+            ],
+          ],
+        },
+      }),
+    ),
     {
       files: [
         // matching the pattern of the test runner
