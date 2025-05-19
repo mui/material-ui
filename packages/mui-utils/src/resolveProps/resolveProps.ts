@@ -11,7 +11,8 @@ export default function resolveProps<
     slots?: Record<string, unknown>;
     slotProps?: Record<string, unknown>;
   } & Record<string, unknown>,
->(defaultProps: T, props: T) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+>(defaultProps: T, props: T, mergeClassNameAndStyle: boolean = false) {
   const output = { ...props };
 
   for (const key in defaultProps) {
