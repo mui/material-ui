@@ -11,7 +11,8 @@
     "noEmit": true,
     "noErrorTruncation": true,
     "rootDir": "./src",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": []
   },
   "exclude": ["**/node_modules/"]
 }
