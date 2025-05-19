@@ -662,8 +662,8 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7
       '@toolpad/core':
-        specifier: ^0.14.0
-        version: 0.14.0(01af4d98581420350e434f57c997eb32)
+        specifier: ^0.15.0
+        version: 0.15.0(@emotion/cache@11.14.0)(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react@19.1.0))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.4)(date-fns@2.30.0)(luxon@3.6.1)(next@15.3.2(@babel/core@7.27.1)(@opentelemetry/api@1.8.0)(@playwright/test@1.52.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-router@7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(vite@6.0.15(@types/node@20.17.48)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1))
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
@@ -5484,18 +5484,17 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
-  '@toolpad/core@0.14.0':
-    resolution: {integrity: sha512-I5q1n0s9o4Mt+XXWWl5N/dMPPy490Q8VNeI4TJofNo/RfVwHSY0Ip0WcWx8DVCK2JE/sqqDHHfvilxi9Z7ALJg==}
+  '@toolpad/core@0.15.0':
+    resolution: {integrity: sha512-BLMombMNVTcFujO6yifKQaErjgGg00BQyCihwP69fhiiuHbiDsP1p8djgE5HNwHQM1dS3D1HLQDnBNjH/mOPxw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
+      '@emotion/cache': ^11
+      '@emotion/react': ^11
       '@mui/icons-material': ^7.0.0-beta || ^7.0.0
       '@mui/material': ^7.0.0-beta || ^7.0.0
-      '@mui/x-data-grid': ^8.0.0 || ^8.0.0-beta
-      '@mui/x-data-grid-premium': ^8.0.0 || ^8.0.0-beta
-      '@mui/x-data-grid-pro': ^8.0.0 || ^8.0.0-beta
-      '@mui/x-date-pickers': ^8.0.0 || ^8.0.0-beta
       next: ^14 || ^15
       react: ^18 || ^19
+      react-dom: ^18 || ^19
       react-router: ^7
     peerDependenciesMeta:
       next:
@@ -5503,8 +5502,8 @@ packages:
       react-router:
         optional: true
 
-  '@toolpad/utils@0.14.0':
-    resolution: {integrity: sha512-B4hdTCgAnfkYACdy2Pu91LO1RYVCiStz2/2FPv3N8+SxzzOsnsDrlDrWP08JILm0LtFtIcILfUE2cYAuBY3Iqg==}
+  '@toolpad/utils@0.15.0':
+    resolution: {integrity: sha512-NWD3QupKc6DOpTFa7fLKNoLreUjhzy6bDLKCmKba8H6duDOBRNLc43/fQQ4bxwklI0cIgYkTRxhJ6uZd4tI/rQ==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
@@ -5889,12 +5888,6 @@ packages:
     resolution: {integrity: sha512-FG6H5YkP4bdw9Ll1qhmbxuE8KwW2E/g8fJpM183fWQLeVDGqzeywMIeJ9h2txdWZ03psgWMn6QymTxaDLmdwUg==}
     engines: {node: '>=16'}
     hasBin: true
-
-  '@vitejs/plugin-react@4.3.4':
-    resolution: {integrity: sha512-SCCPBJtYLdE8PX/7ZQAs1QAZ8Jqwih+0VBLum1EGqmCCQal+MIUqLCzj3ZUy8ufbC0cAM4LRlSTm7IQJwWT4ug==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    peerDependencies:
-      vite: ^4.2.0 || ^5.0.0 || ^6.0.0
 
   '@vitejs/plugin-react@4.4.1':
     resolution: {integrity: sha512-IpEm5ZmeXAP/osiBXVVP5KjFMzbWOonMs0NaQQl+xYnUAcq4oHUBsF2+p4MgKWG4YMmFYJU8A6sxRPuowllm6w==}
@@ -17725,34 +17718,43 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.0
 
-  '@toolpad/core@0.14.0(01af4d98581420350e434f57c997eb32)':
+  '@toolpad/core@0.15.0(@emotion/cache@11.14.0)(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react@19.1.0))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.4)(date-fns@2.30.0)(luxon@3.6.1)(next@15.3.2(@babel/core@7.27.1)(@opentelemetry/api@1.8.0)(@playwright/test@1.52.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-router@7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(vite@6.0.15(@types/node@20.17.48)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1))':
     dependencies:
       '@babel/runtime': 7.27.1
+      '@emotion/cache': 11.14.0
+      '@emotion/react': 11.13.5(@types/react@19.1.4)(react@19.1.0)
       '@mui/icons-material': link:packages/mui-icons-material/build
       '@mui/material': link:packages/mui-material/build
       '@mui/utils': 7.0.2(@types/react@19.1.4)(react@19.1.0)
       '@mui/x-data-grid': 8.3.1(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@mui/x-data-grid-premium': 8.3.1(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@mui/x-data-grid-pro': 8.3.1(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/x-date-pickers': 8.3.1(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.4)(react@19.1.0))(@types/react@19.1.4)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.4)(date-fns@2.30.0)(dayjs@1.11.13)(luxon@3.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@standard-schema/spec': 1.0.0
-      '@toolpad/utils': 0.14.0(react@19.1.0)
-      '@vitejs/plugin-react': 4.3.4(vite@6.0.15(@types/node@20.17.48)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1))
+      '@toolpad/utils': 0.15.0(react@19.1.0)
+      '@vitejs/plugin-react': 4.4.1(vite@6.0.15(@types/node@20.17.48)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1))
       client-only: 0.0.1
       dayjs: 1.11.13
       invariant: 2.2.4
       path-to-regexp: 6.3.0
       prop-types: 15.8.1
       react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
     optionalDependencies:
       next: 15.3.2(@babel/core@7.27.1)(@opentelemetry/api@1.8.0)(@playwright/test@1.52.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-router: 7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     transitivePeerDependencies:
+      - '@emotion/styled'
+      - '@mui/system'
       - '@types/react'
+      - date-fns
+      - date-fns-jalali
+      - luxon
+      - moment
+      - moment-hijri
+      - moment-jalaali
       - supports-color
       - vite
 
-  '@toolpad/utils@0.14.0(react@19.1.0)':
+  '@toolpad/utils@0.15.0(react@19.1.0)':
     dependencies:
       invariant: 2.2.4
       prettier: 3.4.2
@@ -18195,17 +18197,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - rollup
-      - supports-color
-
-  '@vitejs/plugin-react@4.3.4(vite@6.0.15(@types/node@20.17.48)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1))':
-    dependencies:
-      '@babel/core': 7.27.1
-      '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.27.1)
-      '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.27.1)
-      '@types/babel__core': 7.20.5
-      react-refresh: 0.14.2
-      vite: 6.0.15(@types/node@20.17.48)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1)
-    transitivePeerDependencies:
       - supports-color
 
   '@vitejs/plugin-react@4.4.1(vite@5.4.18(@types/node@20.17.48)(lightningcss@1.30.1)(terser@5.39.0))':
