@@ -37,8 +37,8 @@ importers:
         specifier: ^3.1.8
         version: 3.1.8(encoding@0.1.13)(rollup@4.40.0)
       '@slack/bolt':
-        specifier: ^4.2.1
-        version: 4.2.1(@types/express@5.0.0)
+        specifier: ^4.3.0
+        version: 4.3.0(@types/express@5.0.0)
       babel-plugin-transform-import-meta:
         specifier: ^2.3.2
         version: 2.3.2(@babel/core@7.27.1)
@@ -5333,8 +5333,8 @@ packages:
   '@sinonjs/text-encoding@0.7.3':
     resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
 
-  '@slack/bolt@4.2.1':
-    resolution: {integrity: sha512-O+c7i5iZKlxt6ltJAu2BclEoyWuAVkcpir1F3HWCHTez8Pjz0GxwdBzNHR5HDXvOdBT7En1BU0T2L6Ldv++GSg==}
+  '@slack/bolt@4.3.0':
+    resolution: {integrity: sha512-PExCq+oLhSp72lKMkgYJ2gK5LaI639u3rvxiaMuFq6lWpF4uZ9RuoT2FLPbsdnpwUIIaJ5Cf/K/3Gw/wNCHDQg==}
     engines: {node: '>=18', npm: '>=8.6.0'}
     peerDependencies:
       '@types/express': ^5.0.0
@@ -5343,20 +5343,20 @@ packages:
     resolution: {integrity: sha512-Wz7QYfPAlG/DR+DfABddUZeNgoeY7d1J39OCR2jR+v7VBsB8ezulDK5szTnDDPDwLH5IWhLvXIHlCFZV7MSKgA==}
     engines: {node: '>= 18', npm: '>= 8.6.0'}
 
-  '@slack/oauth@3.0.2':
-    resolution: {integrity: sha512-MdPS8AP9n3u/hBeqRFu+waArJLD/q+wOSZ48ktMTwxQLc6HJyaWPf8soqAyS/b0D6IlvI5TxAdyRyyv3wQ5IVw==}
+  '@slack/oauth@3.0.3':
+    resolution: {integrity: sha512-N3pLJPacZ57bqmD1HzHDmHe/CNsL9pESZXRw7pfv6QXJVRgufPIW84aRpAez2Xb0616RpGBYZW5dZH0Nbskwyg==}
     engines: {node: '>=18', npm: '>=8.6.0'}
 
-  '@slack/socket-mode@2.0.3':
-    resolution: {integrity: sha512-aY1AhQd3HAgxLYC2Mz47dXtW6asjyYp8bJ24MWalg+qFWPaXj8VBYi+5w3rfGqBW5IxlIhs3vJTEQtIBrqQf5A==}
+  '@slack/socket-mode@2.0.4':
+    resolution: {integrity: sha512-PB2fO4TSv47TXJ6WlKY7BeVNdcHcpPOxZsztGyG7isWXp69MVj+xAzQ3KSZ8aVTgV59f8xFJPXSHipn1x2Z5IQ==}
     engines: {node: '>= 18', npm: '>= 8.6.0'}
 
-  '@slack/types@2.13.0':
-    resolution: {integrity: sha512-OAQVtKYIgBVNRmgIoiTjorGPTlgfcfstU3XYYCBA+czlB9aGcKb9MQc+6Jovi4gq3S98yP/GPBZsJSI/2mHKDQ==}
+  '@slack/types@2.14.0':
+    resolution: {integrity: sha512-n0EGm7ENQRxlXbgKSrQZL69grzg1gHLAVd+GlRVQJ1NSORo0FrApR7wql/gaKdu2n4TO83Sq/AmeUOqD60aXUA==}
     engines: {node: '>= 12.13.0', npm: '>= 6.12.0'}
 
-  '@slack/web-api@7.8.0':
-    resolution: {integrity: sha512-d4SdG+6UmGdzWw38a4sN3lF/nTEzsDxhzU13wm10ejOpPehtmRoqBKnPztQUfFiWbNvSb4czkWYJD4kt+5+Fuw==}
+  '@slack/web-api@7.9.1':
+    resolution: {integrity: sha512-qMcb1oWw3Y/KlUIVJhkI8+NcQXq1lNymwf+ewk93ggZsGd6iuz9ObQsOEbvlqlx1J+wd8DmIm3DORGKs0fcKdg==}
     engines: {node: '>= 18', npm: '>= 8.6.0'}
 
   '@socket.io/component-emitter@3.1.0':
@@ -17552,13 +17552,13 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.3': {}
 
-  '@slack/bolt@4.2.1(@types/express@5.0.0)':
+  '@slack/bolt@4.3.0(@types/express@5.0.0)':
     dependencies:
       '@slack/logger': 4.0.0
-      '@slack/oauth': 3.0.2
-      '@slack/socket-mode': 2.0.3
-      '@slack/types': 2.13.0
-      '@slack/web-api': 7.8.0
+      '@slack/oauth': 3.0.3
+      '@slack/socket-mode': 2.0.4
+      '@slack/types': 2.14.0
+      '@slack/web-api': 7.9.1
       '@types/express': 5.0.0
       axios: 1.8.4(debug@4.4.0)
       express: 5.0.1
@@ -17575,10 +17575,10 @@ snapshots:
     dependencies:
       '@types/node': 20.17.48
 
-  '@slack/oauth@3.0.2':
+  '@slack/oauth@3.0.3':
     dependencies:
       '@slack/logger': 4.0.0
-      '@slack/web-api': 7.8.0
+      '@slack/web-api': 7.9.1
       '@types/jsonwebtoken': 9.0.7
       '@types/node': 20.17.48
       jsonwebtoken: 9.0.0
@@ -17586,10 +17586,10 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@slack/socket-mode@2.0.3':
+  '@slack/socket-mode@2.0.4':
     dependencies:
       '@slack/logger': 4.0.0
-      '@slack/web-api': 7.8.0
+      '@slack/web-api': 7.9.1
       '@types/node': 20.17.48
       '@types/ws': 8.5.13
       eventemitter3: 5.0.1
@@ -17599,12 +17599,12 @@ snapshots:
       - debug
       - utf-8-validate
 
-  '@slack/types@2.13.0': {}
+  '@slack/types@2.14.0': {}
 
-  '@slack/web-api@7.8.0':
+  '@slack/web-api@7.9.1':
     dependencies:
       '@slack/logger': 4.0.0
-      '@slack/types': 2.13.0
+      '@slack/types': 2.14.0
       '@types/node': 20.17.48
       '@types/retry': 0.12.0
       axios: 1.8.4(debug@4.4.0)
