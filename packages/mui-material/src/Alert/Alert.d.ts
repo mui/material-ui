@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
+import { SvgIconProps } from '../SvgIcon';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
+import { IconButtonProps } from '../IconButton';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';

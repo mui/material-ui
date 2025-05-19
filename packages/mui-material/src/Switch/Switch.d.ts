@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';

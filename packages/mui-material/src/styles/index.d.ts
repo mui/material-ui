@@ -1,3 +1,5 @@
+import { DistributiveOmit } from '@mui/types';
+
 export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
@@ -91,6 +93,48 @@ export interface StyledComponentProps<ClassKey extends string = string> {
    * Override or extend the styles applied to the component.
    */
   classes?: Partial<ClassNameMap<ClassKey>>;
+}
+
+/**
+ * All standard components exposed by `material-ui` are `StyledComponents` with
+ * certain `classes`, on which one can also set a top-level `className` and inline
+ * `style`.
+ * @deprecated will be removed in v5 for internal usage only
+ */
+export type StandardProps<
+  ComponentProps,
+  ClassKey extends string,
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
+  StyledComponentProps<ClassKey> & {
+    className?: string;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    style?: React.CSSProperties;
+  };
+
+/**
+ * @internal
+ * ONLY USE FROM WITHIN mui/material-ui
+ *
+ * Internal helper type for conform (describeConformance) components
+ * However, we don't declare classes on this type.
+ * It is recommended to declare them manually with an interface so that each class can have a separate JSDoc.
+ */
+export type InternalStandardProps<
+  ComponentProps,
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
+  // each component declares it's classes in a separate interface for proper JSDoc
+  StyledComponentProps<never> & {
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    // TODO: Remove implicit props. Up to each component.
+    className?: string;
+    style?: React.CSSProperties;
+  };
+
+export namespace PropTypes {
+  // keeping the type structure for backwards compat
+  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
 export { default as makeStyles } from './makeStyles';

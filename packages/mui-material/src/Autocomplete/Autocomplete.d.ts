@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
+import { IconButtonProps } from '../IconButton';
 import { ChipProps, ChipTypeMap } from '../Chip';
 import { PaperProps } from '../Paper';
 import { PopperProps } from '../Popper';

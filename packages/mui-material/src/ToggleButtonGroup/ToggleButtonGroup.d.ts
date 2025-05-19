@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../styles';
 import { Theme } from '../styles';
 import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
 

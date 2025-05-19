@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
 import { MobileStepperClasses } from './mobileStepperClasses';

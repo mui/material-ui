@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import {
-  CreateSlotsAndSlotProps,
-  SlotProps,
-  InternalStandardProps as StandardProps,
-  Theme,
-} from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
 import { InputBaseProps } from '../InputBase';
 import { OutlinedInputClasses } from './outlinedInputClasses';
 

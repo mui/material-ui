@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
 import { FormGroupClasses } from './formGroupClasses';
 
 export interface FormGroupProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {

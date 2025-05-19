@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
 import { InputBaseProps } from '../InputBase';
 import { FilledInputClasses } from './filledInputClasses';
 

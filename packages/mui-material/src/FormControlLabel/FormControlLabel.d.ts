@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme, InternalStandardProps as StandardProps } from '..';
+import { Theme, InternalStandardProps as StandardProps } from '../styles';
 import Typography, { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';

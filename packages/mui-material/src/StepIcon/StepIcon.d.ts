@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, SvgIconOwnProps } from '..';
-import { Theme } from '../styles';
+import { SvgIconOwnProps } from '../SvgIcon';
+import { InternalStandardProps as StandardProps, Theme } from '../styles';
 import { StepIconClasses } from './stepIconClasses';
 
 export interface StepIconProps

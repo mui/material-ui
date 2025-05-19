@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../styles';
 import { ButtonBaseProps } from '../ButtonBase';
 import { SwitchBaseClasses } from './switchBaseClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';

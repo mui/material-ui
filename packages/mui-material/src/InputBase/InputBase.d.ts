@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { Theme, InternalStandardProps as StandardProps } from '../styles';
 import { InputBaseClasses } from './inputBaseClasses';
 
 export interface InputBasePropsSizeOverrides {}
