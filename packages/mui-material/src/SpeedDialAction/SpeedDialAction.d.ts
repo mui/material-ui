@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme , InternalStandardProps as StandardProps } from '../styles';
+import { Theme, InternalStandardProps as StandardProps } from '../styles';
 import { FabProps } from '../Fab';
 import { TooltipProps } from '../Tooltip';
 import { SpeedDialActionClasses } from './speedDialActionClasses';

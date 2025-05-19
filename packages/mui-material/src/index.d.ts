@@ -1,5 +1,5 @@
 // From index.js
- 
+
 import * as colors from './colors';
 
 export { colors };

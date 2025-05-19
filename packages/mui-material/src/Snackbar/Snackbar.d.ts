@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
-import { Theme , InternalStandardProps as StandardProps } from '../styles';
+import { Theme, InternalStandardProps as StandardProps } from '../styles';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
 import { SnackbarClasses } from './snackbarClasses';
