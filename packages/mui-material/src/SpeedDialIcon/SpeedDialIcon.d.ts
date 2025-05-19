@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '../styles';
+import { Theme , InternalStandardProps as StandardProps } from '../styles';
 import { SpeedDialIconClasses } from './speedDialIconClasses';
 
 export interface SpeedDialIconProps

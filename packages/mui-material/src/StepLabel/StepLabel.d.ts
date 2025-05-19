@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps } from '../styles';
+import { InternalStandardProps as StandardProps , Theme } from '../styles';
 import { StepIconProps } from '../StepIcon';
-import { Theme } from '../styles';
 import { StepLabelClasses } from './stepLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 

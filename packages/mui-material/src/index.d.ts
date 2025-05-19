@@ -1,5 +1,5 @@
 // From index.js
-// eslint-disable-next-line import/first
+ 
 import * as colors from './colors';
 
 export { colors };
