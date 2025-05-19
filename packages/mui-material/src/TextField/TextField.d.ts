@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
 import { InputBaseProps } from '../InputBase';
@@ -10,7 +11,6 @@ import { FilledInputProps } from '../FilledInput';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
-import { Theme } from '../styles';
 import { TextFieldClasses } from './textFieldClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
