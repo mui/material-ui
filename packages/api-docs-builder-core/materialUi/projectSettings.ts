@@ -2,10 +2,7 @@ import path from 'path';
 import { LANGUAGES } from 'docs/config';
 import { ProjectSettings } from '@mui-internal/api-docs-builder';
 import findApiPages from '@mui-internal/api-docs-builder/utils/findApiPages';
-import {
-  unstable_generateUtilityClass as generateUtilityClass,
-  unstable_isGlobalState as isGlobalState,
-} from '@mui/utils';
+import generateUtilityClass, { isGlobalState } from '@mui/utils/generateUtilityClass';
 import { getMaterialUiComponentInfo } from './getMaterialUiComponentInfo';
 
 const generateClassName = (componentName: string, slot: string, globalStatePrefix = 'Mui') => {
@@ -42,11 +39,7 @@ export const projectSettings: ProjectSettings = {
   getComponentInfo: getMaterialUiComponentInfo,
   translationLanguages: LANGUAGES,
   skipComponent(filename: string) {
-    return (
-      filename.match(
-        /(ThemeProvider|CssVarsProvider|DefaultPropsProvider|InitColorSchemeScript)/,
-      ) !== null
-    );
+    return filename.match(/(ThemeProvider|CssVarsProvider|DefaultPropsProvider)/) !== null;
   },
   translationPagesDirectory: 'docs/translations/api-docs',
   generateClassName,

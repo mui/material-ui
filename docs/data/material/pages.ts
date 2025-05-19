@@ -106,8 +106,8 @@ const pages: MuiPage[] = [
         children: [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
-          { pathname: '/material-ui/react-grid-legacy', deprecated: true, title: 'Grid Legacy' },
           { pathname: '/material-ui/react-grid' },
+          { pathname: '/material-ui/react-grid-legacy', deprecated: true, title: 'GridLegacy' },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list', title: 'Image List' },
         ],
@@ -121,6 +121,10 @@ const pages: MuiPage[] = [
             title: 'Click-Away Listener',
           },
           { pathname: '/material-ui/react-css-baseline', title: 'CSS Baseline' },
+          {
+            pathname: '/material-ui/react-init-color-scheme-script',
+            title: 'InitColorSchemeScript',
+          },
           { pathname: '/material-ui/react-modal' },
           { pathname: '/material-ui/react-no-ssr', title: 'No SSR' },
           { pathname: '/material-ui/react-popover' },
@@ -255,6 +259,11 @@ const pages: MuiPage[] = [
     pathname: '/material-ui/integrations',
     title: 'Integrations',
     children: [
+      {
+        pathname: '/material-ui/integrations/tailwindcss/tailwindcss-v4',
+        title: 'Tailwind CSS v4 integration',
+        newFeature: true,
+      },
       {
         pathname: '/material-ui/integrations/nextjs',
         title: 'Next.js integration',

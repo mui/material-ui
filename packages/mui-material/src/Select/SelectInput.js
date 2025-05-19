@@ -58,7 +58,6 @@ const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
   name: 'MuiSelect',
   slot: 'NativeInput',
-  overridesResolver: (props, styles) => styles.nativeInput,
 })({
   bottom: 0,
   left: 0,

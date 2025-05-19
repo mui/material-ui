@@ -36,7 +36,6 @@ const useUtilityClasses = (ownerState) => {
 const TextFieldRoot = styled(FormControl, {
   name: 'MuiTextField',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 /**

@@ -228,7 +228,6 @@ const AutocompleteRoot = styled('div', {
 const AutocompleteEndAdornment = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'EndAdornment',
-  overridesResolver: (props, styles) => styles.endAdornment,
 })({
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
@@ -240,7 +239,6 @@ const AutocompleteEndAdornment = styled('div', {
 const AutocompleteClearIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'ClearIndicator',
-  overridesResolver: (props, styles) => styles.clearIndicator,
 })({
   marginRight: -2,
   padding: 4,
@@ -297,7 +295,6 @@ const AutocompletePopper = styled(Popper, {
 const AutocompletePaper = styled(Paper, {
   name: 'MuiAutocomplete',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body1,
@@ -308,7 +305,6 @@ const AutocompletePaper = styled(Paper, {
 const AutocompleteLoading = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Loading',
-  overridesResolver: (props, styles) => styles.loading,
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
@@ -319,7 +315,6 @@ const AutocompleteLoading = styled('div', {
 const AutocompleteNoOptions = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'NoOptions',
-  overridesResolver: (props, styles) => styles.noOptions,
 })(
   memoTheme(({ theme }) => ({
     color: (theme.vars || theme).palette.text.secondary,
@@ -330,7 +325,6 @@ const AutocompleteNoOptions = styled('div', {
 const AutocompleteListbox = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'Listbox',
-  overridesResolver: (props, styles) => styles.listbox,
 })(
   memoTheme(({ theme }) => ({
     listStyle: 'none',
@@ -402,7 +396,6 @@ const AutocompleteListbox = styled('ul', {
 const AutocompleteGroupLabel = styled(ListSubheader, {
   name: 'MuiAutocomplete',
   slot: 'GroupLabel',
-  overridesResolver: (props, styles) => styles.groupLabel,
 })(
   memoTheme(({ theme }) => ({
     backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -413,7 +406,6 @@ const AutocompleteGroupLabel = styled(ListSubheader, {
 const AutocompleteGroupUl = styled('ul', {
   name: 'MuiAutocomplete',
   slot: 'GroupUl',
-  overridesResolver: (props, styles) => styles.groupUl,
 })({
   padding: 0,
   [`& .${autocompleteClasses.option}`]: {
@@ -598,7 +590,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (renderTags && multiple && value.length > 0) {
     startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
-  } else if (renderValue && value) {
+  } else if (renderValue && value != null) {
     startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
   } else if (multiple && value.length > 0) {
     startAdornment = value.map((option, index) => {
@@ -1155,6 +1147,13 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   renderGroup: PropTypes.func,
   /**
    * Render the input.
+   *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
    *
    * @param {object} params
    * @returns {ReactNode}

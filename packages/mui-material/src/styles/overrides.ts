@@ -106,6 +106,7 @@ import { TableContainerClassKey } from '../TableContainer';
 import { TableFooterClassKey } from '../TableFooter';
 import { TableHeadClassKey } from '../TableHead';
 import { TablePaginationClassKey } from '../TablePagination';
+import { TablePaginationActionsClassKey } from '../TablePaginationActions';
 import { TableRowClassKey } from '../TableRow';
 import { TableSortLabelClassKey } from '../TableSortLabel';
 import { TabsClassKey } from '../Tabs';
@@ -252,6 +253,7 @@ export interface ComponentNameToClassKey {
   MuiTableFooter: TableFooterClassKey;
   MuiTableHead: TableHeadClassKey;
   MuiTablePagination: TablePaginationClassKey;
+  MuiTablePaginationActions: TablePaginationActionsClassKey;
   MuiTableRow: TableRowClassKey;
   MuiTableSortLabel: TableSortLabelClassKey;
   MuiTabs: TabsClassKey;

@@ -4,10 +4,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isMuiElement as isMuiElement,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isMuiElement from '@mui/utils/isMuiElement';
 import { useThemeProps } from '../styles';
 import { applySolidInversion, applySoftInversion } from '../colorInversion';
 import styled from '../styles/styled';

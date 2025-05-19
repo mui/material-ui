@@ -1,11 +1,9 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-  unstable_useEventCallback as useEventCallback,
-  unstable_createChainedFunction as createChainedFunction,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useForkRef from '@mui/utils/useForkRef';
+import useEventCallback from '@mui/utils/useEventCallback';
+import createChainedFunction from '@mui/utils/createChainedFunction';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 import { ModalManager, ariaHidden } from './ModalManager';
