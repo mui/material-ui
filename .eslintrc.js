@@ -282,7 +282,7 @@ module.exports = /** @type {Config} */ ({
   overrides: [
     ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
       (packageName) => ({
-        files: [`packages/${packageName}/**/*.?(c|m)[jt]s?(x)`],
+        files: [`packages/${packageName}/src/**/*.?(c|m)[jt]s?(x)`],
         excludedFiles: ['*.test.*', '*.spec.*'],
         rules: {
           'material-ui/no-restricted-resolved-imports': [
