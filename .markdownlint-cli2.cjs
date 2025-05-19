@@ -43,8 +43,6 @@ module.exports = {
   ignores: [
     'CHANGELOG.old.md',
     '**/node_modules/**',
-    '**/*-zh.md',
-    '**/*-pt.md',
     '**/build/**',
     '.github/PULL_REQUEST_TEMPLATE.md',
   ],
