@@ -190,7 +190,7 @@
     "lodash": "^4.17.21",
     "markdownlint-cli2": "^0.17.2",
     "mocha": "^11.2.2",
-    "nx": "^20.8.1",
+    "nx": "^20.8.2",
     "nyc": "^17.1.0",
     "piscina": "^5.0.0",
     "postcss-styled-syntax": "^0.7.1",
