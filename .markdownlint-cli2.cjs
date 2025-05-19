@@ -32,6 +32,7 @@ module.exports = {
     MD036: false, // MD036/no-emphasis-as-heading/no-emphasis-as-header. It's OK.
     MD051: false, // MD051/link-fragments. Many false positives in the changelog.
     MD052: false, // MD052/reference-links-images. Many false positives in the changelog.
+    MD059: false, // MD059/descriptive-link-text. Does not allow links on text like "link", whereas we redirect to "Link" component.
     straightQuotes: true,
     gitDiff: true,
     tableAlignment: true,
