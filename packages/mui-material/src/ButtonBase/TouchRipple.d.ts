@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { TouchRippleClasses, TouchRippleClassKey } from './touchRippleClasses';
 
 export { TouchRippleClassKey };
