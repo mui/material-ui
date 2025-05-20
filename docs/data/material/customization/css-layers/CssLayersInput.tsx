@@ -8,8 +8,10 @@ export default function CssLayersInput() {
   return (
     <FormControl variant="outlined">
       <InputLabel
+        shrink
         htmlFor="css-layers-input"
         sx={{
+          width: 'fit-content',
           transform: 'none',
           position: 'relative',
           mb: 0.25,
@@ -22,7 +24,7 @@ export default function CssLayersInput() {
       </InputLabel>
       <OutlinedInput
         id="css-layers-input"
-        placeholder=""
+        placeholder="Type something"
         slotProps={{
           input: {
             sx: { py: 1.5 },
