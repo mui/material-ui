@@ -50,30 +50,33 @@ function TestViewer(props) {
     p: 1,
   };
 
+  const cssReset = (
+    <GlobalStyles
+      styles={{
+        html: {
+          WebkitFontSmoothing: 'antialiased', // Antialiasing.
+          MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+          // Do the opposite of the docs in order to help catching issues.
+          boxSizing: 'content-box',
+        },
+        '*, *::before, *::after': {
+          boxSizing: 'inherit',
+          // Disable transitions to avoid flaky screenshots
+          transition: 'none !important',
+          animation: 'none !important',
+        },
+        body: {
+          margin: 0,
+          overflowX: 'hidden',
+        },
+      }}
+    />
+  );
   return (
     <React.Fragment>
-      <GlobalStyles
-        styles={{
-          html: {
-            WebkitFontSmoothing: 'antialiased', // Antialiasing.
-            MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-            // Do the opposite of the docs in order to help catching issues.
-            boxSizing: 'content-box',
-          },
-          '*, *::before, *::after': {
-            boxSizing: 'inherit',
-            // Disable transitions to avoid flaky screenshots
-            transition: 'none !important',
-            animation: 'none !important',
-          },
-          body: {
-            margin: 0,
-            overflowX: 'hidden',
-          },
-        }}
-      />
       {path.startsWith('/docs-joy') ? (
         <CssVarsProvider>
+          {cssReset}
           <JoyBox
             aria-busy={!ready}
             data-testid="testcase"
@@ -86,6 +89,7 @@ function TestViewer(props) {
       ) : (
         <StyledEngineProvider enableCssLayer>
           <ThemeProvider theme={theme}>
+            {cssReset}
             <Box
               aria-busy={!ready}
               data-testid="testcase"
