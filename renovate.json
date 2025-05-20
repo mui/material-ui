@@ -96,7 +96,7 @@
     },
     {
       "groupName": "Playwright",
-      "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
+      "matchPackageNames": ["@playwright/test", "mcr.microsoft.com/playwright"]
     },
     {
       "matchDepTypes": ["action"],

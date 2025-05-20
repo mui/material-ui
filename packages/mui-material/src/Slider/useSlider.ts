@@ -1,15 +1,13 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_ownerDocument as ownerDocument,
-  unstable_useControlled as useControlled,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useForkRef as useForkRef,
-  unstable_isFocusVisible as isFocusVisible,
-  visuallyHidden,
-  clamp,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useControlled from '@mui/utils/useControlled';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useForkRef from '@mui/utils/useForkRef';
+import isFocusVisible from '@mui/utils/isFocusVisible';
+import visuallyHidden from '@mui/utils/visuallyHidden';
+import clamp from '@mui/utils/clamp';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   Mark,

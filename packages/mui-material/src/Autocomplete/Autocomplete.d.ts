@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { IconButtonProps } from '../IconButton';
 import { ChipProps, ChipTypeMap } from '../Chip';
 import { PaperProps } from '../Paper';
 import { PopperProps } from '../Popper';
@@ -334,6 +336,13 @@ export interface AutocompleteProps<
   renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode;
   /**
    * Render the input.
+   *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
    *
    * @param {object} params
    * @returns {ReactNode}

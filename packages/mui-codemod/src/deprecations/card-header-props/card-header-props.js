@@ -11,6 +11,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'CardHeader',
     propName: 'titleTypographyProps',
     slotName: 'title',
@@ -18,6 +19,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'CardHeader',
     propName: 'subheaderTypographyProps',
     slotName: 'subheader',
