@@ -41,6 +41,11 @@ const familyMap = {
   rounded: 'Material Symbols Rounded',
   sharp: 'Material Symbols Sharp',
 };
+const familyDirMap = {
+  outlined: 'materialsymbolsoutlined',
+  rounded: 'materialsymbolsrounded',
+  sharp: 'materialsymbolssharp',
+};
 
 const variants = {
   weight: [100, 200, 300, 400, 500, 600, 700],
@@ -202,7 +207,7 @@ async function downloadIconVariants(icon) {
             // https://github.com/google/material-design-icons/tree/master/symbols/web
             const directory = path.join(
               currentDirectory,
-              `../material-symbols/${icon.name}/${theme}`,
+              `../material-symbols/${icon.name}/${familyDirMap[theme]}`,
             );
             const svgPath = `${directory}/${icon.name}${!variant.isDefault ? `_${variant.prefix}` : ''}_${variant.opticalSize}px.svg`;
             await fse.ensureDir(directory);
