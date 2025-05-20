@@ -149,7 +149,7 @@ const theme = createTheme({
 
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 If you need to manipulate colors, `@mui/material/styles` provides [a set of utilities](https://github.com/mui/material-ui/blob/master/packages/mui-material/src/styles/index.d.ts#L52-L67) to help with this.
 The following example uses the `alpha()` and `getContrastRatio()` utilities to define tokens using opacity:

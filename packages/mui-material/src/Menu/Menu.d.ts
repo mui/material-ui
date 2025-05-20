@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
-import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';

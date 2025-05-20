@@ -23,10 +23,10 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Staff Engineer — Pigment CSS',
+        title: 'React Engineer — Material UI Maintainer',
         description:
-          'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
-        url: '/careers/staff-engineer-pigment-css/',
+          'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
+        url: '/careers/react-engineer-material-ui-maintainer/',
       },
       {
         title: 'React Engineer — Docs-infra',
@@ -35,7 +35,7 @@ const openRolesData = [
         url: '/careers/react-engineer-docs-infra/',
       },
       {
-        title: 'Code infra Engineer',
+        title: 'Frontend Engineer — Code-infra',
         description:
           'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
         url: '/careers/code-infra-engineer/',
