@@ -157,21 +157,22 @@ export default function createStyled(input = {}) {
       //   which are basically components used as a selectors.
       // - `style` could be a styled component from a babel plugin for component selectors, This condition
       //   makes sure that we do not interpolate them.
-      if (style.__emotion_real !== style) {
-        if (typeof style === 'function') {
-          return function styleFunctionProcessor(props) {
-            return processStyle(props, style);
-          };
+      if (style.__emotion_real === style) {
+        return style;
+      }
+      if (typeof style === 'function') {
+        return function styleFunctionProcessor(props) {
+          return processStyle(props, style);
+        };
+      }
+      if (isPlainObject(style)) {
+        const serialized = preprocessStyles(style);
+        if (!serialized.variants) {
+          return serialized.style;
         }
-        if (isPlainObject(style)) {
-          const serialized = preprocessStyles(style);
-          if (!serialized.variants) {
-            return serialized.style;
-          }
-          return function styleObjectProcessor(props) {
-            return processStyle(props, serialized);
-          };
-        }
+        return function styleObjectProcessor(props) {
+          return processStyle(props, serialized);
+        };
       }
       return style;
     };
