@@ -7,6 +7,7 @@ import ToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
 } from '@mui/material/ToggleButtonGroup';
+import Stack from '@mui/material/Stack';
 
 function ButtonGroup({
   gap,
@@ -51,6 +52,7 @@ function ButtonGroup({
             },
         }),
         ...(orientation === 'vertical' && {
+          width: 'fit-content',
           [`& .${toggleButtonGroupClasses.firstButton}, & .${toggleButtonGroupClasses.middleButton}`]:
             {
               borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
@@ -87,8 +89,9 @@ function ButtonGroup({
 
 export default function SpacingToggleButton() {
   return (
-    <div>
+    <Stack direction="column" spacing={2} alignItems="center">
       <ButtonGroup gap="2rem" orientation="horizontal" />
-    </div>
+      <ButtonGroup gap="2rem" orientation="vertical" />
+    </Stack>
   );
 }

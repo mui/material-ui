@@ -45,7 +45,7 @@ For larger or smaller buttons, use the `size` prop.
 
 ## Spacing
 
-The following demo shows how to adjust spacing between toggle buttons. You can change the orientation as well by changing the `orientation` prop.
+The following demo shows how to adjust spacing between toggle buttons.
 
 {{"demo": "SpacingToggleButton.js"}}
 
