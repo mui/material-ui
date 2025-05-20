@@ -10,8 +10,6 @@ import { Queue } from '@mui/internal-waterfall';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 
-export const RENAME_FILTER_DEFAULT = './renameFilters/default.mjs';
-
 /**
  * Converts directory separators to slashes, so the path can be used in fast-glob.
  * @param {string} pathToNormalize
@@ -92,15 +90,6 @@ export async function handler(options) {
     throw new Error('variantCollector must be a function');
   }
 
-  let renameFilter = options.renameFilter;
-  if (typeof renameFilter === 'string') {
-    const renameFilterModule = await import(renameFilter);
-    renameFilter = renameFilterModule.default;
-  }
-  if (typeof renameFilter !== 'function') {
-    throw new Error('renameFilter must be a function');
-  }
-
   await fse.ensureDir(options.outputDir);
 
   if (!variantCollector) {
@@ -130,6 +119,7 @@ export async function handler(options) {
   queue.push(outputFiles);
   await queue.wait({ empty: true });
 
+  await fse.ensureDir(path.join(currentDirectory, '/legacy'));
   let legacyFiles = await globAsync(normalizePath(path.join(currentDirectory, '/legacy', '*.js')));
   legacyFiles = legacyFiles.map((file) => path.basename(file));
   let generatedFiles = await globAsync(normalizePath(path.join(options.outputDir, '*.js')));
@@ -146,6 +136,7 @@ export async function handler(options) {
   }
 
   await fse.copy(path.join(currentDirectory, '/legacy'), options.outputDir);
+  await fse.ensureDir(path.join(currentDirectory, '/custom'));
   await fse.copy(path.join(currentDirectory, '/custom'), options.outputDir);
 
   // TOOD: generate barrel files
