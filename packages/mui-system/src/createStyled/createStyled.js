@@ -21,10 +21,14 @@ export function shouldForwardProp(prop) {
 }
 
 function shallowLayer(serialized, layerName, suffix) {
-  if (layerName && !serialized.styles.startsWith('@layer')) {
-    // only add the layer if it is not already there.
-    const rule = String(serialized.styles);
-    serialized.styles = `@layer ${layerName}${suffix ? `-${suffix}` : ''}{${rule}}`;
+  if (
+    layerName &&
+    serialized &&
+    typeof serialized === 'object' &&
+    serialized.styles &&
+    !serialized.styles.startsWith('@layer') // only add the layer if it is not already there.
+  ) {
+    serialized.styles = `@layer ${layerName}${suffix ? `-${suffix}` : ''}{${String(serialized.styles)}}`;
   }
   return serialized;
 }
