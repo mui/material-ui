@@ -1929,6 +1929,65 @@ importers:
         version: 6.1.18(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     publishDirectory: build
 
+  packages/mui-symbols-material:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/internal-waterfall':
+        specifier: workspace:^
+        version: link:../waterfall
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../mui-material/build
+      '@mui/symbols-material':
+        specifier: workspace:*
+        version: link:build
+      '@types/chai':
+        specifier: ^4.3.20
+        version: 4.3.20
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      chai:
+        specifier: ^4.5.0
+        version: 4.5.0
+      chalk:
+        specifier: ^5.4.1
+        version: 5.4.1
+      cross-fetch:
+        specifier: ^4.1.0
+        version: 4.1.0(encoding@0.1.13)
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
+      fs-extra:
+        specifier: ^11.3.0
+        version: 11.3.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      mustache:
+        specifier: ^4.2.0
+        version: 4.2.0
+      proper-lockfile:
+        specifier: ^4.1.2
+        version: 4.1.2
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
+      shx:
+        specifier: ^0.4.0
+        version: 0.4.0
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
+    publishDirectory: build
+
   packages/mui-system:
     dependencies:
       '@babel/runtime':
@@ -11656,6 +11715,9 @@ packages:
 
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
+
+  proper-lockfile@4.1.2:
+    resolution: {integrity: sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==}
 
   protocols@2.0.1:
     resolution: {integrity: sha512-/XJ368cyBJ7fzLMwLKv1e4vLxOju2MNAIokcr7meSaNcVbWz/CPcW22cP04mwxOErdA5mwjA8Q6w/cdAQxVn7Q==}
@@ -25293,6 +25355,12 @@ snapshots:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+
+  proper-lockfile@4.1.2:
+    dependencies:
+      graceful-fs: 4.2.11
+      retry: 0.12.0
+      signal-exit: 3.0.7
 
   protocols@2.0.1: {}
 
