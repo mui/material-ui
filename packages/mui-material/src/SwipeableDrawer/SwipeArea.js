@@ -8,7 +8,11 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-const SwipeAreaRoot = styled('div', { shouldForwardProp: rootShouldForwardProp })(
+const SwipeAreaRoot = styled('div', {
+  name: 'MuiSwipeArea',
+  skipVariantsResolver: true,
+  shouldForwardProp: rootShouldForwardProp,
+})(
   memoTheme(({ theme }) => ({
     position: 'fixed',
     top: 0,

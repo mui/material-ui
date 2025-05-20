@@ -20,7 +20,10 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
-export const StyledSelectSelect = styled('select')(({ theme }) => ({
+export const StyledSelectSelect = styled('select', {
+  name: 'MuiNativeSelect',
+  skipVariantsResolver: true,
+})(({ theme }) => ({
   // Reset
   MozAppearance: 'none',
   // Reset
@@ -99,7 +102,9 @@ const NativeSelectSelect = styled(StyledSelectSelect, {
   },
 })({});
 
-export const StyledSelectIcon = styled('svg')(({ theme }) => ({
+export const StyledSelectIcon = styled('svg', {
+  name: 'MuiNativeSelect',
+})(({ theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',
