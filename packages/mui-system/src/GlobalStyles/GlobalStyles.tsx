@@ -1,7 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { GlobalStyles as MuiGlobalStyles, Interpolation } from '@mui/styled-engine';
+import {
+  GlobalStyles as MuiGlobalStyles,
+  Interpolation,
+  internal_serializeStyles as serializeStyles,
+} from '@mui/styled-engine';
 import useTheme from '../useTheme';
 import { Theme as SystemTheme } from '../createTheme';
 
@@ -17,11 +21,16 @@ function GlobalStyles<Theme = SystemTheme>({
   defaultTheme = {},
 }: GlobalStylesProps<Theme>) {
   const upperTheme = useTheme(defaultTheme);
+  const resolvedTheme = themeId ? (upperTheme as any)[themeId] || upperTheme : upperTheme;
 
-  const globalStyles =
-    typeof styles === 'function'
-      ? styles(themeId ? (upperTheme as any)[themeId] || upperTheme : upperTheme)
-      : styles;
+  let globalStyles = typeof styles === 'function' ? styles(resolvedTheme) : styles;
+  if (resolvedTheme.experimental_modularCssLayers) {
+    const serialized = serializeStyles(globalStyles) as any;
+    if (globalStyles !== serialized && serialized.styles) {
+      serialized.styles = `@layer global{${serialized.styles}}`;
+      globalStyles = serialized;
+    }
+  }
 
   return <MuiGlobalStyles styles={globalStyles as any} />;
 }
