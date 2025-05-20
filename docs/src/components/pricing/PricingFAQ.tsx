@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -41,7 +41,7 @@ const faqData = [
         Company 'A' purchases 5 licenses.
         <br />
         <br />
-        <b>Example 2.</b> A UI development team at Company 'A' creates its own UI library for
+        <b>Example 2.</b> A UI development team at Company 'B' creates its own UI library for
         internal development and includes MUI X Pro as a component. The team working on 'AppA' uses
         the new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers
         and 'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'

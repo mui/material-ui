@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -32,7 +33,6 @@ interface StyleFunctionProps {
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
   name: 'MuiStack',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 });
 
 function useThemePropsDefault<T extends {}>(props: T) {

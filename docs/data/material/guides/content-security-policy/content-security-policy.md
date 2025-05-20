@@ -14,7 +14,7 @@ CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whit
 
 This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 
-You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP).
 
 ## How does one implement CSP?
 
@@ -72,13 +72,107 @@ function App(props) {
 }
 ```
 
-### Create React App (CRA)
+### CSP in Vite
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default.
-This will require a new hash to be set in your CSP during each deployment.
+When deploying a CSP using Vite, there are specific configurations you must set up due to Vite's internal handling of assets and modules.
+See [Vite Features—Content Security Policy](https://vite.dev/guide/features.html#content-security-policy-csp) for complete details.
 
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build.
-This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+### Next.js Pages Router
+
+For the Next.js Pages Router, after [setting up a nonce](https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy#nonces), pass it to the Emotion cache in two places:
+
+1. In `_document.tsx`:
+
+```tsx
+import {
+  DocumentHeadTags,
+  documentGetInitialProps,
+  createEmotionCache,
+} from '@mui/material-nextjs/v15-pagesRouter';
+// other imports
+
+type Props = DocumentInitialProps & DocumentHeadTagsProps & { nonce?: string };
+
+export default function MyDocument(props: Props) {
+  const { nonce } = props;
+
+  return (
+    <Html lang="en" className={roboto.className}>
+      <Head>
+        {/*...*/}
+        <meta name="csp-nonce" content={nonce} />
+        <DocumentHeadTags {...props} nonce={nonce} />
+      </Head>
+      <body>
+        {/*...*/}
+        <NextScript nonce={nonce} />
+      </body>
+    </Html>
+  );
+}
+
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+  const { req } = ctx;
+  const nonce = req?.headers['x-nonce'];
+  if (typeof nonce !== 'string') {
+    throw new Error('"nonce" header is missing');
+  }
+
+  const emotionCache = createEmotionCache({ nonce });
+  const finalProps = await documentGetInitialProps(ctx, {
+    emotionCache,
+  });
+
+  return { ...finalProps, nonce };
+};
+```
+
+2. In `_app.tsx` (if you're setting up the `AppCacheProvider`):
+
+```tsx
+import { createEmotionCache } from '@mui/material-nextjs/v15-pagesRouter';
+// other imports
+
+export default function MyApp(props: AppProps & { nonce: string }) {
+  const { Component, pageProps, nonce } = props;
+
+  const emotionCache = useMemo(() => {
+    const nonce = props.nonce || getNonce();
+
+    return createEmotionCache({ nonce });
+  }, [props.nonce]);
+
+  return (
+    <AppCacheProvider {...props} emotionCache={emotionCache}>
+      {/* ... */}
+    </AppCacheProvider>
+  );
+}
+
+function getNonce(headers?: Record<string, string | string[] | undefined>) {
+  if (headers) {
+    return headers['x-nonce'] as string;
+  }
+
+  if (typeof document !== 'undefined') {
+    const nonceMeta = document.querySelector('meta[name="csp-nonce"]');
+    if (nonceMeta) {
+      return nonceMeta.getAttribute('content') || undefined;
+    }
+  }
+
+  return undefined;
+}
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const nonce = getNonce(appContext.ctx?.req?.headers);
+  if (typeof nonce !== 'string') {
+    throw new Error('"nonce" header is missing');
+  }
+
+  return { ...otherProps, nonce };
+};
+```
 
 ### styled-components
 

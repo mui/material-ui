@@ -70,7 +70,7 @@ cd material-ui
 git remote add upstream https://github.com/mui/material-ui.git
 ```
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 3. Synchronize your local `master` branch with the upstream one:
 
@@ -140,11 +140,11 @@ The new playground will be accessible at: `http://localhost:3000/playground/<fil
 
 Continuous Integration (CI) automatically runs a series of checks when a PR is opened.
 If you're unsure whether your changes will pass, you can always open a PR, and the GitHub UI will display a summary of the results.
-If any of these checks fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
+If any of these checks fail, refer to [CI checks and how to fix them](#ci-checks-and-how-to-fix-them).
 
 Make sure the following is true:
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 - The branch is targeted at `master` for ongoing development. All tests are passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
@@ -153,7 +153,7 @@ Make sure the following is true:
 - If adding new features or modifying existing ones, you've included tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, you've updated the TypeScript declarations.
 - If submitting a new component, you've added it to the [lab](https://github.com/mui/material-ui/tree/HEAD/packages/mui-lab).
-- The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
+- The branch is not [behind its target branch](https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/keeping-your-pull-request-in-sync-with-the-base-branch).
 
 We will only merge a PR when all tests pass.
 The following statements must be true:
@@ -299,7 +299,7 @@ docs/src/pages/components/buttons/
 
 #### 2. Write the demo code
 
-We uses TypeScript to document our components.
+We use TypeScript to document our components.
 We prefer demos written in TypeScript (using the `.tsx` file format).
 
 After creating a TypeScript demo, run `pnpm docs:typescript:formatted` to automatically create the JavaScript version, which is also required.

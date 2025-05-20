@@ -18,9 +18,9 @@
     "size": {
       "type": {
         "name": "union",
-        "description": "'normal'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
-      "default": "'normal'"
+      "default": "'medium'"
     },
     "sx": {
       "type": {

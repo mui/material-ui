@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
-import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
-import { PaperProps } from '@mui/material/Paper';
-import { PopperProps } from '@mui/material/Popper';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { IconButtonProps } from '../IconButton';
+import { ChipProps, ChipTypeMap } from '../Chip';
+import { PaperProps } from '../Paper';
+import { PopperProps } from '../Popper';
 import useAutocomplete, {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
@@ -58,6 +60,28 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   onDelete: (event: any) => void;
 };
 
+export type AutocompleteRenderValueGetItemProps<Multiple extends boolean | undefined> =
+  Multiple extends true
+    ? (args: { index: number }) => {
+        key: number;
+        className: string;
+        disabled: boolean;
+        'data-item-index': number;
+        tabIndex: -1;
+        onDelete: (event: any) => void;
+      }
+    : (args?: { index?: number }) => {
+        className: string;
+        disabled: boolean;
+        'data-item-index': number;
+        tabIndex: -1;
+        onDelete: (event: any) => void;
+      };
+
+export type AutocompleteRenderValue<Value, Multiple, FreeSolo> = Multiple extends true
+  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>;
+
 export interface AutocompleteRenderOptionState {
   inputValue: string;
   index: number;
@@ -65,7 +89,7 @@ export interface AutocompleteRenderOptionState {
 }
 
 export interface AutocompleteRenderGroupParams {
-  key: string;
+  key: number;
   group: string;
   children?: React.ReactNode;
 }
@@ -81,6 +105,7 @@ export interface AutocompleteRenderInputParams {
     className: string;
     startAdornment: React.ReactNode;
     endAdornment: React.ReactNode;
+    onMouseDown: React.MouseEventHandler;
   };
   inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
@@ -166,6 +191,7 @@ export interface AutocompleteProps<
     AutocompleteSlotsAndSlotProps<Value, Multiple, DisableClearable, FreeSolo, ChipComponent> {
   /**
    * Props applied to the [`Chip`](https://mui.com/material-ui/api/chip/) element.
+   * @deprecated Use `slotProps.chip` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ChipProps?: ChipProps<ChipComponent>;
   /**
@@ -193,7 +219,7 @@ export interface AutocompleteProps<
   closeText?: string;
   /**
    * The props used for each slot inside.
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
@@ -232,10 +258,12 @@ export interface AutocompleteProps<
   /**
    * The component used to render the listbox.
    * @default 'ul'
+   * @deprecated Use `slotProps.listbox.component` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * Props applied to the Listbox element.
+   * @deprecated Use `slotProps.listbox` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   ListboxProps?: ReturnType<ReturnType<typeof useAutocomplete>['getListboxProps']> & {
     sx?: SxProps<Theme>;
@@ -280,11 +308,13 @@ export interface AutocompleteProps<
   /**
    * The component used to render the body of the popup.
    * @default Paper
+   * @deprecated Use `slots.paper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PaperComponent?: React.JSXElementConstructor<React.HTMLAttributes<HTMLElement>>;
   /**
    * The component used to position the popup.
    * @default Popper
+   * @deprecated Use `slots.popper` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   PopperComponent?: React.JSXElementConstructor<PopperProps>;
   /**
@@ -307,6 +337,13 @@ export interface AutocompleteProps<
   /**
    * Render the input.
    *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
+   *
    * @param {object} params
    * @returns {ReactNode}
    */
@@ -327,7 +364,9 @@ export interface AutocompleteProps<
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
-   * Render the selected value.
+   * Render the selected value when doing multiple selections.
+   *
+   * @deprecated Use `renderValue` prop instead
    *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
@@ -337,6 +376,19 @@ export interface AutocompleteProps<
   renderTags?: (
     value: Value[],
     getTagProps: AutocompleteRenderGetTagProps,
+    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  ) => React.ReactNode;
+  /**
+   * Renders the selected value(s) as rich content in the input for both single and multiple selections.
+   *
+   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {function} getItemProps The value item props.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderValue?: (
+    value: AutocompleteRenderValue<Value, Multiple, FreeSolo>,
+    getItemProps: AutocompleteRenderValueGetItemProps<Multiple>,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**

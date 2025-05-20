@@ -26,49 +26,51 @@ createTheme({ cssVariables: { cssVarPrefix: '' } });
 
 To toggle between modes manually, set the `colorSchemeSelector` with one of the following selectors:
 
-<codeblock>
+- `class`: adds a class to the `<html>` element.
 
-```js class
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'class'
-  }
-});
+  ```js class
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'class'
+    }
+  });
 
-// CSS Result
-.light { ... }
-.dark { ... }
-```
+  // CSS Result
+  .light { ... }
+  .dark { ... }
+  ```
 
-```js data
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: 'data'
-  }
-});
+- `data`: adds a data attribute to the `<html>` element.
 
-// CSS Result
-[data-light] { ... }
-[data-dark] { ... }
-```
+  ```js data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: 'data'
+    }
+  });
 
-```js string
-// The value must start with dot (.) for class or square brackets ([]) for data
-createTheme({
-  colorSchemes: { light: true, dark: true },
-  cssVariables: {
-    colorSchemeSelector: '.theme-%s'
-  }
-});
+  // CSS Result
+  [data-light] { ... }
+  [data-dark] { ... }
+  ```
 
-// CSS Result
-.theme-light { ... }
-.theme-dark { ... }
-```
+- `string`: adds a custom selector to the `<html>` element.
 
-</codeblock>
+  ```js string
+  // The value must start with dot (.) for class or square brackets ([]) for data
+  createTheme({
+    colorSchemes: { light: true, dark: true },
+    cssVariables: {
+      colorSchemeSelector: '.theme-%s'
+    }
+  });
+
+  // CSS Result
+  .theme-light { ... }
+  .theme-dark { ... }
+  ```
 
 Then, use `useColorScheme` hook to switch between modes:
 
@@ -128,7 +130,7 @@ For SSR (server-side rendering) applications, Material UI can not detected user
 
 To prevent the issue, you need to ensure that there is no usage of `theme.palette.mode === 'dark'` in your code base.
 
-If you have such a condition, replace it with the [`theme.applyStyles()`](#appling-dark-styles) function:
+If you have such a condition, replace it with the [`theme.applyStyles()` function](/material-ui/customization/dark-mode/#styling-in-dark-mode):
 
 ```diff
  import Card from '@mui/material/Card';
@@ -136,28 +138,33 @@ If you have such a condition, replace it with the [`theme.applyStyles()`](#appli
  function App() {
    return (
      <Card
-       sx={(theme) => ({
+-      sx={(theme) => ({
 -        backgroundColor: theme.palette.mode === 'dark' ? '#000' : '#fff',
 -        '&:hover': {
 -          backgroundColor: theme.palette.mode === 'dark' ? '#333' : '#f5f5f5',
 -        },
-+        backgroundColor: '#fff',
-+        '&:hover': {
-+          backgroundColor: '#f5f5f5',
-+          ...theme.applyStyles('dark', {
-+            backgroundColor: '#333',
-+          }),
+-      })}
++      sx={[
++        {
++          backgroundColor: '#fff',
++          '&:hover': {
++            backgroundColor: '#f5f5f5',
++          },
 +        },
-+        ...theme.applyStyles('dark', {
-+          backgroundColor: '#000',
-+        }),
-       })}
++        (theme) =>
++          theme.applyStyles('dark', {
++            backgroundColor: '#000',
++            '&:hover': {
++              backgroundColor: '#333',
++            },
++          }),
++      ]}
      />
    );
  }
 ```
 
-Next, if you have a custom selector that is **not** `media`, add the `InitColorSchemeScript` component based on the framework that you are using:
+Next, if you have a custom selector that is **not** `media`, add the [`InitColorSchemeScript`](/material-ui/react-init-color-scheme-script/) component based on the framework that you are using:
 
 :::success
 The `attribute` has to be the same as the one you set in the `colorSchemeSelector` property:
@@ -176,7 +183,7 @@ createTheme({
 
 ### Next.js App Router
 
-Add the following code to the [root layout](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required) file:
+Add the following code to the [root layout](https://nextjs.org/docs/app/api-reference/file-conventions/layout#root-layouts) file:
 
 ```jsx title="app/layout.js"
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
@@ -302,3 +309,13 @@ To disable CSS transitions when switching between modes, apply the `disableTrans
 ```
 
 {{"demo": "DisableTransitionOnChange.js"}}
+
+## Force theme recalculation between modes
+
+By default, the `ThemeProvider` does not re-render when switching between light and dark modes when `cssVariables: true` is set in the theme.
+
+If you want to opt-out from this behavior, use the `forceThemeRerender` prop in the ThemeProvider:
+
+```js
+<ThemeProvider forceThemeRerender />
+```

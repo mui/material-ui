@@ -5,7 +5,11 @@ import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
 import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
-import { DemoData, CodeVariant, CodeStyling } from 'docs/src/modules/sandbox/types';
+import { DemoData, CodeVariant } from 'docs/src/modules/sandbox/types';
+
+const CSB_DEV_DEPENDENCIES = {
+  'react-scripts': 'latest',
+};
 
 function compress(object: any) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -47,10 +51,7 @@ function createReactApp(demoData: DemoData) {
       content: CRA.getRootIndex(demoData),
     },
     [`src/Demo.${ext}`]: {
-      content: flattenRelativeImports(
-        demoData.raw,
-        demoData.relativeModules?.map((file) => file.module),
-      ),
+      content: flattenRelativeImports(demoData.raw),
     },
     // Spread the relative modules
     ...(demoData.relativeModules &&
@@ -60,7 +61,7 @@ function createReactApp(demoData: DemoData) {
           ...acc,
           // Remove the path and keep the filename
           [`src/${curr.module.replace(/^.*[\\/]/g, '')}`]: {
-            content: curr.raw,
+            content: flattenRelativeImports(curr.raw),
           },
         }),
         {},
@@ -74,10 +75,12 @@ function createReactApp(demoData: DemoData) {
 
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
     commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    devDeps: CSB_DEV_DEPENDENCIES,
   });
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -87,9 +90,6 @@ function createReactApp(demoData: DemoData) {
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(demoData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 
@@ -114,7 +114,6 @@ function createJoyTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-  codeStyling?: CodeStyling;
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
@@ -127,7 +126,6 @@ function createJoyTemplate(templateData: {
       content: CRA.getHtml({
         title: templateData.title,
         language: 'en',
-        codeStyling: templateData.codeStyling ?? 'MUI System',
       }),
     },
     [`index.${ext}`]: {
@@ -168,11 +166,13 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      devDeps: CSB_DEV_DEPENDENCIES,
     },
   );
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -182,9 +182,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(templateData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 
@@ -203,7 +200,6 @@ function createMaterialTemplate(templateData: {
   files: Record<string, string>;
   githubLocation: string;
   codeVariant: CodeVariant;
-  codeStyling?: CodeStyling;
 }) {
   const ext = getFileExtension(templateData.codeVariant);
   const { title, githubLocation: description } = templateData;
@@ -216,7 +212,6 @@ function createMaterialTemplate(templateData: {
       content: CRA.getHtml({
         title: templateData.title,
         language: 'en',
-        codeStyling: templateData.codeStyling ?? 'MUI System',
       }),
     },
     [`index.${ext}`]: {
@@ -257,11 +252,13 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
     },
     {
       commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      devDeps: CSB_DEV_DEPENDENCIES,
     },
   );
 
   files['package.json'] = {
     content: {
+      private: true,
       description,
       dependencies,
       devDependencies,
@@ -271,9 +268,6 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
         test: 'react-scripts test',
         eject: 'react-scripts eject',
       },
-      ...(templateData.codeVariant === 'TS' && {
-        main: 'index.tsx',
-      }),
     },
   };
 

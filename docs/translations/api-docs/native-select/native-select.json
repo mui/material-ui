@@ -10,7 +10,7 @@
       "description": "An <code>Input</code> element; does not have to be a material-ui specific <code>Input</code>."
     },
     "inputProps": {
-      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes\">Attributes</a> applied to the <code>select</code> element."
+      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select#attributes\">Attributes</a> applied to the <code>select</code> element."
     },
     "onChange": {
       "description": "Callback fired when a menu item is selected.",

@@ -65,6 +65,7 @@ export default function ColorModeIconDropdown(props) {
         slotProps={{
           paper: {
             variant: 'outlined',
+            elevation: 0,
             sx: {
               my: '4px',
             },

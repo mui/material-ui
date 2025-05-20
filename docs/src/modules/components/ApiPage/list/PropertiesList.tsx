@@ -27,7 +27,7 @@ const StyledApiItem = styled(ExpandableApiItem)(
       '& .prop-list-title': {
         ...theme.typography.body2,
         fontWeight: theme.typography.fontWeightSemiBold,
-        color: theme.palette.text.primary,
+        color: (theme.vars || theme).palette.text.primary,
         paddingRight: 5,
         whiteSpace: 'nowrap',
         margin: 0,
@@ -157,11 +157,13 @@ export default function PropertiesList(props: PropertiesListProps) {
               <React.Fragment>
                 {propName}
                 {isProPlan && (
+                  // eslint-disable-next-line material-ui/no-hardcoded-labels
                   <a href="/x/introduction/licensing/#pro-plan" aria-label="Pro plan">
                     <span className="plan-pro" />
                   </a>
                 )}
                 {isPremiumPlan && (
+                  // eslint-disable-next-line material-ui/no-hardcoded-labels
                   <a href="/x/introduction/licensing/#premium-plan" aria-label="Premium plan">
                     <span className="plan-premium" />
                   </a>

@@ -46,6 +46,21 @@ describe('<AvatarGroup />', () => {
     }),
   );
 
+  it('should render avatars with spacing of 0px when spacing is 0', () => {
+    const { container } = render(
+      <AvatarGroup spacing={0}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+
+    const avatarGroupRoot = container.firstChild;
+    const avatarGroupStyle = avatarGroupRoot.style.getPropertyValue('--AvatarGroup-spacing');
+
+    expect(avatarGroupStyle).to.equal('0px');
+  });
+
   it('should display all the avatars', () => {
     const { container } = render(
       <AvatarGroup max={3}>

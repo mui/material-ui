@@ -45,7 +45,7 @@ export default function ConsecutiveSnackbars() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        TransitionProps={{ onExited: handleExited }}
+        slotProps={{ transition: { onExited: handleExited } }}
         message={messageInfo ? messageInfo.message : undefined}
         action={
           <React.Fragment>

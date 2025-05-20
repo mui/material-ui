@@ -127,7 +127,6 @@ export const SliderRoot = styled('span', {
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
-  overridesResolver: (props, styles) => styles.rail,
 })({
   display: 'block',
   position: 'absolute',
@@ -165,7 +164,6 @@ export const SliderRail = styled('span', {
 export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
-  overridesResolver: (props, styles) => styles.track,
 })(
   memoTheme(({ theme }) => {
     return {
@@ -343,7 +341,6 @@ export const SliderThumb = styled('span', {
 const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
-  overridesResolver: (props, styles) => styles.valueLabel,
 })(
   memoTheme(({ theme }) => ({
     zIndex: 1,
@@ -442,7 +439,7 @@ SliderValueLabel.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  value: PropTypes.number.isRequired,
+  value: PropTypes.node,
 };
 
 export { SliderValueLabel };
@@ -493,7 +490,6 @@ export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
-  overridesResolver: (props, styles) => styles.markLabel,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
@@ -929,7 +925,7 @@ Slider.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -947,7 +943,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -966,7 +962,7 @@ Slider.propTypes /* remove-proptypes */ = {
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.number,
+        value: PropTypes.node,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
     ]),
@@ -1037,7 +1033,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * @param {Event} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
    * **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    * @param {number} activeThumb Index of the currently moved thumb.
    */
   onChange: PropTypes.func,
@@ -1045,7 +1041,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * Callback function that is fired when the `mouseup` is triggered.
    *
    * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
-   * @param {number | number[]} value The new value.
+   * @param {Value} value The new value.
    */
   onChangeCommitted: PropTypes.func,
   /**
@@ -1094,7 +1090,7 @@ Slider.propTypes /* remove-proptypes */ = {
         className: PropTypes.string,
         open: PropTypes.bool,
         style: PropTypes.object,
-        value: PropTypes.number,
+        value: PropTypes.node,
         valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
     ]),

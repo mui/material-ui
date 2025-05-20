@@ -8,7 +8,6 @@ import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
 import { styled } from '../zero-styled';
-
 import { useDefaultProps } from '../DefaultPropsProvider';
 
 const useUtilityClasses = (ownerState) => {
@@ -35,7 +34,6 @@ const PaginationRoot = styled('nav', {
 const PaginationUl = styled('ul', {
   name: 'MuiPagination',
   slot: 'Ul',
-  overridesResolver: (props, styles) => styles.ul,
 })({
   display: 'flex',
   flexWrap: 'wrap',

@@ -39,7 +39,6 @@ export default function MenuContent() {
           </ListItem>
         ))}
       </List>
-
       <List dense>
         {secondaryListItems.map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: 'block' }}>

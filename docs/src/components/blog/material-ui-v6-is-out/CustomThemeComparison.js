@@ -83,6 +83,7 @@ export default function CustomThemeComparison() {
         <Box
           component="img"
           src="/static/screenshots/material-ui/getting-started/templates/dashboard.jpg"
+          loading="lazy"
           sx={(theme) => ({
             userSelect: 'none',
             pointerEvents: 'none',
