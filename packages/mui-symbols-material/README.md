@@ -28,7 +28,7 @@ The Symbols package is updated via a script that reads through Google's Material
 To update the `@mui/symbols-material` package with the latest Material Icons set, run the following commands:
 
 1. In the "mui-symbols-material" directory, run `pnpm src:download`
-2. In the "mui-symbols-material" directory, run `pnpm src:icons`
+2. In the "mui-symbols-material" directory, run `pnpm src:symbols`
 3. In the root of the Material UI repo, run `pnpm docs:mdicons:synonyms`
 4. If the number of icons changes significantly, edit the icons/icons.md and material-icons/material-icons.md under docs/data/material/components and update the numbers.
 
