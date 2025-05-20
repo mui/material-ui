@@ -42,7 +42,7 @@ export default function RootLayout() {
 2. Configure the layer order at the top of a CSS file:
 
 ```css title="src/app/globals.css"
-@layer mui, other-layer;
+@layer mui, your-layers;
 ```
 
 ### Next.js Pages Router
@@ -78,7 +78,7 @@ export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer mui, other-layer;" />
+      <GlobalStyles styles="@layer mui, your-layers;" />
       <Component {...pageProps} />
     </AppCacheProvider>
   );
@@ -99,7 +99,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer mui, other-layer;" />
+      <GlobalStyles styles="@layer mui, your-layers;" />
       {/* Your app */}
     </StyledEngineProvider>
   </React.StrictMode>,
@@ -155,7 +155,7 @@ export default function RootLayout() {
 Update the layer order in the main CSS file:
 
 ```css title="src/app/globals.css"
-@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, other-layer;
+@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, your-layers;
 ```
 
 ### Next.js Pages Router
@@ -165,7 +165,7 @@ export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, other-layer" />
+      <GlobalStyles styles="@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, your-layers" />
       <Themer>
         <Component {...pageProps} />
       </Themer>
@@ -180,7 +180,7 @@ export default function MyApp(props: AppProps) {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, other-layer" />
+      <GlobalStyles styles="@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, your-layers" />
       <Themer>{/* Your app */}</Themer>
     </StyledEngineProvider>
   </React.StrictMode>,
