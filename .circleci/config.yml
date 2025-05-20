@@ -273,35 +273,15 @@ jobs:
       - run:
           name: Tests TypeScript definitions
           command: |
-            # ignore build failures
-            # it's expected that typescript@next fails since the lines of the errors
-            # change frequently. This build is monitored regardless of its status
-            set +e
             pnpm typescript:ci
-            exit 0
-      - restore_cache:
-          name: Restore generated declaration files
-          keys:
-            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
-            # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-next
       - run:
-          name: Diff declaration files
+          name: Build declaration files
           command: |
-            git add -f packages/mui-material/build || echo '/core declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:types
-            git --no-pager diff
+            pnpm -r build:stable && pnpm -r build:types
       - run:
           name: Log defect declaration files
           command: |
-            # ignore build failures
-            # Fixing these takes some effort that isn't viable to merge in a single PR.
-            # We'll simply monitor them for now.
-            set +e
             node scripts/testBuiltTypes.mjs
-            exit 0
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
