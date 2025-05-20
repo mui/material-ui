@@ -1,0 +1,30 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "backIconButtonProps": {
+      "description": "This prop is an alias for <code>slotProps.previousButton</code> and will be overriden by it if both are used."
+    },
+    "classes": { "description": "Override or extend the styles applied to the component." },
+    "disabled": { "description": "If <code>true</code>, the component is disabled." },
+    "getItemAriaLabel": {
+      "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
+      "typeDescriptions": {
+        "type": "The link or button type to format (&#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39;)."
+      }
+    },
+    "nextIconButtonProps": {
+      "description": "This prop is an alias for <code>slotProps.nextButton</code> and will be overriden by it if both are used."
+    }
+  },
+  "classDescriptions": {},
+  "slotDescriptions": {
+    "firstButton": "The component that renders the first button.",
+    "firstButtonIcon": "The component that renders the first button icon.",
+    "lastButton": "The component that renders the last button.",
+    "lastButtonIcon": "The component that renders the last button icon.",
+    "nextButton": "The component that renders the next button.",
+    "nextButtonIcon": "The component that renders the next button icon.",
+    "previousButton": "The component that renders the previous button.",
+    "previousButtonIcon": "The component that renders the previous button icon."
+  }
+}
