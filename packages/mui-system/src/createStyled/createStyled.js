@@ -73,7 +73,9 @@ function processStyle(props, style, layerName) {
   }
 
   if (resolvedStyle?.isProcessed) {
-    return resolvedStyle.style;
+    return layerName
+      ? shallowLayer(serializeStyles(resolvedStyle.style), layerName)
+      : resolvedStyle.style;
   }
 
   return layerName ? shallowLayer(serializeStyles(resolvedStyle), layerName) : resolvedStyle;
