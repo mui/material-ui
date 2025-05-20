@@ -2,18 +2,38 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRtl } from '@mui/system/RtlProvider';
+import composeClasses from '@mui/utils/composeClasses';
+import clsx from 'clsx';
+import { styled } from '../zero-styled';
+import { useDefaultProps } from '../DefaultPropsProvider';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import IconButton from '../IconButton';
 import LastPageIconDefault from '../internal/svg-icons/LastPage';
 import FirstPageIconDefault from '../internal/svg-icons/FirstPage';
+import { getTablePaginationActionsUtilityClass } from './tablePaginationActionsClasses';
 
-/**
- * @ignore - internal component.
- */
-const TablePaginationActions = React.forwardRef(function TablePaginationActions(props, ref) {
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTablePaginationActionsUtilityClass, classes);
+};
+
+const TablePaginationActionsRoot = styled('div', {
+  name: 'MuiTablePaginationActions',
+  slot: 'Root',
+})({});
+
+const TablePaginationActions = React.forwardRef(function TablePaginationActions(inProps, ref) {
+  const props = useDefaultProps({ props: inProps, name: 'MuiTablePaginationActions' });
+
   const {
     backIconButtonProps,
+    className,
     count,
     disabled = false,
     getItemAriaLabel,
@@ -29,6 +49,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   } = props;
 
   const isRtl = useRtl();
+
+  const ownerState = props;
+
+  const classes = useUtilityClasses(ownerState);
 
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);
@@ -66,7 +90,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const lastButtonSlotProps = isRtl ? slotProps.firstButton : slotProps.lastButton;
 
   return (
-    <div ref={ref} {...other}>
+    <TablePaginationActionsRoot ref={ref} className={clsx(classes.root, className)} {...other}>
       {showFirstButton && (
         <FirstButtonSlot
           onClick={handleFirstPageButtonClick}
@@ -125,17 +149,34 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           )}
         </LastButtonSlot>
       )}
-    </div>
+    </TablePaginationActionsRoot>
   );
 });
 
-TablePaginationActions.propTypes = {
+TablePaginationActions.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
   /**
-   * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) element.
+   * This prop is an alias for `slotProps.previousButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.previousButton` instead.
    */
   backIconButtonProps: PropTypes.object,
   /**
-   * The total number of rows.
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * @ignore
    */
   count: PropTypes.number.isRequired,
   /**
@@ -145,44 +186,40 @@ TablePaginationActions.propTypes = {
   disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   *
-   * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
-   * @param {number} page The page number to format.
+   * For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
+   * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    */
   getItemAriaLabel: PropTypes.func.isRequired,
   /**
-   * Props applied to the next arrow [`IconButton`](/material-ui/api/icon-button/) element.
+   * This prop is an alias for `slotProps.nextButton` and will be overriden by it if both are used.
+   * @deprecated Use `slotProps.nextButton` instead.
    */
   nextIconButtonProps: PropTypes.object,
   /**
-   * Callback fired when the page is changed.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {number} page The page selected.
+   * @ignore
    */
   onPageChange: PropTypes.func.isRequired,
   /**
-   * The zero-based index of the current page.
+   * @ignore
    */
   page: PropTypes.number.isRequired,
   /**
-   * The number of rows per page.
+   * @ignore
    */
   rowsPerPage: PropTypes.number.isRequired,
   /**
-   * If `true`, show the first-page button.
+   * @ignore
    */
   showFirstButton: PropTypes.bool.isRequired,
   /**
-   * If `true`, show the last-page button.
+   * @ignore
    */
   showLastButton: PropTypes.bool.isRequired,
   /**
-   * The props used for each slot inside the TablePaginationActions.
-   * @default {}
+   * @ignore
    */
   slotProps: PropTypes.shape({
     firstButton: PropTypes.object,
@@ -195,9 +232,7 @@ TablePaginationActions.propTypes = {
     previousButtonIcon: PropTypes.object,
   }),
   /**
-   * The components used for each slot inside the TablePaginationActions.
-   * Either a string to use a HTML element or a component.
-   * @default {}
+   * @ignore
    */
   slots: PropTypes.shape({
     firstButton: PropTypes.elementType,
