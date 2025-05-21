@@ -1,5 +1,6 @@
 /* eslint-disable material-ui/no-empty-box */
 import * as React from 'react';
+import MuiPaper from '@mui/material/Paper';
 import { styled, css, ThemeProvider, createTheme } from '@mui/material/styles';
 
 const Box = styled('div')(({ theme }) => ({
@@ -236,6 +237,43 @@ const DateTimePickerToolbarTimeContainer = styled('div', {
         toolbarDirection === 'rtl',
       style: {
         flexDirection: 'column-reverse',
+      },
+    },
+  ],
+});
+
+interface PickerPopperOwnerState extends PickerOwnerState {
+  popperPlacement:
+    | 'top'
+    | 'bottom'
+    | 'left'
+    | 'right'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left-start'
+    | 'left-end'
+    | 'right-start'
+    | 'right-end'
+    | 'auto'
+    | 'auto-start'
+    | 'auto-end';
+}
+
+const PickerPopperPaper = styled(MuiPaper, {
+  name: 'MuiPickerPopper',
+  slot: 'Paper',
+})<{
+  ownerState: PickerPopperOwnerState;
+}>({
+  outline: 0,
+  transformOrigin: 'top center',
+  variants: [
+    {
+      props: ({ popperPlacement }) => ['top', 'top-start', 'top-end'].includes(popperPlacement),
+      style: {
+        transformOrigin: 'bottom center',
       },
     },
   ],
