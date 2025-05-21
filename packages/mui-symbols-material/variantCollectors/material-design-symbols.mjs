@@ -28,6 +28,16 @@ const familyDirMap = {
   materialsymbolsrounded: 'rounded',
   materialsymbolssharp: 'sharp',
 };
+const familyMap = {
+  outlined: 'Material Symbols Outlined',
+  rounded: 'Material Symbols Rounded',
+  sharp: 'Material Symbols Sharp',
+};
+const classNameMap = {
+  outlined: 'material-symbols-outlined',
+  rounded: 'material-symbols-rounded',
+  sharp: 'material-symbols-sharp',
+};
 
 function rewriteName(fileName) {
   fileName = fileName.replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 || p3).toUpperCase());
@@ -94,7 +104,7 @@ function stripDir(path, dir) {
   return path.startsWith(dir) ? path.slice(dir.length) : path;
 }
 
-function parseVariantPath(path, dir) {
+function parseVariationPath(path, dir) {
   path = stripDir(path, dir);
 
   if (path.startsWith('/')) {
@@ -122,25 +132,25 @@ function parseVariantPath(path, dir) {
   }
 
   const before = basename.slice(0, lastUnd);
-  const variantMatch = before.match(/(wght\d+)?(gradN?\d+)?(fill1)?$/);
-  const variant = variantMatch ? variantMatch[0] : '';
+  const hasVariations = before.match(/(wght\d+)?(gradN?\d+)?(fill1)?$/);
+  const variations = hasVariations ? hasVariations[0] : '';
 
   let weight = 400;
   let grade = 0;
   let fill = false;
 
-  if (variant) {
-    const w = variant.match(/wght(\d+)/);
+  if (variations) {
+    const w = variations.match(/wght(\d+)/);
     if (w) {
       weight = Number(w[1]);
     }
 
-    const g = variant.match(/grad(N?)(\d+)/);
+    const g = variations.match(/grad(N?)(\d+)/);
     if (g) {
       grade = (g[1] === 'N' ? -1 : 1) * Number(g[2]);
     }
 
-    fill = variant.includes('fill1');
+    fill = variations.includes('fill1');
   }
 
   let emphasis = '';
@@ -151,30 +161,57 @@ function parseVariantPath(path, dir) {
   }
 
   const fileName = `symbols${theme === 'outlined' ? '' : `-${theme}`}${weight === 400 ? '' : `-${weight}`}/${name}.js`;
-  const variantName = `${opticalSize}px${emphasis}${fill ? '-filled' : ''}`;
+  const fontFileName = `symbols-font${theme === 'outlined' ? '' : `-${theme}`}${weight === 400 ? '' : `-${weight}`}/${name}.js`;
+  const fontIconName = rawName;
+  const family = familyMap[theme];
+  const className = classNameMap[theme];
+  const staticVariations = `{ wght: ${weight} }`;
+  const variationName = `${opticalSize}px${emphasis}${fill ? '-filled' : ''}`;
 
-  return { fileName, variantName, name, theme, weight, emphasis, fill, opticalSize };
+  return {
+    fileName,
+    fontFileName,
+    fontIconName,
+    variationName,
+    family,
+    className,
+    staticVariations,
+    name,
+    theme,
+    weight,
+    emphasis,
+    fill,
+    opticalSize,
+  };
 }
 
-function collectVariants(paths, dir) {
-  const variants = {};
+function collectVariations(paths, dir) {
+  const variations = {};
 
   paths.forEach((path) => {
-    const variant = parseVariantPath(path, dir);
+    const variation = parseVariationPath(path, dir);
 
-    if (!variants[variant.fileName]) {
-      variants[variant.fileName] = {};
+    if (!variations[variation.fileName]) {
+      variations[variation.fileName] = {
+        componentName: variation.name,
+        fontIconName: variation.fontIconName,
+        fontFileName: variation.fontFileName,
+        family: variation.family,
+        className: variation.className,
+        staticVariations: variation.staticVariations,
+        svgPaths: {},
+      };
     }
 
-    variants[variant.fileName][variant.variantName] = path;
+    variations[variation.fileName].svgPaths[variation.variationName] = path;
   });
 
   const outputs = [];
-  Object.keys(variants).forEach((fileName) => {
-    outputs.push({ fileName, variants: variants[fileName] });
+  Object.keys(variations).forEach((fileName) => {
+    outputs.push({ fileName, variations: variations[fileName] });
   });
 
   return outputs;
 }
 
-export default collectVariants;
+export default collectVariations;

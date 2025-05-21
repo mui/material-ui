@@ -35,17 +35,31 @@ export function getComponentName(destPath) {
   return parts.join('');
 }
 
-async function worker({ progress, outputFile, options, template }) {
+async function worker({ progress, outputFile, options, svgTemplate, stringTemplate }) {
   progress();
 
-  const { fileName, variants } = outputFile;
+  const { fileName, variations } = outputFile;
+  const {
+    componentName,
+    fontIconName,
+    fontFileName,
+    family,
+    className,
+    staticVariations,
+    svgPaths,
+  } = variations;
 
   const outputFileDir = path.dirname(path.join(options.outputDir, fileName));
   await fse.ensureDir(outputFileDir);
 
+  if (fontFileName) {
+    const outputFontFileDir = path.dirname(path.join(options.outputDir, fontFileName));
+    await fse.ensureDir(outputFontFileDir);
+  }
+
   const SVGs = await Promise.all(
-    Object.keys(variants).map(async (variant) => {
-      const svgPath = variants[variant];
+    Object.keys(svgPaths).map(async (variationName) => {
+      const svgPath = svgPaths[variationName];
       const SVG = await fse.readFile(svgPath, { encoding: 'utf8' });
       const data = SVG.replace(/<svg\b[^>]*><path d="/i, '') // strip opening tag
         .replace(/"\/><\/svg>/i, '') // strip closing tag
@@ -54,26 +68,34 @@ async function worker({ progress, outputFile, options, template }) {
       // we don't need to clean the SVGs singe we assume that Google has done a good job at this already
       // cleaning may result in some kind of distortion considering they have optimized for perfect pixel placement
 
-      return { variant, data };
+      return { variationName, data };
     }),
   );
 
-  let variantsData = '{\n';
-  SVGs.forEach((svg) => {
-    const { variant, data } = svg;
-    variantsData += `    '${variant}': '${data}',\n`;
+  let variationsObject = '{\n';
+  SVGs.forEach(({ variationName, data }) => {
+    variationsObject += `    '${variationName}': '${data}',\n`;
   });
-  variantsData += '  }';
+  variationsObject += '  }';
 
-  const componentName = getComponentName(fileName.split(path.sep).pop());
-
-  const fileString = Mustache.render(template, {
-    variantsData,
+  // create the svg file
+  const SVGVariableIcon = Mustache.render(svgTemplate, {
+    variationsObject,
     componentName,
   });
 
-  const absDestPath = path.join(options.outputDir, fileName);
-  await fse.writeFile(absDestPath, fileString);
+  await fse.writeFile(path.join(options.outputDir, fileName), SVGVariableIcon);
+
+  // create the icon font version
+  if (fontFileName) {
+    const StringVariableIcon = Mustache.render(stringTemplate, {
+      fontIconName,
+      componentName,
+      details: `${family ? `'${family}'` : 'undefined'}, ${staticVariations ? `${staticVariations}` : 'undefined'}, ${className ? `'${className}'` : 'undefined'}`,
+    });
+
+    await fse.writeFile(path.join(options.outputDir, fontFileName), StringVariableIcon);
+  }
 }
 
 export async function handler(options) {
@@ -96,9 +118,12 @@ export async function handler(options) {
     throw new Error('variantCollector is required');
   }
 
-  const [paths, template] = await Promise.all([
+  const [paths, svgTemplate, stringTemplate] = await Promise.all([
     globAsync(normalizePath(path.join(options.svgDir, options.glob))),
     fse.readFile(path.join(currentDirectory, 'templateVariableIconFromSvg.js'), {
+      encoding: 'utf8',
+    }),
+    fse.readFile(path.join(currentDirectory, 'templateVariableIconFromString.js'), {
       encoding: 'utf8',
     }),
   ]);
@@ -111,7 +136,8 @@ export async function handler(options) {
         progress,
         outputFile,
         options,
-        template,
+        svgTemplate,
+        stringTemplate,
       }),
     { concurrency: 8 },
   );
