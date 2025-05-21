@@ -110,9 +110,9 @@ export type Interpolation<Props> =
               ? Partial<Omit<Props, 'ownerState'> & O>
               : Partial<Props>)
           | ((
-              props: Partial<Props> & {
-                ownerState: Partial<Props>;
-              },
+              props: Props extends { ownerState: infer O }
+                ? Partial<Omit<Props, 'ownerState'> & O> & { ownerState: Partial<Props> }
+                : Partial<Props>,
             ) => boolean);
         style:
           | CSSObject

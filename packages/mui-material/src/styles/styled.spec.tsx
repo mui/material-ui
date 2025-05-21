@@ -183,3 +183,60 @@ function variantsAPI() {
     ],
   });
 }
+
+type PickerOrientation = 'portrait' | 'landscape';
+
+type PickerVariant = 'mobile' | 'desktop';
+
+interface PickerOwnerState {
+  isPickerValueEmpty: boolean;
+  isPickerOpen: boolean;
+  isPickerDisabled: boolean;
+  isPickerReadOnly: boolean;
+  pickerVariant: PickerVariant;
+  pickerOrientation: PickerOrientation;
+}
+
+interface PickerToolbarOwnerState extends PickerOwnerState {
+  toolbarDirection: 'ltr' | 'rtl';
+}
+
+const DateTimePickerToolbarTimeContainer = styled('div', {
+  name: 'MuiDateTimePickerToolbar',
+  slot: 'TimeContainer',
+})<{ ownerState: PickerToolbarOwnerState; toolbarVariant: PickerVariant }>({
+  display: 'flex',
+  flexDirection: 'row',
+  variants: [
+    {
+      props: { toolbarDirection: 'rtl' },
+      style: {
+        flexDirection: 'row-reverse',
+      },
+    },
+    {
+      props: { toolbarVariant: 'desktop', pickerOrientation: 'portrait' },
+      style: {
+        gap: 9,
+        marginRight: 4,
+        alignSelf: 'flex-end',
+      },
+    },
+    {
+      props: ({ pickerOrientation, toolbarVariant }) =>
+        pickerOrientation === 'landscape' && toolbarVariant !== 'desktop',
+      style: {
+        flexDirection: 'column',
+      },
+    },
+    {
+      props: ({ pickerOrientation, toolbarVariant, toolbarDirection }) =>
+        pickerOrientation === 'landscape' &&
+        toolbarVariant !== 'desktop' &&
+        toolbarDirection === 'rtl',
+      style: {
+        flexDirection: 'column-reverse',
+      },
+    },
+  ],
+});
