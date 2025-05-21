@@ -39,7 +39,7 @@ export default function HorizontalSpacingToggleButton() {
   };
 
   return (
-    <StyledToggleButtonGroup
+    <ToggleButtonGroup
       value={alignment}
       exclusive
       onChange={handleAlignment}
@@ -57,6 +57,6 @@ export default function HorizontalSpacingToggleButton() {
       <ToggleButton value="justify" aria-label="justified" disabled>
         <FormatAlignJustifyIcon />
       </ToggleButton>
-    </StyledToggleButtonGroup>
+    </ToggleButtonGroup>
   );
 }
