@@ -73,7 +73,6 @@ export interface VariableIconTypeMap<
  *
  * Demos:
  *
- * - [Variable Icons](https://mui.com/material-ui/variable-icons/)
  * - [Material Symbols](https://mui.com/material-ui/material-symbols/)
  *
  * API:

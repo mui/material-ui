@@ -399,6 +399,9 @@ export * from './usePagination';
 export { default as useScrollTrigger } from './useScrollTrigger';
 export * from './useScrollTrigger';
 
+export { default as VariableIcon } from './VariableIcon';
+export * from './VariableIcon';
+
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
 

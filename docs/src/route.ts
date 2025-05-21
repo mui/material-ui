@@ -13,6 +13,7 @@ const ROUTES = {
   // Material UI doc pages
   materialDocs: '/material-ui/getting-started/',
   materialIcons: '/material-ui/material-icons/',
+  materialSymbols: '/material-ui/material-symbols/',
   materialAllComponents: '/material-ui/all-components/',
   freeTemplates: '/material-ui/getting-started/templates/',
   components: '/material-ui/getting-started/supported-components/',

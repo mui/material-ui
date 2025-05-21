@@ -406,6 +406,9 @@ export * from './Zoom';
 export { default as useAutocomplete } from './useAutocomplete';
 export * from './useAutocomplete';
 
+export { default as VariableIcon } from './VariableIcon';
+export * from './VariableIcon';
+
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 

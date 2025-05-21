@@ -1,0 +1,117 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'action'<br>&#124;&nbsp;'disabled'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'inherit'"
+    },
+    "component": { "type": { "name": "elementType" } },
+    "emphasis": {
+      "type": {
+        "name": "enum",
+        "description": "'heavy'<br>&#124;&nbsp;'light'<br>&#124;&nbsp;'regular'"
+      }
+    },
+    "filled": { "type": { "name": "bool" } },
+    "fontSize": {
+      "type": {
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'larger'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
+      "default": "'medium'"
+    },
+    "sx": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
+      },
+      "additionalInfo": { "sx": true }
+    },
+    "title": { "type": { "name": "string" } }
+  },
+  "name": "VariableIcon",
+  "imports": [
+    "import VariableIcon from '@mui/material/VariableIcon';",
+    "import { VariableIcon } from '@mui/material';"
+  ],
+  "classes": [
+    {
+      "key": "colorAction",
+      "className": "MuiVariableIcon-colorAction",
+      "description": "Styles applied to the root element if `color=\"action\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorDisabled",
+      "className": "MuiVariableIcon-colorDisabled",
+      "description": "Styles applied to the root element if `color=\"disabled\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorError",
+      "className": "MuiVariableIcon-colorError",
+      "description": "Styles applied to the root element if `color=\"error\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorPrimary",
+      "className": "MuiVariableIcon-colorPrimary",
+      "description": "Styles applied to the root element if `color=\"primary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "colorSecondary",
+      "className": "MuiVariableIcon-colorSecondary",
+      "description": "Styles applied to the root element if `color=\"secondary\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeInherit",
+      "className": "MuiVariableIcon-fontSizeInherit",
+      "description": "Styles applied to the root element if `fontSize=\"inherit\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeLarge",
+      "className": "MuiVariableIcon-fontSizeLarge",
+      "description": "Styles applied to the root element if `fontSize=\"large\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeLarger",
+      "className": "MuiVariableIcon-fontSizeLarger",
+      "description": "Styles applied to the root element if `fontSize=\"larger\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeMedium",
+      "className": "MuiVariableIcon-fontSizeMedium",
+      "description": "Styles applied to the root element if `fontSize=\"medium\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "fontSizeSmall",
+      "className": "MuiVariableIcon-fontSizeSmall",
+      "description": "Styles applied to the root element if `fontSize=\"small\"`.",
+      "isGlobal": false
+    },
+    {
+      "key": "root",
+      "className": "MuiVariableIcon-root",
+      "description": "Styles applied to the root element.",
+      "isGlobal": false
+    }
+  ],
+  "spread": true,
+  "themeDefaultProps": true,
+  "muiName": "MuiVariableIcon",
+  "forwardsRefTo": "SVGSVGElement",
+  "filename": "/packages/mui-material/src/VariableIcon/VariableIcon.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/material-ui/material-symbols/\">Material Symbols</a></li></ul>",
+  "cssComponent": false
+}

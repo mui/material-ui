@@ -57,6 +57,11 @@ const pages: MuiPage[] = [
           { pathname: '/material-ui/react-divider' },
           { pathname: '/material-ui/icons' },
           { pathname: '/material-ui/material-icons', title: 'Material Icons' },
+          {
+            pathname: '/material-ui/material-symbols',
+            title: 'Material Symbols',
+            newFeature: true,
+          },
           { pathname: '/material-ui/react-list' },
           { pathname: '/material-ui/react-table' },
           { pathname: '/material-ui/react-tooltip' },
