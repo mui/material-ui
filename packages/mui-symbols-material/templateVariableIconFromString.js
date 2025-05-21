@@ -1,4 +1,4 @@
 'use client';
-import createVariableIconFromString from '../utils/createVariableIconFromString';
+import createIcon from './utils/createIcon';
 
-export default createVariableIconFromString('{{fontIconName}}', '{{componentName}}', {{{details}}});
+export default createIcon('{{fontIconName}}', '{{componentName}}', {{{details}}});

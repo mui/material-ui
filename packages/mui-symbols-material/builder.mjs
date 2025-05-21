@@ -5,7 +5,6 @@ import { rimrafSync } from 'rimraf';
 import Mustache from 'mustache';
 import globAsync from 'fast-glob';
 import { fileURLToPath } from 'url';
-import intersection from 'lodash/intersection.js';
 import { Queue } from '@mui/internal-waterfall';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
@@ -145,27 +144,39 @@ export async function handler(options) {
   queue.push(outputFiles);
   await queue.wait({ empty: true });
 
-  await fse.ensureDir(path.join(currentDirectory, '/legacy'));
-  let legacyFiles = await globAsync(normalizePath(path.join(currentDirectory, '/legacy', '*.js')));
-  legacyFiles = legacyFiles.map((file) => path.basename(file));
-  let generatedFiles = await globAsync(normalizePath(path.join(options.outputDir, '*.js')));
-  generatedFiles = generatedFiles.map((file) => path.basename(file));
+  // copy the createIcon shortcut
+  const directories = await fse.readdir(options.outputDir, { withFileTypes: true });
+  const dirs = directories.filter((dir) => dir.isDirectory()).map((dir) => dir.name);
+  await Promise.all(
+    dirs.map((dir) =>
+      (async () => {
+        // copy the correct createIcon shortcut to /utils/createIcon.js
+        const isFontPackage = dir.startsWith('symbols-font');
+        const fontShortcut = path.join(
+          currentDirectory,
+          isFontPackage ? 'createVariableIconFromString.js' : 'createVariableIconFromSvg.js',
+        );
+        const fontShortcutOutput = path.join(options.outputDir, dir, 'utils', 'createIcon.js');
+        await fse.copy(fontShortcut, fontShortcutOutput, { overwrite: true });
 
-  const duplicatedIconsLegacy = intersection(legacyFiles, generatedFiles);
-  if (duplicatedIconsLegacy.length > 0) {
-    throw new Error(
-      `Duplicated icons in legacy folder. Either \n` +
-        `1. Remove these from the /legacy folder\n` +
-        `2. Add them to the blacklist to keep the legacy version\n` +
-        `The following icons are duplicated: \n${duplicatedIconsLegacy.join('\n')}`,
-    );
-  }
-
-  await fse.copy(path.join(currentDirectory, '/legacy'), options.outputDir);
-  await fse.ensureDir(path.join(currentDirectory, '/custom'));
-  await fse.copy(path.join(currentDirectory, '/custom'), options.outputDir);
-
-  // TOOD: generate barrel files
+        // generate barrel files for the font packages
+        if (isFontPackage) {
+          // list all files in the directory
+          const files = await fse.readdir(path.join(options.outputDir, dir), {
+            withFileTypes: true,
+          });
+          const barrelFile = path.join(options.outputDir, dir, 'index.js');
+          const barrelFileContent = files
+            .filter(
+              (file) => file.isFile() && file.name.endsWith('.js') && file.name !== 'index.js',
+            )
+            .map(({ name }) => `export { default as ${name.replace('.js', '')} } from './${name}';`)
+            .join('\n');
+          await fse.writeFile(barrelFile, `${barrelFileContent}\n`, { encoding: 'utf8' });
+        }
+      })(),
+    ),
+  );
 }
 
 const nodePath = path.resolve(process.argv[1]);

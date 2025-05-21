@@ -20,6 +20,8 @@
 /packages/mui-codemod/lib
 /packages/mui-envinfo/*.tgz
 /packages/mui-icons-material/src/*.js
+/packages/mui-symbols-material/src
+/packages/mui-symbols-material/packages/symbols-inline*
 /test/bundling/fixtures/*/yarn.lock
 /test/bundling/fixtures/*/pnpm-lock.yaml
 # created by test/bundling/scripts/createFixture
@@ -47,4 +49,4 @@ packed
 
 # temp for clean diff in dev
 packages/mui-symbols-material/material-symbols
-packages/mui-symbols-material/lib
+packages/mui-symbols-material/packages

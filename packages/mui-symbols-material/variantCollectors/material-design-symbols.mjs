@@ -173,7 +173,7 @@ function parseVariationPath(path, dir) {
     emphasis = '-heavy';
   }
 
-  const fileName = `symbols${theme === 'outlined' ? '' : `-${theme}`}${weight === 400 ? '' : `-${weight}`}/${name}.js`;
+  const fileName = `symbols-inline${theme === 'outlined' ? '' : `-${theme}`}${weight === 400 ? '' : `-${weight}`}/${name}.js`;
   const fontFileName = `symbols-font${theme === 'outlined' ? '' : `-${theme}`}${weight === 400 ? '' : `-${weight}`}/${name}.js`;
   const fontIconName = rawName;
   const family = familyMap[theme];

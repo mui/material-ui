@@ -1,8 +1,9 @@
 {
   "name": "@mui/symbols-material",
+  "private": true,
   "version": "7.1.0",
   "author": "MUI Team",
-  "description": "Material Design symbols distributed as SVG React components.",
+  "description": "Material Design symbols packager for MUI.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -28,18 +29,20 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
+    "build": "shx cp -r packages/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
     "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
-    "build:lib": "pnpm build:node && pnpm build:stable",
-    "build:lib:clean": "rimraf lib/ && pnpm build:lib",
-    "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
-    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib --skipEsmPkg",
+    "build:package": "pnpm build:node && pnpm build:stable && pnpm build:copy-esm && pnpm build:generate-package-json",
+    "build:package:clean": "rimraf packages/ && pnpm build:package",
+    "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir packages",
+    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir packages --skipEsmPkg",
+    "build:copy-esm": "node ./scripts/copy-esm-files.mjs",
+    "build:generate-package-json": "node ./scripts/generate-package-json.mjs",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
-    "src:symbols": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-symbols --variant-collector ./variantCollectors/material-design-symbols.mjs && pnpm build:lib:clean",
+    "src:symbols": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-symbols --variant-collector ./variantCollectors/material-design-symbols.mjs && pnpm build:package:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-symbols-material/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"

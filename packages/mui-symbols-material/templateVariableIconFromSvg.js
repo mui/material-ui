@@ -1,6 +1,6 @@
 "use client";
-import createVariableIconFromSvg from '../utils/createVariableIconFromSvg';
+import createIcon from './utils/createIcon';
 
-export default createVariableIconFromSvg(
+export default createIcon(
   {{{variationsObject}}}
 , '{{componentName}}');
