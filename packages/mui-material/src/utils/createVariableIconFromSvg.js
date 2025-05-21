@@ -63,7 +63,7 @@ function propsToVariantName(props, theme) {
 /**
  * Private module reserved for @mui packages.
  */
-export default function createVariableIconFromSvgPath(variants, displayName, viewBox) {
+export default function createVariableIconFromSvg(variants, displayName, viewBox) {
   function Component(props, ref) {
     const theme = useTheme();
     const fontVariants = fontSizes(theme);
