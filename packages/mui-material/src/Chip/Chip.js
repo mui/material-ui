@@ -518,6 +518,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       ...other,
     },
     ownerState,
+    // The `component` prop is preserved because `Chip` relies on it for internal logic. If `shouldForwardComponentProp` were `false`, `useSlot` would remove the `component` prop, potentially breaking the component's behavior.
     shouldForwardComponentProp: true,
     ref: handleRef,
     className: clsx(classes.root, className),
