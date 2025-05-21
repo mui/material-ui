@@ -20,7 +20,7 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
-function shallowLayer(serialized, layerName, suffix) {
+function shallowLayer(serialized, layerName) {
   if (
     layerName &&
     serialized &&
@@ -28,7 +28,7 @@ function shallowLayer(serialized, layerName, suffix) {
     serialized.styles &&
     !serialized.styles.startsWith('@layer') // only add the layer if it is not already there.
   ) {
-    serialized.styles = `@layer ${layerName}${suffix ? `-${suffix}` : ''}{${String(serialized.styles)}}`;
+    serialized.styles = `@layer ${layerName}{${String(serialized.styles)}}`;
   }
   return serialized;
 }
@@ -104,14 +104,12 @@ function processStyleVariants(props, variants, results = [], layerName = undefin
       mergedState ??= { ...props, ...props.ownerState, ownerState: props.ownerState };
       results.push(
         layerName
-          ? shallowLayer(serializeStyles(variant.style(mergedState)), layerName, 'variants')
+          ? shallowLayer(serializeStyles(variant.style(mergedState)), layerName)
           : variant.style(mergedState),
       );
     } else {
       results.push(
-        layerName
-          ? shallowLayer(serializeStyles(variant.style), layerName, 'variants')
-          : variant.style,
+        layerName ? shallowLayer(serializeStyles(variant.style), layerName) : variant.style,
       );
     }
   }
