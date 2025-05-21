@@ -73,7 +73,7 @@ interface HandlerArgv {
   watch?: boolean;
 }
 
-async function main(argv: HandlerArgv) {
+async function buildOnce(argv: HandlerArgv) {
   const packageRoot = process.cwd();
   const tsconfigPath = path.join(packageRoot, 'tsconfig.build.json');
   const tsconfigExists = await fs.access(tsconfigPath).then(
@@ -115,6 +115,41 @@ async function main(argv: HandlerArgv) {
   await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
 }
 
+async function main(argv: HandlerArgv) {
+  if (argv.watch) {
+    // eslint-disable-next-line no-console
+    console.log('[watch] Starting in watch mode...');
+
+    let isBuilding = false;
+    const triggerBuild = async () => {
+      // eslint-disable-next-line curly
+      if (isBuilding) return;
+      isBuilding = true;
+      try {
+        await buildOnce(argv);
+        // eslint-disable-next-line no-console
+        console.log('[watch] Build complete');
+      } catch (err) {
+        console.error('[watch] Build failed:', err);
+      } finally {
+        isBuilding = false;
+      }
+    };
+
+    await triggerBuild();
+
+    chokidar
+      .watch(['src/**/*.ts', 'src/**/*.d.ts'], { ignoreInitial: true })
+      .on('all', async (event, tmpPath) => {
+        // eslint-disable-next-line no-console
+        console.log(`[watch] ${event}: ${tmpPath}`);
+        await triggerBuild();
+      });
+  } else {
+    await buildOnce(argv);
+  }
+}
+
 yargs(process.argv.slice(2))
   .command<HandlerArgv>(
     '$0',
@@ -144,41 +179,7 @@ yargs(process.argv.slice(2))
         });
     },
     async (argv) => {
-      if (argv.watch) {
-        // eslint-disable-next-line no-console
-        console.log('[watch] Starting in watch mode...');
-
-        let isBuilding = false;
-        const build = async () => {
-          // eslint-disable-next-line curly
-          if (isBuilding) return;
-          isBuilding = true;
-          try {
-            await main(argv);
-            // eslint-disable-next-line no-console
-            console.log('[watch] Build complete');
-          } catch (err) {
-            console.error('[watch] Build failed:', err);
-          } finally {
-            isBuilding = false;
-          }
-        };
-
-        await build();
-
-        chokidar
-          .watch(['src/**/*.ts', 'src/**/*.d.ts'], {
-            ignoreInitial: true,
-          })
-          // eslint-disable-next-line @typescript-eslint/no-shadow
-          .on('all', async (event, path) => {
-            // eslint-disable-next-line no-console
-            console.log(`[watch] ${event}: ${path}`);
-            await build();
-          });
-      } else {
-        await main(argv);
-      }
+      await main(argv);
     },
   )
   .help()
