@@ -88,6 +88,7 @@ function TestViewer(props) {
         </CssVarsProvider>
       ) : (
         <StyledEngineProvider enableCssLayer>
+          <GlobalStyles styles="@layer mui.global,mui.default,mui.theme,mui.custom,mui.sx;" />
           <ThemeProvider theme={theme}>
             {cssReset}
             <Box

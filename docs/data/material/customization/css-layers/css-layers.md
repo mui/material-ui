@@ -112,9 +112,8 @@ When this feature is enabled, Material UI generates these layers:
 
 - `@layer mui.global`: The global styles from `GlobalStyles` and `CssBaseline` components.
 - `@layer mui.default`: The base styles for all Material UI components.
-- `@layer mui.default-variants`: The variant styles for all Material UI components.
 - `@layer mui.theme`: The theme styles for all Material UI components.
-- `@layer mui.theme-variants`: The theme variant styles for all Material UI components.
+- `@layer mui.custom`: The custom styles for styled components without a name.
 - `@layer mui.sx`: The styles from the `sx` prop.
 
 Follow the steps from the [previous section](#single-layer) to enable the CSS layer feature.
@@ -155,7 +154,7 @@ export default function RootLayout() {
 Update the layer order in the main CSS file:
 
 ```css title="src/app/globals.css"
-@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, your-layers;
+@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx, your-layers;
 ```
 
 ### Next.js Pages Router
@@ -165,7 +164,7 @@ export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, your-layers" />
+      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx, your-layers" />
       <Themer>
         <Component {...pageProps} />
       </Themer>
@@ -180,7 +179,7 @@ export default function MyApp(props: AppProps) {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.default-variants, mui.theme, mui.theme-variants, mui.sx, your-layers" />
+      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx, your-layers" />
       <Themer>{/* Your app */}</Themer>
     </StyledEngineProvider>
   </React.StrictMode>,
