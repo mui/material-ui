@@ -43,12 +43,6 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "ColorToggleButton.js"}}
 
-## Spacing
-
-The following demo shows how to adjust spacing between toggle buttons.
-
-{{"demo": "SpacingToggleButton.js"}}
-
 ## Vertical buttons
 
 The buttons can be stacked vertically with the `orientation` prop set to "vertical".
@@ -85,6 +79,20 @@ Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
+
+### Spacing
+
+#### Horizontal Spacing
+
+The following demo shows how to adjust the spacing between toggle buttons oriented horizontally.
+
+{{"demo": "HorizontalSpacingToggleButton.js"}}
+
+#### Vertical Spacing
+
+The following demo shows how to adjust the spacing between toggle buttons oriented vertically.
+
+{{"demo": "VerticalSpacingToggleButton.js"}}
 
 ## Accessibility
 
