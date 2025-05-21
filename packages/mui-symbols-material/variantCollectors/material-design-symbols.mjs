@@ -42,7 +42,10 @@ const classNameMap = {
 function rewriteName(fileName) {
   fileName = fileName.replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 || p3).toUpperCase());
 
-  if (fileName.startsWith('3dRotation')) {
+  if (fileName.startsWith('2d')) {
+    return `TwoD${fileName.slice(2)}`;
+  }
+  if (fileName.startsWith('3d')) {
     return `ThreeD${fileName.slice(2)}`;
   }
 
@@ -50,6 +53,9 @@ function rewriteName(fileName) {
     return `ThreeP${fileName.slice(2)}`;
   }
 
+  if (fileName.startsWith('24fps')) {
+    return `TwentyFourFps${fileName.slice(5)}`;
+  }
   if (fileName.startsWith('30fps')) {
     return `ThirtyFps${fileName.slice(5)}`;
   }
@@ -58,6 +64,13 @@ function rewriteName(fileName) {
   }
   if (fileName.startsWith('360')) {
     return `ThreeSixty${fileName.slice(3)}`;
+  }
+
+  if (fileName.startsWith('20mp')) {
+    return `TwentyM${fileName.slice(3)}`;
+  }
+  if (fileName.startsWith('50mp')) {
+    return `FiftyM${fileName.slice(3)}`;
   }
 
   if (/\dFt/.test(fileName)) {
