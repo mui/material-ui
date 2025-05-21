@@ -554,31 +554,6 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0(vite@5.4.18(@types/node@20.17.48)(lightningcss@1.30.1)(terser@5.39.0))
 
-  bundle-size:
-    dependencies:
-      '@mui/lab':
-        specifier: workspace:*
-        version: link:../packages/mui-lab/build
-      '@mui/material':
-        specifier: workspace:*
-        version: link:../packages/mui-material/build
-      '@mui/private-theming':
-        specifier: workspace:*
-        version: link:../packages/mui-private-theming/build
-      '@mui/system':
-        specifier: workspace:*
-        version: link:../packages/mui-system/build
-      '@mui/utils':
-        specifier: workspace:*
-        version: link:../packages/mui-utils/build
-    devDependencies:
-      fast-glob:
-        specifier: ^3.3.2
-        version: 3.3.3
-      path:
-        specifier: ^0.12.7
-        version: 0.12.7
-
   docs:
     dependencies:
       '@babel/core':
@@ -2229,6 +2204,31 @@ importers:
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
+
+  test/bundle-size:
+    dependencies:
+      '@mui/lab':
+        specifier: workspace:*
+        version: link:../../packages/mui-lab/build
+      '@mui/material':
+        specifier: workspace:*
+        version: link:../../packages/mui-material/build
+      '@mui/private-theming':
+        specifier: workspace:*
+        version: link:../../packages/mui-private-theming/build
+      '@mui/system':
+        specifier: workspace:*
+        version: link:../../packages/mui-system/build
+      '@mui/utils':
+        specifier: workspace:*
+        version: link:../../packages/mui-utils/build
+    devDependencies:
+      fast-glob:
+        specifier: ^3.3.2
+        version: 3.3.3
+      path:
+        specifier: ^0.12.7
+        version: 0.12.7
 
   test/moduleResolution:
     dependencies:

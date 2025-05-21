@@ -4,7 +4,7 @@ packages:
   - packages-internal/*
   - docs
   - test
-  - test/moduleResolution
+  - test/*
   - apps/*
   - bundle-size
 

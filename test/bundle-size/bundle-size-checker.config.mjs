@@ -7,12 +7,12 @@ import path from 'path';
 import glob from 'fast-glob';
 import { defineConfig } from '@mui/internal-bundle-size-checker';
 
-const rootDir = path.resolve(import.meta.dirname, '..');
+const rootDir = path.resolve(import.meta.dirname, '../..');
 
 // This function creates an entrypoint object for a given package ID.
 // We use this to define externals to provide continuity with the previous
 // configuration.
-// TODO: remove externals in a separate PR tor ely on package peer dependencies
+// TODO: remove externals in a separate PR to rely on package peer dependencies
 function createEntrypoint(id) {
   const [importSpec, importedName] = id.split('#');
   return {
