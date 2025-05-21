@@ -13,18 +13,18 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   gap: '2rem',
   [`& .${toggleButtonGroupClasses.firstButton}, & .${toggleButtonGroupClasses.middleButton}`]:
     {
-      borderTopRightRadius: theme.vars.shape.borderRadius,
-      borderBottomRightRadius: theme.vars.shape.borderRadius,
+      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+      borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
     },
   [`& .${toggleButtonGroupClasses.lastButton}, & .${toggleButtonGroupClasses.middleButton}`]:
     {
-      borderTopLeftRadius: theme.vars.shape.borderRadius,
-      borderBottomLeftRadius: theme.vars.shape.borderRadius,
-      borderLeft: `1px solid ${theme.vars.palette.divider}`,
+      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
     },
   [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled}, & .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
     {
-      borderLeft: `1px solid ${theme.vars.palette.action.disabledBackground}`,
+      borderLeft: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
     },
 }));
 
@@ -39,7 +39,7 @@ export default function HorizontalSpacingToggleButton() {
   };
 
   return (
-    <ToggleButtonGroup
+    <StyledToggleButtonGroup
       value={alignment}
       exclusive
       onChange={handleAlignment}
@@ -57,6 +57,6 @@ export default function HorizontalSpacingToggleButton() {
       <ToggleButton value="justify" aria-label="justified" disabled>
         <FormatAlignJustifyIcon />
       </ToggleButton>
-    </ToggleButtonGroup>
+    </StyledToggleButtonGroup>
   );
 }
