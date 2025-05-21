@@ -7,6 +7,26 @@ import ToggleButton, { toggleButtonClasses } from '@mui/material/ToggleButton';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses,
 } from '@mui/material/ToggleButtonGroup';
+import { styled } from '@mui/material/styles';
+
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  gap: '2rem',
+  [`& .${toggleButtonGroupClasses.firstButton}, & .${toggleButtonGroupClasses.middleButton}`]:
+    {
+      borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+      borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+    },
+  [`& .${toggleButtonGroupClasses.lastButton}, & .${toggleButtonGroupClasses.middleButton}`]:
+    {
+      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
+      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+      borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+    },
+  [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled}, & .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
+    {
+      borderTop: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+    },
+}));
 
 export default function VerticalSpacingToggleButton() {
   const [alignment, setAlignment] = React.useState('left');
@@ -16,30 +36,12 @@ export default function VerticalSpacingToggleButton() {
   };
 
   return (
-    <ToggleButtonGroup
+    <StyledToggleButtonGroup
       value={alignment}
       exclusive
       onChange={handleAlignment}
       aria-label="text alignment"
       orientation="vertical"
-      sx={(theme) => ({
-        gap: '2rem',
-        [`& .${toggleButtonGroupClasses.firstButton}, & .${toggleButtonGroupClasses.middleButton}`]:
-          {
-            borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
-            borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
-          },
-        [`& .${toggleButtonGroupClasses.lastButton}, & .${toggleButtonGroupClasses.middleButton}`]:
-          {
-            borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-            borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-            borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
-          },
-        [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled}, & .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
-          {
-            borderTop: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
-          },
-      })}
     >
       <ToggleButton value="left" aria-label="left aligned">
         <FormatAlignLeftIcon />
@@ -53,6 +55,6 @@ export default function VerticalSpacingToggleButton() {
       <ToggleButton value="justify" aria-label="justified" disabled>
         <FormatAlignJustifyIcon />
       </ToggleButton>
-    </ToggleButtonGroup>
+    </StyledToggleButtonGroup>
   );
 }
