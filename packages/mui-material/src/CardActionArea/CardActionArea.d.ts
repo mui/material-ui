@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotProps, CreateSlotsAndSlotProps, Theme } from '..';
+import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import {
   ButtonBaseProps,
   ButtonBaseTypeMap,
