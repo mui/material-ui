@@ -171,7 +171,6 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(props, ref) {
   );
 });
 
-
 CustomTreeItem.propTypes = {
   /**
    * The content of the component.
