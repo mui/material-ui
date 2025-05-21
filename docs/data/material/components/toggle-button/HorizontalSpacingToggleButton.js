@@ -13,18 +13,18 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   gap: '2rem',
   [`& .${toggleButtonGroupClasses.firstButton}, & .${toggleButtonGroupClasses.middleButton}`]:
     {
-      borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
-      borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
+      borderTopRightRadius: theme.vars.shape.borderRadius,
+      borderBottomRightRadius: theme.vars.shape.borderRadius,
     },
   [`& .${toggleButtonGroupClasses.lastButton}, & .${toggleButtonGroupClasses.middleButton}`]:
     {
-      borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
-      borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
-      borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
+      borderTopLeftRadius: theme.vars.shape.borderRadius,
+      borderBottomLeftRadius: theme.vars.shape.borderRadius,
+      borderLeft: `1px solid ${theme.vars.palette.divider}`,
     },
   [`& .${toggleButtonGroupClasses.lastButton}.${toggleButtonClasses.disabled}, & .${toggleButtonGroupClasses.middleButton}.${toggleButtonClasses.disabled}`]:
     {
-      borderLeft: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+      borderLeft: `1px solid ${theme.vars.palette.action.disabledBackground}`,
     },
 }));
 
