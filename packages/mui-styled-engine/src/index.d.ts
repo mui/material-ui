@@ -111,7 +111,7 @@ export type Interpolation<Props> =
               : Partial<Props>)
           | ((
               props: Props extends { ownerState: infer O }
-                ? Partial<Omit<Props, 'ownerState'> & O> & { ownerState: Partial<Props> }
+                ? Partial<Props & O> & { ownerState: O }
                 : Partial<Props>,
             ) => boolean);
         style:
