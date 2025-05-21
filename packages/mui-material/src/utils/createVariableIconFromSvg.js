@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import VariableIcon, { fontSizes } from '../VariableIcon';
+import VariableIcon, { fontSizes } from '../VariableIcon/VariableIcon';
 import SvgIcon from '../SvgIcon';
 import { useTheme } from '../styles';
 
@@ -67,7 +67,7 @@ export default function createVariableIconFromSvg(variants, displayName, viewBox
   function Component(props, ref) {
     const theme = useTheme();
     const fontVariants = fontSizes(theme);
-    const size = fontVariantsToPx(props.fontSize, fontVariants);
+    const size = fontVariantsToPx(props.fontSize || 'medium', fontVariants);
     const variantName = propsToVariantName({ ...props, fontSize: size }, theme);
 
     const { title, ...variableIconProps } = props;

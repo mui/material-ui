@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import VariableIcon, { fontSizes } from '../VariableIcon';
+import VariableIcon, { fontSizes } from '../VariableIcon/VariableIcon';
 import { useTheme } from '../styles';
 
 function fontVariantsToPx(fontSize, fontVariants) {
@@ -72,7 +72,7 @@ export default function createVariableIconFromString(
   function Component(props, ref) {
     const theme = useTheme();
     const fontVariants = fontSizes(theme);
-    const size = fontVariantsToPx(props.fontSize, fontVariants);
+    const size = fontVariantsToPx(props.fontSize || 'medium', fontVariants);
     const variations = {
       ...propsToVariations({ ...props, fontSize: size }, theme),
       ...staticVariations, // do not allow users to override static variations
