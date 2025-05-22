@@ -82,15 +82,13 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 ### Spacing
 
-#### Horizontal Spacing
+The demos below show how to adjust spacing between toggle buttons in horizontal and vertical orientations.
 
-The following demo shows how to adjust the spacing between toggle buttons oriented horizontally.
+#### Horizontal Spacing
 
 {{"demo": "HorizontalSpacingToggleButton.js"}}
 
 #### Vertical Spacing
-
-The following demo shows how to adjust the spacing between toggle buttons oriented vertically.
 
 {{"demo": "VerticalSpacingToggleButton.js"}}
 
