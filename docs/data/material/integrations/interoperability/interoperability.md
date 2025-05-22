@@ -749,10 +749,10 @@ If styles aren't applying correctly:
 
 1. Verify your body ID matches the `important` selector in Tailwind config
 
-   | Framework | Root Element ID | `important` Selector |
-   | --------- | --------------- | -------------------- |
-   | Next.js   | `id="__next"`   | `#__next`            |
-   | Vite/SPA  | `id="root"`     | `#root`              |
+| Framework | Root Element ID | `important` Selector |
+| :-------: | :-------------: | :------------------: |
+|  Next.js  |  `id="__next"`  |      `#__next`       |
+| Vite/SPA  |   `id="root"`   |       `#root`        |
 
 2. Check that `preflight: false` is set
 3. Ensure `StyledEngineProvider` with `injectFirst` is properly configured
