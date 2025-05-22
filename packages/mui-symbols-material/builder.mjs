@@ -34,6 +34,26 @@ export function getComponentName(destPath) {
   return parts.join('');
 }
 
+function parseDirectoryName(dirName) {
+  const parts = dirName.split('-');
+  let theme = 'Outlined';
+  let weight = 400;
+
+  const third = parts[2];
+  const fourth = parts[3];
+
+  if (third && ['outlined', 'rounded', 'sharp'].includes(third)) {
+    theme = third.toUpperCase();
+    if (fourth && /^\d+$/.test(fourth)) {
+      weight = Number(fourth);
+    }
+  } else if (third && /^\d+$/.test(third)) {
+    weight = Number(third);
+  }
+
+  return { theme, weight };
+}
+
 async function worker({ progress, outputFile, options, svgTemplate, stringTemplate }) {
   progress();
 
@@ -144,6 +164,13 @@ export async function handler(options) {
   queue.push(outputFiles);
   await queue.wait({ empty: true });
 
+  const fontLoadingComponentTemplate = await fse.readFile(
+    path.join(currentDirectory, 'templateFontGoogleLoadingComponent.js'),
+    {
+      encoding: 'utf8',
+    },
+  );
+
   // copy the createIcon shortcut
   const directories = await fse.readdir(options.outputDir, { withFileTypes: true });
   const dirs = directories.filter((dir) => dir.isDirectory()).map((dir) => dir.name);
@@ -159,9 +186,8 @@ export async function handler(options) {
         const fontShortcutOutput = path.join(options.outputDir, dir, 'utils', 'createIcon.js');
         await fse.copy(fontShortcut, fontShortcutOutput, { overwrite: true });
 
-        // generate barrel files for the font packages
         if (isFontPackage) {
-          // list all files in the directory
+          // generate barrel files for the font packages
           const files = await fse.readdir(path.join(options.outputDir, dir), {
             withFileTypes: true,
           });
@@ -173,6 +199,20 @@ export async function handler(options) {
             .map(({ name }) => `export { default as ${name.replace('.js', '')} } from './${name}';`)
             .join('\n');
           await fse.writeFile(barrelFile, `${barrelFileContent}\n`, { encoding: 'utf8' });
+
+          // create a font loading component
+          const { theme, weight } = parseDirectoryName(dir);
+          const variation = `${theme}${weight}`;
+          const fontLoadingComponent = Mustache.render(fontLoadingComponentTemplate, {
+            variation,
+            theme,
+            weight,
+          });
+
+          await fse.writeFile(
+            path.join(options.outputDir, dir, `MUISymbols${variation}GoogleFont.js`),
+            fontLoadingComponent,
+          );
         }
       })(),
     ),
