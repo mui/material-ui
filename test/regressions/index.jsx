@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react
 import webfontloader from 'webfontloader';
 import { Globals } from '@react-spring/web';
 import TestViewer from './TestViewer';
+import './index.css';
 
 // Skip charts annimation for screen shots
 Globals.assign({
@@ -255,7 +256,7 @@ function App(props) {
   React.useEffect(() => {
     webfontloader.load({
       google: {
-        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900', 'Material+Icons'],
+        families: ['Roboto:300,400,500,700', 'Inter:300,400,500,600,700,800,900'],
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],
