@@ -74,7 +74,7 @@ function TestViewer(props) {
   );
   return (
     <React.Fragment>
-      {path.startsWith('/docs-joy') || path.includes('Joy') ? (
+      {path.startsWith('/docs-joy') || path.includes('Joy/') ? (
         <CssVarsProvider>
           {cssReset}
           <JoyBox
