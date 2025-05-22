@@ -95,7 +95,6 @@ export default function Checkout(props) {
             display: 'flex',
             flexDirection: 'column',
             maxWidth: '100%',
-            width: '100%',
             backgroundColor: { xs: 'transparent', sm: 'background.default' },
             alignItems: 'start',
             pt: { xs: 0, sm: 16 },
