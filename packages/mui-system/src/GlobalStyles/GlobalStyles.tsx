@@ -15,6 +15,15 @@ export interface GlobalStylesProps<Theme = SystemTheme> {
   themeId?: string;
 }
 
+function wrapGlobalLayer(styles: any) {
+  const serialized = serializeStyles(styles) as { styles?: string };
+  if (styles !== serialized && serialized.styles) {
+    serialized.styles = `@layer global{${serialized.styles}}`;
+    return serialized;
+  }
+  return styles;
+}
+
 function GlobalStyles<Theme = SystemTheme>({
   styles,
   themeId,
@@ -25,10 +34,15 @@ function GlobalStyles<Theme = SystemTheme>({
 
   let globalStyles = typeof styles === 'function' ? styles(resolvedTheme) : styles;
   if (resolvedTheme.experimental_modularCssLayers) {
-    const serialized = serializeStyles(globalStyles) as any;
-    if (globalStyles !== serialized && serialized.styles) {
-      serialized.styles = `@layer global{${serialized.styles}}`;
-      globalStyles = serialized;
+    if (Array.isArray(globalStyles)) {
+      globalStyles = globalStyles.map((styleArg) => {
+        if (typeof styleArg === 'function') {
+          return wrapGlobalLayer(styleArg(resolvedTheme));
+        }
+        return wrapGlobalLayer(styleArg);
+      });
+    } else {
+      globalStyles = wrapGlobalLayer(globalStyles);
     }
   }
 
