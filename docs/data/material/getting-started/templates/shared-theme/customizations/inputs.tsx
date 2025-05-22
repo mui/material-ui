@@ -379,7 +379,8 @@ export const inputsCustomizations: Components<Theme> = {
   MuiOutlinedInput: {
     styleOverrides: {
       input: {
-        padding: 0,
+        paddingBlock: 0,
+        paddingLeft: 0,
       },
       root: ({ theme }) => ({
         padding: '8px 12px',
