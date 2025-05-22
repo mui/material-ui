@@ -633,16 +633,15 @@ If you use a different framework, or already have set up your project, follow th
  };
 ```
 
-3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js:
+**Note for Next.js 13+ Users (App Router)**: You must now manually add `id="__next"` to your root element (typically `<body>`), as Next.js no longer adds it automatically:
 
-   For Next.js 13+ (App Router), you must manually add `id="__next"` to your body element:
+```tsx
+<body id="__next">{/* Your app content */}</body>
+```
 
-   ```tsx
-   // app/layout.tsx
-   <body id="__next">{children}</body>
-   ```
-
-   For older Next.js versions (Pages Router), use `id="root"` instead.
+3. Add the `important` option, using the id of your app wrapper.
+   - For Next.js projects, use `#__next` (manually add `id="__next"` to your `<body>` in Next.js 13+)
+   - For Vite/SPA projects, use `#root` (default in most templates)
 
 ```diff title="tailwind.config.js"
  module.exports = {
@@ -704,11 +703,10 @@ export default function PlainCssPriority() {
 5. Change the target container for `Portal`-related elements so that they are injected under the main app wrapper that was used in step 3 for setting up the `important` option in the Tailwind config.
 
 ```jsx
-// For Next.js 13+ use:
+// For Next.js:
 const rootElement = document.getElementById("__next");
-// For older versions use:
-const rootElement = document.getElementById("root");
-
+// For Vite/SPA:
+// const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 const theme = createTheme({
@@ -750,9 +748,12 @@ root.render(
 If styles aren't applying correctly:
 
 1. Verify your body ID matches the `important` selector in Tailwind config
-2. For Next.js 13+, ensure you're using `id="__next"` (not `root`)
-3. Check that `preflight: false` is set
-4. Ensure `StyledEngineProvider` with `injectFirst` is properly configured
+   | Framework | Root Element ID | `important` Selector |
+   |-----------|-----------------|----------------------|
+   | Next.js | `id="__next"` | `#__next` |
+   | Vite/SPA | `id="root"` | `#root` |
+2. Check that `preflight: false` is set
+3. Ensure `StyledEngineProvider` with `injectFirst` is properly configured
 
 ### Usage
 
