@@ -31,6 +31,7 @@
     "@mui/base": "5.0.0-beta.70",
     "@mui/docs": "workspace:^",
     "@mui/icons-material": "workspace:^",
+    "@mui/symbols-font": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "@mui/joy": "workspace:*",
     "@mui/lab": "workspace:*",

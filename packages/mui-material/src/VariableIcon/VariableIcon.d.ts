@@ -51,7 +51,7 @@ export interface VariableIconOwnProps {
   /**
    * Provides a human-readable title for the element that contains it.
    */
-  title?: string;
+  titleAccess?: string;
   /**
    * Indicates if the icon should be filled.
    */

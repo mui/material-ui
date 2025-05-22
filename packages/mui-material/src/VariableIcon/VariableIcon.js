@@ -103,7 +103,7 @@ const VariableIcon = React.forwardRef(function VariableIcon(inProps, ref) {
     color = 'inherit',
     component = 'span',
     fontSize = 'medium',
-    title,
+    titleAccess,
     ...other
   } = props;
 
@@ -122,9 +122,9 @@ const VariableIcon = React.forwardRef(function VariableIcon(inProps, ref) {
       as={component}
       className={clsx(classes.root, className)}
       focusable="false"
-      aria-hidden={title ? undefined : true}
-      role={title ? 'img' : undefined}
-      aria-label={title}
+      aria-hidden={titleAccess ? undefined : true}
+      role={titleAccess ? 'img' : undefined}
+      aria-label={titleAccess}
       ref={ref}
       {...other}
       ownerState={ownerState}
@@ -203,7 +203,7 @@ VariableIcon.propTypes /* remove-proptypes */ = {
   /**
    * Provides a human-readable title for the element that contains it.
    */
-  title: PropTypes.string,
+  titleAccess: PropTypes.string,
 };
 
 VariableIcon.muiName = 'SvgIcon';

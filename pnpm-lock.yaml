@@ -616,6 +616,9 @@ importers:
       '@mui/styled-engine-sc':
         specifier: workspace:^
         version: link:../packages/mui-styled-engine-sc/build
+      '@mui/symbols-font':
+        specifier: workspace:^
+        version: link:../packages/mui-symbols-material/packages/symbols-font
       '@mui/system':
         specifier: workspace:^
         version: link:../packages/mui-system/build
@@ -1987,6 +1990,678 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
     publishDirectory: build
+
+  packages/mui-symbols-material/packages/symbols-font:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-100:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-200:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-300:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-500:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-600:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-700:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-rounded:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-rounded-100:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-rounded-200:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-rounded-300:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-rounded-500:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-rounded-600:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-rounded-700:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-sharp:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-sharp-100:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-sharp-200:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-sharp-300:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-sharp-500:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-sharp-600:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-font-sharp-700:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-100:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-200:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-300:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-500:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-600:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-700:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-rounded:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-rounded-100:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-rounded-200:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-rounded-300:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-rounded-500:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-rounded-600:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-rounded-700:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-sharp:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-sharp-100:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-sharp-200:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-sharp-300:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-sharp-500:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-sharp-600:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+
+  packages/mui-symbols-material/packages/symbols-inline-sharp-700:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+    devDependencies:
+      '@mui/material':
+        specifier: workspace:^
+        version: link:../../../mui-material/build
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
 
   packages/mui-system:
     dependencies:
