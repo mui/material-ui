@@ -622,8 +622,8 @@ For Tailwind CSS v4, please refer to the [v4 integration guide](/material-ui/in
 To use Tailwind CSS with Material UI components, you can start by cloning the [example project](https://github.com/mui/material-ui/tree/master/examples/material-ui-vite-tailwind-ts) built with Vite and TypeScript.
 If you use a different framework, or already have set up your project, follow these steps:
 
-1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation/framework-guides.
-2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the Material UI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
+1. Add Tailwind CSS to your project, following the instructions in https://v3.tailwindcss.com/docs/installation/framework-guides.
+2. Remove [Tailwind CSS's preflight](https://v3.tailwindcss.com/docs/preflight) style so it can use the Material UI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
 
 ```diff title="tailwind.config.js"
  module.exports = {
@@ -633,14 +633,12 @@ If you use a different framework, or already have set up your project, follow th
  };
 ```
 
-**Note for Next.js 13+ Users (App Router)**: You must now manually add `id="__next"` to your root element (typically `<body>`), as Next.js no longer adds it automatically:
-
-```tsx
-<body id="__next">{/* Your app content */}</body>
-```
-
 3. Add the `important` option, using the id of your app wrapper.
-   - For Next.js projects, use `#__next` (manually add `id="__next"` to your `<body>` in Next.js 13+)
+   - For Next.js projects, use `#__next`. **Note for Next.js 13+ Users (App Router)**: You must now manually add `id="__next"` to your root element (typically `<body>`), as Next.js no longer adds it automatically:
+
+    ```tsx
+      <body id="__next">{/* Your app content */}</body>
+    ```
    - For Vite/SPA projects, use `#root` (default in most templates)
 
 ```diff title="tailwind.config.js"
@@ -648,7 +646,7 @@ If you use a different framework, or already have set up your project, follow th
    content: [
      "./src/**/*.{js,jsx,ts,tsx}",
    ],
-+  important: '#__next',
++  important: '#__next', // or '#root'
    theme: {
      extend: {},
    },
@@ -660,7 +658,7 @@ If you use a different framework, or already have set up your project, follow th
 Most of the CSS used by Material UI has a specificity of 1, hence this `important` property is unnecessary.
 However, in a few edge cases, Material UI uses nested CSS selectors that win over Tailwind CSS.
 Use this step to help ensure that the [deeper elements](#deeper-elements-5) can always be customized using Tailwind's utility classes.
-More details on this option can be found here https://tailwindcss.com/docs/configuration#selector-strategy
+More details on this option can be found here https://v3.tailwindcss.com/docs/configuration#selector-strategy.
 
 4. Fix the CSS injection order. Most CSS-in-JS solutions inject their styles at the bottom of the HTML `<head>`, which gives Material UI precedence over Tailwind CSS. To reduce the need for the `important` property, you need to change the CSS injection order. Here's a demo of how it can be done in Material UI:
 
@@ -747,7 +745,7 @@ root.render(
 
 If styles aren't applying correctly:
 
-1. Verify your body ID matches the `important` selector in Tailwind config
+1. Verify your root ID matches the `important` selector in Tailwind config
 
 | Framework | Root Element ID | `important` Selector |
 | :-------: | :-------------: | :------------------: |
