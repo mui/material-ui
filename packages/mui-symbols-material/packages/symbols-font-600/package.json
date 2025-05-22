@@ -47,10 +47,6 @@
     }
   },
   "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "build"
-  },
   "engines": {
     "node": ">=14.0.0"
   },
@@ -73,6 +69,16 @@
       "require": {
         "types": "./*.d.ts",
         "default": "./*.js"
+      }
+    },
+    "./helpers/*": {
+      "import": {
+        "types": "./esm/helpers/*.d.ts",
+        "default": "./esm/helpers/*.js"
+      },
+      "require": {
+        "types": "./helpers/*.d.ts",
+        "default": "./helpers/*.js"
       }
     },
     "./esm": null,
