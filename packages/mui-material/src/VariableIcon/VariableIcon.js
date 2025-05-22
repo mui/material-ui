@@ -10,7 +10,7 @@ import { useDefaultProps } from '../DefaultPropsProvider';
 import { getVariableIconUtilityClass } from './variableIconClasses';
 
 export function fontSizes(theme) {
-  return (
+  return [
     {
       props: { fontSize: 'small' },
       style: { fontSize: theme.typography?.pxToRem?.(20) || '1.25rem' },
@@ -26,8 +26,8 @@ export function fontSizes(theme) {
     {
       props: { fontSize: 'larger' },
       style: { fontSize: theme.typography?.pxToRem?.(48) || '3rem' },
-    }
-  );
+    },
+  ];
 }
 
 const useUtilityClasses = (ownerState) => {
