@@ -72,34 +72,48 @@ function TestViewer(props) {
       }}
     />
   );
+  if (path.startsWith('/docs-joy') || path.includes('docs-joy') || path.includes('Joy/')) {
+    return (
+      <CssVarsProvider>
+        {cssReset}
+        <JoyBox
+          aria-busy={!ready}
+          data-testid="testcase"
+          data-testpath={path}
+          sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
+        >
+          {children}
+        </JoyBox>
+      </CssVarsProvider>
+    );
+  }
+  if (path.includes('Joy')) {
+    return (
+      <React.Fragment>
+        {cssReset}
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          data-testpath={path}
+          sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+        >
+          {children}
+        </Box>
+      </React.Fragment>
+    );
+  }
   return (
-    <React.Fragment>
-      {path.startsWith('/docs-joy') || path.includes('docs-joy') || path.includes('Joy/') ? (
-        <CssVarsProvider>
-          {cssReset}
-          <JoyBox
-            aria-busy={!ready}
-            data-testid="testcase"
-            data-testpath={path}
-            sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
-          >
-            {children}
-          </JoyBox>
-        </CssVarsProvider>
-      ) : (
-        <ThemeProvider theme={theme}>
-          {cssReset}
-          <Box
-            aria-busy={!ready}
-            data-testid="testcase"
-            data-testpath={path}
-            sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
-          >
-            {children}
-          </Box>
-        </ThemeProvider>
-      )}
-    </React.Fragment>
+    <ThemeProvider theme={theme}>
+      {cssReset}
+      <Box
+        aria-busy={!ready}
+        data-testid="testcase"
+        data-testpath={path}
+        sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+      >
+        {children}
+      </Box>
+    </ThemeProvider>
   );
 }
 
