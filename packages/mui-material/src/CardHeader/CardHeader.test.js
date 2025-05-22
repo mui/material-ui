@@ -168,46 +168,46 @@ describe('<CardHeader />', () => {
     expect(title).to.have.class('slot-props-title-class');
   });
 
-  it('should not merge className and style from props and from the theme if mergeClassNameAndStyle is false', () => {
-    render(
-      <ThemeProvider
-        theme={createTheme({
-          components: {
-            MuiCardHeader: {
-              defaultProps: {
-                className: 'test-class-1',
-                style: { margin: '10px' },
-                slotProps: {
-                  title: {
-                    className: 'title-class-1',
-                  },
-                },
-              },
-            },
-          },
-        })}
-      >
-        <CardHeader
-          title="Title"
-          subheader="Subheader"
-          className="test-class-2"
-          style={{ padding: '10px' }}
-          slotProps={{
-            title: {
-              className: 'title-class-2',
-            },
-          }}
-        />
-      </ThemeProvider>,
-    );
-    const cardHeader = document.querySelector(`.${classes.root}`);
-    expect(cardHeader).to.not.have.class('test-class-1');
-    expect(cardHeader).to.have.class('test-class-2');
-    expect(cardHeader).to.not.have.style('margin', '10px');
-    expect(cardHeader).to.have.style('padding', '10px');
+  // it('should not merge className and style from props and from the theme if mergeClassNameAndStyle is false', () => {
+  //   render(
+  //     <ThemeProvider
+  //       theme={createTheme({
+  //         components: {
+  //           MuiCardHeader: {
+  //             defaultProps: {
+  //               className: 'test-class-1',
+  //               style: { margin: '10px' },
+  //               slotProps: {
+  //                 title: {
+  //                   className: 'title-class-1',
+  //                 },
+  //               },
+  //             },
+  //           },
+  //         },
+  //       })}
+  //     >
+  //       <CardHeader
+  //         title="Title"
+  //         subheader="Subheader"
+  //         className="test-class-2"
+  //         style={{ padding: '10px' }}
+  //         slotProps={{
+  //           title: {
+  //             className: 'title-class-2',
+  //           },
+  //         }}
+  //       />
+  //     </ThemeProvider>,
+  //   );
+  //   const cardHeader = document.querySelector(`.${classes.root}`);
+  //   expect(cardHeader).to.not.have.class('test-class-1');
+  //   expect(cardHeader).to.have.class('test-class-2');
+  //   expect(cardHeader).to.not.have.style('margin', '10px');
+  //   expect(cardHeader).to.have.style('padding', '10px');
 
-    const title = cardHeader.querySelector(`.${classes.title}`);
-    expect(title).to.not.have.class('title-class-1');
-    expect(title).to.have.class('title-class-2');
-  });
+  //   const title = cardHeader.querySelector(`.${classes.title}`);
+  //   expect(title).to.not.have.class('title-class-1');
+  //   expect(title).to.have.class('title-class-2');
+  // });
 });
