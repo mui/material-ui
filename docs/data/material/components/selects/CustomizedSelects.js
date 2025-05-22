@@ -7,7 +7,9 @@ import Select from '@mui/material/Select';
 import NativeSelect from '@mui/material/NativeSelect';
 import InputBase from '@mui/material/InputBase';
 
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
+const BootstrapInput = styled(InputBase, {
+  name: 'MuiBootstrapInput',
+})(({ theme }) => ({
   'label + &': {
     marginTop: theme.spacing(3),
   },
@@ -17,7 +19,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     backgroundColor: (theme.vars ?? theme).palette.background.paper,
     border: '1px solid #ced4da',
     fontSize: 16,
-    padding: '10px 24px 10px 12px',
+    padding: '10px 26px 10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
