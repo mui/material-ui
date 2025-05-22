@@ -1,0 +1,6 @@
+'use client';
+
+import createIcon from "./utils/createIcon.js";
+export default createIcon('move_selection_right', 'MoveSelectionRight', 'Material Symbols Rounded', {
+  wght: 200
+}, 'material-symbols-rounded');

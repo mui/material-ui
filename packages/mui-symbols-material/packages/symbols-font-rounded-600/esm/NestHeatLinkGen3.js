@@ -1,0 +1,6 @@
+'use client';
+
+import createIcon from "./utils/createIcon.js";
+export default createIcon('nest_heat_link_gen_3', 'NestHeatLinkGen3', 'Material Symbols Rounded', {
+  wght: 600
+}, 'material-symbols-rounded');

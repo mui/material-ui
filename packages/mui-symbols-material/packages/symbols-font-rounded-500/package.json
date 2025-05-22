@@ -1,0 +1,81 @@
+{
+  "name": "@mui/symbols-font-rounded-500",
+  "private": true,
+  "version": "7.1.0",
+  "author": "MUI Team",
+  "description": "Material Design symbols packager for MUI.",
+  "main": "./index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "mui",
+    "material-ui",
+    "material design",
+    "icons",
+    "symbols"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-symbols-material"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/material-ui/material-symbols/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.27.1"
+  },
+  "devDependencies": {
+    "@mui/material": "workspace:^",
+    "@types/react": "^19.1.4",
+    "react": "^19.1.0"
+  },
+  "peerDependencies": {
+    "@mui/material": "workspace:^",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "build"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      }
+    },
+    "./*": {
+      "import": {
+        "types": "./esm/*.d.ts",
+        "default": "./esm/*.js"
+      },
+      "require": {
+        "types": "./*.d.ts",
+        "default": "./*.js"
+      }
+    },
+    "./esm": null,
+    "./utils/*": null
+  }
+}
