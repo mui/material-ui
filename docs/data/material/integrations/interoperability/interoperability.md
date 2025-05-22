@@ -634,11 +634,13 @@ If you use a different framework, or already have set up your project, follow th
 ```
 
 3. Add the `important` option, using the id of your app wrapper.
+
    - For Next.js projects, use `#__next`. **Note for Next.js 13+ Users (App Router)**: You must now manually add `id="__next"` to your root element (typically `<body>`), as Next.js no longer adds it automatically:
 
-    ```tsx
-      <body id="__next">{/* Your app content */}</body>
-    ```
+   ```tsx
+   <body id="__next">{/* Your app content */}</body>
+   ```
+
    - For Vite/SPA projects, use `#root` (default in most templates)
 
 ```diff title="tailwind.config.js"
