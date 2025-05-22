@@ -9,27 +9,6 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import { getVariableIconUtilityClass } from './variableIconClasses';
 
-export function fontSizes(theme) {
-  return [
-    {
-      props: { fontSize: 'small' },
-      style: { fontSize: theme.typography?.pxToRem?.(20) || '1.25rem' },
-    },
-    {
-      props: { fontSize: 'medium' },
-      style: { fontSize: theme.typography?.pxToRem?.(24) || '1.5rem' },
-    },
-    {
-      props: { fontSize: 'large' },
-      style: { fontSize: theme.typography?.pxToRem?.(40) || '2.5rem' },
-    },
-    {
-      props: { fontSize: 'larger' },
-      style: { fontSize: theme.typography?.pxToRem?.(48) || '3rem' },
-    },
-  ];
-}
-
 const useUtilityClasses = (ownerState) => {
   const { color, fontSize, classes } = ownerState;
 
@@ -69,9 +48,24 @@ const VariableIconRoot = styled('span', {
     variants: [
       {
         props: { fontSize: 'inherit' },
-        style: { fontSize: 'inherit' },
+        style: { fontSize: 'inherit !important' },
       },
-      ...fontSizes(theme),
+      {
+        props: { fontSize: 'small' },
+        style: { fontSize: `${theme.typography?.pxToRem?.(20) || '1.25rem'} !important` },
+      },
+      {
+        props: { fontSize: 'medium' },
+        style: { fontSize: `${theme.typography?.pxToRem?.(24) || '1.5rem'} !important` },
+      },
+      {
+        props: { fontSize: 'large' },
+        style: { fontSize: `${theme.typography?.pxToRem?.(40) || '2.5rem'} !important` },
+      },
+      {
+        props: { fontSize: 'x-large' },
+        style: { fontSize: `${theme.typography?.pxToRem?.(48) || '3rem'} !important` },
+      },
       // TODO v5 deprecate color prop, v6 remove for sx
       ...Object.entries((theme.vars ?? theme).palette)
         .filter(([, value]) => value && value.main)
@@ -189,7 +183,7 @@ VariableIcon.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   fontSize: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'larger', 'large', 'medium', 'small']),
+    PropTypes.oneOf(['inherit', 'x-large', 'large', 'medium', 'small']),
     PropTypes.string,
   ]),
   /**

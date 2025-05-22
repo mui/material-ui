@@ -20,7 +20,7 @@
     "fontSize": {
       "type": {
         "name": "union",
-        "description": "'inherit'<br>&#124;&nbsp;'larger'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+        "description": "'inherit'<br>&#124;&nbsp;'x-large'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
@@ -106,10 +106,7 @@
       "isGlobal": false
     }
   ],
-  "spread": true,
-  "themeDefaultProps": true,
   "muiName": "MuiVariableIcon",
-  "forwardsRefTo": "SVGSVGElement",
   "filename": "/packages/mui-material/src/VariableIcon/VariableIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/material-symbols/\">Material Symbols</a></li></ul>",

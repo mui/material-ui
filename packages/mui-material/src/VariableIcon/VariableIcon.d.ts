@@ -41,7 +41,7 @@ export interface VariableIconOwnProps {
    * @default 'medium'
    */
   fontSize?: OverridableStringUnion<
-    'inherit' | 'larger' | 'large' | 'medium' | 'small',
+    'inherit' | 'x-large' | 'large' | 'medium' | 'small',
     VariableIconPropsSizeOverrides
   >;
   /**

@@ -2,47 +2,10 @@
 
 import * as React from 'react';
 import clsx from 'clsx';
-import VariableIcon, { fontSizes } from '../VariableIcon/VariableIcon';
+import VariableIcon from '../VariableIcon';
 import { useTheme } from '../styles';
 
-function fontVariantsToPx(fontSize, fontVariants) {
-  if (!Number.isNaN(Number(fontSize))) {
-    return Number(fontSize);
-  }
-
-  if (fontSize.endsWith('px')) {
-    return Number(fontSize.slice(0, -2));
-  }
-
-  if (fontSize.endsWith('rem')) {
-    return Number(fontSize.slice(0, -3)) * 16;
-  }
-
-  if (fontSize === 'inherit') {
-    return -1;
-  }
-
-  const fontVariant = fontVariants.find((variant) => variant.props.fontSize === fontSize);
-  if (fontVariant) {
-    return Number(fontVariant.style.fontSize.slice(0, -3)) * 16;
-  }
-
-  // Fallback to default size
-  return 24;
-}
-
 function propsToVariations(props, theme) {
-  let opticalSize;
-  if (props.fontSize < 22) {
-    opticalSize = 20; // small
-  } else if (props.fontSize < 31) {
-    opticalSize = 24; // medium
-  } else if (props.fontSize < 43) {
-    opticalSize = 40; // large
-  } else {
-    opticalSize = 48; // larger
-  }
-
   let emphasis = 0; // regular
   if (theme.colorSchemes.dark || props.emphasis === 'light') {
     // If the theme is dark, we should lighten the icon to reduce glare.
@@ -57,7 +20,7 @@ function propsToVariations(props, theme) {
     filled = 1;
   }
 
-  return { opsz: opticalSize, GRAD: emphasis, FILL: filled };
+  return { GRAD: emphasis, FILL: filled };
 }
 
 /**
@@ -72,10 +35,8 @@ export default function createVariableIconFromString(
 ) {
   function Component(props, ref) {
     const theme = useTheme();
-    const fontVariants = fontSizes(theme);
-    const size = fontVariantsToPx(props.fontSize || 'medium', fontVariants);
     const variations = {
-      ...propsToVariations({ ...props, fontSize: size }, theme),
+      ...propsToVariations(props, theme),
       ...staticVariations, // do not allow users to override static variations
     };
     const fontVariationSettings = Object.keys(variations)
