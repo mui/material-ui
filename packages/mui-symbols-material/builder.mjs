@@ -181,7 +181,7 @@ export async function handler(options) {
         const isFontPackage = dir.startsWith('symbols-font');
         const fontShortcut = path.join(
           currentDirectory,
-          isFontPackage ? 'createVariableIconFromString.js' : 'createVariableIconFromSvg.js',
+          isFontPackage ? 'stringCreateIcon.js' : 'svgCreateIcon.js',
         );
         const fontShortcutOutput = path.join(options.outputDir, dir, 'utils', 'createIcon.js');
         await fse.copy(fontShortcut, fontShortcutOutput, { overwrite: true });
