@@ -77,7 +77,7 @@ export default function createVariableIconFromString(
       ...propsToVariations({ ...props, fontSize: size }, theme),
       ...staticVariations, // do not allow users to override static variations
     };
-    const variationsString = Object.keys(variations)
+    const fontVariationSettings = Object.keys(variations)
       .map((key) => `'${key}' ${variations[key]}`)
       .join(', ');
 
@@ -91,7 +91,7 @@ export default function createVariableIconFromString(
         {...variableIconProps}
         sx={{
           ...sx,
-          'font-variation-settings': variationsString,
+          fontVariationSettings,
         }}
       >
         {iconName}
