@@ -34,7 +34,9 @@ type CssVarsOptions = CssThemeVariables extends {
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
   mixins?: MixinsOptions;
-  components?: Components<Omit<Theme, 'components'>>;
+  components?: Components<Omit<Theme, 'components'>> & {
+    mergeClassNameAndStyle?: boolean;
+  };
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
