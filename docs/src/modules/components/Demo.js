@@ -181,34 +181,11 @@ const DemoRoot = styled('div', {
     },
     {
       props: {
-        bg: 'outlined',
-      },
-      style: {
-        [theme.breakpoints.up('sm')]: {
-          borderLeftWidth: 1,
-          borderRightWidth: 1,
-        },
-      },
-    },
-    {
-      props: {
         bg: 'inline',
       },
       style: {
         [theme.breakpoints.up('sm')]: {
           padding: theme.spacing(0),
-        },
-      },
-    },
-    {
-      props: {
-        bg: 'gradient',
-      },
-      style: {
-        [theme.breakpoints.up('sm')]: {
-          padding: theme.spacing(12, 8),
-          borderLeftWidth: 1,
-          borderRightWidth: 1,
         },
       },
     },
@@ -225,6 +202,10 @@ const DemoRoot = styled('div', {
         ...theme.applyDarkStyles({
           backgroundColor: alpha(theme.palette.primaryDark[700], 0.1),
         }),
+        [theme.breakpoints.up('sm')]: {
+          borderLeftWidth: 1,
+          borderRightWidth: 1,
+        },
       },
     },
     {
@@ -267,6 +248,11 @@ const DemoRoot = styled('div', {
           backgroundColor: (theme.vars || theme).palette.primaryDark[900],
           backgroundImage: `radial-gradient(120% 140% at 50% 10%, transparent 30%, ${alpha(theme.palette.primary[900], 0.3)} 80%)`,
         }),
+        [theme.breakpoints.up('sm')]: {
+          padding: theme.spacing(12, 8),
+          borderLeftWidth: 1,
+          borderRightWidth: 1,
+        },
       },
     },
   ],
