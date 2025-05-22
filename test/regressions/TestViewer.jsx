@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import { StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, THEME_ID } from '@mui/material/styles';
 import JoyBox from '@mui/joy/Box';
 import { CssVarsProvider } from '@mui/joy/styles';
 
@@ -74,7 +74,7 @@ function TestViewer(props) {
   );
   return (
     <React.Fragment>
-      {path.startsWith('/docs-joy') || path.includes('Joy/') ? (
+      {path.startsWith('/docs-joy') || path.includes('docs-joy') || path.includes('Joy/') ? (
         <CssVarsProvider>
           {cssReset}
           <JoyBox
@@ -87,20 +87,17 @@ function TestViewer(props) {
           </JoyBox>
         </CssVarsProvider>
       ) : (
-        <StyledEngineProvider enableCssLayer>
-          <GlobalStyles styles="@layer mui.global,mui.default,mui.theme,mui.custom,mui.sx;" />
-          <ThemeProvider theme={theme}>
-            {cssReset}
-            <Box
-              aria-busy={!ready}
-              data-testid="testcase"
-              data-testpath={path}
-              sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
-            >
-              {children}
-            </Box>
-          </ThemeProvider>
-        </StyledEngineProvider>
+        <ThemeProvider theme={theme}>
+          {cssReset}
+          <Box
+            aria-busy={!ready}
+            data-testid="testcase"
+            data-testpath={path}
+            sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+          >
+            {children}
+          </Box>
+        </ThemeProvider>
       )}
     </React.Fragment>
   );
