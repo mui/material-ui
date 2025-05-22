@@ -1,16 +1,16 @@
 # Canary Dependencies Testing GitHub Action Plan
 
-This document outlines the implementation plan for a GitHub Action that runs on pull requests with a [canary] tag to test against different dependency versions.
+This document outlines the implementation plan for a GitHub Action that runs on a schedule to test against different dependency versions.
 
 ## Overview
 
 We'll implement this feature using two separate GitHub Actions workflows:
 
 1. **Canary Update Workflow**:
-
-   - Triggers on PRs with the [canary] tag and daily cron
-   - Processes each PR by running the command in their config file
-   - Commits and pushes changes
+   - Runs on a schedule (cron) or manual dispatch
+   - Processes a matrix of dependency configurations
+   - Finds or creates PRs for each dependency configuration
+   - Updates dependencies and pushes changes to the PR branch
 
 2. **Canary Notification Workflow**:
    - Triggers on CI check completion
@@ -19,43 +19,61 @@ We'll implement this feature using two separate GitHub Actions workflows:
 
 ## Implementation Plan
 
-### 1. Configuration File Structure
+### 1. Matrix Configuration
 
-Each PR with a canary tag should include a config file at `canary/<PR-number>.json` within the PR branch:
+The update workflow will use a predefined matrix of dependency configurations, each with an ID and command:
 
-```json
-{
-  "run": "pnpm -r update react@next"
-}
+```yaml
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    # Set a fixed base branch for all matrix items
+    env:
+      BASE_BRANCH: master
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: react@18
+            cmd: "pnpm -r update react@18"
+          - id: react@next
+            cmd: "pnpm -r update react@next"
+          - id: typescript@next
+            cmd: "pnpm -r update typescript@next"
 ```
 
-This file:
+### 2. PR Management
 
-- Contains the command to run (e.g., `pnpm -r update typescript@next`)
-- Exists only in the PR branch (not merged to main)
-- Is preserved when the action updates the PR
+- Each configuration ID corresponds to a dedicated PR
+- PRs are identified by a marker in the title: `[canary-dep: {id}]`
+- If a PR doesn't exist, the workflow creates one
+- The workflow always force-pushes to the PR branch with the latest changes
+- All PRs use the same base branch (master)
 
-### 2. How It Works
+### 3. How It Works
 
 #### Update Workflow:
 
-1. **First job (find-canary-prs)**:
+1. **Run matrix of configurations**:
+   - For each matrix item, process the dependency update
+   - All configurations are run on every workflow execution
 
-   - For PR events: Pass through if the PR has the "canary" label
-   - For scheduled/manual events: Use the issues API to find all open PRs with the canary label
-   - Outputs a list of PR numbers to process
-
-2. **Second job (process-pr)**:
-   - Uses a matrix strategy to process each PR in parallel
-   - For each PR:
-     1. Checks out that specific PR
-     2. Loads the config file from the PR branch
-     3. Creates a clean branch based on the base branch
-     4. Restores the config file
-     5. Runs the specified command
-     6. Commits and force pushes changes to the PR branch
+2. **For each dependency configuration**:
+   - Check if a PR with the marker `[canary-dep: {id}]` exists
+   - If no PR exists:
+     - Create a new branch from the base branch
+     - Run the specified command
+     - Create a PR with the appropriate title marker
+   - If a PR exists:
+     - Checkout the latest from the base branch
+     - Create a temporary branch
+     - Run the specified command
+     - Force-push to the existing PR branch
+   - Add a commit message with the marker `[canary] Update dependencies for PR #{number}`
 
 #### Notification Workflow:
+
+The notification workflow will remain the same as previously designed:
 
 1. Triggers when a check run completes
 2. Extracts the PR number directly from `check_run.pull_requests[0].number`
@@ -63,35 +81,6 @@ This file:
 4. If a comment exists and the status is the same, does nothing
 5. If a comment exists and the status has changed, deletes the old comment
 6. Creates a new comment with the current status
-
-### 3. Example Usage
-
-1. Create a PR with desired changes
-2. Add the "canary" label
-3. Include a config file in the PR at `canary/<PR-number>.json`:
-   ```json
-   {
-     "run": "pnpm -r update react@next"
-   }
-   ```
-4. The update workflow will run automatically when:
-
-   - The PR is created or updated
-   - The daily cron job runs
-   - The workflow is manually triggered
-
-5. The notification workflow will run when the CI check completes
-6. If the CI status has changed since the last run, it will post a new comment
-
-This implementation:
-
-- Uses the Issues API for better PR filtering
-- Leverages check_run events for more accurate notification timing
-- Extracts PR number directly from the check run data
-- Keeps the config file within the PR only
-- Ensures clean environment for dependency testing
-- Preserves the CI status in a hidden HTML comment marker
-- Deletes and recreates comments when the status changes to trigger notifications
 
 ### 4. Implementation Details
 
@@ -106,276 +95,170 @@ Create a file at `.github/workflows/canary-dependencies-update.yml`:
 name: Canary Dependencies Update
 
 on:
-  pull_request:
-    types: [opened, reopened, labeled, synchronize]
   schedule:
     # Run daily at midnight UTC
     - cron: '0 0 * * *'
   workflow_dispatch:
-    # Allow manual triggering with optional PR number
-    inputs:
-      pr_number:
-        description: 'PR number to process (must have canary label)'
-        required: false
-        type: number
 
 permissions:
   contents: write
-  pull-requests: read
+  pull-requests: write
 
 jobs:
-  find-canary-prs:
+  update-dependencies:
     runs-on: ubuntu-latest
-    outputs:
-      pr_numbers: ${{ steps.get-prs.outputs.result }}
-    steps:
-      - name: Find PRs with canary tag
-        id: get-prs
-        uses: actions/github-script@v7
-        with:
-          script: |
-            // For PR events
-            if (context.eventName === 'pull_request') {
-              // Check if PR has canary label
-              const hasCanaryLabel = context.payload.pull_request.labels.some(
-                label => label.name === 'canary'
-              );
-              
-              if (hasCanaryLabel) {
-                return [context.payload.pull_request.number];
-              }
-              return [];
-            } 
-            // For scheduled or manual runs - find all PRs with canary label
-            else if (context.eventName === 'schedule' || context.eventName === 'workflow_dispatch') {
-              // Use the issues API to find all open issues with the canary label
-              const { data: issues } = await github.rest.issues.listForRepo({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                state: 'open',
-                labels: 'canary'
-              });
-              
-              // Filter for pull requests only
-              let prNumbers = issues
-                .filter(issue => issue.pull_request)
-                .map(issue => issue.number);
-              
-              // For manual workflow run with specific PR number
-              if (context.eventName === 'workflow_dispatch' && context.payload.inputs?.pr_number) {
-                const manualPrNumber = Number(context.payload.inputs.pr_number);
-                
-                // Check if the provided PR number has the canary label (is in our filtered list)
-                if (prNumbers.includes(manualPrNumber)) {
-                  // Only process this specific PR
-                  return [manualPrNumber];
-                } else {
-                  console.log(`PR #${manualPrNumber} does not have the canary label, skipping`);
-                  return [];
-                }
-              }
-              
-              return prNumbers;
-            }
-
-            return [];
-
-  process-pr:
-    needs: find-canary-prs
-    if: needs.find-canary-prs.outputs.pr_numbers != '[]'
-    runs-on: ubuntu-latest
+    env:
+      BASE_BRANCH: master
     strategy:
       fail-fast: false
       matrix:
-        pr: ${{ fromJson(needs.find-canary-prs.outputs.pr_numbers) }}
+        include:
+          - id: react@18
+            cmd: "pnpm -r update react@18"
+          - id: react@next
+            cmd: "pnpm -r update react@next"
+          - id: typescript@next
+            cmd: "pnpm -r update typescript@next"
     steps:
-      - name: Checkout PR
+      - name: Process dependency update
+        id: process
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const id = context.payload.matrix.id;
+            const baseBranch = process.env.BASE_BRANCH;
+            
+            console.log(`Processing dependency update for ${id} using base branch: ${baseBranch}`);
+            
+            // Function to find existing PR
+            async function findExistingPR() {
+              const prMarker = `[canary-dep: ${id}]`;
+              
+              const { data: pulls } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                base: baseBranch
+              });
+              
+              return pulls.find(pr => pr.title.includes(prMarker));
+            }
+            
+            // Find existing PR
+            const existingPR = await findExistingPR();
+            
+            if (existingPR) {
+              console.log(`Found existing PR #${existingPR.number} for ${id}`);
+            } else {
+              console.log(`No existing PR found for ${id}, will create one`);
+            }
+            
+            // Save outputs for subsequent steps
+            core.setOutput('pr_exists', !!existingPR);
+            if (existingPR) {
+              core.setOutput('pr_number', existingPR.number);
+              core.setOutput('pr_branch', existingPR.head.ref);
+            }
+      
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ format('refs/pull/{0}/head', matrix.pr) }}
-
+          ref: ${{ env.BASE_BRANCH }}
+      
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
-
+      
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
-
-      - name: Process PR ${{ matrix.pr }}
-        id: process-pr
+      
+      - name: Create or update branch
+        run: |
+          git config user.name "MUI Canary Bot"
+          git config user.email "mui-org@users.noreply.github.com"
+          
+          # Create a new branch with a unique name
+          BRANCH_NAME="canary-dep-${{ matrix.id }}-$(date +%s)"
+          git checkout -b $BRANCH_NAME
+          
+          # Install dependencies and run the update command
+          pnpm install
+          ${{ matrix.cmd }}
+          
+          # Check if there are changes
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes detected"
+            exit 0
+          fi
+          
+          # Commit changes
+          git add .
+          git commit -m "[canary] Update dependencies for PR #${{ steps.process.outputs.pr_number || 'new' }}"
+          
+          # Output the branch name for the next step
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+      
+      - name: Create PR if needed
+        if: steps.process.outputs.pr_exists != 'true'
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const fs = require('fs');
-            const path = require('path');
-            const { exec } = require('child_process');
-            const util = require('util');
-            const execAsync = util.promisify(exec);
-
-            // Function to execute shell commands
-            async function runCommand(command, ignoreError = false) {
-              try {
-                console.log(`Running command: ${command}`);
-                const { stdout, stderr } = await execAsync(command);
-                console.log(stdout);
-                if (stderr) console.error(stderr);
-                return { success: true, stdout, stderr };
-              } catch (error) {
-                console.error(`Command failed: ${error.message}`);
-                if (!ignoreError) {
-                  throw error;
-                }
-                return { success: false, error: error.message };
-              }
-            }
-
-            // Function to setup git
-            async function setupGit() {
-              await runCommand('git config user.name "MUI Canary Bot"');
-              await runCommand('git config user.email "mui-org@users.noreply.github.com"');
-            }
-
-            // Function to load config file
-            function loadConfig(prNumber) {
-              const configPath = path.join(process.cwd(), 'canary', `${prNumber}.json`);
+            const id = context.payload.matrix.id;
+            const branchName = process.env.BRANCH_NAME;
+            const baseBranch = process.env.BASE_BRANCH;
+            
+            // Create a new PR
+            const { data: pr } = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[canary-dep: ${id}] Test against ${id}`,
+              head: branchName,
+              base: baseBranch,
+              body: `This PR automatically tests compatibility with ${id}.
               
-              if (!fs.existsSync(configPath)) {
-                console.log(`Config file not found: ${configPath}`);
-                return null;
-              }
+              ## What is this?
               
-              try {
-                const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-                
-                // Validate required fields
-                if (!config.run) {
-                  console.log('Missing required "run" field in config');
-                  return null;
-                }
-                
-                return config;
-              } catch (error) {
-                console.error(`Error parsing config: ${error.message}`);
-                return null;
-              }
-            }
-
-            // Function to check if there are changes to commit
-            async function hasChangesToCommit() {
-              try {
-                // Check for unstaged changes
-                await execAsync('git diff --quiet');
-                // No changes
-                return false;
-              } catch (error) {
-                // Changes exist
-                return true;
-              }
-            }
-
-            // Function to get PR details
-            async function getPRDetails(prNumber) {
-              try {
-                const { data: pullRequest } = await github.rest.pulls.get({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  pull_number: prNumber
-                });
-                
-                return {
-                  branchName: pullRequest.head.ref,
-                  headSha: pullRequest.head.sha,
-                  baseBranch: pullRequest.base.ref
-                };
-              } catch (error) {
-                console.error(`Error getting PR details: ${error.message}`);
-                return null;
-              }
-            }
-
-            // Main function to process a PR
-            async function processPR(prNumber) {
-              console.log(`Processing PR #${prNumber}`);
+              This is an automated PR that regularly updates to test against ${id}.
+              The PR will be kept up-to-date by the canary dependencies workflow.
               
-              // Get PR details
-              const prDetails = await getPRDetails(prNumber);
-              if (!prDetails) {
-                console.error(`Could not get details for PR #${prNumber}`);
-                return false;
-              }
+              ## Command
               
-              // Setup git
-              await setupGit();
-              
-              // Load config from the PR branch
-              const config = loadConfig(prNumber);
-              if (!config) {
-                console.log(`No valid config found for PR #${prNumber}`);
-                return false;
-              }
-              
-              // Determine the base branch and create a clean working branch
-              console.log(`Preparing clean base branch while preserving config file`);
-              
-              // Save the config file content
-              const configPath = path.join(process.cwd(), 'canary', `${prNumber}.json`);
-              const configContent = fs.readFileSync(configPath, 'utf8');
-              
-              // Fetch the base branch
-              await runCommand(`git fetch origin ${prDetails.baseBranch}`);
-              
-              // Create a new branch based on the base branch
-              const tempBranchName = `canary-update-${prNumber}`;
-              await runCommand(`git checkout -b ${tempBranchName} origin/${prDetails.baseBranch}`);
-              
-              // Create canary directory if it doesn't exist
-              if (!fs.existsSync('canary')) {
-                fs.mkdirSync('canary', { recursive: true });
-              }
-              
-              // Restore the config file
-              fs.writeFileSync(configPath, configContent);
-              
-              // Install dependencies first
-              await runCommand('pnpm install');
-              
-              // Run the command from config
-              await runCommand(config.run);
-              
-              // Stage the config file to ensure it's preserved
-              await runCommand(`git add ${configPath}`);
-              
-              // Stage any other changes
-              await runCommand('git add .');
-              
-              // Check for changes
-              const hasChanges = await hasChangesToCommit();
-              if (!hasChanges) {
-                console.log(`No changes detected for PR #${prNumber}`);
-                return false;
-              }
-              
-              // Commit
-              await runCommand(`git commit -m "[canary] Update dependencies for PR #${prNumber}"`);
-              
-              // Push to the PR branch (using the temp branch name as source)
-              await runCommand(`git push --force origin ${tempBranchName}:refs/heads/${prDetails.branchName}`);
-              
-              console.log(`Successfully pushed changes to PR #${prNumber}`);
-              return true;
-            }
-
-            // Process the PR from the matrix
-            const result = await processPR(${{ matrix.pr }});
-            return result;
+              \`\`\`
+              ${{ matrix.cmd }}
+              \`\`\`
+              `
+            });
+            
+            console.log(`Created PR #${pr.number}: ${pr.html_url}`);
+            
+            // Add canary label
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              labels: ['canary-dependency']
+            });
+            
+            // Save the PR number for the notification workflow
+            core.setOutput('pr_number', pr.number);
+            core.setOutput('pr_branch', branchName);
+      
+      - name: Update existing PR
+        if: steps.process.outputs.pr_exists == 'true'
+        run: |
+          # Force push to the existing PR branch
+          git push --force origin $BRANCH_NAME:${{ steps.process.outputs.pr_branch }}
+          echo "Updated PR #${{ steps.process.outputs.pr_number }}"
 ```
 
 #### Canary Notification Workflow
 
-Create a file at `.github/workflows/canary-dependencies-notification.yml`:
+Keep the existing notification workflow at `.github/workflows/canary-dependencies-notification.yml`:
 
 ```yaml
 name: Canary Dependencies Notification
@@ -482,3 +365,21 @@ jobs:
 ```
 
 </details>
+
+## Initial Matrix Configuration
+
+The initial matrix will include these dependency configurations:
+
+1. **React 18**
+   - ID: `react@18`
+   - Command: `pnpm -r update react@18`
+
+2. **React Next**
+   - ID: `react@next`
+   - Command: `pnpm -r update react@next`
+
+3. **TypeScript Next**
+   - ID: `typescript@next`
+   - Command: `pnpm -r update typescript@next`
+
+All configurations will use the fixed base branch "master" defined in the workflow's environment variables.
