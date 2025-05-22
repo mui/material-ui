@@ -1,48 +1,12 @@
 'use client';
 
 import * as React from 'react';
-import VariableIcon, { fontSizes } from '../VariableIcon/VariableIcon';
+import VariableIcon from '../VariableIcon';
 import SvgIcon from '../SvgIcon';
-import { useTheme } from '../styles';
-
-function fontVariantsToPx(fontSize, fontVariants) {
-  if (!Number.isNaN(Number(fontSize))) {
-    return Number(fontSize);
-  }
-
-  if (fontSize.endsWith('px')) {
-    return Number(fontSize.slice(0, -2));
-  }
-
-  if (fontSize.endsWith('rem')) {
-    return Number(fontSize.slice(0, -3)) * 16;
-  }
-
-  if (fontSize === 'inherit') {
-    return -1;
-  }
-
-  const fontVariant = fontVariants.find((variant) => variant.props.fontSize === fontSize);
-  if (fontVariant) {
-    return Number(fontVariant.style.fontSize.slice(0, -3)) * 16;
-  }
-
-  // Fallback to default size
-  return 24;
-}
+import { useTheme, styled } from '../styles';
+import memoTheme from './memoTheme';
 
 function propsToVariantName(props, theme) {
-  let size;
-  if (props.fontSize < 22) {
-    size = '20px'; // small
-  } else if (props.fontSize < 31) {
-    size = '24px'; // medium
-  } else if (props.fontSize < 43) {
-    size = '40px'; // large
-  } else {
-    size = '48px'; // larger
-  }
-
   let emphasis = ''; // regular
   if (theme.colorSchemes.dark || props.emphasis === 'light') {
     // If the theme is dark, we should lighten the icon to reduce glare.
@@ -57,8 +21,56 @@ function propsToVariantName(props, theme) {
     filled = '-filled';
   }
 
-  return `${size}${emphasis}${filled}`;
+  return `${emphasis}${filled}`;
 }
+
+const masterSizes = [20, 24, 40, 48];
+
+const VariableSvg = styled('svg')(
+  memoTheme(() => ({
+    '& path': {
+      display: 'none',
+    },
+    // fallback, show 24dp master
+    '& .m24': {
+      display: 'block',
+    },
+    '@supports (container-type:inline-size)': {
+      containerType: 'inline-size',
+      // min-width:0px and max-width:21px, show 20dp master
+      '@container (max-width:21px)': {
+        '& .m20': {
+          display: 'block',
+        },
+        '& .m24': {
+          display: 'none',
+        },
+      },
+
+      // min-width:22px and max-width:31px, show 24dp master
+      // using fallback defined outside the @supports
+
+      // min-width:32px and max-width:43px, show 40dp master
+      '@container (min-width:32px) and (max-width:43px)': {
+        '& .m40': {
+          display: 'block',
+        },
+        '& .m24': {
+          display: 'none',
+        },
+      },
+      // min-width:44px, show 48dp master
+      '@container (min-width:44px)': {
+        '& .m48': {
+          display: 'block',
+        },
+        '& .m24': {
+          display: 'none',
+        },
+      },
+    },
+  })),
+);
 
 /**
  * Private module reserved for @mui packages.
@@ -66,21 +78,28 @@ function propsToVariantName(props, theme) {
 export default function createVariableIconFromSvg(variants, displayName, viewBox) {
   function Component(props, ref) {
     const theme = useTheme();
-    const fontVariants = fontSizes(theme);
-    const size = fontVariantsToPx(props.fontSize || 'medium', fontVariants);
-    const variantName = propsToVariantName({ ...props, fontSize: size }, theme);
+    const variationName = propsToVariantName(props, theme);
 
-    const { title, ...variableIconProps } = props;
+    const { titleAccess, ...variableIconProps } = props;
 
     return (
       <VariableIcon
         data-testid={process.env.NODE_ENV !== 'production' ? `${displayName}Icon` : undefined}
-        data-variant={process.env.NODE_ENV !== 'production' ? variantName : undefined}
+        data-variation={
+          process.env.NODE_ENV !== 'production' ? `variant${variationName}` : undefined
+        }
         ref={ref}
         {...variableIconProps}
       >
-        <SvgIcon fontSize={`${size}px`} viewBox={viewBox || '0 -960 960 960'} titleAccess={title}>
-          <path d={variants[variantName]} />
+        <SvgIcon
+          as={VariableSvg}
+          fontSize={props.fontSize}
+          viewBox={viewBox || '0 -960 960 960'}
+          titleAccess={titleAccess}
+        >
+          {masterSizes.map((opsz) => (
+            <path className={`m${opsz}`} key={opsz} d={variants[`${opsz}px${variationName}`]} />
+          ))}
         </SvgIcon>
       </VariableIcon>
     );
