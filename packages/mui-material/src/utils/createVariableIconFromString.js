@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import clsx from 'clsx';
 import VariableIcon, { fontSizes } from '../VariableIcon/VariableIcon';
 import { useTheme } from '../styles';
 
@@ -81,12 +82,12 @@ export default function createVariableIconFromString(
       .map((key) => `'${key}' ${variations[key]}`)
       .join(', ');
 
-    const { title, sx, ...variableIconProps } = props;
+    const { sx, className: userClassName, ...variableIconProps } = props;
 
     return (
       <VariableIcon
         data-testid={process.env.NODE_ENV !== 'production' ? `${displayName}Icon` : undefined}
-        className={className} /* TODO: merge with user classNames */
+        className={clsx(className, userClassName)}
         ref={ref}
         {...variableIconProps}
         sx={{
