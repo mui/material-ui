@@ -271,6 +271,17 @@ function App(props) {
     });
   }, []);
 
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = '@layer global,default,theme,custom,sx;';
+    const head = document.head;
+    if (head && head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else if (head) {
+      head.appendChild(style);
+    }
+  }, []);
+
   function computePath(fixture) {
     return `/${fixture.suite}/${fixture.name}`;
   }
