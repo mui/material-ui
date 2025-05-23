@@ -3,6 +3,7 @@ import { ComponentsOverrides } from './overrides';
 import { ComponentsVariants } from './variants';
 
 export interface Components<Theme = unknown> {
+  mergeClassNameAndStyle?: boolean;
   MuiAlert?: {
     defaultProps?: ComponentsProps['MuiAlert'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiAlert'];
