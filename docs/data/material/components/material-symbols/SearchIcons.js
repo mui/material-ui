@@ -607,8 +607,11 @@ export default function SearchIcons() {
   }, [query]);
 
   const deferredIcons = React.useDeferredValue(icons);
+  const deferredTheme = React.useDeferredValue(theme);
+  const deferredWeight = React.useDeferredValue(weight);
 
-  const isPending = deferredIcons !== icons;
+  const isPending =
+    deferredIcons !== icons || deferredTheme !== theme || deferredWeight !== weight;
 
   React.useEffect(() => {
     // Keep track of the no results so we can add synonyms in the future.
@@ -627,6 +630,35 @@ export default function SearchIcons() {
   const [symbolsLoaded, setSymbolsLoaded] = React.useState({
     [`${theme}-${weight}`]: true, // on first render, font-display: block should work properly
   });
+  const symbolsToLoad = React.useMemo(() => {
+    const symbols = { Outlined: [], Rounded: [], Sharp: [] };
+    symbols[theme] = [weight];
+
+    Object.keys(symbolsLoaded).forEach((key) => {
+      if (key !== `${theme}-${weight}`) {
+        const options = key.split('-');
+        symbols[options[0]].push(options[1]);
+      }
+    });
+
+    const weightRanges = {};
+    Object.keys(symbols).forEach((key) => {
+      const weights = symbols[key];
+      if (weights.length === 0) {
+        return;
+      }
+
+      if (weights.length === 1) {
+        weightRanges[key] = weights[0];
+        return;
+      }
+
+      weights.sort();
+      weightRanges[key] = `${weights[0]}..${weights[weights.length - 1]}`;
+    });
+
+    return weightRanges;
+  }, [symbolsLoaded, theme, weight]);
   const updateLoadedSymbols = React.useCallback(async () => {
     await Promise.resolve(); // wait for the next tick in case the font hasn't been inserted into document.fonts yet
 
@@ -634,11 +666,24 @@ export default function SearchIcons() {
     document.fonts.forEach((font) => {
       if (font.family.startsWith('Material Symbols')) {
         const fontTheme = font.family.split(' ')[2];
-        loaded[`${fontTheme}-${font.weight}`] = true;
+        const weightValue = font.weight.split(' ');
+        console.log(weightValue);
+        if (weightValue.length === 1) {
+          loaded[`${fontTheme}-${weightValue[0]}`] = true;
+        } else if (weightValue.length === 2) {
+          // The weight is a range
+          const weightMin = Number(weightValue[0]);
+          const weightMax = Number(weightValue[1]);
+          [100, 200, 300, 400, 500, 600, 700].forEach((w) => {
+            if (w >= weightMin && w <= weightMax) {
+              loaded[`${fontTheme}-${w}`] = true;
+            }
+          });
+        }
       }
     });
 
-    setSymbolsLoaded(loaded);
+    setSymbolsLoaded((currentlyLoaded) => ({ ...currentlyLoaded, ...loaded }));
   }, []);
   React.useEffect(() => {
     document.fonts.addEventListener('loadingdone', updateLoadedSymbols);
@@ -654,12 +699,24 @@ export default function SearchIcons() {
   return (
     <Grid container sx={{ minHeight: 500, width: '100%' }}>
       <Head>
-        {/* eslint-disable-next-line @next/next/google-font-display, @next/next/no-page-custom-font */}
-        {/* TODO: we will need to use a local font, to avoid Google removing and adding icons over time. This font should be published in the fonts package */}
-        <link
-          href={`https://fonts.googleapis.com/css2?family=Material+Symbols+${capitalize(theme)}:opsz,wght,FILL,GRAD@20..48,${weight},0..1,-25..200&display=block`}
-          rel="stylesheet"
-        />
+        {symbolsToLoad.Outlined && (
+          <link
+            href={`https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,${symbolsToLoad.Outlined},0..1,-25..200&display=block`}
+            rel="stylesheet"
+          />
+        )}
+        {symbolsToLoad.Rounded && (
+          <link
+            href={`https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,${symbolsToLoad.Rounded},0..1,-25..200&display=block`}
+            rel="stylesheet"
+          />
+        )}
+        {symbolsToLoad.Sharp && (
+          <link
+            href={`https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,${symbolsToLoad.Sharp},0..1,-25..200&display=block`}
+            rel="stylesheet"
+          />
+        )}
       </Head>
       <Grid
         size={{
@@ -740,17 +797,17 @@ export default function SearchIcons() {
         )} matching results`}</Typography>
         <Icons
           icons={deferredIcons}
-          isVisible={symbolsLoaded[`${theme}-${weight}`]}
+          isVisible={symbolsLoaded[`${deferredTheme}-${deferredWeight}`]}
           handleOpenClick={handleOpenClick}
-          theme={theme}
-          weight={weight}
+          theme={deferredTheme}
+          weight={deferredWeight}
         />
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
         selectedIcon={dialogSelectedIcon}
-        theme={theme}
-        weight={weight}
+        theme={deferredTheme}
+        weight={deferredWeight}
         handleClose={handleClose}
       />
     </Grid>
