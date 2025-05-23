@@ -121,7 +121,7 @@ const StyledIcon = styled('span')(({ theme }) => ({
     cursor: 'pointer',
     color: (theme.vars ?? theme).palette.text.primary,
     border: '1px solid transparent',
-    fontSize: `${iconWidth}px !important`, // TODO: this is hack
+    fontSize: `${iconWidth}px !important`, // TODO: this is a hack
     borderRadius: '12px',
     transition: theme.transitions.create(['background-color', 'box-shadow'], {
       duration: theme.transitions.duration.shortest,
@@ -196,7 +196,7 @@ function Icon(props) {
       {isVisible ? (
         <IconComponent
           className={SVG_ICON_CLASS}
-          fontSize="large" // TODO a number doesn't work?
+          fontSize="inherit"
           tabIndex={-1}
           onClick={onOpenClick}
           title={icon.importName}
@@ -267,7 +267,7 @@ const Title = styled(Typography)(({ theme }) => ({
 }));
 
 const CanvasComponent = styled('div')(({ theme }) => ({
-  fontSize: 210,
+  fontSize: `${210}px !important`, // TODO: this is a hack
   color: (theme.vars ?? theme).palette.text.primary,
   backgroundSize: '30px 30px',
   backgroundColor: 'transparent',
@@ -417,7 +417,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Grid container>
               <Grid size="grow">
                 <Grid container sx={{ justifyContent: 'center' }}>
-                  <CanvasComponent as={selectedIcon.Component} />
+                  <CanvasComponent as={selectedIcon.Component} fontSize="inherit" />
                 </Grid>
               </Grid>
               <Grid size="grow">
@@ -443,6 +443,14 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                       <FontSizeComponent
                         as={selectedIcon.Component}
                         fontSize="large"
+                      />
+                    </Tooltip>
+                  </Grid>
+                  <Grid>
+                    <Tooltip title="fontSize x-large">
+                      <FontSizeComponent
+                        as={selectedIcon.Component}
+                        fontSize="x-large"
                       />
                     </Tooltip>
                   </Grid>
