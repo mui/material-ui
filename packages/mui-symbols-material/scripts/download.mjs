@@ -9,7 +9,7 @@ import lockfile from 'proper-lockfile';
 import { rewriteName } from '../variantCollectors/material-design-symbols.mjs';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
-const versionFile = path.join(currentDirectory, '../meta/versions.json');
+const versionFile = path.join(currentDirectory, '../versions.json');
 
 // Icons we don't publish.
 // This is just a list of new icons.
@@ -110,6 +110,35 @@ function generateVariants() {
 
 const variantsList = generateVariants();
 
+const iconsOutputString = (icons) =>
+  icons
+    .map(
+      ({ name, module }) => `
+  {
+    name: "${name}",
+    module: "${module}",
+  },`,
+    )
+    .join('');
+
+const synonymsOutputString = (icons) =>
+  icons
+    .map(
+      ({ module, tags }) => `
+  ${module}: '${tags.join(' ')}',`,
+    )
+    .join('');
+
+const iconsByCategoriesOutputString = (categories) =>
+  Object.keys(categories)
+    .map(
+      (categoryKey) => `
+  "${categoryKey}": [
+${categories[categoryKey].map((icon) => `    "${icon}",`).join('\n')}
+  ],`,
+    )
+    .join('');
+
 /**
  * Updates the metadata json files
  * @param {Object[]} icons - The list of icons to update metadata for.
@@ -124,16 +153,15 @@ const variantsList = generateVariants();
 async function updateMetadata(icons) {
   // TODO: Are we able to use this data? It's not explicitly licensed
   // https://github.com/google/material-design-icons/issues/1332#issuecomment-1258053181
-  const iconsSortedPopularity = [...icons]
-    .sort((a, b) => {
-      // the larger the number, the more popular
-      return b.popularity - a.popularity;
-    })
-    .map((icon) => ({
-      name: icon.name,
-      module: rewriteName(icon.name),
-      popularity: icon.popularity,
-    }));
+  icons = icons.map((icon) => ({
+    ...icon,
+    module: rewriteName(icon.name),
+  }));
+
+  const iconsOrderedByPopularity = [...icons].sort((a, b) => {
+    // the larger the number, the more popular
+    return b.popularity - a.popularity;
+  });
 
   const iconsByCategory = {};
   const iconsByTag = {};
@@ -157,16 +185,24 @@ async function updateMetadata(icons) {
 
   await Promise.all([
     fse.writeFile(
-      path.join(currentDirectory, '../meta/icons.js'),
-      `const icons = JSON.parse(\`${JSON.stringify(iconsSortedPopularity, null, 2)}\`);\n\nexport default icons;\n`,
+      path.join(currentDirectory, '../icons.js'),
+      `const icons = [${iconsOutputString(icons)}\n];\n\nexport default icons;\n`,
     ),
     fse.writeFile(
-      path.join(currentDirectory, '../meta/categories.js'),
-      `const iconsByCategory = JSON.parse(\`${JSON.stringify(iconsByCategory, null, 2)}\`);\n\nexport default iconsByCategory;\n`,
+      path.join(currentDirectory, '../iconsOrderedByPopularity.js'),
+      `const iconsOrderedByPopularity = [${iconsOutputString(iconsOrderedByPopularity)}\n];\n\nexport default iconsOrderedByPopularity;\n`,
     ),
     fse.writeFile(
-      path.join(currentDirectory, '../meta/tags.js'),
-      `const iconsByTag = JSON.parse(\`${JSON.stringify(iconsByTag, null, 2)}\`);\n\nexport default iconsByTag;\n`,
+      path.join(currentDirectory, '../synonyms.js'),
+      `const synonyms = {${synonymsOutputString(icons)}\n};\n\nexport default synonyms;\n`,
+    ),
+    fse.writeFile(
+      path.join(currentDirectory, '../categories.js'),
+      `const iconsByCategory = {${iconsByCategoriesOutputString(iconsByCategory)}\n};\n\nexport default iconsByCategory;\n`,
+    ),
+    fse.writeFile(
+      path.join(currentDirectory, '../tags.js'),
+      `const iconsByTag = {${iconsByCategoriesOutputString(iconsByTag)}\n};\n\nexport default iconsByTag;\n`,
     ),
   ]);
 }
@@ -241,7 +277,7 @@ async function run() {
     console.log('run', argv);
 
     await fse.ensureDir(path.join(currentDirectory, '../material-symbols'));
-    await fse.ensureDir(path.join(currentDirectory, '../meta'));
+    await fse.ensureDir(path.join(currentDirectory, '../'));
     const response = await fetch(
       'https://fonts.google.com/metadata/icons?key=material_symbols&incomplete=true',
     );
