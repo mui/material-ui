@@ -6,6 +6,7 @@ import yargs from 'yargs';
 import { fileURLToPath } from 'url';
 import { Queue, sleep, retry } from '@mui/internal-waterfall';
 import lockfile from 'proper-lockfile';
+import { rewriteName } from '../variantCollectors/material-design-symbols.mjs';
 
 const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
 const versionFile = path.join(currentDirectory, '../meta/versions.json');
@@ -130,10 +131,8 @@ async function updateMetadata(icons) {
     })
     .map((icon) => ({
       name: icon.name,
+      module: rewriteName(icon.name),
       popularity: icon.popularity,
-      sizes: icon.sizes_px,
-      tags: icon.tags,
-      categories: icon.categories,
     }));
 
   const iconsByCategory = {};
@@ -157,13 +156,18 @@ async function updateMetadata(icons) {
   });
 
   await Promise.all([
-    fse.writeJson(path.join(currentDirectory, '../meta/icons.json'), iconsSortedPopularity, {
-      spaces: 2,
-    }),
-    fse.writeJson(path.join(currentDirectory, '../meta/categories.json'), iconsByCategory, {
-      spaces: 2,
-    }),
-    fse.writeJson(path.join(currentDirectory, '../meta/tags.json'), iconsByTag, { spaces: 2 }),
+    fse.writeFile(
+      path.join(currentDirectory, '../meta/icons.js'),
+      `const icons = JSON.parse(\`${JSON.stringify(iconsSortedPopularity, null, 2)}\`);\n\nexport default icons;\n`,
+    ),
+    fse.writeFile(
+      path.join(currentDirectory, '../meta/categories.js'),
+      `const iconsByCategory = JSON.parse(\`${JSON.stringify(iconsByCategory, null, 2)}\`);\n\nexport default iconsByCategory;\n`,
+    ),
+    fse.writeFile(
+      path.join(currentDirectory, '../meta/tags.js'),
+      `const iconsByTag = JSON.parse(\`${JSON.stringify(iconsByTag, null, 2)}\`);\n\nexport default iconsByTag;\n`,
+    ),
   ]);
 }
 
@@ -256,8 +260,7 @@ async function run() {
       );
     });
 
-    // TODO: investigate licensing issues
-    // await updateMetadata(icons);
+    await updateMetadata(icons);
 
     const totalIcons = icons.length;
     console.log(`total icons: ${totalIcons}`);

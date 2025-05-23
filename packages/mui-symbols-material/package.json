@@ -5,6 +5,7 @@
   "author": "MUI Team",
   "description": "Material Design symbols packager for MUI.",
   "main": "./src/index.js",
+  "type": "module",
   "keywords": [
     "react",
     "react-component",
@@ -80,35 +81,7 @@
     }
   },
   "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "build"
-  },
   "engines": {
     "node": ">=14.0.0"
-  },
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./esm/index.d.ts",
-        "default": "./esm/index.js"
-      },
-      "require": {
-        "types": "./index.d.ts",
-        "default": "./index.js"
-      }
-    },
-    "./*": {
-      "import": {
-        "types": "./esm/*.d.ts",
-        "default": "./esm/*.js"
-      },
-      "require": {
-        "types": "./*.d.ts",
-        "default": "./*.js"
-      }
-    },
-    "./esm": null,
-    "./utils/*": null
   }
 }

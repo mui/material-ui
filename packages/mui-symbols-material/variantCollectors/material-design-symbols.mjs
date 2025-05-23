@@ -39,7 +39,7 @@ const classNameMap = {
   sharp: 'material-symbols-sharp',
 };
 
-function rewriteName(fileName) {
+export function rewriteName(fileName) {
   fileName = fileName.replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 || p3).toUpperCase());
 
   if (fileName.startsWith('2d')) {
