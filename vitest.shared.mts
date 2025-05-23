@@ -25,15 +25,26 @@ function forceJsxForJsFiles(): Plugin {
   };
 }
 
+function getVitestEnvironment(fileName: string): 'browser' | 'jsdom' | 'node' {
+  const basename = path.basename(fileName);
+  if (basename.includes('.browser.')) {
+    return 'browser';
+  }
+  if (basename.includes('.jsdom.')) {
+    return 'jsdom';
+  }
+  return 'node';
+}
+
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
 export default async function create(fileUrl: string) {
   const file = fileURLToPath(fileUrl);
-  const isBrowserTest = path.basename(file).includes('.browser.');
+  const testEnv = getVitestEnvironment(file);
   const pkgJson = path.resolve(file, '../package.json');
   const pkg = await fs.readFile(pkgJson, 'utf8').then((content) => JSON.parse(content));
 
-  const name = `${isBrowserTest ? 'browser' : 'jsdom'}:${pkg.name}`;
+  const name = `${testEnv}:${pkg.name}`;
   return defineConfig({
     plugins: [react(), forceJsxForJsFiles()],
     define: {
@@ -47,19 +58,23 @@ export default async function create(fileUrl: string) {
       setupFiles: [
         path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
       ],
-      environment: 'jsdom',
-      environmentOptions: {
-        jsdom: {
-          pretendToBeVisual: true,
-          url: 'http://localhost',
-        },
-      },
+      environment: testEnv,
+      environmentOptions:
+        testEnv === 'jsdom'
+          ? {
+              jsdom: {
+                pretendToBeVisual: true,
+                url: 'http://localhost',
+              },
+            }
+          : {},
+
       fakeTimers: {
         // We use performance.now in the codebase
         toFake: [...(configDefaults.fakeTimers.toFake ?? []), 'performance'],
       },
       browser: {
-        enabled: isBrowserTest,
+        enabled: testEnv === 'browser',
         provider: 'playwright',
         headless: false,
         viewport: {
