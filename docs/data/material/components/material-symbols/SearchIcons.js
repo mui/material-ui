@@ -15,6 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
+import Skeleton from '@mui/material/Skeleton';
 import flexsearch from 'flexsearch';
 import SearchIcon from '@mui/icons-material/Search';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -29,54 +30,17 @@ import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterStat
 import Head from 'next/head';
 import FontIcon from '@mui/material/Icon';
 
-// For Debugging
-// import Menu from '@mui/icons-material/Menu';
-// import MenuOutlined from '@mui/icons-material/MenuOutlined';
-// import MenuRounded from '@mui/icons-material/MenuRounded';
-// import MenuTwoTone from '@mui/icons-material/MenuTwoTone';
-// import MenuSharp from '@mui/icons-material/MenuSharp';
-// import ExitToApp from '@mui/icons-material/ExitToApp';
-// import ExitToAppOutlined from '@mui/icons-material/ExitToAppOutlined';
-// import ExitToAppRounded from '@mui/icons-material/ExitToAppRounded';
-// import ExitToAppTwoTone from '@mui/icons-material/ExitToAppTwoTone';
-// import ExitToAppSharp from '@mui/icons-material/ExitToAppSharp';
-// import Delete from '@mui/icons-material/Delete';
-// import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
-// import DeleteRounded from '@mui/icons-material/DeleteRounded';
-// import DeleteTwoTone from '@mui/icons-material/DeleteTwoTone';
-// import DeleteSharp from '@mui/icons-material/DeleteSharp';
-// import DeleteForever from '@mui/icons-material/DeleteForever';
-// import DeleteForeverOutlined from '@mui/icons-material/DeleteForeverOutlined';
-// import DeleteForeverRounded from '@mui/icons-material/DeleteForeverRounded';
-// import DeleteForeverTwoTone from '@mui/icons-material/DeleteForeverTwoTone';
-// import DeleteForeverSharp from '@mui/icons-material/DeleteForeverSharp';
-
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
 const FlexSearchIndex = flexsearch.Index;
 
-// const allIconsMap = {
-//   ExitToApp,
-//   ExitToAppOutlined,
-//   ExitToAppRounded,
-//   ExitToAppTwoTone,
-//   ExitToAppSharp,
-//   Menu,
-//   MenuOutlined,
-//   MenuRounded,
-//   MenuTwoTone,
-//   MenuSharp,
-//   Delete,
-//   DeleteOutlined,
-//   DeleteRounded,
-//   DeleteTwoTone,
-//   DeleteSharp,
-//   DeleteForever,
-//   DeleteForeverOutlined,
-//   DeleteForeverRounded,
-//   DeleteForeverTwoTone,
-//   DeleteForeverSharp,
-// };
+// Debugging
+// const allIcons = [
+//   { module: 'Menu', name: 'menu' },
+//   { module: 'ExitToApp', name: 'exit_to_app' },
+//   { module: 'Delete', name: 'delete' },
+//   { module: 'DeleteForever', name: 'delete_forever' },
+// ];
 
 const allIconsMap = {};
 allIcons.forEach((icon) => {
@@ -155,45 +119,13 @@ function handleLabelClick(event) {
   selectNode(event.currentTarget);
 }
 
-function isElmVisible(elm, margin = 0) {
-  const rect = elm.getBoundingClientRect();
-  return rect.bottom >= -margin && rect.top <= window.innerHeight + margin;
-}
-
 function Icon(props) {
-  const { icon, onOpenClick, initiallyVisible = false } = props;
-
-  const rootRef = React.useRef(null);
-  const [isVisible, setIsVisible] = React.useState(initiallyVisible);
-
-  // Virtualize the icons to reduce page size and React rendering time.
-  // Only render the icons after they become visible in the viewport.
-  React.useEffect(() => {
-    const margin = 200;
-    const root = /** @type {SVGElement} */ (rootRef.current);
-    if (initiallyVisible || isElmVisible(root, margin)) {
-      setIsVisible(true);
-      return () => {};
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (isElmVisible(entries[0].target, margin)) {
-          setIsVisible(true);
-        }
-      },
-      { rootMargin: `${margin}px 0px` },
-    );
-    observer.observe(root);
-    return () => {
-      observer.disconnect();
-    };
-  }, [initiallyVisible]);
+  const { icon, onOpenClick, isVisible } = props;
 
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   return (
     <StyledIcon
       key={icon.module}
-      ref={rootRef}
       onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
       {isVisible ? (
@@ -202,7 +134,6 @@ function Icon(props) {
           tabIndex={-1}
           onClick={onOpenClick}
           title={icon.module}
-          data-test={JSON.stringify(icon)}
           baseClassName=""
           sx={(theme) => ({
             fontFamily: `Material Symbols ${capitalize(props.theme)}`,
@@ -215,15 +146,25 @@ function Icon(props) {
             whiteSpace: 'nowrap',
             wordWrap: 'normal',
             direction: 'ltr',
-            '-webkit-font-feature-settings': 'liga',
-            '-webkit-font-smoothing': 'antialiased',
+            WebkitFontFeatureSettings: 'liga',
+            WebkitFontSmoothing: 'antialiased',
             fontVariationSettings: `'wght' ${props.weight}, 'GRAD' ${theme.colorSchemes.dark ? '-25' : '0'}`,
           })}
         >
           {icon.name}
         </FontIcon>
       ) : (
-        <div className={SVG_ICON_CLASS} />
+        <div className={SVG_ICON_CLASS}>
+          <Skeleton
+            animation="wave"
+            height={iconWidth}
+            width={iconWidth}
+            sx={{
+              transform: 'none',
+              backgroundColor: 'grey.900',
+            }}
+          />
+        </div>
       )}
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
       <div onClick={handleLabelClick}>{icon.module}</div>
@@ -233,19 +174,18 @@ function Icon(props) {
 }
 
 const Icons = React.memo(function Icons(props) {
-  const { icons, theme, weight, handleOpenClick } = props;
+  const { icons, theme, weight, isVisible, handleOpenClick } = props;
 
   return (
     <div>
-      {icons.map((icon, i) => (
+      {icons.map((icon) => (
         <Icon
           key={icon.module}
           icon={icon}
           theme={theme}
           weight={weight}
           onOpenClick={handleOpenClick}
-          // Render the first 50 icons immediately as they would be visible on page load
-          initiallyVisible={i < 50}
+          isVisible={isVisible}
         />
       ))}
     </div>
@@ -255,6 +195,7 @@ const Icons = React.memo(function Icons(props) {
 Icons.propTypes = {
   handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
+  isVisible: PropTypes.bool,
   theme: PropTypes.string,
   weight: PropTypes.string,
 };
@@ -398,8 +339,8 @@ const DialogDetails = React.memo(function DialogDetails(props) {
       whiteSpace: 'nowrap',
       wordWrap: 'normal',
       direction: 'ltr',
-      '-webkit-font-feature-settings': 'liga',
-      '-webkit-font-smoothing': 'antialiased',
+      WebkitFontFeatureSettings: 'liga',
+      WebkitFontSmoothing: 'antialiased',
     }),
     [theme],
   );
@@ -683,12 +624,40 @@ export default function SearchIcons() {
     selectedIcon ? allIconsMap[selectedIcon] : null,
   );
 
+  const [symbolsLoaded, setSymbolsLoaded] = React.useState({
+    [`${theme}-${weight}`]: true, // on first render, font-display: block should work properly
+  });
+  const updateLoadedSymbols = React.useCallback(async () => {
+    await Promise.resolve(); // wait for the next tick in case the font hasn't been inserted into document.fonts yet
+
+    const loaded = {};
+    document.fonts.forEach((font) => {
+      if (font.family.startsWith('Material Symbols')) {
+        const fontTheme = font.family.split(' ')[2];
+        loaded[`${fontTheme}-${font.weight}`] = true;
+      }
+    });
+
+    setSymbolsLoaded(loaded);
+  }, []);
+  React.useEffect(() => {
+    document.fonts.addEventListener('loadingdone', updateLoadedSymbols);
+    if (document.fonts.status === 'loaded') {
+      updateLoadedSymbols();
+    }
+
+    return () => {
+      document.fonts.removeEventListener('loadingdone', updateLoadedSymbols);
+    };
+  }, [updateLoadedSymbols]);
+
   return (
     <Grid container sx={{ minHeight: 500, width: '100%' }}>
       <Head>
         {/* eslint-disable-next-line @next/next/google-font-display, @next/next/no-page-custom-font */}
+        {/* TODO: we will need to use a local font, to avoid Google removing and adding icons over time. This font should be published in the fonts package */}
         <link
-          href={`https://fonts.googleapis.com/css2?family=Material+Symbols+${capitalize(theme)}:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..0&display=block`}
+          href={`https://fonts.googleapis.com/css2?family=Material+Symbols+${capitalize(theme)}:opsz,wght,FILL,GRAD@20..48,${weight},0..1,-25..200&display=block`}
           rel="stylesheet"
         />
       </Head>
@@ -771,6 +740,7 @@ export default function SearchIcons() {
         )} matching results`}</Typography>
         <Icons
           icons={deferredIcons}
+          isVisible={symbolsLoaded[`${theme}-${weight}`]}
           handleOpenClick={handleOpenClick}
           theme={theme}
           weight={weight}
