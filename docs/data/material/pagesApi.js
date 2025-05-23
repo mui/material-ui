@@ -121,6 +121,7 @@ export default [
   { pathname: '/material-ui/api/table-footer' },
   { pathname: '/material-ui/api/table-head' },
   { pathname: '/material-ui/api/table-pagination' },
+  { pathname: '/material-ui/api/table-pagination-actions' },
   { pathname: '/material-ui/api/table-row' },
   { pathname: '/material-ui/api/table-sort-label' },
   { pathname: '/material-ui/api/tab-list' },

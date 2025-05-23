@@ -491,7 +491,7 @@ module.exports = /** @type {Config} */ ({
     },
     {
       files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-      excludedFiles: ['*.d.ts', '*.spec.*'],
+      excludedFiles: ['*.spec.*'],
       rules: {
         'no-restricted-imports': [
           'error',
