@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import path from 'path';
 import fs from 'fs';
 import * as ts from 'typescript';
@@ -61,7 +62,9 @@ describe('typescript-to-proptypes', () => {
       const project = getProject();
       let options: TestOptions = {};
       try {
-        const optionsModule = await import(`./${testName}/options`);
+        const optionsModule: any = await import.meta
+          .glob(`./**/options.ts`)
+          [`./${testName}/options.ts`]();
         options = optionsModule.default;
       } catch (error) {
         // Assume "Cannot find module" which means "no options".
