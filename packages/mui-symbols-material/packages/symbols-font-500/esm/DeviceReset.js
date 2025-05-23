@@ -1,6 +1,0 @@
-'use client';
-
-import createIcon from "./utils/createIcon.js";
-export default createIcon('device_reset', 'DeviceReset', 'Material Symbols Outlined', {
-  wght: 500
-}, 'material-symbols-outlined');

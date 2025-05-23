@@ -106,6 +106,12 @@ Object.defineProperty(exports, "ActivityZone", {
     return _ActivityZone.default;
   }
 });
+Object.defineProperty(exports, "Acupuncture", {
+  enumerable: true,
+  get: function () {
+    return _Acupuncture.default;
+  }
+});
 Object.defineProperty(exports, "Acute", {
   enumerable: true,
   get: function () {
@@ -212,12 +218,6 @@ Object.defineProperty(exports, "AddCard", {
   enumerable: true,
   get: function () {
     return _AddCard.default;
-  }
-});
-Object.defineProperty(exports, "AddChart", {
-  enumerable: true,
-  get: function () {
-    return _AddChart.default;
   }
 });
 Object.defineProperty(exports, "AddCircle", {
@@ -344,12 +344,6 @@ Object.defineProperty(exports, "AddToHomeScreen", {
   enumerable: true,
   get: function () {
     return _AddToHomeScreen.default;
-  }
-});
-Object.defineProperty(exports, "AddToPhotos", {
-  enumerable: true,
-  get: function () {
-    return _AddToPhotos.default;
   }
 });
 Object.defineProperty(exports, "AddToQueue", {
@@ -494,12 +488,6 @@ Object.defineProperty(exports, "AirplaneTicket", {
   enumerable: true,
   get: function () {
     return _AirplaneTicket.default;
-  }
-});
-Object.defineProperty(exports, "AirplanemodeActive", {
-  enumerable: true,
-  get: function () {
-    return _AirplanemodeActive.default;
   }
 });
 Object.defineProperty(exports, "AirplanemodeInactive", {
@@ -778,12 +766,6 @@ Object.defineProperty(exports, "Altitude", {
     return _Altitude.default;
   }
 });
-Object.defineProperty(exports, "AmbientScreen", {
-  enumerable: true,
-  get: function () {
-    return _AmbientScreen.default;
-  }
-});
 Object.defineProperty(exports, "Ambulance", {
   enumerable: true,
   get: function () {
@@ -886,22 +868,10 @@ Object.defineProperty(exports, "AppBlocking", {
     return _AppBlocking.default;
   }
 });
-Object.defineProperty(exports, "AppPromo", {
-  enumerable: true,
-  get: function () {
-    return _AppPromo.default;
-  }
-});
 Object.defineProperty(exports, "AppRegistration", {
   enumerable: true,
   get: function () {
     return _AppRegistration.default;
-  }
-});
-Object.defineProperty(exports, "AppShortcut", {
-  enumerable: true,
-  get: function () {
-    return _AppShortcut.default;
   }
 });
 Object.defineProperty(exports, "Apparel", {
@@ -920,6 +890,12 @@ Object.defineProperty(exports, "ApprovalDelegation", {
   enumerable: true,
   get: function () {
     return _ApprovalDelegation.default;
+  }
+});
+Object.defineProperty(exports, "ApprovalDelegationOff", {
+  enumerable: true,
+  get: function () {
+    return _ApprovalDelegationOff.default;
   }
 });
 Object.defineProperty(exports, "Apps", {
@@ -1312,12 +1288,6 @@ Object.defineProperty(exports, "AssistWalker", {
     return _AssistWalker.default;
   }
 });
-Object.defineProperty(exports, "Assistant", {
-  enumerable: true,
-  get: function () {
-    return _Assistant.default;
-  }
-});
 Object.defineProperty(exports, "AssistantDevice", {
   enumerable: true,
   get: function () {
@@ -1352,18 +1322,6 @@ Object.defineProperty(exports, "Asterisk", {
   enumerable: true,
   get: function () {
     return _Asterisk.default;
-  }
-});
-Object.defineProperty(exports, "AstrophotographyAuto", {
-  enumerable: true,
-  get: function () {
-    return _AstrophotographyAuto.default;
-  }
-});
-Object.defineProperty(exports, "AstrophotographyOff", {
-  enumerable: true,
-  get: function () {
-    return _AstrophotographyOff.default;
   }
 });
 Object.defineProperty(exports, "Atm", {
@@ -1444,18 +1402,6 @@ Object.defineProperty(exports, "AudioVideoReceiver", {
     return _AudioVideoReceiver.default;
   }
 });
-Object.defineProperty(exports, "AutoActivityZone", {
-  enumerable: true,
-  get: function () {
-    return _AutoActivityZone.default;
-  }
-});
-Object.defineProperty(exports, "AutoAwesome", {
-  enumerable: true,
-  get: function () {
-    return _AutoAwesome.default;
-  }
-});
 Object.defineProperty(exports, "AutoAwesomeMosaic", {
   enumerable: true,
   get: function () {
@@ -1474,60 +1420,6 @@ Object.defineProperty(exports, "AutoDelete", {
     return _AutoDelete.default;
   }
 });
-Object.defineProperty(exports, "AutoDetectVoice", {
-  enumerable: true,
-  get: function () {
-    return _AutoDetectVoice.default;
-  }
-});
-Object.defineProperty(exports, "AutoFix", {
-  enumerable: true,
-  get: function () {
-    return _AutoFix.default;
-  }
-});
-Object.defineProperty(exports, "AutoFixHigh", {
-  enumerable: true,
-  get: function () {
-    return _AutoFixHigh.default;
-  }
-});
-Object.defineProperty(exports, "AutoFixNormal", {
-  enumerable: true,
-  get: function () {
-    return _AutoFixNormal.default;
-  }
-});
-Object.defineProperty(exports, "AutoFixOff", {
-  enumerable: true,
-  get: function () {
-    return _AutoFixOff.default;
-  }
-});
-Object.defineProperty(exports, "AutoGraph", {
-  enumerable: true,
-  get: function () {
-    return _AutoGraph.default;
-  }
-});
-Object.defineProperty(exports, "AutoLabel", {
-  enumerable: true,
-  get: function () {
-    return _AutoLabel.default;
-  }
-});
-Object.defineProperty(exports, "AutoMeetingRoom", {
-  enumerable: true,
-  get: function () {
-    return _AutoMeetingRoom.default;
-  }
-});
-Object.defineProperty(exports, "AutoMode", {
-  enumerable: true,
-  get: function () {
-    return _AutoMode.default;
-  }
-});
 Object.defineProperty(exports, "AutoReadPause", {
   enumerable: true,
   get: function () {
@@ -1540,22 +1432,10 @@ Object.defineProperty(exports, "AutoReadPlay", {
     return _AutoReadPlay.default;
   }
 });
-Object.defineProperty(exports, "AutoSchedule", {
-  enumerable: true,
-  get: function () {
-    return _AutoSchedule.default;
-  }
-});
 Object.defineProperty(exports, "AutoStories", {
   enumerable: true,
   get: function () {
     return _AutoStories.default;
-  }
-});
-Object.defineProperty(exports, "AutoTimer", {
-  enumerable: true,
-  get: function () {
-    return _AutoTimer.default;
   }
 });
 Object.defineProperty(exports, "AutoTowing", {
@@ -1568,12 +1448,6 @@ Object.defineProperty(exports, "AutoTransmission", {
   enumerable: true,
   get: function () {
     return _AutoTransmission.default;
-  }
-});
-Object.defineProperty(exports, "AutoVideocam", {
-  enumerable: true,
-  get: function () {
-    return _AutoVideocam.default;
   }
 });
 Object.defineProperty(exports, "AutofpsSelect", {
@@ -1592,12 +1466,6 @@ Object.defineProperty(exports, "Autopause", {
   enumerable: true,
   get: function () {
     return _Autopause.default;
-  }
-});
-Object.defineProperty(exports, "Autopay", {
-  enumerable: true,
-  get: function () {
-    return _Autopay.default;
   }
 });
 Object.defineProperty(exports, "Autoplay", {
@@ -1676,18 +1544,6 @@ Object.defineProperty(exports, "BackToTab", {
   enumerable: true,
   get: function () {
     return _BackToTab.default;
-  }
-});
-Object.defineProperty(exports, "BackgroundBlurFull", {
-  enumerable: true,
-  get: function () {
-    return _BackgroundBlurFull.default;
-  }
-});
-Object.defineProperty(exports, "BackgroundBlurLight", {
-  enumerable: true,
-  get: function () {
-    return _BackgroundBlurLight.default;
   }
 });
 Object.defineProperty(exports, "BackgroundDotLarge", {
@@ -1882,22 +1738,10 @@ Object.defineProperty(exports, "Battery1Bar", {
     return _Battery1Bar.default;
   }
 });
-Object.defineProperty(exports, "Battery20", {
-  enumerable: true,
-  get: function () {
-    return _Battery.default;
-  }
-});
 Object.defineProperty(exports, "Battery2Bar", {
   enumerable: true,
   get: function () {
     return _Battery2Bar.default;
-  }
-});
-Object.defineProperty(exports, "Battery30", {
-  enumerable: true,
-  get: function () {
-    return _Battery2.default;
   }
 });
 Object.defineProperty(exports, "Battery3Bar", {
@@ -1912,40 +1756,16 @@ Object.defineProperty(exports, "Battery4Bar", {
     return _Battery4Bar.default;
   }
 });
-Object.defineProperty(exports, "Battery50", {
-  enumerable: true,
-  get: function () {
-    return _Battery3.default;
-  }
-});
 Object.defineProperty(exports, "Battery5Bar", {
   enumerable: true,
   get: function () {
     return _Battery5Bar.default;
   }
 });
-Object.defineProperty(exports, "Battery60", {
-  enumerable: true,
-  get: function () {
-    return _Battery4.default;
-  }
-});
 Object.defineProperty(exports, "Battery6Bar", {
   enumerable: true,
   get: function () {
     return _Battery6Bar.default;
-  }
-});
-Object.defineProperty(exports, "Battery80", {
-  enumerable: true,
-  get: function () {
-    return _Battery5.default;
-  }
-});
-Object.defineProperty(exports, "Battery90", {
-  enumerable: true,
-  get: function () {
-    return _Battery6.default;
   }
 });
 Object.defineProperty(exports, "BatteryAlert", {
@@ -2162,24 +1982,6 @@ Object.defineProperty(exports, "BatteryUnknown", {
   enumerable: true,
   get: function () {
     return _BatteryUnknown.default;
-  }
-});
-Object.defineProperty(exports, "BatteryVert005", {
-  enumerable: true,
-  get: function () {
-    return _BatteryVert.default;
-  }
-});
-Object.defineProperty(exports, "BatteryVert020", {
-  enumerable: true,
-  get: function () {
-    return _BatteryVert2.default;
-  }
-});
-Object.defineProperty(exports, "BatteryVert050", {
-  enumerable: true,
-  get: function () {
-    return _BatteryVert3.default;
   }
 });
 Object.defineProperty(exports, "BatteryVeryLow", {
@@ -2462,12 +2264,6 @@ Object.defineProperty(exports, "Book4", {
   enumerable: true,
   get: function () {
     return _Book4.default;
-  }
-});
-Object.defineProperty(exports, "Book4Spark", {
-  enumerable: true,
-  get: function () {
-    return _Book4Spark.default;
   }
 });
 Object.defineProperty(exports, "Book5", {
@@ -2818,18 +2614,6 @@ Object.defineProperty(exports, "BrightnessEmpty", {
     return _BrightnessEmpty.default;
   }
 });
-Object.defineProperty(exports, "BrightnessHigh", {
-  enumerable: true,
-  get: function () {
-    return _BrightnessHigh.default;
-  }
-});
-Object.defineProperty(exports, "BrightnessLow", {
-  enumerable: true,
-  get: function () {
-    return _BrightnessLow.default;
-  }
-});
 Object.defineProperty(exports, "BrightnessMedium", {
   enumerable: true,
   get: function () {
@@ -3146,12 +2930,6 @@ Object.defineProperty(exports, "Camera", {
   enumerable: true,
   get: function () {
     return _Camera.default;
-  }
-});
-Object.defineProperty(exports, "CameraEnhance", {
-  enumerable: true,
-  get: function () {
-    return _CameraEnhance.default;
   }
 });
 Object.defineProperty(exports, "CameraFront", {
@@ -3784,34 +3562,10 @@ Object.defineProperty(exports, "Chips", {
     return _Chips.default;
   }
 });
-Object.defineProperty(exports, "ChromeMaximize", {
-  enumerable: true,
-  get: function () {
-    return _ChromeMaximize.default;
-  }
-});
-Object.defineProperty(exports, "ChromeMinimize", {
-  enumerable: true,
-  get: function () {
-    return _ChromeMinimize.default;
-  }
-});
 Object.defineProperty(exports, "ChromeReaderMode", {
   enumerable: true,
   get: function () {
     return _ChromeReaderMode.default;
-  }
-});
-Object.defineProperty(exports, "ChromeRestore", {
-  enumerable: true,
-  get: function () {
-    return _ChromeRestore.default;
-  }
-});
-Object.defineProperty(exports, "ChromeTote", {
-  enumerable: true,
-  get: function () {
-    return _ChromeTote.default;
   }
 });
 Object.defineProperty(exports, "Chromecast2", {
@@ -3908,12 +3662,6 @@ Object.defineProperty(exports, "ClearDay", {
   enumerable: true,
   get: function () {
     return _ClearDay.default;
-  }
-});
-Object.defineProperty(exports, "ClearNight", {
-  enumerable: true,
-  get: function () {
-    return _ClearNight.default;
   }
 });
 Object.defineProperty(exports, "ClimateMiniSplit", {
@@ -4054,12 +3802,6 @@ Object.defineProperty(exports, "CloudOff", {
     return _CloudOff.default;
   }
 });
-Object.defineProperty(exports, "CloudQueue", {
-  enumerable: true,
-  get: function () {
-    return _CloudQueue.default;
-  }
-});
 Object.defineProperty(exports, "CloudSync", {
   enumerable: true,
   get: function () {
@@ -4070,24 +3812,6 @@ Object.defineProperty(exports, "CloudUpload", {
   enumerable: true,
   get: function () {
     return _CloudUpload.default;
-  }
-});
-Object.defineProperty(exports, "Cloudy", {
-  enumerable: true,
-  get: function () {
-    return _Cloudy.default;
-  }
-});
-Object.defineProperty(exports, "CloudyFilled", {
-  enumerable: true,
-  get: function () {
-    return _CloudyFilled.default;
-  }
-});
-Object.defineProperty(exports, "CloudySnowing", {
-  enumerable: true,
-  get: function () {
-    return _CloudySnowing.default;
   }
 });
 Object.defineProperty(exports, "Co2", {
@@ -4876,12 +4600,6 @@ Object.defineProperty(exports, "CustomTypography", {
     return _CustomTypography.default;
   }
 });
-Object.defineProperty(exports, "Cut", {
-  enumerable: true,
-  get: function () {
-    return _Cut.default;
-  }
-});
 Object.defineProperty(exports, "Cycle", {
   enumerable: true,
   get: function () {
@@ -5356,12 +5074,6 @@ Object.defineProperty(exports, "DeviceHub", {
     return _DeviceHub.default;
   }
 });
-Object.defineProperty(exports, "DeviceReset", {
-  enumerable: true,
-  get: function () {
-    return _DeviceReset.default;
-  }
-});
 Object.defineProperty(exports, "DeviceThermostat", {
   enumerable: true,
   get: function () {
@@ -5450,6 +5162,12 @@ Object.defineProperty(exports, "Diamond", {
   enumerable: true,
   get: function () {
     return _Diamond.default;
+  }
+});
+Object.defineProperty(exports, "DiamondShine", {
+  enumerable: true,
+  get: function () {
+    return _DiamondShine.default;
   }
 });
 Object.defineProperty(exports, "Dictionary", {
@@ -5782,12 +5500,6 @@ Object.defineProperty(exports, "DominoMask", {
     return _DominoMask.default;
   }
 });
-Object.defineProperty(exports, "Done", {
-  enumerable: true,
-  get: function () {
-    return _Done.default;
-  }
-});
 Object.defineProperty(exports, "DoneAll", {
   enumerable: true,
   get: function () {
@@ -5978,24 +5690,6 @@ Object.defineProperty(exports, "DriveFileMove", {
   enumerable: true,
   get: function () {
     return _DriveFileMove.default;
-  }
-});
-Object.defineProperty(exports, "DriveFileMoveOutline", {
-  enumerable: true,
-  get: function () {
-    return _DriveFileMoveOutline.default;
-  }
-});
-Object.defineProperty(exports, "DriveFileMoveRtl", {
-  enumerable: true,
-  get: function () {
-    return _DriveFileMoveRtl.default;
-  }
-});
-Object.defineProperty(exports, "DriveFileRenameOutline", {
-  enumerable: true,
-  get: function () {
-    return _DriveFileRenameOutline.default;
   }
 });
 Object.defineProperty(exports, "DriveFolderUpload", {
@@ -6436,18 +6130,6 @@ Object.defineProperty(exports, "EmergencyShareOff", {
     return _EmergencyShareOff.default;
   }
 });
-Object.defineProperty(exports, "EmojiEvents", {
-  enumerable: true,
-  get: function () {
-    return _EmojiEvents.default;
-  }
-});
-Object.defineProperty(exports, "EmojiFlags", {
-  enumerable: true,
-  get: function () {
-    return _EmojiFlags.default;
-  }
-});
 Object.defineProperty(exports, "EmojiFoodBeverage", {
   enumerable: true,
   get: function () {
@@ -6646,12 +6328,6 @@ Object.defineProperty(exports, "Error", {
     return _Error.default;
   }
 });
-Object.defineProperty(exports, "ErrorCircleRounded", {
-  enumerable: true,
-  get: function () {
-    return _ErrorCircleRounded.default;
-  }
-});
 Object.defineProperty(exports, "ErrorMed", {
   enumerable: true,
   get: function () {
@@ -6680,12 +6356,6 @@ Object.defineProperty(exports, "EuroSymbol", {
   enumerable: true,
   get: function () {
     return _EuroSymbol.default;
-  }
-});
-Object.defineProperty(exports, "EvCharger", {
-  enumerable: true,
-  get: function () {
-    return _EvCharger.default;
   }
 });
 Object.defineProperty(exports, "EvMobiledataBadge", {
@@ -6820,18 +6490,6 @@ Object.defineProperty(exports, "ExpandContent", {
     return _ExpandContent.default;
   }
 });
-Object.defineProperty(exports, "ExpandLess", {
-  enumerable: true,
-  get: function () {
-    return _ExpandLess.default;
-  }
-});
-Object.defineProperty(exports, "ExpandMore", {
-  enumerable: true,
-  get: function () {
-    return _ExpandMore.default;
-  }
-});
 Object.defineProperty(exports, "ExpansionPanels", {
   enumerable: true,
   get: function () {
@@ -6886,36 +6544,6 @@ Object.defineProperty(exports, "Exposure", {
     return _Exposure.default;
   }
 });
-Object.defineProperty(exports, "ExposureNeg1", {
-  enumerable: true,
-  get: function () {
-    return _ExposureNeg.default;
-  }
-});
-Object.defineProperty(exports, "ExposureNeg2", {
-  enumerable: true,
-  get: function () {
-    return _ExposureNeg2.default;
-  }
-});
-Object.defineProperty(exports, "ExposurePlus1", {
-  enumerable: true,
-  get: function () {
-    return _ExposurePlus.default;
-  }
-});
-Object.defineProperty(exports, "ExposurePlus2", {
-  enumerable: true,
-  get: function () {
-    return _ExposurePlus2.default;
-  }
-});
-Object.defineProperty(exports, "ExposureZero", {
-  enumerable: true,
-  get: function () {
-    return _ExposureZero.default;
-  }
-});
 Object.defineProperty(exports, "Extension", {
   enumerable: true,
   get: function () {
@@ -6938,6 +6566,12 @@ Object.defineProperty(exports, "Eyeglasses", {
   enumerable: true,
   get: function () {
     return _Eyeglasses.default;
+  }
+});
+Object.defineProperty(exports, "Eyeglasses2", {
+  enumerable: true,
+  get: function () {
+    return _Eyeglasses2.default;
   }
 });
 Object.defineProperty(exports, "Face", {
@@ -6992,12 +6626,6 @@ Object.defineProperty(exports, "FaceNod", {
   enumerable: true,
   get: function () {
     return _FaceNod.default;
-  }
-});
-Object.defineProperty(exports, "FaceRetouchingNatural", {
-  enumerable: true,
-  get: function () {
-    return _FaceRetouchingNatural.default;
   }
 });
 Object.defineProperty(exports, "FaceRetouchingOff", {
@@ -7156,12 +6784,6 @@ Object.defineProperty(exports, "FeaturedVideo", {
     return _FeaturedVideo.default;
   }
 });
-Object.defineProperty(exports, "Feed", {
-  enumerable: true,
-  get: function () {
-    return _Feed.default;
-  }
-});
 Object.defineProperty(exports, "Feedback", {
   enumerable: true,
   get: function () {
@@ -7258,18 +6880,6 @@ Object.defineProperty(exports, "FileCopyOff", {
     return _FileCopyOff.default;
   }
 });
-Object.defineProperty(exports, "FileDownload", {
-  enumerable: true,
-  get: function () {
-    return _FileDownload.default;
-  }
-});
-Object.defineProperty(exports, "FileDownloadDone", {
-  enumerable: true,
-  get: function () {
-    return _FileDownloadDone.default;
-  }
-});
 Object.defineProperty(exports, "FileDownloadOff", {
   enumerable: true,
   get: function () {
@@ -7328,12 +6938,6 @@ Object.defineProperty(exports, "FileSaveOff", {
   enumerable: true,
   get: function () {
     return _FileSaveOff.default;
-  }
-});
-Object.defineProperty(exports, "FileUpload", {
-  enumerable: true,
-  get: function () {
-    return _FileUpload.default;
   }
 });
 Object.defineProperty(exports, "FileUploadOff", {
@@ -7762,12 +7366,6 @@ Object.defineProperty(exports, "FlightsAndHotels", {
     return _FlightsAndHotels.default;
   }
 });
-Object.defineProperty(exports, "Flightsmode", {
-  enumerable: true,
-  get: function () {
-    return _Flightsmode.default;
-  }
-});
 Object.defineProperty(exports, "Flip", {
   enumerable: true,
   get: function () {
@@ -7798,28 +7396,16 @@ Object.defineProperty(exports, "FlipToFront", {
     return _FlipToFront.default;
   }
 });
-Object.defineProperty(exports, "FloatLandscape", {
+Object.defineProperty(exports, "FloatLandscape2", {
   enumerable: true,
   get: function () {
     return _FloatLandscape.default;
   }
 });
-Object.defineProperty(exports, "FloatLandscape2", {
-  enumerable: true,
-  get: function () {
-    return _FloatLandscape2.default;
-  }
-});
-Object.defineProperty(exports, "FloatPortrait", {
-  enumerable: true,
-  get: function () {
-    return _FloatPortrait.default;
-  }
-});
 Object.defineProperty(exports, "FloatPortrait2", {
   enumerable: true,
   get: function () {
-    return _FloatPortrait2.default;
+    return _FloatPortrait.default;
   }
 });
 Object.defineProperty(exports, "Flood", {
@@ -7838,12 +7424,6 @@ Object.defineProperty(exports, "FloorLamp", {
   enumerable: true,
   get: function () {
     return _FloorLamp.default;
-  }
-});
-Object.defineProperty(exports, "Flourescent", {
-  enumerable: true,
-  get: function () {
-    return _Flourescent.default;
   }
 });
 Object.defineProperty(exports, "Flowchart", {
@@ -8692,12 +8272,6 @@ Object.defineProperty(exports, "GeneralDevice", {
     return _GeneralDevice.default;
   }
 });
-Object.defineProperty(exports, "GeneratingTokens", {
-  enumerable: true,
-  get: function () {
-    return _GeneratingTokens.default;
-  }
-});
 Object.defineProperty(exports, "Genetics", {
   enumerable: true,
   get: function () {
@@ -8824,12 +8398,6 @@ Object.defineProperty(exports, "GoogleHomeDevices", {
     return _GoogleHomeDevices.default;
   }
 });
-Object.defineProperty(exports, "GooglePlusReshare", {
-  enumerable: true,
-  get: function () {
-    return _GooglePlusReshare.default;
-  }
-});
 Object.defineProperty(exports, "GoogleTvRemote", {
   enumerable: true,
   get: function () {
@@ -8852,12 +8420,6 @@ Object.defineProperty(exports, "GppMaybe", {
   enumerable: true,
   get: function () {
     return _GppMaybe.default;
-  }
-});
-Object.defineProperty(exports, "Grade", {
-  enumerable: true,
-  get: function () {
-    return _Grade.default;
   }
 });
 Object.defineProperty(exports, "Gradient", {
@@ -8998,12 +8560,6 @@ Object.defineProperty(exports, "GroupAdd", {
     return _GroupAdd.default;
   }
 });
-Object.defineProperty(exports, "GroupAuto", {
-  enumerable: true,
-  get: function () {
-    return _GroupAuto.default;
-  }
-});
 Object.defineProperty(exports, "GroupOff", {
   enumerable: true,
   get: function () {
@@ -9134,12 +8690,6 @@ Object.defineProperty(exports, "Handyman", {
   enumerable: true,
   get: function () {
     return _Handyman.default;
-  }
-});
-Object.defineProperty(exports, "HangoutMeeting", {
-  enumerable: true,
-  get: function () {
-    return _HangoutMeeting.default;
   }
 });
 Object.defineProperty(exports, "HangoutVideo", {
@@ -9298,6 +8848,12 @@ Object.defineProperty(exports, "HealthAndSafety", {
     return _HealthAndSafety.default;
   }
 });
+Object.defineProperty(exports, "HealthCross", {
+  enumerable: true,
+  get: function () {
+    return _HealthCross.default;
+  }
+});
 Object.defineProperty(exports, "HealthMetrics", {
   enumerable: true,
   get: function () {
@@ -9338,6 +8894,18 @@ Object.defineProperty(exports, "HearingAidDisabled", {
   enumerable: true,
   get: function () {
     return _HearingAidDisabled.default;
+  }
+});
+Object.defineProperty(exports, "HearingAidDisabledLeft", {
+  enumerable: true,
+  get: function () {
+    return _HearingAidDisabledLeft.default;
+  }
+});
+Object.defineProperty(exports, "HearingAidLeft", {
+  enumerable: true,
+  get: function () {
+    return _HearingAidLeft.default;
   }
 });
 Object.defineProperty(exports, "HearingDisabled", {
@@ -9670,12 +9238,6 @@ Object.defineProperty(exports, "HomeWork", {
     return _HomeWork.default;
   }
 });
-Object.defineProperty(exports, "HorizontalDistribute", {
-  enumerable: true,
-  get: function () {
-    return _HorizontalDistribute.default;
-  }
-});
 Object.defineProperty(exports, "HorizontalRule", {
   enumerable: true,
   get: function () {
@@ -9746,12 +9308,6 @@ Object.defineProperty(exports, "HourglassEmpty", {
   enumerable: true,
   get: function () {
     return _HourglassEmpty.default;
-  }
-});
-Object.defineProperty(exports, "HourglassFull", {
-  enumerable: true,
-  get: function () {
-    return _HourglassFull.default;
   }
 });
 Object.defineProperty(exports, "HourglassPause", {
@@ -9848,12 +9404,6 @@ Object.defineProperty(exports, "HumerusAlt", {
   enumerable: true,
   get: function () {
     return _HumerusAlt.default;
-  }
-});
-Object.defineProperty(exports, "HumidityHelper", {
-  enumerable: true,
-  get: function () {
-    return _HumidityHelper.default;
   }
 });
 Object.defineProperty(exports, "HumidityHigh", {
@@ -9962,12 +9512,6 @@ Object.defineProperty(exports, "ImageAspectRatio", {
   enumerable: true,
   get: function () {
     return _ImageAspectRatio.default;
-  }
-});
-Object.defineProperty(exports, "ImageNotSupported", {
-  enumerable: true,
-  get: function () {
-    return _ImageNotSupported.default;
   }
 });
 Object.defineProperty(exports, "ImageSearch", {
@@ -10168,22 +9712,10 @@ Object.defineProperty(exports, "InsertText", {
     return _InsertText.default;
   }
 });
-Object.defineProperty(exports, "Insights", {
-  enumerable: true,
-  get: function () {
-    return _Insights.default;
-  }
-});
 Object.defineProperty(exports, "InstallDesktop", {
   enumerable: true,
   get: function () {
     return _InstallDesktop.default;
-  }
-});
-Object.defineProperty(exports, "InstallMobile", {
-  enumerable: true,
-  get: function () {
-    return _InstallMobile.default;
   }
 });
 Object.defineProperty(exports, "InstantMix", {
@@ -10274,12 +9806,6 @@ Object.defineProperty(exports, "Join", {
   enumerable: true,
   get: function () {
     return _Join.default;
-  }
-});
-Object.defineProperty(exports, "JoinFull", {
-  enumerable: true,
-  get: function () {
-    return _JoinFull.default;
   }
 });
 Object.defineProperty(exports, "JoinInner", {
@@ -10538,12 +10064,6 @@ Object.defineProperty(exports, "KeyboardTabRtl", {
   enumerable: true,
   get: function () {
     return _KeyboardTabRtl.default;
-  }
-});
-Object.defineProperty(exports, "KeyboardVoice", {
-  enumerable: true,
-  get: function () {
-    return _KeyboardVoice.default;
   }
 });
 Object.defineProperty(exports, "KidStar", {
@@ -10822,12 +10342,6 @@ Object.defineProperty(exports, "Leaderboard", {
     return _Leaderboard.default;
   }
 });
-Object.defineProperty(exports, "LeafSpark", {
-  enumerable: true,
-  get: function () {
-    return _LeafSpark.default;
-  }
-});
 Object.defineProperty(exports, "LeakAdd", {
   enumerable: true,
   get: function () {
@@ -10862,12 +10376,6 @@ Object.defineProperty(exports, "LegendToggle", {
   enumerable: true,
   get: function () {
     return _LegendToggle.default;
-  }
-});
-Object.defineProperty(exports, "Lens", {
-  enumerable: true,
-  get: function () {
-    return _Lens.default;
   }
 });
 Object.defineProperty(exports, "LensBlur", {
@@ -11284,12 +10792,6 @@ Object.defineProperty(exports, "LocalTaxi", {
     return _LocalTaxi.default;
   }
 });
-Object.defineProperty(exports, "LocationAutomation", {
-  enumerable: true,
-  get: function () {
-    return _LocationAutomation.default;
-  }
-});
 Object.defineProperty(exports, "LocationAway", {
   enumerable: true,
   get: function () {
@@ -11530,24 +11032,6 @@ Object.defineProperty(exports, "MacroOff", {
     return _MacroOff.default;
   }
 });
-Object.defineProperty(exports, "MagicButton", {
-  enumerable: true,
-  get: function () {
-    return _MagicButton.default;
-  }
-});
-Object.defineProperty(exports, "MagicExchange", {
-  enumerable: true,
-  get: function () {
-    return _MagicExchange.default;
-  }
-});
-Object.defineProperty(exports, "MagicTether", {
-  enumerable: true,
-  get: function () {
-    return _MagicTether.default;
-  }
-});
 Object.defineProperty(exports, "MagnificationLarge", {
   enumerable: true,
   get: function () {
@@ -11750,6 +11234,12 @@ Object.defineProperty(exports, "Masks", {
   enumerable: true,
   get: function () {
     return _Masks.default;
+  }
+});
+Object.defineProperty(exports, "Massage", {
+  enumerable: true,
+  get: function () {
+    return _Massage.default;
   }
 });
 Object.defineProperty(exports, "MatchCase", {
@@ -11956,24 +11446,6 @@ Object.defineProperty(exports, "MicExternalOn", {
     return _MicExternalOn.default;
   }
 });
-Object.defineProperty(exports, "MicNoiseCancelHigh", {
-  enumerable: true,
-  get: function () {
-    return _MicNoiseCancelHigh.default;
-  }
-});
-Object.defineProperty(exports, "MicNoiseCancelLow", {
-  enumerable: true,
-  get: function () {
-    return _MicNoiseCancelLow.default;
-  }
-});
-Object.defineProperty(exports, "MicNoiseCancelOff", {
-  enumerable: true,
-  get: function () {
-    return _MicNoiseCancelOff.default;
-  }
-});
 Object.defineProperty(exports, "MicOff", {
   enumerable: true,
   get: function () {
@@ -12076,10 +11548,118 @@ Object.defineProperty(exports, "Mms", {
     return _Mms.default;
   }
 });
-Object.defineProperty(exports, "MobileFriendly", {
+Object.defineProperty(exports, "Mobile", {
   enumerable: true,
   get: function () {
-    return _MobileFriendly.default;
+    return _Mobile.default;
+  }
+});
+Object.defineProperty(exports, "Mobile2", {
+  enumerable: true,
+  get: function () {
+    return _Mobile2.default;
+  }
+});
+Object.defineProperty(exports, "Mobile3", {
+  enumerable: true,
+  get: function () {
+    return _Mobile3.default;
+  }
+});
+Object.defineProperty(exports, "MobileAlert", {
+  enumerable: true,
+  get: function () {
+    return _MobileAlert.default;
+  }
+});
+Object.defineProperty(exports, "MobileArrowDown", {
+  enumerable: true,
+  get: function () {
+    return _MobileArrowDown.default;
+  }
+});
+Object.defineProperty(exports, "MobileArrowRight", {
+  enumerable: true,
+  get: function () {
+    return _MobileArrowRight.default;
+  }
+});
+Object.defineProperty(exports, "MobileArrowUpRight", {
+  enumerable: true,
+  get: function () {
+    return _MobileArrowUpRight.default;
+  }
+});
+Object.defineProperty(exports, "MobileBlock", {
+  enumerable: true,
+  get: function () {
+    return _MobileBlock.default;
+  }
+});
+Object.defineProperty(exports, "MobileCamera", {
+  enumerable: true,
+  get: function () {
+    return _MobileCamera.default;
+  }
+});
+Object.defineProperty(exports, "MobileCameraFront", {
+  enumerable: true,
+  get: function () {
+    return _MobileCameraFront.default;
+  }
+});
+Object.defineProperty(exports, "MobileCameraRear", {
+  enumerable: true,
+  get: function () {
+    return _MobileCameraRear.default;
+  }
+});
+Object.defineProperty(exports, "MobileCancel", {
+  enumerable: true,
+  get: function () {
+    return _MobileCancel.default;
+  }
+});
+Object.defineProperty(exports, "MobileCast", {
+  enumerable: true,
+  get: function () {
+    return _MobileCast.default;
+  }
+});
+Object.defineProperty(exports, "MobileCharge", {
+  enumerable: true,
+  get: function () {
+    return _MobileCharge.default;
+  }
+});
+Object.defineProperty(exports, "MobileChat", {
+  enumerable: true,
+  get: function () {
+    return _MobileChat.default;
+  }
+});
+Object.defineProperty(exports, "MobileCheck", {
+  enumerable: true,
+  get: function () {
+    return _MobileCheck.default;
+  }
+});
+Object.defineProperty(exports, "MobileCode", {
+  enumerable: true,
+  get: function () {
+    return _MobileCode.default;
+  }
+});
+Object.defineProperty(exports, "MobileDots", {
+  enumerable: true,
+  get: function () {
+    return _MobileDots.default;
+  }
+});
+Object.defineProperty(exports, "MobileGear", {
+  enumerable: true,
+  get: function () {
+    return _MobileGear.default;
   }
 });
 Object.defineProperty(exports, "MobileHand", {
@@ -12106,16 +11686,70 @@ Object.defineProperty(exports, "MobileHandOff", {
     return _MobileHandOff.default;
   }
 });
+Object.defineProperty(exports, "MobileInfo", {
+  enumerable: true,
+  get: function () {
+    return _MobileInfo.default;
+  }
+});
+Object.defineProperty(exports, "MobileLandscape", {
+  enumerable: true,
+  get: function () {
+    return _MobileLandscape.default;
+  }
+});
+Object.defineProperty(exports, "MobileLayout", {
+  enumerable: true,
+  get: function () {
+    return _MobileLayout.default;
+  }
+});
+Object.defineProperty(exports, "MobileLockLandscape", {
+  enumerable: true,
+  get: function () {
+    return _MobileLockLandscape.default;
+  }
+});
+Object.defineProperty(exports, "MobileLockPortrait", {
+  enumerable: true,
+  get: function () {
+    return _MobileLockPortrait.default;
+  }
+});
 Object.defineProperty(exports, "MobileLoupe", {
   enumerable: true,
   get: function () {
     return _MobileLoupe.default;
   }
 });
+Object.defineProperty(exports, "MobileMenu", {
+  enumerable: true,
+  get: function () {
+    return _MobileMenu.default;
+  }
+});
 Object.defineProperty(exports, "MobileOff", {
   enumerable: true,
   get: function () {
     return _MobileOff.default;
+  }
+});
+Object.defineProperty(exports, "MobileQuestion", {
+  enumerable: true,
+  get: function () {
+    return _MobileQuestion.default;
+  }
+});
+Object.defineProperty(exports, "MobileRotate", {
+  enumerable: true,
+  get: function () {
+    return _MobileRotate.default;
+  }
+});
+Object.defineProperty(exports, "MobileRotateLock", {
+  enumerable: true,
+  get: function () {
+    return _MobileRotateLock.default;
   }
 });
 Object.defineProperty(exports, "MobileScreenShare", {
@@ -12130,16 +11764,76 @@ Object.defineProperty(exports, "MobileScreensaver", {
     return _MobileScreensaver.default;
   }
 });
-Object.defineProperty(exports, "MobileSound2", {
+Object.defineProperty(exports, "MobileSensorHi", {
+  enumerable: true,
+  get: function () {
+    return _MobileSensorHi.default;
+  }
+});
+Object.defineProperty(exports, "MobileSensorLo", {
+  enumerable: true,
+  get: function () {
+    return _MobileSensorLo.default;
+  }
+});
+Object.defineProperty(exports, "MobileShare", {
+  enumerable: true,
+  get: function () {
+    return _MobileShare.default;
+  }
+});
+Object.defineProperty(exports, "MobileShareStack", {
+  enumerable: true,
+  get: function () {
+    return _MobileShareStack.default;
+  }
+});
+Object.defineProperty(exports, "MobileSound", {
   enumerable: true,
   get: function () {
     return _MobileSound.default;
+  }
+});
+Object.defineProperty(exports, "MobileSound2", {
+  enumerable: true,
+  get: function () {
+    return _MobileSound2.default;
+  }
+});
+Object.defineProperty(exports, "MobileSoundOff", {
+  enumerable: true,
+  get: function () {
+    return _MobileSoundOff.default;
   }
 });
 Object.defineProperty(exports, "MobileSpeaker", {
   enumerable: true,
   get: function () {
     return _MobileSpeaker.default;
+  }
+});
+Object.defineProperty(exports, "MobileText", {
+  enumerable: true,
+  get: function () {
+    return _MobileText.default;
+  }
+});
+Object.defineProperty(exports, "MobileText2", {
+  enumerable: true,
+  get: function () {
+    return _MobileText2.default;
+  }
+});
+Object.defineProperty(exports, "MobileTicket", {
+  enumerable: true,
+  get: function () {
+    return _MobileTicket.default;
+  }
+});
+Object.defineProperty(exports, "MobileVibrate", {
+  enumerable: true,
+  get: function () {
+    return _MobileVibrate.default;
   }
 });
 Object.defineProperty(exports, "MobiledataOff", {
@@ -12236,12 +11930,6 @@ Object.defineProperty(exports, "Modeling", {
   enumerable: true,
   get: function () {
     return _Modeling.default;
-  }
-});
-Object.defineProperty(exports, "MonetizationOn", {
-  enumerable: true,
-  get: function () {
-    return _MonetizationOn.default;
   }
 });
 Object.defineProperty(exports, "Money", {
@@ -12406,18 +12094,6 @@ Object.defineProperty(exports, "MotionPhotosOff", {
     return _MotionPhotosOff.default;
   }
 });
-Object.defineProperty(exports, "MotionPhotosOn", {
-  enumerable: true,
-  get: function () {
-    return _MotionPhotosOn.default;
-  }
-});
-Object.defineProperty(exports, "MotionPhotosPaused", {
-  enumerable: true,
-  get: function () {
-    return _MotionPhotosPaused.default;
-  }
-});
 Object.defineProperty(exports, "MotionPlay", {
   enumerable: true,
   get: function () {
@@ -12562,12 +12238,6 @@ Object.defineProperty(exports, "MovieEdit", {
     return _MovieEdit.default;
   }
 });
-Object.defineProperty(exports, "MovieFilter", {
-  enumerable: true,
-  get: function () {
-    return _MovieFilter.default;
-  }
-});
 Object.defineProperty(exports, "MovieInfo", {
   enumerable: true,
   get: function () {
@@ -12646,6 +12316,12 @@ Object.defineProperty(exports, "MusicCast", {
     return _MusicCast.default;
   }
 });
+Object.defineProperty(exports, "MusicHistory", {
+  enumerable: true,
+  get: function () {
+    return _MusicHistory.default;
+  }
+});
 Object.defineProperty(exports, "MusicNote", {
   enumerable: true,
   get: function () {
@@ -12698,18 +12374,6 @@ Object.defineProperty(exports, "NaturePeople", {
   enumerable: true,
   get: function () {
     return _NaturePeople.default;
-  }
-});
-Object.defineProperty(exports, "NavigateBefore", {
-  enumerable: true,
-  get: function () {
-    return _NavigateBefore.default;
-  }
-});
-Object.defineProperty(exports, "NavigateNext", {
-  enumerable: true,
-  get: function () {
-    return _NavigateNext.default;
   }
 });
 Object.defineProperty(exports, "Navigation", {
@@ -12874,12 +12538,6 @@ Object.defineProperty(exports, "NestFoundSavings", {
     return _NestFoundSavings.default;
   }
 });
-Object.defineProperty(exports, "NestGaleWifi", {
-  enumerable: true,
-  get: function () {
-    return _NestGaleWifi.default;
-  }
-});
 Object.defineProperty(exports, "NestHeatLinkE", {
   enumerable: true,
   get: function () {
@@ -12896,12 +12554,6 @@ Object.defineProperty(exports, "NestHelloDoorbell", {
   enumerable: true,
   get: function () {
     return _NestHelloDoorbell.default;
-  }
-});
-Object.defineProperty(exports, "NestLocatorTag", {
-  enumerable: true,
-  get: function () {
-    return _NestLocatorTag.default;
   }
 });
 Object.defineProperty(exports, "NestMini", {
@@ -13006,28 +12658,10 @@ Object.defineProperty(exports, "NestWakeOnPress", {
     return _NestWakeOnPress.default;
   }
 });
-Object.defineProperty(exports, "NestWifiGale", {
-  enumerable: true,
-  get: function () {
-    return _NestWifiGale.default;
-  }
-});
-Object.defineProperty(exports, "NestWifiMistral", {
-  enumerable: true,
-  get: function () {
-    return _NestWifiMistral.default;
-  }
-});
 Object.defineProperty(exports, "NestWifiPoint", {
   enumerable: true,
   get: function () {
     return _NestWifiPoint.default;
-  }
-});
-Object.defineProperty(exports, "NestWifiPointVento", {
-  enumerable: true,
-  get: function () {
-    return _NestWifiPointVento.default;
   }
 });
 Object.defineProperty(exports, "NestWifiPro", {
@@ -13168,12 +12802,6 @@ Object.defineProperty(exports, "NewLabel", {
     return _NewLabel.default;
   }
 });
-Object.defineProperty(exports, "NewReleases", {
-  enumerable: true,
-  get: function () {
-    return _NewReleases.default;
-  }
-});
 Object.defineProperty(exports, "NewWindow", {
   enumerable: true,
   get: function () {
@@ -13262,18 +12890,6 @@ Object.defineProperty(exports, "Nightlight", {
   enumerable: true,
   get: function () {
     return _Nightlight.default;
-  }
-});
-Object.defineProperty(exports, "NightlightBadge", {
-  enumerable: true,
-  get: function () {
-    return _NightlightBadge.default;
-  }
-});
-Object.defineProperty(exports, "NightlightOff", {
-  enumerable: true,
-  get: function () {
-    return _NightlightOff.default;
   }
 });
 Object.defineProperty(exports, "NightsStay", {
@@ -13466,12 +13082,6 @@ Object.defineProperty(exports, "NotStarted", {
   enumerable: true,
   get: function () {
     return _NotStarted.default;
-  }
-});
-Object.defineProperty(exports, "Note", {
-  enumerable: true,
-  get: function () {
-    return _Note.default;
   }
 });
 Object.defineProperty(exports, "NoteAdd", {
@@ -13700,12 +13310,6 @@ Object.defineProperty(exports, "OpenInNewOff", {
   enumerable: true,
   get: function () {
     return _OpenInNewOff.default;
-  }
-});
-Object.defineProperty(exports, "OpenInPhone", {
-  enumerable: true,
-  get: function () {
-    return _OpenInPhone.default;
   }
 });
 Object.defineProperty(exports, "OpenJam", {
@@ -14002,12 +13606,6 @@ Object.defineProperty(exports, "Panorama", {
     return _Panorama.default;
   }
 });
-Object.defineProperty(exports, "PanoramaFishEye", {
-  enumerable: true,
-  get: function () {
-    return _PanoramaFishEye.default;
-  }
-});
 Object.defineProperty(exports, "PanoramaHorizontal", {
   enumerable: true,
   get: function () {
@@ -14128,16 +13726,16 @@ Object.defineProperty(exports, "PausePresentation", {
     return _PausePresentation.default;
   }
 });
+Object.defineProperty(exports, "PaymentArrowDown", {
+  enumerable: true,
+  get: function () {
+    return _PaymentArrowDown.default;
+  }
+});
 Object.defineProperty(exports, "Payments", {
   enumerable: true,
   get: function () {
     return _Payments.default;
-  }
-});
-Object.defineProperty(exports, "PdfOff", {
-  enumerable: true,
-  get: function () {
-    return _PdfOff.default;
   }
 });
 Object.defineProperty(exports, "PedalBike", {
@@ -14204,12 +13802,6 @@ Object.defineProperty(exports, "Percent", {
   enumerable: true,
   get: function () {
     return _Percent.default;
-  }
-});
-Object.defineProperty(exports, "PerformanceMax", {
-  enumerable: true,
-  get: function () {
-    return _PerformanceMax.default;
   }
 });
 Object.defineProperty(exports, "Pergola", {
@@ -14336,12 +13928,6 @@ Object.defineProperty(exports, "PersonEdit", {
   enumerable: true,
   get: function () {
     return _PersonEdit.default;
-  }
-});
-Object.defineProperty(exports, "PersonFilled", {
-  enumerable: true,
-  get: function () {
-    return _PersonFilled.default;
   }
 });
 Object.defineProperty(exports, "PersonOff", {
@@ -14494,12 +14080,6 @@ Object.defineProperty(exports, "PhoneInTalk", {
     return _PhoneInTalk.default;
   }
 });
-Object.defineProperty(exports, "PhoneInTalkWatchfaceIndicator", {
-  enumerable: true,
-  get: function () {
-    return _PhoneInTalkWatchfaceIndicator.default;
-  }
-});
 Object.defineProperty(exports, "PhoneIphone", {
   enumerable: true,
   get: function () {
@@ -14528,18 +14108,6 @@ Object.defineProperty(exports, "PhonelinkErase", {
   enumerable: true,
   get: function () {
     return _PhonelinkErase.default;
-  }
-});
-Object.defineProperty(exports, "PhonelinkLock", {
-  enumerable: true,
-  get: function () {
-    return _PhonelinkLock.default;
-  }
-});
-Object.defineProperty(exports, "PhonelinkOff", {
-  enumerable: true,
-  get: function () {
-    return _PhonelinkOff.default;
   }
 });
 Object.defineProperty(exports, "PhonelinkRing", {
@@ -14594,12 +14162,6 @@ Object.defineProperty(exports, "PhotoCameraFront", {
   enumerable: true,
   get: function () {
     return _PhotoCameraFront.default;
-  }
-});
-Object.defineProperty(exports, "PhotoFilter", {
-  enumerable: true,
-  get: function () {
-    return _PhotoFilter.default;
   }
 });
 Object.defineProperty(exports, "PhotoFrame", {
@@ -14800,18 +14362,6 @@ Object.defineProperty(exports, "PivotTableChart", {
     return _PivotTableChart.default;
   }
 });
-Object.defineProperty(exports, "Pixel33xl3a", {
-  enumerable: true,
-  get: function () {
-    return _Pixel33xl3a.default;
-  }
-});
-Object.defineProperty(exports, "Pixel9ProFold", {
-  enumerable: true,
-  get: function () {
-    return _Pixel9ProFold.default;
-  }
-});
 Object.defineProperty(exports, "PlaceItem", {
   enumerable: true,
   get: function () {
@@ -14876,12 +14426,6 @@ Object.defineProperty(exports, "PlayPause", {
   enumerable: true,
   get: function () {
     return _PlayPause.default;
-  }
-});
-Object.defineProperty(exports, "PlayShapes", {
-  enumerable: true,
-  get: function () {
-    return _PlayShapes.default;
   }
 });
 Object.defineProperty(exports, "PlayingCards", {
@@ -14992,12 +14536,6 @@ Object.defineProperty(exports, "Polyline", {
     return _Polyline.default;
   }
 });
-Object.defineProperty(exports, "Polymer", {
-  enumerable: true,
-  get: function () {
-    return _Polymer.default;
-  }
-});
 Object.defineProperty(exports, "Pool", {
   enumerable: true,
   get: function () {
@@ -15008,18 +14546,6 @@ Object.defineProperty(exports, "PortableWifiOff", {
   enumerable: true,
   get: function () {
     return _PortableWifiOff.default;
-  }
-});
-Object.defineProperty(exports, "PortraitLighting", {
-  enumerable: true,
-  get: function () {
-    return _PortraitLighting.default;
-  }
-});
-Object.defineProperty(exports, "PortraitLightingOff", {
-  enumerable: true,
-  get: function () {
-    return _PortraitLightingOff.default;
   }
 });
 Object.defineProperty(exports, "PositionBottomLeft", {
@@ -15074,12 +14600,6 @@ Object.defineProperty(exports, "PowerOff", {
   enumerable: true,
   get: function () {
     return _PowerOff.default;
-  }
-});
-Object.defineProperty(exports, "PowerRounded", {
-  enumerable: true,
-  get: function () {
-    return _PowerRounded.default;
   }
 });
 Object.defineProperty(exports, "PowerSettingsCircle", {
@@ -15214,18 +14734,6 @@ Object.defineProperty(exports, "Privacy", {
     return _Privacy.default;
   }
 });
-Object.defineProperty(exports, "PrivacyScreen", {
-  enumerable: true,
-  get: function () {
-    return _PrivacyScreen.default;
-  }
-});
-Object.defineProperty(exports, "PrivacyScreenOff", {
-  enumerable: true,
-  get: function () {
-    return _PrivacyScreenOff.default;
-  }
-});
 Object.defineProperty(exports, "PrivacyTip", {
   enumerable: true,
   get: function () {
@@ -15352,12 +14860,6 @@ Object.defineProperty(exports, "PunchClock", {
     return _PunchClock.default;
   }
 });
-Object.defineProperty(exports, "PushPin", {
-  enumerable: true,
-  get: function () {
-    return _PushPin.default;
-  }
-});
 Object.defineProperty(exports, "QrCode", {
   enumerable: true,
   get: function () {
@@ -15440,18 +14942,6 @@ Object.defineProperty(exports, "Quickreply", {
   enumerable: true,
   get: function () {
     return _Quickreply.default;
-  }
-});
-Object.defineProperty(exports, "QuietTime", {
-  enumerable: true,
-  get: function () {
-    return _QuietTime.default;
-  }
-});
-Object.defineProperty(exports, "QuietTimeActive", {
-  enumerable: true,
-  get: function () {
-    return _QuietTimeActive.default;
   }
 });
 Object.defineProperty(exports, "Quiz", {
@@ -15706,12 +15196,6 @@ Object.defineProperty(exports, "Refresh", {
     return _Refresh.default;
   }
 });
-Object.defineProperty(exports, "RegLogoIft", {
-  enumerable: true,
-  get: function () {
-    return _RegLogoIft.default;
-  }
-});
 Object.defineProperty(exports, "RegularExpression", {
   enumerable: true,
   get: function () {
@@ -15874,12 +15358,6 @@ Object.defineProperty(exports, "Replay5", {
     return _Replay4.default;
   }
 });
-Object.defineProperty(exports, "ReplayCircleFilled", {
-  enumerable: true,
-  get: function () {
-    return _ReplayCircleFilled.default;
-  }
-});
 Object.defineProperty(exports, "Reply", {
   enumerable: true,
   get: function () {
@@ -16004,12 +15482,6 @@ Object.defineProperty(exports, "Restaurant", {
   enumerable: true,
   get: function () {
     return _Restaurant.default;
-  }
-});
-Object.defineProperty(exports, "RestaurantMenu", {
-  enumerable: true,
-  get: function () {
-    return _RestaurantMenu.default;
   }
 });
 Object.defineProperty(exports, "RestoreFromTrash", {
@@ -16294,12 +15766,6 @@ Object.defineProperty(exports, "RvHookup", {
     return _RvHookup.default;
   }
 });
-Object.defineProperty(exports, "SadTab", {
-  enumerable: true,
-  get: function () {
-    return _SadTab.default;
-  }
-});
 Object.defineProperty(exports, "SafetyCheck", {
   enumerable: true,
   get: function () {
@@ -16526,12 +15992,6 @@ Object.defineProperty(exports, "ScreenShare", {
   enumerable: true,
   get: function () {
     return _ScreenShare.default;
-  }
-});
-Object.defineProperty(exports, "Screencast", {
-  enumerable: true,
-  get: function () {
-    return _Screencast.default;
   }
 });
 Object.defineProperty(exports, "Screenshot", {
@@ -17116,12 +16576,6 @@ Object.defineProperty(exports, "SettingsSlowMotion", {
     return _SettingsSlowMotion.default;
   }
 });
-Object.defineProperty(exports, "SettingsSuggest", {
-  enumerable: true,
-  get: function () {
-    return _SettingsSuggest.default;
-  }
-});
 Object.defineProperty(exports, "SettingsSystemDaydream", {
   enumerable: true,
   get: function () {
@@ -17306,12 +16760,6 @@ Object.defineProperty(exports, "ShieldQuestion", {
   enumerable: true,
   get: function () {
     return _ShieldQuestion.default;
-  }
-});
-Object.defineProperty(exports, "ShieldSpark", {
-  enumerable: true,
-  get: function () {
-    return _ShieldSpark.default;
   }
 });
 Object.defineProperty(exports, "ShieldWatch", {
@@ -17674,12 +17122,6 @@ Object.defineProperty(exports, "SirenQuestion", {
     return _SirenQuestion.default;
   }
 });
-Object.defineProperty(exports, "SixFtApart", {
-  enumerable: true,
-  get: function () {
-    return _SixFtApart.default;
-  }
-});
 Object.defineProperty(exports, "SixK", {
   enumerable: true,
   get: function () {
@@ -17776,12 +17218,6 @@ Object.defineProperty(exports, "Sledding", {
     return _Sledding.default;
   }
 });
-Object.defineProperty(exports, "Sleep", {
-  enumerable: true,
-  get: function () {
-    return _Sleep.default;
-  }
-});
 Object.defineProperty(exports, "SleepScore", {
   enumerable: true,
   get: function () {
@@ -17810,12 +17246,6 @@ Object.defineProperty(exports, "SlowMotionVideo", {
   enumerable: true,
   get: function () {
     return _SlowMotionVideo.default;
-  }
-});
-Object.defineProperty(exports, "SmartButton", {
-  enumerable: true,
-  get: function () {
-    return _SmartButton.default;
   }
 });
 Object.defineProperty(exports, "SmartCardReader", {
@@ -17854,12 +17284,6 @@ Object.defineProperty(exports, "SmartToy", {
     return _SmartToy.default;
   }
 });
-Object.defineProperty(exports, "SmartVentilation", {
-  enumerable: true,
-  get: function () {
-    return _SmartVentilation.default;
-  }
-});
 Object.defineProperty(exports, "Smartphone", {
   enumerable: true,
   get: function () {
@@ -17894,12 +17318,6 @@ Object.defineProperty(exports, "Sms", {
   enumerable: true,
   get: function () {
     return _Sms.default;
-  }
-});
-Object.defineProperty(exports, "SmsFailed", {
-  enumerable: true,
-  get: function () {
-    return _SmsFailed.default;
   }
 });
 Object.defineProperty(exports, "SnippetFolder", {
@@ -18340,12 +17758,6 @@ Object.defineProperty(exports, "Spoke", {
     return _Spoke.default;
   }
 });
-Object.defineProperty(exports, "Spoof", {
-  enumerable: true,
-  get: function () {
-    return _Spoof.default;
-  }
-});
 Object.defineProperty(exports, "Sports", {
   enumerable: true,
   get: function () {
@@ -18686,24 +18098,6 @@ Object.defineProperty(exports, "StayCurrentLandscape", {
   enumerable: true,
   get: function () {
     return _StayCurrentLandscape.default;
-  }
-});
-Object.defineProperty(exports, "StayCurrentPortrait", {
-  enumerable: true,
-  get: function () {
-    return _StayCurrentPortrait.default;
-  }
-});
-Object.defineProperty(exports, "StayPrimaryLandscape", {
-  enumerable: true,
-  get: function () {
-    return _StayPrimaryLandscape.default;
-  }
-});
-Object.defineProperty(exports, "StayPrimaryPortrait", {
-  enumerable: true,
-  get: function () {
-    return _StayPrimaryPortrait.default;
   }
 });
 Object.defineProperty(exports, "SteeringWheelHeat", {
@@ -19618,12 +19012,6 @@ Object.defineProperty(exports, "TeamDashboard", {
     return _TeamDashboard.default;
   }
 });
-Object.defineProperty(exports, "TempPreferencesCustom", {
-  enumerable: true,
-  get: function () {
-    return _TempPreferencesCustom.default;
-  }
-});
 Object.defineProperty(exports, "TempPreferencesEco", {
   enumerable: true,
   get: function () {
@@ -20002,22 +19390,10 @@ Object.defineProperty(exports, "ThumbDown", {
     return _ThumbDown.default;
   }
 });
-Object.defineProperty(exports, "ThumbDownOff", {
-  enumerable: true,
-  get: function () {
-    return _ThumbDownOff.default;
-  }
-});
 Object.defineProperty(exports, "ThumbUp", {
   enumerable: true,
   get: function () {
     return _ThumbUp.default;
-  }
-});
-Object.defineProperty(exports, "ThumbUpOff", {
-  enumerable: true,
-  get: function () {
-    return _ThumbUpOff.default;
   }
 });
 Object.defineProperty(exports, "ThumbnailBar", {
@@ -20182,12 +19558,6 @@ Object.defineProperty(exports, "TimesOneMobiledataBadge", {
     return _TimesOneMobiledataBadge.default;
   }
 });
-Object.defineProperty(exports, "TipsAndUpdates", {
-  enumerable: true,
-  get: function () {
-    return _TipsAndUpdates.default;
-  }
-});
 Object.defineProperty(exports, "TireRepair", {
   enumerable: true,
   get: function () {
@@ -20254,6 +19624,12 @@ Object.defineProperty(exports, "Tonality", {
     return _Tonality.default;
   }
 });
+Object.defineProperty(exports, "Tonality2", {
+  enumerable: true,
+  get: function () {
+    return _Tonality2.default;
+  }
+});
 Object.defineProperty(exports, "Toolbar", {
   enumerable: true,
   get: function () {
@@ -20300,12 +19676,6 @@ Object.defineProperty(exports, "ToolsPowerDrill", {
   enumerable: true,
   get: function () {
     return _ToolsPowerDrill.default;
-  }
-});
-Object.defineProperty(exports, "ToolsWrench", {
-  enumerable: true,
-  get: function () {
-    return _ToolsWrench.default;
   }
 });
 Object.defineProperty(exports, "Tooltip", {
@@ -20752,12 +20122,6 @@ Object.defineProperty(exports, "TvWithAssistant", {
     return _TvWithAssistant.default;
   }
 });
-Object.defineProperty(exports, "Twelve3", {
-  enumerable: true,
-  get: function () {
-    return _Twelve.default;
-  }
-});
 Object.defineProperty(exports, "TwelveMp", {
   enumerable: true,
   get: function () {
@@ -20888,18 +20252,6 @@ Object.defineProperty(exports, "Undo", {
   enumerable: true,
   get: function () {
     return _Undo.default;
-  }
-});
-Object.defineProperty(exports, "UnfloatLandscape", {
-  enumerable: true,
-  get: function () {
-    return _UnfloatLandscape.default;
-  }
-});
-Object.defineProperty(exports, "UnfloatPortrait", {
-  enumerable: true,
-  get: function () {
-    return _UnfloatPortrait.default;
   }
 });
 Object.defineProperty(exports, "UnfoldLess", {
@@ -21178,12 +20530,6 @@ Object.defineProperty(exports, "VerticalAlignTop", {
     return _VerticalAlignTop.default;
   }
 });
-Object.defineProperty(exports, "VerticalDistribute", {
-  enumerable: true,
-  get: function () {
-    return _VerticalDistribute.default;
-  }
-});
 Object.defineProperty(exports, "VerticalShades", {
   enumerable: true,
   get: function () {
@@ -21394,12 +20740,6 @@ Object.defineProperty(exports, "ViewInAr", {
     return _ViewInAr.default;
   }
 });
-Object.defineProperty(exports, "ViewInArNew", {
-  enumerable: true,
-  get: function () {
-    return _ViewInArNew.default;
-  }
-});
 Object.defineProperty(exports, "ViewInArOff", {
   enumerable: true,
   get: function () {
@@ -21472,6 +20812,12 @@ Object.defineProperty(exports, "Vignette", {
     return _Vignette.default;
   }
 });
+Object.defineProperty(exports, "Vignette2", {
+  enumerable: true,
+  get: function () {
+    return _Vignette2.default;
+  }
+});
 Object.defineProperty(exports, "Villa", {
   enumerable: true,
   get: function () {
@@ -21500,12 +20846,6 @@ Object.defineProperty(exports, "VitalSigns", {
   enumerable: true,
   get: function () {
     return _VitalSigns.default;
-  }
-});
-Object.defineProperty(exports, "Vitals", {
-  enumerable: true,
-  get: function () {
-    return _Vitals.default;
   }
 });
 Object.defineProperty(exports, "Vo2Max", {
@@ -21722,6 +21062,12 @@ Object.defineProperty(exports, "Watch", {
   enumerable: true,
   get: function () {
     return _Watch.default;
+  }
+});
+Object.defineProperty(exports, "WatchArrow", {
+  enumerable: true,
+  get: function () {
+    return _WatchArrow.default;
   }
 });
 Object.defineProperty(exports, "WatchButtonPress", {
@@ -22036,12 +21382,6 @@ Object.defineProperty(exports, "Widgets", {
     return _Widgets.default;
   }
 });
-Object.defineProperty(exports, "Width", {
-  enumerable: true,
-  get: function () {
-    return _Width.default;
-  }
-});
 Object.defineProperty(exports, "WidthFull", {
   enumerable: true,
   get: function () {
@@ -22088,24 +21428,6 @@ Object.defineProperty(exports, "WifiCalling", {
   enumerable: true,
   get: function () {
     return _WifiCalling.default;
-  }
-});
-Object.defineProperty(exports, "WifiCalling1", {
-  enumerable: true,
-  get: function () {
-    return _WifiCalling2.default;
-  }
-});
-Object.defineProperty(exports, "WifiCalling2", {
-  enumerable: true,
-  get: function () {
-    return _WifiCalling3.default;
-  }
-});
-Object.defineProperty(exports, "WifiCalling3", {
-  enumerable: true,
-  get: function () {
-    return _WifiCalling4.default;
   }
 });
 Object.defineProperty(exports, "WifiCallingBar1", {
@@ -22300,12 +21622,6 @@ Object.defineProperty(exports, "Workspaces", {
     return _Workspaces.default;
   }
 });
-Object.defineProperty(exports, "WorkspacesOutline", {
-  enumerable: true,
-  get: function () {
-    return _WorkspacesOutline.default;
-  }
-});
 Object.defineProperty(exports, "WoundsInjuries", {
   enumerable: true,
   get: function () {
@@ -22419,6 +21735,7 @@ var _AccountCircleOff = _interopRequireDefault(require("./AccountCircleOff.js"))
 var _AccountTree = _interopRequireDefault(require("./AccountTree.js"));
 var _ActionKey = _interopRequireDefault(require("./ActionKey.js"));
 var _ActivityZone = _interopRequireDefault(require("./ActivityZone.js"));
+var _Acupuncture = _interopRequireDefault(require("./Acupuncture.js"));
 var _Acute = _interopRequireDefault(require("./Acute.js"));
 var _Ad = _interopRequireDefault(require("./Ad.js"));
 var _AdGroup = _interopRequireDefault(require("./AdGroup.js"));
@@ -22437,7 +21754,6 @@ var _AddBox = _interopRequireDefault(require("./AddBox.js"));
 var _AddBusiness = _interopRequireDefault(require("./AddBusiness.js"));
 var _AddCall = _interopRequireDefault(require("./AddCall.js"));
 var _AddCard = _interopRequireDefault(require("./AddCard.js"));
-var _AddChart = _interopRequireDefault(require("./AddChart.js"));
 var _AddCircle = _interopRequireDefault(require("./AddCircle.js"));
 var _AddColumnLeft = _interopRequireDefault(require("./AddColumnLeft.js"));
 var _AddColumnRight = _interopRequireDefault(require("./AddColumnRight.js"));
@@ -22459,7 +21775,6 @@ var _AddShoppingCart = _interopRequireDefault(require("./AddShoppingCart.js"));
 var _AddTask = _interopRequireDefault(require("./AddTask.js"));
 var _AddToDrive = _interopRequireDefault(require("./AddToDrive.js"));
 var _AddToHomeScreen = _interopRequireDefault(require("./AddToHomeScreen.js"));
-var _AddToPhotos = _interopRequireDefault(require("./AddToPhotos.js"));
 var _AddToQueue = _interopRequireDefault(require("./AddToQueue.js"));
 var _AddTriangle = _interopRequireDefault(require("./AddTriangle.js"));
 var _AdfScanner = _interopRequireDefault(require("./AdfScanner.js"));
@@ -22484,7 +21799,6 @@ var _AirlineSeatReclineNormal = _interopRequireDefault(require("./AirlineSeatRec
 var _AirlineStops = _interopRequireDefault(require("./AirlineStops.js"));
 var _Airlines = _interopRequireDefault(require("./Airlines.js"));
 var _AirplaneTicket = _interopRequireDefault(require("./AirplaneTicket.js"));
-var _AirplanemodeActive = _interopRequireDefault(require("./AirplanemodeActive.js"));
 var _AirplanemodeInactive = _interopRequireDefault(require("./AirplanemodeInactive.js"));
 var _Airplay = _interopRequireDefault(require("./Airplay.js"));
 var _AirportShuttle = _interopRequireDefault(require("./AirportShuttle.js"));
@@ -22531,7 +21845,6 @@ var _Allergy = _interopRequireDefault(require("./Allergy.js"));
 var _AltRoute = _interopRequireDefault(require("./AltRoute.js"));
 var _AlternateEmail = _interopRequireDefault(require("./AlternateEmail.js"));
 var _Altitude = _interopRequireDefault(require("./Altitude.js"));
-var _AmbientScreen = _interopRequireDefault(require("./AmbientScreen.js"));
 var _Ambulance = _interopRequireDefault(require("./Ambulance.js"));
 var _Amend = _interopRequireDefault(require("./Amend.js"));
 var _AmpStories = _interopRequireDefault(require("./AmpStories.js"));
@@ -22549,12 +21862,11 @@ var _ApkDocument = _interopRequireDefault(require("./ApkDocument.js"));
 var _ApkInstall = _interopRequireDefault(require("./ApkInstall.js"));
 var _AppBadging = _interopRequireDefault(require("./AppBadging.js"));
 var _AppBlocking = _interopRequireDefault(require("./AppBlocking.js"));
-var _AppPromo = _interopRequireDefault(require("./AppPromo.js"));
 var _AppRegistration = _interopRequireDefault(require("./AppRegistration.js"));
-var _AppShortcut = _interopRequireDefault(require("./AppShortcut.js"));
 var _Apparel = _interopRequireDefault(require("./Apparel.js"));
 var _Approval = _interopRequireDefault(require("./Approval.js"));
 var _ApprovalDelegation = _interopRequireDefault(require("./ApprovalDelegation.js"));
+var _ApprovalDelegationOff = _interopRequireDefault(require("./ApprovalDelegationOff.js"));
 var _Apps = _interopRequireDefault(require("./Apps.js"));
 var _AppsOutage = _interopRequireDefault(require("./AppsOutage.js"));
 var _Aq = _interopRequireDefault(require("./Aq.js"));
@@ -22620,15 +21932,12 @@ var _AssignmentReturn = _interopRequireDefault(require("./AssignmentReturn.js"))
 var _AssignmentReturned = _interopRequireDefault(require("./AssignmentReturned.js"));
 var _AssignmentTurnedIn = _interopRequireDefault(require("./AssignmentTurnedIn.js"));
 var _AssistWalker = _interopRequireDefault(require("./AssistWalker.js"));
-var _Assistant = _interopRequireDefault(require("./Assistant.js"));
 var _AssistantDevice = _interopRequireDefault(require("./AssistantDevice.js"));
 var _AssistantDirection = _interopRequireDefault(require("./AssistantDirection.js"));
 var _AssistantNavigation = _interopRequireDefault(require("./AssistantNavigation.js"));
 var _AssistantOnHub = _interopRequireDefault(require("./AssistantOnHub.js"));
 var _AssuredWorkload = _interopRequireDefault(require("./AssuredWorkload.js"));
 var _Asterisk = _interopRequireDefault(require("./Asterisk.js"));
-var _AstrophotographyAuto = _interopRequireDefault(require("./AstrophotographyAuto.js"));
-var _AstrophotographyOff = _interopRequireDefault(require("./AstrophotographyOff.js"));
 var _Atm = _interopRequireDefault(require("./Atm.js"));
 var _Atr = _interopRequireDefault(require("./Atr.js"));
 var _AttachEmail = _interopRequireDefault(require("./AttachEmail.js"));
@@ -22642,32 +21951,17 @@ var _Attribution = _interopRequireDefault(require("./Attribution.js"));
 var _AudioDescription = _interopRequireDefault(require("./AudioDescription.js"));
 var _AudioFile = _interopRequireDefault(require("./AudioFile.js"));
 var _AudioVideoReceiver = _interopRequireDefault(require("./AudioVideoReceiver.js"));
-var _AutoActivityZone = _interopRequireDefault(require("./AutoActivityZone.js"));
-var _AutoAwesome = _interopRequireDefault(require("./AutoAwesome.js"));
 var _AutoAwesomeMosaic = _interopRequireDefault(require("./AutoAwesomeMosaic.js"));
 var _AutoAwesomeMotion = _interopRequireDefault(require("./AutoAwesomeMotion.js"));
 var _AutoDelete = _interopRequireDefault(require("./AutoDelete.js"));
-var _AutoDetectVoice = _interopRequireDefault(require("./AutoDetectVoice.js"));
-var _AutoFix = _interopRequireDefault(require("./AutoFix.js"));
-var _AutoFixHigh = _interopRequireDefault(require("./AutoFixHigh.js"));
-var _AutoFixNormal = _interopRequireDefault(require("./AutoFixNormal.js"));
-var _AutoFixOff = _interopRequireDefault(require("./AutoFixOff.js"));
-var _AutoGraph = _interopRequireDefault(require("./AutoGraph.js"));
-var _AutoLabel = _interopRequireDefault(require("./AutoLabel.js"));
-var _AutoMeetingRoom = _interopRequireDefault(require("./AutoMeetingRoom.js"));
-var _AutoMode = _interopRequireDefault(require("./AutoMode.js"));
 var _AutoReadPause = _interopRequireDefault(require("./AutoReadPause.js"));
 var _AutoReadPlay = _interopRequireDefault(require("./AutoReadPlay.js"));
-var _AutoSchedule = _interopRequireDefault(require("./AutoSchedule.js"));
 var _AutoStories = _interopRequireDefault(require("./AutoStories.js"));
-var _AutoTimer = _interopRequireDefault(require("./AutoTimer.js"));
 var _AutoTowing = _interopRequireDefault(require("./AutoTowing.js"));
 var _AutoTransmission = _interopRequireDefault(require("./AutoTransmission.js"));
-var _AutoVideocam = _interopRequireDefault(require("./AutoVideocam.js"));
 var _AutofpsSelect = _interopRequireDefault(require("./AutofpsSelect.js"));
 var _Automation = _interopRequireDefault(require("./Automation.js"));
 var _Autopause = _interopRequireDefault(require("./Autopause.js"));
-var _Autopay = _interopRequireDefault(require("./Autopay.js"));
 var _Autoplay = _interopRequireDefault(require("./Autoplay.js"));
 var _Autorenew = _interopRequireDefault(require("./Autorenew.js"));
 var _Autostop = _interopRequireDefault(require("./Autostop.js"));
@@ -22681,8 +21975,6 @@ var _Azm = _interopRequireDefault(require("./Azm.js"));
 var _BabyChangingStation = _interopRequireDefault(require("./BabyChangingStation.js"));
 var _BackHand = _interopRequireDefault(require("./BackHand.js"));
 var _BackToTab = _interopRequireDefault(require("./BackToTab.js"));
-var _BackgroundBlurFull = _interopRequireDefault(require("./BackgroundBlurFull.js"));
-var _BackgroundBlurLight = _interopRequireDefault(require("./BackgroundBlurLight.js"));
 var _BackgroundDotLarge = _interopRequireDefault(require("./BackgroundDotLarge.js"));
 var _BackgroundDotSmall = _interopRequireDefault(require("./BackgroundDotSmall.js"));
 var _BackgroundGridSmall = _interopRequireDefault(require("./BackgroundGridSmall.js"));
@@ -22715,17 +22007,11 @@ var _Bathroom = _interopRequireDefault(require("./Bathroom.js"));
 var _Bathtub = _interopRequireDefault(require("./Bathtub.js"));
 var _Battery0Bar = _interopRequireDefault(require("./Battery0Bar.js"));
 var _Battery1Bar = _interopRequireDefault(require("./Battery1Bar.js"));
-var _Battery = _interopRequireDefault(require("./Battery20.js"));
 var _Battery2Bar = _interopRequireDefault(require("./Battery2Bar.js"));
-var _Battery2 = _interopRequireDefault(require("./Battery30.js"));
 var _Battery3Bar = _interopRequireDefault(require("./Battery3Bar.js"));
 var _Battery4Bar = _interopRequireDefault(require("./Battery4Bar.js"));
-var _Battery3 = _interopRequireDefault(require("./Battery50.js"));
 var _Battery5Bar = _interopRequireDefault(require("./Battery5Bar.js"));
-var _Battery4 = _interopRequireDefault(require("./Battery60.js"));
 var _Battery6Bar = _interopRequireDefault(require("./Battery6Bar.js"));
-var _Battery5 = _interopRequireDefault(require("./Battery80.js"));
-var _Battery6 = _interopRequireDefault(require("./Battery90.js"));
 var _BatteryAlert = _interopRequireDefault(require("./BatteryAlert.js"));
 var _BatteryAndroid = _interopRequireDefault(require("./BatteryAndroid0.js"));
 var _BatteryAndroid2 = _interopRequireDefault(require("./BatteryAndroid1.js"));
@@ -22762,9 +22048,6 @@ var _BatterySaver = _interopRequireDefault(require("./BatterySaver.js"));
 var _BatteryShare = _interopRequireDefault(require("./BatteryShare.js"));
 var _BatteryStatusGood = _interopRequireDefault(require("./BatteryStatusGood.js"));
 var _BatteryUnknown = _interopRequireDefault(require("./BatteryUnknown.js"));
-var _BatteryVert = _interopRequireDefault(require("./BatteryVert005.js"));
-var _BatteryVert2 = _interopRequireDefault(require("./BatteryVert020.js"));
-var _BatteryVert3 = _interopRequireDefault(require("./BatteryVert050.js"));
 var _BatteryVeryLow = _interopRequireDefault(require("./BatteryVeryLow.js"));
 var _BeachAccess = _interopRequireDefault(require("./BeachAccess.js"));
 var _Bed = _interopRequireDefault(require("./Bed.js"));
@@ -22812,7 +22095,6 @@ var _Book = _interopRequireDefault(require("./Book.js"));
 var _Book2 = _interopRequireDefault(require("./Book2.js"));
 var _Book3 = _interopRequireDefault(require("./Book3.js"));
 var _Book4 = _interopRequireDefault(require("./Book4.js"));
-var _Book4Spark = _interopRequireDefault(require("./Book4Spark.js"));
 var _Book5 = _interopRequireDefault(require("./Book5.js"));
 var _Book6 = _interopRequireDefault(require("./Book6.js"));
 var _BookOnline = _interopRequireDefault(require("./BookOnline.js"));
@@ -22871,8 +22153,6 @@ var _Brightness7 = _interopRequireDefault(require("./Brightness7.js"));
 var _BrightnessAlert = _interopRequireDefault(require("./BrightnessAlert.js"));
 var _BrightnessAuto = _interopRequireDefault(require("./BrightnessAuto.js"));
 var _BrightnessEmpty = _interopRequireDefault(require("./BrightnessEmpty.js"));
-var _BrightnessHigh = _interopRequireDefault(require("./BrightnessHigh.js"));
-var _BrightnessLow = _interopRequireDefault(require("./BrightnessLow.js"));
 var _BrightnessMedium = _interopRequireDefault(require("./BrightnessMedium.js"));
 var _BringYourOwnIp = _interopRequireDefault(require("./BringYourOwnIp.js"));
 var _BroadcastOnHome = _interopRequireDefault(require("./BroadcastOnHome.js"));
@@ -22926,7 +22206,6 @@ var _CallReceived = _interopRequireDefault(require("./CallReceived.js"));
 var _CallSplit = _interopRequireDefault(require("./CallSplit.js"));
 var _CallToAction = _interopRequireDefault(require("./CallToAction.js"));
 var _Camera = _interopRequireDefault(require("./Camera.js"));
-var _CameraEnhance = _interopRequireDefault(require("./CameraEnhance.js"));
 var _CameraFront = _interopRequireDefault(require("./CameraFront.js"));
 var _CameraIndoor = _interopRequireDefault(require("./CameraIndoor.js"));
 var _CameraOutdoor = _interopRequireDefault(require("./CameraOutdoor.js"));
@@ -23032,11 +22311,7 @@ var _ChildCare = _interopRequireDefault(require("./ChildCare.js"));
 var _ChildFriendly = _interopRequireDefault(require("./ChildFriendly.js"));
 var _ChipExtraction = _interopRequireDefault(require("./ChipExtraction.js"));
 var _Chips = _interopRequireDefault(require("./Chips.js"));
-var _ChromeMaximize = _interopRequireDefault(require("./ChromeMaximize.js"));
-var _ChromeMinimize = _interopRequireDefault(require("./ChromeMinimize.js"));
 var _ChromeReaderMode = _interopRequireDefault(require("./ChromeReaderMode.js"));
-var _ChromeRestore = _interopRequireDefault(require("./ChromeRestore.js"));
-var _ChromeTote = _interopRequireDefault(require("./ChromeTote.js"));
 var _Chromecast = _interopRequireDefault(require("./Chromecast2.js"));
 var _ChromecastDevice = _interopRequireDefault(require("./ChromecastDevice.js"));
 var _Chronic = _interopRequireDefault(require("./Chronic.js"));
@@ -23053,7 +22328,6 @@ var _CleaningBucket = _interopRequireDefault(require("./CleaningBucket.js"));
 var _CleaningServices = _interopRequireDefault(require("./CleaningServices.js"));
 var _ClearAll = _interopRequireDefault(require("./ClearAll.js"));
 var _ClearDay = _interopRequireDefault(require("./ClearDay.js"));
-var _ClearNight = _interopRequireDefault(require("./ClearNight.js"));
 var _ClimateMiniSplit = _interopRequireDefault(require("./ClimateMiniSplit.js"));
 var _ClinicalNotes = _interopRequireDefault(require("./ClinicalNotes.js"));
 var _ClockArrowDown = _interopRequireDefault(require("./ClockArrowDown.js"));
@@ -23077,12 +22351,8 @@ var _CloudDone = _interopRequireDefault(require("./CloudDone.js"));
 var _CloudDownload = _interopRequireDefault(require("./CloudDownload.js"));
 var _CloudLock = _interopRequireDefault(require("./CloudLock.js"));
 var _CloudOff = _interopRequireDefault(require("./CloudOff.js"));
-var _CloudQueue = _interopRequireDefault(require("./CloudQueue.js"));
 var _CloudSync = _interopRequireDefault(require("./CloudSync.js"));
 var _CloudUpload = _interopRequireDefault(require("./CloudUpload.js"));
-var _Cloudy = _interopRequireDefault(require("./Cloudy.js"));
-var _CloudyFilled = _interopRequireDefault(require("./CloudyFilled.js"));
-var _CloudySnowing = _interopRequireDefault(require("./CloudySnowing.js"));
 var _Co = _interopRequireDefault(require("./Co2.js"));
 var _CoPresent = _interopRequireDefault(require("./CoPresent.js"));
 var _Code = _interopRequireDefault(require("./Code.js"));
@@ -23214,7 +22484,6 @@ var _CurrencyYuan = _interopRequireDefault(require("./CurrencyYuan.js"));
 var _Curtains = _interopRequireDefault(require("./Curtains.js"));
 var _CurtainsClosed = _interopRequireDefault(require("./CurtainsClosed.js"));
 var _CustomTypography = _interopRequireDefault(require("./CustomTypography.js"));
-var _Cut = _interopRequireDefault(require("./Cut.js"));
 var _Cycle = _interopRequireDefault(require("./Cycle.js"));
 var _Cyclone = _interopRequireDefault(require("./Cyclone.js"));
 var _Dangerous = _interopRequireDefault(require("./Dangerous.js"));
@@ -23294,7 +22563,6 @@ var _DeveloperMode = _interopRequireDefault(require("./DeveloperMode.js"));
 var _DeveloperModeTv = _interopRequireDefault(require("./DeveloperModeTv.js"));
 var _DeviceBand = _interopRequireDefault(require("./DeviceBand.js"));
 var _DeviceHub = _interopRequireDefault(require("./DeviceHub.js"));
-var _DeviceReset = _interopRequireDefault(require("./DeviceReset.js"));
 var _DeviceThermostat = _interopRequireDefault(require("./DeviceThermostat.js"));
 var _DeviceUnknown = _interopRequireDefault(require("./DeviceUnknown.js"));
 var _Devices = _interopRequireDefault(require("./Devices.js"));
@@ -23310,6 +22578,7 @@ var _DialerSip = _interopRequireDefault(require("./DialerSip.js"));
 var _Dialogs = _interopRequireDefault(require("./Dialogs.js"));
 var _Dialpad = _interopRequireDefault(require("./Dialpad.js"));
 var _Diamond = _interopRequireDefault(require("./Diamond.js"));
+var _DiamondShine = _interopRequireDefault(require("./DiamondShine.js"));
 var _Dictionary = _interopRequireDefault(require("./Dictionary.js"));
 var _Difference = _interopRequireDefault(require("./Difference.js"));
 var _DigitalOutOfHome = _interopRequireDefault(require("./DigitalOutOfHome.js"));
@@ -23365,7 +22634,6 @@ var _DomainDisabled = _interopRequireDefault(require("./DomainDisabled.js"));
 var _DomainVerification = _interopRequireDefault(require("./DomainVerification.js"));
 var _DomainVerificationOff = _interopRequireDefault(require("./DomainVerificationOff.js"));
 var _DominoMask = _interopRequireDefault(require("./DominoMask.js"));
-var _Done = _interopRequireDefault(require("./Done.js"));
 var _DoneAll = _interopRequireDefault(require("./DoneAll.js"));
 var _DoneOutline = _interopRequireDefault(require("./DoneOutline.js"));
 var _DonutLarge = _interopRequireDefault(require("./DonutLarge.js"));
@@ -23398,9 +22666,6 @@ var _DrawCollage = _interopRequireDefault(require("./DrawCollage.js"));
 var _Dresser = _interopRequireDefault(require("./Dresser.js"));
 var _DriveExport = _interopRequireDefault(require("./DriveExport.js"));
 var _DriveFileMove = _interopRequireDefault(require("./DriveFileMove.js"));
-var _DriveFileMoveOutline = _interopRequireDefault(require("./DriveFileMoveOutline.js"));
-var _DriveFileMoveRtl = _interopRequireDefault(require("./DriveFileMoveRtl.js"));
-var _DriveFileRenameOutline = _interopRequireDefault(require("./DriveFileRenameOutline.js"));
 var _DriveFolderUpload = _interopRequireDefault(require("./DriveFolderUpload.js"));
 var _Dropdown = _interopRequireDefault(require("./Dropdown.js"));
 var _DropperEye = _interopRequireDefault(require("./DropperEye.js"));
@@ -23474,8 +22739,6 @@ var _EmergencyHome = _interopRequireDefault(require("./EmergencyHome.js"));
 var _EmergencyRecording = _interopRequireDefault(require("./EmergencyRecording.js"));
 var _EmergencyShare = _interopRequireDefault(require("./EmergencyShare.js"));
 var _EmergencyShareOff = _interopRequireDefault(require("./EmergencyShareOff.js"));
-var _EmojiEvents = _interopRequireDefault(require("./EmojiEvents.js"));
-var _EmojiFlags = _interopRequireDefault(require("./EmojiFlags.js"));
 var _EmojiFoodBeverage = _interopRequireDefault(require("./EmojiFoodBeverage.js"));
 var _EmojiLanguage = _interopRequireDefault(require("./EmojiLanguage.js"));
 var _EmojiNature = _interopRequireDefault(require("./EmojiNature.js"));
@@ -23509,13 +22772,11 @@ var _EraserSize3 = _interopRequireDefault(require("./EraserSize3.js"));
 var _EraserSize4 = _interopRequireDefault(require("./EraserSize4.js"));
 var _EraserSize5 = _interopRequireDefault(require("./EraserSize5.js"));
 var _Error = _interopRequireDefault(require("./Error.js"));
-var _ErrorCircleRounded = _interopRequireDefault(require("./ErrorCircleRounded.js"));
 var _ErrorMed = _interopRequireDefault(require("./ErrorMed.js"));
 var _Escalator = _interopRequireDefault(require("./Escalator.js"));
 var _EscalatorWarning = _interopRequireDefault(require("./EscalatorWarning.js"));
 var _Euro = _interopRequireDefault(require("./Euro.js"));
 var _EuroSymbol = _interopRequireDefault(require("./EuroSymbol.js"));
-var _EvCharger = _interopRequireDefault(require("./EvCharger.js"));
 var _EvMobiledataBadge = _interopRequireDefault(require("./EvMobiledataBadge.js"));
 var _EvShadow = _interopRequireDefault(require("./EvShadow.js"));
 var _EvShadowAdd = _interopRequireDefault(require("./EvShadowAdd.js"));
@@ -23538,8 +22799,6 @@ var _ExpandCircleDown = _interopRequireDefault(require("./ExpandCircleDown.js"))
 var _ExpandCircleRight = _interopRequireDefault(require("./ExpandCircleRight.js"));
 var _ExpandCircleUp = _interopRequireDefault(require("./ExpandCircleUp.js"));
 var _ExpandContent = _interopRequireDefault(require("./ExpandContent.js"));
-var _ExpandLess = _interopRequireDefault(require("./ExpandLess.js"));
-var _ExpandMore = _interopRequireDefault(require("./ExpandMore.js"));
 var _ExpansionPanels = _interopRequireDefault(require("./ExpansionPanels.js"));
 var _Experiment = _interopRequireDefault(require("./Experiment.js"));
 var _Explicit = _interopRequireDefault(require("./Explicit.js"));
@@ -23549,15 +22808,11 @@ var _ExploreOff = _interopRequireDefault(require("./ExploreOff.js"));
 var _Explosion = _interopRequireDefault(require("./Explosion.js"));
 var _ExportNotes = _interopRequireDefault(require("./ExportNotes.js"));
 var _Exposure = _interopRequireDefault(require("./Exposure.js"));
-var _ExposureNeg = _interopRequireDefault(require("./ExposureNeg1.js"));
-var _ExposureNeg2 = _interopRequireDefault(require("./ExposureNeg2.js"));
-var _ExposurePlus = _interopRequireDefault(require("./ExposurePlus1.js"));
-var _ExposurePlus2 = _interopRequireDefault(require("./ExposurePlus2.js"));
-var _ExposureZero = _interopRequireDefault(require("./ExposureZero.js"));
 var _Extension = _interopRequireDefault(require("./Extension.js"));
 var _ExtensionOff = _interopRequireDefault(require("./ExtensionOff.js"));
 var _EyeTracking = _interopRequireDefault(require("./EyeTracking.js"));
 var _Eyeglasses = _interopRequireDefault(require("./Eyeglasses.js"));
+var _Eyeglasses2 = _interopRequireDefault(require("./Eyeglasses2.js"));
 var _Face = _interopRequireDefault(require("./Face.js"));
 var _Face2 = _interopRequireDefault(require("./Face2.js"));
 var _Face3 = _interopRequireDefault(require("./Face3.js"));
@@ -23567,7 +22822,6 @@ var _Face6 = _interopRequireDefault(require("./Face6.js"));
 var _FaceDown = _interopRequireDefault(require("./FaceDown.js"));
 var _FaceLeft = _interopRequireDefault(require("./FaceLeft.js"));
 var _FaceNod = _interopRequireDefault(require("./FaceNod.js"));
-var _FaceRetouchingNatural = _interopRequireDefault(require("./FaceRetouchingNatural.js"));
 var _FaceRetouchingOff = _interopRequireDefault(require("./FaceRetouchingOff.js"));
 var _FaceRight = _interopRequireDefault(require("./FaceRight.js"));
 var _FaceShake = _interopRequireDefault(require("./FaceShake.js"));
@@ -23594,7 +22848,6 @@ var _FeatureSearch = _interopRequireDefault(require("./FeatureSearch.js"));
 var _FeaturedPlayList = _interopRequireDefault(require("./FeaturedPlayList.js"));
 var _FeaturedSeasonalAndGifts = _interopRequireDefault(require("./FeaturedSeasonalAndGifts.js"));
 var _FeaturedVideo = _interopRequireDefault(require("./FeaturedVideo.js"));
-var _Feed = _interopRequireDefault(require("./Feed.js"));
 var _Feedback = _interopRequireDefault(require("./Feedback.js"));
 var _Female = _interopRequireDefault(require("./Female.js"));
 var _Femur = _interopRequireDefault(require("./Femur.js"));
@@ -23611,8 +22864,6 @@ var _FifteenMp = _interopRequireDefault(require("./FifteenMp.js"));
 var _FiftyMp = _interopRequireDefault(require("./FiftyMp.js"));
 var _FileCopy = _interopRequireDefault(require("./FileCopy.js"));
 var _FileCopyOff = _interopRequireDefault(require("./FileCopyOff.js"));
-var _FileDownload = _interopRequireDefault(require("./FileDownload.js"));
-var _FileDownloadDone = _interopRequireDefault(require("./FileDownloadDone.js"));
 var _FileDownloadOff = _interopRequireDefault(require("./FileDownloadOff.js"));
 var _FileExport = _interopRequireDefault(require("./FileExport.js"));
 var _FileJson = _interopRequireDefault(require("./FileJson.js"));
@@ -23623,7 +22874,6 @@ var _FilePng = _interopRequireDefault(require("./FilePng.js"));
 var _FilePresent = _interopRequireDefault(require("./FilePresent.js"));
 var _FileSave = _interopRequireDefault(require("./FileSave.js"));
 var _FileSaveOff = _interopRequireDefault(require("./FileSaveOff.js"));
-var _FileUpload = _interopRequireDefault(require("./FileUpload.js"));
 var _FileUploadOff = _interopRequireDefault(require("./FileUploadOff.js"));
 var _Files = _interopRequireDefault(require("./Files.js"));
 var _Filter = _interopRequireDefault(require("./Filter.js"));
@@ -23695,20 +22945,16 @@ var _FlightClass = _interopRequireDefault(require("./FlightClass.js"));
 var _FlightLand = _interopRequireDefault(require("./FlightLand.js"));
 var _FlightTakeoff = _interopRequireDefault(require("./FlightTakeoff.js"));
 var _FlightsAndHotels = _interopRequireDefault(require("./FlightsAndHotels.js"));
-var _Flightsmode = _interopRequireDefault(require("./Flightsmode.js"));
 var _Flip = _interopRequireDefault(require("./Flip.js"));
 var _FlipCameraAndroid = _interopRequireDefault(require("./FlipCameraAndroid.js"));
 var _FlipCameraIos = _interopRequireDefault(require("./FlipCameraIos.js"));
 var _FlipToBack = _interopRequireDefault(require("./FlipToBack.js"));
 var _FlipToFront = _interopRequireDefault(require("./FlipToFront.js"));
-var _FloatLandscape = _interopRequireDefault(require("./FloatLandscape.js"));
-var _FloatLandscape2 = _interopRequireDefault(require("./FloatLandscape2.js"));
-var _FloatPortrait = _interopRequireDefault(require("./FloatPortrait.js"));
-var _FloatPortrait2 = _interopRequireDefault(require("./FloatPortrait2.js"));
+var _FloatLandscape = _interopRequireDefault(require("./FloatLandscape2.js"));
+var _FloatPortrait = _interopRequireDefault(require("./FloatPortrait2.js"));
 var _Flood = _interopRequireDefault(require("./Flood.js"));
 var _Floor = _interopRequireDefault(require("./Floor.js"));
 var _FloorLamp = _interopRequireDefault(require("./FloorLamp.js"));
-var _Flourescent = _interopRequireDefault(require("./Flourescent.js"));
 var _Flowchart = _interopRequireDefault(require("./Flowchart.js"));
 var _Flowsheet = _interopRequireDefault(require("./Flowsheet.js"));
 var _Fluid = _interopRequireDefault(require("./Fluid.js"));
@@ -23850,7 +23096,6 @@ var _Gastroenterology = _interopRequireDefault(require("./Gastroenterology.js"))
 var _Gate = _interopRequireDefault(require("./Gate.js"));
 var _Gavel = _interopRequireDefault(require("./Gavel.js"));
 var _GeneralDevice = _interopRequireDefault(require("./GeneralDevice.js"));
-var _GeneratingTokens = _interopRequireDefault(require("./GeneratingTokens.js"));
 var _Genetics = _interopRequireDefault(require("./Genetics.js"));
 var _Genres = _interopRequireDefault(require("./Genres.js"));
 var _Gesture = _interopRequireDefault(require("./Gesture.js"));
@@ -23872,12 +23117,10 @@ var _GoToLine = _interopRequireDefault(require("./GoToLine.js"));
 var _GolfCourse = _interopRequireDefault(require("./GolfCourse.js"));
 var _GondolaLift = _interopRequireDefault(require("./GondolaLift.js"));
 var _GoogleHomeDevices = _interopRequireDefault(require("./GoogleHomeDevices.js"));
-var _GooglePlusReshare = _interopRequireDefault(require("./GooglePlusReshare.js"));
 var _GoogleTvRemote = _interopRequireDefault(require("./GoogleTvRemote.js"));
 var _GoogleWifi = _interopRequireDefault(require("./GoogleWifi.js"));
 var _GppBad = _interopRequireDefault(require("./GppBad.js"));
 var _GppMaybe = _interopRequireDefault(require("./GppMaybe.js"));
-var _Grade = _interopRequireDefault(require("./Grade.js"));
 var _Gradient = _interopRequireDefault(require("./Gradient.js"));
 var _Grading = _interopRequireDefault(require("./Grading.js"));
 var _Grain = _interopRequireDefault(require("./Grain.js"));
@@ -23901,7 +23144,6 @@ var _GridView = _interopRequireDefault(require("./GridView.js"));
 var _Grocery = _interopRequireDefault(require("./Grocery.js"));
 var _Group = _interopRequireDefault(require("./Group.js"));
 var _GroupAdd = _interopRequireDefault(require("./GroupAdd.js"));
-var _GroupAuto = _interopRequireDefault(require("./GroupAuto.js"));
 var _GroupOff = _interopRequireDefault(require("./GroupOff.js"));
 var _GroupRemove = _interopRequireDefault(require("./GroupRemove.js"));
 var _GroupSearch = _interopRequireDefault(require("./GroupSearch.js"));
@@ -23924,7 +23166,6 @@ var _HandGestureOff = _interopRequireDefault(require("./HandGestureOff.js"));
 var _HandheldController = _interopRequireDefault(require("./HandheldController.js"));
 var _Handshake = _interopRequireDefault(require("./Handshake.js"));
 var _Handyman = _interopRequireDefault(require("./Handyman.js"));
-var _HangoutMeeting = _interopRequireDefault(require("./HangoutMeeting.js"));
 var _HangoutVideo = _interopRequireDefault(require("./HangoutVideo.js"));
 var _HangoutVideoOff = _interopRequireDefault(require("./HangoutVideoOff.js"));
 var _HardDisk = _interopRequireDefault(require("./HardDisk.js"));
@@ -23951,6 +23192,7 @@ var _HeadsetOff = _interopRequireDefault(require("./HeadsetOff.js"));
 var _Healing = _interopRequireDefault(require("./Healing.js"));
 var _HealthAndBeauty = _interopRequireDefault(require("./HealthAndBeauty.js"));
 var _HealthAndSafety = _interopRequireDefault(require("./HealthAndSafety.js"));
+var _HealthCross = _interopRequireDefault(require("./HealthCross.js"));
 var _HealthMetrics = _interopRequireDefault(require("./HealthMetrics.js"));
 var _HeapSnapshotLarge = _interopRequireDefault(require("./HeapSnapshotLarge.js"));
 var _HeapSnapshotMultiple = _interopRequireDefault(require("./HeapSnapshotMultiple.js"));
@@ -23958,6 +23200,8 @@ var _HeapSnapshotThumbnail = _interopRequireDefault(require("./HeapSnapshotThumb
 var _Hearing = _interopRequireDefault(require("./Hearing.js"));
 var _HearingAid = _interopRequireDefault(require("./HearingAid.js"));
 var _HearingAidDisabled = _interopRequireDefault(require("./HearingAidDisabled.js"));
+var _HearingAidDisabledLeft = _interopRequireDefault(require("./HearingAidDisabledLeft.js"));
+var _HearingAidLeft = _interopRequireDefault(require("./HearingAidLeft.js"));
 var _HearingDisabled = _interopRequireDefault(require("./HearingDisabled.js"));
 var _HeartBroken = _interopRequireDefault(require("./HeartBroken.js"));
 var _HeartCheck = _interopRequireDefault(require("./HeartCheck.js"));
@@ -24013,7 +23257,6 @@ var _HomeRepairService = _interopRequireDefault(require("./HomeRepairService.js"
 var _HomeSpeaker = _interopRequireDefault(require("./HomeSpeaker.js"));
 var _HomeStorage = _interopRequireDefault(require("./HomeStorage.js"));
 var _HomeWork = _interopRequireDefault(require("./HomeWork.js"));
-var _HorizontalDistribute = _interopRequireDefault(require("./HorizontalDistribute.js"));
 var _HorizontalRule = _interopRequireDefault(require("./HorizontalRule.js"));
 var _HorizontalSplit = _interopRequireDefault(require("./HorizontalSplit.js"));
 var _Host = _interopRequireDefault(require("./Host.js"));
@@ -24026,7 +23269,6 @@ var _HourglassArrowUp = _interopRequireDefault(require("./HourglassArrowUp.js"))
 var _HourglassBottom = _interopRequireDefault(require("./HourglassBottom.js"));
 var _HourglassDisabled = _interopRequireDefault(require("./HourglassDisabled.js"));
 var _HourglassEmpty = _interopRequireDefault(require("./HourglassEmpty.js"));
-var _HourglassFull = _interopRequireDefault(require("./HourglassFull.js"));
 var _HourglassPause = _interopRequireDefault(require("./HourglassPause.js"));
 var _HourglassTop = _interopRequireDefault(require("./HourglassTop.js"));
 var _House = _interopRequireDefault(require("./House.js"));
@@ -24043,7 +23285,6 @@ var _Http = _interopRequireDefault(require("./Http.js"));
 var _Hub = _interopRequireDefault(require("./Hub.js"));
 var _Humerus = _interopRequireDefault(require("./Humerus.js"));
 var _HumerusAlt = _interopRequireDefault(require("./HumerusAlt.js"));
-var _HumidityHelper = _interopRequireDefault(require("./HumidityHelper.js"));
 var _HumidityHigh = _interopRequireDefault(require("./HumidityHigh.js"));
 var _HumidityIndoor = _interopRequireDefault(require("./HumidityIndoor.js"));
 var _HumidityLow = _interopRequireDefault(require("./HumidityLow.js"));
@@ -24062,7 +23303,6 @@ var _IframeOff = _interopRequireDefault(require("./IframeOff.js"));
 var _Image = _interopRequireDefault(require("./Image.js"));
 var _ImageArrowUp = _interopRequireDefault(require("./ImageArrowUp.js"));
 var _ImageAspectRatio = _interopRequireDefault(require("./ImageAspectRatio.js"));
-var _ImageNotSupported = _interopRequireDefault(require("./ImageNotSupported.js"));
 var _ImageSearch = _interopRequireDefault(require("./ImageSearch.js"));
 var _ImagesearchRoller = _interopRequireDefault(require("./ImagesearchRoller.js"));
 var _Imagesmode = _interopRequireDefault(require("./Imagesmode.js"));
@@ -24096,9 +23336,7 @@ var _InputCircle = _interopRequireDefault(require("./InputCircle.js"));
 var _InsertChart = _interopRequireDefault(require("./InsertChart.js"));
 var _InsertPageBreak = _interopRequireDefault(require("./InsertPageBreak.js"));
 var _InsertText = _interopRequireDefault(require("./InsertText.js"));
-var _Insights = _interopRequireDefault(require("./Insights.js"));
 var _InstallDesktop = _interopRequireDefault(require("./InstallDesktop.js"));
-var _InstallMobile = _interopRequireDefault(require("./InstallMobile.js"));
 var _InstantMix = _interopRequireDefault(require("./InstantMix.js"));
 var _IntegrationInstructions = _interopRequireDefault(require("./IntegrationInstructions.js"));
 var _InteractiveSpace = _interopRequireDefault(require("./InteractiveSpace.js"));
@@ -24114,7 +23352,6 @@ var _Iron = _interopRequireDefault(require("./Iron.js"));
 var _JamboardKiosk = _interopRequireDefault(require("./JamboardKiosk.js"));
 var _Javascript = _interopRequireDefault(require("./Javascript.js"));
 var _Join = _interopRequireDefault(require("./Join.js"));
-var _JoinFull = _interopRequireDefault(require("./JoinFull.js"));
 var _JoinInner = _interopRequireDefault(require("./JoinInner.js"));
 var _JoinLeft = _interopRequireDefault(require("./JoinLeft.js"));
 var _JoinRight = _interopRequireDefault(require("./JoinRight.js"));
@@ -24158,7 +23395,6 @@ var _KeyboardPreviousLanguage = _interopRequireDefault(require("./KeyboardPrevio
 var _KeyboardReturn = _interopRequireDefault(require("./KeyboardReturn.js"));
 var _KeyboardTab = _interopRequireDefault(require("./KeyboardTab.js"));
 var _KeyboardTabRtl = _interopRequireDefault(require("./KeyboardTabRtl.js"));
-var _KeyboardVoice = _interopRequireDefault(require("./KeyboardVoice.js"));
 var _KidStar = _interopRequireDefault(require("./KidStar.js"));
 var _KingBed = _interopRequireDefault(require("./KingBed.js"));
 var _Kitchen = _interopRequireDefault(require("./Kitchen.js"));
@@ -24205,14 +23441,12 @@ var _Layers = _interopRequireDefault(require("./Layers.js"));
 var _LayersClear = _interopRequireDefault(require("./LayersClear.js"));
 var _Lda = _interopRequireDefault(require("./Lda.js"));
 var _Leaderboard = _interopRequireDefault(require("./Leaderboard.js"));
-var _LeafSpark = _interopRequireDefault(require("./LeafSpark.js"));
 var _LeakAdd = _interopRequireDefault(require("./LeakAdd.js"));
 var _LeakRemove = _interopRequireDefault(require("./LeakRemove.js"));
 var _LeftClick = _interopRequireDefault(require("./LeftClick.js"));
 var _LeftPanelClose = _interopRequireDefault(require("./LeftPanelClose.js"));
 var _LeftPanelOpen = _interopRequireDefault(require("./LeftPanelOpen.js"));
 var _LegendToggle = _interopRequireDefault(require("./LegendToggle.js"));
-var _Lens = _interopRequireDefault(require("./Lens.js"));
 var _LensBlur = _interopRequireDefault(require("./LensBlur.js"));
 var _LetterSwitch = _interopRequireDefault(require("./LetterSwitch.js"));
 var _LibraryAdd = _interopRequireDefault(require("./LibraryAdd.js"));
@@ -24282,7 +23516,6 @@ var _LocalPostOffice = _interopRequireDefault(require("./LocalPostOffice.js"));
 var _LocalSee = _interopRequireDefault(require("./LocalSee.js"));
 var _LocalShipping = _interopRequireDefault(require("./LocalShipping.js"));
 var _LocalTaxi = _interopRequireDefault(require("./LocalTaxi.js"));
-var _LocationAutomation = _interopRequireDefault(require("./LocationAutomation.js"));
 var _LocationAway = _interopRequireDefault(require("./LocationAway.js"));
 var _LocationChip = _interopRequireDefault(require("./LocationChip.js"));
 var _LocationCity = _interopRequireDefault(require("./LocationCity.js"));
@@ -24323,9 +23556,6 @@ var _Lyrics = _interopRequireDefault(require("./Lyrics.js"));
 var _MUISymbolsSHARP500GoogleFont = _interopRequireDefault(require("./MUISymbolsSHARP500GoogleFont.js"));
 var _MacroAuto = _interopRequireDefault(require("./MacroAuto.js"));
 var _MacroOff = _interopRequireDefault(require("./MacroOff.js"));
-var _MagicButton = _interopRequireDefault(require("./MagicButton.js"));
-var _MagicExchange = _interopRequireDefault(require("./MagicExchange.js"));
-var _MagicTether = _interopRequireDefault(require("./MagicTether.js"));
 var _MagnificationLarge = _interopRequireDefault(require("./MagnificationLarge.js"));
 var _MagnificationSmall = _interopRequireDefault(require("./MagnificationSmall.js"));
 var _MagnifyDocked = _interopRequireDefault(require("./MagnifyDocked.js"));
@@ -24360,6 +23590,7 @@ var _MarkunreadMailbox = _interopRequireDefault(require("./MarkunreadMailbox.js"
 var _MaskedTransitions = _interopRequireDefault(require("./MaskedTransitions.js"));
 var _MaskedTransitionsAdd = _interopRequireDefault(require("./MaskedTransitionsAdd.js"));
 var _Masks = _interopRequireDefault(require("./Masks.js"));
+var _Massage = _interopRequireDefault(require("./Massage.js"));
 var _MatchCase = _interopRequireDefault(require("./MatchCase.js"));
 var _MatchCaseOff = _interopRequireDefault(require("./MatchCaseOff.js"));
 var _MatchWord = _interopRequireDefault(require("./MatchWord.js"));
@@ -24394,9 +23625,6 @@ var _MicAlert = _interopRequireDefault(require("./MicAlert.js"));
 var _MicDouble = _interopRequireDefault(require("./MicDouble.js"));
 var _MicExternalOff = _interopRequireDefault(require("./MicExternalOff.js"));
 var _MicExternalOn = _interopRequireDefault(require("./MicExternalOn.js"));
-var _MicNoiseCancelHigh = _interopRequireDefault(require("./MicNoiseCancelHigh.js"));
-var _MicNoiseCancelLow = _interopRequireDefault(require("./MicNoiseCancelLow.js"));
-var _MicNoiseCancelOff = _interopRequireDefault(require("./MicNoiseCancelOff.js"));
 var _MicOff = _interopRequireDefault(require("./MicOff.js"));
 var _Microbiology = _interopRequireDefault(require("./Microbiology.js"));
 var _Microwave = _interopRequireDefault(require("./Microwave.js"));
@@ -24414,17 +23642,54 @@ var _Mist = _interopRequireDefault(require("./Mist.js"));
 var _Mitre = _interopRequireDefault(require("./Mitre.js"));
 var _MixtureMed = _interopRequireDefault(require("./MixtureMed.js"));
 var _Mms = _interopRequireDefault(require("./Mms.js"));
-var _MobileFriendly = _interopRequireDefault(require("./MobileFriendly.js"));
+var _Mobile = _interopRequireDefault(require("./Mobile.js"));
+var _Mobile2 = _interopRequireDefault(require("./Mobile2.js"));
+var _Mobile3 = _interopRequireDefault(require("./Mobile3.js"));
+var _MobileAlert = _interopRequireDefault(require("./MobileAlert.js"));
+var _MobileArrowDown = _interopRequireDefault(require("./MobileArrowDown.js"));
+var _MobileArrowRight = _interopRequireDefault(require("./MobileArrowRight.js"));
+var _MobileArrowUpRight = _interopRequireDefault(require("./MobileArrowUpRight.js"));
+var _MobileBlock = _interopRequireDefault(require("./MobileBlock.js"));
+var _MobileCamera = _interopRequireDefault(require("./MobileCamera.js"));
+var _MobileCameraFront = _interopRequireDefault(require("./MobileCameraFront.js"));
+var _MobileCameraRear = _interopRequireDefault(require("./MobileCameraRear.js"));
+var _MobileCancel = _interopRequireDefault(require("./MobileCancel.js"));
+var _MobileCast = _interopRequireDefault(require("./MobileCast.js"));
+var _MobileCharge = _interopRequireDefault(require("./MobileCharge.js"));
+var _MobileChat = _interopRequireDefault(require("./MobileChat.js"));
+var _MobileCheck = _interopRequireDefault(require("./MobileCheck.js"));
+var _MobileCode = _interopRequireDefault(require("./MobileCode.js"));
+var _MobileDots = _interopRequireDefault(require("./MobileDots.js"));
+var _MobileGear = _interopRequireDefault(require("./MobileGear.js"));
 var _MobileHand = _interopRequireDefault(require("./MobileHand.js"));
 var _MobileHandLeft = _interopRequireDefault(require("./MobileHandLeft.js"));
 var _MobileHandLeftOff = _interopRequireDefault(require("./MobileHandLeftOff.js"));
 var _MobileHandOff = _interopRequireDefault(require("./MobileHandOff.js"));
+var _MobileInfo = _interopRequireDefault(require("./MobileInfo.js"));
+var _MobileLandscape = _interopRequireDefault(require("./MobileLandscape.js"));
+var _MobileLayout = _interopRequireDefault(require("./MobileLayout.js"));
+var _MobileLockLandscape = _interopRequireDefault(require("./MobileLockLandscape.js"));
+var _MobileLockPortrait = _interopRequireDefault(require("./MobileLockPortrait.js"));
 var _MobileLoupe = _interopRequireDefault(require("./MobileLoupe.js"));
+var _MobileMenu = _interopRequireDefault(require("./MobileMenu.js"));
 var _MobileOff = _interopRequireDefault(require("./MobileOff.js"));
+var _MobileQuestion = _interopRequireDefault(require("./MobileQuestion.js"));
+var _MobileRotate = _interopRequireDefault(require("./MobileRotate.js"));
+var _MobileRotateLock = _interopRequireDefault(require("./MobileRotateLock.js"));
 var _MobileScreenShare = _interopRequireDefault(require("./MobileScreenShare.js"));
 var _MobileScreensaver = _interopRequireDefault(require("./MobileScreensaver.js"));
-var _MobileSound = _interopRequireDefault(require("./MobileSound2.js"));
+var _MobileSensorHi = _interopRequireDefault(require("./MobileSensorHi.js"));
+var _MobileSensorLo = _interopRequireDefault(require("./MobileSensorLo.js"));
+var _MobileShare = _interopRequireDefault(require("./MobileShare.js"));
+var _MobileShareStack = _interopRequireDefault(require("./MobileShareStack.js"));
+var _MobileSound = _interopRequireDefault(require("./MobileSound.js"));
+var _MobileSound2 = _interopRequireDefault(require("./MobileSound2.js"));
+var _MobileSoundOff = _interopRequireDefault(require("./MobileSoundOff.js"));
 var _MobileSpeaker = _interopRequireDefault(require("./MobileSpeaker.js"));
+var _MobileText = _interopRequireDefault(require("./MobileText.js"));
+var _MobileText2 = _interopRequireDefault(require("./MobileText2.js"));
+var _MobileTicket = _interopRequireDefault(require("./MobileTicket.js"));
+var _MobileVibrate = _interopRequireDefault(require("./MobileVibrate.js"));
 var _MobiledataOff = _interopRequireDefault(require("./MobiledataOff.js"));
 var _ModeComment = _interopRequireDefault(require("./ModeComment.js"));
 var _ModeCool = _interopRequireDefault(require("./ModeCool.js"));
@@ -24441,7 +23706,6 @@ var _ModeOffOn = _interopRequireDefault(require("./ModeOffOn.js"));
 var _ModeStandby = _interopRequireDefault(require("./ModeStandby.js"));
 var _ModelTraining = _interopRequireDefault(require("./ModelTraining.js"));
 var _Modeling = _interopRequireDefault(require("./Modeling.js"));
-var _MonetizationOn = _interopRequireDefault(require("./MonetizationOn.js"));
 var _Money = _interopRequireDefault(require("./Money.js"));
 var _MoneyBag = _interopRequireDefault(require("./MoneyBag.js"));
 var _MoneyOff = _interopRequireDefault(require("./MoneyOff.js"));
@@ -24469,8 +23733,6 @@ var _MotionBlur = _interopRequireDefault(require("./MotionBlur.js"));
 var _MotionMode = _interopRequireDefault(require("./MotionMode.js"));
 var _MotionPhotosAuto = _interopRequireDefault(require("./MotionPhotosAuto.js"));
 var _MotionPhotosOff = _interopRequireDefault(require("./MotionPhotosOff.js"));
-var _MotionPhotosOn = _interopRequireDefault(require("./MotionPhotosOn.js"));
-var _MotionPhotosPaused = _interopRequireDefault(require("./MotionPhotosPaused.js"));
 var _MotionPlay = _interopRequireDefault(require("./MotionPlay.js"));
 var _MotionSensorActive = _interopRequireDefault(require("./MotionSensorActive.js"));
 var _MotionSensorAlert = _interopRequireDefault(require("./MotionSensorAlert.js"));
@@ -24495,7 +23757,6 @@ var _MoveUp = _interopRequireDefault(require("./MoveUp.js"));
 var _MovedLocation = _interopRequireDefault(require("./MovedLocation.js"));
 var _Movie = _interopRequireDefault(require("./Movie.js"));
 var _MovieEdit = _interopRequireDefault(require("./MovieEdit.js"));
-var _MovieFilter = _interopRequireDefault(require("./MovieFilter.js"));
 var _MovieInfo = _interopRequireDefault(require("./MovieInfo.js"));
 var _MovieOff = _interopRequireDefault(require("./MovieOff.js"));
 var _Moving = _interopRequireDefault(require("./Moving.js"));
@@ -24509,6 +23770,7 @@ var _MultipleAirports = _interopRequireDefault(require("./MultipleAirports.js"))
 var _MultipleStop = _interopRequireDefault(require("./MultipleStop.js"));
 var _Museum = _interopRequireDefault(require("./Museum.js"));
 var _MusicCast = _interopRequireDefault(require("./MusicCast.js"));
+var _MusicHistory = _interopRequireDefault(require("./MusicHistory.js"));
 var _MusicNote = _interopRequireDefault(require("./MusicNote.js"));
 var _MusicNoteAdd = _interopRequireDefault(require("./MusicNoteAdd.js"));
 var _MusicOff = _interopRequireDefault(require("./MusicOff.js"));
@@ -24518,8 +23780,6 @@ var _Mystery = _interopRequireDefault(require("./Mystery.js"));
 var _Nat = _interopRequireDefault(require("./Nat.js"));
 var _Nature = _interopRequireDefault(require("./Nature.js"));
 var _NaturePeople = _interopRequireDefault(require("./NaturePeople.js"));
-var _NavigateBefore = _interopRequireDefault(require("./NavigateBefore.js"));
-var _NavigateNext = _interopRequireDefault(require("./NavigateNext.js"));
 var _Navigation = _interopRequireDefault(require("./Navigation.js"));
 var _NearMe = _interopRequireDefault(require("./NearMe.js"));
 var _NearMeDisabled = _interopRequireDefault(require("./NearMeDisabled.js"));
@@ -24547,11 +23807,9 @@ var _NestDoorbellVisitor = _interopRequireDefault(require("./NestDoorbellVisitor
 var _NestEcoLeaf = _interopRequireDefault(require("./NestEcoLeaf.js"));
 var _NestFarsightWeather = _interopRequireDefault(require("./NestFarsightWeather.js"));
 var _NestFoundSavings = _interopRequireDefault(require("./NestFoundSavings.js"));
-var _NestGaleWifi = _interopRequireDefault(require("./NestGaleWifi.js"));
 var _NestHeatLinkE = _interopRequireDefault(require("./NestHeatLinkE.js"));
 var _NestHeatLinkGen = _interopRequireDefault(require("./NestHeatLinkGen3.js"));
 var _NestHelloDoorbell = _interopRequireDefault(require("./NestHelloDoorbell.js"));
-var _NestLocatorTag = _interopRequireDefault(require("./NestLocatorTag.js"));
 var _NestMini = _interopRequireDefault(require("./NestMini.js"));
 var _NestMultiRoom = _interopRequireDefault(require("./NestMultiRoom.js"));
 var _NestProtect = _interopRequireDefault(require("./NestProtect.js"));
@@ -24569,10 +23827,7 @@ var _NestThermostatZirconiumEu = _interopRequireDefault(require("./NestThermosta
 var _NestTrueRadiant = _interopRequireDefault(require("./NestTrueRadiant.js"));
 var _NestWakeOnApproach = _interopRequireDefault(require("./NestWakeOnApproach.js"));
 var _NestWakeOnPress = _interopRequireDefault(require("./NestWakeOnPress.js"));
-var _NestWifiGale = _interopRequireDefault(require("./NestWifiGale.js"));
-var _NestWifiMistral = _interopRequireDefault(require("./NestWifiMistral.js"));
 var _NestWifiPoint = _interopRequireDefault(require("./NestWifiPoint.js"));
-var _NestWifiPointVento = _interopRequireDefault(require("./NestWifiPointVento.js"));
 var _NestWifiPro = _interopRequireDefault(require("./NestWifiPro.js"));
 var _NestWifiPro2 = _interopRequireDefault(require("./NestWifiPro2.js"));
 var _NestWifiRouter = _interopRequireDefault(require("./NestWifiRouter.js"));
@@ -24596,7 +23851,6 @@ var _NetworkWifi3BarLocked = _interopRequireDefault(require("./NetworkWifi3BarLo
 var _NetworkWifiLocked = _interopRequireDefault(require("./NetworkWifiLocked.js"));
 var _Neurology = _interopRequireDefault(require("./Neurology.js"));
 var _NewLabel = _interopRequireDefault(require("./NewLabel.js"));
-var _NewReleases = _interopRequireDefault(require("./NewReleases.js"));
 var _NewWindow = _interopRequireDefault(require("./NewWindow.js"));
 var _News = _interopRequireDefault(require("./News.js"));
 var _Newsmode = _interopRequireDefault(require("./Newsmode.js"));
@@ -24612,8 +23866,6 @@ var _NightSightAutoOff = _interopRequireDefault(require("./NightSightAutoOff.js"
 var _NightSightMax = _interopRequireDefault(require("./NightSightMax.js"));
 var _Nightlife = _interopRequireDefault(require("./Nightlife.js"));
 var _Nightlight = _interopRequireDefault(require("./Nightlight.js"));
-var _NightlightBadge = _interopRequireDefault(require("./NightlightBadge.js"));
-var _NightlightOff = _interopRequireDefault(require("./NightlightOff.js"));
 var _NightsStay = _interopRequireDefault(require("./NightsStay.js"));
 var _NineK = _interopRequireDefault(require("./NineK.js"));
 var _NineKPlus = _interopRequireDefault(require("./NineKPlus.js"));
@@ -24646,7 +23898,6 @@ var _NotAccessible = _interopRequireDefault(require("./NotAccessible.js"));
 var _NotAccessibleForward = _interopRequireDefault(require("./NotAccessibleForward.js"));
 var _NotListedLocation = _interopRequireDefault(require("./NotListedLocation.js"));
 var _NotStarted = _interopRequireDefault(require("./NotStarted.js"));
-var _Note = _interopRequireDefault(require("./Note.js"));
 var _NoteAdd = _interopRequireDefault(require("./NoteAdd.js"));
 var _NoteAlt = _interopRequireDefault(require("./NoteAlt.js"));
 var _NoteStack = _interopRequireDefault(require("./NoteStack.js"));
@@ -24685,7 +23936,6 @@ var _OpenInFull = _interopRequireDefault(require("./OpenInFull.js"));
 var _OpenInNew = _interopRequireDefault(require("./OpenInNew.js"));
 var _OpenInNewDown = _interopRequireDefault(require("./OpenInNewDown.js"));
 var _OpenInNewOff = _interopRequireDefault(require("./OpenInNewOff.js"));
-var _OpenInPhone = _interopRequireDefault(require("./OpenInPhone.js"));
 var _OpenJam = _interopRequireDefault(require("./OpenJam.js"));
 var _OpenRun = _interopRequireDefault(require("./OpenRun.js"));
 var _OpenWith = _interopRequireDefault(require("./OpenWith.js"));
@@ -24735,7 +23985,6 @@ var _PanTool = _interopRequireDefault(require("./PanTool.js"));
 var _PanToolAlt = _interopRequireDefault(require("./PanToolAlt.js"));
 var _PanZoom = _interopRequireDefault(require("./PanZoom.js"));
 var _Panorama = _interopRequireDefault(require("./Panorama.js"));
-var _PanoramaFishEye = _interopRequireDefault(require("./PanoramaFishEye.js"));
 var _PanoramaHorizontal = _interopRequireDefault(require("./PanoramaHorizontal.js"));
 var _PanoramaPhotosphere = _interopRequireDefault(require("./PanoramaPhotosphere.js"));
 var _PanoramaVertical = _interopRequireDefault(require("./PanoramaVertical.js"));
@@ -24756,8 +24005,8 @@ var _Pattern = _interopRequireDefault(require("./Pattern.js"));
 var _Pause = _interopRequireDefault(require("./Pause.js"));
 var _PauseCircle = _interopRequireDefault(require("./PauseCircle.js"));
 var _PausePresentation = _interopRequireDefault(require("./PausePresentation.js"));
+var _PaymentArrowDown = _interopRequireDefault(require("./PaymentArrowDown.js"));
 var _Payments = _interopRequireDefault(require("./Payments.js"));
-var _PdfOff = _interopRequireDefault(require("./PdfOff.js"));
 var _PedalBike = _interopRequireDefault(require("./PedalBike.js"));
 var _Pediatrics = _interopRequireDefault(require("./Pediatrics.js"));
 var _PenSize = _interopRequireDefault(require("./PenSize1.js"));
@@ -24769,7 +24018,6 @@ var _Pending = _interopRequireDefault(require("./Pending.js"));
 var _PendingActions = _interopRequireDefault(require("./PendingActions.js"));
 var _Pentagon = _interopRequireDefault(require("./Pentagon.js"));
 var _Percent = _interopRequireDefault(require("./Percent.js"));
-var _PerformanceMax = _interopRequireDefault(require("./PerformanceMax.js"));
 var _Pergola = _interopRequireDefault(require("./Pergola.js"));
 var _PermCameraMic = _interopRequireDefault(require("./PermCameraMic.js"));
 var _PermContactCalendar = _interopRequireDefault(require("./PermContactCalendar.js"));
@@ -24791,7 +24039,6 @@ var _PersonCancel = _interopRequireDefault(require("./PersonCancel.js"));
 var _PersonCelebrate = _interopRequireDefault(require("./PersonCelebrate.js"));
 var _PersonCheck = _interopRequireDefault(require("./PersonCheck.js"));
 var _PersonEdit = _interopRequireDefault(require("./PersonEdit.js"));
-var _PersonFilled = _interopRequireDefault(require("./PersonFilled.js"));
 var _PersonOff = _interopRequireDefault(require("./PersonOff.js"));
 var _PersonPin = _interopRequireDefault(require("./PersonPin.js"));
 var _PersonPinCircle = _interopRequireDefault(require("./PersonPinCircle.js"));
@@ -24817,14 +24064,11 @@ var _PhoneDisabled = _interopRequireDefault(require("./PhoneDisabled.js"));
 var _PhoneEnabled = _interopRequireDefault(require("./PhoneEnabled.js"));
 var _PhoneForwarded = _interopRequireDefault(require("./PhoneForwarded.js"));
 var _PhoneInTalk = _interopRequireDefault(require("./PhoneInTalk.js"));
-var _PhoneInTalkWatchfaceIndicator = _interopRequireDefault(require("./PhoneInTalkWatchfaceIndicator.js"));
 var _PhoneIphone = _interopRequireDefault(require("./PhoneIphone.js"));
 var _PhoneLocked = _interopRequireDefault(require("./PhoneLocked.js"));
 var _PhoneMissed = _interopRequireDefault(require("./PhoneMissed.js"));
 var _PhonePaused = _interopRequireDefault(require("./PhonePaused.js"));
 var _PhonelinkErase = _interopRequireDefault(require("./PhonelinkErase.js"));
-var _PhonelinkLock = _interopRequireDefault(require("./PhonelinkLock.js"));
-var _PhonelinkOff = _interopRequireDefault(require("./PhonelinkOff.js"));
 var _PhonelinkRing = _interopRequireDefault(require("./PhonelinkRing.js"));
 var _PhonelinkRingOff = _interopRequireDefault(require("./PhonelinkRingOff.js"));
 var _PhonelinkSetup = _interopRequireDefault(require("./PhonelinkSetup.js"));
@@ -24834,7 +24078,6 @@ var _PhotoAutoMerge = _interopRequireDefault(require("./PhotoAutoMerge.js"));
 var _PhotoCamera = _interopRequireDefault(require("./PhotoCamera.js"));
 var _PhotoCameraBack = _interopRequireDefault(require("./PhotoCameraBack.js"));
 var _PhotoCameraFront = _interopRequireDefault(require("./PhotoCameraFront.js"));
-var _PhotoFilter = _interopRequireDefault(require("./PhotoFilter.js"));
 var _PhotoFrame = _interopRequireDefault(require("./PhotoFrame.js"));
 var _PhotoLibrary = _interopRequireDefault(require("./PhotoLibrary.js"));
 var _PhotoPrints = _interopRequireDefault(require("./PhotoPrints.js"));
@@ -24868,8 +24111,6 @@ var _PinchZoomOut = _interopRequireDefault(require("./PinchZoomOut.js"));
 var _Pip = _interopRequireDefault(require("./Pip.js"));
 var _PipExit = _interopRequireDefault(require("./PipExit.js"));
 var _PivotTableChart = _interopRequireDefault(require("./PivotTableChart.js"));
-var _Pixel33xl3a = _interopRequireDefault(require("./Pixel33xl3a.js"));
-var _Pixel9ProFold = _interopRequireDefault(require("./Pixel9ProFold.js"));
 var _PlaceItem = _interopRequireDefault(require("./PlaceItem.js"));
 var _Plagiarism = _interopRequireDefault(require("./Plagiarism.js"));
 var _Planet = _interopRequireDefault(require("./Planet.js"));
@@ -24881,7 +24122,6 @@ var _PlayDisabled = _interopRequireDefault(require("./PlayDisabled.js"));
 var _PlayForWork = _interopRequireDefault(require("./PlayForWork.js"));
 var _PlayLesson = _interopRequireDefault(require("./PlayLesson.js"));
 var _PlayPause = _interopRequireDefault(require("./PlayPause.js"));
-var _PlayShapes = _interopRequireDefault(require("./PlayShapes.js"));
 var _PlayingCards = _interopRequireDefault(require("./PlayingCards.js"));
 var _PlaylistAdd = _interopRequireDefault(require("./PlaylistAdd.js"));
 var _PlaylistAddCheck = _interopRequireDefault(require("./PlaylistAddCheck.js"));
@@ -24900,11 +24140,8 @@ var _PokerChip = _interopRequireDefault(require("./PokerChip.js"));
 var _Policy = _interopRequireDefault(require("./Policy.js"));
 var _PolicyAlert = _interopRequireDefault(require("./PolicyAlert.js"));
 var _Polyline = _interopRequireDefault(require("./Polyline.js"));
-var _Polymer = _interopRequireDefault(require("./Polymer.js"));
 var _Pool = _interopRequireDefault(require("./Pool.js"));
 var _PortableWifiOff = _interopRequireDefault(require("./PortableWifiOff.js"));
-var _PortraitLighting = _interopRequireDefault(require("./PortraitLighting.js"));
-var _PortraitLightingOff = _interopRequireDefault(require("./PortraitLightingOff.js"));
 var _PositionBottomLeft = _interopRequireDefault(require("./PositionBottomLeft.js"));
 var _PositionBottomRight = _interopRequireDefault(require("./PositionBottomRight.js"));
 var _PositionTopRight = _interopRequireDefault(require("./PositionTopRight.js"));
@@ -24914,7 +24151,6 @@ var _PottedPlant = _interopRequireDefault(require("./PottedPlant.js"));
 var _Power = _interopRequireDefault(require("./Power.js"));
 var _PowerInput = _interopRequireDefault(require("./PowerInput.js"));
 var _PowerOff = _interopRequireDefault(require("./PowerOff.js"));
-var _PowerRounded = _interopRequireDefault(require("./PowerRounded.js"));
 var _PowerSettingsCircle = _interopRequireDefault(require("./PowerSettingsCircle.js"));
 var _PowerSettingsNew = _interopRequireDefault(require("./PowerSettingsNew.js"));
 var _PrayerTimes = _interopRequireDefault(require("./PrayerTimes.js"));
@@ -24937,8 +24173,6 @@ var _PrintLock = _interopRequireDefault(require("./PrintLock.js"));
 var _Priority = _interopRequireDefault(require("./Priority.js"));
 var _PriorityHigh = _interopRequireDefault(require("./PriorityHigh.js"));
 var _Privacy = _interopRequireDefault(require("./Privacy.js"));
-var _PrivacyScreen = _interopRequireDefault(require("./PrivacyScreen.js"));
-var _PrivacyScreenOff = _interopRequireDefault(require("./PrivacyScreenOff.js"));
 var _PrivacyTip = _interopRequireDefault(require("./PrivacyTip.js"));
 var _PrivateConnectivity = _interopRequireDefault(require("./PrivateConnectivity.js"));
 var _Problem = _interopRequireDefault(require("./Problem.js"));
@@ -24960,7 +24194,6 @@ var _PublishedWithChanges = _interopRequireDefault(require("./PublishedWithChang
 var _Pulmonology = _interopRequireDefault(require("./Pulmonology.js"));
 var _PulseAlert = _interopRequireDefault(require("./PulseAlert.js"));
 var _PunchClock = _interopRequireDefault(require("./PunchClock.js"));
-var _PushPin = _interopRequireDefault(require("./PushPin.js"));
 var _QrCode = _interopRequireDefault(require("./QrCode.js"));
 var _QrCode2 = _interopRequireDefault(require("./QrCode2.js"));
 var _QrCode2Add = _interopRequireDefault(require("./QrCode2Add.js"));
@@ -24975,8 +24208,6 @@ var _QuickReference = _interopRequireDefault(require("./QuickReference.js"));
 var _QuickReferenceAll = _interopRequireDefault(require("./QuickReferenceAll.js"));
 var _QuickReorder = _interopRequireDefault(require("./QuickReorder.js"));
 var _Quickreply = _interopRequireDefault(require("./Quickreply.js"));
-var _QuietTime = _interopRequireDefault(require("./QuietTime.js"));
-var _QuietTimeActive = _interopRequireDefault(require("./QuietTimeActive.js"));
 var _Quiz = _interopRequireDefault(require("./Quiz.js"));
 var _RMobiledata = _interopRequireDefault(require("./RMobiledata.js"));
 var _Radar = _interopRequireDefault(require("./Radar.js"));
@@ -25019,7 +24250,6 @@ var _Redeem = _interopRequireDefault(require("./Redeem.js"));
 var _Redo = _interopRequireDefault(require("./Redo.js"));
 var _ReduceCapacity = _interopRequireDefault(require("./ReduceCapacity.js"));
 var _Refresh = _interopRequireDefault(require("./Refresh.js"));
-var _RegLogoIft = _interopRequireDefault(require("./RegLogoIft.js"));
 var _RegularExpression = _interopRequireDefault(require("./RegularExpression.js"));
 var _Relax = _interopRequireDefault(require("./Relax.js"));
 var _ReleaseAlert = _interopRequireDefault(require("./ReleaseAlert.js"));
@@ -25047,7 +24277,6 @@ var _Replay = _interopRequireDefault(require("./Replay.js"));
 var _Replay2 = _interopRequireDefault(require("./Replay10.js"));
 var _Replay3 = _interopRequireDefault(require("./Replay30.js"));
 var _Replay4 = _interopRequireDefault(require("./Replay5.js"));
-var _ReplayCircleFilled = _interopRequireDefault(require("./ReplayCircleFilled.js"));
 var _Reply = _interopRequireDefault(require("./Reply.js"));
 var _ReplyAll = _interopRequireDefault(require("./ReplyAll.js"));
 var _Report = _interopRequireDefault(require("./Report.js"));
@@ -25069,7 +24298,6 @@ var _RespiratoryRate = _interopRequireDefault(require("./RespiratoryRate.js"));
 var _ResponsiveLayout = _interopRequireDefault(require("./ResponsiveLayout.js"));
 var _RestartAlt = _interopRequireDefault(require("./RestartAlt.js"));
 var _Restaurant = _interopRequireDefault(require("./Restaurant.js"));
-var _RestaurantMenu = _interopRequireDefault(require("./RestaurantMenu.js"));
 var _RestoreFromTrash = _interopRequireDefault(require("./RestoreFromTrash.js"));
 var _RestorePage = _interopRequireDefault(require("./RestorePage.js"));
 var _Resume = _interopRequireDefault(require("./Resume.js"));
@@ -25117,7 +24345,6 @@ var _RuleSettings = _interopRequireDefault(require("./RuleSettings.js"));
 var _RunCircle = _interopRequireDefault(require("./RunCircle.js"));
 var _RunningWithErrors = _interopRequireDefault(require("./RunningWithErrors.js"));
 var _RvHookup = _interopRequireDefault(require("./RvHookup.js"));
-var _SadTab = _interopRequireDefault(require("./SadTab.js"));
 var _SafetyCheck = _interopRequireDefault(require("./SafetyCheck.js"));
 var _SafetyCheckOff = _interopRequireDefault(require("./SafetyCheckOff.js"));
 var _SafetyDivider = _interopRequireDefault(require("./SafetyDivider.js"));
@@ -25156,7 +24383,6 @@ var _ScreenRotationAlt = _interopRequireDefault(require("./ScreenRotationAlt.js"
 var _ScreenRotationUp = _interopRequireDefault(require("./ScreenRotationUp.js"));
 var _ScreenSearchDesktop = _interopRequireDefault(require("./ScreenSearchDesktop.js"));
 var _ScreenShare = _interopRequireDefault(require("./ScreenShare.js"));
-var _Screencast = _interopRequireDefault(require("./Screencast.js"));
 var _Screenshot = _interopRequireDefault(require("./Screenshot.js"));
 var _ScreenshotFrame = _interopRequireDefault(require("./ScreenshotFrame.js"));
 var _ScreenshotFrame2 = _interopRequireDefault(require("./ScreenshotFrame2.js"));
@@ -25254,7 +24480,6 @@ var _SettingsPhotoCamera = _interopRequireDefault(require("./SettingsPhotoCamera
 var _SettingsPower = _interopRequireDefault(require("./SettingsPower.js"));
 var _SettingsRemote = _interopRequireDefault(require("./SettingsRemote.js"));
 var _SettingsSlowMotion = _interopRequireDefault(require("./SettingsSlowMotion.js"));
-var _SettingsSuggest = _interopRequireDefault(require("./SettingsSuggest.js"));
 var _SettingsSystemDaydream = _interopRequireDefault(require("./SettingsSystemDaydream.js"));
 var _SettingsTimelapse = _interopRequireDefault(require("./SettingsTimelapse.js"));
 var _SettingsVideoCamera = _interopRequireDefault(require("./SettingsVideoCamera.js"));
@@ -25286,7 +24511,6 @@ var _ShieldLocked = _interopRequireDefault(require("./ShieldLocked.js"));
 var _ShieldMoon = _interopRequireDefault(require("./ShieldMoon.js"));
 var _ShieldPerson = _interopRequireDefault(require("./ShieldPerson.js"));
 var _ShieldQuestion = _interopRequireDefault(require("./ShieldQuestion.js"));
-var _ShieldSpark = _interopRequireDefault(require("./ShieldSpark.js"));
 var _ShieldWatch = _interopRequireDefault(require("./ShieldWatch.js"));
 var _ShieldWithHeart = _interopRequireDefault(require("./ShieldWithHeart.js"));
 var _ShieldWithHouse = _interopRequireDefault(require("./ShieldWithHouse.js"));
@@ -25347,7 +24571,6 @@ var _Siren = _interopRequireDefault(require("./Siren.js"));
 var _SirenCheck = _interopRequireDefault(require("./SirenCheck.js"));
 var _SirenOpen = _interopRequireDefault(require("./SirenOpen.js"));
 var _SirenQuestion = _interopRequireDefault(require("./SirenQuestion.js"));
-var _SixFtApart = _interopRequireDefault(require("./SixFtApart.js"));
 var _SixK = _interopRequireDefault(require("./SixK.js"));
 var _SixKPlus = _interopRequireDefault(require("./SixKPlus.js"));
 var _SixMp = _interopRequireDefault(require("./SixMp.js"));
@@ -25364,27 +24587,23 @@ var _Skull = _interopRequireDefault(require("./Skull.js"));
 var _SkullList = _interopRequireDefault(require("./SkullList.js"));
 var _SlabSerif = _interopRequireDefault(require("./SlabSerif.js"));
 var _Sledding = _interopRequireDefault(require("./Sledding.js"));
-var _Sleep = _interopRequireDefault(require("./Sleep.js"));
 var _SleepScore = _interopRequireDefault(require("./SleepScore.js"));
 var _SlideLibrary = _interopRequireDefault(require("./SlideLibrary.js"));
 var _Sliders = _interopRequireDefault(require("./Sliders.js"));
 var _Slideshow = _interopRequireDefault(require("./Slideshow.js"));
 var _SlowMotionVideo = _interopRequireDefault(require("./SlowMotionVideo.js"));
-var _SmartButton = _interopRequireDefault(require("./SmartButton.js"));
 var _SmartCardReader = _interopRequireDefault(require("./SmartCardReader.js"));
 var _SmartCardReaderOff = _interopRequireDefault(require("./SmartCardReaderOff.js"));
 var _SmartDisplay = _interopRequireDefault(require("./SmartDisplay.js"));
 var _SmartOutlet = _interopRequireDefault(require("./SmartOutlet.js"));
 var _SmartScreen = _interopRequireDefault(require("./SmartScreen.js"));
 var _SmartToy = _interopRequireDefault(require("./SmartToy.js"));
-var _SmartVentilation = _interopRequireDefault(require("./SmartVentilation.js"));
 var _Smartphone = _interopRequireDefault(require("./Smartphone.js"));
 var _SmartphoneCamera = _interopRequireDefault(require("./SmartphoneCamera.js"));
 var _SmbShare = _interopRequireDefault(require("./SmbShare.js"));
 var _SmokeFree = _interopRequireDefault(require("./SmokeFree.js"));
 var _SmokingRooms = _interopRequireDefault(require("./SmokingRooms.js"));
 var _Sms = _interopRequireDefault(require("./Sms.js"));
-var _SmsFailed = _interopRequireDefault(require("./SmsFailed.js"));
 var _SnippetFolder = _interopRequireDefault(require("./SnippetFolder.js"));
 var _Snooze = _interopRequireDefault(require("./Snooze.js"));
 var _Snowboarding = _interopRequireDefault(require("./Snowboarding.js"));
@@ -25458,7 +24677,6 @@ var _SplitscreenTop = _interopRequireDefault(require("./SplitscreenTop.js"));
 var _SplitscreenVerticalAdd = _interopRequireDefault(require("./SplitscreenVerticalAdd.js"));
 var _Spo = _interopRequireDefault(require("./Spo2.js"));
 var _Spoke = _interopRequireDefault(require("./Spoke.js"));
-var _Spoof = _interopRequireDefault(require("./Spoof.js"));
 var _Sports = _interopRequireDefault(require("./Sports.js"));
 var _SportsAndOutdoors = _interopRequireDefault(require("./SportsAndOutdoors.js"));
 var _SportsBar = _interopRequireDefault(require("./SportsBar.js"));
@@ -25516,9 +24734,6 @@ var _StatMinus = _interopRequireDefault(require("./StatMinus1.js"));
 var _StatMinus2 = _interopRequireDefault(require("./StatMinus2.js"));
 var _StatMinus3 = _interopRequireDefault(require("./StatMinus3.js"));
 var _StayCurrentLandscape = _interopRequireDefault(require("./StayCurrentLandscape.js"));
-var _StayCurrentPortrait = _interopRequireDefault(require("./StayCurrentPortrait.js"));
-var _StayPrimaryLandscape = _interopRequireDefault(require("./StayPrimaryLandscape.js"));
-var _StayPrimaryPortrait = _interopRequireDefault(require("./StayPrimaryPortrait.js"));
 var _SteeringWheelHeat = _interopRequireDefault(require("./SteeringWheelHeat.js"));
 var _Step = _interopRequireDefault(require("./Step.js"));
 var _StepInto = _interopRequireDefault(require("./StepInto.js"));
@@ -25671,7 +24886,6 @@ var _TaskAlt = _interopRequireDefault(require("./TaskAlt.js"));
 var _Taunt = _interopRequireDefault(require("./Taunt.js"));
 var _TaxiAlert = _interopRequireDefault(require("./TaxiAlert.js"));
 var _TeamDashboard = _interopRequireDefault(require("./TeamDashboard.js"));
-var _TempPreferencesCustom = _interopRequireDefault(require("./TempPreferencesCustom.js"));
 var _TempPreferencesEco = _interopRequireDefault(require("./TempPreferencesEco.js"));
 var _TempleBuddhist = _interopRequireDefault(require("./TempleBuddhist.js"));
 var _TempleHindu = _interopRequireDefault(require("./TempleHindu.js"));
@@ -25735,9 +24949,7 @@ var _ThreeMp = _interopRequireDefault(require("./ThreeMp.js"));
 var _ThreeP = _interopRequireDefault(require("./ThreeP.js"));
 var _ThreeSixty = _interopRequireDefault(require("./ThreeSixty.js"));
 var _ThumbDown = _interopRequireDefault(require("./ThumbDown.js"));
-var _ThumbDownOff = _interopRequireDefault(require("./ThumbDownOff.js"));
 var _ThumbUp = _interopRequireDefault(require("./ThumbUp.js"));
-var _ThumbUpOff = _interopRequireDefault(require("./ThumbUpOff.js"));
 var _ThumbnailBar = _interopRequireDefault(require("./ThumbnailBar.js"));
 var _ThumbsUpDown = _interopRequireDefault(require("./ThumbsUpDown.js"));
 var _Thunderstorm = _interopRequireDefault(require("./Thunderstorm.js"));
@@ -25765,7 +24977,6 @@ var _TimerPause = _interopRequireDefault(require("./TimerPause.js"));
 var _TimerPlay = _interopRequireDefault(require("./TimerPlay.js"));
 var _TimesOneMobiledata = _interopRequireDefault(require("./TimesOneMobiledata.js"));
 var _TimesOneMobiledataBadge = _interopRequireDefault(require("./TimesOneMobiledataBadge.js"));
-var _TipsAndUpdates = _interopRequireDefault(require("./TipsAndUpdates.js"));
 var _TireRepair = _interopRequireDefault(require("./TireRepair.js"));
 var _Title = _interopRequireDefault(require("./Title.js"));
 var _Titlecase = _interopRequireDefault(require("./Titlecase.js"));
@@ -25777,6 +24988,7 @@ var _ToggleOn = _interopRequireDefault(require("./ToggleOn.js"));
 var _Token = _interopRequireDefault(require("./Token.js"));
 var _Toll = _interopRequireDefault(require("./Toll.js"));
 var _Tonality = _interopRequireDefault(require("./Tonality.js"));
+var _Tonality2 = _interopRequireDefault(require("./Tonality2.js"));
 var _Toolbar = _interopRequireDefault(require("./Toolbar.js"));
 var _ToolsFlatHead = _interopRequireDefault(require("./ToolsFlatHead.js"));
 var _ToolsInstallationKit = _interopRequireDefault(require("./ToolsInstallationKit.js"));
@@ -25785,7 +24997,6 @@ var _ToolsLevel = _interopRequireDefault(require("./ToolsLevel.js"));
 var _ToolsPhillips = _interopRequireDefault(require("./ToolsPhillips.js"));
 var _ToolsPliersWireStripper = _interopRequireDefault(require("./ToolsPliersWireStripper.js"));
 var _ToolsPowerDrill = _interopRequireDefault(require("./ToolsPowerDrill.js"));
-var _ToolsWrench = _interopRequireDefault(require("./ToolsWrench.js"));
 var _Tooltip = _interopRequireDefault(require("./Tooltip.js"));
 var _Tooltip2 = _interopRequireDefault(require("./Tooltip2.js"));
 var _TopPanelClose = _interopRequireDefault(require("./TopPanelClose.js"));
@@ -25860,7 +25071,6 @@ var _TvOptionsInputSettings = _interopRequireDefault(require("./TvOptionsInputSe
 var _TvRemote = _interopRequireDefault(require("./TvRemote.js"));
 var _TvSignin = _interopRequireDefault(require("./TvSignin.js"));
 var _TvWithAssistant = _interopRequireDefault(require("./TvWithAssistant.js"));
-var _Twelve = _interopRequireDefault(require("./Twelve3.js"));
 var _TwelveMp = _interopRequireDefault(require("./TwelveMp.js"));
 var _TwentyFourFpsSelect = _interopRequireDefault(require("./TwentyFourFpsSelect.js"));
 var _TwentyFourMp = _interopRequireDefault(require("./TwentyFourMp.js"));
@@ -25883,8 +25093,6 @@ var _UlnaRadiusAlt = _interopRequireDefault(require("./UlnaRadiusAlt.js"));
 var _Umbrella = _interopRequireDefault(require("./Umbrella.js"));
 var _Unarchive = _interopRequireDefault(require("./Unarchive.js"));
 var _Undo = _interopRequireDefault(require("./Undo.js"));
-var _UnfloatLandscape = _interopRequireDefault(require("./UnfloatLandscape.js"));
-var _UnfloatPortrait = _interopRequireDefault(require("./UnfloatPortrait.js"));
 var _UnfoldLess = _interopRequireDefault(require("./UnfoldLess.js"));
 var _UnfoldLessDouble = _interopRequireDefault(require("./UnfoldLessDouble.js"));
 var _UnfoldMore = _interopRequireDefault(require("./UnfoldMore.js"));
@@ -25931,7 +25139,6 @@ var _VerifiedUser = _interopRequireDefault(require("./VerifiedUser.js"));
 var _VerticalAlignBottom = _interopRequireDefault(require("./VerticalAlignBottom.js"));
 var _VerticalAlignCenter = _interopRequireDefault(require("./VerticalAlignCenter.js"));
 var _VerticalAlignTop = _interopRequireDefault(require("./VerticalAlignTop.js"));
-var _VerticalDistribute = _interopRequireDefault(require("./VerticalDistribute.js"));
 var _VerticalShades = _interopRequireDefault(require("./VerticalShades.js"));
 var _VerticalShadesClosed = _interopRequireDefault(require("./VerticalShadesClosed.js"));
 var _VerticalSplit = _interopRequireDefault(require("./VerticalSplit.js"));
@@ -25967,7 +25174,6 @@ var _ViewCozy = _interopRequireDefault(require("./ViewCozy.js"));
 var _ViewDay = _interopRequireDefault(require("./ViewDay.js"));
 var _ViewHeadline = _interopRequireDefault(require("./ViewHeadline.js"));
 var _ViewInAr = _interopRequireDefault(require("./ViewInAr.js"));
-var _ViewInArNew = _interopRequireDefault(require("./ViewInArNew.js"));
 var _ViewInArOff = _interopRequireDefault(require("./ViewInArOff.js"));
 var _ViewKanban = _interopRequireDefault(require("./ViewKanban.js"));
 var _ViewList = _interopRequireDefault(require("./ViewList.js"));
@@ -25980,12 +25186,12 @@ var _ViewStream = _interopRequireDefault(require("./ViewStream.js"));
 var _ViewTimeline = _interopRequireDefault(require("./ViewTimeline.js"));
 var _ViewWeek = _interopRequireDefault(require("./ViewWeek.js"));
 var _Vignette = _interopRequireDefault(require("./Vignette.js"));
+var _Vignette2 = _interopRequireDefault(require("./Vignette2.js"));
 var _Villa = _interopRequireDefault(require("./Villa.js"));
 var _Visibility = _interopRequireDefault(require("./Visibility.js"));
 var _VisibilityLock = _interopRequireDefault(require("./VisibilityLock.js"));
 var _VisibilityOff = _interopRequireDefault(require("./VisibilityOff.js"));
 var _VitalSigns = _interopRequireDefault(require("./VitalSigns.js"));
-var _Vitals = _interopRequireDefault(require("./Vitals.js"));
 var _Vo2Max = _interopRequireDefault(require("./Vo2Max.js"));
 var _VoiceChat = _interopRequireDefault(require("./VoiceChat.js"));
 var _VoiceOverOff = _interopRequireDefault(require("./VoiceOverOff.js"));
@@ -26022,6 +25228,7 @@ var _Warning = _interopRequireDefault(require("./Warning.js"));
 var _WarningOff = _interopRequireDefault(require("./WarningOff.js"));
 var _Wash = _interopRequireDefault(require("./Wash.js"));
 var _Watch = _interopRequireDefault(require("./Watch.js"));
+var _WatchArrow = _interopRequireDefault(require("./WatchArrow.js"));
 var _WatchButtonPress = _interopRequireDefault(require("./WatchButtonPress.js"));
 var _WatchCheck = _interopRequireDefault(require("./WatchCheck.js"));
 var _WatchOff = _interopRequireDefault(require("./WatchOff.js"));
@@ -26074,7 +25281,6 @@ var _WidgetMedium = _interopRequireDefault(require("./WidgetMedium.js"));
 var _WidgetSmall = _interopRequireDefault(require("./WidgetSmall.js"));
 var _WidgetWidth = _interopRequireDefault(require("./WidgetWidth.js"));
 var _Widgets = _interopRequireDefault(require("./Widgets.js"));
-var _Width = _interopRequireDefault(require("./Width.js"));
 var _WidthFull = _interopRequireDefault(require("./WidthFull.js"));
 var _WidthNormal = _interopRequireDefault(require("./WidthNormal.js"));
 var _WidthWide = _interopRequireDefault(require("./WidthWide.js"));
@@ -26083,9 +25289,6 @@ var _Wifi1Bar = _interopRequireDefault(require("./Wifi1Bar.js"));
 var _Wifi2Bar = _interopRequireDefault(require("./Wifi2Bar.js"));
 var _WifiAdd = _interopRequireDefault(require("./WifiAdd.js"));
 var _WifiCalling = _interopRequireDefault(require("./WifiCalling.js"));
-var _WifiCalling2 = _interopRequireDefault(require("./WifiCalling1.js"));
-var _WifiCalling3 = _interopRequireDefault(require("./WifiCalling2.js"));
-var _WifiCalling4 = _interopRequireDefault(require("./WifiCalling3.js"));
 var _WifiCallingBar = _interopRequireDefault(require("./WifiCallingBar1.js"));
 var _WifiCallingBar2 = _interopRequireDefault(require("./WifiCallingBar2.js"));
 var _WifiCallingBar3 = _interopRequireDefault(require("./WifiCallingBar3.js"));
@@ -26118,7 +25321,6 @@ var _WorkHistory = _interopRequireDefault(require("./WorkHistory.js"));
 var _WorkUpdate = _interopRequireDefault(require("./WorkUpdate.js"));
 var _WorkspacePremium = _interopRequireDefault(require("./WorkspacePremium.js"));
 var _Workspaces = _interopRequireDefault(require("./Workspaces.js"));
-var _WorkspacesOutline = _interopRequireDefault(require("./WorkspacesOutline.js"));
 var _WoundsInjuries = _interopRequireDefault(require("./WoundsInjuries.js"));
 var _WrapText = _interopRequireDefault(require("./WrapText.js"));
 var _Wrist = _interopRequireDefault(require("./Wrist.js"));
