@@ -306,3 +306,11 @@ const theme = createTheme();
     },
   });
 }
+
+{
+  createTheme({
+    components: {
+      mergeClassNameAndStyle: true,
+    },
+  });
+}
