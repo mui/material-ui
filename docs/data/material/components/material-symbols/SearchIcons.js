@@ -797,7 +797,10 @@ export default function SearchIcons() {
         )} matching results`}</Typography>
         <Icons
           icons={deferredIcons}
-          isVisible={symbolsLoaded[`${deferredTheme}-${deferredWeight}`]}
+          isVisible={
+            symbolsLoaded[`${theme}-${weight}`] &&
+            symbolsLoaded[`${deferredTheme}-${deferredWeight}`]
+          }
           handleOpenClick={handleOpenClick}
           theme={deferredTheme}
           weight={deferredWeight}
