@@ -1,14 +1,15 @@
-import { mergeConfig, defineProject } from 'vitest/config';
+import { mergeConfig, defineConfig } from 'vitest/config';
+// eslint-disable-next-line import/no-relative-packages
 import sharedConfig from '../../vitest.shared.mts';
 
-export default mergeConfig(
-  sharedConfig,
-  defineProject({
-    test: {
-      name: 'browser:@mui/material',
-      browser: {
-        enabled: true,
+export default async () =>
+  mergeConfig(
+    await sharedConfig(import.meta.url),
+    defineConfig({
+      test: {
+        browser: {
+          enabled: true,
+        },
       },
-    },
-  }),
-);
+    }),
+  );

@@ -1,11 +1,13 @@
-import { mergeConfig, defineProject } from 'vitest/config';
+import { mergeConfig, defineConfig } from 'vitest/config';
+// eslint-disable-next-line import/no-relative-packages
 import sharedConfig from '../../vitest.shared.mts';
 
-export default mergeConfig(
-  sharedConfig,
-  defineProject({
-    test: {
-      environment: 'node',
-    },
-  }),
-);
+export default async () =>
+  mergeConfig(
+    await sharedConfig(import.meta.url),
+    defineConfig({
+      test: {
+        environment: 'node',
+      },
+    }),
+  );
