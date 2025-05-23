@@ -14,8 +14,6 @@ import {
   render as testingLibraryRender,
   RenderOptions as TestingLibraryRenderOptions,
   within,
-  waitFor,
-  renderHook,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
@@ -847,4 +845,4 @@ const bodyBoundQueries = within(document.body, { ...queries, ...customQueries })
 
 export { act, fireEvent };
 export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
-export { within, waitFor, renderHook }from '@testing-library/react/pure';;
+export { within, waitFor, renderHook } from '@testing-library/react/pure';
