@@ -25,10 +25,10 @@ import allIcons from '@mui/symbols-material/icons';
 import synonyms from '@mui/symbols-material/synonyms';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
-import { capitalize } from '@mui/material/utils';
 import useQueryParameterState from 'docs/src/modules/utils/useQueryParameterState';
 import Head from 'next/head';
 import FontIcon from '@mui/material/Icon';
+import clsx from 'clsx';
 
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
 
@@ -105,11 +105,11 @@ const StyledIcon = styled('span')(({ theme }) => ({
 }));
 
 const handleIconClick = (icon) => () => {
-  window.gtag('event', 'material-icons', {
+  window.gtag('event', 'material-symbols', {
     eventAction: 'click',
     eventLabel: icon.name,
   });
-  window.gtag('event', 'material-icons-theme', {
+  window.gtag('event', 'material-symbols-theme', {
     eventAction: 'click',
     eventLabel: icon.theme,
   });
@@ -120,7 +120,7 @@ function handleLabelClick(event) {
 }
 
 function Icon(props) {
-  const { icon, onOpenClick, isVisible } = props;
+  const { icon, onOpenClick } = props;
 
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   return (
@@ -128,44 +128,39 @@ function Icon(props) {
       key={icon.module}
       onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
-      {isVisible ? (
-        <FontIcon
-          className={SVG_ICON_CLASS}
-          tabIndex={-1}
-          onClick={onOpenClick}
-          title={icon.module}
-          baseClassName=""
-          sx={(theme) => ({
-            fontFamily: `Material Symbols ${capitalize(props.theme)}`,
-            fontWeight: 'normal',
-            fontStyle: 'normal',
-            lineHeight: 1,
-            letterSpacing: 'normal',
-            textTransform: 'none',
-            display: 'inline-block',
-            whiteSpace: 'nowrap',
-            wordWrap: 'normal',
-            direction: 'ltr',
-            WebkitFontFeatureSettings: 'liga',
-            WebkitFontSmoothing: 'antialiased',
-            fontVariationSettings: `'wght' ${props.weight}, 'GRAD' ${theme.colorSchemes.dark ? '-25' : '0'}`,
-          })}
-        >
-          {icon.name}
-        </FontIcon>
-      ) : (
-        <div className={SVG_ICON_CLASS}>
-          <Skeleton
-            animation="wave"
-            height={iconWidth}
-            width={iconWidth}
-            sx={{
-              transform: 'none',
-              backgroundColor: 'grey.900',
-            }}
-          />
-        </div>
-      )}
+      <FontIcon
+        className={clsx(SVG_ICON_CLASS, 's')}
+        tabIndex={-1}
+        onClick={onOpenClick}
+        title={icon.module}
+        baseClassName=""
+        sx={{
+          fontWeight: 'normal',
+          fontStyle: 'normal',
+          lineHeight: 1,
+          letterSpacing: 'normal',
+          textTransform: 'none',
+          display: 'inline-block',
+          whiteSpace: 'nowrap',
+          wordWrap: 'normal',
+          direction: 'ltr',
+          WebkitFontFeatureSettings: 'liga',
+          WebkitFontSmoothing: 'antialiased',
+        }}
+      >
+        {icon.name}
+      </FontIcon>
+      <div className={clsx(SVG_ICON_CLASS, 'ph')}>
+        <Skeleton
+          animation="wave"
+          height={iconWidth}
+          width={iconWidth}
+          sx={{
+            transform: 'none',
+            backgroundColor: 'grey.900',
+          }}
+        />
+      </div>
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: a11y */}
       <div onClick={handleLabelClick}>{icon.module}</div>
       {/* eslint-enable jsx-a11y/click-events-have-key-events */}
@@ -174,19 +169,12 @@ function Icon(props) {
 }
 
 const Icons = React.memo(function Icons(props) {
-  const { icons, theme, weight, isVisible, handleOpenClick } = props;
+  const { icons, handleOpenClick } = props;
 
   return (
     <div>
       {icons.map((icon) => (
-        <Icon
-          key={icon.module}
-          icon={icon}
-          theme={theme}
-          weight={weight}
-          onOpenClick={handleOpenClick}
-          isVisible={isVisible}
-        />
+        <Icon key={icon.module} icon={icon} onOpenClick={handleOpenClick} />
       ))}
     </div>
   );
@@ -195,9 +183,6 @@ const Icons = React.memo(function Icons(props) {
 Icons.propTypes = {
   handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
-  isVisible: PropTypes.bool,
-  theme: PropTypes.string,
-  weight: PropTypes.string,
 };
 
 const ImportLink = styled(Link)(({ theme }) => ({
@@ -313,7 +298,7 @@ const ContextComponent = styled('div', {
 }));
 
 const DialogDetails = React.memo(function DialogDetails(props) {
-  const { open, selectedIcon, theme, handleClose } = props;
+  const { open, selectedIcon, handleClose } = props;
 
   const t = useTranslate();
   const [copied1, setCopied1] = React.useState(false);
@@ -329,7 +314,6 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   const iconStyles = React.useCallback(
     (fontSize) => ({
       fontSize,
-      fontFamily: `Material Symbols ${capitalize(theme)}`,
       fontWeight: 'normal',
       fontStyle: 'normal',
       lineHeight: 1,
@@ -342,7 +326,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
       WebkitFontFeatureSettings: 'liga',
       WebkitFontSmoothing: 'antialiased',
     }),
-    [theme],
+    [],
   );
 
   return (
@@ -607,16 +591,13 @@ export default function SearchIcons() {
   }, [query]);
 
   const deferredIcons = React.useDeferredValue(icons);
-  const deferredTheme = React.useDeferredValue(theme);
-  const deferredWeight = React.useDeferredValue(weight);
 
-  const isPending =
-    deferredIcons !== icons || deferredTheme !== theme || deferredWeight !== weight;
+  const isPending = deferredIcons !== icons;
 
   React.useEffect(() => {
     // Keep track of the no results so we can add synonyms in the future.
     if (query.length >= 4 && icons.length === 0) {
-      window.gtag('event', 'material-icons', {
+      window.gtag('event', 'material-symbols', {
         eventAction: 'no-results',
         eventLabel: query,
       });
@@ -696,8 +677,20 @@ export default function SearchIcons() {
     };
   }, [updateLoadedSymbols]);
 
+  const isVisible = symbolsLoaded[`${theme}-${weight}`];
+
   return (
-    <Grid container sx={{ minHeight: 500, width: '100%' }}>
+    <Grid
+      container
+      sx={(t) => ({
+        minHeight: 500,
+        width: '100%',
+        [`& .${SVG_ICON_CLASS}`]: {
+          fontFamily: `Material Symbols ${theme}`,
+          fontVariationSettings: `'wght' ${weight}, 'GRAD' ${t.colorSchemes.dark ? '-25' : '0'}`,
+        },
+      })}
+    >
       <Head>
         {symbolsToLoad.Outlined && (
           <link
@@ -772,6 +765,14 @@ export default function SearchIcons() {
           xs: 12,
           sm: 9,
         }}
+        sx={{
+          [`& .${SVG_ICON_CLASS}.s`]: {
+            display: isVisible ? 'block' : 'none',
+          },
+          [`& .${SVG_ICON_CLASS}.ph`]: {
+            display: isVisible ? 'none' : 'block',
+          },
+        }}
       >
         <Paper>
           <IconButton sx={{ padding: '10px' }} aria-label="search">
@@ -795,22 +796,11 @@ export default function SearchIcons() {
         <Typography sx={{ mb: 1 }}>{`${formatNumber(
           icons.length,
         )} matching results`}</Typography>
-        <Icons
-          icons={deferredIcons}
-          isVisible={
-            symbolsLoaded[`${theme}-${weight}`] &&
-            symbolsLoaded[`${deferredTheme}-${deferredWeight}`]
-          }
-          handleOpenClick={handleOpenClick}
-          theme={deferredTheme}
-          weight={deferredWeight}
-        />
+        <Icons icons={deferredIcons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails
         open={!!selectedIcon}
         selectedIcon={dialogSelectedIcon}
-        theme={deferredTheme}
-        weight={deferredWeight}
         handleClose={handleClose}
       />
     </Grid>
