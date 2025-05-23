@@ -3,6 +3,10 @@ import { ComponentsOverrides } from './overrides';
 import { ComponentsVariants } from './variants';
 
 export interface Components<Theme = unknown> {
+  /**
+   * Whether to merge the className and style coming from the component props with the default props.
+   * @default false
+   */
   mergeClassNameAndStyle?: boolean;
   MuiAlert?: {
     defaultProps?: ComponentsProps['MuiAlert'];

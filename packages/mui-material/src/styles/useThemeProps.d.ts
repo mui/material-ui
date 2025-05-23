@@ -2,9 +2,7 @@ import { Theme } from './createTheme';
 import { Components } from './components';
 
 export interface ThemeWithProps {
-  components?: Components<Omit<Theme, 'components'>> & {
-    mergeClassNameAndStyle?: boolean;
-  };
+  components?: Components<Omit<Theme, 'components'>>;
 }
 
 export type ThemedProps<Theme, Name extends keyof any> = Theme extends {
