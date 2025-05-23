@@ -110,6 +110,27 @@ function generateVariants() {
 
 const variantsList = generateVariants();
 
+function sanitizeTags(name, tags) {
+  const iconName = name.replace('_');
+  return tags
+    .filter((value) => !iconName.includes(value)) // remove the icon name strings from the tags
+    .filter((t) => {
+      // remove invalid tags
+      if (
+        t.includes('Remove') ||
+        t.includes('Duplicate') ||
+        t.includes('Same as') ||
+        t.includes('remove others')
+      ) {
+        console.log(`Skipping invalid tag (${t}) in ${name}`);
+        return false;
+      }
+
+      return true;
+    })
+    .map((t) => t.replace(/'/g, ''));
+}
+
 const iconsOutputString = (icons) =>
   icons
     .map(
@@ -124,8 +145,8 @@ const iconsOutputString = (icons) =>
 const synonymsOutputString = (icons) =>
   icons
     .map(
-      ({ module, tags }) => `
-  ${module}: '${tags.join(' ')}',`,
+      ({ module, name, tags }) => `
+  ${module}: '${sanitizeTags(name, tags).join(' ')}',`,
     )
     .join('');
 
