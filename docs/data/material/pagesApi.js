@@ -142,5 +142,6 @@ export default [
   { pathname: '/material-ui/api/toolbar' },
   { pathname: '/material-ui/api/tooltip' },
   { pathname: '/material-ui/api/typography' },
+  { pathname: '/material-ui/api/variable-icon' },
   { pathname: '/material-ui/api/zoom' },
 ];

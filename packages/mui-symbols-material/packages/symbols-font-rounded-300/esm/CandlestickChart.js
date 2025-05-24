@@ -1,0 +1,6 @@
+'use client';
+
+import createIcon from "./utils/createIcon.js";
+export default createIcon('candlestick_chart', 'CandlestickChart', 'Material Symbols Rounded', {
+  wght: 300
+}, 'material-symbols-rounded');
