@@ -633,6 +633,8 @@ ${Array.from(componentModuleIDs)
   })
   .join('\n')}
 };
+
+export const enableOpenInNewTab = ${options.enableOpenInNewTab || false};
 `;
 
   return transformed;
