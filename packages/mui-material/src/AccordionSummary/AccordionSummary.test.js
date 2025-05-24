@@ -77,11 +77,11 @@ describe('<AccordionSummary />', () => {
     );
   });
 
-  it('should fire onBlur when the button blurs', () => {
+  it('should fire onBlur when the button blurs', async () => {
     const handleBlur = spy();
     const { getByRole } = render(<AccordionSummary onBlur={handleBlur} />);
 
-    act(() => {
+    await act(async () => {
       const button = getByRole('button');
       button.focus();
       button.blur();
@@ -99,7 +99,7 @@ describe('<AccordionSummary />', () => {
     expect(handleClick.callCount).to.equal(1);
   });
 
-  it('fires onChange of the Accordion if clicked', () => {
+  it('fires onChange of the Accordion if clicked', async () => {
     const handleChange = spy();
     const { getByRole } = render(
       <Accordion onChange={handleChange} expanded={false}>
@@ -107,14 +107,14 @@ describe('<AccordionSummary />', () => {
       </Accordion>,
     );
 
-    act(() => {
+    await act(async () => {
       getByRole('button').click();
     });
 
     expect(handleChange.callCount).to.equal(1);
   });
 
-  it('calls onFocusVisible if focused visibly', function test() {
+  it('calls onFocusVisible if focused visibly', async function test() {
     if (/jsdom/.test(window.navigator.userAgent)) {
       // JSDOM doesn't support :focus-visible
       this.skip();
@@ -127,7 +127,7 @@ describe('<AccordionSummary />', () => {
 
     // this doesn't actually apply focus like in the browser. we need to move focus manually
     fireEvent.keyDown(document.body, { key: 'Tab' });
-    act(() => {
+    await act(async () => {
       getByRole('button').focus();
     });
 

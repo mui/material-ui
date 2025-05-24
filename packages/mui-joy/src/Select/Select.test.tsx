@@ -86,7 +86,7 @@ describe('Joy <Select />', () => {
     );
   });
 
-  it('should pass "name" as part of the event.target for onBlur', () => {
+  it('should pass "name" as part of the event.target for onBlur', async () => {
     const handleBlur = stub().callsFake((event) => event.target.name);
     const { getByRole } = render(
       <Select
@@ -102,11 +102,11 @@ describe('Joy <Select />', () => {
       </Select>,
     );
     const select = getByRole('combobox');
-    act(() => {
+    await act(async () => {
       select.focus();
     });
 
-    act(() => {
+    await act(async () => {
       select.blur();
     });
 
@@ -114,7 +114,7 @@ describe('Joy <Select />', () => {
     expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
   });
 
-  it('should call onClose when the same option is selected', () => {
+  it('should call onClose when the same option is selected', async () => {
     const handleChange = spy();
     const handleClose = spy();
     render(
@@ -124,7 +124,7 @@ describe('Joy <Select />', () => {
       </Select>,
     );
 
-    act(() => {
+    await act(async () => {
       screen.getByRole('option', { selected: true }).click();
     });
 
@@ -141,7 +141,7 @@ describe('Joy <Select />', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should get selected value from the 2nd argument', () => {
+    it('should get selected value from the 2nd argument', async () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} value="0">
@@ -151,7 +151,7 @@ describe('Joy <Select />', () => {
         </Select>,
       );
       fireEvent.click(getByRole('combobox'));
-      act(() => {
+      await act(async () => {
         getAllByRole('option')[1].click();
       });
 
@@ -159,7 +159,7 @@ describe('Joy <Select />', () => {
       expect(onChangeHandler.args[0][1]).to.equal('1');
     });
 
-    it('should not be called if selected element has the current value (value did not change)', () => {
+    it('should not be called if selected element has the current value (value did not change)', async () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
         <Select onChange={onChangeHandler} value="1">
@@ -169,7 +169,7 @@ describe('Joy <Select />', () => {
         </Select>,
       );
       fireEvent.click(getByRole('combobox'));
-      act(() => {
+      await act(async () => {
         getAllByRole('option')[1].click();
       });
 
@@ -443,7 +443,7 @@ describe('Joy <Select />', () => {
     expect(onClick.callCount).to.equal(1);
   });
 
-  it('should not override the event.target on mouse events', () => {
+  it('should not override the event.target on mouse events', async () => {
     const handleChange = spy();
     const handleClick = spy();
     render(
@@ -456,7 +456,7 @@ describe('Joy <Select />', () => {
     );
 
     const options = screen.getAllByRole('option');
-    act(() => {
+    await act(async () => {
       options[0].click();
     });
 
@@ -465,7 +465,7 @@ describe('Joy <Select />', () => {
     expect(handleClick.firstCall.args[0]).to.have.property('target', options[0]);
   });
 
-  it('should only select options', () => {
+  it('should only select options', async () => {
     const handleChange = spy();
     render(
       <Select defaultListboxOpen onChange={handleChange} value="second">
@@ -476,7 +476,7 @@ describe('Joy <Select />', () => {
     );
 
     const divider = screen.getByRole('separator');
-    act(() => {
+    await act(async () => {
       divider.click();
     });
     expect(handleChange.callCount).to.equal(0);
@@ -496,7 +496,7 @@ describe('Joy <Select />', () => {
   });
 
   describe('form submission', () => {
-    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+    it('includes the Select value in the submitted form data when the `name` attribute is provided', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // FormData is not available in JSDOM
         this.skip();
@@ -522,14 +522,14 @@ describe('Joy <Select />', () => {
       );
 
       const button = getByText('Submit');
-      act(() => {
+      await act(async () => {
         button.click();
       });
 
       expect(isEventHandled).to.equal(true);
     });
 
-    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+    it('transforms the selected value before posting using the getSerializedValue prop, if provided', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // FormData is not available in JSDOM
         this.skip();
@@ -558,14 +558,14 @@ describe('Joy <Select />', () => {
       );
 
       const button = getByText('Submit');
-      act(() => {
+      await act(async () => {
         button.click();
       });
 
       expect(isEventHandled).to.equal(true);
     });
 
-    it('formats the object values as JSON before posting', function test() {
+    it('formats the object values as JSON before posting', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // FormData is not available in JSDOM
         this.skip();
@@ -599,7 +599,7 @@ describe('Joy <Select />', () => {
       );
 
       const button = getByText('Submit');
-      act(() => {
+      await act(async () => {
         button.click();
       });
 
@@ -607,7 +607,7 @@ describe('Joy <Select />', () => {
     });
   });
 
-  it('should show dropdown if the children of the select button is clicked', () => {
+  it('should show dropdown if the children of the select button is clicked', async () => {
     const { getByTestId, getByRole } = render(
       <Select
         defaultValue="1"
@@ -617,14 +617,14 @@ describe('Joy <Select />', () => {
       </Select>,
     );
     // Fire Click of the avatar
-    act(() => {
+    await act(async () => {
       fireEvent.click(getByTestId('test-element'));
     });
 
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'true');
 
     // click again should close
-    act(() => {
+    await act(async () => {
       fireEvent.click(getByTestId('test-element'));
     });
     expect(getByRole('combobox', { hidden: true })).to.have.attribute('aria-expanded', 'false');

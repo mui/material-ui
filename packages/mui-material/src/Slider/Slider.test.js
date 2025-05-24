@@ -71,7 +71,7 @@ describe('<Slider />', () => {
     }),
   );
 
-  it('should call handlers', () => {
+  it('should call handlers', async () => {
     const handleChange = spy();
     const handleChangeCommitted = spy();
 
@@ -98,7 +98,7 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(1);
     expect(handleChangeCommitted.args[0][1]).to.equal(10);
 
-    act(() => {
+    await act(async () => {
       slider.focus();
     });
     fireEvent.change(slider, { target: { value: 23 } });
@@ -257,11 +257,11 @@ describe('<Slider />', () => {
   });
 
   describe('range', () => {
-    it('should support keyboard', () => {
+    it('should support keyboard', async () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
       const [slider1, slider2] = getAllByRole('slider');
 
-      act(() => {
+      await act(async () => {
         slider1.focus();
       });
       fireEvent.change(slider1, { target: { value: '21' } });
@@ -269,7 +269,7 @@ describe('<Slider />', () => {
       expect(slider1.getAttribute('aria-valuenow')).to.equal('21');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('30');
 
-      act(() => {
+      await act(async () => {
         slider2.focus();
         fireEvent.change(slider2, { target: { value: '31' } });
       });
@@ -277,7 +277,7 @@ describe('<Slider />', () => {
       expect(slider1.getAttribute('aria-valuenow')).to.equal('21');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('31');
 
-      act(() => {
+      await act(async () => {
         slider1.focus();
       });
       fireEvent.change(slider1, { target: { value: '31' } });
@@ -286,7 +286,7 @@ describe('<Slider />', () => {
       expect(slider2.getAttribute('aria-valuenow')).to.equal('31');
       expect(document.activeElement).to.have.attribute('data-index', '0');
 
-      act(() => {
+      await act(async () => {
         slider1.focus();
       });
       fireEvent.change(slider1, { target: { value: '32' } });
@@ -296,13 +296,13 @@ describe('<Slider />', () => {
       expect(document.activeElement).to.have.attribute('data-index', '1');
     });
 
-    it('custom marks with restricted float values should support keyboard', () => {
+    it('custom marks with restricted float values should support keyboard', async () => {
       const getMarks = (value) => value.map((val) => ({ value: val, label: val }));
 
       const { getByRole } = render(<Slider step={null} marks={getMarks([0.5, 30.45, 90.53])} />);
       const slider = getByRole('slider');
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -460,12 +460,12 @@ describe('<Slider />', () => {
       });
     });
 
-    it('change events with non integer numbers should work', () => {
+    it('change events with non integer numbers should work', async () => {
       const { getByRole } = render(
         <Slider defaultValue={0.2} min={-100} max={100} step={0.00000001} />,
       );
       const slider = getByRole('slider');
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -479,13 +479,13 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', '1e-7');
     });
 
-    it('should round value to step precision', () => {
+    it('should round value to step precision', async () => {
       const { getByRole, container } = render(
         <Slider defaultValue={0.2} min={0} max={1} step={0.1} />,
       );
       const slider = getByRole('slider');
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -496,7 +496,7 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -520,13 +520,13 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', '0.4');
     });
 
-    it('should not fail to round value to step precision when step is very small', () => {
+    it('should not fail to round value to step precision when step is very small', async () => {
       const { getByRole, container } = render(
         <Slider defaultValue={0.00000002} min={0} max={0.0000001} step={0.00000001} />,
       );
       const slider = getByRole('slider');
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -537,7 +537,7 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -555,13 +555,13 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', '8e-8');
     });
 
-    it('should not fail to round value to step precision when step is very small and negative', () => {
+    it('should not fail to round value to step precision when step is very small and negative', async () => {
       const { getByRole, container } = render(
         <Slider defaultValue={-0.00000002} min={-0.0000001} max={0} step={0.00000001} />,
       );
       const slider = getByRole('slider');
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -572,7 +572,7 @@ describe('<Slider />', () => {
         left: 0,
       }));
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -635,7 +635,7 @@ describe('<Slider />', () => {
       expect(thumb).to.have.attribute('aria-valuenow', '21');
     });
 
-    it('is not focused (visibly) after becoming disabled', function test() {
+    it('is not focused (visibly) after becoming disabled', async function test() {
       // TODO: Don't skip once a fix for https://github.com/jsdom/jsdom/issues/3029 is released.
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
@@ -644,7 +644,7 @@ describe('<Slider />', () => {
       const { getByRole, setProps } = render(<Slider defaultValue={0} />);
 
       const thumb = getByRole('slider');
-      act(() => {
+      await act(async () => {
         thumb.focus();
       });
       setProps({ disabled: true });
@@ -691,10 +691,10 @@ describe('<Slider />', () => {
   });
 
   describe('aria-valuenow', () => {
-    it('should update the aria-valuenow', () => {
+    it('should update the aria-valuenow', async () => {
       const { getByRole } = render(<Slider defaultValue={50} />);
       const slider = getByRole('slider');
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -716,22 +716,22 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('min', String(min));
     });
 
-    it('should use min as the step origin', () => {
+    it('should use min as the step origin', async () => {
       const min = 150;
       const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
       const slider = getByRole('slider');
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
       expect(slider).to.have.attribute('aria-valuenow', String(min));
     });
 
-    it('should not go less than the min', () => {
+    it('should not go less than the min', async () => {
       const min = 150;
       const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={min} />);
       const slider = getByRole('slider');
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -750,11 +750,11 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('max', String(max));
     });
 
-    it('should not go more than the max', () => {
+    it('should not go more than the max', async () => {
       const max = 750;
       const { getByRole } = render(<Slider defaultValue={150} step={100} max={max} min={150} />);
       const slider = getByRole('slider');
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -762,7 +762,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', String(max));
     });
 
-    it('should reach right edge value', () => {
+    it('should reach right edge value', async () => {
       const { getByRole, container } = render(
         <Slider defaultValue={90} min={6} max={108} step={10} />,
       );
@@ -775,7 +775,7 @@ describe('<Slider />', () => {
       }));
 
       const thumb = getByRole('slider');
-      act(() => {
+      await act(async () => {
         thumb.focus();
       });
 
@@ -931,7 +931,7 @@ describe('<Slider />', () => {
   });
 
   describe('rtl', () => {
-    it('should add direction css', () => {
+    it('should add direction css', async () => {
       const { getByRole } = render(
         <ThemeProvider
           theme={createTheme({
@@ -942,7 +942,7 @@ describe('<Slider />', () => {
         </ThemeProvider>,
       );
       const thumb = getByRole('slider');
-      act(() => {
+      await act(async () => {
         thumb.focus();
       });
 
@@ -1002,7 +1002,7 @@ describe('<Slider />', () => {
       describe(direction, () => {
         describe(`orientation: ${orientation}`, () => {
           decrementKeys.forEach((key) => {
-            it(`key: ${key} decrements the value`, () => {
+            it(`key: ${key} decrements the value`, async () => {
               const { getByRole } = render(
                 <ThemeProvider
                   theme={createTheme({
@@ -1016,7 +1016,7 @@ describe('<Slider />', () => {
               const slider = getByRole('slider');
               expect(slider).to.have.attribute('aria-valuenow', '50');
 
-              act(() => {
+              await act(async () => {
                 slider.focus();
               });
 
@@ -1029,7 +1029,7 @@ describe('<Slider />', () => {
           });
 
           incrementKeys.forEach((key) => {
-            it(`key: ${key} increments the value`, () => {
+            it(`key: ${key} increments the value`, async () => {
               const { getByRole } = render(
                 <ThemeProvider
                   theme={createTheme({
@@ -1043,7 +1043,7 @@ describe('<Slider />', () => {
               const slider = getByRole('slider');
               expect(slider).to.have.attribute('aria-valuenow', '50');
 
-              act(() => {
+              await act(async () => {
                 slider.focus();
               });
 
@@ -1055,7 +1055,7 @@ describe('<Slider />', () => {
             });
           });
 
-          it('key: PageUp and key: PageDown change the value based on `shiftStep`', () => {
+          it('key: PageUp and key: PageDown change the value based on `shiftStep`', async () => {
             const { getByRole } = render(
               <ThemeProvider
                 theme={createTheme({
@@ -1069,7 +1069,7 @@ describe('<Slider />', () => {
             const slider = getByRole('slider');
             expect(slider).to.have.attribute('aria-valuenow', '50');
 
-            act(() => {
+            await act(async () => {
               slider.focus();
             });
 
@@ -1083,7 +1083,7 @@ describe('<Slider />', () => {
             expect(slider).to.have.attribute('aria-valuenow', '45');
           });
 
-          it('key: End sets the value to max', () => {
+          it('key: End sets the value to max', async () => {
             const { getByRole } = render(
               <ThemeProvider
                 theme={createTheme({
@@ -1097,7 +1097,7 @@ describe('<Slider />', () => {
             const slider = getByRole('slider');
             expect(slider).to.have.attribute('aria-valuenow', '50');
 
-            act(() => {
+            await act(async () => {
               slider.focus();
             });
 
@@ -1105,7 +1105,7 @@ describe('<Slider />', () => {
             expect(slider).to.have.attribute('aria-valuenow', '99');
           });
 
-          it('key: Home sets the value to min', () => {
+          it('key: Home sets the value to min', async () => {
             const { getByRole } = render(
               <ThemeProvider
                 theme={createTheme({
@@ -1119,7 +1119,7 @@ describe('<Slider />', () => {
             const slider = getByRole('slider');
             expect(slider).to.have.attribute('aria-valuenow', '50');
 
-            act(() => {
+            await act(async () => {
               slider.focus();
             });
 
@@ -1129,7 +1129,7 @@ describe('<Slider />', () => {
 
           describe('when `step` is `null` and values are restricted by `marks`', () => {
             decrementKeys.forEach((key) => {
-              it(`key: ${key} decrements the value`, () => {
+              it(`key: ${key} decrements the value`, async () => {
                 const { getByRole } = render(
                   <ThemeProvider
                     theme={createTheme({
@@ -1148,7 +1148,7 @@ describe('<Slider />', () => {
                 const slider = getByRole('slider');
                 expect(slider).to.have.attribute('aria-valuenow', '79');
 
-                act(() => {
+                await act(async () => {
                   slider.focus();
                 });
 
@@ -1161,7 +1161,7 @@ describe('<Slider />', () => {
             });
 
             incrementKeys.forEach((key) => {
-              it(`key: ${key} increments the value`, () => {
+              it(`key: ${key} increments the value`, async () => {
                 const { getByRole } = render(
                   <ThemeProvider
                     theme={createTheme({
@@ -1180,7 +1180,7 @@ describe('<Slider />', () => {
                 const slider = getByRole('slider');
                 expect(slider).to.have.attribute('aria-valuenow', '9');
 
-                act(() => {
+                await act(async () => {
                   slider.focus();
                 });
 
@@ -1196,7 +1196,7 @@ describe('<Slider />', () => {
       });
     });
 
-    it('stops at the max value with custom marks', () => {
+    it('stops at the max value with custom marks', async () => {
       const handleChange = stub();
       render(
         <Slider
@@ -1210,7 +1210,7 @@ describe('<Slider />', () => {
       const slider = screen.getByRole('slider');
       expect(slider).to.have.attribute('aria-valuenow', '30');
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -1220,7 +1220,7 @@ describe('<Slider />', () => {
       expect(slider).to.have.attribute('aria-valuenow', '30');
     });
 
-    it('stops at the min value with custom marks', () => {
+    it('stops at the min value with custom marks', async () => {
       const handleChange = stub();
       render(
         <Slider
@@ -1234,7 +1234,7 @@ describe('<Slider />', () => {
       const slider = screen.getByRole('slider');
       expect(slider).to.have.attribute('aria-valuenow', '10');
 
-      act(() => {
+      await act(async () => {
         slider.focus();
       });
 
@@ -1342,14 +1342,14 @@ describe('<Slider />', () => {
     expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
   });
 
-  it('should pass "name" and "value" as part of the event.target for onChange', () => {
+  it('should pass "name" and "value" as part of the event.target for onChange', async () => {
     const handleChange = stub().callsFake((event) => event.target);
     const { getByRole } = render(
       <Slider onChange={handleChange} name="change-testing" value={3} />,
     );
     const slider = getByRole('slider');
 
-    act(() => {
+    await act(async () => {
       slider.focus();
     });
     fireEvent.change(slider, {
@@ -1527,14 +1527,14 @@ describe('<Slider />', () => {
   });
 
   describe('prop: disableSwap', () => {
-    it('should bound the value when using the keyboard', () => {
+    it('should bound the value when using the keyboard', async () => {
       const handleChange = spy();
       const { getAllByRole } = render(
         <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
       );
       const [slider1, slider2] = getAllByRole('slider');
 
-      act(() => {
+      await act(async () => {
         slider1.focus();
       });
       fireEvent.change(slider2, { target: { value: '19' } });

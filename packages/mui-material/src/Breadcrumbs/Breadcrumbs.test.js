@@ -59,7 +59,7 @@ describe('<Breadcrumbs />', () => {
     expect(getByRole('button').querySelector('[data-testid="MoreHorizIcon"]')).not.to.equal(null);
   });
 
-  it('should expand when `BreadcrumbCollapsed` is clicked', () => {
+  it('should expand when `BreadcrumbCollapsed` is clicked', async () => {
     const { getAllByRole, getByRole, getByText } = render(
       <Breadcrumbs>
         <span tabIndex={-1}>first</span>
@@ -74,7 +74,7 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    act(() => {
+    await act(async () => {
       getByRole('button').click();
     });
 

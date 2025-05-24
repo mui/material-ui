@@ -187,7 +187,7 @@ describe('<Collapse />', () => {
       expect(next2.callCount).to.equal(1);
     });
 
-    it('should use timeout as delay when timeout is number', () => {
+    it('should use timeout as delay when timeout is number', async () => {
       const timeout = 10;
       const next = spy();
       const { setProps } = render(
@@ -199,12 +199,12 @@ describe('<Collapse />', () => {
       setProps({ in: true });
 
       expect(next.callCount).to.equal(0);
-      act(() => {
+      await act(async () => {
         clock.tick(0);
       });
 
       expect(next.callCount).to.equal(0);
-      act(() => {
+      await act(async () => {
         clock.tick(timeout);
       });
 

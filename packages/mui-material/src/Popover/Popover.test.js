@@ -796,7 +796,7 @@ describe('<Popover />', () => {
       expect(beforeStyle).to.deep.equal(afterStyle);
     });
 
-    it('should be able to manually recalculate position', () => {
+    it('should be able to manually recalculate position', async () => {
       let element;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
@@ -833,7 +833,7 @@ describe('<Popover />', () => {
 
       expect(typeof popoverActions.updatePosition === 'function').to.equal(true);
 
-      act(() => {
+      await act(async () => {
         popoverActions.updatePosition();
       });
       clock.tick(166);

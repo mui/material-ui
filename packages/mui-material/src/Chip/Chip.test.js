@@ -174,7 +174,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.filledPrimary);
     });
 
-    it('should not be focused when a deletable chip is disabled and skipFocusWhenDisabled is true', () => {
+    it('should not be focused when a deletable chip is disabled and skipFocusWhenDisabled is true', async () => {
       const { getByTestId } = render(
         <Chip
           label="My Chip"
@@ -188,7 +188,7 @@ describe('<Chip />', () => {
       const chip = getByTestId('chip');
 
       simulatePointerDevice();
-      act(() => {
+      await act(async () => {
         fireEvent.keyDown(document.body, { key: 'Tab' });
       });
 
@@ -431,11 +431,11 @@ describe('<Chip />', () => {
   });
 
   describe('reacts to keyboard chip', () => {
-    it('should call onKeyDown when a key is pressed', () => {
+    it('should call onKeyDown when a key is pressed', async () => {
       const handleKeydown = stub().callsFake((event) => event.key);
       const { getByRole } = render(<Chip onClick={() => {}} onKeyDown={handleKeydown} />);
       const chip = getByRole('button');
-      act(() => {
+      await act(async () => {
         chip.focus();
       });
 
@@ -445,11 +445,11 @@ describe('<Chip />', () => {
       expect(handleKeydown.firstCall.returnValue).to.equal('p');
     });
 
-    it('should call onClick when `space` is released ', () => {
+    it('should call onClick when `space` is released ', async () => {
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
       const chip = getByRole('button');
-      act(() => {
+      await act(async () => {
         chip.focus();
       });
 
@@ -458,11 +458,11 @@ describe('<Chip />', () => {
       expect(handleClick.callCount).to.equal(1);
     });
 
-    it('should call onClick when `enter` is pressed ', () => {
+    it('should call onClick when `enter` is pressed ', async () => {
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
       const chip = getByRole('button');
-      act(() => {
+      await act(async () => {
         chip.focus();
       });
 
@@ -473,14 +473,14 @@ describe('<Chip />', () => {
 
     describe('prop: onDelete', () => {
       ['Backspace', 'Delete'].forEach((key) => {
-        it(`should call onDelete '${key}' is released`, () => {
+        it(`should call onDelete '${key}' is released`, async () => {
           const handleDelete = spy();
           const handleKeyDown = spy();
           const { getAllByRole } = render(
             <Chip onClick={() => {}} onKeyDown={handleKeyDown} onDelete={handleDelete} />,
           );
           const chip = getAllByRole('button')[0];
-          act(() => {
+          await act(async () => {
             chip.focus();
           });
 
@@ -497,12 +497,12 @@ describe('<Chip />', () => {
         });
       });
 
-      it('should not prevent default on input', () => {
+      it('should not prevent default on input', async () => {
         const handleKeyDown = spy();
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
 
-        act(() => {
+        await act(async () => {
           input.focus();
         });
         fireEvent.keyDown(input, { key: 'Backspace' });
@@ -671,14 +671,14 @@ describe('<Chip />', () => {
       }
     });
 
-    it('has a focus-visible polyfill', () => {
+    it('has a focus-visible polyfill', async () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);
       simulatePointerDevice();
 
       expect(chip).not.to.have.class(classes.focusVisible);
 
-      act(() => {
+      await act(async () => {
         chip.focus();
       });
 

@@ -6,8 +6,8 @@ import Link, { linkClasses as classes } from '@mui/material/Link';
 import Typography, { typographyClasses } from '@mui/material/Typography';
 import describeConformance from '../../test/describeConformance';
 
-function focusVisible(element) {
-  act(() => {
+async function focusVisible(element) {
+  await act(async () => {
     element.blur();
     document.dispatchEvent(new window.Event('keydown'));
     element.focus();
@@ -79,7 +79,7 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', function test() {
+    it('should add the focusVisible class when focused', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -90,11 +90,11 @@ describe('<Link />', () => {
 
       expect(anchor).not.to.have.class(classes.focusVisible);
 
-      focusVisible(anchor);
+      await focusVisible(anchor);
 
       expect(anchor).to.have.class(classes.focusVisible);
 
-      act(() => {
+      await act(async () => {
         anchor.blur();
       });
 

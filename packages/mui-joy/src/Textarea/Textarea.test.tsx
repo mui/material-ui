@@ -68,14 +68,14 @@ describe('Joy <Textarea />', () => {
       expect(container.firstChild).to.have.class(classes.disabled);
     });
 
-    it('should reset the focused state if getting disabled', () => {
+    it('should reset the focused state if getting disabled', async () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const { container, setProps } = render(
         <Textarea onBlur={handleBlur} onFocus={handleFocus} />,
       );
 
-      act(() => {
+      await act(async () => {
         container.querySelector('textarea')?.focus();
       });
       expect(handleFocus.callCount).to.equal(1);
@@ -88,14 +88,14 @@ describe('Joy <Textarea />', () => {
   });
 
   describe('slotProps: input', () => {
-    it('`onKeyDown` and `onKeyUp` should work', () => {
+    it('`onKeyDown` and `onKeyUp` should work', async () => {
       const handleKeyDown = spy();
       const handleKeyUp = spy();
       const { container } = render(
         <Textarea slotProps={{ textarea: { onKeyDown: handleKeyDown, onKeyUp: handleKeyUp } }} />,
       );
 
-      act(() => {
+      await act(async () => {
         container.querySelector('textarea')!.focus();
       });
       fireEvent.keyDown(container.querySelector('textarea')!);
@@ -105,31 +105,31 @@ describe('Joy <Textarea />', () => {
       expect(handleKeyUp.callCount).to.equal(1);
     });
 
-    it('should call focus and blur', () => {
+    it('should call focus and blur', async () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const { container } = render(
         <Textarea slotProps={{ textarea: { onFocus: handleFocus, onBlur: handleBlur } }} />,
       );
 
-      act(() => {
+      await act(async () => {
         container.querySelector('textarea')!.focus();
       });
       expect(handleFocus.callCount).to.equal(1);
-      act(() => {
+      await act(async () => {
         container.querySelector('textarea')!.blur();
       });
       expect(handleFocus.callCount).to.equal(1);
     });
 
-    it('should override outer handlers', () => {
+    it('should override outer handlers', async () => {
       const handleFocus = spy();
       const handleSlotFocus = spy();
       const { container } = render(
         <Textarea onFocus={handleFocus} slotProps={{ textarea: { onFocus: handleSlotFocus } }} />,
       );
 
-      act(() => {
+      await act(async () => {
         container.querySelector('textarea')!.focus();
       });
       expect(handleFocus.callCount).to.equal(0);

@@ -56,7 +56,7 @@ describe('Joy <ListItemButton />', () => {
   });
 
   describe('prop: focusVisibleClassName', () => {
-    it('should have focusVisible classes', function test() {
+    it('should have focusVisible classes', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // JSDOM doesn't support :focus-visible
         this.skip();
@@ -65,7 +65,7 @@ describe('Joy <ListItemButton />', () => {
       const { getByRole } = render(<ListItemButton />);
       const button = getByRole('button');
 
-      act(() => {
+      await act(async () => {
         fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
         button.focus();
       });

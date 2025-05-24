@@ -19,6 +19,7 @@ describe('<Switch />', () => {
       { slotName: 'input', slotClassName: classes.input },
       { slotName: 'thumb', slotClassName: classes.thumb },
     ],
+
     testVariantProps: { variant: 'soft' },
     testCustomVariant: true,
     refInstanceof: window.HTMLDivElement,
@@ -91,11 +92,11 @@ describe('<Switch />', () => {
     expect(getByRole('switch')).to.have.property('readOnly', true);
   });
 
-  it('the Checked state changes after change events', () => {
+  it('the Checked state changes after change events', async () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
     // how a user would trigger it
-    act(() => {
+    await act(async () => {
       getByRole('switch').click();
       fireEvent.change(getByRole('switch'), { target: { checked: '' } });
     });
@@ -116,7 +117,7 @@ describe('<Switch />', () => {
       expect(getByText('bar')).toBeVisible();
     });
 
-    it('can receive startDecorator as function', () => {
+    it('can receive startDecorator as function', async () => {
       const { getByText, getByRole } = render(
         <Switch startDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
       );
@@ -124,7 +125,7 @@ describe('<Switch />', () => {
       expect(getByText('Off')).toBeVisible();
 
       // how a user would trigger it
-      act(() => {
+      await act(async () => {
         getByRole('switch').click();
         fireEvent.change(getByRole('switch'), { target: { checked: '' } });
       });
@@ -132,7 +133,7 @@ describe('<Switch />', () => {
       expect(getByText('On')).toBeVisible();
     });
 
-    it('can receive endDecorator as function', () => {
+    it('can receive endDecorator as function', async () => {
       const { getByText, getByRole } = render(
         <Switch endDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
       );
@@ -140,7 +141,7 @@ describe('<Switch />', () => {
       expect(getByText('Off')).toBeVisible();
 
       // how a user would trigger it
-      act(() => {
+      await act(async () => {
         getByRole('switch').click();
         fireEvent.change(getByRole('switch'), { target: { checked: '' } });
       });
