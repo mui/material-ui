@@ -31,6 +31,8 @@ import FontIcon from '@mui/material/Icon';
 import clsx from 'clsx';
 
 import { HighlightedCode } from '@mui/docs/HighlightedCode';
+import FormGroup from '@mui/material/FormGroup';
+import Switch from '@mui/material/Switch';
 
 const FlexSearchIndex = flexsearch.Index;
 
@@ -298,10 +300,36 @@ const DialogDetails = React.memo(function DialogDetails(props) {
     setCopied(true);
   };
 
+  const [emphasis, setEmphasis] = React.useState(false);
+  const [fill, setFill] = React.useState(null);
+  const changeEmphasis = React.useCallback((event) => {
+    setEmphasis(event.target.checked);
+  }, []);
+  const changeFill = React.useCallback((event) => {
+    setFill(event.target.checked);
+  }, []);
+  const fillToClassName = React.useCallback((isFill) => {
+    if (isFill === true) {
+      return 'fill';
+    }
+    if (isFill === false) {
+      return 'unfill';
+    }
+    return '';
+  }, []);
+
+  const fontVariation = React.useCallback(
+    (th, f) => {
+      const grade = th.colorSchemes.dark ? '-25' : '0';
+      return `'wght' ${weight}, 'FILL' ${f}, 'GRAD' ${emphasis ? 200 : grade}`;
+    },
+    [emphasis, weight],
+  );
+
   const iconStyles = React.useCallback(
     (fontSize) => (th) => ({
       fontFamily: `Material Symbols ${theme}`,
-      fontVariationSettings: `'wght' ${weight}, 'GRAD' ${th.colorSchemes.dark ? '-25' : '0'}`,
+      fontVariationSettings: fontVariation(th, 0),
       fontSize,
       fontWeight: 'normal',
       fontStyle: 'normal',
@@ -314,8 +342,25 @@ const DialogDetails = React.memo(function DialogDetails(props) {
       direction: 'ltr',
       WebkitFontFeatureSettings: 'liga',
       WebkitFontSmoothing: 'antialiased',
+
+      animationDuration: '0.4s',
+      animationFillMode: 'forwards',
+      '&.fill': {
+        animationName: 'fill',
+      },
+      '&:.unfill': {
+        animationName: 'unfill', // TODO: this doesn't seem to work right
+      },
+      '@keyframes fill': {
+        from: { fontVariationSettings: fontVariation(th, 0) },
+        to: { fontVariationSettings: fontVariation(th, 1) },
+      },
+      '@keyframes unfill': {
+        from: { fontVariationSettings: fontVariation(th, 1) },
+        to: { fontVariationSettings: fontVariation(th, 0) },
+      },
     }),
-    [theme, weight],
+    [theme, fontVariation],
   );
 
   return (
@@ -375,7 +420,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Grid container>
               <Grid size="grow">
                 <Grid container sx={{ justifyContent: 'center' }}>
-                  <CanvasComponent as={FontIcon} sx={iconStyles()} baseClassName="">
+                  <CanvasComponent
+                    className={fillToClassName(fill)}
+                    as={FontIcon}
+                    sx={iconStyles()}
+                    baseClassName=""
+                  >
                     {selectedIcon.name}
                   </CanvasComponent>
                 </Grid>
@@ -388,6 +438,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                   <Grid>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
+                        className={fillToClassName(fill)}
                         as={FontIcon}
                         fontSize="inherit"
                         sx={iconStyles(20)}
@@ -400,6 +451,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                   <Grid>
                     <Tooltip title="fontSize medium">
                       <FontSizeComponent
+                        className={fillToClassName(fill)}
                         as={FontIcon}
                         fontSize="inherit"
                         sx={iconStyles(24)}
@@ -412,6 +464,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                   <Grid>
                     <Tooltip title="fontSize large">
                       <FontSizeComponent
+                        className={fillToClassName(fill)}
                         as={FontIcon}
                         fontSize="inherit"
                         sx={iconStyles(40)}
@@ -424,6 +477,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                   <Grid>
                     <Tooltip title="fontSize x-large">
                       <FontSizeComponent
+                        className={fillToClassName(fill)}
                         as={FontIcon}
                         fontSize="inherit"
                         sx={iconStyles(48)}
@@ -436,6 +490,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 </Grid>
                 <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
+                    className={fillToClassName(fill)}
                     as={FontIcon}
                     contextColor="primary"
                     fontSize="inherit"
@@ -445,6 +500,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     {selectedIcon.name}
                   </ContextComponent>
                   <ContextComponent
+                    className={fillToClassName(fill)}
                     as={FontIcon}
                     contextColor="primaryInverse"
                     fontSize="inherit"
@@ -456,6 +512,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 </Grid>
                 <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
+                    className={fillToClassName(fill)}
                     as={FontIcon}
                     contextColor="textPrimary"
                     fontSize="inherit"
@@ -465,6 +522,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     {selectedIcon.name}
                   </ContextComponent>
                   <ContextComponent
+                    className={fillToClassName(fill)}
                     as={FontIcon}
                     contextColor="textPrimaryInverse"
                     fontSize="inherit"
@@ -476,6 +534,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 </Grid>
                 <Grid container sx={{ justifyContent: 'center' }}>
                   <ContextComponent
+                    className={fillToClassName(fill)}
                     as={FontIcon}
                     contextColor="textSecondary"
                     fontSize="inherit"
@@ -485,6 +544,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                     {selectedIcon.name}
                   </ContextComponent>
                   <ContextComponent
+                    className={fillToClassName(fill)}
                     as={FontIcon}
                     contextColor="textSecondaryInverse"
                     fontSize="inherit"
@@ -496,6 +556,16 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 </Grid>
               </Grid>
             </Grid>
+            <FormGroup>
+              <FormControlLabel
+                control={<Switch checked={emphasis} onChange={changeEmphasis} />}
+                label="Emphasis"
+              />
+              <FormControlLabel
+                control={<Switch checked={fill} onChange={changeFill} />}
+                label="Fill"
+              />
+            </FormGroup>
           </DialogContent>
           <DialogActions sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
             <Button onClick={handleClose}>{t('close')}</Button>
@@ -745,8 +815,6 @@ export default function SearchIcons() {
               );
             })}
           </RadioGroup>
-        </Form>
-        <Form>
           <Typography fontWeight={500} sx={{ mb: 1 }}>
             Filter the weight
           </Typography>
