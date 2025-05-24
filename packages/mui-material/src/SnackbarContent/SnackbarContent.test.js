@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
 import Paper from '@mui/material/Paper';
 import SnackbarContent, { snackbarContentClasses as classes } from '@mui/material/SnackbarContent';
-import { ThemeProvider, extendTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SnackbarContent />', () => {
@@ -63,7 +63,7 @@ describe('<SnackbarContent />', () => {
 
   describe('CSS vars', () => {
     it('should not throw when background.default is a CSS variable', () => {
-      const theme = extendTheme();
+      const theme = createTheme({ cssVariables: true });
       theme.palette = theme.colorSchemes.light.palette;
       theme.palette.background.default = 'var(--mui-palette-background-default)';
       expect(() =>
