@@ -816,12 +816,12 @@ const iconsOrderedByPopularity = [
     module: "FormatListBulleted",
   },
   {
-    name: "qr_code_scanner",
-    module: "QrCodeScanner",
-  },
-  {
     name: "music_note",
     module: "MusicNote",
+  },
+  {
+    name: "qr_code_scanner",
+    module: "QrCodeScanner",
   },
   {
     name: "account_tree",
@@ -1024,12 +1024,12 @@ const iconsOrderedByPopularity = [
     module: "UnfoldMore",
   },
   {
-    name: "quiz",
-    module: "Quiz",
-  },
-  {
     name: "health_and_safety",
     module: "HealthAndSafety",
+  },
+  {
+    name: "quiz",
+    module: "Quiz",
   },
   {
     name: "near_me",
@@ -1400,12 +1400,12 @@ const iconsOrderedByPopularity = [
     module: "PostAdd",
   },
   {
-    name: "smart_toy",
-    module: "SmartToy",
-  },
-  {
     name: "hourglass_empty",
     module: "HourglassEmpty",
+  },
+  {
+    name: "smart_toy",
+    module: "SmartToy",
   },
   {
     name: "request_quote",
@@ -1624,12 +1624,12 @@ const iconsOrderedByPopularity = [
     module: "Workspaces",
   },
   {
-    name: "medical_services",
-    module: "MedicalServices",
-  },
-  {
     name: "keyboard_arrow_right",
     module: "KeyboardArrowRight",
+  },
+  {
+    name: "medical_services",
+    module: "MedicalServices",
   },
   {
     name: "directions_bus",
@@ -1888,12 +1888,12 @@ const iconsOrderedByPopularity = [
     module: "PersonRemove",
   },
   {
-    name: "fullscreen_exit",
-    module: "FullscreenExit",
-  },
-  {
     name: "change_history",
     module: "ChangeHistory",
+  },
+  {
+    name: "fullscreen_exit",
+    module: "FullscreenExit",
   },
   {
     name: "sentiment_neutral",
@@ -1988,12 +1988,12 @@ const iconsOrderedByPopularity = [
     module: "Air",
   },
   {
-    name: "event_upcoming",
-    module: "EventUpcoming",
-  },
-  {
     name: "api",
     module: "Api",
+  },
+  {
+    name: "event_upcoming",
+    module: "EventUpcoming",
   },
   {
     name: "video_call",
@@ -2184,12 +2184,12 @@ const iconsOrderedByPopularity = [
     module: "PersonPin",
   },
   {
-    name: "route",
-    module: "Route",
-  },
-  {
     name: "hotel_class",
     module: "HotelClass",
+  },
+  {
+    name: "route",
+    module: "Route",
   },
   {
     name: "mouse",
@@ -2248,12 +2248,12 @@ const iconsOrderedByPopularity = [
     module: "LocalPolice",
   },
   {
-    name: "web_asset",
-    module: "WebAsset",
-  },
-  {
     name: "circle_notifications",
     module: "CircleNotifications",
+  },
+  {
+    name: "web_asset",
+    module: "WebAsset",
   },
   {
     name: "arrow_outward",
@@ -2276,12 +2276,12 @@ const iconsOrderedByPopularity = [
     module: "TextSnippet",
   },
   {
-    name: "bluetooth",
-    module: "Bluetooth",
-  },
-  {
     name: "subdirectory_arrow_right",
     module: "SubdirectoryArrowRight",
+  },
+  {
+    name: "bluetooth",
+    module: "Bluetooth",
   },
   {
     name: "mic_off",
@@ -2316,20 +2316,20 @@ const iconsOrderedByPopularity = [
     module: "LastPage",
   },
   {
-    name: "south",
-    module: "South",
-  },
-  {
     name: "model_training",
     module: "ModelTraining",
   },
   {
-    name: "document_scanner",
-    module: "DocumentScanner",
+    name: "south",
+    module: "South",
   },
   {
     name: "point_of_sale",
     module: "PointOfSale",
+  },
+  {
+    name: "document_scanner",
+    module: "DocumentScanner",
   },
   {
     name: "potted_plant",
@@ -2484,12 +2484,12 @@ const iconsOrderedByPopularity = [
     module: "DirectionsBoat",
   },
   {
-    name: "communication",
-    module: "Communication",
-  },
-  {
     name: "keyboard_arrow_left",
     module: "KeyboardArrowLeft",
+  },
+  {
+    name: "communication",
+    module: "Communication",
   },
   {
     name: "person_off",
@@ -2584,12 +2584,12 @@ const iconsOrderedByPopularity = [
     module: "KeyboardReturn",
   },
   {
-    name: "speaker_notes",
-    module: "SpeakerNotes",
-  },
-  {
     name: "park",
     module: "Park",
+  },
+  {
+    name: "speaker_notes",
+    module: "SpeakerNotes",
   },
   {
     name: "cloud_sync",
@@ -2784,12 +2784,12 @@ const iconsOrderedByPopularity = [
     module: "Title",
   },
   {
-    name: "notes",
-    module: "Notes",
-  },
-  {
     name: "360",
     module: "ThreeSixty",
+  },
+  {
+    name: "notes",
+    module: "Notes",
   },
   {
     name: "local_atm",
@@ -2896,12 +2896,12 @@ const iconsOrderedByPopularity = [
     module: "NetworkIntelligence",
   },
   {
-    name: "battery_5_bar",
-    module: "Battery5Bar",
-  },
-  {
     name: "sports_basketball",
     module: "SportsBasketball",
+  },
+  {
+    name: "battery_5_bar",
+    module: "Battery5Bar",
   },
   {
     name: "subject",
@@ -3240,16 +3240,16 @@ const iconsOrderedByPopularity = [
     module: "MoveDown",
   },
   {
+    name: "difference",
+    module: "Difference",
+  },
+  {
     name: "styler",
     module: "Styler",
   },
   {
     name: "team_dashboard",
     module: "TeamDashboard",
-  },
-  {
-    name: "difference",
-    module: "Difference",
   },
   {
     name: "unpublished",
@@ -3532,12 +3532,12 @@ const iconsOrderedByPopularity = [
     module: "ElectricCar",
   },
   {
-    name: "3p",
-    module: "ThreeP",
-  },
-  {
     name: "local_convenience_store",
     module: "LocalConvenienceStore",
+  },
+  {
+    name: "3p",
+    module: "ThreeP",
   },
   {
     name: "unarchive",
@@ -3920,12 +3920,12 @@ const iconsOrderedByPopularity = [
     module: "DriveFolderUpload",
   },
   {
-    name: "signal_disconnected",
-    module: "SignalDisconnected",
-  },
-  {
     name: "assignment_late",
     module: "AssignmentLate",
+  },
+  {
+    name: "signal_disconnected",
+    module: "SignalDisconnected",
   },
   {
     name: "sports_gymnastics",
@@ -3968,6 +3968,10 @@ const iconsOrderedByPopularity = [
     module: "DriveFileMove",
   },
   {
+    name: "foundation",
+    module: "Foundation",
+  },
+  {
     name: "garage_home",
     module: "GarageHome",
   },
@@ -3976,20 +3980,16 @@ const iconsOrderedByPopularity = [
     module: "AddAlert",
   },
   {
-    name: "foundation",
-    module: "Foundation",
-  },
-  {
     name: "door_front",
     module: "DoorFront",
   },
   {
-    name: "settings_input_antenna",
-    module: "SettingsInputAntenna",
-  },
-  {
     name: "forward_10",
     module: "Forward10",
+  },
+  {
+    name: "settings_input_antenna",
+    module: "SettingsInputAntenna",
   },
   {
     name: "hide",
@@ -4048,12 +4048,12 @@ const iconsOrderedByPopularity = [
     module: "FollowTheSigns",
   },
   {
-    name: "hail",
-    module: "Hail",
-  },
-  {
     name: "how_to_vote",
     module: "HowToVote",
+  },
+  {
+    name: "hail",
+    module: "Hail",
   },
   {
     name: "area_chart",
@@ -4140,12 +4140,16 @@ const iconsOrderedByPopularity = [
     module: "TextToSpeech",
   },
   {
+    name: "tab",
+    module: "Tab",
+  },
+  {
     name: "switch_right",
     module: "SwitchRight",
   },
   {
-    name: "tab",
-    module: "Tab",
+    name: "trophy",
+    module: "Trophy",
   },
   {
     name: "more_up",
@@ -4154,10 +4158,6 @@ const iconsOrderedByPopularity = [
   {
     name: "pinch",
     module: "Pinch",
-  },
-  {
-    name: "trophy",
-    module: "Trophy",
   },
   {
     name: "folder_special",
@@ -4240,6 +4240,10 @@ const iconsOrderedByPopularity = [
     module: "DinnerDining",
   },
   {
+    name: "incomplete_circle",
+    module: "IncompleteCircle",
+  },
+  {
     name: "present_to_all",
     module: "PresentToAll",
   },
@@ -4250,10 +4254,6 @@ const iconsOrderedByPopularity = [
   {
     name: "remove_shopping_cart",
     module: "RemoveShoppingCart",
-  },
-  {
-    name: "incomplete_circle",
-    module: "IncompleteCircle",
   },
   {
     name: "elderly_woman",
@@ -4372,6 +4372,10 @@ const iconsOrderedByPopularity = [
     module: "SoupKitchen",
   },
   {
+    name: "manufacturing",
+    module: "Manufacturing",
+  },
+  {
     name: "subdirectory_arrow_left",
     module: "SubdirectoryArrowLeft",
   },
@@ -4388,12 +4392,12 @@ const iconsOrderedByPopularity = [
     module: "CallReceived",
   },
   {
-    name: "manufacturing",
-    module: "Manufacturing",
-  },
-  {
     name: "transcribe",
     module: "Transcribe",
+  },
+  {
+    name: "progress_activity",
+    module: "ProgressActivity",
   },
   {
     name: "format_align_right",
@@ -4402,10 +4406,6 @@ const iconsOrderedByPopularity = [
   {
     name: "grading",
     module: "Grading",
-  },
-  {
-    name: "progress_activity",
-    module: "ProgressActivity",
   },
   {
     name: "call_split",
@@ -4500,6 +4500,10 @@ const iconsOrderedByPopularity = [
     module: "Brightness4",
   },
   {
+    name: "flip",
+    module: "Flip",
+  },
+  {
     name: "location_off",
     module: "LocationOff",
   },
@@ -4508,12 +4512,12 @@ const iconsOrderedByPopularity = [
     module: "Face2",
   },
   {
-    name: "flip",
-    module: "Flip",
-  },
-  {
     name: "usb",
     module: "Usb",
+  },
+  {
+    name: "bring_your_own_ip",
+    module: "BringYourOwnIp",
   },
   {
     name: "car_crash",
@@ -4534,10 +4538,6 @@ const iconsOrderedByPopularity = [
   {
     name: "screen_share",
     module: "ScreenShare",
-  },
-  {
-    name: "bring_your_own_ip",
-    module: "BringYourOwnIp",
   },
   {
     name: "flash_off",
@@ -4664,16 +4664,16 @@ const iconsOrderedByPopularity = [
     module: "WidthNormal",
   },
   {
+    name: "connected_tv",
+    module: "ConnectedTv",
+  },
+  {
     name: "no_photography",
     module: "NoPhotography",
   },
   {
     name: "battery_horiz_075",
     module: "BatteryHoriz075",
-  },
-  {
-    name: "connected_tv",
-    module: "ConnectedTv",
   },
   {
     name: "add_call",
@@ -4968,12 +4968,12 @@ const iconsOrderedByPopularity = [
     module: "AddRoad",
   },
   {
-    name: "humidity_low",
-    module: "HumidityLow",
-  },
-  {
     name: "file_download_off",
     module: "FileDownloadOff",
+  },
+  {
+    name: "humidity_low",
+    module: "HumidityLow",
   },
   {
     name: "keyboard_tab",
@@ -5004,16 +5004,16 @@ const iconsOrderedByPopularity = [
     module: "PlaylistAddCheckCircle",
   },
   {
+    name: "docs_add_on",
+    module: "DocsAddOn",
+  },
+  {
     name: "loupe",
     module: "Loupe",
   },
   {
     name: "voicemail",
     module: "Voicemail",
-  },
-  {
-    name: "docs_add_on",
-    module: "DocsAddOn",
   },
   {
     name: "attribution",
@@ -5128,16 +5128,16 @@ const iconsOrderedByPopularity = [
     module: "PrivateConnectivity",
   },
   {
+    name: "auto_awesome_mosaic",
+    module: "AutoAwesomeMosaic",
+  },
+  {
     name: "settings_brightness",
     module: "SettingsBrightness",
   },
   {
     name: "sports_football",
     module: "SportsFootball",
-  },
-  {
-    name: "auto_awesome_mosaic",
-    module: "AutoAwesomeMosaic",
   },
   {
     name: "castle",
@@ -5220,16 +5220,16 @@ const iconsOrderedByPopularity = [
     module: "CalendarViewDay",
   },
   {
+    name: "check_indeterminate_small",
+    module: "CheckIndeterminateSmall",
+  },
+  {
     name: "join_inner",
     module: "JoinInner",
   },
   {
     name: "waterfall_chart",
     module: "WaterfallChart",
-  },
-  {
-    name: "check_indeterminate_small",
-    module: "CheckIndeterminateSmall",
   },
   {
     name: "extension_off",
@@ -5380,16 +5380,16 @@ const iconsOrderedByPopularity = [
     module: "GroupOff",
   },
   {
+    name: "bluetooth_connected",
+    module: "BluetoothConnected",
+  },
+  {
     name: "severe_cold",
     module: "SevereCold",
   },
   {
     name: "turn_right",
     module: "TurnRight",
-  },
-  {
-    name: "bluetooth_connected",
-    module: "BluetoothConnected",
   },
   {
     name: "hd",
@@ -5464,12 +5464,12 @@ const iconsOrderedByPopularity = [
     module: "Outbox",
   },
   {
-    name: "fork_right",
-    module: "ForkRight",
-  },
-  {
     name: "brightness_7",
     module: "Brightness7",
+  },
+  {
+    name: "fork_right",
+    module: "ForkRight",
   },
   {
     name: "control_point_duplicate",
@@ -5584,6 +5584,10 @@ const iconsOrderedByPopularity = [
     module: "VerticalSplit",
   },
   {
+    name: "keep",
+    module: "Keep",
+  },
+  {
     name: "passkey",
     module: "Passkey",
   },
@@ -5594,10 +5598,6 @@ const iconsOrderedByPopularity = [
   {
     name: "density_large",
     module: "DensityLarge",
-  },
-  {
-    name: "keep",
-    module: "Keep",
   },
   {
     name: "cancel_schedule_send",
@@ -5788,12 +5788,12 @@ const iconsOrderedByPopularity = [
     module: "YoutubeActivity",
   },
   {
-    name: "bathroom",
-    module: "Bathroom",
-  },
-  {
     name: "code_blocks",
     module: "CodeBlocks",
+  },
+  {
+    name: "bathroom",
+    module: "Bathroom",
   },
   {
     name: "landslide",
@@ -5828,24 +5828,24 @@ const iconsOrderedByPopularity = [
     module: "VideoCameraBack",
   },
   {
-    name: "mode_cool",
-    module: "ModeCool",
-  },
-  {
     name: "bluetooth_disabled",
     module: "BluetoothDisabled",
+  },
+  {
+    name: "mode_cool",
+    module: "ModeCool",
   },
   {
     name: "mode_off_on",
     module: "ModeOffOn",
   },
   {
-    name: "run_circle",
-    module: "RunCircle",
-  },
-  {
     name: "picture_in_picture",
     module: "PictureInPicture",
+  },
+  {
+    name: "run_circle",
+    module: "RunCircle",
   },
   {
     name: "carpenter",
@@ -5928,16 +5928,16 @@ const iconsOrderedByPopularity = [
     module: "SignalWifiBad",
   },
   {
+    name: "rotate_90_degrees_ccw",
+    module: "Rotate90DegreesCcw",
+  },
+  {
     name: "spatial_audio_off",
     module: "SpatialAudioOff",
   },
   {
     name: "next_week",
     module: "NextWeek",
-  },
-  {
-    name: "rotate_90_degrees_ccw",
-    module: "Rotate90DegreesCcw",
   },
   {
     name: "transit_enterexit",
@@ -6068,16 +6068,16 @@ const iconsOrderedByPopularity = [
     module: "FireExtinguisher",
   },
   {
+    name: "matter",
+    module: "Matter",
+  },
+  {
     name: "soap",
     module: "Soap",
   },
   {
     name: "key_visualizer",
     module: "KeyVisualizer",
-  },
-  {
-    name: "matter",
-    module: "Matter",
   },
   {
     name: "living",
@@ -6300,12 +6300,12 @@ const iconsOrderedByPopularity = [
     module: "ShortText",
   },
   {
-    name: "18_up_rating",
-    module: "EighteenUpRating",
-  },
-  {
     name: "airware",
     module: "Airware",
+  },
+  {
+    name: "18_up_rating",
+    module: "EighteenUpRating",
   },
   {
     name: "energy_program_saving",
@@ -6328,6 +6328,10 @@ const iconsOrderedByPopularity = [
     module: "PausePresentation",
   },
   {
+    name: "expand_all",
+    module: "ExpandAll",
+  },
+  {
     name: "sensor_door",
     module: "SensorDoor",
   },
@@ -6346,10 +6350,6 @@ const iconsOrderedByPopularity = [
   {
     name: "do_not_touch",
     module: "DoNotTouch",
-  },
-  {
-    name: "expand_all",
-    module: "ExpandAll",
   },
   {
     name: "pentagon",
@@ -6552,12 +6552,12 @@ const iconsOrderedByPopularity = [
     module: "WebAssetOff",
   },
   {
-    name: "flashlight_off",
-    module: "FlashlightOff",
-  },
-  {
     name: "mms",
     module: "Mms",
+  },
+  {
+    name: "flashlight_off",
+    module: "FlashlightOff",
   },
   {
     name: "tapas",
@@ -6660,6 +6660,10 @@ const iconsOrderedByPopularity = [
     module: "PinInvoke",
   },
   {
+    name: "shoppingmode",
+    module: "Shoppingmode",
+  },
+  {
     name: "play_for_work",
     module: "PlayForWork",
   },
@@ -6672,12 +6676,12 @@ const iconsOrderedByPopularity = [
     module: "CleaningBucket",
   },
   {
-    name: "keyboard_hide",
-    module: "KeyboardHide",
-  },
-  {
     name: "cognition",
     module: "Cognition",
+  },
+  {
+    name: "keyboard_hide",
+    module: "KeyboardHide",
   },
   {
     name: "settings_system_daydream",
@@ -6702,10 +6706,6 @@ const iconsOrderedByPopularity = [
   {
     name: "file_upload_off",
     module: "FileUploadOff",
-  },
-  {
-    name: "shoppingmode",
-    module: "Shoppingmode",
   },
   {
     name: "add_home",
@@ -6760,16 +6760,16 @@ const iconsOrderedByPopularity = [
     module: "Man4",
   },
   {
+    name: "line_weight",
+    module: "LineWeight",
+  },
+  {
     name: "fence",
     module: "Fence",
   },
   {
     name: "paragliding",
     module: "Paragliding",
-  },
-  {
-    name: "line_weight",
-    module: "LineWeight",
   },
   {
     name: "water_heater",
@@ -6828,6 +6828,10 @@ const iconsOrderedByPopularity = [
     module: "Desk",
   },
   {
+    name: "forward_30",
+    module: "Forward30",
+  },
+  {
     name: "join_right",
     module: "JoinRight",
   },
@@ -6836,16 +6840,12 @@ const iconsOrderedByPopularity = [
     module: "Umbrella",
   },
   {
-    name: "forward_30",
-    module: "Forward30",
+    name: "forward_5",
+    module: "Forward5",
   },
   {
     name: "4k",
     module: "FourK",
-  },
-  {
-    name: "forward_5",
-    module: "Forward5",
   },
   {
     name: "horizontal_split",
@@ -6948,16 +6948,16 @@ const iconsOrderedByPopularity = [
     module: "Snowboarding",
   },
   {
+    name: "replay_30",
+    module: "Replay30",
+  },
+  {
     name: "arrows_more_up",
     module: "ArrowsMoreUp",
   },
   {
     name: "badge_critical_battery",
     module: "BadgeCriticalBattery",
-  },
-  {
-    name: "replay_30",
-    module: "Replay30",
   },
   {
     name: "door_back",
@@ -6984,12 +6984,12 @@ const iconsOrderedByPopularity = [
     module: "Tonality",
   },
   {
-    name: "wifi_lock",
-    module: "WifiLock",
-  },
-  {
     name: "approval_delegation",
     module: "ApprovalDelegation",
+  },
+  {
+    name: "wifi_lock",
+    module: "WifiLock",
   },
   {
     name: "monochrome_photos",
@@ -7008,12 +7008,12 @@ const iconsOrderedByPopularity = [
     module: "NightSightAuto",
   },
   {
-    name: "4g_mobiledata",
-    module: "FourGMobiledata",
-  },
-  {
     name: "aod",
     module: "Aod",
+  },
+  {
+    name: "4g_mobiledata",
+    module: "FourGMobiledata",
   },
   {
     name: "travel",
@@ -7364,12 +7364,12 @@ const iconsOrderedByPopularity = [
     module: "TempleBuddhist",
   },
   {
-    name: "content_paste_off",
-    module: "ContentPasteOff",
-  },
-  {
     name: "bar_chart_4_bars",
     module: "BarChart4Bars",
+  },
+  {
+    name: "content_paste_off",
+    module: "ContentPasteOff",
   },
   {
     name: "insert_page_break",
@@ -7768,6 +7768,10 @@ const iconsOrderedByPopularity = [
     module: "Clarify",
   },
   {
+    name: "diversity_4",
+    module: "Diversity4",
+  },
+  {
     name: "headphones_battery",
     module: "HeadphonesBattery",
   },
@@ -7784,8 +7788,8 @@ const iconsOrderedByPopularity = [
     module: "CurrencyFranc",
   },
   {
-    name: "diversity_4",
-    module: "Diversity4",
+    name: "license",
+    module: "License",
   },
   {
     name: "nest_cam_iq",
@@ -7794,10 +7798,6 @@ const iconsOrderedByPopularity = [
   {
     name: "arrow_split",
     module: "ArrowSplit",
-  },
-  {
-    name: "license",
-    module: "License",
   },
   {
     name: "problem",
@@ -7812,6 +7812,10 @@ const iconsOrderedByPopularity = [
     module: "AdfScanner",
   },
   {
+    name: "contacts_product",
+    module: "ContactsProduct",
+  },
+  {
     name: "home_speaker",
     module: "HomeSpeaker",
   },
@@ -7822,10 +7826,6 @@ const iconsOrderedByPopularity = [
   {
     name: "bluetooth_drive",
     module: "BluetoothDrive",
-  },
-  {
-    name: "contacts_product",
-    module: "ContactsProduct",
   },
   {
     name: "settop_component",
@@ -8116,12 +8116,16 @@ const iconsOrderedByPopularity = [
     module: "CoolToDry",
   },
   {
-    name: "no_transfer",
-    module: "NoTransfer",
+    name: "data_check",
+    module: "DataCheck",
   },
   {
     name: "note_stack",
     module: "NoteStack",
+  },
+  {
+    name: "no_transfer",
+    module: "NoTransfer",
   },
   {
     name: "stat_0",
@@ -8130,10 +8134,6 @@ const iconsOrderedByPopularity = [
   {
     name: "timer_10_select",
     module: "Timer10Select",
-  },
-  {
-    name: "data_check",
-    module: "DataCheck",
   },
   {
     name: "dry",
@@ -8208,12 +8208,12 @@ const iconsOrderedByPopularity = [
     module: "Snowmobile",
   },
   {
-    name: "10k",
-    module: "OneKk",
-  },
-  {
     name: "home_max",
     module: "HomeMax",
+  },
+  {
+    name: "10k",
+    module: "TenK",
   },
   {
     name: "wifi_tethering_off",
@@ -8260,10 +8260,6 @@ const iconsOrderedByPopularity = [
     module: "Timer3",
   },
   {
-    name: "3g_mobiledata",
-    module: "ThreeGMobiledata",
-  },
-  {
     name: "earbuds_battery",
     module: "EarbudsBattery",
   },
@@ -8288,8 +8284,8 @@ const iconsOrderedByPopularity = [
     module: "Reminder",
   },
   {
-    name: "60fps",
-    module: "SixtyFps",
+    name: "3g_mobiledata",
+    module: "ThreeGMobiledata",
   },
   {
     name: "chalet",
@@ -8304,6 +8300,10 @@ const iconsOrderedByPopularity = [
     module: "RollerShadesClosed",
   },
   {
+    name: "60fps",
+    module: "SixtyFps",
+  },
+  {
     name: "clock_loader_60",
     module: "ClockLoader60",
   },
@@ -8316,12 +8316,12 @@ const iconsOrderedByPopularity = [
     module: "GlobeAsia",
   },
   {
-    name: "ramp_right",
-    module: "RampRight",
-  },
-  {
     name: "instant_mix",
     module: "InstantMix",
+  },
+  {
+    name: "ramp_right",
+    module: "RampRight",
   },
   {
     name: "usb_off",
@@ -8348,12 +8348,20 @@ const iconsOrderedByPopularity = [
     module: "NoBackpack",
   },
   {
+    name: "overview",
+    module: "Overview",
+  },
+  {
     name: "battery_profile",
     module: "BatteryProfile",
   },
   {
     name: "broadcast_on_home",
     module: "BroadcastOnHome",
+  },
+  {
+    name: "page_info",
+    module: "PageInfo",
   },
   {
     name: "remove_from_queue",
@@ -8380,10 +8388,6 @@ const iconsOrderedByPopularity = [
     module: "Mindfulness",
   },
   {
-    name: "page_info",
-    module: "PageInfo",
-  },
-  {
     name: "propane",
     module: "Propane",
   },
@@ -8398,10 +8402,6 @@ const iconsOrderedByPopularity = [
   {
     name: "image_aspect_ratio",
     module: "ImageAspectRatio",
-  },
-  {
-    name: "overview",
-    module: "Overview",
   },
   {
     name: "user_attributes",
@@ -8524,6 +8524,10 @@ const iconsOrderedByPopularity = [
     module: "NestFoundSavings",
   },
   {
+    name: "quick_reference",
+    module: "QuickReference",
+  },
+  {
     name: "robot",
     module: "Robot",
   },
@@ -8534,10 +8538,6 @@ const iconsOrderedByPopularity = [
   {
     name: "join",
     module: "Join",
-  },
-  {
-    name: "quick_reference",
-    module: "QuickReference",
   },
   {
     name: "signature",
@@ -8580,6 +8580,10 @@ const iconsOrderedByPopularity = [
     module: "DetectorStatus",
   },
   {
+    name: "service_toolbox",
+    module: "ServiceToolbox",
+  },
+  {
     name: "type_specimen",
     module: "TypeSpecimen",
   },
@@ -8590,10 +8594,6 @@ const iconsOrderedByPopularity = [
   {
     name: "range_hood",
     module: "RangeHood",
-  },
-  {
-    name: "service_toolbox",
-    module: "ServiceToolbox",
   },
   {
     name: "detector",
@@ -8616,10 +8616,6 @@ const iconsOrderedByPopularity = [
     module: "ToolsLevel",
   },
   {
-    name: "30fps",
-    module: "ThirtyFps",
-  },
-  {
     name: "captive_portal",
     module: "CaptivePortal",
   },
@@ -8634,6 +8630,10 @@ const iconsOrderedByPopularity = [
   {
     name: "sentiment_sad",
     module: "SentimentSad",
+  },
+  {
+    name: "30fps",
+    module: "ThirtyFps",
   },
   {
     name: "tv_with_assistant",
@@ -8660,10 +8660,6 @@ const iconsOrderedByPopularity = [
     module: "PermCameraMic",
   },
   {
-    name: "60fps_select",
-    module: "SixtyFpsSelect",
-  },
-  {
     name: "femur_alt",
     module: "FemurAlt",
   },
@@ -8674,6 +8670,10 @@ const iconsOrderedByPopularity = [
   {
     name: "nest_thermostat_zirconium_eu",
     module: "NestThermostatZirconiumEu",
+  },
+  {
+    name: "60fps_select",
+    module: "SixtyFpsSelect",
   },
   {
     name: "blanket",
@@ -8700,10 +8700,6 @@ const iconsOrderedByPopularity = [
     module: "NoiseControlOn",
   },
   {
-    name: "30fps_select",
-    module: "ThirtyFpsSelect",
-  },
-  {
     name: "airline_seat_legroom_extra",
     module: "AirlineSeatLegroomExtra",
   },
@@ -8716,16 +8712,20 @@ const iconsOrderedByPopularity = [
     module: "FullCoverage",
   },
   {
+    name: "hourglass",
+    module: "Hourglass",
+  },
+  {
     name: "lock_open_right",
     module: "LockOpenRight",
   },
   {
-    name: "g_mobiledata",
-    module: "GMobiledata",
+    name: "30fps_select",
+    module: "ThirtyFpsSelect",
   },
   {
-    name: "hourglass",
-    module: "Hourglass",
+    name: "g_mobiledata",
+    module: "GMobiledata",
   },
   {
     name: "assignment_add",
@@ -8780,6 +8780,10 @@ const iconsOrderedByPopularity = [
     module: "ApkDocument",
   },
   {
+    name: "dock_to_left",
+    module: "DockToLeft",
+  },
+  {
     name: "export_notes",
     module: "ExportNotes",
   },
@@ -8800,16 +8804,12 @@ const iconsOrderedByPopularity = [
     module: "TextRotationNone",
   },
   {
-    name: "8k",
-    module: "EightK",
-  },
-  {
-    name: "dock_to_left",
-    module: "DockToLeft",
-  },
-  {
     name: "door_sensor",
     module: "DoorSensor",
+  },
+  {
+    name: "8k",
+    module: "EightK",
   },
   {
     name: "mic_external_off",
@@ -8932,6 +8932,10 @@ const iconsOrderedByPopularity = [
     module: "FormatOverline",
   },
   {
+    name: "automation",
+    module: "Automation",
+  },
+  {
     name: "screen_record",
     module: "ScreenRecord",
   },
@@ -8966,10 +8970,6 @@ const iconsOrderedByPopularity = [
   {
     name: "aod_tablet",
     module: "AodTablet",
-  },
-  {
-    name: "automation",
-    module: "Automation",
   },
   {
     name: "heart_check",
@@ -9060,16 +9060,16 @@ const iconsOrderedByPopularity = [
     module: "UnknownMed",
   },
   {
-    name: "1k",
-    module: "OneK",
-  },
-  {
     name: "doorbell_chime",
     module: "DoorbellChime",
   },
   {
     name: "flag_2",
     module: "Flag2",
+  },
+  {
+    name: "1k",
+    module: "OneK",
   },
   {
     name: "privacy",
@@ -9120,12 +9120,12 @@ const iconsOrderedByPopularity = [
     module: "TextRotationAngleup",
   },
   {
-    name: "specific_gravity",
-    module: "SpecificGravity",
-  },
-  {
     name: "unknown_document",
     module: "UnknownDocument",
+  },
+  {
+    name: "specific_gravity",
+    module: "SpecificGravity",
   },
   {
     name: "visibility_lock",
@@ -9140,16 +9140,16 @@ const iconsOrderedByPopularity = [
     module: "RMobiledata",
   },
   {
-    name: "24mp",
-    module: "TwentyFourMp",
-  },
-  {
     name: "mode_cool_off",
     module: "ModeCoolOff",
   },
   {
     name: "tools_flat_head",
     module: "ToolsFlatHead",
+  },
+  {
+    name: "24mp",
+    module: "TwentyFourMp",
   },
   {
     name: "border_bottom",
@@ -9220,16 +9220,20 @@ const iconsOrderedByPopularity = [
     module: "MotionSensorUrgent",
   },
   {
-    name: "22mp",
-    module: "TwentyTwoMp",
-  },
-  {
     name: "border_inner",
     module: "BorderInner",
   },
   {
     name: "text_rotation_down",
     module: "TextRotationDown",
+  },
+  {
+    name: "22mp",
+    module: "TwentyTwoMp",
+  },
+  {
+    name: "flowchart",
+    module: "Flowchart",
   },
   {
     name: "tamper_detection_on",
@@ -9242,10 +9246,6 @@ const iconsOrderedByPopularity = [
   {
     name: "ar_on_you",
     module: "ArOnYou",
-  },
-  {
-    name: "flowchart",
-    module: "Flowchart",
   },
   {
     name: "laps",
@@ -9292,16 +9292,16 @@ const iconsOrderedByPopularity = [
     module: "SettingsAccountBox",
   },
   {
-    name: "12mp",
-    module: "TwelveMp",
-  },
-  {
     name: "counter_4",
     module: "Counter4",
   },
   {
     name: "dual_screen",
     module: "DualScreen",
+  },
+  {
+    name: "12mp",
+    module: "TwelveMp",
   },
   {
     name: "10mp",
@@ -9312,12 +9312,12 @@ const iconsOrderedByPopularity = [
     module: "WindowSensor",
   },
   {
-    name: "2k",
-    module: "TwoK",
-  },
-  {
     name: "conveyor_belt",
     module: "ConveyorBelt",
+  },
+  {
+    name: "2k",
+    module: "TwoK",
   },
   {
     name: "18mp",
@@ -9364,10 +9364,6 @@ const iconsOrderedByPopularity = [
     module: "ZonePersonIdle",
   },
   {
-    name: "7k",
-    module: "SevenK",
-  },
-  {
     name: "brightness_alert",
     module: "BrightnessAlert",
   },
@@ -9382,6 +9378,10 @@ const iconsOrderedByPopularity = [
   {
     name: "mountain_flag",
     module: "MountainFlag",
+  },
+  {
+    name: "7k",
+    module: "SevenK",
   },
   {
     name: "wb_auto",
@@ -9416,6 +9416,10 @@ const iconsOrderedByPopularity = [
     module: "Diagnosis",
   },
   {
+    name: "chevron_forward",
+    module: "ChevronForward",
+  },
+  {
     name: "9k_plus",
     module: "NineKPlus",
   },
@@ -9424,20 +9428,20 @@ const iconsOrderedByPopularity = [
     module: "NineMp",
   },
   {
-    name: "chevron_forward",
-    module: "ChevronForward",
-  },
-  {
     name: "sports_and_outdoors",
     module: "SportsAndOutdoors",
   },
   {
-    name: "1k_plus",
-    module: "OneKPlus",
-  },
-  {
     name: "cards",
     module: "Cards",
+  },
+  {
+    name: "deployed_code_update",
+    module: "DeployedCodeUpdate",
+  },
+  {
+    name: "1k_plus",
+    module: "OneKPlus",
   },
   {
     name: "preliminary",
@@ -9460,14 +9464,6 @@ const iconsOrderedByPopularity = [
     module: "Flowsheet",
   },
   {
-    name: "9k",
-    module: "NineK",
-  },
-  {
-    name: "deployed_code_update",
-    module: "DeployedCodeUpdate",
-  },
-  {
     name: "nest_cam_stand",
     module: "NestCamStand",
   },
@@ -9476,32 +9472,28 @@ const iconsOrderedByPopularity = [
     module: "NestCamWallMount",
   },
   {
+    name: "9k",
+    module: "NineK",
+  },
+  {
     name: "shield_locked",
     module: "ShieldLocked",
-  },
-  {
-    name: "13mp",
-    module: "ThirteenMp",
-  },
-  {
-    name: "5k",
-    module: "FiveK",
   },
   {
     name: "chat_info",
     module: "ChatInfo",
   },
   {
+    name: "5k",
+    module: "FiveK",
+  },
+  {
+    name: "13mp",
+    module: "ThirteenMp",
+  },
+  {
     name: "universal_currency_alt",
     module: "UniversalCurrencyAlt",
-  },
-  {
-    name: "20mp",
-    module: "TwentyMp",
-  },
-  {
-    name: "5mp",
-    module: "FiveMp",
   },
   {
     name: "book_2",
@@ -9516,6 +9508,10 @@ const iconsOrderedByPopularity = [
     module: "ExpandCircleUp",
   },
   {
+    name: "5mp",
+    module: "FiveMp",
+  },
+  {
     name: "rubric",
     module: "Rubric",
   },
@@ -9524,12 +9520,12 @@ const iconsOrderedByPopularity = [
     module: "SentimentExcited",
   },
   {
-    name: "19mp",
-    module: "NineteenMp",
+    name: "20mp",
+    module: "TwentyMp",
   },
   {
-    name: "7mp",
-    module: "SevenMp",
+    name: "arrow_left_alt",
+    module: "ArrowLeftAlt",
   },
   {
     name: "cake_add",
@@ -9540,24 +9536,20 @@ const iconsOrderedByPopularity = [
     module: "MaskedTransitions",
   },
   {
+    name: "19mp",
+    module: "NineteenMp",
+  },
+  {
+    name: "7mp",
+    module: "SevenMp",
+  },
+  {
     name: "wall_lamp",
     module: "WallLamp",
   },
   {
     name: "15mp",
     module: "FifteenMp",
-  },
-  {
-    name: "23mp",
-    module: "TwentyThreeMp",
-  },
-  {
-    name: "3mp",
-    module: "ThreeMp",
-  },
-  {
-    name: "arrow_left_alt",
-    module: "ArrowLeftAlt",
   },
   {
     name: "hdr_off_select",
@@ -9580,6 +9572,10 @@ const iconsOrderedByPopularity = [
     module: "PlannerReview",
   },
   {
+    name: "resume",
+    module: "Resume",
+  },
+  {
     name: "stat_3",
     module: "Stat3",
   },
@@ -9588,44 +9584,40 @@ const iconsOrderedByPopularity = [
     module: "StatMinus1",
   },
   {
-    name: "16mp",
-    module: "SixteenMp",
+    name: "3mp",
+    module: "ThreeMp",
+  },
+  {
+    name: "23mp",
+    module: "TwentyThreeMp",
   },
   {
     name: "close_small",
     module: "CloseSmall",
   },
   {
-    name: "resume",
-    module: "Resume",
-  },
-  {
     name: "shapes",
     module: "Shapes",
   },
   {
-    name: "2mp",
-    module: "TwoMp",
-  },
-  {
-    name: "8mp",
-    module: "EightMp",
+    name: "16mp",
+    module: "SixteenMp",
   },
   {
     name: "bubble",
     module: "Bubble",
   },
   {
+    name: "8mp",
+    module: "EightMp",
+  },
+  {
+    name: "2mp",
+    module: "TwoMp",
+  },
+  {
     name: "14mp",
     module: "FourteenMp",
-  },
-  {
-    name: "6k",
-    module: "SixK",
-  },
-  {
-    name: "6mp",
-    module: "SixMp",
   },
   {
     name: "indeterminate_question_box",
@@ -9636,12 +9628,20 @@ const iconsOrderedByPopularity = [
     module: "SettingsBRoll",
   },
   {
-    name: "2k_plus",
-    module: "TwoKPlus",
+    name: "6k",
+    module: "SixK",
+  },
+  {
+    name: "6mp",
+    module: "SixMp",
   },
   {
     name: "pan_zoom",
     module: "PanZoom",
+  },
+  {
+    name: "2k_plus",
+    module: "TwoKPlus",
   },
   {
     name: "11mp",
@@ -9664,12 +9664,12 @@ const iconsOrderedByPopularity = [
     module: "StarRateHalf",
   },
   {
-    name: "5k_plus",
-    module: "FiveKPlus",
-  },
-  {
     name: "draw_abstract",
     module: "DrawAbstract",
+  },
+  {
+    name: "5k_plus",
+    module: "FiveKPlus",
   },
   {
     name: "ink_selection",
@@ -9696,36 +9696,20 @@ const iconsOrderedByPopularity = [
     module: "SlideLibrary",
   },
   {
-    name: "21mp",
-    module: "TwentyOneMp",
-  },
-  {
     name: "4mp",
     module: "FourMp",
-  },
-  {
-    name: "6k_plus",
-    module: "SixKPlus",
   },
   {
     name: "highlight_mouse_cursor",
     module: "HighlightMouseCursor",
   },
   {
-    name: "17mp",
-    module: "SeventeenMp",
+    name: "6k_plus",
+    module: "SixKPlus",
   },
   {
-    name: "3k",
-    module: "ThreeK",
-  },
-  {
-    name: "3k_plus",
-    module: "ThreeKPlus",
-  },
-  {
-    name: "7k_plus",
-    module: "SevenKPlus",
+    name: "21mp",
+    module: "TwentyOneMp",
   },
   {
     name: "ad",
@@ -9764,8 +9748,24 @@ const iconsOrderedByPopularity = [
     module: "SentimentStressed",
   },
   {
+    name: "7k_plus",
+    module: "SevenKPlus",
+  },
+  {
+    name: "17mp",
+    module: "SeventeenMp",
+  },
+  {
     name: "stress_management",
     module: "StressManagement",
+  },
+  {
+    name: "3k",
+    module: "ThreeK",
+  },
+  {
+    name: "3k_plus",
+    module: "ThreeKPlus",
   },
   {
     name: "folder_limited",
@@ -9984,6 +9984,10 @@ const iconsOrderedByPopularity = [
     module: "AvgPace",
   },
   {
+    name: "clock_loader_20",
+    module: "ClockLoader20",
+  },
+  {
     name: "deceased",
     module: "Deceased",
   },
@@ -9994,10 +9998,6 @@ const iconsOrderedByPopularity = [
   {
     name: "artist",
     module: "Artist",
-  },
-  {
-    name: "clock_loader_20",
-    module: "ClockLoader20",
   },
   {
     name: "explore_nearby",
@@ -10028,6 +10028,10 @@ const iconsOrderedByPopularity = [
     module: "Heat",
   },
   {
+    name: "pip",
+    module: "Pip",
+  },
+  {
     name: "policy_alert",
     module: "PolicyAlert",
   },
@@ -10038,10 +10042,6 @@ const iconsOrderedByPopularity = [
   {
     name: "all_match",
     module: "AllMatch",
-  },
-  {
-    name: "pip",
-    module: "Pip",
   },
   {
     name: "radio_button_partial",
@@ -10368,6 +10368,10 @@ const iconsOrderedByPopularity = [
     module: "NetworkIntelNode",
   },
   {
+    name: "send_money",
+    module: "SendMoney",
+  },
+  {
     name: "settings_photo_camera",
     module: "SettingsPhotoCamera",
   },
@@ -10400,10 +10404,6 @@ const iconsOrderedByPopularity = [
     module: "Nearby",
   },
   {
-    name: "send_money",
-    module: "SendMoney",
-  },
-  {
     name: "step_into",
     module: "StepInto",
   },
@@ -10426,6 +10426,10 @@ const iconsOrderedByPopularity = [
   {
     name: "smb_share",
     module: "SmbShare",
+  },
+  {
+    name: "stat_2",
+    module: "Stat2",
   },
   {
     name: "two_pager",
@@ -10466,10 +10470,6 @@ const iconsOrderedByPopularity = [
   {
     name: "select_window_2",
     module: "SelectWindow2",
-  },
-  {
-    name: "stat_2",
-    module: "Stat2",
   },
   {
     name: "video_camera_front_off",
@@ -11060,12 +11060,12 @@ const iconsOrderedByPopularity = [
     module: "TrackpadInput",
   },
   {
-    name: "arrow_upload_ready",
-    module: "ArrowUploadReady",
-  },
-  {
     name: "arrows_outward",
     module: "ArrowsOutward",
+  },
+  {
+    name: "arrow_upload_ready",
+    module: "ArrowUploadReady",
   },
   {
     name: "bath_private",
@@ -11232,12 +11232,12 @@ const iconsOrderedByPopularity = [
     module: "Ods",
   },
   {
-    name: "person_shield",
-    module: "PersonShield",
-  },
-  {
     name: "personal_bag",
     module: "PersonalBag",
+  },
+  {
+    name: "person_shield",
+    module: "PersonShield",
   },
   {
     name: "pulmonology",
@@ -11246,6 +11246,10 @@ const iconsOrderedByPopularity = [
   {
     name: "shelf_position",
     module: "ShelfPosition",
+  },
+  {
+    name: "speed_2x",
+    module: "Speed2x",
   },
   {
     name: "stack_off",
@@ -11276,10 +11280,6 @@ const iconsOrderedByPopularity = [
     module: "VariableInsert",
   },
   {
-    name: "50mp",
-    module: "FiftyMp",
-  },
-  {
     name: "contextual_token_add",
     module: "ContextualTokenAdd",
   },
@@ -11294,6 +11294,10 @@ const iconsOrderedByPopularity = [
   {
     name: "ent",
     module: "Ent",
+  },
+  {
+    name: "50mp",
+    module: "FiftyMp",
   },
   {
     name: "folder_code",
@@ -11318,10 +11322,6 @@ const iconsOrderedByPopularity = [
   {
     name: "open_in_new_down",
     module: "OpenInNewDown",
-  },
-  {
-    name: "speed_2x",
-    module: "Speed2x",
   },
   {
     name: "splitscreen_add",
@@ -11524,6 +11524,10 @@ const iconsOrderedByPopularity = [
     module: "BrandFamily",
   },
   {
+    name: "brick",
+    module: "Brick",
+  },
+  {
     name: "crop_9_16",
     module: "Crop916",
   },
@@ -11574,10 +11578,6 @@ const iconsOrderedByPopularity = [
   {
     name: "text_select_move_forward_character",
     module: "TextSelectMoveForwardCharacter",
-  },
-  {
-    name: "brick",
-    module: "Brick",
   },
   {
     name: "car_tag",
@@ -11788,6 +11788,10 @@ const iconsOrderedByPopularity = [
     module: "ThermometerLoss",
   },
   {
+    name: "transition_dissolve",
+    module: "TransitionDissolve",
+  },
+  {
     name: "water_lock",
     module: "WaterLock",
   },
@@ -11832,16 +11836,12 @@ const iconsOrderedByPopularity = [
     module: "ThumbnailBar",
   },
   {
-    name: "transit_ticket",
-    module: "TransitTicket",
-  },
-  {
-    name: "transition_dissolve",
-    module: "TransitionDissolve",
-  },
-  {
     name: "transition_slide",
     module: "TransitionSlide",
+  },
+  {
+    name: "transit_ticket",
+    module: "TransitTicket",
   },
   {
     name: "video_camera_back_add",
@@ -12044,10 +12044,6 @@ const iconsOrderedByPopularity = [
     module: "TouchpadMouseOff",
   },
   {
-    name: "2d",
-    module: "TwoD",
-  },
-  {
     name: "add_diamond",
     module: "AddDiamond",
   },
@@ -12128,6 +12124,10 @@ const iconsOrderedByPopularity = [
     module: "TextSelectMoveDown",
   },
   {
+    name: "2d",
+    module: "TwoD",
+  },
+  {
     name: "watch_arrow",
     module: "WatchArrow",
   },
@@ -12174,6 +12174,10 @@ const iconsOrderedByPopularity = [
   {
     name: "sauna",
     module: "Sauna",
+  },
+  {
+    name: "speed_0_75",
+    module: "Speed075",
   },
   {
     name: "supervised_user_circle_off",
@@ -12272,8 +12276,8 @@ const iconsOrderedByPopularity = [
     module: "Speed05x",
   },
   {
-    name: "speed_0_75",
-    module: "Speed075",
+    name: "speed_1_25",
+    module: "Speed125",
   },
   {
     name: "stethoscope_check",
@@ -12384,8 +12388,8 @@ const iconsOrderedByPopularity = [
     module: "ServerPerson",
   },
   {
-    name: "speed_1_25",
-    module: "Speed125",
+    name: "speed_1_5",
+    module: "Speed15",
   },
   {
     name: "text_select_end",
@@ -12414,6 +12418,10 @@ const iconsOrderedByPopularity = [
   {
     name: "avc",
     module: "Avc",
+  },
+  {
+    name: "background_dot_small",
+    module: "BackgroundDotSmall",
   },
   {
     name: "backlight_low",
@@ -12480,6 +12488,10 @@ const iconsOrderedByPopularity = [
     module: "OnHubDevice",
   },
   {
+    name: "open_jam",
+    module: "OpenJam",
+  },
+  {
     name: "ophthalmology",
     module: "Ophthalmology",
   },
@@ -12502,10 +12514,6 @@ const iconsOrderedByPopularity = [
   {
     name: "sleep_score",
     module: "SleepScore",
-  },
-  {
-    name: "speed_1_5",
-    module: "Speed15",
   },
   {
     name: "splitscreen_bottom",
@@ -12532,16 +12540,8 @@ const iconsOrderedByPopularity = [
     module: "WifiCallingBar3",
   },
   {
-    name: "5g_mobiledata_badge",
-    module: "FiveGMobiledataBadge",
-  },
-  {
     name: "arrow_menu_open",
     module: "ArrowMenuOpen",
-  },
-  {
-    name: "background_dot_small",
-    module: "BackgroundDotSmall",
   },
   {
     name: "bar_chart_off",
@@ -12558,6 +12558,10 @@ const iconsOrderedByPopularity = [
   {
     name: "fit_page",
     module: "FitPage",
+  },
+  {
+    name: "5g_mobiledata_badge",
+    module: "FiveGMobiledataBadge",
   },
   {
     name: "format_letter_spacing_wide",
@@ -12604,10 +12608,6 @@ const iconsOrderedByPopularity = [
     module: "Oncology",
   },
   {
-    name: "open_jam",
-    module: "OpenJam",
-  },
-  {
     name: "pen_size_4",
     module: "PenSize4",
   },
@@ -12624,6 +12624,10 @@ const iconsOrderedByPopularity = [
     module: "SignalCellularAdd",
   },
   {
+    name: "speed_1_75",
+    module: "Speed175",
+  },
+  {
     name: "sync_desktop",
     module: "SyncDesktop",
   },
@@ -12634,10 +12638,6 @@ const iconsOrderedByPopularity = [
   {
     name: "water_loss",
     module: "WaterLoss",
-  },
-  {
-    name: "1x_mobiledata_badge",
-    module: "TimesOneMobiledataBadge",
   },
   {
     name: "align_items_stretch",
@@ -12768,6 +12768,10 @@ const iconsOrderedByPopularity = [
     module: "TextSelectMoveForwardWord",
   },
   {
+    name: "1x_mobiledata_badge",
+    module: "TimesOneMobiledataBadge",
+  },
+  {
     name: "ward",
     module: "Ward",
   },
@@ -12830,10 +12834,6 @@ const iconsOrderedByPopularity = [
   {
     name: "siren_check",
     module: "SirenCheck",
-  },
-  {
-    name: "speed_1_75",
-    module: "Speed175",
   },
   {
     name: "splitscreen_top",
@@ -13004,6 +13004,10 @@ const iconsOrderedByPopularity = [
     module: "AlignJustifySpaceAround",
   },
   {
+    name: "approval_delegation_off",
+    module: "ApprovalDelegationOff",
+  },
+  {
     name: "audio_video_receiver",
     module: "AudioVideoReceiver",
   },
@@ -13058,6 +13062,10 @@ const iconsOrderedByPopularity = [
   {
     name: "hematology",
     module: "Hematology",
+  },
+  {
+    name: "hourglass_arrow_down",
+    module: "HourglassArrowDown",
   },
   {
     name: "keyboard_lock",
@@ -13198,10 +13206,6 @@ const iconsOrderedByPopularity = [
   {
     name: "highlight_text_cursor",
     module: "HighlightTextCursor",
-  },
-  {
-    name: "hourglass_arrow_down",
-    module: "HourglassArrowDown",
   },
   {
     name: "hourglass_arrow_up",
@@ -13456,6 +13460,10 @@ const iconsOrderedByPopularity = [
     module: "FormatTextWrap",
   },
   {
+    name: "hourglass_pause",
+    module: "HourglassPause",
+  },
+  {
     name: "immunology",
     module: "Immunology",
   },
@@ -13524,6 +13532,10 @@ const iconsOrderedByPopularity = [
     module: "WifiNotification",
   },
   {
+    name: "windshield_defrost_front",
+    module: "WindshieldDefrostFront",
+  },
+  {
     name: "add_column_left",
     module: "AddColumnLeft",
   },
@@ -13546,10 +13558,6 @@ const iconsOrderedByPopularity = [
   {
     name: "align_space_between",
     module: "AlignSpaceBetween",
-  },
-  {
-    name: "approval_delegation_off",
-    module: "ApprovalDelegationOff",
   },
   {
     name: "battery_android_share",
@@ -13610,10 +13618,6 @@ const iconsOrderedByPopularity = [
   {
     name: "hearing_aid_left",
     module: "HearingAidLeft",
-  },
-  {
-    name: "hourglass_pause",
-    module: "HourglassPause",
   },
   {
     name: "language_chinese_cangjie",
@@ -13688,12 +13692,8 @@ const iconsOrderedByPopularity = [
     module: "VoiceSelectionOff",
   },
   {
-    name: "windshield_defrost_front",
-    module: "WindshieldDefrostFront",
-  },
-  {
-    name: "4g_mobiledata_badge",
-    module: "FourGMobiledataBadge",
+    name: "windshield_defrost_rear",
+    module: "WindshieldDefrostRear",
   },
   {
     name: "align_flex_center",
@@ -13742,6 +13742,10 @@ const iconsOrderedByPopularity = [
   {
     name: "format_quote_off",
     module: "FormatQuoteOff",
+  },
+  {
+    name: "4g_mobiledata_badge",
+    module: "FourGMobiledataBadge",
   },
   {
     name: "funicular",
@@ -13832,14 +13836,6 @@ const iconsOrderedByPopularity = [
     module: "Vignette2",
   },
   {
-    name: "windshield_defrost_rear",
-    module: "WindshieldDefrostRear",
-  },
-  {
-    name: "3g_mobiledata_badge",
-    module: "ThreeGMobiledataBadge",
-  },
-  {
     name: "accessible_menu",
     module: "AccessibleMenu",
   },
@@ -13892,12 +13888,12 @@ const iconsOrderedByPopularity = [
     module: "Grid3x3Off",
   },
   {
-    name: "h_mobiledata_badge",
-    module: "HMobiledataBadge",
-  },
-  {
     name: "hearing_aid_disabled",
     module: "HearingAidDisabled",
+  },
+  {
+    name: "h_mobiledata_badge",
+    module: "HMobiledataBadge",
   },
   {
     name: "inbox_text_asterisk",
@@ -13990,6 +13986,10 @@ const iconsOrderedByPopularity = [
   {
     name: "thermostat_arrow_up",
     module: "ThermostatArrowUp",
+  },
+  {
+    name: "3g_mobiledata_badge",
+    module: "ThreeGMobiledataBadge",
   },
   {
     name: "tonality_2",
@@ -14096,12 +14096,20 @@ const iconsOrderedByPopularity = [
     module: "MobileCamera",
   },
   {
+    name: "mobile_chat",
+    module: "MobileChat",
+  },
+  {
     name: "mobile_code",
     module: "MobileCode",
   },
   {
     name: "mobile_hand_left",
     module: "MobileHandLeft",
+  },
+  {
+    name: "mobile_text_2",
+    module: "MobileText2",
   },
   {
     name: "music_history",
@@ -14170,14 +14178,6 @@ const iconsOrderedByPopularity = [
   {
     name: "wifi_calling_bar_2",
     module: "WifiCallingBar2",
-  },
-  {
-    name: "24fps_select",
-    module: "TwentyFourFpsSelect",
-  },
-  {
-    name: "3d",
-    module: "ThreeD",
   },
   {
     name: "align_end",
@@ -14332,10 +14332,6 @@ const iconsOrderedByPopularity = [
     module: "MobileCharge",
   },
   {
-    name: "mobile_chat",
-    module: "MobileChat",
-  },
-  {
     name: "mobile_check",
     module: "MobileCheck",
   },
@@ -14424,10 +14420,6 @@ const iconsOrderedByPopularity = [
     module: "MobileText",
   },
   {
-    name: "mobile_text_2",
-    module: "MobileText2",
-  },
-  {
     name: "mobile_ticket",
     module: "MobileTicket",
   },
@@ -14454,6 +14446,14 @@ const iconsOrderedByPopularity = [
   {
     name: "subtitles_gear",
     module: "SubtitlesGear",
+  },
+  {
+    name: "3d",
+    module: "ThreeD",
+  },
+  {
+    name: "24fps_select",
+    module: "TwentyFourFpsSelect",
   },
   {
     name: "verified_off",

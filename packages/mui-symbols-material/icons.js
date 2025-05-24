@@ -1,263 +1,7 @@
 const icons = [
   {
-    name: "10k",
-    module: "OneKk",
-  },
-  {
-    name: "10mp",
-    module: "TenMp",
-  },
-  {
-    name: "11mp",
-    module: "ElevenMp",
-  },
-  {
-    name: "12mp",
-    module: "TwelveMp",
-  },
-  {
-    name: "13mp",
-    module: "ThirteenMp",
-  },
-  {
-    name: "14mp",
-    module: "FourteenMp",
-  },
-  {
-    name: "15mp",
-    module: "FifteenMp",
-  },
-  {
-    name: "16mp",
-    module: "SixteenMp",
-  },
-  {
-    name: "17mp",
-    module: "SeventeenMp",
-  },
-  {
-    name: "18_up_rating",
-    module: "EighteenUpRating",
-  },
-  {
-    name: "18mp",
-    module: "EighteenMp",
-  },
-  {
-    name: "19mp",
-    module: "NineteenMp",
-  },
-  {
-    name: "1k",
-    module: "OneK",
-  },
-  {
-    name: "1k_plus",
-    module: "OneKPlus",
-  },
-  {
-    name: "1x_mobiledata",
-    module: "TimesOneMobiledata",
-  },
-  {
-    name: "1x_mobiledata_badge",
-    module: "TimesOneMobiledataBadge",
-  },
-  {
-    name: "20mp",
-    module: "TwentyMp",
-  },
-  {
-    name: "21mp",
-    module: "TwentyOneMp",
-  },
-  {
-    name: "22mp",
-    module: "TwentyTwoMp",
-  },
-  {
-    name: "23mp",
-    module: "TwentyThreeMp",
-  },
-  {
-    name: "24fps_select",
-    module: "TwentyFourFpsSelect",
-  },
-  {
-    name: "24mp",
-    module: "TwentyFourMp",
-  },
-  {
-    name: "2d",
-    module: "TwoD",
-  },
-  {
-    name: "2k",
-    module: "TwoK",
-  },
-  {
-    name: "2k_plus",
-    module: "TwoKPlus",
-  },
-  {
-    name: "2mp",
-    module: "TwoMp",
-  },
-  {
-    name: "30fps",
-    module: "ThirtyFps",
-  },
-  {
-    name: "30fps_select",
-    module: "ThirtyFpsSelect",
-  },
-  {
-    name: "360",
-    module: "ThreeSixty",
-  },
-  {
-    name: "3d",
-    module: "ThreeD",
-  },
-  {
-    name: "3d_rotation",
-    module: "ThreeDRotation",
-  },
-  {
-    name: "3g_mobiledata",
-    module: "ThreeGMobiledata",
-  },
-  {
-    name: "3g_mobiledata_badge",
-    module: "ThreeGMobiledataBadge",
-  },
-  {
-    name: "3k",
-    module: "ThreeK",
-  },
-  {
-    name: "3k_plus",
-    module: "ThreeKPlus",
-  },
-  {
-    name: "3mp",
-    module: "ThreeMp",
-  },
-  {
-    name: "3p",
-    module: "ThreeP",
-  },
-  {
-    name: "4g_mobiledata",
-    module: "FourGMobiledata",
-  },
-  {
-    name: "4g_mobiledata_badge",
-    module: "FourGMobiledataBadge",
-  },
-  {
-    name: "4g_plus_mobiledata",
-    module: "FourGPlusMobiledata",
-  },
-  {
-    name: "4k",
-    module: "FourK",
-  },
-  {
-    name: "4k_plus",
-    module: "FourKPlus",
-  },
-  {
-    name: "4mp",
-    module: "FourMp",
-  },
-  {
-    name: "50mp",
-    module: "FiftyMp",
-  },
-  {
-    name: "5g",
-    module: "FiveG",
-  },
-  {
-    name: "5g_mobiledata_badge",
-    module: "FiveGMobiledataBadge",
-  },
-  {
-    name: "5k",
-    module: "FiveK",
-  },
-  {
-    name: "5k_plus",
-    module: "FiveKPlus",
-  },
-  {
-    name: "5mp",
-    module: "FiveMp",
-  },
-  {
-    name: "60fps",
-    module: "SixtyFps",
-  },
-  {
-    name: "60fps_select",
-    module: "SixtyFpsSelect",
-  },
-  {
-    name: "6k",
-    module: "SixK",
-  },
-  {
-    name: "6k_plus",
-    module: "SixKPlus",
-  },
-  {
-    name: "6mp",
-    module: "SixMp",
-  },
-  {
-    name: "7k",
-    module: "SevenK",
-  },
-  {
-    name: "7k_plus",
-    module: "SevenKPlus",
-  },
-  {
-    name: "7mp",
-    module: "SevenMp",
-  },
-  {
-    name: "8k",
-    module: "EightK",
-  },
-  {
-    name: "8k_plus",
-    module: "EightKPlus",
-  },
-  {
-    name: "8mp",
-    module: "EightMp",
-  },
-  {
-    name: "9k",
-    module: "NineK",
-  },
-  {
-    name: "9k_plus",
-    module: "NineKPlus",
-  },
-  {
-    name: "9mp",
-    module: "NineMp",
-  },
-  {
     name: "abc",
     module: "Abc",
-  },
-  {
-    name: "ac_unit",
-    module: "AcUnit",
   },
   {
     name: "accessibility",
@@ -320,6 +64,10 @@ const icons = [
     module: "ActivityZone",
   },
   {
+    name: "ac_unit",
+    module: "AcUnit",
+  },
+  {
     name: "acupuncture",
     module: "Acupuncture",
   },
@@ -330,22 +78,6 @@ const icons = [
   {
     name: "ad",
     module: "Ad",
-  },
-  {
-    name: "ad_group",
-    module: "AdGroup",
-  },
-  {
-    name: "ad_group_off",
-    module: "AdGroupOff",
-  },
-  {
-    name: "ad_off",
-    module: "AdOff",
-  },
-  {
-    name: "ad_units",
-    module: "AdUnits",
   },
   {
     name: "adaptive_audio_mic",
@@ -368,16 +100,16 @@ const icons = [
     module: "Add2",
   },
   {
-    name: "add_a_photo",
-    module: "AddAPhoto",
-  },
-  {
     name: "add_ad",
     module: "AddAd",
   },
   {
     name: "add_alert",
     module: "AddAlert",
+  },
+  {
+    name: "add_a_photo",
+    module: "AddAPhoto",
   },
   {
     name: "add_box",
@@ -492,6 +224,14 @@ const icons = [
     module: "AdfScanner",
   },
   {
+    name: "ad_group",
+    module: "AdGroup",
+  },
+  {
+    name: "ad_group_off",
+    module: "AdGroupOff",
+  },
+  {
     name: "adjust",
     module: "Adjust",
   },
@@ -504,8 +244,16 @@ const icons = [
     module: "AdminPanelSettings",
   },
   {
+    name: "ad_off",
+    module: "AdOff",
+  },
+  {
     name: "ads_click",
     module: "AdsClick",
+  },
+  {
+    name: "ad_units",
+    module: "AdUnits",
   },
   {
     name: "agender",
@@ -524,12 +272,8 @@ const icons = [
     module: "AirFreshener",
   },
   {
-    name: "air_purifier",
-    module: "AirPurifier",
-  },
-  {
-    name: "air_purifier_gen",
-    module: "AirPurifierGen",
+    name: "airlines",
+    module: "Airlines",
   },
   {
     name: "airline_seat_flat",
@@ -568,16 +312,12 @@ const icons = [
     module: "AirlineStops",
   },
   {
-    name: "airlines",
-    module: "Airlines",
+    name: "airplanemode_inactive",
+    module: "AirplanemodeInactive",
   },
   {
     name: "airplane_ticket",
     module: "AirplaneTicket",
-  },
-  {
-    name: "airplanemode_inactive",
-    module: "AirplanemodeInactive",
   },
   {
     name: "airplay",
@@ -586,6 +326,14 @@ const icons = [
   {
     name: "airport_shuttle",
     module: "AirportShuttle",
+  },
+  {
+    name: "air_purifier",
+    module: "AirPurifier",
+  },
+  {
+    name: "air_purifier_gen",
+    module: "AirPurifierGen",
   },
   {
     name: "airware",
@@ -724,6 +472,14 @@ const icons = [
     module: "AlignVerticalTop",
   },
   {
+    name: "allergies",
+    module: "Allergies",
+  },
+  {
+    name: "allergy",
+    module: "Allergy",
+  },
+  {
     name: "all_inbox",
     module: "AllInbox",
   },
@@ -740,24 +496,16 @@ const icons = [
     module: "AllOut",
   },
   {
-    name: "allergies",
-    module: "Allergies",
-  },
-  {
-    name: "allergy",
-    module: "Allergy",
-  },
-  {
-    name: "alt_route",
-    module: "AltRoute",
-  },
-  {
     name: "alternate_email",
     module: "AlternateEmail",
   },
   {
     name: "altitude",
     module: "Altitude",
+  },
+  {
+    name: "alt_route",
+    module: "AltRoute",
   },
   {
     name: "ambulance",
@@ -820,6 +568,10 @@ const icons = [
     module: "ApkInstall",
   },
   {
+    name: "apparel",
+    module: "Apparel",
+  },
+  {
     name: "app_badging",
     module: "AppBadging",
   },
@@ -830,10 +582,6 @@ const icons = [
   {
     name: "app_registration",
     module: "AppRegistration",
-  },
-  {
-    name: "apparel",
-    module: "Apparel",
   },
   {
     name: "approval",
@@ -864,14 +612,6 @@ const icons = [
     module: "AqIndoor",
   },
   {
-    name: "ar_on_you",
-    module: "ArOnYou",
-  },
-  {
-    name: "ar_stickers",
-    module: "ArStickers",
-  },
-  {
     name: "architecture",
     module: "Architecture",
   },
@@ -886,6 +626,10 @@ const icons = [
   {
     name: "arming_countdown",
     module: "ArmingCountdown",
+  },
+  {
+    name: "ar_on_you",
+    module: "ArOnYou",
   },
   {
     name: "arrow_and_edge",
@@ -1000,6 +744,26 @@ const icons = [
     module: "ArrowSelectorTool",
   },
   {
+    name: "arrows_input",
+    module: "ArrowsInput",
+  },
+  {
+    name: "arrows_more_down",
+    module: "ArrowsMoreDown",
+  },
+  {
+    name: "arrows_more_up",
+    module: "ArrowsMoreUp",
+  },
+  {
+    name: "arrows_output",
+    module: "ArrowsOutput",
+  },
+  {
+    name: "arrows_outward",
+    module: "ArrowsOutward",
+  },
+  {
     name: "arrow_split",
     module: "ArrowSplit",
   },
@@ -1032,28 +796,8 @@ const icons = [
     module: "ArrowWarmUp",
   },
   {
-    name: "arrows_input",
-    module: "ArrowsInput",
-  },
-  {
-    name: "arrows_more_down",
-    module: "ArrowsMoreDown",
-  },
-  {
-    name: "arrows_more_up",
-    module: "ArrowsMoreUp",
-  },
-  {
-    name: "arrows_output",
-    module: "ArrowsOutput",
-  },
-  {
-    name: "arrows_outward",
-    module: "ArrowsOutward",
-  },
-  {
-    name: "art_track",
-    module: "ArtTrack",
+    name: "ar_stickers",
+    module: "ArStickers",
   },
   {
     name: "article",
@@ -1070,6 +814,10 @@ const icons = [
   {
     name: "artist",
     module: "Artist",
+  },
+  {
+    name: "art_track",
+    module: "ArtTrack",
   },
   {
     name: "aspect_ratio",
@@ -1104,10 +852,6 @@ const icons = [
     module: "AssignmentTurnedIn",
   },
   {
-    name: "assist_walker",
-    module: "AssistWalker",
-  },
-  {
     name: "assistant_device",
     module: "AssistantDevice",
   },
@@ -1122,6 +866,10 @@ const icons = [
   {
     name: "assistant_on_hub",
     module: "AssistantOnHub",
+  },
+  {
+    name: "assist_walker",
+    module: "AssistWalker",
   },
   {
     name: "assured_workload",
@@ -1156,12 +904,12 @@ const icons = [
     module: "AttachFileOff",
   },
   {
-    name: "attach_money",
-    module: "AttachMoney",
-  },
-  {
     name: "attachment",
     module: "Attachment",
+  },
+  {
+    name: "attach_money",
+    module: "AttachMoney",
   },
   {
     name: "attractions",
@@ -1196,26 +944,6 @@ const icons = [
     module: "AutoDelete",
   },
   {
-    name: "auto_read_pause",
-    module: "AutoReadPause",
-  },
-  {
-    name: "auto_read_play",
-    module: "AutoReadPlay",
-  },
-  {
-    name: "auto_stories",
-    module: "AutoStories",
-  },
-  {
-    name: "auto_towing",
-    module: "AutoTowing",
-  },
-  {
-    name: "auto_transmission",
-    module: "AutoTransmission",
-  },
-  {
     name: "autofps_select",
     module: "AutofpsSelect",
   },
@@ -1232,6 +960,14 @@ const icons = [
     module: "Autoplay",
   },
   {
+    name: "auto_read_pause",
+    module: "AutoReadPause",
+  },
+  {
+    name: "auto_read_play",
+    module: "AutoReadPlay",
+  },
+  {
     name: "autorenew",
     module: "Autorenew",
   },
@@ -1240,12 +976,20 @@ const icons = [
     module: "Autostop",
   },
   {
-    name: "av1",
-    module: "Av1",
+    name: "auto_stories",
+    module: "AutoStories",
   },
   {
-    name: "av_timer",
-    module: "AvTimer",
+    name: "auto_towing",
+    module: "AutoTowing",
+  },
+  {
+    name: "auto_transmission",
+    module: "AutoTransmission",
+  },
+  {
+    name: "av1",
+    module: "Av1",
   },
   {
     name: "avc",
@@ -1260,6 +1004,10 @@ const icons = [
     module: "AvgTime",
   },
   {
+    name: "av_timer",
+    module: "AvTimer",
+  },
+  {
     name: "award_star",
     module: "AwardStar",
   },
@@ -1270,14 +1018,6 @@ const icons = [
   {
     name: "baby_changing_station",
     module: "BabyChangingStation",
-  },
-  {
-    name: "back_hand",
-    module: "BackHand",
-  },
-  {
-    name: "back_to_tab",
-    module: "BackToTab",
   },
   {
     name: "background_dot_large",
@@ -1294,6 +1034,10 @@ const icons = [
   {
     name: "background_replace",
     module: "BackgroundReplace",
+  },
+  {
+    name: "back_hand",
+    module: "BackHand",
   },
   {
     name: "backlight_high",
@@ -1314,6 +1058,10 @@ const icons = [
   {
     name: "backspace",
     module: "Backspace",
+  },
+  {
+    name: "back_to_tab",
+    module: "BackToTab",
   },
   {
     name: "backup",
@@ -1768,14 +1516,6 @@ const icons = [
     module: "Book6",
   },
   {
-    name: "book_online",
-    module: "BookOnline",
-  },
-  {
-    name: "book_ribbon",
-    module: "BookRibbon",
-  },
-  {
     name: "bookmark",
     module: "Bookmark",
   },
@@ -1812,12 +1552,20 @@ const icons = [
     module: "BookmarkRemove",
   },
   {
+    name: "bookmarks",
+    module: "Bookmarks",
+  },
+  {
     name: "bookmark_star",
     module: "BookmarkStar",
   },
   {
-    name: "bookmarks",
-    module: "Bookmarks",
+    name: "book_online",
+    module: "BookOnline",
+  },
+  {
+    name: "book_ribbon",
+    module: "BookRibbon",
   },
   {
     name: "books_movies_and_music",
@@ -2072,10 +1820,6 @@ const icons = [
     module: "BusAlert",
   },
   {
-    name: "bus_railway",
-    module: "BusRailway",
-  },
-  {
     name: "business_center",
     module: "BusinessCenter",
   },
@@ -2086,6 +1830,10 @@ const icons = [
   {
     name: "business_messages",
     module: "BusinessMessages",
+  },
+  {
+    name: "bus_railway",
+    module: "BusRailway",
   },
   {
     name: "buttons_alt",
@@ -2224,12 +1972,12 @@ const icons = [
     module: "CameraRoll",
   },
   {
-    name: "camera_video",
-    module: "CameraVideo",
-  },
-  {
     name: "cameraswitch",
     module: "Cameraswitch",
+  },
+  {
+    name: "camera_video",
+    module: "CameraVideo",
   },
   {
     name: "campaign",
@@ -2300,6 +2048,30 @@ const icons = [
     module: "CarDefrostRight",
   },
   {
+    name: "cardio_load",
+    module: "CardioLoad",
+  },
+  {
+    name: "cardiology",
+    module: "Cardiology",
+  },
+  {
+    name: "card_membership",
+    module: "CardMembership",
+  },
+  {
+    name: "cards",
+    module: "Cards",
+  },
+  {
+    name: "cards_star",
+    module: "CardsStar",
+  },
+  {
+    name: "card_travel",
+    module: "CardTravel",
+  },
+  {
     name: "car_fan_low_left",
     module: "CarFanLowLeft",
   },
@@ -2340,44 +2112,16 @@ const icons = [
     module: "CarMirrorHeat",
   },
   {
+    name: "carpenter",
+    module: "Carpenter",
+  },
+  {
     name: "car_rental",
     module: "CarRental",
   },
   {
     name: "car_repair",
     module: "CarRepair",
-  },
-  {
-    name: "car_tag",
-    module: "CarTag",
-  },
-  {
-    name: "card_membership",
-    module: "CardMembership",
-  },
-  {
-    name: "card_travel",
-    module: "CardTravel",
-  },
-  {
-    name: "cardio_load",
-    module: "CardioLoad",
-  },
-  {
-    name: "cardiology",
-    module: "Cardiology",
-  },
-  {
-    name: "cards",
-    module: "Cards",
-  },
-  {
-    name: "cards_star",
-    module: "CardsStar",
-  },
-  {
-    name: "carpenter",
-    module: "Carpenter",
   },
   {
     name: "carry_on_bag",
@@ -2394,6 +2138,10 @@ const icons = [
   {
     name: "carry_on_bag_question",
     module: "CarryOnBagQuestion",
+  },
+  {
+    name: "car_tag",
+    module: "CarTag",
   },
   {
     name: "cases",
@@ -2416,16 +2164,16 @@ const icons = [
     module: "CastForEducation",
   },
   {
+    name: "castle",
+    module: "Castle",
+  },
+  {
     name: "cast_pause",
     module: "CastPause",
   },
   {
     name: "cast_warning",
     module: "CastWarning",
-  },
-  {
-    name: "castle",
-    module: "Castle",
   },
   {
     name: "category",
@@ -2528,6 +2276,10 @@ const icons = [
     module: "Check",
   },
   {
+    name: "checkbook",
+    module: "Checkbook",
+  },
+  {
     name: "check_box",
     module: "CheckBox",
   },
@@ -2540,28 +2292,20 @@ const icons = [
     module: "CheckCircle",
   },
   {
-    name: "check_in_out",
-    module: "CheckInOut",
-  },
-  {
-    name: "check_indeterminate_small",
-    module: "CheckIndeterminateSmall",
-  },
-  {
-    name: "check_small",
-    module: "CheckSmall",
-  },
-  {
-    name: "checkbook",
-    module: "Checkbook",
-  },
-  {
     name: "checked_bag",
     module: "CheckedBag",
   },
   {
     name: "checked_bag_question",
     module: "CheckedBagQuestion",
+  },
+  {
+    name: "check_indeterminate_small",
+    module: "CheckIndeterminateSmall",
+  },
+  {
+    name: "check_in_out",
+    module: "CheckInOut",
   },
   {
     name: "checklist",
@@ -2574,6 +2318,10 @@ const icons = [
   {
     name: "checkroom",
     module: "Checkroom",
+  },
+  {
+    name: "check_small",
+    module: "CheckSmall",
   },
   {
     name: "cheer",
@@ -2624,16 +2372,16 @@ const icons = [
     module: "Chips",
   },
   {
-    name: "chrome_reader_mode",
-    module: "ChromeReaderMode",
-  },
-  {
     name: "chromecast_2",
     module: "Chromecast2",
   },
   {
     name: "chromecast_device",
     module: "ChromecastDevice",
+  },
+  {
+    name: "chrome_reader_mode",
+    module: "ChromeReaderMode",
   },
   {
     name: "chronic",
@@ -2736,14 +2484,6 @@ const icons = [
     module: "Close",
   },
   {
-    name: "close_fullscreen",
-    module: "CloseFullscreen",
-  },
-  {
-    name: "close_small",
-    module: "CloseSmall",
-  },
-  {
     name: "closed_caption",
     module: "ClosedCaption",
   },
@@ -2754,6 +2494,14 @@ const icons = [
   {
     name: "closed_caption_disabled",
     module: "ClosedCaptionDisabled",
+  },
+  {
+    name: "close_fullscreen",
+    module: "CloseFullscreen",
+  },
+  {
+    name: "close_small",
+    module: "CloseSmall",
   },
   {
     name: "cloud",
@@ -2794,10 +2542,6 @@ const icons = [
   {
     name: "co2",
     module: "Co2",
-  },
-  {
-    name: "co_present",
-    module: "CoPresent",
   },
   {
     name: "code",
@@ -2940,10 +2684,6 @@ const icons = [
     module: "Congenital",
   },
   {
-    name: "connect_without_contact",
-    module: "ConnectWithoutContact",
-  },
-  {
     name: "connected_tv",
     module: "ConnectedTv",
   },
@@ -2952,12 +2692,24 @@ const icons = [
     module: "ConnectingAirports",
   },
   {
+    name: "connect_without_contact",
+    module: "ConnectWithoutContact",
+  },
+  {
     name: "construction",
     module: "Construction",
   },
   {
     name: "contact_emergency",
     module: "ContactEmergency",
+  },
+  {
+    name: "contactless",
+    module: "Contactless",
+  },
+  {
+    name: "contactless_off",
+    module: "ContactlessOff",
   },
   {
     name: "contact_mail",
@@ -2972,24 +2724,16 @@ const icons = [
     module: "ContactPhone",
   },
   {
-    name: "contact_support",
-    module: "ContactSupport",
-  },
-  {
-    name: "contactless",
-    module: "Contactless",
-  },
-  {
-    name: "contactless_off",
-    module: "ContactlessOff",
-  },
-  {
     name: "contacts",
     module: "Contacts",
   },
   {
     name: "contacts_product",
     module: "ContactsProduct",
+  },
+  {
+    name: "contact_support",
+    module: "ContactSupport",
   },
   {
     name: "content_copy",
@@ -3056,12 +2800,12 @@ const icons = [
     module: "ControlCamera",
   },
   {
-    name: "control_point_duplicate",
-    module: "ControlPointDuplicate",
-  },
-  {
     name: "controller_gen",
     module: "ControllerGen",
+  },
+  {
+    name: "control_point_duplicate",
+    module: "ControlPointDuplicate",
   },
   {
     name: "conversion_path",
@@ -3094,6 +2838,10 @@ const icons = [
   {
     name: "cool_to_dry",
     module: "CoolToDry",
+  },
+  {
+    name: "co_present",
+    module: "CoPresent",
   },
   {
     name: "copy_all",
@@ -3352,6 +3100,22 @@ const icons = [
     module: "DataArray",
   },
   {
+    name: "database",
+    module: "Database",
+  },
+  {
+    name: "database_off",
+    module: "DatabaseOff",
+  },
+  {
+    name: "database_search",
+    module: "DatabaseSearch",
+  },
+  {
+    name: "database_upload",
+    module: "DatabaseUpload",
+  },
+  {
     name: "data_check",
     module: "DataCheck",
   },
@@ -3376,6 +3140,14 @@ const icons = [
     module: "DataSaverOn",
   },
   {
+    name: "dataset",
+    module: "Dataset",
+  },
+  {
+    name: "dataset_linked",
+    module: "DatasetLinked",
+  },
+  {
     name: "data_table",
     module: "DataTable",
   },
@@ -3386,30 +3158,6 @@ const icons = [
   {
     name: "data_usage",
     module: "DataUsage",
-  },
-  {
-    name: "database",
-    module: "Database",
-  },
-  {
-    name: "database_off",
-    module: "DatabaseOff",
-  },
-  {
-    name: "database_search",
-    module: "DatabaseSearch",
-  },
-  {
-    name: "database_upload",
-    module: "DatabaseUpload",
-  },
-  {
-    name: "dataset",
-    module: "Dataset",
-  },
-  {
-    name: "dataset_linked",
-    module: "DatasetLinked",
   },
   {
     name: "date_range",
@@ -3632,14 +3380,6 @@ const icons = [
     module: "DeviceHub",
   },
   {
-    name: "device_thermostat",
-    module: "DeviceThermostat",
-  },
-  {
-    name: "device_unknown",
-    module: "DeviceUnknown",
-  },
-  {
     name: "devices",
     module: "Devices",
   },
@@ -3662,6 +3402,14 @@ const icons = [
   {
     name: "devices_wearables",
     module: "DevicesWearables",
+  },
+  {
+    name: "device_thermostat",
+    module: "DeviceThermostat",
+  },
+  {
+    name: "device_unknown",
+    module: "DeviceUnknown",
   },
   {
     name: "dew_point",
@@ -3836,26 +3584,6 @@ const icons = [
     module: "Dns",
   },
   {
-    name: "do_not_disturb_off",
-    module: "DoNotDisturbOff",
-  },
-  {
-    name: "do_not_disturb_on",
-    module: "DoNotDisturbOn",
-  },
-  {
-    name: "do_not_disturb_on_total_silence",
-    module: "DoNotDisturbOnTotalSilence",
-  },
-  {
-    name: "do_not_step",
-    module: "DoNotStep",
-  },
-  {
-    name: "do_not_touch",
-    module: "DoNotTouch",
-  },
-  {
     name: "dock",
     module: "Dock",
   },
@@ -3924,6 +3652,26 @@ const icons = [
     module: "DoneOutline",
   },
   {
+    name: "do_not_disturb_off",
+    module: "DoNotDisturbOff",
+  },
+  {
+    name: "do_not_disturb_on",
+    module: "DoNotDisturbOn",
+  },
+  {
+    name: "do_not_disturb_on_total_silence",
+    module: "DoNotDisturbOnTotalSilence",
+  },
+  {
+    name: "do_not_step",
+    module: "DoNotStep",
+  },
+  {
+    name: "do_not_touch",
+    module: "DoNotTouch",
+  },
+  {
     name: "donut_large",
     module: "DonutLarge",
   },
@@ -3934,6 +3682,18 @@ const icons = [
   {
     name: "door_back",
     module: "DoorBack",
+  },
+  {
+    name: "doorbell",
+    module: "Doorbell",
+  },
+  {
+    name: "doorbell_3p",
+    module: "Doorbell3p",
+  },
+  {
+    name: "doorbell_chime",
+    module: "DoorbellChime",
   },
   {
     name: "door_front",
@@ -3950,18 +3710,6 @@ const icons = [
   {
     name: "door_sliding",
     module: "DoorSliding",
-  },
-  {
-    name: "doorbell",
-    module: "Doorbell",
-  },
-  {
-    name: "doorbell_3p",
-    module: "Doorbell3p",
-  },
-  {
-    name: "doorbell_chime",
-    module: "DoorbellChime",
   },
   {
     name: "double_arrow",
@@ -4092,18 +3840,6 @@ const icons = [
     module: "E911Emergency",
   },
   {
-    name: "e_mobiledata",
-    module: "EMobiledata",
-  },
-  {
-    name: "e_mobiledata_badge",
-    module: "EMobiledataBadge",
-  },
-  {
-    name: "ear_sound",
-    module: "EarSound",
-  },
-  {
     name: "earbud_case",
     module: "EarbudCase",
   },
@@ -4130,6 +3866,10 @@ const icons = [
   {
     name: "early_on",
     module: "EarlyOn",
+  },
+  {
+    name: "ear_sound",
+    module: "EarSound",
   },
   {
     name: "earthquake",
@@ -4212,6 +3952,10 @@ const icons = [
     module: "EditOff",
   },
   {
+    name: "editor_choice",
+    module: "EditorChoice",
+  },
+  {
     name: "edit_road",
     module: "EditRoad",
   },
@@ -4220,16 +3964,32 @@ const icons = [
     module: "EditSquare",
   },
   {
-    name: "editor_choice",
-    module: "EditorChoice",
-  },
-  {
     name: "egg",
     module: "Egg",
   },
   {
     name: "egg_alt",
     module: "EggAlt",
+  },
+  {
+    name: "18mp",
+    module: "EighteenMp",
+  },
+  {
+    name: "18_up_rating",
+    module: "EighteenUpRating",
+  },
+  {
+    name: "8k",
+    module: "EightK",
+  },
+  {
+    name: "8k_plus",
+    module: "EightKPlus",
+  },
+  {
+    name: "8mp",
+    module: "EightMp",
   },
   {
     name: "eject",
@@ -4242,6 +4002,10 @@ const icons = [
   {
     name: "elderly_woman",
     module: "ElderlyWoman",
+  },
+  {
+    name: "electrical_services",
+    module: "ElectricalServices",
   },
   {
     name: "electric_bike",
@@ -4272,16 +4036,16 @@ const icons = [
     module: "ElectricScooter",
   },
   {
-    name: "electrical_services",
-    module: "ElectricalServices",
-  },
-  {
     name: "elevation",
     module: "Elevation",
   },
   {
     name: "elevator",
     module: "Elevator",
+  },
+  {
+    name: "11mp",
+    module: "ElevenMp",
   },
   {
     name: "emergency",
@@ -4310,6 +4074,14 @@ const icons = [
   {
     name: "emergency_share_off",
     module: "EmergencyShareOff",
+  },
+  {
+    name: "e_mobiledata",
+    module: "EMobiledata",
+  },
+  {
+    name: "e_mobiledata_badge",
+    module: "EMobiledataBadge",
   },
   {
     name: "emoji_food_beverage",
@@ -4464,26 +4236,6 @@ const icons = [
     module: "EuroSymbol",
   },
   {
-    name: "ev_mobiledata_badge",
-    module: "EvMobiledataBadge",
-  },
-  {
-    name: "ev_shadow",
-    module: "EvShadow",
-  },
-  {
-    name: "ev_shadow_add",
-    module: "EvShadowAdd",
-  },
-  {
-    name: "ev_shadow_minus",
-    module: "EvShadowMinus",
-  },
-  {
-    name: "ev_station",
-    module: "EvStation",
-  },
-  {
     name: "event",
     module: "Event",
   },
@@ -4514,6 +4266,26 @@ const icons = [
   {
     name: "event_upcoming",
     module: "EventUpcoming",
+  },
+  {
+    name: "ev_mobiledata_badge",
+    module: "EvMobiledataBadge",
+  },
+  {
+    name: "ev_shadow",
+    module: "EvShadow",
+  },
+  {
+    name: "ev_shadow_add",
+    module: "EvShadowAdd",
+  },
+  {
+    name: "ev_shadow_minus",
+    module: "EvShadowMinus",
+  },
+  {
+    name: "ev_station",
+    module: "EvStation",
   },
   {
     name: "exclamation",
@@ -4596,16 +4368,16 @@ const icons = [
     module: "ExtensionOff",
   },
   {
-    name: "eye_tracking",
-    module: "EyeTracking",
-  },
-  {
     name: "eyeglasses",
     module: "Eyeglasses",
   },
   {
     name: "eyeglasses_2",
     module: "Eyeglasses2",
+  },
+  {
+    name: "eye_tracking",
+    module: "EyeTracking",
   },
   {
     name: "face",
@@ -4708,16 +4480,16 @@ const icons = [
     module: "FarsightDigital",
   },
   {
+    name: "fastfood",
+    module: "Fastfood",
+  },
+  {
     name: "fast_forward",
     module: "FastForward",
   },
   {
     name: "fast_rewind",
     module: "FastRewind",
-  },
-  {
-    name: "fastfood",
-    module: "Fastfood",
   },
   {
     name: "faucet",
@@ -4732,10 +4504,6 @@ const icons = [
     module: "Fax",
   },
   {
-    name: "feature_search",
-    module: "FeatureSearch",
-  },
-  {
     name: "featured_play_list",
     module: "FeaturedPlayList",
   },
@@ -4746,6 +4514,10 @@ const icons = [
   {
     name: "featured_video",
     module: "FeaturedVideo",
+  },
+  {
+    name: "feature_search",
+    module: "FeatureSearch",
   },
   {
     name: "feedback",
@@ -4796,6 +4568,14 @@ const icons = [
     module: "FiberSmartRecord",
   },
   {
+    name: "15mp",
+    module: "FifteenMp",
+  },
+  {
+    name: "50mp",
+    module: "FiftyMp",
+  },
+  {
     name: "file_copy",
     module: "FileCopy",
   },
@@ -4836,6 +4616,10 @@ const icons = [
     module: "FilePresent",
   },
   {
+    name: "files",
+    module: "Files",
+  },
+  {
     name: "file_save",
     module: "FileSave",
   },
@@ -4846,10 +4630,6 @@ const icons = [
   {
     name: "file_upload_off",
     module: "FileUploadOff",
-  },
-  {
-    name: "files",
-    module: "Files",
   },
   {
     name: "filter",
@@ -4988,16 +4768,24 @@ const icons = [
     module: "FireHydrant",
   },
   {
-    name: "fire_truck",
-    module: "FireTruck",
-  },
-  {
     name: "fireplace",
     module: "Fireplace",
   },
   {
+    name: "fire_truck",
+    module: "FireTruck",
+  },
+  {
     name: "first_page",
     module: "FirstPage",
+  },
+  {
+    name: "fitness_center",
+    module: "FitnessCenter",
+  },
+  {
+    name: "fitness_tracker",
+    module: "FitnessTracker",
   },
   {
     name: "fit_page",
@@ -5020,12 +4808,24 @@ const icons = [
     module: "FitWidth",
   },
   {
-    name: "fitness_center",
-    module: "FitnessCenter",
+    name: "5g",
+    module: "FiveG",
   },
   {
-    name: "fitness_tracker",
-    module: "FitnessTracker",
+    name: "5g_mobiledata_badge",
+    module: "FiveGMobiledataBadge",
+  },
+  {
+    name: "5k",
+    module: "FiveK",
+  },
+  {
+    name: "5k_plus",
+    module: "FiveKPlus",
+  },
+  {
+    name: "5mp",
+    module: "FiveMp",
   },
   {
     name: "flag",
@@ -5056,20 +4856,20 @@ const icons = [
     module: "FlashAuto",
   },
   {
-    name: "flash_off",
-    module: "FlashOff",
-  },
-  {
-    name: "flash_on",
-    module: "FlashOn",
-  },
-  {
     name: "flashlight_off",
     module: "FlashlightOff",
   },
   {
     name: "flashlight_on",
     module: "FlashlightOn",
+  },
+  {
+    name: "flash_off",
+    module: "FlashOff",
+  },
+  {
+    name: "flash_on",
+    module: "FlashOn",
   },
   {
     name: "flatware",
@@ -5100,12 +4900,12 @@ const icons = [
     module: "FlightLand",
   },
   {
-    name: "flight_takeoff",
-    module: "FlightTakeoff",
-  },
-  {
     name: "flights_and_hotels",
     module: "FlightsAndHotels",
+  },
+  {
+    name: "flight_takeoff",
+    module: "FlightTakeoff",
   },
   {
     name: "flip",
@@ -5292,10 +5092,6 @@ const icons = [
     module: "Footprint",
   },
   {
-    name: "for_you",
-    module: "ForYou",
-  },
-  {
     name: "forest",
     module: "Forest",
   },
@@ -5304,16 +5100,16 @@ const icons = [
     module: "ForkLeft",
   },
   {
+    name: "forklift",
+    module: "Forklift",
+  },
+  {
     name: "fork_right",
     module: "ForkRight",
   },
   {
     name: "fork_spoon",
     module: "ForkSpoon",
-  },
-  {
-    name: "forklift",
-    module: "Forklift",
   },
   {
     name: "format_align_center",
@@ -5476,14 +5272,6 @@ const icons = [
     module: "FormatTextClip",
   },
   {
-    name: "format_text_overflow",
-    module: "FormatTextOverflow",
-  },
-  {
-    name: "format_text_wrap",
-    module: "FormatTextWrap",
-  },
-  {
     name: "format_textdirection_l_to_r",
     module: "FormatTextdirectionLToR",
   },
@@ -5494,6 +5282,14 @@ const icons = [
   {
     name: "format_textdirection_vertical",
     module: "FormatTextdirectionVertical",
+  },
+  {
+    name: "format_text_overflow",
+    module: "FormatTextOverflow",
+  },
+  {
+    name: "format_text_wrap",
+    module: "FormatTextWrap",
   },
   {
     name: "format_underlined",
@@ -5548,8 +5344,40 @@ const icons = [
     module: "ForwardToInbox",
   },
   {
+    name: "for_you",
+    module: "ForYou",
+  },
+  {
     name: "foundation",
     module: "Foundation",
+  },
+  {
+    name: "4g_mobiledata",
+    module: "FourGMobiledata",
+  },
+  {
+    name: "4g_mobiledata_badge",
+    module: "FourGMobiledataBadge",
+  },
+  {
+    name: "4g_plus_mobiledata",
+    module: "FourGPlusMobiledata",
+  },
+  {
+    name: "4k",
+    module: "FourK",
+  },
+  {
+    name: "4k_plus",
+    module: "FourKPlus",
+  },
+  {
+    name: "4mp",
+    module: "FourMp",
+  },
+  {
+    name: "14mp",
+    module: "FourteenMp",
   },
   {
     name: "fragrance",
@@ -5600,10 +5428,6 @@ const icons = [
     module: "FullHd",
   },
   {
-    name: "full_stacked_bar_chart",
-    module: "FullStackedBarChart",
-  },
-  {
     name: "fullscreen",
     module: "Fullscreen",
   },
@@ -5616,6 +5440,10 @@ const icons = [
     module: "FullscreenPortrait",
   },
   {
+    name: "full_stacked_bar_chart",
+    module: "FullStackedBarChart",
+  },
+  {
     name: "function",
     module: "Function",
   },
@@ -5626,18 +5454,6 @@ const icons = [
   {
     name: "funicular",
     module: "Funicular",
-  },
-  {
-    name: "g_mobiledata",
-    module: "GMobiledata",
-  },
-  {
-    name: "g_mobiledata_badge",
-    module: "GMobiledataBadge",
-  },
-  {
-    name: "g_translate",
-    module: "GTranslate",
   },
   {
     name: "gallery_thumbnail",
@@ -5752,8 +5568,12 @@ const icons = [
     module: "Glyphs",
   },
   {
-    name: "go_to_line",
-    module: "GoToLine",
+    name: "g_mobiledata",
+    module: "GMobiledata",
+  },
+  {
+    name: "g_mobiledata_badge",
+    module: "GMobiledataBadge",
   },
   {
     name: "golf_course",
@@ -5774,6 +5594,10 @@ const icons = [
   {
     name: "google_wifi",
     module: "GoogleWifi",
+  },
+  {
+    name: "go_to_line",
+    module: "GoToLine",
   },
   {
     name: "gpp_bad",
@@ -5876,24 +5700,16 @@ const icons = [
     module: "GroupAdd",
   },
   {
+    name: "grouped_bar_chart",
+    module: "GroupedBarChart",
+  },
+  {
     name: "group_off",
     module: "GroupOff",
   },
   {
     name: "group_remove",
     module: "GroupRemove",
-  },
-  {
-    name: "group_search",
-    module: "GroupSearch",
-  },
-  {
-    name: "group_work",
-    module: "GroupWork",
-  },
-  {
-    name: "grouped_bar_chart",
-    module: "GroupedBarChart",
   },
   {
     name: "groups",
@@ -5908,28 +5724,24 @@ const icons = [
     module: "Groups3",
   },
   {
+    name: "group_search",
+    module: "GroupSearch",
+  },
+  {
+    name: "group_work",
+    module: "GroupWork",
+  },
+  {
+    name: "g_translate",
+    module: "GTranslate",
+  },
+  {
     name: "guardian",
     module: "Guardian",
   },
   {
     name: "gynecology",
     module: "Gynecology",
-  },
-  {
-    name: "h_mobiledata",
-    module: "HMobiledata",
-  },
-  {
-    name: "h_mobiledata_badge",
-    module: "HMobiledataBadge",
-  },
-  {
-    name: "h_plus_mobiledata",
-    module: "HPlusMobiledata",
-  },
-  {
-    name: "h_plus_mobiledata_badge",
-    module: "HPlusMobiledataBadge",
   },
   {
     name: "hail",
@@ -6188,28 +6000,8 @@ const icons = [
     module: "HighDensity",
   },
   {
-    name: "high_quality",
-    module: "HighQuality",
-  },
-  {
-    name: "high_res",
-    module: "HighRes",
-  },
-  {
     name: "highlight",
     module: "Highlight",
-  },
-  {
-    name: "highlight_keyboard_focus",
-    module: "HighlightKeyboardFocus",
-  },
-  {
-    name: "highlight_mouse_cursor",
-    module: "HighlightMouseCursor",
-  },
-  {
-    name: "highlight_text_cursor",
-    module: "HighlightTextCursor",
   },
   {
     name: "highlighter_size_1",
@@ -6230,6 +6022,26 @@ const icons = [
   {
     name: "highlighter_size_5",
     module: "HighlighterSize5",
+  },
+  {
+    name: "highlight_keyboard_focus",
+    module: "HighlightKeyboardFocus",
+  },
+  {
+    name: "highlight_mouse_cursor",
+    module: "HighlightMouseCursor",
+  },
+  {
+    name: "highlight_text_cursor",
+    module: "HighlightTextCursor",
+  },
+  {
+    name: "high_quality",
+    module: "HighQuality",
+  },
+  {
+    name: "high_res",
+    module: "HighRes",
   },
   {
     name: "hiking",
@@ -6266,6 +6078,14 @@ const icons = [
   {
     name: "hls_off",
     module: "HlsOff",
+  },
+  {
+    name: "h_mobiledata",
+    module: "HMobiledata",
+  },
+  {
+    name: "h_mobiledata_badge",
+    module: "HMobiledataBadge",
   },
   {
     name: "holiday_village",
@@ -6340,16 +6160,16 @@ const icons = [
     module: "Host",
   },
   {
-    name: "hot_tub",
-    module: "HotTub",
-  },
-  {
     name: "hotel",
     module: "Hotel",
   },
   {
     name: "hotel_class",
     module: "HotelClass",
+  },
+  {
+    name: "hot_tub",
+    module: "HotTub",
   },
   {
     name: "hourglass",
@@ -6388,20 +6208,20 @@ const icons = [
     module: "House",
   },
   {
-    name: "house_siding",
-    module: "HouseSiding",
-  },
-  {
-    name: "house_with_shield",
-    module: "HouseWithShield",
-  },
-  {
     name: "houseboat",
     module: "Houseboat",
   },
   {
     name: "household_supplies",
     module: "HouseholdSupplies",
+  },
+  {
+    name: "house_siding",
+    module: "HouseSiding",
+  },
+  {
+    name: "house_with_shield",
+    module: "HouseWithShield",
   },
   {
     name: "hov",
@@ -6414,6 +6234,14 @@ const icons = [
   {
     name: "how_to_vote",
     module: "HowToVote",
+  },
+  {
+    name: "h_plus_mobiledata",
+    module: "HPlusMobiledata",
+  },
+  {
+    name: "h_plus_mobiledata_badge",
+    module: "HPlusMobiledataBadge",
   },
   {
     name: "hr_resting",
@@ -6468,12 +6296,12 @@ const icons = [
     module: "HvacMaxDefrost",
   },
   {
-    name: "ice_skating",
-    module: "IceSkating",
-  },
-  {
     name: "icecream",
     module: "Icecream",
+  },
+  {
+    name: "ice_skating",
+    module: "IceSkating",
   },
   {
     name: "id_card",
@@ -6528,16 +6356,12 @@ const icons = [
     module: "Immunology",
   },
   {
-    name: "import_contacts",
-    module: "ImportContacts",
-  },
-  {
     name: "important_devices",
     module: "ImportantDevices",
   },
   {
-    name: "in_home_mode",
-    module: "InHomeMode",
+    name: "import_contacts",
+    module: "ImportContacts",
   },
   {
     name: "inactive_order",
@@ -6590,6 +6414,10 @@ const icons = [
   {
     name: "infrared",
     module: "Infrared",
+  },
+  {
+    name: "in_home_mode",
+    module: "InHomeMode",
   },
   {
     name: "ink_eraser",
@@ -6756,18 +6584,6 @@ const icons = [
     module: "Key",
   },
   {
-    name: "key_off",
-    module: "KeyOff",
-  },
-  {
-    name: "key_vertical",
-    module: "KeyVertical",
-  },
-  {
-    name: "key_visualizer",
-    module: "KeyVisualizer",
-  },
-  {
     name: "keyboard",
     module: "Keyboard",
   },
@@ -6880,6 +6696,18 @@ const icons = [
     module: "KeyboardTabRtl",
   },
   {
+    name: "key_off",
+    module: "KeyOff",
+  },
+  {
+    name: "key_vertical",
+    module: "KeyVertical",
+  },
+  {
+    name: "key_visualizer",
+    module: "KeyVisualizer",
+  },
+  {
     name: "kid_star",
     module: "KidStar",
   },
@@ -6896,18 +6724,6 @@ const icons = [
     module: "Kitesurfing",
   },
   {
-    name: "lab_panel",
-    module: "LabPanel",
-  },
-  {
-    name: "lab_profile",
-    module: "LabProfile",
-  },
-  {
-    name: "lab_research",
-    module: "LabResearch",
-  },
-  {
     name: "label",
     module: "Label",
   },
@@ -6918,6 +6734,18 @@ const icons = [
   {
     name: "label_off",
     module: "LabelOff",
+  },
+  {
+    name: "lab_panel",
+    module: "LabPanel",
+  },
+  {
+    name: "lab_profile",
+    module: "LabProfile",
+  },
+  {
+    name: "lab_research",
+    module: "LabResearch",
   },
   {
     name: "labs",
@@ -7124,18 +6952,6 @@ const icons = [
     module: "Light",
   },
   {
-    name: "light_group",
-    module: "LightGroup",
-  },
-  {
-    name: "light_mode",
-    module: "LightMode",
-  },
-  {
-    name: "light_off",
-    module: "LightOff",
-  },
-  {
     name: "lightbulb",
     module: "Lightbulb",
   },
@@ -7148,8 +6964,24 @@ const icons = [
     module: "LightbulbCircle",
   },
   {
+    name: "light_group",
+    module: "LightGroup",
+  },
+  {
+    name: "light_mode",
+    module: "LightMode",
+  },
+  {
     name: "lightning_stand",
     module: "LightningStand",
+  },
+  {
+    name: "light_off",
+    module: "LightOff",
+  },
+  {
+    name: "linear_scale",
+    module: "LinearScale",
   },
   {
     name: "line_axis",
@@ -7216,16 +7048,8 @@ const icons = [
     module: "LineWeight",
   },
   {
-    name: "linear_scale",
-    module: "LinearScale",
-  },
-  {
     name: "link",
     module: "Link",
-  },
-  {
-    name: "link_off",
-    module: "LinkOff",
   },
   {
     name: "linked_camera",
@@ -7234,6 +7058,10 @@ const icons = [
   {
     name: "linked_services",
     module: "LinkedServices",
+  },
+  {
+    name: "link_off",
+    module: "LinkOff",
   },
   {
     name: "liquor",
@@ -7472,12 +7300,12 @@ const icons = [
     module: "LowDensity",
   },
   {
-    name: "low_priority",
-    module: "LowPriority",
-  },
-  {
     name: "lowercase",
     module: "Lowercase",
+  },
+  {
+    name: "low_priority",
+    module: "LowPriority",
   },
   {
     name: "loyalty",
@@ -7616,18 +7444,6 @@ const icons = [
     module: "MarkChatUnread",
   },
   {
-    name: "mark_email_read",
-    module: "MarkEmailRead",
-  },
-  {
-    name: "mark_email_unread",
-    module: "MarkEmailUnread",
-  },
-  {
-    name: "mark_unread_chat_alt",
-    module: "MarkUnreadChatAlt",
-  },
-  {
     name: "markdown",
     module: "Markdown",
   },
@@ -7638,6 +7454,18 @@ const icons = [
   {
     name: "markdown_paste",
     module: "MarkdownPaste",
+  },
+  {
+    name: "mark_email_read",
+    module: "MarkEmailRead",
+  },
+  {
+    name: "mark_email_unread",
+    module: "MarkEmailUnread",
+  },
+  {
+    name: "mark_unread_chat_alt",
+    module: "MarkUnreadChatAlt",
   },
   {
     name: "markunread_mailbox",
@@ -7932,6 +7760,10 @@ const icons = [
     module: "MobileCode",
   },
   {
+    name: "mobiledata_off",
+    module: "MobiledataOff",
+  },
+  {
     name: "mobile_dots",
     module: "MobileDots",
   },
@@ -8000,12 +7832,12 @@ const icons = [
     module: "MobileRotateLock",
   },
   {
-    name: "mobile_screen_share",
-    module: "MobileScreenShare",
-  },
-  {
     name: "mobile_screensaver",
     module: "MobileScreensaver",
+  },
+  {
+    name: "mobile_screen_share",
+    module: "MobileScreenShare",
   },
   {
     name: "mobile_sensor_hi",
@@ -8056,10 +7888,6 @@ const icons = [
     module: "MobileVibrate",
   },
   {
-    name: "mobiledata_off",
-    module: "MobiledataOff",
-  },
-  {
     name: "mode_comment",
     module: "ModeComment",
   },
@@ -8096,28 +7924,28 @@ const icons = [
     module: "ModeHeatOff",
   },
   {
-    name: "mode_night",
-    module: "ModeNight",
-  },
-  {
-    name: "mode_of_travel",
-    module: "ModeOfTravel",
-  },
-  {
-    name: "mode_off_on",
-    module: "ModeOffOn",
-  },
-  {
-    name: "mode_standby",
-    module: "ModeStandby",
+    name: "modeling",
+    module: "Modeling",
   },
   {
     name: "model_training",
     module: "ModelTraining",
   },
   {
-    name: "modeling",
-    module: "Modeling",
+    name: "mode_night",
+    module: "ModeNight",
+  },
+  {
+    name: "mode_off_on",
+    module: "ModeOffOn",
+  },
+  {
+    name: "mode_of_travel",
+    module: "ModeOfTravel",
+  },
+  {
+    name: "mode_standby",
+    module: "ModeStandby",
   },
   {
     name: "money",
@@ -8140,6 +7968,10 @@ const icons = [
     module: "MonitorHeart",
   },
   {
+    name: "monitoring",
+    module: "Monitoring",
+  },
+  {
     name: "monitor_weight",
     module: "MonitorWeight",
   },
@@ -8150,10 +7982,6 @@ const icons = [
   {
     name: "monitor_weight_loss",
     module: "MonitorWeightLoss",
-  },
-  {
-    name: "monitoring",
-    module: "Monitoring",
   },
   {
     name: "monochrome_photos",
@@ -8272,6 +8100,10 @@ const icons = [
     module: "Move",
   },
   {
+    name: "moved_location",
+    module: "MovedLocation",
+  },
+  {
     name: "move_down",
     module: "MoveDown",
   },
@@ -8310,10 +8142,6 @@ const icons = [
   {
     name: "move_up",
     module: "MoveUp",
-  },
-  {
-    name: "moved_location",
-    module: "MovedLocation",
   },
   {
     name: "movie",
@@ -8420,14 +8248,6 @@ const icons = [
     module: "Navigation",
   },
   {
-    name: "near_me",
-    module: "NearMe",
-  },
-  {
-    name: "near_me_disabled",
-    module: "NearMeDisabled",
-  },
-  {
     name: "nearby",
     module: "Nearby",
   },
@@ -8438,6 +8258,14 @@ const icons = [
   {
     name: "nearby_off",
     module: "NearbyOff",
+  },
+  {
+    name: "near_me",
+    module: "NearMe",
+  },
+  {
+    name: "near_me_disabled",
+    module: "NearMeDisabled",
   },
   {
     name: "nephrology",
@@ -8628,10 +8456,6 @@ const icons = [
     module: "NetworkCheck",
   },
   {
-    name: "network_intel_node",
-    module: "NetworkIntelNode",
-  },
-  {
     name: "network_intelligence",
     module: "NetworkIntelligence",
   },
@@ -8642,6 +8466,10 @@ const icons = [
   {
     name: "network_intelligence_update",
     module: "NetworkIntelligenceUpdate",
+  },
+  {
+    name: "network_intel_node",
+    module: "NetworkIntelNode",
   },
   {
     name: "network_locked",
@@ -8700,10 +8528,6 @@ const icons = [
     module: "NewLabel",
   },
   {
-    name: "new_window",
-    module: "NewWindow",
-  },
-  {
     name: "news",
     module: "News",
   },
@@ -8718,6 +8542,10 @@ const icons = [
   {
     name: "newsstand",
     module: "Newsstand",
+  },
+  {
+    name: "new_window",
+    module: "NewWindow",
   },
   {
     name: "next_plan",
@@ -8736,6 +8564,14 @@ const icons = [
     module: "NfcOff",
   },
   {
+    name: "nightlife",
+    module: "Nightlife",
+  },
+  {
+    name: "nightlight",
+    module: "Nightlight",
+  },
+  {
     name: "night_shelter",
     module: "NightShelter",
   },
@@ -8752,16 +8588,24 @@ const icons = [
     module: "NightSightMax",
   },
   {
-    name: "nightlife",
-    module: "Nightlife",
-  },
-  {
-    name: "nightlight",
-    module: "Nightlight",
-  },
-  {
     name: "nights_stay",
     module: "NightsStay",
+  },
+  {
+    name: "9k",
+    module: "NineK",
+  },
+  {
+    name: "9k_plus",
+    module: "NineKPlus",
+  },
+  {
+    name: "9mp",
+    module: "NineMp",
+  },
+  {
+    name: "19mp",
+    module: "NineteenMp",
   },
   {
     name: "no_accounts",
@@ -8796,6 +8640,18 @@ const icons = [
     module: "NoFood",
   },
   {
+    name: "noise_aware",
+    module: "NoiseAware",
+  },
+  {
+    name: "noise_control_off",
+    module: "NoiseControlOff",
+  },
+  {
+    name: "noise_control_on",
+    module: "NoiseControlOn",
+  },
+  {
     name: "no_luggage",
     module: "NoLuggage",
   },
@@ -8810,34 +8666,6 @@ const icons = [
   {
     name: "no_photography",
     module: "NoPhotography",
-  },
-  {
-    name: "no_sim",
-    module: "NoSim",
-  },
-  {
-    name: "no_sound",
-    module: "NoSound",
-  },
-  {
-    name: "no_stroller",
-    module: "NoStroller",
-  },
-  {
-    name: "no_transfer",
-    module: "NoTransfer",
-  },
-  {
-    name: "noise_aware",
-    module: "NoiseAware",
-  },
-  {
-    name: "noise_control_off",
-    module: "NoiseControlOff",
-  },
-  {
-    name: "noise_control_on",
-    module: "NoiseControlOn",
   },
   {
     name: "nordic_walking",
@@ -8856,20 +8684,24 @@ const icons = [
     module: "NorthWest",
   },
   {
+    name: "no_sim",
+    module: "NoSim",
+  },
+  {
+    name: "no_sound",
+    module: "NoSound",
+  },
+  {
+    name: "no_stroller",
+    module: "NoStroller",
+  },
+  {
     name: "not_accessible",
     module: "NotAccessible",
   },
   {
     name: "not_accessible_forward",
     module: "NotAccessibleForward",
-  },
-  {
-    name: "not_listed_location",
-    module: "NotListedLocation",
-  },
-  {
-    name: "not_started",
-    module: "NotStarted",
   },
   {
     name: "note_add",
@@ -8880,16 +8712,16 @@ const icons = [
     module: "NoteAlt",
   },
   {
+    name: "notes",
+    module: "Notes",
+  },
+  {
     name: "note_stack",
     module: "NoteStack",
   },
   {
     name: "note_stack_add",
     module: "NoteStackAdd",
-  },
-  {
-    name: "notes",
-    module: "Notes",
   },
   {
     name: "notification_add",
@@ -8904,14 +8736,6 @@ const icons = [
     module: "NotificationMultiple",
   },
   {
-    name: "notification_settings",
-    module: "NotificationSettings",
-  },
-  {
-    name: "notification_sound",
-    module: "NotificationSound",
-  },
-  {
     name: "notifications",
     module: "Notifications",
   },
@@ -8920,8 +8744,16 @@ const icons = [
     module: "NotificationsActive",
   },
   {
+    name: "notification_settings",
+    module: "NotificationSettings",
+  },
+  {
     name: "notifications_off",
     module: "NotificationsOff",
+  },
+  {
+    name: "notification_sound",
+    module: "NotificationSound",
   },
   {
     name: "notifications_paused",
@@ -8930,6 +8762,18 @@ const icons = [
   {
     name: "notifications_unread",
     module: "NotificationsUnread",
+  },
+  {
+    name: "not_listed_location",
+    module: "NotListedLocation",
+  },
+  {
+    name: "no_transfer",
+    module: "NoTransfer",
+  },
+  {
+    name: "not_started",
+    module: "NotStarted",
   },
   {
     name: "numbers",
@@ -8968,16 +8812,24 @@ const icons = [
     module: "OilBarrel",
   },
   {
+    name: "oncology",
+    module: "Oncology",
+  },
+  {
     name: "on_device_training",
     module: "OnDeviceTraining",
   },
   {
-    name: "on_hub_device",
-    module: "OnHubDevice",
+    name: "1k",
+    module: "OneK",
   },
   {
-    name: "oncology",
-    module: "Oncology",
+    name: "1k_plus",
+    module: "OneKPlus",
+  },
+  {
+    name: "on_hub_device",
+    module: "OnHubDevice",
   },
   {
     name: "online_prediction",
@@ -9192,18 +9044,6 @@ const icons = [
     module: "Pallet",
   },
   {
-    name: "pan_tool",
-    module: "PanTool",
-  },
-  {
-    name: "pan_tool_alt",
-    module: "PanToolAlt",
-  },
-  {
-    name: "pan_zoom",
-    module: "PanZoom",
-  },
-  {
     name: "panorama",
     module: "Panorama",
   },
@@ -9222,6 +9062,18 @@ const icons = [
   {
     name: "panorama_wide_angle",
     module: "PanoramaWideAngle",
+  },
+  {
+    name: "pan_tool",
+    module: "PanTool",
+  },
+  {
+    name: "pan_tool_alt",
+    module: "PanToolAlt",
+  },
+  {
+    name: "pan_zoom",
+    module: "PanZoom",
   },
   {
     name: "paragliding",
@@ -9304,6 +9156,14 @@ const icons = [
     module: "Pediatrics",
   },
   {
+    name: "pending",
+    module: "Pending",
+  },
+  {
+    name: "pending_actions",
+    module: "PendingActions",
+  },
+  {
     name: "pen_size_1",
     module: "PenSize1",
   },
@@ -9322,14 +9182,6 @@ const icons = [
   {
     name: "pen_size_5",
     module: "PenSize5",
-  },
-  {
-    name: "pending",
-    module: "Pending",
-  },
-  {
-    name: "pending_actions",
-    module: "PendingActions",
   },
   {
     name: "pentagon",
@@ -9396,8 +9248,28 @@ const icons = [
     module: "PersonAddDisabled",
   },
   {
+    name: "personal_bag",
+    module: "PersonalBag",
+  },
+  {
+    name: "personal_bag_off",
+    module: "PersonalBagOff",
+  },
+  {
+    name: "personal_bag_question",
+    module: "PersonalBagQuestion",
+  },
+  {
     name: "person_alert",
     module: "PersonAlert",
+  },
+  {
+    name: "personal_injury",
+    module: "PersonalInjury",
+  },
+  {
+    name: "personal_places",
+    module: "PersonalPlaces",
   },
   {
     name: "person_apron",
@@ -9456,26 +9328,6 @@ const icons = [
     module: "PersonShield",
   },
   {
-    name: "personal_bag",
-    module: "PersonalBag",
-  },
-  {
-    name: "personal_bag_off",
-    module: "PersonalBagOff",
-  },
-  {
-    name: "personal_bag_question",
-    module: "PersonalBagQuestion",
-  },
-  {
-    name: "personal_injury",
-    module: "PersonalInjury",
-  },
-  {
-    name: "personal_places",
-    module: "PersonalPlaces",
-  },
-  {
     name: "pest_control",
     module: "PestControl",
   },
@@ -9484,12 +9336,12 @@ const icons = [
     module: "PestControlRodent",
   },
   {
-    name: "pet_supplies",
-    module: "PetSupplies",
-  },
-  {
     name: "pets",
     module: "Pets",
+  },
+  {
+    name: "pet_supplies",
+    module: "PetSupplies",
   },
   {
     name: "phishing",
@@ -9528,18 +9380,6 @@ const icons = [
     module: "PhoneIphone",
   },
   {
-    name: "phone_locked",
-    module: "PhoneLocked",
-  },
-  {
-    name: "phone_missed",
-    module: "PhoneMissed",
-  },
-  {
-    name: "phone_paused",
-    module: "PhonePaused",
-  },
-  {
     name: "phonelink_erase",
     module: "PhonelinkErase",
   },
@@ -9554,6 +9394,18 @@ const icons = [
   {
     name: "phonelink_setup",
     module: "PhonelinkSetup",
+  },
+  {
+    name: "phone_locked",
+    module: "PhoneLocked",
+  },
+  {
+    name: "phone_missed",
+    module: "PhoneMissed",
+  },
+  {
+    name: "phone_paused",
+    module: "PhonePaused",
   },
   {
     name: "photo",
@@ -9668,18 +9520,6 @@ const icons = [
     module: "Pin",
   },
   {
-    name: "pin_drop",
-    module: "PinDrop",
-  },
-  {
-    name: "pin_end",
-    module: "PinEnd",
-  },
-  {
-    name: "pin_invoke",
-    module: "PinInvoke",
-  },
-  {
     name: "pinboard",
     module: "Pinboard",
   },
@@ -9698,6 +9538,18 @@ const icons = [
   {
     name: "pinch_zoom_out",
     module: "PinchZoomOut",
+  },
+  {
+    name: "pin_drop",
+    module: "PinDrop",
+  },
+  {
+    name: "pin_end",
+    module: "PinEnd",
+  },
+  {
+    name: "pin_invoke",
+    module: "PinInvoke",
   },
   {
     name: "pip",
@@ -9748,16 +9600,12 @@ const icons = [
     module: "PlayForWork",
   },
   {
-    name: "play_lesson",
-    module: "PlayLesson",
-  },
-  {
-    name: "play_pause",
-    module: "PlayPause",
-  },
-  {
     name: "playing_cards",
     module: "PlayingCards",
+  },
+  {
+    name: "play_lesson",
+    module: "PlayLesson",
   },
   {
     name: "playlist_add",
@@ -9782,6 +9630,10 @@ const icons = [
   {
     name: "playlist_remove",
     module: "PlaylistRemove",
+  },
+  {
+    name: "play_pause",
+    module: "PlayPause",
   },
   {
     name: "plug_connect",
@@ -10104,10 +9956,6 @@ const icons = [
     module: "Quiz",
   },
   {
-    name: "r_mobiledata",
-    module: "RMobiledata",
-  },
-  {
     name: "radar",
     module: "Radar",
   },
@@ -10188,12 +10036,12 @@ const icons = [
     module: "RawOn",
   },
   {
-    name: "read_more",
-    module: "ReadMore",
-  },
-  {
     name: "readiness_score",
     module: "ReadinessScore",
+  },
+  {
+    name: "read_more",
+    module: "ReadMore",
   },
   {
     name: "real_estate_agent",
@@ -10228,12 +10076,12 @@ const icons = [
     module: "RecentActors",
   },
   {
-    name: "recent_patient",
-    module: "RecentPatient",
-  },
-  {
     name: "recenter",
     module: "Recenter",
+  },
+  {
+    name: "recent_patient",
+    module: "RecentPatient",
   },
   {
     name: "recommend",
@@ -10510,6 +10358,10 @@ const icons = [
   {
     name: "ripples",
     module: "Ripples",
+  },
+  {
+    name: "r_mobiledata",
+    module: "RMobiledata",
   },
   {
     name: "road",
@@ -10996,10 +10848,6 @@ const icons = [
     module: "SensorOccupied",
   },
   {
-    name: "sensor_window",
-    module: "SensorWindow",
-  },
-  {
     name: "sensors",
     module: "Sensors",
   },
@@ -11014,6 +10862,10 @@ const icons = [
   {
     name: "sensors_off",
     module: "SensorsOff",
+  },
+  {
+    name: "sensor_window",
+    module: "SensorWindow",
   },
   {
     name: "sentiment_calm",
@@ -11104,10 +10956,6 @@ const icons = [
     module: "SettingsApplications",
   },
   {
-    name: "settings_b_roll",
-    module: "SettingsBRoll",
-  },
-  {
     name: "settings_backup_restore",
     module: "SettingsBackupRestore",
   },
@@ -11118,6 +10966,10 @@ const icons = [
   {
     name: "settings_brightness",
     module: "SettingsBrightness",
+  },
+  {
+    name: "settings_b_roll",
+    module: "SettingsBRoll",
   },
   {
     name: "settings_cell",
@@ -11206,6 +11058,22 @@ const icons = [
   {
     name: "settop_component",
     module: "SettopComponent",
+  },
+  {
+    name: "7k",
+    module: "SevenK",
+  },
+  {
+    name: "7k_plus",
+    module: "SevenKPlus",
+  },
+  {
+    name: "7mp",
+    module: "SevenMp",
+  },
+  {
+    name: "17mp",
+    module: "SeventeenMp",
   },
   {
     name: "severe_cold",
@@ -11324,10 +11192,6 @@ const icons = [
     module: "Shop",
   },
   {
-    name: "shop_two",
-    module: "ShopTwo",
-  },
-  {
     name: "shopping_bag",
     module: "ShoppingBag",
   },
@@ -11354,6 +11218,10 @@ const icons = [
   {
     name: "shoppingmode",
     module: "Shoppingmode",
+  },
+  {
+    name: "shop_two",
+    module: "ShopTwo",
   },
   {
     name: "short_stay",
@@ -11398,10 +11266,6 @@ const icons = [
   {
     name: "side_navigation",
     module: "SideNavigation",
-  },
-  {
-    name: "sign_language",
-    module: "SignLanguage",
   },
   {
     name: "signal_cellular_0_bar",
@@ -11496,6 +11360,10 @@ const icons = [
     module: "Signature",
   },
   {
+    name: "sign_language",
+    module: "SignLanguage",
+  },
+  {
     name: "signpost",
     module: "Signpost",
   },
@@ -11534,6 +11402,30 @@ const icons = [
   {
     name: "siren_question",
     module: "SirenQuestion",
+  },
+  {
+    name: "6k",
+    module: "SixK",
+  },
+  {
+    name: "6k_plus",
+    module: "SixKPlus",
+  },
+  {
+    name: "6mp",
+    module: "SixMp",
+  },
+  {
+    name: "16mp",
+    module: "SixteenMp",
+  },
+  {
+    name: "60fps",
+    module: "SixtyFps",
+  },
+  {
+    name: "60fps_select",
+    module: "SixtyFpsSelect",
   },
   {
     name: "skateboarding",
@@ -11612,20 +11504,20 @@ const icons = [
     module: "SmartOutlet",
   },
   {
-    name: "smart_screen",
-    module: "SmartScreen",
-  },
-  {
-    name: "smart_toy",
-    module: "SmartToy",
-  },
-  {
     name: "smartphone",
     module: "Smartphone",
   },
   {
     name: "smartphone_camera",
     module: "SmartphoneCamera",
+  },
+  {
+    name: "smart_screen",
+    module: "SmartScreen",
+  },
+  {
+    name: "smart_toy",
+    module: "SmartToy",
   },
   {
     name: "smb_share",
@@ -12048,22 +11940,6 @@ const icons = [
     module: "Stack",
   },
   {
-    name: "stack_group",
-    module: "StackGroup",
-  },
-  {
-    name: "stack_hexagon",
-    module: "StackHexagon",
-  },
-  {
-    name: "stack_off",
-    module: "StackOff",
-  },
-  {
-    name: "stack_star",
-    module: "StackStar",
-  },
-  {
     name: "stacked_bar_chart",
     module: "StackedBarChart",
   },
@@ -12080,8 +11956,24 @@ const icons = [
     module: "StackedLineChart",
   },
   {
+    name: "stack_group",
+    module: "StackGroup",
+  },
+  {
+    name: "stack_hexagon",
+    module: "StackHexagon",
+  },
+  {
+    name: "stack_off",
+    module: "StackOff",
+  },
+  {
     name: "stacks",
     module: "Stacks",
+  },
+  {
+    name: "stack_star",
+    module: "StackStar",
   },
   {
     name: "stadia_controller",
@@ -12116,16 +12008,16 @@ const icons = [
     module: "StarRateHalf",
   },
   {
-    name: "star_shine",
-    module: "StarShine",
-  },
-  {
     name: "stars",
     module: "Stars",
   },
   {
     name: "stars_2",
     module: "Stars2",
+  },
+  {
+    name: "star_shine",
+    module: "StarShine",
   },
   {
     name: "start",
@@ -12524,6 +12416,10 @@ const icons = [
     module: "SwitchCamera",
   },
   {
+    name: "switches",
+    module: "Switches",
+  },
+  {
     name: "switch_left",
     module: "SwitchLeft",
   },
@@ -12534,10 +12430,6 @@ const icons = [
   {
     name: "switch_video",
     module: "SwitchVideo",
-  },
-  {
-    name: "switches",
-    module: "Switches",
   },
   {
     name: "sword_rose",
@@ -12632,26 +12524,6 @@ const icons = [
     module: "TabInactive",
   },
   {
-    name: "tab_move",
-    module: "TabMove",
-  },
-  {
-    name: "tab_new_right",
-    module: "TabNewRight",
-  },
-  {
-    name: "tab_recent",
-    module: "TabRecent",
-  },
-  {
-    name: "tab_search",
-    module: "TabSearch",
-  },
-  {
-    name: "tab_unselected",
-    module: "TabUnselected",
-  },
-  {
     name: "table",
     module: "Table",
   },
@@ -12696,10 +12568,6 @@ const icons = [
     module: "TableRowsNarrow",
   },
   {
-    name: "table_view",
-    module: "TableView",
-  },
-  {
     name: "tablet",
     module: "Tablet",
   },
@@ -12716,8 +12584,32 @@ const icons = [
     module: "TabletMac",
   },
   {
+    name: "table_view",
+    module: "TableView",
+  },
+  {
+    name: "tab_move",
+    module: "TabMove",
+  },
+  {
+    name: "tab_new_right",
+    module: "TabNewRight",
+  },
+  {
+    name: "tab_recent",
+    module: "TabRecent",
+  },
+  {
     name: "tabs",
     module: "Tabs",
+  },
+  {
+    name: "tab_search",
+    module: "TabSearch",
+  },
+  {
+    name: "tab_unselected",
+    module: "TabUnselected",
   },
   {
     name: "tactic",
@@ -12772,10 +12664,6 @@ const icons = [
     module: "TeamDashboard",
   },
   {
-    name: "temp_preferences_eco",
-    module: "TempPreferencesEco",
-  },
-  {
     name: "temple_buddhist",
     module: "TempleBuddhist",
   },
@@ -12784,8 +12672,20 @@ const icons = [
     module: "TempleHindu",
   },
   {
+    name: "temp_preferences_eco",
+    module: "TempPreferencesEco",
+  },
+  {
     name: "tenancy",
     module: "Tenancy",
+  },
+  {
+    name: "10k",
+    module: "TenK",
+  },
+  {
+    name: "10mp",
+    module: "TenMp",
   },
   {
     name: "terminal",
@@ -12960,6 +12860,18 @@ const icons = [
     module: "ThingsToDo",
   },
   {
+    name: "13mp",
+    module: "ThirteenMp",
+  },
+  {
+    name: "30fps",
+    module: "ThirtyFps",
+  },
+  {
+    name: "30fps_select",
+    module: "ThirtyFpsSelect",
+  },
+  {
     name: "thread_unread",
     module: "ThreadUnread",
   },
@@ -12968,12 +12880,44 @@ const icons = [
     module: "ThreatIntelligence",
   },
   {
-    name: "thumb_down",
-    module: "ThumbDown",
+    name: "3d",
+    module: "ThreeD",
   },
   {
-    name: "thumb_up",
-    module: "ThumbUp",
+    name: "3d_rotation",
+    module: "ThreeDRotation",
+  },
+  {
+    name: "3g_mobiledata",
+    module: "ThreeGMobiledata",
+  },
+  {
+    name: "3g_mobiledata_badge",
+    module: "ThreeGMobiledataBadge",
+  },
+  {
+    name: "3k",
+    module: "ThreeK",
+  },
+  {
+    name: "3k_plus",
+    module: "ThreeKPlus",
+  },
+  {
+    name: "3mp",
+    module: "ThreeMp",
+  },
+  {
+    name: "3p",
+    module: "ThreeP",
+  },
+  {
+    name: "360",
+    module: "ThreeSixty",
+  },
+  {
+    name: "thumb_down",
+    module: "ThumbDown",
   },
   {
     name: "thumbnail_bar",
@@ -12982,6 +12926,10 @@ const icons = [
   {
     name: "thumbs_up_down",
     module: "ThumbsUpDown",
+  },
+  {
+    name: "thumb_up",
+    module: "ThumbUp",
   },
   {
     name: "thunderstorm",
@@ -13076,6 +13024,14 @@ const icons = [
     module: "TimerPlay",
   },
   {
+    name: "1x_mobiledata",
+    module: "TimesOneMobiledata",
+  },
+  {
+    name: "1x_mobiledata_badge",
+    module: "TimesOneMobiledataBadge",
+  },
+  {
     name: "tire_repair",
     module: "TireRepair",
   },
@@ -13164,16 +13120,16 @@ const icons = [
     module: "Tooltip2",
   },
   {
+    name: "topic",
+    module: "Topic",
+  },
+  {
     name: "top_panel_close",
     module: "TopPanelClose",
   },
   {
     name: "top_panel_open",
     module: "TopPanelOpen",
-  },
-  {
-    name: "topic",
-    module: "Topic",
   },
   {
     name: "tornado",
@@ -13196,16 +13152,16 @@ const icons = [
     module: "TouchLong",
   },
   {
-    name: "touch_triple",
-    module: "TouchTriple",
-  },
-  {
     name: "touchpad_mouse",
     module: "TouchpadMouse",
   },
   {
     name: "touchpad_mouse_off",
     module: "TouchpadMouseOff",
+  },
+  {
+    name: "touch_triple",
+    module: "TouchTriple",
   },
   {
     name: "tour",
@@ -13288,10 +13244,6 @@ const icons = [
     module: "TransitEnterexit",
   },
   {
-    name: "transit_ticket",
-    module: "TransitTicket",
-  },
-  {
     name: "transition_chop",
     module: "TransitionChop",
   },
@@ -13310,6 +13262,10 @@ const icons = [
   {
     name: "transition_slide",
     module: "TransitionSlide",
+  },
+  {
+    name: "transit_ticket",
+    module: "TransitTicket",
   },
   {
     name: "translate",
@@ -13452,6 +13408,50 @@ const icons = [
     module: "TvWithAssistant",
   },
   {
+    name: "12mp",
+    module: "TwelveMp",
+  },
+  {
+    name: "24fps_select",
+    module: "TwentyFourFpsSelect",
+  },
+  {
+    name: "24mp",
+    module: "TwentyFourMp",
+  },
+  {
+    name: "20mp",
+    module: "TwentyMp",
+  },
+  {
+    name: "21mp",
+    module: "TwentyOneMp",
+  },
+  {
+    name: "23mp",
+    module: "TwentyThreeMp",
+  },
+  {
+    name: "22mp",
+    module: "TwentyTwoMp",
+  },
+  {
+    name: "2d",
+    module: "TwoD",
+  },
+  {
+    name: "2k",
+    module: "TwoK",
+  },
+  {
+    name: "2k_plus",
+    module: "TwoKPlus",
+  },
+  {
+    name: "2mp",
+    module: "TwoMp",
+  },
+  {
     name: "two_pager",
     module: "TwoPager",
   },
@@ -13466,14 +13466,6 @@ const icons = [
   {
     name: "type_specimen",
     module: "TypeSpecimen",
-  },
-  {
-    name: "u_turn_left",
-    module: "UTurnLeft",
-  },
-  {
-    name: "u_turn_right",
-    module: "UTurnRight",
   },
   {
     name: "ulna_radius",
@@ -13616,6 +13608,14 @@ const icons = [
     module: "UserAttributes",
   },
   {
+    name: "u_turn_left",
+    module: "UTurnLeft",
+  },
+  {
+    name: "u_turn_right",
+    module: "UTurnRight",
+  },
+  {
     name: "vaccines",
     module: "Vaccines",
   },
@@ -13700,6 +13700,14 @@ const icons = [
     module: "VideoCall",
   },
   {
+    name: "videocam",
+    module: "Videocam",
+  },
+  {
+    name: "videocam_alert",
+    module: "VideocamAlert",
+  },
+  {
     name: "video_camera_back",
     module: "VideoCameraBack",
   },
@@ -13716,12 +13724,24 @@ const icons = [
     module: "VideoCameraFrontOff",
   },
   {
+    name: "videocam_off",
+    module: "VideocamOff",
+  },
+  {
     name: "video_chat",
     module: "VideoChat",
   },
   {
     name: "video_file",
     module: "VideoFile",
+  },
+  {
+    name: "videogame_asset",
+    module: "VideogameAsset",
+  },
+  {
+    name: "videogame_asset_off",
+    module: "VideogameAssetOff",
   },
   {
     name: "video_label",
@@ -13742,26 +13762,6 @@ const icons = [
   {
     name: "video_stable",
     module: "VideoStable",
-  },
-  {
-    name: "videocam",
-    module: "Videocam",
-  },
-  {
-    name: "videocam_alert",
-    module: "VideocamAlert",
-  },
-  {
-    name: "videocam_off",
-    module: "VideocamOff",
-  },
-  {
-    name: "videogame_asset",
-    module: "VideogameAsset",
-  },
-  {
-    name: "videogame_asset_off",
-    module: "VideogameAssetOff",
   },
   {
     name: "view_agenda",
@@ -13900,6 +13900,14 @@ const icons = [
     module: "VoiceChat",
   },
   {
+    name: "voicemail",
+    module: "Voicemail",
+  },
+  {
+    name: "voicemail_2",
+    module: "Voicemail2",
+  },
+  {
     name: "voice_over_off",
     module: "VoiceOverOff",
   },
@@ -13910,14 +13918,6 @@ const icons = [
   {
     name: "voice_selection_off",
     module: "VoiceSelectionOff",
-  },
-  {
-    name: "voicemail",
-    module: "Voicemail",
-  },
-  {
-    name: "voicemail_2",
-    module: "Voicemail2",
   },
   {
     name: "volcano",
@@ -13988,12 +13988,12 @@ const icons = [
     module: "WallArt",
   },
   {
-    name: "wall_lamp",
-    module: "WallLamp",
-  },
-  {
     name: "wallet",
     module: "Wallet",
+  },
+  {
+    name: "wall_lamp",
+    module: "WallLamp",
   },
   {
     name: "wallpaper",
@@ -14092,6 +14092,10 @@ const icons = [
     module: "WaterEc",
   },
   {
+    name: "waterfall_chart",
+    module: "WaterfallChart",
+  },
+  {
     name: "water_full",
     module: "WaterFull",
   },
@@ -14130,10 +14134,6 @@ const icons = [
   {
     name: "water_voc",
     module: "WaterVoc",
-  },
-  {
-    name: "waterfall_chart",
-    module: "WaterfallChart",
   },
   {
     name: "waves",
@@ -14196,16 +14196,16 @@ const icons = [
     module: "WebAssetOff",
   },
   {
+    name: "webhook",
+    module: "Webhook",
+  },
+  {
     name: "web_stories",
     module: "WebStories",
   },
   {
     name: "web_traffic",
     module: "WebTraffic",
-  },
-  {
-    name: "webhook",
-    module: "Webhook",
   },
   {
     name: "weekend",
@@ -14236,16 +14236,16 @@ const icons = [
     module: "WidgetMedium",
   },
   {
+    name: "widgets",
+    module: "Widgets",
+  },
+  {
     name: "widget_small",
     module: "WidgetSmall",
   },
   {
     name: "widget_width",
     module: "WidgetWidth",
-  },
-  {
-    name: "widgets",
-    module: "Widgets",
   },
   {
     name: "width_full",
@@ -14340,10 +14340,6 @@ const icons = [
     module: "WifiTetheringOff",
   },
   {
-    name: "wind_power",
-    module: "WindPower",
-  },
-  {
     name: "window",
     module: "Window",
   },
@@ -14358,6 +14354,10 @@ const icons = [
   {
     name: "window_sensor",
     module: "WindowSensor",
+  },
+  {
+    name: "wind_power",
+    module: "WindPower",
   },
   {
     name: "windshield_defrost_front",
@@ -14396,16 +14396,16 @@ const icons = [
     module: "WorkHistory",
   },
   {
-    name: "work_update",
-    module: "WorkUpdate",
-  },
-  {
     name: "workspace_premium",
     module: "WorkspacePremium",
   },
   {
     name: "workspaces",
     module: "Workspaces",
+  },
+  {
+    name: "work_update",
+    module: "WorkUpdate",
   },
   {
     name: "wounds_injuries",

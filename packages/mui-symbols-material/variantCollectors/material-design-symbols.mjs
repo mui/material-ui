@@ -77,7 +77,11 @@ export function rewriteName(fileName) {
     return `${singleDigitNumbers[fileName[0]]}${fileName.slice(1)}`;
   }
 
-  if (/\dk/.test(fileName)) {
+  if (fileName.startsWith('10k')) {
+    return `TenK${fileName.slice(3)}`;
+  }
+
+  if (/^\dk/.test(fileName)) {
     return `${singleDigitNumbers[fileName[0]]}K${fileName.slice(2)}`;
   }
 

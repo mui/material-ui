@@ -174,10 +174,12 @@ ${categories[categoryKey].map((icon) => `    "${icon}",`).join('\n')}
 async function updateMetadata(icons) {
   // TODO: Are we able to use this data? It's not explicitly licensed
   // https://github.com/google/material-design-icons/issues/1332#issuecomment-1258053181
-  icons = icons.map((icon) => ({
-    ...icon,
-    module: rewriteName(icon.name),
-  }));
+  icons = icons
+    .map((icon) => ({
+      ...icon,
+      module: rewriteName(icon.name),
+    }))
+    .sort((a, b) => a.module.localeCompare(b.module));
 
   const iconsOrderedByPopularity = [...icons].sort((a, b) => {
     // the larger the number, the more popular
