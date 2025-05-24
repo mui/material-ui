@@ -124,7 +124,9 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridProC
       }),
       columnHeaderTitleContainer: {
         flexGrow: 1,
-        justifyContent: 'space-between',
+        [`&:not(:has(.${checkboxClasses.root}))`]: {
+          justifyContent: 'space-between',
+        },
       },
       columnHeaderDraggableContainer: { paddingRight: 2 },
     },

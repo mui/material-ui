@@ -2,8 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { ThemeProvider, createTheme, THEME_ID } from '@mui/material/styles';
 import JoyBox from '@mui/joy/Box';
 import { CssVarsProvider } from '@mui/joy/styles';
+
+const theme = createTheme({
+  experimental_modularCssLayers: true,
+});
 
 function TestViewer(props) {
   const { children, path } = props;
@@ -45,40 +50,47 @@ function TestViewer(props) {
     p: 1,
   };
 
-  return (
-    <React.Fragment>
-      <GlobalStyles
-        styles={{
-          html: {
-            WebkitFontSmoothing: 'antialiased', // Antialiasing.
-            MozOsxFontSmoothing: 'grayscale', // Antialiasing.
-            // Do the opposite of the docs in order to help catching issues.
-            boxSizing: 'content-box',
-          },
-          '*, *::before, *::after': {
-            boxSizing: 'inherit',
-            // Disable transitions to avoid flaky screenshots
-            transition: 'none !important',
-            animation: 'none !important',
-          },
-          body: {
-            margin: 0,
-            overflowX: 'hidden',
-          },
-        }}
-      />
-      {path.startsWith('/docs-joy') ? (
-        <CssVarsProvider>
-          <JoyBox
-            aria-busy={!ready}
-            data-testid="testcase"
-            data-testpath={path}
-            sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
-          >
-            {children}
-          </JoyBox>
-        </CssVarsProvider>
-      ) : (
+  const cssReset = (
+    <GlobalStyles
+      styles={{
+        html: {
+          WebkitFontSmoothing: 'antialiased', // Antialiasing.
+          MozOsxFontSmoothing: 'grayscale', // Antialiasing.
+          // Do the opposite of the docs in order to help catching issues.
+          boxSizing: 'content-box',
+        },
+        '*, *::before, *::after': {
+          boxSizing: 'inherit',
+          // Disable transitions to avoid flaky screenshots
+          transition: 'none !important',
+          animation: 'none !important',
+        },
+        body: {
+          margin: 0,
+          overflowX: 'hidden',
+        },
+      }}
+    />
+  );
+  if (path.startsWith('/docs-joy') || path.includes('docs-joy') || path.includes('Joy/')) {
+    return (
+      <CssVarsProvider>
+        {cssReset}
+        <JoyBox
+          aria-busy={!ready}
+          data-testid="testcase"
+          data-testpath={path}
+          sx={{ bgcolor: 'background.body', ...viewerBoxSx }}
+        >
+          {children}
+        </JoyBox>
+      </CssVarsProvider>
+    );
+  }
+  if (path.includes('Joy')) {
+    return (
+      <React.Fragment>
+        {cssReset}
         <Box
           aria-busy={!ready}
           data-testid="testcase"
@@ -87,8 +99,21 @@ function TestViewer(props) {
         >
           {children}
         </Box>
-      )}
-    </React.Fragment>
+      </React.Fragment>
+    );
+  }
+  return (
+    <ThemeProvider theme={theme}>
+      {cssReset}
+      <Box
+        aria-busy={!ready}
+        data-testid="testcase"
+        data-testpath={path}
+        sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+      >
+        {children}
+      </Box>
+    </ThemeProvider>
   );
 }
 

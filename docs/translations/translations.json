@@ -145,6 +145,8 @@
     "/material-ui/customization/css-theme-variables/overview": "Overview",
     "/material-ui/customization/css-theme-variables/usage": "Basic usage",
     "/material-ui/customization/css-theme-variables/configuration": "Advanced configuration",
+    "/material-ui/customization/cascade-layers": "Cascade layers",
+    "/material-ui/customization/css-layers": "Cascade layers",
     "/material-ui/guides": "How-to guides",
     "/material-ui/guides/minimizing-bundle-size": "Minimizing bundle size",
     "/material-ui/guides/server-rendering": "Server rendering",
