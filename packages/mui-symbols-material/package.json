@@ -30,7 +30,6 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "shx cp -r packages/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
     "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
     "build:package": "pnpm build:node && pnpm build:stable && pnpm build:copy-esm && pnpm build:generate-package-json",
     "build:package:clean": "rimraf packages/ && pnpm build:package",
@@ -44,7 +43,6 @@
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
     "src:symbols": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-symbols --variant-collector ./variantCollectors/material-design-symbols.mjs && pnpm build:package:clean",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-symbols-material/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
     "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
   },
