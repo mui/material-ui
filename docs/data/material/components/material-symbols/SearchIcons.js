@@ -64,6 +64,8 @@ const StyledIcon = styled('span')(({ theme }) => ({
   flexDirection: 'column',
   color: (theme.vars ?? theme).palette.text.secondary,
   margin: '0 4px',
+  contentVisibility: 'auto', // TODO: look into chunking icons into groups
+  contain: 'content',
   '& > div': {
     flexGrow: 1,
     fontSize: '.6rem',
