@@ -55,7 +55,7 @@ function selectNode(node) {
 
 const iconWidth = 40;
 
-const SVG_ICON_CLASS = 'svg-icon';
+const ICON_CLASS = 'font-icon';
 
 const StyledIcon = styled('span')(({ theme }) => ({
   display: 'inline-flex',
@@ -70,7 +70,7 @@ const StyledIcon = styled('span')(({ theme }) => ({
     textAlign: 'center',
     width: `calc(${iconWidth}px + ${theme.spacing(2)} * 2 + 2px)`,
   },
-  [`& .${SVG_ICON_CLASS}`]: {
+  [`& .${ICON_CLASS}`]: {
     width: iconWidth,
     height: iconWidth,
     boxSizing: 'content-box',
@@ -116,7 +116,7 @@ function Icon(props) {
       onClick={Math.random() < 0.1 ? handleIconClick(icon) : null}
     >
       <FontIcon
-        className={clsx(SVG_ICON_CLASS, 's')}
+        className={clsx(ICON_CLASS, 's')}
         tabIndex={-1}
         onClick={onOpenClick}
         title={icon.module}
@@ -137,7 +137,7 @@ function Icon(props) {
       >
         {icon.name}
       </FontIcon>
-      <div className={clsx(SVG_ICON_CLASS, 'ph')}>
+      <div className={clsx(ICON_CLASS, 'ph')}>
         <Skeleton
           animation="wave"
           height={iconWidth}
@@ -285,7 +285,7 @@ const ContextComponent = styled('div', {
 }));
 
 const DialogDetails = React.memo(function DialogDetails(props) {
-  const { open, selectedIcon, handleClose } = props;
+  const { open, selectedIcon, theme, weight, handleClose } = props;
 
   const t = useTranslate();
   const [copied1, setCopied1] = React.useState(false);
@@ -299,7 +299,9 @@ const DialogDetails = React.memo(function DialogDetails(props) {
   };
 
   const iconStyles = React.useCallback(
-    (fontSize) => ({
+    (fontSize) => (th) => ({
+      fontFamily: `Material Symbols ${theme}`,
+      fontVariationSettings: `'wght' ${weight}, 'GRAD' ${th.colorSchemes.dark ? '-25' : '0'}`,
       fontSize,
       fontWeight: 'normal',
       fontStyle: 'normal',
@@ -313,7 +315,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
       WebkitFontFeatureSettings: 'liga',
       WebkitFontSmoothing: 'antialiased',
     }),
-    [],
+    [theme, weight],
   );
 
   return (
@@ -358,7 +360,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Markdown
               copyButtonHidden
               onClick={handleClick(2)}
-              code={`import ${selectedIcon.module}Icon from '@mui/symbols/${selectedIcon.module}';`}
+              code={`import ${selectedIcon.module}Icon from '@mui/symbols${theme === 'Outlined' ? '' : `-${theme.toLowerCase()}`}${weight === '400' ? '' : `-${weight}`}/${selectedIcon.module}';`}
               language="js"
             />
           </Tooltip>
@@ -510,6 +512,8 @@ DialogDetails.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   selectedIcon: PropTypes.object,
+  theme: PropTypes.string.isRequired,
+  weight: PropTypes.string.isRequired,
 };
 
 const Form = styled('form')({
@@ -690,7 +694,7 @@ export default function SearchIcons() {
       sx={(t) => ({
         minHeight: 500,
         width: '100%',
-        [`& .${SVG_ICON_CLASS}`]: {
+        [`& .${ICON_CLASS}`]: {
           fontFamily: `Material Symbols ${theme}`,
           fontVariationSettings: `'wght' ${weight}, 'GRAD' ${t.colorSchemes.dark ? '-25' : '0'}`,
         },
@@ -771,10 +775,10 @@ export default function SearchIcons() {
           sm: 9,
         }}
         sx={{
-          [`& .${SVG_ICON_CLASS}.s`]: {
+          [`& .${ICON_CLASS}.s`]: {
             display: isVisible ? 'block' : 'none',
           },
-          [`& .${SVG_ICON_CLASS}.ph`]: {
+          [`& .${ICON_CLASS}.ph`]: {
             display: isVisible ? 'none' : 'block',
           },
         }}
@@ -806,6 +810,8 @@ export default function SearchIcons() {
       <DialogDetails
         open={!!selectedIcon}
         selectedIcon={dialogSelectedIcon}
+        theme={theme}
+        weight={weight}
         handleClose={handleClose}
       />
     </Grid>
