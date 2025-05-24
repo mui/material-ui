@@ -42,19 +42,6 @@ const FlexSearchIndex = flexsearch.Index;
 //   { module: 'DeleteForever', name: 'delete_forever' },
 // ];
 
-const allIconsMap = {};
-allIcons.forEach((icon) => {
-  allIconsMap[icon.module] = icon;
-});
-
-if (process.env.NODE_ENV !== 'production') {
-  Object.keys(synonyms).forEach((icon) => {
-    if (!allIconsMap[icon]) {
-      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
-    }
-  });
-}
-
 function selectNode(node) {
   // Clear any current selection
   const selection = window.getSelection();
@@ -555,6 +542,25 @@ const searchIndex = new FlexSearchIndex({
   tokenize: 'full',
 });
 
+const allIconsMap = {};
+allIcons.forEach((icon) => {
+  let searchable = icon.module;
+  if (synonyms[searchable]) {
+    searchable += ` ${synonyms[searchable]}`;
+  }
+  searchIndex.add(icon.module, searchable);
+
+  allIconsMap[icon.module] = icon;
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.keys(synonyms).forEach((icon) => {
+    if (!allIconsMap[icon]) {
+      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
+    }
+  });
+}
+
 /**
  * Returns the last defined value that has been passed in [value]
  */
@@ -648,7 +654,6 @@ export default function SearchIcons() {
       if (font.family.startsWith('Material Symbols')) {
         const fontTheme = font.family.split(' ')[2];
         const weightValue = font.weight.split(' ');
-        console.log(weightValue);
         if (weightValue.length === 1) {
           loaded[`${fontTheme}-${weightValue[0]}`] = true;
         } else if (weightValue.length === 2) {
