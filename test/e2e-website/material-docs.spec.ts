@@ -97,6 +97,15 @@ test.describe('Material docs', () => {
       await expect(anchor).toHaveText('Material Icons');
     });
 
+    test('should not have react- prefix for material-symbols', async ({ page }) => {
+      await page.goto('/material-ui/material-symbols/');
+
+      const anchor = page.locator('nav[aria-label="documentation"] .app-drawer-active');
+
+      await expect(anchor).toHaveAttribute('href', '/material-ui/material-symbols/');
+      await expect(anchor).toHaveText('Material Symbols');
+    });
+
     test('should have correct API links when name of components conflicts with Base UI', async ({
       page,
     }) => {

@@ -1,0 +1,85 @@
+{
+  "name": "@mui/symbols-material",
+  "private": true,
+  "version": "7.1.0",
+  "author": "MUI Team",
+  "description": "Material Design symbols packager for MUI.",
+  "main": "./src/index.js",
+  "type": "module",
+  "keywords": [
+    "react",
+    "react-component",
+    "mui",
+    "material-ui",
+    "material design",
+    "icons",
+    "symbols"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-symbols-material"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/material-ui/material-symbols/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui-org"
+  },
+  "scripts": {
+    "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
+    "build:package": "pnpm build:node && pnpm build:stable && pnpm build:copy-esm && pnpm build:generate-package-json",
+    "build:package:clean": "rimraf packages/ && pnpm build:package",
+    "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir packages",
+    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir packages --skipEsmPkg",
+    "build:copy-esm": "node ./scripts/copy-esm-files.mjs",
+    "build:generate-package-json": "node ./scripts/generate-package-json.mjs",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:typings": "node ./scripts/create-typings.mjs",
+    "prebuild": "rimraf build",
+    "release": "pnpm build && pnpm publish",
+    "src:download": "node ./scripts/download.mjs",
+    "src:symbols": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-symbols --variant-collector ./variantCollectors/material-design-symbols.mjs && pnpm build:package:clean",
+    "typescript": "tsc -p tsconfig.json",
+    "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.27.1"
+  },
+  "devDependencies": {
+    "@mui/internal-waterfall": "workspace:^",
+    "@mui/material": "workspace:^",
+    "@mui/symbols-material": "workspace:*",
+    "@types/chai": "^4.3.20",
+    "@types/react": "^19.1.4",
+    "chai": "^4.5.0",
+    "chalk": "^5.4.1",
+    "cross-fetch": "^4.1.0",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.0",
+    "lodash": "^4.17.21",
+    "mustache": "^4.2.0",
+    "proper-lockfile": "^4.1.2",
+    "react": "^19.1.0",
+    "rimraf": "^6.0.1",
+    "shx": "^0.4.0",
+    "yargs": "^17.7.2"
+  },
+  "peerDependencies": {
+    "@mui/material": "workspace:^",
+    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

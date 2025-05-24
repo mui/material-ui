@@ -111,6 +111,10 @@ describe('replaceUrl', () => {
       `/material-ui/material-icons/`,
     );
 
+    expect(replaceComponentLinks(`/components/material-symbols/`)).to.equal(
+      `/material-ui/material-symbols/`,
+    );
+
     expect(replaceComponentLinks(`/components/lists/`)).to.equal(`/material-ui/react-list/`);
     expect(replaceComponentLinks(`/components/lists/#main-content`)).to.equal(
       `/material-ui/react-list/#main-content`,

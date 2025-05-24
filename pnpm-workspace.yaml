@@ -1,6 +1,7 @@
 packages:
   - packages/*
   - packages/mui-envinfo/test
+  - packages/mui-symbols-material/packages/*
   - packages-internal/*
   - docs
   - test
