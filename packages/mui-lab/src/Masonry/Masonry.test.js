@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, act } from '@mui/internal-test-utils';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
@@ -379,11 +379,14 @@ describe('<Masonry />', () => {
 
   describe('prop: sequential', () => {
     const pause = (timeout) =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, timeout);
-      });
+      act(
+        async () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, timeout);
+          }),
+      );
 
     it('should place children in sequential order', async function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
