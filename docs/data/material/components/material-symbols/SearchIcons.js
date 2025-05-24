@@ -300,8 +300,12 @@ const DialogDetails = React.memo(function DialogDetails(props) {
     setCopied(true);
   };
 
+  const [useFont, setUseFont] = React.useState(true);
   const [emphasis, setEmphasis] = React.useState(false);
   const [fill, setFill] = React.useState(null);
+  const changeUseFont = React.useCallback((event) => {
+    setUseFont(event.target.checked);
+  }, []);
   const changeEmphasis = React.useCallback((event) => {
     setEmphasis(event.target.checked);
   }, []);
@@ -346,7 +350,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
       animationDuration: '0.4s',
       animationFillMode: 'forwards',
       '&.fill': {
-        animationName: 'fill',
+        animationName: useFont ? 'fill' : '',
       },
       '&:.unfill': {
         animationName: 'unfill', // TODO: this doesn't seem to work right
@@ -360,7 +364,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
         to: { fontVariationSettings: fontVariation(th, 0) },
       },
     }),
-    [theme, fontVariation],
+    [theme, useFont, fontVariation],
   );
 
   return (
@@ -405,7 +409,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             <Markdown
               copyButtonHidden
               onClick={handleClick(2)}
-              code={`import ${selectedIcon.module}Icon from '@mui/symbols${theme === 'Outlined' ? '' : `-${theme.toLowerCase()}`}${weight === '400' ? '' : `-${weight}`}/${selectedIcon.module}';`}
+              code={`import ${selectedIcon.module}Icon from '@mui/symbols${useFont ? '-font' : ''}${theme === 'Outlined' ? '' : `-${theme.toLowerCase()}`}${weight === '400' ? '' : `-${weight}`}/${selectedIcon.module}';`}
               language="js"
             />
           </Tooltip>
@@ -564,6 +568,17 @@ const DialogDetails = React.memo(function DialogDetails(props) {
               <FormControlLabel
                 control={<Switch checked={fill} onChange={changeFill} />}
                 label="Fill"
+              />
+              <FormControlLabel
+                control={<Switch checked={useFont} onChange={changeUseFont} />}
+                label="Use Icon Font (animated fill)"
+              />
+              <br />
+              <HighlightedCode
+                copyButtonHidden
+                onClick={handleClick(2)}
+                code={`<${selectedIcon.module}Icon${emphasis ? ' emphasis' : ''}${fill ? ' fill' : ''} />`}
+                language="js"
               />
             </FormGroup>
           </DialogContent>
