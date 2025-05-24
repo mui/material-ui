@@ -75,4 +75,20 @@ describe('<SnackbarContent />', () => {
       ).not.to.throw();
     });
   });
+
+  describe('prop: square', () => {
+    it('should disable the rounded class when square is true', () => {
+      const { getByTestId } = render(
+        <SnackbarContent data-testid="snackbar" message="test" square />,
+      );
+
+      expect(getByTestId('snackbar')).not.to.have.class('MuiPaper-rounded');
+    });
+
+    it('should apply the rounded class when square is not passed', () => {
+      const { getByTestId } = render(<SnackbarContent data-testid="snackbar" message="test" />);
+
+      expect(getByTestId('snackbar')).to.have.class('MuiPaper-rounded');
+    });
+  });
 });

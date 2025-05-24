@@ -41,7 +41,6 @@ const SnackbarContentRoot = styled(Paper, {
       alignItems: 'center',
       flexWrap: 'wrap',
       padding: '6px 16px',
-      borderRadius: (theme.vars || theme).shape.borderRadius,
       flexGrow: 1,
       [theme.breakpoints.up('sm')]: {
         flexGrow: 'initial',
@@ -78,7 +77,6 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) 
   return (
     <SnackbarContentRoot
       role={role}
-      square
       elevation={6}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
