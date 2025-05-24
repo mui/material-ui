@@ -154,6 +154,7 @@
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chalk": "^5.4.1",
+    "chokidar": "^4.0.3",
     "compression-webpack-plugin": "^11.1.0",
     "concurrently": "^9.1.2",
     "cpy-cli": "^5.0.0",
