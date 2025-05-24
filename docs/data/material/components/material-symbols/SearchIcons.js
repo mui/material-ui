@@ -688,8 +688,11 @@ export default function SearchIcons() {
   }, [query]);
 
   const deferredIcons = React.useDeferredValue(icons);
+  const deferredTheme = React.useDeferredValue(theme);
+  const deferredWeight = React.useDeferredValue(weight);
 
-  const isPending = deferredIcons !== icons;
+  const isPending =
+    deferredIcons !== icons || deferredTheme !== theme || deferredWeight !== weight;
 
   React.useEffect(() => {
     // Keep track of the no results so we can add synonyms in the future.
@@ -710,10 +713,10 @@ export default function SearchIcons() {
   });
   const symbolsToLoad = React.useMemo(() => {
     const symbols = { Outlined: [], Rounded: [], Sharp: [] };
-    symbols[theme] = [weight];
+    symbols[deferredTheme] = [deferredWeight];
 
     Object.keys(symbolsLoaded).forEach((key) => {
-      if (key !== `${theme}-${weight}`) {
+      if (key !== `${deferredTheme}-${deferredWeight}`) {
         const options = key.split('-');
         symbols[options[0]].push(options[1]);
       }
@@ -736,7 +739,7 @@ export default function SearchIcons() {
     });
 
     return weightRanges;
-  }, [symbolsLoaded, theme, weight]);
+  }, [symbolsLoaded, deferredTheme, deferredWeight]);
   const updateLoadedSymbols = React.useCallback(async () => {
     await Promise.resolve(); // wait for the next tick in case the font hasn't been inserted into document.fonts yet
 
@@ -773,7 +776,9 @@ export default function SearchIcons() {
     };
   }, [updateLoadedSymbols]);
 
-  const isVisible = symbolsLoaded[`${theme}-${weight}`];
+  const isVisible =
+    symbolsLoaded[`${theme}-${weight}`] &&
+    symbolsLoaded[`${deferredTheme}-${deferredWeight}`];
 
   return (
     <Grid
@@ -782,8 +787,8 @@ export default function SearchIcons() {
         minHeight: 500,
         width: '100%',
         [`& .${ICON_CLASS}`]: {
-          fontFamily: `Material Symbols ${theme}`,
-          fontVariationSettings: `'wght' ${weight}, 'GRAD' ${t.colorSchemes.dark ? '-25' : '0'}`,
+          fontFamily: `Material Symbols ${deferredTheme}`,
+          fontVariationSettings: `'wght' ${deferredWeight}, 'GRAD' ${t.colorSchemes.dark ? '-25' : '0'}`,
         },
       })}
     >
@@ -895,8 +900,8 @@ export default function SearchIcons() {
       <DialogDetails
         open={!!selectedIcon}
         selectedIcon={dialogSelectedIcon}
-        theme={theme}
-        weight={weight}
+        theme={deferredTheme}
+        weight={deferredWeight}
         handleClose={handleClose}
       />
     </Grid>
