@@ -4,9 +4,9 @@ packages:
   - packages-internal/*
   - docs
   - test
-  - test/moduleResolution
+  - test/*
   - apps/*
-  - scripts/sizeSnapshot
+  - bundle-size
 
 patchedDependencies:
   styled-components: patches/styled-components.patch
