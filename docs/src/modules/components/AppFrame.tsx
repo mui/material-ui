@@ -198,6 +198,9 @@ export default function AppFrame(props: AppFrameProps) {
             styles={{
               ':root': {
                 '--MuiDocs-header-height': `${HEIGHT}px`,
+                // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
+                // 59rem ≈ 930px
+                '--MuiDocs-content-max-width': '59rem',
               },
             }}
           />

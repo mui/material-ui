@@ -67,8 +67,7 @@ const StyledAppContainer = styled(AppContainer, {
       {
         props: ({ disableToc }) => disableToc,
         style: {
-          // 105ch ≈ 930px
-          maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
+          '--MuiDocs-text-width': `calc(var(--MuiDocs-content-max-width) + ${TOC_WIDTH / 2}px)`,
         },
       },
       {
@@ -76,8 +75,7 @@ const StyledAppContainer = styled(AppContainer, {
         style: {
           // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
           fontFamily: 'Arial',
-          // 105ch ≈ 930px
-          maxWidth: '105ch',
+          '--MuiDocs-text-width': `calc(var(--MuiDocs-content-max-width))`,
         },
       },
       {

@@ -147,11 +147,15 @@ function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActiv
 
 const Root = styled('div')(({ theme }) => ({
   marginBottom: 24,
+
+  // Take full width on mobile
   marginLeft: theme.spacing(-2),
   marginRight: theme.spacing(-2),
   [theme.breakpoints.up('sm')]: {
-    marginLeft: 0,
-    marginRight: 0,
+    // Same width as the text on larger screen
+    maxWidth: 'var(--MuiDocs-text-width)',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 }));
 

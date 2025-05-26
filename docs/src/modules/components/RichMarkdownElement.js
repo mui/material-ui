@@ -41,17 +41,33 @@ export default function RichMarkdownElement(props) {
       additionalProps.activeTab = activeTab;
     }
 
-    return <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />;
+    return (
+      <div
+        style={{
+          maxWidth: 'var(--MuiDocs-text-width)',
+          margin: 'auto',
+        }}
+      >
+        <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />
+      </div>
+    );
   }
 
   if (renderedMarkdownOrDemo.type === 'codeblock') {
     return (
-      <HighlightedCodeWithTabs
-        tabs={renderedMarkdownOrDemo.data}
-        storageKey={
-          renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
-        }
-      />
+      <div
+        style={{
+          maxWidth: 'var(--MuiDocs-text-width)',
+          margin: 'auto',
+        }}
+      >
+        <HighlightedCodeWithTabs
+          tabs={renderedMarkdownOrDemo.data}
+          storageKey={
+            renderedMarkdownOrDemo.storageKey && `codeblock-${renderedMarkdownOrDemo.storageKey}`
+          }
+        />
+      </div>
     );
   }
 
