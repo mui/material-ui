@@ -249,8 +249,15 @@ const theme = createTheme();
 {
   createTheme({
     shape: {
-      // @ts-expect-error invalid borderRadius string value in theme
       borderRadius: '5px',
+    },
+  });
+}
+
+{
+  createTheme({
+    shape: {
+      borderRadius: 8,
     },
   });
 }
@@ -279,6 +286,20 @@ const theme = createTheme();
                 style: { border: 0 },
               },
             ],
+          },
+        },
+      },
+    },
+  });
+}
+
+{
+  createTheme({
+    components: {
+      MuiTablePaginationActions: {
+        styleOverrides: {
+          root: {
+            color: 'red',
           },
         },
       },

@@ -1,5 +1,5 @@
 const path = require('path');
-const { chromium } = require('playwright');
+const { chromium } = require('@playwright/test');
 const webpack = require('webpack');
 
 const workspaceRoot = path.resolve(__dirname, '../');

@@ -17,6 +17,11 @@ describe('@mui/codemod', () => {
           expected: '/test-cases/custom-breakpoints.expected.js',
           options: { muiBreakpoints: 'customXs,customSm,customMd' },
         },
+        {
+          actual: '/test-cases/package.actual.js',
+          expected: '/test-cases/package.expected.js',
+          options: { packageName: '@org/ui/material' },
+        },
       ],
     });
   });

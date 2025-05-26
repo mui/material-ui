@@ -1,6 +1,5 @@
 {
   "name": "@app/pigment-css-next-app",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -23,9 +22,9 @@
   },
   "devDependencies": {
     "@pigment-css/nextjs-plugin": "0.0.30",
-    "@types/node": "^20.17.30",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.1",
+    "@types/node": "^20.17.48",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
     "eslint": "^8.57.1",
     "typescript": "^5.8.3"
   },
