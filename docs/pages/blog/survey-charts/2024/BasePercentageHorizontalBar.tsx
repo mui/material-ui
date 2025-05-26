@@ -89,7 +89,7 @@ function XBar(props: { data: ExtendedDataItem[]; margin?: Object; height?: numbe
             fontSize: theme.typography.pxToRem(13),
             marginTop: 8,
             textAlign: 'center',
-            color: (theme.vars || theme).palette.grey[700],
+            color: theme.vars.palette.text.primary,
             '& a': {
               color: 'inherit',
               textDecoration: 'underline',
