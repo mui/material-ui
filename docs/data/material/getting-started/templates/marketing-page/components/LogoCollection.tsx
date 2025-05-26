@@ -13,7 +13,7 @@ const darkModeLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f5caa77bf7d69fb78792e_Ankara-white.svg',
 ];
 
-const whiteModeLogos = [
+const lightModeLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628889c3bdf1129952dc_Sydney-black.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d4d8b829a89976a419c_Bern-black.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f467502f091ccb929529d_Montreal-black.svg',
@@ -34,12 +34,12 @@ export default function LogoCollection() {
   let logos;
   if (mode === 'system') {
     if (systemMode === 'light') {
-      logos = whiteModeLogos;
+      logos = lightModeLogos;
     } else {
       logos = darkModeLogos;
     }
   } else if (mode === 'light') {
-    logos = whiteModeLogos;
+    logos = lightModeLogos;
   } else {
     logos = darkModeLogos;
   }
