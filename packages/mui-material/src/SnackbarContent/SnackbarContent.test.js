@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
-import Paper from '@mui/material/Paper';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import Paper, { paperClasses } from '@mui/material/Paper';
 import SnackbarContent, { snackbarContentClasses as classes } from '@mui/material/SnackbarContent';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -78,17 +78,15 @@ describe('<SnackbarContent />', () => {
 
   describe('prop: square', () => {
     it('should disable the rounded class when square is true', () => {
-      const { getByTestId } = render(
-        <SnackbarContent data-testid="snackbar" message="test" square />,
-      );
+      render(<SnackbarContent data-testid="snackbar" message="test" square />);
 
-      expect(getByTestId('snackbar')).not.to.have.class('MuiPaper-rounded');
+      expect(screen.getByTestId('snackbar')).not.to.have.class(paperClasses.rounded);
     });
 
     it('should apply the rounded class when square is not passed', () => {
-      const { getByTestId } = render(<SnackbarContent data-testid="snackbar" message="test" />);
+      render(<SnackbarContent data-testid="snackbar" message="test" />);
 
-      expect(getByTestId('snackbar')).to.have.class('MuiPaper-rounded');
+      expect(screen.getByTestId('snackbar')).to.have.class(paperClasses.rounded);
     });
   });
 });
