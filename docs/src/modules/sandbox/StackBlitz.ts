@@ -145,7 +145,10 @@ function createJoyTemplate(templateData: {
   // Restructure template files to be under src/
   const templateSourceFiles = templateData.files
     ? Object.fromEntries(
-        Object.entries(templateData.files).map(([key, value]) => [`src/${key}`, value]),
+        Object.entries(templateData.files).map(([key, value]) => [
+          `src/${key.replace(/\.js$/, '.jsx')}`,
+          value,
+        ]),
       )
     : {};
 
