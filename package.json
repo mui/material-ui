@@ -135,7 +135,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/babel__register": "^7.17.3",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash": "^4.17.16",
+    "@types/lodash": "^4.17.17",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.17.48",
     "@types/react": "^19.1.4",
