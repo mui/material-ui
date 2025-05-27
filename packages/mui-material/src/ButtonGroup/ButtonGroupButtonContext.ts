@@ -10,8 +10,4 @@ const ButtonGroupButtonContext = React.createContext<ButtonPositionClassName | u
   undefined,
 );
 
-if (process.env.NODE_ENV !== 'production') {
-  ButtonGroupButtonContext.displayName = 'ButtonGroupButtonContext';
-}
-
 export default ButtonGroupButtonContext;

@@ -122,6 +122,7 @@
     "@babel/register": "^7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
+    "@mui/internal-babel-plugin-display-name": "github:mui/mui-public#master&path:./packages/babel-plugin-display-name",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",

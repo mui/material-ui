@@ -7,9 +7,6 @@ const CodeVariantContext = React.createContext({
   codeVariant: CODE_VARIANTS.TS,
   setCodeVariant: () => {},
 });
-if (process.env.NODE_ENV !== 'production') {
-  CodeVariantContext.displayName = 'CodeVariant';
-}
 
 function useFirstRender() {
   const firstRenderRef = React.useRef(true);

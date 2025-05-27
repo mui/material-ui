@@ -6,9 +6,6 @@ import PropTypes from 'prop-types';
  * @type {React.Context<{ idPrefix: string; value: string } | null>}
  */
 const Context = React.createContext(null);
-if (process.env.NODE_ENV !== 'production') {
-  Context.displayName = 'TabContext';
-}
 
 function useUniquePrefix() {
   const [id, setId] = React.useState(null);
