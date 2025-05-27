@@ -534,7 +534,7 @@ export default function DemoToolbar(props) {
                   url.searchParams.set('scopedDemo', demoOptions.demo);
                   window.open(url.toString(), '_blank');
                 }}
-                {...getControlProps(5)}
+                {...getControlProps(6)}
                 sx={{ borderRadius: 1 }}
               >
                 <OpenInNewIcon />
@@ -547,7 +547,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="copy"
               onClick={copyButtonOnClick}
-              {...getControlProps(6)}
+              {...getControlProps(7)}
               sx={{ borderRadius: 1 }}
             >
               {copyIcon}
@@ -559,7 +559,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
-              {...getControlProps(7)}
+              {...getControlProps(8)}
               sx={{ borderRadius: 1 }}
             >
               <ResetFocusIcon />
@@ -572,7 +572,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demo.gaLabel}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
-              {...getControlProps(8)}
+              {...getControlProps(9)}
               sx={{ borderRadius: 1 }}
             >
               <RefreshRoundedIcon />
@@ -583,7 +583,7 @@ export default function DemoToolbar(props) {
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
-            {...getControlProps(9)}
+            {...getControlProps(10)}
             sx={{ borderRadius: 1 }}
           >
             <MoreVertIcon />
