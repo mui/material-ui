@@ -51,6 +51,7 @@ export default function MarkdownDocsV2(props) {
     componentsApiPageContents,
     hooksApiDescriptions,
     hooksApiPageContents,
+    sx,
   } = props;
 
   const userLanguage = useUserLanguage();
@@ -225,6 +226,7 @@ export default function MarkdownDocsV2(props) {
       toc={activeToc}
       disableLayout
       hasTabs={hasTabs}
+      sx={sx}
     >
       <div
         style={{
@@ -282,6 +284,7 @@ MarkdownDocsV2.propTypes = {
   hooksApiDescriptions: PropTypes.object,
   hooksApiPageContents: PropTypes.object,
   srcComponents: PropTypes.object,
+  sx: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {

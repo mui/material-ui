@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { SxProps } from '@mui/material/styles';
 
 export interface AppLayoutDocsProps {
   BannerComponent?: React.ElementType;
@@ -15,6 +16,7 @@ export interface AppLayoutDocsProps {
   location: string;
   title: string;
   toc: any[];
+  sx?: SxProps;
 }
 
 declare const AppLayoutDocs: React.ComponentType<AppLayoutDocsProps>;

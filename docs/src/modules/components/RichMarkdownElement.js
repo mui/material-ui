@@ -25,7 +25,12 @@ export default function RichMarkdownElement(props) {
   const t = useTranslate();
 
   if (typeof renderedMarkdownOrDemo === 'string') {
-    return <MarkdownElement renderedMarkdown={renderedMarkdownOrDemo} />;
+    return (
+      <MarkdownElement
+        renderedMarkdown={renderedMarkdownOrDemo}
+        className="MuiDocs-content-block"
+      />
+    );
   }
 
   if (renderedMarkdownOrDemo.component) {
@@ -42,12 +47,7 @@ export default function RichMarkdownElement(props) {
     }
 
     return (
-      <div
-        style={{
-          maxWidth: 'var(--MuiDocs-text-width)',
-          margin: 'auto',
-        }}
-      >
+      <div className="MuiDocs-content-block">
         <Component {...renderedMarkdownOrDemo} {...additionalProps} markdown={localizedDoc} />
       </div>
     );
@@ -55,12 +55,7 @@ export default function RichMarkdownElement(props) {
 
   if (renderedMarkdownOrDemo.type === 'codeblock') {
     return (
-      <div
-        style={{
-          maxWidth: 'var(--MuiDocs-text-width)',
-          margin: 'auto',
-        }}
-      >
+      <div className="MuiDocs-content-block">
         <HighlightedCodeWithTabs
           tabs={renderedMarkdownOrDemo.data}
           storageKey={

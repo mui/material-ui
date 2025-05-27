@@ -63,6 +63,24 @@ const StyledAppContainer = styled(AppContainer, {
       paddingLeft: '60px',
       paddingRight: '60px',
     },
+    '& .MuiDocs-footer-block': {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      maxWidth: 'var(--MuiDocs-text-width)',
+    },
+    // '& .MuiDocs-content-block.MuiDocs-api-content-block': {
+    //   marginLeft: 'auto',
+    //   marginRight: 'auto',
+    //   maxWidth: 'var(--MuiDocs-text-width)',
+    // },
+    '& .MuiDocs-content-block': {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      maxWidth: 'var(--MuiDocs-text-width)',
+    },
+    // '& .MuiDocs-content-block.MuiDocs-demo-block': {
+    //   maxWidth: 'unset',
+    // },
     variants: [
       {
         props: ({ disableToc }) => disableToc,
@@ -129,6 +147,7 @@ export default function AppLayoutDocs(props) {
     location,
     title,
     toc,
+    sx,
   } = props;
 
   if (description === undefined) {
@@ -164,7 +183,12 @@ export default function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
+          <StyledAppContainer
+            disableAd={disableAd}
+            hasTabs={hasTabs}
+            disableToc={disableToc}
+            sx={sx}
+          >
             {children}
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
@@ -189,6 +213,7 @@ AppLayoutDocs.propTypes = {
   disableToc: PropTypes.bool.isRequired,
   hasTabs: PropTypes.bool,
   location: PropTypes.string.isRequired,
+  sx: PropTypes.object,
   title: PropTypes.string.isRequired,
   toc: PropTypes.array.isRequired,
 };
