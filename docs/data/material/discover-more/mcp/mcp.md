@@ -39,6 +39,7 @@ npx -y @mui/mcp-docs@latest
     }
   }
 }
+```
 
 ### VS Code
 
@@ -46,4 +47,8 @@ Apart from the setup provided above, VS Code requires the following conditions t
 
 1. Enable Agent mode (if required by your extension)
 2. Add the following to your `settings.json`:
+
+```json
+  "chat.mcp.enabled": true,
+  "chat.mcp.discovery.enabled": true
 ```
