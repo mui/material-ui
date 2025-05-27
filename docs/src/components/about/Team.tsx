@@ -19,9 +19,7 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
-/**
- * The teamMembers.json file should be synced with `pnpm docs:sync-team`.
- */
+// The teamMembers.json file should be synced with `pnpm docs:sync-team`.
 
 interface Profile {
   /**
