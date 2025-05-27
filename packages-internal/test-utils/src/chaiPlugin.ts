@@ -1,6 +1,7 @@
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
-import chai, { AssertionError } from 'chai';
+import type chaiType from 'chai';
+import { AssertionError } from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 import _ from 'lodash';
@@ -20,7 +21,7 @@ function elementToString(element: Element | null | undefined) {
   return String(element);
 }
 
-const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
+const chaiPlugin: Parameters<(typeof chaiType)['use']>[0] = (chaiAPI, utils) => {
   const blockElements = new Set([
     'html',
     'address',
