@@ -37,8 +37,8 @@ importers:
         specifier: ^3.1.9
         version: 3.1.9(encoding@0.1.13)(rollup@4.40.0)
       '@slack/bolt':
-        specifier: ^4.3.0
-        version: 4.3.0(@types/express@5.0.0)
+        specifier: ^4.4.0
+        version: 4.4.0(@types/express@5.0.0)
       babel-plugin-transform-import-meta:
         specifier: ^2.3.2
         version: 2.3.2(@babel/core@7.27.1)
@@ -5342,8 +5342,8 @@ packages:
   '@sinonjs/text-encoding@0.7.3':
     resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
 
-  '@slack/bolt@4.3.0':
-    resolution: {integrity: sha512-PExCq+oLhSp72lKMkgYJ2gK5LaI639u3rvxiaMuFq6lWpF4uZ9RuoT2FLPbsdnpwUIIaJ5Cf/K/3Gw/wNCHDQg==}
+  '@slack/bolt@4.4.0':
+    resolution: {integrity: sha512-FjGl1+hUo0w6ZSP2v3ZyjEkpGnA2t83Kz/Et2aEtIe8rRxrHd8R9CKShpd7BesuIcvqaz2eVe33YiKGohOiMKw==}
     engines: {node: '>=18', npm: '>=8.6.0'}
     peerDependencies:
       '@types/express': ^5.0.0
@@ -17637,7 +17637,7 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.3': {}
 
-  '@slack/bolt@4.3.0(@types/express@5.0.0)':
+  '@slack/bolt@4.4.0(@types/express@5.0.0)':
     dependencies:
       '@slack/logger': 4.0.0
       '@slack/oauth': 3.0.3
