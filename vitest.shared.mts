@@ -1,3 +1,4 @@
+/// <reference types="@vitest/browser/providers/playwright" />
 import { configDefaults, defineConfig } from 'vitest/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
@@ -38,7 +39,14 @@ function getVitestEnvironment(fileName: string): 'browser' | 'jsdom' | 'node' {
 
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
-export default async function create(fileUrl: string) {
+export interface CreateOptions {
+  enableScrollbars?: boolean;
+}
+
+export default async function create(
+  fileUrl: string,
+  { enableScrollbars = false }: CreateOptions = {},
+) {
   const file = fileURLToPath(fileUrl);
   const testEnv = getVitestEnvironment(file);
   const pkgJson = path.resolve(file, '../package.json');
@@ -85,6 +93,9 @@ export default async function create(fileUrl: string) {
           {
             browser: 'chromium',
             headless: !!process.env.CI,
+            launch: {
+              ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
+            },
           },
         ],
       },

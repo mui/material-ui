@@ -293,29 +293,35 @@ describe('<Slide />', () => {
   });
 
   describe('transform styling', () => {
+    const RealDiv = React.forwardRef(({ rect, ...props }, ref) => {
+      return (
+        <div {...props} style={{ height: 300, width: 500, background: 'red', ...rect }} ref={ref} />
+      );
+    });
     const FakeDiv = React.forwardRef(({ rect, ...props }, ref) => {
       const stubBoundingClientRect = (element) => {
         if (element !== null) {
           element.fakeTransform = 'none';
           try {
-            stub(element, 'getBoundingClientRect').callsFake(() => ({
-              width: 500,
-              height: 300,
-              left: 300,
-              right: 800,
-              top: 200,
-              bottom: 500,
-              ...rect,
-            }));
+            stub(element, 'getBoundingClientRect').callsFake(() => {
+              const r = {
+                width: 500,
+                height: 300,
+                left: 300,
+                right: 800,
+                top: 200,
+                bottom: 500,
+                ...rect,
+              };
+              return r;
+            });
           } catch (error) {
             // already stubbed
           }
         }
       };
       const handleRef = useForkRef(ref, stubBoundingClientRect);
-      return (
-        <div {...props} style={{ height: 300, width: 500, background: 'red' }} ref={handleRef} />
-      );
+      return <RealDiv {...props} ref={handleRef} />;
     });
 
     describe('handleEnter()', () => {
@@ -555,7 +561,7 @@ describe('<Slide />', () => {
                   nodeExitingTransformStyle = node.style.transform;
                 }}
               >
-                <FakeDiv rect={{ top: 8 }} />
+                <RealDiv rect={{ top: 8 }} />
               </Slide>
             </div>
           );
