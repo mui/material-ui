@@ -267,6 +267,7 @@ export default function MarkdownDocsV2(props) {
       location={localizedDoc.location}
       title={localizedDoc.title}
       toc={activeToc}
+      disableLayout
       hasTabs={hasTabs}
     >
       <div
