@@ -8,15 +8,13 @@ import ComponentsApiContent from 'docs/src/modules/components/ComponentsApiConte
 import HooksApiContent from 'docs/src/modules/components/HooksApiContent';
 import { getTranslatedHeader as getComponentTranslatedHeader } from 'docs/src/modules/components/ApiPage';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import { DemoPageThemeProvider } from 'docs/src/theming';
+import useScopedDemo from '../utils/useScopedDemo';
 
 function getHookTranslatedHeader(t, header) {
   const translations = {
@@ -45,7 +43,6 @@ export default function MarkdownDocsV2(props) {
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
 
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
   const {
     disableAd = false,
     disableToc = false,
@@ -219,39 +216,29 @@ export default function MarkdownDocsV2(props) {
     return false;
   });
 
-  let scopedDemo = router.query.scopedDemo;
-
-  if (scopedDemo === undefined && isBrowser) {
-    // In production, the next router query params are `undefined` on the first render
-    // Fall back to window.location to get query params ASAP
-    scopedDemo = new URLSearchParams(window.location.search).get('scopedDemo');
-  }
+  const scopedDemo = useScopedDemo();
 
   if (scopedDemo) {
     if (isBrowser) {
       // Undo the document.body.style.visibility = 'hidden'; in _document.js
       document.body.style.visibility = 'initial';
     }
-    const isJoy = canonicalAs.startsWith('/joy-ui/');
     return (
-      <DemoPageThemeProvider hasJoy={isJoy}>
-        <GlobalStyles />
-        <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
-          <RichMarkdownElement
-            activeTab={activeTab}
-            demoComponents={demoComponents}
-            demos={demos}
-            disableAd={disableAd}
-            localizedDoc={localizedDoc}
-            srcComponents={srcComponents}
-            renderedMarkdownOrDemo={{
-              demo: scopedDemo,
-              hideToolbar: true,
-              bg: false,
-            }}
-          />
-        </div>
-      </DemoPageThemeProvider>
+      <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
+        <RichMarkdownElement
+          activeTab={activeTab}
+          demoComponents={demoComponents}
+          demos={demos}
+          disableAd={disableAd}
+          localizedDoc={localizedDoc}
+          srcComponents={srcComponents}
+          renderedMarkdownOrDemo={{
+            demo: scopedDemo,
+            hideToolbar: true,
+            bg: false,
+          }}
+        />
+      </div>
     );
   }
 

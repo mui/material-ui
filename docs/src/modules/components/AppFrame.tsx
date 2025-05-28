@@ -23,6 +23,7 @@ import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import useScopedDemo from '../utils/useScopedDemo';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -187,73 +188,82 @@ export default function AppFrame(props: AppFrameProps) {
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
   const isJoy = canonicalAs.startsWith('/joy-ui/');
 
+  const scopedDemo = useScopedDemo();
+
   return (
     <DemoPageThemeProvider hasJoy={isJoy}>
-      <RootDiv className={className}>
-        <StyledAppBar
-          disablePermanent={disablePermanent}
-          sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
-        >
-          <GlobalStyles
-            styles={{
-              ':root': {
-                '--MuiDocs-header-height': `${HEIGHT}px`,
-              },
-            }}
-          />
-          <Stack direction="row" sx={{ alignItems: 'center', position: 'relative', width: '100%' }}>
-            <NavIconButton
-              edge="start"
-              color="primary"
-              size="small"
-              aria-label={t('appFrame.openDrawer')}
-              disablePermanent={disablePermanent}
-              onClick={() => setMobileOpen(true)}
-              sx={{ ml: '1px' }}
+      {scopedDemo ? (
+        children
+      ) : (
+        <RootDiv className={className}>
+          <StyledAppBar
+            disablePermanent={disablePermanent}
+            sx={{ minHeight: 'var(--MuiDocs-header-height)' }}
+          >
+            <GlobalStyles
+              styles={{
+                ':root': {
+                  '--MuiDocs-header-height': `${HEIGHT}px`,
+                },
+              }}
+            />
+            <Stack
+              direction="row"
+              sx={{ alignItems: 'center', position: 'relative', width: '100%' }}
             >
-              <SvgHamburgerMenu />
-            </NavIconButton>
-            <Box sx={{ display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
-              <LogoWithCopyMenu
-                logo={productIdentifier.logo}
-                logoSvgString={productIdentifier.logoSvg}
-                wordmarkSvgString={productIdentifier.wordmarkSvg}
-                marginLeft
-              />
-            </Box>
-            <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
-              <BannerComponent />
-              <DeferredAppSearch />
-              <Tooltip title={t('appFrame.github')} enterDelay={300}>
-                <IconButton
-                  component="a"
-                  color="primary"
-                  size="small"
-                  href={process.env.SOURCE_CODE_REPO}
-                  data-ga-event-category="header"
-                  data-ga-event-action="github"
-                >
-                  <GitHubIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Notifications />
-              <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-                <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
-                  <SettingsIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
+              <NavIconButton
+                edge="start"
+                color="primary"
+                size="small"
+                aria-label={t('appFrame.openDrawer')}
+                disablePermanent={disablePermanent}
+                onClick={() => setMobileOpen(true)}
+                sx={{ ml: '1px' }}
+              >
+                <SvgHamburgerMenu />
+              </NavIconButton>
+              <Box sx={{ display: { xs: 'flex', md: 'flex', lg: 'none' } }}>
+                <LogoWithCopyMenu
+                  logo={productIdentifier.logo}
+                  logoSvgString={productIdentifier.logoSvg}
+                  wordmarkSvgString={productIdentifier.wordmarkSvg}
+                  marginLeft
+                />
+              </Box>
+              <Stack direction="row" spacing={1} useFlexGap sx={{ ml: 'auto' }}>
+                <BannerComponent />
+                <DeferredAppSearch />
+                <Tooltip title={t('appFrame.github')} enterDelay={300}>
+                  <IconButton
+                    component="a"
+                    color="primary"
+                    size="small"
+                    href={process.env.SOURCE_CODE_REPO}
+                    data-ga-event-category="header"
+                    data-ga-event-action="github"
+                  >
+                    <GitHubIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+                <Notifications />
+                <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+                  <IconButton color="primary" size="small" onClick={() => setSettingsOpen(true)}>
+                    <SettingsIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              </Stack>
             </Stack>
-          </Stack>
-        </StyledAppBar>
-        <StyledAppNavDrawer
-          disablePermanent={disablePermanent}
-          onClose={closeDrawer}
-          onOpen={openDrawer}
-          mobileOpen={mobileOpen}
-        />
-        {children}
-        <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
-      </RootDiv>
+          </StyledAppBar>
+          <StyledAppNavDrawer
+            disablePermanent={disablePermanent}
+            onClose={closeDrawer}
+            onOpen={openDrawer}
+            mobileOpen={mobileOpen}
+          />
+          {children}
+          <AppSettingsDrawer onClose={() => setSettingsOpen(false)} open={settingsOpen} />
+        </RootDiv>
+      )}
     </DemoPageThemeProvider>
   );
 }
