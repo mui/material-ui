@@ -271,7 +271,7 @@ const PickerPopperPaper = styled(MuiPaper, {
   transformOrigin: 'top center',
   variants: [
     {
-      props: ({ popperPlacement }) => ['top', 'top-start', 'top-end'].includes(popperPlacement),
+      props: ({ popperPlacement }) => new Set(['top', 'top-start', 'top-end']).has(popperPlacement),
       style: {
         transformOrigin: 'bottom center',
       },
