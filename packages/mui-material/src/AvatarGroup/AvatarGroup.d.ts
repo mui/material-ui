@@ -6,7 +6,7 @@ import {
   PartiallyRequired,
 } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material';
+import { Theme } from '../styles';
 import { AvatarGroupClasses } from './avatarGroupClasses';
 import Avatar from '../Avatar';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
