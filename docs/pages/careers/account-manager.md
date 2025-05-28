@@ -33,7 +33,7 @@ For additional details about the culture, you can check our [careers](https://mu
 
 ## Why we're hiring
 
-Currently, 100% of MUI’s sales are inbound, and MUI boasts an impressive existing client base, with millions of developers having already downloaded MUI.
+Currently, 100% of MUI's sales are inbound, and MUI boasts an impressive existing client base, with millions of developers having already downloaded MUI.
 
 To accelerate this growth, MUI now needs to hire an Account Manager to manage existing customers and qualify incoming leads with a focus on selling additional licenses, upselling/cross-selling, and increasing total contract value – building strong relationships with each customer.
 
@@ -43,7 +43,7 @@ As MUI continues to grow, the Account Manager will not only close inbound leads,
 
 ## The role
 
-The Account Managers will aim to support MUI’s existing client base and work to increase the average customer lifetime value.
+The Account Managers will aim to support MUI's existing client base and work to increase the average customer lifetime value.
 
 ### Key responsibilities
 
@@ -70,13 +70,13 @@ As an Account Manager, you will be responsible for managing a portfolio of key a
 
 - The Account Manager will manage key customers with large accounts, and scan existing smaller accounts to upsell into them. Essentially ensuring users are successful by explaining the benefits of the MUI products to them
 - The Account Manager will guide customers from MUI Pro to MUI Premium, upselling additional features on top of the Premium offering.
-- MUI’s typical customers are engineers, developers, Heads of Engineering Departments, CTOs, etc. The Account Manager will need to develop an understanding of MUI’s products to resonate with MUI’s customers and will manage mid-market and enterprise sales cycles with multiple engagement points.
+- MUI's typical customers are engineers, developers, Heads of Engineering Departments, CTOs, etc. The Account Manager will need to develop an understanding of MUI's products to resonate with MUI's customers and will manage mid-market and enterprise sales cycles with multiple engagement points.
 - The Account Manager will be in active communication with customers leading them into the onboarding process and working closely with customer success.
 - Therefore, MUI needs an Account Manager who has sold either:
   - UI interfaces/libraries and related technologies for front-end development
   - API and other Developer products
 - The Account Manager needs to have a track record of selling relevant tools and products to customers, with a history of success in upselling, cross-selling, increasing total contract values, and renewal rates of customers.
-- The Account Manager will consult and advise MUI’s customers and then report relevant information/feedback back to the MUI team regarding points such as features that clients have asked for more information regarding.
+- The Account Manager will consult and advise MUI's customers and then report relevant information/feedback back to the MUI team regarding points such as features that clients have asked for more information regarding.
 - This will be the 1st Account Manager hire for MUI. Therefore, this individual needs to be a self-starter, motivated, and able to work autonomously. MUI is in the startup phase, not all processes will be defined, the Account Manager needs to be comfortable working alone, and sometimes with activities that may extend outside of the job description.
 - While startup experience is preferred, but certainly not essential, a startup, entrepreneurial and self-motivating mindset is essential.
 - The Account Manager must have strong interpersonal and presentation skills and be confident in their ability to learn and achieve.
