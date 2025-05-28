@@ -6,7 +6,6 @@ packages:
   - test
   - test/*
   - apps/*
-  - bundle-size
 
 patchedDependencies:
   styled-components: patches/styled-components.patch
