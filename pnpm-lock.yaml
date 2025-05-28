@@ -689,8 +689,8 @@ importers:
         specifier: ^0.4.24
         version: 0.4.24
       chance:
-        specifier: ^1.1.12
-        version: 1.1.12
+        specifier: ^1.1.13
+        version: 1.1.13
       clean-css:
         specifier: ^5.3.3
         version: 5.3.3
@@ -6829,8 +6829,8 @@ packages:
     resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
-  chance@1.1.12:
-    resolution: {integrity: sha512-vVBIGQVnwtUG+SYe0ge+3MvF78cvSpuCOEUJr7sVEk2vSBuMW6OXNJjSzdtzrlxNUEaoqH2GBd5Y/+18BEB01Q==}
+  chance@1.1.13:
+    resolution: {integrity: sha512-V6lQCljcLznE7tUYUM9EOAnnKXbctE6j/rdQkYOHIWbfGQbrzTsAXNW9CdU5XCo4ArXQCj/rb6HgxPlmGJcaUg==}
 
   char-regex@1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
@@ -11747,6 +11747,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qjobs@1.2.0:
@@ -16365,7 +16366,7 @@ snapshots:
       '@mui/x-data-grid-premium': 8.3.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/x-data-grid-pro': 8.3.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/x-internals': 8.3.1(@types/react@19.1.6)(react@19.1.0)
-      chance: 1.1.12
+      chance: 1.1.13
       clsx: 2.1.1
       lru-cache: 11.1.0
       react: 19.1.0
@@ -19522,7 +19523,7 @@ snapshots:
 
   chalk@5.4.1: {}
 
-  chance@1.1.12: {}
+  chance@1.1.13: {}
 
   char-regex@1.0.2: {}
 
