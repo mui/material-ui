@@ -208,7 +208,7 @@
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vite": "^6.0.7",
-    "vitest": "^3.1.3",
+    "vitest": "^3.1.4",
     "vitest-fail-on-console": "^0.7.1",
     "webpack": "^5.99.8",
     "webpack-bundle-analyzer": "^4.10.2",
