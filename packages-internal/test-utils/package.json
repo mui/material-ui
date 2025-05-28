@@ -44,7 +44,6 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "chai": "^4.5.0",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
     "format-util": "^1.0.5",
@@ -67,7 +66,8 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "chai": "^4.5.0 || ^5.0.0"
   },
   "publishConfig": {
     "access": "public"
