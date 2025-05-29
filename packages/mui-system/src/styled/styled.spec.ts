@@ -29,7 +29,20 @@ const VariantCallbacks = styled('div')<{ ownerState: OwnerState } & OwnerState>(
   color: 'inherit',
   variants: [
     {
-      props: ({ ownerState }) => ownerState.showChanges,
+      props: ({ ownerState }) => !!ownerState.showChanges,
+      style: {
+        color: 'red',
+      },
+    },
+  ],
+});
+
+const VariantCallbackOwnerState = styled('div')<{ ownerState: OwnerState }>({
+  font: 'inherit',
+  color: 'inherit',
+  variants: [
+    {
+      props: ({ variant }) => variant === 'success',
       style: {
         color: 'red',
       },

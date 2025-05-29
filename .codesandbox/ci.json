@@ -18,8 +18,6 @@
     "packages/mui-system",
     "packages/mui-types",
     "packages/mui-utils",
-    "packages-internal/babel-plugin-minify-errors",
-    "packages-internal/babel-plugin-resolve-imports",
     "packages-internal/docs-utils",
     "packages-internal/scripts",
     "packages-internal/test-utils"
@@ -33,8 +31,6 @@
     "@mui/internal-docs-utils": "packages-internal/docs-utils",
     "@mui/internal-markdown": "packages/markdown",
     "@mui/internal-scripts": "packages-internal/scripts",
-    "@mui/internal-babel-plugin-minify-errors": "packages-internal/babel-plugin-minify-errors",
-    "@mui/internal-babel-plugin-resolve-imports": "packages-internal/babel-plugin-resolve-imports",
     "@mui/lab": "packages/mui-lab/build",
     "@mui/material-nextjs": "packages/mui-material-nextjs/build",
     "@mui/material": "packages/mui-material/build",

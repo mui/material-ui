@@ -55,7 +55,7 @@ Learn more about palette structure in the [Palette documentation](/material-ui/c
 
 ## System preference
 
-Some users sets a preference for light or dark mode through their operation system—either systemwide, or for individual user agents.
+Some users set a preference for light or dark mode through their operating system—either systemwide, or for individual user agents.
 The following sections explain how to apply these preferences to an app's theme.
 
 ### Built-in support

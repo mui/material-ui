@@ -80,6 +80,18 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
 
+### Spacing
+
+The demos below show how to adjust spacing between toggle buttons in horizontal and vertical orientations.
+
+#### Horizontal Spacing
+
+{{"demo": "HorizontalSpacingToggleButton.js"}}
+
+#### Vertical Spacing
+
+{{"demo": "VerticalSpacingToggleButton.js"}}
+
 ## Accessibility
 
 ### ARIA
