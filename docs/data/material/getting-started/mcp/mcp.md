@@ -16,7 +16,6 @@ Traditional AI coding assistants are excellent at providing answers, especially 
 - Linking to **actual documentation** _(no imaginary links that lead to 404s)_
 - Making responses easier to follow and trust
 
-
 ## Getting Started: Installation & Setup
 
 The MCP is available as a separate package and runs locally, communicate via your AI client using the `stdio` transport. Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
@@ -62,20 +61,20 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 
 > I am using DataGrid Pro version and I am trying to use pinning and reordering in the same time.
 > I don't want the reorder handler to disappear when I have the row pinned. I am using it for functionality with pagination so I can:
->  
+>
 > Pin a row to the top,
-> 
+>
 > Move the pagination forwards or backwards,
-> 
+>
 > Drag into the new page row to change order on the different pages with a pinned row,
-> 
+>
 > However, when I'm trying to use GRID_REORDER_COL_DEF the renderCell is returning null for pinned rows.
 
---- 
+---
 
 ### AI clients without MCP
 
-> This is a known limitation in MUI DataGrid Pro: when a row is pinned, the default row reorder handler 
+> This is a known limitation in MUI DataGrid Pro: when a row is pinned, the default row reorder handler
 > (provided by GRID_REORDER_COL_DEF) is hidden for pinned rows, and the renderCell returns null.
 > This is by design to prevent reordering of pinned rows, but your use case requires both features together.
 >
@@ -85,7 +84,7 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 > Implement custom logic to handle reordering, especially across pages and with pinned rows.
 >
 > Here's how you can proceed:
-> 
+>
 > Create a custom reorder column definition
 > Use your own renderCell that always renders the reorder handler, regardless of pinning
 > You can copy the default reorder handler from MUI source and adjust the logic as needed
@@ -128,7 +127,7 @@ Try and use the MCP inspector to debug the connection. To do so, run:
  npx @modelcontextprotocol/inspector
 ```
 
-1. Wait till the terminal says: "🔍 MCP Inspector is up and running at http://127.0.0.1:6274". 
+1. Wait till the terminal says: "🔍 MCP Inspector is up and running at http://127.0.0.1:6274".
 
 1. Navigate to this URL in your browser
 
@@ -144,35 +143,18 @@ Try and use the MCP inspector to debug the connection. To do so, run:
 
 The MCP should successfully connect, and you should see a list of available tools. If not, check the logs in the terminal where you ran the MCP inspector for more details
 
-
 ### I've installed the MCP, but it is not being used when I ask questions
 
-If you've installed the MCP and enabled all the necessary settings, but it is not being used when you ask questions, you might need to supply rules to your AI client to use the MCP. 
+If you've installed the MCP and enabled all the necessary settings, but it is not being used when you ask questions, you might need to supply rules to your AI client to use the MCP.
 
 Most editors allow you to specify rules for AI assistants to follow. Depending on the editor, the rules file might be specified in different locations. For VS Code, for instance, add the following to `.github/instructions/mui.md`:
 
-```
+```markdown
 ## Use the mui-mcp-docs server to answer any MUI questions --
 
 - 1. call the "useMuiDocs" tool to fetch the docs of the package relevant in the question
-- 2. call the "fetchDocs" tool to fetch any additional docs if needed using ONLY the URLs 
-present in the returned content.
+- 2. call the "fetchDocs" tool to fetch any additional docs if needed using ONLY the URLs
+     present in the returned content.
 - 3. repeat steps 1-2 until you have fetched all relevant docs for the given question
 - 4. use the fetched content to answer the question
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
