@@ -401,8 +401,8 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     variant = 'filled',
     tabIndex,
     skipFocusWhenDisabled = false, // TODO v6: Rename to `focusableWhenDisabled`.
-    slots,
-    slotProps,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
