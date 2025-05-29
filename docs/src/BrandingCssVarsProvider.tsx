@@ -151,6 +151,8 @@ export default function BrandingCssVarsProvider(props: {
     }
   }, []);
   useEnhancedEffect(() => {
+    // This is required to ensure that the layer order is declared first in the head
+    // because when the direction is RTL on the client, emotion reinserts the RTL styles back to the top of the insertion point.
     if (direction === 'rtl') {
       const head = document.querySelector('head');
       if (head) {
