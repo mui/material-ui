@@ -1,5 +1,5 @@
 'use client';
-/* eslint-disable no-constant-condition */
+
 import * as React from 'react';
 import setRef from '@mui/utils/setRef';
 import useEventCallback from '@mui/utils/useEventCallback';

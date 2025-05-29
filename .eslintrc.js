@@ -82,7 +82,7 @@ module.exports = /** @type {Config} */ ({
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint',
-    'eslint-plugin-filenames',
+    'eslint-plugin-consistent-default-export-name',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
   settings: {
@@ -280,6 +280,24 @@ module.exports = /** @type {Config} */ ({
     'id-denylist': ['error', 'e'],
   },
   overrides: [
+    ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
+      (packageName) => ({
+        files: [`packages/${packageName}/src/**/*.?(c|m)[jt]s?(x)`],
+        excludedFiles: ['*.test.*', '*.spec.*'],
+        rules: {
+          'material-ui/no-restricted-resolved-imports': [
+            'error',
+            [
+              {
+                pattern: `**/packages/${packageName}/src/index.*`,
+                message:
+                  "Don't import from the package index. Import the specific module directly instead.",
+              },
+            ],
+          ],
+        },
+      }),
+    ),
     {
       files: [
         // matching the pattern of the test runner
@@ -390,7 +408,7 @@ module.exports = /** @type {Config} */ ({
         'docs/data/**/{css,system,tailwind}/*',
       ],
       rules: {
-        'filenames/match-exported': ['error'],
+        'consistent-default-export-name/default-export-match-filename': ['error'],
       },
     },
     {
