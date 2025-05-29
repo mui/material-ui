@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { prefixer } from 'stylis';
-import rtlPlugin from 'stylis-plugin-rtl';
+import rtlPlugin from 'mui-plugin-rtl';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
