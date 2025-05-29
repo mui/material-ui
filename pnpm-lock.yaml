@@ -1233,6 +1233,9 @@ importers:
       eslint-module-utils:
         specifier: ^2.12.0
         version: 2.12.0(@typescript-eslint/parser@8.32.1(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@8.57.1)
+      minimatch:
+        specifier: ^3.1.2
+        version: 3.1.2
     devDependencies:
       '@types/eslint':
         specifier: ^8.56.12
