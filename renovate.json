@@ -22,6 +22,11 @@
       "matchPackagePatterns": ["^@babel/", "^@types/babel"]
     },
     {
+      "groupName": "chai",
+      "matchPackageNames": ["chai", "@types/chai"],
+      "matchPackagePatterns": ["chai-*"]
+    },
+    {
       "groupName": "Emotion",
       "matchPackagePatterns": "@emotion/*"
     },
