@@ -1229,7 +1229,10 @@ importers:
         version: 10.4.0
       eslint-module-utils:
         specifier: ^2.12.0
-        version: 2.12.0(@typescript-eslint/parser@8.31.1(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-webpack@0.13.10)(eslint@8.57.1)
+        version: 2.12.0(@typescript-eslint/parser@8.32.1(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@8.57.1)
+      minimatch:
+        specifier: ^3.1.2
+        version: 3.1.2
     devDependencies:
       '@types/eslint':
         specifier: ^8.56.12
@@ -20988,6 +20991,16 @@ snapshots:
       resolve: 2.0.0-next.5
       semver: 5.7.2
       webpack: 5.99.9(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))
+    transitivePeerDependencies:
+      - supports-color
+
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.32.1(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@8.57.1):
+    dependencies:
+      debug: 3.2.7
+    optionalDependencies:
+      '@typescript-eslint/parser': 8.32.1(eslint@8.57.1)(typescript@5.8.3)
+      eslint: 8.57.1
+      eslint-import-resolver-webpack: 0.13.10(eslint-plugin-import@2.31.0)(webpack@5.99.9)
     transitivePeerDependencies:
       - supports-color
 

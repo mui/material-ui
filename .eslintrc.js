@@ -289,7 +289,7 @@ module.exports = /** @type {Config} */ ({
             'error',
             [
               {
-                pattern: `*/packages/${packageName}/src/index.*`,
+                pattern: `**/packages/${packageName}/src/index.*`,
                 message:
                   "Don't import from the package index. Import the specific module directly instead.",
               },

@@ -49,7 +49,7 @@ ruleTester.run('no-restricted-resolved-imports', rule, {
       options: [
         [
           {
-            pattern: '*/mock-package/src/index.js',
+            pattern: '**/mock-package/src/index.js',
             message: 'Import the specific module directly instead of from the package index.',
           },
         ],
@@ -64,7 +64,7 @@ ruleTester.run('no-restricted-resolved-imports', rule, {
       options: [
         [
           {
-            pattern: '*/mock-package/src/index.js',
+            pattern: '**/mock-package/src/index.js',
             message: 'Import the specific module directly instead of from the package index.',
           },
         ],

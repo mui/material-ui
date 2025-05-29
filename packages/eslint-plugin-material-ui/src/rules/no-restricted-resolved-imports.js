@@ -1,6 +1,7 @@
 const path = require('path');
 const resolve = require('eslint-module-utils/resolve').default;
 const moduleVisitor = require('eslint-module-utils/moduleVisitor').default;
+const { minimatch } = require('minimatch');
 /**
  * @typedef {Object} PatternConfig
  * @property {string} pattern - The pattern to match against resolved imports
@@ -61,15 +62,7 @@ const rule = {
         for (const option of options) {
           const { pattern, message = '' } = option;
 
-          // Convert the pattern to a regex
-          // Escape special characters and convert * to .*
-          const regexPattern = new RegExp(
-            pattern
-              .replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // Escape special regex chars except *
-              .replace(/\*/g, '.*'), // Convert * to .* for wildcard matching
-          );
-
-          if (regexPattern.test(normalizedPath)) {
+          if (minimatch(normalizedPath, pattern)) {
             context.report({
               node,
               messageId: 'restrictedResolvedImport',
