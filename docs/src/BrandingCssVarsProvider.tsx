@@ -150,6 +150,17 @@ export default function BrandingCssVarsProvider(props: {
       setDocsColors(nextPaletteColors.primary, nextPaletteColors.secondary);
     }
   }, []);
+  useEnhancedEffect(() => {
+    if (direction === 'rtl') {
+      const head = document.querySelector('head');
+      if (head) {
+        const style = document.createElement('style');
+        style.textContent =
+          '@layer theme, docsearch, mui, mui.global, mui.default, mui.theme, mui.custom, mui.sx, utilities;';
+        head.prepend(style);
+      }
+    }
+  }, [direction]);
   return (
     <ThemeProvider
       theme={theme}
