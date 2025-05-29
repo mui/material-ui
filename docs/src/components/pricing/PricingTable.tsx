@@ -694,7 +694,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'response-time': (
     <ColumnHead
-      {...{ label: 'Guaranteed response time', tooltip: 'Maximum lead time for each response, only working days are counted.' }}
+      {...{
+        label: 'Guaranteed response time',
+        tooltip: 'Maximum lead time for each response, only working days are counted.',
+      }}
     />
   ),
   'pre-screening': (
