@@ -1,7 +1,7 @@
 const path = require('path');
 const resolve = require('eslint-module-utils/resolve').default;
 const moduleVisitor = require('eslint-module-utils/moduleVisitor').default;
-const { minimatch } = require('minimatch');
+const minimatch = require('minimatch');
 /**
  * @typedef {Object} PatternConfig
  * @property {string} pattern - The pattern to match against resolved imports
