@@ -37,7 +37,7 @@
     "sinon": "^19.0.5",
     "styled-components": "^6.1.18",
     "stylis": "4.2.0",
-    "stylis-plugin-rtl": "^2.1.1",
+    "mui-plugin-rtl": "^2.2.0",
     "webfontloader": "^1.6.28",
     "webpack": "^5.99.9",
     "yargs": "^17.7.2"
