@@ -10,6 +10,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
+      { pathname: '/material-ui/discover-more/mcp', newFeature: true, title: 'MCP' },
       { pathname: '/material-ui/getting-started/example-projects' },
       { pathname: '/material-ui/getting-started/templates' },
       { pathname: '/material-ui/getting-started/learn' },
@@ -377,7 +378,6 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors and Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
-      { pathname: '/material-ui/discover-more/mcp', newFeature: true, title: 'MCP' },
     ],
   },
   {

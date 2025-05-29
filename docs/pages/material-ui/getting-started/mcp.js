@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import * as pageProps from 'docs/data/material/discover-more/mcp/mcp.md?muiMarkdown';
+import * as pageProps from 'docs/data/material/getting-started/mcp/mcp.md?muiMarkdown';
 
 export default function Page() {
   return <MarkdownDocs {...pageProps} disableToc />;
