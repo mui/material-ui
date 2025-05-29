@@ -1,10 +1,10 @@
 # Model Context Protocol (MCP) for MUI
 
-<p class="description">Gain access to the official Material UI docs and code in your AI client.</p>
+<p class="description">Gain access to the official Material UI docs and code in your AI client.</p>
 
 ## Introduction & What is MCP?
 
-The Model Context Protocol (MCP) is a new open standard for connecting AI assistants to real, trusted sources of documentation and code. For Material UI users, this means you get answers that are accurate, up-to-date, and directly reference the official docs.
+The Model Context Protocol (MCP) is a new open standard for connecting AI assistants to real, trusted sources of documentation and code. For Material UI users, this means you get answers that are accurate, up-to-date, and directly reference the official docs.
 
 Want to learn more about MCP? See the [official MCP documentation](https://modelcontextprotocol.io/introduction).
 
@@ -41,7 +41,7 @@ npx -y @mui/mcp-docs@latest
 }
 ```
 
-### VS Code
+### VS Code
 
 Apart from the setup provided above, VS Code requires the following conditions to be met for the MCP to be usable:
 
@@ -105,7 +105,7 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 >
 > **Workarounds and Recommendations:**
 > You can still reorder non-pinned rows as usual
-> For pinned rows, implement a custom UI/UX (e.g., action buttons like "Move Up/Down" or "Unpin and Move")
+> For pinned rows, implement a custom UI/UX (action buttons like "Move Up/Down" or "Unpin and Move" for example)
 > To move a pinned row to a different page, first unpin it, reorder, then pin it again
 >
 > **Summary:**
@@ -147,7 +147,7 @@ The MCP should successfully connect, and you should see a list of available tool
 
 If you've installed the MCP and enabled all the necessary settings, but it is not being used when you ask questions, you might need to supply rules to your AI client to use the MCP.
 
-Most editors allow you to specify rules for AI assistants to follow. Depending on the editor, the rules file might be specified in different locations. For VS Code, for instance, add the following to `.github/instructions/mui.md`:
+Most editors allow you to specify rules for AI assistants to follow. Depending on the editor, the rules file might be specified in different locations. For VS Code, for instance, add the following to `.github/instructions/mui.md`:
 
 ```text
 ## Use the mui-mcp-docs server to answer any MUI questions --
