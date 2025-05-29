@@ -82,7 +82,7 @@ module.exports = /** @type {Config} */ ({
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint',
-    'eslint-plugin-filenames',
+    'eslint-plugin-consistent-default-export-name',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
   settings: {
@@ -408,7 +408,7 @@ module.exports = /** @type {Config} */ ({
         'docs/data/**/{css,system,tailwind}/*',
       ],
       rules: {
-        'filenames/match-exported': ['error'],
+        'consistent-default-export-name/default-export-match-filename': ['error'],
       },
     },
     {

@@ -28,19 +28,19 @@ const SnackbarContentRoot = styled(Paper, {
 })(
   memoTheme(({ theme }) => {
     const emphasis = theme.palette.mode === 'light' ? 0.8 : 0.98;
-    const backgroundColor = emphasize(theme.palette.background.default, emphasis);
 
     return {
       ...theme.typography.body2,
       color: theme.vars
         ? theme.vars.palette.SnackbarContent.color
-        : theme.palette.getContrastText(backgroundColor),
-      backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
+        : theme.palette.getContrastText(emphasize(theme.palette.background.default, emphasis)),
+      backgroundColor: theme.vars
+        ? theme.vars.palette.SnackbarContent.bg
+        : emphasize(theme.palette.background.default, emphasis),
       display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
       padding: '6px 16px',
-      borderRadius: (theme.vars || theme).shape.borderRadius,
       flexGrow: 1,
       [theme.breakpoints.up('sm')]: {
         flexGrow: 'initial',
@@ -77,7 +77,6 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) 
   return (
     <SnackbarContentRoot
       role={role}
-      square
       elevation={6}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
