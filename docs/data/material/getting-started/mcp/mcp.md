@@ -149,7 +149,7 @@ If you've installed the MCP and enabled all the necessary settings, but it is no
 
 Most editors allow you to specify rules for AI assistants to follow. Depending on the editor, the rules file might be specified in different locations. For VS Code, for instance, add the following to `.github/instructions/mui.md`:
 
-```
+```text
 ## Use the mui-mcp-docs server to answer any MUI questions --
 
 - 1. call the "useMuiDocs" tool to fetch the docs of the package relevant in the question
