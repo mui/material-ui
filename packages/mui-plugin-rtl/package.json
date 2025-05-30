@@ -34,7 +34,7 @@
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern"
   },
   "dependencies": {
     "@babel/runtime": "^7.27.1",
