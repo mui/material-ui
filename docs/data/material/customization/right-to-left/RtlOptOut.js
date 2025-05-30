@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { prefixer } from 'stylis';
-import rtlPlugin from 'mui-plugin-rtl';
+import rtlPlugin from '@mui/plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { styled } from '@mui/material/styles';
