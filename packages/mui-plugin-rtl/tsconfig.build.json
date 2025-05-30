@@ -12,6 +12,5 @@
     "types": ["react", "node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.test.ts*", "src/**/*.spec.ts*"],
-  "references": [{ "path": "../mui-types/tsconfig.build.json" }]
+  "exclude": ["src/**/*.test.ts*", "src/**/*.spec.ts*"]
 }
