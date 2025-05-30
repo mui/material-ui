@@ -1,5 +1,73 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.1.1
+
+<!-- generated comparing v7.1.0..master -->
+
+_May 30, 2025_
+
+A big thanks to the 15 contributors who made this release possible.
+
+### `@mui/material@7.1.1`
+
+- [Autocomplete] Fix label shrink issue when `renderValue` is used with empty array in multiple mode (#46047) @ZeeshanTamboli
+- [Autocomplete] Prevent `renderValue` from being skipped when value is 0 (#46145) @LakshitAgarwal
+- [Autocomplete] Add note in JSDoc for non-TextField components in `renderInput` (#46141) @khllbnomrn
+- [Chip] Add slots and slotProps (#46098) @sai6855
+- [Menu] Remove depreacted `MenuListProps` from demos (#46144) @sai6855
+- [TablePaginationActions] export TablePaginationActions as new component (#46149) @sai6855
+- [SnackbarContent] Fix `square` prop not working (#46196) @0210shivam
+- [SnackbarContent] Fix error when theme value is CSS variable (#46198) @0210shivam
+
+### `@mui/codemod@7.1.1`
+
+- [codemod] Add package name option (#45977) @siriwatknp
+
+### `@mui/system@7.1.1`
+
+- Skip styled component from being transformed (#46129) @siriwatknp
+- Update the type for borderRadius (#46154) @codiini
+
+### `@mui/styled-engine@7.1.1`
+
+- Fix variant props callback type to spread `ownerState` (#46187) @siriwatknp
+
+### Docs
+
+- [Dialog] Remove deprecated TransitionComponent from demo (#46185) @sai6855
+- [Grid] Remove direction `column` and `column-reverse` from the demo (#46127) @0210shivam
+- [Grid] Update grid migration guide (#46057) @sai6855
+- [templates] Fix rendering of logos in dark mode (#46221) @sai6855
+- [ToggleButtonGroup] Add spacing demo (#46058) @sai6855
+- Fix typo in dark mode docs (#46229) @ZeeshanTamboli
+- Clarify Next.js + Tailwind CSS v3 integration requirements (#46176) @chaitanyasharma1011
+- Fix GridLegacy docs order (#46135) @oliviertassinari
+- Update upgrade guide for resolution of `react-is` (#46002) @siriwatknp
+- Remove oudated scaffoldhub ad (#46090) @oliviertassinari
+- Show how to target global state classes with CSS Modules (#45992) @RubemMazzetto
+
+### Core
+
+- [code-infra] Add plugin to check for index file access (#46178) @Janpot
+- [code-infra] Bump eslint to v9 (#46222) @brijeshb42
+- [code-infra] Move packages to mui/mui-public (#46155) @Janpot
+- [code-infra] Move `chai` to peerDep (#46227) @JCQuintas
+- [code-infra] Avoid loading barrel file during type checking (#46177) @Janpot
+- [code-infra] Remove unnecessary ref from `HighlightedCode` component (#46151) @ZeeshanTamboli
+- [code-infra] Import mocha type instead of global (#46108) @JCQuintas
+- [code-infra] Dependabot also create branches (795a481) @oliviertassinari
+- [code-infra] Avoid running continuous release on forks (#46103) @Janpot
+- [code-infra] Remove checkout job altogether (#46100) @Janpot
+- [code-infra] Remove required checkout workflows in circleci (#46099) @Janpot
+- [core] Run pnpm docs:sync-team (c8f1da5) @oliviertassinari
+- [core] Upgrade MUI X packages to v8 (#45990) @KenanYusuf
+- [core] Minor detail to reduce confusion (4c64b72) @oliviertassinari
+- [core] Update security.md (#45839) @DiegoAndai
+- [core] Apply yml convention, blank line only at top level (f273220) @oliviertassinari
+- [core] Add comment that lab should be in alpha (#45999) @oliviertassinari
+
+All contributors of this release in alphabetical order: @0210shivam, @brijeshb42, @chaitanyasharma1011, @codiini, @DiegoAndai, @Janpot, @JCQuintas, @KenanYusuf, @khllbnomrn, @LakshitAgarwal, @oliviertassinari, @RubemMazzetto, @sai6855, @siriwatknp, @ZeeshanTamboli
+
 ## 7.1.0
 
 <!-- generated comparing v7.0.2..master -->
