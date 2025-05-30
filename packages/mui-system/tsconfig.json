@@ -1,5 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src/**/*", "test/**/*"],
-  "exclude": ["test/typescript/moduleAugmentation"]
+  "exclude": ["test/typescript/moduleAugmentation"],
+  "compilerOptions": {
+    // Remove once:
+    // * vitest is at >= 3.2.0
+    // * https://github.com/capricorn86/happy-dom/issues/1444 is solved
+    "skipLibCheck": true
+  }
 }

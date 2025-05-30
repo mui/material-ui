@@ -1,6 +1,6 @@
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
-import chai, { AssertionError } from 'chai';
+import * as chai from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 import _ from 'lodash';
@@ -20,7 +20,7 @@ function elementToString(element: Element | null | undefined) {
   return String(element);
 }
 
-const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
+const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
   const blockElements = new Set([
     'html',
     'address',
@@ -312,7 +312,7 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
       const element = utils.flag(this, 'object') as HTMLElement;
       if (element?.nodeType !== 1) {
         // Same pre-condition for negated and unnegated assertion
-        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+        throw new chai.AssertionError(`Expected an Element but got ${String(element)}`);
       }
 
       assertMatchingStyles.call(this, element.style, expectedStyleUnnormalized, {
@@ -327,7 +327,7 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
       const element = utils.flag(this, 'object') as HTMLElement;
       if (element?.nodeType !== 1) {
         // Same pre-condition for negated and unnegated  assertion
-        throw new AssertionError(`Expected an Element but got ${String(element)}`);
+        throw new chai.AssertionError(`Expected an Element but got ${String(element)}`);
       }
       const computedStyle = element.ownerDocument.defaultView!.getComputedStyle(element);
 
