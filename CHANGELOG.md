@@ -19,11 +19,11 @@ A big thanks to the 7 contributors who made this release possible.
 
 ### `@mui/material-nextjs@6.4.12`
 
-- [material-nextjs] Do not wrap `@layer` order rules in App Router (@Nayeem-XTREME) (#45870) @Nayeem-XTREME
+- Do not wrap `@layer` order rules in App Router (@Nayeem-XTREME) (#45870) @Nayeem-XTREME
 
 ### `@mui/system@6.4.12`
 
-- [system] Skip styled component from being transformed (@siriwatknp) (#46184) @siriwatknp
+- Skip styled component from being transformed (@siriwatknp) (#46184) @siriwatknp
 
 ### Docs
 
