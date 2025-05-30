@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import rtlPlugin from '@mui/plugin-rtl';
+import rtlPlugin from '@mui/stylis-plugin-rtl';
 import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';

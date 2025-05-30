@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { compile, Middleware, middleware, prefixer, serialize, stringify } from 'stylis';
-import muiRtlPlugin from '@mui/plugin-rtl';
+import muiRtlPlugin from '@mui/stylis-plugin-rtl';
 
 const stylis = (css: string, extraPlugins: Middleware[] = []) =>
   serialize(compile(css), middleware([...extraPlugins, muiRtlPlugin, stringify]));
