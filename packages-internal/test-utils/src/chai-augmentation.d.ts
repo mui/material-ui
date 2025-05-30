@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import 'chai';
 import type { AssertionError as RealAssertionError } from 'assertion-error';
 
