@@ -1,8 +1,11 @@
 /* eslint-disable default-case, no-return-assign, curly, prefer-template, @typescript-eslint/no-unused-vars */
+
 /**
  * Copied from https://github.com/styled-components/stylis-plugin-rtl/blob/main/src/stylis-rtl.ts
  * with a modification at line 67 to handle layer rules.
  */
+
+// @ts-nocheck
 import cssjanus from 'cssjanus';
 import {
   COMMENT,
