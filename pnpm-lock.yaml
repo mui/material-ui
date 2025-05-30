@@ -616,6 +616,9 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../packages/mui-material/build
+      '@mui/plugin-rtl':
+        specifier: workspace:^
+        version: link:../packages/mui-plugin-rtl/build
       '@mui/styled-engine':
         specifier: workspace:^
         version: link:../packages/mui-styled-engine/build
@@ -1761,6 +1764,9 @@ importers:
 
   packages/mui-plugin-rtl:
     dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
       cssjanus:
         specifier: ^2.0.1
         version: 2.1.0
@@ -2126,6 +2132,9 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../packages/mui-material/build
+      '@mui/plugin-rtl':
+        specifier: workspace:^
+        version: link:../packages/mui-plugin-rtl/build
       '@mui/system':
         specifier: workspace:^
         version: link:../packages/mui-system/build
