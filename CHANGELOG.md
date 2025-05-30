@@ -1,5 +1,45 @@
 # [Versions](https://mui.com/versions/)
 
+> @mui/monorepo@6.4.11 release:changelog /Users/siriwatknp/Personal-Repos/material-ui
+> node scripts/releaseChangelog.mjs
+
+## 6.4.12
+
+<!-- generated comparing v6.4.11..v6.x -->
+
+_May 30, 2025_
+
+A big thanks to the 7 contributors who made this release possible.
+
+### `@mui/material@6.4.12`
+
+- [Badge] Replace useSlotProps with useSlot hook (@sai6855) (#45876) @sai6855
+- [BottomNavigationAction] Add slots and slotProps (@sai6855) (#45875) @sai6855
+- [CardActionArea] Add slots and slotProps (@sai6855) (#45877) @sai6855
+- [OutlinedInput] Add missing `notchedOutline` slot (@siriwatknp) (#45938) @siriwatknp
+- [useMediaQuery] Add warning and docs for using `useMediaQuery('print')` (@good-jinu) (#45886) @good-jinu
+- Fix theme object changes between renders (@siriwatknp) (#45874) @siriwatknp
+
+### `@mui/material-nextjs@6.4.12`
+
+- [material-nextjs] Do not wrap `@layer` order rules in App Router (@Nayeem-XTREME) (#45870) @Nayeem-XTREME
+
+### `@mui/system@6.4.12`
+
+- [system] Skip styled component from being transformed (@siriwatknp) (#46184) @siriwatknp
+
+### Docs
+
+- [Dialog] Remove deprecated props usage in demos (@sai6855) (#45928) @sai6855
+- [Grid] Update grid migration guide (@sai6855) (#46153) @sai6855
+- [Menu] Update `paper` slot JSDoc default from `Paper` to `PopoverPaper` (@andreachiera) (#45865) @andreachiera
+- Update CSS variable usage in migration guide for Pigment CSS (@sai6855) (#46038) @sai6855
+- Remove outdated StackOverflow tag (9b9f96b) @oliviertassinari
+- Update `@mui/icons-material` install command to use 6.x version (#45810) @Nickknack
+- Add AccordionSummary to the breaking change migration (@siriwatknp) (#45973) @siriwatknp
+
+All contributors of this release in alphabetical order: @andreachiera, @good-jinu, @Nayeem-XTREME, @Nickknack, @oliviertassinari, @sai6855, @siriwatknp
+
 ## 6.4.11
 
 _Apr 9, 2025_
