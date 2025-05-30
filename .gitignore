@@ -44,5 +44,3 @@ docs/public/static/blog/feed/*
 .nx/workspace-data
 screenshots
 packed
-
-**/.claude/settings.local.json

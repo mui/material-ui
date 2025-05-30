@@ -170,6 +170,10 @@ describe('<Accordion />', () => {
 
   describe('prop: children', () => {
     describeSkipIf(reactMajor >= 19)('first child', () => {
+      beforeEach(() => {
+        PropTypes.resetWarningCache();
+      });
+
       it('requires at least one child', () => {
         expect(() => {
           PropTypes.checkPropTypes(
