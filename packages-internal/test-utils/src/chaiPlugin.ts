@@ -120,7 +120,9 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
   chaiAPI.Assertion.addMethod('toHaveAccessibleName', function hasAccessibleName(expectedName) {
     const root = utils.flag(this, 'object');
     // make sure it's an Element
-    new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
+    new chaiAPI.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
+      1,
+    );
 
     const actualName = computeAccessibleName(root, {
       computedStyleSupportsPseudoElements: !isInJSDOM(),
@@ -143,9 +145,10 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
     function hasAccessibleDescription(expectedDescription) {
       const root = utils.flag(this, 'object');
       // make sure it's an Element
-      new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
-        1,
-      );
+      new chaiAPI.Assertion(
+        root.nodeType,
+        `Expected an Element but got '${String(root)}'`,
+      ).to.equal(1);
 
       const actualDescription = computeAccessibleDescription(root, {
         // in local development we pretend to be visible. full getComputedStyle is

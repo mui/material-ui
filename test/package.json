@@ -39,7 +39,7 @@
     "stylis": "4.2.0",
     "stylis-plugin-rtl": "^2.1.1",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.99.8",
+    "webpack": "^5.99.9",
     "yargs": "^17.7.2"
   },
   "dependencies": {
