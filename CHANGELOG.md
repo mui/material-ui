@@ -30,7 +30,7 @@ A big thanks to the 7 contributors who made this release possible.
 - [Dialog] Remove deprecated props usage in demos (@sai6855) (#45928) @sai6855
 - [Grid] Update grid migration guide (@sai6855) (#46153) @sai6855
 - [Menu] Update `paper` slot JSDoc default from `Paper` to `PopoverPaper` (@andreachiera) (#45865) @andreachiera
-- Update CSS variable usage in migration guide for Pigment CSS (@sai6855) (#46038) @sai6855
+- Update CSS variable usage in migration guide for Pigment CSS (@sai6855) (#46038) @sai6855
 - Remove outdated StackOverflow tag (9b9f96b) @oliviertassinari
 - Update `@mui/icons-material` install command to use 6.x version (#45810) @Nickknack
 - Add AccordionSummary to the breaking change migration (@siriwatknp) (#45973) @siriwatknp
