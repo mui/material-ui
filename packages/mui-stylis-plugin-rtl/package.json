@@ -13,7 +13,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-plugin-rtl"
+    "directory": "packages/mui-stylis-plugin-rtl"
   },
   "license": "MIT",
   "bugs": {

@@ -53,7 +53,10 @@ export default defineConfig({
       '@mui/utils': path.resolve(WORKSPACE_ROOT, './packages/mui-utils/src'),
       '@mui/material-nextjs': path.resolve(WORKSPACE_ROOT, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(WORKSPACE_ROOT, './packages/mui-joy/src'),
-      '@mui/stylis-plugin-rtl': path.resolve(WORKSPACE_ROOT, './packages/mui-plugin-rtl/src'),
+      '@mui/stylis-plugin-rtl': path.resolve(
+        WORKSPACE_ROOT,
+        './packages/mui-stylis-plugin-rtl/src',
+      ),
       '@mui/internal-docs-utils': path.resolve(
         WORKSPACE_ROOT,
         './packages-internal/docs-utils/src',
