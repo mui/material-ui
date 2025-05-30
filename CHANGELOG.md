@@ -1,8 +1,5 @@
 # [Versions](https://mui.com/versions/)
 
-> @mui/monorepo@6.4.11 release:changelog /Users/siriwatknp/Personal-Repos/material-ui
-> node scripts/releaseChangelog.mjs
-
 ## 6.4.12
 
 <!-- generated comparing v6.4.11..v6.x -->
