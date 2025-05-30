@@ -105,7 +105,6 @@
     "rimraf": "^6.0.1",
     "styled-components": "^6.1.18",
     "stylis": "4.2.0",
-    "mui-plugin-rtl": "^2.2.0",
     "use-count-up": "^3.0.1",
     "webpack-bundle-analyzer": "^4.10.2"
   },

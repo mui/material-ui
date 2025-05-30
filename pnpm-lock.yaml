@@ -751,9 +751,6 @@ importers:
       material-ui-popup-state:
         specifier: ^5.3.6
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.1.6)(react@19.1.0)
-      mui-plugin-rtl:
-        specifier: ^2.2.0
-        version: 2.2.0(stylis@4.2.0)
       next:
         specifier: ^15.3.2
         version: 15.3.2(@babel/core@7.27.1)(@opentelemetry/api@1.8.0)(@playwright/test@1.52.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1762,6 +1759,41 @@ importers:
         version: 0.0.30(@types/react@19.1.6)(react@19.1.0)(typescript@5.8.3)
     publishDirectory: build
 
+  packages/mui-plugin-rtl:
+    dependencies:
+      cssjanus:
+        specifier: ^2.0.1
+        version: 2.1.0
+    devDependencies:
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../../packages-internal/test-utils
+      '@types/chai':
+        specifier: ^4.3.20
+        version: 4.3.20
+      '@types/mocha':
+        specifier: ^10.0.10
+        version: 10.0.10
+      '@types/node':
+        specifier: ^20.17.50
+        version: 20.17.50
+      '@types/sinon':
+        specifier: ^17.0.4
+        version: 17.0.4
+      '@types/stylis':
+        specifier: 4.2.7
+        version: 4.2.7
+      chai:
+        specifier: ^4.5.0
+        version: 4.5.0
+      sinon:
+        specifier: ^19.0.5
+        version: 19.0.5
+      stylis:
+        specifier: 4.3.6
+        version: 4.3.6
+    publishDirectory: build
+
   packages/mui-private-theming:
     dependencies:
       '@babel/runtime':
@@ -2136,9 +2168,6 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
-      mui-plugin-rtl:
-        specifier: ^2.2.0
-        version: 2.2.0(stylis@4.2.0)
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
@@ -5780,6 +5809,9 @@ packages:
 
   '@types/stylis@4.2.5':
     resolution: {integrity: sha512-1Xve+NMN7FWjY14vLoY5tL3BVEQ/n42YLwaqJIPYhotZ9uBHt87VceMwWQpzmdEt2TNXIorIFG+YeCUUW7RInw==}
+
+  '@types/stylis@4.2.7':
+    resolution: {integrity: sha512-VgDNokpBoKF+wrdvhAAfS55OMQpL6QRglwTwNC3kIgBrzZxA4WsFj+2eLfEA/uMUDzBcEhYmjSbwQakn/i3ajA==}
 
   '@types/tough-cookie@4.0.5':
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
@@ -10680,11 +10712,6 @@ packages:
       typescript:
         optional: true
 
-  mui-plugin-rtl@2.2.0:
-    resolution: {integrity: sha512-JVwVKcuhqClnlXYENogulFxO06/UpoVk1NWsIzRyxe0of5SdLkpl2yaZKUH8JmNdZfUZJMQ22X/Hw3MfHIMN0Q==}
-    peerDependencies:
-      stylis: 4.x
-
   multimatch@5.0.0:
     resolution: {integrity: sha512-ypMKuglUrZUD99Tk2bUQ+xNQj43lPEfAeX2o9cTteAmShXy2VHDJpuwu1o0xqoKCt9jLVAvwyFKdLTPXKAfJyA==}
     engines: {node: '>=10'}
@@ -12859,6 +12886,9 @@ packages:
 
   stylis@4.3.4:
     resolution: {integrity: sha512-osIBl6BGUmSfDkyH2mB7EFvCJntXDrLhKjHTRj/rK6xLH0yuPrHULDRQzKokSOD4VoorhtKpfcfW1GAntu8now==}
+
+  stylis@4.3.6:
+    resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==}
 
   sucrase@3.35.0:
     resolution: {integrity: sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==}
@@ -18132,6 +18162,8 @@ snapshots:
 
   '@types/stylis@4.2.5': {}
 
+  '@types/stylis@4.2.7': {}
+
   '@types/tough-cookie@4.0.5':
     optional: true
 
@@ -18581,7 +18613,7 @@ snapshots:
       cosmiconfig: 8.3.6(typescript@5.8.3)
       happy-dom: 15.11.6
       source-map: 0.7.4
-      stylis: 4.3.4
+      stylis: 4.3.6
       ts-invariant: 0.10.3
     transitivePeerDependencies:
       - supports-color
@@ -24345,11 +24377,6 @@ snapshots:
       - '@types/node'
     optional: true
 
-  mui-plugin-rtl@2.2.0(stylis@4.2.0):
-    dependencies:
-      cssjanus: 2.1.0
-      stylis: 4.2.0
-
   multimatch@5.0.0:
     dependencies:
       '@types/minimatch': 3.0.5
@@ -26998,6 +27025,8 @@ snapshots:
   stylis@4.3.2: {}
 
   stylis@4.3.4: {}
+
+  stylis@4.3.6: {}
 
   sucrase@3.35.0:
     dependencies:
