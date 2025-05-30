@@ -40,7 +40,7 @@ A big thanks to the 15 contributors who made this release possible.
 - [templates] Fix rendering of logos in dark mode (#46221) @sai6855
 - [ToggleButtonGroup] Add spacing demo (#46058) @sai6855
 - Fix typo in dark mode docs (#46229) @ZeeshanTamboli
-- Clarify Next.js + Tailwind CSS v3 integration requirements (#46176) @chaitanyasharma1011
+- Clarify Next.js + Tailwind CSS v3 integration requirements (#46176) @chaitanyasharma1011
 - Fix GridLegacy docs order (#46135) @oliviertassinari
 - Update upgrade guide for resolution of `react-is` (#46002) @siriwatknp
 - Remove oudated scaffoldhub ad (#46090) @oliviertassinari
@@ -60,7 +60,7 @@ A big thanks to the 15 contributors who made this release possible.
 - [code-infra] Remove checkout job altogether (#46100) @Janpot
 - [code-infra] Remove required checkout workflows in circleci (#46099) @Janpot
 - [core] Run pnpm docs:sync-team (c8f1da5) @oliviertassinari
-- [core] Upgrade MUI X packages to v8 (#45990) @KenanYusuf
+- [core] Upgrade MUI X packages to v8 (#45990) @KenanYusuf
 - [core] Minor detail to reduce confusion (4c64b72) @oliviertassinari
 - [core] Update security.md (#45839) @DiegoAndai
 - [core] Apply yml convention, blank line only at top level (f273220) @oliviertassinari
