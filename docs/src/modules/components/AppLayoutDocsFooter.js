@@ -394,7 +394,7 @@ export default function AppLayoutDocsFooter(props) {
 
   return (
     <React.Fragment>
-      <Stack component="footer" direction="column" sx={{ my: 4 }}>
+      <Stack component="footer" direction="column" sx={{ my: 4 }} className="MuiDocs-footer-block">
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={{ xs: 3, sm: 1 }}
