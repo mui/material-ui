@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "7.0.0-beta.12",
+  "version": "7.0.0-beta.13",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "main": "./src/index.js",
