@@ -173,7 +173,7 @@
     "eslint-plugin-material-ui": "workspace:^",
     "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-compiler": "0.0.0-experimental-75b9fd4-20240912",
+    "eslint-plugin-react-compiler": "0.0.0-experimental-fcabbc1-20241106",
     "eslint-plugin-react-hooks": "^5.2.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
