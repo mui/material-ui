@@ -1,21 +1,29 @@
+# @mui/stylis-plugin-rtl
+
+Stylis RTL plugin for Material UI.
+
+> Note: this is a fork of [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl) to fix issues with CSS layers and to support the latest version of Stylis.
+
+## Installation
+
+```bash
+npm install @mui/stylis-plugin-rtl @emotion/cache stylis
+```
+
+## Usage
+
+```js
 import * as React from 'react';
-import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import rtlPlugin from '@mui/stylis-plugin-rtl';
 import { prefixer } from 'stylis';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-// Consuming the outer theme is only required with coexisting themes, like in this documentation.
-// If your app/website doesn't deal with this, you can have just:
-// const theme = createTheme({ direction: 'rtl' })
-const theme = (outerTheme: Theme) =>
-  createTheme({
-    direction: 'rtl',
-    palette: {
-      mode: outerTheme.palette.mode,
-    },
-  });
+const theme = createTheme({
+  direction: 'rtl',
+});
 
 const cacheRtl = createCache({
   key: 'muirtl',
@@ -38,3 +46,6 @@ export default function RtlDemo() {
     </CacheProvider>
   );
 }
+```
+
+For more information, see the [RTL documentation](https://mui.com/material-ui/guides/right-to-left/).
