@@ -48,6 +48,9 @@ importers:
       google-auth-library:
         specifier: ^9.15.1
         version: 9.15.1(encoding@0.1.13)
+      karma-spec-reporter:
+        specifier: ^0.0.36
+        version: 0.0.36(karma@6.4.4)
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: ^0.18.1
@@ -319,6 +322,12 @@ importers:
       process:
         specifier: ^0.11.10
         version: 0.11.10
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.1.0
+        version: 19.1.0(react@19.1.0)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1712,6 +1721,9 @@ importers:
       fs-extra:
         specifier: ^11.3.0
         version: 11.3.0
+      jsdom:
+        specifier: ^26.1.0
+        version: 26.1.0
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -9867,6 +9879,11 @@ packages:
 
   karma-sourcemap-loader@0.4.0:
     resolution: {integrity: sha512-xCRL3/pmhAYF3I6qOrcn0uhbQevitc2DERMPH82FMnG+4WReoGcGFZb1pURf2a5apyrOHRdvD+O6K7NljqKHyA==}
+
+  karma-spec-reporter@0.0.36:
+    resolution: {integrity: sha512-11bvOl1x6ryKZph7kmbmMpbi8vsngEGxGOoeTlIcDaH3ab3j8aPJnZ+r+K/SS0sBSGy5VGkGYO2+hLct7hw/6w==}
+    peerDependencies:
+      karma: '>=0.9'
 
   karma-webpack@5.0.0:
     resolution: {integrity: sha512-+54i/cd3/piZuP3dr54+NcFeKOPnys5QeM1IY+0SPASwrtHsliXUiCL50iW+K9WWA7RvamC4macvvQ86l3KtaA==}
@@ -23185,6 +23202,11 @@ snapshots:
   karma-sourcemap-loader@0.4.0:
     dependencies:
       graceful-fs: 4.2.11
+
+  karma-spec-reporter@0.0.36(karma@6.4.4):
+    dependencies:
+      colors: 1.4.0
+      karma: 6.4.4
 
   karma-webpack@5.0.0(webpack@5.99.9):
     dependencies:

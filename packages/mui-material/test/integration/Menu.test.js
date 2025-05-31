@@ -314,11 +314,15 @@ describe('<Menu /> integration', () => {
     const trigger = screen.getByRole('button');
     await act(async () => {
       trigger.focus();
+    });
+    await act(async () => {
       trigger.click();
     });
 
     // react-transition-group uses one commit per state transition so we need to wait a bit
-    fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
+    await act(async () => {
+      fireEvent.keyDown(screen.getAllByRole('menuitem')[0], { key: 'Tab' });
+    });
     clock.tick(0);
 
     expect(screen.getByRole('menu', { hidden: true })).toBeInaccessible();

@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import path from 'path';
 import fs from 'fs';
 import * as ts from 'typescript';
@@ -11,7 +12,7 @@ import { getPropTypesFromFile } from '../src/getPropTypesFromFile';
 import { TestOptions } from './types';
 
 const testCases = glob
-  .sync('**/input.{d.ts,ts,tsx}', { absolute: true, cwd: __dirname })
+  .sync('*/input.{d.ts,ts,tsx}', { absolute: true, cwd: __dirname })
   .map((testPath) => {
     const dirname = path.dirname(testPath);
     const name = path.dirname(path.relative(__dirname, testPath));
@@ -34,7 +35,7 @@ describe('typescript-to-proptypes', () => {
 
   before(function beforeHook() {
     // Creating a TS program might take a while.
-    this.timeout(20000);
+    this?.timeout?.(20000);
 
     const buildProject = createTypeScriptProjectBuilder({
       test: {
@@ -61,7 +62,7 @@ describe('typescript-to-proptypes', () => {
       const project = getProject();
       let options: TestOptions = {};
       try {
-        const optionsModule = await import(`./${testName}/options`);
+        const optionsModule: any = await import(`./${testName}/options.ts`);
         options = optionsModule.default;
       } catch (error) {
         // Assume "Cannot find module" which means "no options".

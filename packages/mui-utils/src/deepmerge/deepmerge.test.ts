@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { runInNewContext } from 'vm';
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
@@ -61,7 +60,7 @@ describe('deepmerge', () => {
     expect({}).not.to.have.property('isAdmin');
   });
 
-  it('should merge objects across realms', function test() {
+  it('should merge objects across realms', async function test() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
       // vm is only available in Node.js.
       // We could use https://github.com/browserify/vm-browserify to run the test in an iframe when
@@ -69,6 +68,7 @@ describe('deepmerge', () => {
       this.skip();
     }
 
+    const { runInNewContext } = await import('vm');
     const vmObject = runInNewContext('({hello: "realm"})');
     const result = deepmerge({ hello: 'original' }, vmObject);
     expect(result.hello).to.equal('realm');

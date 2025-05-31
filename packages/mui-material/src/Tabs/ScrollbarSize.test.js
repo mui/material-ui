@@ -17,7 +17,7 @@ describe('<ScrollbarSize />', () => {
   });
 
   describe('prop: onChange', () => {
-    it('should call on first resize event', () => {
+    it('should call on first resize event', async () => {
       const onChange = spy();
       const { container } = render(<ScrollbarSize onChange={onChange} />);
       stub(container.firstChild, 'offsetHeight').get(() => 20);
@@ -31,7 +31,7 @@ describe('<ScrollbarSize />', () => {
       expect(onChange.args[0][0]).to.equal(20);
     });
 
-    it('should not call if height has not changed from previous resize', () => {
+    it('should not call if height has not changed from previous resize', async () => {
       const onChange = spy();
       const { container } = render(<ScrollbarSize onChange={onChange} />);
       stub(container.firstChild, 'offsetHeight').get(() => 20);
