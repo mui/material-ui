@@ -9,8 +9,8 @@ import {
 import { DescribeablePropDescriptor } from './createDescribeableProp';
 import { SeeMore } from '../types/utils.types';
 
-function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
-  if (type.type === 'AllLiteral') {
+function resolveType(type: doctrine.Tag['type']): string {
+  if (!type || type.type === 'AllLiteral') {
     return 'any';
   }
 
@@ -88,7 +88,7 @@ export default function generatePropDescription(
   const type = prop.type;
   let deprecated = '';
 
-  if (type.name === 'custom') {
+  if (type?.name === 'custom') {
     const deprecatedInfo = getDeprecatedInfo(type);
     if (deprecatedInfo) {
       deprecated = `*Deprecated*. ${deprecatedInfo.explanation}<br><br>`;
@@ -123,7 +123,7 @@ export default function generatePropDescription(
   let signature;
   let signatureArgs;
   let signatureReturn;
-  if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
+  if (type?.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
     // Remove new lines from tag descriptions to avoid markdown errors.
