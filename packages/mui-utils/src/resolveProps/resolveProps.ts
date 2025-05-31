@@ -1,7 +1,10 @@
+import clsx from 'clsx';
+
 /**
  * Add keys, values of `defaultProps` that does not exist in `props`
  * @param defaultProps
  * @param props
+ * @param mergeClassNameAndStyle
  * @returns resolved props
  */
 export default function resolveProps<
@@ -10,8 +13,10 @@ export default function resolveProps<
     componentsProps?: Record<string, unknown>;
     slots?: Record<string, unknown>;
     slotProps?: Record<string, unknown>;
+    className?: string;
+    style?: React.CSSProperties;
   } & Record<string, unknown>,
->(defaultProps: T, props: T) {
+>(defaultProps: T, props: T, mergeClassNameAndStyle: boolean = false) {
   const output = { ...props };
 
   for (const key in defaultProps) {
@@ -40,10 +45,18 @@ export default function resolveProps<
               (output[propName] as Record<string, unknown>)[slotPropName] = resolveProps(
                 (defaultSlotProps as Record<string, any>)[slotPropName],
                 (slotProps as Record<string, any>)[slotPropName],
+                mergeClassNameAndStyle,
               );
             }
           }
         }
+      } else if (propName === 'className' && mergeClassNameAndStyle && props.className) {
+        output.className = clsx(defaultProps?.className, props?.className);
+      } else if (propName === 'style' && mergeClassNameAndStyle && props.style) {
+        output.style = {
+          ...defaultProps?.style,
+          ...props?.style,
+        };
       } else if (output[propName] === undefined) {
         output[propName] = defaultProps[propName];
       }
