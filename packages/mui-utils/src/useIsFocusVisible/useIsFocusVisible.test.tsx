@@ -82,8 +82,8 @@ describe('useIsFocusVisible', () => {
       reactRoot = ReactDOMClient.createRoot(rootElement.shadowRoot!);
     });
 
-    afterEach(() => {
-      act(() => {
+    afterEach(async () => {
+      await act(async () => {
         reactRoot.unmount();
       });
 
@@ -92,7 +92,7 @@ describe('useIsFocusVisible', () => {
       document.body.removeChild(rootElement);
     });
 
-    it('should set focus state for shadowRoot children', () => {
+    it('should set focus state for shadowRoot children', async () => {
       const buttonRef = React.createRef<HTMLButtonElement>();
       render(
         <SimpleButton id="test-button" ref={buttonRef}>
@@ -113,7 +113,7 @@ describe('useIsFocusVisible', () => {
 
       expect(button!.classList.contains('focus-visible')).to.equal(false);
 
-      act(() => {
+      await act(async () => {
         button!.focus();
       });
 
@@ -123,7 +123,7 @@ describe('useIsFocusVisible', () => {
         expect(button).not.to.have.class('focus-visible');
       }
 
-      act(() => {
+      await act(async () => {
         button!.blur();
       });
       focusVisible(button!);

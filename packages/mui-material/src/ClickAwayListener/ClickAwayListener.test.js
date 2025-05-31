@@ -386,7 +386,7 @@ describe('<ClickAwayListener />', () => {
     ['onClickCapture', false],
     ['onClickCapture', true],
   ].forEach(([eventName, disableReactTree]) => {
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, function test() {
+    it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, async function test() {
       if (!new Event('click').composedPath) {
         this.skip();
       }
@@ -406,14 +406,14 @@ describe('<ClickAwayListener />', () => {
       }
       render(<Test />);
 
-      act(() => {
+      await act(async () => {
         screen.getByRole('button').click();
       });
 
       expect(handleClickAway.callCount).to.equal(1);
     });
 
-    it(`when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`, function test() {
+    it(`when 'disableRectTree=${disableReactTree}' ${eventName} does not trigger onClickAway if an inside target is removed`, async function test() {
       if (!new Event('click').composedPath) {
         this.skip();
       }
@@ -431,7 +431,7 @@ describe('<ClickAwayListener />', () => {
       }
       render(<Test />);
 
-      act(() => {
+      await act(async () => {
         screen.getByRole('button').click();
       });
 
