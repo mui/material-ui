@@ -34,8 +34,8 @@ importers:
         specifier: ^9.8.0
         version: 9.8.0(encoding@0.1.13)
       '@netlify/functions':
-        specifier: ^3.1.9
-        version: 3.1.9(encoding@0.1.13)(rollup@4.40.0)
+        specifier: ^3.1.10
+        version: 3.1.10(encoding@0.1.13)(rollup@4.40.0)
       '@slack/bolt':
         specifier: ^4.4.0
         version: 4.4.0(@types/express@5.0.0)
@@ -4650,8 +4650,8 @@ packages:
     resolution: {integrity: sha512-5XUvZuffe3KetyhbWwd4n2ktd7wraocCYw10tlM+/u/95iAz29GjNiuNxbCD1T6Bn1MyGc4QLVNKOWhzJkVFAw==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
-  '@netlify/functions@3.1.9':
-    resolution: {integrity: sha512-mbmQIylPzOTDicMFbJF839W3bywJVR0Fm77uvjS6AkDl000VlLwQb+4eO3p0BV7j8+l5IgN/3ltQ/Byi/esTEQ==}
+  '@netlify/functions@3.1.10':
+    resolution: {integrity: sha512-sI93kcJ2cUoMgDRPnrEm0lZhuiDVDqM6ngS/UbHTApIH3+eg3yZM5p/0SDFQQq9Bad0/srFmgBmTdXushzY5kg==}
     engines: {node: '>=14.0.0'}
 
   '@netlify/open-api@2.37.0':
@@ -16665,7 +16665,7 @@ snapshots:
       uuid: 11.1.0
       write-file-atomic: 6.0.0
 
-  '@netlify/functions@3.1.9(encoding@0.1.13)(rollup@4.40.0)':
+  '@netlify/functions@3.1.10(encoding@0.1.13)(rollup@4.40.0)':
     dependencies:
       '@netlify/blobs': 9.1.2
       '@netlify/dev-utils': 2.2.0
