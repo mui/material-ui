@@ -37,7 +37,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.1",
+    "@babel/runtime": "^7.27.4",
     "cssjanus": "^2.0.1"
   },
   "devDependencies": {
