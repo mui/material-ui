@@ -236,10 +236,16 @@ const pages: MuiPage[] = [
         ],
       },
       {
-        pathname: '/material-ui/customization/cascade-layers',
-        subheader: '/material-ui/customization/cascade-layers',
-        newFeature: true,
-        children: [{ pathname: '/material-ui/customization/css-layers', title: 'Cascade layers' }],
+        pathname: '/material-ui/customization/styles',
+        subheader: '/material-ui/customization/styles',
+        title: 'Styles',
+        children: [
+          {
+            pathname: '/material-ui/customization/css-layers',
+            title: 'Cascade layers',
+            newFeature: true,
+          },
+        ],
       },
     ],
   },

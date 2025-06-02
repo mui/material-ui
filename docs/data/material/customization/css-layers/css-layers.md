@@ -15,6 +15,7 @@ Some of the benefits of using cascade layers include:
 ## Single layer
 
 This method creates a single layer, namely `@layer mui`, for all Material UI components and global styles.
+This method is suitable for integrating with other styling solutions, such as Tailwind CSS v4, that use the `@layer` directive.
 
 ### Next.js App Router
 
@@ -42,7 +43,7 @@ export default function RootLayout() {
 2. Configure the layer order at the top of a CSS file:
 
 ```css title="src/app/globals.css"
-@layer mui, your-layers;
+@layer mui;
 ```
 
 ### Next.js Pages Router
@@ -78,7 +79,7 @@ export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer mui, your-layers;" />
+      <GlobalStyles styles="@layer mui;" />
       <Component {...pageProps} />
     </AppCacheProvider>
   );
@@ -99,25 +100,29 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer mui, your-layers;" />
+      <GlobalStyles styles="@layer mui;" />
       {/* Your app */}
     </StyledEngineProvider>
   </React.StrictMode>,
 );
 ```
 
-## Nested layers
+## Multiple layers
+
+On top of the [single layer](#single-layer), you can split styles into multiple layers to better organize them within Material UI.
+This makes theming and overriding styles through the `sx` prop easier.
 
 When this feature is enabled, Material UI generates these layers:
 
-- `@layer mui.global`: The global styles from `GlobalStyles` and `CssBaseline` components.
-- `@layer mui.default`: The base styles for all Material UI components.
-- `@layer mui.theme`: The theme styles for all Material UI components.
-- `@layer mui.custom`: The custom styles for styled components without a name.
-- `@layer mui.sx`: The styles from the `sx` prop.
+- `@layer global`: The global styles from `GlobalStyles` and `CssBaseline` components.
+- `@layer default`: The base styles for all Material UI components.
+- `@layer theme`: The theme styles for all Material UI components.
+- `@layer custom`: The custom styles for non-Material UI styled components.
+- `@layer sx`: The styles from the `sx` prop.
 
 Follow the steps from the [previous section](#single-layer) to enable the CSS layer feature.
-Then, configure the theme using the `experimental_modularCssLayer` flag:
+Then, create a new file and export the component that wraps the `ThemeProvider` from Material UI.
+Finally, pass the `experimental_modularCssLayer: true` option to the `createTheme` function:
 
 ```tsx title="src/theme.tsx"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -126,24 +131,26 @@ const theme = createTheme({
   experimental_modularCssLayer: true,
 });
 
-export default function Themer({ children }: { children: ReactNode }) {
+export default function AppTheme({ children }: { children: ReactNode }) {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
 ```
 
 {{"demo": "CssLayersInput.js"}}
 
-Finally, render the `Themer` component based on the framework you are using:
+Render the component based on the framework you are using and update the layer order.
 
 ### Next.js App Router
 
 ```tsx title="src/app/layout.tsx"
+import AppTheme from '../theme';
+
 export default function RootLayout() {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          {/* Your app */}
+          <AppTheme>{/* Your app */}</AppTheme>
         </AppRouterCacheProvider>
       </body>
     </html>
@@ -151,23 +158,23 @@ export default function RootLayout() {
 }
 ```
 
-Update the layer order in the main CSS file:
-
 ```css title="src/app/globals.css"
-@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx, your-layers;
+@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;
 ```
 
 ### Next.js Pages Router
 
 ```tsx title="pages/_app.tsx"
+import AppTheme from '../src/theme';
+
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx, your-layers" />
-      <Themer>
+      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;" />
+      <AppTheme>
         <Component {...pageProps} />
-      </Themer>
+      </AppTheme>
     </AppCacheProvider>
   );
 }
@@ -175,12 +182,14 @@ export default function MyApp(props: AppProps) {
 
 ### Vite or any other SPA
 
-```tsx title="main.tsx"
+```tsx title="src/main.tsx"
+import AppTheme from './theme';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx, your-layers" />
-      <Themer>{/* Your app */}</Themer>
+      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;" />
+      <AppTheme>{/* Your app */}</AppTheme>
     </StyledEngineProvider>
   </React.StrictMode>,
 );
