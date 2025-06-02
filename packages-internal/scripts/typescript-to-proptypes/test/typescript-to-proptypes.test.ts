@@ -33,6 +33,7 @@ describe('typescript-to-proptypes', () => {
     return cachedProject;
   }
 
+  // @ts-expect-error Second argument is viteest
   before(function beforeHook() {
     // Creating a TS program might take a while.
     this?.timeout?.(20000);
@@ -53,7 +54,7 @@ describe('typescript-to-proptypes', () => {
     //   testCases.map((testCase) => testCase.inputPath),
     //   ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json')),
     // );
-  });
+  }, 20000);
 
   testCases.forEach((testCase) => {
     const { name: testName, inputPath, inputJS, outputPath } = testCase;
