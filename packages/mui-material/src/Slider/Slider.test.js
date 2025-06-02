@@ -1029,6 +1029,7 @@ describe('<Slider />', () => {
           });
 
           incrementKeys.forEach((key) => {
+
             it(`key: ${key} increments the value`, () => {
               const { getByRole } = render(
                 <ThemeProvider
@@ -1161,6 +1162,7 @@ describe('<Slider />', () => {
             });
 
             incrementKeys.forEach((key) => {
+
               it(`key: ${key} increments the value`, () => {
                 const { getByRole } = render(
                   <ThemeProvider

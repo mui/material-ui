@@ -35,6 +35,7 @@ describe('<Breadcrumbs />', () => {
       expect(getByRole('navigation')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
+
       it(`should render ${size}`, () => {
         const { getByRole } = render(<Breadcrumbs size={size} />);
 

@@ -38,6 +38,7 @@ describe('<CardOverflow />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
+
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <CardOverflow data-testid="root" variant={variant}>
@@ -60,6 +61,7 @@ describe('<CardOverflow />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <CardOverflow data-testid="root" color={color}>

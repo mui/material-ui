@@ -35,6 +35,7 @@ describe('<Alert />', () => {
     });
 
     (['plain', 'outlined', 'solid'] as const).forEach((variant) => {
+
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<Alert variant={variant} />);
 
@@ -53,6 +54,7 @@ describe('<Alert />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Alert color={color} />);
 
@@ -71,6 +73,7 @@ describe('<Alert />', () => {
     });
 
     (['sm', 'md', 'lg'] as const).forEach((size) => {
+
       it(`should render ${size}`, () => {
         const { getByRole } = render(<Alert size={size} />);
 
