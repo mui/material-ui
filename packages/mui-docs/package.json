@@ -44,7 +44,7 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.17.50",
+    "@types/node": "^20.17.57",
     "@types/prop-types": "^15.7.14",
     "@types/react": "^19.1.6",
     "next": "^15.3.3",
