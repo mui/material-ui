@@ -84,7 +84,7 @@ export default async function create(
       browser: {
         enabled: testEnv === 'browser',
         provider: 'playwright',
-        headless: false,
+        headless: true,
         viewport: {
           width: 1024,
           height: 896,
@@ -92,7 +92,6 @@ export default async function create(
         instances: [
           {
             browser: 'chromium',
-            headless: !!process.env.CI,
             launch: {
               ignoreDefaultArgs: [...(enableScrollbars ? ['--hide-scrollbars'] : [])],
             },
@@ -112,6 +111,7 @@ export default async function create(
         ),
         '@mui/material': path.resolve(MONOREPO_ROOT, './packages/mui-material/src'),
         '@mui/system': path.resolve(MONOREPO_ROOT, './packages/mui-system/src'),
+        '@mui/types': path.resolve(MONOREPO_ROOT, './packages/mui-types/src'),
         '@mui/utils': path.resolve(MONOREPO_ROOT, './packages/mui-utils/src'),
         '@mui/styled-engine': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine/src'),
         '@mui/styled-engine-sc': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine-sc/src'),
