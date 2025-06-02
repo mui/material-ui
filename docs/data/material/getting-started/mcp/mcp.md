@@ -1,6 +1,6 @@
 # Model Context Protocol (MCP) for MUI
 
-<p class="description">Gain access to the official Material UI docs and code in your AI client.</p>
+<p class="description">Gain access to the official Material UI and code in your AI client.</p>
 
 ## Introduction & What is MCP?
 
@@ -14,14 +14,14 @@ Traditional AI coding assistants are excellent at providing answers, especially 
 
 - Quoting **real, direct sources** in answers
 - Linking to **actual documentation** _(no imaginary links that lead to 404s)_
-- Making responses easier to follow and trust
+- Using component code from officially published registries
 
 ## Getting Started: Installation & Setup
 
 The MCP is available as a separate package and runs locally, communicate via your AI client using the `stdio` transport. Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
 
 ```bash
-npx -y @mui/mcp-docs@latest
+npx -y @mui/mcp@latest
 ```
 
 ### Cursor/Windsurf
@@ -32,10 +32,10 @@ npx -y @mui/mcp-docs@latest
 ```json
 "mcp": {
   "servers": {
-    "mui-mcp-docs": {
+    "mui-mcp": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@mui/mcp-docs@latest"]
+      "args": ["-y", "@mui/mcp@latest"]
     }
   }
 }
@@ -135,7 +135,7 @@ Try and use the MCP inspector to debug the connection. To do so, run:
 
 1. Set the "Command" to `npx`
 
-1. Set the "Arguments" to `y @mui/mcp-docs@latest`
+1. Set the "Arguments" to `y @mui/mcp@latest`
 
 1. Click on "Connect"
 
@@ -150,7 +150,7 @@ If you've installed the MCP and enabled all the necessary settings, but it is no
 Most editors allow you to specify rules for AI assistants to follow. Depending on the editor, the rules file might be specified in different locations. For VS Code, for instance, add the following to `.github/instructions/mui.md`:
 
 ```text
-## Use the mui-mcp-docs server to answer any MUI questions --
+## Use the mui-mcp server to answer any MUI questions --
 
 - 1. call the "useMuiDocs" tool to fetch the docs of the package relevant in the question
 - 2. call the "fetchDocs" tool to fetch any additional docs if needed using ONLY the URLs
