@@ -17,14 +17,6 @@ import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
 
-async function focusVisibleAsync(element) {
-  await act(async () => {
-    element.blur();
-    fireEvent.keyDown(document.body, { key: 'Tab' });
-    element.focus();
-  });
-}
-
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
 
@@ -594,29 +586,21 @@ describe('<Tooltip />', () => {
           </button>
         </Tooltip>,
       );
-      await act(async () => {
-        simulatePointerDevice();
-      });
+      simulatePointerDevice();
 
-      await focusVisibleAsync(screen.getByRole('button'));
-      await act(async () => {
-        clock.tick(enterDelay);
-      });
+      focusVisible(screen.getByRole('button'));
+      clock.tick(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
+      act(() => {
         screen.getByRole('button').blur();
       });
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(async () => {
-        clock.tick(leaveDelay);
-      });
-      await act(async () => {
-        clock.tick(transitionTimeout);
-      });
+      clock.tick(leaveDelay);
+      clock.tick(transitionTimeout);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
     });
