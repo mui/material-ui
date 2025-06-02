@@ -51,7 +51,6 @@ describe('<ButtonGroup />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByTestId, container } = render(
           <ButtonGroup data-testid="root" variant={variant}>
@@ -98,7 +97,6 @@ describe('<ButtonGroup />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByTestId, container } = render(
           <ButtonGroup data-testid="root" color={color}>

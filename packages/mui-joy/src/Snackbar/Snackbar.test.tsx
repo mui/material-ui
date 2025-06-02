@@ -219,7 +219,6 @@ describe('Joy <Snackbar />', () => {
       leave: (container: HTMLElement) => act(() => container.querySelector('button')!.blur()),
     },
   ].forEach((userInteraction) => {
-
     describe(`interacting with ${userInteraction.type}`, () => {
       it('should be able to interrupt the timer', () => {
         const handleMouseEnter = spy();

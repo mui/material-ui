@@ -335,7 +335,6 @@ describe('<Rating />', () => {
         formData: [['rating', '']],
       },
     ].forEach((testData, testNumber) => {
-
       it(`submits the expected form data #${testNumber + 1}`, () => {
         /**
          * @type FormData

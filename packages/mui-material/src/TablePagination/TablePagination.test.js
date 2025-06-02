@@ -533,7 +533,6 @@ describe('<TablePagination />', () => {
     });
 
     ['standard', 'outlined', 'filled'].forEach((variant) => {
-
       it(`should be able to apply the ${variant} variant to select`, () => {
         const { getByRole } = render(
           <table>

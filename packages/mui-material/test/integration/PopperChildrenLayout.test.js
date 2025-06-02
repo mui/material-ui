@@ -135,7 +135,6 @@ describe('<Popper />', () => {
       [Slide, 'Slide'],
       [Zoom, 'Zoom'],
     ].forEach(([TransitionComponent, name]) => {
-
       describe(`in TransitionComponent ${name}`, () => {
         it('autoFocus does not scroll', () => {
           const handleFocus = spy();

@@ -92,7 +92,6 @@ describe('Joy <MenuItem />', () => {
     ];
 
     events.forEach((eventName) => {
-
       it(`should fire ${eventName}`, async () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import glob from 'fast-glob';
+import { glob } from 'fast-glob';
 import fse from 'fs-extra';
 import lodashChunk from 'lodash/chunk.js';
 import { upload } from '@argos-ci/core';

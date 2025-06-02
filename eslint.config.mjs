@@ -86,9 +86,7 @@ export default defineConfig(
   },
   {
     name: 'MUI ESLint config for tests',
-    files: [
-      '**/*.test.?(c|m)[jt]s?(x)',
-    ],
+    files: ['**/*.test.?(c|m)[jt]s?(x)'],
     extends: testConfig,
     rules: {
       // turn off testing-library specific rules temporarily
@@ -102,7 +100,7 @@ export default defineConfig(
       'testing-library/no-unnecessary-act': 'off',
       'testing-library/no-wait-for-multiple-assertions': 'off',
       'testing-library/no-dom-import': 'off',
-    }
+    },
   },
   specRules,
   {
@@ -111,13 +109,13 @@ export default defineConfig(
     extends: docsConfig,
     rules: {
       'no-restricted-imports': [
-          'error',
-          {
-            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
-            patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
-          },
-        ],
-    }
+        'error',
+        {
+          paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+          patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
+        },
+      ],
+    },
   },
   {
     files: ['docs/src/modules/components/**/*'],

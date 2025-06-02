@@ -276,7 +276,6 @@ describe('System <Grid />', () => {
     });
 
     createTheme({}).breakpoints.keys.forEach((breakpoint) => {
-
       it(`should warn if the \`${breakpoint}\` prop is used`, () => {
         expect(() => {
           render(<Grid {...{ [breakpoint]: 8 }} />);

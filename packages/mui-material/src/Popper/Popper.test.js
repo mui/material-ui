@@ -77,7 +77,6 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-
       it(`should ${test.in === test.out ? 'not ' : ''}flip ${
         test.in
       } when direction=rtl is used`, () => {

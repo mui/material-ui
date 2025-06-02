@@ -159,7 +159,6 @@ describe('<ClickAwayListener />', () => {
     });
 
     ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
-
       it(`should not be called when ${eventListenerName} mounted the listener`, () => {
         function Test() {
           const [open, setOpen] = React.useState(false);
@@ -387,7 +386,6 @@ describe('<ClickAwayListener />', () => {
     ['onClickCapture', false],
     ['onClickCapture', true],
   ].forEach(([eventName, disableReactTree]) => {
-
     it(`when 'disableRectTree=${disableReactTree}' ${eventName} triggers onClickAway if an outside target is removed`, function test() {
       if (!new Event('click').composedPath) {
         this.skip();

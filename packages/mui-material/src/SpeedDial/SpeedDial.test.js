@@ -161,7 +161,6 @@ describe('<SpeedDial />', () => {
       ['left', 'tooltipPlacementTop'],
       ['right', 'tooltipPlacementTop'],
     ].forEach(([direction, className]) => {
-
       it(`should place the tooltip in the correct position when direction=${direction}`, () => {
         const { getByRole, getAllByRole } = render(
           <SpeedDial {...defaultProps} open direction={direction.toLowerCase()}>
