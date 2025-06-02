@@ -39,7 +39,6 @@ describe('<LinearProgress />', () => {
       expect(getByRole('progressbar')).to.have.class(classes.variantSoft);
     });
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<LinearProgress variant={variant} />);
         expect(getByRole('progressbar')).to.have.class(
@@ -55,7 +54,6 @@ describe('<LinearProgress />', () => {
       expect(getByRole('progressbar')).to.have.class(classes.colorPrimary);
     });
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByRole } = render(<LinearProgress color={color} />);
         expect(getByRole('progressbar')).to.have.class(
@@ -71,7 +69,6 @@ describe('<LinearProgress />', () => {
       expect(getByRole('progressbar')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
-
       it(`should render ${size}`, () => {
         const { getByRole } = render(<LinearProgress size={size} />);
         expect(getByRole('progressbar')).to.have.class(

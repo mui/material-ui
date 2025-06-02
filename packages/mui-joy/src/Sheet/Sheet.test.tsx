@@ -35,7 +35,6 @@ describe('<Sheet />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Sheet data-testid="root" variant={variant}>
@@ -58,7 +57,6 @@ describe('<Sheet />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <Sheet data-testid="root" color={color}>

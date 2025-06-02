@@ -34,7 +34,6 @@ describe('<ModalDialog />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<ModalDialog variant={variant} />);
 
@@ -52,7 +51,6 @@ describe('<ModalDialog />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByRole } = render(<ModalDialog color={color} />);
 

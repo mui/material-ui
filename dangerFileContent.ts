@@ -2,7 +2,8 @@ import { exec } from 'child_process';
 // eslint-disable-next-line import-x/namespace
 import type * as dangerModule from 'danger';
 import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
- 
+
+// eslint-disable-next-line import-x/no-relative-packages
 import { loadComparison } from './scripts/sizeSnapshot';
 
 declare const danger: (typeof dangerModule)['danger'];

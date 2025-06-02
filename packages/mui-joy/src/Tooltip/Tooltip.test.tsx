@@ -71,7 +71,6 @@ describe('<Tooltip />', () => {
     });
 
     (['outlined', 'soft', 'plain', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" variant={variant} open>
@@ -97,7 +96,6 @@ describe('<Tooltip />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" color={color} open>
@@ -124,7 +122,6 @@ describe('<Tooltip />', () => {
     });
 
     (['sm', 'md', 'lg'] as const).forEach((size) => {
-
       it(`should render ${size}`, () => {
         const { getByRole } = render(
           <Tooltip title="Add" size={size} open>

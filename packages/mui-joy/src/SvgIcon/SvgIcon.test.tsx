@@ -93,7 +93,6 @@ describe('<SvgIcon />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { container } = render(<SvgIcon color={color}>{path}</SvgIcon>);
 

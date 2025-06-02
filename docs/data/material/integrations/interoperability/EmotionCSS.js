@@ -1,4 +1,3 @@
- 
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import Slider from '@mui/material/Slider';

@@ -49,7 +49,6 @@ describe('<AccordionGroup />', () => {
         { variant: 'solid', class: classes.variantSolid },
       ] as const
     ).forEach((variantConfig) => {
-
       it(`should have ${variantConfig.class} class for ${variantConfig.variant} variant `, () => {
         const { getByTestId } = render(
           <AccordionGroup data-testid="root" variant={variantConfig.variant} />,
@@ -67,7 +66,6 @@ describe('<AccordionGroup />', () => {
         { color: 'success', class: classes.colorSuccess },
       ] as const
     ).forEach((colorConfig) => {
-
       it(`should have ${colorConfig.class} class for ${colorConfig.color} color `, () => {
         const { getByTestId } = render(
           <AccordionGroup data-testid="root" color={colorConfig.color} />,

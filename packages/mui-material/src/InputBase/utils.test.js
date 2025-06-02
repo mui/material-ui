@@ -10,7 +10,6 @@ describe('Input/utils.js', () => {
     });
 
     [null, undefined].forEach((value) => {
-
       it(`is false for ${value}`, () => {
         expect(hasValue(value)).to.equal(false);
       });
@@ -28,7 +27,6 @@ describe('Input/utils.js', () => {
       });
     });
     [null, undefined, ''].forEach((value) => {
-
       it(`is false for value ${value}`, () => {
         expect(isFilled({ value })).to.equal(false);
       });

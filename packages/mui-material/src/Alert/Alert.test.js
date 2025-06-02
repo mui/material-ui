@@ -200,7 +200,6 @@ describe('<Alert />', () => {
     }, {});
 
     severities.forEach((severity) => {
-
       it(`should render the icon provided into the Alert for severity ${severity}`, () => {
         render(
           <Alert severity={severity} iconMapping={iconMapping}>
@@ -221,7 +220,6 @@ describe('<Alert />', () => {
     });
 
     ['success', 'info', 'warning', 'error'].forEach((color) => {
-
       it('should apply color classes to the root', () => {
         render(<Alert data-testid="alert" color={color} />);
 

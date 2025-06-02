@@ -52,7 +52,6 @@ describe('<Typography />', () => {
       'body-xs',
     ] as const
   ).forEach((level) => {
-
     it(`should render ${level} text`, () => {
       const { container } = render(
         <Typography level={level as TypographyProps['level']}>Hello</Typography>,

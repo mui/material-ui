@@ -82,7 +82,6 @@ describe('<Select />', () => {
   });
 
   ['', 0, false, undefined, NaN].forEach((value) =>
-
     it(`should support conditional rendering with "${value}"`, () => {
       render(
         <Select open value={2}>
@@ -154,7 +153,6 @@ describe('<Select />', () => {
   });
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
-
     it(`should open menu when pressed ${key} key on select`, async () => {
       render(
         <Select value="">
@@ -632,7 +630,6 @@ describe('<Select />', () => {
       });
 
       ['', 0, false, undefined, NaN].forEach((value) =>
-
         describe(`when the second child is conditionally rendering with "${value}"`, () => {
           it('first selectable option is focused to use the arrow', () => {
             const { getAllByRole } = render(
@@ -1711,7 +1708,6 @@ describe('<Select />', () => {
   });
 
   ['standard', 'outlined', 'filled'].forEach((variant) => {
-
     it(`variant overrides should work for "${variant}" variant`, function test() {
       const theme = createTheme({
         components: {

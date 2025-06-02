@@ -113,7 +113,6 @@ describe('<Link />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" variant={variant}>
@@ -140,7 +139,6 @@ describe('<Link />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" color={color}>
@@ -181,7 +179,6 @@ describe('<Link />', () => {
         'body-xs',
       ] as const
     ).forEach((level) => {
-
       it(`should render ${level}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" level={level as keyof TypographySystem}>
@@ -206,7 +203,6 @@ describe('<Link />', () => {
     });
 
     (['none', 'always', 'hover'] as const).forEach((underline) => {
-
       it(`should render ${underline}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" underline={underline}>

@@ -63,7 +63,6 @@ describe('<Fab />', () => {
     expect(button).to.have.class(classes.secondary);
   });
   ['info', 'error', 'warning', 'success'].forEach((color) => {
-
     it(`should render a ${color} floating action button`, () => {
       const { getByRole } = render(<Fab color={color}>Fab</Fab>);
       const button = getByRole('button');

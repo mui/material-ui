@@ -36,7 +36,6 @@ describe('<StepIndicator />', () => {
     });
 
     (['plain', 'outlined', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { container } = render(<StepIndicator variant={variant} />);
 
@@ -56,7 +55,6 @@ describe('<StepIndicator />', () => {
     });
 
     (['primary', 'success', 'danger', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { container } = render(<StepIndicator color={color} />);
 

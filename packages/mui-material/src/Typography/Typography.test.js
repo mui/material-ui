@@ -54,7 +54,6 @@ describe('<Typography />', () => {
     'button',
     'overline',
   ].forEach((variant) => {
-
     it(`should render ${variant} text`, () => {
       // @ts-ignore literal/tuple type widening
       const { container } = render(<Typography variant={variant}>Hello</Typography>);

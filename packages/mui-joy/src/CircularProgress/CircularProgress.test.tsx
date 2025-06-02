@@ -51,7 +51,6 @@ describe('<CircularProgress />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<CircularProgress variant={variant} />);
 
@@ -70,7 +69,6 @@ describe('<CircularProgress />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByRole } = render(<CircularProgress color={color} />);
 
@@ -88,7 +86,6 @@ describe('<CircularProgress />', () => {
       expect(getByRole('progressbar')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
-
       it(`should render ${size}`, () => {
         const { getByRole } = render(<CircularProgress size={size} />);
 

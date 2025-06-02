@@ -37,7 +37,6 @@ describe('<Avatar />', () => {
     });
 
     (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
-
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" variant={variant} />);
 
@@ -56,7 +55,6 @@ describe('<Avatar />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
-
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" color={color} />);
 
@@ -74,7 +72,6 @@ describe('<Avatar />', () => {
       expect(getByTestId('root')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
-
       it(`should render ${size}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" size={size} />);
 
