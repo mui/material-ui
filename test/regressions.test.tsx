@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { beforeAll, test } from 'vitest';
+import * as ReactDOM from 'react-dom/client';
+import { beforeAll, test, beforeEach, afterEach } from 'vitest';
 import { page } from '@vitest/browser/context';
 import { render } from 'vitest-browser-react';
 import webfontloader from 'webfontloader';
@@ -162,11 +163,26 @@ beforeAll(async () => {
 // Remove when `fg-loadcss` no loner appears in Examples
 globalThis.global = window;
 
+let container;
+let root;
+
+beforeEach(() => {
+  container = document.createElement('div');
+  document.body.appendChild(container);
+  root = ReactDOM.createRoot(container);
+});
+
+afterEach(() => {
+  root.unmount();
+  document.body.removeChild(container);
+  container = null;
+});
+
 test.for(Object.entries({ ...importRegressionFixtures, ...importDemos }))(
   'Screenshot test fixture %s',
   async ([path, mod]) => {
     const Component = await mod();
-    await render(
+    await root.render(
       <TestViewer path={path.startsWith('../docs/data/joy/') ? '/docs-joy' : '/'}>
         <Component />
       </TestViewer>,

@@ -55,10 +55,13 @@ export default defineConfig({
       '@mui/styles': path.resolve(WORKSPACE_ROOT, './packages/mui-styles/src'),
       '@mui/system': path.resolve(WORKSPACE_ROOT, './packages/mui-system/src'),
       '@mui/private-theming': path.resolve(WORKSPACE_ROOT, './packages/mui-private-theming/src'),
-      '@mui/base': path.resolve(WORKSPACE_ROOT, './packages/mui-base/src'),
       '@mui/utils': path.resolve(WORKSPACE_ROOT, './packages/mui-utils/src'),
       '@mui/material-nextjs': path.resolve(WORKSPACE_ROOT, './packages/mui-material-nextjs/src'),
       '@mui/joy': path.resolve(WORKSPACE_ROOT, './packages/mui-joy/src'),
+      '@mui/stylis-plugin-rtl': path.resolve(
+        WORKSPACE_ROOT,
+        './packages/mui-stylis-plugin-rtl/src',
+      ),
       '@mui/internal-docs-utils': path.resolve(
         WORKSPACE_ROOT,
         './packages-internal/docs-utils/src',
@@ -87,6 +90,7 @@ export default defineConfig({
     browser: {
       enabled: true,
       provider: 'playwright',
+      headless: true,
       screenshotDirectory: path.resolve(import.meta.dirname, './regressions/screenshots/chrome'),
       instances: [
         {
