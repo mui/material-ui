@@ -1,19 +1,19 @@
 {
-  "name": "@mui/utils",
-  "version": "7.1.1",
+  "name": "@mui/stylis-plugin-rtl",
+  "version": "7.1.0",
   "author": "MUI Team",
-  "description": "Utility functions for React components.",
+  "description": "A plugin for Material UI that provides RTL (right-to-left) support.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
     "mui",
-    "utils"
+    "rtl"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-utils"
+    "directory": "packages/mui-stylis-plugin-rtl"
   },
   "license": "MIT",
   "bugs": {
@@ -34,39 +34,25 @@
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json",
-    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern"
   },
   "dependencies": {
     "@babel/runtime": "^7.27.1",
-    "@mui/types": "workspace:^",
-    "@types/prop-types": "^15.7.14",
-    "clsx": "^2.1.1",
-    "prop-types": "^15.8.1",
-    "react-is": "^19.1.0"
+    "cssjanus": "^2.0.1"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
-    "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.17.50",
-    "@types/react": "^19.1.6",
-    "@types/react-dom": "^19.1.5",
-    "@types/react-is": "^19.0.0",
     "@types/sinon": "^17.0.4",
+    "@types/stylis": "4.2.7",
     "chai": "^4.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "sinon": "^19.0.5"
+    "sinon": "^19.0.5",
+    "stylis": "4.3.6"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@types/react": {
-      "optional": true
-    }
+    "stylis": "4.x"
   },
   "sideEffects": false,
   "publishConfig": {
