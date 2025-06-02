@@ -109,6 +109,10 @@ export default async function create(
           MONOREPO_ROOT,
           './packages-internal/test-utils/src',
         ),
+        '@mui/internal-docs-utils': path.resolve(
+          MONOREPO_ROOT,
+          './packages-internal/docs-utils/src',
+        ),
         '@mui/material': path.resolve(MONOREPO_ROOT, './packages/mui-material/src'),
         '@mui/system': path.resolve(MONOREPO_ROOT, './packages/mui-system/src'),
         '@mui/types': path.resolve(MONOREPO_ROOT, './packages/mui-types/src'),

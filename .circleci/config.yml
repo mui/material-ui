@@ -118,7 +118,7 @@ jobs:
       - install_js
       - run:
           name: Tests fake browser
-          command: pnpm test:coverage:ci
+          command: pnpm test:jsdom --coverage
       - run:
           name: Check coverage generated
           command: |
@@ -313,7 +313,7 @@ jobs:
           browsers: true
       - run:
           name: Tests real browsers
-          command: pnpm test:karma
+          command: pnpm test:browser --coverage
       - run:
           name: Check coverage generated
           command: |
