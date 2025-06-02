@@ -298,6 +298,7 @@ describe('<Accordion />', () => {
     ];
 
     transitions.forEach((transition) => {
+
       it(transition.name, () => {
         render(
           <Accordion

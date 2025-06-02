@@ -37,6 +37,7 @@ describe('<AspectRatio />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
+
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <AspectRatio data-testid="root" variant={variant}>
@@ -59,6 +60,7 @@ describe('<AspectRatio />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <AspectRatio data-testid="root" color={color}>

@@ -48,6 +48,7 @@ describe('<FormControl />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<FormControl data-testid="root" color={color} />);
 

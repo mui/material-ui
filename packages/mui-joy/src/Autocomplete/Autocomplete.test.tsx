@@ -768,6 +768,7 @@ describe('Joy <Autocomplete />', () => {
     });
 
     ['ArrowDown', 'ArrowUp'].forEach((key) => {
+
       it(`opens on ${key} when focus is on the textbox and \`openOnFocus\` without moving focus`, () => {
         const handleOpen = spy();
         render(

@@ -42,6 +42,7 @@ describe('<Table />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
+
       it(`should render ${variant}`, () => {
         const { getByRole } = render(<Table variant={variant} />);
 
@@ -60,6 +61,7 @@ describe('<Table />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { getByRole } = render(<Table color={color} />);
 
@@ -78,6 +80,7 @@ describe('<Table />', () => {
     });
 
     (['sm', 'lg'] as const).forEach((size) => {
+
       it(`should render ${size}`, () => {
         const { getByRole } = render(<Table size={size} />);
 
@@ -96,6 +99,7 @@ describe('<Table />', () => {
     });
 
     (['none', 'x', 'xBetween', 'y', 'yBetween', 'both', 'bothBetween'] as const).forEach((axis) => {
+
       it(`should render border-axis ${axis}`, () => {
         const { getByRole } = render(<Table borderAxis={axis} />);
 

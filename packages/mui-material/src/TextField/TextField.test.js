@@ -126,6 +126,7 @@ describe('<TextField />', () => {
     });
 
     ['', undefined].forEach((label) => {
+
       it(`should not render empty (${label}) label element`, () => {
         const { container } = render(<TextField label={label} variant="standard" />);
 

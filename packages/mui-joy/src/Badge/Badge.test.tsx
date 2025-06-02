@@ -116,6 +116,7 @@ describe('<Badge />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { container } = render(<Badge color={color} {...defaultProps} />);
 
@@ -133,6 +134,7 @@ describe('<Badge />', () => {
     });
 
     (['sm', 'md', 'lg'] as const).forEach((size) => {
+
       it(`should render ${size}`, () => {
         const { container } = render(<Badge size={size} {...defaultProps} />);
 
@@ -150,6 +152,7 @@ describe('<Badge />', () => {
     });
 
     (['outlined', 'soft', 'solid'] as const).forEach((variant) => {
+
       it(`should render ${variant}`, () => {
         const { container } = render(<Badge variant={variant} {...defaultProps} />);
 
@@ -199,6 +202,7 @@ describe('<Badge />', () => {
         { horizontal: 'right', vertical: 'bottom' },
       ] as BadgeOrigin[]
     ).forEach((anchorOrigin) => {
+
       it(`should render ${anchorOrigin}`, () => {
         const { container } = render(<Badge {...defaultProps} anchorOrigin={anchorOrigin} />);
         expect(findBadge(container)).to.have.class(

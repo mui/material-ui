@@ -67,6 +67,7 @@ describe('<Chip />', () => {
     });
 
     (['outlined', 'plain', 'solid'] as const).forEach((variant) => {
+
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" variant={variant} />);
 
@@ -85,6 +86,7 @@ describe('<Chip />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" color={color} />);
 
@@ -102,6 +104,7 @@ describe('<Chip />', () => {
       expect(getByTestId('root')).to.have.class(classes.sizeMd);
     });
     (['sm', 'md', 'lg'] as const).forEach((size) => {
+
       it(`should render ${size}`, () => {
         const { getByTestId } = render(<Chip data-testid="root" size={size} />);
 

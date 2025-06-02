@@ -32,6 +32,7 @@ declare module '@mui/joy/styles' {
     'PaletteCommonOverrides',
     'PaletteTextOverrides',
   ].forEach((type) => {
+
     it(`augment ${type}`, () => {
       const paletteName = type.replace(/^Palette([a-zA-Z]+)Overrides$/, '$1').toLowerCase();
       expect(

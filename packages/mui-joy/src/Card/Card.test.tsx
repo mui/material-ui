@@ -35,6 +35,7 @@ describe('<Card />', () => {
     });
 
     (['plain', 'outlined', 'soft', 'solid'] as const).forEach((variant) => {
+
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Card data-testid="root" variant={variant}>
@@ -57,6 +58,7 @@ describe('<Card />', () => {
     });
 
     (['primary', 'success', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
+
       it(`should render ${color}`, () => {
         const { getByTestId } = render(
           <Card data-testid="root" color={color}>
