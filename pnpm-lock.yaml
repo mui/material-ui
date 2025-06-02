@@ -631,6 +631,9 @@ importers:
       '@mui/styled-engine-sc':
         specifier: workspace:^
         version: link:../packages/mui-styled-engine-sc/build
+      '@mui/stylis-plugin-rtl':
+        specifier: workspace:^
+        version: link:../packages/mui-stylis-plugin-rtl/build
       '@mui/system':
         specifier: workspace:^
         version: link:../packages/mui-system/build
@@ -835,9 +838,6 @@ importers:
       stylis:
         specifier: 4.2.0
         version: 4.2.0
-      stylis-plugin-rtl:
-        specifier: ^2.1.1
-        version: 2.1.1(stylis@4.2.0)
       use-count-up:
         specifier: ^3.0.1
         version: 3.0.1(react@19.1.0)
@@ -913,7 +913,7 @@ importers:
         version: 1.8.8
       '@types/stylis':
         specifier: ^4.2.0
-        version: 4.2.5
+        version: 4.2.7
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1897,6 +1897,44 @@ importers:
         version: 6.1.18(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     publishDirectory: build
 
+  packages/mui-stylis-plugin-rtl:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.27.1
+        version: 7.27.1
+      cssjanus:
+        specifier: ^2.0.1
+        version: 2.1.0
+    devDependencies:
+      '@mui/internal-test-utils':
+        specifier: workspace:^
+        version: link:../../packages-internal/test-utils
+      '@types/chai':
+        specifier: ^4.3.20
+        version: 4.3.20
+      '@types/mocha':
+        specifier: ^10.0.10
+        version: 10.0.10
+      '@types/node':
+        specifier: ^20.17.50
+        version: 20.17.50
+      '@types/sinon':
+        specifier: ^17.0.4
+        version: 17.0.4
+      '@types/stylis':
+        specifier: 4.2.7
+        version: 4.2.7
+      chai:
+        specifier: ^4.5.0
+        version: 4.5.0
+      sinon:
+        specifier: ^19.0.5
+        version: 19.0.5
+      stylis:
+        specifier: 4.3.6
+        version: 4.3.6
+    publishDirectory: build
+
   packages/mui-system:
     dependencies:
       '@babel/runtime':
@@ -2112,6 +2150,9 @@ importers:
       '@mui/material':
         specifier: workspace:^
         version: link:../packages/mui-material/build
+      '@mui/stylis-plugin-rtl':
+        specifier: workspace:^
+        version: link:../packages/mui-stylis-plugin-rtl/build
       '@mui/system':
         specifier: workspace:^
         version: link:../packages/mui-system/build
@@ -2181,9 +2222,6 @@ importers:
       stylis:
         specifier: 4.2.0
         version: 4.2.0
-      stylis-plugin-rtl:
-        specifier: ^2.1.1
-        version: 2.1.1(stylis@4.2.0)
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -5798,6 +5836,9 @@ packages:
 
   '@types/stylis@4.2.5':
     resolution: {integrity: sha512-1Xve+NMN7FWjY14vLoY5tL3BVEQ/n42YLwaqJIPYhotZ9uBHt87VceMwWQpzmdEt2TNXIorIFG+YeCUUW7RInw==}
+
+  '@types/stylis@4.2.7':
+    resolution: {integrity: sha512-VgDNokpBoKF+wrdvhAAfS55OMQpL6QRglwTwNC3kIgBrzZxA4WsFj+2eLfEA/uMUDzBcEhYmjSbwQakn/i3ajA==}
 
   '@types/tough-cookie@4.0.5':
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
@@ -12875,8 +12916,8 @@ packages:
   stylis@4.3.2:
     resolution: {integrity: sha512-bhtUjWd/z6ltJiQwg0dUfxEJ+W+jdqQd8TbWLWyeIJHlnsqmGLRFFd8e5mA0AZi/zx90smXRlN66YMTcaSFifg==}
 
-  stylis@4.3.4:
-    resolution: {integrity: sha512-osIBl6BGUmSfDkyH2mB7EFvCJntXDrLhKjHTRj/rK6xLH0yuPrHULDRQzKokSOD4VoorhtKpfcfW1GAntu8now==}
+  stylis@4.3.6:
+    resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==}
 
   sucrase@3.35.0:
     resolution: {integrity: sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==}
@@ -17101,8 +17142,8 @@ snapshots:
       lodash: 4.17.21
       prop-types: 15.8.1
       react: 19.1.0
-      stylis: 4.3.4
-      stylis-plugin-rtl: 2.1.1(stylis@4.3.4)
+      stylis: 4.3.6
+      stylis-plugin-rtl: 2.1.1(stylis@4.3.6)
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
@@ -18150,6 +18191,8 @@ snapshots:
 
   '@types/stylis@4.2.5': {}
 
+  '@types/stylis@4.2.7': {}
+
   '@types/tough-cookie@4.0.5':
     optional: true
 
@@ -18599,7 +18642,7 @@ snapshots:
       cosmiconfig: 8.3.6(typescript@5.8.3)
       happy-dom: 15.11.6
       source-map: 0.7.4
-      stylis: 4.3.4
+      stylis: 4.3.6
       ts-invariant: 0.10.3
     transitivePeerDependencies:
       - supports-color
@@ -27016,21 +27059,16 @@ snapshots:
       - supports-color
       - typescript
 
-  stylis-plugin-rtl@2.1.1(stylis@4.2.0):
+  stylis-plugin-rtl@2.1.1(stylis@4.3.6):
     dependencies:
       cssjanus: 2.1.0
-      stylis: 4.2.0
-
-  stylis-plugin-rtl@2.1.1(stylis@4.3.4):
-    dependencies:
-      cssjanus: 2.1.0
-      stylis: 4.3.4
+      stylis: 4.3.6
 
   stylis@4.2.0: {}
 
   stylis@4.3.2: {}
 
-  stylis@4.3.4: {}
+  stylis@4.3.6: {}
 
   sucrase@3.35.0:
     dependencies:

@@ -48,6 +48,8 @@
       ],
       "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
       "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"],
+      "@mui/stylis-plugin-rtl": ["./packages/mui-stylis-plugin-rtl/src"],
+      "@mui/stylis-plugin-rtl/*": ["./packages/mui-stylis-plugin-rtl/src/*"],
       "docs/*": ["./docs/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
