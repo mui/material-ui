@@ -2,7 +2,7 @@ import { axisClasses, legendClasses, chartsGridClasses } from '@mui/x-charts';
 
 import { gray } from '../../../shared-theme/themePrimitives';
 
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import-x/prefer-default-export */
 export const chartsCustomizations = {
   MuiChartsAxis: {
     styleOverrides: {

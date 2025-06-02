@@ -11,7 +11,7 @@ export default function transformer(fileInfo, api, options) {
     requirePath = requirePath.replace(/^@material-ui\/core/, '../../../mui-material/src');
   }
 
-  // eslint-disable-next-line global-require, import/no-dynamic-require
+  // eslint-disable-next-line global-require, import-x/no-dynamic-require
   const whitelist = require(requirePath);
 
   const printOptions = options.printOptions || {

@@ -1,4 +1,4 @@
-/* eslint-disable import/export */
+/* eslint-disable import-x/export */
 import * as colors from './colors';
 
 export { colors };

@@ -1,5 +1,5 @@
 /* eslint-env node */
-// eslint-ignore-next-line import/no-unresolved
+// eslint-ignore-next-line import-x/no-unresolved
 import { withPigment } from '@pigment-css/nextjs-plugin';
 import { extendTheme } from '@mui/material/styles';
 

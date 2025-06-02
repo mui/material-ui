@@ -2,8 +2,8 @@
 import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as prettier from 'prettier';
-import glob from 'fast-glob';
-import * as _ from 'lodash';
+import * as glob from 'fast-glob';
+import _ from 'lodash';
 import * as yargs from 'yargs';
 import { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';
 import {
