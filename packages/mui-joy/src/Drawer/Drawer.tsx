@@ -1,11 +1,9 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  HTMLElementType,
-  unstable_capitalize as capitalize,
-  unstable_useId as useId,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useId from '@mui/utils/useId';
+import HTMLElementType from '@mui/utils/HTMLElementType';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useModal as useModal } from '@mui/base/unstable_useModal';

@@ -17,7 +17,6 @@ import CollectionsBookmarkRoundedIcon from '@mui/icons-material/CollectionsBookm
 import LibraryBooksRoundedIcon from '@mui/icons-material/LibraryBooksRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
-import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 import NewspaperRoundedIcon from '@mui/icons-material/NewspaperRounded';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { alpha, styled } from '@mui/material/styles';
@@ -129,33 +128,6 @@ function NewStartScreen() {
           name: 'Templates',
           href: '/material-ui/getting-started/templates/',
           icon: <CollectionsBookmarkRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-      ],
-    },
-    {
-      category: {
-        name: 'MUI Base',
-      },
-      items: [
-        {
-          name: 'Installation',
-          href: '/base-ui/getting-started/quickstart/',
-          icon: <DownloadRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Components',
-          href: '/base-ui/all-components/',
-          icon: <SmartButtonRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Customization',
-          href: '/base-ui/getting-started/customization/',
-          icon: <DesignServicesRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
-        },
-        {
-          name: 'Usage',
-          href: '/base-ui/getting-started/usage/',
-          icon: <DriveFileRenameOutlineRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
         },
       ],
     },
@@ -335,6 +307,7 @@ export default function AppSearch(props) {
   useLazyCSS(
     'https://cdn.jsdelivr.net/npm/@docsearch/css@3.0.0-alpha.40/dist/style.min.css',
     '#app-search',
+    { layer: 'docsearch' },
   );
   const FADE_DURATION = 120; // ms
   const t = useTranslate();

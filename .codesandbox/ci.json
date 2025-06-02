@@ -4,7 +4,6 @@
   "node": "20",
   "packages": [
     "packages/markdown",
-    "packages/mui-base",
     "packages/mui-codemod",
     "packages/mui-core-downloads-tracker",
     "packages/mui-docs",
@@ -19,14 +18,11 @@
     "packages/mui-system",
     "packages/mui-types",
     "packages/mui-utils",
-    "packages-internal/babel-plugin-minify-errors",
-    "packages-internal/babel-plugin-resolve-imports",
     "packages-internal/docs-utils",
     "packages-internal/scripts",
     "packages-internal/test-utils"
   ],
   "publishDirectory": {
-    "@mui/base": "packages/mui-base/build",
     "@mui/codemod": "packages/mui-codemod/build",
     "@mui/core-downloads-tracker": "packages/mui-core-downloads-tracker/build",
     "@mui/docs": "packages/mui-docs/build",
@@ -35,8 +31,6 @@
     "@mui/internal-docs-utils": "packages-internal/docs-utils",
     "@mui/internal-markdown": "packages/markdown",
     "@mui/internal-scripts": "packages-internal/scripts",
-    "@mui/internal-babel-plugin-minify-errors": "packages-internal/babel-plugin-minify-errors",
-    "@mui/internal-babel-plugin-resolve-imports": "packages-internal/babel-plugin-resolve-imports",
     "@mui/lab": "packages/mui-lab/build",
     "@mui/material-nextjs": "packages/mui-material-nextjs/build",
     "@mui/material": "packages/mui-material/build",

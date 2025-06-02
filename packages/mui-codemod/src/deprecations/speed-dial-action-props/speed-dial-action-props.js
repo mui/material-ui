@@ -11,6 +11,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SpeedDialAction',
     propName: 'tooltipTitle',
     slotName: 'tooltip',
@@ -19,6 +20,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SpeedDialAction',
     propName: 'tooltipPlacement',
     slotName: 'tooltip',
@@ -27,6 +29,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SpeedDialAction',
     propName: 'tooltipOpen',
     slotName: 'tooltip',
@@ -35,6 +38,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SpeedDialAction',
     propName: 'TooltipClasses',
     slotName: 'tooltip',
@@ -43,6 +47,7 @@ export default function transformer(file, api, options) {
 
   movePropIntoSlotProps(j, {
     root,
+    packageName: options.packageName,
     componentName: 'SpeedDialAction',
     propName: 'FabProps',
     slotName: 'fab',

@@ -15,7 +15,7 @@ const GOLDs = [
     src: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open-source software.',
-    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
   },
   {
     src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
@@ -61,7 +61,12 @@ const BACKLINKs = [
   {
     name: 'SocialWick',
     description: 'Buy Instagram followers.',
-    href: 'https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+    href: 'https://www.socialwick.com/instagram/followers',
+  },
+  {
+    name: 'Follower24',
+    description: 'Social media success.',
+    href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 

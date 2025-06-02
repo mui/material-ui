@@ -20,16 +20,15 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
-    "vite": "4.5.11"
+    "vite": "4.5.13"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "playwright": "1.51.1",
+    "@playwright/test": "1.52.0",
     "serve": "14.2.4"
   },
   "pnpm": {
     "overrides": {
-      "@mui/base": "file:../../../../packed/@mui/base.tgz",
       "@mui/material": "file:../../../../packed/@mui/material.tgz",
       "@mui/icons-material": "file:../../../../packed/@mui/icons-material.tgz",
       "@mui/lab": "file:../../../../packed/@mui/lab.tgz",

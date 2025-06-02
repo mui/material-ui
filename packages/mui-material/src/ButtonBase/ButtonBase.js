@@ -33,7 +33,6 @@ const useUtilityClasses = (ownerState) => {
 export const ButtonBaseRoot = styled('button', {
   name: 'MuiButtonBase',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   display: 'inline-flex',
   alignItems: 'center',

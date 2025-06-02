@@ -380,7 +380,7 @@ describe('<Select />', () => {
 
         let expectedOccurrences = 2;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 3;
         }
 

@@ -1,6 +1,5 @@
 {
   "name": "@mui-internal/test-module-resolution",
-  "version": "5.0.0",
   "private": true,
   "scripts": {
     "typescript:all": "pnpm typescript:node && pnpm typescript:node16",

@@ -142,7 +142,7 @@
     "title": "Business Administrator",
     "location": "London, UK",
     "locationCountry": "gb",
-    "about": "Empathic art-lover, incurable optimist keen on biking, gardening.",
+    "about": "Empathic optimist keen on dancing, biking and gardening.",
     "github": "TinaDein"
   },
   {
@@ -271,8 +271,8 @@
   {
     "name": "Jose Quintas",
     "title": "Software Engineer — xCharts",
-    "location": "Amsterdam, Netherlands",
-    "locationCountry": "nl",
+    "location": "Barcelona, Spain",
+    "locationCountry": "es",
     "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
     "github": "JCQuintas"
   },
@@ -318,5 +318,14 @@
     "about": "Soccer ⚽️ and coding 💻.",
     "twitter": "bernardobelchi1",
     "github": "bernardobelchior"
+  },
+  {
+    "name": "Rita Iglesias",
+    "title": "Software Engineer — eXplore",
+    "location": "Seville, Spain",
+    "locationCountry": "es",
+    "about": "Learning 📚, my dog 🐶 and Japanese culture 🇯🇵.",
+    "twitter": "rita_codes",
+    "github": "rita-codes"
   }
 ]

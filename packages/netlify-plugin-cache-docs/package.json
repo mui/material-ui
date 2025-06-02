@@ -1,8 +1,6 @@
 {
   "name": "netlify-plugin-cache-docs",
-  "version": "6.0.0",
   "private": true,
-  "author": "MUI Team",
   "description": "Alternative to netlify-plugin-cache-nextjs",
   "keywords": [],
   "repository": {

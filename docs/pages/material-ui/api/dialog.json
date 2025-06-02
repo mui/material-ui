@@ -12,7 +12,7 @@
     },
     "BackdropComponent": {
       "type": { "name": "elementType" },
-      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
       "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
@@ -137,13 +137,15 @@
       "key": "paperScrollBody",
       "className": "MuiDialog-paperScrollBody",
       "description": "Styles applied to the Paper component if `scroll=\"body\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperScrollPaper",
       "className": "MuiDialog-paperScrollPaper",
       "description": "Styles applied to the Paper component if `scroll=\"paper\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperWidthFalse",
