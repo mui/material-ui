@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.27.4",
-    "cssjanus": "^2.0.1"
+    "cssjanus": "^2.3.0"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
