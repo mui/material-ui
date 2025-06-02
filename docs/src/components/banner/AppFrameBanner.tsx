@@ -5,7 +5,7 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
 
-const showSurveyMessage = true;
+const showSurveyMessage = false;
 
 function isBlackFriday() {
   const today = Date.now();
