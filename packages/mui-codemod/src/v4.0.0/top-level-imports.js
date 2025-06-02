@@ -5,7 +5,7 @@ export default function transformer(fileInfo, api, options) {
   const importModule = options.importModule || '@material-ui/core';
   const targetModule = options.targetModule || '@material-ui/core';
 
-  let requirePath = importModule;
+  const requirePath = importModule;
 
   // eslint-disable-next-line global-require, import/no-dynamic-require
   const whitelist = require(requirePath);
