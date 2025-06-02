@@ -6,7 +6,7 @@ import { chipClasses } from '@mui/material/Chip';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { gray, red, green } from '../themePrimitives';
 
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import-x/prefer-default-export */
 export const dataDisplayCustomizations = {
   MuiList: {
     styleOverrides: {

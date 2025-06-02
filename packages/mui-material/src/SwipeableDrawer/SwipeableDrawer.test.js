@@ -168,6 +168,7 @@ describe('<SwipeableDrawer />', () => {
     ];
 
     tests.forEach((params) => {
+
       describe(`anchor=${params.anchor}`, () => {
         it('should open and close when swiping', () => {
           const handleClose = spy();

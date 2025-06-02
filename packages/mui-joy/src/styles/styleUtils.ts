@@ -10,7 +10,7 @@ import { Theme, SxProps } from './types';
  * Why not reuse `styleFunctionSx`?
  *     `styleFunctionSx` is more expensive as it iterates over all the keys
  */
-// eslint-disable-next-line import/prefer-default-export
+// eslint-disable-next-line import-x/prefer-default-export
 export const resolveSxValue = <K extends string>(
   { theme, ownerState }: { theme: Theme; ownerState: { sx?: SxProps } },
   keys: K[],

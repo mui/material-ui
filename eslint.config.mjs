@@ -1,7 +1,9 @@
 import { includeIgnoreFile } from '@eslint/compat';
+// eslint-disable-next-line import-x/no-duplicates
 import baseConfig from '@mui/infra/eslint';
+// eslint-disable-next-line import-x/no-duplicates
 import docsConfig from '@mui/infra/eslint-docs';
-import testConfig from '@mui/infra/eslint-test';
+import testConfig, { specRules } from '@mui/infra/eslint-test';
 import consistentDefaultExportName from 'eslint-plugin-consistent-default-export-name';
 import { defineConfig } from 'eslint/config';
 
@@ -69,7 +71,10 @@ export default defineConfig(
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
-      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/consistent-type-imports': 'off',
+      'import-x/default': 'off',
+      'import-x/no-named-as-default-member': 'off',
+      'import-x/prefer-default-export': 'error',
     },
     settings: {
       'import-x/resolver': {
@@ -80,12 +85,28 @@ export default defineConfig(
     },
   },
   {
+    name: 'MUI ESLint config for tests',
     files: [
       '**/*.test.?(c|m)[jt]s?(x)',
     ],
-    extends: testConfig
+    extends: testConfig,
+    rules: {
+      // turn off testing-library specific rules temporarily
+      'testing-library/no-await-sync-events': 'off',
+      'testing-library/no-await-sync-queries': 'off',
+      'testing-library/no-await-snapshot': 'off',
+      'testing-library/no-node-access': 'off',
+      'testing-library/prefer-screen-queries': 'off',
+      'testing-library/render-result-naming-convention': 'off',
+      'testing-library/no-container': 'off',
+      'testing-library/no-unnecessary-act': 'off',
+      'testing-library/no-wait-for-multiple-assertions': 'off',
+      'testing-library/no-dom-import': 'off',
+    }
   },
+  specRules,
   {
+    name: 'MUI ESLint config for docs',
     files: ['docs/**/*'],
     extends: docsConfig,
     rules: {
@@ -128,7 +149,7 @@ export default defineConfig(
   },
   {
     files: ['docs/data/**/*'],
-    ignorePatterns: [
+    ignores: [
       // filenames/match-exported sees filename as 'file-name.d'
       // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
       '*.d.ts',
@@ -151,23 +172,23 @@ export default defineConfig(
     },
   },
   {
-    files: ['*.d.ts'],
+    files: ['**/*.d.ts'],
     rules: {
       'import-x/export': 'off', // Not sure why it doesn't work
     },
   },
   {
     files: ['packages/*/src/**/*.tsx'],
-    ignorePatterns: ['*.spec.tsx'],
+    ignores: ['**/*.spec.tsx'],
     rules: {
       'react/prop-types': 'off',
     },
   },
   {
     files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
-    ignorePatterns: [
-      '*.spec.*',
-      '*.test.*',
+    ignores: [
+      '**/*.spec.*',
+      '**/*.test.*',
       // deprecated library
       '**/mui-joy/**/*',
       // used internally, not used on app router yet
@@ -179,7 +200,7 @@ export default defineConfig(
   },
   {
     files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-    ignorePatterns: ['*.spec.*'],
+    ignores: ['**/*.spec.*'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -208,7 +229,7 @@ export default defineConfig(
   },
   {
     files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-    ignorePatterns: ['*.spec.*'],
+    ignores: ['**/*.spec.*'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -230,7 +251,7 @@ export default defineConfig(
   },
   {
     files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-    ignorePatterns: ['*.d.ts', '*.spec.*', 'packages/mui-joy/**/*'],
+    ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
     rules: {
       'material-ui/mui-name-matches-component-name': 'error',
     },
@@ -284,6 +305,7 @@ export default defineConfig(
   {
     files: ['apps/**/*'],
     rules: {
+      'import-x/extensions': 'off',
       'import-x/no-relative-packages': 'off',
     },
   },

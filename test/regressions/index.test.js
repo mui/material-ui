@@ -106,6 +106,7 @@ async function main() {
     });
 
     routes.forEach((route) => {
+
       it(`creates screenshots of ${route}`, async function test() {
         // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
         if (process.env.PWDEBUG) {

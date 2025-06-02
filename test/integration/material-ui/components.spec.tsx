@@ -75,7 +75,6 @@ import {
   Typography,
   ListItemButton,
 } from '@mui/material';
-import { Theme } from '@mui/material/styles';
 import { ButtonBaseActions } from '@mui/material/ButtonBase';
 import { IconButtonProps } from '@mui/material/IconButton';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
