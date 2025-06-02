@@ -570,7 +570,7 @@ describe('<Tooltip />', () => {
       expect(screen.getByRole('tooltip')).toBeVisible();
     });
 
-    it.skip('should take the leaveDelay into account', async () => {
+    it('should take the leaveDelay into account', async () => {
       const leaveDelay = 111;
       const enterDelay = 0;
       const transitionTimeout = 10;
@@ -593,7 +593,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      act(() => {
+      await act(async () => {
         screen.getByRole('button').blur();
       });
 
