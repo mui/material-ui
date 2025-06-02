@@ -16179,7 +16179,7 @@ snapshots:
 
   '@material-ui/core@4.12.4(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
       '@material-ui/styles': 4.11.5(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@material-ui/system': 4.12.2(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@material-ui/types': 5.1.0(@types/react@19.1.6)
@@ -16198,7 +16198,7 @@ snapshots:
 
   '@material-ui/styles@4.11.5(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
       '@emotion/hash': 0.8.0
       '@material-ui/types': 5.1.0(@types/react@19.1.6)
       '@material-ui/utils': 4.11.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -16221,7 +16221,7 @@ snapshots:
 
   '@material-ui/system@4.12.2(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
       '@material-ui/utils': 4.11.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       csstype: 2.6.21
       prop-types: 15.8.1
@@ -16236,7 +16236,7 @@ snapshots:
 
   '@material-ui/utils@4.11.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.1
+      '@babel/runtime': 7.27.4
       prop-types: 15.8.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
