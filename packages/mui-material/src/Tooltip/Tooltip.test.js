@@ -593,7 +593,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.getByRole('tooltip')).toBeVisible();
 
-      await act(() => {
+      await act(async () => {
         screen.getByRole('button').blur();
       });
 
