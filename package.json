@@ -105,7 +105,7 @@
     "@netlify/functions": "^3.1.10",
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.2",
-    "execa": "^9.5.3",
+    "execa": "^9.6.0",
     "google-auth-library": "^9.15.1"
   },
   "devDependencies": {
@@ -130,7 +130,7 @@
     "@mui/joy": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@next/eslint-plugin-next": "^15.3.2",
+    "@next/eslint-plugin-next": "^15.3.3",
     "@octokit/rest": "^21.1.1",
     "@pigment-css/react": "0.0.30",
     "@playwright/test": "1.52.0",
