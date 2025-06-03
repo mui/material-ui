@@ -4,7 +4,7 @@ import getJSExports from '../util/getJSExports';
 
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
-  let importModule = options.importModule || '@mui/material';
+  const importModule = options.importModule || '@mui/material';
   const targetModule = options.targetModule || '@mui/material';
 
   let resolveModule = importModule;
