@@ -15,8 +15,7 @@ function read(fileName) {
 describe('@mui/codemod', () => {
   describe('v4.0.0', () => {
     describe('top-level-imports', () => {
-      it('convert path as needed', function () {
-        this?.timeout?.(20000);
+      it('convert path as needed', () => {
         const actual = transform(
           {
             source: read('./top-level-imports.test/actual.js'),
@@ -30,8 +29,7 @@ describe('@mui/codemod', () => {
         expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
 
-      it('should be idempotent', function () {
-        this?.timeout?.(20000);
+      it('should be idempotent', () => {
         const actual = transform(
           {
             source: read('./top-level-imports.test/expected.js'),
