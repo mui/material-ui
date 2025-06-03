@@ -746,6 +746,10 @@ describe('<Chip />', () => {
     expect(() => {
       const { getByTestId } = render(<Chip data-testid="chip" onClick={() => {}} />);
       const chip = getByTestId('chip');
+      act(() => {
+        chip.focus();
+      });
+
       fireEvent.keyDown(chip, { key: 'Enter' });
     }).not.throw();
   });
@@ -754,6 +758,10 @@ describe('<Chip />', () => {
     expect(() => {
       const { getByTestId } = render(<Chip data-testid="chip" onClick={() => {}} />);
       const chip = getByTestId('chip');
+      act(() => {
+        chip.focus();
+      });
+
       fireEvent.keyUp(chip, { key: ' ' });
     }).not.throw();
   });
