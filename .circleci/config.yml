@@ -313,7 +313,7 @@ jobs:
           browsers: true
       - run:
           name: Tests real browsers
-          command: pnpm test:browser --no-file-parallelism --coverage
+          command: pnpm test:browser --coverage
       - run:
           name: Check coverage generated
           command: |
