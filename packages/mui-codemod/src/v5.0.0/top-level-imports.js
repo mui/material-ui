@@ -5,8 +5,9 @@ import getJSExports from '../util/getJSExports';
 // istanbul ignore next
 if (process.env.NODE_ENV === 'test') {
   const resolve = require.resolve;
-  require.resolve = (source) =>
-    resolve(source.replace(/^@mui\/material\/modern/, '../../../mui-material/src'));
+  require.resolve = (source) => {
+    return resolve(source.replace(/^@mui\/material/, '@mui/material-v5'));
+  };
 }
 
 export default function transformer(fileInfo, api, options) {
