@@ -105,7 +105,7 @@
     "@netlify/functions": "^3.1.10",
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.2",
-    "execa": "^9.5.3",
+    "execa": "^9.6.0",
     "google-auth-library": "^9.15.1"
   },
   "devDependencies": {
