@@ -92,8 +92,8 @@ importers:
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
       '@mui/infra':
-        specifier: https://pkg.pr.new/@mui/infra@c107e55
-        version: https://pkg.pr.new/@mui/infra@c107e55(@next/eslint-plugin-next@15.3.3)(eslint-import-resolver-webpack@0.13.10)(eslint-plugin-import-x@4.13.3(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
+        specifier: https://pkg.pr.new/@mui/infra@cd5a992
+        version: https://pkg.pr.new/@mui/infra@cd5a992(@next/eslint-plugin-next@15.3.3)(eslint-import-resolver-webpack@0.13.10)(eslint-plugin-import-x@4.13.3(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@mui/internal-babel-plugin-minify-errors':
         specifier: ^2.0.4
         version: 2.0.4(@babel/core@7.27.4)
@@ -4147,8 +4147,8 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
-  '@mui/infra@https://pkg.pr.new/@mui/infra@c107e55':
-    resolution: {tarball: https://pkg.pr.new/@mui/infra@c107e55}
+  '@mui/infra@https://pkg.pr.new/@mui/infra@cd5a992':
+    resolution: {tarball: https://pkg.pr.new/@mui/infra@cd5a992}
     version: 0.0.1
     peerDependencies:
       '@next/eslint-plugin-next': '*'
@@ -16350,7 +16350,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
-  '@mui/infra@https://pkg.pr.new/@mui/infra@c107e55(@next/eslint-plugin-next@15.3.3)(eslint-import-resolver-webpack@0.13.10)(eslint-plugin-import-x@4.13.3(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
+  '@mui/infra@https://pkg.pr.new/@mui/infra@cd5a992(@next/eslint-plugin-next@15.3.3)(eslint-import-resolver-webpack@0.13.10)(eslint-plugin-import-x@4.13.3(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
     dependencies:
       '@eslint/js': 9.27.0
       '@typescript-eslint/parser': 8.33.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)

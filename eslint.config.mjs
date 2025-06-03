@@ -111,6 +111,7 @@ export default defineConfig(
       },
     },
     rules: {
+      'material-ui/no-restricted-resolved-imports': 'off',
       // turn off testing-library specific rules temporarily
       'testing-library/no-render-in-lifecycle': 'off',
       'testing-library/no-await-sync-events': 'off',
