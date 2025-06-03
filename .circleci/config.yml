@@ -118,7 +118,7 @@ jobs:
       - install_js
       - run:
           name: Tests fake browser
-          command: pnpm test:jsdom --poolOptions.threads.singleThread
+          command: pnpm test:jsdom --no-file-parallelism
       - run:
           name: Check coverage generated
           command: |
@@ -313,7 +313,7 @@ jobs:
           browsers: true
       - run:
           name: Tests real browsers
-          command: pnpm test:browser --poolOptions.threads.singleThread
+          command: pnpm test:browser --no-file-parallelism
       - run:
           name: Check coverage generated
           command: |
