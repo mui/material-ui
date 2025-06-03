@@ -37,7 +37,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
     "@babel/register": "^7.27.1",
-    "@babel/runtime": "^7.27.1",
+    "@babel/runtime": "^7.27.4",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@playwright/test": "^1.52.0",
