@@ -126,7 +126,13 @@ export default defineConfig(
       'testing-library/no-dom-import': 'off',
     },
   },
-  specRules,
+  {
+    ...specRules,
+    rules: {
+      ...specRules.rules,
+      'material-ui/no-restricted-resolved-imports': 'off',
+    },
+  },
   {
     name: 'MUI ESLint config for docs',
     files: ['docs/**/*'],
