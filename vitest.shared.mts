@@ -120,6 +120,10 @@ export default async function create(
         '@mui/styled-engine': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine/src'),
         '@mui/styled-engine-sc': path.resolve(MONOREPO_ROOT, './packages/mui-styled-engine-sc/src'),
         '@mui/styles': path.resolve(MONOREPO_ROOT, './packages/mui-styles/src'),
+        '@mui/stylis-plugin-rtl': path.resolve(
+          MONOREPO_ROOT,
+          './packages/mui-stylis-plugin-rtl/src',
+        ),
         '@mui/icons-material': path.resolve(MONOREPO_ROOT, './packages/mui-icons-material/lib/esm'),
         '@mui/lab': path.resolve(MONOREPO_ROOT, './packages/mui-lab/src'),
         '@mui/private-theming': path.resolve(MONOREPO_ROOT, './packages/mui-private-theming/src'),
