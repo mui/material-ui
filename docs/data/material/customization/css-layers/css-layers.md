@@ -112,23 +112,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 On top of the [single layer](#single-layer), you can split styles into multiple layers to better organize them within Material UI.
 This makes theming and overriding styles through the `sx` prop easier.
 
-When this feature is enabled, Material UI generates these layers:
-
-- `@layer global`: The global styles from `GlobalStyles` and `CssBaseline` components.
-- `@layer default`: The base styles for all Material UI components.
-- `@layer theme`: The theme styles for all Material UI components.
-- `@layer custom`: The custom styles for non-Material UI styled components.
-- `@layer sx`: The styles from the `sx` prop.
-
 Follow the steps from the [previous section](#single-layer) to enable the CSS layer feature.
 Then, create a new file and export the component that wraps the `ThemeProvider` from Material UI.
-Finally, pass the `experimental_modularCssLayer: true` option to the `createTheme` function:
+Finally, pass the `experimental_modularCssLayers: true` option to the `createTheme` function:
 
 ```tsx title="src/theme.tsx"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayer: true,
+  experimental_modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -138,9 +130,39 @@ export default function AppTheme({ children }: { children: ReactNode }) {
 
 {{"demo": "CssLayersInput.js"}}
 
-Render the component based on the framework you are using and update the layer order.
+When this feature is enabled, Material UI generates these layers:
+
+- `@layer mui.global`: The global styles from `GlobalStyles` and `CssBaseline` components.
+- `@layer mui.default`: The base styles for all Material UI components.
+- `@layer mui.theme`: The theme styles for all Material UI components.
+- `@layer mui.custom`: The custom styles for non-Material UI styled components.
+- `@layer mui.sx`: The styles from the `sx` prop.
+
+If you want to integrate with other styling solutions, such as Tailwind CSS v4, you can specify the layer order as a value to the `experimental_modularCssLayers` field, Material UI will replace the `mui` identifier with the correct order:
+
+```diff title="src/theme.tsx"
+ const theme = createTheme({
+-  experimental_modularCssLayers: true,
++  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+ });
+```
+
+Below are full examples of how to set up multiple layers with Tailwind CSS v4 in different frameworks.
 
 ### Next.js App Router
+
+```tsx title="src/theme.tsx"
+'use client';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+});
+
+export default function AppTheme({ children }: { children: ReactNode }) {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}
+```
 
 ```tsx title="src/app/layout.tsx"
 import AppTheme from '../theme';
@@ -158,11 +180,19 @@ export default function RootLayout() {
 }
 ```
 
-```css title="src/app/globals.css"
-@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;
-```
-
 ### Next.js Pages Router
+
+```tsx title="src/theme.tsx"
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+});
+
+export default function AppTheme({ children }: { children: ReactNode }) {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}
+```
 
 ```tsx title="pages/_app.tsx"
 import AppTheme from '../src/theme';
@@ -171,7 +201,6 @@ export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;" />
       <AppTheme>
         <Component {...pageProps} />
       </AppTheme>
@@ -180,7 +209,33 @@ export default function MyApp(props: AppProps) {
 }
 ```
 
+```tsx title="pages/_document.tsx"
+import {
+  createCache,
+  documentGetInitialProps,
+} from '@mui/material-nextjs/v15-pagesRouter';
+
+MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+  const finalProps = await documentGetInitialProps(ctx, {
+    emotionCache: createCache({ enableCssLayer: true }),
+  });
+  return finalProps;
+};
+```
+
 ### Vite or any other SPA
+
+```tsx title="src/theme.tsx"
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+});
+
+export default function AppTheme({ children }: { children: ReactNode }) {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}
+```
 
 ```tsx title="src/main.tsx"
 import AppTheme from './theme';
@@ -188,7 +243,6 @@ import AppTheme from './theme';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;" />
       <AppTheme>{/* Your app */}</AppTheme>
     </StyledEngineProvider>
   </React.StrictMode>,
