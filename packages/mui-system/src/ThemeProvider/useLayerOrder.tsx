@@ -1,0 +1,65 @@
+import * as React from 'react';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import GlobalStyles from '../GlobalStyles';
+import { Theme } from '../createTheme';
+import useThemeWithoutDefault from '../useThemeWithoutDefault';
+
+/**
+ * This hook returns a `GlobalStyles` component that sets the CSS layer order (for server-side rendering).
+ * Then on client-side, it injects the CSS layer order into the document head to ensure that the layer order is always present first before other Emotion styles.
+ */
+export default function useLayerOrder(
+  theme: Theme & { experimental_modularCssLayers?: boolean | string },
+) {
+  const upperTheme = useThemeWithoutDefault();
+  const id = React.useId();
+  const { experimental_modularCssLayers } = theme;
+
+  let layerOrder = 'mui.global, mui.default, mui.theme, mui.custom, mui.sx';
+
+  if (!experimental_modularCssLayers || upperTheme !== null) {
+    // skip this hook if upper theme exists.
+    layerOrder = '';
+  } else if (typeof experimental_modularCssLayers === 'string') {
+    layerOrder = experimental_modularCssLayers.replace(/mui(?!\.)/g, layerOrder);
+  } else {
+    layerOrder = `@layer ${layerOrder};`;
+  }
+
+  useEnhancedEffect(() => {
+    const head = document.querySelector('head');
+    if (!head) {
+      return;
+    }
+    const firstChild = head.firstChild as HTMLElement | null;
+
+    if (layerOrder) {
+      // Only insert if first child doesn't have data-mui-layer-order attribute
+      if (
+        firstChild &&
+        firstChild.hasAttribute?.('data-mui-layer-order') &&
+        firstChild.getAttribute('data-mui-layer-order') === id
+      ) {
+        return;
+      }
+      const styleElement = document.createElement('style');
+      styleElement.setAttribute('data-mui-layer-order', id);
+      styleElement.textContent = layerOrder;
+
+      head.prepend(styleElement);
+
+      return () => {
+        const elm = document.querySelector(`style[data-mui-layer-order="${id}"]`);
+        if (elm) {
+          elm.remove();
+        }
+      };
+    }
+  }, [layerOrder]);
+
+  if (!layerOrder) {
+    return null;
+  }
+
+  return <GlobalStyles styles={layerOrder} />;
+}
