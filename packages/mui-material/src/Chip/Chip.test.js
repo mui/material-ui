@@ -744,7 +744,7 @@ describe('<Chip />', () => {
 
   it('should not throw on keydown when onKeyDown is not provided', () => {
     expect(() => {
-      const { getByTestId } = render(<Chip data-testid="chip" />);
+      const { getByTestId } = render(<Chip data-testid="chip" onClick={() => {}} />);
       const chip = getByTestId('chip');
       fireEvent.keyDown(chip, { key: 'Enter' });
     }).not.throw();
@@ -752,7 +752,7 @@ describe('<Chip />', () => {
 
   it('should not throw on keyup when onKeyUp is not provided', () => {
     expect(() => {
-      const { getByTestId } = render(<Chip data-testid="chip" />);
+      const { getByTestId } = render(<Chip data-testid="chip" onClick={() => {}} />);
       const chip = getByTestId('chip');
       fireEvent.keyUp(chip, { key: ' ' });
     }).not.throw();
