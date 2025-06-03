@@ -1,4 +1,4 @@
-/* eslint-disable import-x/prefer-default-export */
+/* eslint-disable import/prefer-default-export */
 import { isPlainObject } from '@mui/utils/deepmerge';
 
 function isSerializable(val: any) {

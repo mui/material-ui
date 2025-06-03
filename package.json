@@ -123,7 +123,7 @@
     "@eslint/compat": "^1.2.9",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui/infra": "https://pkg.pr.new/@mui/infra@19329f3",
+    "@mui/infra": "https://pkg.pr.new/@mui/infra@c107e55",
     "@mui/internal-babel-plugin-resolve-imports": "^2.0.3",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.4",
     "@mui/internal-docs-utils": "workspace:^",

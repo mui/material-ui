@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 const tsx = require('tsx/cjs/api');
 
 // danger uses babelify under the hood. The implementation is buggy and fails on our

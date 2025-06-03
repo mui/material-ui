@@ -3,7 +3,7 @@ import path from 'path';
 import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
-import * as _ from 'lodash';
+import fromPairs from 'lodash/fromPairs';
 import kebabCase from 'lodash/kebabCase';
 import { remark } from 'remark';
 import { visit as remarkVisit } from 'unist-util-visit';
@@ -320,7 +320,7 @@ const generateApiPage = async (
    */
   const pageContent: ComponentApiContent = {
     // Sorted by required DESC, name ASC
-    props: _.fromPairs(
+    props: fromPairs(
       Object.entries(reactApi.propsTable).sort(([aName, aData], [bName, bData]) => {
         if ((aData.required && bData.required) || (!aData.required && !bData.required)) {
           return aName.localeCompare(bName);
@@ -514,7 +514,7 @@ const attachPropsTable = (
 ) => {
   const propErrors: Array<[propName: string, error: Error]> = [];
   type Pair = [string, ComponentReactApi['propsTable'][string]];
-  const componentProps: ComponentReactApi['propsTable'] = _.fromPairs(
+  const componentProps: ComponentReactApi['propsTable'] = fromPairs(
     Object.entries(reactApi.props!).map(([propName, propDescriptor]): Pair => {
       let prop: DescribeablePropDescriptor | null;
       try {

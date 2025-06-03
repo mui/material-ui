@@ -183,7 +183,7 @@ app.action('save_message', async ({ ack, body, client, logger }) => {
   }
 });
 
-// eslint-disable-next-line import-x/prefer-default-export
+// eslint-disable-next-line import/prefer-default-export
 export const handler: Handler = async (event, context, callback) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 404 };

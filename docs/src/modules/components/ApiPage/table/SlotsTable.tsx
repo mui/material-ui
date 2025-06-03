@@ -93,7 +93,7 @@ export default function SlotsTable(props: SlotsTableProps) {
 
             return (
               <tr key={`${className}-${hash}`} id={hash}>
-                <td className="slot-name" style={{ fontWeight: '600' }}>
+                <td id={`${hash}-name`} className="slot-name" style={{ fontWeight: '600' }}>
                   {name}
                 </td>
                 <td className="MuiApi-table-class-name">
@@ -101,7 +101,7 @@ export default function SlotsTable(props: SlotsTableProps) {
                   {className && <span className="class-name">{`.${className}`}</span>}
                 </td>
                 <td>{defaultValue && <code className="item-default">{defaultValue}</code>}</td>
-                <td className="description-column">
+                <td aria-labelledby={`${hash}-name`} className="description-column">
                   <span
                     dangerouslySetInnerHTML={{
                       __html: description || '',
