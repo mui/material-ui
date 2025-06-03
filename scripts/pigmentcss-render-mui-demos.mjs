@@ -25,7 +25,7 @@ async function run() {
     );
   }
   const prettierConfig = await prettier.resolveConfig(process.cwd(), {
-    config: path.join(process.cwd(), 'prettier.config.js'),
+    config: path.join(process.cwd(), 'prettier.config.mjs'),
   });
 
   // Find the demos of the component
