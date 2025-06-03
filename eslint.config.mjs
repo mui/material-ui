@@ -1,7 +1,5 @@
 import { includeIgnoreFile } from '@eslint/compat';
-// eslint-disable-next-line import-x/no-duplicates
 import baseConfig from '@mui/infra/eslint';
-// eslint-disable-next-line import-x/no-duplicates
 import docsConfig from '@mui/infra/eslint-docs';
 import testConfig, { specRules } from '@mui/infra/eslint-test';
 import consistentDefaultExportName from 'eslint-plugin-consistent-default-export-name';
@@ -72,24 +70,49 @@ export default defineConfig(
         },
       ],
       '@typescript-eslint/consistent-type-imports': 'off',
-      'import-x/default': 'off',
-      'import-x/no-named-as-default-member': 'off',
-      'import-x/prefer-default-export': 'error',
+      'import/no-named-as-default': 'off',
+      'import/no-named-as-default-member': 'off',
+      'import/default': 'off',
+      'import/prefer-default-export': 'error',
     },
     settings: {
-      'import-x/resolver': {
+      'import/resolver': {
         webpack: {
           config: path.join(dirname, 'webpackBaseConfig.js'),
         },
       },
     },
   },
+  ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
+    (packageName) => ({
+      files: [`packages/${packageName}/src/**/*.?(c|m)[jt]s?(x)`],
+      ignores: ['*.test.*', '*.spec.*'],
+      rules: {
+        'material-ui/no-restricted-resolved-imports': [
+          'error',
+          [
+            {
+              pattern: `**/packages/${packageName}/src/index.*`,
+              message:
+                "Don't import from the package index. Import the specific module directly instead.",
+            },
+          ],
+        ],
+      },
+    }),
+  ),
   {
     name: 'MUI ESLint config for tests',
     files: ['**/*.test.?(c|m)[jt]s?(x)'],
     extends: testConfig,
+    languageOptions: {
+      globals: {
+        expect: true,
+      },
+    },
     rules: {
       // turn off testing-library specific rules temporarily
+      'testing-library/no-render-in-lifecycle': 'off',
       'testing-library/no-await-sync-events': 'off',
       'testing-library/no-await-sync-queries': 'off',
       'testing-library/no-await-snapshot': 'off',
@@ -170,12 +193,6 @@ export default defineConfig(
     },
   },
   {
-    files: ['**/*.d.ts'],
-    rules: {
-      'import-x/export': 'off', // Not sure why it doesn't work
-    },
-  },
-  {
     files: ['packages/*/src/**/*.tsx'],
     ignores: ['**/*.spec.tsx'],
     rules: {
@@ -244,7 +261,15 @@ export default defineConfig(
       // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
       // https://github.com/import-js/eslint-plugin-import/issues/2348#issuecomment-1587320057
       // Reevaluate when https://github.com/import-js/eslint-plugin-import/pull/2998 is released.
-      'import-x/no-cycle': ['error', { ignoreExternal: false }],
+      'import/no-cycle': ['error', { ignoreExternal: false }],
+    },
+  },
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      'import/export': 'off', // Not sure why it doesn't work
+      'import/no-cycle': 'off',
+      'consistent-default-export-name/default-export-match-filename': 'off',
     },
   },
   {
@@ -258,13 +283,13 @@ export default defineConfig(
     files: ['test/bundling/scripts/**/*.js'],
     rules: {
       // ES modules need extensions
-      'import-x/extensions': ['error', 'ignorePackages'],
+      'import/extensions': ['error', 'ignorePackages'],
     },
   },
   {
     files: ['**/*.mjs'],
     rules: {
-      'import-x/extensions': ['error', 'ignorePackages'],
+      'import/extensions': ['error', 'ignorePackages'],
     },
   },
   {
@@ -278,15 +303,15 @@ export default defineConfig(
     rules: {
       'no-console': 'off',
       'no-underscore-dangle': 'off',
-      'import-x/no-unresolved': 'off',
-      'import-x/namespace': 'off',
-      'import-x/extensions': 'off',
-      'import-x/named': 'off',
-      'import-x/no-duplicates': 'off',
-      'import-x/no-named-as-default': 'off',
-      'import-x/default': 'off',
-      'import-x/no-named-as-default-member': 'off',
-      'import-x/order': 'off',
+      'import/no-unresolved': 'off',
+      'import/namespace': 'off',
+      'import/extensions': 'off',
+      'import/named': 'off',
+      'import/no-duplicates': 'off',
+      'import/no-named-as-default': 'off',
+      'import/default': 'off',
+      'import/no-named-as-default-member': 'off',
+      'import/order': 'off',
       // Reset the default until https://github.com/jsx-eslint/eslint-plugin-react/issues/3672 is fixed.
       'react/jsx-no-target-blank': ['error', { allowReferrer: false }],
       'react/prop-types': 'off',
@@ -303,8 +328,48 @@ export default defineConfig(
   {
     files: ['apps/**/*'],
     rules: {
-      'import-x/extensions': 'off',
-      'import-x/no-relative-packages': 'off',
+      'import/extensions': 'off',
+      'import/no-relative-packages': 'off',
+    },
+  },
+  // Overrides for nested .eslintrc files
+  {
+    files: ['packages/mui-icons-material/**/*'],
+    rules: {
+      // needed for mustache and temp
+      'import/no-unresolved': 'off',
+      'import/extensions': 'off',
+    },
+  },
+  {
+    files: ['packages/api-docs-builder/**/*'],
+    rules: {
+      'import/prefer-default-export': 'off',
+    },
+  },
+  {
+    files: ['packages/api-docs-builder-core/**/*'],
+    rules: {
+      'import/no-default-export': 'error',
+      'import/prefer-default-export': 'off',
+    },
+  },
+  {
+    files: ['apps/base-next-app/**/*'],
+    rules: {
+      'import/prefer-default-export': 'off',
+      'import/extensions': 'off',
+      'import/no-unresolved': 'off',
+      'react/no-unknown-property': ['error', { ignore: ['sx'] }],
+    },
+  },
+  {
+    files: ['docs/data/material/components/**/*'],
+    rules: {
+      // useful for interactions feedback
+      'no-console': ['off', { allow: ['info'] }],
+      // not very friendly to prop forwarding
+      'react/jsx-handler-names': 'off',
     },
   },
 );

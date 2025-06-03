@@ -546,6 +546,7 @@ const allIcons = Object.keys(mui)
       importName,
       name,
       theme,
+
       Component: mui[importName],
     };
     allIconsMap[importName] = icon;

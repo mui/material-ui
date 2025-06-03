@@ -1,4 +1,4 @@
-import { glob } from 'fast-glob';
+import glob from 'fast-glob';
 import * as fs from 'fs/promises';
 import path from 'path';
 import yargs from 'yargs';
