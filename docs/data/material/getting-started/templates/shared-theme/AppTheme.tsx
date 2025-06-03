@@ -21,7 +21,7 @@ export default function AppTheme(props: AppThemeProps) {
   const { children, disableCustomTheme, themeComponents } = props;
   const theme = React.useMemo(() => {
     return disableCustomTheme
-      ? {}
+      ? createTheme({ experimental_modularCssLayers: true })
       : createTheme({
           experimental_modularCssLayers: true,
           // For more details about CSS variables configuration, see https://mui.com/material-ui/customization/css-theme-variables/configuration/
