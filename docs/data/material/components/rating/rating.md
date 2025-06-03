@@ -75,7 +75,7 @@ Because the rating component uses radio buttons, keyboard interaction follows th
 
 The read only rating is not focusable.
 
-### Testing caveats
+## Testing
 
 **User interaction limitations in test environments**
 
