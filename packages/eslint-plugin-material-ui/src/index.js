@@ -9,4 +9,5 @@ module.exports.rules = {
   'no-styled-box': require('./rules/no-styled-box'),
   'straight-quotes': require('./rules/straight-quotes'),
   'disallow-react-api-in-server-components': require('./rules/disallow-react-api-in-server-components'),
+  'no-restricted-resolved-imports': require('./rules/no-restricted-resolved-imports'),
 };

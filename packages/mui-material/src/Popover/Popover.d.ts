@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SlotComponentProps } from '@mui/utils/types';
-import { BackdropProps, InternalStandardProps as StandardProps } from '..';
+import { BackdropProps } from '../Backdrop';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalProps } from '../Modal';
-import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';

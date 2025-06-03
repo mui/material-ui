@@ -13,7 +13,7 @@ import MenuItem from '../MenuItem';
 import Select from '../Select';
 import TableCell from '../TableCell';
 import Toolbar from '../Toolbar';
-import TablePaginationActions from './TablePaginationActions';
+import TablePaginationActions from '../TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 import useSlot from '../utils/useSlot';

@@ -5,7 +5,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.27.1",
+    "@babel/runtime": "^7.27.4",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
     "@mui/base": "5.0.0-beta.70",
@@ -16,10 +16,11 @@
     "@mui/material": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
+    "@mui/stylis-plugin-rtl": "workspace:^",
     "@playwright/test": "1.52.0",
     "@testing-library/dom": "^10.4.0",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.4",
+    "@types/react": "^19.1.6",
     "@types/react-is": "^19.0.0",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
@@ -37,9 +38,8 @@
     "sinon": "^19.0.5",
     "styled-components": "^6.1.18",
     "stylis": "4.2.0",
-    "stylis-plugin-rtl": "^2.1.1",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.99.7",
+    "webpack": "^5.99.9",
     "yargs": "^17.7.2"
   },
   "dependencies": {
