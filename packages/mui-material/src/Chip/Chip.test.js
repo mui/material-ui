@@ -733,4 +733,28 @@ describe('<Chip />', () => {
       ).not.to.throw();
     });
   });
+
+  it('should not throw on clicking Chip when onClick is not provided', () => {
+    expect(() => {
+      const { getByTestId } = render(<Chip data-testid="chip" />);
+      const chip = getByTestId('chip');
+      fireEvent.click(chip);
+    }).not.throw();
+  });
+
+  it('should not throw on keydown when onKeyDown is not provided', () => {
+    expect(() => {
+      const { getByTestId } = render(<Chip data-testid="chip" />);
+      const chip = getByTestId('chip');
+      fireEvent.keyDown(chip, { key: 'Enter' });
+    }).not.throw();
+  });
+
+  it('should not throw on keyup when onKeyUp is not provided', () => {
+    expect(() => {
+      const { getByTestId } = render(<Chip data-testid="chip" />);
+      const chip = getByTestId('chip');
+      fireEvent.keyUp(chip, { key: ' ' });
+    }).not.throw();
+  });
 });
