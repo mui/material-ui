@@ -7,9 +7,7 @@ import Select from '@mui/material/Select';
 import NativeSelect from '@mui/material/NativeSelect';
 import InputBase from '@mui/material/InputBase';
 
-const BootstrapInput = styled(InputBase, {
-  name: 'MuiBootstrapInput',
-})(({ theme }) => ({
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
     marginTop: theme.spacing(3),
   },

@@ -26,7 +26,10 @@ export default function StyledEngineProvider(props) {
 
   return (
     <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
-      <CacheProvider value={emotionCache}>{children}</CacheProvider>
+      <CacheProvider value={emotionCache}>
+        <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
+        {children}
+      </CacheProvider>
     </StyleSheetManager>
   );
 }

@@ -126,9 +126,7 @@ export const dataGridCustomizations = {
       }),
       columnHeaderTitleContainer: {
         flexGrow: 1,
-        [`&:not(:has(.${checkboxClasses.root}))`]: {
-          justifyContent: 'space-between',
-        },
+        justifyContent: 'space-between',
       },
       columnHeaderDraggableContainer: { paddingRight: 2 },
     },

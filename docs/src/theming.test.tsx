@@ -31,7 +31,7 @@ describe('docs demo theming', () => {
   it('should inherit the theme.palette.mode from upper theme', () => {
     render(
       <UpperProvider>
-        <DemoInstanceThemeProvider runtimeTheme={{ experimental_modularCssLayers: false }}>
+        <DemoInstanceThemeProvider runtimeTheme={undefined}>
           <Box
             data-testid="foo"
             sx={(theme) => ({
