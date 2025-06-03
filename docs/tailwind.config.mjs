@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss/plugin')} */
 
+// eslint-disable-next-line import/no-unresolved
 import plugin from 'tailwindcss/plugin';
 
+// eslint-disable-next-line import/no-unresolved
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
