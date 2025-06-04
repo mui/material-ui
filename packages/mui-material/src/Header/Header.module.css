@@ -1,3 +1,5 @@
+@layer components;
+
 .root {
   color: blue;
 }
