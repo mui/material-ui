@@ -80,6 +80,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
   };
   const backwardCompatibleSlotProps = { ...componentsProps, ...slotProps };
   const externalForwardedProps = {
+    component,
     slots: backwardCompatibleSlots,
     slotProps: backwardCompatibleSlotProps,
   };
