@@ -532,15 +532,15 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       ...handlers,
       onClick: (event) => {
         handlers.onClick?.(event);
-        onClick(event);
+        onClick?.(event);
       },
       onKeyDown: (event) => {
         handlers.onKeyDown?.(event);
-        handleKeyDown(event);
+        handleKeyDown?.(event);
       },
       onKeyUp: (event) => {
         handlers.onKeyUp?.(event);
-        handleKeyUp(event);
+        handleKeyUp?.(event);
       },
     }),
   });
