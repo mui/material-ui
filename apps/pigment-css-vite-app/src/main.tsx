@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import CssBaseline from '@mui/material/CssBaseline';
 import { css } from '@mui/material-pigment-css';
 import { ErrorBoundary } from 'react-error-boundary';
+
 import routes from '~react-pages';
 import '@mui/material-pigment-css/styles.css';
 import { ErrorBoundaryFallback } from './components/ErrorBoundaryFallback';

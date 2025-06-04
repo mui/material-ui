@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import * as yargs from 'yargs';
 import { LiteralType } from '@mui/internal-scripts/typescript-to-proptypes/src/models';
 import {
@@ -289,7 +289,7 @@ async function generateProptypes(
   }
 
   const prettierConfig = await prettier.resolveConfig(process.cwd(), {
-    config: path.join(__dirname, '../prettier.config.js'),
+    config: path.join(__dirname, '../prettier.config.mjs'),
   });
 
   const prettified = await prettier.format(result, { ...prettierConfig, filepath: sourceFile });
