@@ -4,7 +4,7 @@ title: React Menu component
 components: Menu, MenuItem, MenuList, MenuButton
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-unstyled: /base-ui/react-menu/
+unstyled: https://base-ui.com/react/components/menu
 ---
 
 # Menu
@@ -91,7 +91,7 @@ Use `slotProps` to pass props to the IconButton component.
 
 ### Positioned menu
 
-The `Menu` is based on the Base UI `Popper` component, which exposes a few [placement props](/base-ui/react-popper/#placement).
+The `Menu` is based on the MUI Base `Popper` component, which exposes a few [placement props](https://v6.mui.com/base-ui/react-popper/#placement).
 For example, this is how you'd go for displaying the menu on the bottom-end of the anchor button.
 
 {{"demo": "PositionedMenu.js"}}

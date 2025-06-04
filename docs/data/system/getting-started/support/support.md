@@ -33,10 +33,10 @@ You can browse the documentation, find an example close to your use case, and th
 
 <a href="/system/borders/#additive">
 <span class="only-light-mode">
-<img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 <span class="only-dark-mode">
-<img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
+  <img src="/static/docs-infra/forking-an-example-dark.png" alt="Forking an example" loading="lazy" width="1628" height="700" style="display: block; max-width: 774px;">
 </span>
 </a>
 
@@ -114,10 +114,10 @@ That means less time grappling with esoteric open-source trivia, and more time b
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
+  href="https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">
 Learn more about Tidelift</a>
 and
 <a
   data-ga-event-category="support"
   data-ga-event-action="tidelift"
-  href="https://tidelift.com/solutions/schedule-demo?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">request a demo today</a>.
+  href="https://www.sonarsource.com/tidelift-request-demo/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise">request a demo today</a>.

@@ -1,0 +1,5 @@
+# TypeScript `moduleResolution` Tests
+
+This suite uses workspace linking to resolve build folders and runs the TypeScript compiler with various `moduleResolution` settings.
+
+You can only run `pnpm typescript:all` after the project has been built with `pnpm release:build`.

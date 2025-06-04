@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
@@ -13,7 +13,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const values = [
   {
-    title: 'Put community first 💙',
+    title: 'User obsessed 💙',
     description: "We never lose sight of who we're serving and why.",
     lightIcon: 'url(/static/branding/about/illustrations/community-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/community-dark.svg)',
@@ -21,7 +21,7 @@ const values = [
     height: 84,
   },
   {
-    title: 'Avoid bureaucracy 🚫',
+    title: 'Keep it simple 🚫',
     description: "We're so not corporate — and we like it that way.",
     lightIcon: 'url(/static/branding/about/illustrations/bureaucracy-light.svg)',
     darkIcon: 'url(/static/branding/about/illustrations/bureaucracy-dark.svg)',
@@ -78,7 +78,6 @@ export default function OurValues() {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'space-between',
                 gap: 1.5,
                 background: `${(theme.vars || theme).palette.gradients.linearSubtle}`,
                 ...theme.applyDarkStyles({

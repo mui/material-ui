@@ -2,28 +2,34 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheetManager } from 'styled-components';
 import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+import { createEmotionCache as createCache } from '@mui/material-nextjs/v15-pagesRouter';
 import { prefixer } from 'stylis';
-import rtlPlugin from 'stylis-plugin-rtl';
-import { useTheme } from '@mui/material/styles';
+import rtlPlugin from '@mui/stylis-plugin-rtl';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { ThemeOptionsContext } from 'docs/src/modules/components/ThemeContext';
+import globalSelector from './globalSelector';
 
 // Cache for the rtl version of the styles
 const cacheRtl = createCache({
   key: 'rtl',
   prepend: true,
-  stylisPlugins: [prefixer, rtlPlugin],
+  enableCssLayer: true,
+  stylisPlugins: [prefixer, rtlPlugin, globalSelector],
 });
 
 export default function StyledEngineProvider(props) {
   const { children, cacheLtr } = props;
-  const theme = useTheme();
+  const { direction } = React.useContext(ThemeOptionsContext);
 
-  const rtl = theme.direction === 'rtl';
-  const emotionCache = theme.direction === 'rtl' ? cacheRtl : cacheLtr;
+  const rtl = direction === 'rtl';
+  const emotionCache = direction === 'rtl' ? cacheRtl : cacheLtr;
 
   return (
     <StyleSheetManager stylisPlugins={rtl ? [rtlPlugin] : []}>
-      <CacheProvider value={emotionCache}>{children}</CacheProvider>
+      <CacheProvider value={emotionCache}>
+        <GlobalStyles styles="@layer theme, docsearch, mui, utilities;" />
+        {children}
+      </CacheProvider>
     </StyleSheetManager>
   );
 }

@@ -10,7 +10,7 @@ export default function SnackbarHideDuration() {
   const [open, setOpen] = React.useState(false);
   const [duration, setDuration] = React.useState<undefined | number>();
   const [left, setLeft] = React.useState<undefined | number>();
-  const timer = React.useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+  const timer = React.useRef<ReturnType<typeof setInterval>>(undefined);
   const countdown = () => {
     timer.current = setInterval(() => {
       setLeft((prev) => (prev === undefined ? prev : Math.max(0, prev - 100)));
@@ -21,11 +21,11 @@ export default function SnackbarHideDuration() {
       setLeft(duration);
       countdown();
     } else {
-      window.clearInterval(timer.current);
+      clearInterval(timer.current);
     }
   }, [open, duration]);
   const handlePause = () => {
-    window.clearInterval(timer.current);
+    clearInterval(timer.current);
   };
   const handleResume = () => {
     countdown();

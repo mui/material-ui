@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@5.1.1
-  aws-s3: circleci/aws-s3@4.1.0
+  aws-cli: circleci/aws-cli@5.3.5
+  aws-s3: circleci/aws-s3@4.1.1
 
 parameters:
   browserstack-force:
@@ -68,6 +68,10 @@ commands:
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
     steps:
+      - run:
+          name: Set npm registry public signing keys
+          command: |
+            echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
       - when:
           condition: << parameters.browsers >>
           steps:
@@ -82,59 +86,31 @@ commands:
                 name: Install pnpm package manager
                 # See https://stackoverflow.com/a/73411601
                 command: corepack enable --install-directory ~/bin
-
       - run:
           name: View install environment
           command: |
             node --version
             pnpm --version
-
   install_js:
     parameters:
       browsers:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
-
     steps:
       - setup_corepack:
           browsers: << parameters.browsers >>
-
       - run:
           name: Resolve React version
           command: |
             pnpm use-react-version
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
-
       - run:
           name: Install js dependencies
           command: pnpm install
 
 jobs:
-  checkout:
-    <<: *default-job
-    steps:
-      - checkout
-      - install_js
-      - when:
-          # Install can be "dirty" when running with non-default versions of React
-          condition:
-            equal: [<< parameters.react-version >>, stable]
-          steps:
-            - run:
-                name: Should not have any git not staged
-                command: git add -A && git diff --exit-code --staged
-            - run:
-                name: '`pnpm dedupe` was run?'
-                command: |
-                  # #default-branch-switch
-                  if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
-                  then
-                      echo "No changes to dependencies detected. Skipping..."
-                  else
-                      pnpm dedupe --check
-                  fi
   test_unit:
     <<: *default-job
     steps:
@@ -149,22 +125,6 @@ jobs:
             if ! [[ -s coverage/lcov.info ]]
             then
               exit 1
-            fi
-      - run:
-          name: material-ui-icons
-          command: |
-            # latest commit
-            LATEST_COMMIT=$(git rev-parse HEAD)
-
-            # latest commit where packages/mui-icons-material was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/mui-icons-material)
-
-            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
-              pnpm --filter @mui/icons-material build:typings
-              pnpm --filter @mui/icons-material test:built-typings
-            else
-              echo "no changes"
             fi
       - run:
           name: internal-scripts
@@ -205,50 +165,26 @@ jobs:
           name: Lint Markdown
           command: pnpm markdownlint
       - run:
-          # See https://circleci.com/developer/orbs/orb/circleci/vale as reference
-          name: Install Vale
-          command: |
-            #!/bin/bash
-            VALE_STR_CLI_VERSION=3.3.0
-
-            # set smart sudo
-            if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
-
-            mkdir /tmp/vale-extract
-            cd /tmp/vale-extract
-            GZIPPED_OUTPUT="vale.tar.gz"
-            BINARY_URL=https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_Linux_64-bit.tar.gz
-            curl -sSL "$BINARY_URL" -o "${GZIPPED_OUTPUT}"
-
-            if [ ! -s "${GZIPPED_OUTPUT}" ]; then
-              echo "Downloaded file is empty"
-              rm "${GZIPPED_OUTPUT}"
-              exit 1
-            fi
-
-            tar -xzf "${GZIPPED_OUTPUT}"
-            $SUDO mv vale /usr/local/bin
-            rm "${GZIPPED_OUTPUT}"
-
-            # validate installation
-            if [[ -z "$(command -v vale)" ]]; then
-              echo "vale installation failed"
-              exit 1
-            else
-              echo "vale installation successful"
-              vale --version
-              exit 0
-            fi
-      - run:
           name: Lint writing style
           command: |
-            vale sync
+            # Or use https://circleci.com/developer/orbs/orb/circleci/vale as reference to install Vale
+            pnpm vale sync
             pnpm valelint
   test_static:
     <<: *default-job
     steps:
       - checkout
       - install_js
+      - run:
+          name: '`pnpm dedupe` was run?'
+          command: |
+            # #target-branch-reference
+            if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
+            then
+                echo "No changes to dependencies detected. Skipping..."
+            else
+                pnpm dedupe --check
+            fi
       - run:
           name: '`pnpm prettier` changes committed?'
           command: pnpm prettier --check
@@ -257,12 +193,6 @@ jobs:
           command: pnpm proptypes
       - run:
           name: '`pnpm proptypes` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: 'Write "use client" directive'
-          command: pnpm rsc:build
-      - run:
-          name: '`pnpm rsc:build` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Generate the documentation
@@ -307,7 +237,6 @@ jobs:
           name: Test module augmentation
           command: |
             pnpm --filter @mui/material typescript:module-augmentation
-            pnpm --filter @mui/base typescript:module-augmentation
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
       - run:
@@ -316,7 +245,7 @@ jobs:
             git add -f packages/mui-material/build || echo '/material declarations do not exist'
             git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:types
+            pnpm -r build:stable && pnpm -r build:types
             git --no-pager diff
       - run:
           name: Any defect declaration files?
@@ -350,14 +279,12 @@ jobs:
             set +e
             pnpm typescript:ci
             exit 0
-
       - restore_cache:
           name: Restore generated declaration files
           keys:
             # We assume that the target branch is `next` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
             - typescript-declaration-files-next
-
       - run:
           name: Diff declaration files
           command: |
@@ -366,7 +293,6 @@ jobs:
             git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
             pnpm -r build:types
             git --no-pager diff
-
       - run:
           name: Log defect declaration files
           command: |
@@ -380,7 +306,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -408,7 +334,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -420,7 +346,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -433,7 +359,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -450,7 +376,7 @@ jobs:
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
-      # Persist reports for inspection in https://mui-dashboard.netlify.app/
+      # Persist reports for inspection in https://frontend-public.mui.com/
       - store_artifacts:
           # see karma.conf.profile.js reactProfilerReporter.outputDir
           path: tmp/react-profiler-report/karma
@@ -458,7 +384,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     steps:
       - checkout
       - install_js:
@@ -469,6 +395,12 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm release:build
+      - run:
+          name: Analyze exported typescript
+          command: pnpm test:attw
+      - run:
+          name: test exported typescript
+          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css
@@ -490,7 +422,6 @@ jobs:
           root: packed
           paths:
             - '*'
-
   test_bundling_node_cjs:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
@@ -525,7 +456,7 @@ jobs:
   test_bundling_next_webpack4:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -543,7 +474,7 @@ jobs:
   test_bundling_next_webpack5:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -561,7 +492,7 @@ jobs:
   test_bundling_create_react_app:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -579,7 +510,7 @@ jobs:
   test_bundling_snowpack:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -597,7 +528,7 @@ jobs:
   test_bundling_vite:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -615,7 +546,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -633,7 +564,7 @@ jobs:
   test_bundling_gatsby:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
         environment:
           GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
@@ -650,7 +581,6 @@ jobs:
       - run:
           name: Test fixture
           command: pnpm start
-
   test_bundle_size_monitor:
     <<: *default-job
     steps:
@@ -684,8 +614,8 @@ jobs:
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/setup:
-                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 region: ${AWS_REGION_ARTIFACTS}
             # Upload distributables to S3
             - aws-s3/copy:
@@ -713,8 +643,8 @@ jobs:
                 value: << pipeline.git.branch >>
           steps:
             - aws-cli/setup:
-                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
+                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
                 region: ${AWS_REGION_ARTIFACTS}
             # persist size snapshot on S3
             - aws-s3/copy:
@@ -731,70 +661,34 @@ jobs:
           command: pnpm danger ci --fail-on-errors
           environment:
             DANGER_COMMAND: reportBundleSize
-  test_benchmark:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.48.2-focal
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
-      - run: pnpm benchmark:browser
-      - store_artifacts:
-          name: Publish benchmark results as a pipeline artifact.
-          path: tmp/benchmarks
-          destination: benchmarks
 workflows:
   version: 2
   pipeline:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_unit:
           <<: *default-context
-          requires:
-            - checkout
       - test_lint:
           <<: *default-context
-          requires:
-            - checkout
       - test_static:
           <<: *default-context
-          requires:
-            - checkout
       - test_types:
           <<: *default-context
-          requires:
-            - checkout
       - test_browser:
           <<: *default-context
-          requires:
-            - checkout
       - test_regressions:
           <<: *default-context
-          requires:
-            - checkout
       - test_e2e:
           <<: *default-context
-          requires:
-            - checkout
       - test_bundle_size_monitor:
           <<: *default-context
-          requires:
-            - checkout
   e2e-website:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_e2e_website:
           <<: *default-context
-          requires:
-            - checkout
-
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
@@ -837,7 +731,6 @@ workflows:
           <<: *default-context
           requires:
             - test_bundling_prepare
-
   profile:
     when:
       equal: [profile, << pipeline.parameters.workflow >>]
@@ -898,6 +791,58 @@ workflows:
   #         name: test_e2e-react@17
 
   # This workflow can be triggered manually on the PR
+  react-18:
+    when:
+      equal: [react-18, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_unit-react@18
+      - test_browser:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_browser-react@18
+      - test_regressions:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_regressions-react@18
+      - test_e2e:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_e2e-react@18
+
+  # This workflow is identical to react-18, but scheduled
+  react-18-cron:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                # #target-branch-reference
+                - master
+                - v5.x
+                - v6.x
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_unit-react@18
+      - test_browser:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_browser-react@18
+      - test_regressions:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_regressions-react@18
+      - test_e2e:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_e2e-react@18
+
+  # This workflow can be triggered manually on the PR
   react-next:
     when:
       equal: [react-next, << pipeline.parameters.workflow >>]
@@ -926,8 +871,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -953,14 +899,9 @@ workflows:
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_types_next:
-          <<: *default-context
-  benchmark:
-    when:
-      equal: [benchmark, << pipeline.parameters.workflow >>]
-    jobs:
-      - test_benchmark:
           <<: *default-context

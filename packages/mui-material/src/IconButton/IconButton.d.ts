@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { IconButtonClasses } from './iconButtonClasses';
@@ -47,6 +47,19 @@ export interface IconButtonOwnProps {
    * @default false
    */
   edge?: 'start' | 'end' | false;
+  /**
+   * If `true`, the loading indicator is visible and the button is disabled.
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
+   */
+  loading?: boolean | null;
+  /**
+   * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default, it renders a `CircularProgress` that is labeled by the button itself.
+   * @default <CircularProgress color="inherit" size={16} />
+   */
+  loadingIndicator?: React.ReactNode;
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

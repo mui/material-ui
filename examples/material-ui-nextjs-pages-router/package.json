@@ -1,6 +1,6 @@
 {
   "name": "material-ui-nextjs-pages-router",
-  "version": "5.0.0",
+  "version": "7.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -18,13 +18,12 @@
     "@mui/material": "latest",
     "@mui/material-nextjs": "latest",
     "clsx": "latest",
-    "next": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "^15.0.0"
   }
 }

@@ -17,14 +17,9 @@ function resolveAliasPath(relativeToBabelConf) {
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
-/** @type {babel.PluginItem[]} */
-const productionPlugins = [
-  ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-];
-
 /** @type {babel.ConfigFunction} */
 module.exports = function getBabelConfig(api) {
-  const useESModules = api.env(['regressions', 'modern', 'stable']);
+  const useESModules = api.env(['regressions', 'stable']);
 
   const defaultAlias = {
     '@mui/material': resolveAliasPath('./packages/mui-material/src'),
@@ -37,10 +32,8 @@ module.exports = function getBabelConfig(api) {
     '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
     '@mui/styled-engine-noop': resolveAliasPath('./packages/mui-styled-engine-noop/src'),
     '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
-    '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
     '@mui/system': resolveAliasPath('./packages/mui-system/src'),
     '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
-    '@mui/base': resolveAliasPath('./packages/mui-base/src'),
     '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
     '@mui/joy': resolveAliasPath('./packages/mui-joy/src'),
     '@mui/internal-docs-utils': resolveAliasPath('./packages-internal/docs-utils/src'),
@@ -54,10 +47,9 @@ module.exports = function getBabelConfig(api) {
       '@babel/preset-env',
       {
         bugfixes: true,
-        browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
+        browserslistEnv: api.env() || process.env.NODE_ENV,
         debug: process.env.MUI_BUILD_VERBOSE === 'true',
         modules: useESModules ? false : 'commonjs',
-        shippedProposals: api.env('modern'),
       },
     ],
     [
@@ -69,14 +61,9 @@ module.exports = function getBabelConfig(api) {
     '@babel/preset-typescript',
   ];
 
-  const usesAliases =
-    // in this config:
-    api.env(['coverage', 'development', 'test', 'benchmark']) ||
-    process.env.NODE_ENV === 'test' ||
-    // in webpack config:
-    api.env(['regressions']);
-
-  const outFileExtension = '.js';
+  // Essentially only replace in production builds.
+  // When aliasing we want to keep the original extension
+  const outFileExtension = process.env.MUI_OUT_FILE_EXTENSION || null;
 
   /** @type {babel.PluginItem[]} */
   const plugins = [
@@ -112,6 +99,7 @@ module.exports = function getBabelConfig(api) {
       {
         missingError,
         errorCodesPath,
+        runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
     ],
     ...(useESModules
@@ -119,18 +107,13 @@ module.exports = function getBabelConfig(api) {
           [
             '@mui/internal-babel-plugin-resolve-imports',
             {
-              // Don't replace the extension when we're using aliases.
-              // Essentially only replace in production builds.
-              outExtension: usesAliases ? null : outFileExtension,
+              outExtension: outFileExtension,
             },
           ],
         ]
       : []),
   ];
 
-  if (process.env.NODE_ENV === 'production') {
-    plugins.push(...productionPlugins);
-  }
   if (process.env.NODE_ENV === 'test') {
     plugins.push([
       'babel-plugin-module-resolver',
@@ -150,7 +133,7 @@ module.exports = function getBabelConfig(api) {
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
     overrides: [
       {
-        exclude: /\.test\.(js|ts|tsx)$/,
+        exclude: /\.test\.(m?js|ts|tsx)$/,
         plugins: ['@babel/plugin-transform-react-constant-elements'],
       },
       {
@@ -192,17 +175,6 @@ module.exports = function getBabelConfig(api) {
             'babel-plugin-module-resolver',
             {
               root: ['./'],
-              alias: defaultAlias,
-            },
-          ],
-        ],
-      },
-      benchmark: {
-        plugins: [
-          ...productionPlugins,
-          [
-            'babel-plugin-module-resolver',
-            {
               alias: defaultAlias,
             },
           ],

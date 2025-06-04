@@ -23,28 +23,57 @@ const openRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'Staff Engineer — Pigment CSS',
+        title: 'React Engineer — Material UI Maintainer',
         description:
-          'Research, build, document, and help ship a next-gen zero-runtime CSS-in-JS library with a focus on performance and great developer experience.',
-        url: '/careers/staff-engineer-pigment-css/',
+          'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
+        url: '/careers/react-engineer-material-ui-maintainer/',
       },
       {
-        title: 'React Engineer — xCharts',
+        title: 'React Engineer — Docs-infra',
         description:
-          'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x-charts/',
+          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
+        url: '/careers/react-engineer-docs-infra/',
       },
       {
-        title: 'React Engineer — eXplore',
+        title: 'Frontend Engineer — Code-infra',
         description:
-          'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
-        url: '/careers/react-engineer-explore/',
+          'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
+        url: '/careers/code-infra-engineer/',
+      },
+      // {
+      //   title: 'React Engineer — xCharts',
+      //   description:
+      //     'You will help form the xCharts team, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x-charts/',
+      // },
+      // {
+      //   title: 'React Engineer — eXplore',
+      //   description:
+      //     'You will help eXplore, the team behind the Pickers and Tree View components, build the most comprehensive UI library the world has ever seen.',
+      //   url: '/careers/react-engineer-explore/',
+      // },
+      // {
+      //   title: 'React Engineer — X',
+      //   description:
+      //     'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
+      //   url: '/careers/react-engineer-x/',
+      // },
+    ],
+  },
+  {
+    title: 'Sales',
+    roles: [
+      {
+        title: 'Account Executive',
+        description:
+          'You will help establish our sales team by implementing effective sales processes and tools to optimize and expand our sales pipeline.',
+        url: '/careers/account-executive/',
       },
       {
-        title: 'React Engineer — X',
+        title: 'Account Manager',
         description:
-          'You will strengthen the MUI X product, build ambitious and complex new features, work on strategic problems, and help grow adoption.',
-        url: '/careers/react-engineer-x/',
+          'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
+        url: '/careers/account-manager/',
       },
     ],
   },
@@ -62,12 +91,6 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      // {
-      //   title: 'React Engineer — Docs-infra',
-      //   description:
-      //     'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-      //   url: '/careers/react-engineer-docs-infra/',
-      // },
       {
         title: 'React Tech Lead — Core',
         description:
@@ -100,13 +123,7 @@ const nextRolesData = [
   },
   {
     title: 'Sales',
-    roles: [
-      // {
-      //   title: 'Account Executive',
-      //   description:
-      //     'You will build client relationships and manage the sales process from start to finish.',
-      // },
-    ],
+    roles: [],
   },
   {
     title: 'Marketing',

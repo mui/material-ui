@@ -4,16 +4,16 @@
 
 ## Official integrations
 
+<!-- #target-branch-reference -->
+
 The following integration examples are available in the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder of the Material UI GitHub repository.
 These examples feature Material UI paired with other popular React libraries and frameworks, so you can skip the initial setup steps and jump straight into building.
 
 :::success
 Not sure which to pick?
 We recommend Next.js for server-side rendering and more opinionated framework features, or Vite for a lightweight single-page app (SPA).
-See [Start a New React Project](https://react.dev/learn/start-a-new-react-project) from the official React docs to learn more about some of the options available.
+See [Creating a React App](https://react.dev/learn/creating-a-react-app) from the official React docs to learn more about some of the options available.
 :::
-
-<!-- #default-branch-switch -->
 
 {{"component": "modules/components/MaterialUIExampleCollection"}}
 

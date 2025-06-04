@@ -1,3 +1,4 @@
+import movePropIntoSlots from '../utils/movePropIntoSlots';
 import replaceComponentsWithSlots from '../utils/replaceComponentsWithSlots';
 
 /**
@@ -9,7 +10,19 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  replaceComponentsWithSlots(j, { root, componentName: 'Backdrop' });
+  replaceComponentsWithSlots(j, {
+    root,
+    packageName: options.packageName,
+    componentName: 'Backdrop',
+  });
+
+  movePropIntoSlots(j, {
+    root,
+    packageName: options.packageName,
+    componentName: 'Backdrop',
+    propName: 'TransitionComponent',
+    slotName: 'transition',
+  });
 
   return root.toSource(printOptions);
 }

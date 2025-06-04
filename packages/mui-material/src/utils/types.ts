@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/utils';
+import { SlotComponentProps } from '@mui/utils/types';
 import { Theme } from '../styles';
 
 export type {
@@ -7,7 +7,7 @@ export type {
   WithOptionalOwnerState,
   SlotComponentProps,
   SlotComponentPropsWithSlotState,
-} from '@mui/utils';
+} from '@mui/utils/types';
 
 export type SlotCommonProps = {
   component?: React.ElementType;

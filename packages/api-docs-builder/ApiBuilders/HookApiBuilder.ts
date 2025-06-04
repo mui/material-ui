@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import { Symbol, isPropertySignature } from 'typescript';
 import * as astTypes from 'ast-types';
 import * as _ from 'lodash';
 import * as babel from '@babel/core';
@@ -9,31 +8,16 @@ import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import kebabCase from 'lodash/kebabCase';
 import upperFirst from 'lodash/upperFirst';
 import { parse as parseDoctrine, Annotation } from 'doctrine';
-import { renderMarkdown } from '@mui/internal-markdown';
+import escapeRegExp from 'lodash/escapeRegExp';
+import { escapeEntities, renderMarkdown } from '../buildApi';
 import { ProjectSettings } from '../ProjectSettings';
 import { computeApiDescription } from './ComponentApiBuilder';
-import {
-  getSymbolDescription,
-  getSymbolJSDocTags,
-  stringifySymbol,
-  toGitHubPath,
-  writePrettifiedFile,
-} from '../buildApiUtils';
+import { toGitHubPath, writePrettifiedFile } from '../buildApiUtils';
 import { TypeScriptProject } from '../utils/createTypeScriptProject';
 import generateApiTranslations from '../utils/generateApiTranslation';
 import { HookApiContent, HookReactApi, ParsedProperty } from '../types/ApiBuilder.types';
 import { HookInfo } from '../types/utils.types';
-
-const parseProperty = async (
-  propertySymbol: Symbol,
-  project: TypeScriptProject,
-): Promise<ParsedProperty> => ({
-  name: propertySymbol.name,
-  description: getSymbolDescription(propertySymbol, project),
-  tags: getSymbolJSDocTags(propertySymbol),
-  required: !propertySymbol.declarations?.find(isPropertySignature)?.questionToken,
-  typeStr: await stringifySymbol(propertySymbol, project),
-});
+import extractInfoFromType from '../utils/extractInfoFromType';
 
 /**
  * Add demos & API comment block to type definitions, e.g.:
@@ -69,11 +53,6 @@ async function annotateHookDefinition(
   let end = null;
   traverse(typesAST, {
     ExportDefaultDeclaration(babelPath) {
-      if (api.filename.includes('mui-base')) {
-        // Base UI does not use default exports.
-        return;
-      }
-
       /**
        * export default function Menu() {}
        */
@@ -127,10 +106,6 @@ async function annotateHookDefinition(
     },
 
     ExportNamedDeclaration(babelPath) {
-      if (!api.filename.includes('mui-base')) {
-        return;
-      }
-
       let node: babel.Node = babelPath.node;
 
       if (babel.types.isTSDeclareFunction(node.declaration)) {
@@ -201,31 +176,41 @@ async function annotateHookDefinition(
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
+
   // Ensure a newline between manual and generated description.
   if (markdownLines[markdownLines.length - 1] !== '') {
     markdownLines.push('');
   }
 
-  if (api.demos && api.demos.length > 0) {
+  if (api.customAnnotation) {
     markdownLines.push(
-      'Demos:',
+      ...api.customAnnotation
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    );
+  } else {
+    if (api.demos && api.demos.length > 0) {
+      markdownLines.push(
+        'Demos:',
+        '',
+        ...api.demos.map((item) => {
+          return `- [${item.demoPageTitle}](${
+            item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+          })`;
+        }),
+        '',
+      );
+    }
+
+    markdownLines.push(
+      'API:',
       '',
-      ...api.demos.map((item) => {
-        return `- [${item.demoPageTitle}](${
-          item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
-        })`;
-      }),
-      '',
+      `- [${api.name} API](${
+        api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+      })`,
     );
   }
-
-  markdownLines.push(
-    'API:',
-    '',
-    `- [${api.name} API](${
-      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
-    })`,
-  );
 
   if (hookJsdoc.tags.length > 0) {
     markdownLines.push('');
@@ -268,12 +253,7 @@ const attachTable = (
       const requiredProp = prop.required;
 
       const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
-      const typeDescription = (propDescriptor.typeStr ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+      const typeDescription = escapeEntities(propDescriptor.typeStr ?? '');
       return {
         [propName]: {
           type: {
@@ -391,43 +371,6 @@ const generateApiJson = async (outputDirectory: string, reactApi: HookReactApi) 
   );
 };
 
-const extractInfoFromType = async (
-  typeName: string,
-  project: TypeScriptProject,
-): Promise<ParsedProperty[]> => {
-  // Generate the params
-  let result: ParsedProperty[] = [];
-
-  try {
-    const exportedSymbol = project.exports[typeName];
-    const type = project.checker.getDeclaredTypeOfSymbol(exportedSymbol);
-    // @ts-ignore
-    const typeDeclaration = type?.symbol?.declarations?.[0];
-    if (!typeDeclaration) {
-      return [];
-    }
-
-    const properties: Record<string, ParsedProperty> = {};
-    // @ts-ignore
-    const propertiesOnProject = type.getProperties();
-
-    // @ts-ignore
-    await Promise.all(
-      propertiesOnProject.map(async (propertySymbol) => {
-        properties[propertySymbol.name] = await parseProperty(propertySymbol, project);
-      }),
-    );
-
-    result = Object.values(properties)
-      .filter((property) => !property.tags.ignore)
-      .sort((a, b) => a.name.localeCompare(b.name));
-  } catch {
-    console.error(`No declaration for ${typeName}`);
-  }
-
-  return result;
-};
-
 /**
  * Helper to get the import options
  * @param name The name of the hook
@@ -469,8 +412,16 @@ export default async function generateHookApi(
   project: TypeScriptProject,
   projectSettings: ProjectSettings,
 ) {
-  const { filename, name, apiPathname, apiPagesDirectory, getDemos, readFile, skipApiGeneration } =
-    hooksInfo;
+  const {
+    filename,
+    name,
+    apiPathname,
+    apiPagesDirectory,
+    getDemos,
+    readFile,
+    skipApiGeneration,
+    customAnnotation,
+  } = hooksInfo;
 
   const { shouldSkip, EOL, src } = readFile();
 
@@ -504,8 +455,12 @@ export default async function generateHookApi(
   // the former can include JSDoc tags that we don't want to render in the docs.
   reactApi.description = hookJsdoc.description;
 
-  // Ignore what we might have generated in `annotateHookDefinition`
-  const annotatedDescriptionMatch = reactApi.description.match(/(Demos|API):\r?\n\r?\n/);
+  // Ignore what we might have generated in `annotateComponentDefinition`
+  let annotationBoundary: RegExp = /(Demos|API):\r?\n\r?\n/;
+  if (customAnnotation) {
+    annotationBoundary = new RegExp(escapeRegExp(customAnnotation.trim().split('\n')[0].trim()));
+  }
+  const annotatedDescriptionMatch = reactApi.description.match(new RegExp(annotationBoundary));
   if (annotatedDescriptionMatch !== null) {
     reactApi.description = reactApi.description.slice(0, annotatedDescriptionMatch.index).trim();
   }
@@ -517,6 +472,7 @@ export default async function generateHookApi(
   reactApi.apiPathname = apiPathname;
   reactApi.EOL = EOL;
   reactApi.demos = getDemos();
+  reactApi.customAnnotation = customAnnotation;
   if (reactApi.demos.length === 0) {
     // TODO: Enable this error once all public hooks are documented
     // throw new Error(

@@ -157,7 +157,7 @@ interface CodeCopyProviderProps {
  * Any code block inside the tree can set the rootNode when mouse enter to leverage keyboard copy.
  */
 export function CodeCopyProvider({ children }: CodeCopyProviderProps) {
-  const rootNode = React.useRef<HTMLDivElement | null>(null);
+  const rootNode = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     document.addEventListener('keydown', (event) => {
       if (!rootNode.current) {

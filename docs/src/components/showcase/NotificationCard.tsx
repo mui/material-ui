@@ -65,7 +65,7 @@ export default function NotificationCard() {
                 Incredible discoveries
               </Typography>
               <Typography sx={{ fontSize: 14, color: 'text.secondary' }}>
-                It&apos;s about Material UI & Base UI...
+                It&apos;s about Material UI & MUI Base...
               </Typography>
             </div>
             <Chip

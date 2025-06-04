@@ -128,7 +128,9 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
-        <span className="notranslate">&#8203;</span>
+        <span className="notranslate" aria-hidden>
+          &#8203;
+        </span>
       ) : (
         children
       )}

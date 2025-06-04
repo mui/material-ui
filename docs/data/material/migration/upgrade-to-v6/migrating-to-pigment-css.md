@@ -1,16 +1,16 @@
 # Migrating to Pigment CSS
 
-<p class="description">This guide helps you integrate Pigment CSS with Material UI v6.</p>
+<p class="description">This guide helps you integrate Pigment CSS with Material UI.</p>
 
 :::warning
 Pigment CSS is currently in the early alpha stage of development. We're actively working on improving its performance and stability. If you find any problem, please open a [GitHub issue](https://github.com/mui/pigment-css/issues).
 :::
 
-Before going through this guide, make sure you have [upgraded to Material UI v6](/material-ui/migration/upgrade-to-v6/).
+Before going through this guide, make sure you have [upgraded to Material UI v7](/material-ui/migration/upgrade-to-v7/) (or [v6](/material-ui/migration/upgrade-to-v6/)).
 
 ## Introduction
 
-The default styling engine of Material UI v6 is [Emotion](https://emotion.sh/docs/introduction).
+The default styling engine of Material UI is [Emotion](https://emotion.sh/docs/introduction).
 It lets you write styles in a CSS-in-JS fashion, which is great for dynamic styles that depend on states and props. However, it has some performance drawbacks when it comes to frequent re-renders because the style recalculation happens on the client-side.
 It also does not fully support [React Server Components](https://react.dev/reference/rsc/server-components), a new rendering paradigm that renders components ahead of time on the server.
 
@@ -31,15 +31,15 @@ First, install the Material UI wrapper package for Pigment CSS:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/material-pigment-css
+npm install @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash pnpm
-pnpm add @mui/material-pigment-css
+pnpm add @mui/material-pigment-css @pigment-css/react
 ```
 
 ```bash yarn
-yarn add @mui/material-pigment-css
+yarn add @mui/material-pigment-css @pigment-css/react
 ```
 
 </codeblock>
@@ -483,10 +483,14 @@ If a value depends on a variable, you need to move it to a CSS variable inside i
         borderRadius: '50%',
         width: `max(6px - var(--offset), 3px)`,
         height: `max(6px - var(--offset), 3px)`,
-        bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
+        bgcolor: `var(--bg)`,
       }}
       style={{
         '--offset': `${index}px`,
+        '--bg':
+          index === 0
+            ? 'var(--mui-palette-primary-solidBg)'
+            : 'var(--mui-palette-background-level3)',
       }}
     />
   ))}
