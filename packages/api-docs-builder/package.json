@@ -8,9 +8,9 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/core": "^7.27.1",
+    "@babel/core": "^7.27.4",
     "@babel/preset-typescript": "^7.27.1",
-    "@babel/traverse": "^7.27.1",
+    "@babel/traverse": "^7.27.4",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-markdown": "workspace:^",
     "ast-types": "^0.14.2",
@@ -32,7 +32,7 @@
     "@types/doctrine": "^0.0.9",
     "@types/mdast": "4.0.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.17.50",
+    "@types/node": "^20.17.57",
     "@types/react-docgen": "workspace:*",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",

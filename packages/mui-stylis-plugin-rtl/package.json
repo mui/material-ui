@@ -1,25 +1,25 @@
 {
-  "name": "@mui/private-theming",
-  "version": "7.1.1",
+  "name": "@mui/stylis-plugin-rtl",
+  "version": "7.1.0",
   "author": "MUI Team",
-  "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
-  "main": "./src/index.js",
+  "description": "A plugin for Material UI that provides RTL (right-to-left) support.",
+  "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
     "mui",
-    "theme"
+    "rtl"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-private-theming"
+    "directory": "packages/mui-stylis-plugin-rtl"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-private-theming",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-utils",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
@@ -29,33 +29,30 @@
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "tsx ../../scripts/buildTypes.mts --skipTsc",
-    "prebuild": "rimraf build",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
+    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-private-theming/**/*.test.?(c|m)[jt]s?(x)'",
-    "typescript": "tsc -p tsconfig.json"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
+    "typescript": "tsc -p tsconfig.json",
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern"
   },
   "dependencies": {
     "@babel/runtime": "^7.27.4",
-    "@mui/utils": "workspace:^",
-    "prop-types": "^15.8.1"
+    "cssjanus": "^2.3.0"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
-    "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.6",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.17.57",
+    "@types/sinon": "^17.0.4",
+    "@types/stylis": "4.2.7",
     "chai": "^4.5.0",
-    "react": "^19.1.0"
+    "sinon": "^19.0.5",
+    "stylis": "4.3.6"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@types/react": {
-      "optional": true
-    }
+    "stylis": "4.x"
   },
   "sideEffects": false,
   "publishConfig": {
