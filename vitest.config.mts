@@ -29,9 +29,9 @@ export default defineConfig({
       reportsDirectory: path.resolve(MONOREPO_ROOT, 'coverage'),
       include: ['packages/*/src/**'],
       exclude: [
-        '**/*.test/**/*',
-        'packages/mui-icons-material/src/**/*',
-        'packages/mui-codemod/src/**/test-cases/**/*',
+        '**/__fixtures__/**',
+        'packages/mui-icons-material/src/**',
+        'packages/mui-codemod/src/**/{test-cases,*.test}/**',
         '**/{postcss,vitest}.config.*',
         ...coverageConfigDefaults.exclude,
       ],
