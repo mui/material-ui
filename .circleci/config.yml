@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@5.3.3
+  aws-cli: circleci/aws-cli@5.3.5
   aws-s3: circleci/aws-s3@4.1.1
 
 parameters:
