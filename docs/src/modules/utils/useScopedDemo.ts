@@ -17,6 +17,11 @@ export default function useScopedDemo() {
       scopedDemo = new URLSearchParams(window.location.search).get('scopedDemo') ?? undefined;
     }
 
+    if (scopedDemo && isBrowser) {
+      // Undo the document.body.style.visibility = 'hidden'; in _document.js
+      document.body.style.visibility = 'initial';
+    }
+
     return scopedDemo;
   }, [router.query.scopedDemo]);
 }

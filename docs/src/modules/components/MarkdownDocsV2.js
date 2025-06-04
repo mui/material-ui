@@ -37,8 +37,6 @@ function getHookTranslatedHeader(t, header) {
   return translations[header] || header;
 }
 
-const isBrowser = typeof window !== 'undefined';
-
 export default function MarkdownDocsV2(props) {
   const router = useRouter();
   const [activeTab, setActiveTab] = React.useState(router.query.docsTab ?? '');
@@ -219,10 +217,6 @@ export default function MarkdownDocsV2(props) {
   const scopedDemo = useScopedDemo();
 
   if (scopedDemo) {
-    if (isBrowser) {
-      // Undo the document.body.style.visibility = 'hidden'; in _document.js
-      document.body.style.visibility = 'initial';
-    }
     return (
       <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
         <RichMarkdownElement

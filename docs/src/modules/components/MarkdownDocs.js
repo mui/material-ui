@@ -9,8 +9,6 @@ import { useRouter } from 'next/router';
 import { DemoPageThemeProvider } from 'docs/src/theming';
 import useScopedDemo from '../utils/useScopedDemo';
 
-const isBrowser = typeof window !== 'undefined';
-
 export default function MarkdownDocs(props) {
   const {
     disableAd = false,
@@ -29,9 +27,6 @@ export default function MarkdownDocs(props) {
   const scopedDemo = useScopedDemo();
 
   if (scopedDemo) {
-    if (isBrowser) {
-      document.body.style.visibility = 'initial';
-    }
     const canonicalAs = router.asPath || '';
     const isJoy = canonicalAs.startsWith('/joy-ui/');
     return (
