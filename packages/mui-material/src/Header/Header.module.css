@@ -1,5 +1,5 @@
-@layer components;
-
-.root {
-  color: blue;
+@layer mui-components.header {
+  .root {
+    color: blue;
+  }
 }
