@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import path from 'path';
-import { createPackageFile, includeFileInBuild, cssModulesCopy, prepend } from './copyFilesUtils.mjs';
+import { createPackageFile, includeFileInBuild, prepend } from './copyFilesUtils.mjs';
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
@@ -32,8 +32,6 @@ async function addLicense(packageData) {
 async function run() {
   const extraFiles = process.argv.slice(2);
   try {
-    // CSS modules
-    await cssModulesCopy({ from: srcPath, to: buildPath });
     const packageData = await createPackageFile(true);
 
     await Promise.all(

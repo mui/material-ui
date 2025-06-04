@@ -1853,14 +1853,14 @@ importers:
   packages/mui-styled-engine-noop:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.26.0
-        version: 7.26.0
+        specifier: ^7.27.4
+        version: 7.27.4
       '@emotion/cache':
         specifier: ^11.13.1
-        version: 11.13.1
+        version: 11.14.0
       '@emotion/serialize':
         specifier: ^1.3.2
-        version: 1.3.2
+        version: 1.3.3
       '@emotion/sheet':
         specifier: ^1.4.0
         version: 1.4.0
@@ -1879,7 +1879,7 @@ importers:
         version: 4.3.20
       '@types/react':
         specifier: ^18.3.12
-        version: 18.3.12
+        version: 18.3.23
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -5843,6 +5843,9 @@ packages:
 
   '@types/react-window@1.8.8':
     resolution: {integrity: sha512-8Ls660bHR1AUA2kuRvVG9D/4XpRC6wjAaPT9dil7Ckc76eP9TKWZwwmgfq8Q1LANX3QNDnoU4Zp48A3w+zK69Q==}
+
+  '@types/react@18.3.23':
+    resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
 
   '@types/react@19.1.6':
     resolution: {integrity: sha512-JeG0rEWak0N6Itr6QUx+X60uQmN+5t3j9r/OVDtWzFXKaj6kD1BwJzOksD0FF6iWxZlbE1kB0q9vtnU2ekqa1Q==}
@@ -18202,6 +18205,11 @@ snapshots:
   '@types/react-window@1.8.8':
     dependencies:
       '@types/react': 19.1.6
+
+  '@types/react@18.3.23':
+    dependencies:
+      '@types/prop-types': 15.7.14
+      csstype: 3.1.3
 
   '@types/react@19.1.6':
     dependencies:
