@@ -1,7 +1,6 @@
 import { includeIgnoreFile } from '@eslint/compat';
-import baseConfig from '@mui/infra/eslint';
-import docsConfig from '@mui/infra/eslint-docs';
-import testConfig, { specRules } from '@mui/infra/eslint-test';
+import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/infra/eslint';
+import { createDocsConfig } from '@mui/infra/eslint-docs';
 import consistentDefaultExportName from 'eslint-plugin-consistent-default-export-name';
 import { defineConfig } from 'eslint/config';
 
@@ -10,6 +9,10 @@ import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+const baseConfig = createBaseConfig();
+const testConfig = createTestConfig();
+const docsConfig = createDocsConfig();
 
 const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
@@ -127,9 +130,9 @@ export default defineConfig(
     },
   },
   {
-    ...specRules,
+    ...baseSpecRules,
     rules: {
-      ...specRules.rules,
+      ...baseSpecRules.rules,
       'material-ui/no-restricted-resolved-imports': 'off',
     },
   },

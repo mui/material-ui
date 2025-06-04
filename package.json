@@ -126,7 +126,7 @@
     "@mui/internal-bundle-size-checker": "^1.0.5",
     "@mui/internal-babel-plugin-resolve-imports": "^2.0.4",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.5",
-    "@mui/infra": "https://pkg.pr.new/@mui/infra@cd5a992",
+    "@mui/infra": "https://pkg.pr.new/@mui/infra@9f53c7e",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
