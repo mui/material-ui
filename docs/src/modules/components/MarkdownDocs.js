@@ -5,6 +5,8 @@ import { Ad, AdGuest } from '@mui/docs/Ad';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useUserLanguage } from '@mui/docs/i18n';
+import { useRouter } from 'next/router';
+import { DemoPageThemeProvider } from 'docs/src/theming';
 import useScopedDemo from '../utils/useScopedDemo';
 
 const isBrowser = typeof window !== 'undefined';
@@ -23,27 +25,32 @@ export default function MarkdownDocs(props) {
   const userLanguage = useUserLanguage();
   const localizedDoc = docs[userLanguage] || docs.en;
 
+  const router = useRouter();
   const scopedDemo = useScopedDemo();
 
   if (scopedDemo) {
     if (isBrowser) {
       document.body.style.visibility = 'initial';
     }
+    const canonicalAs = router.asPath || '';
+    const isJoy = canonicalAs.startsWith('/joy-ui/');
     return (
-      <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
-        <RichMarkdownElement
-          demoComponents={demoComponents}
-          demos={demos}
-          disableAd={disableAd}
-          localizedDoc={localizedDoc}
-          srcComponents={srcComponents}
-          renderedMarkdownOrDemo={{
-            demo: scopedDemo,
-            hideToolbar: true,
-            bg: false,
-          }}
-        />
-      </div>
+      <DemoPageThemeProvider hasJoy={isJoy}>
+        <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
+          <RichMarkdownElement
+            demoComponents={demoComponents}
+            demos={demos}
+            disableAd={disableAd}
+            localizedDoc={localizedDoc}
+            srcComponents={srcComponents}
+            renderedMarkdownOrDemo={{
+              demo: scopedDemo,
+              hideToolbar: true,
+              bg: false,
+            }}
+          />
+        </div>
+      </DemoPageThemeProvider>
     );
   }
 
