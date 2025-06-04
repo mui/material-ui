@@ -4,7 +4,7 @@ import * as path from 'path';
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
 const BROWSER_TESTS = ['{docs,packages{-internal,}/*}/vitest.config.browser.mts'];
-const NODE_TESTS = ['{docs,packages{-internal,}/*}/vitest.config{.jsdom,}.mts'];
+const NODE_TESTS = ['{docs,packages{-internal,}/*}/vitest.config.mts'];
 
 function getProjects() {
   if (process.env.TEST_SCOPE === 'browser') {

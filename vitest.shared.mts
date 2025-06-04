@@ -26,13 +26,10 @@ function forceJsxForJsFiles(): Plugin {
   };
 }
 
-function getVitestEnvironment(fileName: string): 'browser' | 'jsdom' | 'node' {
+function getVitestEnvironment(fileName: string): 'browser' | 'node' {
   const basename = path.basename(fileName);
   if (basename.includes('.browser.')) {
     return 'browser';
-  }
-  if (basename.includes('.jsdom.')) {
-    return 'jsdom';
   }
   return 'node';
 }
@@ -40,12 +37,13 @@ function getVitestEnvironment(fileName: string): 'browser' | 'jsdom' | 'node' {
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
 export interface CreateOptions {
+  jsdom?: boolean;
   enableScrollbars?: boolean;
 }
 
 export default async function create(
   fileUrl: string,
-  { enableScrollbars = false }: CreateOptions = {},
+  { jsdom = false, enableScrollbars = false }: CreateOptions = {},
 ) {
   const file = fileURLToPath(fileUrl);
   const testEnv = getVitestEnvironment(file);
@@ -66,16 +64,15 @@ export default async function create(
       setupFiles: [
         path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
       ],
-      environment: testEnv,
-      environmentOptions:
-        testEnv === 'jsdom'
-          ? {
-              jsdom: {
-                pretendToBeVisual: true,
-                url: 'http://localhost',
-              },
-            }
-          : {},
+      environment: jsdom ? 'jsdom' : 'node',
+      environmentOptions: jsdom
+        ? {
+            jsdom: {
+              pretendToBeVisual: true,
+              url: 'http://localhost',
+            },
+          }
+        : {},
 
       fakeTimers: {
         // We use performance.now in the codebase
