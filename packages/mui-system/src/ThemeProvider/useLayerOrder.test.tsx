@@ -44,7 +44,7 @@ describe('useLayerOrder', () => {
 
   it('returns null if experimental_modularCssLayers is falsy', () => {
     render(<TestComponent theme={{}} />);
-    expect(document.head.firstChild).not.to.have.tagName('STYLE');
+    expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
   });
 
   it('do nothing if upperTheme exists to avoid duplicate elements', () => {
@@ -53,6 +53,6 @@ describe('useLayerOrder', () => {
         <TestComponent theme={{}} />
       </ThemeContext.Provider>,
     );
-    expect(document.head.firstChild).not.to.have.tagName('STYLE');
+    expect(document.head.firstChild?.nodeName).not.to.equal('STYLE');
   });
 });
