@@ -1,1 +1,5 @@
-export { default } from '@mui/infra/prettier';
+import { createBaseConfig } from '@mui/infra/prettier';
+
+const baseline = createBaseConfig();
+
+export default baseline;
