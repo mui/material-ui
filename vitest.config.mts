@@ -27,6 +27,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: process.env.CI ? ['lcovonly'] : ['text'],
       reportsDirectory: path.resolve(MONOREPO_ROOT, 'coverage'),
+      ignoreEmptyLines: true,
       include: ['packages/*/src/**'],
       exclude: [
         '**/__fixtures__/**',
