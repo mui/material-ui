@@ -7,6 +7,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 const theme = createTheme({
   experimental_modularCssLayers: true,
+  cssVariables: true,
 });
 
 export default function CssLayersInput() {
@@ -22,7 +23,6 @@ export default function CssLayersInput() {
             position: 'relative',
             mb: 0.25,
             fontWeight: 'medium',
-            color: 'text.primary',
             pointerEvents: 'auto',
           }}
         >
@@ -33,17 +33,11 @@ export default function CssLayersInput() {
           placeholder="Type something"
           slotProps={{
             input: {
-              sx: { py: 1.5 },
+              sx: { py: 1.5, height: '2.5rem', boxSizing: 'border-box' },
             },
           }}
         />
-        <FormHelperText
-          sx={{
-            marginLeft: 0,
-          }}
-        >
-          Helper text goes here
-        </FormHelperText>
+        <FormHelperText sx={{ marginLeft: 0 }}>Helper text goes here</FormHelperText>
       </FormControl>
     </ThemeProvider>
   );
