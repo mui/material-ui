@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig, coverageConfigDefaults } from 'vitest/config';
 import * as path from 'path';
 
 const MONOREPO_ROOT = path.resolve(__dirname, '.');
@@ -27,8 +27,14 @@ export default defineConfig({
       provider: 'v8',
       reporter: process.env.CI ? ['lcovonly'] : ['text'],
       reportsDirectory: path.resolve(MONOREPO_ROOT, 'coverage'),
-      include: ['packages/*/src/**/*.{ts,tsx}'],
-      exclude: ['**/*.{test,spec}.{js,ts,tsx}'],
+      include: ['packages/*/src/**/*.(c|m)[jt]s?(x)'],
+      exclude: [
+        '**/*.test/**/*',
+        'packages/mui-icons-material/src/**/*',
+        'packages/mui-codemod/src/**/test-cases/**/*',
+        '**/{postcss,vitest}.config.*',
+        ...coverageConfigDefaults.exclude,
+      ],
     },
     sequence: {
       hooks: 'list',
