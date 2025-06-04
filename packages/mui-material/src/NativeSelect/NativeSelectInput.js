@@ -22,7 +22,6 @@ const useUtilityClasses = (ownerState) => {
 
 export const StyledSelectSelect = styled('select', {
   name: 'MuiNativeSelect',
-  skipVariantsResolver: true,
 })(({ theme }) => ({
   // Reset
   MozAppearance: 'none',

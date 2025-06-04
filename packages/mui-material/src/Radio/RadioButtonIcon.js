@@ -9,7 +9,6 @@ import memoTheme from '../utils/memoTheme';
 
 const RadioButtonIconRoot = styled('span', {
   name: 'MuiRadioButtonIcon',
-  skipVariantsResolver: true,
   shouldForwardProp: rootShouldForwardProp,
 })({
   position: 'relative',
@@ -18,7 +17,6 @@ const RadioButtonIconRoot = styled('span', {
 
 const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, {
   name: 'MuiRadioButtonIcon',
-  skipVariantsResolver: true,
 })({
   // Scale applied to prevent dot misalignment in Safari
   transform: 'scale(1)',
@@ -26,7 +24,6 @@ const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, {
 
 const RadioButtonIconDot = styled(RadioButtonCheckedIcon, {
   name: 'MuiRadioButtonIcon',
-  skipVariantsResolver: true,
 })(
   memoTheme(({ theme }) => ({
     left: 0,

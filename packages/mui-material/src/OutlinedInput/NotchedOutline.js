@@ -7,7 +7,6 @@ import memoTheme from '../utils/memoTheme';
 
 const NotchedOutlineRoot = styled('fieldset', {
   name: 'MuiNotchedOutlined',
-  skipVariantsResolver: true,
   shouldForwardProp: rootShouldForwardProp,
 })({
   textAlign: 'left',
@@ -28,7 +27,6 @@ const NotchedOutlineRoot = styled('fieldset', {
 
 const NotchedOutlineLegend = styled('legend', {
   name: 'MuiNotchedOutlined',
-  skipVariantsResolver: true,
   shouldForwardProp: rootShouldForwardProp,
 })(
   memoTheme(({ theme }) => ({

@@ -9,7 +9,6 @@ import ButtonBase from '../ButtonBase';
 
 const BreadcrumbCollapsedButton = styled(ButtonBase, {
   name: 'MuiBreadcrumbCollapsed',
-  skipVariantsResolver: true,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',

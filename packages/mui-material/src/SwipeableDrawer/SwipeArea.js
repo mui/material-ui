@@ -10,7 +10,6 @@ import { isHorizontal } from '../Drawer/Drawer';
 
 const SwipeAreaRoot = styled('div', {
   name: 'MuiSwipeArea',
-  skipVariantsResolver: true,
   shouldForwardProp: rootShouldForwardProp,
 })(
   memoTheme(({ theme }) => ({
