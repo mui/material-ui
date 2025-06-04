@@ -88,6 +88,9 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
+      '@mui/internal-babel-plugin-display-name':
+        specifier: ^1.0.0
+        version: 1.0.0(@babel/core@7.27.4)(@babel/preset-react@7.27.1(@babel/core@7.27.4))
       '@mui/internal-babel-plugin-minify-errors':
         specifier: ^2.0.4
         version: 2.0.4(@babel/core@7.27.4)
@@ -4171,6 +4174,12 @@ packages:
 
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
+
+  '@mui/internal-babel-plugin-display-name@1.0.0':
+    resolution: {integrity: sha512-Y7XQi8PhAxdY5IndQRn+az3u3xyAGP6Kw3uS/GU3f8dNzhLpcqo5PymeyF27yJ0ozmlEqRmGHuK3QXaRqK5XHA==}
+    peerDependencies:
+      '@babel/core': ^7.27.4
+      '@babel/preset-react': ^7.27.1
 
   '@mui/internal-babel-plugin-minify-errors@2.0.4':
     resolution: {integrity: sha512-t0wvHPv2QeBr1ZFePYDFqyGShfMX7lJCDXKJ7tdDsHF3VIucUV5+aXgX1T75+8OIsYzkM3SBm86kyR3dmC2Cow==}
@@ -16173,6 +16182,15 @@ snapshots:
       '@types/react': 19.1.6
 
   '@mui/core-downloads-tracker@5.15.14': {}
+
+  '@mui/internal-babel-plugin-display-name@1.0.0(@babel/core@7.27.4)(@babel/preset-react@7.27.1(@babel/core@7.27.4))':
+    dependencies:
+      '@babel/core': 7.27.4
+      '@babel/helper-module-imports': 7.27.1
+      '@babel/helper-plugin-utils': 7.27.1
+      '@babel/preset-react': 7.27.1(@babel/core@7.27.4)
+    transitivePeerDependencies:
+      - supports-color
 
   '@mui/internal-babel-plugin-minify-errors@2.0.4(@babel/core@7.27.4)':
     dependencies:

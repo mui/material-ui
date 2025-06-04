@@ -7,8 +7,4 @@ const ChipColorContext = React.createContext<Pick<ChipProps, 'disabled' | 'varia
   color: undefined,
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  ChipColorContext.displayName = 'ChipColorContext';
-}
-
 export default ChipColorContext;

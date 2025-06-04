@@ -2,10 +2,6 @@ import * as React from 'react';
 
 const LicenseModel = React.createContext<any>({});
 
-if (process.env.NODE_ENV !== 'production') {
-  LicenseModel.displayName = 'LicenseModel';
-}
-
 export function LicenseModelProvider(props: any) {
   const [licenseModel, setLicenseModel] = React.useState<string>('annual');
   const value = React.useMemo(

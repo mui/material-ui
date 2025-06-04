@@ -113,6 +113,10 @@ module.exports = function getBabelConfig(api) {
       : []),
   ];
 
+  if (process.env.NODE_ENV !== 'test') {
+    plugins.push('@mui/internal-babel-plugin-display-name');
+  }
+
   if (process.env.NODE_ENV === 'test') {
     plugins.push([
       'babel-plugin-module-resolver',

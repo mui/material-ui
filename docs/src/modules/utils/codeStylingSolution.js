@@ -7,9 +7,6 @@ const CodeStylingContext = React.createContext({
   codeStyling: CODE_STYLING.SYSTEM,
   setCodeStyling: () => {},
 });
-if (process.env.NODE_ENV !== 'production') {
-  CodeStylingContext.displayName = 'CodeStyling';
-}
 
 function useFirstRender() {
   const firstRenderRef = React.useRef(true);

@@ -28,8 +28,4 @@ export interface MuiPageContext {
 
 const PageContext = React.createContext<MuiPageContext>(undefined!);
 
-if (process.env.NODE_ENV !== 'production') {
-  PageContext.displayName = 'PageContext';
-}
-
 export default PageContext;
