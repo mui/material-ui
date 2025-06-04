@@ -40,10 +40,10 @@ export default function RootLayout() {
 }
 ```
 
-2. Configure the layer order at the top of a CSS file:
+2. Configure the layer order at the top of a CSS file to work with Tailwind CSS v4:
 
 ```css title="src/app/globals.css"
-@layer mui;
+@layer theme, base, mui, components, utilities;
 ```
 
 ### Next.js Pages Router
@@ -69,7 +69,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 ```
 
-2. Configure the layer order with the `GlobalStyles` component—it must be the first child of the `AppCacheProvider`:
+2. Configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4—it must be the first child of the `AppCacheProvider`:
 
 ```tsx title="pages/_app.tsx"
 import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
@@ -79,7 +79,7 @@ export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   return (
     <AppCacheProvider {...props}>
-      <GlobalStyles styles="@layer mui;" />
+      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
       <Component {...pageProps} />
     </AppCacheProvider>
   );
@@ -91,7 +91,7 @@ export default function MyApp(props: AppProps) {
 Make the following changes in `src/main.tsx`:
 
 1. Pass the `enableCssLayer` prop to the `StyledEngineProvider` component.
-2. Configure the layer order with the `GlobalStyles` component.
+2. Configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4.
 
 ```tsx title="main.tsx"
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -100,7 +100,7 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StyledEngineProvider enableCssLayer>
-      <GlobalStyles styles="@layer mui;" />
+      <GlobalStyles styles="@layer theme, base, mui, components, utilities;" />
       {/* Your app */}
     </StyledEngineProvider>
   </React.StrictMode>,
