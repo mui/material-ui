@@ -64,7 +64,9 @@ describe('<MenuItem />', () => {
         const handler = spy();
         render(<MenuItem {...{ [handlerName]: handler }} />);
 
-        await act(async () => fireEvent[eventName](screen.getByRole('menuitem')));
+        fireEvent[eventName](screen.getByRole('menuitem'));
+
+        await act(async () => {});
 
         expect(handler.callCount).to.equal(1);
       });
