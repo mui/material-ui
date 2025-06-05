@@ -5,7 +5,6 @@ components: Button, IconButton, ButtonBase
 materialDesign: https://m2.material.io/components/buttons
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
-unstyled: /base-ui/react-button/
 githubSource: packages/mui-material/src/Button
 ---
 
