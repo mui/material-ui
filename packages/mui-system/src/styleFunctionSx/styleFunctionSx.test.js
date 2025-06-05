@@ -478,7 +478,7 @@ describe('styleFunctionSx', () => {
     });
   });
 
-  describe('@layer', () => {
+  describe('Modular CSS layers', () => {
     it('should wrapped in @layer', () => {
       const result = styleFunctionSx({
         theme: {
