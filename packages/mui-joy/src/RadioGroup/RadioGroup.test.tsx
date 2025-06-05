@@ -48,12 +48,12 @@ describe('<RadioGroup />', () => {
     expect(handleBlur.callCount).to.equal(1);
   });
 
-  it('should fire the onKeyDown callback', () => {
+  it('should fire the onKeyDown callback', async () => {
     const handleKeyDown = spy();
     const { getByRole } = render(<RadioGroup tabIndex={-1} value="" onKeyDown={handleKeyDown} />);
     const radiogroup = getByRole('radiogroup');
 
-    act(() => {
+    await act(async () => {
       radiogroup.focus();
     });
 

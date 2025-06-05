@@ -54,11 +54,11 @@ describe('<Checkbox />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', true);
   });
 
-  it('flips the checked property when clicked and calls onchange with the checked state', () => {
+  it('flips the checked property when clicked and calls onchange with the checked state', async () => {
     const handleChange = spy();
     const { getByRole } = render(<Checkbox onChange={handleChange} />);
 
-    act(() => {
+    await act(async () => {
       getByRole('checkbox').click();
     });
 
@@ -66,7 +66,7 @@ describe('<Checkbox />', () => {
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.getCall(0).args[0].target).to.have.property('checked', true);
 
-    act(() => {
+    await act(async () => {
       getByRole('checkbox').click();
     });
 
