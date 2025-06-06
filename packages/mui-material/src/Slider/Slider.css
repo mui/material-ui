@@ -1,0 +1,385 @@
+@layer mui.default {
+  .MuiSlider-root {
+    border-radius: 12px;
+    box-sizing: content-box;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media print {
+    .MuiSlider-root {
+      color-adjust: exact;
+    }
+  }
+
+  .MuiSlider-root.MuiSlider-trackFalse .MuiSlider-track {
+    display: none;
+  }
+
+  /* Dragging state */
+  .MuiSlider-root.MuiSlider-dragging .MuiSlider-thumb,
+  .MuiSlider-root.MuiSlider-dragging .MuiSlider-track {
+    transition: none;
+  }
+
+  /* Color variants */
+  .MuiSlider-root.MuiSlider-colorPrimary {
+    color: var(--mui-palette-primary-main);
+  }
+  .MuiSlider-root.MuiSlider-colorSecondary {
+    color: var(--mui-palette-secondary-main);
+  }
+  .MuiSlider-root.MuiSlider-colorWarning {
+    color: var(--mui-palette-warning-main);
+  }
+  .MuiSlider-root.MuiSlider-colorError {
+    color: var(--mui-palette-error-main);
+  }
+  .MuiSlider-root.MuiSlider-colorSuccess {
+    color: var(--mui-palette-success-main);
+  }
+  .MuiSlider-root.MuiSlider-colorInfo {
+    color: var(--mui-palette-info-main);
+  }
+  /* Add more color variants as needed */
+
+  /* Orientation: Horizontal */
+  .MuiSlider-root.MuiSlider-horizontal {
+    height: 4px;
+    width: 100%;
+    padding: 13px 0;
+  }
+
+  @media (pointer: coarse) {
+    .MuiSlider-root.MuiSlider-horizontal {
+      padding: 20px 0;
+    }
+  }
+
+  /* Horizontal + small size */
+  .MuiSlider-root.MuiSlider-horizontal.MuiSlider-sizeSmall {
+    height: 2px;
+  }
+
+  /* Horizontal + marked */
+  .MuiSlider-root.MuiSlider-horizontal.MuiSlider-marked {
+    margin-bottom: 20px;
+  }
+
+  /* Orientation: Vertical */
+  .MuiSlider-root.MuiSlider-vertical {
+    height: 100%;
+    width: 4px;
+    padding: 0 13px;
+  }
+
+  @media (pointer: coarse) {
+    .MuiSlider-root.MuiSlider-vertical {
+      padding: 0 20px;
+    }
+  }
+
+  /* Vertical + small size */
+  .MuiSlider-root.MuiSlider-vertical.MuiSlider-sizeSmall {
+    width: 2px;
+  }
+
+  /* Vertical + marked */
+  .MuiSlider-root.MuiSlider-vertical.MuiSlider-marked {
+    margin-right: 44px;
+  }
+
+  /* Disabled state */
+  .MuiSlider-root.Mui-disabled {
+    pointer-events: none;
+    cursor: default;
+    color: var(--mui-palette-grey-400);
+  }
+
+  /* --- SliderRail --- */
+  .MuiSlider-rail {
+    display: block;
+    position: absolute;
+    border-radius: inherit;
+    background-color: currentColor;
+    opacity: 0.38;
+  }
+
+  .MuiSlider-rail.MuiSlider-horizontal {
+    width: 100%;
+    height: inherit;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .MuiSlider-rail.MuiSlider-vertical {
+    height: 100%;
+    width: inherit;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .MuiSlider-rail.MuiSlider-trackInverted {
+    opacity: 1;
+  }
+
+  /* --- SliderTrack --- */
+  .MuiSlider-track {
+    display: block;
+    position: absolute;
+    border-radius: inherit;
+    border: 1px solid currentColor;
+    background-color: currentColor;
+    transition: all var(--mui-transition-duration-shortest);
+  }
+
+  .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorPrimary {
+    background-color: var(--mui-palette-Slider-primaryTrack);
+    border-color: var(--mui-palette-Slider-primaryTrack);
+  }
+
+  .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorSecondary {
+    background-color: var(--mui-palette-Slider-secondaryTrack);
+    border-color: var(--mui-palette-Slider-secondaryTrack);
+  }
+
+  .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorError {
+    background-color: var(--mui-palette-Slider-errorTrack);
+    border-color: var(--mui-palette-Slider-errorTrack);
+  }
+
+  .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorInfo {
+    background-color: var(--mui-palette-Slider-infoTrack);
+    border-color: var(--mui-palette-Slider-infoTrack);
+  }
+
+  .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorSuccess {
+    background-color: var(--mui-palette-Slider-successTrack);
+    border-color: var(--mui-palette-Slider-successTrack);
+  }
+
+  .MuiSlider-track.MuiSlider-trackInverted.MuiSlider-colorWarning {
+    background-color: var(--mui-palette-Slider-warningTrack);
+    border-color: var(--mui-palette-Slider-warningTrack);
+  }
+
+  .MuiSlider-track.MuiSlider-sizeSmall {
+    border: none;
+  }
+
+  .MuiSlider-track.MuiSlider-horizontal {
+    height: inherit;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .MuiSlider-track.MuiSlider-vertical {
+    width: inherit;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .MuiSlider-track.MuiSlider-trackFalse {
+    display: none;
+  }
+
+  /* Optional inverted track color styles should be added via custom CSS vars */
+
+  /* --- SliderThumb --- */
+  .MuiSlider-thumb {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    outline: 0;
+    background-color: currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--mui-transition-duration-shortest);
+  }
+
+  .MuiSlider-thumb::before {
+    position: absolute;
+    content: "";
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    box-shadow: var(--mui-shadow-2);
+  }
+
+  .MuiSlider-thumb::after {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .MuiSlider-thumb:hover, .MuiSlider-thumb.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(var(--mui-palette-primary-mainChannel) / 0.16);
+  }
+
+  .MuiSlider-thumb.Mui-active {
+    box-shadow: 0px 0px 0px 14px rgba(var(--mui-palette-primary-mainChannel) / 0.16);
+  }
+
+  .MuiSlider-thumb.MuiSlider-thumbSizeSmall {
+    width: 12px;
+    height: 12px;
+  }
+
+  .MuiSlider-thumb.MuiSlider-thumbSizeSmall::before {
+    box-shadow: none;
+  }
+
+  .MuiSlider-thumb.MuiSlider-horizontal {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .MuiSlider-thumb.MuiSlider-vertical {
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+
+  .MuiSlider-thumb.Mui-disabled:hover {
+    box-shadow: none;
+  }
+
+  /* Hover & Active state styles to be added with color-specific CSS vars */
+
+  /* --- SliderValueLabel --- */
+  .MuiSlider-valueLabel {
+    z-index: 1;
+    white-space: nowrap;
+    font-weight: 500;
+    transition: transform var(--mui-transition-duration-shortest);
+    position: absolute;
+    background-color: var(--mui-palette-grey-600);
+    border-radius: 2px;
+    color: var(--mui-palette-common-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-horizontal {
+    transform: translateY(-100%) scale(0);
+    top: -10px;
+    transform-origin: bottom center;
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-horizontal::before {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, 50%) rotate(45deg);
+    background-color: inherit;
+    bottom: 0;
+    left: 50%;
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-horizontal.MuiSlider-valueLabelOpen {
+    transform: translateY(-100%) scale(1);
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-vertical {
+    transform: translateY(-50%) scale(0);
+    right: 30px;
+    top: 50%;
+    transform-origin: right center;
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-vertical::before {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background-color: inherit;
+    right: -8px;
+    top: 50%;
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-vertical.MuiSlider-valueLabelOpen {
+    transform: translateY(-50%) scale(1);
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-sizeSmall {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .MuiSlider-valueLabel.MuiSlider-vertical.MuiSlider-sizeSmall {
+    right: 20px;
+  }
+
+  /* --- SliderMark --- */
+  .MuiSlider-mark {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: currentColor;
+  }
+
+  .MuiSlider-mark.MuiSlider-horizontal {
+    top: 50%;
+    transform: translate(-1px, -50%);
+  }
+
+  .MuiSlider-mark.MuiSlider-vertical {
+    left: 50%;
+    transform: translate(-50%, 1px);
+  }
+
+  .MuiSlider-mark.MuiSlider-markActive {
+    background-color: var(--mui-palette-background-paper);
+    opacity: 0.8;
+  }
+
+  /* --- SliderMarkLabel --- */
+  .MuiSlider-markLabel {
+    font-size: 0.875rem;
+    line-height: 1.43;
+    color: var(--mui-palette-text-secondary);
+    position: absolute;
+    white-space: nowrap;
+  }
+
+  .MuiSlider-markLabel.MuiSlider-horizontal {
+    top: 30px;
+    transform: translateX(-50%);
+  }
+
+  @media (pointer: coarse) {
+    .MuiSlider-markLabel.MuiSlider-horizontal {
+      top: 40px;
+    }
+  }
+
+  .MuiSlider-markLabel.MuiSlider-vertical {
+    left: 36px;
+    transform: translateY(50%);
+  }
+
+  @media (pointer: coarse) {
+    .MuiSlider-markLabel.MuiSlider-vertical {
+      left: 44px;
+    }
+  }
+
+  .MuiSlider-markLabel.MuiSlider-markLabelActive {
+    color: var(--mui-palette-text-primary);
+  }
+}
