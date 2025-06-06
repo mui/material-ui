@@ -188,6 +188,11 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    */
   required: PropTypes.bool,
   /**
+   * The size of the component.
+   * @default 'medium'
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([

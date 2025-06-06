@@ -9,6 +9,10 @@
     "focused": { "type": { "name": "bool" } },
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
+    "size": {
+      "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" },
+      "default": "'medium'"
+    },
     "sx": {
       "type": {
         "name": "union",

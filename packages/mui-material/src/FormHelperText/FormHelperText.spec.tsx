@@ -56,6 +56,12 @@ const TestComponent = () => {
           expectType<React.FormEvent<HTMLSpanElement>, typeof event>(event);
         }}
       />
+      <FormHelperText size="small" />
+      <FormHelperText size="medium" />
+      {
+        // @ts-expect-error invalid size
+        <FormHelperText size="large" />
+      }
     </React.Fragment>
   );
 };
