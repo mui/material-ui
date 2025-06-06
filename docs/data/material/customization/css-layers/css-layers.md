@@ -138,16 +138,7 @@ When this feature is enabled, Material UI generates these layers:
 - `@layer mui.custom`: The custom styles for non-Material UI styled components.
 - `@layer mui.sx`: The styles from the `sx` prop.
 
-If you want to integrate with other styling solutions, such as Tailwind CSS v4, you can specify the layer order as a value to the `experimental_modularCssLayers` field, Material UI will replace the `mui` identifier with the correct order:
-
-```diff title="src/theme.tsx"
- const theme = createTheme({
--  experimental_modularCssLayers: true,
-+  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
- });
-```
-
-Below are full examples of how to set up multiple layers with Tailwind CSS v4 in different frameworks.
+Below are code snippets of how to set up multiple layers in different frameworks.
 
 ### Next.js App Router
 
@@ -156,7 +147,7 @@ Below are full examples of how to set up multiple layers with Tailwind CSS v4 i
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+  experimental_modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -186,7 +177,7 @@ export default function RootLayout() {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+  experimental_modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -229,7 +220,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+  experimental_modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -247,4 +238,21 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </StyledEngineProvider>
   </React.StrictMode>,
 );
+```
+
+### Usage with other styling solutions
+
+If you want to integrate with other styling solutions, such as Tailwind CSS v4, replace the value with a string of layer order, Material UI will look for the `mui` identifier and generate the correct order:
+
+```diff title="src/theme.tsx"
+ const theme = createTheme({
+-  experimental_modularCssLayers: true,
++  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+ });
+```
+
+The generated CSS will look like this:
+
+```css
+@layer theme, base, mui.global, mui.components, mui.theme, mui.custom, mui.sx, components, utilities;
 ```
