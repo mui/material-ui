@@ -216,7 +216,7 @@ export async function cssModulesCopy({ from, to }) {
     return [];
   }
 
-  const files = await glob('**/*.module.css', { cwd: from });
+  const files = await glob('**/*.css', { cwd: from });
   const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
   return Promise.all(cmds);
 }
