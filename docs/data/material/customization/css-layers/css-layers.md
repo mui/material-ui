@@ -114,13 +114,13 @@ This makes theming and overriding styles through the `sx` prop easier.
 
 Follow the steps from the [previous section](#single-layer) to enable the CSS layer feature.
 Then, create a new file and export the component that wraps the `ThemeProvider` from Material UI.
-Finally, pass the `experimental_modularCssLayers: true` option to the `createTheme` function:
+Finally, pass the `modularCssLayers: true` option to the `createTheme` function:
 
 ```tsx title="src/theme.tsx"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayers: true,
+  modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -147,7 +147,7 @@ Below are code snippets of how to set up multiple layers in different frameworks
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayers: true,
+  modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -177,7 +177,7 @@ export default function RootLayout() {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayers: true,
+  modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -220,7 +220,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
-  experimental_modularCssLayers: true,
+  modularCssLayers: true,
 });
 
 export default function AppTheme({ children }: { children: ReactNode }) {
@@ -246,8 +246,8 @@ If you want to integrate with other styling solutions, such as Tailwind CSS v4,
 
 ```diff title="src/theme.tsx"
  const theme = createTheme({
--  experimental_modularCssLayers: true,
-+  experimental_modularCssLayers: '@layer theme, base, mui, components, utilities;',
+-  modularCssLayers: true,
++  modularCssLayers: '@layer theme, base, mui, components, utilities;',
  });
 ```
 

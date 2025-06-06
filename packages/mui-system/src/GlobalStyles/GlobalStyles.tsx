@@ -36,7 +36,7 @@ function GlobalStyles<Theme = SystemTheme>({
   const resolvedTheme = themeId ? (upperTheme as any)[themeId] || upperTheme : upperTheme;
 
   let globalStyles = typeof styles === 'function' ? styles(resolvedTheme) : styles;
-  if (resolvedTheme.experimental_modularCssLayers) {
+  if (resolvedTheme.modularCssLayers) {
     if (Array.isArray(globalStyles)) {
       globalStyles = globalStyles.map((styleArg) => {
         if (typeof styleArg === 'function') {

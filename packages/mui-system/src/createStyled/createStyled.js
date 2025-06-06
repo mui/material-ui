@@ -191,25 +191,21 @@ export default function createStyled(input = {}) {
       }
       if (typeof style === 'function') {
         return function styleFunctionProcessor(props) {
-          return processStyle(
-            props,
-            style,
-            props.theme.experimental_modularCssLayers ? layerName : undefined,
-          );
+          return processStyle(props, style, props.theme.modularCssLayers ? layerName : undefined);
         };
       }
       if (isPlainObject(style)) {
         const serialized = preprocessStyles(style);
         return function styleObjectProcessor(props) {
           if (!serialized.variants) {
-            return props.theme.experimental_modularCssLayers
+            return props.theme.modularCssLayers
               ? shallowLayer(serialized.style, layerName)
               : serialized.style;
           }
           return processStyle(
             props,
             serialized,
-            props.theme.experimental_modularCssLayers ? layerName : undefined,
+            props.theme.modularCssLayers ? layerName : undefined,
           );
         };
       }
@@ -241,7 +237,7 @@ export default function createStyled(input = {}) {
             resolvedStyleOverrides[slotKey] = processStyle(
               props,
               styleOverrides[slotKey],
-              props.theme.experimental_modularCssLayers ? 'theme' : undefined,
+              props.theme.modularCssLayers ? 'theme' : undefined,
             );
           }
 
@@ -260,7 +256,7 @@ export default function createStyled(input = {}) {
             props,
             themeVariants,
             [],
-            props.theme.experimental_modularCssLayers ? 'theme' : undefined,
+            props.theme.modularCssLayers ? 'theme' : undefined,
           );
         });
       }

@@ -128,7 +128,7 @@ export function unstable_createStyleFunctionSx() {
         }
       });
 
-      if (!nested && theme.experimental_modularCssLayers) {
+      if (!nested && theme.modularCssLayers) {
         return {
           '@layer sx': sortContainerQueries(theme, removeUnusedBreakpoints(breakpointsKeys, css)),
         };

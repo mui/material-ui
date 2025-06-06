@@ -6,7 +6,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import FormHelperText from '@mui/material/FormHelperText';
 
 const theme = createTheme({
-  experimental_modularCssLayers: true,
+  modularCssLayers: true,
   cssVariables: true,
 });
 

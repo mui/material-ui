@@ -9,18 +9,18 @@ import useThemeWithoutDefault from '../useThemeWithoutDefault';
  * This hook returns a `GlobalStyles` component that sets the CSS layer order (for server-side rendering).
  * Then on client-side, it injects the CSS layer order into the document head to ensure that the layer order is always present first before other Emotion styles.
  */
-export default function useLayerOrder(theme: { experimental_modularCssLayers?: boolean | string }) {
+export default function useLayerOrder(theme: { modularCssLayers?: boolean | string }) {
   const upperTheme = useThemeWithoutDefault();
   const id = useId() || '';
-  const { experimental_modularCssLayers } = theme;
+  const { modularCssLayers } = theme;
 
   let layerOrder = 'mui.global, mui.components, mui.theme, mui.custom, mui.sx';
 
-  if (!experimental_modularCssLayers || upperTheme !== null) {
+  if (!modularCssLayers || upperTheme !== null) {
     // skip this hook if upper theme exists.
     layerOrder = '';
-  } else if (typeof experimental_modularCssLayers === 'string') {
-    layerOrder = experimental_modularCssLayers.replace(/mui(?!\.)/g, layerOrder);
+  } else if (typeof modularCssLayers === 'string') {
+    layerOrder = modularCssLayers.replace(/mui(?!\.)/g, layerOrder);
   } else {
     layerOrder = `@layer ${layerOrder};`;
   }
