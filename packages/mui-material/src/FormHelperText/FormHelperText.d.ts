@@ -6,6 +6,7 @@ import { Theme } from '../styles';
 import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export interface FormHelperTextPropsVariantOverrides {}
+export interface FormHelperTextPropsSizeOverrides {}
 
 export interface FormHelperTextOwnProps {
   /**
@@ -43,6 +44,11 @@ export interface FormHelperTextOwnProps {
    * If `true`, the helper text should use required classes key.
    */
   required?: boolean;
+  /**
+   * The size of the component.
+   * @default 'medium'
+   */
+  size?: OverridableStringUnion<'small' | 'medium', FormHelperTextPropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
