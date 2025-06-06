@@ -14,7 +14,7 @@ export default function useLayerOrder(theme: { experimental_modularCssLayers?: b
   const id = useId() || '';
   const { experimental_modularCssLayers } = theme;
 
-  let layerOrder = 'mui.global, mui.default, mui.theme, mui.custom, mui.sx';
+  let layerOrder = 'mui.global, mui.components, mui.theme, mui.custom, mui.sx';
 
   if (!experimental_modularCssLayers || upperTheme !== null) {
     // skip this hook if upper theme exists.

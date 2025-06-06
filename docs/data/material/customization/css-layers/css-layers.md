@@ -133,7 +133,7 @@ export default function AppTheme({ children }: { children: ReactNode }) {
 When this feature is enabled, Material UI generates these layers:
 
 - `@layer mui.global`: The global styles from `GlobalStyles` and `CssBaseline` components.
-- `@layer mui.default`: The base styles for all Material UI components.
+- `@layer mui.components`: The base styles for all Material UI components.
 - `@layer mui.theme`: The theme styles for all Material UI components.
 - `@layer mui.custom`: The custom styles for non-Material UI styled components.
 - `@layer mui.sx`: The styles from the `sx` prop.

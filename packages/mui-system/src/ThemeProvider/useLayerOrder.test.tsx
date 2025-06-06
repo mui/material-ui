@@ -22,7 +22,7 @@ describe('useLayerOrder', () => {
     render(<TestComponent theme={theme} />);
     expect(document.head.firstChild).not.to.equal(null);
     expect(document.head.firstChild?.textContent).to.contain(
-      '@layer mui.global, mui.default, mui.theme, mui.custom, mui.sx;',
+      '@layer mui.global, mui.components, mui.theme, mui.custom, mui.sx;',
     );
   });
 
@@ -30,7 +30,7 @@ describe('useLayerOrder', () => {
     const theme = { experimental_modularCssLayers: '@layer theme, base, mui, utilities;' };
     render(<TestComponent theme={theme} />);
     expect(document.head.firstChild?.textContent).to.contain(
-      '@layer theme, base, mui.global, mui.default, mui.theme, mui.custom, mui.sx, utilities;',
+      '@layer theme, base, mui.global, mui.components, mui.theme, mui.custom, mui.sx, utilities;',
     );
   });
 

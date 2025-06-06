@@ -146,7 +146,9 @@ export default function createStyled(input = {}) {
     } = inputOptions;
 
     const layerName =
-      (componentName && componentName.startsWith('Mui')) || !!componentSlot ? 'default' : 'custom';
+      (componentName && componentName.startsWith('Mui')) || !!componentSlot
+        ? 'components'
+        : 'custom';
 
     // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
