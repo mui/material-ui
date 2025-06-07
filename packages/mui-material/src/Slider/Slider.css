@@ -19,13 +19,11 @@
     display: none;
   }
 
-  /* Dragging state */
   .MuiSlider-root.MuiSlider-dragging .MuiSlider-thumb,
   .MuiSlider-root.MuiSlider-dragging .MuiSlider-track {
     transition: none;
   }
 
-  /* Color variants */
   .MuiSlider-root.MuiSlider-colorPrimary {
     color: var(--mui-palette-primary-main);
   }
@@ -44,62 +42,53 @@
   .MuiSlider-root.MuiSlider-colorInfo {
     color: var(--mui-palette-info-main);
   }
-  /* Add more color variants as needed */
 
-  /* Orientation: Horizontal */
   .MuiSlider-root.MuiSlider-horizontal {
     height: 4px;
     width: 100%;
-    padding: 13px 0;
+    padding-block: 13px;
   }
 
   @media (pointer: coarse) {
     .MuiSlider-root.MuiSlider-horizontal {
-      padding: 20px 0;
+      padding-block: 20px;
     }
   }
 
-  /* Horizontal + small size */
   .MuiSlider-root.MuiSlider-horizontal.MuiSlider-sizeSmall {
     height: 2px;
   }
 
-  /* Horizontal + marked */
   .MuiSlider-root.MuiSlider-horizontal.MuiSlider-marked {
-    margin-bottom: 20px;
+    margin-block-end: 20px;
   }
 
-  /* Orientation: Vertical */
   .MuiSlider-root.MuiSlider-vertical {
     height: 100%;
     width: 4px;
-    padding: 0 13px;
+    padding-inline: 13px;
   }
 
   @media (pointer: coarse) {
     .MuiSlider-root.MuiSlider-vertical {
-      padding: 0 20px;
+      padding-inline: 20px;
     }
   }
 
-  /* Vertical + small size */
   .MuiSlider-root.MuiSlider-vertical.MuiSlider-sizeSmall {
     width: 2px;
   }
 
-  /* Vertical + marked */
   .MuiSlider-root.MuiSlider-vertical.MuiSlider-marked {
-    margin-right: 44px;
+    margin-inline-end: 44px;
   }
 
-  /* Disabled state */
   .MuiSlider-root.Mui-disabled {
     pointer-events: none;
     cursor: default;
     color: var(--mui-palette-grey-400);
   }
 
-  /* --- SliderRail --- */
   .MuiSlider-rail {
     display: block;
     position: absolute;
@@ -111,14 +100,14 @@
   .MuiSlider-rail.MuiSlider-horizontal {
     width: 100%;
     height: inherit;
-    top: 50%;
+    inset-block-start: 50%;
     transform: translateY(-50%);
   }
 
   .MuiSlider-rail.MuiSlider-vertical {
     height: 100%;
     width: inherit;
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translateX(-50%);
   }
 
@@ -126,7 +115,6 @@
     opacity: 1;
   }
 
-  /* --- SliderTrack --- */
   .MuiSlider-track {
     display: block;
     position: absolute;
@@ -172,13 +160,13 @@
 
   .MuiSlider-track.MuiSlider-horizontal {
     height: inherit;
-    top: 50%;
+    inset-block-start: 50%;
     transform: translateY(-50%);
   }
 
   .MuiSlider-track.MuiSlider-vertical {
     width: inherit;
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translateX(-50%);
   }
 
@@ -186,9 +174,6 @@
     display: none;
   }
 
-  /* Optional inverted track color styles should be added via custom CSS vars */
-
-  /* --- SliderThumb --- */
   .MuiSlider-thumb {
     position: absolute;
     width: 20px;
@@ -218,8 +203,8 @@
     border-radius: 50%;
     width: 42px;
     height: 42px;
-    top: 50%;
-    left: 50%;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
     transform: translate(-50%, -50%);
   }
 
@@ -241,12 +226,12 @@
   }
 
   .MuiSlider-thumb.MuiSlider-horizontal {
-    top: 50%;
+    inset-block-start: 50%;
     transform: translate(-50%, -50%);
   }
 
   .MuiSlider-thumb.MuiSlider-vertical {
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translate(-50%, 50%);
   }
 
@@ -254,9 +239,6 @@
     box-shadow: none;
   }
 
-  /* Hover & Active state styles to be added with color-specific CSS vars */
-
-  /* --- SliderValueLabel --- */
   .MuiSlider-valueLabel {
     z-index: 1;
     white-space: nowrap;
@@ -274,8 +256,8 @@
 
   .MuiSlider-valueLabel.MuiSlider-horizontal {
     transform: translateY(-100%) scale(0);
-    top: -10px;
-    transform-origin: bottom center;
+    inset-block-start: -10px;
+    transform-origin: block-end center;
   }
 
   .MuiSlider-valueLabel.MuiSlider-horizontal::before {
@@ -285,8 +267,8 @@
     height: 8px;
     transform: translate(-50%, 50%) rotate(45deg);
     background-color: inherit;
-    bottom: 0;
-    left: 50%;
+    inset-block-end: 0;
+    inset-inline-start: 50%;
   }
 
   .MuiSlider-valueLabel.MuiSlider-horizontal.MuiSlider-valueLabelOpen {
@@ -295,9 +277,9 @@
 
   .MuiSlider-valueLabel.MuiSlider-vertical {
     transform: translateY(-50%) scale(0);
-    right: 30px;
-    top: 50%;
-    transform-origin: right center;
+    inset-inline-end: 30px;
+    inset-block-start: 50%;
+    transform-origin: inline-end center;
   }
 
   .MuiSlider-valueLabel.MuiSlider-vertical::before {
@@ -307,8 +289,8 @@
     height: 8px;
     transform: translate(-50%, -50%) rotate(45deg);
     background-color: inherit;
-    right: -8px;
-    top: 50%;
+    inset-inline-end: -8px;
+    inset-block-start: 50%;
   }
 
   .MuiSlider-valueLabel.MuiSlider-vertical.MuiSlider-valueLabelOpen {
@@ -321,10 +303,9 @@
   }
 
   .MuiSlider-valueLabel.MuiSlider-vertical.MuiSlider-sizeSmall {
-    right: 20px;
+    inset-inline-end: 20px;
   }
 
-  /* --- SliderMark --- */
   .MuiSlider-mark {
     position: absolute;
     width: 2px;
@@ -334,12 +315,12 @@
   }
 
   .MuiSlider-mark.MuiSlider-horizontal {
-    top: 50%;
+    inset-block-start: 50%;
     transform: translate(-1px, -50%);
   }
 
   .MuiSlider-mark.MuiSlider-vertical {
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translate(-50%, 1px);
   }
 
@@ -348,7 +329,6 @@
     opacity: 0.8;
   }
 
-  /* --- SliderMarkLabel --- */
   .MuiSlider-markLabel {
     font-size: 0.875rem;
     line-height: 1.43;
@@ -358,24 +338,24 @@
   }
 
   .MuiSlider-markLabel.MuiSlider-horizontal {
-    top: 30px;
+    inset-block-start: 30px;
     transform: translateX(-50%);
   }
 
   @media (pointer: coarse) {
     .MuiSlider-markLabel.MuiSlider-horizontal {
-      top: 40px;
+      inset-block-start: 40px;
     }
   }
 
   .MuiSlider-markLabel.MuiSlider-vertical {
-    left: 36px;
+    inset-inline-start: 36px;
     transform: translateY(50%);
   }
 
   @media (pointer: coarse) {
     .MuiSlider-markLabel.MuiSlider-vertical {
-      left: 44px;
+      inset-inline-start: 44px;
     }
   }
 
