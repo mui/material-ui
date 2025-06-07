@@ -10,13 +10,14 @@ import useSlotProps from '@mui/utils/useSlotProps';
 import { useSlider, valueToPercent } from './useSlider';
 import isHostComponent from '../utils/isHostComponent';
 import { styled } from '../zero-styled';
+import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import slotShouldForwardProp from '../styles/slotShouldForwardProp';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
+import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import BaseSliderValueLabel from './SliderValueLabel';
-import { getSliderUtilityClass } from './sliderClasses';
-import "./Slider.css";
+import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 
 function Identity(x) {
   return x;
@@ -38,17 +39,197 @@ export const SliderRoot = styled('span', {
       ownerState.track === false && styles.trackFalse,
     ];
   },
-})({});
+})(
+  memoTheme(({ theme }) => ({
+    borderRadius: 12,
+    boxSizing: 'content-box',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
+    touchAction: 'none',
+    WebkitTapHighlightColor: 'transparent',
+    '@media print': {
+      colorAdjust: 'exact',
+    },
+    [`&.${sliderClasses.disabled}`]: {
+      pointerEvents: 'none',
+      cursor: 'default',
+      color: (theme.vars || theme).palette.grey[400],
+    },
+    [`&.${sliderClasses.dragging}`]: {
+      [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+        transition: 'none',
+      },
+    },
+    variants: [
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            color: (theme.vars || theme).palette[color].main,
+          },
+        })),
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          height: 4,
+          width: '100%',
+          padding: '13px 0',
+          // The primary input mechanism of the device includes a pointing device of limited accuracy.
+          '@media (pointer: coarse)': {
+            // Reach 42px touch target, about ~8mm on screen.
+            padding: '20px 0',
+          },
+        },
+      },
+      {
+        props: { orientation: 'horizontal', size: 'small' },
+        style: {
+          height: 2,
+        },
+      },
+      {
+        props: { orientation: 'horizontal', marked: true },
+        style: {
+          marginBottom: 20,
+        },
+      },
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          height: '100%',
+          width: 4,
+          padding: '0 13px',
+          // The primary input mechanism of the device includes a pointing device of limited accuracy.
+          '@media (pointer: coarse)': {
+            // Reach 42px touch target, about ~8mm on screen.
+            padding: '0 20px',
+          },
+        },
+      },
+      {
+        props: { orientation: 'vertical', size: 'small' },
+        style: {
+          width: 2,
+        },
+      },
+      {
+        props: { orientation: 'vertical', marked: true },
+        style: {
+          marginRight: 44,
+        },
+      },
+    ],
+  })),
+);
 
 export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
-})({});
+})({
+  display: 'block',
+  position: 'absolute',
+  borderRadius: 'inherit',
+  backgroundColor: 'currentColor',
+  opacity: 0.38,
+  variants: [
+    {
+      props: { orientation: 'horizontal' },
+      style: {
+        width: '100%',
+        height: 'inherit',
+        top: '50%',
+        transform: 'translateY(-50%)',
+      },
+    },
+    {
+      props: { orientation: 'vertical' },
+      style: {
+        height: '100%',
+        width: 'inherit',
+        left: '50%',
+        transform: 'translateX(-50%)',
+      },
+    },
+    {
+      props: { track: 'inverted' },
+      style: {
+        opacity: 1,
+      },
+    },
+  ],
+});
 
 export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
-})({});
+})(
+  memoTheme(({ theme }) => {
+    return {
+      display: 'block',
+      position: 'absolute',
+      borderRadius: 'inherit',
+      border: '1px solid currentColor',
+      backgroundColor: 'currentColor',
+      transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
+        duration: theme.transitions.duration.shortest,
+      }),
+      variants: [
+        {
+          props: { size: 'small' },
+          style: {
+            border: 'none',
+          },
+        },
+        {
+          props: { orientation: 'horizontal' },
+          style: {
+            height: 'inherit',
+            top: '50%',
+            transform: 'translateY(-50%)',
+          },
+        },
+        {
+          props: { orientation: 'vertical' },
+          style: {
+            width: 'inherit',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          },
+        },
+        {
+          props: { track: false },
+          style: {
+            display: 'none',
+          },
+        },
+        ...Object.entries(theme.palette)
+          .filter(createSimplePaletteValueFilter())
+          .map(([color]) => ({
+            props: { color, track: 'inverted' },
+            style: {
+              ...(theme.vars
+                ? {
+                    backgroundColor: theme.vars.palette.Slider[`${color}Track`],
+                    borderColor: theme.vars.palette.Slider[`${color}Track`],
+                  }
+                : {
+                    backgroundColor: lighten(theme.palette[color].main, 0.62),
+                    borderColor: lighten(theme.palette[color].main, 0.62),
+                    ...theme.applyStyles('dark', {
+                      backgroundColor: darken(theme.palette[color].main, 0.5),
+                    }),
+                    ...theme.applyStyles('dark', {
+                      borderColor: darken(theme.palette[color].main, 0.5),
+                    }),
+                  }),
+            },
+          })),
+      ],
+    };
+  }),
+);
 
 export const SliderThumb = styled('span', {
   name: 'MuiSlider',
@@ -61,12 +242,182 @@ export const SliderThumb = styled('span', {
       ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
     ];
   },
-})({});
+})(
+  memoTheme(({ theme }) => ({
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    boxSizing: 'border-box',
+    borderRadius: '50%',
+    outline: 0,
+    backgroundColor: 'currentColor',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    '&::before': {
+      position: 'absolute',
+      content: '""',
+      borderRadius: 'inherit',
+      width: '100%',
+      height: '100%',
+      boxShadow: (theme.vars || theme).shadows[2],
+    },
+    '&::after': {
+      position: 'absolute',
+      content: '""',
+      borderRadius: '50%',
+      // 42px is the hit target
+      width: 42,
+      height: 42,
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+    },
+    [`&.${sliderClasses.disabled}`]: {
+      '&:hover': {
+        boxShadow: 'none',
+      },
+    },
+    variants: [
+      {
+        props: { size: 'small' },
+        style: {
+          width: 12,
+          height: 12,
+          '&::before': {
+            boxShadow: 'none',
+          },
+        },
+      },
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      },
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          left: '50%',
+          transform: 'translate(-50%, 50%)',
+        },
+      },
+      ...Object.entries(theme.palette)
+        .filter(createSimplePaletteValueFilter())
+        .map(([color]) => ({
+          props: { color },
+          style: {
+            [`&:hover, &.${sliderClasses.focusVisible}`]: {
+              ...(theme.vars
+                ? {
+                    boxShadow: `0px 0px 0px 8px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
+                  }
+                : {
+                    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[color].main, 0.16)}`,
+                  }),
+              '@media (hover: none)': {
+                boxShadow: 'none',
+              },
+            },
+            [`&.${sliderClasses.active}`]: {
+              ...(theme.vars
+                ? {
+                    boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
+                  }
+                : {
+                    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[color].main, 0.16)}`,
+                  }),
+            },
+          },
+        })),
+    ],
+  })),
+);
 
 const SliderValueLabel = styled(BaseSliderValueLabel, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
-})({});
+})(
+  memoTheme(({ theme }) => ({
+    zIndex: 1,
+    whiteSpace: 'nowrap',
+    ...theme.typography.body2,
+    fontWeight: 500,
+    transition: theme.transitions.create(['transform'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    position: 'absolute',
+    backgroundColor: (theme.vars || theme).palette.grey[600],
+    borderRadius: 2,
+    color: (theme.vars || theme).palette.common.white,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0.25rem 0.75rem',
+    variants: [
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          transform: 'translateY(-100%) scale(0)',
+          top: '-10px',
+          transformOrigin: 'bottom center',
+          '&::before': {
+            position: 'absolute',
+            content: '""',
+            width: 8,
+            height: 8,
+            transform: 'translate(-50%, 50%) rotate(45deg)',
+            backgroundColor: 'inherit',
+            bottom: 0,
+            left: '50%',
+          },
+          [`&.${sliderClasses.valueLabelOpen}`]: {
+            transform: 'translateY(-100%) scale(1)',
+          },
+        },
+      },
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          transform: 'translateY(-50%) scale(0)',
+          right: '30px',
+          top: '50%',
+          transformOrigin: 'right center',
+          '&::before': {
+            position: 'absolute',
+            content: '""',
+            width: 8,
+            height: 8,
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            backgroundColor: 'inherit',
+            right: -8,
+            top: '50%',
+          },
+          [`&.${sliderClasses.valueLabelOpen}`]: {
+            transform: 'translateY(-50%) scale(1)',
+          },
+        },
+      },
+      {
+        props: { size: 'small' },
+        style: {
+          fontSize: theme.typography.pxToRem(12),
+          padding: '0.25rem 0.5rem',
+        },
+      },
+      {
+        props: { orientation: 'vertical', size: 'small' },
+        style: {
+          right: '20px',
+        },
+      },
+    ],
+  })),
+);
 
 SliderValueLabel.propTypes /* remove-proptypes */ = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
@@ -102,13 +453,79 @@ export const SliderMark = styled('span', {
 
     return [styles.mark, markActive && styles.markActive];
   },
-})({});
+})(
+  memoTheme(({ theme }) => ({
+    position: 'absolute',
+    width: 2,
+    height: 2,
+    borderRadius: 1,
+    backgroundColor: 'currentColor',
+    variants: [
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          top: '50%',
+          transform: 'translate(-1px, -50%)',
+        },
+      },
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          left: '50%',
+          transform: 'translate(-50%, 1px)',
+        },
+      },
+      {
+        props: { markActive: true },
+        style: {
+          backgroundColor: (theme.vars || theme).palette.background.paper,
+          opacity: 0.8,
+        },
+      },
+    ],
+  })),
+);
 
 export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
-})({});
+})(
+  memoTheme(({ theme }) => ({
+    ...theme.typography.body2,
+    color: (theme.vars || theme).palette.text.secondary,
+    position: 'absolute',
+    whiteSpace: 'nowrap',
+    variants: [
+      {
+        props: { orientation: 'horizontal' },
+        style: {
+          top: 30,
+          transform: 'translateX(-50%)',
+          '@media (pointer: coarse)': {
+            top: 40,
+          },
+        },
+      },
+      {
+        props: { orientation: 'vertical' },
+        style: {
+          left: 36,
+          transform: 'translateY(50%)',
+          '@media (pointer: coarse)': {
+            left: 44,
+          },
+        },
+      },
+      {
+        props: { markLabelActive: true },
+        style: {
+          color: (theme.vars || theme).palette.text.primary,
+        },
+      },
+    ],
+  })),
+);
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, dragging, marked, orientation, track, classes, color, size } = ownerState;
@@ -119,50 +536,24 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       dragging && 'dragging',
       marked && 'marked',
-      orientation === 'horizontal' && 'horizontal',
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    rail: [
-      'rail',
-      orientation === 'horizontal' && 'horizontal',
-      track === 'inverted' && 'trackInverted',
-      orientation === 'vertical' && 'vertical',
-    ],
-    track: [
-      'track',
-      orientation === 'horizontal' && 'horizontal',
-      track === 'inverted' && 'trackInverted',
-      orientation === 'vertical' && 'vertical',
-      color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
-    ],
-    mark: [
-      'mark'
-    ],
+    rail: ['rail'],
+    track: ['track'],
+    mark: ['mark'],
     markActive: ['markActive'],
-    markLabel: [
-      'markLabel',
-      orientation === 'horizontal' && 'horizontal',
-      orientation === 'vertical' && 'vertical',
-    ],
+    markLabel: ['markLabel'],
     markLabelActive: ['markLabelActive'],
-    valueLabel: [
-      'valueLabel',
-      size && `size${capitalize(size)}`,
-      orientation === 'horizontal' && 'horizontal',
-      orientation === 'vertical' && 'vertical',
-    ],
+    valueLabel: ['valueLabel'],
     thumb: [
       'thumb',
       disabled && 'disabled',
       size && `thumbSize${capitalize(size)}`,
       color && `thumbColor${capitalize(color)}`,
-      orientation === 'horizontal' && 'horizontal',
-      orientation === 'vertical' && 'vertical',
     ],
     active: ['active'],
     disabled: ['disabled'],

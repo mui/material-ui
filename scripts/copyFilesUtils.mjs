@@ -210,6 +210,17 @@ export async function createPackageFile(useEsmExports = false) {
   return newPackageData;
 }
 
+export async function cssModulesCopy({ from, to }) {
+  if (!(await fse.pathExists(to))) {
+    console.warn(`path ${to} does not exists`);
+    return [];
+  }
+
+  const files = await glob('**/*.css', { cwd: from });
+  const cmds = files.map((file) => fse.copy(path.resolve(from, file), path.resolve(to, file)));
+  return Promise.all(cmds);
+}
+
 export async function prepend(file, string) {
   const data = await fse.readFile(file, 'utf8');
   await fse.writeFile(file, string + data, 'utf8');

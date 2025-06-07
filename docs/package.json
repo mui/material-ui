@@ -36,6 +36,7 @@
     "@mui/lab": "workspace:*",
     "@mui/material": "workspace:^",
     "@mui/styled-engine": "workspace:^",
+    "@mui/styled-engine-noop": "workspace:^",
     "@mui/styled-engine-sc": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
