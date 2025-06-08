@@ -92,8 +92,8 @@ importers:
         specifier: ^2.0.4
         version: 2.0.4(@babel/core@7.27.4)
       '@mui/internal-babel-plugin-resolve-imports':
-        specifier: ^2.0.3
-        version: 2.0.3(@babel/core@7.27.4)
+        specifier: ^2.0.4
+        version: 2.0.4(@babel/core@7.27.4)
       '@mui/internal-bundle-size-checker':
         specifier: ^1.0.5
         version: 1.0.5(@types/node@20.17.57)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.19.4)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
@@ -4195,8 +4195,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.27.4
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.3':
-    resolution: {integrity: sha512-HuZ6I3pR5/QqrAwoMLAtYFXFuDiEh5PUfdL5FEkevX0cQKGs9HKnnQbTdXHu5li0HhfgrYS+NFuUXRoQuqnntQ==}
+  '@mui/internal-babel-plugin-resolve-imports@2.0.4':
+    resolution: {integrity: sha512-ncd6T7Z3Nck0QtauTQkIKFHAZD9ZcRk4fo8dnWGTC9fXgaa8lWEFUQeqGI/D/7ObEQf+4lw3ozYL36m6XdrpQA==}
     peerDependencies:
       '@babel/core': ^7.27.4
 
@@ -16955,7 +16955,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.3(@babel/core@7.27.4)':
+  '@mui/internal-babel-plugin-resolve-imports@2.0.4(@babel/core@7.27.4)':
     dependencies:
       '@babel/core': 7.27.4
       resolve: 1.22.10
