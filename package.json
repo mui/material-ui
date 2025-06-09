@@ -124,7 +124,7 @@
     "@mui-internal/api-docs-builder-core": "workspace:^",
     "@mui/internal-bundle-size-checker": "^1.0.5",
     "@mui/internal-babel-plugin-resolve-imports": "^2.0.4",
-    "@mui/internal-babel-plugin-minify-errors": "^2.0.4",
+    "@mui/internal-babel-plugin-minify-errors": "^2.0.5",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",

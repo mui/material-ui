@@ -89,8 +89,8 @@ importers:
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
-        specifier: ^2.0.4
-        version: 2.0.4(@babel/core@7.27.4)
+        specifier: ^2.0.5
+        version: 2.0.5(@babel/core@7.27.4)
       '@mui/internal-babel-plugin-resolve-imports':
         specifier: ^2.0.4
         version: 2.0.4(@babel/core@7.27.4)
@@ -4189,8 +4189,8 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
-  '@mui/internal-babel-plugin-minify-errors@2.0.4':
-    resolution: {integrity: sha512-t0wvHPv2QeBr1ZFePYDFqyGShfMX7lJCDXKJ7tdDsHF3VIucUV5+aXgX1T75+8OIsYzkM3SBm86kyR3dmC2Cow==}
+  '@mui/internal-babel-plugin-minify-errors@2.0.5':
+    resolution: {integrity: sha512-8dnzAJMBiHLm9fjgrXxpK/g6rUcwFxZYNkdM6XnIvVGWMC+9oKNY2v6iozBpx3+2kmmaTd/SWy3fzh04/jzYpg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@babel/core': ^7.27.4
@@ -16947,7 +16947,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
-  '@mui/internal-babel-plugin-minify-errors@2.0.4(@babel/core@7.27.4)':
+  '@mui/internal-babel-plugin-minify-errors@2.0.5(@babel/core@7.27.4)':
     dependencies:
       '@babel/core': 7.27.4
       '@babel/helper-module-imports': 7.27.1
