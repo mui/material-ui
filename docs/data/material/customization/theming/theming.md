@@ -225,7 +225,7 @@ Think of creating a theme as a two-step composition process: first, you define t
 
 ### Merging className and style props in defaultProps
 
-By default, when a component has `defaultProps` defined in the theme, props passed to the component will override the default props completely. However, you can configure the theme to merge `className` and `style` props instead of replacing them.
+By default, when a component has `defaultProps` defined in the theme, props passed to the component overrides the default props completely. However, you can configure the theme to merge `className` and `style` props instead of replacing them.
 
 Set `theme.components.mergeClassNameAndStyle` to `true` to enable this behavior:
 
