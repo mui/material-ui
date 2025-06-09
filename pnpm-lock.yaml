@@ -728,8 +728,8 @@ importers:
         specifier: ^4.20.10
         version: 4.20.10
       flexsearch:
-        specifier: ^0.8.204
-        version: 0.8.204
+        specifier: ^0.8.205
+        version: 0.8.205
       fs-extra:
         specifier: ^11.3.0
         version: 11.3.0
@@ -8813,8 +8813,8 @@ packages:
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
 
-  flexsearch@0.8.204:
-    resolution: {integrity: sha512-Vh+WUZfUHsVP6w4o5uAkYle8Gz/oEuztSWvpSY3h71AE8ox+goTQ2X5YG4x6VlKKfubkMwhewk8kBTOVKMObHA==}
+  flexsearch@0.8.205:
+    resolution: {integrity: sha512-REFjMqy86DKkCTJ4gIE42c9MVm9t1vUWfEub/8taixYuhvyu4jd4XmFALk5VuKW4GH4VLav8A4BJboTsslHF1w==}
 
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
@@ -22868,7 +22868,7 @@ snapshots:
 
   flatted@3.3.3: {}
 
-  flexsearch@0.8.204: {}
+  flexsearch@0.8.205: {}
 
   flow-enums-runtime@0.0.6: {}
 
