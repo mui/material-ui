@@ -146,7 +146,7 @@
     "@typescript-eslint/eslint-plugin": "^8.33.0",
     "@typescript-eslint/parser": "^8.33.0",
     "@vitejs/plugin-react": "^4.5.0",
-    "@vitest/browser": "^3.1.4",
+    "@vitest/browser": "^3.2.3",
     "@vitest/coverage-v8": "^3.1.4",
     "@vvago/vale": "^3.11.2",
     "babel-loader": "^10.0.0",
