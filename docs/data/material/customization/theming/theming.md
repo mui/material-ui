@@ -223,6 +223,54 @@ Think of creating a theme as a two-step composition process: first, you define t
 
 **WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
+### Merging className and style props in defaultProps
+
+By default, when a component has `defaultProps` defined in the theme, props passed to the component will override the default props completely. However, you can configure the theme to merge `className` and `style` props instead of replacing them.
+
+Set `theme.components.mergeClassNameAndStyle` to `true` to enable this behavior:
+
+```js
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  components: {
+    mergeClassNameAndStyle: true,
+    MuiButton: {
+      defaultProps: {
+        className: 'default-button-class',
+        style: { marginTop: 8 },
+      },
+    },
+  },
+});
+```
+
+With this configuration:
+
+```jsx
+// className will be: "default-button-class custom-button-class"
+// style will be: { marginTop: 8, color: 'blue' }
+<Button 
+  className="custom-button-class" 
+  style={{ color: 'blue' }} 
+>
+  Click me
+</Button>
+```
+
+When `mergeClassNameAndStyle` is `false` (default), the component props completely override the default props:
+
+```jsx
+// className will be: "custom-button-class" (default ignored)
+// style will be: { color: 'blue' } (default ignored)
+<Button 
+  className="custom-button-class" 
+  style={{ color: 'blue' }} 
+>
+  Click me
+</Button>
+```
+
 ### `responsiveFontSizes(theme, options) => theme`
 
 Generate responsive typography settings based on the options received.

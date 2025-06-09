@@ -4,7 +4,9 @@ import clsx from 'clsx';
  * Add keys, values of `defaultProps` that does not exist in `props`
  * @param defaultProps
  * @param props
- * @param mergeClassNameAndStyle
+ * @param mergeClassNameAndStyle If `true`, merges `className` and `style` props instead of overriding them.
+ *   When `false` (default), props override defaultProps. When `true`, `className` values are concatenated
+ *   and `style` objects are merged with props taking precedence.
  * @returns resolved props
  */
 export default function resolveProps<
