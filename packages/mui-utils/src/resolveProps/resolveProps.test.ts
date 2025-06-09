@@ -92,46 +92,48 @@ describe('resolveProps', () => {
     });
   });
 
-  it('merge className and style props', () => {
-    expect(
-      resolveProps(
-        { className: 'input1', style: { color: 'red' } },
-        { className: 'input2', style: { backgroundColor: 'blue' } },
-        true,
-      ),
-    ).to.deep.equal({
-      className: 'input1 input2',
-      style: { color: 'red', backgroundColor: 'blue' },
-    });
-  });
-
-  it('merge className props', () => {
-    expect(resolveProps({ className: 'input1' }, { className: 'input2' }, true)).to.deep.equal({
-      className: 'input1 input2',
+  describe('param: mergeClassNameAndStyle', () => {
+    it('merge className and style props', () => {
+      expect(
+        resolveProps(
+          { className: 'input1', style: { color: 'red' } },
+          { className: 'input2', style: { backgroundColor: 'blue' } },
+          true,
+        ),
+      ).to.deep.equal({
+        className: 'input1 input2',
+        style: { color: 'red', backgroundColor: 'blue' },
+      });
     });
 
-    expect(resolveProps({ className: 'input1' }, {}, true)).to.deep.equal({
-      className: 'input1',
+    it('merge className props', () => {
+      expect(resolveProps({ className: 'input1' }, { className: 'input2' }, true)).to.deep.equal({
+        className: 'input1 input2',
+      });
+
+      expect(resolveProps({ className: 'input1' }, {}, true)).to.deep.equal({
+        className: 'input1',
+      });
+
+      expect(resolveProps({}, { className: 'input2' }, true)).to.deep.equal({
+        className: 'input2',
+      });
     });
 
-    expect(resolveProps({}, { className: 'input2' }, true)).to.deep.equal({
-      className: 'input2',
-    });
-  });
+    it('merge style props', () => {
+      expect(
+        resolveProps({ style: { color: 'red' } }, { style: { backgroundColor: 'blue' } }, true),
+      ).to.deep.equal({
+        style: { color: 'red', backgroundColor: 'blue' },
+      });
 
-  it('merge style props', () => {
-    expect(
-      resolveProps({ style: { color: 'red' } }, { style: { backgroundColor: 'blue' } }, true),
-    ).to.deep.equal({
-      style: { color: 'red', backgroundColor: 'blue' },
-    });
+      expect(resolveProps({ style: { color: 'red' } }, {}, true)).to.deep.equal({
+        style: { color: 'red' },
+      });
 
-    expect(resolveProps({ style: { color: 'red' } }, {}, true)).to.deep.equal({
-      style: { color: 'red' },
-    });
-
-    expect(resolveProps({}, { style: { backgroundColor: 'blue' } }, true)).to.deep.equal({
-      style: { backgroundColor: 'blue' },
+      expect(resolveProps({}, { style: { backgroundColor: 'blue' } }, true)).to.deep.equal({
+        style: { backgroundColor: 'blue' },
+      });
     });
   });
 });
