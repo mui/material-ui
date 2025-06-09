@@ -250,10 +250,7 @@ With this configuration:
 ```jsx
 // className will be: "default-button-class custom-button-class"
 // style will be: { marginTop: 8, color: 'blue' }
-<Button 
-  className="custom-button-class" 
-  style={{ color: 'blue' }} 
->
+<Button className="custom-button-class" style={{ color: 'blue' }}>
   Click me
 </Button>
 ```
@@ -263,10 +260,7 @@ When `mergeClassNameAndStyle` is `false` (default), the component props complete
 ```jsx
 // className will be: "custom-button-class" (default ignored)
 // style will be: { color: 'blue' } (default ignored)
-<Button 
-  className="custom-button-class" 
-  style={{ color: 'blue' }} 
->
+<Button className="custom-button-class" style={{ color: 'blue' }}>
   Click me
 </Button>
 ```
