@@ -40,8 +40,8 @@ importers:
         specifier: ^4.4.0
         version: 4.4.0(@types/express@5.0.0)
       babel-plugin-transform-import-meta:
-        specifier: ^2.3.2
-        version: 2.3.2(@babel/core@7.27.4)
+        specifier: ^2.3.3
+        version: 2.3.3(@babel/core@7.27.4)
       execa:
         specifier: ^9.6.0
         version: 9.6.0
@@ -6805,8 +6805,8 @@ packages:
   babel-plugin-transform-flow-enums@0.0.2:
     resolution: {integrity: sha512-g4aaCrDDOsWjbm0PUUeVnkcVd6AKJsVc/MbnPhEotEpkeJQP6b8nzewohQi7+QS8UyPehOhGWn0nOwjvWpmMvQ==}
 
-  babel-plugin-transform-import-meta@2.3.2:
-    resolution: {integrity: sha512-902o4GiQqI1GqAXfD5rEoz0PJamUfJ3VllpdWaNsFTwdaNjFSFHawvBO+cp5K2j+g2h3bZ4lnM1Xb6yFYGihtA==}
+  babel-plugin-transform-import-meta@2.3.3:
+    resolution: {integrity: sha512-bbh30qz1m6ZU1ybJoNOhA2zaDvmeXMnGNBMVMDOJ1Fni4+wMBoy/j7MTRVmqAUCIcy54/rEnr9VEBsfcgbpm3Q==}
     peerDependencies:
       '@babel/core': ^7.27.4
 
@@ -20363,7 +20363,7 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
 
-  babel-plugin-transform-import-meta@2.3.2(@babel/core@7.27.4):
+  babel-plugin-transform-import-meta@2.3.3(@babel/core@7.27.4):
     dependencies:
       '@babel/core': 7.27.4
       '@babel/template': 7.27.2
