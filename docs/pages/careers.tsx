@@ -61,6 +61,23 @@ const openRolesData = [
     ],
   },
   {
+    title: 'Sales',
+    roles: [
+      {
+        title: 'Account Executive',
+        description:
+          'You will help establish our sales team by implementing effective sales processes and tools to optimize and expand our sales pipeline.',
+        url: '/careers/account-executive/',
+      },
+      {
+        title: 'Account Manager',
+        description:
+          'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
+        url: '/careers/account-manager/',
+      },
+    ],
+  },
+  {
     title: 'Design',
     roles: [],
   },
@@ -106,13 +123,7 @@ const nextRolesData = [
   },
   {
     title: 'Sales',
-    roles: [
-      // {
-      //   title: 'Account Executive',
-      //   description:
-      //     'You will build client relationships and manage the sales process from start to finish.',
-      // },
-    ],
+    roles: [],
   },
   {
     title: 'Marketing',
