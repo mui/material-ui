@@ -60,7 +60,8 @@ interface ApiJson {
  * Convert HTML to markdown
  */
 function htmlToMarkdown(html: string): string {
-  return html
+  // First pass: decode entities and handle inline elements
+  let markdown = html
     // Decode HTML entities first
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
@@ -68,27 +69,40 @@ function htmlToMarkdown(html: string): string {
     .replace(/&#124;/g, '|')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
-    // Convert <br> to space for inline content (not newline for table cells)
-    .replace(/<br\s*\/?>/gi, ' ')
     // Convert <code> to backticks
     .replace(/<code>([^<]+)<\/code>/gi, '`$1`')
     // Convert <a> to markdown links
-    .replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/gi, '[$2]($1)')
-    // Convert <ul> and <li> to markdown lists (only for block content)
-    .replace(/<ul>/gi, '')
-    .replace(/<\/ul>/gi, '')
-    .replace(/<li>/gi, '- ')
-    .replace(/<\/li>/gi, '')
-    // Convert <p> to double newline (only for block content)
-    .replace(/<p>/gi, '\n\n')
+    .replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/gi, '[$2]($1)');
+  
+  // Handle lists - process them as complete units to avoid extra line breaks
+  markdown = markdown.replace(/<ul[^>]*>(.*?)<\/ul>/gis, (match, listContent) => {
+    // Process each list item
+    const items = listContent
+      .split(/<\/li>/)
+      .map(item => item.replace(/<li[^>]*>/, '').trim())
+      .filter(item => item.length > 0)
+      .map(item => '- ' + item)
+      .join('\n');
+    
+    return '\n' + items + '\n';
+  });
+  
+  // Handle other block elements
+  markdown = markdown
+    // Convert <br> to newline
+    .replace(/<br\s*\/?>/gi, '\n')
+    // Convert <p> to double newline
+    .replace(/<p[^>]*>/gi, '\n\n')
     .replace(/<\/p>/gi, '')
     // Remove any remaining HTML tags
     .replace(/<[^>]+>/g, '')
-    // Clean up excessive whitespace and newlines
-    .replace(/\s+/g, ' ')
-    .replace(/\n\s+/g, '\n')
+    // Clean up excessive whitespace (but preserve intentional line breaks)
+    .replace(/[ \t]+/g, ' ')
+    .replace(/ *\n */g, '\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+  
+  return markdown;
 }
 
 /**
