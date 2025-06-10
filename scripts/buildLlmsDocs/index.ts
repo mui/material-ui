@@ -19,7 +19,6 @@ interface ComponentDocInfo {
 type CommandOptions = {
   grep?: string;
   outputDir?: string;
-  includeApi?: boolean;
   projectSettings?: string;
   nonComponentFolders?: string[];
 };
@@ -29,7 +28,7 @@ type CommandOptions = {
  */
 async function findComponentsToProcess(
   projectSettings: ProjectSettings,
-  grep: RegExp | null
+  grep: RegExp | null,
 ): Promise<ComponentDocInfo[]> {
   const components: ComponentDocInfo[] = [];
 
@@ -53,7 +52,7 @@ async function findComponentsToProcess(
       try {
         // Get component info using the API docs builder
         const componentInfo = projectSettings.getComponentInfo(component.filename);
-        
+
         // Skip if component should be skipped (internal, etc.)
         const fileInfo = componentInfo.readFile();
         if (fileInfo.shouldSkip) {
@@ -62,7 +61,7 @@ async function findComponentsToProcess(
 
         // Get demos for this component
         const demos = componentInfo.getDemos();
-        
+
         // Skip if no demos found (likely not a public component)
         if (demos.length === 0) {
           continue;
@@ -73,7 +72,10 @@ async function findComponentsToProcess(
         const markdownPath = firstDemo ? firstDemo.filePath : undefined;
 
         // Get API JSON path
-        const apiJsonPath = path.join(componentInfo.apiPagesDirectory, `${path.basename(componentInfo.apiPathname)}.json`);
+        const apiJsonPath = path.join(
+          componentInfo.apiPagesDirectory,
+          `${path.basename(componentInfo.apiPathname)}.json`,
+        );
 
         components.push({
           name: componentInfo.name,
@@ -92,26 +94,25 @@ async function findComponentsToProcess(
   return components;
 }
 
-
 /**
  * Find all non-component markdown files from specified folders
  */
 function findNonComponentMarkdownFiles(
   folders: string[],
-  grep: RegExp | null
+  grep: RegExp | null,
 ): Array<{ markdownPath: string; outputPath: string }> {
   // Get all markdown files using the existing findPagesMarkdown utility
   const allMarkdownFiles = findPagesMarkdown();
-  
+
   const files: Array<{ markdownPath: string; outputPath: string }> = [];
-  
+
   for (const page of allMarkdownFiles) {
     // Check if the page belongs to one of the specified folders
-    const belongsToFolder = folders.some(folder => page.pathname.startsWith(`/${folder}`));
+    const belongsToFolder = folders.some((folder) => page.pathname.startsWith(`/${folder}`));
     if (!belongsToFolder) {
       continue;
     }
-    
+
     // Apply grep filter if specified
     if (grep) {
       const fileName = path.basename(page.filename);
@@ -119,25 +120,25 @@ function findNonComponentMarkdownFiles(
         continue;
       }
     }
-    
+
     // Apply fixPathname first, then replaceUrl to get the proper output structure (like components)
     const afterFixPathname = fixPathname(page.pathname);
     const fixedPathname = replaceUrl(afterFixPathname, '/material-ui/');
     const outputPath = fixedPathname.replace(/^\//, '').replace(/\/$/, '') + '.md';
-    
+
     files.push({
       markdownPath: page.filename,
       outputPath,
     });
   }
-  
+
   return files;
 }
 
 /**
  * Process a single component
  */
-function processComponent(component: ComponentDocInfo, options: { includeApi: boolean }): string | null {
+function processComponent(component: ComponentDocInfo): string | null {
   console.log(`Processing component: ${component.name}`);
 
   // Skip if no markdown file found
@@ -149,8 +150,8 @@ function processComponent(component: ComponentDocInfo, options: { includeApi: bo
   // Process the markdown file with demo replacement
   let processedMarkdown = processMarkdownFile(component.markdownPath);
 
-  // Add API section if JSON exists and includeApi is true
-  if (options.includeApi && component.apiJsonPath) {
+  // Add API section if JSON exists
+  if (component.apiJsonPath) {
     try {
       const apiMarkdown = processApiFile(component.apiJsonPath);
       processedMarkdown += '\n\n' + apiMarkdown;
@@ -168,7 +169,6 @@ function processComponent(component: ComponentDocInfo, options: { includeApi: bo
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
-  const includeApi = argv.includeApi !== false; // Default to true
 
   // Load project settings from the specified path
   if (!argv.projectSettings) {
@@ -187,7 +187,6 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   console.log(`Building LLMs docs...`);
   console.log(`Project settings: ${argv.projectSettings}`);
   console.log(`Output directory: ${outputDir}`);
-  console.log(`Include API: ${includeApi}`);
   if (grep) {
     console.log(`Filter pattern: ${grep}`);
   }
@@ -208,21 +207,17 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   let processedCount = 0;
   for (const component of components) {
     try {
-      const processedMarkdown = processComponent(component, { includeApi });
-      
+      const processedMarkdown = processComponent(component);
+
       if (!processedMarkdown) {
         continue;
       }
 
       // Use the component's demo pathname to create the output structure
       // e.g., /material-ui/react-accordion/ -> material-ui/react-accordion.md
-      const outputFileName = component.demos[0] ? 
-        component.demos[0].demoPathname
-          .replace(/^\//, '')
-          .replace(/\/$/, '') + '.md' :
-        component.componentInfo.apiPathname
-          .replace(/^\//, '')
-          .replace(/\/$/, '') + '.md';
+      const outputFileName = component.demos[0]
+        ? component.demos[0].demoPathname.replace(/^\//, '').replace(/\/$/, '') + '.md'
+        : component.componentInfo.apiPathname.replace(/^\//, '').replace(/\/$/, '') + '.md';
 
       const outputPath = path.join(outputDir, outputFileName);
 
@@ -243,19 +238,21 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   // Process non-component markdown files
   for (const file of nonComponentFiles) {
     try {
-      console.log(`Processing non-component file: ${path.relative(process.cwd(), file.markdownPath)}`);
-      
+      console.log(
+        `Processing non-component file: ${path.relative(process.cwd(), file.markdownPath)}`,
+      );
+
       // Process the markdown file with demo replacement
       const processedMarkdown = processMarkdownFile(file.markdownPath);
-      
+
       const outputPath = path.join(outputDir, file.outputPath);
-      
+
       // Ensure the directory exists
       const outputDirPath = path.dirname(outputPath);
       if (!fs.existsSync(outputDirPath)) {
         fs.mkdirSync(outputDirPath, { recursive: true });
       }
-      
+
       fs.writeFileSync(outputPath, processedMarkdown, 'utf-8');
       console.log(`✓ Generated: ${file.outputPath}`);
       processedCount++;
@@ -286,13 +283,9 @@ yargs(process.argv.slice(2))
           type: 'string',
           default: './docs/public',
         })
-        .option('includeApi', {
-          description: 'Whether to include API documentation at the end of each component doc.',
-          type: 'boolean',
-          default: true,
-        })
         .option('projectSettings', {
-          description: 'Path to the project settings module that exports ProjectSettings interface.',
+          description:
+            'Path to the project settings module that exports ProjectSettings interface.',
           type: 'string',
           demandOption: true,
         })
