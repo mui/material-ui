@@ -143,7 +143,7 @@ function generatePropsTable(props: Record<string, ApiProp>): string {
   for (const [propName, prop] of propEntries) {
     const name = prop.deprecated ? `${propName} (deprecated)` : propName;
     const type = formatPropType(prop);
-    const defaultValue = prop.default || '-';
+    const defaultValue = prop.default ? `\`${prop.default}\`` : '-';
     const required = prop.required ? 'Yes' : 'No';
 
     let description = '';

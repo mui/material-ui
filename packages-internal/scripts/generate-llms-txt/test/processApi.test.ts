@@ -33,8 +33,8 @@ describe('processApi', () => {
       expect(result).to.include('## Import');
       expect(result).to.include("import Button from '@mui/material/Button';");
       expect(result).to.include('## Props');
-      expect(result).to.include("| color | string | `'primary'` | No |");
-      expect(result).to.include('| disabled | bool | `false` | No |');
+      expect(result).to.include("| color | `string` | `'primary'` | No |");
+      expect(result).to.include('| disabled | `bool` | `false` | No |');
     });
 
     it('should handle deprecated component', () => {
