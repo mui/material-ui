@@ -91,23 +91,8 @@ export default function DemoAiSuggestionHero({
           sx={{
             textTransform: 'none',
             fontWeight: 400,
-            fontSize: '0.98rem',
-            borderRadius: '12px',
-            justifyContent: 'flex-start',
-            px: 2,
             py: 1,
-            backgroundColor: '#F6FAFD',
-            border: '1px solid #B6E3FF',
-            color: (theme) => theme.palette.primary.main,
             boxShadow: 'none',
-            transition: 'none',
-            mt: 0,
-            mb: 0,
-            '&:hover': {
-              backgroundColor: '#EDF6FB',
-              border: '1px solid #90caf9',
-              boxShadow: 'none',
-            },
           }}
           onClick={handleClick}
           disabled={loading}
