@@ -57,6 +57,27 @@ interface ApiJson {
 }
 
 /**
+ * Convert prop type description from HTML format
+ */
+function formatPropTypeDescription(html: string): string {
+  // Decode HTML entities
+  const result = html
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#124;/g, '|')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    // Replace <br> tags with space to maintain readability
+    .replace(/<br\s*\/?>/gi, ' ')
+    // Clean up excessive whitespace
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  return result;
+}
+
+/**
  * Convert HTML to markdown
  */
 function htmlToMarkdown(html: string): string {
@@ -112,8 +133,8 @@ function formatPropType(prop: ApiProp): string {
   let type = prop.type.name;
 
   if (prop.type.description) {
-    // Clean up the description
-    type = htmlToMarkdown(prop.type.description);
+    // Use specialized function for prop type descriptions
+    type = formatPropTypeDescription(prop.type.description);
   }
 
   if (prop.signature) {

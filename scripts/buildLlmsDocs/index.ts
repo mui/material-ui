@@ -81,6 +81,7 @@ interface GeneratedFile {
   description: string;
   originalMarkdownPath: string;
   category: string;
+  orderIndex?: number; // Track the order for non-component folders
 }
 
 type CommandOptions = {
@@ -325,7 +326,7 @@ function generateLlmsTxt(
   content += `It contains comprehensive guides, components, and utilities for building user interfaces.\n\n`;
 
   // Add sections for each category
-  // Sort categories to ensure components appear first
+  // Sort categories to ensure components appear first, then by orderIndex for non-component folders
   const sortedCategories = Object.keys(groupedByCategory).sort((a, b) => {
     if (a === 'components') {
       return -1;
@@ -333,6 +334,17 @@ function generateLlmsTxt(
     if (b === 'components') {
       return 1;
     }
+
+    // For non-component categories, check if they have orderIndex
+    const filesA = groupedByCategory[a];
+    const filesB = groupedByCategory[b];
+    const orderIndexA = filesA[0]?.orderIndex ?? Number.MAX_SAFE_INTEGER;
+    const orderIndexB = filesB[0]?.orderIndex ?? Number.MAX_SAFE_INTEGER;
+
+    if (orderIndexA !== orderIndexB) {
+      return orderIndexA - orderIndexB;
+    }
+
     return a.localeCompare(b);
   });
 
@@ -345,8 +357,11 @@ function generateLlmsTxt(
     const sectionTitle = toTitleCase(category);
     content += `## ${sectionTitle}\n\n`;
 
-    // Sort files by title
-    files.sort((a, b) => a.title.localeCompare(b.title));
+    // Sort files by title (components) or maintain original order (non-components)
+    if (category === 'components') {
+      files.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    // Non-component files are already in the order they were discovered
 
     for (const file of files) {
       // Calculate relative path from the baseDir to the file
@@ -485,12 +500,24 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
       const pathParts = file.outputPath.split('/');
       const category = pathParts.reverse()[1];
 
+      // Find the order index based on which folder this file belongs to
+      let orderIndex = -1;
+      if (argv.nonComponentFolders) {
+        for (let i = 0; i < argv.nonComponentFolders.length; i += 1) {
+          if (file.markdownPath.includes(`/${argv.nonComponentFolders[i]}/`)) {
+            orderIndex = i;
+            break;
+          }
+        }
+      }
+
       generatedFiles.push({
         outputPath: file.outputPath,
         title,
         description,
         originalMarkdownPath: file.markdownPath,
         category,
+        orderIndex,
       });
     } catch (error) {
       console.error(`✗ Error processing ${file.markdownPath}:`, error);

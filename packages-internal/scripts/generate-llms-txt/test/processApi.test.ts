@@ -102,8 +102,8 @@ describe('processApi', () => {
       const result = processApiJson(apiJson);
 
       expect(result).to.include('`function(event: React.SyntheticEvent, value: number) => void`');
-      expect(result).to.include('{ root?: elementType, icon?: elementType }');
-      expect(result).to.include('Array<func | object> | func | object');
+      expect(result).to.include('`{ root?: elementType, icon?: elementType }`');
+      expect(result).to.include('`Array<func \\| object> \\| func \\| object`');
       expect(result).to.include('The system prop that allows defining system overrides');
     });
 
@@ -311,8 +311,8 @@ describe('processApi', () => {
 
       const result = processApiJson(apiJson);
 
-      expect(result).to.include('| children | node | - | Yes |');
-      expect(result).to.include('| optional | string | - | No |');
+      expect(result).to.include('| children | `node` | - | Yes |');
+      expect(result).to.include('| optional | `string` | - | No |');
     });
   });
 
@@ -345,7 +345,7 @@ describe('processApi', () => {
       const result = processApiFile(filePath);
 
       expect(result).to.include('# TestComponent API');
-      expect(result).to.include('| test | bool | `true` | No |');
+      expect(result).to.include('| test | `bool` | `true` | No |');
     });
   });
 
@@ -367,7 +367,7 @@ describe('processApi', () => {
 
       const result = processApiJson(apiJson);
 
-      expect(result).to.include('Array<func | object> | func');
+      expect(result).to.include('`Array<func \\| object> \\| func`');
       expect(result).to.include('Test paragraph');
       expect(result).to.include('- Item 1');
       expect(result).to.include('- Item 2');
