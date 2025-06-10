@@ -3,7 +3,10 @@ import * as path from 'path';
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
 import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
+import { fixPathname } from '../../packages/api-docs-builder/buildApiUtils';
+import replaceUrl from '../../packages/api-docs-builder/utils/replaceUrl';
 import findComponents from '../../packages/api-docs-builder/utils/findComponents';
+import findPagesMarkdown from '../../packages/api-docs-builder/utils/findPagesMarkdown';
 
 interface ComponentDocInfo {
   name: string;
@@ -18,6 +21,7 @@ type CommandOptions = {
   outputDir?: string;
   includeApi?: boolean;
   projectSettings?: string;
+  nonComponentFolders?: string[];
 };
 
 /**
@@ -88,6 +92,48 @@ async function findComponentsToProcess(
   return components;
 }
 
+
+/**
+ * Find all non-component markdown files from specified folders
+ */
+function findNonComponentMarkdownFiles(
+  folders: string[],
+  grep: RegExp | null
+): Array<{ markdownPath: string; outputPath: string }> {
+  // Get all markdown files using the existing findPagesMarkdown utility
+  const allMarkdownFiles = findPagesMarkdown();
+  
+  const files: Array<{ markdownPath: string; outputPath: string }> = [];
+  
+  for (const page of allMarkdownFiles) {
+    // Check if the page belongs to one of the specified folders
+    const belongsToFolder = folders.some(folder => page.pathname.startsWith(`/${folder}`));
+    if (!belongsToFolder) {
+      continue;
+    }
+    
+    // Apply grep filter if specified
+    if (grep) {
+      const fileName = path.basename(page.filename);
+      if (!grep.test(fileName) && !grep.test(page.pathname)) {
+        continue;
+      }
+    }
+    
+    // Apply fixPathname first, then replaceUrl to get the proper output structure (like components)
+    const afterFixPathname = fixPathname(page.pathname);
+    const fixedPathname = replaceUrl(afterFixPathname, '/material-ui/');
+    const outputPath = fixedPathname.replace(/^\//, '').replace(/\/$/, '') + '.md';
+    
+    files.push({
+      markdownPath: page.filename,
+      outputPath,
+    });
+  }
+  
+  return files;
+}
+
 /**
  * Process a single component
  */
@@ -151,6 +197,13 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
 
   console.log(`Found ${components.length} components to process`);
 
+  // Find non-component markdown files if specified
+  let nonComponentFiles: Array<{ markdownPath: string; outputPath: string }> = [];
+  if (argv.nonComponentFolders && argv.nonComponentFolders.length > 0) {
+    nonComponentFiles = findNonComponentMarkdownFiles(argv.nonComponentFolders, grep);
+    console.log(`Found ${nonComponentFiles.length} non-component markdown files to process`);
+  }
+
   // Process each component
   let processedCount = 0;
   for (const component of components) {
@@ -187,6 +240,30 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
     }
   }
 
+  // Process non-component markdown files
+  for (const file of nonComponentFiles) {
+    try {
+      console.log(`Processing non-component file: ${path.relative(process.cwd(), file.markdownPath)}`);
+      
+      // Process the markdown file with demo replacement
+      const processedMarkdown = processMarkdownFile(file.markdownPath);
+      
+      const outputPath = path.join(outputDir, file.outputPath);
+      
+      // Ensure the directory exists
+      const outputDirPath = path.dirname(outputPath);
+      if (!fs.existsSync(outputDirPath)) {
+        fs.mkdirSync(outputDirPath, { recursive: true });
+      }
+      
+      fs.writeFileSync(outputPath, processedMarkdown, 'utf-8');
+      console.log(`✓ Generated: ${file.outputPath}`);
+      processedCount++;
+    } catch (error) {
+      console.error(`✗ Error processing ${file.markdownPath}:`, error);
+    }
+  }
+
   console.log(`\nCompleted! Generated ${processedCount} files in ${outputDir}`);
 }
 
@@ -197,7 +274,7 @@ yargs(process.argv.slice(2))
   .command({
     command: '$0',
     describe: 'Generates LLM-optimized documentation for MUI components.',
-    builder: (command) => {
+    builder: (command: any) => {
       return command
         .option('grep', {
           description:
@@ -218,6 +295,11 @@ yargs(process.argv.slice(2))
           description: 'Path to the project settings module that exports ProjectSettings interface.',
           type: 'string',
           demandOption: true,
+        })
+        .option('nonComponentFolders', {
+          description: 'List of folders from docs/data/ to process non-component markdown files.',
+          type: 'array',
+          default: [],
         });
     },
     handler: buildLlmsDocs,
