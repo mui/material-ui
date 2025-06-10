@@ -81,10 +81,10 @@ function htmlToMarkdown(html: string): string {
       .split(/<\/li>/)
       .map((item) => item.replace(/<li[^>]*>/, '').trim())
       .filter((item) => item.length > 0)
-      .map((item) => '- ' + item)
+      .map((item) => `- ${item}`)
       .join('\n');
 
-    return '\n' + items + '\n';
+    return `\n${items}\n`;
   });
 
   // Handle other block elements
@@ -227,7 +227,7 @@ export function processApiJson(apiJson: ApiJson | string): string {
     markdown += '## Demos\n\n';
     markdown +=
       'For examples and details on the usage of this React component, visit the component demo pages:\n\n';
-    markdown += htmlToMarkdown(api.demos) + '\n\n';
+    markdown += `${htmlToMarkdown(api.demos)}\n\n`;
   }
 
   // Add import section
@@ -239,7 +239,7 @@ export function processApiJson(apiJson: ApiJson | string): string {
   // Add props section
   const propsTable = generatePropsTable(api.props);
   if (propsTable) {
-    markdown += propsTable + '\n';
+    markdown += `${propsTable}\n`;
   }
 
   // Add ref information
@@ -277,13 +277,13 @@ export function processApiJson(apiJson: ApiJson | string): string {
   // Add slots section
   const slotsTable = generateSlotsTable(api.slots || []);
   if (slotsTable) {
-    markdown += slotsTable + '\n';
+    markdown += `${slotsTable}\n`;
   }
 
   // Add classes section
   const classesTable = generateClassesTable(api.classes || []);
   if (classesTable) {
-    markdown += classesTable + '\n';
+    markdown += `${classesTable}\n`;
   }
 
   // Add CSS component note
