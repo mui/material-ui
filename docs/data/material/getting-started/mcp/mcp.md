@@ -1,6 +1,6 @@
 # Model Context Protocol (MCP) for MUI
 
-<p class="description">Gain access to the official Material UI and code in your AI client.</p>
+<p class="description">Gain access to the official Material UI docs and code examples in your AI client.</p>
 
 ## What is MCP?
 
@@ -10,15 +10,15 @@ Want to learn more about MCP? See the [official MCP documentation](https://model
 
 ## Why MCP?
 
-Traditional AI coding assistants are excellent at providing answers, especially to straightforward questions. However, when faced with a deeper, more complex question which requires understanding concepts from multiple parts of the documentation, they often hallucinate links, cite non-existent documentation, or provide answers that are hard to verify. MCP solves these problems by:
+Popular AI coding assistants are excellent at providing answers, especially to straightforward questions. However, when faced with a deeper, more complex question which requires understanding concepts from multiple parts of the documentation, they often hallucinate links, cite non-existent documentation, or provide answers that are hard to verify. MCP solves these problems by:
 
 - Quoting **real, direct sources** in answers
-- Linking to **actual documentation** _(no imaginary links that lead to 404s)_
+- Linking to **actual documentation** - no imaginary links that lead to 404s
 - Using component code from officially published registries
 
-## Getting Started: Installation & Setup
+## Installation & Setup
 
-The MCP is available as a separate package and runs locally, communicate via your AI client using the `stdio` transport. Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
+The MCP is available as a separate package that runs locally and communicates via your AI client using the `stdio` transport. Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
 
 ```bash
 npx -y @mui/mcp@latest
@@ -70,8 +70,6 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 >
 > However, when I'm trying to use GRID_REORDER_COL_DEF the renderCell is returning null for pinned rows.
 
----
-
 ### AI clients without MCP
 
 > This is a known limitation in MUI DataGrid Pro: when a row is pinned, the default row reorder handler
@@ -93,8 +91,6 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 >
 > Would you like a code example for a custom reorder column that works with pinned rows? If yes, please specify if you're using TypeScript or JavaScript, and if you want the handler to be visible for both pinned and unpinned rows
 
----
-
 ### AI clients with MCP
 
 > You are encountering this issue because, according to the official MUI DataGrid Pro documentation, row pinning and row reordering are not fully compatible. Specifically:
@@ -115,7 +111,7 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 
 <hr/>
 
-The MCP-aided response is more coherent and directly references the documentation, building trust and enabling the user to be able to discover further details. While the tool calls to fetch and parse required documentation add some delay to the response, the difference is made up by a better quality response.
+The MCP-aided response is more coherent and directly references the documentation, building trust and enabling the user to be able to discover further details.
 
 ## FAQ
 
@@ -158,3 +154,5 @@ Most editors allow you to specify rules for AI assistants to follow. Depending o
 - 3. repeat steps 1-2 until you have fetched all relevant docs for the given question
 - 4. use the fetched content to answer the question
 ```
+
+You can use the same content as rules for whichever AI-enabled IDE you're using.
