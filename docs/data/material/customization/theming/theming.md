@@ -247,7 +247,7 @@ const theme = createTheme({
 
 <Button className="custom-button-class" style={{ color: 'blue' }}>
   Click me
-</Button>
+</Button>;
 ```
 
 Here's what the example above looks like with this configuration:
