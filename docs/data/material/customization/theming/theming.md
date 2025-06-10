@@ -228,7 +228,7 @@ Think of creating a theme as a two-step composition process: first, you define t
 By default, when a component has `defaultProps` defined in the theme, props passed to the component override the default props completely. 
 You can change this behavior by configuring the theme to merge `className` and `style` props instead of replacing them.
 
-Set `theme.components.mergeClassNameAndStyle` to `true` to enable this behavior:
+To do this, set `theme.components.mergeClassNameAndStyle` to `true`:
 
 ```js
 import { createTheme } from '@mui/material/styles';
