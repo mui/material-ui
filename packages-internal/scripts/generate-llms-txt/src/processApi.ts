@@ -75,7 +75,7 @@ function htmlToMarkdown(html: string): string {
     .replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/gi, '[$2]($1)');
 
   // Handle lists - process them as complete units to avoid extra line breaks
-  markdown = markdown.replace(/<ul[^>]*>(.*?)<\/ul>/gis, (match, listContent) => {
+  markdown = markdown.replace(/<ul[^>]*>(.*?)<\/ul>/gis, (match, listContent: string) => {
     // Process each list item
     const items = listContent
       .split(/<\/li>/)
