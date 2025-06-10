@@ -16,39 +16,39 @@ interface DemoReplaceOptions {
 export function replaceDemoWithSnippet(
   markdownContent: string,
   markdownPath: string,
-  options: DemoReplaceOptions = {}
+  options: DemoReplaceOptions = {},
 ): string {
   const { basePath = '', includeTypeScript = true } = options;
-  
+
   // Regular expression to match {{"demo": "filename.js"}} pattern
   const demoRegex = /\{\{"demo":\s*"([^"]+)"(?:,\s*[^}]+)?\}\}/g;
-  
+
   return markdownContent.replace(demoRegex, (match, filename) => {
     try {
       // Extract the base filename without extension
       const baseFilename = filename.replace(/\.(js|tsx?)$/, '');
-      
+
       // Get the directory of the markdown file
       const markdownDir = path.dirname(markdownPath);
-      
+
       let codeSnippet = '';
-      
+
       // Try to read JavaScript file
-      const jsPath = basePath ? 
-        path.join(basePath, `${baseFilename}.js`) : 
-        path.join(markdownDir, `${baseFilename}.js`);
-        
+      const jsPath = basePath
+        ? path.join(basePath, `${baseFilename}.js`)
+        : path.join(markdownDir, `${baseFilename}.js`);
+
       if (fs.existsSync(jsPath)) {
         const jsContent = fs.readFileSync(jsPath, 'utf-8');
         codeSnippet += `\`\`\`jsx\n${jsContent}\n\`\`\``;
       }
-      
+
       // Try to read TypeScript file if includeTypeScript is true
       if (includeTypeScript) {
-        const tsPath = basePath ? 
-          path.join(basePath, `${baseFilename}.tsx`) : 
-          path.join(markdownDir, `${baseFilename}.tsx`);
-          
+        const tsPath = basePath
+          ? path.join(basePath, `${baseFilename}.tsx`)
+          : path.join(markdownDir, `${baseFilename}.tsx`);
+
         if (fs.existsSync(tsPath)) {
           const tsContent = fs.readFileSync(tsPath, 'utf-8');
           if (codeSnippet) {
@@ -57,13 +57,13 @@ export function replaceDemoWithSnippet(
           codeSnippet += `\`\`\`tsx\n${tsContent}\n\`\`\``;
         }
       }
-      
+
       // If no files found, return original match
       if (!codeSnippet) {
         console.warn(`Demo file not found: ${filename}`);
         return match;
       }
-      
+
       return codeSnippet;
     } catch (error) {
       console.error(`Error processing demo ${filename}:`, error);
@@ -78,18 +78,15 @@ export function replaceDemoWithSnippet(
  * @param options - Options for parsing
  * @returns The processed markdown content
  */
-export function processMarkdownFile(
-  filePath: string,
-  options: DemoReplaceOptions = {}
-): string {
+export function processMarkdownFile(filePath: string, options: DemoReplaceOptions = {}): string {
   const content = fs.readFileSync(filePath, 'utf-8');
   const dir = path.dirname(filePath);
-  
+
   // Set basePath relative to markdown file location if not provided
   const processOptions = {
     ...options,
     basePath: options.basePath || dir,
   };
-  
+
   return replaceDemoWithSnippet(content, filePath, processOptions);
 }

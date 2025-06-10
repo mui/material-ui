@@ -36,7 +36,9 @@ export default function BasicButton() {
       // Create test files
       fs.writeFileSync(path.join(tempDir, 'BasicButton.js'), jsContent);
 
-      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), { basePath: tempDir });
+      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
+        basePath: tempDir,
+      });
 
       expect(result).to.include('```jsx');
       expect(result).to.include(jsContent);
@@ -52,9 +54,9 @@ export default function BasicButton() {
       fs.writeFileSync(path.join(tempDir, 'Component.js'), jsContent);
       fs.writeFileSync(path.join(tempDir, 'Component.tsx'), tsContent);
 
-      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), { 
+      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
         basePath: tempDir,
-        includeTypeScript: true 
+        includeTypeScript: true,
       });
 
       expect(result).to.include('```jsx');
@@ -72,9 +74,9 @@ export default function BasicButton() {
       fs.writeFileSync(path.join(tempDir, 'Component.js'), jsContent);
       fs.writeFileSync(path.join(tempDir, 'Component.tsx'), tsContent);
 
-      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), { 
+      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
         basePath: tempDir,
-        includeTypeScript: false 
+        includeTypeScript: false,
       });
 
       expect(result).to.include('```jsx');
@@ -95,7 +97,9 @@ Some text in between.
       fs.writeFileSync(path.join(tempDir, 'First.js'), 'First component');
       fs.writeFileSync(path.join(tempDir, 'Second.js'), 'Second component');
 
-      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), { basePath: tempDir });
+      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
+        basePath: tempDir,
+      });
 
       expect(result).to.include('First component');
       expect(result).to.include('Second component');
@@ -105,7 +109,9 @@ Some text in between.
     it('should return original match when demo file is not found', () => {
       const markdown = `{{"demo": "NonExistent.js"}}`;
 
-      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), { basePath: tempDir });
+      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
+        basePath: tempDir,
+      });
 
       expect(result).to.equal(markdown);
     });
@@ -115,7 +121,9 @@ Some text in between.
 
       fs.writeFileSync(path.join(tempDir, 'Button.js'), 'Button code');
 
-      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), { basePath: tempDir });
+      const result = replaceDemoWithSnippet(markdown, path.join(tempDir, 'test.md'), {
+        basePath: tempDir,
+      });
 
       expect(result).to.include('```jsx');
       expect(result).to.include('Button code');

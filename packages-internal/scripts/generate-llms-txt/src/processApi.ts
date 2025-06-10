@@ -73,20 +73,20 @@ function htmlToMarkdown(html: string): string {
     .replace(/<code>([^<]+)<\/code>/gi, '`$1`')
     // Convert <a> to markdown links
     .replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/gi, '[$2]($1)');
-  
+
   // Handle lists - process them as complete units to avoid extra line breaks
   markdown = markdown.replace(/<ul[^>]*>(.*?)<\/ul>/gis, (match, listContent) => {
     // Process each list item
     const items = listContent
       .split(/<\/li>/)
-      .map(item => item.replace(/<li[^>]*>/, '').trim())
-      .filter(item => item.length > 0)
-      .map(item => '- ' + item)
+      .map((item) => item.replace(/<li[^>]*>/, '').trim())
+      .filter((item) => item.length > 0)
+      .map((item) => '- ' + item)
       .join('\n');
-    
+
     return '\n' + items + '\n';
   });
-  
+
   // Handle other block elements
   markdown = markdown
     // Convert <br> to newline
@@ -101,7 +101,7 @@ function htmlToMarkdown(html: string): string {
     .replace(/ *\n */g, '\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
-  
+
   return markdown;
 }
 
@@ -110,19 +110,19 @@ function htmlToMarkdown(html: string): string {
  */
 function formatPropType(prop: ApiProp): string {
   let type = prop.type.name;
-  
+
   if (prop.type.description) {
     // Clean up the description
     type = htmlToMarkdown(prop.type.description);
   }
-  
+
   if (prop.signature) {
     type = prop.signature.type;
   }
-  
+
   // Escape pipes in union types for better markdown readability
   type = type.replace(/\s*\|\s*/g, ' \\| ');
-  
+
   // Wrap all prop types in backticks to prevent markdown table issues with pipes
   return `\`${type}\``;
 }
@@ -145,14 +145,15 @@ function generatePropsTable(props: Record<string, ApiProp>): string {
     const type = formatPropType(prop);
     const defaultValue = prop.default || '-';
     const required = prop.required ? 'Yes' : 'No';
-    
+
     let description = '';
     if (prop.deprecated && prop.deprecationInfo) {
       description = `⚠️ ${htmlToMarkdown(prop.deprecationInfo)}`;
     } else if (prop.additionalInfo?.cssApi) {
       description = 'Override or extend the styles applied to the component.';
     } else if (prop.additionalInfo?.sx) {
-      description = 'The system prop that allows defining system overrides as well as additional CSS styles.';
+      description =
+        'The system prop that allows defining system overrides as well as additional CSS styles.';
     }
 
     table += `| ${name} | ${type} | ${defaultValue} | ${required} | ${description} |\n`;
@@ -210,20 +211,22 @@ function generateClassesTable(classes: ApiClass[]): string {
  */
 export function processApiJson(apiJson: ApiJson | string): string {
   const api: ApiJson = typeof apiJson === 'string' ? JSON.parse(apiJson) : apiJson;
-  
+
   let markdown = `# ${api.name} API\n\n`;
 
   // Add deprecation warning if applicable
   if (api.deprecated) {
-    const warningText = api.deprecationInfo ? htmlToMarkdown(api.deprecationInfo) : 
-      'This component is deprecated. Consider using an alternative component.';
+    const warningText = api.deprecationInfo
+      ? htmlToMarkdown(api.deprecationInfo)
+      : 'This component is deprecated. Consider using an alternative component.';
     markdown += `> ⚠️ **Warning**: ${warningText}\n\n`;
   }
 
   // Add demos section
   if (api.demos) {
     markdown += '## Demos\n\n';
-    markdown += 'For examples and details on the usage of this React component, visit the component demo pages:\n\n';
+    markdown +=
+      'For examples and details on the usage of this React component, visit the component demo pages:\n\n';
     markdown += htmlToMarkdown(api.demos) + '\n\n';
   }
 
@@ -248,9 +251,9 @@ export function processApiJson(apiJson: ApiJson | string): string {
 
   // Add spread information
   if (api.spread) {
-    const spreadElement = api.inheritance ? 
-      `[${api.inheritance.component}](${api.inheritance.pathname})` : 
-      'native element';
+    const spreadElement = api.inheritance
+      ? `[${api.inheritance.component}](${api.inheritance.pathname})`
+      : 'native element';
     markdown += `> Any other props supplied will be provided to the root element (${spreadElement}).\n\n`;
   }
 
@@ -259,7 +262,8 @@ export function processApiJson(apiJson: ApiJson | string): string {
     markdown += '## Inheritance\n\n';
     markdown += `While not explicitly documented above, the props of the [${api.inheritance.component}](${api.inheritance.pathname}) component are also available on ${api.name}.`;
     if (api.inheritance.component === 'Transition') {
-      markdown += ' A subset of components support [react-transition-group](https://reactcommunity.org/react-transition-group/transition/) out of the box.';
+      markdown +=
+        ' A subset of components support [react-transition-group](https://reactcommunity.org/react-transition-group/transition/) out of the box.';
     }
     markdown += '\n\n';
   }

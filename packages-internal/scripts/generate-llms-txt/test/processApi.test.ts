@@ -11,20 +11,20 @@ describe('processApi', () => {
         name: 'Button',
         imports: [
           "import Button from '@mui/material/Button';",
-          "import { Button } from '@mui/material';"
+          "import { Button } from '@mui/material';",
         ],
         props: {
           color: {
             type: { name: 'string' },
             default: "'primary'",
-            required: false
+            required: false,
           },
           disabled: {
             type: { name: 'bool' },
             default: 'false',
-            required: false
-          }
-        }
+            required: false,
+          },
+        },
       };
 
       const result = processApiJson(apiJson);
@@ -33,7 +33,7 @@ describe('processApi', () => {
       expect(result).to.include('## Import');
       expect(result).to.include("import Button from '@mui/material/Button';");
       expect(result).to.include('## Props');
-      expect(result).to.include('| color | string | `\'primary\'` | No |');
+      expect(result).to.include("| color | string | `'primary'` | No |");
       expect(result).to.include('| disabled | bool | `false` | No |');
     });
 
@@ -43,7 +43,7 @@ describe('processApi', () => {
         imports: ["import DeprecatedComponent from '@mui/material/DeprecatedComponent';"],
         props: {},
         deprecated: true,
-        deprecationInfo: 'Use <code>NewComponent</code> instead.'
+        deprecationInfo: 'Use <code>NewComponent</code> instead.',
       };
 
       const result = processApiJson(apiJson);
@@ -59,9 +59,9 @@ describe('processApi', () => {
           oldProp: {
             type: { name: 'string' },
             deprecated: true,
-            deprecationInfo: 'Use <code>newProp</code> instead.'
-          }
-        }
+            deprecationInfo: 'Use <code>newProp</code> instead.',
+          },
+        },
       };
 
       const result = processApiJson(apiJson);
@@ -79,23 +79,24 @@ describe('processApi', () => {
             type: { name: 'func' },
             signature: {
               type: 'function(event: React.SyntheticEvent, value: number) => void',
-              describedArgs: ['event', 'value']
-            }
+              describedArgs: ['event', 'value'],
+            },
           },
           slots: {
             type: {
               name: 'shape',
-              description: '{ root?: elementType, icon?: elementType }'
-            }
+              description: '{ root?: elementType, icon?: elementType }',
+            },
           },
           sx: {
             type: {
               name: 'union',
-              description: 'Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object'
+              description:
+                'Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object',
             },
-            additionalInfo: { sx: true }
-          }
-        }
+            additionalInfo: { sx: true },
+          },
+        },
       };
 
       const result = processApiJson(apiJson);
@@ -111,7 +112,7 @@ describe('processApi', () => {
         name: 'Accordion',
         imports: ["import Accordion from '@mui/material/Accordion';"],
         props: {},
-        demos: '<ul><li><a href="/material-ui/react-accordion/">Accordion</a></li></ul>'
+        demos: '<ul><li><a href="/material-ui/react-accordion/">Accordion</a></li></ul>',
       };
 
       const result = processApiJson(apiJson);
@@ -130,21 +131,23 @@ describe('processApi', () => {
             name: 'root',
             description: 'The component that renders the root.',
             default: 'Paper',
-            class: 'MuiComponent-root'
+            class: 'MuiComponent-root',
           },
           {
             name: 'icon',
             description: 'The icon element.',
             default: 'svg',
-            class: null
-          }
-        ]
+            class: null,
+          },
+        ],
       };
 
       const result = processApiJson(apiJson);
 
       expect(result).to.include('## Slots');
-      expect(result).to.include('| root | `Paper` | `.MuiComponent-root` | The component that renders the root. |');
+      expect(result).to.include(
+        '| root | `Paper` | `.MuiComponent-root` | The component that renders the root. |',
+      );
       expect(result).to.include('| icon | `svg` | - | The icon element. |');
     });
 
@@ -158,22 +161,24 @@ describe('processApi', () => {
             key: 'disabled',
             className: 'Mui-disabled',
             description: 'State class applied to the root element if `disabled={true}`.',
-            isGlobal: true
+            isGlobal: true,
           },
           {
             key: 'root',
             className: 'MuiComponent-root',
             description: 'Styles applied to the root element.',
-            isGlobal: false
-          }
-        ]
+            isGlobal: false,
+          },
+        ],
       };
 
       const result = processApiJson(apiJson);
 
       expect(result).to.include('## CSS');
       expect(result).to.include('### Rule name');
-      expect(result).to.include('| `.Mui-disabled` | - | State class applied to the root element if `disabled={true}`. |');
+      expect(result).to.include(
+        '| `.Mui-disabled` | - | State class applied to the root element if `disabled={true}`. |',
+      );
       expect(result).to.include('| - | root | Styles applied to the root element. |');
     });
 
@@ -184,15 +189,17 @@ describe('processApi', () => {
         props: {},
         inheritance: {
           component: 'Paper',
-          pathname: '/material-ui/api/paper/'
-        }
+          pathname: '/material-ui/api/paper/',
+        },
       };
 
       const result = processApiJson(apiJson);
 
       expect(result).to.include('## Inheritance');
       expect(result).to.include('[Paper](/material-ui/api/paper/)');
-      expect(result).to.include('the props of the [Paper](/material-ui/api/paper/) component are also available on Accordion');
+      expect(result).to.include(
+        'the props of the [Paper](/material-ui/api/paper/) component are also available on Accordion',
+      );
     });
 
     it('should handle spread props', () => {
@@ -203,13 +210,15 @@ describe('processApi', () => {
         spread: true,
         inheritance: {
           component: 'Paper',
-          pathname: '/material-ui/api/paper/'
-        }
+          pathname: '/material-ui/api/paper/',
+        },
       };
 
       const result = processApiJson(apiJson);
 
-      expect(result).to.include('Any other props supplied will be provided to the root element ([Paper](/material-ui/api/paper/))');
+      expect(result).to.include(
+        'Any other props supplied will be provided to the root element ([Paper](/material-ui/api/paper/))',
+      );
     });
 
     it('should handle ref forwarding', () => {
@@ -217,7 +226,7 @@ describe('processApi', () => {
         name: 'Component',
         imports: ["import Component from '@mui/material/Component';"],
         props: {},
-        forwardsRefTo: 'HTMLDivElement'
+        forwardsRefTo: 'HTMLDivElement',
       };
 
       const result = processApiJson(apiJson);
@@ -230,7 +239,7 @@ describe('processApi', () => {
         name: 'Component',
         imports: ["import Component from '@mui/material/Component';"],
         props: {},
-        forwardsRefTo: null
+        forwardsRefTo: null,
       };
 
       const result = processApiJson(apiJson);
@@ -244,7 +253,7 @@ describe('processApi', () => {
         imports: ["import Button from '@mui/material/Button';"],
         props: {},
         themeDefaultProps: true,
-        muiName: 'MuiButton'
+        muiName: 'MuiButton',
       };
 
       const result = processApiJson(apiJson);
@@ -258,12 +267,14 @@ describe('processApi', () => {
         name: 'Box',
         imports: ["import Box from '@mui/material/Box';"],
         props: {},
-        cssComponent: true
+        cssComponent: true,
       };
 
       const result = processApiJson(apiJson);
 
-      expect(result).to.include('As a CSS utility, the `Box` component also supports all system properties');
+      expect(result).to.include(
+        'As a CSS utility, the `Box` component also supports all system properties',
+      );
     });
 
     it('should handle source code section', () => {
@@ -271,13 +282,15 @@ describe('processApi', () => {
         name: 'Component',
         imports: ["import Component from '@mui/material/Component';"],
         props: {},
-        filename: '/packages/mui-material/src/Component/Component.js'
+        filename: '/packages/mui-material/src/Component/Component.js',
       };
 
       const result = processApiJson(apiJson);
 
       expect(result).to.include('## Source code');
-      expect(result).to.include('https://github.com/mui/material-ui/tree/HEAD/packages/mui-material/src/Component/Component.js');
+      expect(result).to.include(
+        'https://github.com/mui/material-ui/tree/HEAD/packages/mui-material/src/Component/Component.js',
+      );
     });
 
     it('should handle required props', () => {
@@ -287,13 +300,13 @@ describe('processApi', () => {
         props: {
           children: {
             type: { name: 'node' },
-            required: true
+            required: true,
           },
           optional: {
             type: { name: 'string' },
-            required: false
-          }
-        }
+            required: false,
+          },
+        },
       };
 
       const result = processApiJson(apiJson);
@@ -321,9 +334,9 @@ describe('processApi', () => {
         props: {
           test: {
             type: { name: 'bool' },
-            default: 'true'
-          }
-        }
+            default: 'true',
+          },
+        },
       };
 
       const filePath = path.join(tempDir, 'test-component.json');
@@ -345,11 +358,11 @@ describe('processApi', () => {
           complexProp: {
             type: {
               name: 'union',
-              description: 'Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func'
-            }
-          }
+              description: 'Array&lt;func<br>&#124;&nbsp;object&gt;<br>&#124;&nbsp;func',
+            },
+          },
         },
-        demos: '<p>Test paragraph</p><ul><li>Item 1</li><li>Item 2</li></ul>'
+        demos: '<p>Test paragraph</p><ul><li>Item 1</li><li>Item 2</li></ul>',
       };
 
       const result = processApiJson(apiJson);
