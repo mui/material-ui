@@ -56,6 +56,7 @@ import { fixPathname } from '../../packages/api-docs-builder/buildApiUtils';
 import replaceUrl from '../../packages/api-docs-builder/utils/replaceUrl';
 import findComponents from '../../packages/api-docs-builder/utils/findComponents';
 import findPagesMarkdown from '../../packages/api-docs-builder/utils/findPagesMarkdown';
+import { getHeaders } from '@mui/internal-markdown';
 
 interface ComponentDocInfo {
   name: string;
@@ -63,6 +64,14 @@ interface ComponentDocInfo {
   demos: Array<{ demoPageTitle: string; demoPathname: string }>;
   markdownPath?: string;
   apiJsonPath?: string;
+}
+
+interface GeneratedFile {
+  outputPath: string;
+  title: string;
+  description: string;
+  originalMarkdownPath: string;
+  category: string;
 }
 
 type CommandOptions = {
@@ -144,6 +153,41 @@ async function findComponentsToProcess(
 }
 
 /**
+ * Extract title and description from markdown content
+ */
+function extractMarkdownInfo(markdownPath: string): { title: string; description: string } {
+  try {
+    const content = fs.readFileSync(markdownPath, 'utf-8');
+    const headers = getHeaders(content);
+
+    // Get title from frontmatter or first h1
+    const title =
+      headers.title || content.match(/^# (.+)$/m)?.[1] || path.basename(markdownPath, '.md');
+
+    // Extract description from the first paragraph with class="description"
+    const descriptionMatch = content.match(/<p class="description">([^<]+)<\/p>/);
+    let description = '';
+
+    if (descriptionMatch) {
+      description = descriptionMatch[1].trim();
+    } else {
+      // Fallback: get first paragraph after title
+      const paragraphMatch = content.match(/^# .+\n\n(.+?)(?:\n\n|$)/m);
+      if (paragraphMatch) {
+        description = paragraphMatch[1].trim();
+      }
+    }
+
+    return { title, description };
+  } catch (error) {
+    return {
+      title: path.basename(markdownPath, '.md'),
+      description: '',
+    };
+  }
+}
+
+/**
  * Find all non-component markdown files from specified folders
  */
 function findNonComponentMarkdownFiles(
@@ -213,6 +257,94 @@ function processComponent(component: ComponentDocInfo): string | null {
 }
 
 /**
+ * Check if a file is a component file by examining its markdown header
+ */
+function checkIfComponentFile(file: GeneratedFile): boolean {
+  try {
+    if (!file.originalMarkdownPath) {
+      return false;
+    }
+
+    const content = fs.readFileSync(file.originalMarkdownPath, 'utf-8');
+    const headers = getHeaders(content);
+
+    // Check if the markdown header contains 'components' field
+    return headers.components && headers.components.length > 0;
+  } catch (error) {
+    return false;
+  }
+}
+
+/**
+ * Convert kebab-case to Title Case
+ */
+function toTitleCase(kebabCase: string): string {
+  return kebabCase
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+/**
+ * Generate llms.txt content for a specific directory
+ */
+function generateLlmsTxt(
+  generatedFiles: GeneratedFile[],
+  projectName: string,
+  baseDir: string,
+): string {
+  // Group files by category
+  const groupedByCategory: Record<string, GeneratedFile[]> = {};
+
+  for (const file of generatedFiles) {
+    const category = file.category;
+    if (!groupedByCategory[category]) {
+      groupedByCategory[category] = [];
+    }
+    groupedByCategory[category].push(file);
+  }
+
+  // Generate content
+  let content = `# ${projectName}\n\n`;
+  content += `This is the documentation for the ${projectName} package.\n`;
+  content += `It contains comprehensive guides, components, and utilities for building user interfaces.\n\n`;
+
+  // Add sections for each category
+  // Sort categories to ensure components appear first
+  const sortedCategories = Object.keys(groupedByCategory).sort((a, b) => {
+    if (a === 'components') return -1;
+    if (b === 'components') return 1;
+    return a.localeCompare(b);
+  });
+
+  for (const category of sortedCategories) {
+    const files = groupedByCategory[category];
+    if (files.length === 0) continue;
+
+    const sectionTitle = toTitleCase(category);
+    content += `## ${sectionTitle}\n\n`;
+
+    // Sort files by title
+    files.sort((a, b) => a.title.localeCompare(b.title));
+
+    for (const file of files) {
+      // Calculate relative path from the baseDir to the file
+      const relativePath = file.outputPath.startsWith(baseDir + '/')
+        ? `./${file.outputPath.substring(baseDir.length + 1)}`
+        : `../${file.outputPath}`;
+      content += `- [${file.title}](${relativePath})`;
+      if (file.description) {
+        content += `: ${file.description}`;
+      }
+      content += '\n';
+    }
+    content += '\n';
+  }
+
+  return content.trim();
+}
+
+/**
  * Main build function
  */
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
@@ -252,6 +384,9 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
     console.log(`Found ${nonComponentFiles.length} non-component markdown files to process`);
   }
 
+  // Track generated files for llms.txt
+  const generatedFiles: GeneratedFile[] = [];
+
   // Process each component
   let processedCount = 0;
   for (const component of components) {
@@ -279,6 +414,21 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
       fs.writeFileSync(outputPath, processedMarkdown, 'utf-8');
       console.log(`✓ Generated: ${outputFileName}`);
       processedCount++;
+
+      // Track this file for llms.txt (avoid duplicates for components that share the same markdown file)
+      if (component.markdownPath) {
+        const existingFile = generatedFiles.find((f) => f.outputPath === outputFileName);
+        if (!existingFile) {
+          const { title, description } = extractMarkdownInfo(component.markdownPath);
+          generatedFiles.push({
+            outputPath: outputFileName,
+            title,
+            description,
+            originalMarkdownPath: component.markdownPath,
+            category: 'components',
+          });
+        }
+      }
     } catch (error) {
       console.error(`✗ Error processing ${component.name}:`, error);
     }
@@ -305,8 +455,60 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
       fs.writeFileSync(outputPath, processedMarkdown, 'utf-8');
       console.log(`✓ Generated: ${file.outputPath}`);
       processedCount++;
+
+      // Track this file for llms.txt
+      const { title, description } = extractMarkdownInfo(file.markdownPath);
+
+      // Extract category from the file path
+      // e.g., "material-ui/customization/color.md" -> "customization"
+      // e.g., "getting-started/installation.md" -> "getting-started"
+      const pathParts = file.outputPath.split('/');
+      const category = pathParts.reverse()[1];
+
+      generatedFiles.push({
+        outputPath: file.outputPath,
+        title,
+        description,
+        originalMarkdownPath: file.markdownPath,
+        category,
+      });
     } catch (error) {
       console.error(`✗ Error processing ${file.markdownPath}:`, error);
+    }
+  }
+
+  // Generate llms.txt files
+  if (generatedFiles.length > 0) {
+    const groupedByFirstDir: Record<string, GeneratedFile[]> = {};
+
+    for (const file of generatedFiles) {
+      const firstDir = file.outputPath.split('/')[0];
+      if (!groupedByFirstDir[firstDir]) {
+        groupedByFirstDir[firstDir] = [];
+      }
+      groupedByFirstDir[firstDir].push(file);
+    }
+
+    for (const [dirName, files] of Object.entries(groupedByFirstDir)) {
+      const projectName =
+        dirName === 'material-ui'
+          ? 'Material UI'
+          : dirName === 'system'
+            ? 'MUI System'
+            : dirName.charAt(0).toUpperCase() + dirName.slice(1);
+
+      const llmsContent = generateLlmsTxt(files, projectName, dirName);
+      const llmsPath = path.join(outputDir, dirName, 'llms.txt');
+
+      // Ensure directory exists
+      const llmsDirPath = path.dirname(llmsPath);
+      if (!fs.existsSync(llmsDirPath)) {
+        fs.mkdirSync(llmsDirPath, { recursive: true });
+      }
+
+      fs.writeFileSync(llmsPath, llmsContent, 'utf-8');
+      console.log(`✓ Generated: ${dirName}/llms.txt`);
+      processedCount++;
     }
   }
 
