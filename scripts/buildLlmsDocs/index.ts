@@ -2,8 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import yargs, { ArgumentsCamelCase } from 'yargs';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
-import { projectSettings } from '../../packages/api-docs-builder-core/materialUi/projectSettings';
-import { ComponentInfo } from '@mui-internal/api-docs-builder';
+import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
 import findComponents from '../../packages/api-docs-builder/utils/findComponents';
 
 interface ComponentDocInfo {
@@ -18,12 +17,16 @@ type CommandOptions = {
   grep?: string;
   outputDir?: string;
   includeApi?: boolean;
+  projectSettings?: string;
 };
 
 /**
  * Find all components using the API docs builder infrastructure
  */
-async function findComponentsToProcess(grep: RegExp | null): Promise<ComponentDocInfo[]> {
+async function findComponentsToProcess(
+  projectSettings: ProjectSettings,
+  grep: RegExp | null
+): Promise<ComponentDocInfo[]> {
   const components: ComponentDocInfo[] = [];
 
   // Iterate through TypeScript projects, using the same logic as buildApi.ts
@@ -121,7 +124,22 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
   const includeApi = argv.includeApi !== false; // Default to true
 
+  // Load project settings from the specified path
+  if (!argv.projectSettings) {
+    throw new Error('--projectSettings is required');
+  }
+
+  let projectSettings: ProjectSettings;
+  try {
+    const settingsPath = path.resolve(argv.projectSettings);
+    const settingsModule = await import(settingsPath);
+    projectSettings = settingsModule.projectSettings || settingsModule.default || settingsModule;
+  } catch (error) {
+    throw new Error(`Failed to load project settings from ${argv.projectSettings}: ${error}`);
+  }
+
   console.log(`Building LLMs docs...`);
+  console.log(`Project settings: ${argv.projectSettings}`);
   console.log(`Output directory: ${outputDir}`);
   console.log(`Include API: ${includeApi}`);
   if (grep) {
@@ -129,7 +147,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   }
 
   // Find all components
-  const components = await findComponentsToProcess(grep);
+  const components = await findComponentsToProcess(projectSettings, grep);
 
   console.log(`Found ${components.length} components to process`);
 
@@ -195,6 +213,11 @@ yargs(process.argv.slice(2))
           description: 'Whether to include API documentation at the end of each component doc.',
           type: 'boolean',
           default: true,
+        })
+        .option('projectSettings', {
+          description: 'Path to the project settings module that exports ProjectSettings interface.',
+          type: 'string',
+          demandOption: true,
         });
     },
     handler: buildLlmsDocs,
