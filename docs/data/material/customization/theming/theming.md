@@ -266,7 +266,6 @@ const theme = createTheme({
     },
   },
 });
-
 ```
 
 Here's what the example above looks like with this configuration:
