@@ -245,7 +245,7 @@ const theme = createTheme({
 // style will be: { color: 'blue' } (default ignored)
 <Button className="custom-button-class" style={{ color: 'blue' }}>
   Click me
-</Button>
+</Button>;
 ```
 
 You can change this behavior by configuring the theme to merge `className` and `style` props instead of replacing them.
