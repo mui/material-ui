@@ -225,7 +225,7 @@ Think of creating a theme as a two-step composition process: first, you define t
 
 ### Merging className and style props in defaultProps
 
-By default, when a component has `defaultProps` defined in the theme, props passed to the component override the default props completely. 
+By default, when a component has `defaultProps` defined in the theme, props passed to the component override the default props completely.
 You can change this behavior by configuring the theme to merge `className` and `style` props instead of replacing them.
 
 To do this, set `theme.components.mergeClassNameAndStyle` to `true`:
@@ -244,9 +244,13 @@ const theme = createTheme({
     },
   },
 });
+
+<Button className="custom-button-class" style={{ color: 'blue' }}>
+  Click me
+</Button>
 ```
 
-With this configuration:
+Here's what the example above looks like with this configuration:
 
 ```jsx
 // className will be: "default-button-class custom-button-class"
