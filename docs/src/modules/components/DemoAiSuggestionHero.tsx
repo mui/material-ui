@@ -8,6 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import { SxProps, Theme } from '@mui/material/styles';
+import { useTranslate } from '@mui/docs/i18n';
 
 export interface DemoAiSuggestionHeroProps {
   suggestion: string;
@@ -18,17 +19,20 @@ export interface DemoAiSuggestionHeroProps {
 
 const baseUrl = process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL;
 
-const DemoAiSuggestionHero: React.FC<DemoAiSuggestionHeroProps> = ({
+export default function DemoAiSuggestionHero({
   suggestion,
   params,
   sx,
   onSuccess,
-}) => {
+}: DemoAiSuggestionHeroProps) {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<Error | null>(null);
+  const t = useTranslate();
 
   const handleClick = async () => {
-    if (!baseUrl) return;
+    if (!baseUrl) {
+      return;
+    }
     const setLoadingTimeout = setTimeout(() => setLoading(true), 200);
     setError(null);
     try {
@@ -46,7 +50,9 @@ const DemoAiSuggestionHero: React.FC<DemoAiSuggestionHeroProps> = ({
         throw new Error('Failed to open in MUI Chat');
       }
       const data = await response.json();
-      if (onSuccess) onSuccess(data.nextUrl);
+      if (onSuccess) {
+        onSuccess(data.nextUrl);
+      }
       window.open(data.nextUrl, '_blank');
     } catch (err: any) {
       setError(err as Error);
@@ -55,8 +61,6 @@ const DemoAiSuggestionHero: React.FC<DemoAiSuggestionHeroProps> = ({
       setLoading(false);
     }
   };
-
-  if (!baseUrl) return null;
 
   return (
     <Box
@@ -78,7 +82,7 @@ const DemoAiSuggestionHero: React.FC<DemoAiSuggestionHeroProps> = ({
       <Box sx={{ display: 'flex', alignItems: 'center', px: 2, pt: 2, pb: 1 }}>
         <AutoAwesomeIcon fontSize="small" sx={{ color: 'primary.main', mr: 1 }} />
         <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-          Want to customize this?
+          {t('aiCustomizeDemo')}
         </Typography>
       </Box>
       <Box sx={{ px: 2, pb: 2 }}>
@@ -94,7 +98,7 @@ const DemoAiSuggestionHero: React.FC<DemoAiSuggestionHeroProps> = ({
             py: 1,
             backgroundColor: '#F6FAFD',
             border: '1px solid #B6E3FF',
-            color: '#1976d2',
+            color: (theme) => theme.palette.primary.main,
             boxShadow: 'none',
             transition: 'none',
             mt: 0,
@@ -120,12 +124,10 @@ const DemoAiSuggestionHero: React.FC<DemoAiSuggestionHeroProps> = ({
         autoHideDuration={6000}
       >
         <Alert onClose={() => setError(null)} severity="error" sx={{ width: '100%' }}>
-          <AlertTitle>Failed to open in MUI Chat</AlertTitle>
+          <AlertTitle>{t('aiChatFailed')}</AlertTitle>
           {error?.message}
         </Alert>
       </Snackbar>
     </Box>
   );
-};
-
-export default DemoAiSuggestionHero;
+}
