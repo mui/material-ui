@@ -1,3 +1,52 @@
+/**
+ * LLM Documentation Generator
+ *
+ * This script generates LLM-optimized documentation by processing MUI component markdown files
+ * and non-component documentation files to create comprehensive, standalone documentation.
+ *
+ * ## Main Workflow:
+ *
+ * 1. **Component Processing**:
+ *    - Discovers all components using the API docs builder infrastructure
+ *    - For each component, finds its markdown documentation and API JSON
+ *    - Processes markdown by replacing `{{"demo": "filename.js"}}` syntax with actual code snippets
+ *    - Appends API documentation (props, slots, CSS classes) to the markdown
+ *    - Outputs to files like `material-ui/react-accordion.md`
+ *
+ * 2. **Non-Component Processing** (optional):
+ *    - Processes markdown files from specified folders (e.g., `system`, `material/customization`)
+ *    - Applies the same demo replacement logic
+ *    - Uses URL transformation logic to maintain consistent paths with components
+ *    - Outputs to files like `system/borders.md`, `material-ui/customization/color.md`
+ *
+ * ## Key Features:
+ *
+ * - **Demo Replacement**: Converts `{{"demo": "filename.js"}}` to actual JSX/TSX code snippets
+ * - **API Integration**: Automatically includes component API documentation (props, slots, CSS)
+ * - **Reusable**: Accepts project settings via CLI to work across different repositories
+ * - **Filtering**: Supports grep patterns to process specific components/files
+ * - **Path Consistency**: Uses existing URL transformation logic for consistent output structure
+ *
+ * ## Usage Examples:
+ *
+ * ```bash
+ * # Process all Material UI components
+ * pnpm tsx scripts/buildLlmsDocs/index.ts --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts
+ *
+ * # Process specific components with non-component docs
+ * pnpm tsx scripts/buildLlmsDocs/index.ts \
+ *   --projectSettings ./packages/api-docs-builder-core/materialUi/projectSettings.ts \
+ *   --nonComponentFolders system material/customization \
+ *   --grep "Button|borders"
+ * ```
+ *
+ * ## Output Structure:
+ *
+ * - **Components**: `material-ui/react-{component}.md` (e.g., `material-ui/react-button.md`)
+ * - **Customization**: `material-ui/customization/{topic}.md` (e.g., `material-ui/customization/color.md`)
+ * - **Getting Started**: `getting-started/{topic}.md` (e.g., `getting-started/installation.md`)
+ */
+
 import * as fs from 'fs';
 import * as path from 'path';
 import yargs, { ArgumentsCamelCase } from 'yargs';
