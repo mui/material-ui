@@ -37,6 +37,7 @@ dist
 node_modules
 package-lock.json
 size-snapshot.json
+bundle-sizes/
 docs/public/static/blog/feed/*
 # vale downloaded config
 .github/styles/
