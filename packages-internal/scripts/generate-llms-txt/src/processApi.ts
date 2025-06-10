@@ -103,10 +103,14 @@ function formatPropType(prop: ApiProp): string {
   }
   
   if (prop.signature) {
-    type = `\`${prop.signature.type}\``;
+    type = prop.signature.type;
   }
   
-  return type;
+  // Escape pipes in union types for better markdown readability
+  type = type.replace(/\s*\|\s*/g, ' \\| ');
+  
+  // Wrap all prop types in backticks to prevent markdown table issues with pipes
+  return `\`${type}\``;
 }
 
 /**
@@ -125,7 +129,7 @@ function generatePropsTable(props: Record<string, ApiProp>): string {
   for (const [propName, prop] of propEntries) {
     const name = prop.deprecated ? `${propName} (deprecated)` : propName;
     const type = formatPropType(prop);
-    const defaultValue = prop.default ? `\`${prop.default}\`` : '-';
+    const defaultValue = prop.default || '-';
     const required = prop.required ? 'Yes' : 'No';
     
     let description = '';
