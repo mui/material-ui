@@ -58,6 +58,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import yargs, { ArgumentsCamelCase } from 'yargs';
+import kebabCase from 'lodash/kebabCase';
 import { processMarkdownFile, processApiFile } from '@mui/internal-scripts/generate-llms-txt';
 import { ComponentInfo, ProjectSettings } from '@mui-internal/api-docs-builder';
 import { getHeaders } from '@mui/internal-markdown';
@@ -251,8 +252,33 @@ function processComponent(component: ComponentDocInfo): string | null {
   // Process the markdown file with demo replacement
   let processedMarkdown = processMarkdownFile(component.markdownPath);
 
-  // Add API section if JSON exists
-  if (component.apiJsonPath) {
+  // Read the frontmatter to get all components listed in this markdown file
+  const markdownContent = fs.readFileSync(component.markdownPath, 'utf-8');
+  const headers = getHeaders(markdownContent);
+  const componentsInPage = headers.components || [];
+
+  // Add API sections for all components listed in the frontmatter
+  if (componentsInPage.length > 0) {
+    for (const componentName of componentsInPage) {
+      // Construct the API JSON path based on the project settings
+      const apiJsonPath = path.join(
+        component.componentInfo.apiPagesDirectory,
+        `${kebabCase(componentName)}.json`,
+      );
+
+      if (fs.existsSync(apiJsonPath)) {
+        try {
+          const apiMarkdown = processApiFile(apiJsonPath);
+          processedMarkdown += `\n\n${apiMarkdown}`;
+        } catch (error) {
+          console.error(`Warning: Could not process API for ${componentName}:`, error);
+        }
+      } else {
+        console.warn(`Warning: API JSON file not found for ${componentName}: ${apiJsonPath}`);
+      }
+    }
+  } else if (component.apiJsonPath) {
+    // Fallback: Add API section for the primary component if no frontmatter components found
     try {
       const apiMarkdown = processApiFile(component.apiJsonPath);
       processedMarkdown += `\n\n${apiMarkdown}`;
@@ -267,8 +293,8 @@ function processComponent(component: ComponentDocInfo): string | null {
 /**
  * Convert kebab-case to Title Case
  */
-function toTitleCase(kebabCase: string): string {
-  return kebabCase
+function toTitleCase(kebabCaseStr: string): string {
+  return kebabCaseStr
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
@@ -400,20 +426,21 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
 
       const outputPath = path.join(outputDir, outputFileName);
 
-      // Ensure the directory exists
-      const outputDirPath = path.dirname(outputPath);
-      if (!fs.existsSync(outputDirPath)) {
-        fs.mkdirSync(outputDirPath, { recursive: true });
-      }
+      // Check if this file has already been generated (avoid duplicates for components that share the same markdown file)
+      const existingFile = generatedFiles.find((f) => f.outputPath === outputFileName);
+      if (!existingFile) {
+        // Ensure the directory exists
+        const outputDirPath = path.dirname(outputPath);
+        if (!fs.existsSync(outputDirPath)) {
+          fs.mkdirSync(outputDirPath, { recursive: true });
+        }
 
-      fs.writeFileSync(outputPath, processedMarkdown, 'utf-8');
-      // ✓ Generated: ${outputFileName}
-      processedCount += 1;
+        fs.writeFileSync(outputPath, processedMarkdown, 'utf-8');
+        // ✓ Generated: ${outputFileName}
+        processedCount += 1;
 
-      // Track this file for llms.txt (avoid duplicates for components that share the same markdown file)
-      if (component.markdownPath) {
-        const existingFile = generatedFiles.find((f) => f.outputPath === outputFileName);
-        if (!existingFile) {
+        // Track this file for llms.txt
+        if (component.markdownPath) {
           const { title, description } = extractMarkdownInfo(component.markdownPath);
           generatedFiles.push({
             outputPath: outputFileName,
