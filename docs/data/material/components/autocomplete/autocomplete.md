@@ -24,7 +24,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 The value must be chosen from a predefined set of allowed values.
 
-{{"demo": "ComboBox.js"}}
+{{"demo": "ComboBox.js", "aiSuggestion": "Add an option for Avatar and make the dropdown full width"}}
 
 ### Options structure
 
