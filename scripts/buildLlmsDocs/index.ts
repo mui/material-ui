@@ -19,6 +19,12 @@
  *    - Uses URL transformation logic to maintain consistent paths with components
  *    - Outputs to files like `system/borders.md`, `material-ui/customization/color.md`
  *
+ * 3. **Index Generation** (llms.txt):
+ *    - Generates `llms.txt` index files for each top-level directory
+ *    - Groups files by category (components, customization, getting-started, etc.)
+ *    - Creates markdown-formatted lists with relative paths and descriptions
+ *    - Outputs to files like `material-ui/llms.txt`, `system/llms.txt`
+ *
  * ## Key Features:
  *
  * - **Demo Replacement**: Converts `{{"demo": "filename.js"}}` to actual JSX/TSX code snippets
@@ -26,6 +32,7 @@
  * - **Reusable**: Accepts project settings via CLI to work across different repositories
  * - **Filtering**: Supports grep patterns to process specific components/files
  * - **Path Consistency**: Uses existing URL transformation logic for consistent output structure
+ * - **Auto-indexing**: Generates llms.txt files with categorized documentation listings
  *
  * ## Usage Examples:
  *
@@ -44,7 +51,8 @@
  *
  * - **Components**: `material-ui/react-{component}.md` (e.g., `material-ui/react-button.md`)
  * - **Customization**: `material-ui/customization/{topic}.md` (e.g., `material-ui/customization/color.md`)
- * - **Getting Started**: `getting-started/{topic}.md` (e.g., `getting-started/installation.md`)
+ * - **Getting Started**: `material-ui/getting-started/{topic}.md` (e.g., `material-ui/getting-started/installation.md`)
+ * - **Index Files**: `{directory}/llms.txt` (e.g., `material-ui/llms.txt`, `system/llms.txt`)
  */
 
 import * as fs from 'fs';
