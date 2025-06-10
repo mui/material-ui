@@ -89,29 +89,6 @@ export default function ProductsSwitcher(props: {
       icon={<IconImage name="product-advanced" height={32} width={32} />}
     />,
     <ProductItem
-      name="Toolpad"
-      description="Components and tools for building dashboards and internal apps"
-      icon={<IconImage name="product-toolpad" />}
-      chip={
-        <Chip
-          size="small"
-          label="Beta"
-          color="primary"
-          variant="outlined"
-          sx={{
-            fontSize: (theme) => theme.typography.pxToRem(10),
-            fontWeight: 'semiBold',
-            textTransform: 'uppercase',
-            letterSpacing: '.04rem',
-            height: '16px',
-            '& .MuiChip-label': {
-              px: '5px',
-            },
-          }}
-        />
-      }
-    />,
-    <ProductItem
       name="Templates"
       description="Professionally built UIs to jumpstart your next project."
       icon={<IconImage name="product-templates" height={32} width={32} />}

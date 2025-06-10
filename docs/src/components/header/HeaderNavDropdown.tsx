@@ -75,12 +75,6 @@ const PRODUCTS = [
     description: 'Material UI components in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
-  {
-    name: 'Toolpad',
-    description: 'Components and tools for dashboards and internal apps.',
-    href: ROUTES.productToolpad,
-    chip: 'Beta',
-  },
 ];
 
 const DOCS = [
@@ -108,12 +102,6 @@ const DOCS = [
     name: 'MUI X',
     description: 'Advanced components for complex use cases.',
     href: ROUTES.xIntro,
-  },
-  {
-    name: 'Toolpad',
-    description: 'Components and tools for dashboards and internal apps.',
-    href: ROUTES.toolpadCoreDocs,
-    chip: 'Beta',
   },
 ];
 
