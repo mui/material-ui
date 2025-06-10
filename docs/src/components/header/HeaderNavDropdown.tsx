@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
-import Chip from '@mui/material/Chip';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -211,7 +210,7 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             {item.name}
-                            {item.chip ? (
+                            {/* {item.chip ? (
                               <Chip
                                 size="small"
                                 label={item.chip}
@@ -228,7 +227,7 @@ export default function HeaderNavDropdown() {
                                   },
                                 }}
                               />
-                            ) : null}
+                            ) : null} */}
                           </Box>
                           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
@@ -272,7 +271,7 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             {item.name}
-                            {item.chip ? (
+                            {/* {item.chip ? (
                               <Chip
                                 size="small"
                                 label={item.chip}
@@ -289,7 +288,7 @@ export default function HeaderNavDropdown() {
                                   },
                                 }}
                               />
-                            ) : null}
+                            ) : null} */}
                           </Box>
                           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {item.description}
