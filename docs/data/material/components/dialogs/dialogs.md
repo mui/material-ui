@@ -167,4 +167,3 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
-

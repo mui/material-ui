@@ -135,4 +135,3 @@ Apps focused on information consumption that use a left-to-right hierarchy.
 Apps focused on productivity that require balance across the screen.
 
 {{"demo": "ClippedDrawer.js", "iframe": true}}
-
