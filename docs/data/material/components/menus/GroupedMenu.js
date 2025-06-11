@@ -3,6 +3,13 @@ import Button from '@mui/material/Button';
 import ListSubheader from '@mui/material/ListSubheader';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
+
+const StyledListHeader = styled(ListSubheader)(({ theme }) => ({
+  ...theme.applyStyles('dark', {
+    backgroundColor: theme.palette.grey[900],
+  }),
+}));
 
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -39,26 +46,10 @@ export default function GroupedMenu() {
           },
         }}
       >
-        <ListSubheader
-          sx={(theme) => ({
-            ...theme.applyStyles('dark', {
-              bgcolor: theme.palette.grey[900],
-            }),
-          })}
-        >
-          Category 1
-        </ListSubheader>
+        <StyledListHeader>Category 1</StyledListHeader>
         <MenuItem onClick={handleClose}>Option 1</MenuItem>
         <MenuItem onClick={handleClose}>Option 2</MenuItem>
-        <ListSubheader
-          sx={(theme) => ({
-            ...theme.applyStyles('dark', {
-              bgcolor: theme.palette.grey[900],
-            }),
-          })}
-        >
-          Category 2
-        </ListSubheader>
+        <StyledListHeader>Category 2</StyledListHeader>
         <MenuItem onClick={handleClose}>Option 3</MenuItem>
         <MenuItem onClick={handleClose}>Option 4</MenuItem>
       </Menu>
