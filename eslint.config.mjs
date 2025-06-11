@@ -1,6 +1,6 @@
 import { includeIgnoreFile } from '@eslint/compat';
-import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/infra/eslint';
-import { createDocsConfig } from '@mui/infra/eslint-docs';
+import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/internal-code-infra/eslint';
+import { createDocsConfig } from '@mui/internal-code-infra/eslint-docs';
 import consistentDefaultExportName from 'eslint-plugin-consistent-default-export-name';
 import { defineConfig } from 'eslint/config';
 
@@ -37,7 +37,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
       '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
       '!@mui/docs/**', // @mui/docs should be @mui/internal-docs
-      '!@mui/infra/**',
+      '!@mui/internal-code-infra/**',
     ],
     message: OneLevelImportMessage,
   },

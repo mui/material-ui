@@ -91,9 +91,6 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
-      '@mui/infra':
-        specifier: https://pkg.pr.new/@mui/infra@9f53c7e
-        version: https://pkg.pr.new/@mui/infra@9f53c7e(@next/eslint-plugin-next@15.3.3)(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@mui/internal-babel-plugin-minify-errors':
         specifier: ^2.0.5
         version: 2.0.5(@babel/core@7.27.4)
@@ -103,6 +100,9 @@ importers:
       '@mui/internal-bundle-size-checker':
         specifier: ^1.0.5
         version: 1.0.5(@types/node@20.19.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.19.4)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
+      '@mui/internal-code-infra':
+        specifier: https://pkg.pr.new/@mui/internal-code-infra@0995a43
+        version: https://pkg.pr.new/@mui/internal-code-infra@0995a43(@next/eslint-plugin-next@15.3.3)(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4155,19 +4155,6 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
-  '@mui/infra@https://pkg.pr.new/@mui/infra@9f53c7e':
-    resolution: {tarball: https://pkg.pr.new/@mui/infra@9f53c7e}
-    version: 0.0.1
-    peerDependencies:
-      '@next/eslint-plugin-next': ^14.0.0 || ^15.0.0
-      eslint: ^9.0.0
-      prettier: ^3.0.0
-    peerDependenciesMeta:
-      '@next/eslint-plugin-next':
-        optional: true
-      prettier:
-        optional: true
-
   '@mui/internal-babel-plugin-minify-errors@2.0.5':
     resolution: {integrity: sha512-8dnzAJMBiHLm9fjgrXxpK/g6rUcwFxZYNkdM6XnIvVGWMC+9oKNY2v6iozBpx3+2kmmaTd/SWy3fzh04/jzYpg==}
     engines: {node: '>=14.0.0'}
@@ -4182,6 +4169,19 @@ packages:
   '@mui/internal-bundle-size-checker@1.0.5':
     resolution: {integrity: sha512-siq0q4J/RhLI6XLQ4fHvozHNfPQNdpeZY0liDr3ri+K7Yi/gPUDSFY63Uz1TM6E++ynrH0KTy8GJ7C5TmO4ImQ==}
     hasBin: true
+
+  '@mui/internal-code-infra@https://pkg.pr.new/@mui/internal-code-infra@0995a43':
+    resolution: {tarball: https://pkg.pr.new/@mui/internal-code-infra@0995a43}
+    version: 0.0.1
+    peerDependencies:
+      '@next/eslint-plugin-next': ^14.0.0 || ^15.0.0
+      eslint: ^9.0.0
+      prettier: ^3.0.0
+    peerDependenciesMeta:
+      '@next/eslint-plugin-next':
+        optional: true
+      prettier:
+        optional: true
 
   '@mui/joy@5.0.0-beta.22':
     resolution: {integrity: sha512-XFJd/cWXqt9MMlaUh10QQH893YaRw2CORYRhQovXvaJk7mmt/Sc4q3Fb7ANCXf4xMUPdwqdnvawLkAOAKVHuXg==}
@@ -17030,35 +17030,6 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
-  '@mui/infra@https://pkg.pr.new/@mui/infra@9f53c7e(@next/eslint-plugin-next@15.3.3)(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
-    dependencies:
-      emoji-regex: 10.4.0
-      eslint: 9.27.0(jiti@2.4.2)
-      eslint-config-airbnb: 19.0.4(eslint-plugin-import@2.31.0)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.27.0(jiti@2.4.2)))(eslint-plugin-react-hooks@6.0.0(eslint@9.27.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.27.0(jiti@2.4.2)))(eslint@9.27.0(jiti@2.4.2))
-      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.31.0)(eslint@9.27.0(jiti@2.4.2))
-      eslint-config-prettier: 10.1.5(eslint@9.27.0(jiti@2.4.2))
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-jsx-a11y: 6.10.2(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-mocha: 11.1.0(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-react: 7.37.5(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-react-compiler: 19.1.0-rc.2(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-react-hooks: 6.0.0(eslint@9.27.0(jiti@2.4.2))
-      eslint-plugin-testing-library: 7.3.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
-      globals: 16.2.0
-      minimatch: 10.0.1
-      typescript-eslint: 8.33.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
-    optionalDependencies:
-      '@next/eslint-plugin-next': 15.3.3
-      prettier: 3.5.3
-    transitivePeerDependencies:
-      - '@typescript-eslint/parser'
-      - eslint-import-resolver-node
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-      - typescript
-
   '@mui/internal-babel-plugin-minify-errors@2.0.5(@babel/core@7.27.4)':
     dependencies:
       '@babel/core': 7.27.4
@@ -17118,6 +17089,35 @@ snapshots:
       - utf-8-validate
       - webpack-cli
       - yaml
+
+  '@mui/internal-code-infra@https://pkg.pr.new/@mui/internal-code-infra@0995a43(@next/eslint-plugin-next@15.3.3)(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
+    dependencies:
+      emoji-regex: 10.4.0
+      eslint: 9.27.0(jiti@2.4.2)
+      eslint-config-airbnb: 19.0.4(eslint-plugin-import@2.31.0)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.27.0(jiti@2.4.2)))(eslint-plugin-react-hooks@6.0.0(eslint@9.27.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.27.0(jiti@2.4.2)))(eslint@9.27.0(jiti@2.4.2))
+      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.31.0)(eslint@9.27.0(jiti@2.4.2))
+      eslint-config-prettier: 10.1.5(eslint@9.27.0(jiti@2.4.2))
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.34.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-jsx-a11y: 6.10.2(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-mocha: 11.1.0(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-react: 7.37.5(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-react-compiler: 19.1.0-rc.2(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-react-hooks: 6.0.0(eslint@9.27.0(jiti@2.4.2))
+      eslint-plugin-testing-library: 7.3.0(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
+      globals: 16.2.0
+      minimatch: 10.0.1
+      typescript-eslint: 8.33.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)
+    optionalDependencies:
+      '@next/eslint-plugin-next': 15.3.3
+      prettier: 3.5.3
+    transitivePeerDependencies:
+      - '@typescript-eslint/parser'
+      - eslint-import-resolver-node
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - supports-color
+      - typescript
 
   '@mui/joy@5.0.0-beta.22(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:

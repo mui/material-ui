@@ -1,4 +1,4 @@
-import { createBaseConfig } from '@mui/infra/prettier';
+import { createBaseConfig } from '@mui/internal-code-infra/prettier';
 
 const baseline = createBaseConfig();
 
