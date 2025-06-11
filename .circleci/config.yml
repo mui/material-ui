@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@5.3.4
+  aws-cli: circleci/aws-cli@5.4.0
   aws-s3: circleci/aws-s3@4.1.1
 
 parameters:
@@ -592,70 +592,46 @@ jobs:
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
       - setup_corepack
+
       - run:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+      - aws-cli/setup:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
+          region: ${AWS_REGION_ARTIFACTS}
+
       - run:
-          name: create @mui/material canary distributable
+          name: create and upload a size snapshot
           command: |
-            cd packages/mui-material/build
-            npm version 0.0.0-canary.${CIRCLE_SHA1} --no-git-tag-version
-            npm pack
-            mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
+            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
+            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
+            export AWS_REGION=$AWS_REGION_ARTIFACTS
+            pnpm size:snapshot --concurrency 6
+
+      # === LEGACY START ===
+      # remove once the UI can handle the new format
+      # persist size snapshot on S3
       - when:
           # don't run on PRs
           condition:
             not:
               matches:
-                # "^pull/\d+" is not valid YAML
-                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
-                value: << pipeline.git.branch >>
+                pattern: '.+'
+                value: '${CIRCLE_PULL_REQUEST}'
           steps:
-            - aws-cli/setup:
-                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
-            # Upload distributables to S3
             - aws-s3/copy:
-                from: mui-material.tgz
+                arguments: --content-type application/json
+                from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-      - store_artifacts:
-          path: mui-material.tgz
-          destination: mui-material.tgz
-      - run:
-          name: create a size snapshot
-          command: pnpm size:snapshot
+      # === LEGACY END ===
+
+      # Keep the artifact storage as a CircleCI artifact
       - store_artifacts:
           name: persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-      - when:
-          # don't run on PRs
-          condition:
-            not:
-              matches:
-                # "^pull/\d+" is not valid YAML
-                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
-                value: << pipeline.git.branch >>
-          steps:
-            - aws-cli/setup:
-                aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
-            # persist size snapshot on S3
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-            # symlink size-snapshot to latest
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
+
       - run:
           name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
