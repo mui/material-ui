@@ -1,13 +1,11 @@
 import deepmerge from '@mui/utils/deepmerge';
 
-function merge(acc, item) {
-  if (!item) {
-    return acc;
-  }
+const options = {
+  clone: false,
+};
 
-  return deepmerge(acc, item, {
-    clone: false, // No need to clone deep, it's way faster.
-  });
+function merge(acc, item) {
+  return deepmerge(acc, item, options);
 }
 
 export default merge;

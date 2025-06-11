@@ -39,7 +39,7 @@ export function stringifyTheme(baseTheme: Record<string, any> = {}) {
     // eslint-disable-next-line no-plusplus
     for (let index = 0; index < array.length; index++) {
       const [key, value] = array[index];
-      if (!isSerializable(value) || key.startsWith('unstable_')) {
+      if (!isSerializable(value) || key.startsWith('unstable_') || key.startsWith('internal_')) {
         delete object[key];
       } else if (isPlainObject(value)) {
         object[key] = { ...value };

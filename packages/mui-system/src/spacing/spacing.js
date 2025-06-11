@@ -1,8 +1,10 @@
 import responsivePropType from '../responsivePropType';
-import { handleBreakpoints } from '../breakpoints';
+import { iterateBreakpoints } from '../breakpoints';
 import { getPath } from '../style';
-import merge from '../merge';
-import memoize from '../memoize';
+
+/* eslint-disable guard-for-in */
+
+const EMPTY_THEME = { internal_cache: {} };
 
 const properties = {
   m: 'margin',
@@ -25,26 +27,25 @@ const aliases = {
   paddingY: 'py',
 };
 
-// memoize() impact:
-// From 300,000 ops/sec
-// To 350,000 ops/sec
-const getCssProperties = memoize((prop) => {
-  // It's not a shorthand notation.
-  if (prop.length > 2) {
-    if (aliases[prop]) {
-      prop = aliases[prop];
-    } else {
-      return [prop];
-    }
+const CSS_PROPERTIES = {};
+for (const key in properties) {
+  CSS_PROPERTIES[key] = [properties[key]];
+}
+for (const keyProperty in properties) {
+  for (const keyDirection in directions) {
+    const property = properties[keyProperty];
+    const direction = directions[keyDirection];
+    const value = Array.isArray(direction)
+      ? direction.map((dir) => property + dir)
+      : [property + direction];
+    CSS_PROPERTIES[keyProperty + keyDirection] = value;
   }
+}
+for (const key in aliases) {
+  CSS_PROPERTIES[key] = CSS_PROPERTIES[aliases[key]];
+}
 
-  const [a, b] = prop.split('');
-  const property = properties[a];
-  const direction = directions[b] || '';
-  return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
-});
-
-export const marginKeys = [
+export const marginKeys = new Set([
   'm',
   'mt',
   'mr',
@@ -65,9 +66,9 @@ export const marginKeys = [
   'marginBlock',
   'marginBlockStart',
   'marginBlockEnd',
-];
+]);
 
-export const paddingKeys = [
+export const paddingKeys = new Set([
   'p',
   'pt',
   'pr',
@@ -88,9 +89,9 @@ export const paddingKeys = [
   'paddingBlock',
   'paddingBlockStart',
   'paddingBlockEnd',
-];
+]);
 
-const spacingKeys = [...marginKeys, ...paddingKeys];
+const spacingKeys = new Set([...marginKeys, ...paddingKeys]);
 
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
   const themeSpacing = getPath(theme, themeKey, true) ?? defaultValue;
@@ -190,38 +191,34 @@ export function getValue(transformer, propValue) {
   if (typeof propValue === 'string' || propValue == null) {
     return propValue;
   }
-
   return transformer(propValue);
 }
 
-export function getStyleFromPropValue(cssProperties, transformer) {
-  return (propValue) =>
-    cssProperties.reduce((acc, cssProperty) => {
-      acc[cssProperty] = getValue(transformer, propValue);
-      return acc;
-    }, {});
-}
-
-function resolveCssProperty(props, keys, prop, transformer) {
-  // Using a hash computation over an array iteration could be faster, but with only 28 items,
-  // it's doesn't worth the bundle size.
-  if (!keys.includes(prop)) {
-    return null;
-  }
-
-  const cssProperties = getCssProperties(prop);
-  const styleFromPropValue = getStyleFromPropValue(cssProperties, transformer);
-
-  const propValue = props[prop];
-  return handleBreakpoints(props, propValue, styleFromPropValue);
-}
+// Avoid allocations
+const container = [''];
 
 function style(props, keys) {
-  const transformer = createUnarySpacing(props.theme);
+  const theme = props.theme ?? EMPTY_THEME;
+  const transformer = (theme.internal_cache.unarySpacing ??= createUnarySpacing(theme)); // eslint-disable-line
 
-  return Object.keys(props)
-    .map((prop) => resolveCssProperty(props, keys, prop, transformer))
-    .reduce(merge, {});
+  const result = {};
+  for (const prop in props) {
+    if (!keys.has(prop)) {
+      continue;
+    }
+
+    const cssProperties = CSS_PROPERTIES[prop] ?? ((container[0] = prop), container);
+    const propValue = props[prop];
+
+    iterateBreakpoints(result, props.theme, propValue, (mediaKey, value) => {
+      const target = mediaKey ? result[mediaKey] : result;
+      for (let i = 0; i < cssProperties.length; i += 1) {
+        target[cssProperties[i]] = getValue(transformer, value);
+      }
+    });
+  }
+
+  return result;
 }
 
 export function margin(props) {
@@ -230,7 +227,7 @@ export function margin(props) {
 
 margin.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? marginKeys.reduce((obj, key) => {
+    ? Array.from(marginKeys).reduce((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
@@ -244,7 +241,7 @@ export function padding(props) {
 
 padding.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? paddingKeys.reduce((obj, key) => {
+    ? Array.from(paddingKeys).reduce((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
@@ -258,7 +255,7 @@ function spacing(props) {
 
 spacing.propTypes =
   process.env.NODE_ENV !== 'production'
-    ? spacingKeys.reduce((obj, key) => {
+    ? Array.from(spacingKeys).reduce((obj, key) => {
         obj[key] = responsivePropType;
         return obj;
       }, {})
