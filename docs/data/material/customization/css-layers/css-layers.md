@@ -282,6 +282,6 @@ const theme = createTheme({
 
 By default, the margin from the theme **does not win** the default margin styles when the accordion is expanded because it has higher specificity than the theme styles.
 
-However, after enabling the `modularCssLayers` option, the margin from the theme **wins** because the theme layer comes after the components layer. As a result, the accordion will have no margin when expanded.
+However, after enabling the `modularCssLayers` option, the margin from the theme **wins** because the theme layer comes after the components layer. As a result, the accordion no longer has margin when it is expanded.
 
 {{"demo": "CssLayersCaveat.js"}}
