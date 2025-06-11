@@ -60,7 +60,9 @@ export function replaceDemoWithSnippet(
 
       // If no files found, return original match
       if (!codeSnippet) {
-        console.warn(`Demo file not found: ${filename}`);
+        if (process.env.NODE_ENV !== 'test') {
+          console.warn(`Demo file not found: ${filename}`);
+        }
         return match;
       }
 
