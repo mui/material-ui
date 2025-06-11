@@ -266,7 +266,7 @@ export default function App() {
 
 The input label "shrink" state isn't always correct.
 The input label is supposed to shrink as soon as the input is displaying something.
-In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+In some circumstances, we can't determine the "shrink" state (datetime input, Stripe input). You might notice an overlap.
 
 ![shrink](/static/images/text-fields/shrink.png)
 
