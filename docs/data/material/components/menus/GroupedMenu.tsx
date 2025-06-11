@@ -3,6 +3,13 @@ import Button from '@mui/material/Button';
 import ListSubheader from '@mui/material/ListSubheader';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
+
+const StyledListSubheader = styled(ListSubheader)(({ theme }) => ({
+  ...theme.applyStyles('dark', {
+    bgcolor: theme.palette.grey[900],
+  }),
+}));
 
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -33,13 +40,16 @@ export default function GroupedMenu() {
         slotProps={{
           list: {
             'aria-labelledby': 'basic-button',
+            sx: {
+              py: 0,
+            },
           },
         }}
       >
-        <ListSubheader>Category 1</ListSubheader>
+        <StyledListSubheader>Category 1</StyledListSubheader>
         <MenuItem onClick={handleClose}>Option 1</MenuItem>
         <MenuItem onClick={handleClose}>Option 2</MenuItem>
-        <ListSubheader>Category 2</ListSubheader>
+        <StyledListSubheader>Category 2</StyledListSubheader>
         <MenuItem onClick={handleClose}>Option 3</MenuItem>
         <MenuItem onClick={handleClose}>Option 4</MenuItem>
       </Menu>
