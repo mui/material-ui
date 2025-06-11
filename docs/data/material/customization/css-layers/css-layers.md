@@ -4,7 +4,7 @@
 
 ## What are cascade layers?
 
-Cascade layers are an advanced CSS feature that make it possible to control the order in which styles are applied to elements. 
+Cascade layers are an advanced CSS feature that make it possible to control the order in which styles are applied to elements.
 If you're not familiar with cascade layers, visit the [MDN documentation](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Cascade_layers) for a detailed overview.
 
 Benefits of using cascade layers include:
@@ -244,7 +244,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ### Usage with other styling solutions
 
-To integrate with other styling solutions, such as Tailwind CSS v4, replace the boolean value for `modularCssLayers` with a string specifying the layer order. 
+To integrate with other styling solutions, such as Tailwind CSS v4, replace the boolean value for `modularCssLayers` with a string specifying the layer order.
 Material UI will look for the `mui` identifier and generate the layers in the correct order:
 
 ```diff title="src/theme.tsx"
@@ -259,3 +259,31 @@ The generated CSS will look like this:
 ```css
 @layer theme, base, mui.global, mui.components, mui.theme, mui.custom, mui.sx, components, utilities;
 ```
+
+### Caveats
+
+After enabling the `modularCssLayers` option, the visual appearance of the application may change if styles from the theme or `sx` prop have less specificity than the default styles.
+
+For example, if you have the following theme configuration for the [Accordion](/material-ui/react-accordion/) component before enabling the `modularCssLayers` option like the snippet below:
+
+```tsx
+const theme = createTheme({
+  components: {
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+      },
+    },
+  },
+});
+```
+
+The margin from the theme **does not** win the default margin styles when the accordion is expanded because the default margin styles have more specificity than the theme styles.
+
+However, after enabling the `modularCssLayers` option, the margin styles from the theme **wins** because of the theme layer comes after the components layer. As a result, the accordion will have no margin when expanded.
+
+{{"demo": "CssLayersCaveat.js"}}
+
+In this specific case, to preserve the previous appearance before enabling the `modularCssLayers` option, theme style overrides need to be removed.
