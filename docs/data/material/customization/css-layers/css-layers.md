@@ -2,20 +2,21 @@
 
 <p class="description">Learn how to generate Material UI styles with cascade layers.</p>
 
-## Overview
+## What are cascade layers?
 
-Cascade layers are a new CSS feature that allows you to control the order in which styles are applied to elements. If you are not familiar with cascade layers, we recommend reading the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade_layers) for a detailed overview.
+Cascade layers are an advanced CSS feature that make it possible to control the order in which styles are applied to elements. 
+If you're not familiar with cascade layers, visit the [MDN documentation](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Cascade_layers) for a detailed overview.
 
-Some of the benefits of using cascade layers include:
+Benefits of using cascade layers include:
 
 - **Improved specificity**: Cascade layers let you control the order of the styles, which can help avoid specificity conflicts. For example, you can theme a component without hitting the default specificity of the styles.
-- **Better integration with CSS frameworks**: With cascade layers, you can use Tailwind CSS v4 utility classes to override Material UI styles without specifying `!important` directive.
+- **Better integration with CSS frameworks**: With cascade layers, you can use Tailwind CSS v4 utility classes to override Material UI styles without the need for the `!important` directive.
 - **Better debuggability**: Cascade layers appear in the browser's dev tools, making it easier to see which styles are applied and in what order.
 
-## Single layer
+## Implementing a single cascade layer
 
 This method creates a single layer, namely `@layer mui`, for all Material UI components and global styles.
-This method is suitable for integrating with other styling solutions, such as Tailwind CSS v4, that use the `@layer` directive.
+This is suitable for integrating with other styling solutions, such as Tailwind CSS v4, that use the `@layer` directive.
 
 ### Next.js App Router
 
@@ -107,12 +108,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 );
 ```
 
-## Multiple layers
+## Implementing multiple cascade layers
 
-On top of the [single layer](#single-layer), you can split styles into multiple layers to better organize them within Material UI.
-This makes theming and overriding styles through the `sx` prop easier.
+After you've set up a [single cascade layer](#implementing-a-single-cascade-layer), you can split the styles into multiple layers to better organize them within Material UI.
+This makes it simpler to apply theming and override styles with the `sx` prop.
 
-Follow the steps from the [previous section](#single-layer) to enable the CSS layer feature.
+First, follow the steps from the [previous section](#implementing-a-single-cascade-layer) to enable the CSS layer feature.
 Then, create a new file and export the component that wraps the `ThemeProvider` from Material UI.
 Finally, pass the `modularCssLayers: true` option to the `createTheme` function:
 
@@ -132,25 +133,26 @@ export default function AppTheme({ children }: { children: ReactNode }) {
 
 When this feature is enabled, Material UI generates these layers:
 
-- `@layer mui.global`: The global styles from `GlobalStyles` and `CssBaseline` components.
-- `@layer mui.components`: The base styles for all Material UI components.
-- `@layer mui.theme`: The theme styles for all Material UI components.
-- `@layer mui.custom`: The custom styles for non-Material UI styled components.
-- `@layer mui.sx`: The styles from the `sx` prop.
+- `@layer mui.global`: Global styles from the `GlobalStyles` and `CssBaseline` components.
+- `@layer mui.components`: Base styles for all Material UI components.
+- `@layer mui.theme`: Theme styles for all Material UI components.
+- `@layer mui.custom`: Custom styles for non-Material UI styled components.
+- `@layer mui.sx`: Styles from the `sx` prop.
 
-Below are code snippets of how to set up multiple layers in different frameworks.
+The sections below demonstrate how to set up multiple cascade layers for Material UI with common React frameworks.
 
 ### Next.js App Router
 
 ```tsx title="src/theme.tsx"
 'use client';
+import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   modularCssLayers: true,
 });
 
-export default function AppTheme({ children }: { children: ReactNode }) {
+export default function AppTheme({ children }: { children: React.ReactNode }) {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
 ```
@@ -242,7 +244,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ### Usage with other styling solutions
 
-If you want to integrate with other styling solutions, such as Tailwind CSS v4, replace the value with a string of layer order, Material UI will look for the `mui` identifier and generate the correct order:
+To integrate with other styling solutions, such as Tailwind CSS v4, replace the boolean value for `modularCssLayers` with a string specifying the layer order. 
+Material UI will look for the `mui` identifier and generate the layers in the correct order:
 
 ```diff title="src/theme.tsx"
  const theme = createTheme({
