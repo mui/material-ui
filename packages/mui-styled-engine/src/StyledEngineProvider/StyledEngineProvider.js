@@ -103,7 +103,7 @@ export default function StyledEngineProvider(props) {
   const { injectFirst, enableCssLayer, children } = props;
   const cache = React.useMemo(() => {
     const cacheKey = `${injectFirst}-${enableCssLayer}`;
-    if (cacheMap.has(cacheKey)) {
+    if (typeof document === 'object' && cacheMap.has(cacheKey)) {
       return cacheMap.get(cacheKey);
     }
     const fresh = getCache(injectFirst, enableCssLayer);
