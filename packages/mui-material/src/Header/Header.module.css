@@ -1,0 +1,7 @@
+
+/* we want to rename this to mui.components */
+@layer mui.default {
+  .root {
+    color: blue;
+  }
+}

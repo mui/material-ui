@@ -3,7 +3,7 @@ import path from 'path';
 import { promisify } from 'util';
 import yargs from 'yargs';
 import * as fs from 'fs/promises';
-import { cjsCopy } from './copyFilesUtils.mjs';
+import { cjsCopy, cssModulesCopy } from './copyFilesUtils.mjs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
 
 const exec = promisify(childProcess.exec);
@@ -108,6 +108,9 @@ async function run(argv) {
   // If we need to rely more on this we can think about setting up a separate commonjs => commonjs build for .cjs files to .cjs
   // `--extensions-.cjs --out-file-extension .cjs`
   await cjsCopy({ from: srcDir, to: outDir });
+
+  // CSS modules
+  await cssModulesCopy({ from: srcDir, to: outDir });
 
   // Write a package.json file in the output directory if we are building the stable bundle
   // or if the output directory is not the root of the package.
