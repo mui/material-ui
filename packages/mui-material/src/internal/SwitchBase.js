@@ -201,7 +201,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       centerRipple: true,
       focusRipple: !disableFocusRipple,
       disabled,
-      role: undefined,
+      role: 'switch',
       tabIndex: null,
     },
   });
