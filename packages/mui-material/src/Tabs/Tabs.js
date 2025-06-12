@@ -19,6 +19,7 @@ import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useSlot from '../utils/useSlot';
+import TabsContext from './TabsContext';
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -293,7 +294,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     'aria-labelledby': ariaLabelledBy,
     action,
     centered = false,
-    children: childrenProp,
+    children,
     className,
     component = 'div',
     allowScrollButtonsMobile = false,
@@ -743,7 +744,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
 
     return undefined;
-  }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
+  }, [scrollable, scrollButtons, updateScrollObserver, children?.length]);
 
   React.useEffect(() => {
     setMounted(true);
@@ -780,38 +781,22 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const indicator = <IndicatorSlot {...indicatorSlotProps} />;
 
   let childIndex = 0;
-  const children = React.Children.map(childrenProp, (child) => {
-    if (!React.isValidElement(child)) {
-      return null;
+  const registerTab = (tabValue) => {
+    if (!valueToIndex.has(tabValue)) {
+      valueToIndex.set(tabValue, childIndex++);
     }
+  };
 
-    if (process.env.NODE_ENV !== 'production') {
-      if (isFragment(child)) {
-        console.error(
-          [
-            "MUI: The Tabs component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
-      }
-    }
-
-    const childValue = child.props.value === undefined ? childIndex : child.props.value;
-    valueToIndex.set(childValue, childIndex);
-    const selected = childValue === value;
-
-    childIndex += 1;
-    return React.cloneElement(child, {
-      fullWidth: variant === 'fullWidth',
-      indicator: selected && !mounted && indicator,
-      selected,
-      selectionFollowsFocus,
-      onChange,
-      textColor,
-      value: childValue,
-      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : {}),
-    });
-  });
+  const tabsContextValue = {
+    fullWidth: variant === 'fullWidth',
+    indicator,
+    mounted,
+    selectionFollowsFocus,
+    onChange,
+    textColor,
+    tabsValue: value,
+    registerTab,
+  };
 
   const handleKeyDown = (event) => {
     // Check if a modifier key (Alt, Shift, Ctrl, Meta) is pressed
@@ -917,7 +902,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           role="tablist"
           {...listSlotProps}
         >
-          {children}
+          <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>
         </ListSlot>
         {mounted && indicator}
       </ScrollerSlot>

@@ -10,6 +10,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
+import TabsContext from '../Tabs/TabsContext';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
@@ -193,26 +194,33 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     className,
     disabled = false,
     disableFocusRipple = false,
-    // eslint-disable-next-line react/prop-types
-    fullWidth,
     icon: iconProp,
     iconPosition = 'top',
-    // eslint-disable-next-line react/prop-types
-    indicator,
     label,
-    onChange,
     onClick,
     onFocus,
-    // eslint-disable-next-line react/prop-types
-    selected,
-    // eslint-disable-next-line react/prop-types
-    selectionFollowsFocus,
-    // eslint-disable-next-line react/prop-types
-    textColor = 'inherit',
     value,
     wrapped = false,
     ...other
   } = props;
+
+  const {
+    fullWidth,
+    indicator: indicatorContext,
+    mounted,
+    selectionFollowsFocus,
+    onChange,
+    textColor = 'inherit',
+    tabsValue,
+    registerTab,
+  } = React.useContext(TabsContext);
+
+  React.useEffect(() => {
+    registerTab(value);
+  }, [value, registerTab]);
+
+  const selected = value === tabsValue;
+  const indicator = selected && !mounted && indicatorContext;
 
   const ownerState = {
     ...props,
