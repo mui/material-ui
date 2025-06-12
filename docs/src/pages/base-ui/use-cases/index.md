@@ -7,7 +7,7 @@ components:
 githubLabel: 'base-ui'
 ---
 
-# Base UI Use Cases and Customization Solutions
+# Base UI Use Cases and Customization Solutions
 
 ## 1. Styling a Single Project
 
@@ -15,9 +15,9 @@ githubLabel: 'base-ui'
 
 **Recommendations**:
 
-- Use Base UI's unstyled components as a foundation
+- Use Base UI's unstyled components as a foundation
 - Apply project-specific styles via CSS/Sass or styled-components
-- Take advantage of Base UI's hooks for functionality while styling independently
+- Take advantage of Base UI's hooks for functionality while styling independently
 
 **Example**:
 
@@ -28,4 +28,3 @@ import './styles.css';
 function Button(props) {
   return <BaseButton {...props} className="my-custom-button" />;
 }
-```
