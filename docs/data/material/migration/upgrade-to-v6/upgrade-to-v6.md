@@ -588,3 +588,4 @@ However, you can install the latest **beta** version using:
 
 ```bash
 npm install @mui/lab@6.0.1-beta.35
+```
