@@ -235,7 +235,7 @@ export default function MaterialStyling() {
                 overflow: 'auto',
               }}
             >
-              <Box sx={{ position: 'relative' }}>
+              <Box sx={{ position: 'relative', minWidth: 510 }}>
                 <HighlightedCode copyButtonHidden plainStyle code={code} language="jsx" />
                 <FlashCode startLine={startLine[index]} endLine={endLine[index]} />
               </Box>
