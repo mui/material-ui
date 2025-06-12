@@ -1,6 +1,6 @@
 # CSS Layers
 
-<p class="description">Learn how to generate Material UI styles with cascade layers.</p>
+<p class="description">Learn how to generate Material UI styles with cascade layers.</p>
 
 ## What are cascade layers?
 
@@ -10,17 +10,17 @@ If you're not familiar with cascade layers, visit the [MDN documentation](https:
 Benefits of using cascade layers include:
 
 - **Improved specificity**: Cascade layers let you control the order of the styles, which can help avoid specificity conflicts. For example, you can theme a component without hitting the default specificity of the styles.
-- **Better integration with CSS frameworks**: With cascade layers, you can use Tailwind CSS v4 utility classes to override Material UI styles without the need for the `!important` directive.
+- **Better integration with CSS frameworks**: With cascade layers, you can use Tailwind CSS v4 utility classes to override Material UI styles without the need for the `!important` directive.
 - **Better debuggability**: Cascade layers appear in the browser's dev tools, making it easier to see which styles are applied and in what order.
 
 ## Implementing a single cascade layer
 
-This method creates a single layer, namely `@layer mui`, for all Material UI components and global styles.
-This is suitable for integrating with other styling solutions, such as Tailwind CSS v4, that use the `@layer` directive.
+This method creates a single layer, namely `@layer mui`, for all Material UI components and global styles.
+This is suitable for integrating with other styling solutions, such as Tailwind CSS v4, that use the `@layer` directive.
 
 ### Next.js App Router
 
-Start by configuring Material UI with Next.js in the [App Router integration guide](/material-ui/integrations/nextjs/#app-router).
+Start by configuring Material UI with Next.js in the [App Router integration guide](/material-ui/integrations/nextjs/#app-router).
 Then follow these steps:
 
 1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#using-other-styling-solutions) in the root layout:
@@ -41,7 +41,7 @@ export default function RootLayout() {
 }
 ```
 
-2. Configure the layer order at the top of a CSS file to work with Tailwind CSS v4:
+2. Configure the layer order at the top of a CSS file to work with Tailwind CSS v4:
 
 ```css title="src/app/globals.css"
 @layer theme, base, mui, components, utilities;
@@ -49,7 +49,7 @@ export default function RootLayout() {
 
 ### Next.js Pages Router
 
-Start by configuring Material UI with Next.js in the [Pages Router integration guide](/material-ui/integrations/nextjs/#pages-router).
+Start by configuring Material UI with Next.js in the [Pages Router integration guide](/material-ui/integrations/nextjs/#pages-router).
 Then follow these steps:
 
 1. Enable the [CSS layer feature](/material-ui/integrations/nextjs/#configuration-2) in a custom `_document`:
@@ -70,7 +70,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 };
 ```
 
-2. Configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4—it must be the first child of the `AppCacheProvider`:
+2. Configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4—it must be the first child of the `AppCacheProvider`:
 
 ```tsx title="pages/_app.tsx"
 import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
@@ -92,7 +92,7 @@ export default function MyApp(props: AppProps) {
 Make the following changes in `src/main.tsx`:
 
 1. Pass the `enableCssLayer` prop to the `StyledEngineProvider` component.
-2. Configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4.
+2. Configure the layer order with the `GlobalStyles` component to work with Tailwind CSS v4.
 
 ```tsx title="main.tsx"
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -110,11 +110,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ## Implementing multiple cascade layers
 
-After you've set up a [single cascade layer](#implementing-a-single-cascade-layer), you can split the styles into multiple layers to better organize them within Material UI.
+After you've set up a [single cascade layer](#implementing-a-single-cascade-layer), you can split the styles into multiple layers to better organize them within Material UI.
 This makes it simpler to apply theming and override styles with the `sx` prop.
 
 First, follow the steps from the [previous section](#implementing-a-single-cascade-layer) to enable the CSS layer feature.
-Then, create a new file and export the component that wraps the `ThemeProvider` from Material UI.
+Then, create a new file and export the component that wraps the `ThemeProvider` from Material UI.
 Finally, pass the `modularCssLayers: true` option to the `createTheme` function:
 
 ```tsx title="src/theme.tsx"
@@ -131,15 +131,15 @@ export default function AppTheme({ children }: { children: ReactNode }) {
 
 {{"demo": "CssLayersInput.js"}}
 
-When this feature is enabled, Material UI generates these layers:
+When this feature is enabled, Material UI generates these layers:
 
 - `@layer mui.global`: Global styles from the `GlobalStyles` and `CssBaseline` components.
-- `@layer mui.components`: Base styles for all Material UI components.
-- `@layer mui.theme`: Theme styles for all Material UI components.
-- `@layer mui.custom`: Custom styles for non-Material UI styled components.
+- `@layer mui.components`: Base styles for all Material UI components.
+- `@layer mui.theme`: Theme styles for all Material UI components.
+- `@layer mui.custom`: Custom styles for non-Material UI styled components.
 - `@layer mui.sx`: Styles from the `sx` prop.
 
-The sections below demonstrate how to set up multiple cascade layers for Material UI with common React frameworks.
+The sections below demonstrate how to set up multiple cascade layers for Material UI with common React frameworks.
 
 ### Next.js App Router
 
@@ -244,8 +244,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ### Usage with other styling solutions
 
-To integrate with other styling solutions, such as Tailwind CSS v4, replace the boolean value for `modularCssLayers` with a string specifying the layer order.
-Material UI will look for the `mui` identifier and generate the layers in the correct order:
+To integrate with other styling solutions, such as Tailwind CSS v4, replace the boolean value for `modularCssLayers` with a string specifying the layer order.
+Material UI will look for the `mui` identifier and generate the layers in the correct order:
 
 ```diff title="src/theme.tsx"
  const theme = createTheme({
