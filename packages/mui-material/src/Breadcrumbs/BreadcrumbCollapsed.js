@@ -7,7 +7,9 @@ import memoTheme from '../utils/memoTheme';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = styled(ButtonBase)(
+const BreadcrumbCollapsedButton = styled(ButtonBase, {
+  name: 'MuiBreadcrumbCollapsed',
+})(
   memoTheme(({ theme }) => ({
     display: 'flex',
     marginLeft: `calc(${theme.spacing(1)} * 0.5)`,
