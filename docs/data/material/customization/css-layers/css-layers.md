@@ -262,7 +262,7 @@ The generated CSS will look like this:
 
 ### Caveats
 
-After enabling the `modularCssLayers` option, the visual appearance of the application may change if styles from the theme or `sx` prop have less specificity than the default styles.
+If you enable `modularCssLayers` in an app that already has custom styles and theme overrides applied to it, you may observe unexpected changes to the look and feel of the UI due to the differences in specificity before and after.
 
 For example, if you have the following [theme style overrides](/material-ui/customization/theme-components/#theme-style-overrides) for the [Accordion](/material-ui/react-accordion/) component:
 
@@ -280,8 +280,8 @@ const theme = createTheme({
 });
 ```
 
-By default, the margin from the theme **does not win** the default margin styles when the accordion is expanded because it has higher specificity than the theme styles.
+By default, the margin from the theme does _not_ take precedence over the default margin styles when the accordion is expanded, because it has higher specificity than the theme styles—so this code has no effect.
 
-However, after enabling the `modularCssLayers` option, the margin from the theme **wins** because the theme layer comes after the components layer. As a result, the accordion no longer has margin when it is expanded.
+After enabling the `modularCssLayers` option, the margin from the theme _does_ take precedence because the theme layer comes after the components layer in the cascade order—so the style override is applied and the accordion has no margins when expanded.
 
 {{"demo": "CssLayersCaveat.js"}}
