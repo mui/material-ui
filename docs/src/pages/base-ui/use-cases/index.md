@@ -1,5 +1,5 @@
 ---
-title: Base UI Use Cases
+title: Base UI Use Cases
 components:
   - BaseButton
   - BaseInput
