@@ -3,7 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
-const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldForwardProp })({
+const NotchedOutlineRoot = styled('fieldset', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   textAlign: 'left',
   position: 'absolute',
   bottom: 0,
@@ -20,7 +23,10 @@ const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldFor
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldForwardProp })(
+const NotchedOutlineLegend = styled('legend', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})(
   ({ ownerState, theme }) => ({
     float: 'unset', // Fix conflict with bootstrap
     width: 'auto', // Fix conflict with bootstrap

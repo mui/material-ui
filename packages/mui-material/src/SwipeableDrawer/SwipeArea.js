@@ -6,7 +6,10 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-const SwipeAreaRoot = styled('div', { shouldForwardProp: rootShouldForwardProp })(
+const SwipeAreaRoot = styled('div', {
+  name: 'MuiSwipeArea',
+  shouldForwardProp: rootShouldForwardProp,
+})(
   ({ theme, ownerState }) => ({
     position: 'fixed',
     top: 0,
