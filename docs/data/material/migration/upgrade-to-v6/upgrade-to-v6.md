@@ -579,3 +579,12 @@ Those deprecations will be removed in the next major version.
 ## Pigment CSS integration (optional)
 
 Once you've finished upgrading your app to v6, you'll be ready to start [migrating to Pigment CSS](/material-ui/migration/migrating-to-pigment-css/) for RSC support and a smaller bundle size.
+
+### @mui/lab version clarification
+
+If you are using components from `@mui/lab`, please note that version **6 does not exist as a stable release**.
+
+However, you can install the latest **beta** version using:
+
+```bash
+npm install @mui/lab@6.0.1-beta.35
