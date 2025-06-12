@@ -1682,6 +1682,9 @@ importers:
       '@emotion/cache':
         specifier: ^11.13.5
         version: 11.14.0
+      '@emotion/serialize':
+        specifier: ^1.3.3
+        version: 1.3.3
       csstype:
         specifier: ^3.1.3
         version: 3.1.3
@@ -3897,6 +3900,7 @@ packages:
   '@mui/base@5.0.0-beta.70':
     resolution: {integrity: sha512-Tb/BIhJzb0pa5zv/wu7OdokY9ZKEDqcu1BDFnohyvGCoHuSXbEr90rPq1qeNW3XvTBIbNWHEF7gqge+xpUo6tQ==}
     engines: {node: '>=14.0.0'}
+    deprecated: This package has been replaced by @base-ui-components/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0

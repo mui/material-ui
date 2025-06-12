@@ -1,5 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
+import styledEngineStyled, {
+  internal_processStyles as processStyles,
+  internal_serializeStyles as serializeStyles,
+} from '@mui/styled-engine';
 import { isPlainObject } from '@mui/utils/deepmerge';
 import capitalize from '@mui/utils/capitalize';
 import getDisplayName from '@mui/utils/getDisplayName';
@@ -26,6 +29,19 @@ export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
+function shallowLayer(serialized, layerName) {
+  if (
+    layerName &&
+    serialized &&
+    typeof serialized === 'object' &&
+    serialized.styles &&
+    !serialized.styles.startsWith('@layer') // only add the layer if it is not already there.
+  ) {
+    serialized.styles = `@layer ${layerName}{${String(serialized.styles)}}`;
+  }
+  return serialized;
+}
+
 export const systemDefaultTheme = createTheme();
 
 const lowercaseFirstLetter = (string) => {
@@ -46,13 +62,13 @@ function defaultOverridesResolver(slot) {
   return (props, styles) => styles[slot];
 }
 
-function processStyleArg(callableStyle, { ownerState, ...props }) {
+function processStyleArg(callableStyle, { ownerState, ...props }, layerName) {
   const resolvedStylesArg =
     typeof callableStyle === 'function' ? callableStyle({ ownerState, ...props }) : callableStyle;
 
   if (Array.isArray(resolvedStylesArg)) {
     return resolvedStylesArg.flatMap((resolvedStyle) =>
-      processStyleArg(resolvedStyle, { ownerState, ...props }),
+      processStyleArg(resolvedStyle, { ownerState, ...props }, layerName),
     );
   }
 
@@ -78,16 +94,20 @@ function processStyleArg(callableStyle, { ownerState, ...props }) {
         if (!Array.isArray(result)) {
           result = [result];
         }
-        result.push(
+        const variantStyle =
           typeof variant.style === 'function'
             ? variant.style({ ownerState, ...props, ...ownerState })
-            : variant.style,
+            : variant.style;
+        result.push(
+          layerName ? shallowLayer(serializeStyles(variantStyle), layerName) : variantStyle,
         );
       }
     });
     return result;
   }
-  return resolvedStylesArg;
+  return layerName
+    ? shallowLayer(serializeStyles(resolvedStylesArg), layerName)
+    : resolvedStylesArg;
 }
 
 export default function createStyled(input = {}) {
@@ -117,6 +137,11 @@ export default function createStyled(input = {}) {
       overridesResolver = defaultOverridesResolver(lowercaseFirstLetter(componentSlot)),
       ...options
     } = inputOptions;
+
+    const layerName =
+      (componentName && componentName.startsWith('Mui')) || !!componentSlot
+        ? 'components'
+        : 'custom';
 
     // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
     const skipVariantsResolver =
@@ -166,11 +191,17 @@ export default function createStyled(input = {}) {
         (typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg) ||
         isPlainObject(stylesArg)
       ) {
-        return (props) =>
-          processStyleArg(stylesArg, {
-            ...props,
-            theme: resolveTheme({ theme: props.theme, defaultTheme, themeId }),
-          });
+        return (props) => {
+          const theme = resolveTheme({ theme: props.theme, defaultTheme, themeId });
+          return processStyleArg(
+            stylesArg,
+            {
+              ...props,
+              theme,
+            },
+            theme.modularCssLayers ? layerName : undefined,
+          );
+        };
       }
       return stylesArg;
     };
@@ -192,7 +223,11 @@ export default function createStyled(input = {}) {
           const resolvedStyleOverrides = {};
           // TODO: v7 remove iteration and use `resolveStyleArg(styleOverrides[slot])` directly
           Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
-            resolvedStyleOverrides[slotKey] = processStyleArg(slotStyle, { ...props, theme });
+            resolvedStyleOverrides[slotKey] = processStyleArg(
+              slotStyle,
+              { ...props, theme },
+              theme.modularCssLayers ? 'theme' : undefined,
+            );
           });
           return overridesResolver(props, resolvedStyleOverrides);
         });
@@ -202,7 +237,11 @@ export default function createStyled(input = {}) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = resolveTheme({ ...props, defaultTheme, themeId });
           const themeVariants = theme?.components?.[componentName]?.variants;
-          return processStyleArg({ variants: themeVariants }, { ...props, theme });
+          return processStyleArg(
+            { variants: themeVariants },
+            { ...props, theme },
+            theme.modularCssLayers ? 'theme' : undefined,
+          );
         });
       }
 
