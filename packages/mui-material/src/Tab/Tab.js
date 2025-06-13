@@ -204,8 +204,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...other
   } = props;
 
-  const [value, setValue] = React.useState(valueProp);
-
   const {
     fullWidth,
     indicator: indicatorContext,
@@ -217,9 +215,15 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     registerTab,
   } = React.useContext(TabsContext);
 
-  // Register on mount
+  const [value, setValue] = React.useState();
+  const hasRegisteredRef = React.useRef(false);
+
   React.useEffect(() => {
-    registerTab(valueProp, setValue);
+    if (!hasRegisteredRef.current) {
+      const assignedValue = registerTab(valueProp);
+      setValue(assignedValue);
+      hasRegisteredRef.current = true;
+    }
   }, [valueProp, registerTab]);
 
   const selected = value === tabsValue;

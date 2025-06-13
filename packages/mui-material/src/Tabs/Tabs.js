@@ -784,15 +784,14 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   );
 
   const registerTab = React.useCallback(
-    (tabValue, setValue) => {
+    (tabValue) => {
       const assignedIndex = childIndexRef.current;
-      childIndexRef.current += 1;
       const finalValue = tabValue === undefined ? assignedIndex : tabValue;
-      setValue(finalValue);
-
       if (!valueToIndex.has(finalValue)) {
         valueToIndex.set(finalValue, assignedIndex);
       }
+      childIndexRef.current += 1;
+      return finalValue;
     },
     [valueToIndex],
   );
