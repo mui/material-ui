@@ -42,12 +42,12 @@
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
-    "@types/chai": "^4.3.20",
+    "@types/chai": "^5.2.2",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.19.0",
     "@types/sinon": "^17.0.4",
     "@types/stylis": "4.2.7",
-    "chai": "^4.5.0",
+    "chai": "^5.2.0",
     "sinon": "^19.0.5",
     "stylis": "4.3.6"
   },
