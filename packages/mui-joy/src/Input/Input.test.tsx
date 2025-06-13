@@ -67,12 +67,12 @@ describe('Joy <Input />', () => {
       expect(container.firstChild).to.have.class(classes.disabled);
     });
 
-    it('should reset the focused state if getting disabled', () => {
+    it('should reset the focused state if getting disabled', async () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const { getByRole, setProps } = render(<Input onBlur={handleBlur} onFocus={handleFocus} />);
 
-      act(() => {
+      await act(async () => {
         getByRole('textbox').focus();
       });
       expect(handleFocus.callCount).to.equal(1);
@@ -107,14 +107,14 @@ describe('Joy <Input />', () => {
   });
 
   describe('slotProps: input', () => {
-    it('`onKeyDown` and `onKeyUp` should work', () => {
+    it('`onKeyDown` and `onKeyUp` should work', async () => {
       const handleKeyDown = spy();
       const handleKeyUp = spy();
       const { getByRole } = render(
         <Input slotProps={{ input: { onKeyDown: handleKeyDown, onKeyUp: handleKeyUp } }} />,
       );
 
-      act(() => {
+      await act(async () => {
         getByRole('textbox').focus();
       });
       fireEvent.keyDown(getByRole('textbox'));
@@ -124,31 +124,31 @@ describe('Joy <Input />', () => {
       expect(handleKeyUp.callCount).to.equal(1);
     });
 
-    it('should call focus and blur', () => {
+    it('should call focus and blur', async () => {
       const handleBlur = spy();
       const handleFocus = spy();
       const { getByRole } = render(
         <Input slotProps={{ input: { onFocus: handleFocus, onBlur: handleBlur } }} />,
       );
 
-      act(() => {
+      await act(async () => {
         getByRole('textbox').focus();
       });
       expect(handleFocus.callCount).to.equal(1);
-      act(() => {
+      await act(async () => {
         getByRole('textbox').blur();
       });
       expect(handleFocus.callCount).to.equal(1);
     });
 
-    it('should override outer handlers', () => {
+    it('should override outer handlers', async () => {
       const handleFocus = spy();
       const handleSlotFocus = spy();
       const { getByRole } = render(
         <Input onFocus={handleFocus} slotProps={{ input: { onFocus: handleSlotFocus } }} />,
       );
 
-      act(() => {
+      await act(async () => {
         getByRole('textbox').focus();
       });
       expect(handleFocus.callCount).to.equal(0);

@@ -68,12 +68,12 @@ describe('<Checkbox />', () => {
     expect(getByRole('checkbox')).to.have.property('checked', true);
   });
 
-  it('renders a label', () => {
+  it('renders a label', async () => {
     const { getByLabelText, getByRole } = render(<Checkbox label="foo" />);
 
     expect(getByLabelText('foo')).toBeVisible();
 
-    act(() => {
+    await act(async () => {
       getByLabelText('foo').click();
     });
 
@@ -86,11 +86,11 @@ describe('<Checkbox />', () => {
     expect(getByRole('checkbox')).to.have.property('disabled', true);
   });
 
-  it('the Checked state changes after change events', () => {
+  it('the Checked state changes after change events', async () => {
     const { getByRole } = render(<Checkbox defaultChecked />);
 
     // how a user would trigger it
-    act(() => {
+    await act(async () => {
       getByRole('checkbox').click();
       fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
     });
