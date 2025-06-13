@@ -532,4 +532,11 @@ describe('experimental_extendTheme', () => {
       },
     });
   });
+
+  it('should not generate vars for modularCssLayers', () => {
+    const theme = extendTheme({
+      modularCssLayers: '@layer mui,utilities;',
+    });
+    expect(theme.vars.modularCssLayers).to.equal(undefined);
+  });
 });

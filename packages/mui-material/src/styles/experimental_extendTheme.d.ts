@@ -297,6 +297,11 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
+  /**
+   * Whether to use modular CSS layers.
+   * @default false
+   */
+  modularCssLayers?: boolean | string;
 }
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function

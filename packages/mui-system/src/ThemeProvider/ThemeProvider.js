@@ -10,6 +10,7 @@ import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useThemeWithoutDefault from '../useThemeWithoutDefault';
 import RtlProvider from '../RtlProvider';
 import DefaultPropsProvider from '../DefaultPropsProvider';
+import useLayerOrder from './useLayerOrder';
 
 const EMPTY_THEME = {};
 
@@ -65,11 +66,16 @@ function ThemeProvider(props) {
   const privateTheme = useThemeScoping(themeId, upperPrivateTheme, localTheme, true);
   const rtlValue = engineTheme.direction === 'rtl';
 
+  const layerOrder = useLayerOrder(engineTheme);
+
   return (
     <MuiThemeProvider theme={privateTheme}>
       <StyledEngineThemeContext.Provider value={engineTheme}>
         <RtlProvider value={rtlValue}>
-          <DefaultPropsProvider value={engineTheme?.components}>{children}</DefaultPropsProvider>
+          <DefaultPropsProvider value={engineTheme?.components}>
+            {layerOrder}
+            {children}
+          </DefaultPropsProvider>
         </RtlProvider>
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>

@@ -23,6 +23,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
   unstable_sxConfig?: SxConfig;
+  modularCssLayers?: boolean | string;
 }
 
 interface BaseTheme extends SystemTheme {
