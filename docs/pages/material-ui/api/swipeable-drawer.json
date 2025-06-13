@@ -30,7 +30,25 @@
     "hysteresis": { "type": { "name": "number" }, "default": "0.52" },
     "minFlingVelocity": { "type": { "name": "number" }, "default": "450" },
     "open": { "type": { "name": "bool" }, "default": "false" },
-    "SwipeAreaProps": { "type": { "name": "object" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, docked?: func<br>&#124;&nbsp;object, paper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, swipeArea?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: elementType, docked?: elementType, paper?: elementType, root?: elementType, swipeArea?: elementType, transition?: elementType }"
+      },
+      "default": "{}"
+    },
+    "SwipeAreaProps": {
+      "type": { "name": "object" },
+      "deprecated": true,
+      "deprecationInfo": "use the <code>slotProps.swipeArea</code> prop instead. This prop will be removed in a future major release. See <a href=\"https://mui.com/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+    },
     "swipeAreaWidth": { "type": { "name": "number" }, "default": "20" },
     "transitionDuration": {
       "type": {
@@ -44,6 +62,14 @@
   "imports": [
     "import SwipeableDrawer from '@mui/material/SwipeableDrawer';",
     "import { SwipeableDrawer } from '@mui/material';"
+  ],
+  "slots": [
+    {
+      "name": "swipeArea",
+      "description": "The component used for the swipeArea slot.",
+      "default": "div",
+      "class": null
+    }
   ],
   "classes": [
     {

@@ -7,7 +7,6 @@ import {
   fireEvent,
   screen,
   strictModeDoubleLoggingSuppressed,
-  reactMajor,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
 import userEvent from '@testing-library/user-event';
@@ -694,11 +693,11 @@ describe('<Autocomplete />', () => {
           defaultValue={options}
           options={options}
           value={options}
-          renderTags={(value, getTagProps) =>
+          renderValue={(value, getItemProps) =>
             value
               .filter((x, index) => index === 1)
               .map((option, index) => {
-                const { key, ...tagProps } = getTagProps({ index });
+                const { key, ...tagProps } = getItemProps({ index });
                 return <Chip key={key} label={option.title} {...tagProps} />;
               })
           }
@@ -1221,6 +1220,27 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([]);
+    });
+
+    it('should clear on escape if rendering single value', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          clearOnEscape
+          value="one"
+          options={['one', 'two']}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(null);
+      expect(handleChange.args[0][2]).to.deep.equal('clear');
     });
   });
 
@@ -2043,7 +2063,6 @@ describe('<Autocomplete />', () => {
 
       const textbox = getByRole('combobox');
       expect(textbox).to.have.attribute('aria-expanded', 'false');
-      expect(textbox).not.to.have.attribute('aria-owns');
       expect(textbox).not.to.have.attribute('aria-controls');
       expect(document.querySelector(`.${classes.paper}`)).to.have.text('No options');
     });
@@ -2882,32 +2901,33 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  it('should not override internal listbox ref when external listbox ref is provided', () => {
+  it('should not override internal listbox ref when external listbox ref is provided by testing if highlighting works', () => {
     const handleHighlightChange = spy();
-    const options = ['one', 'two', 'three'];
-    const ref = React.createRef(null);
+    const externalListboxRef = React.createRef(null);
+
     render(
       <Autocomplete
-        defaultValue={options[0]}
-        onHighlightChange={handleHighlightChange}
-        options={options}
-        ListboxProps={{ ref }}
-        open
+        options={['one', 'two', 'three']}
+        slotProps={{
+          listbox: {
+            ref: externalListboxRef,
+          },
+        }}
         renderInput={(params) => <TextField {...params} autoFocus />}
+        onHighlightChange={handleHighlightChange}
       />,
     );
-    expect(handleHighlightChange.callCount).to.equal(
-      // FIXME: highlighted index implementation should be implemented using React not the DOM.
-      reactMajor >= 18 ? 2 : 1,
-    );
-    expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-    if (reactMajor >= 18) {
-      expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
-    }
+
+    const textbox = screen.getByRole('combobox');
+
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // open listbox
+    fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight first option
+
+    expect(handleHighlightChange.callCount).to.equal(1);
   });
 
   describe('prop: onHighlightChange', () => {
-    it('should trigger event when default value is passed', () => {
+    it('should not trigger event when default value is passed', () => {
       const handleHighlightChange = spy();
       const options = ['one', 'two', 'three'];
       render(
@@ -2919,14 +2939,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 2 : 1,
-      );
-      expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
-      if (reactMajor >= 18) {
-        expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
-      }
+      expect(handleHighlightChange.callCount).to.equal(0);
     });
 
     it('should support keyboard event', () => {
@@ -2944,24 +2957,13 @@ describe('<Autocomplete />', () => {
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
-      );
-      if (reactMajor >= 18) {
-        expect(handleHighlightChange.args[2][0]).to.equal(undefined);
-        expect(handleHighlightChange.args[2][1]).to.equal(null);
-        expect(handleHighlightChange.args[2][2]).to.equal('auto');
-      }
+      expect(handleHighlightChange.callCount).to.equal(1);
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 5 : 4,
-      );
+      expect(handleHighlightChange.callCount).to.equal(2);
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
@@ -2980,15 +2982,7 @@ describe('<Autocomplete />', () => {
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseMove(firstOption);
-      expect(handleHighlightChange.callCount).to.equal(
-        // FIXME: highlighted index implementation should be implemented using React not the DOM.
-        reactMajor >= 18 ? 4 : 3,
-      );
-      if (reactMajor >= 18) {
-        expect(handleHighlightChange.args[2][0]).to.equal(undefined);
-        expect(handleHighlightChange.args[2][1]).to.equal(null);
-        expect(handleHighlightChange.args[2][2]).to.equal('auto');
-      }
+      expect(handleHighlightChange.callCount).to.equal(1);
       expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
       expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
       expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
@@ -3016,13 +3010,11 @@ describe('<Autocomplete />', () => {
       );
     });
 
-    it('should reset the highlight when the options change', () => {
-      const handleHighlightChange = [];
+    it('should reset the highlight when the options change and onHighlightChange should not be called', () => {
+      const handleHighlightChange = spy();
       const { getByRole, setProps } = render(
         <Autocomplete
-          onHighlightChange={(event, option) => {
-            handleHighlightChange.push(option);
-          }}
+          onHighlightChange={handleHighlightChange}
           openOnFocus
           autoHighlight
           options={['one', 'two', 'three']}
@@ -3031,13 +3023,12 @@ describe('<Autocomplete />', () => {
       );
 
       checkHighlightIs(getByRole('listbox'), 'one');
+      expect(handleHighlightChange.callCount).to.equal(0);
+
       setProps({ options: ['four', 'five'] });
+
       checkHighlightIs(getByRole('listbox'), 'four');
-
-      const expectedCallHistory =
-        reactMajor >= 19 ? [null, 'one', 'one', 'four'] : [null, 'one', 'four'];
-
-      expect(handleHighlightChange).to.deep.equal(expectedCallHistory);
+      expect(handleHighlightChange.callCount).to.equal(0);
     });
   });
 
@@ -3295,6 +3286,32 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'Backspace' });
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
+
+    it('should not be able to delete the tag using Backspace when using renderValue', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two']}
+          defaultValue="one"
+          renderInput={(params) => <TextField {...params} />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      const chip = container.querySelector(`.${chipClasses.root}`);
+      expect(chip).not.to.have.class(chipClasses.deletable);
+
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
   });
 
   // https://github.com/mui/material-ui/issues/36114
@@ -3456,5 +3473,170 @@ describe('<Autocomplete />', () => {
     });
 
     expect(listbox).to.have.property('scrollTop', 60);
+  });
+
+  describe('prop: renderValue (single selection)', () => {
+    it('should render only a single value, given that options are primitive values', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the second option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
+
+    it('should render only a single value, given that options as objects', () => {
+      const { container } = render(
+        <Autocomplete
+          options={[
+            { title: 'The Shawshank Redemption', year: 1994 },
+            { title: 'The Godfather', year: 1972 },
+          ]}
+          getOptionLabel={(option) => option.title}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value.title} {...getItemProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the first option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // highlight the second option...
+      fireEvent.keyDown(textbox, { key: 'Enter' }); // ...and select it
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+    });
+
+    it('should delete using Backspace key', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          defaultValue="one"
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
+
+    it('should delete using Delete key', () => {
+      const { container } = render(
+        <Autocomplete
+          options={['one', 'two']}
+          defaultValue="one"
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(1);
+
+      fireEvent.keyDown(textbox, { key: 'Delete' });
+
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(0);
+    });
+
+    it('navigates between the tag and input', () => {
+      const { container } = render(
+        <Autocomplete
+          defaultValue="two"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      const chip = container.querySelector(`.${chipClasses.root}`);
+
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(chip).toHaveFocus();
+
+      fireEvent.keyDown(chip, { key: 'ArrowRight' });
+
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should allow zero number (0) as a value to render', () => {
+      const { container } = render(
+        <Autocomplete
+          defaultValue={0}
+          options={[0, 1, 2]}
+          getOptionLabel={(option) => option.toString()}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      expect(container.querySelector(`.${chipClasses.root}`)).to.have.text('0');
+    });
+  });
+
+  it('should not shrink the input label when value is an empty array in multiple mode using renderValue', () => {
+    const { getByTestId } = render(
+      <Autocomplete
+        multiple
+        value={[]}
+        options={['one', 'two', 'three']}
+        renderValue={(values, getItemProps) =>
+          values.map((option, index) => {
+            const { key, ...itemProps } = getItemProps({ index });
+            return <Chip key={key} label={option.title} {...itemProps} />;
+          })
+        }
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Fixed tag"
+            slotProps={{ inputLabel: { 'data-testid': 'label' } }}
+          />
+        )}
+      />,
+    );
+
+    expect(getByTestId('label')).to.have.attribute('data-shrink', 'false');
   });
 });

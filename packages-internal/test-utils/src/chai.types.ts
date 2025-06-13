@@ -100,7 +100,7 @@ declare global {
        * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
        * In production it expects a minified error.
        */
-      toThrowMinified(message: string): void;
+      toThrowMinified(message: string | RegExp): void;
     }
   }
 }

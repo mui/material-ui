@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { unstable_useId as useId } from '@mui/material/utils';
 import { alpha } from '@mui/system/colorManipulator';
+import { unstable_useId as useId } from '../utils';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
@@ -28,6 +28,7 @@ const useUtilityClasses = (ownerState) => {
       `size${capitalize(size)}`,
     ],
     loadingIndicator: ['loadingIndicator'],
+    loadingWrapper: ['loadingWrapper'],
   };
 
   return composeClasses(slots, getIconButtonUtilityClass, classes);
@@ -154,7 +155,6 @@ const IconButtonRoot = styled(ButtonBase, {
 const IconButtonLoadingIndicator = styled('span', {
   name: 'MuiIconButton',
   slot: 'LoadingIndicator',
-  overridesResolver: (props, styles) => styles.loadingIndicator,
 })(({ theme }) => ({
   display: 'none',
   position: 'absolute',
@@ -181,14 +181,14 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     disableFocusRipple = false,
     size = 'medium',
     id: idProp,
-    loading = false,
+    loading = null,
     loadingIndicator: loadingIndicatorProp,
     ...other
   } = props;
 
-  const id = useId(idProp);
+  const loadingId = useId(idProp);
   const loadingIndicator = loadingIndicatorProp ?? (
-    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+    <CircularProgress aria-labelledby={loadingId} color="inherit" size={16} />
   );
 
   const ownerState = {
@@ -206,7 +206,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   return (
     <IconButtonRoot
-      id={id}
+      id={loading ? loadingId : idProp}
       className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
@@ -215,9 +215,14 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       {...other}
       ownerState={ownerState}
     >
-      <IconButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
-        {loading && loadingIndicator}
-      </IconButtonLoadingIndicator>
+      {typeof loading === 'boolean' && (
+        // use plain HTML span to minimize the runtime overhead
+        <span className={classes.loadingWrapper} style={{ display: 'contents' }}>
+          <IconButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
+            {loading && loadingIndicator}
+          </IconButtonLoadingIndicator>
+        </span>
+      )}
       {children}
     </IconButtonRoot>
   );
@@ -307,7 +312,8 @@ IconButton.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * If `true`, the loading indicator is visible and the button is disabled.
-   * @default false
+   * If `true | false`, the loading wrapper is always rendered before the children to prevent [Google Translation Crash](https://github.com/mui/material-ui/issues/27853).
+   * @default null
    */
   loading: PropTypes.bool,
   /**

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
@@ -88,10 +88,10 @@ export default function MaterialEnd({ noFaq }: MaterialEndProps) {
                 <GlowingIconContainer icon={<CompareIcon color="primary" />} />
                 <div>
                   <Typography gutterBottom sx={{ color: 'text.primary', fontWeight: 'semiBold' }}>
-                    Material UI vs. Base UI
+                    Material UI vs. MUI Base
                   </Typography>
                   <Typography>
-                    Material UI implements Google&apos;s Material Design whereas Base UI features
+                    Material UI implements Google&apos;s Material Design whereas MUI Base features
                     many of the same components, but without the Material Design implementation.
                   </Typography>
                 </div>

@@ -27,8 +27,10 @@ export default function FadeMenu() {
       </Button>
       <Menu
         id="fade-menu"
-        MenuListProps={{
-          'aria-labelledby': 'fade-button',
+        slotProps={{
+          list: {
+            'aria-labelledby': 'fade-button',
+          },
         }}
         anchorEl={anchorEl}
         open={open}

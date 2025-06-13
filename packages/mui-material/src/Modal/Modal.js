@@ -14,7 +14,6 @@ import Backdrop from '../Backdrop';
 import useModal from './useModal';
 import { getModalUtilityClass } from './modalClasses';
 import useSlot from '../utils/useSlot';
-import { useForkRef } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -57,9 +56,6 @@ const ModalRoot = styled('div', {
 const ModalBackdrop = styled(Backdrop, {
   name: 'MuiModal',
   slot: 'Backdrop',
-  overridesResolver: (props, styles) => {
-    return styles.backdrop;
-  },
 })({
   zIndex: -1,
 });
@@ -98,7 +94,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
-    onBackdropClick,
     onClose,
     onTransitionEnter,
     onTransitionExited,
@@ -153,7 +148,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   }
 
   const externalForwardedProps = {
-    ...other,
     slots: {
       root: components.Root,
       backdrop: components.Backdrop,
@@ -166,13 +160,14 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   };
 
   const [RootSlot, rootProps] = useSlot('root', {
+    ref,
     elementType: ModalRoot,
-    externalForwardedProps,
-    getSlotProps: getRootProps,
-    additionalProps: {
-      ref,
-      as: component,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+      component,
     },
+    getSlotProps: getRootProps,
     ownerState,
     className: clsx(
       className,
@@ -182,16 +177,15 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   });
 
   const [BackdropSlot, backdropProps] = useSlot('backdrop', {
+    ref: BackdropProps?.ref,
     elementType: BackdropComponent,
     externalForwardedProps,
+    shouldForwardComponentProp: true,
     additionalProps: BackdropProps,
     getSlotProps: (otherHandlers) => {
       return getBackdropProps({
         ...otherHandlers,
         onClick: (event) => {
-          if (onBackdropClick) {
-            onBackdropClick(event);
-          }
           if (otherHandlers?.onClick) {
             otherHandlers.onClick(event);
           }
@@ -202,8 +196,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     ownerState,
   });
 
-  const backdropRef = useForkRef(BackdropProps?.ref, backdropProps.ref);
-
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
   }
@@ -211,9 +203,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   return (
     <Portal ref={portalRef} container={container} disablePortal={disablePortal}>
       <RootSlot {...rootProps}>
-        {!hideBackdrop && BackdropComponent ? (
-          <BackdropSlot {...backdropProps} ref={backdropRef} />
-        ) : null}
+        {!hideBackdrop && BackdropComponent ? <BackdropSlot {...backdropProps} /> : null}
         <FocusTrap
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
@@ -240,9 +230,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
-   *   overridesResolver: (props, styles) => {
-   *     return styles.backdrop;
-   *   },
    * })({
    *   zIndex: -1,
    * })
@@ -278,7 +265,7 @@ Modal.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated Use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -290,7 +277,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated Use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -373,11 +360,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
-  /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.

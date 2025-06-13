@@ -13,7 +13,7 @@ You don't need to provide any JavaScript polyfill as it manages unsupported brow
 | :----- | :------ | :----- | :------------- | :----------- |
 | >= 121 | >= 115  | >= 109 | >= 15.4        | >= 15.4      |
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 An extensive list can be found in our [.browserlistrc](https://github.com/mui/material-ui/blob/-/.browserslistrc#L12-L27) (check the `stable` entry).
 
@@ -37,7 +37,7 @@ Have a look at the older [versions](https://mui.com/versions/) for backward comp
 
 ## TypeScript
 
-Material UI requires a minimum version of TypeScript 4.7.
+Material UI requires a minimum version of TypeScript 4.9.
 This aims to match the policy of [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), with the support of the versions of TypeScript that are less than two years old.
 
 ## webpack

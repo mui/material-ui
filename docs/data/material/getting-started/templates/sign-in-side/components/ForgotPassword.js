@@ -13,13 +13,15 @@ function ForgotPassword({ open, handleClose }) {
     <Dialog
       open={open}
       onClose={handleClose}
-      PaperProps={{
-        component: 'form',
-        onSubmit: (event) => {
-          event.preventDefault();
-          handleClose();
+      slotProps={{
+        paper: {
+          component: 'form',
+          onSubmit: (event) => {
+            event.preventDefault();
+            handleClose();
+          },
+          sx: { backgroundImage: 'none' },
         },
-        sx: { backgroundImage: 'none' },
       }}
     >
       <DialogTitle>Reset password</DialogTitle>

@@ -34,6 +34,8 @@ export interface IconButtonClasses {
   loading: string;
   /** Styles applied to the loadingIndicator element. */
   loadingIndicator: string;
+  /** Styles applied to the loadingWrapper element. */
+  loadingWrapper: string;
 }
 
 export type IconButtonClassKey = keyof IconButtonClasses;
@@ -59,6 +61,7 @@ const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButt
   'sizeLarge',
   'loading',
   'loadingIndicator',
+  'loadingWrapper',
 ]);
 
 export default iconButtonClasses;

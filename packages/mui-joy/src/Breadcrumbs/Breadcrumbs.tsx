@@ -2,10 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_isMuiElement as isMuiElement,
-} from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import isMuiElement from '@mui/utils/isMuiElement';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import clsx from 'clsx';
 import { useThemeProps } from '../styles';

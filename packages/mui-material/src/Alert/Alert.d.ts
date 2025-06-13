@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
+import { SvgIconProps } from '../SvgIcon';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { IconButtonProps } from '../IconButton';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -67,29 +70,17 @@ export type AlertSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the icon slot.
      * By default, the avaible props are based on a div element.
      */
-    icon: SlotProps<
-      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
-      AlertIconSlotPropsOverrides,
-      AlertOwnerState
-    >;
+    icon: SlotProps<'div', AlertIconSlotPropsOverrides, AlertOwnerState>;
     /**
      * Props forwarded to the message slot.
      * By default, the avaible props are based on a div element.
      */
-    message: SlotProps<
-      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
-      AlertMessageSlotPropsOverrides,
-      AlertOwnerState
-    >;
+    message: SlotProps<'div', AlertMessageSlotPropsOverrides, AlertOwnerState>;
     /**
      * Props forwarded to the action slot.
      * By default, the avaible props are based on a div element.
      */
-    action: SlotProps<
-      React.ElementType<React.DetailsHTMLAttributes<HTMLDivElement>>,
-      AlertActionSlotPropsOverrides,
-      AlertOwnerState
-    >;
+    action: SlotProps<'div', AlertActionSlotPropsOverrides, AlertOwnerState>;
     /**
      * Props forwarded to the closeButton slot.
      * By default, the avaible props are based on the [IconButton](https://mui.com/material-ui/api/icon-button/#props) component.
@@ -136,7 +127,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -148,7 +139,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */

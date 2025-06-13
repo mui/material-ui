@@ -1,5 +1,5 @@
 'use client';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/utils/composeClasses';
 import * as ReactDOM from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import {
@@ -8,11 +8,9 @@ import {
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
-import {
-  deepmerge,
-  unstable_useForkRef as useForkRef,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-} from '@mui/utils';
+import useForkRef from '@mui/utils/useForkRef';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import deepmerge from '@mui/utils/deepmerge';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
@@ -165,9 +163,6 @@ export const getStyle = ({ ownerState, theme }) => {
 const MasonryRoot = styled('div', {
   name: 'MuiMasonry',
   slot: 'Root',
-  overridesResolver: (props, styles) => {
-    return [styles.root];
-  },
 })(getStyle);
 
 const Masonry = React.forwardRef(function Masonry(inProps, ref) {

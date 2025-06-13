@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    // rely on workspace linking
+    "paths": {},
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "strict": true,
+    "noEmit": true,
+    "noErrorTruncation": true,
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "types": []
+  },
+  "exclude": ["**/node_modules/"]
+}

@@ -5,7 +5,6 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://m2.material.io/components/menus
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
-unstyled: /base-ui/react-menu/
 githubSource: packages/mui-material/src/Menu
 ---
 
@@ -112,6 +111,12 @@ Use a different transition.
 Here is an example of a context menu. (Right click to open.)
 
 {{"demo": "ContextMenu.js"}}
+
+## Grouped Menu
+
+Display categories with the `ListSubheader` component.
+
+{{"demo": "GroupedMenu.js"}}
 
 ## Supplementary projects
 

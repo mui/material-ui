@@ -23,7 +23,7 @@ Here are the most significant improvements in March:
 
 - We have committed to [a new Roadmap](/material-ui/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task we can remove the internal usage of higher-order components.
-- We have introduced [a simplified server-side rendering API](/system/styles/advanced/#server-side-rendering), inspired by styled-components.
+- We have introduced [a simplified server-side rendering API](https://v6.mui.com/system/styles/advanced/#server-side-rendering), inspired by styled-components.
 
 ## Our roadmap intent for April
 

@@ -30,7 +30,9 @@ The following steps must be proposed as a pull request.
    1. Match the format of https://github.com/mui/material-ui/releases.
    2. Change the packages names casing to be lowercase if applicable
 3. Update the root `/package.json`'s version
-4. Run `pnpm release:version`. Keep the package versions of stable public packages the same as the root `package.json` version.
+4. Run `pnpm release:version`. Keep in mind:
+   1. Only packages that have changes since the last release should have their version bumped.
+   2. If they have changes, packages that follow Material-UI's versioning scheme should be bumped to the same version as the root `package.json`. This might require skipping some version numbers.
 5. Open PR with changes and wait for review and green CI
 6. Merge PR once CI is green and it has been approved
 
@@ -48,7 +50,7 @@ Force push if necessary.
 
 ### Announce
 
-Follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
+After the docs is live, follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
 
 ## Deploy documentation without a release
 
@@ -56,6 +58,12 @@ Sometimes it is necessary to deploy the selected commit(s) without
 deploying all the changes that have been merged into the main branch
 since the previous release (for example publishing a blog post or releasing
 urgent docs updates).
+
+**Note:** The instructions below are for deploying to the `latest` branch of the `material-ui-docs` repository, which points to `https://mui.com/`. If you need to deploy to a different subdomain, replace `latest` with the appropriate branch name:
+
+- `latest`: `https://mui.com/`
+- `next`: `https://next.mui.com/`
+- `v*.x`: `https://v*.mui.com/`
 
 To do so, follow these steps:
 
@@ -88,7 +96,7 @@ To do so, follow these steps:
    In case of conflicts you will need to resolve them and commit the changes manually.
 
    If this command fails with the message 'bad revision', it means that the commit doesn't exist on your local repository.
-   The commit might have been created on a remote branch, probably when merging into `master` or `next`.
+   The commit might have been created on a remote branch, probably when merging into `master` or `v*.x`.
    In this case, you'll have to fetch the latest changes of the corresponding remote branch and then try again.
 
 5. Push the changes to the `material-ui-docs` remote:

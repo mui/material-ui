@@ -10,12 +10,12 @@
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
     "paths": {
       "@mui/material": ["./packages/mui-material/src"],
+      "@mui/material/package.json": ["./packages/mui-material/package.json"],
       "@mui/material/*": ["./packages/mui-material/src/*"],
       "@mui/lab": ["./packages/mui-lab/src"],
       "@mui/lab/*": ["./packages/mui-lab/src/*"],
@@ -25,15 +25,12 @@
       "@mui/styled-engine/*": ["./packages/mui-styled-engine/src/*"],
       "@mui/styled-engine-sc": ["./packages/mui-styled-engine-sc/src"],
       "@mui/styled-engine-sc/*": ["./packages/mui-styled-engine-sc/src/*"],
-      "@mui/styles": ["./packages/mui-styles/src"],
-      "@mui/styles/*": ["./packages/mui-styles/src/*"],
       "@mui/system": ["./packages/mui-system/src"],
+      "@mui/system/package.json": ["./packages/mui-system/package.json"],
       "@mui/system/*": ["./packages/mui-system/src/*"],
-      "@mui/types": ["./packages/mui-types"],
+      "@mui/types": ["./packages/mui-types/src"],
       "@mui/private-theming": ["./packages/mui-private-theming/src"],
       "@mui/private-theming/*": ["./packages/mui-private-theming/src/*"],
-      "@mui/base": ["./packages/mui-base/src"],
-      "@mui/base/*": ["./packages/mui-base/src/*"],
       "@mui/utils": ["./packages/mui-utils/src"],
       "@mui/utils/*": ["./packages/mui-utils/src/*"],
       "@mui/docs": ["./packages/mui-docs/src"],
@@ -41,15 +38,19 @@
       "@mui/material-nextjs": ["./packages/mui-material-nextjs/src"],
       "@mui/material-nextjs/*": ["./packages/mui-material-nextjs/src/*"],
       "@mui/joy": ["./packages/mui-joy/src"],
+      "@mui/joy/package.json": ["./packages/mui-joy/package.json"],
       "@mui/joy/*": ["./packages/mui-joy/src/*"],
       "@mui/icons-material": ["./packages/mui-icons-material/lib/esm/index.js"],
-      "@mui/icons-material/*": ["./packages/mui-icons-material/src/icon.d.ts"],
+      "@mui/icons-material/*": ["./packages/mui-icons-material/lib/esm/*"],
       "@mui/internal-docs-utils": ["./packages-internal/docs-utils/src"],
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
       ],
       "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
-      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"]
+      "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"],
+      "@mui/stylis-plugin-rtl": ["./packages/mui-stylis-plugin-rtl/src"],
+      "@mui/stylis-plugin-rtl/*": ["./packages/mui-stylis-plugin-rtl/src/*"],
+      "docs/*": ["./docs/*"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react", "mocha"]

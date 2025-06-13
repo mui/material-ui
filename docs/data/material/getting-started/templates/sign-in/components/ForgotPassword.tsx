@@ -17,13 +17,15 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
     <Dialog
       open={open}
       onClose={handleClose}
-      PaperProps={{
-        component: 'form',
-        onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-          event.preventDefault();
-          handleClose();
+      slotProps={{
+        paper: {
+          component: 'form',
+          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            handleClose();
+          },
+          sx: { backgroundImage: 'none' },
         },
-        sx: { backgroundImage: 'none' },
       }}
     >
       <DialogTitle>Reset password</DialogTitle>
