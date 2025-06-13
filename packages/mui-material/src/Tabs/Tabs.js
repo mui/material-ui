@@ -375,9 +375,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scrollbarWidth: 0,
   });
 
-  const valueToIndex = new Map();
+  const valueToIndex = React.useMemo(() => new Map(), []);
   const tabsRef = React.useRef(null);
   const tabListRef = React.useRef(null);
+  const childIndexRef = React.useRef(0);
 
   const externalForwardedProps = {
     slots,
@@ -777,18 +778,24 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     },
   });
 
-  const indicator = <IndicatorSlot {...indicatorSlotProps} />;
+  const indicator = React.useMemo(
+    () => <IndicatorSlot {...indicatorSlotProps} />,
+    [IndicatorSlot, indicatorSlotProps],
+  );
 
-  let childIndex = 0;
-  const registerTab = (tabValue, setValue) => {
-    const assignedIndex = (childIndex += 1);
-    const finalValue = tabValue === undefined ? assignedIndex : tabValue;
-    setValue(finalValue);
+  const registerTab = React.useCallback(
+    (tabValue, setValue) => {
+      const assignedIndex = childIndexRef.current;
+      childIndexRef.current += 1;
+      const finalValue = tabValue === undefined ? assignedIndex : tabValue;
+      setValue(finalValue);
 
-    if (!valueToIndex.has(finalValue)) {
-      valueToIndex.set(finalValue, assignedIndex);
-    }
-  };
+      if (!valueToIndex.has(finalValue)) {
+        valueToIndex.set(finalValue, assignedIndex);
+      }
+    },
+    [valueToIndex],
+  );
 
   const tabsContextValue = React.useMemo(
     () => ({
