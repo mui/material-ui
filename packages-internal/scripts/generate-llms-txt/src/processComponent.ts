@@ -7,6 +7,27 @@ interface DemoReplaceOptions {
 }
 
 /**
+ * Removes {{"component": ...}} syntax from markdown content
+ * @param markdownContent - The markdown content to clean
+ * @returns The cleaned markdown content
+ */
+export function removeComponentSyntax(markdownContent: string): string {
+  // Regular expression to match {{"component": "ComponentName"}} pattern
+  const componentRegex = /\{\{"component":\s*"[^"]+"\}\}/g;
+  return markdownContent.replace(componentRegex, '');
+}
+
+/**
+ * Converts <p class="description"> HTML tags to plain text in markdown
+ * @param markdownContent - The markdown content to clean
+ * @returns The cleaned markdown content
+ */
+export function cleanDescriptionTags(markdownContent: string): string {
+  // Replace <p class="description">...</p> with just the content
+  return markdownContent.replace(/<p class="description">([^<]+)<\/p>/g, '$1');
+}
+
+/**
  * Parses markdown content and replaces demo syntax with code snippets
  * @param markdownContent - The markdown content to parse
  * @param markdownPath - The path to the markdown file (used to resolve relative demo paths)
@@ -81,7 +102,7 @@ export function replaceDemoWithSnippet(
  * @returns The processed markdown content
  */
 export function processMarkdownFile(filePath: string, options: DemoReplaceOptions = {}): string {
-  const content = fs.readFileSync(filePath, 'utf-8');
+  let content = fs.readFileSync(filePath, 'utf-8');
   const dir = path.dirname(filePath);
 
   // Set basePath relative to markdown file location if not provided
@@ -90,5 +111,12 @@ export function processMarkdownFile(filePath: string, options: DemoReplaceOption
     basePath: options.basePath || dir,
   };
 
+  // First, remove component syntax
+  content = removeComponentSyntax(content);
+
+  // Clean description HTML tags
+  content = cleanDescriptionTags(content);
+
+  // Then, replace demo syntax with code snippets
   return replaceDemoWithSnippet(content, filePath, processOptions);
 }
