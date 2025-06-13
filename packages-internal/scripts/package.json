@@ -29,7 +29,7 @@
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@babel/plugin-syntax-jsx": "^7.27.1",
     "@babel/plugin-syntax-typescript": "^7.27.1",
-    "@babel/types": "^7.27.3",
+    "@babel/types": "^7.27.6",
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
