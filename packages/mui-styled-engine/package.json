@@ -37,7 +37,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints StyledEngineProvider GlobalStyles"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.4",
+    "@babel/runtime": "^7.27.6",
     "@emotion/cache": "^11.13.5",
     "@emotion/serialize": "^1.3.3",
     "@emotion/sheet": "^1.4.0",

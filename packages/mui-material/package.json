@@ -39,7 +39,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.4",
+    "@babel/runtime": "^7.27.6",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",

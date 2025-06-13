@@ -5,7 +5,6 @@ components: Select, NativeSelect
 githubLabel: 'component: select'
 materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base-ui/react-select/
 githubSource: packages/mui-material/src/Select
 ---
 
