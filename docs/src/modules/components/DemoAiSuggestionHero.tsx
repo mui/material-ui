@@ -30,8 +30,9 @@ export default function DemoAiSuggestionHero({
   const t = useTranslate();
 
   if (!baseUrl) {
-    return;
+    return null;
   }
+
   const handleClick = async () => {
     setError(null);
     try {
