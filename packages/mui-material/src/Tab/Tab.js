@@ -199,10 +199,12 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     label,
     onClick,
     onFocus,
-    value,
+    value: valueProp,
     wrapped = false,
     ...other
   } = props;
+
+  const [value, setValue] = React.useState(valueProp);
 
   const {
     fullWidth,
@@ -215,9 +217,10 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     registerTab,
   } = React.useContext(TabsContext);
 
+  // Register on mount
   React.useEffect(() => {
-    registerTab(value);
-  }, [value, registerTab]);
+    registerTab(valueProp, setValue);
+  }, [valueProp, registerTab]);
 
   const selected = value === tabsValue;
   const indicator = selected && !mounted && indicatorContext;

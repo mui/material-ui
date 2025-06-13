@@ -781,9 +781,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const indicator = <IndicatorSlot {...indicatorSlotProps} />;
 
   let childIndex = 0;
-  const registerTab = (tabValue) => {
-    if (!valueToIndex.has(tabValue)) {
-      valueToIndex.set(tabValue, childIndex++);
+  const registerTab = (tabValue, setValue) => {
+    const assignedIndex = childIndex++;
+    const finalValue = tabValue === undefined ? assignedIndex : tabValue;
+    setValue(finalValue);
+
+    if (!valueToIndex.has(finalValue)) {
+      valueToIndex.set(finalValue, assignedIndex);
     }
   };
 
