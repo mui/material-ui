@@ -37,7 +37,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.4",
+    "@babel/runtime": "^7.27.6",
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.14",
     "clsx": "^2.1.1",
