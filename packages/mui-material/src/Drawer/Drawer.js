@@ -291,7 +291,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     additionalProps: {
       elevation: variant === 'temporary' ? elevation : 0,
       square: true,
-      tabIndex: disableInitialContentFocus ? undefined : -1
+      tabIndex: disableInitialContentFocus ? undefined : -1,
     },
   });
 

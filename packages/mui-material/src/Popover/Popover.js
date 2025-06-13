@@ -438,7 +438,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     additionalProps: {
       elevation,
       style: isPositioned ? undefined : { opacity: 0 },
-      tabIndex: disableInitialContentFocus ? undefined : -1
+      tabIndex: disableInitialContentFocus ? undefined : -1,
     },
     ownerState,
   });
