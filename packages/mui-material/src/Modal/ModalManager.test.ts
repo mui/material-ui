@@ -157,7 +157,6 @@ describe('ModalManager', () => {
       const modal = { modalRef: dummyModal, mount: dummyMount };
       const body = document.body;
       modalManager.add(modal, modal.mount);
-      modalManager.mount(modal, { disablePortal: true });
       expect(body.style.overflow).to.equal('hidden');
       expect(body.style.paddingRight).to.equal(`${20 + getScrollbarSize(window)}px`);
       expect(fixedNode.style.paddingRight).to.equal(`${14 + getScrollbarSize(window)}px`);
