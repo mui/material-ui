@@ -2,40 +2,48 @@ import Dialog from '@org/ui/material/Dialog';
 import { Dialog as MyDialog } from '@org/ui/material';
 
 <Dialog
-  TransitionComponent={CustomTransition}
-  TransitionProps={CustomTransitionProps}
-  PaperProps={PaperProps}
-/>;
+  slots={{
+    transition: CustomTransition
+  }}
+  slotProps={{
+    transition: CustomTransitionProps,
+    paper: PaperProps
+  }} />;
 <MyDialog
-  TransitionComponent={CustomTransition}
-  TransitionProps={CustomTransitionProps}
-  PaperProps={PaperProps}
-/>;
+  slots={{
+    transition: CustomTransition
+  }}
+  slotProps={{
+    transition: CustomTransitionProps,
+    paper: PaperProps
+  }} />;
 <Dialog
-  TransitionComponent={CustomTransition}
-  TransitionProps={CustomTransitionProps}
   slots={{
     root: 'div',
+    transition: CustomTransition
   }}
-  PaperProps={PaperProps}
-/>;
+  slotProps={{
+    transition: CustomTransitionProps,
+    paper: PaperProps
+  }} />;
 <MyDialog
-  TransitionComponent={CustomTransition}
-  TransitionProps={CustomTransitionProps}
   slots={{
     ...outerSlots,
+    transition: CustomTransition
   }}
-  PaperProps={PaperProps}
-/>;
+  slotProps={{
+    transition: CustomTransitionProps,
+    paper: PaperProps
+  }} />;
 <Dialog
-  TransitionComponent={ComponentTransition}
-  TransitionProps={CustomTransitionProps}
   slots={{
     root: 'div',
     transition: SlotTransition,
   }}
-  PaperProps={PaperProps}
-/>;
+  slotProps={{
+    transition: CustomTransitionProps,
+    paper: PaperProps
+  }} />;
 // should skip non MUI components
 <NonMuiDialog
   TransitionComponent={CustomTransition}
