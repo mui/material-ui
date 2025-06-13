@@ -1,5 +1,3 @@
-/* eslint-disable import/export */
-
 export { default as CalendarPicker } from './CalendarPicker';
 export * from './CalendarPicker';
 
@@ -31,6 +29,7 @@ export { default as DesktopTimePicker } from './DesktopTimePicker';
 export * from './DesktopTimePicker';
 
 export { default as LoadingButton } from './LoadingButton';
+// eslint-disable-next-line import/export
 export * from './LoadingButton';
 
 export { default as LocalizationProvider } from './LocalizationProvider';
@@ -73,6 +72,7 @@ export { default as TabContext } from './TabContext';
 export * from './TabContext';
 
 export { default as TabList } from './TabList';
+// eslint-disable-next-line import/export
 export * from './TabList';
 
 export { default as TabPanel } from './TabPanel';
