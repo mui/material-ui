@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
 import ButtonBase from '@mui/material/ButtonBase';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
@@ -66,13 +65,7 @@ const Navigation = styled('nav')(({ theme }) => [
   }),
 ]);
 
-const PRODUCT_IDS = [
-  'product-core',
-  'product-advanced',
-  'product-toolpad',
-  'product-templates',
-  'product-design',
-];
+const PRODUCT_IDS = ['product-core', 'product-advanced', 'product-templates', 'product-design'];
 
 type ProductSubMenuProps = {
   icon: React.ReactElement<unknown>;
@@ -304,33 +297,6 @@ export default function HeaderNavBar() {
                         icon={<IconImage name="product-advanced" />}
                         name="MUI X"
                         description="Advanced and powerful components for complex use cases."
-                      />
-                    </li>
-                    <li>
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[2]}
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name="product-toolpad" />}
-                        name="Toolpad"
-                        chip={
-                          <Chip
-                            label="Beta"
-                            size="small"
-                            color="primary"
-                            variant="outlined"
-                            sx={{
-                              fontSize: '.625rem',
-                              fontWeight: 'semiBold',
-                              textTransform: 'uppercase',
-                              letterSpacing: '.04rem',
-                              height: '16px',
-                              '& .MuiChip-label': {
-                                px: '4px',
-                              },
-                            }}
-                          />
-                        }
-                        description="Components and tools for dashboards and internal apps."
                       />
                     </li>
                     <li>
