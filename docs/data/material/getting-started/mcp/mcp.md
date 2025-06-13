@@ -4,13 +4,17 @@
 
 ## What is MCP?
 
-The Model Context Protocol (MCP) is a new open standard for connecting AI assistants to real, trusted sources of documentation and code. For Material UI users, this means you get answers that are accurate, up-to-date, and directly reference the official docs.
+The Model Context Protocol (MCP) is a new open standard for connecting AI assistants to real, trusted sources of documentation and code.
+For Material UI users, this means you get answers that are accurate, up-to-date, and directly reference the official docs.
 
-Want to learn more about MCP? See the [official MCP documentation](https://modelcontextprotocol.io/introduction).
+Want to learn more about MCP?
+See the [official MCP documentation](https://modelcontextprotocol.io/introduction).
 
 ## Why MCP?
 
-Popular AI coding assistants are excellent at providing answers, especially to straightforward questions. However, when faced with a deeper, more complex question which requires understanding concepts from multiple parts of the documentation, they often hallucinate links, cite non-existent documentation, or provide answers that are hard to verify. MCP solves these problems by:
+Popular AI coding assistants are excellent at providing answers, especially to straightforward questions.
+However, when faced with a deeper, more complex question which requires understanding concepts from multiple parts of the documentation, they often hallucinate links, cite non-existent documentation, or provide answers that are hard to verify.
+MCP solves these problems by:
 
 - Quoting **real, direct sources** in answers
 - Linking to **actual documentation** - no imaginary links that lead to 404s
@@ -18,7 +22,8 @@ Popular AI coding assistants are excellent at providing answers, especially to s
 
 ## Installation & Setup
 
-The MCP is available as a separate package that runs locally and communicates via your AI client using the `stdio` transport. Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
+The MCP is available as a separate package that runs locally and communicates via your AI client using the `stdio` transport.
+Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
 
 ```bash
 npx -y @mui/mcp@latest
@@ -60,7 +65,8 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 ### Question
 
 > I am using DataGrid Pro version and I am trying to use pinning and reordering in the same time.
-> I don't want the reorder handler to disappear when I have the row pinned. I am using it for functionality with pagination so I can:
+> I don't want the reorder handler to disappear when I have the row pinned.
+> I am using it for functionality with pagination so I can:
 >
 > Pin a row to the top,
 >
@@ -89,15 +95,18 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 > Add this custom column to your columns array, replacing the default reorder column
 > Handle the row reordering logic in your onRowOrderChange callback
 >
-> Would you like a code example for a custom reorder column that works with pinned rows? If yes, please specify if you're using TypeScript or JavaScript, and if you want the handler to be visible for both pinned and unpinned rows
+> Would you like a code example for a custom reorder column that works with pinned rows?
+> If yes, please specify if you're using TypeScript or JavaScript, and if you want the handler to be visible for both pinned and unpinned rows
 
 ### AI clients with MCP
 
-> You are encountering this issue because, according to the official MUI DataGrid Pro documentation, row pinning and row reordering are not fully compatible. Specifically:
+> You are encountering this issue because, according to the official MUI DataGrid Pro documentation, row pinning and row reordering are not fully compatible.
+> Specifically:
 >
 > > "Pinned rows do not support the following features: selection, row grouping, tree data, row reordering, master detail..."
 >
-> When a row is pinned, the reorder handler (the drag handle) is intentionally not rendered for those rows. This is why GRID_REORDER_COL_DEF's renderCell returns null for pinned rows.
+> When a row is pinned, the reorder handler (the drag handle) is intentionally not rendered for those rows.
+> This is why GRID_REORDER_COL_DEF's renderCell returns null for pinned rows.
 >
 > **Workarounds and Recommendations:**
 > You can still reorder non-pinned rows as usual
@@ -105,7 +114,9 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 > To move a pinned row to a different page, first unpin it, reorder, then pin it again
 >
 > **Summary:**
-> This is a current limitation of MUI DataGrid Pro. The reorder handler is hidden for pinned rows by design. You can upvote or comment on the related GitHub issues to help prioritize this feature.
+> This is a current limitation of MUI DataGrid Pro.
+> The reorder handler is hidden for pinned rows by design.
+> You can upvote or comment on the related GitHub issues to help prioritize this feature.
 >
 > If you want a code example for a custom workaround, let me know!
 
@@ -117,7 +128,8 @@ The MCP-aided response is more coherent and directly references the documentatio
 
 ### I've installed the MCP, but there are errors in connection
 
-Try and use the MCP inspector to debug the connection. To do so, run:
+Try and use the MCP inspector to debug the connection.
+To do so, run:
 
 ```bash
  npx @modelcontextprotocol/inspector
@@ -137,13 +149,16 @@ Try and use the MCP inspector to debug the connection. To do so, run:
 
 1. Wait for the connection to be established
 
-The MCP should successfully connect, and you should see a list of available tools. If not, check the logs in the terminal where you ran the MCP inspector for more details
+The MCP should successfully connect, and you should see a list of available tools.
+If not, check the logs in the terminal where you ran the MCP inspector for more details
 
 ### I've installed the MCP, but it is not being used when I ask questions
 
 If you've installed the MCP and enabled all the necessary settings, but it is not being used when you ask questions, you might need to supply rules to your AI client to use the MCP.
 
-Most editors allow you to specify rules for AI assistants to follow. Depending on the editor, the rules file might be specified in different locations. For VS Code, for instance, add the following to `.github/instructions/mui.md`:
+Most editors allow you to specify rules for AI assistants to follow.
+Depending on the editor, the rules file might be specified in different locations.
+For VS Code, for instance, add the following to `.github/instructions/mui.md`:
 
 ```text
 ## Use the mui-mcp server to answer any MUI questions --
