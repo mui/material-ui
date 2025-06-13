@@ -141,10 +141,7 @@ declare module 'react-docgen' {
     jsdocDefaultValue?: { computed?: boolean; value: string };
     description?: string;
     required?: boolean;
-    /**
-     * react-docgen has this as nullable but it was never treated as such
-     */
-    type: PropTypeDescriptor;
+    type?: PropTypeDescriptor;
   }
 
   export interface AllLiteralPropType {
