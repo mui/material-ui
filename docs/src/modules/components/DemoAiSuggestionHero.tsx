@@ -29,11 +29,10 @@ export default function DemoAiSuggestionHero({
   const [error, setError] = React.useState<Error | null>(null);
   const t = useTranslate();
 
+  if (!baseUrl) {
+    return;
+  }
   const handleClick = async () => {
-    if (!baseUrl) {
-      return;
-    }
-    const setLoadingTimeout = setTimeout(() => setLoading(true), 200);
     setError(null);
     try {
       const response = await fetch(`${baseUrl}/v1/public/chat/open`, {
@@ -57,7 +56,6 @@ export default function DemoAiSuggestionHero({
     } catch (err: any) {
       setError(err as Error);
     } finally {
-      clearTimeout(setLoadingTimeout);
       setLoading(false);
     }
   };
