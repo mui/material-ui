@@ -1,6 +1,5 @@
 'use client';
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
@@ -294,7 +293,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     'aria-labelledby': ariaLabelledBy,
     action,
     centered = false,
-    children,
+    children: childrenProp,
     className,
     component = 'div',
     allowScrollButtonsMobile = false,
@@ -744,7 +743,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
 
     return undefined;
-  }, [scrollable, scrollButtons, updateScrollObserver, children?.length]);
+  }, [scrollable, scrollButtons, updateScrollObserver, childrenProp?.length]);
 
   React.useEffect(() => {
     setMounted(true);
@@ -782,7 +781,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   let childIndex = 0;
   const registerTab = (tabValue, setValue) => {
-    const assignedIndex = childIndex++;
+    const assignedIndex = (childIndex += 1);
     const finalValue = tabValue === undefined ? assignedIndex : tabValue;
     setValue(finalValue);
 
@@ -791,16 +790,19 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
   };
 
-  const tabsContextValue = {
-    fullWidth: variant === 'fullWidth',
-    indicator,
-    mounted,
-    selectionFollowsFocus,
-    onChange,
-    textColor,
-    tabsValue: value,
-    registerTab,
-  };
+  const tabsContextValue = React.useMemo(
+    () => ({
+      fullWidth: variant === 'fullWidth',
+      indicator,
+      mounted,
+      selectionFollowsFocus,
+      onChange,
+      textColor,
+      tabsValue: value,
+      registerTab,
+    }),
+    [variant, indicator, mounted, selectionFollowsFocus, onChange, textColor, value, registerTab],
+  );
 
   const handleKeyDown = (event) => {
     // Check if a modifier key (Alt, Shift, Ctrl, Meta) is pressed
@@ -906,7 +908,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           role="tablist"
           {...listSlotProps}
         >
-          <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>
+          <TabsContext.Provider value={tabsContextValue}>{childrenProp}</TabsContext.Provider>
         </ListSlot>
         {mounted && indicator}
       </ScrollerSlot>
