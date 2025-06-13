@@ -348,10 +348,6 @@ Tab.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * @ignore
