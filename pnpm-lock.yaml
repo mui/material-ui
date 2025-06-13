@@ -10,7 +10,7 @@ overrides:
   '@babel/preset-env': ^7.27.2
   '@babel/preset-react': ^7.27.1
   '@babel/preset-typescript': ^7.27.1
-  '@babel/runtime': ^7.27.4
+  '@babel/runtime': ^7.27.6
   '@definitelytyped/header-parser': ^0.2.19
   '@definitelytyped/typescript-versions': ^0.1.8
   '@definitelytyped/utils': ^0.1.8
@@ -569,11 +569,11 @@ importers:
         specifier: ^7.27.4
         version: 7.27.4
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@babel/runtime-corejs2':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@docsearch/react':
         specifier: ^3.9.0
         version: 3.9.0(@algolia/client-search@5.18.0)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.13.0)
@@ -954,8 +954,8 @@ importers:
         specifier: ^7.27.1
         version: 7.27.1(@babel/core@7.27.4)
       '@babel/types':
-        specifier: ^7.27.3
-        version: 7.27.3
+        specifier: ^7.27.6
+        version: 7.27.6
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:../docs-utils
@@ -1021,8 +1021,8 @@ importers:
         specifier: ^7.27.1
         version: 7.27.1(@babel/core@7.27.4)
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@emotion/cache':
         specifier: ^11.13.5
         version: 11.14.0
@@ -1267,8 +1267,8 @@ importers:
   packages/markdown:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1292,8 +1292,8 @@ importers:
         specifier: ^7.27.4
         version: 7.27.4
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@babel/traverse':
         specifier: ^7.27.4
         version: 7.27.4
@@ -1330,8 +1330,8 @@ importers:
   packages/mui-docs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@mui/base':
         specifier: '*'
         version: 5.0.0-beta.70(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1433,8 +1433,8 @@ importers:
   packages/mui-icons-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
     devDependencies:
       '@mui/icons-material':
         specifier: workspace:*
@@ -1492,8 +1492,8 @@ importers:
   packages/mui-joy:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@emotion/react':
         specifier: ^11.5.0
         version: 11.13.5(@types/react@19.1.6)(react@19.1.0)
@@ -1569,8 +1569,8 @@ importers:
   packages/mui-lab:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@emotion/react':
         specifier: ^11.5.0
         version: 11.13.5(@types/react@19.1.6)(react@19.1.0)
@@ -1634,8 +1634,8 @@ importers:
   packages/mui-material:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@emotion/react':
         specifier: ^11.5.0
         version: 11.13.5(@types/react@19.1.6)(react@19.1.0)
@@ -1735,8 +1735,8 @@ importers:
   packages/mui-material-nextjs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
     devDependencies:
       '@emotion/cache':
         specifier: ^11.13.5
@@ -1761,8 +1761,8 @@ importers:
   packages/mui-material-pigment-css:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@mui/system':
         specifier: workspace:*
         version: link:../mui-system/build
@@ -1774,8 +1774,8 @@ importers:
   packages/mui-private-theming:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@mui/utils':
         specifier: workspace:^
         version: link:../mui-utils/build
@@ -1806,8 +1806,8 @@ importers:
   packages/mui-styled-engine:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@emotion/cache':
         specifier: ^11.13.5
         version: 11.14.0
@@ -1853,8 +1853,8 @@ importers:
   packages/mui-styled-engine-sc:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@types/hoist-non-react-statics':
         specifier: ^3.3.6
         version: 3.3.6
@@ -1891,8 +1891,8 @@ importers:
   packages/mui-stylis-plugin-rtl:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       cssjanus:
         specifier: ^2.3.0
         version: 2.3.0
@@ -1929,8 +1929,8 @@ importers:
   packages/mui-system:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@mui/private-theming':
         specifier: workspace:^
         version: link:../mui-private-theming/build
@@ -2000,8 +2000,8 @@ importers:
   packages/mui-types:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
     devDependencies:
       '@mui/types':
         specifier: workspace:*
@@ -2014,8 +2014,8 @@ importers:
   packages/mui-utils:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@mui/types':
         specifier: workspace:^
         version: link:../mui-types/build
@@ -2091,8 +2091,8 @@ importers:
         version: 9.7.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
       '@babel/runtime':
-        specifier: ^7.27.4
-        version: 7.27.4
+        specifier: ^7.27.6
+        version: 7.27.6
       '@emotion/cache':
         specifier: ^11.13.5
         version: 11.14.0
@@ -3154,16 +3154,16 @@ packages:
     peerDependencies:
       '@babel/core': ^7.27.4
 
-  '@babel/runtime-corejs2@7.27.4':
-    resolution: {integrity: sha512-EVEiTwEdxk2fxCBfhZubE75AjmKshdbmBTcbPwyTa4Gc6NbJhePVr4bC5iosW5WnNQ0SJAeD31QaCG+n5Q6s3w==}
+  '@babel/runtime-corejs2@7.27.6':
+    resolution: {integrity: sha512-WgvlQpGnm1rmvgrm+H+cVcAckEPlwURUCvv1ZVSFr9J9yixgFbNlu7+CjVKKAd4xQtMijPwxwcSi5SFFHKlmDw==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime-corejs3@7.24.4':
     resolution: {integrity: sha512-VOQOexSilscN24VEY810G/PqtpFvx/z6UqDIjIWbDe2368HhDLkYN5TYwaEz/+eRCUkhJ2WaNLLmQAlxzfWj4w==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/runtime@7.27.4':
-    resolution: {integrity: sha512-t3yaEOuGu9NlIZ+hIeGbBjFtZT7j2cb2tg0fuaJKeGotchRjjLfrBA9Kwf8quhpP1EUuxModQg04q/mBwyg8uA==}
+  '@babel/runtime@7.27.6':
+    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.27.2':
@@ -3178,8 +3178,8 @@ packages:
     resolution: {integrity: sha512-+EzkxvLNfiUeKMgy/3luqfsCWFRXLb7U6wNQTk60tovuckwB15B191tJWvpp4HjiQWdJkCxO3Wbvc6jlk3Xb2Q==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/types@7.27.3':
-    resolution: {integrity: sha512-Y1GkI4ktrtvmawoSq+4FCVHNryea6uR+qUQy0AGxLSsjCX0nVmkYQMBLHDkXZuo5hGx7eYdnIaslsdBFm7zbUw==}
+  '@babel/types@7.27.6':
+    resolution: {integrity: sha512-ETyHEk2VHHvl9b9jZP5IHPavHYk57EhanlRRuae9XCpb/j5bDCbPPMOBfCWhnl/7EDJz0jEMCi/RhccCE8r1+Q==}
     engines: {node: '>=6.9.0'}
 
   '@bcoe/v8-coverage@0.2.3':
@@ -15173,7 +15173,7 @@ snapshots:
       '@babel/parser': 7.27.4
       '@babel/template': 7.27.2
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       convert-source-map: 2.0.0
       debug: 4.4.1(supports-color@8.1.1)
       gensync: 1.0.0-beta.2
@@ -15185,14 +15185,14 @@ snapshots:
   '@babel/generator@7.27.3':
     dependencies:
       '@babel/parser': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
       jsesc: 3.1.0
 
   '@babel/helper-annotate-as-pure@7.27.1':
     dependencies:
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@babel/helper-compilation-targets@7.27.2':
     dependencies:
@@ -15236,14 +15236,14 @@ snapshots:
   '@babel/helper-member-expression-to-functions@7.27.1':
     dependencies:
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
     transitivePeerDependencies:
       - supports-color
 
   '@babel/helper-module-imports@7.27.1':
     dependencies:
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
     transitivePeerDependencies:
       - supports-color
 
@@ -15258,7 +15258,7 @@ snapshots:
 
   '@babel/helper-optimise-call-expression@7.27.1':
     dependencies:
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@babel/helper-plugin-utils@7.27.1': {}
 
@@ -15283,7 +15283,7 @@ snapshots:
   '@babel/helper-skip-transparent-expression-wrappers@7.27.1':
     dependencies:
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
     transitivePeerDependencies:
       - supports-color
 
@@ -15297,14 +15297,14 @@ snapshots:
     dependencies:
       '@babel/template': 7.27.2
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
     transitivePeerDependencies:
       - supports-color
 
   '@babel/helpers@7.27.4':
     dependencies:
       '@babel/template': 7.27.2
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@babel/node@7.27.1(@babel/core@7.27.4)':
     dependencies:
@@ -15318,7 +15318,7 @@ snapshots:
 
   '@babel/parser@7.27.4':
     dependencies:
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@babel/plugin-bugfix-firefox-class-in-computed-class-key@7.27.1(@babel/core@7.27.4)':
     dependencies:
@@ -15743,7 +15743,7 @@ snapshots:
       '@babel/helper-module-imports': 7.27.1
       '@babel/helper-plugin-utils': 7.27.1
       '@babel/plugin-syntax-jsx': 7.27.1(@babel/core@7.27.4)
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
     transitivePeerDependencies:
       - supports-color
 
@@ -15929,7 +15929,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.27.4
       '@babel/helper-plugin-utils': 7.27.1
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       esutils: 2.0.3
 
   '@babel/preset-react@7.27.1(@babel/core@7.27.4)':
@@ -15964,7 +15964,7 @@ snapshots:
       pirates: 4.0.6
       source-map-support: 0.5.21
 
-  '@babel/runtime-corejs2@7.27.4':
+  '@babel/runtime-corejs2@7.27.6':
     dependencies:
       core-js: 2.6.12
 
@@ -15973,13 +15973,13 @@ snapshots:
       core-js-pure: 3.32.1
       regenerator-runtime: 0.14.1
 
-  '@babel/runtime@7.27.4': {}
+  '@babel/runtime@7.27.6': {}
 
   '@babel/template@7.27.2':
     dependencies:
       '@babel/code-frame': 7.27.1
       '@babel/parser': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@babel/traverse@7.27.4':
     dependencies:
@@ -15987,7 +15987,7 @@ snapshots:
       '@babel/generator': 7.27.3
       '@babel/parser': 7.27.4
       '@babel/template': 7.27.2
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       debug: 4.4.1(supports-color@8.1.1)
       globals: 11.12.0
     transitivePeerDependencies:
@@ -15998,7 +15998,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@babel/types@7.27.3':
+  '@babel/types@7.27.6':
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
@@ -16107,7 +16107,7 @@ snapshots:
   '@emotion/babel-plugin@11.13.5':
     dependencies:
       '@babel/helper-module-imports': 7.27.1
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@emotion/hash': 0.9.2
       '@emotion/memoize': 0.9.0
       '@emotion/serialize': 1.3.3
@@ -16154,7 +16154,7 @@ snapshots:
 
   '@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@emotion/babel-plugin': 11.13.5
       '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
@@ -16189,7 +16189,7 @@ snapshots:
 
   '@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@emotion/babel-plugin': 11.13.5
       '@emotion/is-prop-valid': 1.3.1
       '@emotion/react': 11.13.5(@types/react@19.1.6)(react@19.1.0)
@@ -16923,7 +16923,7 @@ snapshots:
 
   '@mui/base@5.0.0-beta.30(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.4.3(@types/react@19.1.6)
       '@mui/utils': 5.17.1(@types/react@19.1.6)(react@19.1.0)
@@ -16937,7 +16937,7 @@ snapshots:
 
   '@mui/base@5.0.0-beta.31(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.4.3(@types/react@19.1.6)
       '@mui/utils': 5.17.1(@types/react@19.1.6)(react@19.1.0)
@@ -16951,7 +16951,7 @@ snapshots:
 
   '@mui/base@5.0.0-beta.70(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.2.24(@types/react@19.1.6)
       '@mui/utils': 6.4.8(@types/react@19.1.6)(react@19.1.0)
@@ -16965,7 +16965,7 @@ snapshots:
 
   '@mui/base@7.0.0-beta.4(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.4.3(@types/react@19.1.6)
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17041,7 +17041,7 @@ snapshots:
 
   '@mui/joy@5.0.0-beta.22(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/base': 5.0.0-beta.31(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/core-downloads-tracker': 5.15.14
       '@mui/system': 5.16.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0)
@@ -17058,7 +17058,7 @@ snapshots:
 
   '@mui/material@5.15.4(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/base': 5.0.0-beta.31(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@mui/core-downloads-tracker': 5.15.14
       '@mui/system': 5.16.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0)
@@ -17079,7 +17079,7 @@ snapshots:
 
   '@mui/private-theming@5.16.5(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/utils': 5.17.1(@types/react@19.1.6)(react@19.1.0)
       prop-types: 15.8.1
       react: 19.1.0
@@ -17088,7 +17088,7 @@ snapshots:
 
   '@mui/private-theming@6.4.8(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/utils': 6.4.8(@types/react@19.1.6)(react@19.1.0)
       prop-types: 15.8.1
       react: 19.1.0
@@ -17097,7 +17097,7 @@ snapshots:
 
   '@mui/styled-engine@5.16.4(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@emotion/cache': 11.14.0
       csstype: 3.1.3
       prop-types: 15.8.1
@@ -17108,7 +17108,7 @@ snapshots:
 
   '@mui/styled-engine@6.4.0(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
       '@emotion/sheet': 1.4.0
@@ -17121,7 +17121,7 @@ snapshots:
 
   '@mui/system@5.16.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/private-theming': 5.16.5(@types/react@19.1.6)(react@19.1.0)
       '@mui/styled-engine': 5.16.4(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.4.3(@types/react@19.1.6)
@@ -17137,7 +17137,7 @@ snapshots:
 
   '@mui/system@6.4.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/private-theming': 6.4.8(@types/react@19.1.6)(react@19.1.0)
       '@mui/styled-engine': 6.4.0(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(react@19.1.0)
       '@mui/types': 7.4.3(@types/react@19.1.6)
@@ -17157,13 +17157,13 @@ snapshots:
 
   '@mui/types@7.4.3(@types/react@19.1.6)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
     optionalDependencies:
       '@types/react': 19.1.6
 
   '@mui/utils@5.17.1(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/types': 7.2.24(@types/react@19.1.6)
       '@types/prop-types': 15.7.14
       clsx: 2.1.1
@@ -17175,7 +17175,7 @@ snapshots:
 
   '@mui/utils@6.4.8(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/types': 7.2.24(@types/react@19.1.6)
       '@types/prop-types': 15.7.14
       clsx: 2.1.1
@@ -17187,7 +17187,7 @@ snapshots:
 
   '@mui/utils@7.1.1(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/types': 7.4.3(@types/react@19.1.6)
       '@types/prop-types': 15.7.14
       clsx: 2.1.1
@@ -17199,7 +17199,7 @@ snapshots:
 
   '@mui/x-charts-vendor@8.5.1':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@types/d3-color': 3.1.3
       '@types/d3-delaunay': 6.0.4
       '@types/d3-interpolate': 3.0.4
@@ -17219,7 +17219,7 @@ snapshots:
 
   '@mui/x-charts@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17240,7 +17240,7 @@ snapshots:
 
   '@mui/x-data-grid-generator@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/icons-material': link:packages/mui-icons-material/build
       '@mui/material': link:packages/mui-material/build
       '@mui/x-data-grid': 8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -17261,7 +17261,7 @@ snapshots:
 
   '@mui/x-data-grid-premium@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17284,7 +17284,7 @@ snapshots:
 
   '@mui/x-data-grid-pro@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17305,7 +17305,7 @@ snapshots:
 
   '@mui/x-data-grid@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17324,7 +17324,7 @@ snapshots:
 
   '@mui/x-date-pickers-pro@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(date-fns@2.30.0)(dayjs@1.11.13)(luxon@3.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17347,7 +17347,7 @@ snapshots:
 
   '@mui/x-date-pickers@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(date-fns@2.30.0)(dayjs@1.11.13)(luxon@3.6.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17369,7 +17369,7 @@ snapshots:
 
   '@mui/x-internals@8.5.1(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
       react: 19.1.0
@@ -17378,7 +17378,7 @@ snapshots:
 
   '@mui/x-license@8.5.1(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
       '@mui/x-internals': 8.5.1(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react@19.1.0)
       '@mui/x-telemetry': 8.5.1
@@ -17389,7 +17389,7 @@ snapshots:
 
   '@mui/x-telemetry@8.5.1':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@fingerprintjs/fingerprintjs': 3.4.2
       ci-info: 4.2.0
       conf: 11.0.2
@@ -17398,7 +17398,7 @@ snapshots:
 
   '@mui/x-tree-view@8.5.1(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@mui/system': link:packages/mui-system/build
       '@mui/utils': 7.1.1(@types/react@19.1.6)(react@19.1.0)
@@ -17955,7 +17955,7 @@ snapshots:
       '@babel/helper-module-imports': 7.27.1
       '@babel/helper-plugin-utils': 7.27.1
       '@babel/parser': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       '@emotion/css': 11.13.4
       '@emotion/is-prop-valid': 1.3.1
       '@emotion/react': 11.13.5(@types/react@19.1.6)(react@19.1.0)
@@ -18360,7 +18360,7 @@ snapshots:
 
   '@react-three/fiber@8.16.0(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react-native@0.75.4(@babel/core@7.27.4)(@babel/preset-env@7.27.2(@babel/core@7.27.4))(@types/react@19.1.6)(encoding@0.1.13)(react@19.1.0)(typescript@5.8.3))(react@19.1.0)(three@0.162.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@types/react-reconciler': 0.26.7
       '@types/webxr': 0.5.22
       base64-js: 1.5.1
@@ -19013,7 +19013,7 @@ snapshots:
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.27.1
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@types/aria-query': 5.0.1
       aria-query: 5.3.0
       chalk: 4.1.2
@@ -19023,7 +19023,7 @@ snapshots:
 
   '@testing-library/react@16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.1.6(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@testing-library/dom': 10.4.0
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -19037,7 +19037,7 @@ snapshots:
 
   '@toolpad/core@0.15.0(@emotion/cache@11.14.0)(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@emotion/styled@11.13.5(@emotion/react@11.13.5(@types/react@19.1.6)(react@19.1.0))(@types/react@19.1.6)(react@19.1.0))(@mui/icons-material@packages+mui-icons-material+build)(@mui/material@packages+mui-material+build)(@mui/system@packages+mui-system+build)(@types/react@19.1.6)(date-fns@2.30.0)(luxon@3.6.1)(next@15.3.3(@babel/core@7.27.4)(@opentelemetry/api@1.8.0)(@playwright/test@1.52.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react-router@7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(vite@6.3.5(@types/node@20.19.0)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1))':
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@emotion/cache': 11.14.0
       '@emotion/react': 11.13.5(@types/react@19.1.6)(react@19.1.0)
       '@mui/icons-material': link:packages/mui-icons-material/build
@@ -19103,14 +19103,14 @@ snapshots:
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       '@types/babel__generator': 7.6.4
       '@types/babel__template': 7.4.1
       '@types/babel__traverse': 7.20.7
 
   '@types/babel__generator@7.6.4':
     dependencies:
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@types/babel__register@7.17.3':
     dependencies:
@@ -19119,11 +19119,11 @@ snapshots:
   '@types/babel__template@7.4.1':
     dependencies:
       '@babel/parser': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@types/babel__traverse@7.20.7':
     dependencies:
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
 
   '@types/body-parser@1.19.5':
     dependencies:
@@ -19835,7 +19835,7 @@ snapshots:
       '@babel/plugin-transform-modules-commonjs': 7.27.1(@babel/core@7.27.4)
       '@babel/template': 7.27.2
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       '@wyw-in-js/processor-utils': 0.5.5
       '@wyw-in-js/shared': 0.5.5
       babel-merge: 3.0.0(@babel/core@7.27.4)
@@ -20325,7 +20325,7 @@ snapshots:
 
   babel-plugin-macros@3.1.0:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       cosmiconfig: 7.1.0
       resolve: 1.22.10
 
@@ -20341,7 +20341,7 @@ snapshots:
     dependencies:
       '@babel/generator': 7.27.3
       '@babel/template': 7.27.2
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       find-cache-dir: 3.3.2
       lodash: 4.17.21
       object-hash: 2.2.0
@@ -21600,7 +21600,7 @@ snapshots:
 
   date-fns@2.30.0:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
     optional: true
 
   date-format@4.0.13: {}
@@ -21821,7 +21821,7 @@ snapshots:
 
   dom-helpers@5.2.1:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       csstype: 3.1.3
 
   dom-serialize@2.2.1:
@@ -22531,7 +22531,7 @@ snapshots:
   estree-to-babel@3.2.1:
     dependencies:
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       c8: 7.12.0
     transitivePeerDependencies:
       - supports-color
@@ -22836,7 +22836,7 @@ snapshots:
 
   final-form@4.20.10:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
 
   finalhandler@1.1.2:
     dependencies:
@@ -24305,7 +24305,7 @@ snapshots:
 
   jss-plugin-template@10.10.0:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       jss: 10.10.0
       tiny-warning: 1.0.3
 
@@ -24316,7 +24316,7 @@ snapshots:
 
   jss@10.10.0:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       csstype: 3.1.3
       is-in-browser: 1.1.3
       tiny-warning: 1.0.3
@@ -24847,7 +24847,7 @@ snapshots:
   magicast@0.3.5:
     dependencies:
       '@babel/parser': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       source-map-js: 1.2.1
 
   make-dir@2.1.0:
@@ -24951,7 +24951,7 @@ snapshots:
 
   material-ui-popup-state@5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.1.6)(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
       '@types/prop-types': 15.7.14
       classnames: 2.3.2
@@ -25126,13 +25126,13 @@ snapshots:
 
   metro-runtime@0.80.12:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       flow-enums-runtime: 0.0.6
 
   metro-source-map@0.80.12:
     dependencies:
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
       metro-symbolicate: 0.80.12
@@ -25171,7 +25171,7 @@ snapshots:
       '@babel/core': 7.27.4
       '@babel/generator': 7.27.3
       '@babel/parser': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       flow-enums-runtime: 0.0.6
       metro: 0.80.12
       metro-babel-transformer: 0.80.12
@@ -25194,7 +25194,7 @@ snapshots:
       '@babel/parser': 7.27.4
       '@babel/template': 7.27.2
       '@babel/traverse': 7.27.4
-      '@babel/types': 7.27.3
+      '@babel/types': 7.27.6
       accepts: 1.3.8
       chalk: 4.1.2
       ci-info: 2.0.0
@@ -26917,7 +26917,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.27.4
       '@babel/generator': 7.27.3
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       ast-types: 0.14.2
       commander: 2.20.3
       doctrine: 3.0.0
@@ -26948,19 +26948,19 @@ snapshots:
 
   react-error-boundary@6.0.0(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       react: 19.1.0
 
   react-event-listener@0.6.6(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       prop-types: 15.8.1
       react: 19.1.0
       warning: 4.0.3
 
   react-final-form@6.5.9(final-form@4.20.10)(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       final-form: 4.20.10
       react: 19.1.0
 
@@ -27123,12 +27123,12 @@ snapshots:
 
   react-swipeable-views-core@0.14.0:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       warning: 4.0.3
 
   react-swipeable-views-utils@0.14.0(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       keycode: 2.2.1
       prop-types: 15.8.1
       react-event-listener: 0.6.6(react@19.1.0)
@@ -27139,7 +27139,7 @@ snapshots:
 
   react-swipeable-views@0.14.0(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       prop-types: 15.8.1
       react: 19.1.0
       react-swipeable-views-core: 0.14.0
@@ -27148,7 +27148,7 @@ snapshots:
 
   react-transition-group@4.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -27168,7 +27168,7 @@ snapshots:
 
   react-window@1.8.11(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
       memoize-one: 5.2.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -27554,7 +27554,7 @@ snapshots:
 
   rtl-css-js@1.16.0:
     dependencies:
-      '@babel/runtime': 7.27.4
+      '@babel/runtime': 7.27.6
 
   run-async@2.4.1: {}
 
