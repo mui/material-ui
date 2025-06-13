@@ -203,7 +203,11 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     className,
     elevation = 16,
     hideBackdrop = false,
-    ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
+    ModalProps: {
+      BackdropProps: BackdropPropsProp,
+      disableInitialContentFocus = false,
+      ...ModalProps
+    } = {},
     onClose,
     open = false,
     PaperProps = {},
@@ -287,6 +291,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     additionalProps: {
       elevation: variant === 'temporary' ? elevation : 0,
       square: true,
+      tabIndex: disableInitialContentFocus ? undefined : -1,
     },
   });
 
