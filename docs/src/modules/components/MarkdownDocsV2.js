@@ -14,6 +14,7 @@ import { HEIGHT as AppFrameHeight } from 'docs/src/modules/components/AppFrame';
 import { HEIGHT as TabsHeight } from 'docs/src/modules/components/ComponentPageTabs';
 import { getPropsToC } from 'docs/src/modules/components/ApiPage/sections/PropertiesSection';
 import { getClassesToC } from 'docs/src/modules/components/ApiPage/sections/ClassesSection';
+import useScopedDemo from '../utils/useScopedDemo';
 
 function getHookTranslatedHeader(t, header) {
   const translations = {
@@ -51,6 +52,7 @@ export default function MarkdownDocsV2(props) {
     componentsApiPageContents,
     hooksApiDescriptions,
     hooksApiPageContents,
+    enableOpenInNewTab = false,
   } = props;
 
   const userLanguage = useUserLanguage();
@@ -185,6 +187,7 @@ export default function MarkdownDocsV2(props) {
         localizedDoc={localizedDoc}
         renderedMarkdownOrDemo={renderedMarkdownOrDemo}
         srcComponents={srcComponents}
+        enableOpenInNewTab={enableOpenInNewTab}
       />,
     );
     i += 1;
@@ -210,6 +213,28 @@ export default function MarkdownDocsV2(props) {
     }
     return false;
   });
+
+  const scopedDemo = useScopedDemo();
+
+  if (scopedDemo) {
+    return (
+      <div style={{ width: '100%', height: '100vh', padding: '4px' }}>
+        <RichMarkdownElement
+          activeTab={activeTab}
+          demoComponents={demoComponents}
+          demos={demos}
+          disableAd={disableAd}
+          localizedDoc={localizedDoc}
+          srcComponents={srcComponents}
+          renderedMarkdownOrDemo={{
+            demo: scopedDemo,
+            hideToolbar: true,
+            bg: false,
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <AppLayoutDocs
@@ -252,6 +277,7 @@ export default function MarkdownDocsV2(props) {
                 localizedDoc={localizedDoc}
                 renderedMarkdownOrDemo={renderedMarkdownOrDemo}
                 srcComponents={srcComponents}
+                enableOpenInNewTab={enableOpenInNewTab}
               />
             ))}
         {activeTab === 'components-api' && (
@@ -279,6 +305,7 @@ MarkdownDocsV2.propTypes = {
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  enableOpenInNewTab: PropTypes.bool,
   hooksApiDescriptions: PropTypes.object,
   hooksApiPageContents: PropTypes.object,
   srcComponents: PropTypes.object,
