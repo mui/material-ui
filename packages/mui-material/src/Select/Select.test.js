@@ -17,6 +17,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
+import { listClasses } from '@mui/material/List';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
@@ -886,6 +887,24 @@ describe('<Select />', () => {
       const selectButton = getByRole('combobox', { hidden: true });
 
       expect(paper.style).to.have.property('minWidth', `${selectButton.clientWidth}px`);
+    });
+
+    // https://github.com/mui/material-ui/issues/46273
+    it('should merge `slotProps.list` with default List props', () => {
+      render(
+        <Select
+          MenuProps={{
+            slotProps: { list: { disablePadding: true } },
+          }}
+          open
+          value="10"
+        >
+          <MenuItem value="10">Ten</MenuItem>
+        </Select>,
+      );
+
+      const listbox = screen.getByRole('listbox');
+      expect(listbox).not.to.have.class(listClasses.padding);
     });
 
     // https://github.com/mui/material-ui/issues/38949
