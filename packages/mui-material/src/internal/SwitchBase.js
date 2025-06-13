@@ -23,7 +23,9 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase)({
+const SwitchBaseRoot = styled(ButtonBase, {
+  name: 'MuiSwitchBase',
+})({
   padding: 9,
   borderRadius: '50%',
   variants: [
@@ -60,7 +62,10 @@ const SwitchBaseRoot = styled(ButtonBase)({
   ],
 });
 
-const SwitchBaseInput = styled('input', { shouldForwardProp: rootShouldForwardProp })({
+const SwitchBaseInput = styled('input', {
+  name: 'MuiSwitchBase',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,

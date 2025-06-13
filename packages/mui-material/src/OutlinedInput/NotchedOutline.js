@@ -5,7 +5,10 @@ import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 
-const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldForwardProp })({
+const NotchedOutlineRoot = styled('fieldset', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})({
   textAlign: 'left',
   position: 'absolute',
   bottom: 0,
@@ -22,7 +25,10 @@ const NotchedOutlineRoot = styled('fieldset', { shouldForwardProp: rootShouldFor
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = styled('legend', { shouldForwardProp: rootShouldForwardProp })(
+const NotchedOutlineLegend = styled('legend', {
+  name: 'MuiNotchedOutlined',
+  shouldForwardProp: rootShouldForwardProp,
+})(
   memoTheme(({ theme }) => ({
     float: 'unset', // Fix conflict with bootstrap
     width: 'auto', // Fix conflict with bootstrap
