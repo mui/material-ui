@@ -1,7 +1,7 @@
 import path from 'path';
 import { expect } from 'chai';
 import { jscodeshift } from '../../../testUtils';
-import transform from './speed-dial-props';
+import transform from './dialog-props';
 import readFile from '../../util/readFile';
 
 function read(fileName) {
