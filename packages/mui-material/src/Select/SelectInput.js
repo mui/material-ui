@@ -487,6 +487,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...MenuProps.slotProps?.paper,
   };
 
+  const listProps = {
+    ...MenuProps.MenuListProps,
+    ...MenuProps.slotProps?.list,
+  };
+
   const listboxId = useId();
 
   return (
@@ -563,7 +568,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             'aria-multiselectable': multiple ? 'true' : undefined,
             disableListWrap: true,
             id: listboxId,
-            ...MenuProps.MenuListProps,
+            ...listProps,
           },
           paper: {
             ...paperProps,
