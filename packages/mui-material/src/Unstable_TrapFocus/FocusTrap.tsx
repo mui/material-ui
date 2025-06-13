@@ -175,6 +175,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   }, [disableAutoFocus, open]);
 
   React.useEffect(() => {
+    // React 18+ Strict mode reset
+    ignoreNextEnforceFocus.current = false;
     // We might render an empty child.
     if (!open || !rootRef.current) {
       return;
@@ -211,6 +213,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         // Not all elements in IE11 have a focus method.
         // Once IE11 support is dropped the focus() call can be unconditional.
         if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
+          // On React 18+ Strict mode this line would make the first focus ignored
+          // so we need to reset it every time the component is mounted.
           ignoreNextEnforceFocus.current = true;
           (nodeToRestore.current as HTMLElement).focus();
         }

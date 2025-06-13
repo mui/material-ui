@@ -43,7 +43,7 @@ describe('<Dialog />', () => {
 
   describeConformance(
     <Dialog open disablePortal>
-      <span tabindex={-1}>foo</span>
+      <span tabIndex={-1}>foo</span>
     </Dialog>,
     () => ({
       classes,
