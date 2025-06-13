@@ -181,9 +181,9 @@ function extractMarkdownInfo(markdownPath: string): { title: string; description
     if (descriptionMatch) {
       description = descriptionMatch[1].trim();
     } else {
-      // Fallback: get first paragraph after title
-      const paragraphMatch = content.match(/^# .+\n\n(.+?)(?:\n\n|$)/m);
-      if (paragraphMatch) {
+      // Fallback: get first paragraph after title (excluding headers)
+      const paragraphMatch = content.match(/^# .+\n\n(?!#)(.+?)(?:\n\n|$)/m);
+      if (paragraphMatch && !paragraphMatch[1].startsWith('#')) {
         description = paragraphMatch[1].trim();
       }
     }
