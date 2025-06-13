@@ -38,8 +38,8 @@ export default function AppFrameBanner() {
   let href = '';
 
   if (showSurveyMessage) {
-    message = `Influence ${productName}'s 2024 roadmap! Participate in the latest Developer Survey`;
-    href = 'https://tally.so/r/3Ex4PN?source=website';
+    message = `🚀 Influence ${productName}'s 2025 roadmap! Participate in the latest Developer Survey`;
+    href = 'https://tally.so/r/mObbvk?source=website';
   } else if (mounted && isBlackFriday()) {
     message = `Black Friday is here! Don't miss out on the best offers of the year.`;
     href = 'https://mui.com/store/bundles/?deal=black-friday&from=docs';

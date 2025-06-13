@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -13,7 +13,7 @@ describe('useCurrentColorScheme', () => {
   let originalMatchmedia;
   let originalAddEventListener;
   let storage = {};
-  let storageHandler = {};
+  const eventHandlers = new Map();
   let trigger;
 
   const createMatchMedia = (matches) => () => ({
@@ -32,7 +32,18 @@ describe('useCurrentColorScheme', () => {
   before(() => {
     originalAddEventListener = window.addEventListener;
     window.addEventListener = (key, handler) => {
-      storageHandler[key] = handler;
+      if (eventHandlers.has(key)) {
+        eventHandlers.get(key).listeners.push(handler);
+      } else {
+        eventHandlers.set(key, {
+          listeners: [handler],
+          broadcastEvent(event) {
+            this.listeners.forEach((listener) => {
+              listener(event);
+            });
+          },
+        });
+      }
     };
   });
 
@@ -45,7 +56,7 @@ describe('useCurrentColorScheme', () => {
     // clear the localstorage
     storage = {};
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: spy((key) => storage[key]),
         setItem: spy((key, value) => {
@@ -55,7 +66,6 @@ describe('useCurrentColorScheme', () => {
       configurable: true,
     });
 
-    storageHandler = {};
     window.matchMedia = createMatchMedia(false);
   });
 
@@ -101,7 +111,7 @@ describe('useCurrentColorScheme', () => {
     const { container } = render(<Data />);
 
     expect(container.firstChild.textContent).to.equal('light');
-    expect(effectRunCount).to.equal(reactMajor >= 19 ? 2 : 3);
+    expect(effectRunCount).to.equal(3);
   });
 
   it('[noSsr] does not trigger a re-render', () => {
@@ -550,24 +560,8 @@ describe('useCurrentColorScheme', () => {
       fireEvent.click(container.firstChild);
 
       expect(
-        global.localStorage.setItem.lastCall.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark'),
+        window.localStorage.setItem.lastCall.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark'),
       ).to.equal(true);
-    });
-
-    it('save system mode', () => {
-      function Data() {
-        useCurrentColorScheme({
-          defaultMode: 'system',
-          defaultLightColorScheme: 'light',
-          defaultDarkColorScheme: 'dark',
-          supportedColorSchemes: ['light', 'dark'],
-        });
-        return null;
-      }
-      render(<Data />);
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system')).to.equal(
-        true,
-      );
     });
 
     it('save lightColorScheme and darkColorScheme', () => {
@@ -593,11 +587,11 @@ describe('useCurrentColorScheme', () => {
 
       fireEvent.click(container.firstChild);
 
-      expect(global.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
+      expect(window.localStorage.setItem.calledWith(DEFAULT_MODE_STORAGE_KEY, 'dark')).to.equal(
         true,
       );
       expect(
-        global.localStorage.setItem.calledWith(`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`, 'dim'),
+        window.localStorage.setItem.calledWith(`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`, 'dim'),
       ).to.equal(true);
     });
 
@@ -654,7 +648,9 @@ describe('useCurrentColorScheme', () => {
       const { container } = render(<Data />);
 
       act(() => {
-        storageHandler.storage?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'dark' });
+        eventHandlers
+          .get('storage')
+          .broadcastEvent?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'dark' });
       });
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -678,7 +674,9 @@ describe('useCurrentColorScheme', () => {
       const { container } = render(<Data />);
 
       act(() => {
-        storageHandler.storage?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'system' });
+        eventHandlers
+          .get('storage')
+          .broadcastEvent?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'system' });
       });
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -704,7 +702,9 @@ describe('useCurrentColorScheme', () => {
       const { container } = render(<Data />);
 
       act(() => {
-        storageHandler.storage?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: null });
+        eventHandlers
+          .get('storage')
+          .broadcastEvent?.({ key: DEFAULT_MODE_STORAGE_KEY, newValue: null });
       });
 
       expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
@@ -729,7 +729,7 @@ describe('useCurrentColorScheme', () => {
       const { container } = render(<Data />);
 
       act(() => {
-        storageHandler.storage?.({
+        eventHandlers.get('storage').broadcastEvent?.({
           key: `${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`,
           newValue: 'light-dim',
         });
@@ -744,7 +744,7 @@ describe('useCurrentColorScheme', () => {
       });
 
       act(() => {
-        storageHandler.storage?.({
+        eventHandlers.get('storage').broadcastEvent?.({
           key: `${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`,
           newValue: 'dark-dim',
         });
@@ -785,7 +785,7 @@ describe('useCurrentColorScheme', () => {
       fireEvent.click(screen.getByTestId('reset'));
 
       expect(
-        global.localStorage.setItem.lastCall.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system'),
+        window.localStorage.setItem.lastCall.calledWith(DEFAULT_MODE_STORAGE_KEY, 'system'),
       ).to.equal(true);
     });
 
@@ -808,20 +808,133 @@ describe('useCurrentColorScheme', () => {
 
       fireEvent.click(screen.getByTestId('dark'));
 
-      global.localStorage.setItem.resetHistory();
-      expect(global.localStorage.setItem.callCount).to.equal(0); // reset the calls to neglect initial setItem in the assertion below
+      window.localStorage.setItem.resetHistory();
+      expect(window.localStorage.setItem.callCount).to.equal(0); // reset the calls to neglect initial setItem in the assertion below
 
       fireEvent.click(screen.getByTestId('reset'));
 
       expect(
-        global.localStorage.setItem.calledWith(
+        window.localStorage.setItem.calledWith(
           `${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`,
           'light',
         ),
       ).to.equal(true);
       expect(
-        global.localStorage.setItem.calledWith(`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`, 'dark'),
+        window.localStorage.setItem.calledWith(`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`, 'dark'),
       ).to.equal(true);
+    });
+  });
+
+  describe('Custom storage', () => {
+    let cache = {};
+
+    beforeEach(() => {
+      cache = {};
+    });
+
+    const storageManager = ({ key }) => ({
+      get(defaultValue) {
+        return cache[key] || defaultValue;
+      },
+      set(value) {
+        cache[key] = value;
+      },
+      subscribe: (handler) => {
+        const listener = (event) => {
+          const value = event.newValue;
+          if (event.key === key) {
+            handler(value);
+          }
+        };
+        window.addEventListener('storage', listener);
+        return () => {
+          window.removeEventListener('storage', listener);
+        };
+      },
+    });
+
+    it('use custom storage', () => {
+      function Data() {
+        const { setMode, ...data } = useCurrentColorScheme({
+          storageManager,
+          defaultMode: 'light',
+          defaultLightColorScheme: 'light',
+          defaultDarkColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'dark'],
+        });
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+            }}
+          >
+            {JSON.stringify(data)}
+          </button>
+        );
+      }
+      const { container } = render(<Data />);
+
+      fireEvent.click(container.firstChild);
+
+      expect(storageManager({ key: DEFAULT_MODE_STORAGE_KEY }).get()).to.equal('dark');
+    });
+
+    it('handle subscription', () => {
+      function Data() {
+        const { setMode, ...data } = useCurrentColorScheme({
+          storageManager,
+          defaultMode: 'light',
+          defaultLightColorScheme: 'light',
+          defaultDarkColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'dark'],
+        });
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+            }}
+          >
+            {JSON.stringify(data)}
+          </button>
+        );
+      }
+      const { container } = render(<Data />);
+
+      act(() => {
+        eventHandlers.get('storage').broadcastEvent?.({
+          key: DEFAULT_MODE_STORAGE_KEY,
+          newValue: 'dark',
+        });
+      });
+
+      expect(JSON.parse(container.firstChild.textContent)).to.deep.equal({
+        mode: 'dark',
+        lightColorScheme: 'light',
+        darkColorScheme: 'dark',
+        colorScheme: 'dark',
+      });
+    });
+
+    it('able to disable storage manager', () => {
+      function Data() {
+        const { setMode, ...data } = useCurrentColorScheme({
+          storageManager: null,
+          defaultMode: 'light',
+          defaultLightColorScheme: 'light',
+          defaultDarkColorScheme: 'dark',
+          supportedColorSchemes: ['light', 'dark'],
+        });
+        return (
+          <button
+            onClick={() => {
+              setMode('dark');
+            }}
+          >
+            {JSON.stringify(data)}
+          </button>
+        );
+      }
+      expect(() => render(<Data />)).not.to.throw();
     });
   });
 });

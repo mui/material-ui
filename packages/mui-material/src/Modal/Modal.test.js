@@ -36,7 +36,7 @@ describe('<Modal />', () => {
       testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
-        backdrop: {},
+        backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'rootClass', // portal, can't determine the root
@@ -230,56 +230,6 @@ describe('<Modal />', () => {
       getByTestId('backdrop').click();
 
       expect(onClose).to.have.property('callCount', 0);
-    });
-
-    it('should call through to the user specified onBackdropClick callback', () => {
-      const onBackdropClick = spy();
-      const { getByTestId } = render(
-        <Modal
-          onClose={(event, reason) => {
-            if (reason === 'backdropClick') {
-              onBackdropClick();
-            }
-          }}
-          open
-          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
-        >
-          <div />
-        </Modal>,
-      );
-
-      getByTestId('backdrop').click();
-
-      expect(onBackdropClick).to.have.property('callCount', 1);
-    });
-
-    it('should ignore the backdrop click if the event did not come from the backdrop', () => {
-      function CustomBackdrop(props) {
-        const { ownerState, ...other } = props;
-        return (
-          <div {...other}>
-            <span data-testid="inner" />
-          </div>
-        );
-      }
-      const onBackdropClick = spy();
-      const { getByTestId } = render(
-        <Modal
-          onClose={(event, reason) => {
-            if (reason === 'backdropClick') {
-              onBackdropClick();
-            }
-          }}
-          open
-          slots={{ backdrop: CustomBackdrop }}
-        >
-          <div />
-        </Modal>,
-      );
-
-      getByTestId('inner').click();
-
-      expect(onBackdropClick).to.have.property('callCount', 0);
     });
   });
 

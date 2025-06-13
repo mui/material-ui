@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { TypographyProps } from '../Typography';
 import { ListItemTextClasses } from './listItemTextClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 
 export interface ListItemTextSlots {
+  /**
+   * The component that renders the root slot.
+   * @default 'div'
+   */
+  root?: React.ElementType;
   /**
    * The component that renders the primary slot.
    * @default Typography
@@ -21,6 +27,11 @@ export interface ListItemTextSlots {
 export type ListItemTextSlotsAndSlotProps = CreateSlotsAndSlotProps<
   ListItemTextSlots,
   {
+    /**
+     * Props forwared to the root slot.
+     * By default, the available props are based on `div` element.
+     */
+    root: SlotProps<'div', {}, ListItemTextOwnerState>;
     /**
      * Props forwared to the primary slot (as long as disableTypography is not `true`)
      * By default, the available props are based on the [Typography](https://mui.com/material-ui/api/typography/#props) component
@@ -70,7 +81,7 @@ export interface ListItemTextProps<
   /**
    * These props will be forwarded to the primary typography component
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.primary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.primary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   primaryTypographyProps?: TypographyProps<
     PrimaryTypographyComponent,
@@ -83,7 +94,7 @@ export interface ListItemTextProps<
   /**
    * These props will be forwarded to the secondary typography component
    * (as long as disableTypography is not `true`).
-   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.secondary` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   secondaryTypographyProps?: TypographyProps<
     SecondaryTypographyComponent,

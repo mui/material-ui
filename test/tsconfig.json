@@ -9,5 +9,5 @@
     "types": ["mocha"]
   },
   "include": ["e2e/**/*", "integration/**/*", "regressions/**/*"],
-  "exclude": ["node_modules", "regressions/build/**/*"]
+  "exclude": ["node_modules", "regressions/build/**/*", "vitest.config.ts"]
 }

@@ -3,7 +3,7 @@ import { OverridableStringUnion } from '@mui/types';
 import { SxProps, SystemProps } from '@mui/system';
 import { Theme, TypeText } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
-import { Variant } from '../styles/createTypography';
+import { TypographyVariant } from '../styles/createTypography';
 import { TypographyClasses } from './typographyClasses';
 
 export interface TypographyPropsVariantOverrides {}
@@ -57,7 +57,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
   /**
    * If `true`, the element will be a paragraph element.
    * @default false
-   * @deprecated Use the `component` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use the `component` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   paragraph?: boolean;
   /**
@@ -68,7 +68,7 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
    * Applies the theme typography styles.
    * @default 'body1'
    */
-  variant?: OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>;
+  variant?: OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>;
   /**
    * The component maps the variant prop to a range of different HTML element types.
    * For instance, subtitle1 to `<h6>`.
@@ -89,7 +89,10 @@ export interface TypographyOwnProps extends Omit<SystemProps<Theme>, 'color'> {
    * }
    */
   variantMapping?: Partial<
-    Record<OverridableStringUnion<Variant | 'inherit', TypographyPropsVariantOverrides>, string>
+    Record<
+      OverridableStringUnion<TypographyVariant | 'inherit', TypographyPropsVariantOverrides>,
+      string
+    >
   >;
 }
 

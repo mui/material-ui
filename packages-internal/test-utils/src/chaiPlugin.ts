@@ -1,6 +1,7 @@
 import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react/pure';
-import chai, { AssertionError } from 'chai';
+import type chaiType from 'chai';
+import { AssertionError } from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 import _ from 'lodash';
@@ -20,7 +21,7 @@ function elementToString(element: Element | null | undefined) {
   return String(element);
 }
 
-const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
+const chaiPlugin: Parameters<(typeof chaiType)['use']>[0] = (chaiAPI, utils) => {
   const blockElements = new Set([
     'html',
     'address',
@@ -120,7 +121,9 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
   chaiAPI.Assertion.addMethod('toHaveAccessibleName', function hasAccessibleName(expectedName) {
     const root = utils.flag(this, 'object');
     // make sure it's an Element
-    new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(1);
+    new chaiAPI.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
+      1,
+    );
 
     const actualName = computeAccessibleName(root, {
       computedStyleSupportsPseudoElements: !isInJSDOM(),
@@ -143,9 +146,10 @@ const chaiPlugin: Parameters<(typeof chai)['use']>[0] = (chaiAPI, utils) => {
     function hasAccessibleDescription(expectedDescription) {
       const root = utils.flag(this, 'object');
       // make sure it's an Element
-      new chai.Assertion(root.nodeType, `Expected an Element but got '${String(root)}'`).to.equal(
-        1,
-      );
+      new chaiAPI.Assertion(
+        root.nodeType,
+        `Expected an Element but got '${String(root)}'`,
+      ).to.equal(1);
 
       const actualDescription = computeAccessibleDescription(root, {
         // in local development we pretend to be visible. full getComputedStyle is

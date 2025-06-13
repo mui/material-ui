@@ -1,13 +1,11 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_ownerDocument as ownerDocument,
-  unstable_useForkRef as useForkRef,
-  unstable_useEventCallback as useEventCallback,
-  unstable_createChainedFunction as createChainedFunction,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-} from '@mui/utils';
+import ownerDocument from '@mui/utils/ownerDocument';
+import useForkRef from '@mui/utils/useForkRef';
+import useEventCallback from '@mui/utils/useEventCallback';
+import createChainedFunction from '@mui/utils/createChainedFunction';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
 import { EventHandlers } from '../utils/types';
 import { ModalManager, ariaHidden } from './ModalManager';
 import {
@@ -30,16 +28,7 @@ const noop = () => {};
 // A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const manager = new ModalManager();
-/**
- *
- * Demos:
- *
- * - [Modal](https://mui.com/base-ui/react-modal/#hook)
- *
- * API:
- *
- * - [useModal API](https://mui.com/base-ui/react-modal/hooks-api/#use-modal)
- */
+
 function useModal(parameters: UseModalParameters): UseModalReturnValue {
   const {
     container,

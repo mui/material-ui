@@ -21,7 +21,6 @@
     "maxWidth": {
       "description": "Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to <code>false</code> to disable <code>maxWidth</code>."
     },
-    "onBackdropClick": { "description": "Callback fired when the backdrop is clicked." },
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
       "typeDescriptions": {
@@ -64,12 +63,14 @@
     "paperScrollBody": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
-      "conditions": "<code>scroll=\"body\"</code>"
+      "conditions": "<code>scroll=\"body\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#dialog-classes-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-scrollBody\">.MuiDialog-scrollBody</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "paperScrollPaper": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Paper component",
-      "conditions": "<code>scroll=\"paper\"</code>"
+      "conditions": "<code>scroll=\"paper\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/dialog/#dialog-classes-paper\">.MuiDialog-paper</a> and <a href=\"/material-ui/api/dialog/#dialog-classes-scrollPaper\">.MuiDialog-scrollPaper</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "paperWidthFalse": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

@@ -11,6 +11,7 @@ import AccordionContext from '../Accordion/AccordionContext';
 import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, expanded, disabled, disableGutters } = ownerState;
@@ -28,7 +29,6 @@ const useUtilityClasses = (ownerState) => {
 const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(
   memoTheme(({ theme }) => {
     const transition = {
@@ -67,7 +67,6 @@ const AccordionSummaryRoot = styled(ButtonBase, {
 const AccordionSummaryContent = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.content,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
@@ -93,7 +92,6 @@ const AccordionSummaryContent = styled('span', {
 const AccordionSummaryExpandIconWrapper = styled('span', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
-  overridesResolver: (props, styles) => styles.expandIconWrapper,
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
@@ -110,7 +108,16 @@ const AccordionSummaryExpandIconWrapper = styled('span', {
 
 const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordionSummary' });
-  const { children, className, expandIcon, focusVisibleClassName, onClick, ...other } = props;
+  const {
+    children,
+    className,
+    expandIcon,
+    focusVisibleClassName,
+    onClick,
+    slots,
+    slotProps,
+    ...other
+  } = props;
 
   const { disabled = false, disableGutters, expanded, toggle } = React.useContext(AccordionContext);
   const handleChange = (event) => {
@@ -131,31 +138,58 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
 
   const classes = useUtilityClasses(ownerState);
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.root, className),
+    elementType: AccordionSummaryRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      focusRipple: false,
+      disableRipple: true,
+      disabled,
+      'aria-expanded': expanded,
+      focusVisibleClassName: clsx(classes.focusVisible, focusVisibleClassName),
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onClick: (event) => {
+        handlers.onClick?.(event);
+        handleChange(event);
+      },
+    }),
+  });
+
+  const [ContentSlot, contentSlotProps] = useSlot('content', {
+    className: classes.content,
+    elementType: AccordionSummaryContent,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ExpandIconWrapperSlot, expandIconWrapperSlotProps] = useSlot('expandIconWrapper', {
+    className: classes.expandIconWrapper,
+    elementType: AccordionSummaryExpandIconWrapper,
+    externalForwardedProps,
+    ownerState,
+  });
+
   return (
-    <AccordionSummaryRoot
-      focusRipple={false}
-      disableRipple
-      disabled={disabled}
-      aria-expanded={expanded}
-      className={clsx(classes.root, className)}
-      focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-      onClick={handleChange}
-      ref={ref}
-      ownerState={ownerState}
-      {...other}
-    >
-      <AccordionSummaryContent className={classes.content} ownerState={ownerState}>
-        {children}
-      </AccordionSummaryContent>
+    <RootSlot {...rootSlotProps}>
+      <ContentSlot {...contentSlotProps}>{children}</ContentSlot>
       {expandIcon && (
-        <AccordionSummaryExpandIconWrapper
-          className={classes.expandIconWrapper}
-          ownerState={ownerState}
-        >
-          {expandIcon}
-        </AccordionSummaryExpandIconWrapper>
+        <ExpandIconWrapperSlot {...expandIconWrapperSlotProps}>{expandIcon}</ExpandIconWrapperSlot>
       )}
-    </AccordionSummaryRoot>
+    </RootSlot>
   );
 });
 
@@ -193,6 +227,24 @@ AccordionSummary.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    expandIconWrapper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    content: PropTypes.elementType,
+    expandIconWrapper: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -214,7 +214,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
   inheritViewBox: PropTypes.bool,
   /**
    * The shape-rendering attribute. The behavior of the different options is described on the
-   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/shape-rendering).
    * If you are having issues with blurry icons you should investigate this prop.
    */
   shapeRendering: PropTypes.string,
