@@ -106,7 +106,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     children,
     className,
     container: containerProp,
-    disableScrollLock = false,
     disableInitialContentFocus = false,
     elevation = 8,
     marginThreshold = 16,
