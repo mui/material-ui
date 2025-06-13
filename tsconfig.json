@@ -46,6 +46,9 @@
       "@mui/internal-scripts/typescript-to-proptypes": [
         "./packages-internal/scripts/typescript-to-proptypes/src"
       ],
+      "@mui/internal-scripts/generate-llms-txt": [
+        "./packages-internal/scripts/generate-llms-txt/src"
+      ],
       "@mui/internal-test-utils": ["./packages-internal/test-utils/src"],
       "@mui/internal-test-utils/*": ["./packages-internal/test-utils/src/*"],
       "@mui/stylis-plugin-rtl": ["./packages/mui-stylis-plugin-rtl/src"],

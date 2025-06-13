@@ -62,6 +62,7 @@ export function getMaterialUiComponentInfo(filename: string): ComponentInfo {
       return allMarkdowns
         .filter((page) => page.pathname.startsWith('/material') && page.components.includes(name))
         .map((page) => ({
+          filePath: page.filename, // pathname of the markdown file
           demoPageTitle: getTitle(page.markdownContent),
           demoPathname: fixPathname(page.pathname),
         }));
