@@ -147,11 +147,12 @@ function useDemoElement({ demoData, editorCode, setDebouncedError, liveDemoActiv
 
 const Root = styled('div')(({ theme }) => ({
   marginBottom: 24,
-  marginLeft: theme.spacing(-2),
-  marginRight: theme.spacing(-2),
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: 0,
-    marginRight: 0,
+  // Take full width on mobile
+  '&&': {
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(-2),
+      marginRight: theme.spacing(-2),
+    },
   },
 }));
 
@@ -500,7 +501,7 @@ export default function Demo(props) {
   };
 
   return (
-    <Root>
+    <Root className="MuiDocs-content-block MuiDocs-demo-block">
       <AnchorLink id={demoName} />
       <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
         <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
