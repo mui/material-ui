@@ -1066,6 +1066,28 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/dialog-classes <path>
 ```
 
+#### `dialog-props`
+
+JS transforms:
+
+```diff
+ <Dialog
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+- TransitionComponent={CustomTransition}
++ slots={{ transition: CustomTransition }}
+- TransitionProps={CustomTransitionProps}
++ slotProps={{ transition: CustomTransitionProps }}
+ />
+     },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-props <path>
+```
+
 #### `drawer-classes`
 
 JS transforms:
