@@ -429,10 +429,10 @@ function RowHead({
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'Base UI': (
     <ColumnHead
-      label="MUI Base"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
+      label="Base UI"
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui-components/react."
     />
   ),
   'MUI System': (
@@ -653,7 +653,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'core-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI Core',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI Core
+          </React.Fragment>
+        ),
         tooltip:
           'Support for MUI Core (for example Material UI) is provided by the community. MUI Core maintainers focus on solving root issues to support the community at large.',
       }}
@@ -662,7 +667,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'x-support': (
     <ColumnHead
       {...{
-        label: 'Technical support for MUI X',
+        label: (
+          <React.Fragment>
+            Technical support for <Box component="span" sx={{ display: ['none', 'block'] }} />
+            MUI X
+          </React.Fragment>
+        ),
         tooltip:
           'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
@@ -684,7 +694,10 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'response-time': (
     <ColumnHead
-      {...{ label: 'Guaranteed response time', tooltip: 'Maximum lead time for each response.' }}
+      {...{
+        label: 'Guaranteed response time',
+        tooltip: 'Maximum lead time for each response, only working days are counted.',
+      }}
     />
   ),
   'pre-screening': (
@@ -737,7 +750,7 @@ const toBeDefined = (
 
 const communityData: Record<string, React.ReactNode> = {
   // Core open-source libraries
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -840,7 +853,7 @@ const communityData: Record<string, React.ReactNode> = {
 
 const proData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -939,12 +952,12 @@ const proData: Record<string, React.ReactNode> = {
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': <Info value="Available from 10+ devs" />,
+  'security-questionnaire': <Info value="Available from 10+ dev" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -1365,11 +1378,11 @@ export default function PricingTable({
         <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
           MUI Core (open-source)
         </RowHead>
+        {renderRow('Base UI')}
+        {divider}
         {renderRow('Material UI')}
         {divider}
         {renderRow('Joy UI')}
-        {divider}
-        {renderRow('MUI Base')}
         {divider}
         {renderRow('MUI System')}
         <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
@@ -1684,7 +1697,7 @@ export default function PricingTable({
                 }),
             ]}
           >
-            TreeView
+            Tree View
           </Button>
         </Box>
         <StyledCollapse in={treeViewCollapsed}>
