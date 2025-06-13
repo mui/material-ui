@@ -3,7 +3,6 @@ productId: joy-ui
 title: React Slider component
 components: Slider
 githubLabel: 'component: slider'
-unstyled: https://base-ui.com/react/components/slider
 ---
 
 # Slider
