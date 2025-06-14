@@ -199,6 +199,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     label,
     onClick,
     onFocus,
+    tabIndex: tabIndexProp,
     value: valueProp,
     wrapped = false,
     ...other
@@ -217,7 +218,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const hasRegisteredRef = React.useRef(false);
 
-  const [value] = React.useState(() => {
+  const [{ finalValue: value, assignedIndex }] = React.useState(() => {
     if (!hasRegisteredRef.current) {
       hasRegisteredRef.current = true;
       return registerTab(valueProp);
@@ -227,6 +228,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const selected = value === tabsValue;
   const indicator = selected && !mounted && indicatorContext;
+
+  const tabIndex = selected || (assignedIndex === 0 && tabsValue === false) ? 0 : -1;
 
   const ownerState = {
     ...props,
@@ -279,7 +282,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onClick={handleClick}
       onFocus={handleFocus}
       ownerState={ownerState}
-      tabIndex={selected ? 0 : -1}
+      tabIndex={tabIndexProp ?? tabIndex}
       {...other}
     >
       {iconPosition === 'top' || iconPosition === 'start' ? (

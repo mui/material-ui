@@ -791,7 +791,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         valueToIndex.set(finalValue, assignedIndex);
       }
       childIndexRef.current += 1;
-      return finalValue;
+      return { finalValue, assignedIndex };
     },
     [valueToIndex],
   );
