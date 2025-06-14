@@ -368,6 +368,10 @@ Tab.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
+  /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
   value: PropTypes.any,
