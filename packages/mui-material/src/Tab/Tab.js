@@ -10,6 +10,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
+import TabsContext from '../Tabs/TabsContext';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
@@ -193,26 +194,42 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     className,
     disabled = false,
     disableFocusRipple = false,
-    // eslint-disable-next-line react/prop-types
-    fullWidth,
     icon: iconProp,
     iconPosition = 'top',
-    // eslint-disable-next-line react/prop-types
-    indicator,
     label,
-    onChange,
     onClick,
     onFocus,
-    // eslint-disable-next-line react/prop-types
-    selected,
-    // eslint-disable-next-line react/prop-types
-    selectionFollowsFocus,
-    // eslint-disable-next-line react/prop-types
-    textColor = 'inherit',
-    value,
+    tabIndex: tabIndexProp,
+    value: valueProp,
     wrapped = false,
     ...other
   } = props;
+
+  const {
+    fullWidth,
+    indicator: indicatorContext,
+    mounted,
+    selectionFollowsFocus,
+    onChange,
+    textColor = 'inherit',
+    tabsValue,
+    registerTab,
+  } = React.useContext(TabsContext);
+
+  const hasRegisteredRef = React.useRef(false);
+
+  const [{ finalValue: value, assignedIndex }] = React.useState(() => {
+    if (!hasRegisteredRef.current) {
+      hasRegisteredRef.current = true;
+      return registerTab(valueProp);
+    }
+    return undefined;
+  });
+
+  const selected = value === tabsValue;
+  const indicator = selected && !mounted && indicatorContext;
+
+  const tabIndex = selected || (assignedIndex === 0 && tabsValue === false) ? 0 : -1;
 
   const ownerState = {
     ...props,
@@ -265,7 +282,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       onClick={handleClick}
       onFocus={handleFocus}
       ownerState={ownerState}
-      tabIndex={selected ? 0 : -1}
+      tabIndex={tabIndexProp ?? tabIndex}
       {...other}
     >
       {iconPosition === 'top' || iconPosition === 'start' ? (
@@ -337,10 +354,6 @@ Tab.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
   onClick: PropTypes.func,
   /**
    * @ignore
@@ -354,6 +367,10 @@ Tab.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */
