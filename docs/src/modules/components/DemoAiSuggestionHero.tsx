@@ -166,7 +166,7 @@ export default function DemoAiSuggestionHero({
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
-            aria-label="show more"
+            aria-label={t('seeMore')}
           >
             <ExpandMoreIcon />
           </ExpandMore>
