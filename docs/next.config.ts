@@ -78,7 +78,9 @@ export default withDocsInfra({
 
     // @ts-ignore
     config.module.rules.forEach((rule) => {
-      rule.resourceQuery = { not: [/raw/] };
+      if (!rule.resourceQuery) {
+        rule.resourceQuery = { not: [/raw/] };
+      }
     });
 
     return {

@@ -1,20 +1,20 @@
-import * as React from 'react';
-import NoSsr from '@mui/material/NoSsr';
+'use client';
 import Divider from '@mui/material/Divider';
-import Head from 'docs/src/modules/components/Head';
-import AppHeader from 'docs/src/layouts/AppHeader';
-import Hero from 'docs/src/components/home/Hero';
-import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
-import ProductSuite from 'docs/src/components/home/ProductSuite';
-import ValueProposition from 'docs/src/components/home/ValueProposition';
-import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
-import Testimonials from 'docs/src/components/home/Testimonials';
-import Sponsors from 'docs/src/components/home/Sponsors';
-import HeroEnd from 'docs/src/components/home/HeroEnd';
-import AppFooter from 'docs/src/layouts/AppFooter';
+import NoSsr from '@mui/material/NoSsr';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
-import NewsletterToast from 'docs/src/components/home/NewsletterToast';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
+import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
+import Hero from 'docs/src/components/home/Hero';
+import HeroEnd from 'docs/src/components/home/HeroEnd';
+import NewsletterToast from 'docs/src/components/home/NewsletterToast';
+import ProductSuite from 'docs/src/components/home/ProductSuite';
+import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
+import Sponsors from 'docs/src/components/home/Sponsors';
+import Testimonials from 'docs/src/components/home/Testimonials';
+import ValueProposition from 'docs/src/components/home/ValueProposition';
+import AppFooter from 'docs/src/layouts/AppFooter';
+import AppHeader from 'docs/src/layouts/AppHeader';
+import Head from 'docs/src/modules/components/HeadApp';
 
 export default function Home() {
   return (

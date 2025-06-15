@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import * as ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from '@mui/docs/routing';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
 import SearchIcon from '@mui/icons-material/Search';

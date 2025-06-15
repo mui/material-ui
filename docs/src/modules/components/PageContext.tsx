@@ -5,8 +5,8 @@ import { RootSvgProps } from 'docs/src/icons/RootSvg';
 
 export interface ProductVersion {
   text: string;
-  current: boolean;
-  href?: undefined;
+  current?: boolean;
+  href?: string;
 }
 
 export interface ProductInfo {

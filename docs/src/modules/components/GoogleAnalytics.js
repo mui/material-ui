@@ -1,6 +1,6 @@
 import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useRouter } from 'next/router';
+import { useRouter } from '@mui/docs/routing';
 import { useNoSsrCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useUserLanguage } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -71,7 +71,7 @@ function GoogleAnalytics() {
         productCategoryId: document.querySelector('meta[name="mui:productCategoryId"]').content,
       });
     });
-  }, [router.route]);
+  }, [router.pathname]);
 
   const codeVariant = useNoSsrCodeVariant();
   React.useEffect(() => {

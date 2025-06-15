@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from '@mui/docs/routing';
 import { deepmerge } from '@mui/utils';
 import { ThemeProvider, createTheme, PaletteColorOptions } from '@mui/material/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
@@ -132,8 +132,8 @@ export default function BrandingCssVarsProvider(props: {
   direction?: 'ltr' | 'rtl';
 }) {
   const { direction = 'ltr', children } = props;
-  const { asPath } = useRouter();
-  const { canonicalAs } = pathnameToLanguage(asPath);
+  const { pathname } = useRouter();
+  const { canonicalAs } = pathnameToLanguage(pathname);
   const theme = React.useMemo(() => {
     return createTheme({
       cssVariables: {
