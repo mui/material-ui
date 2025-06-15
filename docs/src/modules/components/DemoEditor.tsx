@@ -69,10 +69,11 @@ interface DemoEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   language: string;
   onChange: () => {};
   value: string;
+  sx?: React.CSSProperties;
 }
 
 export default function DemoEditor(props: DemoEditorProps) {
-  const { language, value, onChange, copyButtonProps, children, id, ...other } = props;
+  const { language, value, onChange, copyButtonProps, children, id, sx, ...other } = props;
   const t = useTranslate();
   const contextTheme = useTheme();
   const wrapperRef = React.useRef<HTMLElement>(null);
@@ -105,6 +106,7 @@ export default function DemoEditor(props: DemoEditorProps) {
           }
         }
       }}
+      sx={sx}
       {...other}
     >
       <div className="MuiCode-root" {...handlers}>

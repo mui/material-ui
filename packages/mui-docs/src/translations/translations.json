@@ -1,6 +1,8 @@
 {
   "adblock": "If you don't mind tech-related ads (no tracking or remarketing), and want to keep us running, please whitelist us in your blocker.",
   "adPublisher": "ad by {{publisher}}",
+  "aiCustomizeDemo": "Want to customize this?",
+  "aiChatFailed": "Failed to open MUI Chat",
   "api-docs": {
     "componentName": "Component name",
     "componentsApi": "Components API",
