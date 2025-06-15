@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
+import { useRouter } from '@mui/docs/routing';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
@@ -36,27 +36,12 @@ function nProgressDone() {
 export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
-    const handleRouteChangeStart = (url: string, { shallow }: { shallow: boolean }) => {
-      if (!shallow) {
-        nProgressStart();
-      }
-    };
+    nProgressDone();
 
-    const handleRouteChangeDone = (url: string, { shallow }: { shallow: boolean }) => {
-      if (!shallow) {
-        nProgressDone();
-      }
-    };
-
-    router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeDone);
-    router.events.on('routeChangeError', handleRouteChangeDone);
     return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeDone);
-      router.events.off('routeChangeError', handleRouteChangeDone);
+      nProgressStart();
     };
-  }, [router]);
+  }, [router.pathname]);
 
   return <NProgressBar />;
 }
@@ -174,7 +159,7 @@ export default function AppFrame(props: AppFrameProps) {
   const { children, disableDrawer = false, className, BannerComponent = AppFrameBanner } = props;
   const t = useTranslate();
   const router = useRouter();
-  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const { canonicalAs } = pathnameToLanguage(router.pathname);
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [settingsOpen, setSettingsOpen] = React.useState(false);

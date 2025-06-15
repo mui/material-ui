@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Router from 'next/router';
+import { useRouter } from '@mui/docs/routing';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 export function samePageLinkNavigation(event: MouseEvent) {
@@ -36,66 +36,69 @@ function isLink(event: MouseEvent): HTMLElement | null {
   return activeElement;
 }
 
-/**
- * @param {MouseEvent} event
- */
-function handleClick(event: MouseEvent) {
-  // Ignore click events meant for native link handling, for example open in new tab
-  if (samePageLinkNavigation(event)) {
-    return;
-  }
-
-  const activeElement = isLink(event);
-  if (activeElement === null) {
-    return;
-  }
-
-  event.preventDefault();
-  const as = activeElement.getAttribute('href');
-  if (as === null) {
-    return;
-  }
-  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
-  Router.push(canonicalPathname, as);
-}
-
-/**
- * Source copied from https://github.com/vercel/next.js/blob/ebc4eaaa2564b4283711646079d68e430496c88b/packages/next/src/client/link.tsx
- */
-function handleMouseOver(event: MouseEvent) {
-  const activeElement = isLink(event);
-  if (activeElement === null) {
-    return;
-  }
-
-  const as = activeElement.getAttribute('href');
-  if (as === null) {
-    return;
-  }
-  const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
-
-  const prefetchPromise = Router.prefetch(canonicalPathname, as, { priority: true });
-  // Prefetch the JSON page if asked (only in the client)
-  // We need to handle a prefetch error here since we may be
-  // loading with priority which can reject but we don't
-  // want to force navigation since this is only a prefetch
-  Promise.resolve(prefetchPromise).catch((err) => {
-    if (process.env.NODE_ENV !== 'production') {
-      // rethrow to show invalid URL errors
-      throw err;
-    }
-  });
-}
-
 export default function MarkdownLinks() {
+  const router = useRouter();
+
   React.useEffect(() => {
+    /**
+     * @param {MouseEvent} event
+     */
+    function handleClick(event: MouseEvent) {
+      // Ignore click events meant for native link handling, for example open in new tab
+      if (samePageLinkNavigation(event)) {
+        return;
+      }
+
+      const activeElement = isLink(event);
+      if (activeElement === null) {
+        return;
+      }
+
+      event.preventDefault();
+      const as = activeElement.getAttribute('href');
+      if (as === null) {
+        return;
+      }
+      const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
+      router.push(canonicalPathname, as);
+    }
+
+    /**
+     * Source copied from https://github.com/vercel/next.js/blob/ebc4eaaa2564b4283711646079d68e430496c88b/packages/next/src/client/link.tsx
+     */
+    function handleMouseOver(event: MouseEvent) {
+      const activeElement = isLink(event);
+      if (activeElement === null) {
+        return;
+      }
+
+      const as = activeElement.getAttribute('href');
+      if (as === null) {
+        return;
+      }
+      const canonicalPathname = pathnameToLanguage(as).canonicalPathname;
+
+      const prefetchPromise = router.prefetch(canonicalPathname, as, { priority: true });
+      // Prefetch the JSON page if asked (only in the client)
+      // We need to handle a prefetch error here since we may be
+      // loading with priority which can reject but we don't
+      // want to force navigation since this is only a prefetch
+      Promise.resolve(prefetchPromise).catch((err) => {
+        if (process.env.NODE_ENV !== 'production') {
+          // rethrow to show invalid URL errors
+          throw err;
+        }
+      });
+    }
+
     document.addEventListener('click', handleClick);
     document.addEventListener('mouseover', handleMouseOver);
+    
     return () => {
       document.removeEventListener('click', handleClick);
       document.removeEventListener('mouseover', handleMouseOver);
     };
-  }, []);
+  }, [router]);
 
   return null;
 }

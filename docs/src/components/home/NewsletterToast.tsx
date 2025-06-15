@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from '@mui/docs/routing';
 import Slide from '@mui/material/Slide';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -10,13 +10,14 @@ import MarkEmailReadTwoTone from '@mui/icons-material/MarkEmailReadTwoTone';
 
 export default function NewsletterToast() {
   const router = useRouter();
-  const [hidden, setHidden] = React.useState(router.query.newsletter !== 'subscribed');
+  const newsletterQuery = router.getSearchParam("newsletter")
+  const [hidden, setHidden] = React.useState(newsletterQuery !== 'subscribed');
   React.useEffect(() => {
-    if (router.query.newsletter === 'subscribed') {
+    if (newsletterQuery === 'subscribed') {
       setHidden(false);
       router.replace(router.pathname);
     }
-  }, [router.query.newsletter, router]);
+  }, [newsletterQuery, router]);
   React.useEffect(() => {
     const time = setTimeout(() => {
       if (!hidden) {
