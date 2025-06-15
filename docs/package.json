@@ -52,7 +52,7 @@
     "@mui/x-tree-view": "8.5.1",
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^9.7.5",
-    "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/postcss": "^4.1.10",
     "@toolpad/core": "^0.15.0",
     "autoprefixer": "^10.4.21",
     "autosuggest-highlight": "^3.3.4",
