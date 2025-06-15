@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
@@ -7,8 +9,38 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import { SxProps, Theme } from '@mui/material/styles';
+import { styled, SxProps, useTheme, Theme } from '@mui/material/styles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTranslate } from '@mui/docs/i18n';
+
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
+
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme }) => ({
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  variants: [
+    {
+      props: ({ expand }) => !expand,
+      style: {
+        transform: 'rotate(0deg)',
+      },
+    },
+    {
+      props: ({ expand }) => !!expand,
+      style: {
+        transform: 'rotate(180deg)',
+      },
+    },
+  ],
+}));
 
 export interface DemoAiSuggestionHeroProps {
   suggestion: string;
@@ -19,6 +51,34 @@ export interface DemoAiSuggestionHeroProps {
 
 const baseUrl = process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL;
 
+interface SuggestionButtonProps {
+  handleClick: React.MouseEventHandler<HTMLButtonElement>;
+  loading: boolean;
+  suggestion: string;
+}
+
+function SuggestionButton({ handleClick, loading, suggestion }: SuggestionButtonProps) {
+  return (
+    <Box sx={{ px: 2, pb: 2 }}>
+      <Button
+        variant="outlined"
+        sx={{
+          textTransform: 'none',
+          fontWeight: 400,
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+          py: 1,
+          boxShadow: 'none',
+        }}
+        onClick={handleClick}
+        disabled={loading}
+        startIcon={loading ? <CircularProgress color="inherit" size={16} /> : null}
+      >
+        {suggestion}
+      </Button>
+    </Box>
+  );
+}
+
 export default function DemoAiSuggestionHero({
   suggestion,
   params,
@@ -27,6 +87,16 @@ export default function DemoAiSuggestionHero({
 }: DemoAiSuggestionHeroProps) {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<Error | null>(null);
+
+  const [expanded, setExpanded] = React.useState(false);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   const t = useTranslate();
 
   if (!baseUrl) {
@@ -67,7 +137,7 @@ export default function DemoAiSuggestionHero({
         border: '1px solid',
         borderColor: 'divider',
         borderTop: 'none',
-        borderRadius: '0 0 12px 12px',
+        borderRadius: { xs: 0, sm: '0 0 12px 12px' },
         p: 0,
         backgroundColor: 'background.paper',
         boxShadow: 0,
@@ -78,28 +148,37 @@ export default function DemoAiSuggestionHero({
         ...sx,
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', px: 2, pt: 2, pb: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          px: 2,
+          pt: 2,
+          pb: 1,
+        }}
+      >
         <AutoAwesomeIcon fontSize="small" sx={{ color: 'primary.main', mr: 1 }} />
         <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
           {t('aiCustomizeDemo')}
         </Typography>
+        {isSmallScreen ? (
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        ) : null}
       </Box>
-      <Box sx={{ px: 2, pb: 2 }}>
-        <Button
-          variant="outlined"
-          sx={{
-            textTransform: 'none',
-            fontWeight: 400,
-            py: 1,
-            boxShadow: 'none',
-          }}
-          onClick={handleClick}
-          disabled={loading}
-          startIcon={loading ? <CircularProgress color="inherit" size={16} /> : null}
-        >
-          {suggestion}
-        </Button>
-      </Box>
+      {isSmallScreen ? (
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <SuggestionButton loading={loading} suggestion={suggestion} handleClick={handleClick} />
+        </Collapse>
+      ) : (
+        <SuggestionButton loading={loading} suggestion={suggestion} handleClick={handleClick} />
+      )}
       <Snackbar
         open={!!error}
         color="error"
