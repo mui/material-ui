@@ -645,6 +645,7 @@ export default function Demo(props) {
               params={{
                 name: demoName,
                 description: demoOptions.aiSuggestion,
+                initialMessage: demoOptions.aiSuggestion,
                 files: [
                   {
                     path: demo.moduleTS,
