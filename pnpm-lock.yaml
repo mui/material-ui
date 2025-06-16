@@ -888,8 +888,8 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -1088,8 +1088,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -1373,8 +1373,8 @@ importers:
         specifier: ^20.19.0
         version: 20.19.0
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -1532,8 +1532,8 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -1606,8 +1606,8 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -1692,8 +1692,8 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -1969,8 +1969,8 @@ importers:
         specifier: ^4.3.20
         version: 4.3.20
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -2020,8 +2020,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/prop-types':
-        specifier: ^15.7.14
-        version: 15.7.14
+        specifier: ^15.7.15
+        version: 15.7.15
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -5999,8 +5999,8 @@ packages:
   '@types/parse-path@7.0.3':
     resolution: {integrity: sha512-LriObC2+KYZD3FzCrgWGv/qufdUy4eXrxcLgQMfYXgPbLIecKIsVBaQgUPmxSSLcjmYbDTQbMgr6qr6l/eb7Bg==}
 
-  '@types/prop-types@15.7.14':
-    resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
+  '@types/prop-types@15.7.15':
+    resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
 
   '@types/qs@6.9.18':
     resolution: {integrity: sha512-kK7dgTYDyGqS+e2Q4aK9X3D7q234CIZ1Bv0q/7Z5IwRDoADNU81xXJK/YVyLbLTZCoIwUoDoffFeF+p/eIklAA==}
@@ -17154,7 +17154,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.6
       '@mui/types': 7.2.24(@types/react@19.1.8)
-      '@types/prop-types': 15.7.14
+      '@types/prop-types': 15.7.15
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.1.0
@@ -17166,7 +17166,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.6
       '@mui/types': 7.2.24(@types/react@19.1.8)
-      '@types/prop-types': 15.7.14
+      '@types/prop-types': 15.7.15
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.1.0
@@ -17178,7 +17178,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.6
       '@mui/types': 7.4.3(@types/react@19.1.8)
-      '@types/prop-types': 15.7.14
+      '@types/prop-types': 15.7.15
       clsx: 2.1.1
       prop-types: 15.8.1
       react: 19.1.0
@@ -19285,7 +19285,7 @@ snapshots:
 
   '@types/parse-path@7.0.3': {}
 
-  '@types/prop-types@15.7.14': {}
+  '@types/prop-types@15.7.15': {}
 
   '@types/qs@6.9.18': {}
 
@@ -24929,7 +24929,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.6
       '@mui/material': link:packages/mui-material/build
-      '@types/prop-types': 15.7.14
+      '@types/prop-types': 15.7.15
       classnames: 2.3.2
       prop-types: 15.8.1
       react: 19.1.0
