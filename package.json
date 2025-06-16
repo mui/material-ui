@@ -198,7 +198,7 @@
     "piscina": "^5.0.0",
     "postcss-styled-syntax": "^0.7.1",
     "prettier": "^3.5.3",
-    "pretty-quick": "^4.1.1",
+    "pretty-quick": "^4.2.2",
     "process": "^0.11.10",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
