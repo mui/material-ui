@@ -1519,7 +1519,9 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
 +  }
    disablePadding
  >
-   <ListItemText primary="John Doe" />
+   <ListItemButton>
+     <ListItemText primary="John Doe" />
+   </ListItemButton>
 -  <ListItemSecondaryAction>
 -    <IconButton aria-label="Leave a comment">
 -      <CommentIcon />
