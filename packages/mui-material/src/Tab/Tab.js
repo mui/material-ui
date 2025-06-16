@@ -10,7 +10,7 @@ import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
-import TabsContext from '../Tabs/TabsContext';
+import { useTabsContext } from '../Tabs/TabsContext';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
@@ -214,7 +214,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     textColor = 'inherit',
     tabsValue,
     registerTab,
-  } = React.useContext(TabsContext);
+  } = useTabsContext();
 
   const hasRegisteredRef = React.useRef(false);
 
