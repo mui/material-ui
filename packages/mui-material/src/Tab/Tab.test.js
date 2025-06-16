@@ -285,4 +285,10 @@ describe('<Tab />', () => {
       backgroundColor: 'rgb(0, 0, 255)',
     });
   });
+
+  it('should throw error if Tab is rendered without Tabs', () => {
+    expect(() => render(<Tab value={0} />)).to.throw(
+      'Material UI: Tabs component was not found in the tree',
+    );
+  });
 });
