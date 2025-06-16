@@ -6,9 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 
 const StyledListHeader = styled(ListSubheader)(({ theme }) => ({
-  ...theme.applyStyles('dark', {
-    backgroundColor: theme.palette.grey[900],
-  }),
+  backgroundImage: 'var(--Paper-overlay)',
 }));
 
 export default function GroupedMenu() {
