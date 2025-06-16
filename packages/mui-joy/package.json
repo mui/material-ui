@@ -49,7 +49,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/prop-types": "^15.7.14",
+    "@types/prop-types": "^15.7.15",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/sinon": "^17.0.4",
