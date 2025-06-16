@@ -24,7 +24,7 @@ describe('<Tab />', () => {
     classes,
     inheritComponent: ButtonBase,
     // select the tab list as the container for tests like rootClass etc.
-    render: async (node) => {
+    render: (node) => {
       const { getByRole, container, ...other } = render(<Tabs value={false}>{node}</Tabs>);
       return { container: getByRole('tablist'), ...other };
     },
