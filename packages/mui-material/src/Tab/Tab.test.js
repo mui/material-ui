@@ -3,18 +3,29 @@ import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer, simulatePointerDevice } from '@mui/internal-test-utils';
 import Tab, { tabClasses as classes } from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import ButtonBase from '@mui/material/ButtonBase';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
+const TestContainer = ({ tabsProps, tabProps }) => (
+  <Tabs value={false} {...tabsProps}>
+    <Tab {...tabProps} />
+  </Tabs>
+);
+
 describe('<Tab />', () => {
   const { render } = createRenderer();
 
-  describeConformance(<Tab textColor="inherit" />, () => ({
+  describeConformance(<Tab />, () => ({
     classes,
     inheritComponent: ButtonBase,
-    render,
+    // select the tab list as the container for tests like rootClass etc.
+    render: async (node) => {
+      const { getByRole, container, ...other } = render(<Tabs value={false}>{node}</Tabs>);
+      return { container: getByRole('tablist'), ...other };
+    },
     muiName: 'MuiTab',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
@@ -22,14 +33,18 @@ describe('<Tab />', () => {
   }));
 
   it('should have a ripple', async () => {
-    const { container } = render(<Tab TouchRippleProps={{ className: 'touch-ripple' }} />);
+    const { container } = render(
+      <TestContainer tabProps={{ TouchRippleProps: { className: 'touch-ripple' } }} />,
+    );
     await ripple.startTouch(container.querySelector('button'));
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
   it('can disable the ripple', async () => {
     const { container } = render(
-      <Tab disableRipple TouchRippleProps={{ className: 'touch-ripple' }} />,
+      <TestContainer
+        tabProps={{ disableRipple: true, TouchRippleProps: { className: 'touch-ripple' } }}
+      />,
     );
 
     await ripple.startTouch(container.querySelector('button'));
@@ -43,7 +58,9 @@ describe('<Tab />', () => {
     }
 
     const { container } = render(
-      <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+      <TestContainer
+        tabProps={{ TouchRippleProps: { classes: { ripplePulsate: 'focus-ripple' } } }}
+      />,
     );
     simulatePointerDevice();
 
@@ -54,7 +71,12 @@ describe('<Tab />', () => {
 
   it('can disable the focusRipple', async () => {
     const { container } = render(
-      <Tab disableFocusRipple TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+      <TestContainer
+        tabProps={{
+          disableFocusRipple: true,
+          TouchRippleProps: { classes: { ripplePulsate: 'focus-ripple' } },
+        }}
+      />,
     );
     simulatePointerDevice();
 
@@ -65,7 +87,9 @@ describe('<Tab />', () => {
 
   describe('prop: selected', () => {
     it('should render with the selected and root classes', () => {
-      const { getByRole } = render(<Tab selected textColor="secondary" />);
+      const { getByRole } = render(
+        <TestContainer tabsProps={{ value: 0, textColor: 'secondary' }} />,
+      );
 
       const tab = getByRole('tab');
       expect(tab).to.have.class(classes.root);
@@ -77,19 +101,18 @@ describe('<Tab />', () => {
 
   describe('prop: disabled', () => {
     it('should render with the disabled and root classes', () => {
-      const { getByRole } = render(<Tab disabled textColor="secondary" />);
+      const { getByRole } = render(<TestContainer tabProps={{ disabled: true }} />);
 
       const tab = getByRole('tab');
       expect(tab).to.have.class(classes.root);
       expect(tab).to.have.class(classes.disabled);
-      expect(tab).to.have.class(classes.textColorSecondary);
     });
   });
 
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const { getByRole } = render(<Tab onClick={handleClick} />);
+      const { getByRole } = render(<TestContainer tabProps={{ onClick: handleClick }} />);
 
       getByRole('tab').click();
 
@@ -99,7 +122,7 @@ describe('<Tab />', () => {
 
   describe('prop: label', () => {
     it('should render label', () => {
-      const { getByRole } = render(<Tab label="foo" />);
+      const { getByRole } = render(<TestContainer tabProps={{ label: 'foo' }} />);
 
       expect(getByRole('tab')).to.have.text('foo');
     });
@@ -107,7 +130,7 @@ describe('<Tab />', () => {
 
   describe('prop: wrapped', () => {
     it('should add the wrapped class', () => {
-      const { getByRole } = render(<Tab wrapped />);
+      const { getByRole } = render(<TestContainer tabProps={{ wrapped: true }} />);
 
       expect(getByRole('tab')).to.have.class(classes.wrapped);
     });
@@ -115,13 +138,17 @@ describe('<Tab />', () => {
 
   describe('prop: icon', () => {
     it('should render icon element', () => {
-      const { getByTestId } = render(<Tab icon={<div data-testid="icon" />} />);
+      const { getByTestId } = render(
+        <TestContainer tabProps={{ icon: <div data-testid="icon" /> }} />,
+      );
 
       expect(getByTestId('icon')).not.to.equal(null);
     });
 
     it('should add a classname when passed together with label', () => {
-      const { getByRole } = render(<Tab icon={<div className="test-icon" />} label="foo" />);
+      const { getByRole } = render(
+        <TestContainer tabProps={{ icon: <div className="test-icon" />, label: 'foo' }} />,
+      );
       const wrapper = getByRole('tab').children[0];
       expect(wrapper).to.have.class(classes.iconWrapper);
       expect(wrapper).to.have.class(classes.icon);
@@ -129,7 +156,7 @@ describe('<Tab />', () => {
     });
 
     it('should have bottom margin when passed together with label', () => {
-      const { getByRole } = render(<Tab icon={<div />} label="foo" />);
+      const { getByRole } = render(<TestContainer tabProps={{ icon: <div />, label: 'foo' }} />);
       const wrapper = getByRole('tab').children[0];
       expect(wrapper).toHaveComputedStyle({ marginBottom: '6px' });
     });
@@ -137,10 +164,9 @@ describe('<Tab />', () => {
 
   describe('prop: textColor', () => {
     it('should support the inherit value', () => {
-      const { getByRole } = render(<Tab selected textColor="inherit" />);
+      const { getByRole } = render(<TestContainer tabsProps={{ textColor: 'inherit' }} />);
 
       const tab = getByRole('tab');
-      expect(tab).to.have.class(classes.selected);
       expect(tab).to.have.class(classes.textColorInherit);
       expect(tab).to.have.class(classes.root);
     });
@@ -148,7 +174,7 @@ describe('<Tab />', () => {
 
   describe('prop: fullWidth', () => {
     it('should have the fullWidth class', () => {
-      const { getByRole } = render(<Tab fullWidth />);
+      const { getByRole } = render(<TestContainer tabsProps={{ variant: 'fullWidth' }} />);
 
       expect(getByRole('tab')).to.have.class(classes.fullWidth);
     });
@@ -157,7 +183,7 @@ describe('<Tab />', () => {
   describe('prop: style', () => {
     it('should be able to override everything', () => {
       const { getByRole } = render(
-        <Tab fullWidth style={{ width: '80%', color: 'red', alignText: 'center' }} />,
+        <TestContainer tabProps={{ style: { width: '80%', color: 'red', alignText: 'center' } }} />,
       );
 
       const { style } = getByRole('tab');
@@ -186,7 +212,7 @@ describe('<Tab />', () => {
 
     const { getByRole } = render(
       <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
+        <TestContainer tabProps={{ icon: <div>hello</div>, label: 'icon' }} />
       </ThemeProvider>,
     );
     const icon = getByRole('tab').querySelector(`.${classes.iconWrapper}`);
@@ -214,7 +240,7 @@ describe('<Tab />', () => {
 
     const { getByRole } = render(
       <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
+        <TestContainer tabProps={{ icon: <div>hello</div>, label: 'icon' }} />
       </ThemeProvider>,
     );
     const icon = getByRole('tab').querySelector(`.${classes.icon}`);
@@ -245,7 +271,7 @@ describe('<Tab />', () => {
 
     const { getByRole } = render(
       <ThemeProvider theme={theme}>
-        <Tab icon={<div>hello</div>} label="icon" />
+        <TestContainer tabProps={{ icon: <div>hello</div>, label: 'icon' }} />
       </ThemeProvider>,
     );
     const icon = getByRole('tab').querySelector(`.${classes.icon}`);
