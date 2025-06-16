@@ -113,15 +113,6 @@ function prepareMarkdown(config) {
 
       const contents = getContents(markdown);
 
-      if (headers.unstyled) {
-        contents.push(`
-## Unstyled
-
-Use the [Base UI ${markdownH1}](${headers.unstyled}) for complete ownership of the component's design, with no Material UI or Joy UI styles to override.
-This unstyled version of the component is the ideal choice for heavy customization with a smaller bundle size.
-        `);
-      }
-
       if (headers.components.length > 0 && headers.productId !== 'base-ui') {
         contents.push(`
 ## API
