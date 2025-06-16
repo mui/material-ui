@@ -2,7 +2,6 @@
 productId: joy-ui
 title: React Text Field component
 githubLabel: 'component: text field'
-unstyled: https://base-ui.com/react/components/field
 ---
 
 # Text Field
