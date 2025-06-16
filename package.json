@@ -43,7 +43,7 @@
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "install:codesandbox": "pnpm install --no-frozen-lockfile",
     "jsonlint": "node ./scripts/jsonlint.mjs",
-    "eslint": "ESLINT_USE_FLAT_CONFIG=false eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
+    "eslint": "cross-env ESLINT_USE_FLAT_CONFIG=false eslint . --cache --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "eslint:ci": "ESLINT_USE_FLAT_CONFIG=false eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables \"docs/**/*.?(c|m)[jt]s?(x)\" --ignore-path .gitignore",
     "markdownlint": "markdownlint-cli2 \"**/*.md\"",

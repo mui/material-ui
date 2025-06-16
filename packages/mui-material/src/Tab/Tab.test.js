@@ -9,11 +9,13 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
 
-const TestContainer = ({ tabsProps, tabProps }) => (
-  <Tabs value={false} {...tabsProps}>
-    <Tab {...tabProps} />
-  </Tabs>
-);
+function TestContainer({ tabsProps, tabProps }) {
+  return (
+    <Tabs value={false} {...tabsProps}>
+      <Tab {...tabProps} />
+    </Tabs>
+  );
+}
 
 describe('<Tab />', () => {
   const { render } = createRenderer();
