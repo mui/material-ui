@@ -167,8 +167,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3(@vitest/browser@3.2.3)(vitest@3.1.4)
       '@vvago/vale':
-        specifier: ^3.11.2
-        version: 3.11.2
+        specifier: ^3.12.0
+        version: 3.12.0
       babel-loader:
         specifier: ^10.0.0
         version: 10.0.0(@babel/core@7.27.4)(webpack@5.99.9)
@@ -6258,8 +6258,8 @@ packages:
   '@vue/shared@3.5.14':
     resolution: {integrity: sha512-oXTwNxVfc9EtP1zzXAlSlgARLXNC84frFYkS0HHz0h3E4WZSP9sywqjqzGCP9Y34M8ipNmd380pVgmMuwELDyQ==}
 
-  '@vvago/vale@3.11.2':
-    resolution: {integrity: sha512-YJGghfJP8Bzbx8Uw4TlVyV6sPpMh+5DJoUtnw43SYSOCkM5G4DoNBFCPC374/nGT7FzjOPyX1O+aQNuC5kLFcA==}
+  '@vvago/vale@3.12.0':
+    resolution: {integrity: sha512-9VxKDaJT0oyxJh+qN+tW2e78M+1xGMkXqbbZ2XlAvyhOrjA3OSOCaZQjRu6+c9lv/h1OQRNT50XIuhngrVoSew==}
     hasBin: true
 
   '@webassemblyjs/ast@1.14.1':
@@ -19687,7 +19687,7 @@ snapshots:
 
   '@vue/shared@3.5.14': {}
 
-  '@vvago/vale@3.11.2':
+  '@vvago/vale@3.12.0':
     dependencies:
       axios: 1.8.4(debug@4.4.1)
       rimraf: 5.0.10
