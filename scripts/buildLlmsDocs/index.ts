@@ -88,8 +88,6 @@ type CommandOptions = {
   grep?: string;
   outputDir?: string;
   projectSettings?: string;
-  nonComponentFolders?: string[];
-  domain?: string;
 };
 
 /**
@@ -308,7 +306,7 @@ function toTitleCase(kebabCaseStr: string): string {
 function generateLlmsTxt(
   generatedFiles: GeneratedFile[],
   projectName: string,
-  domain: string,
+  baseDir: string,
 ): string {
   // Group files by category
   const groupedByCategory: Record<string, GeneratedFile[]> = {};
@@ -365,10 +363,11 @@ function generateLlmsTxt(
     // Non-component files are already in the order they were discovered
 
     for (const file of files) {
-      // Generate absolute URL with domain
-      const urlPath = file.outputPath.replace(/\.md$/, '/');
-      const absoluteUrl = `https://${domain}/${urlPath}`;
-      content += `- [${file.title}](${absoluteUrl})`;
+      // Calculate relative path from the baseDir to the file
+      const relativePath = file.outputPath.startsWith(`${baseDir}/`)
+        ? `./${file.outputPath.substring(baseDir.length + 1)}`
+        : `../${file.outputPath}`;
+      content += `- [${file.title}](${relativePath})`;
       if (file.description) {
         content += `: ${file.description}`;
       }
@@ -386,7 +385,6 @@ function generateLlmsTxt(
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
-  const domain = argv.domain || 'mui.com';
 
   // Load project settings from the specified path
   if (!argv.projectSettings) {
@@ -414,10 +412,11 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
 
   // Found ${components.length} components to process
 
-  // Find non-component markdown files if specified
+  // Find non-component markdown files if specified in project settings
   let nonComponentFiles: Array<{ markdownPath: string; outputPath: string }> = [];
-  if (argv.nonComponentFolders && argv.nonComponentFolders.length > 0) {
-    nonComponentFiles = findNonComponentMarkdownFiles(argv.nonComponentFolders, grep);
+  const nonComponentFolders = (projectSettings as any).nonComponentFolders;
+  if (nonComponentFolders && nonComponentFolders.length > 0) {
+    nonComponentFiles = findNonComponentMarkdownFiles(nonComponentFolders, grep);
     // Found ${nonComponentFiles.length} non-component markdown files to process
   }
 
@@ -503,9 +502,9 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
 
       // Find the order index based on which folder this file belongs to
       let orderIndex = -1;
-      if (argv.nonComponentFolders) {
-        for (let i = 0; i < argv.nonComponentFolders.length; i += 1) {
-          if (file.markdownPath.includes(`/${argv.nonComponentFolders[i]}/`)) {
+      if (nonComponentFolders) {
+        for (let i = 0; i < nonComponentFolders.length; i += 1) {
+          if (file.markdownPath.includes(`/${nonComponentFolders[i]}/`)) {
             orderIndex = i;
             break;
           }
@@ -547,7 +546,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
         projectName = dirName.charAt(0).toUpperCase() + dirName.slice(1);
       }
 
-      const llmsContent = generateLlmsTxt(files, projectName, domain);
+      const llmsContent = generateLlmsTxt(files, projectName, dirName);
       const llmsPath = path.join(outputDir, dirName, 'llms.txt');
 
       // Ensure directory exists
@@ -591,16 +590,7 @@ yargs(process.argv.slice(2))
           type: 'string',
           demandOption: true,
         })
-        .option('nonComponentFolders', {
-          description: 'List of folders from docs/data/ to process non-component markdown files.',
-          type: 'array',
-          default: [],
-        })
-        .option('domain', {
-          description: 'Domain to use for absolute URLs in llms.txt files.',
-          type: 'string',
-          default: 'mui.com',
-        });
+;
     },
     handler: buildLlmsDocs,
   })
