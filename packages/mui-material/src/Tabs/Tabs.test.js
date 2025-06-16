@@ -12,6 +12,7 @@ import {
 } from '@mui/internal-test-utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
+import Tooltip from '@mui/material/Tooltip';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createSvgIcon } from '@mui/material/utils';
@@ -1538,5 +1539,37 @@ describe('<Tabs />', () => {
       expect(screen.getByTestId('start-scroll-button-icon')).to.have.class('foo');
       expect(screen.getByTestId('end-scroll-button-icon')).to.have.class('bar');
     });
+  });
+
+  it('should select the Tab wrapped with a component on click', () => {
+    function TestComponent() {
+      const [value, setValue] = React.useState('one');
+
+      const handleChange = (_, newValue) => {
+        setValue(newValue);
+      };
+
+      return (
+        <Tabs value={value} onChange={handleChange}>
+          <Tab value="one" />
+          <Tooltip title="two">
+            <Tab value="two" />
+          </Tooltip>
+        </Tabs>
+      );
+    }
+
+    render(<TestComponent />);
+
+    const firstTab = screen.getAllByRole('tab')[0];
+    const secondTab = screen.getAllByRole('tab')[1];
+
+    expect(firstTab).to.have.attribute('aria-selected', 'true');
+    expect(secondTab).to.have.attribute('aria-selected', 'false');
+
+    fireEvent.click(secondTab);
+
+    expect(firstTab).to.have.attribute('aria-selected', 'false');
+    expect(secondTab).to.have.attribute('aria-selected', 'true');
   });
 });
