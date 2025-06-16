@@ -5,9 +5,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 
-const StyledListHeader = styled(ListSubheader)(({ theme }) => ({
+const StyledListHeader = styled(ListSubheader)({
   backgroundImage: 'var(--Paper-overlay)',
-}));
+});
 
 export default function GroupedMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
