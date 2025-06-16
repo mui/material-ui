@@ -9,16 +9,25 @@ interface TransitionOptions {
   unstable_skipClientCache?: boolean;
 }
 
+export interface Router {
+  pathname: string;
+  getSearchParam: (name: string) => string | null | undefined;
+  prefetch: (url: string, asPath?: string, options?: PrefetchOptions) => void;
+  push: (url: string, asPath?: string, options?: TransitionOptions) => void;
+  replace: (url: string, asPath?: string, options?: TransitionOptions) => void;
+}
+
 /**
  * Router that works in both the pages & app folders
  */
-export function useRouter() {
+export function useRouter(): Router {
   const compatRouter = useCompatRouter();
   const navRouter = useNavRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   return {
+    pathname: compatRouter?.asPath ?? pathname!,
     getSearchParam: (name: string) => {
       if (compatRouter) {
         const result = compatRouter.query[name];
@@ -27,7 +36,6 @@ export function useRouter() {
 
       return searchParams.get(name);
     },
-    pathname: compatRouter?.asPath ?? pathname!,
     prefetch: (url: string, asPath?: string, options?: PrefetchOptions) => {
       if (compatRouter) {
         compatRouter.prefetch(url, asPath, options);

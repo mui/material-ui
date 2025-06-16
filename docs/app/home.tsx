@@ -14,35 +14,28 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import ValueProposition from 'docs/src/components/home/ValueProposition';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import Head from 'docs/src/modules/components/HeadApp';
 
 export default function Home() {
   return (
     <BrandingCssVarsProvider>
-      <Head
-        title="MUI: The React component library you always wanted"
-        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
-        card="/static/social-previews/home-preview.jpg"
-      >
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'MUI',
-              url: 'https://mui.com/',
-              logo: 'https://mui.com/static/logo.png',
-              sameAs: [
-                'https://x.com/MUI_hq',
-                'https://github.com/mui/',
-                'https://opencollective.com/mui-org',
-              ],
-            }),
-          }}
-        />
-      </Head>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'MUI',
+            url: 'https://mui.com/',
+            logo: 'https://mui.com/static/logo.png',
+            sameAs: [
+              'https://x.com/MUI_hq',
+              'https://github.com/mui/',
+              'https://opencollective.com/mui-org',
+            ],
+          }),
+        }}
+      />
       <NoSsr>
         <NewsletterToast />
       </NoSsr>

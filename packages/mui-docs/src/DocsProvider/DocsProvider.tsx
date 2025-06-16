@@ -16,7 +16,7 @@ export interface DocsProviderProps {
   adConfig?: Partial<AdConfig>;
   defaultUserLanguage: string;
   children?: React.ReactNode;
-  translations?: Translations;
+  translations?: Record<string, Translations>;
 }
 
 export function DocsProvider({

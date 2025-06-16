@@ -159,14 +159,6 @@ export default withDocsInfra({
               },
             ],
           },
-          // required to transpile ../packages/
-          {
-            test: /\.(js|mjs|tsx|ts)$/,
-            resourceQuery: { not: [/raw/] },
-            include: [workspaceRoot],
-            exclude: /(node_modules|mui-icons-material)/,
-            use: options.defaultLoaders.babel,
-          },
           {
             resourceQuery: /raw/,
             type: 'asset/source',

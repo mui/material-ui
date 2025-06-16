@@ -1,7 +1,6 @@
 'use client';
 import { CodeCopyProvider } from '@mui/docs/CodeCopy';
 import { DocsProvider } from '@mui/docs/DocsProvider';
-import { mapTranslations } from '@mui/docs/i18n';
 import { useRouter } from '@mui/docs/routing';
 import joyPkgJson from '@mui/joy/package.json';
 import materialPkgJson from '@mui/material/package.json';
@@ -23,9 +22,15 @@ import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import {
+  defaultLanguage,
+  getTranslations,
+  getUserLanguageFromRouter,
+} from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProviderApp';
 import { loadCSS } from 'fg-loadcss';
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import * as config from '../config';
 
 interface Props {
@@ -114,6 +119,35 @@ function loadDependencies() {
   );
 }
 
+/**
+ * Preconnect allows the browser to setup early connections before an HTTP request
+   is actually sent to the server.
+   This includes DNS lookups, TLS negotiations, TCP handshakes.
+ */
+function preconnectResources() {
+  ReactDOM.preconnect('https://fonts.gstatic.com', { crossOrigin: 'anonymous' });
+  ReactDOM.preconnect('https://fonts.googleapis.com');
+}
+
+/**
+ * Font preload (prevent font flash)
+ * Optimized for english characters (40kb -> 6kb)
+ * These do not work in mobile device, the font faces in global.css fix it without blocking resources
+ */
+function preloadFonts() {
+  ReactDOM.preload('/static/fonts/GeneralSans-Semibold-subset.woff2', {
+    as: 'font',
+    crossOrigin: 'anonymous',
+    type: 'font/woff2',
+  });
+
+  ReactDOM.preload('/static/fonts/IBMPlexSans-Regular-subset.woff2', {
+    as: 'font',
+    crossOrigin: 'anonymous',
+    type: 'font/woff2',
+  });
+}
+
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-console
   console.log(
@@ -135,11 +169,9 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 export default function AppWrapper(props: Props) {
   const { children } = props;
 
-  const req = require.context('docs/translations', false, /\.\/translations.*\.json$/);
-  const translations = mapTranslations(req);
-
   const router = useRouter();
-  const userLanguage = router.getSearchParam('userLanguage') ?? 'en';
+  const translations = getTranslations();
+  const userLanguage = getUserLanguageFromRouter(router);
 
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
@@ -149,6 +181,8 @@ export default function AppWrapper(props: Props) {
   React.useEffect(() => {
     loadDependencies();
     registerServiceWorker();
+    preconnectResources();
+    preloadFonts();
 
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -158,7 +192,7 @@ export default function AppWrapper(props: Props) {
   }, []);
 
   const productIdentifier = React.useMemo(() => {
-    const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
+    const languagePrefix = userLanguage === defaultLanguage ? '' : `/${userLanguage}`;
 
     if (productId === 'material-ui') {
       return {
@@ -279,7 +313,9 @@ export default function AppWrapper(props: Props) {
     };
   }, [productId, productCategoryId, productIdentifier, router.pathname]);
 
-  let fonts: string[] = [];
+  let fonts: string[] = [
+    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap',
+  ];
   if (pathnameToLanguage(router.pathname).canonicalAs.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Work+Sans:wght@300;400&display=swap',
@@ -288,12 +324,9 @@ export default function AppWrapper(props: Props) {
 
   return (
     <React.Fragment>
-      <meta name="viewport" content="initial-scale=1, width=device-width" />
       {fonts.map((font) => (
         <link rel="stylesheet" href={font} key={font} />
       ))}
-      <meta name="mui:productId" content={productId} />
-      <meta name="mui:productCategoryId" content={productCategoryId} />
       <DocsProvider
         config={config}
         adConfig={{ GADisplayRatio: 0.1 }}

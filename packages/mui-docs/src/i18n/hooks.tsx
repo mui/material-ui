@@ -1,12 +1,13 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
 import deepmerge from '@mui/utils/deepmerge';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import defaultTranslations from '../translations';
+import { translate, Translate, TranslateOptions, Translations } from './utils';
 
 const TranslationsContext = React.createContext(defaultTranslations);
 
 interface TranslationsProviderProps {
-  translations?: Translations;
+  translations?: Record<string, Translations>;
   children: React.ReactNode;
 }
 
@@ -21,25 +22,6 @@ function TranslationsProvider({ translations = {}, children }: TranslationsProvi
       {children}
     </TranslationsContext.Provider>
   );
-}
-
-function getPath(obj: Translations, path: string): string | null {
-  if (!path || typeof path !== 'string') {
-    return null;
-  }
-
-  const translation = path
-    .split('.')
-    .reduce(
-      (acc: Translations | string | null, item) =>
-        (acc && typeof acc === 'object' && acc[item]) || null,
-      obj,
-    );
-
-  if (typeof translation === 'object') {
-    return null;
-  }
-  return translation;
 }
 
 interface UserLanguageContextValue {
@@ -57,7 +39,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 export interface UserLanguageProviderProps {
   children: React.ReactNode;
-  translations?: Translations;
+  translations?: Record<string, Translations>;
   defaultUserLanguage: string;
 }
 
@@ -90,25 +72,6 @@ export function useSetUserLanguage() {
   return React.useContext(UserLanguageContext).setUserLanguage;
 }
 
-const warnedOnce: Record<string, boolean> = {};
-
-// TODO, migrate to use warnOnce() helper
-const warn = (userLanguage: string, key: string, ignoreWarning: boolean) => {
-  const fullKey = `${userLanguage}:${key}`;
-  // No warnings in CI env
-  if (!ignoreWarning && !warnedOnce[fullKey] && typeof window !== 'undefined') {
-    console.warn(`Missing translation for ${fullKey}`);
-
-    warnedOnce[fullKey] = true;
-  }
-};
-
-export interface TranslateOptions {
-  ignoreWarning?: boolean;
-}
-
-export type Translate = (key: string, options?: TranslateOptions) => any;
-
 export function useTranslate(): Translate {
   const userLanguage = useUserLanguage();
 
@@ -116,47 +79,9 @@ export function useTranslate(): Translate {
 
   return React.useMemo(
     () =>
-      function translate(key: string, options: TranslateOptions = {}) {
-        const { ignoreWarning = false } = options;
-        const wordings = translations[userLanguage];
-
-        if (!wordings) {
-          console.error(`Missing language: ${userLanguage}.`);
-          return '…';
-        }
-
-        const translation = getPath(wordings, key);
-
-        if (!translation) {
-          warn(userLanguage, key, ignoreWarning);
-
-          const enTranslation = getPath(translations.en, key);
-          return enTranslation ?? null;
-        }
-
-        return translation;
+      (key: string, options: TranslateOptions = {}) => {
+        translate(key, translations, userLanguage, options);
       },
     [userLanguage, translations],
   );
-}
-
-export type Translations = { [key in string]?: string | Translations };
-
-export interface RequireContext {
-  (req: string): string;
-  keys: () => string[];
-}
-
-export function mapTranslations(req: RequireContext): Translations {
-  const result: Translations = {};
-  req.keys().forEach((filename) => {
-    const match = filename.match(/-([a-z]{2}).json$/);
-
-    if (match) {
-      result[match[1]] = req(filename);
-    } else {
-      result.en = req(filename);
-    }
-  });
-  return result;
 }
