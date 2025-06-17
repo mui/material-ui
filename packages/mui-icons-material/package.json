@@ -44,14 +44,14 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.4"
+    "@babel/runtime": "^7.27.6"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
     "@mui/internal-waterfall": "workspace:^",
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.6",
+    "@types/react": "^19.1.8",
     "chai": "^4.5.0",
     "chalk": "^5.4.1",
     "cross-fetch": "^4.1.0",
