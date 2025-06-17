@@ -53,7 +53,7 @@
     "@popperjs/core": "^2.11.8",
     "@react-spring/web": "^9.7.5",
     "@tailwindcss/postcss": "^4.1.10",
-    "@toolpad/core": "^0.15.0",
+    "@toolpad/core": "^0.16.0",
     "autoprefixer": "^10.4.21",
     "autosuggest-highlight": "^3.3.4",
     "babel-plugin-module-resolver": "^5.0.2",
