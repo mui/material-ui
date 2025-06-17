@@ -80,6 +80,9 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.productAdvanced}>
               MUI X
             </Link>
+            <Link prefetch={false} href={ROUTES.productToolpad}>
+              Toolpad
+            </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="body2" sx={{ fontWeight: 'semiBold', mb: 0.5 }}>
