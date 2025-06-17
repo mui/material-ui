@@ -84,14 +84,18 @@ interface SearchButtonProps {
   [key: string]: any;
 }
 
+const subscribe = () => () => {};
+const getSnapshot = () =>
+  window.navigator.platform.toUpperCase().includes('MAC') ? '⌘K' : 'Ctrl+K';
+const getServerSnapshot = () => null;
+
+function useShortcut() {
+  return React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
 export default function SearchButton({ onClick, onRef, ...props }: SearchButtonProps) {
   const t = useTranslate();
-  const [shortcut, setShortcut] = React.useState<string | null>(null);
-
-  React.useEffect(() => {
-    const macOS = window.navigator.platform.toUpperCase().includes('MAC');
-    setShortcut(macOS ? '⌘K' : 'Ctrl+K');
-  }, []);
+  const shortcut = useShortcut();
 
   return (
     <SearchButtonStyled
