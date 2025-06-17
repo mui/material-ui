@@ -88,7 +88,6 @@ type CommandOptions = {
   grep?: string;
   outputDir?: string;
   projectSettings?: string;
-  domain?: string;
 };
 
 /**
@@ -307,7 +306,7 @@ function toTitleCase(kebabCaseStr: string): string {
 function generateLlmsTxt(
   generatedFiles: GeneratedFile[],
   projectName: string,
-  domain: string,
+  baseDir: string,
 ): string {
   // Group files by category
   const groupedByCategory: Record<string, GeneratedFile[]> = {};
@@ -364,10 +363,11 @@ function generateLlmsTxt(
     // Non-component files are already in the order they were discovered
 
     for (const file of files) {
-      // Generate absolute URL with domain
-      const urlPath = file.outputPath.replace(/\.md$/, '/');
-      const absoluteUrl = `https://${domain}/${urlPath}`;
-      content += `- [${file.title}](${absoluteUrl})`;
+      // Calculate relative path from the baseDir to the file
+      const relativePath = file.outputPath.startsWith(`${baseDir}/`)
+        ? `./${file.outputPath.substring(baseDir.length + 1)}`
+        : `../${file.outputPath}`;
+      content += `- [${file.title}](${relativePath})`;
       if (file.description) {
         content += `: ${file.description}`;
       }
@@ -385,7 +385,6 @@ function generateLlmsTxt(
 async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<void> {
   const grep = argv.grep ? new RegExp(argv.grep) : null;
   const outputDir = argv.outputDir || path.join(process.cwd(), 'docs/public');
-  const domain = argv.domain || 'mui.com';
 
   // Load project settings from the specified path
   if (!argv.projectSettings) {
@@ -547,7 +546,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
         projectName = dirName.charAt(0).toUpperCase() + dirName.slice(1);
       }
 
-      const llmsContent = generateLlmsTxt(files, projectName, domain);
+      const llmsContent = generateLlmsTxt(files, projectName, dirName);
       const llmsPath = path.join(outputDir, dirName, 'llms.txt');
 
       // Ensure directory exists
@@ -591,11 +590,7 @@ yargs(process.argv.slice(2))
           type: 'string',
           demandOption: true,
         })
-        .option('domain', {
-          description: 'Domain to use for absolute URLs in llms.txt files.',
-          type: 'string',
-          default: 'mui.com',
-        });
+;
     },
     handler: buildLlmsDocs,
   })
