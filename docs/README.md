@@ -17,7 +17,6 @@ Package managers other than pnpm (like npm or Yarn) are not supported and will n
 [You can follow this guide](https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md)
 on how to get started contributing to MUI.
 
-## How do I help to improve the translations?
+## Translations
 
-Please visit https://crowdin.com/project/material-ui-docs where you will be able to select a language and edit the translations.
-Please don't submit pull requests directly.
+Are currently disabled https://github.com/mui/material-ui/issues/33445

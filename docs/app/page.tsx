@@ -2,8 +2,6 @@ import createMetadata, { GenerateMetadataProps } from 'docs/src/modules/utils/cr
 import { Metadata } from 'next';
 import Home from './home';
 
-export const dynamic = 'force-dynamic'; // TODO
-
 export function generateMetadata(props: GenerateMetadataProps): Promise<Metadata> {
   return createMetadata(props, {
     card: '/static/social-previews/home-preview.jpg',

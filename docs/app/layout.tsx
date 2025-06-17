@@ -5,11 +5,8 @@ import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { LANGUAGES_SSR } from 'docs/config';
 import { GenerateMetadataProps } from 'docs/src/modules/utils/createMetadata';
-import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { defaultLanguage, getUserLanguageFromMetadata } from 'docs/src/modules/utils/i18n';
+import { defaultLanguage } from 'docs/src/modules/utils/i18n';
 import { Metadata, Viewport } from 'next';
-import { headers } from 'next/headers';
 import Script from 'next/script';
 import * as React from 'react';
 import '../public/static/components-gallery/base-theme.css';
@@ -30,20 +27,9 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(props: GenerateMetadataProps): Promise<Metadata> {
-  const userLanguage = await getUserLanguageFromMetadata(props);
-
-  const headersList = await headers();
-  const pathName = headersList.get('pathname')!;
-
-  const canonicalAsServer = pathnameToLanguage(pathName).canonicalAsServer;
-  const { productId, productCategoryId } = getProductInfoFromUrl(pathName);
+  //const { productId, productCategoryId } = getProductInfoFromUrl(pathName); TODO
 
   return {
-    // SEO
-    alternates: {
-      canonical: `https://mui.com${userLanguage === defaultLanguage ? '' : `/${userLanguage}`}${canonicalAsServer}`,
-      languages: { 'x-default': `https://mui.com${canonicalAsServer}` },
-    },
     icons: {
       apple: { sizes: '180x180', url: '/static/icons/180x180.png' }, // iOS Icon
       icon: '/static/favicon.ico',
@@ -53,10 +39,10 @@ export async function generateMetadata(props: GenerateMetadataProps): Promise<Me
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     */
     manifest: '/static/manifest.json',
-    other: {
+    /*other: {
       'mui:productCategoryId': productCategoryId,
       'mui:productId': productId,
-    },
+    },*/
   };
 }
 

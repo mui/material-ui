@@ -1,10 +1,7 @@
 import { translate } from '@mui/docs/i18n/utils';
 import { deepmerge } from '@mui/utils';
-import { LANGUAGES_SSR } from 'docs/config';
-import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { Metadata } from 'next';
-import { headers } from 'next/headers';
-import { defaultLanguage, getTranslations, getUserLanguageFromMetadata } from './i18n';
+import { getTranslations, getUserLanguageFromMetadata } from './i18n';
 
 export interface GenerateMetadataProps<T = unknown> {
   params: Promise<{ lang?: string } & T>;
@@ -28,9 +25,6 @@ export default async function createMetadata(
   const translations = getTranslations();
   const userLanguage = await getUserLanguageFromMetadata(generateProps);
 
-  const headersList = await headers();
-  const pathName = headersList.get('pathname');
-
   const {
     card = '/static/social-previews/home-preview.jpg',
     description = translate('strapline', translations, userLanguage),
@@ -41,24 +35,11 @@ export default async function createMetadata(
     ...otherMetadata
   } = options;
 
-  const { canonicalAs } = pathnameToLanguage(pathName!);
   const preview = card.startsWith('http') ? card : `${HOST}${card}`;
 
   const metadata = {
-    alternates: {
-      languages: disableAlternateLocale
-        ? undefined
-        : LANGUAGES_SSR.reduce(
-            (map, language) => {
-              map[language] =
-                `https://mui.com${language === defaultLanguage ? '' : `/${language}`}${canonicalAs}`;
-
-              return map;
-            },
-            {} as Record<string, string>,
-          ),
-    },
     description: description,
+    metadataBase: new URL(HOST),
     // facebook
     openGraph: {
       description: description!,
@@ -66,7 +47,7 @@ export default async function createMetadata(
       title: title!,
       ttl: 604800,
       type: type,
-      url: `${HOST}${pathName}`,
+      url: `./`,
     },
     other: {
       'docsearch:language': userLanguage, // Algolia
