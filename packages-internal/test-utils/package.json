@@ -40,7 +40,7 @@
     "@babel/runtime": "^7.27.6",
     "@emotion/cache": "^11.13.5",
     "@emotion/react": "^11.13.5",
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.53.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -50,7 +50,7 @@
     "fs-extra": "^11.3.0",
     "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
-    "mocha": "^11.5.0",
+    "mocha": "^11.6.0",
     "prop-types": "^15.8.1",
     "sinon": "^19.0.5"
   },
