@@ -12,7 +12,7 @@ import CustomersSpotlight from 'docs/src/components/customers/CustomersSpotlight
 import { getCaseStudies } from 'docs/lib/sourcing';
 import { InferGetStaticPropsType } from 'next';
 import CustomersTestimonials from 'docs/src/components/customers/CustomersTestimonials';
-import CustomerLogos from 'docs/src/components/customers/CustomerLogos';
+// import CustomerLogos from 'docs/src/components/customers/CustomerLogos';
 
 export const getStaticProps = () => {
   const customers = getCaseStudies();
@@ -43,8 +43,8 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
         >
           <CustomersSpotlight customers={props.customers} />
         </Box>
-        <Divider />
-        <CustomerLogos />
+        {/* <Divider />
+        <CustomerLogos /> */}
         <Divider />
         <CustomersTestimonials />
         <Divider />

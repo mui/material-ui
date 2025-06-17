@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
-import { docs } from './dummy-case-study.md?muiMarkdown';
+import { docs } from './case-study-oregon.md?muiMarkdown';
 
 export default function Page() {
   return <TopLayoutBlog docs={docs} />;

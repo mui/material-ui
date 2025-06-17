@@ -6,13 +6,15 @@ import { Link } from '@mui/docs/Link';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
+import { useTheme } from '@mui/material/styles';
 
 interface SpotlightProps {
   posts: BlogPost[];
 }
 
 function Spotlight({ posts }: SpotlightProps) {
+  const theme = useTheme();
   return (
     <Container>
       <Box
@@ -47,18 +49,26 @@ function Spotlight({ posts }: SpotlightProps) {
           >
             {post.image && (
               <Box
-                component="img"
-                src={post.image}
                 sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   width: '100%',
-                  height: 'auto',
-                  borderTopLeftRadius: '4px',
-                  borderTopRightRadius: '4px',
-                  boxShadow: '0 -0.5px 2px gray',
+                  height: '100px',
                 }}
-              />
+              >
+                <img
+                  // src={post.image}
+                  alt="Company Logo"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                  src={theme.palette.mode === 'dark' ? post.image.replace('light', 'dark') : post.image}
+                />
+              </Box>
             )}
-            <Divider />
+            {/* <Divider /> */}
             <Box
               sx={{
                 display: 'flex',
@@ -66,7 +76,7 @@ function Spotlight({ posts }: SpotlightProps) {
                 alignItems: 'start',
               }}
             >
-              <h3>{post.title}</h3>
+              {/* <h3>{post.title}</h3> */}
               <p>{post.description}</p>
               <Button
                 component={Link}
@@ -75,7 +85,7 @@ function Spotlight({ posts }: SpotlightProps) {
                 size="small"
                 sx={{ ml: -1 }}
               >
-                Read the story
+                Read story
               </Button>
             </Box>
           </Paper>
@@ -90,7 +100,7 @@ interface CustomersSpotlightProps {
 }
 
 export default function CustomersSpotlight({ customers }: CustomersSpotlightProps) {
-  const firstPosts = customers.slice(0, 2);
+  const firstPosts = customers.slice(0, 10);
 
   return <Spotlight posts={firstPosts} />;
 }
