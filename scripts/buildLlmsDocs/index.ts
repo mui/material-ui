@@ -365,8 +365,8 @@ function generateLlmsTxt(
     for (const file of files) {
       // Calculate relative path from the baseDir to the file
       const relativePath = file.outputPath.startsWith(`${baseDir}/`)
-        ? `/${file.outputPath.substring(baseDir.length + 1)}`
-        : `../${file.outputPath}`;
+        ? `/${baseDir}/${file.outputPath.substring(baseDir.length + 1)}`
+        : `/${file.outputPath}`;
       content += `- [${file.title}](${relativePath})`;
       if (file.description) {
         content += `: ${file.description}`;
