@@ -6,7 +6,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
-import SearchIcon from '@mui/icons-material/Search';
+import SearchButton from './SearchButton';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import StickyNote2RoundedIcon from '@mui/icons-material/StickyNote2Rounded';
 import SmartButtonRoundedIcon from '@mui/icons-material/SmartButtonRounded';
@@ -23,84 +23,10 @@ import { alpha, styled } from '@mui/material/styles';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES_SSR } from 'docs/config';
 import { Link } from '@mui/docs/Link';
-import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
+import { useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 
-const SearchButton = styled('button')(({ theme }) => [
-  {
-    minHeight: 32,
-    minWidth: 32,
-    margin: 0,
-    paddingLeft: theme.spacing(1),
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    [theme.breakpoints.only('xs')]: {
-      backgroundColor: 'transparent',
-      padding: 0,
-      justifyContent: 'center',
-      '& > *:not(.MuiSvgIcon-root)': {
-        display: 'none',
-      },
-    },
-    position: 'relative',
-    backgroundColor: alpha(theme.palette.grey[50], 0.6),
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(14),
-    color: (theme.vars || theme).palette.text.secondary,
-    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-    borderRadius: (theme.vars || theme).shape.borderRadius,
-    cursor: 'pointer',
-    transitionProperty: 'all',
-    transitionDuration: '150ms',
-    boxShadow: `hsl(200, 0%, 100%) 0 1px 0 inset, ${alpha(theme.palette.grey[100], 0.4)} 0 -1px 0 inset, ${alpha(theme.palette.grey[200], 0.5)} 0 1px 2px 0`,
-    '&:hover': {
-      background: alpha(theme.palette.grey[100], 0.5),
-      borderColor: (theme.vars || theme).palette.grey[300],
-      boxShadow: 'none',
-    },
-    '&:focus-visible': {
-      outline: `3px solid ${alpha(theme.palette.primary[500], 0.5)}`,
-      outlineOffset: '2px',
-    },
-  },
-  theme.applyDarkStyles({
-    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-    borderColor: alpha(theme.palette.primaryDark[600], 0.4),
-    boxShadow: `${alpha(theme.palette.primaryDark[600], 0.1)} 0 1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 -1px 0 inset, ${(theme.vars || theme).palette.common.black} 0 1px 2px 0`,
-    '&:hover': {
-      background: (theme.vars || theme).palette.primaryDark[700],
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
-      boxShadow: 'none',
-    },
-  }),
-]);
-
-const SearchLabel = styled('span')(({ theme }) => ({
-  marginRight: 'auto',
-  marginBottom: '1px', // optical alignment
-  color: (theme.vars || theme).palette.text.tertiary,
-  lineHeight: 1,
-}));
-
-const Shortcut = styled('kbd')(({ theme }) => {
-  return {
-    all: 'unset',
-    fontSize: theme.typography.pxToRem(12),
-    fontWeight: 'bold',
-    lineHeight: '19px',
-    marginLeft: theme.spacing(0.5),
-    border: `1px solid ${(theme.vars || theme).palette.grey[200]}`,
-    backgroundColor: '#FFF',
-    padding: theme.spacing(0, 0.5),
-    borderRadius: 7,
-    ...theme.applyDarkStyles({
-      borderColor: (theme.vars || theme).palette.primaryDark[600],
-      backgroundColor: (theme.vars || theme).palette.primaryDark[800],
-    }),
-  };
-});
 
 function NewStartScreen() {
   const startScreenOptions = [
@@ -310,7 +236,6 @@ export default function AppSearch(props) {
     { layer: 'docsearch' },
   );
   const FADE_DURATION = 120; // ms
-  const t = useTranslate();
   const userLanguage = useUserLanguage();
   const searchButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -318,7 +243,6 @@ export default function AppSearch(props) {
   const facetFilterLanguage = LANGUAGES_SSR.includes(userLanguage)
     ? `language:${userLanguage}`
     : `language:en`;
-  const macOS = window.navigator.platform.toUpperCase().includes('MAC');
   const onOpen = React.useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
@@ -402,18 +326,10 @@ export default function AppSearch(props) {
   return (
     <React.Fragment>
       <SearchButton
-        ref={searchButtonRef}
+        onRef={searchButtonRef}
         onClick={onOpen}
-        aria-labelledby="app-search-label"
         {...props}
-      >
-        <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
-        <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
-        <Shortcut aria-hidden="true">
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-          {macOS ? '⌘' : 'Ctrl+'}K
-        </Shortcut>
-      </SearchButton>
+      />
       {isOpen &&
         ReactDOM.createPortal(
           <DocSearchModal
