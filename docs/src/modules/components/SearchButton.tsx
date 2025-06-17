@@ -103,12 +103,7 @@ export default function SearchButton({ onClick, onRef, ...props }: SearchButtonP
     >
       <SearchIcon color="primary" sx={{ fontSize: '1.125rem' }} />
       <SearchLabel id="app-search-label">{t('searchButton')}</SearchLabel>
-      {shortcut && (
-        <Shortcut aria-hidden="true">
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-          {shortcut}
-        </Shortcut>
-      )}
+      {shortcut && <Shortcut aria-hidden="true">{shortcut}</Shortcut>}
     </SearchButtonStyled>
   );
 }
