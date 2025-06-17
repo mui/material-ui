@@ -133,6 +133,7 @@
     "@types/react-transition-group": "^4.4.12",
     "@types/react-window": "^1.8.8",
     "@types/stylis": "^4.2.0",
+    "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-env": "^1.18.8",
     "chai": "^4.5.0",
     "cross-fetch": "^4.1.0",

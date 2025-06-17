@@ -14,6 +14,7 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import ValueProposition from 'docs/src/components/home/ValueProposition';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import AppHeader from 'docs/src/layouts/AppHeader';
+import { Suspense } from 'react';
 
 export default function Home() {
   return (
@@ -37,7 +38,9 @@ export default function Home() {
         }}
       />
       <NoSsr>
-        <NewsletterToast />
+        <Suspense>
+          <NewsletterToast />
+        </Suspense>
       </NoSsr>
       <AppHeaderBanner />
       <AppHeader />

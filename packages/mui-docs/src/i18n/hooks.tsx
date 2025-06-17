@@ -17,6 +17,7 @@ function TranslationsProvider({ translations = {}, children }: TranslationsProvi
     () => deepmerge(currentTranslations, translations),
     [currentTranslations, translations],
   );
+  
   return (
     <TranslationsContext.Provider value={mergedTranslations}>
       {children}
@@ -79,9 +80,8 @@ export function useTranslate(): Translate {
 
   return React.useMemo(
     () =>
-      (key: string, options: TranslateOptions = {}) => {
-        translate(key, translations, userLanguage, options);
-      },
+      (key: string, options: TranslateOptions = {}) =>
+        translate(key, translations, userLanguage, options),
     [userLanguage, translations],
   );
 }

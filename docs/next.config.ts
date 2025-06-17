@@ -1,18 +1,15 @@
 // @ts-check
-import * as path from 'path';
-import * as url from 'url';
 import * as fs from 'fs';
-// @ts-ignore
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { createRequire } from 'module';
 import { NextConfig } from 'next';
-import { findPages } from './src/modules/utils/find';
-import { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES, LANGUAGES_IN_PROGRESS } from './config';
+import * as path from 'path';
+import * as url from 'url';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { LANGUAGES, LANGUAGES_IGNORE_PAGES, LANGUAGES_IN_PROGRESS } from './config';
+import { withDocsInfra } from './nextConfigDocsInfra';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const require = createRequire(import.meta.url);
-
-const withDocsInfra = require('./nextConfigDocsInfra');
 
 const workspaceRoot = path.join(currentDirectory, '../');
 
@@ -167,79 +164,17 @@ export default withDocsInfra({
       },
     };
   },
-  env: {
-    // docs-infra
-    LIB_VERSION: pkg.version,
-    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
-    SOURCE_GITHUB_BRANCH: 'master', // #target-branch-reference
-    GITHUB_TEMPLATE_DOCS_FEEDBACK: '4.docs-feedback.yml',
+  // Ensure CSS from the Data Grid packages is included in the build:
+  // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
+  transpilePackages: ['@mui/x-data-grid', '@mui/x-data-grid-pro', '@mui/x-data-grid-premium'],
+  distDir: 'export',
+  envPlugin: {
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
     // MUI Core related
     GITHUB_AUTH: process.env.GITHUB_AUTH
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : '',
-  },
-  // Ensure CSS from the Data Grid packages is included in the build:
-  // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
-  transpilePackages: ['@mui/x-data-grid', '@mui/x-data-grid-pro', '@mui/x-data-grid-premium'],
-  distDir: 'export',
-  // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
-  // However, we don't in order to prevent any regression in the `findPages()` method.
-  // @ts-ignore
-  exportPathMap: () => {
-    const pages = findPages();
-    const map = {};
-
-    // @ts-ignore
-    function traverse(pages2, userLanguage) {
-      const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
-
-      // @ts-ignore
-      pages2.forEach((page) => {
-        // The experiments pages are only meant for experiments, they shouldn't leak to production.
-        if (
-          (page.pathname.startsWith('/experiments/') || page.pathname === '/experiments') &&
-          process.env.DEPLOY_ENV === 'production'
-        ) {
-          return;
-        }
-        // The blog is not translated
-        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
-          return;
-        }
-        if (!page.children) {
-          // map api-docs to api
-          // i: /api-docs/* > /api/* (old structure)
-          // ii: /*/api-docs/* > /*/api/* (for new structure)
-          // @ts-ignore
-          map[`${prefix}${page.pathname.replace(/^(\/[^/]+)?\/api-docs\/(.*)/, '$1/api/$2')}`] = {
-            page: page.pathname,
-            query: {
-              userLanguage,
-            },
-          };
-          return;
-        }
-
-        traverse(page.children, userLanguage);
-      });
-    }
-
-    // We want to speed-up the build of pull requests.
-    // For this, consider only English language on deploy previews, except for crowdin PRs.
-    if (buildOnlyEnglishLocale) {
-      // eslint-disable-next-line no-console
-      console.log('Considering only English for SSR');
-      traverse(pages, 'en');
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Considering various locales for SSR');
-      LANGUAGES_SSR.forEach((userLanguage) => {
-        traverse(pages, userLanguage);
-      });
-    }
-
-    return map;
+    LIB_VERSION: pkg.version,
   },
   redirects: async () => {
     return [

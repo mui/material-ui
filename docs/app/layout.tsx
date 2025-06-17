@@ -3,6 +3,8 @@ import 'docs/src/modules/components/bootstrap';
 import { getMetaThemeColor } from '@mui/docs/branding';
 import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+import { LANGUAGES_SSR } from 'docs/config';
+import { GenerateMetadataProps } from 'docs/src/modules/utils/createMetadata';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { defaultLanguage, getUserLanguageFromMetadata } from 'docs/src/modules/utils/i18n';
@@ -27,10 +29,7 @@ export const viewport: Viewport = {
   ],
 };
 
-export async function generateMetadata(props: {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}): Promise<Metadata> {
+export async function generateMetadata(props: GenerateMetadataProps): Promise<Metadata> {
   const userLanguage = await getUserLanguageFromMetadata(props);
 
   const headersList = await headers();
@@ -61,13 +60,34 @@ export async function generateMetadata(props: {
   };
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export async function generateStaticParams() {
+  // We want to speed-up the build of pull requests.
+  // For this, consider only English language on deploy previews, except for crowdin PRs.
+  if (process.env.BUILD_ONLY_ENGLISH_LOCALE === 'true') {
+    console.log('Considering only English for SSR');
+    return [];
+  }
+
+  console.log('Considering various locales for SSR');
+  return LANGUAGES_SSR.map((l) => ({ lang: l }));
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lang?: string }>;
+}) {
+  const { lang } = await params;
+  const userLanguage = lang ?? defaultLanguage;
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={userLanguage} suppressHydrationWarning>
       <body>
         <MuiInitColorSchemeScript defaultMode="system" />
         <JoyInitColorSchemeScript defaultMode="system" />
-        <AppWrapper>{children}</AppWrapper>
+        <AppWrapper userLanguage={userLanguage}>{children}</AppWrapper>
         <script
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{

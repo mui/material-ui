@@ -6,8 +6,8 @@ import { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { defaultLanguage, getTranslations, getUserLanguageFromMetadata } from './i18n';
 
-export interface GenerateMetadataProps {
-  params: Promise<{ id: string }>;
+export interface GenerateMetadataProps<T = unknown> {
+  params: Promise<{ lang?: string } & T>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 

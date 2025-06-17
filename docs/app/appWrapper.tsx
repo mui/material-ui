@@ -22,11 +22,7 @@ import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import {
-  defaultLanguage,
-  getTranslations,
-  getUserLanguageFromRouter,
-} from 'docs/src/modules/utils/i18n';
+import { defaultLanguage, getTranslations } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProviderApp';
 import { loadCSS } from 'fg-loadcss';
 import * as React from 'react';
@@ -35,6 +31,7 @@ import * as config from '../config';
 
 interface Props {
   children: React.ReactNode;
+  userLanguage: string;
 }
 
 // Remove the license warning from demonstration purposes
@@ -167,11 +164,10 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 }
 
 export default function AppWrapper(props: Props) {
-  const { children } = props;
+  const { children, userLanguage } = props;
 
   const router = useRouter();
   const translations = getTranslations();
-  const userLanguage = getUserLanguageFromRouter(router);
 
   // TODO move productId & productCategoryId resolution to page layout.
   // We should use the productId field from the markdown and fallback to getProductInfoFromUrl()
