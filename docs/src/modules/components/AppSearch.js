@@ -27,7 +27,6 @@ import { useTranslate, useUserLanguage } from '@mui/docs/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import PageContext from 'docs/src/modules/components/PageContext';
 
-
 function NewStartScreen() {
   const startScreenOptions = [
     {
@@ -326,11 +325,7 @@ export default function AppSearch(props) {
 
   return (
     <React.Fragment>
-      <SearchButton
-        onRef={searchButtonRef}
-        onClick={onOpen}
-        {...props}
-      />
+      <SearchButton onRef={searchButtonRef} onClick={onOpen} {...props} />
       {isOpen &&
         ReactDOM.createPortal(
           <DocSearchModal
