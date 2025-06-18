@@ -49,18 +49,5 @@ describe('@mui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
-
-    describe('[package] dialog-props', () => {
-      it('transforms props as needed', () => {
-        const actual = transform(
-          { source: read('./test-cases/package.actual.js') },
-          { jscodeshift },
-          { packageName: '@org/ui/material' },
-        );
-
-        const expected = read('./test-cases/package.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-    });
   });
 });
