@@ -46,6 +46,8 @@ export default defineConfig(async () => {
       '@mui/material/useMediaQuery',
       '@mui/material/useScrollTrigger',
       '@mui/utils',
+      '@emotion/react',
+      '@emotion/styled',
     ],
     upload: !!process.env.CI,
   };
