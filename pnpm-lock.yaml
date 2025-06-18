@@ -95,8 +95,8 @@ importers:
         specifier: ^2.0.4
         version: 2.0.4(@babel/core@7.27.4)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.5
-        version: 1.0.5(@types/node@20.19.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
+        specifier: ^1.0.6-canary.1
+        version: 1.0.6(@types/node@20.19.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4200,8 +4200,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.27.4
 
-  '@mui/internal-bundle-size-checker@1.0.5':
-    resolution: {integrity: sha512-siq0q4J/RhLI6XLQ4fHvozHNfPQNdpeZY0liDr3ri+K7Yi/gPUDSFY63Uz1TM6E++ynrH0KTy8GJ7C5TmO4ImQ==}
+  '@mui/internal-bundle-size-checker@1.0.6':
+    resolution: {integrity: sha512-NKXXEbbLezhj4a9m2ZYLp4L5ESHWX/+4ujm80YxJxa36OlRZF8JM5B7/JjiXRR9xLD8EEoiF38yZZ9lh5w8AIg==}
     hasBin: true
 
   '@mui/joy@5.0.0-beta.22':
@@ -16970,7 +16970,7 @@ snapshots:
       '@babel/core': 7.27.4
       resolve: 1.22.10
 
-  '@mui/internal-bundle-size-checker@1.0.5(@types/node@20.19.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)':
+  '@mui/internal-bundle-size-checker@1.0.6(@types/node@20.19.0)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)':
     dependencies:
       '@aws-sdk/client-s3': 3.787.0
       '@aws-sdk/credential-providers': 3.787.0
