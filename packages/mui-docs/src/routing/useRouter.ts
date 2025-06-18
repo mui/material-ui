@@ -25,7 +25,7 @@ export function useRouter(): Router {
   const pathname = usePathname();
 
   return {
-    pathname: compatRouter?.asPath ?? pathname!,
+    pathname: (compatRouter?.asPath ?? pathname!).replace(/\/$/, ''),
     prefetch: (url: string, asPath?: string, options?: PrefetchOptions) => {
       if (compatRouter) {
         compatRouter.prefetch(url, asPath, options);
