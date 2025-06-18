@@ -45,7 +45,6 @@ export function withDocsInfra(nextConfig: NextConfig): NextConfig {
     ...otherConfig,
     experimental: {
       scrollRestoration: true,
-      esmExternals: false,
       workerThreads: false,
       cpus: 3,
       ...experimental,
