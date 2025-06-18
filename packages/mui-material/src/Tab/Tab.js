@@ -197,6 +197,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     icon: iconProp,
     iconPosition = 'top',
     label,
+    onChange: onChangeProp,
     onClick,
     onFocus,
     tabIndex: tabIndexProp,
@@ -210,7 +211,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     indicator: indicatorContext,
     mounted,
     selectionFollowsFocus,
-    onChange,
+    onChange: onChangeTabsContext,
     textColor = 'inherit',
     tabsValue,
     registerTab,
@@ -230,6 +231,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   const indicator = selected && !mounted && indicatorContext;
 
   const tabIndex = selected || (assignedIndex === 0 && tabsValue === false) ? 0 : -1;
+
+  const onChange = onChangeProp || onChangeTabsContext;
 
   const ownerState = {
     ...props,
@@ -351,6 +354,10 @@ Tab.propTypes /* remove-proptypes */ = {
    * The label element.
    */
   label: PropTypes.node,
+  /**
+   * @ignore
+   */
+  onChange: PropTypes.func,
   /**
    * @ignore
    */
