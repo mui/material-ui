@@ -99,14 +99,23 @@ export async function documentGetInitialProps(
         const { styles } = extractCriticalToChunks(initialProps.html);
         return {
           ...initialProps,
-          emotionStyleTags: styles.map((style) => (
-            <style
-              data-emotion={`${style.key} ${style.ids.join(' ')}`}
-              key={style.key}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: style.css }}
-            />
-          )),
+          emotionStyleTags: styles.map((style) => {
+            if (!style.css.trim()) {
+              return null;
+            }
+            const isLayerOrderRule = style.css.startsWith('@layer') && !style.css.match(/\{.*\}/);
+            return (
+              <style
+                // If the style is a layer order rule, prefix with the cache key to let Emotion hydrate this node.
+                // Otherwise, Emotion will hydrate only the non-global styles and they will override the layer order rule.
+                data-emotion={`${isLayerOrderRule ? `${cache.key} ` : ''}${style.key} ${style.ids.join(' ')}`}
+                key={style.key}
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: style.css }}
+                nonce={cache.nonce}
+              />
+            );
+          }),
         };
       },
     },
