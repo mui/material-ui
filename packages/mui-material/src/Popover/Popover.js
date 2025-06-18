@@ -106,7 +106,6 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     children,
     className,
     container: containerProp,
-    disableInitialContentFocus = false,
     elevation = 8,
     marginThreshold = 16,
     open,
@@ -438,7 +437,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     additionalProps: {
       elevation,
       style: isPositioned ? undefined : { opacity: 0 },
-      tabIndex: disableInitialContentFocus ? undefined : -1,
+      tabIndex: -1,
     },
     ownerState,
   });
@@ -585,16 +584,6 @@ Popover.propTypes /* remove-proptypes */ = {
     HTMLElementType,
     PropTypes.func,
   ]),
-  /**
-   * By default the dialog content element is focused when opened.
-   *
-   * Set the property to `true` to disable this behavior and focus will be
-   * placed on the first focusable element respecting `tabIndex` order,
-   * including elements explicitly marked with `tabIndex={-1}`.
-   *
-   * @default false
-   */
-  disableInitialContentFocus: PropTypes.bool,
   /**
    * Disable the scroll lock behavior.
    * @default false
