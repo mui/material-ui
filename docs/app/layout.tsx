@@ -27,8 +27,6 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(props: GenerateMetadataProps): Promise<Metadata> {
-  //const { productId, productCategoryId } = getProductInfoFromUrl(pathName); TODO
-
   return {
     icons: {
       apple: { sizes: '180x180', url: '/static/icons/180x180.png' }, // iOS Icon
@@ -39,10 +37,6 @@ export async function generateMetadata(props: GenerateMetadataProps): Promise<Me
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     */
     manifest: '/static/manifest.json',
-    /*other: {
-      'mui:productCategoryId': productCategoryId,
-      'mui:productId': productId,
-    },*/
   };
 }
 

@@ -323,6 +323,8 @@ export default function AppWrapper(props: Props) {
       {fonts.map((font) => (
         <link rel="stylesheet" href={font} key={font} />
       ))}
+      <meta name="mui:productId" content={productId} />
+      <meta name="mui:productCategoryId" content={productCategoryId} />
       <DocsProvider
         config={config}
         adConfig={{ GADisplayRatio: 0.1 }}
