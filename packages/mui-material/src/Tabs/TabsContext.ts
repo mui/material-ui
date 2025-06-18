@@ -29,7 +29,7 @@ export function useTabsContext() {
   const ctx = React.useContext(TabsContext);
 
   if (ctx === null) {
-    throw new Error('Material UI: Tabs component was not found in the tree');
+    throw new Error('Material UI: The Tab component must be used inside a Tabs component');
   }
 
   return ctx;

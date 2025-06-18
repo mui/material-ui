@@ -288,7 +288,7 @@ describe('<Tab />', () => {
 
   it('should throw error if Tab is rendered without Tabs', () => {
     expect(() => render(<Tab value={0} />)).to.throw(
-      'Material UI: Tabs component was not found in the tree',
+      'Material UI: The Tab component must be used inside a Tabs component',
     );
   });
 });
