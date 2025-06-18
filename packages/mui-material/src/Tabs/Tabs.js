@@ -375,7 +375,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scrollbarWidth: 0,
   });
 
-  const valueToIndex = React.useMemo(() => new Map(), []);
+  const valueToIndex = React.useRef(new Map()).current;
   const tabsRef = React.useRef(null);
   const tabListRef = React.useRef(null);
   const childIndexRef = React.useRef(0);
