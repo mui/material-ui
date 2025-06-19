@@ -13,6 +13,12 @@ const OneLevelImportMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode or breaking CJS/ESM split.',
   'See https://github.com/mui/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
+// This only applies to packages published from this monorepo.
+// If you build a library around `@mui/material` you can safely use `createStyles` without running into the same issue as we are.
+const forbidCreateStylesMessage =
+  'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
+  '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
+  'See https://github.com/microsoft/TypeScript/issues/36097#issuecomment-578324386 for more information';
 
 const ENABLE_REACT_COMPILER_PLUGIN = false;
 
@@ -104,7 +110,6 @@ export default defineConfig(
       'testing-library/no-await-sync-queries': 'off',
     },
   },
-  baseSpecRules,
   // Test end
   // Docs start
   {
@@ -185,6 +190,86 @@ export default defineConfig(
     ignores: ['*.spec.tsx'],
     rules: {
       'react/prop-types': 'off',
+    },
+  },
+  {
+    files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
+    ignores: [
+      '*.spec.*',
+      '*.test.*',
+      // deprecated library
+      '**/mui-joy/**/*',
+      // used internally, not used on app router yet
+      '**/mui-docs/**/*',
+    ],
+    rules: {
+      'material-ui/disallow-react-api-in-server-components': 'error',
+    },
+  },
+  {
+    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+    ignores: ['*.spec.*'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: '@mui/material/styles',
+              importNames: ['createStyles'],
+              message: forbidCreateStylesMessage,
+            },
+          ],
+          patterns: [
+            // Allow deeper imports for TypeScript types. TODO?
+            '@mui/*/*/*/*',
+          ],
+        },
+      ],
+    },
+  },
+  baseSpecRules,
+  {
+    files: ['packages-internal/scripts/typescript-to-proptypes/src/**/*.ts'],
+    rules: {
+      // Working with flags is common in TypeScript compiler
+      'no-bitwise': 'off',
+    },
+  },
+  {
+    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+    ignores: ['*.spec.*'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            {
+              name: '@mui/utils',
+              message: OneLevelImportMessage,
+            },
+          ],
+        },
+      ],
+      // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
+      // https://github.com/import-js/eslint-plugin-import/issues/2348#issuecomment-1587320057
+      // Reevaluate when https://github.com/import-js/eslint-plugin-import/pull/2998 is released.
+      'import/no-cycle': ['error', { ignoreExternal: false }],
+    },
+  },
+  {
+    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+    ignores: ['*.d.ts', '*.spec.*', 'packages/mui-joy/**/*'],
+    rules: {
+      'material-ui/mui-name-matches-component-name': 'error',
+    },
+  },
+  {
+    files: ['test/bundling/scripts/**/*.js'],
+    rules: {
+      // ES modules need extensions
+      'import/extensions': ['error', 'ignorePackages'],
     },
   },
   {
