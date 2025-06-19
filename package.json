@@ -169,6 +169,7 @@
     "eslint-import-resolver-typescript": "^4.4.3",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
+    "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
     "git-url-parse": "^16.1.0",
