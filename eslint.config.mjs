@@ -53,7 +53,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 export default defineConfig(
   includeIgnoreFile(path.join(dirname, '.gitignore')),
   includeIgnoreFile(path.join(dirname, '.eslintignore')),
-  globalIgnores(['apps'], 'Global ignores'),
+  globalIgnores(['apps', 'examples'], 'Global ignores'),
   {
     name: 'Base ESLint Configuration',
     extends: createBaseConfig({
@@ -78,7 +78,7 @@ export default defineConfig(
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
     (packageName) => ({
       files: [`packages/${packageName}/src/**/*.?(c|m)[jt]s?(x)`],
-      ignores: ['*.test.*', '*.spec.*'],
+      ignores: ['**/*.test.*', '**/*.spec.*'],
       rules: {
         'material-ui/no-restricted-resolved-imports': [
           'error',
@@ -98,6 +98,9 @@ export default defineConfig(
     files: [
       // matching the pattern of the test runner
       '**/*.test.?(c|m)[jt]s?(x)',
+      // These files have been picked up individually where eslint errors for globals were reported.
+      'packages-internal/test-utils/src/setupKarma.js',
+      'packages/mui-codemod/testUtils/index.js',
       'packages-internal/test-utils/src/setupKarma.js',
     ],
     extends: createTestConfig(),
@@ -108,6 +111,16 @@ export default defineConfig(
       'testing-library/no-node-access': 'off',
       'testing-library/render-result-naming-convention': 'off',
       'testing-library/no-await-sync-queries': 'off',
+      'testing-library/no-unnecessary-act': 'off',
+      'testing-library/no-wait-for-multiple-assertions': 'off',
+      'testing-library/no-render-in-lifecycle': 'off',
+    },
+  },
+  {
+    // Turn off some rules for specific files that are needed by other test files.
+    files: ['packages/mui-codemod/testUtils/index.js'],
+    rules: {
+      'mocha/no-exports': 'off',
     },
   },
   // Test end
@@ -116,7 +129,7 @@ export default defineConfig(
     files: ['docs/**/*'],
     extends: createDocsConfig(),
     rules: {
-      '@next/next/no-img-element': 'error',
+      '@next/next/no-img-element': 'off',
       'no-restricted-imports': [
         'error',
         {
@@ -159,7 +172,7 @@ export default defineConfig(
     ignores: [
       // filenames/match-exported sees filename as 'file-name.d'
       // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
-      '*.d.ts',
+      '**/*.d.ts',
       'docs/data/joy/getting-started/templates/**/*',
       'docs/data/**/{css,system,tailwind}/*',
     ],
@@ -180,14 +193,14 @@ export default defineConfig(
   },
   // Docs end
   {
-    files: ['*.d.ts'],
+    files: ['**/*.d.ts'],
     rules: {
       'import/export': 'off', // Not sure why it doesn't work
     },
   },
   {
     files: ['packages/*/src/**/*.tsx'],
-    ignores: ['*.spec.tsx'],
+    ignores: ['**/*.spec.tsx'],
     rules: {
       'react/prop-types': 'off',
     },
@@ -195,8 +208,8 @@ export default defineConfig(
   {
     files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
     ignores: [
-      '*.spec.*',
-      '*.test.*',
+      '**/*.spec.*',
+      '**/*.test.*',
       // deprecated library
       '**/mui-joy/**/*',
       // used internally, not used on app router yet
@@ -208,7 +221,7 @@ export default defineConfig(
   },
   {
     files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-    ignores: ['*.spec.*'],
+    ignores: ['**/*.spec.*'],
     rules: {
       'no-restricted-imports': [
         'error',
@@ -218,6 +231,11 @@ export default defineConfig(
               name: '@mui/material/styles',
               importNames: ['createStyles'],
               message: forbidCreateStylesMessage,
+            },
+            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            {
+              name: '@mui/utils',
+              message: OneLevelImportMessage,
             },
           ],
           patterns: [
@@ -238,29 +256,7 @@ export default defineConfig(
   },
   {
     files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-    ignores: ['*.spec.*'],
-    rules: {
-      'no-restricted-imports': [
-        'error',
-        {
-          paths: [
-            ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
-            {
-              name: '@mui/utils',
-              message: OneLevelImportMessage,
-            },
-          ],
-        },
-      ],
-      // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
-      // https://github.com/import-js/eslint-plugin-import/issues/2348#issuecomment-1587320057
-      // Reevaluate when https://github.com/import-js/eslint-plugin-import/pull/2998 is released.
-      'import/no-cycle': ['error', { ignoreExternal: false }],
-    },
-  },
-  {
-    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-    ignores: ['*.d.ts', '*.spec.*', 'packages/mui-joy/**/*'],
+    ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
     rules: {
       'material-ui/mui-name-matches-component-name': 'error',
     },
@@ -276,6 +272,14 @@ export default defineConfig(
     files: ['**/*.mjs'],
     rules: {
       'import/extensions': ['error', 'ignorePackages'],
+    },
+  },
+  // Migrated config from packages/mui-icons-material/.eslintrc.js
+  {
+    files: ['packages/mui-icons-material/custom/**/*'],
+    rules: {
+      'import/no-unresolved': 'off',
+      'import/extensions': 'off',
     },
   },
 );
