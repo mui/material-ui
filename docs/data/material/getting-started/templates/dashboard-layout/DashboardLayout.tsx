@@ -101,7 +101,9 @@ const router = createBrowserRouter([
 ]);
 
 const theme = createTheme({
-  cssVariables: true,
+  cssVariables: {
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
   colorSchemes: { dark: true },
 });
 
