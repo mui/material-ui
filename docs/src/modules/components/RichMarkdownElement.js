@@ -114,7 +114,7 @@ export default function RichMarkdownElement(props) {
       }}
       disableAd={disableAd}
       demoOptions={renderedMarkdownOrDemo}
-      githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${fileNameWithLocation}`}
+      githubLocation={`${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/blob/v${process.env.NEXT_PUBLIC_LIB_VERSION}${fileNameWithLocation}`}
     />
   );
 }

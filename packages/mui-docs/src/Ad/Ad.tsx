@@ -34,7 +34,7 @@ function PleaseDisableAdblock() {
 }
 
 const disableAd =
-  process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
+  process.env.NODE_ENV !== 'production' && process.env.NEXT_PUBLIC_ENABLE_AD_IN_DEV_MODE !== 'true';
 const inHouseAds = [
   {
     name: 'templates',

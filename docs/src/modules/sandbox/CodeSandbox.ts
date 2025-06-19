@@ -74,7 +74,9 @@ function createReactApp(demoData: DemoData) {
   };
 
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
-    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    commitRef: process.env.NEXT_PUBLIC_PULL_REQUEST_ID
+      ? process.env.NEXT_PUBLIC_COMMIT_REF
+      : undefined,
     devDeps: CSB_DEV_DEPENDENCIES,
   });
 
@@ -165,7 +167,9 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       productId: 'joy-ui',
     },
     {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      commitRef: process.env.NEXT_PUBLIC_PULL_REQUEST_ID
+        ? process.env.NEXT_PUBLIC_COMMIT_REF
+        : undefined,
       devDeps: CSB_DEV_DEPENDENCIES,
     },
   );
@@ -251,7 +255,9 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       productId: 'material-ui',
     },
     {
-      commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+      commitRef: process.env.NEXT_PUBLIC_PULL_REQUEST_ID
+        ? process.env.NEXT_PUBLIC_COMMIT_REF
+        : undefined,
       devDeps: CSB_DEV_DEPENDENCIES,
     },
   );

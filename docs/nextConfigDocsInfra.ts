@@ -63,22 +63,25 @@ export function withDocsInfra(nextConfig: NextConfig): NextConfig {
         new EnvironmentPlugin({
           ...envPlugin,
           // production | staging | pull-request | development
-          DEPLOY_ENV,
-          FEEDBACK_URL: process.env.FEEDBACK_URL ?? null,
+          NEXT_PUBLIC_DEPLOY_ENV: DEPLOY_ENV,
+          NEXT_PUBLIC_FEEDBACK_URL: process.env.FEEDBACK_URL ?? null,
           // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
           // reference ID (also known as "SHA" or "hash") of the commit we're building.
-          COMMIT_REF: process.env.COMMIT_REF ?? null,
+          NEXT_PUBLIC_COMMIT_REF: process.env.COMMIT_REF ?? null,
           // ID of the PR and the Deploy Preview it generated (for example, 1211)
-          PULL_REQUEST_ID: process.env.REVIEW_ID ?? null,
+          NEXT_PUBLIC_PULL_REQUEST_ID: process.env.REVIEW_ID ?? null,
           // This can be set manually in the .env to see the ads in dev mode.
-          ENABLE_AD_IN_DEV_MODE: process.env.ENABLE_AD_IN_DEV_MODE ?? null,
+          NEXT_PUBLIC_ENABLE_AD_IN_DEV_MODE: process.env.ENABLE_AD_IN_DEV_MODE ?? null,
           // URL representing the unique URL for an individual deploy, e.g.
           // https://5b243e66dd6a547b4fee73ae--petsof.netlify.app
-          NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL ?? null,
+          NEXT_PUBLIC_NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL ?? null,
           // Name of the site, its Netlify subdomain; for example, material-ui-docs
-          NETLIFY_SITE_NAME: process.env.SITE_NAME ?? null,
+          NEXT_PUBLIC_NETLIFY_SITE_NAME: process.env.SITE_NAME ?? null,
           // For template images
-          TEMPLATE_IMAGE_URL: '',
+          NEXT_PUBLIC_TEMPLATE_IMAGE_URL: '',
+          NEXT_PUBLIC_GITHUB_TEMPLATE_DOCS_FEEDBACK: process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK ?? null,
+          NEXT_PUBLIC_SOURCE_CODE_REPO: process.env.SOURCE_CODE_REPO ?? null,
+          NEXT_PUBLIC_SOURCE_GITHUB_BRANCH: process.env.SOURCE_GITHUB_BRANCH ?? null,
         }),
       ];
 

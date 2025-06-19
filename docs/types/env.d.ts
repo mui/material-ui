@@ -1,11 +1,15 @@
 namespace NodeJS {
   interface ProcessEnv {
     BUILD_ONLY_ENGLISH_LOCALE: string;
-    FEEDBACK_URL: string;
     GITHUB_AUTH: string;
-    GITHUB_TEMPLATE_DOCS_FEEDBACK: string;
-    LIB_VERSION: string;
-    SOURCE_CODE_REPO: string;
-    SOURCE_GITHUB_BRANCH: string;
+    NEXT_PUBLIC_COMMIT_REF: string;
+    NEXT_PUBLIC_FEEDBACK_URL: string;
+    NEXT_PUBLIC_GITHUB_TEMPLATE_DOCS_FEEDBACK: string;
+    NEXT_PUBLIC_LIB_VERSION: string;
+    NEXT_PUBLIC_NETLIFY_SITE_NAME: string;
+    NEXT_PUBLIC_PULL_REQUEST_ID: string;
+    NEXT_PUBLIC_SOURCE_CODE_REPO: string;
+    NEXT_PUBLIC_SOURCE_GITHUB_BRANCH: string;
+    NEXT_PUBLIC_TEMPLATE_IMAGE_URL: string;
   }
 }

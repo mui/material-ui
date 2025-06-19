@@ -6,8 +6,8 @@ import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
 // #host-reference
-const HOST = process.env.PULL_REQUEST_ID
-  ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
+const HOST = process.env.NEXT_PUBLIC_PULL_REQUEST_ID
+  ? `https://deploy-preview-${process.env.NEXT_PUBLIC_PULL_REQUEST_ID}--${process.env.NEXT_PUBLIC_NETLIFY_SITE_NAME}.netlify.app`
   : 'https://mui.com';
 
 interface HeadProps {

@@ -3,11 +3,11 @@ import SandboxDependencies from './Dependencies';
 
 describe('Dependencies', () => {
   before(() => {
-    process.env.SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
+    process.env.NEXT_PUBLIC_SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
   });
 
   after(() => {
-    delete process.env.SOURCE_CODE_REPO;
+    delete process.env.NEXT_PUBLIC_SOURCE_CODE_REPO;
   });
 
   const s1 = `

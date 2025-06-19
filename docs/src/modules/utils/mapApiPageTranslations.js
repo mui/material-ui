@@ -33,7 +33,7 @@ export default function mapApiPageTranslations(req) {
         options: {
           ignoreLanguagePages: LANGUAGES_IGNORE_PAGES,
           env: {
-            SOURCE_CODE_REPO: '',
+            NEXT_PUBLIC_SOURCE_CODE_REPO: '',
           },
         },
       });

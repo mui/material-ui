@@ -180,7 +180,7 @@ export default function AppFrame(props: AppFrameProps) {
                   component="a"
                   color="primary"
                   size="small"
-                  href={process.env.SOURCE_CODE_REPO}
+                  href={process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}
                   data-ga-event-category="header"
                   data-ga-event-action="github"
                 >

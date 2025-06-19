@@ -143,8 +143,8 @@ export default withDocsInfra({
                         },
                       ],
                       env: {
-                        SOURCE_CODE_REPO: options.config.env.SOURCE_CODE_REPO,
-                        LIB_VERSION: options.config.env.LIB_VERSION,
+                        SOURCE_CODE_REPO: process.env.SOURCE_CODE_REPO ?? null,
+                        LIB_VERSION: pkg.version,
                       },
                     },
                   },
@@ -177,7 +177,7 @@ export default withDocsInfra({
     GITHUB_AUTH: process.env.GITHUB_AUTH
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : '',
-    LIB_VERSION: pkg.version,
+    NEXT_PUBLIC_LIB_VERSION: pkg.version,
   },
   redirects: async () => {
     return [

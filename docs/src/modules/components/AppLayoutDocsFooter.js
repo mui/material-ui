@@ -83,9 +83,9 @@ function orderedPages(pages, current = []) {
 }
 
 async function postFeedback(data) {
-  const env = process.env.DEPLOY_ENV === 'production' ? 'prod' : 'dev';
+  const env = process.env.NEXT_PUBLIC_DEPLOY_ENV === 'production' ? 'prod' : 'dev';
   try {
-    const response = await fetch(`${process.env.FEEDBACK_URL}/${env}/feedback`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_FEEDBACK_URL}/${env}/feedback`, {
       method: 'POST',
       referrerPolicy: 'origin',
       headers: { 'Content-Type': 'application/json' },
@@ -108,7 +108,7 @@ async function postFeedbackOnSlack(data) {
     currentLocationURL: window.location.href,
     commentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
     commentSectionTitle: commentedSection.text,
-    githubRepo: process.env.SOURCE_CODE_REPO,
+    githubRepo: process.env.NEXT_PUBLIC_SOURCE_CODE_REPO,
     productId,
   };
   if (!comment || comment.length < 10) {
@@ -176,7 +176,7 @@ async function postFeedbackOnSlack(data) {
 
 async function getUserFeedback(id) {
   const env = location.hostname === 'mui.com' ? 'prod' : 'dev';
-  const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
+  const URL = `${process.env.NEXT_PUBLIC_FEEDBACK_URL}/${env}/feedback/${id}`;
 
   try {
     const response = await fetch(URL, {
@@ -200,7 +200,7 @@ async function submitFeedback(page, rating, comment, language, commentedSection,
       page,
       rating,
       comment,
-      version: process.env.LIB_VERSION,
+      version: process.env.NEXT_PUBLIC_LIB_VERSION,
       language,
     });
     if (resultVote) {
@@ -479,7 +479,7 @@ export default function AppLayoutDocsFooter(props) {
                     <Typography id="feedback-description">
                       {t('feedbackMessageToGitHub.usecases')}{' '}
                       <Link
-                        href={`${process.env.SOURCE_CODE_REPO}/issues/new?template=${process.env.GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
+                        href={`${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/issues/new?template=${process.env.NEXT_PUBLIC_GITHUB_TEMPLATE_DOCS_FEEDBACK}&page-url=${window.location.href}`}
                         target="_blank"
                         underline="always"
                         sx={{ fontWeight: 'semiBold' }}

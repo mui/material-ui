@@ -131,7 +131,7 @@ However, we allow candidates to use AI tools when applied to solve problems they
 const render = createRender({
   options: {
     env: {
-      SOURCE_CODE_REPO: '',
+      NEXT_PUBLIC_SOURCE_CODE_REPO: '',
     },
   },
 });

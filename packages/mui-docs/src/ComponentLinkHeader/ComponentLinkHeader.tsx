@@ -67,7 +67,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
             size="small"
             variant="outlined"
             rel="nofollow"
-            href={`${process.env.SOURCE_CODE_REPO}/labels/${encodeURIComponent(
+            href={`${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/labels/${encodeURIComponent(
               headers.githubLabel,
             )}`}
             icon={<ChatRounded color="primary" />}
@@ -107,7 +107,7 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
             size="small"
             variant="outlined"
             rel="nofollow"
-            href={`${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}/${headers.githubSource}`}
+            href={`${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/tree/v${process.env.NEXT_PUBLIC_LIB_VERSION}/${headers.githubSource}`}
             icon={<GitHubIcon />}
             data-ga-event-category="ComponentLinkHeader"
             data-ga-event-action="click"

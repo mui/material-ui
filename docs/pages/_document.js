@@ -11,7 +11,8 @@ import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from '@mui/docs/branding';
 
 const PRODUCTION_GA =
-  process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
+  process.env.NEXT_PUBLIC_DEPLOY_ENV === 'production' ||
+  process.env.NEXT_PUBLIC_DEPLOY_ENV === 'staging';
 
 const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
 

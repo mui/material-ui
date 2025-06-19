@@ -14,7 +14,8 @@ import AppWrapper from './appWrapper';
 import './global.css';
 
 const PRODUCTION_GA =
-  process.env.DEPLOY_ENV === 'production' || process.env.DEPLOY_ENV === 'staging';
+  process.env.NEXT_PUBLIC_DEPLOY_ENV === 'production' ||
+  process.env.NEXT_PUBLIC_DEPLOY_ENV === 'staging';
 
 const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
 
