@@ -1613,7 +1613,7 @@ describe('<Tabs />', () => {
   // https://github.com/mui/material-ui/issues/34740
   it('should select if the Tabs are rendered conditionally', () => {
     function Authorizer({ hide, children }) {
-      return <>{!hide ? children : null}</>;
+      return <React.Fragment>{!hide ? children : null}</React.Fragment>;
     }
 
     function TestComponent() {
