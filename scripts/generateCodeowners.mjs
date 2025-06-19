@@ -1,4 +1,4 @@
-/* eslint-disable no-console, no-restricted-syntax, no-continue */
+/* eslint-disable no-console */
 import * as fs from 'fs';
 import * as path from 'path';
 import * as url from 'url';

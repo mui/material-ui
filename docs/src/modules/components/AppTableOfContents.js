@@ -301,7 +301,6 @@ export default function AppTableOfContents(props) {
               variant="caption"
               sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}
             </Typography>
           </Link>
