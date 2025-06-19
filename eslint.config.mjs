@@ -1,7 +1,7 @@
 import { includeIgnoreFile } from '@eslint/compat';
 import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/internal-code-infra/eslint';
 import { createDocsConfig } from '@mui/internal-code-infra/eslint-docs';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { defineConfig } from 'eslint/config';
 import eslingPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import eslintPluginReact from 'eslint-plugin-react';
 import * as path from 'node:path';
@@ -55,7 +55,6 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 export default defineConfig(
   includeIgnoreFile(path.join(dirname, '.gitignore')),
   includeIgnoreFile(path.join(dirname, '.eslintignore')),
-  globalIgnores(['examples'], 'Global ignores'),
   {
     name: 'Base ESLint Configuration',
     extends: createBaseConfig({
@@ -142,13 +141,11 @@ export default defineConfig(
       ],
     },
   },
+  // This is a new config added here to avoid lint errors related to translations.
   {
     files: ['docs/src/modules/components/**/*'],
     rules: {
-      'material-ui/no-hardcoded-labels': [
-        'error',
-        { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
-      ],
+      'material-ui/no-hardcoded-labels': 'off',
     },
   },
   // Moved from docs/data/material/components/.eslintrc.js
@@ -325,10 +322,19 @@ export default defineConfig(
   },
   // Migrated config from apps/bare-next-app/.eslintrc.js
   {
-    files: ['apps/**/*'],
+    files: ['apps/**/*', 'examples/**/*'],
     rules: {
       'import/no-relative-packages': 'off',
       'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+    },
+  },
+  {
+    files: ['examples/**/*'],
+    rules: {
+      'import/extensions': 'off',
+      'import/no-unresolved': 'off',
+      'no-console': 'off',
     },
   },
   {

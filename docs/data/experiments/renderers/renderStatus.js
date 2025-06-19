@@ -15,6 +15,7 @@ import {
   useGridRootProps,
 } from '@mui/x-data-grid';
 
+// eslint-disable-next-line no-restricted-imports
 import { STATUS_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
 
 const StyledChip = styled(Chip)(({ theme }) => ({
