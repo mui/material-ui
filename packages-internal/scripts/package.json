@@ -8,6 +8,10 @@
     "./typescript-to-proptypes": {
       "types": "./build/typescript-to-proptypes/index.d.ts",
       "default": "./build/typescript-to-proptypes/index.js"
+    },
+    "./generate-llms-txt": {
+      "types": "./build/generate-llms-txt/index.d.ts",
+      "default": "./build/generate-llms-txt/index.js"
     }
   },
   "repository": {
