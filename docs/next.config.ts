@@ -167,6 +167,9 @@ export default withDocsInfra({
   // Ensure CSS from the Data Grid packages is included in the build:
   // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
   transpilePackages: ['@mui/x-data-grid', '@mui/x-data-grid-pro', '@mui/x-data-grid-premium'],
+  compiler: {
+    reactRemoveProperties: process.env.NODE_ENV === 'production',
+  },
   distDir: 'export',
   envPlugin: {
     BUILD_ONLY_ENGLISH_LOCALE: String(buildOnlyEnglishLocale),
