@@ -6,6 +6,7 @@ import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
+import useLazyRef from '@mui/utils/useLazyRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -375,7 +376,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scrollbarWidth: 0,
   });
 
-  const valueToIndex = React.useRef(new Map()).current;
+  const valueToIndex = useLazyRef(() => new Map()).current;
   const tabsRef = React.useRef(null);
   const tabListRef = React.useRef(null);
   const childIndexRef = React.useRef(0);
