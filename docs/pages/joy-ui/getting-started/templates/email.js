@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import EmailApp from 'docs/data/joy/getting-started/templates/email/App';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import { NextBProgressProvider } from '@mui/docs/BProgressBar';
 
 export default function Email() {
   return (
@@ -15,8 +15,9 @@ export default function Email() {
           rel="stylesheet"
         />
       </Head>
-      <NextNProgressBar />
-      <EmailApp />
+      <NextBProgressProvider>
+        <EmailApp />
+      </NextBProgressProvider>
     </React.Fragment>
   );
 }

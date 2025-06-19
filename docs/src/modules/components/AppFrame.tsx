@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from '@mui/docs/routing';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
-import NProgress from 'nprogress';
 import AppBar from '@mui/material/AppBar';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
@@ -11,8 +10,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import NProgressBar from '@mui/docs/NProgressBar';
-import { debounce } from '@mui/material/utils';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
@@ -24,28 +21,6 @@ import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import SearchButton from './SearchButton';
-
-const nProgressStart = debounce(() => {
-  NProgress.start();
-}, 200);
-
-function nProgressDone() {
-  nProgressStart.clear();
-  NProgress.done();
-}
-
-export function NextNProgressBar() {
-  const router = useRouter();
-  React.useEffect(() => {
-    nProgressDone();
-
-    return () => {
-      nProgressStart();
-    };
-  }, [router.pathname]);
-
-  return <NProgressBar />;
-}
 
 const sx = { minWidth: { sm: 160 } };
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import TeamApp from 'docs/data/joy/getting-started/templates/team/App';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import { NextBProgressProvider } from '@mui/docs/BProgressBar';
 
 export default function Team() {
   return (
@@ -15,8 +15,9 @@ export default function Team() {
           rel="stylesheet"
         />
       </Head>
-      <NextNProgressBar />
-      <TeamApp />
+      <NextBProgressProvider>
+        <TeamApp />
+      </NextBProgressProvider>
     </React.Fragment>
   );
 }

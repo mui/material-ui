@@ -83,7 +83,6 @@
     "material-ui-popup-state": "^5.3.6",
     "next": "^15.3.3",
     "notistack": "3.0.2",
-    "nprogress": "^0.2.0",
     "postcss": "^8.5.6",
     "postcss-import": "^16.1.0",
     "prop-types": "^15.8.1",

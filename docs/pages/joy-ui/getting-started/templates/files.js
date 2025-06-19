@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import FilesApp from 'docs/data/joy/getting-started/templates/files/App';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import { NextBProgressProvider } from '@mui/docs/BProgressBar';
 
 export default function Files() {
   return (
@@ -15,8 +15,9 @@ export default function Files() {
           rel="stylesheet"
         />
       </Head>
-      <NextNProgressBar />
-      <FilesApp />
+      <NextBProgressProvider>
+        <FilesApp />
+      </NextBProgressProvider>
     </React.Fragment>
   );
 }

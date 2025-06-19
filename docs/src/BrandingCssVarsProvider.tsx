@@ -7,7 +7,7 @@ import { colorChannel, getContrastRatio, lighten, darken } from '@mui/system/col
 import CssBaseline from '@mui/material/CssBaseline';
 import { getCookie, pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 // @ts-ignore to bypass type checking in MUI X repo
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import { NextBProgressProvider } from '@mui/docs/BProgressBar';
 import { getDesignTokens, getThemedComponents } from '@mui/docs/branding';
 import SkipLink from 'docs/src/modules/components/SkipLink';
 // @ts-ignore to bypass type checking in MUI X repo
@@ -170,11 +170,10 @@ export default function BrandingCssVarsProvider(props: {
       // TODO: remove `forceThemeRerender` once custom theme on some demos rely on CSS variables instead of `theme.palette.mode`
       forceThemeRerender={canonicalAs.startsWith('/x/') || canonicalAs.startsWith('/toolpad/')}
     >
-      <NextNProgressBar />
       <CssBaseline />
       <SkipLink />
       <MarkdownLinks />
-      {children}
+      <NextBProgressProvider>{children}</NextBProgressProvider>
     </ThemeProvider>
   );
 }
