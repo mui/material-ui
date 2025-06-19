@@ -48,20 +48,20 @@
     "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.13.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@mui/internal-test-utils": "workspace:^",
     "@mui/system": "workspace:*",
     "@types/chai": "^4.3.20",
-    "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.1.6",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.1.8",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
     "react": "^19.1.0",
     "sinon": "^19.0.5",
-    "styled-components": "^6.1.18"
+    "styled-components": "^6.1.19"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",

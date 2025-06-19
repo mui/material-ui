@@ -30,16 +30,20 @@ describe('getMaterialUiComponentInfo', () => {
       // eslint-disable-next-line no-empty
     } catch (error) {}
     if (existed) {
-      expect(componentInfo.getDemos()).to.deep.equal([
-        {
-          demoPageTitle: 'Button Group',
-          demoPathname: '/material-ui/react-button-group/',
-        },
-        {
-          demoPageTitle: 'Button',
-          demoPathname: '/material-ui/react-button/',
-        },
-      ]);
+      const demos = componentInfo.getDemos();
+      expect(demos).to.have.lengthOf(2);
+
+      expect(demos[0]).to.deep.include({
+        demoPageTitle: 'Button Group',
+        demoPathname: '/material-ui/react-button-group/',
+      });
+      expect(demos[0].filePath).to.include('button-group/button-group.md');
+
+      expect(demos[1]).to.deep.include({
+        demoPageTitle: 'Button',
+        demoPathname: '/material-ui/react-button/',
+      });
+      expect(demos[1].filePath).to.include('buttons/buttons.md');
     }
   });
 });
