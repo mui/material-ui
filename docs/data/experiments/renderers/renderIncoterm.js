@@ -8,6 +8,7 @@ import Tooltip from '@mui/material/Tooltip';
 import InfoIcon from '@mui/icons-material/Info';
 import { useGridApiContext } from '@mui/x-data-grid';
 
+// eslint-disable-next-line no-restricted-imports
 import { INCOTERM_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
 
 const Incoterm = React.memo(function Incoterm(props) {
