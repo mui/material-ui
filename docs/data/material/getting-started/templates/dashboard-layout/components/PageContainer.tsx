@@ -32,10 +32,11 @@ export interface PageContainerProps extends ContainerProps {
   children?: React.ReactNode;
   title?: string;
   breadcrumbs?: Breadcrumb[];
+  actions?: React.ReactNode;
 }
 
 export default function PageContainer(props: PageContainerProps) {
-  const { children, breadcrumbs, title } = props;
+  const { children, breadcrumbs, title, actions = null } = props;
 
   return (
     <Container sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -64,7 +65,7 @@ export default function PageContainer(props: PageContainerProps) {
           </Breadcrumbs>
           <PageContentHeader>
             {title ? <Typography variant="h4">{title}</Typography> : null}
-            <PageHeaderToolbar>Toolbar actions go here</PageHeaderToolbar>
+            <PageHeaderToolbar>{actions}</PageHeaderToolbar>
           </PageContentHeader>
         </Stack>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>

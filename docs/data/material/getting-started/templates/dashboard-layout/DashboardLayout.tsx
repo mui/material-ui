@@ -5,8 +5,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import DashboardLayoutHeader from './DashboardLayoutHeader';
-import DashboardLayoutSidebar from './DashboardLayoutSidebar';
+import DashboardLayoutHeader from './containers/DashboardHeader';
+import DashboardLayoutSidebar from './containers/DashboardSidebar';
 import PageContainer from './components/PageContainer';
 
 function HomePage() {
@@ -84,6 +84,7 @@ function HomePage() {
           <PageContainer
             title="Dashboard"
             breadcrumbs={[{ title: 'Home', path: '/' }]}
+            actions={<div>Toolbar actions go here</div>}
           >
             Dashboard content goes here
           </PageContainer>

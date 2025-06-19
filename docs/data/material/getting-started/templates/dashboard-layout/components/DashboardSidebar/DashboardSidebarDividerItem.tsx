@@ -6,7 +6,10 @@ import { getDrawerSxTransitionMixin } from '../../mixins';
 
 export default function DashboardSidebarDividerItem() {
   const sidebarContext = React.useContext(DashboardSidebarContext);
-  const { fullyExpanded = true, hasDrawerTransitions } = sidebarContext ?? {};
+  if (!sidebarContext) {
+    throw new Error('Sidebar context was used without a provider.');
+  }
+  const { fullyExpanded = true, hasDrawerTransitions } = sidebarContext;
 
   return (
     <li>

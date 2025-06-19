@@ -79,12 +79,15 @@ export default function DashboardSidebarPageItem({
   nestedNavigation,
 }: DashboardSidebarPageItemProps) {
   const sidebarContext = React.useContext(DashboardSidebarContext);
+  if (!sidebarContext) {
+    throw new Error('Sidebar context was used without a provider.');
+  }
   const {
     onPageItemClick,
     mini = false,
     fullyExpanded = true,
     fullyCollapsed = false,
-  } = sidebarContext ?? {};
+  } = sidebarContext;
 
   const [isHovered, setIsHovered] = React.useState(false);
 

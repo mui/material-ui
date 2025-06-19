@@ -13,11 +13,14 @@ export default function DashboardSidebarHeaderItem({
   children,
 }: DashboardSidebarHeaderItemProps) {
   const sidebarContext = React.useContext(DashboardSidebarContext);
+  if (!sidebarContext) {
+    throw new Error('Sidebar context was used without a provider.');
+  }
   const {
     mini = false,
     fullyExpanded = true,
     hasDrawerTransitions,
-  } = sidebarContext ?? {};
+  } = sidebarContext;
 
   return (
     <ListSubheader
