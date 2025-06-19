@@ -13,6 +13,7 @@ import {
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import Tooltip from '@mui/material/Tooltip';
+import Divider from '@mui/material/Divider';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createSvgIcon } from '@mui/material/utils';
@@ -1541,6 +1542,7 @@ describe('<Tabs />', () => {
     });
   });
 
+  // https://github.com/mui/material-ui/issues/46265
   it('should select the Tab wrapped with a component on click', () => {
     function TestComponent() {
       const [value, setValue] = React.useState('one');
@@ -1571,5 +1573,128 @@ describe('<Tabs />', () => {
 
     expect(firstTab).to.have.attribute('aria-selected', 'false');
     expect(secondTab).to.have.attribute('aria-selected', 'true');
+  });
+
+  // https://github.com/mui/material-ui/issues/27947
+  it('should select the custom Tab', () => {
+    function CustomTab({ value }) {
+      return <Tab label={value} value={value} />;
+    }
+
+    function TestComponent() {
+      const [value, setValue] = React.useState('one');
+
+      const handleChange = (_, newValue) => {
+        setValue(newValue);
+      };
+
+      return (
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="one" value="one" />
+          <CustomTab label="two" value="two" />
+        </Tabs>
+      );
+    }
+
+    render(<TestComponent />);
+
+    const firstTab = screen.getAllByRole('tab')[0];
+    const secondTab = screen.getAllByRole('tab')[1];
+
+    expect(firstTab).to.have.attribute('aria-selected', 'true');
+    expect(secondTab).to.have.attribute('aria-selected', 'false');
+
+    fireEvent.click(secondTab);
+
+    expect(firstTab).to.have.attribute('aria-selected', 'false');
+    expect(secondTab).to.have.attribute('aria-selected', 'true');
+  });
+
+  // https://github.com/mui/material-ui/issues/34740
+  it('should select if the Tabs are rendered conditionally', () => {
+    function Authorizer({ hide, children }) {
+      return <>{!hide ? children : null}</>;
+    }
+
+    function TestComponent() {
+      const [value, setValue] = React.useState('one');
+
+      const handleChange = (_, newValue) => {
+        setValue(newValue);
+      };
+
+      return (
+        <Tabs value={value} onChange={handleChange}>
+          <Authorizer>
+            <Tab label="one" value="one" />
+          </Authorizer>
+          <Authorizer hide>
+            <Tab label="two" value="two" />
+          </Authorizer>
+          <Authorizer>
+            <Tab label="three" value="three" />
+          </Authorizer>
+        </Tabs>
+      );
+    }
+
+    render(<TestComponent />);
+
+    // only two tabs are rendered. one is hidden
+    expect(screen.getAllByRole('tab').length).to.equal(2);
+
+    const firstTab = screen.getAllByRole('tab')[0];
+    const secondTab = screen.getAllByRole('tab')[1];
+
+    expect(firstTab).to.have.attribute('aria-selected', 'true');
+    expect(secondTab).to.have.attribute('aria-selected', 'false');
+
+    fireEvent.click(secondTab);
+
+    expect(firstTab).to.have.attribute('aria-selected', 'false');
+    expect(secondTab).to.have.attribute('aria-selected', 'true');
+  });
+
+  // https://github.com/mui/material-ui/issues/38516
+  it('should render with a Divider', () => {
+    function TestComponent() {
+      const [value, setValue] = React.useState('one');
+
+      const handleChange = (_, newValue) => {
+        setValue(newValue);
+      };
+
+      return (
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="one" value="one" />
+          <Divider />
+          <Tab label="two" value="two" />
+          <Divider />
+          <Tab label="three" value="three" />
+        </Tabs>
+      );
+    }
+
+    render(<TestComponent />);
+
+    const firstTab = screen.getAllByRole('tab')[0];
+    const secondTab = screen.getAllByRole('tab')[1];
+    const thirdTab = screen.getAllByRole('tab')[2];
+
+    expect(firstTab).to.have.attribute('aria-selected', 'true');
+    expect(secondTab).to.have.attribute('aria-selected', 'false');
+    expect(thirdTab).to.have.attribute('aria-selected', 'false');
+
+    fireEvent.click(secondTab);
+
+    expect(firstTab).to.have.attribute('aria-selected', 'false');
+    expect(secondTab).to.have.attribute('aria-selected', 'true');
+    expect(thirdTab).to.have.attribute('aria-selected', 'false');
+
+    fireEvent.click(thirdTab);
+
+    expect(firstTab).to.have.attribute('aria-selected', 'false');
+    expect(secondTab).to.have.attribute('aria-selected', 'false');
+    expect(thirdTab).to.have.attribute('aria-selected', 'true');
   });
 });
