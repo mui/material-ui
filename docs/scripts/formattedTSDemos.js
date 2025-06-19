@@ -117,7 +117,7 @@ async function transpileFile(tsxPath, project) {
     });
     const codeWithPropTypes = injectPropTypesInFile({ components: propTypesAST, target: code });
     const prettierConfig = await prettier.resolveConfig(jsPath, {
-      config: path.join(workspaceRoot, 'prettier.config.js'),
+      config: path.join(workspaceRoot, 'prettier.config.mjs'),
     });
     const prettierFormat = async (jsSource) =>
       prettier.format(jsSource, { ...prettierConfig, filepath: jsPath });
