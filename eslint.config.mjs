@@ -42,7 +42,6 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       '@base-ui/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      '!@mui/x-data-grid-generator/**',
       // TODO delete
       '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
       '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
