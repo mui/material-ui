@@ -3,6 +3,7 @@ import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/internal
 import { createDocsConfig } from '@mui/internal-code-infra/eslint-docs';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import eslingPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
+import eslintPluginReact from 'eslint-plugin-react';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 
@@ -41,6 +42,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       '@base-ui/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
+      '!@mui/x-data-grid-generator/**',
       // TODO delete
       '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
       '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
@@ -53,7 +55,7 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 export default defineConfig(
   includeIgnoreFile(path.join(dirname, '.gitignore')),
   includeIgnoreFile(path.join(dirname, '.eslintignore')),
-  globalIgnores(['apps', 'examples'], 'Global ignores'),
+  globalIgnores(['examples'], 'Global ignores'),
   {
     name: 'Base ESLint Configuration',
     extends: createBaseConfig({
@@ -105,6 +107,7 @@ export default defineConfig(
     ],
     extends: createTestConfig(),
     rules: {
+      // Disabled temporarily. Enable one by one.
       'testing-library/prefer-screen-queries': 'off',
       'testing-library/no-container': 'off',
       'testing-library/no-dom-import': 'off',
@@ -146,6 +149,16 @@ export default defineConfig(
         'error',
         { allow: ['MUI', 'X', 'GitHub', 'Stack Overflow'] },
       ],
+    },
+  },
+  // Moved from docs/data/material/components/.eslintrc.js
+  {
+    files: ['docs/data/material/components/**/*'],
+    rules: {
+      // useful for interactions feedback
+      'no-console': ['off', { allow: ['info'] }],
+      // not very friendly to prop forwarding
+      'react/jsx-handler-names': 'off',
     },
   },
   // demos
@@ -232,15 +245,28 @@ export default defineConfig(
               importNames: ['createStyles'],
               message: forbidCreateStylesMessage,
             },
+          ],
+          patterns: [
+            // Allow deeper imports for TypeScript types. TODO?
+            '@mui/*/*/*/*',
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+    ignores: ['**/*.spec.*'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
             ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
             {
               name: '@mui/utils',
               message: OneLevelImportMessage,
             },
-          ],
-          patterns: [
-            // Allow deeper imports for TypeScript types. TODO?
-            '@mui/*/*/*/*',
           ],
         },
       ],
@@ -280,6 +306,46 @@ export default defineConfig(
     rules: {
       'import/no-unresolved': 'off',
       'import/extensions': 'off',
+    },
+  },
+  // Migrated config from packages/api-docs-builder/.eslintrc.js
+  {
+    files: ['packages/api-docs-builder/**/*'],
+    rules: {
+      'import/prefer-default-export': 'off',
+    },
+  },
+  // Migrated config from packages/api-docs-builder-core/.eslintrc.js
+  {
+    files: ['packages/api-docs-builder-core/**/*'],
+    rules: {
+      'import/no-default-export': 'error',
+      'import/prefer-default-export': 'off',
+    },
+  },
+  // Migrated config from apps/bare-next-app/.eslintrc.js
+  {
+    files: ['apps/**/*'],
+    rules: {
+      'import/no-relative-packages': 'off',
+      'react/react-in-jsx-scope': 'off',
+    },
+  },
+  {
+    files: ['apps/pigment-css-vite-app/**/*'],
+    rules: {
+      'react/jsx-filename-extension': 'off',
+      'import/prefer-default-export': 'off',
+    },
+  },
+  {
+    files: ['apps/bare-next-app/**/*'],
+    extends: [eslintPluginReact.configs.flat['jsx-runtime']],
+    rules: {
+      'import/prefer-default-export': 'off',
+      'import/extensions': 'off',
+      'import/no-unresolved': 'off',
+      'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     },
   },
 );
