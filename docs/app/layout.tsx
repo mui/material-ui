@@ -3,7 +3,6 @@ import 'docs/src/modules/components/bootstrap';
 import { getMetaThemeColor } from '@mui/docs/branding';
 import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
 import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import { LANGUAGES_SSR } from 'docs/config';
 import { GenerateMetadataProps } from 'docs/src/modules/utils/createMetadata';
 import { defaultLanguage } from 'docs/src/modules/utils/i18n';
 import { Metadata, Viewport } from 'next';
@@ -39,18 +38,6 @@ export async function generateMetadata(props: GenerateMetadataProps): Promise<Me
     */
     manifest: '/static/manifest.json',
   };
-}
-
-export async function generateStaticParams() {
-  // We want to speed-up the build of pull requests.
-  // For this, consider only English language on deploy previews, except for crowdin PRs.
-  if (process.env.BUILD_ONLY_ENGLISH_LOCALE === 'true') {
-    console.log('Considering only English for SSR');
-    return [];
-  }
-
-  console.log('Considering various locales for SSR');
-  return LANGUAGES_SSR.map((l) => ({ lang: l }));
 }
 
 export default async function RootLayout({
