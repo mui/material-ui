@@ -155,12 +155,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/toolpad/core/react-dashboard-layout/',
             title: 'Dashboard Layout',
-            newFeature: true,
           },
           {
             pathname: '/toolpad/core/react-sign-in-page/',
             title: 'Sign-in Page',
-            newFeature: true,
           },
         ],
       },
@@ -232,6 +230,18 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
             title: 'Advanced configuration',
+          },
+        ],
+      },
+      {
+        pathname: '/material-ui/customization/styles',
+        subheader: '/material-ui/customization/styles',
+        title: 'Styles',
+        children: [
+          {
+            pathname: '/material-ui/customization/css-layers',
+            title: 'Cascade layers',
+            newFeature: true,
           },
         ],
       },

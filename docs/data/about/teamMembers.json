@@ -271,8 +271,8 @@
   {
     "name": "Jose Quintas",
     "title": "Software Engineer — xCharts",
-    "location": "Amsterdam, Netherlands",
-    "locationCountry": "nl",
+    "location": "Barcelona, Spain",
+    "locationCountry": "es",
     "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
     "github": "JCQuintas"
   },
@@ -327,5 +327,14 @@
     "about": "Learning 📚, my dog 🐶 and Japanese culture 🇯🇵.",
     "twitter": "rita_codes",
     "github": "rita-codes"
+  },
+  {
+    "name": "Connor Davis",
+    "title": "Software Engineer — Core",
+    "location": "New York City, US",
+    "locationCountry": "us",
+    "about": "Community gardener, non-profit organizer, and nature enthusiast",
+    "twitter": "connordav_is",
+    "github": "dav-is"
   }
 ]
