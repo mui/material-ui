@@ -2,7 +2,7 @@ import { includeIgnoreFile } from '@eslint/compat';
 import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/internal-code-infra/eslint';
 import { createDocsConfig } from '@mui/internal-code-infra/eslint-docs';
 import { defineConfig } from 'eslint/config';
-import eslingPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
+import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import eslintPluginReact from 'eslint-plugin-react';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
@@ -42,7 +42,6 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
       '@base-ui/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      '!@mui/x-data-grid-generator/**',
       // TODO delete
       '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
       '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
@@ -187,7 +186,7 @@ export default defineConfig(
       'docs/data/**/{css,system,tailwind}/*',
     ],
     plugins: {
-      'consistent-default-export-name': eslingPluginConsistentName,
+      'consistent-default-export-name': eslintPluginConsistentName,
     },
     rules: {
       'consistent-default-export-name/default-export-match-filename': ['error'],
