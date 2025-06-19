@@ -2,6 +2,7 @@ import { includeIgnoreFile } from '@eslint/compat';
 import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/internal-code-infra/eslint';
 import { createDocsConfig } from '@mui/internal-code-infra/eslint-docs';
 import { defineConfig, globalIgnores } from 'eslint/config';
+import eslingPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
 
@@ -59,6 +60,14 @@ export default defineConfig(
         },
       },
     },
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
+        },
+      ],
+    },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
     (packageName) => ({
@@ -102,7 +111,56 @@ export default defineConfig(
       ],
     },
   },
+  // demos
+  {
+    files: ['docs/src/pages/**/*', 'docs/data/**/*'],
+    rules: {
+      // This most often reports data that is defined after the component definition.
+      // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
+      '@typescript-eslint/no-use-before-define': 'off',
+      'react/prop-types': 'off',
+      'no-alert': 'off',
+      'no-console': 'off',
+    },
+  },
+  // Next.js entry points pages
+  {
+    files: ['docs/pages/**/*'],
+    rules: {
+      'react/prop-types': 'off',
+    },
+  },
+  {
+    files: ['docs/data/**/*'],
+    ignores: [
+      // filenames/match-exported sees filename as 'file-name.d'
+      // Plugin looks unmaintain, find alternative? (e.g. eslint-plugin-project-structure)
+      '*.d.ts',
+      'docs/data/joy/getting-started/templates/**/*',
+      'docs/data/**/{css,system,tailwind}/*',
+    ],
+    plugins: {
+      'consistent-default-export-name': eslingPluginConsistentName,
+    },
+    rules: {
+      'consistent-default-export-name/default-export-match-filename': ['error'],
+    },
+  },
+  {
+    files: ['docs/data/material/getting-started/templates/**/*'],
+    rules: {
+      // So we can use # to improve the page UX
+      // and so developer get eslint warning to remind them to fix the links
+      'jsx-a11y/anchor-is-valid': 'off',
+    },
+  },
   // Docs end
+  {
+    files: ['*.d.ts'],
+    rules: {
+      'import/export': 'off', // Not sure why it doesn't work
+    },
+  },
   // Test start
   {
     files: [
