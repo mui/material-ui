@@ -123,7 +123,7 @@
     "@babel/register": "^7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
     "@mui-internal/api-docs-builder-core": "workspace:^",
-    "@mui/internal-bundle-size-checker": "^1.0.6-canary.1",
+    "@mui/internal-bundle-size-checker": "^1.0.6-canary.4",
     "@mui/internal-babel-plugin-resolve-imports": "^2.0.4",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.5",
     "@mui/internal-docs-utils": "workspace:^",
