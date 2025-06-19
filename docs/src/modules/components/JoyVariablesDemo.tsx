@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
