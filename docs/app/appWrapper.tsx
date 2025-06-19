@@ -126,25 +126,6 @@ function preconnectResources() {
   ReactDOM.preconnect('https://fonts.googleapis.com');
 }
 
-/**
- * Font preload (prevent font flash)
- * Optimized for english characters (40kb -> 6kb)
- * These do not work in mobile device, the font faces in global.css fix it without blocking resources
- */
-function preloadFonts() {
-  ReactDOM.preload('/static/fonts/GeneralSans-Semibold-subset.woff2', {
-    as: 'font',
-    crossOrigin: 'anonymous',
-    type: 'font/woff2',
-  });
-
-  ReactDOM.preload('/static/fonts/IBMPlexSans-Regular-subset.woff2', {
-    as: 'font',
-    crossOrigin: 'anonymous',
-    type: 'font/woff2',
-  });
-}
-
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
   // eslint-disable-next-line no-console
   console.log(
@@ -178,7 +159,6 @@ export default function AppWrapper(props: Props) {
     loadDependencies();
     registerServiceWorker();
     preconnectResources();
-    preloadFonts();
 
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');

@@ -2,22 +2,6 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 @config '../tailwind.config.mjs';
 
-/* See preloadFonts in appWrapper */
-@font-face {
-  font-family: 'General Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/static/fonts/GeneralSans-Semibold-subset.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/static/fonts/IBMPlexSans-Regular-subset.woff2') format('woff2');
-}
-
 /*
   Loads General Sans: Regular (400), Medium (500), SemiBold (600), Bold (700)
   Typeface documentation: https://www.fontshare.com/fonts/general-sans
