@@ -270,7 +270,6 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       >
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         <NavLabel>MUI X Components</NavLabel>
       </Box>
       {advancedProducts.map((product) => (
