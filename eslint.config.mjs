@@ -87,6 +87,25 @@ export default defineConfig(
       },
     }),
   ),
+  // Test start
+  {
+    files: [
+      // matching the pattern of the test runner
+      '**/*.test.?(c|m)[jt]s?(x)',
+      'packages-internal/test-utils/src/setupKarma.js',
+    ],
+    extends: createTestConfig(),
+    rules: {
+      'testing-library/prefer-screen-queries': 'off',
+      'testing-library/no-container': 'off',
+      'testing-library/no-dom-import': 'off',
+      'testing-library/no-node-access': 'off',
+      'testing-library/render-result-naming-convention': 'off',
+      'testing-library/no-await-sync-queries': 'off',
+    },
+  },
+  baseSpecRules,
+  // Test end
   // Docs start
   {
     files: ['docs/**/*'],
@@ -161,23 +180,13 @@ export default defineConfig(
       'import/export': 'off', // Not sure why it doesn't work
     },
   },
-  // Test start
   {
-    files: [
-      // matching the pattern of the test runner
-      '**/*.test.?(c|m)[jt]s?(x)',
-    ],
-    extends: createTestConfig(),
+    files: ['packages/*/src/**/*.tsx'],
+    ignores: ['*.spec.tsx'],
     rules: {
-      'testing-library/prefer-screen-queries': 'off',
-      'testing-library/no-container': 'off',
-      'testing-library/no-dom-import': 'off',
-      'testing-library/no-node-access': 'off',
-      'testing-library/render-result-naming-convention': 'off',
-      'testing-library/no-await-sync-queries': 'off',
+      'react/prop-types': 'off',
     },
   },
-  baseSpecRules,
   {
     files: ['**/*.mjs'],
     rules: {
