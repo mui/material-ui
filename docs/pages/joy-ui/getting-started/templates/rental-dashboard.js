@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import RentalDashboardTemplate from 'docs/data/joy/getting-started/templates/rental-dashboard/App';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import { NextBProgressProvider } from '@mui/docs/BProgressBar';
 
 export default function RentalDashboard() {
   return (
@@ -16,8 +16,9 @@ export default function RentalDashboard() {
           rel="stylesheet"
         />
       </Head>
-      <NextNProgressBar />
-      <RentalDashboardTemplate />
+      <NextBProgressProvider>
+        <RentalDashboardTemplate />
+      </NextBProgressProvider>
     </React.Fragment>
   );
 }

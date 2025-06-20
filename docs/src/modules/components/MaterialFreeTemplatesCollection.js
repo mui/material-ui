@@ -18,7 +18,7 @@ import sourceMaterialTemplates from 'docs/src/modules/material/sourceMaterialTem
 import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 
-const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
+const sourcePrefix = `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/tree/v${process.env.NEXT_PUBLIC_LIB_VERSION}`;
 
 function layouts(translation) {
   return [
@@ -187,8 +187,8 @@ export default function MaterialFreeTemplatesCollection() {
                             ...item,
                             files: { ...item.files, ...materialTemplates.sharedTheme?.files },
                             title: `${templateName} Template - Material UI`,
-                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                              process.env.LIB_VERSION
+                            githubLocation: `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/blob/v${
+                              process.env.NEXT_PUBLIC_LIB_VERSION
                             }/docs/data/material/templates/${templateId}/${templateName}.${
                               item.codeVariant === 'TS' ? 'tsx' : 'js'
                             }`,
@@ -223,8 +223,8 @@ export default function MaterialFreeTemplatesCollection() {
                             ...item,
                             files: { ...item.files, ...materialTemplates.sharedTheme?.files },
                             title: `${templateName} Template - Material UI`,
-                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                              process.env.LIB_VERSION
+                            githubLocation: `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/blob/v${
+                              process.env.NEXT_PUBLIC_LIB_VERSION
                             }/docs/data/material/templates/${templateId}/${templateName}.${
                               item.codeVariant === 'TS' ? 'tsx' : 'js'
                             }`,

@@ -11,8 +11,20 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "incremental": true
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "types": ["@types/webpack-env"]
   },
-  "include": ["next-env.d.ts", "next.config.ts", "types", "src", "pages", "data"],
+  "include": [
+    "app",
+    "data",
+    "export/types/**/*.ts",
+    "next-env.d.ts",
+    "next.config.ts",
+    "pages",
+    "src",
+    "types",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["docs/.next", "docs/export", "node_modules"]
 }

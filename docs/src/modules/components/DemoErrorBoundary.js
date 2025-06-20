@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
  * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
  */
 function newGitHubIssueUrl(options) {
-  const url = `${process.env.SOURCE_CODE_REPO}/issues/new`;
+  const url = `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/issues/new`;
 
   const query = Object.keys(options)
     .map((type) => {
@@ -43,7 +43,7 @@ export default class DemoErrorBoundary extends React.Component {
 <!-- Please make sure you have fulfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
 - [ ] I have [searched for similar issues](${
-          process.env.SOURCE_CODE_REPO
+          process.env.NEXT_PUBLIC_SOURCE_CODE_REPO
         }/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
 ## Steps to reproduce
@@ -54,8 +54,8 @@ export default class DemoErrorBoundary extends React.Component {
 ## Your environment
 | Tech         | Version |
 |--------------|---------|
-| Version  | v${process.env.LIB_VERSION}  |
-| Netlify deploy | ${process.env.NETLIFY_DEPLOY_URL} |
+| Version  | v${process.env.NEXT_PUBLIC_LIB_VERSION}  |
+| Netlify deploy | ${process.env.NEXT_PUBLIC_NETLIFY_DEPLOY_URL} |
 | Browser      | ${
           typeof window !== 'undefined' && window.navigator
             ? window.navigator.userAgent

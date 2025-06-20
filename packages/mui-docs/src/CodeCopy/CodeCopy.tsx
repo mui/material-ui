@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from '../routing';
 import clipboardCopy from 'clipboard-copy';
 
 const CodeBlockContext = React.createContext<React.MutableRefObject<HTMLDivElement | null>>({

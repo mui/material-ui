@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import SignInSideTemplate from 'docs/data/joy/getting-started/templates/sign-in-side/App';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import { NextBProgressProvider } from '@mui/docs/BProgressBar';
 
 export default function SignInSide() {
   return (
@@ -16,8 +16,9 @@ export default function SignInSide() {
           rel="stylesheet"
         />
       </Head>
-      <NextNProgressBar />
-      <SignInSideTemplate />
+      <NextBProgressProvider>
+        <SignInSideTemplate />
+      </NextBProgressProvider>
     </React.Fragment>
   );
 }

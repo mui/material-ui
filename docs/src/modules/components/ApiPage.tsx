@@ -368,7 +368,7 @@ export default function ApiPage(props: ApiPageProps) {
             dangerouslySetInnerHTML={{
               __html: t('api-docs.seeSourceCode').replace(
                 '{{href}}',
-                `${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}${pageContent.filename}`,
+                `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/blob/v${process.env.NEXT_PUBLIC_LIB_VERSION}${pageContent.filename}`,
               ),
             }}
           />

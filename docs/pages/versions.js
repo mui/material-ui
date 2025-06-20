@@ -56,7 +56,7 @@ Page.getInitialProps = async () => {
   });
   // Current version.
   versions.push({
-    version: `v${process.env.LIB_VERSION}`,
+    version: `v${process.env.NEXT_PUBLIC_LIB_VERSION}`,
     url: 'https://mui.com',
   });
   // Legacy documentation.

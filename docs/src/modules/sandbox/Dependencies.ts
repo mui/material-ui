@@ -52,7 +52,7 @@ export default function SandboxDependencies(
   function getMuiPackageVersion(packageName: string): string {
     if (
       commitRef === undefined ||
-      process.env.SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
+      process.env.NEXT_PUBLIC_SOURCE_CODE_REPO !== 'https://github.com/mui/material-ui'
     ) {
       if (['joy', 'base'].includes(packageName)) {
         return 'latest';

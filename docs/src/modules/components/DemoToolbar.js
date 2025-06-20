@@ -368,13 +368,13 @@ export default function DemoToolbar(props) {
   });
 
   const devMenuItems = [];
-  if (process.env.DEPLOY_ENV === 'staging' || process.env.DEPLOY_ENV === 'pull-request') {
+  if (process.env.NEXT_PUBLIC_DEPLOY_ENV === 'staging' || process.env.NEXT_PUBLIC_DEPLOY_ENV === 'pull-request') {
     /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler -- valid reason to disable rules of hooks
     // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env never changes
     const router = useRouter();
 
-    if (process.env.PULL_REQUEST_ID) {
+    if (process.env.NEXT_PUBLIC_PULL_REQUEST_ID) {
       devMenuItems.push(
         <MenuItem
           key="link-deploy-preview"
@@ -382,12 +382,12 @@ export default function DemoToolbar(props) {
           data-ga-event-label={demo.gaLabel}
           data-ga-event-action="link-deploy-preview"
           component="a"
-          href={`https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+          href={`https://deploy-preview-${process.env.NEXT_PUBLIC_PULL_REQUEST_ID}--${process.env.NEXT_PUBLIC_NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
           target="_blank"
           rel="noopener nofollow"
           onClick={handleMoreClose}
         >
-          demo on PR #{process.env.PULL_REQUEST_ID}
+          demo on PR #{process.env.NEXT_PUBLIC_PULL_REQUEST_ID}
         </MenuItem>,
       );
     }
@@ -399,7 +399,7 @@ export default function DemoToolbar(props) {
         data-ga-event-label={demo.gaLabel}
         data-ga-event-action="link-next"
         component="a"
-        href={`https://next--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        href={`https://next--${process.env.NEXT_PUBLIC_NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
         target="_blank"
         rel="noopener nofollow"
         onClick={handleMoreClose}
@@ -412,7 +412,7 @@ export default function DemoToolbar(props) {
         data-ga-event-label={demo.gaLabel}
         data-ga-event-action="permalink"
         component="a"
-        href={`${process.env.NETLIFY_DEPLOY_URL}${router.route}#${demoName}`}
+        href={`${process.env.NEXT_PUBLIC_NETLIFY_DEPLOY_URL}${router.route}#${demoName}`}
         target="_blank"
         rel="noopener nofollow"
         onClick={handleMoreClose}
@@ -425,7 +425,7 @@ export default function DemoToolbar(props) {
         data-ga-event-label={demo.gaLabel}
         data-ga-event-action="link-master"
         component="a"
-        href={`https://master--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        href={`https://master--${process.env.NEXT_PUBLIC_NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
         target="_blank"
         rel="noopener nofollow"
         onClick={handleMoreClose}

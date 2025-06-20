@@ -3,11 +3,11 @@ import { pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {
   before(() => {
-    process.env.SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
+    process.env.NEXT_PUBLIC_SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
   });
 
   after(() => {
-    delete process.env.SOURCE_CODE_REPO;
+    delete process.env.NEXT_PUBLIC_SOURCE_CODE_REPO;
   });
 
   it('should return correct title', () => {

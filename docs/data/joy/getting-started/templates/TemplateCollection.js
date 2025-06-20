@@ -283,8 +283,8 @@ export default function TemplateCollection() {
                       .createJoyTemplate({
                         ...item,
                         title: `${startCase(template.name)} Template - Joy UI`,
-                        githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                          process.env.LIB_VERSION
+                        githubLocation: `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/blob/v${
+                          process.env.NEXT_PUBLIC_LIB_VERSION
                         }/docs/data/joy/templates/${template.name}/App.${
                           item.codeVariant === 'TS' ? 'tsx' : 'js'
                         }`,

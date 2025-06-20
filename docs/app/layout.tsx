@@ -1,0 +1,115 @@
+import 'docs/src/modules/components/bootstrap';
+// --- Post bootstrap -----
+import { getMetaThemeColor } from '@mui/docs/branding';
+import JoyInitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
+import MuiInitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+import { GenerateMetadataProps } from 'docs/src/modules/utils/createMetadata';
+import { defaultLanguage } from 'docs/src/modules/utils/i18n';
+import { Metadata, Viewport } from 'next';
+import Script from 'next/script';
+import * as React from 'react';
+import '../public/static/components-gallery/base-theme.css';
+import AppWrapper from './appWrapper';
+import './global.css';
+
+const PRODUCTION_GA =
+  process.env.NEXT_PUBLIC_DEPLOY_ENV === 'production' ||
+  process.env.NEXT_PUBLIC_DEPLOY_ENV === 'staging';
+
+const GOOGLE_ANALYTICS_ID_V4 = PRODUCTION_GA ? 'G-5NXDQLC2ZK' : 'G-XJ83JQEK7J';
+
+export const viewport: Viewport = {
+  // PWA primary color
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: getMetaThemeColor('light') },
+    { media: '(prefers-color-scheme: dark)', color: getMetaThemeColor('dark') },
+  ],
+};
+
+export async function generateMetadata(props: GenerateMetadataProps): Promise<Metadata> {
+  return {
+    icons: {
+      apple: { sizes: '180x180', url: '/static/icons/180x180.png' }, // iOS Icon
+      icon: '/static/favicon.ico',
+    },
+    /*
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    */
+    manifest: '/static/manifest.json',
+  };
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ lang?: string }>;
+}) {
+  const { lang } = await params;
+  const userLanguage = lang ?? defaultLanguage;
+
+  return (
+    <html lang={userLanguage} suppressHydrationWarning>
+      <body>
+        {/* ========== Font preload (prevent font flash) ============= */}
+        <link
+          rel="preload"
+          // optimized for english characters (40kb -> 6kb)
+          href="/static/fonts/GeneralSans-Semibold-subset.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <style
+          // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `@font-face{font-family:'General Sans';font-style:normal;font-weight:600;font-display:swap;src:url('/static/fonts/GeneralSans-Semibold-subset.woff2') format('woff2');}`,
+          }}
+        />
+        <link
+          rel="preload"
+          // optimized for english characters (40kb -> 6kb)
+          href="/static/fonts/IBMPlexSans-Regular-subset.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <style
+          // the above <link> does not work in mobile device, this inline <style> fixes it without blocking resources
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400;font-display:swap;src:url('/static/fonts/IBMPlexSans-Regular-subset.woff2') format('woff2');}`,
+          }}
+        />
+        <MuiInitColorSchemeScript defaultMode="system" />
+        <JoyInitColorSchemeScript defaultMode="system" />
+        <AppWrapper userLanguage={userLanguage}>{children}</AppWrapper>
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ANALYTICS_ID_V4}', {
+  send_page_view: false,
+});
+        `,
+          }}
+        />
+        {/**
+         * A better alternative to <script async>, to delay its execution
+         * https://developer.chrome.com/blog/script-component/
+         */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID_V4}`}
+        />
+      </body>
+    </html>
+  );
+}

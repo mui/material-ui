@@ -144,7 +144,9 @@ function createJoyTemplate(templateData: {
 
   // Get dependencies
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
-    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    commitRef: process.env.NEXT_PUBLIC_PULL_REQUEST_ID
+      ? process.env.NEXT_PUBLIC_COMMIT_REF
+      : undefined,
     devDeps: VITE_DEV_DEPENDENCIES,
   });
 
@@ -223,7 +225,9 @@ function createMaterialTemplate(templateData: {
 
   // Get dependencies
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
-    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    commitRef: process.env.NEXT_PUBLIC_PULL_REQUEST_ID
+      ? process.env.NEXT_PUBLIC_COMMIT_REF
+      : undefined,
     devDeps: VITE_DEV_DEPENDENCIES,
   });
 
@@ -291,7 +295,9 @@ function createReactApp(demoData: DemoData) {
 
   // Get dependencies
   const { dependencies, devDependencies } = SandboxDependencies(demoData, {
-    commitRef: process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined,
+    commitRef: process.env.NEXT_PUBLIC_PULL_REQUEST_ID
+      ? process.env.NEXT_PUBLIC_COMMIT_REF
+      : undefined,
     devDeps: VITE_DEV_DEPENDENCIES,
   });
 

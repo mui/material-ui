@@ -287,8 +287,8 @@ export default function TemplateFrame({ children }) {
                             ...item,
                             files: { ...item.files, ...materialTemplates.sharedTheme?.files },
                             title: `${templateName} Template - Material UI`,
-                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                              process.env.LIB_VERSION
+                            githubLocation: `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/blob/v${
+                              process.env.NEXT_PUBLIC_LIB_VERSION
                             }/docs/data/material/templates/${templateId}/${templateName}.${
                               item.codeVariant === 'TS' ? 'tsx' : 'js'
                             }`,
@@ -325,8 +325,8 @@ export default function TemplateFrame({ children }) {
                             ...item,
                             files: { ...item.files, ...materialTemplates.sharedTheme?.files },
                             title: `${templateName} Template - Material UI`,
-                            githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
-                              process.env.LIB_VERSION
+                            githubLocation: `${process.env.NEXT_PUBLIC_SOURCE_CODE_REPO}/blob/v${
+                              process.env.NEXT_PUBLIC_LIB_VERSION
                             }/docs/data/material/templates/${templateId}/${templateName}.${
                               item.codeVariant === 'TS' ? 'tsx' : 'js'
                             }`,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from '@mui/docs/routing';
 import Slide from '@mui/material/Slide';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -10,13 +10,16 @@ import MarkEmailReadTwoTone from '@mui/icons-material/MarkEmailReadTwoTone';
 
 export default function NewsletterToast() {
   const router = useRouter();
-  const [hidden, setHidden] = React.useState(router.query.newsletter !== 'subscribed');
+  const newsletterQuery = useSearchParams().getSearchParam('newsletter');
+  const [hidden, setHidden] = React.useState(newsletterQuery !== 'subscribed');
+
   React.useEffect(() => {
-    if (router.query.newsletter === 'subscribed') {
+    if (newsletterQuery === 'subscribed') {
       setHidden(false);
       router.replace(router.pathname);
     }
-  }, [router.query.newsletter, router]);
+  }, [newsletterQuery, router]);
+
   React.useEffect(() => {
     const time = setTimeout(() => {
       if (!hidden) {
@@ -27,6 +30,7 @@ export default function NewsletterToast() {
       clearTimeout(time);
     };
   }, [hidden]);
+  
   return (
     <Slide in={!hidden} timeout={400} direction="down">
       <Box sx={{ position: 'fixed', zIndex: 1300, top: 80, left: 0, width: '100%' }}>
