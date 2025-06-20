@@ -372,7 +372,7 @@ MyApp.getInitialProps = async ({ ctx, Component }) => {
 
   return {
     pageProps: {
-      userLanguage: 'en', // TODO
+      userLanguage: 'en',
       translations,
       ...pageProps,
     },
