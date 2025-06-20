@@ -101,13 +101,15 @@ function defaultGetTabbable(
   }
 
   focusableNodes.forEach((node, i) => {
-    const nodeTabIndex = getTabIndex(node as HTMLElement);
+    const element = node as HTMLElement;
+
+    const nodeTabIndex = getTabIndex(element);
 
     if (allowExplicitMinusOne && node.getAttribute('tabindex') === '-1') {
       orderedTabNodes.push({
         documentOrder: i,
         tabIndex: nodeTabIndex,
-        node: node as HTMLElement,
+        node: element,
       });
       return;
     }
@@ -117,16 +119,17 @@ function defaultGetTabbable(
     }
 
     if (nodeTabIndex === 0) {
-      regularTabNodes.push(node as HTMLElement);
+      regularTabNodes.push(element);
     } else {
       orderedTabNodes.push({
         documentOrder: i,
         tabIndex: nodeTabIndex,
-        node: node as HTMLElement,
+        node: element,
       });
     }
   });
 
+  // Sort by tabIndex ascending, then by DOM order
   return orderedTabNodes
     .sort((a, b) =>
       a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex,
