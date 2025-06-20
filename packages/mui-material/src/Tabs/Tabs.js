@@ -1,12 +1,12 @@
 'use client';
 import * as React from 'react';
-import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import refType from '@mui/utils/refType';
 import composeClasses from '@mui/utils/composeClasses';
 import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
+import useLazyRef from '@mui/utils/useLazyRef';
 import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -19,6 +19,7 @@ import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import useSlot from '../utils/useSlot';
+import TabsContext from './TabsContext';
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -284,6 +285,10 @@ const defaultIndicatorStyle = {};
 
 let warnedOnceTabPresent = false;
 
+function createMap() {
+  return new Map();
+}
+
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
@@ -375,9 +380,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scrollbarWidth: 0,
   });
 
-  const valueToIndex = new Map();
+  const valueToIndex = useLazyRef(createMap).current;
   const tabsRef = React.useRef(null);
   const tabListRef = React.useRef(null);
+  const childIndexRef = React.useRef(0);
 
   const externalForwardedProps = {
     slots,
@@ -777,41 +783,37 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     },
   });
 
-  const indicator = <IndicatorSlot {...indicatorSlotProps} />;
+  const indicator = React.useMemo(
+    () => <IndicatorSlot {...indicatorSlotProps} />,
+    [IndicatorSlot, indicatorSlotProps],
+  );
 
-  let childIndex = 0;
-  const children = React.Children.map(childrenProp, (child) => {
-    if (!React.isValidElement(child)) {
-      return null;
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      if (isFragment(child)) {
-        console.error(
-          [
-            "MUI: The Tabs component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
+  const registerTab = React.useCallback(
+    (tabValue) => {
+      const assignedIndex = childIndexRef.current;
+      const finalValue = tabValue === undefined ? assignedIndex : tabValue;
+      if (!valueToIndex.has(finalValue)) {
+        valueToIndex.set(finalValue, assignedIndex);
       }
-    }
+      childIndexRef.current += 1;
+      return { finalValue, assignedIndex };
+    },
+    [valueToIndex],
+  );
 
-    const childValue = child.props.value === undefined ? childIndex : child.props.value;
-    valueToIndex.set(childValue, childIndex);
-    const selected = childValue === value;
-
-    childIndex += 1;
-    return React.cloneElement(child, {
+  const tabsContextValue = React.useMemo(
+    () => ({
       fullWidth: variant === 'fullWidth',
-      indicator: selected && !mounted && indicator,
-      selected,
+      indicator,
+      mounted,
       selectionFollowsFocus,
       onChange,
       textColor,
-      value: childValue,
-      ...(childIndex === 1 && value === false && !child.props.tabIndex ? { tabIndex: 0 } : {}),
-    });
-  });
+      tabsValue: value,
+      registerTab,
+    }),
+    [variant, indicator, mounted, selectionFollowsFocus, onChange, textColor, value, registerTab],
+  );
 
   const handleKeyDown = (event) => {
     // Check if a modifier key (Alt, Shift, Ctrl, Meta) is pressed
@@ -917,7 +919,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           role="tablist"
           {...listSlotProps}
         >
-          {children}
+          <TabsContext.Provider value={tabsContextValue}>{childrenProp}</TabsContext.Provider>
         </ListSlot>
         {mounted && indicator}
       </ScrollerSlot>
