@@ -52,9 +52,9 @@ export async function getMany({
           case 'endsWith':
             return String(employeeValue).toLowerCase().endsWith(String(value).toLowerCase());
           case '>':
-            return (employeeValue as number) > value;
+            return employeeValue > value;
           case '<':
-            return (employeeValue as number) < value;
+            return employeeValue < value;
           default:
             return true;
         }
@@ -88,8 +88,86 @@ export async function getMany({
   };
 }
 
+export async function getOne(employeeId: number) {
+  const employeesStore = getEmployeesStore();
+
+  const employeeToShow = employeesStore.find((employee) => employee.id === employeeId);
+
+  if (!employeeToShow) {
+    throw new Error('Employee not found');
+  }
+  return employeeToShow;
+}
+
+export async function createOne(data: Omit<Employee, 'id'>) {
+  const employeesStore = getEmployeesStore();
+
+  const newEmployee = {
+    id: employeesStore.reduce((max, employee) => Math.max(max, employee.id), 0) + 1,
+    ...data,
+  };
+
+  setEmployeesStore([...employeesStore, newEmployee]);
+
+  return newEmployee;
+}
+
+export async function updateOne(employeeId: number, data: Partial<Omit<Employee, 'id'>>) {
+  const employeesStore = getEmployeesStore();
+
+  let updatedEmployee: Employee | null = null;
+
+  setEmployeesStore(
+    employeesStore.map((employee) => {
+      if (employee.id === employeeId) {
+        updatedEmployee = { ...employee, ...data };
+        return updatedEmployee;
+      }
+      return employee;
+    }),
+  );
+
+  if (!updatedEmployee) {
+    throw new Error('Employee not found');
+  }
+  return updatedEmployee;
+}
+
 export async function deleteOne(employeeId: number) {
   const employeesStore = getEmployeesStore();
 
   setEmployeesStore(employeesStore.filter((employee) => employee.id !== employeeId));
+}
+
+// Validation follows the [Standard Schema](https://github.com/standard-schema/standard-schema).
+
+type ValidationResult = { issues: { message: string; path: (keyof Employee)[] }[] };
+
+export function validate(employee: Partial<Employee>): ValidationResult {
+  let issues: ValidationResult['issues'] = [];
+
+  if (!employee.name) {
+    issues = [...issues, { message: 'Name is required', path: ['name'] }];
+  }
+
+  if (!employee.age) {
+    issues = [...issues, { message: 'Age is required', path: ['age'] }];
+  } else if (employee.age < 18) {
+    issues = [...issues, { message: 'Age must be at least 18', path: ['age'] }];
+  }
+
+  if (!employee.joinDate) {
+    issues = [...issues, { message: 'Join date is required', path: ['joinDate'] }];
+  }
+
+  if (!employee.role) {
+    issues = [...issues, { message: 'Role is required', path: ['role'] }];
+  } else if (!['Market', 'Finance', 'Development'].includes(employee.role)) {
+    issues = [
+      ...issues,
+      { message: 'Role must be "Market", "Finance" or "Development"', path: ['role'] },
+    ];
+  }
+
+  return { issues };
 }

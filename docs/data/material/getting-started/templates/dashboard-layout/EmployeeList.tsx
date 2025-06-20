@@ -21,18 +21,18 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
-import PageContainer from '../components/PageContainer';
-import { useDialogs } from '../hooks/useDialogs/useDialogs';
-import { useNotifications } from '../hooks/useNotifications/useNotifications';
+import PageContainer from './components/PageContainer';
+import { useDialogs } from './hooks/useDialogs/useDialogs';
+import { useNotifications } from './hooks/useNotifications/useNotifications';
 import {
   deleteOne as deleteEmployee,
   getMany as getEmployees,
   type Employee,
-} from '../data/employees';
+} from './data/employees';
 
 const INITIAL_PAGE_SIZE = 10;
 
-export default function CrudList() {
+export default function EmployeeList() {
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -254,10 +254,12 @@ export default function CrudList() {
     [],
   );
 
+  const pageTitle = 'Employees';
+
   return (
     <PageContainer
-      title="Employees"
-      breadcrumbs={[{ title: 'Home', path: '/' }, { title: 'Employees' }]}
+      title={pageTitle}
+      breadcrumbs={[{ title: 'Home', path: '/' }, { title: pageTitle }]}
     >
       <Stack sx={{ flex: 1, width: '100%' }}>
         {error ? (
