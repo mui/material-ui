@@ -285,6 +285,10 @@ const defaultIndicatorStyle = {};
 
 let warnedOnceTabPresent = false;
 
+function createMap() {
+  return new Map();
+}
+
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiTabs' });
   const theme = useTheme();
@@ -376,7 +380,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scrollbarWidth: 0,
   });
 
-  const valueToIndex = useLazyRef(() => new Map()).current;
+  const valueToIndex = useLazyRef(createMap).current;
   const tabsRef = React.useRef(null);
   const tabListRef = React.useRef(null);
   const childIndexRef = React.useRef(0);
