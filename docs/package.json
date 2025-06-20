@@ -124,7 +124,6 @@
     "@types/gtag.js": "^0.0.20",
     "@types/json2mq": "^0.2.2",
     "@types/node": "^20.19.0",
-    "@types/nprogress": "^0.2.3",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
