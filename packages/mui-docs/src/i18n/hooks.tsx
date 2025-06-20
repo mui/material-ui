@@ -1,5 +1,4 @@
 import deepmerge from '@mui/utils/deepmerge';
-import PropTypes from 'prop-types';
 import * as React from 'react';
 import defaultTranslations from '../translations';
 import { translate, Translate, TranslateOptions, Translations } from './utils';
@@ -17,7 +16,7 @@ function TranslationsProvider({ translations = {}, children }: TranslationsProvi
     () => deepmerge(currentTranslations, translations),
     [currentTranslations, translations],
   );
-  
+
   return (
     <TranslationsContext.Provider value={mergedTranslations}>
       {children}
@@ -59,11 +58,6 @@ export function UserLanguageProvider(props: UserLanguageProviderProps) {
     </TranslationsProvider>
   );
 }
-
-UserLanguageProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  defaultUserLanguage: PropTypes.string,
-};
 
 export function useUserLanguage() {
   return React.useContext(UserLanguageContext).userLanguage;
