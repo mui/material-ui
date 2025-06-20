@@ -119,25 +119,29 @@
       "key": "inputAdornedEnd",
       "className": "MuiOutlinedInput-inputAdornedEnd",
       "description": "Styles applied to the input element if `endAdornment` is provided.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputAdornedStart",
       "className": "MuiOutlinedInput-inputAdornedStart",
       "description": "Styles applied to the input element if `startAdornment` is provided.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputMultiline",
       "className": "MuiOutlinedInput-inputMultiline",
       "description": "Styles applied to the input element if `multiline={true}`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputSizeSmall",
       "className": "MuiOutlinedInput-inputSizeSmall",
       "description": "Styles applied to the input element if `size=\"small\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputTypeSearch",
