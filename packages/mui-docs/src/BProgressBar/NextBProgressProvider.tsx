@@ -1,4 +1,5 @@
-import { AppProgressProvider, PagesProgressProvider, Progress } from '@bprogress/next';
+import { AppProgressProvider, PagesProgressProvider, Progress, useProgress } from '@bprogress/next';
+import { NoSsr } from '@mui/base/NoSsr';
 import { keyframes, styled } from '@mui/material/styles';
 import { useRouter as useCompatRouter } from 'next/compat/router';
 import * as React from 'react';
@@ -62,6 +63,16 @@ const CustomProgress = styled(Progress)(({ theme }) => ({
   },
 }));
 
+function StopOnUnmount() {
+  const progress = useProgress();
+
+  React.useEffect(() => {
+    return () => progress.stop();
+  }, []);
+
+  return null;
+}
+
 export function NextBProgressProvider(props: Props) {
   const compatRouter = useCompatRouter();
 
@@ -75,17 +86,23 @@ export function NextBProgressProvider(props: Props) {
 
   if (compatRouter) {
     return (
-      <PagesProgressProvider {...commonProviderProps}>
-        <CustomProgress />
-        {props.children}
-      </PagesProgressProvider>
+      <NoSsr>
+        <PagesProgressProvider {...commonProviderProps}>
+          <CustomProgress />
+          <StopOnUnmount />
+          {props.children}
+        </PagesProgressProvider>
+      </NoSsr>
     );
   }
 
   return (
-    <AppProgressProvider {...commonProviderProps}>
-      <CustomProgress />
-      {props.children}
-    </AppProgressProvider>
+    <NoSsr>
+      <AppProgressProvider {...commonProviderProps}>
+        <CustomProgress />
+        <StopOnUnmount />
+        {props.children}
+      </AppProgressProvider>
+    </NoSsr>
   );
 }
