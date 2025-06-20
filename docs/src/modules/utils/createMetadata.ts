@@ -1,7 +1,7 @@
 import { translate } from '@mui/docs/i18n/utils';
 import { deepmerge } from '@mui/utils';
 import { Metadata } from 'next';
-import { getTranslations, getUserLanguageFromMetadata } from './i18n';
+import { defaultLanguage, getTranslations } from './i18n';
 
 export interface GenerateMetadataProps<T = unknown> {
   params: Promise<{ lang?: string } & T>;
@@ -22,8 +22,8 @@ export default async function createMetadata(
     type?: 'website';
   } & Metadata,
 ): Promise<Metadata> {
+  const userLanguage = (await generateProps.params).lang ?? defaultLanguage;
   const translations = getTranslations();
-  const userLanguage = await getUserLanguageFromMetadata(generateProps);
 
   const {
     card = '/static/social-previews/home-preview.jpg',
