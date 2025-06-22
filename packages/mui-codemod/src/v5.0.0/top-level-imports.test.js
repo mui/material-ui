@@ -42,6 +42,37 @@ describe('@mui/codemod', () => {
         const expected = read('./top-level-imports.test/expected.js');
         expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
+
+      it('should not transform color imports from @mui/material/colors', () => {
+        const input = `
+          import { grey, blue } from '@mui/material/colors';
+        `;
+
+        const expected = `
+          import { grey, blue } from '@mui/material/colors';
+        `;
+
+        const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
+        expect(trim(actual)).to.equal(trim(expected), 'Color imports should not be transformed');
+      });
+
+      it('should not transform individual color imports', () => {
+        const input = `
+          import { grey } from '@mui/material/colors';
+          import { blue } from '@mui/material/colors';
+        `;
+
+        const expected = `
+          import { grey } from '@mui/material/colors';
+          import { blue } from '@mui/material/colors';
+        `;
+
+        const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
+        expect(trim(actual)).to.equal(
+          trim(expected),
+          'Individual color imports should not be transformed',
+        );
+      });
     });
   });
 });
