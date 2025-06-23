@@ -1,4 +1,4 @@
-import type { Route } from './+types/home';
+import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -7,7 +7,7 @@ import { Link as ReactRouterLink } from 'react-router';
 import ProTip from '~/components/ProTip';
 import Copyright from '~/components/Copyright';
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: 'Material UI - React Router example in TypeScript' },
     {
