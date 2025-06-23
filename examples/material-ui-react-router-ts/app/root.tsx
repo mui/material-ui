@@ -8,11 +8,11 @@ import {
   ScrollRestoration,
 } from 'react-router';
 import { CacheProvider } from '@emotion/react';
+import Box from '@mui/material/Box';
 import AppTheme from './theme';
 import createEmotionCache from './createCache';
 
 import type { Route } from './+types/root';
-import './app.css';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -79,14 +79,14 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <Box component="main" sx={{ pt: 8, p: 2, maxWidth: 'lg', mx: 'auto' }}>
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <Box component="pre" sx={{ width: '100%', p: 2, overflowX: 'auto' }}>
           <code>{stack}</code>
-        </pre>
+        </Box>
       )}
-    </main>
+    </Box>
   );
 }

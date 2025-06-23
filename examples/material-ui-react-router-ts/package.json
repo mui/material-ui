@@ -13,7 +13,6 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@react-router/node": "latest",
     "@react-router/serve": "latest",
@@ -24,11 +23,9 @@
   },
   "devDependencies": {
     "@react-router/dev": "latest",
-    "@tailwindcss/vite": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "tailwindcss": "latest",
     "typescript": "latest",
     "vite": "latest",
     "vite-tsconfig-paths": "latest"

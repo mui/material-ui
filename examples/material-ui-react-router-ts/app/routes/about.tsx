@@ -2,22 +2,22 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
 import { Link as ReactRouterLink } from 'react-router';
 import ProTip from '~/components/ProTip';
 import Copyright from '~/components/Copyright';
 
 export function meta() {
   return [
-    { title: 'Material UI - React Router example in TypeScript' },
+    { title: 'About' },
     {
       name: 'description',
-      content: 'Welcome to Material UI - React Router example in TypeScript!',
+      content: 'About the project',
     },
   ];
 }
 
-export default function Home() {
+export default function About() {
   return (
     <Container maxWidth="lg">
       <Box
@@ -30,11 +30,13 @@ export default function Home() {
         }}
       >
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
-          Material UI - Next.js App Router example in TypeScript
+          Material UI - Next.js example in TypeScript
         </Typography>
-        <Link to="/about" color="secondary" component={ReactRouterLink}>
-          Go to the about page
-        </Link>
+        <Box sx={{ maxWidth: 'sm' }}>
+          <Button variant="contained" component={ReactRouterLink} to="/">
+            Go to the home page
+          </Button>
+        </Box>
         <ProTip />
         <Copyright />
       </Box>

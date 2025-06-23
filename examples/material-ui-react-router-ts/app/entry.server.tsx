@@ -55,13 +55,10 @@ export default function handleRequest(
               // Extract emotion styles from the collected HTML
               const styles = constructStyleTagsFromChunks(extractCriticalToChunks(html));
 
-              // Find where to inject styles (after emotion-insertion-point)
               if (styles) {
                 const injectedHtml = html.replace('</head>', `${styles}</head>`);
-                // Write the modified HTML
                 this.push(injectedHtml);
               } else {
-                // No modification needed, write original HTML
                 this.push(html);
               }
 
