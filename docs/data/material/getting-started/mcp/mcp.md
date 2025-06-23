@@ -60,7 +60,7 @@ Apart from the setup provided above, VS Code requires the following conditions 
 
 ### Zed
 
-There are two ways you can add the Material UI MCP server in Zed:
+There are two ways you can add the Material UI MCP server in Zed:
 
 #### As an extension
 
@@ -71,7 +71,7 @@ No configuration is required to have this server working, but you can optionally
 
 #### As a custom server
 
-This approach is essentially the same as adding it in VS Code and forks.
+This approach is essentially the same as adding it in VS Code and forks.
 
 1. Search for `agent: add context server` in the Command Palette.
 2. Add the following JSON in the modal:
