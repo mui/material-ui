@@ -4,16 +4,18 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const FILENAME = fileURLToPath(import.meta.url);
+const DIRNAME = path.dirname(FILENAME);
 
 // Get the project root directory
-const projectRoot = path.resolve(__dirname, '..');
+const projectRoot = path.resolve(DIRNAME, '..');
 const nodeModulesPath = path.join(projectRoot, 'node_modules');
 
 // Detect package manager
 function detectPackageManager() {
-  if (fs.existsSync(path.join(projectRoot, 'pnpm-lock.yaml'))) return 'pnpm';
+  if (fs.existsSync(path.join(projectRoot, 'pnpm-lock.yaml'))) {
+    return 'pnpm';
+  }
   if (fs.existsSync(path.join(projectRoot, 'yarn.lock'))) {
     // Check for Yarn 2+ with PnP
     if (
@@ -24,7 +26,9 @@ function detectPackageManager() {
     }
     return 'yarn';
   }
-  if (fs.existsSync(path.join(projectRoot, 'package-lock.json'))) return 'npm';
+  if (fs.existsSync(path.join(projectRoot, 'package-lock.json'))) {
+    return 'npm';
+  }
   return 'unknown';
 }
 
@@ -67,8 +71,8 @@ emotionPackages.forEach((packageName) => {
     packageJson.type = 'module';
 
     // Write back the modified package.json
-    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
-    patchedCount++;
+    fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
+    patchedCount += 1;
   } catch (error) {
     // Silent error handling
   }
