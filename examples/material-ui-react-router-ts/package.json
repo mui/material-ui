@@ -5,11 +5,8 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "predev": "node scripts/patch-emotion-packages.js",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
-    "patch:emotion": "node scripts/patch-emotion-packages.js",
-    "unpatch:emotion": "node scripts/unpatch-emotion-packages.js"
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@emotion/cache": "latest",
