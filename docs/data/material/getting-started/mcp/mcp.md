@@ -58,6 +58,34 @@ Apart from the setup provided above, VS Code requires the following conditions 
   "chat.mcp.discovery.enabled": true
 ```
 
+### Zed
+
+There are two ways you can add the Material UI MCP server in Zed:
+
+#### As an extension
+
+Go to the Extensions page either via the keybinding `cmd-shift-x`/`ctrl-shift-x` (macOS/Linux), or via the Command Palette, searching for `zed: extensions`.
+
+Then, search for "MUI MCP" and install the extension.
+No configuration is required to have this server working, but you can optionally add the `preferred_theme` and `component_filter` fields.
+
+#### As a custom server
+
+This approach is essentially the same as adding it in VS Code and forks.
+
+1. Search for `agent: add context server` in the Command Palette.
+2. Add the following JSON in the modal:
+
+```json
+{
+  "mui-mcp-server": {
+    "command": {
+      "path": "npx",
+      "args": ["-y", "@mui/mcp@latest"]
+      "env": {}
+    }
+  }
+}
 ## Example
 
 Here's a real-world comparison of how MCP helps you get answers that are accurate, up-to-date, and directly reference the official docs.
