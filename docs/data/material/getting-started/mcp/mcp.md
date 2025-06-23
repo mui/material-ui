@@ -86,6 +86,8 @@ This approach is essentially the same as adding it in VS Code and forks.
     }
   }
 }
+```
+
 ## Example
 
 Here's a real-world comparison of how MCP helps you get answers that are accurate, up-to-date, and directly reference the official docs.
