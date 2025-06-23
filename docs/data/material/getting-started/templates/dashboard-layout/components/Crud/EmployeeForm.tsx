@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import FormHelperText from '@mui/material/FormHelperText';
 import Grid from '@mui/material/Grid';
@@ -13,7 +15,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, { Dayjs } from 'dayjs';
-import type { Employee } from './data/employees';
+import type { Employee } from '../../Crud/data/employees';
 
 export interface EmployeeFormState {
   values: Partial<Omit<Employee, 'id'>>;
@@ -71,6 +73,13 @@ export default function EmployeeForm(props: EmployeeFormProps) {
         event.target.name as keyof EmployeeFormState['values'],
         Number(event.target.value),
       );
+    },
+    [onFieldChange],
+  );
+
+  const handleCheckboxFieldChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+      onFieldChange(event.target.name as keyof EmployeeFormState['values'], checked);
     },
     [onFieldChange],
   );
@@ -176,6 +185,26 @@ export default function EmployeeForm(props: EmployeeFormProps) {
                 <MenuItem value="Development">Development</MenuItem>
               </Select>
               <FormHelperText>{formErrors.role ?? ' '}</FormHelperText>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} sx={{ mb: 2, width: '100%' }}>
+          <Grid size={{ xs: 12, sm: 6 }} sx={{ display: 'flex' }}>
+            <FormControl>
+              <FormControlLabel
+                name="isFullTime"
+                control={
+                  <Checkbox
+                    size="large"
+                    checked={formValues.isFullTime ?? false}
+                    onChange={handleCheckboxFieldChange}
+                  />
+                }
+                label="Full-time"
+              />
+              <FormHelperText error={!!formErrors.isFullTime}>
+                {formErrors.isFullTime ?? ' '}
+              </FormHelperText>
             </FormControl>
           </Grid>
         </Grid>

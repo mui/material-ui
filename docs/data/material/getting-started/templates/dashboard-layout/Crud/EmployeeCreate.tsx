@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router';
 import EmployeeForm, {
   type FormFieldValue,
   type EmployeeFormState,
-} from './EmployeeForm';
-import PageContainer from './components/PageContainer';
-import { useNotifications } from './hooks/useNotifications/useNotifications';
+} from '../components/Crud/EmployeeForm';
+import PageContainer from '../components/PageContainer';
+import { useNotifications } from '../hooks/useNotifications/useNotifications';
 import {
   createOne as createEmployee,
   validate as validateEmployee,
@@ -14,6 +14,7 @@ import {
 
 const INITIAL_FORM_VALUES: Partial<EmployeeFormState['values']> = {
   role: 'Market',
+  isFullTime: true,
 };
 
 export default function EmployeeCreate() {

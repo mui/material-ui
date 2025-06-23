@@ -7,17 +7,19 @@ import List from '@mui/material/List';
 import Toolbar from '@mui/material/Toolbar';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PersonIcon from '@mui/icons-material/Person';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
-import LayersIcon from '@mui/icons-material/Layers';
 import { matchPath, useLocation } from 'react-router';
-import { DashboardSidebarContext } from './context';
-import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from './constants';
-import DashboardSidebarPageItem from './components/DashboardSidebar/DashboardSidebarPageItem';
-import DashboardSidebarHeaderItem from './components/DashboardSidebar/DashboardSidebarHeaderItem';
-import DashboardSidebarDividerItem from './components/DashboardSidebar/DashboardSidebarDividerItem';
-import { getDrawerSxTransitionMixin, getDrawerWidthTransitionMixin } from './mixins';
+import { DashboardSidebarContext } from '../context';
+import { DRAWER_WIDTH, MINI_DRAWER_WIDTH } from '../constants';
+import DashboardSidebarPageItem from '../components/DashboardLayout/DashboardSidebar/DashboardSidebarPageItem';
+import DashboardSidebarHeaderItem from '../components/DashboardLayout/DashboardSidebar/DashboardSidebarHeaderItem';
+import DashboardSidebarDividerItem from '../components/DashboardLayout/DashboardSidebar/DashboardSidebarDividerItem';
+import {
+  getDrawerSxTransitionMixin,
+  getDrawerWidthTransitionMixin,
+} from '../mixins';
 
 export interface DashboardSidebarProps {
   expanded?: boolean;
@@ -136,7 +138,7 @@ export default function DashboardSidebar({
                 width: mini ? MINI_DRAWER_WIDTH : 'auto',
               }}
             >
-              <DashboardSidebarHeaderItem>Main items</DashboardSidebarHeaderItem>
+              <DashboardSidebarHeaderItem>Basic</DashboardSidebarHeaderItem>
               <DashboardSidebarPageItem
                 id="dashboard"
                 title="Dashboard"
@@ -144,15 +146,17 @@ export default function DashboardSidebar({
                 href="/"
                 selected={!!matchPath('/', pathname)}
               />
+              <DashboardSidebarDividerItem />
+              <DashboardSidebarHeaderItem>CRUD</DashboardSidebarHeaderItem>
               <DashboardSidebarPageItem
-                id="orders"
-                title="Orders"
-                icon={<ShoppingCartIcon />}
-                href="/orders"
-                selected={!!matchPath('/orders', pathname)}
+                id="employees"
+                title="Employees"
+                icon={<PersonIcon />}
+                href="/employees"
+                selected={!!matchPath('/employees', pathname)}
               />
               <DashboardSidebarDividerItem />
-              <DashboardSidebarHeaderItem>Analytics</DashboardSidebarHeaderItem>
+              <DashboardSidebarHeaderItem>Nested</DashboardSidebarHeaderItem>
               <DashboardSidebarPageItem
                 id="reports"
                 title="Reports"
@@ -185,13 +189,6 @@ export default function DashboardSidebar({
                     />
                   </List>
                 }
-              />
-              <DashboardSidebarPageItem
-                id="integrations"
-                title="Integrations"
-                icon={<LayersIcon />}
-                href="/integrations"
-                selected={!!matchPath('/integrations', pathname)}
               />
             </List>
           </DashboardSidebarContext.Provider>

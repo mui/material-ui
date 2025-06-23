@@ -6,9 +6,9 @@ import { useNavigate, useParams } from 'react-router';
 import EmployeeForm, {
   type FormFieldValue,
   type EmployeeFormState,
-} from './EmployeeForm';
-import PageContainer from './components/PageContainer';
-import { useNotifications } from './hooks/useNotifications/useNotifications';
+} from '../components/Crud/EmployeeForm';
+import PageContainer from '../components/PageContainer';
+import { useNotifications } from '../hooks/useNotifications/useNotifications';
 import {
   getOne as getEmployee,
   updateOne as updateEmployee,

@@ -5,9 +5,13 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import DashboardLayoutHeader from './DashboardHeader';
-import DashboardLayoutSidebar from './DashboardSidebar';
+import DashboardLayoutHeader from './DashboardLayout/DashboardHeader';
+import DashboardLayoutSidebar from './DashboardLayout/DashboardSidebar';
 import PageContainer from './components/PageContainer';
+import EmployeeList from './Crud/EmployeeList';
+import EmployeeShow from './Crud/EmployeeShow';
+import EmployeeCreate from './Crud/EmployeeCreate';
+import EmployeeEdit from './Crud/EmployeeEdit';
 
 function HomePage() {
   const theme = useTheme();
@@ -98,6 +102,22 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
+  },
+  {
+    path: '/employees',
+    element: <EmployeeList />,
+  },
+  {
+    path: '/employees/:employeeId',
+    element: <EmployeeShow />,
+  },
+  {
+    path: '/employees/new',
+    element: <EmployeeCreate />,
+  },
+  {
+    path: '/employees/:employeeId/edit',
+    element: <EmployeeEdit />,
   },
 ]);
 

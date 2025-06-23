@@ -8,6 +8,7 @@ export interface Employee {
   age: number;
   joinDate: string;
   role: EmployeeRole;
+  isFullTime: boolean;
 }
 
 export function getEmployeesStore(): Employee[] {
@@ -139,7 +140,7 @@ export async function deleteOne(employeeId: number) {
   setEmployeesStore(employeesStore.filter((employee) => employee.id !== employeeId));
 }
 
-// Validation follows the [Standard Schema](https://github.com/standard-schema/standard-schema).
+// Validation follows the [Standard Schema](https://standardschema.dev/).
 
 type ValidationResult = { issues: { message: string; path: (keyof Employee)[] }[] };
 

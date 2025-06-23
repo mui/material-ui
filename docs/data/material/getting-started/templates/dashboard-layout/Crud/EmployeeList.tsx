@@ -21,9 +21,9 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
-import PageContainer from './components/PageContainer';
-import { useDialogs } from './hooks/useDialogs/useDialogs';
-import { useNotifications } from './hooks/useNotifications/useNotifications';
+import PageContainer from '../components/PageContainer';
+import { useDialogs } from '../hooks/useDialogs/useDialogs';
+import { useNotifications } from '../hooks/useNotifications/useNotifications';
 import {
   deleteOne as deleteEmployee,
   getMany as getEmployees,
@@ -230,6 +230,7 @@ export default function EmployeeList() {
         valueOptions: ['Market', 'Finance', 'Development'],
         width: 160,
       },
+      { field: 'isFullTime', headerName: 'Full-time', type: 'boolean' },
       {
         field: 'actions',
         type: 'actions',

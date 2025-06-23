@@ -12,9 +12,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate, useParams } from 'react-router';
 import dayjs from 'dayjs';
-import PageContainer from './components/PageContainer';
-import { useDialogs } from './hooks/useDialogs/useDialogs';
-import { useNotifications } from './hooks/useNotifications/useNotifications';
+import PageContainer from '../components/PageContainer';
+import { useDialogs } from '../hooks/useDialogs/useDialogs';
+import { useNotifications } from '../hooks/useNotifications/useNotifications';
 import {
   deleteOne as deleteEmployee,
   getOne as getEmployee,
@@ -159,6 +159,14 @@ export default function EmployeeShow() {
               <Typography variant="overline">Department</Typography>
               <Typography variant="body1" sx={{ mb: 1 }}>
                 {employee.role}
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid size={{ xs: 12, sm: 6 }}>
+            <Paper sx={{ px: 2, py: 1 }}>
+              <Typography variant="overline">Full-time</Typography>
+              <Typography variant="body1" sx={{ mb: 1 }}>
+                {employee.isFullTime ? 'Yes' : 'No'}
               </Typography>
             </Paper>
           </Grid>
