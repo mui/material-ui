@@ -156,12 +156,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/toolpad/core/react-dashboard-layout/',
             title: 'Dashboard Layout',
-            newFeature: true,
           },
           {
             pathname: '/toolpad/core/react-sign-in-page/',
             title: 'Sign-in Page',
-            newFeature: true,
           },
         ],
       },

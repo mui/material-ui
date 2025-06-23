@@ -3242,8 +3242,8 @@ export const roRO: Localization = {
           return 'Mergi la pagina precedentă';
         },
         labelRowsPerPage: 'Rânduri pe pagină:',
-        // labelDisplayedRows: ({ from, to, count }) =>
-        //   `${from}–${to} din ${count !== -1 ? count : `more than ${to}`}`,
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}–${to} din ${count !== -1 ? count : `mai mult de ${to}`}`,
       },
     },
     MuiRating: {
