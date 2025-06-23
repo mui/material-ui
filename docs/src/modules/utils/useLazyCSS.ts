@@ -21,10 +21,10 @@ export default function useLazyCSS(href: string, before: string, options: { laye
 
     // With layer option, we need to fetch the CSS content and wrap it
     let styleElement: HTMLStyleElement | null = null;
-    const abortController = new AbortController();
+    let canceled = false;
 
     // Fetch the CSS content directly to avoid CORS issues with cssRules
-    fetch(href, { signal: abortController.signal })
+    fetch(href)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to fetch CSS: ${response.statusText}`);
@@ -32,6 +32,10 @@ export default function useLazyCSS(href: string, before: string, options: { laye
         return response.text();
       })
       .then((cssText) => {
+        if (canceled) {
+          return;
+        }
+
         // Create a style element with the CSS wrapped in the specified layer
         styleElement = document.createElement('style');
         styleElement.setAttribute('data-href', href);
@@ -60,7 +64,7 @@ export default function useLazyCSS(href: string, before: string, options: { laye
     // Cleanup function
     return () => {
       // Cancel any pending fetch
-      abortController.abort();
+      canceled = true;
 
       // Remove the style element if it was created
       if (styleElement && styleElement.parentElement) {
