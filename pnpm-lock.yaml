@@ -534,7 +534,7 @@ importers:
         version: 7.27.1(@babel/core@7.27.4)
       '@pigment-css/vite-plugin':
         specifier: 0.0.30
-        version: 0.0.30(@types/react@19.1.8)(react@19.1.0)(typescript@5.8.3)(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
+        version: 0.0.30(@types/react@19.1.8)(react@19.1.0)(typescript@5.8.3)(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
       '@types/react':
         specifier: ^19.1.8
         version: 19.1.8
@@ -546,7 +546,7 @@ importers:
         version: 1.6.38
       '@vitejs/plugin-react':
         specifier: ^4.5.2
-        version: 4.5.2(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
+        version: 4.5.2(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
@@ -554,14 +554,14 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(postcss@8.5.6)
       vite:
-        specifier: 5.4.18
-        version: 5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
+        specifier: 5.4.19
+        version: 5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
       vite-plugin-node-polyfills:
         specifier: 0.23.0
-        version: 0.23.0(rollup@4.40.0)(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
+        version: 0.23.0(rollup@4.40.0)(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
       vite-plugin-pages:
         specifier: ^0.33.0
-        version: 0.33.0(@vue/compiler-sfc@3.5.14)(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
+        version: 0.33.0(@vue/compiler-sfc@3.5.14)(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))
 
   docs:
     dependencies:
@@ -13916,8 +13916,8 @@ packages:
       vue-router:
         optional: true
 
-  vite@5.4.18:
-    resolution: {integrity: sha512-1oDcnEp3lVyHCuQ2YFelM4Alm2o91xNoMncRm1U7S+JdYfYOvbiGZ3/CxGttrOu2M/KcGz7cRC2DoNUA6urmMA==}
+  vite@5.4.19:
+    resolution: {integrity: sha512-qO3aKv3HoQC8QKiNSTuUM1l9o/XX3+c+VTgLHbJWHZGeTPVAg2XwazI9UWzoxjIJCGCV2zU60uqMzjeLZuULqA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -17990,7 +17990,7 @@ snapshots:
       - typescript
       - webpack-sources
 
-  '@pigment-css/vite-plugin@0.0.30(@types/react@19.1.8)(react@19.1.0)(typescript@5.8.3)(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))':
+  '@pigment-css/vite-plugin@0.0.30(@types/react@19.1.8)(react@19.1.0)(typescript@5.8.3)(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))':
     dependencies:
       '@babel/core': 7.27.4
       '@babel/preset-typescript': 7.27.1(@babel/core@7.27.4)
@@ -17998,7 +17998,7 @@ snapshots:
       '@wyw-in-js/shared': 0.5.5
       '@wyw-in-js/transform': 0.5.5(typescript@5.8.3)
       babel-plugin-define-var: 0.1.0
-      vite: 5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
+      vite: 5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -19511,7 +19511,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vitejs/plugin-react@4.5.2(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))':
+  '@vitejs/plugin-react@4.5.2(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0))':
     dependencies:
       '@babel/core': 7.27.4
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.27.4)
@@ -19519,7 +19519,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.11
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
+      vite: 5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -28951,15 +28951,15 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-node-polyfills@0.23.0(rollup@4.40.0)(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)):
+  vite-plugin-node-polyfills@0.23.0(rollup@4.40.0)(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.40.0)
       node-stdlib-browser: 1.2.0
-      vite: 5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
+      vite: 5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
     transitivePeerDependencies:
       - rollup
 
-  vite-plugin-pages@0.33.0(@vue/compiler-sfc@3.5.14)(vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)):
+  vite-plugin-pages@0.33.0(@vue/compiler-sfc@3.5.14)(vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)):
     dependencies:
       '@types/debug': 4.1.12
       debug: 4.4.1(supports-color@8.1.1)
@@ -28970,14 +28970,14 @@ snapshots:
       micromatch: 4.0.8
       picocolors: 1.1.1
       tinyglobby: 0.2.14
-      vite: 5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
+      vite: 5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0)
       yaml: 2.7.1
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.14
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.4.18(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0):
+  vite@5.4.19(@types/node@20.19.1)(lightningcss@1.30.1)(terser@5.39.0):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.6
