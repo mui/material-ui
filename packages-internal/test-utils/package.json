@@ -40,7 +40,7 @@
     "@babel/runtime": "^7.27.6",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
-    "@playwright/test": "^1.53.0",
+    "@playwright/test": "^1.53.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
