@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer } from '@mui/internal-test-utils';
-import Paper from '@mui/material/Paper';
+import { createRenderer, screen } from '@mui/internal-test-utils';
+import Paper, { paperClasses } from '@mui/material/Paper';
 import SnackbarContent, { snackbarContentClasses as classes } from '@mui/material/SnackbarContent';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
 
 describe('<SnackbarContent />', () => {
@@ -57,6 +58,35 @@ describe('<SnackbarContent />', () => {
         <SnackbarContent message="alertdialog message" role="alertdialog" />,
       );
       expect(queryByRole('alertdialog')).to.have.text('alertdialog message');
+    });
+  });
+
+  describe('CSS vars', () => {
+    it('should not throw when background.default is a CSS variable', () => {
+      const theme = createTheme({ cssVariables: true });
+      theme.palette = theme.colorSchemes.light.palette;
+      theme.palette.background.default = 'var(--mui-palette-background-default)';
+      expect(() =>
+        render(
+          <ThemeProvider theme={theme}>
+            <SnackbarContent message="CSS var test" />
+          </ThemeProvider>,
+        ),
+      ).not.to.throw();
+    });
+  });
+
+  describe('prop: square', () => {
+    it('should disable the rounded class when square is true', () => {
+      render(<SnackbarContent data-testid="snackbar" message="test" square />);
+
+      expect(screen.getByTestId('snackbar')).not.to.have.class(paperClasses.rounded);
+    });
+
+    it('should apply the rounded class when square is not passed', () => {
+      render(<SnackbarContent data-testid="snackbar" message="test" />);
+
+      expect(screen.getByTestId('snackbar')).to.have.class(paperClasses.rounded);
     });
   });
 });

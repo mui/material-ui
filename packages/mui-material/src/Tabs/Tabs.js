@@ -234,7 +234,6 @@ const List = styled('div', {
 const TabsIndicator = styled('span', {
   name: 'MuiTabs',
   slot: 'Indicator',
-  overridesResolver: (props, styles) => styles.indicator,
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',

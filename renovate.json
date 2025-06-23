@@ -14,6 +14,12 @@
   },
   "packageRules": [
     {
+      "groupName": "Infra packages",
+      "matchPackagePatterns": "@mui/internal-*",
+      "followTag": "canary",
+      "schedule": null
+    },
+    {
       "matchDepTypes": ["peerDependencies"],
       "rangeStrategy": "widen"
     },
@@ -96,7 +102,7 @@
     },
     {
       "groupName": "Playwright",
-      "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
+      "matchPackageNames": ["@playwright/test", "mcr.microsoft.com/playwright"]
     },
     {
       "matchDepTypes": ["action"],

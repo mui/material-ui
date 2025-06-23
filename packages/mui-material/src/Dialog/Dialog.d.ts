@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps, Breakpoint } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { BackdropProps } from '../Backdrop';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';

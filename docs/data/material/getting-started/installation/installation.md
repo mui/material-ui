@@ -156,7 +156,7 @@ For instance, via Google Web Fonts:
 
 You can start using Material UI right away with minimal front-end infrastructure by installing it via CDN, which is a great option for rapid prototyping.
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/material-ui-via-cdn) to get started.
 

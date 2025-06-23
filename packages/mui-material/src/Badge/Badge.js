@@ -40,7 +40,6 @@ const useUtilityClasses = (ownerState) => {
 const BadgeRoot = styled('span', {
   name: 'MuiBadge',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   position: 'relative',
   display: 'inline-flex',

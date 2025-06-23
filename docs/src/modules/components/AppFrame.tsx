@@ -23,6 +23,7 @@ import LogoWithCopyMenu from 'docs/src/components/action/LogoWithCopyMenu';
 import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 import { DemoPageThemeProvider } from 'docs/src/theming';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
+import SearchButton from './SearchButton';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -64,22 +65,12 @@ export function NextNProgressBar() {
 const sx = { minWidth: { sm: 160 } };
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-let hadHydrated = false;
 
 export function DeferredAppSearch() {
-  const [mounted, setMounted] = React.useState(hadHydrated);
-  React.useEffect(() => {
-    hadHydrated = true;
-    setMounted(true);
-  }, []);
-
-  /* Suspense isn't supported for SSR yet */
-  return mounted ? (
-    <React.Suspense fallback={<Box sx={sx} />}>
+  return (
+    <React.Suspense fallback={<SearchButton sx={sx} />}>
       <AppSearch sx={sx} />
     </React.Suspense>
-  ) : (
-    <Box sx={sx} />
   );
 }
 

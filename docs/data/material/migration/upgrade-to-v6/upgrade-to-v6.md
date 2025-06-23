@@ -88,6 +88,63 @@ yarn add react@<version> react-dom@<version>
 
 </codeblock>
 
+### React 18 and below
+
+If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
+
+For example, if you are using `react@18.3.1`, do the following steps:
+
+1. Install `react-is@18.3.1`.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react-is@18.3.1
+```
+
+```bash pnpm
+pnpm add react-is@18.3.1
+```
+
+```bash yarn
+yarn add react-is@18.3.1
+```
+
+</codeblock>
+
+2. Set the resolutions or overrides in the `package.json`.
+
+<codeblock storageKey="package-manager">
+
+```json npm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json pnpm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json yarn
+{
+  …
+  "resolutions": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+</codeblock>
+
 ### Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
@@ -330,6 +387,20 @@ Note that the item position doesn't change.
 These updates may lead to unexpected changes to your app's layout.
 Still, we strongly recommend adopting this new behavior rather than trying to replicate the old pattern, as the new version is more predictable and modern.
 :::
+
+#### Container width
+
+The updated Grid component doesn't grow to the full width of the container by default.
+If you need the grid to grow to the full width, you can use the `sx` prop:
+
+```diff
+-<Grid container>
++<Grid container sx={{ width: '100%' }}>
+
+ // alternatively, if the Grid's parent is a flex container:
+-<Grid container>
++<Grid container sx={{ flexGrow: 1 }}>
+```
 
 ### ListItem
 

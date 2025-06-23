@@ -3597,5 +3597,46 @@ describe('<Autocomplete />', () => {
 
       expect(textbox).toHaveFocus();
     });
+
+    it('should allow zero number (0) as a value to render', () => {
+      const { container } = render(
+        <Autocomplete
+          defaultValue={0}
+          options={[0, 1, 2]}
+          getOptionLabel={(option) => option.toString()}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          renderValue={(value, getItemProps) => {
+            return <Chip label={value} {...getItemProps()} />;
+          }}
+        />,
+      );
+
+      expect(container.querySelector(`.${chipClasses.root}`)).to.have.text('0');
+    });
+  });
+
+  it('should not shrink the input label when value is an empty array in multiple mode using renderValue', () => {
+    const { getByTestId } = render(
+      <Autocomplete
+        multiple
+        value={[]}
+        options={['one', 'two', 'three']}
+        renderValue={(values, getItemProps) =>
+          values.map((option, index) => {
+            const { key, ...itemProps } = getItemProps({ index });
+            return <Chip key={key} label={option.title} {...itemProps} />;
+          })
+        }
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Fixed tag"
+            slotProps={{ inputLabel: { 'data-testid': 'label' } }}
+          />
+        )}
+      />,
+    );
+
+    expect(getByTestId('label')).to.have.attribute('data-shrink', 'false');
   });
 });

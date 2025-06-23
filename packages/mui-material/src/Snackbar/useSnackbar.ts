@@ -1,9 +1,7 @@
 'use client';
 import * as React from 'react';
-import {
-  unstable_useEventCallback as useEventCallback,
-  unstable_useTimeout as useTimeout,
-} from '@mui/utils';
+import useEventCallback from '@mui/utils/useEventCallback';
+import useTimeout from '@mui/utils/useTimeout';
 import extractEventHandlers from '@mui/utils/extractEventHandlers';
 import {
   UseSnackbarParameters,

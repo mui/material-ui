@@ -55,7 +55,7 @@ Learn more about palette structure in the [Palette documentation](/material-ui/c
 
 ## System preference
 
-Some users sets a preference for light or dark mode through their operation system—either systemwide, or for individual user agents.
+Some users set a preference for light or dark mode through their operating system—either systemwide, or for individual user agents.
 The following sections explain how to apply these preferences to an app's theme.
 
 ### Built-in support
@@ -247,7 +247,7 @@ Use the `theme.applyStyles()` utility to apply styles for a specific mode.
 
 We recommend using this function over checking `theme.palette.mode` to switch between styles as it has more benefits:
 
-<!-- #repo-reference -->
+<!-- #target-branch-reference -->
 
 - It can be used with [Pigment CSS](https://github.com/mui/material-ui/tree/master/packages/pigment-css-react), our in-house zero-runtime CSS-in-JS solution.
 - It is generally more readable and maintainable.

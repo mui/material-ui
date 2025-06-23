@@ -201,7 +201,7 @@
   {
     "name": "Raffaella Luzi",
     "title": "Head of Operations",
-    "location": "Roma, Italy",
+    "location": "Rome, Italy",
     "locationCountry": "it",
     "about": "NYT crossword 📝 in one hand and a croissant 🥐 in the other.",
     "github": "rluzists1"
@@ -271,8 +271,8 @@
   {
     "name": "Jose Quintas",
     "title": "Software Engineer — xCharts",
-    "location": "Amsterdam, Netherlands",
-    "locationCountry": "nl",
+    "location": "Barcelona, Spain",
+    "locationCountry": "es",
     "about": "A general knowledge gatherer. Gamer and programmer in the off hours.",
     "github": "JCQuintas"
   },
@@ -318,5 +318,23 @@
     "about": "Soccer ⚽️ and coding 💻.",
     "twitter": "bernardobelchi1",
     "github": "bernardobelchior"
+  },
+  {
+    "name": "Rita Iglesias",
+    "title": "Software Engineer — eXplore",
+    "location": "Seville, Spain",
+    "locationCountry": "es",
+    "about": "Learning 📚, my dog 🐶 and Japanese culture 🇯🇵.",
+    "twitter": "rita_codes",
+    "github": "rita-codes"
+  },
+  {
+    "name": "Connor Davis",
+    "title": "Software Engineer — Core",
+    "location": "New York City, US",
+    "locationCountry": "us",
+    "about": "Community gardener, non-profit organizer, and nature enthusiast.",
+    "twitter": "connordav_is",
+    "github": "dav-is"
   }
 ]
