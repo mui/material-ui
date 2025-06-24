@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import useSlotProps from '@mui/utils/useSlotProps';
-import { NotificationsContext } from './NotificationsContext';
+import NotificationsContext from './NotificationsContext';
 import type {
   CloseNotification,
   ShowNotification,

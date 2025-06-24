@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import useEventCallback from '@mui/utils/useEventCallback';
-import { DialogsContext } from './DialogsContext';
+import DialogsContext from './DialogsContext';
 
 /**
  * The props that are passed to a dialog component.

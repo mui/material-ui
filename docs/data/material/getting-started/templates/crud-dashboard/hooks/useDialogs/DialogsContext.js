@@ -1,3 +1,5 @@
 import * as React from 'react';
 
-export const DialogsContext = React.createContext(null);
+const DialogsContext = React.createContext(null);
+
+export default DialogsContext;

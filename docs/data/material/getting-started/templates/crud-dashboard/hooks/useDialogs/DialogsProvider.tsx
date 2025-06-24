@@ -1,6 +1,6 @@
 import * as React from 'react';
 import useEventCallback from '@mui/utils/useEventCallback';
-import { DialogsContext } from './DialogsContext';
+import DialogsContext from './DialogsContext';
 import type { DialogComponent, OpenDialog, OpenDialogOptions } from './useDialogs';
 
 interface DialogStackEntry<P, R> {

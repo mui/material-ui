@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import useEventCallback from '@mui/utils/useEventCallback';
-import { DialogsContext } from './DialogsContext';
+import DialogsContext from './DialogsContext';
 
 /**
  * Provider for Dialog stacks. The subtree of this component can use the `useDialogs` hook to

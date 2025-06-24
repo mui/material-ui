@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import useEventCallback from '@mui/utils/useEventCallback';
-import { DialogsContext } from './DialogsContext';
+import DialogsContext from './DialogsContext';
 
 export interface OpenDialogOptions<R> {
   /**
