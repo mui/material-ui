@@ -157,7 +157,7 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const DemoRoot = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg' && prop !== 'hasAiSuggestion',
 })(({ theme }) => ({
   position: 'relative',
   margin: 'auto',
