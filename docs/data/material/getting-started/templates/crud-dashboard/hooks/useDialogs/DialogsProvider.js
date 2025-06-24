@@ -104,4 +104,4 @@ DialogsProvider.propTypes = {
   unmountAfter: PropTypes.number,
 };
 
-export { DialogsProvider };
+export default DialogsProvider;

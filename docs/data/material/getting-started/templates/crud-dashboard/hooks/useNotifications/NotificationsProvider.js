@@ -178,4 +178,4 @@ NotificationsProvider.propTypes = {
   children: PropTypes.node,
 };
 
-export { NotificationsProvider };
+export default NotificationsProvider;

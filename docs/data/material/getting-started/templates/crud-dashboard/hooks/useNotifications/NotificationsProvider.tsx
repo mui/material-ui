@@ -143,7 +143,7 @@ const generateId = () => {
  * Provider for Notifications. The subtree of this component can use the `useNotifications` hook to
  * access the notifications API. The notifications are shown in the same order they are requested.
  */
-function NotificationsProvider(props: NotificationsProviderProps) {
+export default function NotificationsProvider(props: NotificationsProviderProps) {
   const { children } = props;
   const [state, setState] = React.useState<NotificationsState>({ queue: [] });
 
@@ -181,5 +181,3 @@ function NotificationsProvider(props: NotificationsProviderProps) {
     </RootPropsContext.Provider>
   );
 }
-
-export { NotificationsProvider };
