@@ -44,29 +44,15 @@ describe('@mui/codemod', () => {
       });
 
       it('should not transform color imports from @mui/material/colors', () => {
-        const input = `
-          import { grey, blue } from '@mui/material/colors';
-        `;
-
-        const expected = `
-          import { grey, blue } from '@mui/material/colors';
-        `;
-
+        const input = read('./top-level-imports.test/colors-imports-actual.js');
+        const expected = read('./top-level-imports.test/colors-imports-expected.js');
         const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
         expect(trim(actual)).to.equal(trim(expected), 'Color imports should not be transformed');
       });
 
       it('should not transform individual color imports', () => {
-        const input = `
-          import { grey } from '@mui/material/colors';
-          import { blue } from '@mui/material/colors';
-        `;
-
-        const expected = `
-          import { grey } from '@mui/material/colors';
-          import { blue } from '@mui/material/colors';
-        `;
-
+        const input = read('./top-level-imports.test/individual-colors-imports-actual.js');
+        const expected = read('./top-level-imports.test/individual-colors-imports-expected.js');
         const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
         expect(trim(actual)).to.equal(
           trim(expected),
