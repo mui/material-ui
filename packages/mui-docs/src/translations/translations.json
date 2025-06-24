@@ -189,7 +189,7 @@
   "signUpDescr": "A clean and efficient sign-up page, perfect for pairing with a sign-in template.",
   "signUpTitle": "Sign-up",
   "crudDashboardTitle": "CRUD dashboard",
-  "crudDashboardDescr": "An easy to copy and paste dashboard layout with header, sidebar navigation and CRUD pages.",
+  "crudDashboardDescr": "Dashboard with CRUD pages and mobile-friendly layout with highly customizable sidebar.",
   "sourceCode": "Source code",
   "spacingUnit": "Spacing unit",
   "stackblitz": "Edit in StackBlitz",
