@@ -43,16 +43,19 @@ describe('@mui/codemod', () => {
         expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
 
-      it('should not transform color imports from @mui/material/colors', () => {
-        const input = read('./top-level-imports.test/colors-imports-actual.js');
-        const expected = read('./top-level-imports.test/colors-imports-expected.js');
+      it('should preserve color imports and styles imports', () => {
+        const input = read('./top-level-imports.test/actual.js');
+        const expected = read('./top-level-imports.test/expected.js');
         const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
-        expect(trim(actual)).to.equal(trim(expected), 'Color imports should not be transformed');
+        expect(trim(actual)).to.equal(
+          trim(expected),
+          'Color imports and styles imports should be preserved',
+        );
       });
 
       it('should not transform individual color imports', () => {
-        const input = read('./top-level-imports.test/individual-colors-imports-actual.js');
-        const expected = read('./top-level-imports.test/individual-colors-imports-expected.js');
+        const input = read('./top-level-imports.test/actual.js');
+        const expected = read('./top-level-imports.test/expected.js');
         const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
         expect(trim(actual)).to.equal(
           trim(expected),
