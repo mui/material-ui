@@ -1,6 +1,10 @@
 import { includeIgnoreFile } from '@eslint/compat';
-import { createBaseConfig, createTestConfig, baseSpecRules } from '@mui/internal-code-infra/eslint';
-import { createDocsConfig } from '@mui/internal-code-infra/eslint-docs';
+import {
+  createBaseConfig,
+  createTestConfig,
+  baseSpecRules,
+  createDocsConfig,
+} from '@mui/internal-code-infra/eslint';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
 import eslintPluginReact from 'eslint-plugin-react';
@@ -58,6 +62,7 @@ export default defineConfig(
     name: 'Base ESLint Configuration',
     extends: createBaseConfig({
       enableReactCompiler: ENABLE_REACT_COMPILER_PLUGIN,
+      baseDirectory: dirname,
     }),
     settings: {
       'import/resolver': {
@@ -67,6 +72,7 @@ export default defineConfig(
       },
     },
     rules: {
+      'import/prefer-default-export': 'error',
       'no-restricted-imports': [
         'error',
         {
@@ -287,12 +293,6 @@ export default defineConfig(
     files: ['test/bundling/scripts/**/*.js'],
     rules: {
       // ES modules need extensions
-      'import/extensions': ['error', 'ignorePackages'],
-    },
-  },
-  {
-    files: ['**/*.mjs'],
-    rules: {
       'import/extensions': ['error', 'ignorePackages'],
     },
   },
