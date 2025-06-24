@@ -303,9 +303,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/input-unstyled/ /base-ui/react-input/components-api/#input 301
 /pt/api/input-unstyled/ /pt/base-ui/react-input/components-api/#input 301
 /zh/api/input-unstyled/ /zh/base-ui/react-input/components-api/#input 301
-/api/no-ssr/ /base-ui/react-no-ssr/components-api/#no-ssr 301
-/pt/api/no-ssr/ /pt/base-ui/react-no-ssr/components-api/#no-ssr 301
-/zh/api/no-ssr/ /zh/base-ui/react-no-ssr/components-api/#no-ssr 301
+# /api/no-ssr/ /base-ui/react-no-ssr/components-api/#no-ssr 301
+# /pt/api/no-ssr/ /pt/base-ui/react-no-ssr/components-api/#no-ssr 301
+# /zh/api/no-ssr/ /zh/base-ui/react-no-ssr/components-api/#no-ssr 301
 /api/form-control-unstyled/ /base-ui/react-form-control/components-api/#form-control 301
 /pt/api/form-control-unstyled/ /pt/base-ui/react-form-control/components-api/#form-control 301
 /zh/api/form-control-unstyled/ /zh/base-ui/react-form-control/components-api/#form-control 301
