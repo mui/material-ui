@@ -23,13 +23,6 @@ const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VE
 function layouts(translation) {
   return [
     {
-      title: translation('dashboardLayoutTitle'),
-      description: translation('dashboardLayoutDescr'),
-      href: '/material-ui/getting-started/templates/dashboard-layout/',
-      source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard-layout`,
-      hasDarkMode: true,
-    },
-    {
       title: translation('dashboardTitle'),
       description: translation('dashboardDescr'),
       href: '/material-ui/getting-started/templates/dashboard/',
@@ -76,6 +69,13 @@ function layouts(translation) {
       description: translation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
+      hasDarkMode: true,
+    },
+    {
+      title: translation('crudDashboardTitle'),
+      description: translation('crudDashboardDescr'),
+      href: '/material-ui/getting-started/templates/crud-dashboard/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/crud-dashboard`,
       hasDarkMode: true,
     },
   ];
