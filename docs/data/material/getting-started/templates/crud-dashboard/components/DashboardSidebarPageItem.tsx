@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link, type LinkProps } from 'react-router';
-import { DashboardSidebarContext } from '../context/DashboardSidebarContext';
+import DashboardSidebarContext from '../context/DashboardSidebarContext';
 import { MINI_DRAWER_WIDTH } from '../constants';
 
 type DashboardSidebarPageItemButtonProps = ListItemButtonProps & {

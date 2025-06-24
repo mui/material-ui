@@ -1,3 +1,5 @@
 import * as React from 'react';
 
-export const DashboardSidebarContext = React.createContext(null);
+const DashboardSidebarContext = React.createContext(null);
+
+export default DashboardSidebarContext;

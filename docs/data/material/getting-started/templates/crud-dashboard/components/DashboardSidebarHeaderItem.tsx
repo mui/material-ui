@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import { DashboardSidebarContext } from '../context/DashboardSidebarContext';
+import DashboardSidebarContext from '../context/DashboardSidebarContext';
 import { DRAWER_WIDTH } from '../constants';
 import { getDrawerSxTransitionMixin } from '../mixins';
 
