@@ -1,7 +1,6 @@
-'use client';
 import * as React from 'react';
-import { useTheme, useMediaQuery } from '@mui/material';
-import { useColorScheme } from '@mui/material/styles';
+import { useTheme, useColorScheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DarkModeIcon from '@mui/icons-material/DarkMode';

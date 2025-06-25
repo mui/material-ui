@@ -1,13 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Alert,
-  Badge,
-  Button,
-  IconButton,
-  Snackbar,
-  SnackbarContent,
-} from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Badge from '@mui/material/Badge';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Snackbar from '@mui/material/Snackbar';
+import SnackbarContent from '@mui/material/SnackbarContent';
+
 import CloseIcon from '@mui/icons-material/Close';
 import useSlotProps from '@mui/utils/useSlotProps';
 import NotificationsContext from './NotificationsContext';

@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Container, { ContainerProps } from '@mui/material/Container';

@@ -13,7 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate, useParams } from 'react-router';
 import dayjs from 'dayjs';
 import { useDialogs } from '../hooks/useDialogs/useDialogs';
-import { useNotifications } from '../hooks/useNotifications/useNotifications';
+import useNotifications from '../hooks/useNotifications/useNotifications';
 import {
   deleteOne as deleteEmployee,
   getOne as getEmployee,
@@ -55,7 +55,9 @@ export default function EmployeeShow() {
   }, [navigate, employeeId]);
 
   const handleEmployeeDelete = React.useCallback(async () => {
-    if (!employee) return;
+    if (!employee) {
+      return;
+    }
 
     const confirmed = await dialogs.confirm(
       `Do you wish to delete ${employee.name}?`,

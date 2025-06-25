@@ -117,87 +117,69 @@ function DashboardSidebar({
               : {}),
           }}
         >
-          <DashboardSidebarContext.Provider
-            value={{
-              onPageItemClick: handlePageItemClick,
-              mini,
-              fullyExpanded: isFullyExpanded,
-              fullyCollapsed: isFullyCollapsed,
-              hasDrawerTransitions,
+          <List
+            sx={{
+              padding: 0,
+              mb: 4,
+              width: mini ? MINI_DRAWER_WIDTH : 'auto',
             }}
           >
-            <List
-              sx={{
-                padding: 0,
-                mb: 4,
-                width: mini ? MINI_DRAWER_WIDTH : 'auto',
-              }}
-            >
-              <DashboardSidebarHeaderItem>Main items</DashboardSidebarHeaderItem>
-              <DashboardSidebarPageItem
-                id="employees"
-                title="Employees"
-                icon={<PersonIcon />}
-                href="/employees"
-                selected={!!matchPath('/employees/*', pathname) || pathname === '/'}
-              />
-              <DashboardSidebarDividerItem />
-              <DashboardSidebarHeaderItem>Example items</DashboardSidebarHeaderItem>
-              <DashboardSidebarPageItem
-                id="reports"
-                title="Reports"
-                icon={<BarChartIcon />}
-                href="/reports"
-                selected={!!matchPath('/reports', pathname)}
-                defaultExpanded={!!matchPath('/reports', pathname)}
-                expanded={expandedItemIds.includes('reports')}
-                nestedNavigation={
-                  <List
-                    sx={{
-                      padding: 0,
-                      my: 0.5,
-                      pl: mini ? 0 : 2,
-                      minWidth: 240,
-                    }}
-                  >
-                    <DashboardSidebarPageItem
-                      id="sales"
-                      title="Sales"
-                      icon={<DescriptionIcon />}
-                      href="/reports/sales"
-                      selected={!!matchPath('/reports/sales', pathname)}
-                    />
-                    <DashboardSidebarPageItem
-                      id="traffic"
-                      title="Traffic"
-                      icon={<DescriptionIcon />}
-                      href="/reports/traffic"
-                      selected={!!matchPath('/reports/traffic', pathname)}
-                    />
-                  </List>
-                }
-              />
-              <DashboardSidebarPageItem
-                id="integrations"
-                title="Integrations"
-                icon={<LayersIcon />}
-                href="/integrations"
-                selected={!!matchPath('/integrations', pathname)}
-              />
-            </List>
-          </DashboardSidebarContext.Provider>
+            <DashboardSidebarHeaderItem>Main items</DashboardSidebarHeaderItem>
+            <DashboardSidebarPageItem
+              id="employees"
+              title="Employees"
+              icon={<PersonIcon />}
+              href="/employees"
+              selected={!!matchPath('/employees/*', pathname) || pathname === '/'}
+            />
+            <DashboardSidebarDividerItem />
+            <DashboardSidebarHeaderItem>Example items</DashboardSidebarHeaderItem>
+            <DashboardSidebarPageItem
+              id="reports"
+              title="Reports"
+              icon={<BarChartIcon />}
+              href="/reports"
+              selected={!!matchPath('/reports', pathname)}
+              defaultExpanded={!!matchPath('/reports', pathname)}
+              expanded={expandedItemIds.includes('reports')}
+              nestedNavigation={
+                <List
+                  sx={{
+                    padding: 0,
+                    my: 0.5,
+                    pl: mini ? 0 : 2,
+                    minWidth: 240,
+                  }}
+                >
+                  <DashboardSidebarPageItem
+                    id="sales"
+                    title="Sales"
+                    icon={<DescriptionIcon />}
+                    href="/reports/sales"
+                    selected={!!matchPath('/reports/sales', pathname)}
+                  />
+                  <DashboardSidebarPageItem
+                    id="traffic"
+                    title="Traffic"
+                    icon={<DescriptionIcon />}
+                    href="/reports/traffic"
+                    selected={!!matchPath('/reports/traffic', pathname)}
+                  />
+                </List>
+              }
+            />
+            <DashboardSidebarPageItem
+              id="integrations"
+              title="Integrations"
+              icon={<LayersIcon />}
+              href="/integrations"
+              selected={!!matchPath('/integrations', pathname)}
+            />
+          </List>
         </Box>
       </React.Fragment>
     ),
-    [
-      mini,
-      hasDrawerTransitions,
-      isFullyExpanded,
-      isFullyCollapsed,
-      handlePageItemClick,
-      expandedItemIds,
-      pathname,
-    ],
+    [mini, hasDrawerTransitions, isFullyExpanded, expandedItemIds, pathname],
   );
 
   const getDrawerSharedSx = React.useCallback(
@@ -222,8 +204,24 @@ function DashboardSidebar({
     [expanded, mini],
   );
 
+  const sidebarContextValue = React.useMemo(() => {
+    return {
+      onPageItemClick: handlePageItemClick,
+      mini,
+      fullyExpanded: isFullyExpanded,
+      fullyCollapsed: isFullyCollapsed,
+      hasDrawerTransitions,
+    };
+  }, [
+    handlePageItemClick,
+    mini,
+    isFullyExpanded,
+    isFullyCollapsed,
+    hasDrawerTransitions,
+  ]);
+
   return (
-    <>
+    <DashboardSidebarContext.Provider value={sidebarContextValue}>
       <Drawer
         variant="temporary"
         open={expanded}
@@ -264,7 +262,7 @@ function DashboardSidebar({
       >
         {getDrawerContent('desktop')}
       </Drawer>
-    </>
+    </DashboardSidebarContext.Provider>
   );
 }
 

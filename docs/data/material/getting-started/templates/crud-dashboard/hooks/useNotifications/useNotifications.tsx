@@ -51,7 +51,7 @@ interface UseNotifications {
   close: CloseNotification;
 }
 
-export function useNotifications(): UseNotifications {
+export default function useNotifications(): UseNotifications {
   const notificationsContext = React.useContext(NotificationsContext);
   if (!notificationsContext) {
     throw new Error('Notifications context was used without a provider.');
