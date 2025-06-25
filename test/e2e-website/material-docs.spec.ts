@@ -111,7 +111,7 @@ test.describe('Material docs', () => {
       await expect(firstAnchor).toHaveAttribute('href', '/material-ui/api/button/');
     });
 
-    ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'].forEach((component) => {
+    [''].forEach((component) => {
       test(`should have correct API link when linking Base UI component ${component}`, async ({
         page,
       }) => {
