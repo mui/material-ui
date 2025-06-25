@@ -146,13 +146,6 @@ export default defineConfig(
       ],
     },
   },
-  // This is a new config added here to avoid lint errors related to translations.
-  {
-    files: ['docs/src/modules/components/**/*'],
-    rules: {
-      'material-ui/no-hardcoded-labels': 'off',
-    },
-  },
   // Moved from docs/data/material/components/.eslintrc.js
   {
     files: ['docs/data/material/components/**/*'],
