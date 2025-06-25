@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router';
-import { useNotifications } from '../hooks/useNotifications/useNotifications';
+import useNotifications from '../hooks/useNotifications/useNotifications';
 import {
   createOne as createEmployee,
   validate as validateEmployee,
