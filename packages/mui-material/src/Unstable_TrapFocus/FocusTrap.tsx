@@ -373,7 +373,7 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   return (
     <React.Fragment>
       <div
-        tabIndex={open ? 1 : -1}
+        tabIndex={open ? 0 : -1}
         onFocus={handleFocusSentinel}
         ref={sentinelStart}
         data-testid="sentinelStart"

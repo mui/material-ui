@@ -106,6 +106,13 @@ describe('e2e', () => {
         `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
       );
     }
+
+    // Forward console logs from the page to the Node.js console
+    page.on('console', async (msg) => {
+        const msgArgs = msg.args();
+        const logValues = await Promise.all(msgArgs.map(async arg => await arg.jsonValue()));
+        console.log(...logValues);
+    });
   });
 
   after(async () => {
@@ -119,19 +126,19 @@ describe('e2e', () => {
       await expect(screen.getByTestId('root')).toHaveFocus();
 
       await page.keyboard.press('Tab');
-      await expect(screen.getByText('x')).toHaveFocus();
+      await expect(screen.getByText('x'), "x doesn't have focus").toHaveFocus();
       await page.keyboard.press('Tab');
-      await expect(screen.getByText('cancel')).toHaveFocus();
+      await expect(screen.getByText('cancel'), "Cancel doesn't have focus").toHaveFocus();
       await page.keyboard.press('Tab');
-      await expect(screen.getByText('ok')).toHaveFocus();
+      await expect(screen.getByText('ok'), "ok doesn't have focus").toHaveFocus();
       await page.keyboard.press('Tab');
-      await expect(screen.getByText('x')).toHaveFocus();
+      await expect(screen.getByText('x'), "x doesn't have focus again").toHaveFocus();
 
       await screen.getByTestId('initial-focus').then(($element) => $element.focus());
-      await expect(screen.getByTestId('root')).toHaveFocus();
+      await expect(screen.getByTestId('root'), "root has focus again after focusing out").toHaveFocus();
       await screen.getByText('x').then(($element) => $element.focus());
       await page.keyboard.press('Shift+Tab');
-      await expect(screen.getByText('ok')).toHaveFocus();
+      await expect(screen.getByText('ok'), "ok doesn't have focus when tabbing back").toHaveFocus();
     });
 
     it('should loop the tab key after activation', async () => {
