@@ -146,6 +146,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
+  const paperRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
@@ -240,9 +241,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         return;
       }
 
+      const mouseUpTarget = mouseEvent.target;
+
+      // mouse is over the options/menuitem, don't close the menu
+      if (paperRef.current.contains(mouseUpTarget)) {
+        return;
+      }
+
       const triggerElement = displayRef.current.getBoundingClientRect();
 
-      // mouse is inside the trigger
+      // mouse is inside the trigger, don't close the menu
       if (
         mouseEvent.clientX >= triggerElement.left &&
         mouseEvent.clientX <= triggerElement.right &&
@@ -596,6 +604,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             ...listProps,
           },
           paper: {
+            ref: paperRef,
             ...paperProps,
             style: {
               minWidth: menuMinWidth,
