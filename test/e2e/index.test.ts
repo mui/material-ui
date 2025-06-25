@@ -106,13 +106,6 @@ describe('e2e', () => {
         `Unable to navigate to ${baseUrl} after multiple attempts. Did you forget to run \`pnpm test:e2e:server\` and \`pnpm test:e2e:build\`?`,
       );
     }
-
-    // Forward console logs from the page to the Node.js console
-    page.on('console', async (msg) => {
-      const msgArgs = msg.args();
-      const logValues = await Promise.all(msgArgs.map(async (arg) => await arg.jsonValue()));
-      console.log(...logValues);
-    });
   });
 
   after(async () => {
