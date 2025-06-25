@@ -110,7 +110,6 @@ test.describe('Material docs', () => {
       await expect(textContent).toEqual('<Button />');
       await expect(firstAnchor).toHaveAttribute('href', '/material-ui/api/button/');
     });
-   
   });
 
   test.describe('API page', () => {
