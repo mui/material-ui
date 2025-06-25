@@ -25,12 +25,14 @@ export interface DashboardSidebarProps {
   expanded?: boolean;
   setExpanded: (expanded: boolean) => void;
   disableCollapsibleSidebar?: boolean;
+  container?: Element;
 }
 
 export default function DashboardSidebar({
   expanded = true,
   setExpanded,
   disableCollapsibleSidebar = false,
+  container,
 }: DashboardSidebarProps) {
   const theme = useTheme();
 
@@ -228,6 +230,7 @@ export default function DashboardSidebar({
   return (
     <DashboardSidebarContext.Provider value={sidebarContextValue}>
       <Drawer
+        container={container}
         variant="temporary"
         open={expanded}
         onClose={handleSetSidebarExpanded(false)}

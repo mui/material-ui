@@ -26,6 +26,7 @@ function DashboardSidebar({
   expanded = true,
   setExpanded,
   disableCollapsibleSidebar = false,
+  container,
 }) {
   const theme = useTheme();
 
@@ -223,6 +224,7 @@ function DashboardSidebar({
   return (
     <DashboardSidebarContext.Provider value={sidebarContextValue}>
       <Drawer
+        container={container}
         variant="temporary"
         open={expanded}
         onClose={handleSetSidebarExpanded(false)}
@@ -267,6 +269,15 @@ function DashboardSidebar({
 }
 
 DashboardSidebar.propTypes = {
+  container: (props, propName) => {
+    if (props[propName] == null) {
+      return null;
+    }
+    if (typeof props[propName] !== 'object' || props[propName].nodeType !== 1) {
+      return new Error(`Expected prop '${propName}' to be of type Element`);
+    }
+    return null;
+  },
   disableCollapsibleSidebar: PropTypes.bool,
   expanded: PropTypes.bool,
   setExpanded: PropTypes.func.isRequired,

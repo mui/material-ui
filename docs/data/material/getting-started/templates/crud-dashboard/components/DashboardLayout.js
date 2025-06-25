@@ -44,8 +44,11 @@ export default function DashboardLayout() {
     [setIsNavigationExpanded],
   );
 
+  const layoutRef = React.useRef(null);
+
   return (
     <Box
+      ref={layoutRef}
       sx={{
         position: 'relative',
         display: 'flex',
@@ -63,6 +66,7 @@ export default function DashboardLayout() {
       <DashboardSidebar
         expanded={isNavigationExpanded}
         setExpanded={setIsNavigationExpanded}
+        container={layoutRef?.current ?? undefined}
       />
       <Box
         sx={{
