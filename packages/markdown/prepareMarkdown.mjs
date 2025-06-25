@@ -12,7 +12,7 @@ import {
   getTitle,
 } from './parseMarkdown.mjs';
 
-const BaseUIReexportedComponents = ['ClickAwayListener', 'Portal', 'TextareaAutosize'];
+const BaseUIReexportedComponents = [];
 
 /**
  * @param {string} productId
