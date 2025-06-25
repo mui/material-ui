@@ -110,27 +110,7 @@ test.describe('Material docs', () => {
       await expect(textContent).toEqual('<Button />');
       await expect(firstAnchor).toHaveAttribute('href', '/material-ui/api/button/');
     });
-
-    [''].forEach((component) => {
-      test(`should have correct API link when linking Base UI component ${component}`, async ({
-        page,
-      }) => {
-        await page.goto(`/material-ui/react-${kebabCase(component || '')}/`);
-
-        const anchors = page.locator('div > h2#api ~ ul a');
-
-        const firstAnchor = anchors.first();
-        const textContent = await firstAnchor.textContent();
-
-        await expect(textContent).toEqual(`<${component} />`);
-        await expect(firstAnchor).toHaveAttribute(
-          'href',
-          `/base-ui/react-${kebabCase(component || '')}/components-api/#${kebabCase(
-            component || '',
-          )}`,
-        );
-      });
-    });
+   
   });
 
   test.describe('API page', () => {
