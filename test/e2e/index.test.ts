@@ -109,9 +109,9 @@ describe('e2e', () => {
 
     // Forward console logs from the page to the Node.js console
     page.on('console', async (msg) => {
-        const msgArgs = msg.args();
-        const logValues = await Promise.all(msgArgs.map(async arg => await arg.jsonValue()));
-        console.log(...logValues);
+      const msgArgs = msg.args();
+      const logValues = await Promise.all(msgArgs.map(async (arg) => await arg.jsonValue()));
+      console.log(...logValues);
     });
   });
 
@@ -135,7 +135,10 @@ describe('e2e', () => {
       await expect(screen.getByText('x'), "x doesn't have focus again").toHaveFocus();
 
       await screen.getByTestId('initial-focus').then(($element) => $element.focus());
-      await expect(screen.getByTestId('root'), "root has focus again after focusing out").toHaveFocus();
+      await expect(
+        screen.getByTestId('root'),
+        'root has focus again after focusing out',
+      ).toHaveFocus();
       await screen.getByText('x').then(($element) => $element.focus());
       await page.keyboard.press('Shift+Tab');
       await expect(screen.getByText('ok'), "ok doesn't have focus when tabbing back").toHaveFocus();
