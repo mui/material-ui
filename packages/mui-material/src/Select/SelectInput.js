@@ -161,11 +161,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const anchorElement = displayNode?.parentNode;
 
-  const [isPointerDown, setIsPointerDown] = React.useState(false);
-  const dragSelectRef = React.useRef({
-    isDragging: false,
-  });
-
   React.useImperativeHandle(
     handleRef,
     () => ({
@@ -214,23 +209,20 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = React.useCallback(
-    (open, event) => {
-      if (open) {
-        if (onOpen) {
-          onOpen(event);
-        }
-      } else if (onClose) {
-        onClose(event);
+  const update = (open, event) => {
+    if (open) {
+      if (onOpen) {
+        onOpen(event);
       }
+    } else if (onClose) {
+      onClose(event);
+    }
 
-      if (!isOpenControlled) {
-        setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
-        setOpenState(open);
-      }
-    },
-    [autoWidth, anchorElement, isOpenControlled, onOpen, onClose, setOpenState],
-  );
+    if (!isOpenControlled) {
+      setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
+      setOpenState(open);
+    }
+  };
 
   const handleMouseDown = (event) => {
     // Ignore everything but left-click
@@ -241,10 +233,31 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     event.preventDefault();
     displayRef.current.focus();
 
-    // Mark that we've initiated a pointer interaction
-    setIsPointerDown(true);
+    const doc = ownerDocument(event.currentTarget);
 
-    // Open the menu immediately
+    function handleMouseUp(mouseEvent) {
+      if (!displayRef.current) {
+        return;
+      }
+
+      const triggerElement = displayRef.current.getBoundingClientRect();
+
+      // mouse is inside the trigger
+      if (
+        mouseEvent.clientX >= triggerElement.left &&
+        mouseEvent.clientX <= triggerElement.right &&
+        mouseEvent.clientY >= triggerElement.top &&
+        mouseEvent.clientY <= triggerElement.bottom
+      ) {
+        return;
+      }
+
+      // close the menu
+      update(false, mouseEvent);
+    }
+
+    doc.addEventListener('mouseup', handleMouseUp, { once: true });
+
     update(true, event);
   };
 
@@ -268,56 +281,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       onChange(event, child);
     }
   };
-
-  React.useEffect(() => {
-    if (isPointerDown) {
-      const doc = ownerDocument(displayRef.current);
-
-      const handleGlobalMouseUp = (event) => {
-        setIsPointerDown(false);
-
-        if (dragSelectRef.current.isDragging) {
-          // If we're dragging and the mouse is released, check where it was released
-          dragSelectRef.current.isDragging = false;
-
-          // Check if mouse is over a menu item
-          const targetElement = event.target;
-          let menuItem = null;
-
-          // Find if we released on a menu item (checking up the parent chain)
-          let current = targetElement;
-          while (current && !menuItem) {
-            // Check if this element has role="option"
-            if (current.getAttribute && current.getAttribute('role') === 'option') {
-              menuItem = current;
-            }
-            current = current.parentElement;
-          }
-
-          if (!menuItem) {
-            // If released outside menu items, close the menu
-            update(false, event);
-          }
-        }
-      };
-
-      const handleGlobalMouseMove = () => {
-        if (isPointerDown) {
-          dragSelectRef.current.isDragging = true;
-        }
-      };
-
-      doc.addEventListener('mouseup', handleGlobalMouseUp);
-      doc.addEventListener('mousemove', handleGlobalMouseMove);
-
-      return () => {
-        doc.removeEventListener('mouseup', handleGlobalMouseUp);
-        doc.removeEventListener('mousemove', handleGlobalMouseMove);
-      };
-    }
-
-    return undefined;
-  }, [isPointerDown, update]);
 
   const handleItemClick = (child) => (event) => {
     let newValue;

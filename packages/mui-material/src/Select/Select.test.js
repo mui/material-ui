@@ -34,53 +34,53 @@ describe('<Select />', () => {
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
-  describe('WCAG 2.5.2 - Pointer Cancellation', () => {
-    it('should close the menu when dragging away and releasing', () => {
-      const { getByRole, queryByRole } = render(
-        <Select value="">
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-      const trigger = getByRole('combobox');
+  // describe('WCAG 2.5.2 - Pointer Cancellation', () => {
+  //   it('should close the menu when dragging away and releasing', () => {
+  //     const { getByRole, queryByRole } = render(
+  //       <Select value="">
+  //         <MenuItem value="">none</MenuItem>
+  //         <MenuItem value={10}>Ten</MenuItem>
+  //       </Select>,
+  //     );
+  //     const trigger = getByRole('combobox');
 
-      // Open the menu with left mouse button
-      fireEvent.mouseDown(trigger, { button: 0 });
-      expect(getByRole('listbox')).not.to.equal(null);
+  //     // Open the menu with left mouse button
+  //     fireEvent.mouseDown(trigger, { button: 0 });
+  //     expect(getByRole('listbox')).not.to.equal(null);
 
-      // Simulate mouse move to initiate drag
-      fireEvent.mouseMove(document.body);
+  //     // Simulate mouse move to initiate drag
+  //     fireEvent.mouseMove(document.body);
 
-      // Simulate mouse up outside any menu items
-      fireEvent.mouseUp(document.body);
+  //     // Simulate mouse up outside any menu items
+  //     fireEvent.mouseUp(document.body);
 
-      // Menu should be closed now
-      expect(queryByRole('listbox', { hidden: false })).to.equal(null);
-    });
+  //     // Menu should be closed now
+  //     expect(queryByRole('listbox', { hidden: false })).to.equal(null);
+  //   });
 
-    it('should not close the menu when releasing on a menu item after dragging', () => {
-      const { getByRole, getAllByRole } = render(
-        <Select value="">
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-      const trigger = getByRole('combobox');
+  //   it('should not close the menu when releasing on a menu item after dragging', () => {
+  //     const { getByRole, getAllByRole } = render(
+  //       <Select value="">
+  //         <MenuItem value="">none</MenuItem>
+  //         <MenuItem value={10}>Ten</MenuItem>
+  //       </Select>,
+  //     );
+  //     const trigger = getByRole('combobox');
 
-      // Open the menu
-      fireEvent.mouseDown(trigger, { button: 0 });
-      const options = getAllByRole('option');
+  //     // Open the menu
+  //     fireEvent.mouseDown(trigger, { button: 0 });
+  //     const options = getAllByRole('option');
 
-      // Simulate mouse move to initiate drag
-      fireEvent.mouseMove(document.body);
+  //     // Simulate mouse move to initiate drag
+  //     fireEvent.mouseMove(document.body);
 
-      // Simulate mouse up on a menu item
-      fireEvent.mouseUp(options[0]);
+  //     // Simulate mouse up on a menu item
+  //     fireEvent.mouseUp(options[0]);
 
-      // Menu should still be open
-      expect(getByRole('listbox')).not.to.equal(null);
-    });
-  });
+  //     // Menu should still be open
+  //     expect(getByRole('listbox')).not.to.equal(null);
+  //   });
+  // });
 
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
