@@ -53,7 +53,7 @@ A big thanks to the 16 contributors who made this release possible. Here are the
 - Add cross-env to eslint script (#46358) @ZeeshanTamboli
 - Support merging of className and style from theme (#45975) @sai6855
 - [code-infra] Create bundle size package (#45911) @Janpot
-- [docs-infra] Add a script to generate Material UI `llms.txt` and docs markdown. (#46308) @siriwatknp
+- [docs-infra] Add a script to generate Material UI `llms.txt` and docs markdown. (#46308) @siriwatknp
 - [docs-infra] Fix stackblitz for js projects (#46220) @Janpot
 - [infra] Add emotion as external for bundle monitor (#46372) @Janpot
 - [infra] Create update PR on every canary publish for internal packages (#46367) @Janpot
