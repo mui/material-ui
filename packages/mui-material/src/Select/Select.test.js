@@ -9,7 +9,6 @@ import {
   screen,
   reactMajor,
 } from '@mui/internal-test-utils';
-import userEvent from '@testing-library/user-event';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -35,60 +34,70 @@ describe('<Select />', () => {
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
-  describe('Pointer Cancellation', () => {
-    it('should close the menu when dragging away and releasing', async () => {
-      const { getByRole, queryByRole } = render(
-        <Select value="">
+  describe('Pointer Cancellation', function test() {
+    // Run these tests only in browser because JSDOM doesn't have getBoundingClientRect() API
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    it('should close the menu when mouse is outside the select', () => {
+      render(
+        <Select value="" MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}>
           <MenuItem value="">none</MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
         </Select>,
       );
-      const trigger = getByRole('combobox');
-
-      // Open the menu with left mouse button
-      // fireEvent.mouseDown(trigger);
-      // expect(getByRole('listbox')).not.to.equal(null);
-
-      // // Simulate mouse up outside any menu items
-      // fireEvent.mouseUp(trigger, {clientX: 60, clientY: 10});
-
-      const user = userEvent.setup();
-
-      await user.pointer([
-        // this sequence does not work with fireEvent
-        // 1. point the cursor somewhere in the select input and hold down MouseLeft
-        { keys: '[MouseLeft>]', target: trigger },
-        // 2. move the cursor outside the select
-        { pointerName: 'mouse', target: document.body },
-        // 3. release MouseLeft
-        { keys: '[/MouseLeft]' },
-      ]);
-
-      // Menu should be closed now
-      expect(queryByRole('listbox', { hidden: false })).to.equal(null);
-    });
-
-    it('should not close the menu when releasing on a menu item after dragging', () => {
-      const { getByRole, getAllByRole } = render(
-        <Select value="">
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-      const trigger = getByRole('combobox');
+      const trigger = screen.getByRole('combobox');
 
       // Open the menu
-      fireEvent.mouseDown(trigger, { button: 0 });
-      const options = getAllByRole('option');
+      fireEvent.mouseDown(trigger);
+      expect(screen.getByRole('listbox')).not.to.equal(null);
 
-      // Simulate mouse move to initiate drag
-      fireEvent.mouseMove(document.body);
+      // Simulate mouse up outside the menu. The mouseup target is the backdrop when the menu is opened.
+      fireEvent.mouseUp(screen.getByTestId('backdrop'), { clientX: 60, clientY: 10 });
+
+      // Menu should be closed now
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('should not close the menu when mouse is inside the trigger', () => {
+      render(
+        <Select value="">
+          <MenuItem value="">none</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+        </Select>,
+      );
+      const trigger = screen.getByRole('combobox');
+
+      // Open the menu
+      fireEvent.mouseDown(trigger);
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+
+      // Simulate mouse up inside the trigger
+      fireEvent.mouseUp(trigger, { clientX: 20, clientY: 20 });
+
+      // Menu should still be open
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('should not close the menu when releasing on a menu item', () => {
+      render(
+        <Select value="">
+          <MenuItem value="">none</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+        </Select>,
+      );
+      const trigger = screen.getByRole('combobox');
+
+      // Open the menu
+      fireEvent.mouseDown(trigger);
+      const options = screen.getAllByRole('option');
 
       // Simulate mouse up on a menu item
       fireEvent.mouseUp(options[0]);
 
       // Menu should still be open
-      expect(getByRole('listbox')).not.to.equal(null);
+      expect(screen.getByRole('listbox')).not.to.equal(null);
     });
   });
 
