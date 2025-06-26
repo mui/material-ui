@@ -245,10 +245,20 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
       // mouse is over the options/menuitem, don't close the menu
       if (paperRef.current.contains(mouseUpTarget)) {
+        console.log('over the options');
         return;
       }
 
       const triggerElement = displayRef.current.getBoundingClientRect();
+
+      console.log('mouseEvent: ', mouseEvent.clientX, mouseEvent.clientY);
+      console.log(
+        'triggerElement: ',
+        triggerElement.left,
+        triggerElement.right,
+        triggerElement.bottom,
+        triggerElement.top,
+      );
 
       // mouse is inside the trigger, don't close the menu
       if (
@@ -257,9 +267,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         mouseEvent.clientY >= triggerElement.top &&
         mouseEvent.clientY <= triggerElement.bottom
       ) {
+        console.log('inside the trigger');
         return;
       }
 
+      console.log('closing the menu');
       // close the menu
       update(false, mouseEvent);
     }

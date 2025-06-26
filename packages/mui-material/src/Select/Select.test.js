@@ -9,6 +9,7 @@ import {
   screen,
   reactMajor,
 } from '@mui/internal-test-utils';
+import userEvent from '@testing-library/user-event';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import ListSubheader from '@mui/material/ListSubheader';
@@ -35,7 +36,7 @@ describe('<Select />', () => {
   }));
 
   describe('Pointer Cancellation', () => {
-    it('should close the menu when dragging away and releasing', () => {
+    it('should close the menu when dragging away and releasing', async () => {
       const { getByRole, queryByRole } = render(
         <Select value="">
           <MenuItem value="">none</MenuItem>
@@ -45,14 +46,23 @@ describe('<Select />', () => {
       const trigger = getByRole('combobox');
 
       // Open the menu with left mouse button
-      fireEvent.mouseDown(trigger, { button: 0 });
-      expect(getByRole('listbox')).not.to.equal(null);
+      // fireEvent.mouseDown(trigger);
+      // expect(getByRole('listbox')).not.to.equal(null);
 
-      // Simulate mouse move to initiate drag
-      fireEvent.mouseMove(document.body);
+      // // Simulate mouse up outside any menu items
+      // fireEvent.mouseUp(trigger, {clientX: 60, clientY: 10});
 
-      // Simulate mouse up outside any menu items
-      fireEvent.mouseUp(document.body);
+      const user = userEvent.setup();
+
+      await user.pointer([
+        // this sequence does not work with fireEvent
+        // 1. point the cursor somewhere in the select input and hold down MouseLeft
+        { keys: '[MouseLeft>]', target: trigger },
+        // 2. move the cursor outside the select
+        { pointerName: 'mouse', target: document.body },
+        // 3. release MouseLeft
+        { keys: '[/MouseLeft]' },
+      ]);
 
       // Menu should be closed now
       expect(queryByRole('listbox', { hidden: false })).to.equal(null);
