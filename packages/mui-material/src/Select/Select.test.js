@@ -34,11 +34,13 @@ describe('<Select />', () => {
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
-  describe('Pointer Cancellation', function test() {
-    // Run these tests only in browser because JSDOM doesn't have getBoundingClientRect() API
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
+  describe('Pointer Cancellation', () => {
+    beforeEach(function beforeEachCallback() {
+      // Run these tests only in browser because JSDOM doesn't have getBoundingClientRect() API
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
 
     it('should close the menu when mouse is outside the select', () => {
       render(
