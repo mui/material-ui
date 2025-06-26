@@ -1,5 +1,27 @@
 # [Versions](https://mui.com/versions/)
 
+
+## 5.18.0
+<!-- generated comparing v5.17.1..v5.x -->
+_Jun 26, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/system@5.18.0`
+
+- Backport CSS layers from v7 (#46320) @siriwatknp
+
+### `@mui/material-nextjs@5.18.0`
+
+- Backport CSS layers from v7 (#46320) @siriwatknp
+
+### Docs
+
+- Ease migration to v5 (#45991) @oliviertassinari
+- Add AccordionSummary to the breaking change migration (@siriwatknp) (#45972) @siriwatknp
+
+All contributors of this release in alphabetical order: @oliviertassinari, @siriwatknp
+
 ## v5.17.1
 
 <!-- generated comparing v5.17.0..v5.x -->
