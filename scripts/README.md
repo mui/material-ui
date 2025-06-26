@@ -88,6 +88,10 @@ Checkout the latest minor release tag and create a branch "release/PATCH_VERSION
 Run `git push -f material-ui-docs HEAD:latest` to deploy the documentation (it lives at https://material-ui.netlify.app/) with the latest changes.
 Force push if necessary.
 
+#### Cleanup
+
+After the release is done, merge the branch back to master. While merging make sure to resolve conflicts considering master may have future changes done in the same files.
+
 #### Announce
 
 After the docs is live, follow the instructions in https://mui-org.notion.site/Releases-7490ef9581b4447ebdbf86b13164272d.
