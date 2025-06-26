@@ -234,6 +234,8 @@
     "/material-ui/customization/density": "Density",
     "/material-ui/customization/z-index": "z-index",
     "/material-ui/customization/transitions": "Transitions",
+    "/material-ui/customization/styles": "Styles",
+    "/material-ui/customization/css-layers": "Cascade layers",
     "/material-ui/guides": "How-to guides",
     "/material-ui/guides/minimizing-bundle-size": "Minimizing bundle size",
     "/material-ui/guides/server-rendering": "Server rendering",

@@ -6,7 +6,9 @@ import styled from '../styles/styled';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = styled(ButtonBase)(({ theme }) => ({
+const BreadcrumbCollapsedButton = styled(ButtonBase, {
+  name: 'MuiBreadcrumbCollapsed',
+})(({ theme }) => ({
   display: 'flex',
   marginLeft: `calc(${theme.spacing(1)} * 0.5)`,
   marginRight: `calc(${theme.spacing(1)} * 0.5)`,

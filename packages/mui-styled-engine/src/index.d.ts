@@ -26,6 +26,9 @@ export function internal_processStyles(
   processor: (styles: any) => any,
 ): void;
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles<P>(styles: Interpolation<P>): object;
+
 export interface SerializedStyles {
   name: string;
   styles: string;

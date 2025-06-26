@@ -48,6 +48,11 @@ export const internal_processStyles = (tag, processor) => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_serializeStyles(styles) {
+  return styles;
+}
+
 export { ThemeContext, keyframes, css } from 'styled-components';
 export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
