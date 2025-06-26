@@ -214,6 +214,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     textColor = 'inherit',
     tabsValue,
     registerTab,
+    unregisterTab,
   } = useTabsContext();
 
   const hasRegisteredRef = React.useRef(false);
@@ -225,6 +226,13 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     }
     return undefined;
   });
+
+  React.useEffect(() => {
+    const { finalValue } = registerTab(value);
+    return () => {
+      unregisterTab(finalValue);
+    };
+  }, [registerTab, unregisterTab, value]);
 
   const selected = value === tabsValue;
   const indicator = selected && !mounted && indicatorContext;

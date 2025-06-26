@@ -801,6 +801,13 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     [valueToIndex],
   );
 
+  const unregisterTab = React.useCallback(
+    (tabValue) => {
+      valueToIndex.delete(tabValue);
+    },
+    [valueToIndex],
+  );
+
   const tabsContextValue = React.useMemo(
     () => ({
       fullWidth: variant === 'fullWidth',
@@ -811,8 +818,19 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       textColor,
       tabsValue: value,
       registerTab,
+      unregisterTab,
     }),
-    [variant, indicator, mounted, selectionFollowsFocus, onChange, textColor, value, registerTab],
+    [
+      variant,
+      indicator,
+      mounted,
+      selectionFollowsFocus,
+      onChange,
+      textColor,
+      value,
+      registerTab,
+      unregisterTab,
+    ],
   );
 
   const handleKeyDown = (event) => {

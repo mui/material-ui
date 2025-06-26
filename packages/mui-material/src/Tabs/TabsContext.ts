@@ -15,6 +15,7 @@ interface TabsContextType {
     finalValue: TabProps['value'];
     assignedIndex: number;
   };
+  unregisterTab?: (tabValue: TabProps['value']) => void;
 }
 
 const TabsContext = React.createContext<TabsContextType | null>(null);
