@@ -517,6 +517,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /system/styles/advanced/ https://v6.mui.com/system/styles/advanced/ 301
 /system/styles/api/ https://v6.mui.com/system/styles/api/ 301
 /base-ui/* https://v6.mui.com/base-ui/:splat 301
+/material-ui/getting-started/learn/ /material-ui/getting-started/quickstart 301
 
 # Proxies
 
