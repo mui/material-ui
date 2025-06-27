@@ -1,8 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
-
 ## 5.18.0
+
 <!-- generated comparing v5.17.1..v5.x -->
+
 _Jun 26, 2025_
 
 A big thanks to the 2 contributors who made this release possible.
