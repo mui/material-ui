@@ -43,6 +43,7 @@ export default function MarkdownDocsV2(props) {
   const {
     disableAd = false,
     disableToc = false,
+    container,
     demos = {},
     docs,
     demoComponents,
@@ -220,6 +221,7 @@ export default function MarkdownDocsV2(props) {
       description={localizedDoc.description}
       disableAd={disableAd}
       disableToc={disableToc}
+      container={container}
       location={localizedDoc.location}
       title={localizedDoc.title}
       toc={activeToc}

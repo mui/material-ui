@@ -11,6 +11,16 @@ import { samePageLinkNavigation } from 'docs/src/modules/components/MarkdownLink
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 import featureToggle from 'docs/src/featureToggle';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Tooltip from '@mui/material/Tooltip';
+import Fab from '@mui/material/Fab';
+import Box from '@mui/material/Box';
+import Popper from '@mui/material/Popper';
+import Paper from '@mui/material/Paper';
+import Fade from '@mui/material/Fade';
+
+export const TOC_WIDTH = 242;
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 'var(--MuiDocs-header-height)',
@@ -24,7 +34,7 @@ const Nav = styled('nav')(({ theme }) => ({
   paddingRight: theme.spacing(4), // We can't use `padding` as @mui/stylis-plugin-rtl doesn't swap it
   display: 'none',
   scrollbarWidth: 'thin',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('xl')]: {
     display: 'block',
   },
 }));
@@ -168,14 +178,124 @@ function shouldShowJobAd() {
 
 const showJobAd = featureToggle.enable_job_banner && shouldShowJobAd();
 
+function TableOfContents({ toc, itemLink, onLinkClick }) {
+  const t = useTranslate();
+
+  return (
+    <>
+      <NoSsr>
+        {showJobAd && (
+          <Link
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            target="_blank"
+            sx={[
+              (theme) => ({
+                mb: 2,
+                p: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                backgroundColor: alpha(theme.palette.grey[50], 0.4),
+                border: '1px solid',
+                borderColor: (theme.vars || theme).palette.grey[200],
+                borderRadius: 1,
+                transitionProperty: 'all',
+                transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDuration: '150ms',
+                '&:hover, &:focus-visible': {
+                  borderColor: (theme.vars || theme).palette.primary[200],
+                },
+              }),
+              (theme) =>
+                theme.applyDarkStyles({
+                  backgroundColor: alpha(theme.palette.primary[900], 0.2),
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                  '&:hover, &:focus-visible': {
+                    borderColor: (theme.vars || theme).palette.primaryDark[500],
+                  },
+                }),
+            ]}
+          >
+            <Typography
+              component="span"
+              variant="button"
+              sx={{ fontWeight: '500', color: 'text.primary' }}
+            >
+              {'🚀 Join the MUI team!'}
+            </Typography>
+            <Typography
+              component="span"
+              variant="caption"
+              sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              {"We're looking for React Engineers and other amazing roles－come find out more!"}
+            </Typography>
+          </Link>
+        )}
+      </NoSsr>
+      {toc.length > 0 ? (
+        <React.Fragment>
+          <NavLabel>{t('tableOfContents')}</NavLabel>
+          <NavList component="ul">
+            {toc.map((item) => (
+              <li key={item.text}>
+                {itemLink(item, 1, onLinkClick)}
+                {item.children.length > 0 ? (
+                  <NavList as="ul">
+                    {item.children.map((subitem) => (
+                      <li key={subitem.text}>
+                        {itemLink(subitem, 2, onLinkClick)}
+                        {subitem.children?.length > 0 ? (
+                          <NavList as="ul">
+                            {subitem.children.map((nestedSubItem) => (
+                              <li key={nestedSubItem.text}>
+                                {itemLink(nestedSubItem, 3, onLinkClick)}
+                              </li>
+                            ))}
+                          </NavList>
+                        ) : null}
+                      </li>
+                    ))}
+                  </NavList>
+                ) : null}
+              </li>
+            ))}
+          </NavList>
+        </React.Fragment>
+      ) : null}
+      <DiamondSponsors />
+      <TableOfContentsBanner />
+    </>
+  );
+}
+
+TableOfContents.propTypes = {
+  toc: PropTypes.array.isRequired,
+  itemLink: PropTypes.func.isRequired,
+  onLinkClick: PropTypes.func,
+};
+
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
+  const [popperAnchorEl, setPopperAnchorEl] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
+
+  const handlePopperOpen = (event) => {
+    setPopperAnchorEl(event.currentTarget);
+  };
+
+  const handlePopperClose = () => {
+    setPopperAnchorEl(null);
+  };
+
+  const popperOpen = Boolean(popperAnchorEl);
+
   const findActiveIndex = React.useCallback(() => {
     // Don't set the active index based on scroll if a link was just clicked
     if (clickedRef.current) {
@@ -241,12 +361,35 @@ export default function AppTableOfContents(props) {
     [],
   );
 
-  const itemLink = (item, level) => (
+  const itemLink = (item, level, onLinkClick) => (
     <NavItem
       display="block"
       href={`#${item.hash}`}
       underline="none"
-      onClick={handleClick(item.hash)}
+      onClick={(event) => {
+        handleClick(item.hash)(event);
+        if (onLinkClick) {
+          onLinkClick();
+        }
+      }}
+      active={activeState === item.hash}
+      level={level}
+    >
+      <span dangerouslySetInnerHTML={{ __html: item.text }} />
+    </NavItem>
+  );
+
+  const mobileItemLink = (item, level, onLinkClick) => (
+    <NavItem
+      display="block"
+      href={`#${item.hash}`}
+      underline="none"
+      onClick={(event) => {
+        handleClick(item.hash)(event);
+        if (onLinkClick) {
+          onLinkClick();
+        }
+      }}
       active={activeState === item.hash}
       level={level}
     >
@@ -255,89 +398,93 @@ export default function AppTableOfContents(props) {
   );
 
   return (
-    <Nav aria-label={t('pageTOC')}>
-      <NoSsr>
-        {showJobAd && (
-          <Link
-            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
-            target="_blank"
-            sx={[
-              (theme) => ({
-                mb: 2,
-                p: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                backgroundColor: alpha(theme.palette.grey[50], 0.4),
-                border: '1px solid',
-                borderColor: (theme.vars || theme).palette.grey[200],
-                borderRadius: 1,
-                transitionProperty: 'all',
-                transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                transitionDuration: '150ms',
-                '&:hover, &:focus-visible': {
-                  borderColor: (theme.vars || theme).palette.primary[200],
+    <>
+      <Tooltip title={t('tableOfContents')} placement="left">
+        <Box
+          className="mui-fixed"
+          sx={(theme) => ({
+            position: 'fixed',
+            top: `calc(var(--MuiDocs-header-height) + ${theme.spacing(4)})`,
+            right: 24,
+            zIndex: 10,
+            display: { xl: 'none' },
+          })}
+        >
+          <Fab
+            size="small"
+            aria-label={t('pageTOC')}
+            onClick={handlePopperOpen}
+            sx={(theme) => ({
+              borderRadius: 1,
+              backgroundColor: (theme.vars || theme).palette.grey[50],
+              border: `1px solid ${(theme.vars || theme).palette.grey[100]}`,
+              color: (theme.vars || theme).palette.grey[800],
+              boxShadow: `0px 4px 12px rgba(0, 0, 0, 0.1)`,
+              '&:hover': {
+                backgroundColor: (theme.vars || theme).palette.grey[100],
+              },
+              ...theme.applyDarkStyles({
+                color: (theme.vars || theme).palette.primaryDark[200],
+                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+                borderColor: (theme.vars || theme).palette.primaryDark[700],
+                boxShadow: `0px 4px 12px rgba(0, 0, 0, 0.8)`,
+                '&:hover': {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[800],
                 },
               }),
-              (theme) =>
-                theme.applyDarkStyles({
-                  backgroundColor: alpha(theme.palette.primary[900], 0.2),
-                  borderColor: (theme.vars || theme).palette.primaryDark[700],
-                  '&:hover, &:focus-visible': {
-                    borderColor: (theme.vars || theme).palette.primaryDark[500],
-                  },
-                }),
-            ]}
+            })}
           >
-            <Typography
-              component="span"
-              variant="button"
-              sx={{ fontWeight: '500', color: 'text.primary' }}
-            >
-              {'🚀 Join the MUI team!'}
-            </Typography>
-            <Typography
-              component="span"
-              variant="caption"
-              sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
-            >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              {"We're looking for React Engineers and other amazing roles－come find out more!"}
-            </Typography>
-          </Link>
+            <FormatListBulletedIcon fontSize="small" />
+          </Fab>
+        </Box>
+      </Tooltip>
+      <Popper
+        open={popperOpen}
+        anchorEl={popperAnchorEl}
+        placement="bottom-end"
+        transition
+        sx={{
+          display: { xl: 'none' },
+          zIndex: 1300,
+        }}
+      >
+        {({ TransitionProps }) => (
+          <ClickAwayListener onClickAway={handlePopperClose}>
+            <Fade {...TransitionProps} timeout={250}>
+              <Paper
+                variant="outlined"
+                sx={(theme) => ({
+                  p: 1,
+                  mt: 0.5,
+                  maxHeight: 'calc(100vh - 200px)',
+                  width: TOC_WIDTH,
+                  overflowY: 'auto',
+                  scrollbarWidth: 'thin',
+                  borderColor: 'grey.200',
+                  bgcolor: 'background.paper',
+                  boxShadow: `0px 4px 16px ${alpha(theme.palette.grey[200], 0.8)}`,
+                  ...theme.applyDarkStyles({
+                    borderColor: 'primaryDark.700',
+                    bgcolor: 'primaryDark.900',
+                    boxShadow: `0px 4px 16px ${alpha(theme.palette.common.black, 0.8)}`,
+                  }),
+                })}
+              >
+                <TableOfContents
+                  toc={toc}
+                  itemLink={mobileItemLink}
+                  onLinkClick={handlePopperClose}
+                />
+              </Paper>
+            </Fade>
+          </ClickAwayListener>
         )}
-      </NoSsr>
-      {toc.length > 0 ? (
-        <React.Fragment>
-          <NavLabel>{t('tableOfContents')}</NavLabel>
-          <NavList component="ul">
-            {toc.map((item) => (
-              <li key={item.text}>
-                {itemLink(item, 1)}
-                {item.children.length > 0 ? (
-                  <NavList as="ul">
-                    {item.children.map((subitem) => (
-                      <li key={subitem.text}>
-                        {itemLink(subitem, 2)}
-                        {subitem.children?.length > 0 ? (
-                          <NavList as="ul">
-                            {subitem.children.map((nestedSubItem) => (
-                              <li key={nestedSubItem.text}>{itemLink(nestedSubItem, 3)}</li>
-                            ))}
-                          </NavList>
-                        ) : null}
-                      </li>
-                    ))}
-                  </NavList>
-                ) : null}
-              </li>
-            ))}
-          </NavList>
-        </React.Fragment>
-      ) : null}
-      <DiamondSponsors />
-      <TableOfContentsBanner />
-    </Nav>
+      </Popper>
+
+      <Nav aria-label={t('pageTOC')}>
+        <TableOfContents toc={toc} itemLink={itemLink} />
+      </Nav>
+    </>
   );
 }
 

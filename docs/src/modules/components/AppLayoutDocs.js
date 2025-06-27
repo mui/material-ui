@@ -14,13 +14,11 @@ import {
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import AppTableOfContents, { TOC_WIDTH } from 'docs/src/modules/components/AppTableOfContents';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
 import getProductInfoFromUrl from 'docs/src/modules/utils/getProductInfoFromUrl';
 import { convertProductIdToName } from 'docs/src/modules/components/AppSearch';
-
-const TOC_WIDTH = 242;
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -35,7 +33,7 @@ const Main = styled('main', {
     {
       props: ({ disableToc }) => disableToc,
       style: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('xl')]: {
           marginRight: TOC_WIDTH / 2,
         },
       },
@@ -43,7 +41,7 @@ const Main = styled('main', {
     {
       props: ({ disableToc }) => !disableToc,
       style: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('xl')]: {
           gridTemplateColumns: `1fr ${TOC_WIDTH}px`,
         },
       },
@@ -65,19 +63,28 @@ const StyledAppContainer = styled(AppContainer, {
     },
     variants: [
       {
-        props: ({ disableToc }) => disableToc,
+        props: ({ disableToc, container }) => disableToc && container === 'narrow',
         style: {
           // 105ch ≈ 930px
           maxWidth: `calc(105ch + ${TOC_WIDTH / 2}px)`,
         },
       },
       {
-        props: ({ disableToc }) => !disableToc,
+        props: ({ disableToc, container }) => !disableToc && container === 'narrow',
         style: {
           // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
           fontFamily: 'Arial',
           // 105ch ≈ 930px
           maxWidth: '105ch',
+        },
+      },
+      {
+        props: ({ disableToc, container }) => !disableToc && container === 'wide',
+        style: {
+          maxWidth: theme.breakpoints.values.xl,
+          '& p, & li, & h1, & h2, & h3, & h4, & h5, & h6': {
+            maxWidth: '105ch',
+          },
         },
       },
       {
@@ -127,6 +134,7 @@ export default function AppLayoutDocs(props) {
     // improves the UX. It's faster to transition, and you don't lose UI states, like scroll.
     disableLayout = false,
     disableToc = false,
+    container = 'narrow',
     hasTabs = false,
     location,
     title,
@@ -166,7 +174,12 @@ export default function AppLayoutDocs(props) {
             Render the TOCs first to avoid layout shift when the HTML is streamed.
             See https://jakearchibald.com/2014/dont-use-flexbox-for-page-layout/ for more details.
           */}
-          <StyledAppContainer disableAd={disableAd} hasTabs={hasTabs} disableToc={disableToc}>
+          <StyledAppContainer
+            disableAd={disableAd}
+            hasTabs={hasTabs}
+            disableToc={disableToc}
+            container={container}
+          >
             {children}
             <AppLayoutDocsFooter tableOfContents={toc} location={location} />
           </StyledAppContainer>
