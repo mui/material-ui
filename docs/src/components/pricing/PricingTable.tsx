@@ -89,7 +89,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
       ) : (
         value
       )}
-      {metadata && (
+      {metadata && typeof metadata === 'string' ? (
         <Typography
           variant="caption"
           sx={{
@@ -102,6 +102,8 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
         >
           {metadata}
         </Typography>
+      ) : (
+        metadata
       )}
     </React.Fragment>
   );
@@ -113,7 +115,7 @@ function ColumnHead({
   tooltip,
   href,
 }: {
-  label: React.ReactNode;
+  label: React.ReactNode | string;
   metadata?: string;
   tooltip?: React.ReactNode | string;
   href?: string;
@@ -1258,9 +1260,6 @@ export default function PricingTable({
         columnHeaderHidden ? '0px' : '200px'
       }, 1fr))`,
     },
-    width: '100%',
-    maxWidth: '100%',
-    overflow: 'auto',
   };
   const nestedGridSx = {
     ...gridSx,
