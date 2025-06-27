@@ -340,7 +340,7 @@ export function PlanPrice(props: PlanPriceProps) {
             minHeight: 38,
           }}
         >
-          Got a bigger team? Request a quote!
+          Got a big team? Request a personalized quote!
         </Typography>
       </Box>
       <Button

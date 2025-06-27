@@ -727,13 +727,13 @@ const communityData: Record<string, React.ReactNode> = {
   'core-support': <Info value="Community" />,
   'x-support': <Info value="Community" />,
   'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
   'security-questionnaire': no,
-  'customer-success': no,
 };
 
 const proData: Record<string, React.ReactNode> = {
@@ -833,13 +833,13 @@ const proData: Record<string, React.ReactNode> = {
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Community" />,
   'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
   'security-questionnaire': <Info value="Available from 10+ devs" />,
-  'customer-success': no,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
@@ -938,6 +938,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'core-support': <Info value={yes} metadata="Priority add-on only" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
   'priority-support': <Info value={yes} metadata="Available as add-on" />,
+  'customer-success': no,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': (
@@ -954,7 +955,6 @@ const premiumData: Record<string, React.ReactNode> = {
   'pre-screening': <Info value={yes} metadata="4 hours (priority add-on only)" />,
   'issue-escalation': <Info value={yes} metadata="Priority add-on only" />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
-  'customer-success': no,
 };
 
 const enterpriseData: Record<string, React.ReactNode> = {
@@ -1004,7 +1004,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
   'data-grid/aggregation': yes,
-  'data-grid/pivoting': pending,
+  'data-grid/pivoting': yes,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
@@ -1053,13 +1053,13 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'core-support': yes,
   'x-support': <Info value={yes} metadata="Priority over Premium" />,
   'priority-support': <Info value="Included" />,
+  'customer-success': yes,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
   'response-time': <Info value={yes} metadata="1 business day" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
   'security-questionnaire': <Info value={yes} />,
-  'customer-success': yes,
 };
 
 function RowCategory(props: BoxProps) {
@@ -1680,6 +1680,8 @@ export default function PricingTable({
         </RowHead>
         {renderRow('priority-support')}
         {divider}
+        {renderRow('customer-success')}
+        {divider}
         {renderRow('core-support')}
         {divider}
         {renderRow('x-support')}
@@ -1691,8 +1693,6 @@ export default function PricingTable({
         {renderRow('pre-screening')}
         {divider}
         {renderRow('issue-escalation')}
-        {divider}
-        {renderRow('customer-success')}
         {divider}
         {renderRow('security-questionnaire')}
         {divider}
