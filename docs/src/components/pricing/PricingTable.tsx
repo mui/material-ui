@@ -89,7 +89,7 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
       ) : (
         value
       )}
-      {metadata && typeof metadata === 'string' ? (
+      {metadata && (
         <Typography
           variant="caption"
           sx={{
@@ -102,8 +102,6 @@ function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
         >
           {metadata}
         </Typography>
-      ) : (
-        metadata
       )}
     </React.Fragment>
   );
