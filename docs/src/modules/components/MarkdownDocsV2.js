@@ -276,6 +276,7 @@ export default function MarkdownDocsV2(props) {
 MarkdownDocsV2.propTypes = {
   componentsApiDescriptions: PropTypes.object,
   componentsApiPageContents: PropTypes.object,
+  container: PropTypes.oneOf(['narrow', 'wide']),
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,

@@ -182,7 +182,7 @@ function TableOfContents({ toc, itemLink, onLinkClick }) {
   const t = useTranslate();
 
   return (
-    <>
+    <React.Fragment>
       <NoSsr>
         {showJobAd && (
           <Link
@@ -266,14 +266,14 @@ function TableOfContents({ toc, itemLink, onLinkClick }) {
       ) : null}
       <DiamondSponsors />
       <TableOfContentsBanner />
-    </>
+    </React.Fragment>
   );
 }
 
 TableOfContents.propTypes = {
-  toc: PropTypes.array.isRequired,
   itemLink: PropTypes.func.isRequired,
   onLinkClick: PropTypes.func,
+  toc: PropTypes.array.isRequired,
 };
 
 export default function AppTableOfContents(props) {
@@ -398,7 +398,7 @@ export default function AppTableOfContents(props) {
   );
 
   return (
-    <>
+    <React.Fragment>
       <Tooltip title={t('tableOfContents')} placement="left">
         <Box
           className="mui-fixed"
@@ -484,7 +484,7 @@ export default function AppTableOfContents(props) {
       <Nav aria-label={t('pageTOC')}>
         <TableOfContents toc={toc} itemLink={itemLink} />
       </Nav>
-    </>
+    </React.Fragment>
   );
 }
 

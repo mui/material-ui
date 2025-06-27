@@ -55,6 +55,7 @@ export default function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  container: PropTypes.oneOf(['narrow', 'wide']),
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,

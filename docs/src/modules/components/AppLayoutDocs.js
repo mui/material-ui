@@ -198,6 +198,7 @@ AppLayoutDocs.propTypes = {
     title: PropTypes.string,
   }),
   children: PropTypes.node.isRequired,
+  container: PropTypes.oneOf(['narrow', 'wide']),
   description: PropTypes.string.isRequired,
   disableAd: PropTypes.bool.isRequired,
   disableLayout: PropTypes.bool,
