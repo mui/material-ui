@@ -16,14 +16,14 @@
     "@mui/styled-engine": "workspace:*",
     "@mui/system": "workspace:*",
     "@mui/utils": "workspace:*",
-    "next": "14.2.26",
+    "next": "14.2.30",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "@playwright/test": "1.52.0"
+    "@playwright/test": "1.53.1"
   },
   "pnpm": {
     "overrides": {

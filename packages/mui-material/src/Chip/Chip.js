@@ -90,6 +90,7 @@ const ChipRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       height: 32,
+      lineHeight: 1.5,
       color: (theme.vars || theme).palette.text.primary,
       backgroundColor: (theme.vars || theme).palette.action.selected,
       borderRadius: 32 / 2,

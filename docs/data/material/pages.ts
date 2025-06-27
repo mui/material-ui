@@ -10,6 +10,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
+      { pathname: '/material-ui/getting-started/mcp', newFeature: true, title: 'MCP' },
       { pathname: '/material-ui/getting-started/example-projects' },
       { pathname: '/material-ui/getting-started/templates' },
       { pathname: '/material-ui/getting-started/learn' },
@@ -155,12 +156,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/toolpad/core/react-dashboard-layout/',
             title: 'Dashboard Layout',
-            newFeature: true,
           },
           {
             pathname: '/toolpad/core/react-sign-in-page/',
             title: 'Sign-in Page',
-            newFeature: true,
           },
         ],
       },
@@ -232,6 +231,18 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
             title: 'Advanced configuration',
+          },
+        ],
+      },
+      {
+        pathname: '/material-ui/customization/styles',
+        subheader: '/material-ui/customization/styles',
+        title: 'Styles',
+        children: [
+          {
+            pathname: '/material-ui/customization/css-layers',
+            title: 'Cascade layers',
+            newFeature: true,
           },
         ],
       },
