@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import path from 'path';
-import { existsSync } from 'fs';
+import { stat } from 'fs/promises';
 import { createPackageFile, includeFileInBuild, prepend } from './copyFilesUtils.mjs';
 
 const packagePath = process.cwd();
@@ -36,7 +36,7 @@ async function run() {
     const packageData = await createPackageFile(true);
 
     let changlogPath;
-    if (existsSync(path.join(packagePath, './CHANGELOG.md'))) {
+    if (await fileExists(path.join(packagePath, './CHANGELOG.md'))) {
       changlogPath = './CHANGELOG.md';
     } else {
       changlogPath = '../../CHANGELOG.md';
@@ -53,6 +53,18 @@ async function run() {
   } catch (err) {
     console.error(err);
     process.exit(1);
+  }
+}
+
+async function fileExists(filePath) {
+  try {
+    await stat(filePath);
+    return true;
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return false;
+    }
+    throw err;
   }
 }
 
