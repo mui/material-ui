@@ -404,8 +404,11 @@ export default function AppTableOfContents(props) {
           className="mui-fixed"
           sx={(theme) => ({
             position: 'fixed',
-            top: `calc(var(--MuiDocs-header-height) + ${theme.spacing(4)})`,
-            right: 24,
+            top: {
+              xs: `calc(var(--MuiDocs-header-height) + ${theme.spacing(1)})`,
+              lg: `calc(var(--MuiDocs-header-height) + ${theme.spacing(5)})`,
+            },
+            right: { xs: theme.spacing(1.5), lg: theme.spacing(3) },
             zIndex: 10,
             display: { xl: 'none' },
           })}
