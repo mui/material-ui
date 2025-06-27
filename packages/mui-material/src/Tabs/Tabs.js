@@ -794,8 +794,8 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       const finalValue = tabValue === undefined ? assignedIndex : tabValue;
       if (!valueToIndex.has(finalValue)) {
         valueToIndex.set(finalValue, assignedIndex);
+        childIndexRef.current += 1;
       }
-      childIndexRef.current += 1;
       return { finalValue, assignedIndex };
     },
     [valueToIndex],
@@ -804,6 +804,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const unregisterTab = React.useCallback(
     (tabValue) => {
       valueToIndex.delete(tabValue);
+      childIndexRef.current -= 1;
     },
     [valueToIndex],
   );
