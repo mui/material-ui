@@ -1,5 +1,4 @@
-/* eslint-disable mocha/no-top-level-hooks */
-/* eslint-env mocha */
+/* global before, after, beforeEach, afterEach */
 import { createMochaHooks } from './mochaHooks';
 
 const mochaHooks = createMochaHooks(window.Mocha);
@@ -58,7 +57,6 @@ window.addEventListener('unhandledrejection', (event) => {
   pendingErrorNotice = 'An uncaught promise rejection occurred between tests';
 });
 
-// eslint-disable-next-line mocha/no-sibling-hooks
 afterEach(() => {
   if (pendingError) {
     console.error(pendingErrorNotice);
