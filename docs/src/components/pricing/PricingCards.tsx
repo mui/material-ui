@@ -58,7 +58,7 @@ export const planInfo: Record<
     title: 'Pro',
     description: 'Best for professional developers or startups building data-rich applications.',
     features: [
-      { text: 'All Community features and...', icon: 'check' },
+      { text: 'All Community features and…', icon: 'check' },
       { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
       { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
       {
@@ -73,7 +73,7 @@ export const planInfo: Record<
     description:
       'The most advanced features for data-rich applications along with standard support.',
     features: [
-      { text: 'All Pro', text2: 'features and...', icon: 'check' },
+      { text: 'All Pro', text2: 'features and…', icon: 'check' },
       { text: 'MUI X', highlight: 'Premium', text2: 'access', icon: 'check' },
       { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
       {
@@ -88,7 +88,7 @@ export const planInfo: Record<
     description:
       'All features of Premium coupled with enterprise-grade support and customer success.',
     features: [
-      { text: 'All Premium', text2: 'features and...', icon: 'check' },
+      { text: 'All Premium', text2: 'features and…', icon: 'check' },
       { text: 'Technical support for all libraries', icon: 'check' },
       { text: 'Guaranteed response time', icon: 'check' },
       { text: 'Pre-screening', icon: 'check' },

@@ -1,7 +1,8 @@
+import * as React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
+
 
 export function CommunitySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
   const gradientId = `${idPrefix}community-gradient`;
@@ -138,7 +139,7 @@ export function PrioritySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
   );
 }
 
-const CommunitySupportGradient = styled(Typography)(() => ({
+const CommunitySupportGradient = styled('span')(() => ({
   background: `linear-gradient(rgba(106, 81, 36, 0.5), rgba(106, 81, 36, 0.5)),
   linear-gradient(
   97deg,
@@ -161,7 +162,7 @@ export function CommunitySupportText() {
   return <CommunitySupportGradient>Community support</CommunitySupportGradient>;
 }
 
-const ProSupportGradient = styled(Typography)(() => ({
+const ProSupportGradient = styled('span')(() => ({
   background: `linear-gradient(rgba(34, 76, 97, 0.5), rgba(34, 76, 97, 0.5)),
   linear-gradient(
   23deg,
@@ -183,7 +184,7 @@ export function ProSupportText() {
   return <ProSupportGradient>Pro support</ProSupportGradient>;
 }
 
-const PremiumSupportGradient = styled(Typography)(() => ({
+const PremiumSupportGradient = styled('span')(() => ({
   background: `linear-gradient(rgba(122, 114, 58, 0.5), rgba(122, 114, 58, 0.5)),
   linear-gradient(
   97deg,
@@ -205,7 +206,7 @@ export function PremiumSupportText() {
   return <PremiumSupportGradient>Premium support</PremiumSupportGradient>;
 }
 
-const PrioritySupportGradient = styled(Typography)(() => ({
+const PrioritySupportGradient = styled('span')(() => ({
   background: `linear-gradient(rgba(79, 100, 147, 0.5), rgba(79, 100, 147, 0.5)),
     linear-gradient(
       97deg,
