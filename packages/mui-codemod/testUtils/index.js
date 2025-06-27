@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* global describe, it */
 import j from 'jscodeshift';
 import { EOL } from 'os';
 import path from 'path';

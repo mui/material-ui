@@ -4,6 +4,8 @@ import {
   createTestConfig,
   baseSpecRules,
   createDocsConfig,
+  EXTENSION_TS,
+  EXTENSION_TEST_FILE,
 } from '@mui/internal-code-infra/eslint';
 import { defineConfig } from 'eslint/config';
 import eslintPluginConsistentName from 'eslint-plugin-consistent-default-export-name';
@@ -83,7 +85,7 @@ export default defineConfig(
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
     (packageName) => ({
-      files: [`packages/${packageName}/src/**/*.?(c|m)[jt]s?(x)`],
+      files: [`packages/${packageName}/src/**/*${EXTENSION_TEST_FILE}`],
       ignores: ['**/*.test.*', '**/*.spec.*'],
       rules: {
         'material-ui/no-restricted-resolved-imports': [
@@ -101,14 +103,7 @@ export default defineConfig(
   ),
   // Test start
   {
-    files: [
-      // matching the pattern of the test runner
-      '**/*.test.?(c|m)[jt]s?(x)',
-      // These files have been picked up individually where eslint errors for globals were reported.
-      'packages-internal/test-utils/src/setupKarma.js',
-      'packages/mui-codemod/testUtils/index.js',
-      'packages-internal/test-utils/src/setupKarma.js',
-    ],
+    files: [`**/*${EXTENSION_TEST_FILE}`],
     extends: createTestConfig(),
     rules: {
       // Disabled temporarily. Enable one by one.
@@ -214,7 +209,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['packages/*/src/*/*.?(c|m)[jt]s?(x)'],
+    files: [`packages/*/src/*/*${EXTENSION_TS}`],
     ignores: [
       '**/*.spec.*',
       '**/*.test.*',
@@ -228,7 +223,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
     ignores: ['**/*.spec.*'],
     rules: {
       'no-restricted-imports': [
@@ -250,7 +245,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
     ignores: ['**/*.spec.*'],
     rules: {
       'no-restricted-imports': [
@@ -276,7 +271,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
+    files: [`packages/*/src/**/*${EXTENSION_TS}`],
     ignores: ['**/*.d.ts', '**/*.spec.*', 'packages/mui-joy/**/*'],
     rules: {
       'material-ui/mui-name-matches-component-name': 'error',
