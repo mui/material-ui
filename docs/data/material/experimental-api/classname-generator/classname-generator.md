@@ -124,15 +124,35 @@ Always create an initializer file to hoist the `ClassNameGenerator` call to the 
 
 ```js
 // create a new file called `MuiClassNameSetup.js` at the root or src folder.
+'use client'; // remove this line if you are not using React Server Components
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 
 ClassNameGenerator.configure(
   // Do something with the componentName
   (componentName) => componentName,
 );
+
+export default null;
 ```
 
 Then import the file in the main JavaScript source based on the framework.
+
+### Next.js App Router
+
+Add the `'use client'` directive and import the initializer in `/app/page.js`.
+
+```diff
++'use client';
++import './MuiClassNameSetup';
+ import * as React from 'react';
+ import Button from '@mui/material/Button';
+
+ export default function Page() {
+   return (
+     <Button>Text</Button>
+   );
+ }
+```
 
 ### Next.js Pages Router
 

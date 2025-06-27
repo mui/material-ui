@@ -5,6 +5,9 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { StyleSheet } from '@emotion/sheet';
 
+// To fix [Jest performance](https://github.com/mui/material-ui/issues/45638).
+const cacheMap = new Map();
+
 // Need to add a private variable to test the generated CSS from Emotion, this is the simplest way to do it.
 // We can't test the CSS from `style` tag easily because the `speedy: true` (produce empty text content) is enabled by Emotion.
 // Even if we disable it, JSDOM needs extra configuration to be able to parse `@layer` CSS.
@@ -84,7 +87,7 @@ function getCache(injectFirst, enableCssLayer) {
     if (enableCssLayer) {
       const prevInsert = emotionCache.insert;
       emotionCache.insert = (...args) => {
-        if (!args[1].styles.startsWith('@layer')) {
+        if (!args[1].styles.match(/^@layer\s+[^{]*$/)) {
           // avoid nested @layer
           args[1].styles = `@layer mui {${args[1].styles}}`;
         }
@@ -98,10 +101,15 @@ function getCache(injectFirst, enableCssLayer) {
 
 export default function StyledEngineProvider(props) {
   const { injectFirst, enableCssLayer, children } = props;
-  const cache = React.useMemo(
-    () => getCache(injectFirst, enableCssLayer),
-    [injectFirst, enableCssLayer],
-  );
+  const cache = React.useMemo(() => {
+    const cacheKey = `${injectFirst}-${enableCssLayer}`;
+    if (typeof document === 'object' && cacheMap.has(cacheKey)) {
+      return cacheMap.get(cacheKey);
+    }
+    const fresh = getCache(injectFirst, enableCssLayer);
+    cacheMap.set(cacheKey, fresh);
+    return fresh;
+  }, [injectFirst, enableCssLayer]);
   return cache ? <CacheProvider value={cache}>{children}</CacheProvider> : children;
 }
 

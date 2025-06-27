@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "2.0.6",
+  "version": "2.0.9",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -23,7 +23,8 @@
     "./setupJSDOM": "./build/setupJSDOM.js",
     "./setupKarma": "./build/setupKarma.js",
     "./chaiPlugin": "./build/chaiPlugin.js",
-    "./setupVitest": "./build/setupVitest.js"
+    "./setupVitest": "./build/setupVitest.js",
+    "./describeSkipIf": "./build/describeSkipIf.js"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
@@ -33,24 +34,23 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.26.3",
-    "@babel/preset-typescript": "^7.27.0",
-    "@babel/register": "^7.25.9",
-    "@babel/runtime": "^7.27.0",
-    "@emotion/cache": "^11.13.5",
-    "@emotion/react": "^11.13.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@babel/register": "^7.27.1",
+    "@babel/runtime": "^7.27.6",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@playwright/test": "^1.53.1",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.2.0",
+    "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "chai": "^4.5.0",
     "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
     "format-util": "^1.0.5",
     "fs-extra": "^11.3.0",
-    "jsdom": "^26.0.0",
+    "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
-    "mocha": "^11.1.0",
-    "playwright": "^1.51.1",
+    "mocha": "^11.7.0",
     "prop-types": "^15.8.1",
     "sinon": "^19.0.5"
   },
@@ -58,13 +58,14 @@
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
-    "@types/prop-types": "^15.7.14",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "@types/sinon": "^17.0.4",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
+    "chai": "^4.5.0 || ^5.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },

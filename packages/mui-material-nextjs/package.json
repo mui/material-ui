@@ -1,7 +1,6 @@
 {
   "name": "@mui/material-nextjs",
-  "version": "7.0.0",
-  "private": false,
+  "version": "7.1.1",
   "author": "MUI Team",
   "description": "Collection of utilities for integration between Material UI and Next.js.",
   "keywords": [
@@ -24,8 +23,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
@@ -37,15 +35,15 @@
     "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.0"
+    "@babel/runtime": "^7.27.6"
   },
   "devDependencies": {
-    "@emotion/cache": "^11.13.5",
-    "@emotion/react": "^11.13.5",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^19.0.12",
-    "next": "^15.2.4",
-    "react": "^19.0.0"
+    "@types/react": "^19.1.8",
+    "next": "^15.3.4",
+    "react": "^19.1.0"
   },
   "peerDependencies": {
     "@emotion/cache": "^11.11.0",

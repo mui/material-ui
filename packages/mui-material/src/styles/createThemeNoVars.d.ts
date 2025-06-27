@@ -42,6 +42,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVar
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
   unstable_sxConfig?: SxConfig;
+  modularCssLayers?: boolean | string;
 }
 
 export interface BaseTheme extends SystemTheme {
@@ -74,7 +75,7 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
       | 'shouldSkipGeneratingVar'
       | 'vars'
     >
-  : {};
+  : Partial<Pick<CssVarsTheme, 'vars'>>;
 
 /**
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.

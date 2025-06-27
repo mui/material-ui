@@ -67,6 +67,23 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 
 ## Customization
 
+### Preventing default click away event
+
+If you would like to prevent the default onClickAway behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Snackbar
+  slotProps={{
+    clickAwayListener: {
+      onClickAway: (event) => {
+        // Prevent's default 'onClickAway' behavior.
+        event.defaultMuiPrevented = true;
+      },
+    },
+  }}
+/>
+```
+
 ### Use with Alerts
 
 Use an Alert inside a Snackbar for messages that communicate a certain severity.
@@ -140,11 +157,3 @@ The Snackbar component is composed of a root `<div>` that houses interior elemen
   </div>
 </div>
 ```
-
-## Experimental APIs - Toolpad
-
-### useNotifications
-
-You can create and manipulate notifications imperatively with the [`useNotifications()`](https://mui.com/toolpad/core/react-use-notifications/) API in `@toolpad/core`. This API provides state management for opening and closing snackbars. It also allows for queueing multiple notifications at once.
-
-{{"demo": "ToolpadNotificationsNoSnap.js", "defaultCodeOpen": false}}

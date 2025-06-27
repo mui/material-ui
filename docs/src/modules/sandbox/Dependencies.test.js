@@ -138,7 +138,7 @@ import 'exceljs';
   });
 
   it('can collect required @types packages', () => {
-    const { dependencies } = SandboxDependencies({
+    const { dependencies, devDependencies } = SandboxDependencies({
       raw: s1,
       codeVariant: 'TS',
     });
@@ -153,16 +153,19 @@ import 'exceljs';
       // #npm-tag-reference
       '@mui/material': 'latest',
       '@mui/base': 'latest',
+      typescript: 'latest',
+    });
+
+    expect(devDependencies).to.deep.equal({
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
-      typescript: 'latest',
     });
   });
 
   it('should handle @types correctly', () => {
-    const { dependencies } = SandboxDependencies({
+    const { dependencies, devDependencies } = SandboxDependencies({
       raw: `import utils from '../utils';`,
       codeVariant: 'TS',
     });
@@ -174,9 +177,12 @@ import 'exceljs';
       '@emotion/styled': 'latest',
       // #npm-tag-reference
       '@mui/material': 'latest',
+      typescript: 'latest',
+    });
+
+    expect(devDependencies).to.deep.equal({
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
-      typescript: 'latest',
     });
   });
 
@@ -251,13 +257,18 @@ import * as Utils from '@mui/utils';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/material',
+      '@mui/material':
+        'https://pkg.pr.new/mui/material-ui/@mui/material@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
       '@mui/icons-material':
-        'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/icons-material',
-      '@mui/lab': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/lab',
-      '@mui/system': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/system',
-      '@mui/utils': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/utils',
-      '@mui/base': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/base',
+        'https://pkg.pr.new/mui/material-ui/@mui/icons-material@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      '@mui/lab':
+        'https://pkg.pr.new/mui/material-ui/@mui/lab@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      '@mui/system':
+        'https://pkg.pr.new/mui/material-ui/@mui/system@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      '@mui/utils':
+        'https://pkg.pr.new/mui/material-ui/@mui/utils@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      '@mui/base':
+        'https://pkg.pr.new/mui/material-ui/@mui/base@2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
     });
   });
 
@@ -528,8 +539,6 @@ export default function EmailExample() {
       '@mui/joy': 'latest',
       '@mui/material': 'latest',
       '@mui/system': 'latest',
-      '@types/react': 'latest',
-      '@types/react-dom': 'latest',
       typescript: 'latest',
     });
   });
