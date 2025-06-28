@@ -101,7 +101,7 @@ For developers migrating from Emotion or styled-components, you're probably alre
 ```jsx
 import { styled, css } from '@pigment-css/react';
 
-const Title = styled('h1') ({
+const Title = styled('h1')({
   fontSize: '2rem',
 });
 
