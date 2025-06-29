@@ -308,8 +308,8 @@ importers:
         specifier: ^17.1.0
         version: 17.1.0
       piscina:
-        specifier: ^5.1.1
-        version: 5.1.1
+        specifier: ^5.1.2
+        version: 5.1.2
       postcss-styled-syntax:
         specifier: ^0.7.1
         version: 0.7.1(postcss@8.5.6)
@@ -11799,8 +11799,8 @@ packages:
   piscina@4.9.2:
     resolution: {integrity: sha512-Fq0FERJWFEUpB4eSY59wSNwXD4RYqR+nR/WiEVcZW8IWfVBxJJafcgTEZDQo8k3w0sUarJ8RyVbbUF4GQ2LGbQ==}
 
-  piscina@5.1.1:
-    resolution: {integrity: sha512-9rPDIPsCwOivatEZGM8+apgM7AiTDLSnpwMmLaSmdm2PeND8bFJzZLZZxyrJjLH8Xx/MpKoVaKf+vZOWALNHbw==}
+  piscina@5.1.2:
+    resolution: {integrity: sha512-9cE/BTA/xhDiyNUEj6EKWLEQC17fh/24ydYzQwcA7QdYh75K6kzL2GHvxDF5i9rFGtUaaKk7/u4xp07qiKXccQ==}
     engines: {node: '>=20.x'}
 
   pkg-dir@3.0.0:
@@ -26484,7 +26484,7 @@ snapshots:
     optionalDependencies:
       '@napi-rs/nice': 1.0.1
 
-  piscina@5.1.1:
+  piscina@5.1.2:
     optionalDependencies:
       '@napi-rs/nice': 1.0.1
 
