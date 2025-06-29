@@ -113,7 +113,7 @@
     "@arethetypeswrong/cli": "^0.18.2",
     "@argos-ci/core": "^3.2.0",
     "@babel/cli": "^7.27.2",
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.27.7",
     "@babel/node": "^7.27.1",
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
     "@babel/plugin-transform-runtime": "^7.27.4",
@@ -222,7 +222,7 @@
     "pnpm": "10.12.1"
   },
   "resolutions": {
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.27.7",
     "@babel/plugin-transform-runtime": "^7.27.4",
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
