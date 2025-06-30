@@ -215,32 +215,15 @@ export default defineConfig(
         'error',
         {
           paths: [
-            {
-              name: '@mui/material/styles',
-              importNames: ['createStyles'],
-              message: forbidCreateStylesMessage,
-            },
-          ],
-          patterns: [
-            // Allow deeper imports for TypeScript types. TODO?
-            '@mui/*/*/*/*',
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: [`packages/*/src/**/*${EXTENSION_TS}`],
-    ignores: ['**/*.spec.*'],
-    rules: {
-      'no-restricted-imports': [
-        'error',
-        {
-          paths: [
             ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
             {
               name: '@mui/utils',
               message: OneLevelImportMessage,
+            },
+            {
+              name: '@mui/material/styles',
+              importNames: ['createStyles'],
+              message: forbidCreateStylesMessage,
             },
           ],
         },
