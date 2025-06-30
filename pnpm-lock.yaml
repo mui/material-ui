@@ -1029,9 +1029,6 @@ importers:
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.8)(react@19.1.0)
-      '@playwright/test':
-        specifier: ^1.53.1
-        version: 1.53.1
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -1078,6 +1075,9 @@ importers:
         specifier: ^19.0.5
         version: 19.0.5
     devDependencies:
+      '@playwright/test':
+        specifier: ^1.53.1
+        version: 1.53.1
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
