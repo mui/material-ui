@@ -1,5 +1,21 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.1.2
+
+_Jun 18, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material@7.1.2`
+
+- [Chip] Fix handling on event handlers (#46263) @sai6855
+
+### Docs
+
+- Fix fade modal demo (#46271) @brijeshb42
+
+All contributors of this release in alphabetical order: @brijeshb42, @sai6855
+
 ## 7.1.1
 
 <!-- generated comparing v7.1.0..master -->
