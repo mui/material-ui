@@ -6,9 +6,10 @@
 
 _Jun 26, 2025_
 
-A big thanks to the 16 contributors who made this release possible. Here are the highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are the highlights ✨:
 
 - ⚡️ Introduce `modularCssLayers` theme flag to split styles into multiple CSS layers (#46001) @siriwatknp.
+- 📖 Added Material UI with React Router v7 example (#46406) @siriwatknp.
 
 ### `@mui/material@7.2.0`
 
@@ -17,6 +18,7 @@ A big thanks to the 16 contributors who made this release possible. Here are the
 - [Chip] Fix handling on event handlers (#46263) @sai6855
 - [OutlinedInput][Input] Deprecate composed classes (#46316) @sai6855
 - [Select] Pass MenuProps.slotProps.list alongside MenuListProps (#46274) @scousino
+- [l10] Enable `labelDisplayedRows` translation for Romanian (#46377) @dhu-redwoodtech
 - Skip generating `modularCssLayers` CSS var (#46329) @siriwatknp
 
 ### `@mui/system@7.2.0`
@@ -58,10 +60,10 @@ A big thanks to the 16 contributors who made this release possible. Here are the
 - [infra] Add emotion as external for bundle monitor (#46372) @Janpot
 - [infra] Create update PR on every canary publish for internal packages (#46367) @Janpot
 - [infra] Remove deprecated esmExternals (#46365) @Janpot
-- [l10] Enable `labelDisplayedRows` translation for Romanian (#46377) @dhu-redwoodtech
+- [infra] Support project-specific changelog in build scripts (#46425) @michaldudak
 - [toolpad][website] Remove references to Toolpad (#46311) @prakhargupta1
 
-All contributors of this release in alphabetical order: @0210shivam, @bharatkashyap, @brijeshb42, @dhu-redwoodtech, @DiegoAndai, @humble-barnacle001, @Janpot, @KirankumarAmbati, @mapache-salvaje, @oliviertassinari, @prakhargupta1, @robbtraister, @sai6855, @scousino, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @0210shivam, @bharatkashyap, @brijeshb42, @dhu-redwoodtech, @DiegoAndai, @humble-barnacle001, @Janpot, @KirankumarAmbati, @mapache-salvaje, @michaldudak, @oliviertassinari, @prakhargupta1, @robbtraister, @sai6855, @scousino, @siriwatknp, @ZeeshanTamboli
 
 ## 7.1.2
 
