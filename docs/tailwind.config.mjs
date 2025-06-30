@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss/plugin')} */
-
 import plugin from 'tailwindcss/plugin';
 
 import defaultTheme from 'tailwindcss/defaultTheme';

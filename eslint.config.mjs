@@ -45,12 +45,8 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
     group: [
       '@mui/*/*/*',
       '@pigment-css/*/*/*',
-      '@base-ui/*/*/*',
       // Allow any import depth with any internal packages
       '!@mui/internal-*/**',
-      // TODO delete
-      '@base-ui-components/*/*/*', // Wait for migration to @base-ui/
-      '@base_ui/*/*/*', // Legacy, moved to @base-ui-components/
       '!@mui/docs/**', // @mui/docs should be @mui/internal-docs
     ],
     message: OneLevelImportMessage,
@@ -103,8 +99,10 @@ export default defineConfig(
   ),
   // Test start
   {
-    files: [`**/*${EXTENSION_TEST_FILE}`],
-    extends: createTestConfig(),
+    files: [`**/*${EXTENSION_TEST_FILE}`, 'packages/mui-codemod/testUtils/**/*'],
+    extends: createTestConfig({
+      useMocha: true,
+    }),
     rules: {
       // Disabled temporarily. Enable one by one.
       'testing-library/prefer-screen-queries': 'off',
@@ -116,13 +114,6 @@ export default defineConfig(
       'testing-library/no-unnecessary-act': 'off',
       'testing-library/no-wait-for-multiple-assertions': 'off',
       'testing-library/no-render-in-lifecycle': 'off',
-    },
-  },
-  {
-    // Turn off some rules for specific files that are needed by other test files.
-    files: ['packages/mui-codemod/testUtils/index.js'],
-    rules: {
-      'mocha/no-exports': 'off',
     },
   },
   // Test end
@@ -165,7 +156,8 @@ export default defineConfig(
   },
   // Next.js entry points pages
   {
-    files: ['docs/pages/**/*'],
+    files: ['docs/pages/**/*', 'packages/*/src/**/*.tsx'],
+    ignores: ['**/*.spec.tsx'],
     rules: {
       'react/prop-types': 'off',
     },
@@ -199,13 +191,6 @@ export default defineConfig(
     files: ['**/*.d.ts'],
     rules: {
       'import/export': 'off', // Not sure why it doesn't work
-    },
-  },
-  {
-    files: ['packages/*/src/**/*.tsx'],
-    ignores: ['**/*.spec.tsx'],
-    rules: {
-      'react/prop-types': 'off',
     },
   },
   {
