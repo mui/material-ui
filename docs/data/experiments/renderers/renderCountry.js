@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useGridApiContext } from '@mui/x-data-grid';
-
 // eslint-disable-next-line no-restricted-imports
 import { COUNTRY_ISO_OPTIONS } from '@mui/x-data-grid-generator/services/static-data';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';

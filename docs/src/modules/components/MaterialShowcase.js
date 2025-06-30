@@ -450,7 +450,6 @@ export default function MaterialShowcase() {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
         <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 'semiBold' }}>
-          {}
           {'Sort by:'}
         </Typography>
         <ToggleButtonGroup
