@@ -42,7 +42,7 @@ A big thanks to the 17 contributors who made this release possible. Here are the
 - Add `ListItemButton` to make the deprecation clear (#46356) @siriwatknp
 - Remove "Unstyled" section from component docs (#46272) @mapache-salvaje
 - Add Testing section to Rating component doc (#46268) @0210shivam
-- fix fade modal demo (#46271) @brijeshb42
+- Fix fade modal demo (#46271) @brijeshb42
 - [ai] Add suggestions to edit with MUI Chat (#46309) @bharatkashyap
 - [Dialog] Fix form dialog uses ARIA roles on incompatible elements (#46307) @ZeeshanTamboli
 - [Menu] Fix dark mode styling of grouped header demo (#46317) @sai6855
