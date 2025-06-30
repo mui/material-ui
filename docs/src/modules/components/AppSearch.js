@@ -416,57 +416,70 @@ export default function AppSearch(props) {
       </SearchButton>
       {isOpen &&
         ReactDOM.createPortal(
-          <DocSearchModal
-            initialQuery={initialQuery}
-            appId="TZGZ85B9TB"
-            apiKey="8177dfb3e2be72b241ffb8c5abafa899"
-            indexName="material-ui"
-            searchParameters={{
-              facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters,
-              attributesToRetrieve: [
-                // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
-                'hierarchy.lvl0',
-                'hierarchy.lvl1',
-                'hierarchy.lvl2',
-                'hierarchy.lvl3',
-                'hierarchy.lvl4',
-                'hierarchy.lvl5',
-                'content',
-                'type',
-                'url',
-                // Extra
-                'productId',
-                'productCategoryId',
-              ],
-              analyticsTags: [facetFilterLanguage, `product:${pageContext.productId}`],
-              hitsPerPage: 40,
-            }}
-            placeholder={`${t('algoliaSearch')}`}
-            transformItems={(items) => {
-              return items.map((item) => {
-                // `url` contains the domain
-                // but we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
-                const parseUrl = document.createElement('a');
-                parseUrl.href = item.url;
+          <div
+            ref={() => {
+              const html = document.querySelector('html');
+              if (html) {
+                html.style.overflow = 'hidden';
+              }
 
-                const { canonicalAs, canonicalPathname } = pathnameToLanguage(
-                  `${parseUrl.pathname}${parseUrl.hash}`,
-                );
-
-                return {
-                  ...item,
-                  pathname: canonicalPathname,
-                  as: canonicalAs,
-                  userLanguage,
-                };
-              });
+              return () => {
+                html.style.overflow = 'auto';
+              };
             }}
-            hitComponent={DocSearchHit}
-            initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
-            onClose={onClose}
-            navigator={keyboardNavigator}
-          />,
+          >
+            <DocSearchModal
+              initialQuery={initialQuery}
+              appId="TZGZ85B9TB"
+              apiKey="8177dfb3e2be72b241ffb8c5abafa899"
+              indexName="material-ui"
+              searchParameters={{
+                facetFilters: ['version:master', facetFilterLanguage],
+                optionalFilters,
+                attributesToRetrieve: [
+                  // Copied from https://github.com/algolia/docsearch/blob/ce0c865cd8767e961ce3088b3155fc982d4c2e2e/packages/docsearch-react/src/DocSearchModal.tsx#L231
+                  'hierarchy.lvl0',
+                  'hierarchy.lvl1',
+                  'hierarchy.lvl2',
+                  'hierarchy.lvl3',
+                  'hierarchy.lvl4',
+                  'hierarchy.lvl5',
+                  'content',
+                  'type',
+                  'url',
+                  // Extra
+                  'productId',
+                  'productCategoryId',
+                ],
+                analyticsTags: [facetFilterLanguage, `product:${pageContext.productId}`],
+                hitsPerPage: 40,
+              }}
+              placeholder={`${t('algoliaSearch')}`}
+              transformItems={(items) => {
+                return items.map((item) => {
+                  // `url` contains the domain
+                  // but we want to link to the current domain e.g. deploy-preview-1--material-ui.netlify.app
+                  const parseUrl = document.createElement('a');
+                  parseUrl.href = item.url;
+
+                  const { canonicalAs, canonicalPathname } = pathnameToLanguage(
+                    `${parseUrl.pathname}${parseUrl.hash}`,
+                  );
+
+                  return {
+                    ...item,
+                    pathname: canonicalPathname,
+                    as: canonicalAs,
+                    userLanguage,
+                  };
+                });
+              }}
+              hitComponent={DocSearchHit}
+              initialScrollY={typeof window !== 'undefined' ? window.scrollY : undefined}
+              onClose={onClose}
+              navigator={keyboardNavigator}
+            />
+          </div>,
           document.body,
         )}
       <GlobalStyles
