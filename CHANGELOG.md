@@ -65,8 +65,6 @@ All contributors of this release in alphabetical order: @0210shivam, @bharatkash
 
 ## 7.1.2
 
-<!-- hotfix -->
-
 _Jun 18, 2025_
 
 A big thanks to the 2 contributors who made this release possible.
