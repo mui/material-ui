@@ -1,5 +1,86 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.2.0
+
+<!-- generated comparing v7.1.1..master -->
+
+_Jun 26, 2025_
+
+A big thanks to the 17 contributors who made this release possible. Here are the highlights ✨:
+
+- ⚡️ Added `modularCssLayers` theme option for splitting styles into multiple CSS layers (#46001) @siriwatknp.
+- 📖 Added example for using Material UI with React Router v7 (#46406) @siriwatknp.
+
+### `@mui/material@7.2.0`
+
+- [Backdrop] Fix handling of `component` prop (#46269) @sai6855
+- [Chip] Explicitly define line-height (#46260) @DiegoAndai
+- [Chip] Fix handling on event handlers (#46263) @sai6855
+- [OutlinedInput][Input] Deprecate composed classes (#46316) @sai6855
+- [Select] Pass MenuProps.slotProps.list alongside MenuListProps (#46274) @scousino
+- [l10] Enable `labelDisplayedRows` translation for Romanian (#46377) @dhu-redwoodtech
+- Skip generating `modularCssLayers` CSS var (#46329) @siriwatknp
+
+### `@mui/system@7.2.0`
+
+- Add `modularCssLayers` theme flag to split styles into multiple CSS layers (#46001) @siriwatknp
+
+### `@mui/styled-engine@7.2.0`
+
+- Do not reuse the emotion cache across SSR requests (#46276) @robbtraister
+
+### `@mui/codemod@7.2.0`
+
+- [Dialog] Add codemod for deprecated props (#46328) @sai6855
+
+### Docs
+
+- Don't forward `hasAiSuggestion` (#46415) @bharatkashyap
+- Add introduction to MCP (#46224) @bharatkashyap
+- Fallback for searchbar during SSR (#46364) @Janpot
+- Update InitColorSchemeScript options to match colorSchemeSelector (#46302) @humble-barnacle001
+- Add `ListItemButton` to make the deprecation clear (#46356) @siriwatknp
+- Remove "Unstyled" section from component docs (#46272) @mapache-salvaje
+- Add Testing section to Rating component doc (#46268) @0210shivam
+- Fix fade modal demo (#46271) @brijeshb42
+- [ai] Add suggestions to edit with MUI Chat (#46309) @bharatkashyap
+- [Dialog] Fix form dialog uses ARIA roles on incompatible elements (#46307) @ZeeshanTamboli
+- [Menu] Fix dark mode styling of grouped header demo (#46317) @sai6855
+- [TextField] Removed type="number" demos (#46314) @KirankumarAmbati
+- [examples] Add `material-ui-react-router-ts` example (#46406) @siriwatknp
+
+### Core
+
+- pnpm docs:sync-team (3641a0b) @oliviertassinari
+- Add cross-env to eslint script (#46358) @ZeeshanTamboli
+- Support merging of className and style from theme (#45975) @sai6855
+- [code-infra] Create bundle size package (#45911) @Janpot
+- [docs-infra] Add a script to generate Material UI `llms.txt` and docs markdown. (#46308) @siriwatknp
+- [docs-infra] Fix stackblitz for js projects (#46220) @Janpot
+- [infra] Add emotion as external for bundle monitor (#46372) @Janpot
+- [infra] Create update PR on every canary publish for internal packages (#46367) @Janpot
+- [infra] Remove deprecated esmExternals (#46365) @Janpot
+- [infra] Support project-specific changelog in build scripts (#46425) @michaldudak
+- [toolpad][website] Remove references to Toolpad (#46311) @prakhargupta1
+
+All contributors of this release in alphabetical order: @0210shivam, @bharatkashyap, @brijeshb42, @dhu-redwoodtech, @DiegoAndai, @humble-barnacle001, @Janpot, @KirankumarAmbati, @mapache-salvaje, @michaldudak, @oliviertassinari, @prakhargupta1, @robbtraister, @sai6855, @scousino, @siriwatknp, @ZeeshanTamboli
+
+## 7.1.2
+
+_Jun 18, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material@7.1.2`
+
+- [Chip] Fix handling on event handlers (#46263) @sai6855
+
+### Docs
+
+- Fix fade modal demo (#46271) @brijeshb42
+
+All contributors of this release in alphabetical order: @brijeshb42, @sai6855
+
 ## 7.1.1
 
 <!-- generated comparing v7.1.0..master -->

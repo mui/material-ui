@@ -46,4 +46,12 @@ export const projectSettings: ProjectSettings = {
   isGlobalClassName: isGlobalState,
   // #host-reference
   baseApiUrl: 'https://mui.com',
+  nonComponentFolders: [
+    'material/getting-started',
+    'material/customization',
+    'material/experimental-api',
+    'material/guides',
+    'material/integrations',
+    'material/migration',
+  ],
 };
