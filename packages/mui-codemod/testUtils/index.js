@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* eslint-disable mocha/no-exports */
 import j from 'jscodeshift';
 import { EOL } from 'os';
 import path from 'path';

@@ -154,6 +154,8 @@ jobs:
       - install_js
       - run:
           name: Eslint
+          # Temporarily increase the limit for testing
+          no_output_timeout: 20m
           command: pnpm eslint:ci
       - run:
           name: Stylelint

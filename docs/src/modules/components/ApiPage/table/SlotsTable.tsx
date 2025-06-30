@@ -97,10 +97,10 @@ export default function SlotsTable(props: SlotsTableProps) {
                   {name}
                 </td>
                 <td className="MuiApi-table-class-name">
-                  {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
                   {className && <span className="class-name">{`.${className}`}</span>}
                 </td>
                 <td>{defaultValue && <code className="item-default">{defaultValue}</code>}</td>
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <td className="description-column">
                   <span
                     dangerouslySetInnerHTML={{
