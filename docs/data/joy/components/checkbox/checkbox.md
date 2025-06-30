@@ -4,7 +4,6 @@ title: React Checkbox component
 components: Checkbox
 githubLabel: 'component: checkbox'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
-unstyled: https://base-ui.com/react/components/checkbox
 ---
 
 # Checkbox
@@ -162,7 +161,7 @@ To use an interactive element together with a Checkbox, you can wrap it with a F
 
 :::info
 It is recommended that the interactive elements such as link should be placed outside of the checkbox's label.
-To learn more, [visit HTML label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#accessibility_concerns) from Mozilla.
+To learn more, [visit HTML label](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label#accessibility) from Mozilla.
 :::
 
 ### Filtering status

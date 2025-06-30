@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { IconButtonProps } from '../IconButton';
 import { ChipProps, ChipTypeMap } from '../Chip';
 import { PaperProps } from '../Paper';
 import { PopperProps } from '../Popper';
@@ -57,6 +59,28 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   tabIndex: -1;
   onDelete: (event: any) => void;
 };
+
+export type AutocompleteRenderValueGetItemProps<Multiple extends boolean | undefined> =
+  Multiple extends true
+    ? (args: { index: number }) => {
+        key: number;
+        className: string;
+        disabled: boolean;
+        'data-item-index': number;
+        tabIndex: -1;
+        onDelete: (event: any) => void;
+      }
+    : (args?: { index?: number }) => {
+        className: string;
+        disabled: boolean;
+        'data-item-index': number;
+        tabIndex: -1;
+        onDelete: (event: any) => void;
+      };
+
+export type AutocompleteRenderValue<Value, Multiple, FreeSolo> = Multiple extends true
+  ? Array<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>
+  : NonNullable<Value | AutocompleteFreeSoloValueMapping<FreeSolo>>;
 
 export interface AutocompleteRenderOptionState {
   inputValue: string;
@@ -313,6 +337,13 @@ export interface AutocompleteProps<
   /**
    * Render the input.
    *
+   * **Note:** The `renderInput` prop must return a `TextField` component or a compatible custom component
+   * that correctly forwards `InputProps.ref` and spreads `inputProps`. This ensures proper integration
+   * with the Autocomplete's internal logic (e.g., focus management and keyboard navigation).
+   *
+   * Avoid using components like `DatePicker` or `Select` directly, as they may not forward the required props,
+   * leading to runtime errors or unexpected behavior.
+   *
    * @param {object} params
    * @returns {ReactNode}
    */
@@ -333,7 +364,9 @@ export interface AutocompleteProps<
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**
-   * Render the selected value.
+   * Render the selected value when doing multiple selections.
+   *
+   * @deprecated Use `renderValue` prop instead
    *
    * @param {Value[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
@@ -343,6 +376,19 @@ export interface AutocompleteProps<
   renderTags?: (
     value: Value[],
     getTagProps: AutocompleteRenderGetTagProps,
+    ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  ) => React.ReactNode;
+  /**
+   * Renders the selected value(s) as rich content in the input for both single and multiple selections.
+   *
+   * @param {AutocompleteRenderValue<Value, Multiple, FreeSolo>} value The `value` provided to the component.
+   * @param {function} getItemProps The value item props.
+   * @param {object} ownerState The state of the Autocomplete component.
+   * @returns {ReactNode}
+   */
+  renderValue?: (
+    value: AutocompleteRenderValue<Value, Multiple, FreeSolo>,
+    getItemProps: AutocompleteRenderValueGetItemProps<Multiple>,
     ownerState: AutocompleteOwnerState<Value, Multiple, DisableClearable, FreeSolo, ChipComponent>,
   ) => React.ReactNode;
   /**

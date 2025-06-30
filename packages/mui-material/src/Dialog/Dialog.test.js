@@ -81,6 +81,30 @@ describe('<Dialog />', () => {
     }),
   );
 
+  it('should work correctly when using css selectors for scroll="body"', () => {
+    render(
+      <Dialog open scroll="body">
+        foo
+      </Dialog>,
+    );
+
+    expect(document.querySelector(`.${classes.scrollBody} > .${classes.paper}`)).to.not.equal(null);
+    expect(classes.paperScrollBody).to.not.equal(null);
+  });
+
+  it('should work correctly when using css selectors for scroll="paper"', () => {
+    render(
+      <Dialog open scroll="paper">
+        foo
+      </Dialog>,
+    );
+
+    expect(document.querySelector(`.${classes.scrollPaper} > .${classes.paper}`)).to.not.equal(
+      null,
+    );
+    expect(classes.paperScrollPaper).to.not.equal(null);
+  });
+
   it('should render with a TransitionComponent', () => {
     const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);
     const { getAllByTestId } = render(

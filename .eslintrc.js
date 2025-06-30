@@ -53,6 +53,13 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
   },
 ];
 
+const restrictedMethods = ['setTimeout', 'setInterval', 'clearTimeout', 'clearInterval'];
+
+const restrictedSyntaxRules = restrictedMethods.map((method) => ({
+  message: `Use global ${method} instead of window.${method}.`,
+  selector: `MemberExpression[object.name='window'][property.name='${method}']`,
+}));
+
 module.exports = /** @type {Config} */ ({
   root: true, // So parent files don't get applied
   env: {
@@ -64,7 +71,7 @@ module.exports = /** @type {Config} */ ({
     'plugin:eslint-plugin-import/recommended',
     'plugin:eslint-plugin-import/typescript',
     'eslint-config-airbnb',
-    './eslint/config-airbnb-typescript.js',
+    require.resolve('./eslint/config-airbnb-typescript.js'),
     'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -75,7 +82,7 @@ module.exports = /** @type {Config} */ ({
     'eslint-plugin-material-ui',
     'eslint-plugin-react-hooks',
     '@typescript-eslint',
-    'eslint-plugin-filenames',
+    'eslint-plugin-consistent-default-export-name',
     ...(ENABLE_REACT_COMPILER_PLUGIN ? ['eslint-plugin-react-compiler'] : []),
   ],
   settings: {
@@ -258,6 +265,7 @@ module.exports = /** @type {Config} */ ({
         message: 'Do not call `Error(...)` without `new`. Use `new Error(...)` instead.',
         selector: "CallExpression[callee.name='Error']",
       },
+      ...restrictedSyntaxRules,
     ],
 
     // We re-export default in many places, remove when https://github.com/airbnb/javascript/issues/2500 gets resolved
@@ -272,6 +280,24 @@ module.exports = /** @type {Config} */ ({
     'id-denylist': ['error', 'e'],
   },
   overrides: [
+    ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(
+      (packageName) => ({
+        files: [`packages/${packageName}/src/**/*.?(c|m)[jt]s?(x)`],
+        excludedFiles: ['*.test.*', '*.spec.*'],
+        rules: {
+          'material-ui/no-restricted-resolved-imports': [
+            'error',
+            [
+              {
+                pattern: `**/packages/${packageName}/src/index.*`,
+                message:
+                  "Don't import from the package index. Import the specific module directly instead.",
+              },
+            ],
+          ],
+        },
+      }),
+    ),
     {
       files: [
         // matching the pattern of the test runner
@@ -382,7 +408,7 @@ module.exports = /** @type {Config} */ ({
         'docs/data/**/{css,system,tailwind}/*',
       ],
       rules: {
-        'filenames/match-exported': ['error'],
+        'consistent-default-export-name/default-export-match-filename': ['error'],
       },
     },
     {
@@ -412,7 +438,6 @@ module.exports = /** @type {Config} */ ({
         '*.spec.*',
         '*.test.*',
         // deprecated library
-        '**/mui-base/**/*',
         '**/mui-joy/**/*',
         // used internally, not used on app router yet
         '**/mui-docs/**/*',
@@ -484,12 +509,18 @@ module.exports = /** @type {Config} */ ({
     },
     {
       files: ['packages/*/src/**/*.?(c|m)[jt]s?(x)'],
-      excludedFiles: ['*.d.ts', '*.spec.*'],
+      excludedFiles: ['*.spec.*'],
       rules: {
         'no-restricted-imports': [
           'error',
           {
-            paths: NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+            paths: [
+              ...NO_RESTRICTED_IMPORTS_PATHS_TOP_LEVEL_PACKAGES,
+              {
+                name: '@mui/utils',
+                message: OneLevelImportMessage,
+              },
+            ],
           },
         ],
         // TODO: Consider setting back to `ignoreExternal: true` when the expected behavior is fixed:
@@ -516,15 +547,6 @@ module.exports = /** @type {Config} */ ({
       files: ['**/*.mjs'],
       rules: {
         'import/extensions': ['error', 'ignorePackages'],
-      },
-    },
-    {
-      files: ['packages/mui-base/src/**/**{.ts,.tsx}'],
-      rules: {
-        'import/no-default-export': 'error',
-        'import/prefer-default-export': 'off',
-        'react-compiler/react-compiler': 'off',
-        'no-irregular-whitespace': ['error', { skipComments: true }],
       },
     },
     {
@@ -555,7 +577,7 @@ module.exports = /** @type {Config} */ ({
     },
     {
       // TODO, move rule to be global, propagate: https://github.com/mui/material-ui/issues/42169
-      files: ['examples/pigment-css-remix-ts/**/*'],
+      files: ['examples/material-ui-pigment-css-vite-ts/**/*'],
       rules: {
         'react/react-in-jsx-scope': 'off',
       },

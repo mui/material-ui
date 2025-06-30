@@ -180,9 +180,18 @@
     },
     "renderTags": {
       "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use <code>renderValue</code> prop instead",
       "signature": {
         "type": "function(value: Array<Value>, getTagProps: function, ownerState: object) => ReactNode",
         "describedArgs": ["value", "getTagProps", "ownerState"]
+      }
+    },
+    "renderValue": {
+      "type": { "name": "func" },
+      "signature": {
+        "type": "function(value: AutocompleteRenderValue<Value, Multiple, FreeSolo>, getItemProps: function, ownerState: object) => ReactNode",
+        "describedArgs": ["value", "getItemProps", "ownerState"]
       }
     },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },

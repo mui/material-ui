@@ -42,8 +42,18 @@
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ input?: object, notchedOutline?: func<br>&#124;&nbsp;object, root?: object }"
+      },
+      "default": "{}"
+    },
     "slots": {
-      "type": { "name": "shape", "description": "{ input?: elementType, root?: elementType }" },
+      "type": {
+        "name": "shape",
+        "description": "{ input?: elementType, notchedOutline?: elementType, root?: elementType }"
+      },
       "default": "{}"
     },
     "startAdornment": { "type": { "name": "node" } },
@@ -109,25 +119,29 @@
       "key": "inputAdornedEnd",
       "className": "MuiOutlinedInput-inputAdornedEnd",
       "description": "Styles applied to the input element if `endAdornment` is provided.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputAdornedStart",
       "className": "MuiOutlinedInput-inputAdornedStart",
       "description": "Styles applied to the input element if `startAdornment` is provided.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputMultiline",
       "className": "MuiOutlinedInput-inputMultiline",
       "description": "Styles applied to the input element if `multiline={true}`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputSizeSmall",
       "className": "MuiOutlinedInput-inputSizeSmall",
       "description": "Styles applied to the input element if `size=\"small\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "inputTypeSearch",

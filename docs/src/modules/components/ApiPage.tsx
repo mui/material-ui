@@ -139,7 +139,6 @@ export default function ApiPage(props: ApiPageProps) {
     : [];
 
   const isJoyComponent = filename.includes('mui-joy');
-  const isBaseComponent = filename.includes('mui-base');
   const defaultPropsLink = isJoyComponent
     ? '/joy-ui/customization/themed-components/#theme-default-props'
     : '/material-ui/customization/theme-components/#theme-default-props';
@@ -149,8 +148,6 @@ export default function ApiPage(props: ApiPageProps) {
   let slotGuideLink = '';
   if (isJoyComponent) {
     slotGuideLink = '/joy-ui/customization/overriding-component-structure/';
-  } else if (isBaseComponent) {
-    slotGuideLink = '/base-ui/guides/overriding-component-structure/';
   }
 
   const {

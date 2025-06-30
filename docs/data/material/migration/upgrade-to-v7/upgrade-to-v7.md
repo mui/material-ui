@@ -75,6 +75,63 @@ yarn add @types/react@<version> @types/react-dom@<version>
 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
 
+## React 18 and below
+
+If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
+
+For example, if you are using `react@18.3.1`, do the following steps:
+
+1. Install `react-is@18.3.1`.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react-is@18.3.1
+```
+
+```bash pnpm
+pnpm add react-is@18.3.1
+```
+
+```bash yarn
+yarn add react-is@18.3.1
+```
+
+</codeblock>
+
+2. Set the resolutions or overrides in the `package.json`.
+
+<codeblock storageKey="package-manager">
+
+```json npm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json pnpm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json yarn
+{
+  …
+  "resolutions": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+</codeblock>
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
@@ -93,23 +150,29 @@ Deep imports with more than one level are no longer working, at all (they were a
 
 This was never officially supported, but now it will be restricted by bundlers and runtimes.
 
-To use the modern bundle (which excludes legacy browser support for smaller bundle size), you'll need to configure your bundler to use the "mui-modern" exports condition:
+Modern bundles have also been removed, as the potential for a smaller bundle size is no longer significant.
+If you've configured aliases for these bundles, you must remove them now.
 
-```js
-// webpack.config.js
-{
-  resolve: {
-    conditionNames: ['mui-modern', '...'],
-  }
-}
-
-// vite.config.js
-{
-  resolve: {
-    conditions: ['mui-modern', 'module', 'browser', 'development|production']
-  }
-}
+```diff
+ {
+   resolve: {
+     alias: {
+-      '@mui/material': '@mui/material/modern',
+-      '@mui/styled-engine': '@mui/styled-engine/modern',
+-      '@mui/system': '@mui/system/modern',
+-      '@mui/base': '@mui/base/modern',
+-      '@mui/utils': '@mui/utils/modern',
+-      '@mui/lab': '@mui/lab/modern',
+     }
+   }
+ }
 ```
+
+:::info
+Earlier versions of this guide mention the existence of a `mui-modern` conditional exports.
+This has since been removed.
+This is a non-breaking change, and your bundler will fall back to the ESM bundle.
+:::
 
 If you are using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
 
@@ -227,6 +290,15 @@ Use this codemod to automatically update the `size` value:
 
 ```bash
 npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
+```
+
+### TablePaginationActions types import path changed
+
+The import path for the types has changed from `@mui/material/TablePagination/TablePaginationActions` to `@mui/material/TablePaginationActions`.
+
+```diff
+- import type { TablePaginationActionsProps } from '@mui/material/TablePagination/TablePaginationActions';
++ import type { TablePaginationActionsProps } from '@mui/material/TablePaginationActions';
 ```
 
 ### Theme behavior changes
