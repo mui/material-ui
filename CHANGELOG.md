@@ -8,8 +8,8 @@ _Jun 26, 2025_
 
 A big thanks to the 17 contributors who made this release possible. Here are the highlights ✨:
 
-- ⚡️ Introduce `modularCssLayers` theme flag to split styles into multiple CSS layers (#46001) @siriwatknp.
-- 📖 Added Material UI with React Router v7 example (#46406) @siriwatknp.
+- ⚡️ Added `modularCssLayers` theme option for splitting styles into multiple CSS layers (#46001) @siriwatknp.
+- 📖 Added example for using Material UI with React Router v7 (#46406) @siriwatknp.
 
 ### `@mui/material@7.2.0`
 
