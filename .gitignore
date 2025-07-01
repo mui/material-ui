@@ -16,6 +16,7 @@
 /docs/export
 /docs/pages/playground/
 /docs/public/feed/
+/docs/public/material-ui/
 /examples/**/.cache
 /packages/mui-codemod/lib
 /packages/mui-envinfo/*.tgz
