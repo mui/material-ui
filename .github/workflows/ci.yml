@@ -31,8 +31,8 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: pnpm install:codesandbox
-      - run: pnpm build:codesandbox
+      - run: pnpm install
+      - run: pnpm release:build
       - run: pnpm dlx pkg-pr-new publish $(pnpm code-infra list-workspaces --public-only --output=path) --pnpm --template './examples/*' --comment=off --peerDeps
 
   # Tests dev-only scripts across all supported dev environments
