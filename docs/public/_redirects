@@ -342,7 +342,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/tabs-list-unstyled/ /base-ui/react-tabs/components-api/#tabs-list 301
 /pt/api/tabs-list-unstyled/ /pt/base-ui/react-tabs/components-api/#tabs-list 301
 /zh/api/tabs-list-unstyled/ /zh/base-ui/react-tabs/components-api/#tabs-list 301
-/api/menu-unstyled/ /base-ui/react-menu/components-api/#menu 301f
+/api/menu-unstyled/ /base-ui/react-menu/components-api/#menu 301
 /pt/api/menu-unstyled/ /pt/base-ui/react-menu/components-api/#menu 301
 /zh/api/menu-unstyled/ /zh/base-ui/react-menu/components-api/#menu 301
 /api/tab-panel-unstyled/ /base-ui/react-tabs/components-api/#tab-panel 301
