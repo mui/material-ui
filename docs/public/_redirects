@@ -321,7 +321,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/slider-unstyled/ /base-ui/react-slider/components-api/#slider 301
 /pt/api/slider-unstyled/ /pt/base-ui/react-slider/components-api/#slider 301
 /zh/api/slider-unstyled/ /zh/base-ui/react-slider/components-api/#slider 301
-api/button-unstyled/ /base-ui/react-button/components-api/#button 301
+/api/button-unstyled/ /base-ui/react-button/components-api/#button 301
 /pt/api/button-unstyled/ /pt/base-ui/react-button/components-api/#button 301
 /zh/api/button-unstyled/ /zh/base-ui/react-button/components-api/#button 301
 # /api/textarea-autosize/ /base-ui/react-textarea-autosize/components-api/#textarea-autosize 301
