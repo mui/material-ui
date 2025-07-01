@@ -43,7 +43,7 @@
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
-    "@mui/utils": "workspace:*",
+    "@mui/utils": "workspace:^",
     "@popperjs/core": "^2.11.8",
     "@types/react-transition-group": "^4.4.12",
     "clsx": "^2.1.1",
