@@ -1658,7 +1658,7 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@mui/utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../mui-utils/build
       '@popperjs/core':
         specifier: ^2.11.8
