@@ -1317,7 +1317,6 @@ function TemplatesDialog({
           }}
         >
           <div>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link
               component="button"
               color="neutral"
@@ -1392,7 +1391,6 @@ function TemplatesDialog({
                 alignItems: 'center',
               }}
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 component="button"
                 color="neutral"

@@ -1,4 +1,3 @@
-import { includeIgnoreFile } from '@eslint/compat';
 import {
   createBaseConfig,
   createTestConfig,
@@ -54,8 +53,6 @@ const NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED = [
 ];
 
 export default defineConfig(
-  includeIgnoreFile(path.join(dirname, '.gitignore')),
-  includeIgnoreFile(path.join(dirname, '.eslintignore')),
   {
     name: 'Base ESLint Configuration',
     extends: createBaseConfig({
@@ -71,6 +68,7 @@ export default defineConfig(
     },
     rules: {
       'import/prefer-default-export': 'error',
+      'material-ui/straight-quotes': 'error',
       'no-restricted-imports': [
         'error',
         {
@@ -176,14 +174,6 @@ export default defineConfig(
     },
     rules: {
       'consistent-default-export-name/default-export-match-filename': ['error'],
-    },
-  },
-  {
-    files: ['docs/data/material/getting-started/templates/**/*'],
-    rules: {
-      // So we can use # to improve the page UX
-      // and so developer get eslint warning to remind them to fix the links
-      'jsx-a11y/anchor-is-valid': 'off',
     },
   },
   // Docs end

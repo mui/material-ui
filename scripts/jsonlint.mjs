@@ -11,15 +11,15 @@ const failMessage = (message) => `✗ ${chalk.whiteBright(message)}`;
 async function run() {
   const workspaceRoot = getWorkspaceRoot();
 
-  const eslintignoreContent = await fse.readFile(path.join(workspaceRoot, '.eslintignore'), {
+  const eslintignoreContent = await fse.readFile(path.join(workspaceRoot, '.lintignore'), {
     encoding: 'utf8',
   });
-  const eslintignore = eslintignoreContent.split(/\r?\n/).filter(Boolean);
+  const lintignore = eslintignoreContent.split(/\r?\n/).filter(Boolean);
 
   const filenames = await globby('**/*.json', {
     cwd: workspaceRoot,
     gitignore: true,
-    ignore: [...eslintignore, '**/tsconfig*.json'],
+    ignore: [...lintignore, '**/tsconfig*.json'],
     followSymbolicLinks: false,
   });
 
