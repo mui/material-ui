@@ -31,7 +31,6 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - run: npm install -g npm@latest
       - run: pnpm install:codesandbox
       - run: pnpm build:codesandbox
       - run: pnpm dlx pkg-pr-new publish $(pnpm code-infra list-workspaces --public-only --output=path) --pnpm --template './examples/*' --comment=off --peerDeps
