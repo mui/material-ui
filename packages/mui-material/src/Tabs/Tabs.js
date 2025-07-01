@@ -817,7 +817,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       selectionFollowsFocus,
       onChange,
       textColor,
-      tabsValue: value,
+      value,
       registerTab,
       unregisterTab,
     }),

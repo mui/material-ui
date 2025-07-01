@@ -10,7 +10,7 @@ interface TabsContextType {
   selectionFollowsFocus?: TabsProps['selectionFollowsFocus'];
   onChange?: TabsProps['onChange'];
   textColor?: TabsProps['textColor'];
-  tabsValue?: TabsProps['value'];
+  value?: TabsProps['value'];
   registerTab?: (tabValue: TabProps['value']) => {
     finalValue: TabProps['value'];
     assignedIndex: number;

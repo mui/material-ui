@@ -212,7 +212,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     selectionFollowsFocus,
     onChange,
     textColor = 'inherit',
-    tabsValue,
+    value: tabsValue,
     registerTab,
     unregisterTab,
   } = useTabsContext();
