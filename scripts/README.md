@@ -56,7 +56,9 @@ After the docs is live, follow the instructions in https://mui-org.notion.site/R
 
 ### Releasing a patch version
 
-A patch release goes like this:
+A patch release could happen if there is a regression fix that could not wait for the monthly release cycle.
+
+It goes like this:
 
 #### Prepare
 
