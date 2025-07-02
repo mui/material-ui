@@ -89,14 +89,14 @@ importers:
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
       '@mui/internal-babel-plugin-minify-errors':
-        specifier: ^2.0.8-canary.0
-        version: 2.0.8-canary.0(@babel/core@7.27.4)
+        specifier: ^2.0.8-canary.3
+        version: 2.0.8-canary.3(@babel/core@7.27.4)
       '@mui/internal-babel-plugin-resolve-imports':
-        specifier: ^2.0.7-canary.0
-        version: 2.0.7-canary.0(@babel/core@7.27.4)
+        specifier: ^2.0.7-canary.3
+        version: 2.0.7-canary.3(@babel/core@7.27.4)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.0
-        version: 1.0.9-canary.0(@types/node@20.19.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
+        specifier: ^1.0.9-canary.3
+        version: 1.0.9-canary.3(@types/node@20.19.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4189,19 +4189,19 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
-  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.0':
-    resolution: {integrity: sha512-43KqPdiu5U07dWhVKp3hX0+tz1oRnj8NeOjTFe1UUTxVZXUT/xm4kBR4HwKoxcbJw8wMldfojEAXghZgFn5kpg==}
+  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.3':
+    resolution: {integrity: sha512-XqZCKeT7vavRzaKcG4avGBxH5SXMLiP7gqrUGhZ6+wSfY5f3RitfOxatZoRomshvkfL7y0hO0sV4L+Xw52uqMg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@babel/core': ^7.27.4
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.0':
-    resolution: {integrity: sha512-P+wTkVHE+dcQQ62VEiN8DCudIPzm3ft18sxCFr/ttxPDo7hj/X4khnidogPahrBEsjqz16dpZmYheMqcYXBKOA==}
+  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.3':
+    resolution: {integrity: sha512-Hsvp3j4ZMIDQPnxv8HI2VNODmdzEjtDPowCWr1ZOcVLXBO67sTY0LiIg6EzUbE3OAodLLZwAKZl4K7dARBSMYw==}
     peerDependencies:
       '@babel/core': ^7.27.4
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.0':
-    resolution: {integrity: sha512-Vyq9wHMX6npnqhP8LZunUukZOrbVydOjk4UQ28MIUdo0+sqBC59GaJZVHa4SiSH+zW0kXuPeLTXeuJ1MhwKOiA==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.3':
+    resolution: {integrity: sha512-xUO1GQDl6xbFdQJMYOgKMdxD8duz/HRVO9FfOravWvHGqvfErFo9+mcS0Q99czlmViSol05CVqOOBdjZwFy+OQ==}
     hasBin: true
 
   '@mui/joy@5.0.0-beta.22':
@@ -16967,7 +16967,7 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
-  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.0(@babel/core@7.27.4)':
+  '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.3(@babel/core@7.27.4)':
     dependencies:
       '@babel/core': 7.27.4
       '@babel/helper-module-imports': 7.27.1
@@ -16975,12 +16975,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.0(@babel/core@7.27.4)':
+  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.3(@babel/core@7.27.4)':
     dependencies:
       '@babel/core': 7.27.4
       resolve: 1.22.10
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.0(@types/node@20.19.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.3(@types/node@20.19.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)':
     dependencies:
       '@aws-sdk/client-s3': 3.787.0
       '@aws-sdk/credential-providers': 3.787.0
