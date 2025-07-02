@@ -98,8 +98,8 @@ importers:
         specifier: ^1.0.9-canary.0
         version: 1.0.9-canary.0(@types/node@20.19.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
       '@mui/internal-code-infra':
-        specifier: ^0.0.2-canary.6
-        version: 0.0.2-canary.7(@typescript-eslint/parser@8.35.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
+        specifier: https://pkg.pr.new/@mui/internal-code-infra@554d68d
+        version: https://pkg.pr.new/@mui/internal-code-infra@554d68d(@typescript-eslint/parser@8.35.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4224,8 +4224,9 @@ packages:
     resolution: {integrity: sha512-Vyq9wHMX6npnqhP8LZunUukZOrbVydOjk4UQ28MIUdo0+sqBC59GaJZVHa4SiSH+zW0kXuPeLTXeuJ1MhwKOiA==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.2-canary.7':
-    resolution: {integrity: sha512-z/ehQIodDqDKEZqVXX+e5MPgXrEBba8QCht1hm4Fvyrv2mHr3zio93FmAezt0dVm79bpgf0zhGbaWwSGHspfjw==}
+  '@mui/internal-code-infra@https://pkg.pr.new/@mui/internal-code-infra@554d68d':
+    resolution: {tarball: https://pkg.pr.new/@mui/internal-code-infra@554d68d}
+    version: 0.0.1
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -17301,7 +17302,7 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@0.0.2-canary.7(@typescript-eslint/parser@8.35.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
+  '@mui/internal-code-infra@https://pkg.pr.new/@mui/internal-code-infra@554d68d(@typescript-eslint/parser@8.35.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.27.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
     dependencies:
       '@eslint/compat': 1.3.1(eslint@9.27.0(jiti@2.4.2))
       '@next/eslint-plugin-next': 15.3.4
