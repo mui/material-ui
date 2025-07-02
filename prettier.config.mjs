@@ -1,3 +1,5 @@
-import { createBaseConfig } from '@mui/internal-code-infra/prettier';
+import { createBaseConfig, docsOverrides } from '@mui/internal-code-infra/prettier';
 
-export default createBaseConfig();
+export default createBaseConfig({
+  overrides: docsOverrides,
+});

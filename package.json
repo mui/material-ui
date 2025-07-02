@@ -126,7 +126,7 @@
     "@mui/internal-bundle-size-checker": "^1.0.9-canary.3",
     "@mui/internal-babel-plugin-resolve-imports": "^2.0.7-canary.3",
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.3",
-    "@mui/internal-code-infra": "0.0.2-canary.7",
+    "@mui/internal-code-infra": "0.0.2-canary.8",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
