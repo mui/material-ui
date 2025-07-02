@@ -23,6 +23,7 @@ function EmployeeEditForm({
   initialValues: Partial<EmployeeFormState['values']>;
   onSubmit: (formValues: Partial<EmployeeFormState['values']>) => Promise<void>;
 }) {
+  const { employeeId } = useParams();
   const navigate = useNavigate();
 
   const notifications = useNotifications();
@@ -82,7 +83,7 @@ function EmployeeEditForm({
       setFormErrors(
         Object.fromEntries(issues.map((issue) => [issue.path?.[0], issue.message])),
       );
-      throw new Error('Form validation failed');
+      return;
     }
     setFormErrors({});
 
@@ -113,6 +114,7 @@ function EmployeeEditForm({
       onSubmit={handleFormSubmit}
       onReset={handleFormReset}
       submitButtonLabel="Edit"
+      backButtonPath={`/employees/${employeeId}`}
     />
   );
 }

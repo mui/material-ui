@@ -14,6 +14,7 @@ import EmployeeForm from './EmployeeForm';
 import PageContainer from './PageContainer';
 
 function EmployeeEditForm({ initialValues, onSubmit }) {
+  const { employeeId } = useParams();
   const navigate = useNavigate();
 
   const notifications = useNotifications();
@@ -67,7 +68,7 @@ function EmployeeEditForm({ initialValues, onSubmit }) {
       setFormErrors(
         Object.fromEntries(issues.map((issue) => [issue.path?.[0], issue.message])),
       );
-      throw new Error('Form validation failed');
+      return;
     }
     setFormErrors({});
 
@@ -95,6 +96,7 @@ function EmployeeEditForm({ initialValues, onSubmit }) {
       onSubmit={handleFormSubmit}
       onReset={handleFormReset}
       submitButtonLabel="Edit"
+      backButtonPath={`/employees/${employeeId}`}
     />
   );
 }

@@ -11,17 +11,29 @@ import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router';
 import dayjs from 'dayjs';
 
 function EmployeeForm(props) {
-  const { formState, onFieldChange, onSubmit, onReset, submitButtonLabel } = props;
+  const {
+    formState,
+    onFieldChange,
+    onSubmit,
+    onReset,
+    submitButtonLabel,
+    backButtonPath,
+  } = props;
 
   const formValues = formState.values;
   const formErrors = formState.errors;
+
+  const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -78,11 +90,15 @@ function EmployeeForm(props) {
     [onFieldChange],
   );
 
-  const handleReset = React.useCallback(async () => {
+  const handleReset = React.useCallback(() => {
     if (onReset) {
-      await onReset(formValues);
+      onReset(formValues);
     }
   }, [formValues, onReset]);
+
+  const handleBack = React.useCallback(() => {
+    navigate(backButtonPath ?? '/employees');
+  }, [navigate, backButtonPath]);
 
   return (
     <Box
@@ -174,7 +190,14 @@ function EmployeeForm(props) {
           </Grid>
         </Grid>
       </FormGroup>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Stack direction="row" spacing={2} justifyContent="space-between">
+        <Button
+          variant="contained"
+          startIcon={<ArrowBackIcon />}
+          onClick={handleBack}
+        >
+          Back
+        </Button>
         <Button
           type="submit"
           variant="contained"
@@ -183,12 +206,13 @@ function EmployeeForm(props) {
         >
           {submitButtonLabel}
         </Button>
-      </Box>
+      </Stack>
     </Box>
   );
 }
 
 EmployeeForm.propTypes = {
+  backButtonPath: PropTypes.string,
   formState: PropTypes.shape({
     errors: PropTypes.shape({
       age: PropTypes.string,

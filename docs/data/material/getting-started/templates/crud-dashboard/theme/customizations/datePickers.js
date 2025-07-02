@@ -134,6 +134,7 @@ export const datePickersCustomizations = {
         fontSize: theme.typography.body1.fontSize,
         color: (theme.vars || theme).palette.grey[600],
         padding: theme.spacing(0.5),
+        marginTop: theme.spacing(0.5),
         borderRadius: theme.shape.borderRadius,
         '&:hover': {
           backgroundColor: (theme.vars || theme).palette.action.hover,

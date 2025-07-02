@@ -29,13 +29,10 @@ export default function ThemeSwitcher() {
         <IconButton
           aria-label={`Switch to ${paletteMode === 'dark' ? 'light' : 'dark'} mode`}
           onClick={toggleMode}
-          sx={{
-            color: (theme.vars ?? theme).palette.primary.dark,
-          }}
         >
           {theme.getColorSchemeSelector ? (
             <React.Fragment>
-              <DarkModeIcon
+              <LightModeIcon
                 sx={{
                   display: 'inline',
                   [theme.getColorSchemeSelector('dark')]: {
@@ -43,7 +40,7 @@ export default function ThemeSwitcher() {
                   },
                 }}
               />
-              <LightModeIcon
+              <DarkModeIcon
                 sx={{
                   display: 'none',
                   [theme.getColorSchemeSelector('dark')]: {

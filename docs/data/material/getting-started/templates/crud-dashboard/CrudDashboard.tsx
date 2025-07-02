@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import { createHashRouter, RouterProvider } from 'react-router';
 import DashboardLayout from './components/DashboardLayout';
 import EmployeeList from './components/EmployeeList';
 import EmployeeShow from './components/EmployeeShow';
@@ -16,37 +16,34 @@ import {
   formInputCustomizations,
 } from './theme/customizations';
 
-const router = createBrowserRouter(
-  [
-    {
-      Component: DashboardLayout,
-      children: [
-        {
-          path: '/employees',
-          Component: EmployeeList,
-        },
-        {
-          path: '/employees/:employeeId',
-          Component: EmployeeShow,
-        },
-        {
-          path: '/employees/new',
-          Component: EmployeeCreate,
-        },
-        {
-          path: '/employees/:employeeId/edit',
-          Component: EmployeeEdit,
-        },
-        // Fallback route for the example routes in dashboard sidebar items
-        {
-          path: '*',
-          Component: EmployeeList,
-        },
-      ],
-    },
-  ],
-  { basename: window.location.pathname },
-);
+const router = createHashRouter([
+  {
+    Component: DashboardLayout,
+    children: [
+      {
+        path: '/employees',
+        Component: EmployeeList,
+      },
+      {
+        path: '/employees/:employeeId',
+        Component: EmployeeShow,
+      },
+      {
+        path: '/employees/new',
+        Component: EmployeeCreate,
+      },
+      {
+        path: '/employees/:employeeId/edit',
+        Component: EmployeeEdit,
+      },
+      // Fallback route for the example routes in dashboard sidebar items
+      {
+        path: '*',
+        Component: EmployeeList,
+      },
+    ],
+  },
+]);
 
 const themeComponents = {
   ...dataGridCustomizations,

@@ -323,6 +323,12 @@ export default function EmployeeList() {
                 cursor: 'pointer',
               },
             }}
+            slotProps={{
+              loadingOverlay: {
+                variant: 'circular-progress',
+                noRowsVariant: 'circular-progress',
+              },
+            }}
           />
         )}
       </Box>

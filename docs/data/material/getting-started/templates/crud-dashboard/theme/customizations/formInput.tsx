@@ -1,12 +1,14 @@
-import { Theme, Components } from '@mui/material/styles';
+import { alpha, Theme, Components } from '@mui/material/styles';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { formHelperTextClasses } from '@mui/material/FormHelperText';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import { brand } from '../../../shared-theme/themePrimitives';
 
 /* eslint-disable import/prefer-default-export */
 export const formInputCustomizations: Components<Theme> = {
-  MuiFormGroup: {
+  MuiFormControl: {
     styleOverrides: {
       root: ({ theme }) => ({
         [`& .${inputBaseClasses.root}`]: {
@@ -18,17 +20,25 @@ export const formInputCustomizations: Components<Theme> = {
             transform: 'translate(4px, -12px) scale(0.75)',
           },
         },
+        [`& .${formHelperTextClasses.root}`]: {
+          marginLeft: 2,
+        },
         '& .MuiPickersInputBase-root': {
-          marginTop: '6px',
-          border: `1px solid ${theme.palette.divider}`,
+          marginTop: 6,
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
+          [`&.${outlinedInputClasses.focused}`]: {
+            border: `1px solid ${(theme.vars || theme).palette.divider}`,
+            outline: `3px solid ${alpha(brand[500], 0.5)}`,
+            borderColor: brand[400],
+          },
           ' .MuiPickersInputBase-sectionsContainer': {
             padding: '10px 0',
           },
           ' .MuiPickersOutlinedInput-notchedOutline': {
-            border: 0,
+            border: 'none',
           },
           [` .${iconButtonClasses.root}`]: {
-            border: 0,
+            border: 'none',
             height: '34px',
             width: '34px',
           },

@@ -10,10 +10,13 @@ import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent, SelectProps } from '@mui/material/Select';
+import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router';
 import dayjs, { Dayjs } from 'dayjs';
 import type { Employee } from '../data/employees';
 
@@ -33,13 +36,23 @@ export interface EmployeeFormProps {
   onSubmit: (formValues: Partial<EmployeeFormState['values']>) => Promise<void>;
   onReset?: (formValues: Partial<EmployeeFormState['values']>) => void;
   submitButtonLabel: string;
+  backButtonPath?: string;
 }
 
 export default function EmployeeForm(props: EmployeeFormProps) {
-  const { formState, onFieldChange, onSubmit, onReset, submitButtonLabel } = props;
+  const {
+    formState,
+    onFieldChange,
+    onSubmit,
+    onReset,
+    submitButtonLabel,
+    backButtonPath,
+  } = props;
 
   const formValues = formState.values;
   const formErrors = formState.errors;
+
+  const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -105,11 +118,15 @@ export default function EmployeeForm(props: EmployeeFormProps) {
     [onFieldChange],
   );
 
-  const handleReset = React.useCallback(async () => {
+  const handleReset = React.useCallback(() => {
     if (onReset) {
-      await onReset(formValues);
+      onReset(formValues);
     }
   }, [formValues, onReset]);
+
+  const handleBack = React.useCallback(() => {
+    navigate(backButtonPath ?? '/employees');
+  }, [navigate, backButtonPath]);
 
   return (
     <Box
@@ -201,7 +218,14 @@ export default function EmployeeForm(props: EmployeeFormProps) {
           </Grid>
         </Grid>
       </FormGroup>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Stack direction="row" spacing={2} justifyContent="space-between">
+        <Button
+          variant="contained"
+          startIcon={<ArrowBackIcon />}
+          onClick={handleBack}
+        >
+          Back
+        </Button>
         <Button
           type="submit"
           variant="contained"
@@ -210,7 +234,7 @@ export default function EmployeeForm(props: EmployeeFormProps) {
         >
           {submitButtonLabel}
         </Button>
-      </Box>
+      </Stack>
     </Box>
   );
 }

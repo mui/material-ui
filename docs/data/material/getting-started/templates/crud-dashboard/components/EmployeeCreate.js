@@ -67,7 +67,7 @@ export default function EmployeeCreate() {
       setFormErrors(
         Object.fromEntries(issues.map((issue) => [issue.path?.[0], issue.message])),
       );
-      throw new Error('Form validation failed');
+      return;
     }
     setFormErrors({});
 

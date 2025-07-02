@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate, useParams } from 'react-router';
 import dayjs from 'dayjs';
 import { useDialogs } from '../hooks/useDialogs/useDialogs';
@@ -92,6 +93,10 @@ export default function EmployeeShow() {
     }
   }, [employee, dialogs, employeeId, navigate, notifications]);
 
+  const handleBack = React.useCallback(() => {
+    navigate('/employees');
+  }, [navigate]);
+
   const renderShow = React.useMemo(() => {
     if (isLoading) {
       return (
@@ -163,22 +168,31 @@ export default function EmployeeShow() {
           </Grid>
         </Grid>
         <Divider sx={{ my: 3 }} />
-        <Stack direction="row" spacing={2} justifyContent="flex-end">
+        <Stack direction="row" spacing={2} justifyContent="space-between">
           <Button
             variant="contained"
-            startIcon={<EditIcon />}
-            onClick={handleEmployeeEdit}
+            startIcon={<ArrowBackIcon />}
+            onClick={handleBack}
           >
-            Edit
+            Back
           </Button>
-          <Button
-            variant="contained"
-            color="error"
-            startIcon={<DeleteIcon />}
-            onClick={handleEmployeeDelete}
-          >
-            Delete
-          </Button>
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="contained"
+              startIcon={<EditIcon />}
+              onClick={handleEmployeeEdit}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              startIcon={<DeleteIcon />}
+              onClick={handleEmployeeDelete}
+            >
+              Delete
+            </Button>
+          </Stack>
         </Stack>
       </Box>
     ) : null;
