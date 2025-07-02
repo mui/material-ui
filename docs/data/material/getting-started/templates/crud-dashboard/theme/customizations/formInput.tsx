@@ -26,16 +26,19 @@ export const formInputCustomizations: Components<Theme> = {
         '& .MuiPickersInputBase-root': {
           marginTop: 6,
           border: `1px solid ${(theme.vars || theme).palette.divider}`,
-          [`&.${outlinedInputClasses.focused}`]: {
-            border: `1px solid ${(theme.vars || theme).palette.divider}`,
-            outline: `3px solid ${alpha(brand[500], 0.5)}`,
-            borderColor: brand[400],
-          },
           ' .MuiPickersInputBase-sectionsContainer': {
             padding: '10px 0',
           },
           ' .MuiPickersOutlinedInput-notchedOutline': {
             border: 'none',
+          },
+          [`&.MuiPickersOutlinedInput-root.Mui-focused`]: {
+            border: `1px solid ${(theme.vars || theme).palette.divider}`,
+            outline: `3px solid ${alpha(brand[500], 0.5)}`,
+            borderColor: brand[400],
+            ' .MuiPickersOutlinedInput-notchedOutline': {
+              border: 'none',
+            },
           },
           [` .${iconButtonClasses.root}`]: {
             border: 'none',
