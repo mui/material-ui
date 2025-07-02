@@ -197,7 +197,7 @@ export default function EmployeeShow() {
         </Stack>
       </Box>
     ) : null;
-  }, [isLoading, error, employee, handleEmployeeEdit, handleEmployeeDelete]);
+  }, [isLoading, error, employee, handleBack, handleEmployeeEdit, handleEmployeeDelete]);
 
   const pageTitle = `Employee ${employeeId}`;
 
