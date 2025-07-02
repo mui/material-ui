@@ -8,6 +8,9 @@ _Jun 26, 2025_
 
 A big thanks to the 2 contributors who made this release possible.
 
+CSS layers make it easier to override styles by splitting a single style sheet into multiple layers.
+To learn more, check out the [CSS layers documentation](https://v6.mui.com/material-ui/customization/css-layers/).
+
 ### `@mui/material@6.5.0`
 
 - [Dialog] Add codemod for deprecated props (@sai6855) (#46335) @sai6855
