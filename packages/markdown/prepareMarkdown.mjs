@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase.js';
