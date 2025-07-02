@@ -52,9 +52,6 @@ importers:
       '@arethetypeswrong/cli':
         specifier: ^0.18.2
         version: 0.18.2
-      '@argos-ci/core':
-        specifier: ^3.2.0
-        version: 3.2.0
       '@babel/cli':
         specifier: ^7.27.2
         version: 7.27.2(@babel/core@7.27.4)
@@ -98,8 +95,8 @@ importers:
         specifier: ^1.0.9-canary.3
         version: 1.0.9-canary.3(@types/node@20.19.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
       '@mui/internal-code-infra':
-        specifier: 0.0.2-canary.8
-        version: 0.0.2-canary.8(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
+        specifier: https://pkg.pr.new/@mui/internal-code-infra@3874aad
+        version: https://pkg.pr.new/@mui/internal-code-infra@3874aad(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -2279,16 +2276,16 @@ packages:
     resolution: {integrity: sha512-GiwTmBFOU1/+UVNqqCGzFJYfBXEytUkiI+iRZ6Qx7KmUVtLm00sYySkfe203C9QtPG11yOz1ZaMek8dT/xnlgg==}
     engines: {node: '>=20'}
 
-  '@argos-ci/api-client@0.8.1':
-    resolution: {integrity: sha512-3IHv7ANSPNO6OwWgwULlHbP9/tFV9kQDu6+nL9jysfPkGj0GgtrOsyBb+iU931c7wSMo1OD+XNujCnRzDD968w==}
+  '@argos-ci/api-client@0.7.1':
+    resolution: {integrity: sha512-cJBNriNEs4aSBBpvsJH0f1D71rr9zxu/f0xRiqdEIIEN4ioFCCxs/66hNKrTxCw+lTaBnBL6LaM5vrBUkzgkzQ==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/core@3.2.0':
-    resolution: {integrity: sha512-wraH5RGFpoU7zcKV2BVi4LvY+5bWR/Ds6OVhUtq3jtd7I3qJRFVFq2IX1TfPPvBBA7wX0OqcrqgIWAQwy+vsoA==}
+  '@argos-ci/core@2.12.0':
+    resolution: {integrity: sha512-SmJYi93Oh0DYnJ1kZVFtzM0UDr0MfrcUhOuUsBJNpYc4hV2AlCNeoi8hzWYPJvARMKh03ZcbNx4+VY5jXiGLOA==}
     engines: {node: '>=18.0.0'}
 
-  '@argos-ci/util@2.3.1':
-    resolution: {integrity: sha512-kE61HU2480fbAnimmA4x9HK45ZJvkoqLdW5GxT5uvwhkclQykVd2S6WfGFUr3JokTXfZ5LZEEfoWgtGA316KSQ==}
+  '@argos-ci/util@2.2.1':
+    resolution: {integrity: sha512-z2B3EYVhDCDYlQwg55C/P8Xvbupb+XjmRHggIYl1R3yiNEBqy/kT9X/uOVMHxFyhLsM2PXsOOruugJoT11dB7Q==}
     engines: {node: '>=18.0.0'}
 
   '@asamuzakjp/css-color@2.8.3':
@@ -4169,8 +4166,9 @@ packages:
     resolution: {integrity: sha512-xUO1GQDl6xbFdQJMYOgKMdxD8duz/HRVO9FfOravWvHGqvfErFo9+mcS0Q99czlmViSol05CVqOOBdjZwFy+OQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.2-canary.8':
-    resolution: {integrity: sha512-V/KKIWXBFOPQJqwUyPQuxDAnZxEbWnNbhS1U+4XmfXla2E1EbaVJNDOz/sj2dZRHiqmwCfADe51pWL83d4PL4A==}
+  '@mui/internal-code-infra@https://pkg.pr.new/@mui/internal-code-infra@3874aad':
+    resolution: {tarball: https://pkg.pr.new/@mui/internal-code-infra@3874aad}
+    version: 0.0.1
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -11551,8 +11549,8 @@ packages:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
 
-  openapi-fetch@0.13.5:
-    resolution: {integrity: sha512-AQK8T9GSKFREFlN1DBXTYsLjs7YV2tZcJ7zUWxbjMoQmj8dDSFRrzhLCbHPZWA1TMV3vACqfCxLEZcwf2wxV6Q==}
+  openapi-fetch@0.13.1:
+    resolution: {integrity: sha512-8P77k9Cmp0VNyry8ml293v1mqAyr4AkN7fE9VuUJ2mR0bK1NWihDM+Vj5/Try4aIYwYpT2OyCrYS3ObIRtO4LQ==}
 
   openapi-typescript-helpers@0.0.15:
     resolution: {integrity: sha512-opyTPaunsklCBpTK8JGef6mfPhLSnyy5a0IN9vKtx3+4aExf+KxEqYwIy3hqkedXIB97u357uLMJsOnm3GVjsw==}
@@ -14726,17 +14724,17 @@ snapshots:
       typescript: 5.6.1-rc
       validate-npm-package-name: 5.0.1
 
-  '@argos-ci/api-client@0.8.1':
+  '@argos-ci/api-client@0.7.1':
     dependencies:
       debug: 4.4.1(supports-color@8.1.1)
-      openapi-fetch: 0.13.5
+      openapi-fetch: 0.13.1
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/core@3.2.0':
+  '@argos-ci/core@2.12.0':
     dependencies:
-      '@argos-ci/api-client': 0.8.1
-      '@argos-ci/util': 2.3.1
+      '@argos-ci/api-client': 0.7.1
+      '@argos-ci/util': 2.2.1
       axios: 1.8.4(debug@4.4.1)
       convict: 6.2.4
       debug: 4.4.1(supports-color@8.1.1)
@@ -14746,7 +14744,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@argos-ci/util@2.3.1': {}
+  '@argos-ci/util@2.2.1': {}
 
   '@asamuzakjp/css-color@2.8.3':
     dependencies:
@@ -17201,8 +17199,9 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@0.0.2-canary.8(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
+  '@mui/internal-code-infra@https://pkg.pr.new/@mui/internal-code-infra@3874aad(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
     dependencies:
+      '@argos-ci/core': 2.12.0
       '@eslint/compat': 1.3.1(eslint@9.30.0(jiti@2.4.2))
       '@next/eslint-plugin-next': 15.3.4
       '@octokit/rest': 22.0.0
@@ -26443,7 +26442,7 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  openapi-fetch@0.13.5:
+  openapi-fetch@0.13.1:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
