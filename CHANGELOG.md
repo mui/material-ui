@@ -4,7 +4,7 @@
 
 <!-- generated comparing v6.4.12..v6.x -->
 
-_Jun 26, 2025_
+_Jul 2, 2025_
 
 A big thanks to the 2 contributors who made this release possible.
 
@@ -13,7 +13,7 @@ To learn more, check out the [CSS layers documentation](https://v6.mui.com/mater
 
 ### `@mui/material@6.5.0`
 
-- [Dialog] Add codemod for deprecated props (@sai6855) (#46335) @sai6855
+- [Dialog] Add codemod for deprecated props (#46335) @sai6855
 
 ### `@mui/system@6.5.0`
 
