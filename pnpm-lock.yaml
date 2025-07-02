@@ -98,8 +98,8 @@ importers:
         specifier: ^1.0.9-canary.3
         version: 1.0.9-canary.3(@types/node@20.19.1)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))(yaml@2.7.1)
       '@mui/internal-code-infra':
-        specifier: 0.0.2-canary.5
-        version: 0.0.2-canary.5(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
+        specifier: 0.0.2-canary.7
+        version: 0.0.2-canary.7(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4169,8 +4169,8 @@ packages:
     resolution: {integrity: sha512-xUO1GQDl6xbFdQJMYOgKMdxD8duz/HRVO9FfOravWvHGqvfErFo9+mcS0Q99czlmViSol05CVqOOBdjZwFy+OQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.2-canary.5':
-    resolution: {integrity: sha512-gSk07OK8HfP/tN7ozx3JcvKf+o2JOMNMfxcOX/Yb3xtm8eOP6n77LJAuzIJyyQjBQOP8QAjj0FHRF9IF+LXS0w==}
+  '@mui/internal-code-infra@0.0.2-canary.7':
+    resolution: {integrity: sha512-z/ehQIodDqDKEZqVXX+e5MPgXrEBba8QCht1hm4Fvyrv2mHr3zio93FmAezt0dVm79bpgf0zhGbaWwSGHspfjw==}
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -6143,12 +6143,6 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/project-service@8.35.0':
-    resolution: {integrity: sha512-41xatqRwWZuhUMF/aZm2fcUsOFKNcG28xqRSS6ZVr9BVJtGExosLAm5A1OxTjRMagx8nJqva+P5zNIGt8RIgbQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <5.9.0'
-
   '@typescript-eslint/project-service@8.35.1':
     resolution: {integrity: sha512-VYxn/5LOpVxADAuP3NrnxxHYfzVtQzLKeldIhDhzC8UHaiQvYlXvKuVho1qLduFbJjjy5U5bkGwa3rUGUb1Q6Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -6158,12 +6152,6 @@ packages:
   '@typescript-eslint/scope-manager@8.35.1':
     resolution: {integrity: sha512-s/Bpd4i7ht2934nG+UoSPlYXd08KYz3bmjLEb7Ye1UVob0d1ENiT3lY8bsCmik4RqfSbPw9xJJHbugpPpP5JUg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/tsconfig-utils@8.35.0':
-    resolution: {integrity: sha512-04k/7247kZzFraweuEirmvUj+W3bJLI9fX6fbo1Qm2YykuBvEhRTPl8tcxlYO8kZZW+HIXfkZNoasVb8EV4jpA==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <5.9.0'
 
   '@typescript-eslint/tsconfig-utils@8.35.1':
     resolution: {integrity: sha512-K5/U9VmT9dTHoNowWZpz+/TObS3xqC5h0xAIjXPw+MNcKV9qg6eSatEnmeAwkjHijhACH0/N7bkhKvbt1+DXWQ==}
@@ -6178,19 +6166,9 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
 
-  '@typescript-eslint/types@8.35.0':
-    resolution: {integrity: sha512-0mYH3emanku0vHw2aRLNGqe7EXh9WHEhi7kZzscrMDf6IIRUQ5Jk4wp1QrledE/36KtdZrVfKnE32eZCf/vaVQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
   '@typescript-eslint/types@8.35.1':
     resolution: {integrity: sha512-q/O04vVnKHfrrhNAscndAn1tuQhIkwqnaW+eu5waD5IPts2eX1dgJxgqcPx5BX109/qAz7IG6VrEPTOYKCNfRQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/typescript-estree@8.35.0':
-    resolution: {integrity: sha512-F+BhnaBemgu1Qf8oHrxyw14wq6vbL8xwWKKMwTMwYIRmFFY/1n/9T/jpbobZL8vp7QyEUcC6xGrnAO4ua8Kp7w==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <5.9.0'
 
   '@typescript-eslint/typescript-estree@8.35.1':
     resolution: {integrity: sha512-Vvpuvj4tBxIka7cPs6Y1uvM7gJgdF5Uu9F+mBJBPY4MhvjrjWGK4H0lVgLJd/8PWZ23FTqsaJaLEkBCFUk8Y9g==}
@@ -6204,10 +6182,6 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
-
-  '@typescript-eslint/visitor-keys@8.35.0':
-    resolution: {integrity: sha512-zTh2+1Y8ZpmeQaQVIc/ZZxsx8UzgKJyNg1PTvjzC7WMhPSVS8bfDX34k1SrwOf016qd5RU3az2UxUNue3IfQ5g==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/visitor-keys@8.35.1':
     resolution: {integrity: sha512-VRwixir4zBWCSTP/ljEo091lbpypz57PoeAQ9imjG+vbeof9LplljsL1mos4ccG6H9IjfrVGM359RozUnuFhpw==}
@@ -12933,11 +12907,6 @@ packages:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
 
-  semver@7.7.1:
-    resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.7.2:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
@@ -14744,7 +14713,7 @@ snapshots:
       commander: 10.0.1
       marked: 9.1.6
       marked-terminal: 7.3.0(marked@9.1.6)
-      semver: 7.7.1
+      semver: 7.7.2
 
   '@arethetypeswrong/core@0.18.2':
     dependencies:
@@ -14753,7 +14722,7 @@ snapshots:
       cjs-module-lexer: 1.4.3
       fflate: 0.8.2
       lru-cache: 11.1.0
-      semver: 7.7.1
+      semver: 7.7.2
       typescript: 5.6.1-rc
       validate-npm-package-name: 5.0.1
 
@@ -17059,7 +17028,7 @@ snapshots:
       read-cmd-shim: 4.0.0
       resolve-from: 5.0.0
       rimraf: 4.4.1
-      semver: 7.7.1
+      semver: 7.7.2
       set-blocking: 2.0.0
       signal-exit: 3.0.7
       slash: 3.0.0
@@ -17098,7 +17067,7 @@ snapshots:
       https-proxy-agent: 7.0.6
       node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 8.1.0
-      semver: 7.7.1
+      semver: 7.7.2
       tar: 7.4.3
     transitivePeerDependencies:
       - encoding
@@ -17232,11 +17201,12 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@0.0.2-canary.5(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
+  '@mui/internal-code-infra@0.0.2-canary.7(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.5.3)(typescript@5.8.3)':
     dependencies:
       '@eslint/compat': 1.3.1(eslint@9.30.0(jiti@2.4.2))
       '@next/eslint-plugin-next': 15.3.4
       '@octokit/rest': 22.0.0
+      chalk: 5.4.1
       eslint: 9.30.0(jiti@2.4.2)
       eslint-config-airbnb: 19.0.4(eslint-plugin-import@2.32.0)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.30.0(jiti@2.4.2)))(eslint-plugin-react-hooks@6.0.0(eslint@9.30.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.30.0(jiti@2.4.2)))(eslint@9.30.0(jiti@2.4.2))
       eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.32.0)(eslint@9.30.0(jiti@2.4.2))
@@ -17253,6 +17223,7 @@ snapshots:
       execa: 7.2.0
       git-url-parse: 16.1.0
       globals: 16.2.0
+      globby: 14.1.0
       minimatch: 10.0.3
       prettier: 3.5.3
       semver: 7.7.2
@@ -17798,7 +17769,7 @@ snapshots:
       precinct: 12.2.0
       require-package-name: 2.0.1
       resolve: 2.0.0-next.5
-      semver: 7.7.1
+      semver: 7.7.2
       tmp-promise: 3.0.3
       toml: 3.0.0
       unixify: 1.0.0
@@ -17898,7 +17869,7 @@ snapshots:
       promise-all-reject-late: 1.0.1
       promise-call-limit: 3.0.2
       read-package-json-fast: 3.0.2
-      semver: 7.7.1
+      semver: 7.7.2
       ssri: 10.0.6
       treeverse: 3.0.0
       walk-up-path: 3.0.1
@@ -17908,7 +17879,7 @@ snapshots:
 
   '@npmcli/fs@3.1.1':
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
 
   '@npmcli/git@5.0.8':
     dependencies:
@@ -17919,7 +17890,7 @@ snapshots:
       proc-log: 4.2.0
       promise-inflight: 1.0.1
       promise-retry: 2.0.1
-      semver: 7.7.1
+      semver: 7.7.2
       which: 4.0.0
     transitivePeerDependencies:
       - bluebird
@@ -17942,7 +17913,7 @@ snapshots:
       json-parse-even-better-errors: 3.0.2
       pacote: 18.0.6
       proc-log: 4.2.0
-      semver: 7.7.1
+      semver: 7.7.2
     transitivePeerDependencies:
       - bluebird
       - supports-color
@@ -17959,7 +17930,7 @@ snapshots:
       json-parse-even-better-errors: 3.0.2
       normalize-package-data: 6.0.2
       proc-log: 4.2.0
-      semver: 7.7.1
+      semver: 7.7.2
     transitivePeerDependencies:
       - bluebird
 
@@ -17999,7 +17970,7 @@ snapshots:
       ignore: 5.3.2
       minimatch: 9.0.3
       nx: 20.8.2
-      semver: 7.7.1
+      semver: 7.7.2
       tmp: 0.2.3
       tslib: 2.8.1
       yargs-parser: 21.1.1
@@ -19713,15 +19684,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.35.0(typescript@5.8.3)':
-    dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.35.0(typescript@5.8.3)
-      '@typescript-eslint/types': 8.35.0
-      debug: 4.4.1(supports-color@8.1.1)
-      typescript: 5.8.3
-    transitivePeerDependencies:
-      - supports-color
-
   '@typescript-eslint/project-service@8.35.1(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.35.1(typescript@5.8.3)
@@ -19735,10 +19697,6 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.35.1
       '@typescript-eslint/visitor-keys': 8.35.1
-
-  '@typescript-eslint/tsconfig-utils@8.35.0(typescript@5.8.3)':
-    dependencies:
-      typescript: 5.8.3
 
   '@typescript-eslint/tsconfig-utils@8.35.1(typescript@5.8.3)':
     dependencies:
@@ -19755,25 +19713,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/types@8.35.0': {}
-
   '@typescript-eslint/types@8.35.1': {}
-
-  '@typescript-eslint/typescript-estree@8.35.0(typescript@5.8.3)':
-    dependencies:
-      '@typescript-eslint/project-service': 8.35.0(typescript@5.8.3)
-      '@typescript-eslint/tsconfig-utils': 8.35.0(typescript@5.8.3)
-      '@typescript-eslint/types': 8.35.0
-      '@typescript-eslint/visitor-keys': 8.35.0
-      debug: 4.4.1(supports-color@8.1.1)
-      fast-glob: 3.3.3
-      is-glob: 4.0.3
-      minimatch: 9.0.5
-      semver: 7.7.1
-      ts-api-utils: 2.1.0(typescript@5.8.3)
-      typescript: 5.8.3
-    transitivePeerDependencies:
-      - supports-color
 
   '@typescript-eslint/typescript-estree@8.35.1(typescript@5.8.3)':
     dependencies:
@@ -19801,11 +19741,6 @@ snapshots:
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
-
-  '@typescript-eslint/visitor-keys@8.35.0':
-    dependencies:
-      '@typescript-eslint/types': 8.35.0
-      eslint-visitor-keys: 4.2.1
 
   '@typescript-eslint/visitor-keys@8.35.1':
     dependencies:
@@ -21487,7 +21422,7 @@ snapshots:
       dot-prop: 7.2.0
       env-paths: 3.0.0
       json-schema-typed: 8.0.1
-      semver: 7.7.1
+      semver: 7.7.2
 
   confbox@0.1.8: {}
 
@@ -21547,7 +21482,7 @@ snapshots:
       handlebars: 4.7.8
       json-stringify-safe: 5.0.1
       meow: 8.1.2
-      semver: 7.7.1
+      semver: 7.7.2
       split: 1.0.1
 
   conventional-commits-filter@3.0.0:
@@ -21768,7 +21703,7 @@ snapshots:
       postcss-modules-scope: 3.2.1(postcss@8.5.6)
       postcss-modules-values: 4.0.0(postcss@8.5.6)
       postcss-value-parser: 4.2.0
-      semver: 7.7.1
+      semver: 7.7.2
     optionalDependencies:
       webpack: 5.99.9(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.99.9))
 
@@ -22115,7 +22050,7 @@ snapshots:
 
   detective-typescript@14.0.0(typescript@5.8.3):
     dependencies:
-      '@typescript-eslint/typescript-estree': 8.35.0(typescript@5.8.3)
+      '@typescript-eslint/typescript-estree': 8.35.1(typescript@5.8.3)
       ast-module-types: 6.0.1
       node-source-walk: 7.0.1
       typescript: 5.8.3
@@ -23515,7 +23450,7 @@ snapshots:
   git-semver-tags@5.0.1:
     dependencies:
       meow: 8.1.2
-      semver: 7.7.1
+      semver: 7.7.2
 
   git-up@7.0.0:
     dependencies:
@@ -24025,7 +23960,7 @@ snapshots:
       npm-package-arg: 11.0.2
       promzard: 1.0.2
       read: 3.0.1
-      semver: 7.7.1
+      semver: 7.7.2
       validate-npm-package-license: 3.0.4
       validate-npm-package-name: 5.0.1
     transitivePeerDependencies:
@@ -24346,7 +24281,7 @@ snapshots:
       '@babel/parser': 7.27.4
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.1
+      semver: 7.7.2
     transitivePeerDependencies:
       - supports-color
 
@@ -24681,7 +24616,7 @@ snapshots:
       jws: 3.2.2
       lodash: 4.17.21
       ms: 2.1.3
-      semver: 7.7.1
+      semver: 7.7.2
 
   jss-plugin-template@10.10.0:
     dependencies:
@@ -24925,7 +24860,7 @@ snapshots:
       read-cmd-shim: 4.0.0
       resolve-from: 5.0.0
       rimraf: 4.4.1
-      semver: 7.7.1
+      semver: 7.7.2
       set-blocking: 2.0.0
       signal-exit: 3.0.7
       slash: 3.0.0
@@ -24974,7 +24909,7 @@ snapshots:
       npm-package-arg: 11.0.2
       npm-registry-fetch: 17.1.0
       proc-log: 4.2.0
-      semver: 7.7.1
+      semver: 7.7.2
       sigstore: 2.3.1
       ssri: 10.0.6
     transitivePeerDependencies:
@@ -25241,7 +25176,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
 
   make-fetch-happen@13.0.1:
     dependencies:
@@ -26152,7 +26087,7 @@ snapshots:
       make-fetch-happen: 13.0.1
       nopt: 7.2.1
       proc-log: 4.2.0
-      semver: 7.7.1
+      semver: 7.7.2
       tar: 6.2.1
       which: 4.0.0
     transitivePeerDependencies:
@@ -26223,13 +26158,13 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.16.1
-      semver: 7.7.1
+      semver: 7.7.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.2:
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.7.1
+      semver: 7.7.2
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:
@@ -26255,7 +26190,7 @@ snapshots:
 
   npm-install-checks@6.3.0:
     dependencies:
-      semver: 7.7.1
+      semver: 7.7.2
 
   npm-normalize-package-bin@3.0.1: {}
 
@@ -26263,7 +26198,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.2
       proc-log: 4.2.0
-      semver: 7.7.1
+      semver: 7.7.2
       validate-npm-package-name: 5.0.1
 
   npm-packlist@8.0.2:
@@ -26275,7 +26210,7 @@ snapshots:
       npm-install-checks: 6.3.0
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 11.0.2
-      semver: 7.7.1
+      semver: 7.7.2
 
   npm-registry-fetch@17.1.0:
     dependencies:
@@ -26344,7 +26279,7 @@ snapshots:
       open: 8.4.2
       ora: 5.3.0
       resolve.exports: 2.0.3
-      semver: 7.7.1
+      semver: 7.7.2
       string-width: 4.2.3
       tar-stream: 2.2.0
       tmp: 0.2.3
@@ -28021,8 +27956,6 @@ snapshots:
 
   semver@6.3.1: {}
 
-  semver@7.7.1: {}
-
   semver@7.7.2: {}
 
   send@0.19.0:
@@ -28159,7 +28092,7 @@ snapshots:
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.4
-      semver: 7.7.1
+      semver: 7.7.2
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.33.5
       '@img/sharp-darwin-x64': 0.33.5
@@ -28185,7 +28118,7 @@ snapshots:
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.4
-      semver: 7.7.1
+      semver: 7.7.2
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.1
       '@img/sharp-darwin-x64': 0.34.1
