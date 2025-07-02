@@ -62,12 +62,10 @@ Apart from the setup provided above, VS Code requires the following conditions 
 
 1. Open MCP configuration in your JetBrains IDE ("Settings" -> "Tools" -> "AI Assistant" -> "Model Context Protocol (MCP)")
 2. Add a new MCP:
-
-- Name: MUI MCP
-- Command: `npx`
-- Arguments: `-y @mui/mcp@latest`
-
-3. Press "OK" and "Apply"
+  - Name: MUI MCP
+  - Command: `npx`
+  - Arguments: `-y @mui/mcp@latest`
+3. Press "OK" and "Apply".
 
 ### Zed
 
