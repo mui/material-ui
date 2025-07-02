@@ -1,5 +1,34 @@
 # [Versions](https://mui.com/versions/)
 
+## 6.5.0
+
+<!-- generated comparing v6.4.12..v6.x -->
+
+_Jul 2, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+CSS layers make it easier to override styles by splitting a single style sheet into multiple layers.
+To learn more, check out the [CSS layers documentation](https://v6.mui.com/material-ui/customization/css-layers/).
+
+### `@mui/material@6.5.0`
+
+- [Dialog] Add codemod for deprecated props (#46335) @sai6855
+
+### `@mui/system@6.5.0`
+
+- Backport CSS layers feature from v7 (#46283) @siriwatknp
+
+### `@mui/material-nextjs@6.5.0`
+
+- Backport CSS layers feature from v7 (#46283) @siriwatknp
+
+### Docs
+
+- Add ListItemButton to make the deprecation clear (#46357) @sai6855
+
+All contributors of this release in alphabetical order: @sai6855, @siriwatknp
+
 ## 6.4.12
 
 <!-- generated comparing v6.4.11..v6.x -->
