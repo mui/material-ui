@@ -242,6 +242,16 @@ const contributors = [
     twitter: 'ZeeshanTamboli',
     linkedin: 'in/zeeshantamboli',
   },
+  {
+    name: 'Sai Chand',
+    github: 'sai6855',
+    location: 'Hyderabad, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/60743144',
+    twitter: 'UrsSaichand',
+    linkedin: 'in/sai-chand-yamsani',
+  },
 ];
 
 const emeriti = [

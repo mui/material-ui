@@ -92,7 +92,7 @@
     },
     {
       "groupName": "node",
-      "matchPackageNames": ["node"],
+      "matchPackageNames": ["node", "cimg/node", "actions/setup-node"],
       "enabled": false
     },
     {
