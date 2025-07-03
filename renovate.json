@@ -88,7 +88,7 @@
     {
       "groupName": "node",
       "matchPackageNames": ["@types/node", "node", "cimg/node", "actions/setup-node"],
-      "allowedVersions": "22"
+      "allowedVersions": "20"
     },
     {
       "groupName": "examples",
