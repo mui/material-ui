@@ -26,6 +26,7 @@ import { useUserLanguage, useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import DemoToolbarRoot from 'docs/src/modules/components/DemoToolbarRoot';
 import { AdCarbonInline } from '@mui/docs/Ad';
+import DemoAiSuggestionHero from 'docs/src/modules/components/DemoAiSuggestionHero';
 
 /**
  * Removes leading spaces (indentation) present in the `.tsx` previews
@@ -156,7 +157,8 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const DemoRoot = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'hideToolbar' && prop !== 'bg',
+  shouldForwardProp: (prop) =>
+    prop !== 'hideToolbar' && prop !== 'bg' && prop !== 'hasAiSuggestion',
 })(({ theme }) => ({
   position: 'relative',
   margin: 'auto',
@@ -502,7 +504,12 @@ export default function Demo(props) {
   return (
     <Root>
       <AnchorLink id={demoName} />
-      <DemoRoot hideToolbar={demoOptions.hideToolbar} bg={demoOptions.bg} id={demoId}>
+      <DemoRoot
+        hideToolbar={demoOptions.hideToolbar}
+        bg={demoOptions.bg}
+        id={demoId}
+        hasAiSuggestion={Boolean(demoOptions.aiSuggestion)}
+      >
         <InitialFocus aria-label={t('initialFocusLabel')} action={initialFocusRef} tabIndex={-1} />
         <DemoSandbox
           key={demoKey}
@@ -591,6 +598,10 @@ export default function Demo(props) {
                         '& .MuiCode-copy': {
                           display: 'none',
                         },
+                        '& pre': {
+                          borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
+                          borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
+                        },
                       }}
                     />
                   ) : (
@@ -614,6 +625,12 @@ export default function Demo(props) {
                         'data-ga-event-label': demo.gaLabel,
                         'data-ga-event-action': 'copy-click',
                       }}
+                      sx={{
+                        '& .scrollContainer': {
+                          borderBottomLeftRadius: demoOptions.aiSuggestion ? 0 : 12,
+                          borderBottomRightRadius: demoOptions.aiSuggestion ? 0 : 12,
+                        },
+                      }}
                     >
                       <DemoEditorError>{debouncedError}</DemoEditorError>
                     </DemoEditor>
@@ -622,6 +639,28 @@ export default function Demo(props) {
               ))}
             </Collapse>
           </Tabs>
+          {/* AI Suggestion Hero UI */}
+          {demoOptions.aiSuggestion ? (
+            <DemoAiSuggestionHero
+              suggestion={demoOptions.aiSuggestion}
+              params={{
+                name: demoName,
+                description: demoOptions.aiSuggestion,
+                initialMessage: demoOptions.aiSuggestion,
+                files: [
+                  {
+                    path: demo.moduleTS,
+                    content: demo.rawTS,
+                    isEntry: true,
+                  },
+                  ...(demo.relativeModules?.TS ?? []).map((module) => ({
+                    path: module.module,
+                    content: module.raw,
+                  })),
+                ],
+              }}
+            />
+          ) : null}
           {adVisibility ? <AdCarbonInline /> : null}
         </React.Fragment>
       )}
