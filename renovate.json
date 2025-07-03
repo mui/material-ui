@@ -12,6 +12,7 @@
     "enabled": true,
     "schedule": "before 6:00am on the first day of the month"
   },
+    "ignorePaths": [ "examples/**"],
   "packageRules": [
     {
       "groupName": "Infra packages",
@@ -89,11 +90,6 @@
       "groupName": "node",
       "matchPackageNames": ["@types/node", "node", "cimg/node", "actions/setup-node"],
       "allowedVersions": "20"
-    },
-    {
-      "groupName": "examples",
-      "matchPaths": ["examples/**/package.json"],
-      "enabled": false
     },
     {
       "groupName": "Playwright",
