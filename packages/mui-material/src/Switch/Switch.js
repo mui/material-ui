@@ -300,6 +300,9 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
             input:
               typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
           }),
+          input: {
+            role: 'switch',
+          },
         }}
       />
       <TrackSlot {...trackSlotProps} />
