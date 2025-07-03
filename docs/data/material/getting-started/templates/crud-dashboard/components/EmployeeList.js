@@ -267,7 +267,7 @@ export default function EmployeeList() {
             onClick={handleCreateClick}
             startIcon={<AddIcon />}
           >
-            Create new
+            Create
           </Button>
         </Stack>
       }
