@@ -12,7 +12,7 @@
     "enabled": true,
     "schedule": "before 6:00am on the first day of the month"
   },
-    "ignorePaths": [ "examples/**"],
+  "ignorePaths": ["examples/**"],
   "packageRules": [
     {
       "groupName": "Infra packages",
