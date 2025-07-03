@@ -205,7 +205,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     additionalProps: {
       centerRipple: true,
       focusRipple: !disableFocusRipple,
-      disabled,
       role: undefined,
       tabIndex: null,
     },
@@ -233,7 +232,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       name,
       readOnly,
       required,
-      role: 'switch',
       tabIndex,
       type,
       ...(type === 'checkbox' && value === undefined ? {} : { value }),
