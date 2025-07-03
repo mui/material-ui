@@ -89,7 +89,7 @@
     {
       "groupName": "node",
       "matchPackageNames": ["@types/node", "node", "cimg/node", "actions/setup-node"],
-      "allowedVersions": "20"
+      "allowedVersions": "22"
     },
     {
       "groupName": "Playwright",
