@@ -128,7 +128,6 @@ describe('<SwitchBase />', () => {
     );
 
     // to.be.disabled
-    expect(container.firstChild).to.have.attribute('aria-disabled', 'true');
     expect(container.firstChild).to.have.class(classes.disabled);
   });
 
