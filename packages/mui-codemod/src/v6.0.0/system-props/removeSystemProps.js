@@ -150,8 +150,8 @@ export default function removeSystemProps(file, api, options) {
         key !== 'color' ||
         (val.value?.includes('.') && val.value !== 'inherit') ||
         val.value === 'divider' ||
-        val.value.startsWith('#') ||
-        val.value.match(/\(.*\)/),
+        val.value?.startsWith('#') ||
+        val.value?.match(/\(.*\)/),
     },
     Link: {
       matcher: (key) => key !== 'color',
