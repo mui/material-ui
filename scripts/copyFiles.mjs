@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import path from 'path';
+import { stat } from 'fs/promises';
 import { createPackageFile, includeFileInBuild, prepend } from './copyFilesUtils.mjs';
 
 const packagePath = process.cwd();
@@ -34,8 +35,15 @@ async function run() {
   try {
     const packageData = await createPackageFile(true);
 
+    let changlogPath;
+    if (await fileExists(path.join(packagePath, './CHANGELOG.md'))) {
+      changlogPath = './CHANGELOG.md';
+    } else {
+      changlogPath = '../../CHANGELOG.md';
+    }
+
     await Promise.all(
-      ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
+      ['./README.md', changlogPath, '../../LICENSE', ...extraFiles].map(async (file) => {
         const [sourcePath, targetPath] = file.split(':');
         await includeFileInBuild(sourcePath, targetPath);
       }),
@@ -45,6 +53,18 @@ async function run() {
   } catch (err) {
     console.error(err);
     process.exit(1);
+  }
+}
+
+async function fileExists(filePath) {
+  try {
+    await stat(filePath);
+    return true;
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return false;
+    }
+    throw err;
   }
 }
 

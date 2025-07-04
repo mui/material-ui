@@ -14,6 +14,12 @@
   },
   "packageRules": [
     {
+      "groupName": "Infra packages",
+      "matchPackagePatterns": "@mui/internal-*",
+      "followTag": "canary",
+      "schedule": null
+    },
+    {
       "matchDepTypes": ["peerDependencies"],
       "rangeStrategy": "widen"
     },
@@ -86,7 +92,7 @@
     },
     {
       "groupName": "node",
-      "matchPackageNames": ["node"],
+      "matchPackageNames": ["node", "cimg/node", "actions/setup-node"],
       "enabled": false
     },
     {

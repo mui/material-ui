@@ -78,7 +78,6 @@ export default function RichMarkdownElement(props) {
     );
     return (
       <div>
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         {warnIcon} Missing demo `{name}` {warnIcon}
       </div>
     );

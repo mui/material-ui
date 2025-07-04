@@ -4,7 +4,6 @@ title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: tooltip'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
-unstyled: https://base-ui.com/react/components/tooltip
 ---
 
 # Tooltip

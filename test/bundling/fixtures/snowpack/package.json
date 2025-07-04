@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "@playwright/test": "1.52.0",
+    "@playwright/test": "1.53.1",
     "serve": "14.2.4"
   },
   "pnpm": {
