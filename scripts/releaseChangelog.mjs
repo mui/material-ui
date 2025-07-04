@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import childProcess from 'child_process';
 import { promisify } from 'util';
 import { Octokit } from '@octokit/rest';

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable material-ui/no-hardcoded-labels */
+
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { deepmerge } from '@mui/utils';

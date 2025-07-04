@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase.js';
@@ -12,7 +11,7 @@ import {
   getTitle,
 } from './parseMarkdown.mjs';
 
-const BaseUIReexportedComponents = ['ClickAwayListener', 'NoSsr', 'Portal', 'TextareaAutosize'];
+const BaseUIReexportedComponents = [];
 
 /**
  * @param {string} productId
