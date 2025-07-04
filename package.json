@@ -158,7 +158,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chalk": "^5.4.1",
     "compression-webpack-plugin": "^11.1.0",
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.0",
     "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
     "danger": "^13.0.4",
