@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { styled, keyframes, alpha } from '@mui/material/styles';
-import MDButton, { ButtonProps } from '@mui/material/Button';
+import Button, { ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -34,7 +34,7 @@ const rainbow = keyframes`
   }
 `;
 
-const RainbowButton = styled(MDButton)(({ theme }) => ({
+const RainbowButton = styled(Button)(({ theme }) => ({
   '--color-1': '0 100% 63%',
   '--color-2': '270 100% 63%',
   '--color-3': '210 100% 63%',
@@ -59,11 +59,9 @@ const RainbowButton = styled(MDButton)(({ theme }) => ({
   '--bg-color-raw': '16, 18, 20',
   '--bg-color': 'rgb(var(--bg-color-raw))',
   backgroundImage: `linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(var(--bg-color) 50%, rgba(var(--bg-color-raw), 0.6) 80%, rgba(var(--bg-color-raw), 0)), linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)))`,
-
   ...theme.applyDarkStyles({
     borderColor: alpha(theme.palette.primary[300], 0.2),
   }),
-
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -78,7 +76,6 @@ const RainbowButton = styled(MDButton)(({ theme }) => ({
       'linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)))',
     filter: 'blur(0.8rem)',
   },
-
   '& > svg': {
     height: 12,
     width: 12,
