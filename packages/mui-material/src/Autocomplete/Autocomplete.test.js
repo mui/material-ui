@@ -369,6 +369,56 @@ describe('<Autocomplete />', () => {
       fireEvent.change(textbox, { target: { value: 'a' } });
       checkHighlightIs(getByRole('listbox'), 'Bar');
     });
+
+    it('should auto highlight first option after options order changes with autoHighlight', () => {
+      const { setProps, getByRole } = render(
+        <Autocomplete
+          autoHighlight
+          open
+          options={['pediatric ent', 'pediatric flu', 'pediatrician', 'pediatric cough']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), 'pediatric ent');
+      setProps({
+        options: ['pediatrician', 'pediatric ent', 'pediatric flu', 'pediatric cough'],
+      });
+      checkHighlightIs(getByRole('listbox'), 'pediatrician');
+    });
+
+    it('should auto highlight first option when no match with input value with autoHighlight', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          autoHighlight
+          options={['1', '2', '3', '4']}
+          value="5"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), '1');
+    });
+
+    it('should auto highlight first option of rest after selecting an option with autoHighlight and filterSelectedOptions', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          autoHighlight
+          options={['1', '2', '3', '4']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          filterSelectedOptions
+          disableCloseOnSelect
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      checkHighlightIs(getByRole('listbox'), '1');
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      checkHighlightIs(getByRole('listbox'), '2');
+    });
   });
 
   describe('highlight synchronisation', () => {
@@ -388,82 +438,6 @@ describe('<Autocomplete />', () => {
         value: [],
       });
       checkHighlightIs(getByRole('listbox'), 'two');
-    });
-
-    it('should auto highlight first option after options order changes with autoHighlight', () => {
-      const { setProps, getByRole } = render(
-        <Autocomplete
-          autoHighlight
-          open
-          options={['pediatric ent', 'pediatric flu', 'pediatrician', 'pediatric cough']}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-
-      checkHighlightIs(getByRole('listbox'), 'pediatric ent');
-      setProps({
-        options: ['pediatrician', 'pediatric ent', 'pediatric flu', 'pediatric cough'],
-      });
-      checkHighlightIs(getByRole('listbox'), 'pediatrician');
-    });
-
-    it('should auto highlight selected option with autoHighlight', () => {
-      const generateDummyOptions = (max) => {
-        const results = [];
-        for (let i = 0; i < max; i += 1) {
-          results.push(String(i));
-        }
-        return results;
-      };
-
-      const { getByRole } = render(
-        <Autocomplete
-          autoHighlight
-          open
-          value="24"
-          options={generateDummyOptions(25)}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-
-      checkHighlightIs(getByRole('listbox'), '24');
-    });
-
-    it('should auto highlight first option after options become different with autoHighlight', () => {
-      const { setProps, getByRole } = render(
-        <Autocomplete
-          autoHighlight
-          open
-          options={['1', '2', '3', '4']}
-          value="3"
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-
-      checkHighlightIs(getByRole('listbox'), '3');
-      setProps({
-        options: ['5', '6', '7', '8'],
-      });
-      checkHighlightIs(getByRole('listbox'), '5');
-    });
-
-    it('should auto highlight first option after selecting an option with autoHighlight and filterSelectedOptions', () => {
-      const { setProps, getByRole } = render(
-        <Autocomplete
-          autoHighlight
-          filterSelectedOptions
-          open
-          options={['1', '2', '3', '4']}
-          renderInput={(params) => <TextField {...params} autoFocus />}
-        />,
-      );
-
-      checkHighlightIs(getByRole('listbox'), '1');
-
-      setProps({
-        value: '3',
-      });
-      checkHighlightIs(getByRole('listbox'), '1');
     });
   });
 
