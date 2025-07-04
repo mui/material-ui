@@ -27,25 +27,19 @@ interface OpenInMUIChatButtonProps extends ButtonProps {
 
 const rainbow = keyframes`
   0% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
+    background-position: -100% center;
   }
   100% {
-    background-position: 0% center;
+    background-position: 100% center;
   }
 `;
 
-export const RainbowButton = styled(MDButton)(({ theme }) => ({
-  /* CSS Variables (embedded) */
+const RainbowButton = styled(MDButton)(({ theme }) => ({
   '--color-1': '0 100% 63%',
   '--color-2': '270 100% 63%',
   '--color-3': '210 100% 63%',
   '--color-4': '195 100% 63%',
   '--color-5': '90 100% 63%',
-  '--text-color': '#fff',
-
   position: 'relative',
   display: 'inline-flex',
   height: 26,
@@ -53,31 +47,21 @@ export const RainbowButton = styled(MDButton)(({ theme }) => ({
   flexShrink: 0,
   borderRadius: 999,
   border: '1px solid transparent',
-  borderColor: alpha(theme.palette.grey[200], 0.8),
+  borderBottomWidth: '2px',
   borderBottomColor: 'transparent',
+  color: '#fff',
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
-  color: theme.palette.primary[600],
-  '& .MuiSvgIcon-root': {
-    color: theme.palette.primary.main,
-  },
   backgroundSize: '200%',
   backgroundClip: 'padding-box, border-box, border-box',
   backgroundOrigin: 'border-box',
   animation: `${rainbow} 3s linear infinite`,
-  transition: 'background-color 0.2s, color 0.2s',
-  cursor: 'pointer',
-  '--bg-color-raw': '255, 255, 255',
+  '--bg-color-raw': '16, 18, 20',
   '--bg-color': 'rgb(var(--bg-color-raw))',
   backgroundImage: `linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(var(--bg-color) 50%, rgba(var(--bg-color-raw), 0.6) 80%, rgba(var(--bg-color-raw), 0)), linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)))`,
 
   ...theme.applyDarkStyles({
-    '--bg-color-raw': '0, 0, 0',
-    color: theme.palette.primary[300],
     borderColor: alpha(theme.palette.primary[300], 0.2),
-    '& .MuiSvgIcon-root': {
-      color: theme.palette.primary[300],
-    },
   }),
 
   '&::before': {
@@ -102,9 +86,6 @@ export const RainbowButton = styled(MDButton)(({ theme }) => ({
   },
   '& > svg > path': {
     fill: 'currentColor',
-  },
-  '& .MuiCircularProgress-root': {
-    color: 'var(--text-color)',
   },
 }));
 
@@ -136,7 +117,7 @@ export default function OpenInMUIChatButton(props: OpenInMUIChatButtonProps) {
 
   const handleClick = async () => {
     // Debounce the loading state to avoid flickering
-    const setLoadingTimeout = setTimeout(() => setLoading(true), 200);
+    setLoading(true);
     setError(null);
 
     if (!baseUrl) {
@@ -171,7 +152,6 @@ export default function OpenInMUIChatButton(props: OpenInMUIChatButtonProps) {
     } catch (err: any) {
       setError(err as Error);
     } finally {
-      clearTimeout(setLoadingTimeout);
       setLoading(false);
     }
   };
