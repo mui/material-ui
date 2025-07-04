@@ -95,92 +95,95 @@ const productToPackage: Record<string, string> = {
   'x-charts': '@mui/x-charts',
 };
 
-export default function OpenInMUIChatButton(props: OpenInMUIChatButtonProps) {
-  const { ...otherProps } = props;
-  const { productIdentifier } = React.use(PageContext);
-  const router = useRouter();
-  const productId = getProductInfoFromUrl(router.asPath).productId;
-  const packageName = productToPackage[productId];
-  const packageVersion =
-    (
-      productIdentifier.versions.find((it) => it.current)?.text ??
-      productIdentifier.versions?.[0]?.text
-    ) // slice to remove the 'v' prefix
-      ?.slice(1) ?? 'latest';
+const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatButtonProps>(
+  function OpenInMUIChatButton({ params, ...props }, ref) {
+    const { productIdentifier } = React.use(PageContext);
+    const router = useRouter();
+    const productId = getProductInfoFromUrl(router.asPath).productId;
+    const packageName = productToPackage[productId];
+    const packageVersion =
+      (
+        productIdentifier.versions.find((it) => it.current)?.text ??
+        productIdentifier.versions?.[0]?.text
+      ) // slice to remove the 'v' prefix
+        ?.slice(1) ?? 'latest';
 
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState<Error | null>(null);
-  const baseUrl = process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL;
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState<Error | null>(null);
+    const baseUrl = process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL;
 
-  const handleClick = async () => {
-    // Debounce the loading state to avoid flickering
-    setLoading(true);
-    setError(null);
+    const handleClick = async () => {
+      // Debounce the loading state to avoid flickering
+      setLoading(true);
+      setError(null);
 
-    if (!baseUrl) {
-      throw new Error(
-        'Could not find the MUI Chat URL, please open a new issue on https://github.com/mui/material-ui/issues/new',
-      );
-    }
-
-    try {
-      const response = await fetch(`${baseUrl}/v1/public/chat/open`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          description: document.title,
-          ...props.params,
-          type: 'mui-docs',
-          package: {
-            name: packageName,
-            version: packageVersion,
-          },
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to open in MUI Chat');
+      if (!baseUrl) {
+        throw new Error(
+          'Could not find the MUI Chat URL, please open a new issue on https://github.com/mui/material-ui/issues/new',
+        );
       }
 
-      const data = await response.json();
-      window.open(data.nextUrl, '_blank');
-    } catch (err: any) {
-      setError(err as Error);
-    } finally {
-      setLoading(false);
+      try {
+        const response = await fetch(`${baseUrl}/v1/public/chat/open`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            description: document.title,
+            ...params,
+            type: 'mui-docs',
+            package: {
+              name: packageName,
+              version: packageVersion,
+            },
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to open in MUI Chat');
+        }
+
+        const data = await response.json();
+        window.open(data.nextUrl, '_blank');
+      } catch (err: any) {
+        setError(err as Error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // If the base URL is not set, we can't render the button
+    if (!baseUrl) {
+      return null;
     }
-  };
 
-  // If the base URL is not set, we can't render the button
-  if (!baseUrl) {
-    return null;
-  }
+    return (
+      <React.Fragment>
+        <RainbowButton
+          ref={ref}
+          loading={loading}
+          disabled={!!error}
+          loadingIndicator={<CircularProgress color="inherit" size={12} />}
+          onClick={handleClick}
+          {...props}
+        >
+          Edit in <SvgMuiLogomark /> Chat
+        </RainbowButton>
+        <Snackbar
+          open={!!error}
+          color="error"
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          onClose={() => setError(null)}
+          autoHideDuration={6000}
+        >
+          <Alert onClose={() => setError(null)} severity="error" sx={{ width: '100%' }}>
+            {error?.message || 'Failed to open in MUI Chat'}
+          </Alert>
+        </Snackbar>
+      </React.Fragment>
+    );
+  },
+);
 
-  return (
-    <React.Fragment>
-      <RainbowButton
-        loading={loading}
-        disabled={!!error}
-        loadingIndicator={<CircularProgress color="inherit" size={12} />}
-        onClick={handleClick}
-        sx={{ mr: 0.5 }}
-        {...otherProps}
-      >
-        Edit in <SvgMuiLogomark /> Chat
-      </RainbowButton>
-      <Snackbar
-        open={!!error}
-        color="error"
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        onClose={() => setError(null)}
-        autoHideDuration={6000}
-      >
-        <Alert onClose={() => setError(null)} severity="error" sx={{ width: '100%' }}>
-          {error?.message || 'Failed to open in MUI Chat'}
-        </Alert>
-      </Snackbar>
-    </React.Fragment>
-  );
-}
+export default OpenInMUIChatButton;

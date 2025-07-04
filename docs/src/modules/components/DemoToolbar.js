@@ -443,7 +443,7 @@ export default function DemoToolbar(props) {
             data-ga-event-category="mui-chat"
             data-ga-event-label={demo.gaLabel}
             data-ga-event-action="open-in-mui-chat"
-            {...getControlProps(10)}
+            {...getControlProps(0)}
             params={{
               name: demoName,
               files: [
@@ -458,6 +458,7 @@ export default function DemoToolbar(props) {
                 })),
               ],
             }}
+            sx={{ mr: 0.5 }}
           />
         )}
         <Fade in={codeOpen}>
