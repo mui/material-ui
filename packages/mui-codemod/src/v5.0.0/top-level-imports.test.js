@@ -42,26 +42,6 @@ describe('@mui/codemod', () => {
         const expected = read('./top-level-imports.test/expected.js');
         expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
-
-      it('should preserve color imports and styles imports', () => {
-        const input = read('./top-level-imports.test/actual.js');
-        const expected = read('./top-level-imports.test/expected.js');
-        const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
-        expect(trim(actual)).to.equal(
-          trim(expected),
-          'Color imports and styles imports should be preserved',
-        );
-      });
-
-      it('should not transform individual color imports', () => {
-        const input = read('./top-level-imports.test/actual.js');
-        const expected = read('./top-level-imports.test/expected.js');
-        const actual = transform({ source: input, path: 'test.js' }, { jscodeshift }, {});
-        expect(trim(actual)).to.equal(
-          trim(expected),
-          'Individual color imports should not be transformed',
-        );
-      });
     });
   });
 });
