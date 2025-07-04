@@ -29,6 +29,13 @@ function layouts(translation) {
       hasDarkMode: true,
     },
     {
+      title: translation('crudDashboardTitle'),
+      description: translation('crudDashboardDescr'),
+      href: '/material-ui/getting-started/templates/crud-dashboard/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/crud-dashboard`,
+      hasDarkMode: true,
+    },
+    {
       title: translation('marketingPageTitle'),
       description: translation('marketingPageDescr'),
       href: '/material-ui/getting-started/templates/marketing-page/',
