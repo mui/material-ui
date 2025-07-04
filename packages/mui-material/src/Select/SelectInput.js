@@ -146,6 +146,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
+  const paperRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
@@ -232,6 +233,36 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // Hijack the default focus behavior.
     event.preventDefault();
     displayRef.current.focus();
+
+    const doc = ownerDocument(event.currentTarget);
+
+    function handleMouseUp(mouseEvent) {
+      if (!displayRef.current) {
+        return;
+      }
+
+      // mouse is over the options/menuitem, don't close the menu
+      if (paperRef.current.contains(mouseEvent.target)) {
+        return;
+      }
+
+      const triggerElement = displayRef.current.getBoundingClientRect();
+
+      // mouse is inside the trigger, don't close the menu
+      if (
+        mouseEvent.clientX >= triggerElement.left &&
+        mouseEvent.clientX <= triggerElement.right &&
+        mouseEvent.clientY >= triggerElement.top &&
+        mouseEvent.clientY <= triggerElement.bottom
+      ) {
+        return;
+      }
+
+      // close the menu
+      update(false, mouseEvent);
+    }
+
+    doc.addEventListener('mouseup', handleMouseUp, { once: true });
 
     update(true, event);
   };
@@ -571,6 +602,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             ...listProps,
           },
           paper: {
+            ref: paperRef,
             ...paperProps,
             style: {
               minWidth: menuMinWidth,

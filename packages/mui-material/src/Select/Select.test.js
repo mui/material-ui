@@ -34,6 +34,75 @@ describe('<Select />', () => {
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
+  describe('Pointer Cancellation', () => {
+    beforeEach(function beforeEachCallback() {
+      // Run these tests only in browser because JSDOM doesn't have getBoundingClientRect() API
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
+
+    it('should close the menu when mouse is outside the select', () => {
+      render(
+        <Select value="" MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}>
+          <MenuItem value="">none</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+        </Select>,
+      );
+      const trigger = screen.getByRole('combobox');
+
+      // Open the menu
+      fireEvent.mouseDown(trigger);
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+
+      // Simulate mouse up outside the menu. The mouseup target is the backdrop when the menu is opened.
+      fireEvent.mouseUp(screen.getByTestId('backdrop'), { clientX: 60, clientY: 10 });
+
+      // Menu should be closed now
+      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
+    });
+
+    it('should not close the menu when mouse is inside the trigger', () => {
+      render(
+        <Select value="">
+          <MenuItem value="">none</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+        </Select>,
+      );
+      const trigger = screen.getByRole('combobox');
+
+      // Open the menu
+      fireEvent.mouseDown(trigger);
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+
+      // Simulate mouse up inside the trigger
+      fireEvent.mouseUp(trigger, { clientX: 20, clientY: 20 });
+
+      // Menu should still be open
+      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
+    });
+
+    it('should not close the menu when releasing on a menu item', () => {
+      render(
+        <Select value="">
+          <MenuItem value="">none</MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+        </Select>,
+      );
+      const trigger = screen.getByRole('combobox');
+
+      // Open the menu
+      fireEvent.mouseDown(trigger);
+      const options = screen.getAllByRole('option');
+
+      // Simulate mouse up on a menu item
+      fireEvent.mouseUp(options[0]);
+
+      // Menu should still be open
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+    });
+  });
+
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
       render(
