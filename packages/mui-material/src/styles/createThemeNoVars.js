@@ -57,14 +57,14 @@ function attachColorManipulators(theme) {
     lighten(color, coefficient) {
       const obj = this || theme;
       if (obj.colorSpace) {
-        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, #fff ${coefficientToPercentage(coefficient)})`;
+        return `color-mix(in ${obj.colorSpace}, ${color}, #fff ${coefficientToPercentage(coefficient)})`;
       }
       return systemLighten(color, coefficient);
     },
     darken(color, coefficient) {
       const obj = this || theme;
       if (obj.colorSpace) {
-        return `color-mix(in ${(obj.vars || obj).colorSpace}, ${color}, #000 ${coefficientToPercentage(coefficient)})`;
+        return `color-mix(in ${obj.colorSpace}, ${color}, #000 ${coefficientToPercentage(coefficient)})`;
       }
       return systemDarken(color, coefficient);
     },

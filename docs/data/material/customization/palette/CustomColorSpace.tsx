@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 
 const theme = createTheme({
   cssVariables: {
-    experimental_relativeColor: true,
+    experimentalRelativeColor: true,
     cssVarPrefix: 'colorSpace',
   },
   palette: {

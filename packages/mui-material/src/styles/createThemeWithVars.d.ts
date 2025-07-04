@@ -322,7 +322,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   /**
    * If `true`, the CSS relative color will be used.
    */
-  experimental_relativeColor?: boolean;
+  experimentalRelativeColor?: boolean;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
@@ -335,7 +335,6 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
 export interface ThemeVars {
-  colorSpace: string;
   font: ExtractTypographyTokens<Theme['typography']>;
   palette: Omit<
     ColorSystem['palette'],

@@ -130,8 +130,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     defaultColorScheme: defaultColorSchemeInput,
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    experimental_relativeColor = false,
+    experimentalRelativeColor = false,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
       ? 'media'
@@ -169,7 +168,7 @@ export default function createThemeWithVars(options = {}, ...args) {
 
   // The reason to use `oklch` is that it is the most perceptually uniform color space and widely supported.
   let colorSpace;
-  if (experimental_relativeColor) {
+  if (experimentalRelativeColor) {
     colorSpace = 'oklch';
   }
 
@@ -626,7 +625,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     disableCssColorScheme,
     shouldSkipGeneratingVar,
     getSelector: defaultGetSelector(theme),
-    enableRelativeColor: experimental_relativeColor,
+    enableRelativeColor: experimentalRelativeColor,
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
   theme.vars = vars;

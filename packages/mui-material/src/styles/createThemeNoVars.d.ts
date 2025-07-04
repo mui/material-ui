@@ -33,7 +33,6 @@ type CssVarsOptions = CssThemeVariables extends {
   : {};
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'>, CssVarsOptions {
-  colorSpace?: 'srgb' | 'hsl' | 'hwb' | 'oklch' | 'oklab' | (string & {});
   mixins?: MixinsOptions;
   components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
@@ -82,7 +81,6 @@ type CssVarsProperties = CssThemeVariables extends { enabled: true }
  * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme, CssVarsProperties {
-  colorSpace?: string;
   cssVariables?: false;
   components?: Components<BaseTheme>;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;

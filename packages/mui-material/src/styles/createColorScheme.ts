@@ -30,7 +30,8 @@ export default function createColorScheme(options: ColorSystemOptions & { colorS
     colorSpace,
     ...rest
   } = options;
-  const palette = createPalette({ ...paletteInput, colorSpace });
+  // need to cast because `colorSpace` is considered internal at the moment.
+  const palette = createPalette({ ...paletteInput, colorSpace } as PaletteOptions);
   return {
     palette,
     opacity: { ...getOpacity(palette.mode), ...opacity },
