@@ -444,20 +444,7 @@ export default function DemoToolbar(props) {
             data-ga-event-label={demo.gaLabel}
             data-ga-event-action="open-in-mui-chat"
             {...getControlProps(0)}
-            params={{
-              name: demoName,
-              files: [
-                {
-                  path: demo.moduleTS,
-                  content: demo.rawTS,
-                  isEntry: true,
-                },
-                ...(demo.relativeModules?.TS ?? []).map((module) => ({
-                  path: module.module,
-                  content: module.raw,
-                })),
-              ],
-            }}
+            demoData={demoData}
             sx={{ mr: 0.5 }}
           />
         )}

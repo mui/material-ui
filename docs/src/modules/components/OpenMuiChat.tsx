@@ -1,28 +1,15 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { styled, keyframes, alpha } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
-import PageContext from './PageContext';
-import getProductInfoFromUrl from '../utils/getProductInfoFromUrl';
+import { createMuiChat } from '../sandbox/MuiChat';
+import { DemoData } from '../sandbox/types';
 
 interface OpenInMUIChatButtonProps extends ButtonProps {
-  params: {
-    name: string;
-    description?: string;
-    package?: {
-      name: string;
-      version: string;
-    };
-    files: {
-      path: string;
-      content: string;
-      isEntry?: boolean;
-    }[];
-  };
+  demoData: DemoData;
 }
 
 const rainbow = keyframes`
@@ -86,66 +73,18 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const productToPackage: Record<string, string> = {
-  'material-ui': '@mui/material',
-  'joy-ui': '@mui/joy',
-  'x-data-grid': '@mui/x-data-grid',
-  'x-date-pickers': '@mui/x-date-pickers',
-  'x-tree-view': '@mui/x-tree-view',
-  'x-charts': '@mui/x-charts',
-};
-
 const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatButtonProps>(
-  function OpenInMUIChatButton({ params, ...props }, ref) {
-    const { productIdentifier } = React.use(PageContext);
-    const router = useRouter();
-    const productId = getProductInfoFromUrl(router.asPath).productId;
-    const packageName = productToPackage[productId];
-    const packageVersion =
-      (
-        productIdentifier.versions.find((it) => it.current)?.text ??
-        productIdentifier.versions?.[0]?.text
-      ) // slice to remove the 'v' prefix
-        ?.slice(1) ?? 'latest';
-
+  function OpenInMUIChatButton({ demoData, ...props }, ref) {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<Error | null>(null);
     const baseUrl = process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL;
 
     const handleClick = async () => {
-      // Debounce the loading state to avoid flickering
       setLoading(true);
       setError(null);
 
-      if (!baseUrl) {
-        throw new Error(
-          'Could not find the MUI Chat URL, please open a new issue on https://github.com/mui/material-ui/issues/new',
-        );
-      }
-
       try {
-        const response = await fetch(`${baseUrl}/v1/public/chat/open`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            description: document.title,
-            ...params,
-            type: 'mui-docs',
-            package: {
-              name: packageName,
-              version: packageVersion,
-            },
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to open in MUI Chat');
-        }
-
-        const data = await response.json();
-        window.open(data.nextUrl, '_blank');
+        await createMuiChat(demoData).openSandbox();
       } catch (err: any) {
         setError(err as Error);
       } finally {
