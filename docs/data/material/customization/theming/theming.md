@@ -159,7 +159,9 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
 :::warning
-Only the first argument (`options`) is processed by the `createTheme()` function. While passing multiple arguments currently works for backward compatibility, this behavior may be removed in future versions. To ensure your code remains forward-compatible, you should **manually deep merge** the theme objects and pass the result as a single object to `createTheme()`.
+Only the first argument (`options`) is processed by the `createTheme()` function. 
+While passing multiple arguments currently works for backward compatibility, this behavior may be removed in future versions. 
+To ensure your code remains forward-compatible, you should manually deep merge the theme objects and pass the result as a single object to `createTheme()`.
 :::
 
 ```js
