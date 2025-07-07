@@ -24,7 +24,6 @@ export function CodeCopyButton(props: CodeCopyButtonProps) {
           await copy(code);
         }}
       >
-        {/* material-ui/no-hardcoded-labels */}
         {isCopied ? 'Copied' : 'Copy'}
         <span className="MuiCode-copyKeypress" style={{ opacity: isCopied ? 0 : 1 }}>
           <span>(or</span> {key}C<span>)</span>
