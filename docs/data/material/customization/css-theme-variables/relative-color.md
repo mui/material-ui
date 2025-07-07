@@ -15,7 +15,7 @@ This feature is experimental and only available in modern browsers. Please check
 
 ## Usage
 
-Set `cssVariables` with `experimentalRelativeColor: true` to the theme options.
+Set `cssVariables` with `experimentalNativeCssColors: true` to the theme options.
 Material UI will start using CSS color-mix and relative color instead of the JavaScript color manipulation.
 
 :::info
@@ -25,7 +25,7 @@ Try inspecting the demo below to the calculated values of the color tokens.
 ```js
 const theme = createTheme({
   cssVariables: {
-    experimentalRelativeColor: true,
+    experimentalNativeCssColors: true,
   },
 });
 ```
@@ -60,7 +60,7 @@ If you already have color tokens via CSS variables, you can provide the values t
 ```js
 const theme = createTheme({
   cssVariables: {
-    experimentalRelativeColor: true,
+    experimentalNativeCssColors: true,
   },
   palette: {
     primary: {

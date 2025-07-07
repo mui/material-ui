@@ -322,7 +322,7 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   /**
    * If `true`, the CSS relative color will be used.
    */
-  experimentalRelativeColor?: boolean;
+  experimentalNativeCssColors?: boolean;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.

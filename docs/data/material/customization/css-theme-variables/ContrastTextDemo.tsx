@@ -6,7 +6,7 @@ import Slider from '@mui/material/Slider';
 
 const theme = createTheme({
   cssVariables: {
-    experimentalRelativeColor: true,
+    experimentalNativeCssColors: true,
     cssVarPrefix: 'contrast', // This is for the demo only, you don't need to set this to use the feature
   },
 });

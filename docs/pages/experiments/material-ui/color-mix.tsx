@@ -71,7 +71,7 @@ export default function ColorMixPage() {
       disableNestedContext
       theme={createTheme({
         cssVariables: {
-          experimentalRelativeColor: true,
+          experimentalNativeCssColors: true,
         },
         colorSchemes: {
           light: {
@@ -152,7 +152,7 @@ export default function ColorMixPage() {
               language="javascript"
               code={`extendTheme({
   cssVariables: {
-    experimentalRelativeColor: true,
+    experimentalNativeCssColors: true,
   },
   colorSchemes: {
     light: {

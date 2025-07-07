@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 
 const theme = createTheme({
   cssVariables: {
-    experimentalRelativeColor: true,
+    experimentalNativeCssColors: true,
     cssVarPrefix: 'relativeColor', // This is for the demo only, you don't need to set this to use the feature
   },
 });

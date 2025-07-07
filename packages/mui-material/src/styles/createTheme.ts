@@ -46,7 +46,7 @@ export default function createTheme(
             | 'disableCssColorScheme'
             | 'cssVarPrefix'
             | 'shouldSkipGeneratingVar'
-            | 'experimentalRelativeColor'
+            | 'experimentalNativeCssColors'
           >;
     } = {} as any, // cast type to skip module augmentation test
   ...args: object[]
