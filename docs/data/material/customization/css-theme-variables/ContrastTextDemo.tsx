@@ -6,18 +6,18 @@ import Slider from '@mui/material/Slider';
 
 const theme = createTheme({
   cssVariables: {
-    experimentalNativeCssColors: true,
+    experimentalNativeColorSyntax: true,
     cssVarPrefix: 'contrast', // This is for the demo only, you don't need to set this to use the feature
   },
 });
 
 export default function ContrastTextDemo() {
-  const [lightness, setLightness] = React.useState(65);
+  const [lightness, setLightness] = React.useState(0.65);
   const [chroma, setChroma] = React.useState(0.3);
   const [hue, setHue] = React.useState(29);
 
   // Create OKLCH color from slider values
-  const backgroundColor = `oklch(${lightness}% ${chroma} ${hue})`;
+  const backgroundColor = `oklch(${lightness} ${chroma} ${hue})`;
 
   // Get contrast text using theme function
   const contrastText = theme.palette.getContrastText(backgroundColor);
@@ -65,14 +65,14 @@ export default function ContrastTextDemo() {
           </Typography>
           <div>
             <Typography variant="body2" gutterBottom>
-              Lightness: {lightness}%
+              Lightness: {lightness}
             </Typography>
             <Slider
               value={lightness}
               onChange={(_, value) => setLightness(value)}
               min={0}
-              max={100}
-              step={1}
+              max={1}
+              step={0.01}
               valueLabelDisplay="auto"
             />
           </div>
@@ -85,7 +85,7 @@ export default function ContrastTextDemo() {
               value={chroma}
               onChange={(_, value) => setChroma(value)}
               min={0}
-              max={1}
+              max={0.4}
               step={0.01}
               valueLabelDisplay="auto"
             />

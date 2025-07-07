@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 const theme = createTheme({
   cssVariables: {
-    experimentalNativeCssColors: true,
+    experimentalNativeColorSyntax: true,
     cssVarPrefix: 'alias', // This is for the demo only, you don't need to set this to use the feature
   },
   palette: {
@@ -27,7 +27,6 @@ export default function AliasColorVariables() {
           },
         }}
       />
-
       {/* Your App */}
       <ThemeProvider theme={theme}>
         <Box sx={{ p: 2 }}>

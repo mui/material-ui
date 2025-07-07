@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 const theme = createTheme({
   cssVariables: {
-    experimentalNativeCssColors: true,
+    experimentalNativeColorSyntax: true,
     cssVarPrefix: 'demo', // This is for the demo only, you don't need to set this to use the feature
   },
 });
