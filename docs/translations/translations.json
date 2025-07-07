@@ -145,6 +145,7 @@
     "/material-ui/customization/css-variables": "Css variables",
     "/material-ui/customization/css-theme-variables/overview": "Overview",
     "/material-ui/customization/css-theme-variables/usage": "Basic usage",
+    "/material-ui/customization/css-theme-variables/native-color-syntax": "Native color syntax",
     "/material-ui/customization/css-theme-variables/configuration": "Advanced configuration",
     "/material-ui/customization/styles": "Styles",
     "/material-ui/customization/css-layers": "Cascade layers",

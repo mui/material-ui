@@ -9,7 +9,7 @@ This feature is experimental and only available in modern browsers. Please check
 ## Benefits
 
 - No longer need JavaScript to manipulate colors.
-- Support modern color spaces, e.g. `oklch`, `oklab`, and `display-p3`.
+- Support modern color spaces, for example `oklch`, `oklab`, and `display-p3`.
 - Support color aliases to external CSS variables.
 - Automatically calculate contrast text color based on the [color-contrast research](https://lea.verou.me/blog/2024/contrast-color) by [Lea Verou](https://lea.verou.me/).
 
@@ -34,7 +34,7 @@ const theme = createTheme({
 
 ## Modern color spaces
 
-The theme palette supports all modern color spaces, e.g. `oklch`, `oklab`, and `display-p3`.
+The theme palette supports all modern color spaces, for example `oklch`, `oklab`, and `display-p3`.
 
 ```js
 const theme = createTheme({
