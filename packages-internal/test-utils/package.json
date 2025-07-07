@@ -5,30 +5,79 @@
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
   "exports": {
-    ".": "./build/index.js",
-    "./createDescribe": "./build/createDescribe.js",
-    "./createRenderer": "./build/createRenderer.js",
-    "./init": "./build/init.js",
+    ".": {
+      "import": "./build/esm/index.js",
+      "default": "./build/index.js"
+    },
+    "./createDescribe": {
+      "import": "./build/esm/createDescribe.js",
+      "default": "./build/createDescribe.js"
+    },
+    "./createRenderer": {
+      "import": "./build/esm/createRenderer.js",
+      "default": "./build/createRenderer.js"
+    },
+    "./init": {
+      "import": "./build/esm/init.js",
+      "default": "./build/init.js"
+    },
     "./initMatchers": {
-      "types": "./build/initMatchers.d.ts",
-      "default": "./build/initMatchers.js"
+      "import": {
+        "types": "./build/esm/initMatchers.d.ts",
+        "default": "./build/esm/initMatchers.js"
+      },
+      "default": {
+        "types": "./build/initMatchers.d.ts",
+        "default": "./build/initMatchers.js"
+      }
     },
     "./initPlaywrightMatchers": {
-      "types": "./build/initPlaywrightMatchers.d.ts",
-      "default": "./build/initPlaywrightMatchers.js"
+      "import": {
+        "types": "./build/esm/initPlaywrightMatchers.d.ts",
+        "default": "./build/esm/initPlaywrightMatchers.js"
+      },
+      "default": {
+        "types": "./build/initPlaywrightMatchers.d.ts",
+        "default": "./build/initPlaywrightMatchers.js"
+      }
     },
-    "./KarmaReporterReactProfiler": "./build/KarmaReporterReactProfiler.js",
-    "./setupBabel": "./build/setupBabel.js",
-    "./setupBabelPlaywright": "./build/setupBabelPlaywright.js",
-    "./setupJSDOM": "./build/setupJSDOM.js",
-    "./setupKarma": "./build/setupKarma.js",
-    "./chaiPlugin": "./build/chaiPlugin.js",
-    "./setupVitest": "./build/setupVitest.js",
-    "./describeSkipIf": "./build/describeSkipIf.js"
+    "./KarmaReporterReactProfiler": {
+      "import": "./build/esm/KarmaReporterReactProfiler.js",
+      "default": "./build/KarmaReporterReactProfiler.js"
+    },
+    "./setupBabel": {
+      "import": "./build/esm/setupBabel.js",
+      "default": "./build/setupBabel.js"
+    },
+    "./setupBabelPlaywright": {
+      "import": "./build/esm/setupBabelPlaywright.js",
+      "default": "./build/setupBabelPlaywright.js"
+    },
+    "./setupJSDOM": {
+      "import": "./build/esm/setupJSDOM.js",
+      "default": "./build/setupJSDOM.js"
+    },
+    "./setupKarma": {
+      "import": "./build/esm/setupKarma.js",
+      "default": "./build/setupKarma.js"
+    },
+    "./chaiPlugin": {
+      "import": "./build/esm/chaiPlugin.js",
+      "default": "./build/chaiPlugin.js"
+    },
+    "./setupVitest": {
+      "import": "./build/esm/setupVitest.js",
+      "default": "./build/setupVitest.js"
+    },
+    "./describeSkipIf": {
+      "import": "./build/esm/describeSkipIf.js",
+      "default": "./build/describeSkipIf.js"
+    }
   },
   "scripts": {
     "prebuild": "rimraf ./build",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && pnpm run build:esm-manifest",
+    "build:esm-manifest": "echo { \"type\": \"module\" } > ./build/esm/package.json",
     "typescript": "tsc -p tsconfig.json",
     "release:publish": "pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
