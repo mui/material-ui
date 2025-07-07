@@ -150,7 +150,8 @@ const theme = createTheme({
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
 :::info
-The supported color formats are `hex`, `rgb`, and `hsl`. If you want to use other formats, such as `oklch`, you need to enable [CSS variables with relative color](/material-ui/customization/color/#css-variables-with-relative-color-feature) feature.
+The supported color formats are `hex`, `rgb`, and `hsl`.
+If you want to use other formats, such as `oklch`, you need to enable the [native color syntax](/material-ui/customization/css-theme-variables/native-color-syntax/) feature.
 :::
 
 <!-- #target-branch-reference -->
