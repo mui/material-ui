@@ -149,8 +149,8 @@ const theme = createTheme({
 
 {{"demo": "ManuallyProvideCustomColor.js", "defaultCodeOpen": false}}
 
-:::warning
-The supported color formats are `hex`, `rgb`, and `hsl`. If you want to use other formats, such as `oklch`, check out the [Custom color space](#custom-color-space) section.
+:::info
+The supported color formats are `hex`, `rgb`, and `hsl`. If you want to use other formats, such as `oklch`, you need to enable [CSS variables with relative color](/material-ui/customization/color/#css-variables-with-relative-color-feature) feature.
 :::
 
 <!-- #target-branch-reference -->
@@ -248,14 +248,6 @@ declare module '@mui/material/Button' {
   }
 }
 ```
-
-## Custom color space
-
-Starting from v7.2.0, if you want to [customize color tokens](#provide-tokens-manually) outside of `hex`, `rgb` and `hsl` color spaces, you must set the `colorSpace` to the theme options.
-
-The supported color spaces are `srgb`, `hsl`, `hwb`, `oklch` and `oklab`.
-
-{{"demo": "CustomColorSpace.js", "defaultCodeOpen": false}}
 
 ### Caveats
 

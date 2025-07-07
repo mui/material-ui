@@ -9,24 +9,16 @@ import Button from '@mui/material/Button';
 const theme = createTheme({
   cssVariables: {
     experimentalRelativeColor: true,
-    cssVarPrefix: 'colorSpace',
-  },
-  palette: {
-    primary: {
-      main: 'oklch(0.65 0.3 28.95)',
-    },
-    warning: {
-      main: 'oklch(0.72 0.24 44.32)',
-    },
+    cssVarPrefix: 'relativeColor', // This is for the demo only, you don't need to set this to use the feature
   },
 });
 
-export default function CustomColorSpace() {
+export default function RelativeColor() {
   return (
     <ThemeProvider theme={theme}>
       <Card>
         <CardContent>
-          <Alert severity="info" color="warning">
+          <Alert severity="info">
             This theme uses the <code>oklch</code> color space.
           </Alert>
         </CardContent>

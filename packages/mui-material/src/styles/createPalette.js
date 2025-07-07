@@ -203,7 +203,8 @@ function getDefaultWarning(mode = 'light') {
   };
 }
 
-export function colorContrast(background) {
+// Use the same name as the experimental CSS `contrast-color` function.
+export function contrastColor(background) {
   return `oklch(from ${background} var(--__l) 0 h / var(--__a))`;
 }
 
@@ -228,7 +229,7 @@ export default function createPalette(palette) {
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
     if (colorSpace) {
-      return colorContrast(background);
+      return contrastColor(background);
     }
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold

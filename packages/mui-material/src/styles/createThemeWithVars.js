@@ -24,7 +24,7 @@ import createColorScheme, { getOpacity, getOverlays } from './createColorScheme'
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
-import { light, dark, colorContrast } from './createPalette';
+import { light, dark, contrastColor } from './createPalette';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -608,7 +608,7 @@ export default function createThemeWithVars(options = {}, ...args) {
         const colors = palette[color];
         if (colors.main && colors.contrastText) {
           // replace hardcoded `main` color in contrastText with CSS variable
-          palette[color].contrastText = colorContrast(
+          palette[color].contrastText = contrastColor(
             cssVarPrefix
               ? `var(--${cssVarPrefix}-palette-${color}-main)`
               : `var(--palette-${color}-main)`,
