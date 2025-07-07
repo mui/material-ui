@@ -1,18 +1,10 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "rootDir": "./src",
     "outDir": "./build/esm",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "noEmit": false,
-    "composite": true,
     "tsBuildInfoFile": "./.esm.tsbuildinfo",
     "target": "ES2022",
-    "module": "es2022",
+    "module": "ES2022",
     "moduleResolution": "bundler",
-    "types": ["node"],
-    "allowJs": true
   }
 }
