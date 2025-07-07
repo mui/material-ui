@@ -30,7 +30,7 @@ const theme = createTheme({
 });
 ```
 
-{{"demo": "RelativeColor.js", "defaultCodeOpen": false}}
+{{"demo": "NativeCssColors.js", "defaultCodeOpen": false}}
 
 ## What's new
 

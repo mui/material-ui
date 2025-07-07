@@ -13,7 +13,7 @@ const theme = createTheme({
   },
 });
 
-export default function RelativeColor() {
+export default function NativeCssColors() {
   return (
     <ThemeProvider theme={theme}>
       <Card>
