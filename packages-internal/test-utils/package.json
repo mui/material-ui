@@ -75,9 +75,9 @@
     }
   },
   "scripts": {
-    "prebuild": "rimraf ./build",
-    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && pnpm run build:esm-manifest",
-    "build:esm-manifest": "echo { \"type\": \"module\" } > ./build/esm/package.json",
+    "prebuild": "rimraf --glob -- \"./build\" \"./.*.tsbuildinfo\"",
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && pnpm build:esm-manifest",
+    "build:esm-manifest": "node -e \"require('fs').writeFileSync('./build/esm/package.json', JSON.stringify({ type: 'module' }))\"",
     "typescript": "tsc -p tsconfig.json",
     "release:publish": "pnpm publish --tag latest",
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
