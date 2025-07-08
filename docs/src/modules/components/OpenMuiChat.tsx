@@ -37,6 +37,9 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   borderBottomWidth: '2px',
   borderBottomColor: 'transparent',
   boxShadow: '0 -1px 4px 0px rgba(255, 255, 255, 0.32)',
+  '&.MuiButton-loading': {
+    boxShadow: '0 -1px 4px 0px rgba(255, 255, 255, 0.32)',
+  },
   color: '#fff',
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
