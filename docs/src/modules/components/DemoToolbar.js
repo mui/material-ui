@@ -24,7 +24,6 @@ import { useTranslate } from '@mui/docs/i18n';
 import stylingSolutionMapping from 'docs/src/modules/utils/stylingSolutionMapping';
 import codeSandbox from '../sandbox/CodeSandbox';
 import stackBlitz from '../sandbox/StackBlitz';
-import OpenMuiChat from './OpenMuiChat';
 
 const Root = styled('div')(({ theme }) => [
   {
@@ -438,16 +437,6 @@ export default function DemoToolbar(props) {
   return (
     <React.Fragment>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
-        {process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL && (
-          <OpenMuiChat
-            data-ga-event-category="mui-chat"
-            data-ga-event-label={demo.gaLabel}
-            data-ga-event-action="open-in-mui-chat"
-            {...getControlProps(0)}
-            demoData={demoData}
-            sx={{ mr: 0.5 }}
-          />
-        )}
         <Fade in={codeOpen}>
           <Box sx={{ display: 'flex' }}>
             {hasNonSystemDemos && (

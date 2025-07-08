@@ -32,10 +32,11 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   height: 26,
   padding: '7px 8px 8px 8px', // 7px for optical alignment
   flexShrink: 0,
-  borderRadius: 999,
+  borderRadius: '6px',
   border: '1px solid transparent',
   borderBottomWidth: '2px',
   borderBottomColor: 'transparent',
+  boxShadow: '0 -1px 4px 0px rgba(255, 255, 255, 0.32)',
   color: '#fff',
   fontSize: theme.typography.pxToRem(13),
   fontWeight: theme.typography.fontWeightMedium,
@@ -49,6 +50,9 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   ...theme.applyDarkStyles({
     borderColor: alpha(theme.palette.primary[300], 0.2),
   }),
+  '&:hover': {
+    boxShadow: '0 -1px 4px 0px rgba(255, 255, 255, 0.56)',
+  },
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -100,6 +104,7 @@ const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatBut
     return (
       <React.Fragment>
         <RainbowButton
+          data-mui-color-scheme="dark"
           ref={ref}
           loading={loading}
           disabled={!!error}
