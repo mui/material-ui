@@ -48,7 +48,6 @@ const SwitchBaseInput = styled('input', {
   left: 0,
   margin: 0,
   padding: 0,
-  zIndex: 1,
 });
 
 /**
@@ -159,6 +158,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       ref={ref}
       {...other}
     >
+      {checked ? checkedIcon : icon}
       <SwitchBaseInput
         autoFocus={autoFocus}
         checked={checkedProp}
@@ -177,7 +177,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         {...(type === 'checkbox' && value === undefined ? {} : { value })}
         {...inputProps}
       />
-      {checked ? checkedIcon : icon}
     </SwitchBaseRoot>
   );
 });
