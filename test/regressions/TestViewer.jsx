@@ -2,8 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import JoyBox from '@mui/joy/Box';
 import { CssVarsProvider } from '@mui/joy/styles';
+
+const theme = createTheme({
+  cssVariables: {
+    nativeColorSyntax: true,
+  },
+});
 
 function TestViewer(props) {
   const { children, path } = props;
@@ -79,14 +86,16 @@ function TestViewer(props) {
           </JoyBox>
         </CssVarsProvider>
       ) : (
-        <Box
-          aria-busy={!ready}
-          data-testid="testcase"
-          data-testpath={path}
-          sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
-        >
-          {children}
-        </Box>
+        <ThemeProvider theme={theme}>
+          <Box
+            aria-busy={!ready}
+            data-testid="testcase"
+            data-testpath={path}
+            sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
+          >
+            {children}
+          </Box>
+        </ThemeProvider>
       )}
     </React.Fragment>
   );

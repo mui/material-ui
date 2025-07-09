@@ -70,6 +70,7 @@ export function DemoInstanceThemeProvider({
       {
         cssVariables: {
           colorSchemeSelector: 'data-mui-color-scheme',
+          nativeColorSyntax: true,
         },
         colorSchemes: {
           light: true,

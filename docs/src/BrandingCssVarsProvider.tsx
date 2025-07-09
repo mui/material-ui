@@ -102,9 +102,39 @@ export function setDocsColors(primary: Record<string, string>, secondary: Record
 export function resetDocsColor() {
   if (typeof document !== 'undefined') {
     document.documentElement.style.removeProperty('--muidocs-palette-primary-main');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-mainChannel');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-light');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-lightChannel');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-dark');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-darkChannel');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-contrastText');
+    document.documentElement.style.removeProperty('--muidocs-palette-primary-contrastTextChannel');
     document.documentElement.style.removeProperty('--muidocs-palette-secondary-main');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-mainChannel');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-light');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-lightChannel');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-dark');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-darkChannel');
+    document.documentElement.style.removeProperty('--muidocs-palette-secondary-contrastText');
+    document.documentElement.style.removeProperty(
+      '--muidocs-palette-secondary-contrastTextChannel',
+    );
     document.documentElement.style.removeProperty('--mui-palette-primary-main');
     document.documentElement.style.removeProperty('--mui-palette-secondary-main');
+    document.documentElement.style.removeProperty('--mui-palette-primary-light');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-light');
+    document.documentElement.style.removeProperty('--mui-palette-primary-dark');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-dark');
+    document.documentElement.style.removeProperty('--mui-palette-primary-contrastText');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-contrastText');
+    document.documentElement.style.removeProperty('--mui-palette-primary-mainChannel');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-mainChannel');
+    document.documentElement.style.removeProperty('--mui-palette-primary-lightChannel');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-lightChannel');
+    document.documentElement.style.removeProperty('--mui-palette-primary-darkChannel');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-darkChannel');
+    document.documentElement.style.removeProperty('--mui-palette-primary-contrastTextChannel');
+    document.documentElement.style.removeProperty('--mui-palette-secondary-contrastTextChannel');
 
     ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900'].forEach((key) => {
       document.documentElement.style.removeProperty(`--muidocs-palette-primary-${key}`);
@@ -139,6 +169,7 @@ export default function BrandingCssVarsProvider(props: {
       cssVariables: {
         cssVarPrefix: 'muidocs',
         colorSchemeSelector: 'data-mui-color-scheme',
+        nativeColorSyntax: true,
       },
       direction,
       ...themeOptions,
