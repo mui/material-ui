@@ -288,7 +288,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleItemClick = (child) => (event) => {
+  const handleItemSelect = (child) => (event) => {
     let newValue;
 
     // We use the tabindex attribute to signal the available options.
@@ -306,10 +306,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
     } else {
       newValue = child.props.value;
-    }
-
-    if (child.props.onClick) {
-      child.props.onClick(event);
     }
 
     if (value !== newValue) {
@@ -425,7 +421,18 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
-      onClick: handleItemClick(child),
+      onClick: (event) => {
+        if (child.props.onClick) {
+          child.props.onClick(event);
+        }
+        handleItemSelect(child)(event);
+      },
+      onMouseUp: (event) => {
+        if (child.props.onMouseUp) {
+          child.props.onMouseUp(event);
+        }
+        handleItemSelect(child)(event);
+      },
       onKeyUp: (event) => {
         if (event.key === ' ') {
           // otherwise our MenuItems dispatches a click event
