@@ -171,6 +171,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
             : externalInputProps,
           {
             'data-indeterminate': indeterminate,
+            ...(indeterminate && {
+              // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked#values
+              'aria-checked': 'mixed' as const,
+            }),
           },
         ),
       },
