@@ -715,7 +715,7 @@ describe('createTheme', () => {
     it('[color space with CSS variables] should use CSS for manipulating colors', () => {
       const theme = createTheme({
         cssVariables: {
-          experimentalNativeColorSyntax: true,
+          nativeColorSyntax: true,
         },
         palette: {
           primary: {
@@ -738,7 +738,7 @@ describe('createTheme', () => {
     it('[color space with CSS variables] should use CSS for manipulating vars', () => {
       const theme = createTheme({
         cssVariables: {
-          experimentalNativeColorSyntax: true,
+          nativeColorSyntax: true,
         },
         palette: {
           primary: {
@@ -761,7 +761,7 @@ describe('createTheme', () => {
     it('mixing color space', () => {
       const theme = createTheme({
         cssVariables: {
-          experimentalNativeColorSyntax: true,
+          nativeColorSyntax: true,
         },
         palette: {
           primary: {

@@ -3,7 +3,7 @@
 <p class="description">Learn how to use native color syntax with CSS theme variables.</p>
 
 :::warning
-This feature is experimental and only available in modern browsers. Please check the [browser support](https://caniuse.com/css-relative-colors) before using it.
+This feature only works in modern browsers. Please check the [browser support](https://caniuse.com/css-relative-colors) before using it.
 :::
 
 ## Benefits
@@ -15,7 +15,7 @@ This feature is experimental and only available in modern browsers. Please check
 
 ## Usage
 
-Set `cssVariables` with `experimentalNativeColorSyntax: true` to the theme options.
+Set `cssVariables` with `nativeColorSyntax: true` to the theme options.
 Material UI will start using CSS color-mix and relative color instead of the JavaScript color manipulation.
 
 :::info
@@ -25,7 +25,7 @@ Try inspecting the demo below to the calculated values of the color tokens.
 ```js
 const theme = createTheme({
   cssVariables: {
-    experimentalNativeColorSyntax: true,
+    nativeColorSyntax: true,
   },
 });
 ```
@@ -38,7 +38,7 @@ The theme palette supports all modern color spaces, for example `oklch`, `oklab`
 
 ```js
 const theme = createTheme({
-  cssVariables: { experimentalNativeColorSyntax: true },
+  cssVariables: { nativeColorSyntax: true },
   palette: {
     primary: {
       main: 'color(display-p3 0.5 0.8 0.2)',
@@ -56,7 +56,7 @@ If you have set colors via CSS variables, you can provide the values to the them
 ```js
 const theme = createTheme({
   cssVariables: {
-    experimentalNativeColorSyntax: true,
+    nativeColorSyntax: true,
   },
   palette: {
     primary: {
