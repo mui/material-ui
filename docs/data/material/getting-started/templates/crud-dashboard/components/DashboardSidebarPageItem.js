@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
+
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -16,35 +16,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link } from 'react-router';
 import DashboardSidebarContext from '../context/DashboardSidebarContext';
 import { MINI_DRAWER_WIDTH } from '../constants';
-
-const DashboardSidebarPageItemButton = styled(ListItemButton)(({ theme }) => ({
-  borderRadius: 8,
-  '&.Mui-selected': {
-    '& .MuiListItemIcon-root': {
-      color: (theme.vars ?? theme).palette.primary.dark,
-    },
-    '& .MuiTypography-root': {
-      color: (theme.vars ?? theme).palette.primary.dark,
-    },
-    '& .MuiSvgIcon-root': {
-      color: (theme.vars ?? theme).palette.primary.dark,
-    },
-    '& .MuiAvatar-root': {
-      backgroundColor: (theme.vars ?? theme).palette.primary.dark,
-    },
-    '& .MuiTouchRipple-child': {
-      backgroundColor: (theme.vars ?? theme).palette.primary.dark,
-    },
-  },
-  '& .MuiSvgIcon-root': {
-    color: (theme.vars ?? theme).palette.action.active,
-  },
-  '& .MuiAvatar-root': {
-    backgroundColor: (theme.vars ?? theme).palette.action.active,
-  },
-}));
-
-const LIST_ITEM_ICON_SIZE = 34; // px
 
 function DashboardSidebarPageItem({
   id,
@@ -89,6 +60,7 @@ function DashboardSidebarPageItem({
   } else if (!mini && fullyExpanded) {
     nestedNavigationCollapseSx = {
       ml: 0.5,
+      fontSize: 20,
       transform: `rotate(${expanded ? 0 : -90}deg)`,
       transition: (theme) =>
         theme.transitions.create('transform', {
@@ -117,6 +89,7 @@ function DashboardSidebarPageItem({
   return (
     <React.Fragment>
       <ListItem
+        disablePadding
         {...(nestedNavigation && mini
           ? {
               onMouseEnter: () => {
@@ -128,17 +101,17 @@ function DashboardSidebarPageItem({
             }
           : {})}
         sx={{
+          display: 'block',
           py: 0,
           px: 1,
           overflowX: 'hidden',
         }}
       >
-        <DashboardSidebarPageItemButton
+        <ListItemButton
           selected={selected}
           disabled={disabled}
           sx={{
-            px: 1.4,
-            height: mini ? 60 : 48,
+            height: mini ? 50 : 'auto',
           }}
           {...(nestedNavigation && !mini
             ? {
@@ -176,17 +149,16 @@ function DashboardSidebarPageItem({
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  minWidth: LIST_ITEM_ICON_SIZE,
+                  justifyContent: mini ? 'center' : 'auto',
                 }}
               >
                 {icon ?? null}
                 {!icon && mini ? (
                   <Avatar
                     sx={{
-                      width: LIST_ITEM_ICON_SIZE - 7,
-                      height: LIST_ITEM_ICON_SIZE - 7,
-                      fontSize: 12,
+                      fontSize: 10,
+                      height: 16,
+                      width: 16,
                     }}
                   >
                     {title
@@ -222,7 +194,6 @@ function DashboardSidebarPageItem({
             <ListItemText
               primary={title}
               sx={{
-                ml: 1.2,
                 whiteSpace: 'nowrap',
                 zIndex: 1,
               }}
@@ -232,7 +203,7 @@ function DashboardSidebarPageItem({
           {nestedNavigation ? (
             <ExpandMoreIcon sx={nestedNavigationCollapseSx} />
           ) : null}
-        </DashboardSidebarPageItemButton>
+        </ListItemButton>
         {nestedNavigation && mini ? (
           <Grow in={isHovered}>
             <Box
@@ -243,10 +214,11 @@ function DashboardSidebarPageItem({
               }}
             >
               <Paper
+                elevation={8}
                 sx={{
-                  pt: 0.5,
-                  pb: 0.5,
-                  transform: 'translateY(calc(50% - 30px))',
+                  pt: 0.2,
+                  pb: 0.2,
+                  transform: 'translateY(-50px)',
                 }}
               >
                 <DashboardSidebarContext.Provider

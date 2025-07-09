@@ -254,10 +254,10 @@ export default function EmployeeList() {
       title={pageTitle}
       breadcrumbs={[{ title: pageTitle }]}
       actions={
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" alignItems="center" spacing={1}>
           <Tooltip title="Reload data" placement="right" enterDelay={1000}>
             <div>
-              <IconButton aria-label="refresh" onClick={handleRefresh}>
+              <IconButton size="small" aria-label="refresh" onClick={handleRefresh}>
                 <RefreshIcon />
               </IconButton>
             </div>
@@ -314,6 +314,9 @@ export default function EmployeeList() {
               loadingOverlay: {
                 variant: 'circular-progress',
                 noRowsVariant: 'circular-progress',
+              },
+              baseIconButton: {
+                size: 'small',
               },
             }}
           />

@@ -26,12 +26,13 @@ export default function DashboardSidebarHeaderItem({
     <ListSubheader
       sx={{
         fontSize: 12,
-        fontWeight: '700',
-        height: mini ? 0 : 40,
+        fontWeight: '600',
+        height: mini ? 0 : 36,
         ...(hasDrawerTransitions
           ? getDrawerSxTransitionMixin(fullyExpanded, 'height')
           : {}),
-        px: 2,
+        px: 1.5,
+        py: 0,
         minWidth: DRAWER_WIDTH,
         overflow: 'hidden',
         textOverflow: 'ellipsis',

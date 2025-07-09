@@ -51,6 +51,7 @@ function DashboardHeader({ logo, title, menuOpen, onToggleMenu }) {
         >
           <div>
             <IconButton
+              size="small"
               aria-label={`${isExpanded ? collapseMenuActionText : expandMenuActionText} navigation menu`}
               onClick={handleMenuOpen}
             >
@@ -75,7 +76,7 @@ function DashboardHeader({ logo, title, menuOpen, onToggleMenu }) {
             width: '100%',
           }}
         >
-          <Stack direction="row">
+          <Stack direction="row" alignItems="center">
             <Box sx={{ mr: 1 }}>{getMenuIcon(menuOpen)}</Box>
             <Link to="/" style={{ textDecoration: 'none' }}>
               <Stack direction="row" alignItems="center">

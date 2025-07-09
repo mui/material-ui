@@ -125,8 +125,9 @@ export default function DashboardSidebar({
           }}
         >
           <List
+            dense
             sx={{
-              padding: 0,
+              padding: mini ? 0 : 0.5,
               mb: 4,
               width: mini ? MINI_DRAWER_WIDTH : 'auto',
             }}
@@ -151,10 +152,11 @@ export default function DashboardSidebar({
               expanded={expandedItemIds.includes('reports')}
               nestedNavigation={
                 <List
+                  dense
                   sx={{
                     padding: 0,
-                    my: 0.5,
-                    pl: mini ? 0 : 2,
+                    my: 1,
+                    pl: mini ? 0 : 1,
                     minWidth: 240,
                   }}
                 >

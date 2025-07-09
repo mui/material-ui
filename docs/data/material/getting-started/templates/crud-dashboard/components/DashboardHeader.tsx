@@ -62,6 +62,7 @@ export default function DashboardHeader({
         >
           <div>
             <IconButton
+              size="small"
               aria-label={`${isExpanded ? collapseMenuActionText : expandMenuActionText} navigation menu`}
               onClick={handleMenuOpen}
             >
@@ -86,7 +87,7 @@ export default function DashboardHeader({
             width: '100%',
           }}
         >
-          <Stack direction="row">
+          <Stack direction="row" alignItems="center">
             <Box sx={{ mr: 1 }}>{getMenuIcon(menuOpen)}</Box>
             <Link to="/" style={{ textDecoration: 'none' }}>
               <Stack direction="row" alignItems="center">

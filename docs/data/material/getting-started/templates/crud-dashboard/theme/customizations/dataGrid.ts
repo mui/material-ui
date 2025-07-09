@@ -136,6 +136,15 @@ export const dataGridCustomizations: DataGridProComponents<Theme> & DataGridProC
           marginLeft: 6,
           marginRight: 6,
         },
+        [`& .${iconButtonClasses.root}`]: {
+          height: '36px',
+          width: '36px',
+        },
+        [`& .${iconButtonClasses.edgeEnd}`]: {
+          border: 'none',
+          height: '28px',
+          width: '28px',
+        },
       },
     },
   },

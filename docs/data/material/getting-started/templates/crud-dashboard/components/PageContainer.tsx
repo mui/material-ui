@@ -2,11 +2,12 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Breadcrumbs, { breadcrumbsClasses } from '@mui/material/Breadcrumbs';
 import Container, { ContainerProps } from '@mui/material/Container';
 import MuiLink from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import { Link } from 'react-router';
 
 const PageContentHeader = styled('div')(({ theme }) => ({
@@ -14,6 +15,17 @@ const PageContentHeader = styled('div')(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
   gap: theme.spacing(2),
+}));
+
+const PageHeaderBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
+  margin: theme.spacing(1, 0),
+  [`& .${breadcrumbsClasses.separator}`]: {
+    color: (theme.vars || theme).palette.action.disabled,
+    margin: 1,
+  },
+  [`& .${breadcrumbsClasses.ol}`]: {
+    alignItems: 'center',
+  },
 }));
 
 const PageHeaderToolbar = styled('div')(({ theme }) => ({
@@ -42,7 +54,10 @@ export default function PageContainer(props: PageContainerProps) {
     <Container sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
       <Stack sx={{ flex: 1, my: 2 }} spacing={2}>
         <Stack>
-          <Breadcrumbs aria-label="breadcrumb">
+          <PageHeaderBreadcrumbs
+            aria-label="breadcrumb"
+            separator={<NavigateNextRoundedIcon fontSize="small" />}
+          >
             {breadcrumbs
               ? breadcrumbs.map((breadcrumb, index) => {
                   return breadcrumb.path ? (
@@ -56,13 +71,16 @@ export default function PageContainer(props: PageContainerProps) {
                       {breadcrumb.title}
                     </MuiLink>
                   ) : (
-                    <Typography key={index} color="text.primary">
+                    <Typography
+                      key={index}
+                      sx={{ color: 'text.primary', fontWeight: 600 }}
+                    >
                       {breadcrumb.title}
                     </Typography>
                   );
                 })
               : null}
-          </Breadcrumbs>
+          </PageHeaderBreadcrumbs>
           <PageContentHeader>
             {title ? <Typography variant="h4">{title}</Typography> : null}
             <PageHeaderToolbar>{actions}</PageHeaderToolbar>
