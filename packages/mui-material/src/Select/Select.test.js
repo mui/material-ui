@@ -1005,22 +1005,17 @@ describe('<Select />', () => {
       const paperRef = React.createRef();
 
       render(
-        <Select value="" MenuProps={{ slotProps: { paper: { ref: paperRef } } }}>
+        <Select
+          defaultValue="10"
+          open
+          MenuProps={{ slotProps: { paper: { 'data-testid': 'paper', ref: paperRef } } }}
+        >
           <MenuItem value="10">Ten</MenuItem>
           <MenuItem value="20">Twenty</MenuItem>
         </Select>,
       );
-      const trigger = screen.getByRole('combobox');
 
-      // Open the menu
-      fireEvent.mouseDown(trigger);
-      const options = screen.getAllByRole('option');
-
-      // Simulate mouse up on a menu item
-      fireEvent.mouseUp(options[0]);
-
-      // Menu should still be open
-      expect(screen.getByRole('listbox')).not.to.equal(null);
+      expect(paperRef.current).to.equal(screen.getByTestId('paper'));
     });
   });
 
