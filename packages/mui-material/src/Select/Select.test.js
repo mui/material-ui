@@ -1000,6 +1000,28 @@ describe('<Select />', () => {
 
       expect(backdrop.style).to.have.property('backgroundColor', 'red');
     });
+
+    it('should merge ref coming from paper props', () => {
+      const paperRef = React.createRef();
+
+      render(
+        <Select value="" MenuProps={{ slotProps: { paper: { ref: paperRef } } }}>
+          <MenuItem value="10">Ten</MenuItem>
+          <MenuItem value="20">Twenty</MenuItem>
+        </Select>,
+      );
+      const trigger = screen.getByRole('combobox');
+
+      // Open the menu
+      fireEvent.mouseDown(trigger);
+      const options = screen.getAllByRole('option');
+
+      // Simulate mouse up on a menu item
+      fireEvent.mouseUp(options[0]);
+
+      // Menu should still be open
+      expect(screen.getByRole('listbox')).not.to.equal(null);
+    });
   });
 
   describe('prop: SelectDisplayProps', () => {

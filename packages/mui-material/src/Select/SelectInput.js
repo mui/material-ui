@@ -133,6 +133,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...other
   } = props;
 
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...MenuProps.slotProps?.paper,
+  };
+
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -147,10 +152,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const paperRef = React.useRef(null);
+
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
+
   const handleRef = useForkRef(ref, inputRefProp);
+  const handlePaperRef = useForkRef(paperProps.ref, paperRef);
 
   const handleDisplayRef = React.useCallback((node) => {
     displayRef.current = node;
@@ -513,11 +521,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const paperProps = {
-    ...MenuProps.PaperProps,
-    ...MenuProps.slotProps?.paper,
-  };
-
   const listProps = {
     ...MenuProps.MenuListProps,
     ...MenuProps.slotProps?.list,
@@ -602,8 +605,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
             ...listProps,
           },
           paper: {
-            ref: paperRef,
             ...paperProps,
+            ref: handlePaperRef,
             style: {
               minWidth: menuMinWidth,
               ...(paperProps != null ? paperProps.style : null),
