@@ -82,9 +82,9 @@ describe('<Select />', () => {
       expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
     });
 
-    it('should not close the menu when releasing on a menu item', () => {
+    it('should not close the menu when releasing on menu paper', () => {
       render(
-        <Select value="">
+        <Select value="" MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }}>
           <MenuItem value="">none</MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
         </Select>,
@@ -93,10 +93,9 @@ describe('<Select />', () => {
 
       // Open the menu
       fireEvent.mouseDown(trigger);
-      const options = screen.getAllByRole('option');
 
-      // Simulate mouse up on a menu item
-      fireEvent.mouseUp(options[0]);
+      // Simulate mouse up on menu paper
+      fireEvent.mouseUp(screen.getByTestId('paper'));
 
       // Menu should still be open
       expect(screen.getByRole('listbox')).not.to.equal(null);
@@ -1547,6 +1546,22 @@ describe('<Select />', () => {
     expect(onClick.callCount).to.equal(1);
   });
 
+  it('should pass onMouseUp prop to MenuItem', () => {
+    const onMouseUp = spy();
+    const { getAllByRole } = render(
+      <Select open value="30">
+        <MenuItem onMouseUp={onMouseUp} value={30}>
+          Thirty
+        </MenuItem>
+      </Select>,
+    );
+
+    const options = getAllByRole('option');
+    fireEvent.mouseUp(options[0]);
+
+    expect(onMouseUp.callCount).to.equal(1);
+  });
+
   // https://github.com/testing-library/react-testing-library/issues/322
   // https://x.com/devongovett/status/1248306411508916224
   it('should handle the browser autofill event and simple testing-library API', () => {
@@ -1924,5 +1939,29 @@ describe('<Select />', () => {
     const { container } = render(<Select value="" variant="filled" />);
     expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
+  });
+
+  it('should select the item on mouse up', () => {
+    render(
+      <Select defaultValue={10}>
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+        <MenuItem value={30}>Thirty</MenuItem>
+      </Select>,
+    );
+
+    const trigger = screen.getByRole('combobox');
+
+    // open the menu
+    fireEvent.mouseDown(trigger);
+    expect(screen.queryByRole('listbox')).not.to.equal(null);
+
+    const options = screen.getAllByRole('option');
+    fireEvent.mouseUp(options[1]);
+
+    expect(trigger).to.have.text('Twenty');
+
+    // Menu should be closed now
+    expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
   });
 });
