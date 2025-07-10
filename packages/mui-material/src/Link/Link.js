@@ -97,7 +97,7 @@ const LinkRoot = styled(Typography, {
         {
           props: ({ underline, ownerState }) =>
             underline === 'always' && ownerState.color === 'inherit',
-          style: !!theme.colorSpace
+          style: theme.colorSpace
             ? {
                 textDecorationColor: theme.alpha('currentColor', 0.4),
               }
