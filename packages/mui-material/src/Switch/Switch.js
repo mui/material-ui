@@ -297,6 +297,9 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
                 ? slotProps.switchBase(ownerState)
                 : slotProps.switchBase,
           }),
+          input: {
+            role: 'switch',
+          },
           ...(slotProps.input && {
             input:
               typeof slotProps.input === 'function' ? slotProps.input(ownerState) : slotProps.input,
