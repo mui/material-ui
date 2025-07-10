@@ -94,6 +94,15 @@ const LinkRoot = styled(Typography, {
             textDecorationColor: 'var(--Link-underlineColor)',
           },
         },
+        {
+          props: ({ underline, ownerState }) =>
+            underline === 'always' && ownerState.color === 'inherit',
+          style: !!theme.colorSpace
+            ? {
+                textDecorationColor: theme.alpha('currentColor', 0.4),
+              }
+            : null,
+        },
         ...Object.entries(theme.palette)
           .filter(createSimplePaletteValueFilter())
           .map(([color]) => ({
