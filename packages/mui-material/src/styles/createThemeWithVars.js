@@ -625,7 +625,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     disableCssColorScheme,
     shouldSkipGeneratingVar,
     getSelector: defaultGetSelector(theme),
-    enableRelativeColor: nativeColorSyntax,
+    enableContrastVars: nativeColorSyntax,
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
   theme.vars = vars;
