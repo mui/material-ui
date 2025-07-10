@@ -152,6 +152,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const paperRef = React.useRef(null);
+  const didPointerDownRef = React.useRef(false);
 
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
@@ -429,13 +430,21 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
+      onPointerDown: () => {
+        didPointerDownRef.current = true;
+      },
       onClick: (event) => {
+        didPointerDownRef.current = false;
         if (child.props.onClick) {
           child.props.onClick(event);
         }
         handleItemSelect(child)(event);
       },
       onMouseUp: (event) => {
+        if (didPointerDownRef.current) {
+          didPointerDownRef.current = false;
+          return;
+        }
         if (child.props.onMouseUp) {
           child.props.onMouseUp(event);
         }
