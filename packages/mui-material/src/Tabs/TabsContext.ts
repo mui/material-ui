@@ -29,8 +29,10 @@ export default TabsContext;
 export function useTabsContext() {
   const ctx = React.useContext(TabsContext);
 
-  if (ctx === null) {
-    throw new Error('Material UI: The Tab component must be used inside a Tabs component');
+  if (process.env.NODE_ENV !== 'production') {
+    if (ctx === null) {
+      console.error('Material UI: The Tab component must be used inside a Tabs component');
+    }
   }
 
   return ctx;
