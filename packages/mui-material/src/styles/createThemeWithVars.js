@@ -24,7 +24,7 @@ import createColorScheme, { getOpacity, getOverlays } from './createColorScheme'
 import defaultShouldSkipGeneratingVar from './shouldSkipGeneratingVar';
 import defaultGetSelector from './createGetSelector';
 import { stringifyTheme } from './stringifyTheme';
-import { light, dark, contrastColor } from './createPalette';
+import { light, dark } from './createPalette';
 
 function assignNode(obj, keys) {
   keys.forEach((k) => {
@@ -352,7 +352,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', colorMix(safeLighten, palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', colorMix(safeLighten, palette.warning.main, 0.62));
       const snackbarContentBackground = colorSpace
-        ? colorMix(safeDarken, palette.background.default, 0.8)
+        ? colorMix(safeDarken, palette.background.default, 0.625) // use `0.625` instead of `0.8` to match the contrast ratio of JS implementation
         : safeEmphasize(palette.background.default, 0.8);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
@@ -497,7 +497,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', colorMix(safeDarken, palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', colorMix(safeDarken, palette.warning.main, 0.5));
       const snackbarContentBackground = colorSpace
-        ? colorMix(safeLighten, palette.background.default, 0.98)
+        ? colorMix(safeLighten, palette.background.default, 0.985) // use `0.985` instead of `0.98` to match the contrast ratio of JS implementation
         : safeEmphasize(palette.background.default, 0.98);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
