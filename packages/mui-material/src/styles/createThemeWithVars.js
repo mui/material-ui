@@ -550,72 +550,58 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', colorMix(safeAlpha, palette.grey[700], 0.92));
     }
 
-    if (!colorSpace) {
-      // MUI X - DataGrid needs this token.
-      setColorChannel(palette.background, 'default');
+    // MUI X - DataGrid needs this token.
+    setColorChannel(palette.background, 'default');
 
-      // added for consistency with the `background.default` token
-      setColorChannel(palette.background, 'paper');
+    // added for consistency with the `background.default` token
+    setColorChannel(palette.background, 'paper');
 
-      setColorChannel(palette.common, 'background');
-      setColorChannel(palette.common, 'onBackground');
+    setColorChannel(palette.common, 'background');
+    setColorChannel(palette.common, 'onBackground');
 
-      setColorChannel(palette, 'divider');
+    setColorChannel(palette, 'divider');
 
-      Object.keys(palette).forEach((color) => {
-        const colors = palette[color];
+    Object.keys(palette).forEach((color) => {
+      const colors = palette[color];
 
-        // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
+      // The default palettes (primary, secondary, error, info, success, and warning) errors are handled by the above `createTheme(...)`.
 
-        if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
-          // Silent the error for custom palettes.
-          if (colors.main) {
-            setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
-          }
-          if (colors.light) {
-            setColor(palette[color], 'lightChannel', safeColorChannel(toRgb(colors.light)));
-          }
-          if (colors.dark) {
-            setColor(palette[color], 'darkChannel', safeColorChannel(toRgb(colors.dark)));
-          }
-          if (colors.contrastText) {
-            setColor(
-              palette[color],
-              'contrastTextChannel',
-              safeColorChannel(toRgb(colors.contrastText)),
-            );
-          }
-
-          if (color === 'text') {
-            // Text colors: text.primary, text.secondary
-            setColorChannel(palette[color], 'primary');
-            setColorChannel(palette[color], 'secondary');
-          }
-
-          if (color === 'action') {
-            // Action colors: action.active, action.selected
-            if (colors.active) {
-              setColorChannel(palette[color], 'active');
-            }
-            if (colors.selected) {
-              setColorChannel(palette[color], 'selected');
-            }
-          }
+      if (color !== 'tonalOffset' && colors && typeof colors === 'object') {
+        // Silent the error for custom palettes.
+        if (colors.main) {
+          setColor(palette[color], 'mainChannel', safeColorChannel(toRgb(colors.main)));
         }
-      });
-    } else {
-      Object.keys(palette).forEach((color) => {
-        const colors = palette[color];
-        if (colors.main && colors.contrastText) {
-          // replace hardcoded `main` color in contrastText with CSS variable
-          palette[color].contrastText = contrastColor(
-            cssVarPrefix
-              ? `var(--${cssVarPrefix}-palette-${color}-main)`
-              : `var(--palette-${color}-main)`,
+        if (colors.light) {
+          setColor(palette[color], 'lightChannel', safeColorChannel(toRgb(colors.light)));
+        }
+        if (colors.dark) {
+          setColor(palette[color], 'darkChannel', safeColorChannel(toRgb(colors.dark)));
+        }
+        if (colors.contrastText) {
+          setColor(
+            palette[color],
+            'contrastTextChannel',
+            safeColorChannel(toRgb(colors.contrastText)),
           );
         }
-      });
-    }
+
+        if (color === 'text') {
+          // Text colors: text.primary, text.secondary
+          setColorChannel(palette[color], 'primary');
+          setColorChannel(palette[color], 'secondary');
+        }
+
+        if (color === 'action') {
+          // Action colors: action.active, action.selected
+          if (colors.active) {
+            setColorChannel(palette[color], 'active');
+          }
+          if (colors.selected) {
+            setColorChannel(palette[color], 'selected');
+          }
+        }
+      }
+    });
   });
 
   theme = args.reduce((acc, argument) => deepmerge(acc, argument), theme);
