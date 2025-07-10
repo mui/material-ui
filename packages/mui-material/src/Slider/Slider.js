@@ -311,25 +311,13 @@ export const SliderThumb = styled('span', {
           props: { color },
           style: {
             [`&:hover, &.${sliderClasses.focusVisible}`]: {
-              ...(theme.vars
-                ? {
-                    boxShadow: `0px 0px 0px 8px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
-                  }
-                : {
-                    boxShadow: `0px 0px 0px 8px ${theme.alpha(theme.palette[color].main, 0.16)}`,
-                  }),
+              boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
               '@media (hover: none)': {
                 boxShadow: 'none',
               },
             },
             [`&.${sliderClasses.active}`]: {
-              ...(theme.vars
-                ? {
-                    boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
-                  }
-                : {
-                    boxShadow: `0px 0px 0px 14px ${theme.alpha(theme.palette[color].main, 0.16)}`,
-                  }),
+              boxShadow: `0px 0px 0px 14px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
             },
           },
         })),

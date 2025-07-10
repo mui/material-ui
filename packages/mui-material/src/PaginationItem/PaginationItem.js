@@ -190,7 +190,7 @@ const PaginationItemPage = styled(ButtonBase, {
         props: { variant: 'outlined' },
         style: {
           border: theme.vars
-            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
             : `1px solid ${
                 theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
               }`,

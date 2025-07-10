@@ -135,7 +135,7 @@ const ButtonGroupRoot = styled('div', {
         style: {
           [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
             borderRight: theme.vars
-              ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
               : `1px solid ${
                   theme.palette.mode === 'light'
                     ? 'rgba(0, 0, 0, 0.23)'
@@ -152,7 +152,7 @@ const ButtonGroupRoot = styled('div', {
         style: {
           [`& .${buttonGroupClasses.firstButton},& .${buttonGroupClasses.middleButton}`]: {
             borderBottom: theme.vars
-              ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+              ? `1px solid ${theme.alpha(theme.vars.palette.common.onBackground, 0.23)}`
               : `1px solid ${
                   theme.palette.mode === 'light'
                     ? 'rgba(0, 0, 0, 0.23)'
