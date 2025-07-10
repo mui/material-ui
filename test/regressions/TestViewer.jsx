@@ -11,6 +11,11 @@ const joyDefaultTheme = extendTheme();
 const theme = createTheme({
   cssVariables: {
     nativeColorSyntax: true,
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
+  colorSchemes: {
+    light: true,
+    dark: true,
   },
 });
 
