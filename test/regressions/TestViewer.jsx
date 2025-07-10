@@ -4,9 +4,7 @@ import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import JoyBox from '@mui/joy/Box';
-import { CssVarsProvider, extendTheme, THEME_ID } from '@mui/joy/styles';
-
-const joyDefaultTheme = extendTheme();
+import { CssVarsProvider } from '@mui/joy/styles';
 
 const theme = createTheme({
   cssVariables: {
@@ -92,13 +90,17 @@ function TestViewer(props) {
             {children}
           </JoyBox>
         </CssVarsProvider>
-      ) : (
-        <ThemeProvider
-          theme={{
-            ...theme,
-            [THEME_ID]: joyDefaultTheme,
-          }}
+      ) : path.startsWith('/docs-system') || path.includes('/Joy') ? (
+        <Box
+          aria-busy={!ready}
+          data-testid="testcase"
+          data-testpath={path}
+          sx={{ bgcolor: 'background.default', ...viewerBoxSx }}
         >
+          {children}
+        </Box>
+      ) : (
+        <ThemeProvider theme={theme}>
           <Box
             aria-busy={!ready}
             data-testid="testcase"

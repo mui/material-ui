@@ -5,7 +5,11 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 
-const theme = extendTheme({ colorSchemes: { dark: true }, colorSchemeSelector: '.mode-%s' });
+const theme = extendTheme({
+  colorSchemes: { dark: true },
+  colorSchemeSelector: '.mode-%s',
+  cssVarPrefix: 'defaultDark',
+});
 
 export default function MaterialUIDefaultDark() {
   const [, rerender] = React.useState(false);
@@ -15,7 +19,7 @@ export default function MaterialUIDefaultDark() {
     rerender(true);
   }, []);
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider theme={theme} disableNestedContext>
       <Box
         sx={{
           display: 'grid',
