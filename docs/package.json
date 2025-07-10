@@ -17,7 +17,7 @@
     "link-check": "tsx ./scripts/reportBrokenLinks.js"
   },
   "dependencies": {
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.28.0",
     "@babel/runtime": "^7.27.6",
     "@babel/runtime-corejs2": "^7.27.6",
     "@docsearch/react": "^3.9.0",
@@ -79,7 +79,7 @@
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
-    "markdown-to-jsx": "^7.7.8",
+    "markdown-to-jsx": "^7.7.10",
     "material-ui-popup-state": "^5.3.6",
     "next": "^15.3.4",
     "notistack": "3.0.2",
@@ -138,7 +138,7 @@
     "marked": "^15.0.12",
     "@playwright/test": "^1.53.1",
     "prettier": "^3.5.3",
-    "tailwindcss": "^4.1.10",
+    "tailwindcss": "^4.1.11",
     "yargs": "^17.7.2"
   }
 }
