@@ -1,4 +1,5 @@
 import { getPath } from '@mui/system/style';
+import { alpha } from '@mui/system/colorManipulator';
 import type { Theme } from '../styles';
 
 const getTextDecoration = <T extends Theme>({
@@ -9,12 +10,25 @@ const getTextDecoration = <T extends Theme>({
   ownerState: { color: string };
 }) => {
   const transformedColor = ownerState.color;
+
+  if ('colorSpace' in theme && theme.colorSpace) {
+    const color = (getPath(theme, `palette.${transformedColor}.main`) ||
+      getPath(theme, `palette.${transformedColor}`) ||
+      ownerState.color) as string;
+    return theme.alpha(color, 0.4);
+  }
+
   // check the `main` color first for a custom palette, then fallback to the color itself
   const color = (getPath(theme, `palette.${transformedColor}.main`, false) ||
     getPath(theme, `palette.${transformedColor}`, false) ||
     ownerState.color) as string;
+  const channelColor = (getPath(theme, `palette.${transformedColor}.mainChannel`) ||
+    getPath(theme, `palette.${transformedColor}Channel`)) as string | null;
 
-  return theme.alpha(color, 0.4);
+  if ('vars' in theme && channelColor) {
+    return `rgba(${channelColor} / 0.4)`;
+  }
+  return alpha(color, 0.4);
 };
 
 export default getTextDecoration;

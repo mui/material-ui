@@ -112,4 +112,22 @@ describe('getTextDecoration', () => {
       expect(() => getTextDecoration({ theme, ownerState: { color: 'yellow' } })).to.throw();
     });
   });
+
+  describe('Native color syntax', () => {
+    const theme = createTheme({
+      cssVariables: {
+        nativeColorSyntax: true,
+      },
+      colorSchemes: {
+        light: true,
+        dark: true,
+      },
+    });
+
+    it('oklch', () => {
+      expect(getTextDecoration({ theme, ownerState: { color: 'primary.main' } })).to.equal(
+        'oklch(from var(--mui-palette-primary-main, #1976d2) l c h / 0.4)',
+      );
+    });
+  });
 });
