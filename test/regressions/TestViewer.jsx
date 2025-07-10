@@ -90,7 +90,7 @@ function TestViewer(props) {
             {children}
           </JoyBox>
         </CssVarsProvider>
-      ) : path.startsWith('/docs-system') || path.includes('/Joy') ? (
+      ) : path.startsWith('/docs-system') || path.includes('Joy') ? (
         <Box
           aria-busy={!ready}
           data-testid="testcase"
