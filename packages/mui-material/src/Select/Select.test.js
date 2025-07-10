@@ -1437,6 +1437,64 @@ describe('<Select />', () => {
         combinedStyle,
       );
     });
+
+    it('should be able to select the items on click', () => {
+      render(
+        <Select defaultValue={[10]} multiple>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+
+      expect(trigger).to.have.text('Ten');
+
+      // open the menu
+      fireEvent.mouseDown(trigger);
+
+      const listbox = screen.queryByRole('listbox');
+      expect(listbox).not.to.equal(null);
+
+      const options = screen.getAllByRole('option');
+      // Click second option
+      fireEvent.click(options[1]);
+
+      expect(trigger).to.have.text('Ten, Twenty');
+
+      // Menu is still open in case of multiple
+      expect(listbox).not.to.equal(null);
+    });
+
+    it('should be able to select the items on mouseup', () => {
+      render(
+        <Select defaultValue={[10]} multiple>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+
+      expect(trigger).to.have.text('Ten');
+
+      // open the menu
+      fireEvent.mouseDown(trigger);
+
+      const listbox = screen.queryByRole('listbox');
+      expect(listbox).not.to.equal(null);
+
+      const options = screen.getAllByRole('option');
+      // Mouse up on second option
+      fireEvent.mouseUp(options[1]);
+
+      expect(trigger).to.have.text('Ten, Twenty');
+
+      // Menu is still open in case of multiple
+      expect(listbox).not.to.equal(null);
+    });
   });
 
   describe('prop: autoFocus', () => {
