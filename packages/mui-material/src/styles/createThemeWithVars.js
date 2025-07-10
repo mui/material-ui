@@ -352,7 +352,7 @@ export default function createThemeWithVars(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', colorMix(safeLighten, palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', colorMix(safeLighten, palette.warning.main, 0.62));
       const snackbarContentBackground = colorSpace
-        ? colorMix(safeDarken, palette.background.default, 0.625) // use `0.625` instead of `0.8` to match the contrast ratio of JS implementation
+        ? colorMix(safeDarken, palette.background.default, 0.6825) // use `0.6825` instead of `0.8` to match the contrast ratio of JS implementation
         : safeEmphasize(palette.background.default, 0.8);
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
