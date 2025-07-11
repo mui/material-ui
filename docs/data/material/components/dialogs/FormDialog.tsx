@@ -34,7 +34,7 @@ export default function FormDialog() {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent sx={{ paddingBottom: 0 }}>
+        <DialogContent>
           <DialogContentText>
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
