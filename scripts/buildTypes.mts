@@ -4,7 +4,6 @@ import path from 'path';
 import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
-import { parse } from 'jsonc-parser';
 
 const $$ = $({ stdio: 'inherit' });
 
@@ -84,7 +83,9 @@ async function renameDtsFilesToDmts(sourceDirectory: string) {
   await Promise.all(
     dtsFiles.map(async (dtsFile) => {
       const mtsFile = dtsFile.replace(/\.d\.ts$/, '.d.mts');
-      await fs.rename(dtsFile, mtsFile);
+      // @TODO - Fix this. Temporarily maintaining both .d.ts and .d.mts files to avoid issues with parent packages that
+      // expect .d.ts files to be present.
+      await fs.copyFile(dtsFile, mtsFile);
     }),
   );
 }
