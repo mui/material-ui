@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@5.4.0
-  aws-s3: circleci/aws-s3@4.1.1
+  aws-s3: circleci/aws-s3@4.1.2
 
 parameters:
   browserstack-force:
@@ -306,7 +306,7 @@ jobs:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     steps:
       - checkout
       - install_js:
@@ -334,7 +334,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     steps:
       - checkout
       - install_js:
@@ -346,7 +346,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     steps:
       - checkout
       - install_js:
@@ -359,7 +359,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     steps:
       - checkout
       - install_js:
@@ -384,7 +384,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     steps:
       - checkout
       - install_js:
@@ -456,7 +456,7 @@ jobs:
   test_bundling_next_webpack4:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
     steps:
       - checkout:
@@ -474,7 +474,7 @@ jobs:
   test_bundling_next_webpack5:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
     steps:
       - checkout:
@@ -492,7 +492,7 @@ jobs:
   test_bundling_create_react_app:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
@@ -510,7 +510,7 @@ jobs:
   test_bundling_snowpack:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
@@ -528,7 +528,7 @@ jobs:
   test_bundling_vite:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
@@ -546,7 +546,7 @@ jobs:
   test_bundling_esbuild:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
@@ -564,7 +564,7 @@ jobs:
   test_bundling_gatsby:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+      - image: mcr.microsoft.com/playwright:v1.53.1-noble
         environment:
           GATSBY_CPU_COUNT: '3'
     working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/

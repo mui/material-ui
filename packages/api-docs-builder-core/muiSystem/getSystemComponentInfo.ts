@@ -76,6 +76,7 @@ export function getSystemComponentInfo(filename: string): ComponentInfo {
       return allMarkdowns
         .filter((page) => page.components.includes(name))
         .map((page) => ({
+          filePath: page.filename, // pathname of the markdown file
           demoPageTitle: pathToSystemTitle({
             ...page,
             title: getTitle(page.markdownContent),
