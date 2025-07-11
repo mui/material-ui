@@ -27,9 +27,9 @@
   "scripts": {
     "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable --verbose",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
+    "build:stable": "MUI_EXPERIMENTAL_MJS=true node ../../scripts/build.mjs stable --verbose",
+    "build:copy-files": "MUI_EXPERIMENTAL_MJS=true node ../../scripts/copyFiles.mjs",
+    "build:types": "MUI_EXPERIMENTAL_MJS=true tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
