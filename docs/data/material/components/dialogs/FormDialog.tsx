@@ -39,7 +39,7 @@ export default function FormDialog() {
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
           </DialogContentText>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} id="subscription-form">
             <TextField
               autoFocus
               required
@@ -55,7 +55,9 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
+          <Button type="submit" form="subscription-form">
+            Subscribe
+          </Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
