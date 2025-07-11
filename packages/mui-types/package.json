@@ -23,9 +23,9 @@
   "scripts": {
     "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:stable": "MUI_EXPERIMENTAL_MJS=true node ../../scripts/build.mjs stable",
+    "build:types": "MUI_EXPERIMENTAL_MJS=true tsx ../../scripts/buildTypes.mts",
+    "build:copy-files": "MUI_EXPERIMENTAL_MJS=true node ../../scripts/copyFiles.mjs",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
