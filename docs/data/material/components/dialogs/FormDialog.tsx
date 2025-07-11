@@ -51,12 +51,12 @@ export default function FormDialog() {
               fullWidth
               variant="standard"
             />
-            <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button type="submit">Subscribe</Button>
-            </DialogActions>
           </form>
         </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit">Subscribe</Button>
+        </DialogActions>
       </Dialog>
     </React.Fragment>
   );
