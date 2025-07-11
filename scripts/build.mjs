@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import childProcess from 'child_process';
 import path from 'path';
 import { promisify } from 'util';
@@ -58,11 +59,10 @@ async function run(argv) {
 
   let outFileExtension = '.js';
 
-  if (EXPERIMENTAL_MJS && (bundle === 'stable')) {
+  if (EXPERIMENTAL_MJS && bundle === 'stable') {
     outFileExtension = '.mjs';
   }
 
-  console.log(EXPERIMENTAL_MJS)
   console.log(`Building ${bundle} bundle with outFileExtension: ${outFileExtension}`);
 
   const relativeOutDir = {

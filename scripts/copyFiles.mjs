@@ -16,17 +16,19 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['./index.js', './esm/index.js', './modern/index.js', './node/index.js'].map(async (file) => {
-      try {
-        await prepend(path.resolve(buildPath, file), license);
-      } catch (err) {
-        if (err.code === 'ENOENT') {
-          console.log(`Skipped license for ${file}`);
-        } else {
-          throw err;
+    ['./index.js', './esm/index.js', './esm/index.mjs', './modern/index.js', './node/index.js'].map(
+      async (file) => {
+        try {
+          await prepend(path.resolve(buildPath, file), license);
+        } catch (err) {
+          if (err.code === 'ENOENT') {
+            console.log(`Skipped license for ${file}`);
+          } else {
+            throw err;
+          }
         }
-      }
-    }),
+      },
+    ),
   );
 }
 

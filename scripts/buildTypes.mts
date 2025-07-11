@@ -8,6 +8,9 @@ import { parse } from 'jsonc-parser';
 
 const $$ = $({ stdio: 'inherit' });
 
+// Use .mjs extension for ESM output files if the MUI_EXPERIMENTAL_MJS environment variable is set.
+const EXPERIMENTAL_MJS = !!process.env.MUI_EXPERIMENTAL_MJS;
+
 async function emitDeclarations(tsconfig: string, outDir: string) {
   // eslint-disable-next-line no-console
   console.log(`Building types for ${path.resolve(tsconfig)}`);
@@ -70,6 +73,22 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
   });
 }
 
+async function renameDtsFilesToDmts(sourceDirectory: string) {
+  const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: sourceDirectory });
+  if (dtsFiles.length === 0) {
+    console.warn('No .d.ts files found in the directory. Skipping renaming to .d.mts');
+    return;
+  }
+
+  console.log('Renaming .d.ts files to .d.mts files in', sourceDirectory);
+  await Promise.all(
+    dtsFiles.map(async (dtsFile) => {
+      const mtsFile = dtsFile.replace(/\.d\.ts$/, '.d.mts');
+      await fs.rename(dtsFile, mtsFile);
+    }),
+  );
+}
+
 interface HandlerArgv {
   skipTsc: boolean;
   cjsDir: string;
@@ -83,10 +102,6 @@ async function main(argv: HandlerArgv) {
     () => true,
     () => false,
   );
-
-  const tsConfig = tsconfigExists
-    ? (parse(await fs.readFile(tsconfigPath, 'utf-8')) as { compilerOptions: { outDir: string } })
-    : null;
 
   const srcPath = path.join(packageRoot, 'src');
   const buildFolder = path.join(packageRoot, 'build');
@@ -107,10 +122,14 @@ async function main(argv: HandlerArgv) {
     await emitDeclarations(tsconfigPath, esmDir);
   }
 
-  await copyDeclarations(esmDir, cjsDir)
+  await copyDeclarations(esmDir, cjsDir);
 
   await postProcessImports(esmDir, argv.removeCss);
   await postProcessImports(cjsDir, argv.removeCss);
+
+  if (EXPERIMENTAL_MJS) {
+    await renameDtsFilesToDmts(esmDir);
+  }
 
   const tsbuildinfo = await glob('**/*.tsbuildinfo', { absolute: true, cwd: buildFolder });
   await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
