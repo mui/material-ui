@@ -250,18 +250,6 @@ declare module '@mui/material/Button' {
 }
 ```
 
-### Caveats
-
-Once a custom color space is set, Material UI uses the CSS functions instead of JavaScript to manipulate colors for the default styles.
-
-Below are some caveats to be aware of when using a custom color space:
-
-- The auto-generated `contrastText` token always be `#fff` regardless of the `main` color.
-- Alert component with `filled` variant uses `contrastText` token for the color instead of using `theme.palette.getContrastText()` to calculate the color.
-- AppBar component with `default` color uses `text.primary` token instead of `theme.palette.getContrastText()` to calculate the color.
-- Fab component with `default` color uses `grey.900` token instead of `theme.palette.getContrastText()` to calculate the color.
-- SnackbarContent component uses `text.primary` token instead of `theme.palette.getContrastText()` to calculate the color.
-
 ## Adding color tokens
 
 To add a new [color token](#color-tokens), include it in the color's object as follows:

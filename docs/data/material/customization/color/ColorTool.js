@@ -193,21 +193,12 @@ function ColorTool() {
             key={key}
           >
             <Typography
-              title={background[key]}
               variant="caption"
-              noWrap
-              sx={{
+              style={{
                 color: theme.palette.getContrastText(background[key]),
-                px: 0.5,
               }}
             >
-              {(() => {
-                try {
-                  return rgbToHex(background[key]);
-                } catch (error) {
-                  return background[key];
-                }
-              })()}
+              {rgbToHex(background[key])}
             </Typography>
           </Box>
         ))}

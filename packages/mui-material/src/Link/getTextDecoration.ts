@@ -24,7 +24,6 @@ const getTextDecoration = <T extends Theme>({
     ownerState.color) as string;
   const channelColor = (getPath(theme, `palette.${transformedColor}.mainChannel`) ||
     getPath(theme, `palette.${transformedColor}Channel`)) as string | null;
-
   if ('vars' in theme && channelColor) {
     return `rgba(${channelColor} / 0.4)`;
   }
