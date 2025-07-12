@@ -105,6 +105,10 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     inheritViewBox = false,
     titleAccess,
     viewBox = '0 0 24 24',
+    // TODO(v8): make `legacyTestId = false` the default.
+    legacyTestId = true,
+    // eslint-disable-next-line @typescript-eslint/naming-convention, react/prop-types
+    _builtinTestId,
     ...other
   } = props;
 
@@ -138,6 +142,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       aria-hidden={titleAccess ? undefined : true}
       role={titleAccess ? 'img' : undefined}
       ref={ref}
+      data-testid={legacyTestId ? _builtinTestId : undefined}
       {...more}
       {...other}
       {...(hasSvgAsChild && children.props)}
@@ -212,6 +217,12 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * @default false
    */
   inheritViewBox: PropTypes.bool,
+  /**
+   * For @mui/icons-material, enable the legacy behavior of adding a data-testid property to the
+   * root element containing the icon name.
+   * @default true
+   */
+  legacyTestId: PropTypes.bool,
   /**
    * The shape-rendering attribute. The behavior of the different options is described on the
    * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/shape-rendering).
