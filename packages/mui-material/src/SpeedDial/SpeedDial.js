@@ -369,6 +369,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const children = allItems.map((child, index) => {
     const {
       FabProps: { ref: origButtonRef, ...ChildFabProps } = {},
+      slotProps: {
+        fab: { ref: fabSlotOrigButtonRef, ...fabSlotProps } = {},
+        ...restOfSlotProps
+      } = {},
       tooltipPlacement: tooltipPlacementProp,
     } = child.props;
 
@@ -379,6 +383,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       FabProps: {
         ...ChildFabProps,
         ref: createHandleSpeedDialActionButtonRef(index, origButtonRef),
+      },
+      slotProps: {
+        fab: {
+          ...fabSlotProps,
+          ref: createHandleSpeedDialActionButtonRef(index, fabSlotOrigButtonRef),
+        },
+        ...restOfSlotProps,
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,
