@@ -229,6 +229,10 @@ const pages: MuiPage[] = [
             title: 'Basic usage',
           },
           {
+            pathname: '/material-ui/customization/css-theme-variables/native-color-syntax',
+            title: 'Native color syntax',
+          },
+          {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
             title: 'Advanced configuration',
           },
