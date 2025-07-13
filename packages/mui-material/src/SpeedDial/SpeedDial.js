@@ -221,6 +221,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
    *
    * @param dialActionIndex {number}
    * @param origButtonRef {React.RefObject?}
+   * @param fabSlotOrigButtonRef {React.RefObject?}
    */
   const createHandleSpeedDialActionButtonRef = (
     dialActionIndex,
