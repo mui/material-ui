@@ -387,7 +387,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       tooltipPlacementProp || (getOrientation(direction) === 'vertical' ? 'left' : 'top');
 
     return React.cloneElement(child, {
-      key: index,
       slotProps: {
         fab: {
           ...fabSlotProps,
