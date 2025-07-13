@@ -184,8 +184,6 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     },
   };
 
-  console.log('externalForwardedProps', externalForwardedProps);
-
   const [tooltipOpen, setTooltipOpen] = React.useState(
     externalForwardedProps.slotProps.tooltip?.open,
   );
