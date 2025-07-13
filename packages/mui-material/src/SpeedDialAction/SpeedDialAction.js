@@ -167,8 +167,11 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   const externalForwardedProps = {
     slots,
     slotProps: {
-      fab: FabProps,
       ...slotProps,
+      fab: mergeSlotProps(
+        typeof slotProps.fab === 'function' ? slotProps.fab(ownerState) : slotProps.fab,
+        FabProps,
+      ),
       tooltip: mergeSlotProps(
         typeof slotProps.tooltip === 'function' ? slotProps.tooltip(ownerState) : slotProps.tooltip,
         {

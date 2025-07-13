@@ -385,13 +385,13 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
         ...ChildFabProps,
         ref: createHandleSpeedDialActionButtonRef(index, origButtonRef),
       },
-      // slotProps: {
-      //   fab: {
-      //     ...fabSlotProps,
-      //     ref: createHandleSpeedDialActionButtonRef(index, fabSlotOrigButtonRef),
-      //   },
-      //   ...restOfSlotProps,
-      // },
+      slotProps: {
+        fab: {
+          ...fabSlotProps,
+          ref: createHandleSpeedDialActionButtonRef(index, fabSlotOrigButtonRef),
+        },
+        ...restOfSlotProps,
+      },
       delay: 30 * (open ? index : allItems.length - index),
       open,
       tooltipPlacement,
