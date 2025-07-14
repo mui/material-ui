@@ -755,8 +755,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-final-form:
-        specifier: ^6.5.9
-        version: 6.5.9(final-form@5.0.0)(react@19.1.0)
+        specifier: ^7.0.0
+        version: 7.0.0(final-form@5.0.0)(react@19.1.0)
       react-imask:
         specifier: ^7.6.1
         version: 7.6.1(react@19.1.0)
@@ -12340,11 +12340,11 @@ packages:
     peerDependencies:
       react: ^16.3.0
 
-  react-final-form@6.5.9:
-    resolution: {integrity: sha512-x3XYvozolECp3nIjly+4QqxdjSSWfcnpGEL5K8OBT6xmGrq5kBqbA6+/tOqoom9NwqIPPbxPNsOViFlbKgowbA==}
+  react-final-form@7.0.0:
+    resolution: {integrity: sha512-aEeAWbSsCLVXa4GBkJtjjyhPyX4L/Pgp5P/jXZwdz0YYcK6Zs/0PkgB+qWMSyIsbbGGE7m9yYlSpui5E5Gx26A==}
     peerDependencies:
-      final-form: ^4.20.4
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      final-form: ^5.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-imask@7.6.1:
     resolution: {integrity: sha512-vLNfzcCz62Yzx/GRGh5tiCph9Gbh2cZu+Tz8OiO5it2eNuuhpA0DWhhSlOtVtSJ80+Bx+vFK5De8eQ9AmbkXzA==}
@@ -27261,7 +27261,7 @@ snapshots:
       react: 19.1.0
       warning: 4.0.3
 
-  react-final-form@6.5.9(final-form@5.0.0)(react@19.1.0):
+  react-final-form@7.0.0(final-form@5.0.0)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.6
       final-form: 5.0.0
