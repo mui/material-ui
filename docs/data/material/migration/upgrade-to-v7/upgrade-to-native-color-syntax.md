@@ -68,6 +68,17 @@ console.log(theme.alpha(theme.palette.primary.contrastText, 0.3)); // ✅ This w
 The same applies to the `lighten` and `darken` functions.
 Follow the codemod below to update multiple files at once.
 
+## Remove usage of channel tokens
+
+After enabling the native color syntax, you **should not** rely on the `*Channel` tokens anymore because their values are not guaranteed to be channels (numbers separated by a white space).
+
+Instead, use the theme color functions to manipulate colors like this:
+
+```diff
+- `rgba(${theme.vars.palette.primary.mainChannel} / 0.3)`
++ `theme.alpha((theme.vars || theme).palette.primary.main, 0.3)`
+```
+
 ## Codemod
 
 The codemod replaces the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` with theme color functions.
