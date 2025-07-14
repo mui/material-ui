@@ -2156,6 +2156,27 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `theme-color-functions`
+
+```bash
+npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
+```
+
+Replace the usage of the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` to use the `theme` object instead.
+
+```diff
+- import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+
+- alpha(theme.palette.primary.main, 0.8)
++ theme.alpha((theme.vars || theme).palette.primary.main, 0.8)
+
+- lighten(theme.palette.primary.main, 0.1)
++ theme.lighten(theme.palette.primary.main, 0.1)
+
+- darken(theme.palette.primary.main, 0.3)
++ theme.darken(theme.palette.primary.main, 0.3)
+```
+
 #### `grid-props`
 
 <!-- #npm-tag-reference -->

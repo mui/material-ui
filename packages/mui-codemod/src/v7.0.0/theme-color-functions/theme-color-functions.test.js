@@ -1,11 +1,11 @@
 import { describeJscodeshiftTransform } from '../../../testUtils';
-import transform from './theme-alpha';
+import transform from './theme-color-functions';
 
 describe('@mui/codemod', () => {
   describe('v7.0.0', () => {
     describeJscodeshiftTransform({
       transform,
-      transformName: 'theme-alpha',
+      transformName: 'theme-color-functions',
       dirname: __dirname,
       testCases: [
         {
