@@ -192,7 +192,7 @@
     "process": "^0.11.10",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
-    "stylelint": "^16.21.0",
+    "stylelint": "^16.21.1",
     "stylelint-config-standard": "^37.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
