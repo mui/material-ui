@@ -70,7 +70,7 @@
     "dayjs": "^1.11.13",
     "feed": "^5.1.0",
     "fg-loadcss": "^3.1.0",
-    "final-form": "^4.20.10",
+    "final-form": "^5.0.0",
     "flexsearch": "^0.8.205",
     "fs-extra": "^11.3.0",
     "json2mq": "^0.2.0",

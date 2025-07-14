@@ -695,8 +695,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
       final-form:
-        specifier: ^4.20.10
-        version: 4.20.10
+        specifier: ^5.0.0
+        version: 5.0.0
       flexsearch:
         specifier: ^0.8.205
         version: 0.8.205
@@ -756,7 +756,7 @@ importers:
         version: 4.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-final-form:
         specifier: ^6.5.9
-        version: 6.5.9(final-form@4.20.10)(react@19.1.0)
+        version: 6.5.9(final-form@5.0.0)(react@19.1.0)
       react-imask:
         specifier: ^7.6.1
         version: 7.6.1(react@19.1.0)
@@ -8850,8 +8850,8 @@ packages:
     resolution: {integrity: sha512-xdMtCAODmPloU9qtmPcdBV9Kd27NtMse+4ayThxqIHUES5Z2S6bGpap5PpdmNM56ub7y3i1eyr+vJJIIgWGKmA==}
     engines: {node: '>=18'}
 
-  final-form@4.20.10:
-    resolution: {integrity: sha512-TL48Pi1oNHeMOHrKv1bCJUrWZDcD3DIG6AGYVNOnyZPr7Bd/pStN0pL+lfzF5BNoj/FclaoiaLenk4XUIFVYng==}
+  final-form@5.0.0:
+    resolution: {integrity: sha512-HByosvP7x3N4bWTCPoBeUeoMatadewRifxaH3qhCQI2DBwFNO0m5wxETLVUXNGWz2yokdSCMdJEvtjfZoXnqDA==}
     engines: {node: '>=8'}
 
   finalhandler@1.1.2:
@@ -23070,7 +23070,7 @@ snapshots:
 
   filter-obj@6.1.0: {}
 
-  final-form@4.20.10:
+  final-form@5.0.0:
     dependencies:
       '@babel/runtime': 7.27.6
 
@@ -27202,10 +27202,10 @@ snapshots:
       react: 19.1.0
       warning: 4.0.3
 
-  react-final-form@6.5.9(final-form@4.20.10)(react@19.1.0):
+  react-final-form@6.5.9(final-form@5.0.0)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.6
-      final-form: 4.20.10
+      final-form: 5.0.0
       react: 19.1.0
 
   react-imask@7.6.1(react@19.1.0):
