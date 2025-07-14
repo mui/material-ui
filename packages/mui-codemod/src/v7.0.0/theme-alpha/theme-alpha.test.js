@@ -20,6 +20,22 @@ describe('@mui/codemod', () => {
           actual: '/test-cases/opacity-calc.actual.js',
           expected: '/test-cases/opacity-calc.expected.js',
         },
+        {
+          actual: '/test-cases/lighten-basic.actual.js',
+          expected: '/test-cases/lighten-basic.expected.js',
+        },
+        {
+          actual: '/test-cases/darken-basic.actual.js',
+          expected: '/test-cases/darken-basic.expected.js',
+        },
+        {
+          actual: '/test-cases/mixed-functions.actual.js',
+          expected: '/test-cases/mixed-functions.expected.js',
+        },
+        {
+          actual: '/test-cases/no-import.actual.js',
+          expected: '/test-cases/no-import.expected.js',
+        },
       ],
     });
   });
