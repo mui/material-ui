@@ -136,7 +136,7 @@
     "cross-fetch": "^4.1.0",
     "gm": "^1.25.1",
     "marked": "^15.0.12",
-    "@playwright/test": "^1.53.1",
+    "@playwright/test": "^1.54.1",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.11",
     "yargs": "^17.7.2"
