@@ -527,8 +527,8 @@ importers:
         specifier: 5.4.19
         version: 5.4.19(@types/node@20.19.7)(lightningcss@1.30.1)(terser@5.39.0)
       vite-plugin-node-polyfills:
-        specifier: 0.23.0
-        version: 0.23.0(rollup@4.40.0)(vite@5.4.19(@types/node@20.19.7)(lightningcss@1.30.1)(terser@5.39.0))
+        specifier: 0.24.0
+        version: 0.24.0(rollup@4.40.0)(vite@5.4.19(@types/node@20.19.7)(lightningcss@1.30.1)(terser@5.39.0))
       vite-plugin-pages:
         specifier: ^0.33.1
         version: 0.33.1(@vue/compiler-sfc@3.5.14)(vite@5.4.19(@types/node@20.19.7)(lightningcss@1.30.1)(terser@5.39.0))
@@ -14055,10 +14055,10 @@ packages:
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
-  vite-plugin-node-polyfills@0.23.0:
-    resolution: {integrity: sha512-4n+Ys+2bKHQohPBKigFlndwWQ5fFKwaGY6muNDMTb0fSQLyBzS+jjUNRZG9sKF0S/Go4ApG6LFnUGopjkILg3w==}
+  vite-plugin-node-polyfills@0.24.0:
+    resolution: {integrity: sha512-GA9QKLH+vIM8NPaGA+o2t8PDfFUl32J8rUp1zQfMKVJQiNkOX4unE51tR6ppl6iKw5yOrDAdSH7r/UIFLCVhLw==}
     peerDependencies:
-      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
   vite-plugin-pages@0.33.1:
     resolution: {integrity: sha512-ITLgZQCphuuovKqJg4cD7Mqo3SlaUO95O+Vfu1Kz9lF8fkAwNRK3XM25rGqaWXVja5OYinsskNH8Q8Eqvjk71Q==}
@@ -29347,7 +29347,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-node-polyfills@0.23.0(rollup@4.40.0)(vite@5.4.19(@types/node@20.19.7)(lightningcss@1.30.1)(terser@5.39.0)):
+  vite-plugin-node-polyfills@0.24.0(rollup@4.40.0)(vite@5.4.19(@types/node@20.19.7)(lightningcss@1.30.1)(terser@5.39.0)):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.40.0)
       node-stdlib-browser: 1.2.0
