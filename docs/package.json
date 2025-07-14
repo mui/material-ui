@@ -51,7 +51,7 @@
     "@mui/x-license": "8.8.0",
     "@mui/x-tree-view": "8.8.0",
     "@popperjs/core": "^2.11.8",
-    "@react-spring/web": "^9.7.5",
+    "@react-spring/web": "^10.0.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@toolpad/core": "^0.16.0",
     "autoprefixer": "^10.4.21",
