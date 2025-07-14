@@ -615,7 +615,9 @@ function useAutocomplete(props) {
   }
 
   React.useEffect(() => {
-    syncHighlightedIndex();
+    if (filteredOptionsChanged) {
+      syncHighlightedIndex();
+    }
   }, [syncHighlightedIndex, filteredOptionsChanged]);
 
   const handleOpen = (event) => {
