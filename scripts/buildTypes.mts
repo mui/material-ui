@@ -16,22 +16,22 @@ async function emitDeclarations(tsconfig: string, outDir: string) {
   await $$`tsc -p ${tsconfig} --outDir ${outDir} --declaration --emitDeclarationOnly`;
 }
 
-async function postProcessImports(folder: string, removeCss: boolean) {
+async function postProcessImports(folder: string, removeCss: boolean, filter = '.d.ts') {
   // eslint-disable-next-line no-console
   console.log(`Adding import extensions`);
-  const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: folder });
+  const dtsFiles = await glob(`**/*${filter}`, { absolute: true, cwd: folder });
   if (dtsFiles.length === 0) {
-    throw new Error(`Unable to find declaration files in '${folder}'`);
+    return;
   }
 
-  const babelPlugins: babel.PluginItem[] = [
-    ['@babel/plugin-syntax-typescript', { dts: true }],
-    ['@mui/internal-babel-plugin-resolve-imports'],
-  ];
+  const babelPlugins: babel.PluginItem[] = [['@babel/plugin-syntax-typescript', { dts: true }]];
 
   if (removeCss) {
     babelPlugins.push(['babel-plugin-transform-remove-imports', { test: /\.css$/ }]);
   }
+
+  // this plugin needs to come after remove-imports so that css imports are already removed
+  babelPlugins.push(['@mui/internal-babel-plugin-resolve-imports']);
 
   await Promise.all(
     dtsFiles.map(async (dtsFile) => {
@@ -125,12 +125,12 @@ async function main(argv: HandlerArgv) {
 
   await copyDeclarations(esmDir, cjsDir);
 
-  await postProcessImports(esmDir, argv.removeCss);
-  await postProcessImports(cjsDir, argv.removeCss);
-
   if (EXPERIMENTAL_MJS) {
     await renameDtsFilesToDmts(esmDir);
   }
+
+  await postProcessImports(esmDir, argv.removeCss, '.d.mts');
+  await postProcessImports(cjsDir, argv.removeCss, '.d.ts');
 
   const tsbuildinfo = await glob('**/*.tsbuildinfo', { absolute: true, cwd: buildFolder });
   await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
