@@ -89,7 +89,7 @@
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-draggable": "^4.4.6",
+    "react-draggable": "^4.5.0",
     "react-final-form": "^6.5.9",
     "react-imask": "^7.6.1",
     "react-intersection-observer": "^9.16.0",
