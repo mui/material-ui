@@ -327,6 +327,10 @@ const pages: MuiPage[] = [
             pathname: '/material-ui/migration/upgrade-to-v7',
             title: 'Upgrade to v7: getting started',
           },
+          {
+            pathname: '/material-ui/migration/upgrade-to-native-color-syntax',
+            title: 'Native color syntax',
+          },
         ],
       },
       {

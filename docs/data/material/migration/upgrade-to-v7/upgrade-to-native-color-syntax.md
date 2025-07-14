@@ -1,0 +1,100 @@
+# Upgrade to native color syntax
+
+<p class="description">This guide explains how to upgrade from JavaScript color manipulation to native color syntax.</p>
+
+Native color syntax is a new opt-in feature that replaces the JavaScript color manipulation with CSS color-mix and relative color.
+Check out the [native color syntax documentation](/material-ui/customization/css-theme-variables/native-color-syntax/) for more details.
+
+## Prerequisites
+
+Update Material UI to the latest version or at least v7.3.0.
+
+<!-- #npm-tag-reference -->
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @mui/material@latest
+```
+
+```bash pnpm
+pnpm add @mui/material@latest
+```
+
+```bash yarn
+yarn add @mui/material@latest
+```
+
+</codeblock>
+
+## Enable native color syntax
+
+Set the `cssVariables.nativeColorSyntax` option to `true` in the `createTheme` function.
+
+```js
+const theme = createTheme({
+  cssVariables: { nativeColorSyntax: true },
+});
+```
+
+Once you've enabled the native color syntax, Material UI will start using CSS color-mix and relative color to manipulate colors.
+
+## Handling JS color manipulation
+
+Your application might break if you're using the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` to manipulate colors that have been updated to use native color syntax.
+
+For example, manipulating the `contrastText` token will break the application:
+
+```js
+import { alpha } from '@mui/system/colorManipulator';
+
+const theme = createTheme({
+  cssVariables: { nativeColorSyntax: true },
+});
+
+console.log(alpha(theme.palette.primary.contrastText, 0.3)); // ❌ This will break because `alpha` does not support relative colors.
+```
+
+To fix this, you can use the adapter `theme.alpha` function to manipulate colors.
+
+```js
+const theme = createTheme({
+  cssVariables: { nativeColorSyntax: true },
+});
+
+console.log(theme.alpha(theme.palette.primary.contrastText, 0.3)); // ✅ This will work because `theme.alpha` supports relative colors.
+```
+
+The same applies to the `lighten` and `darken` functions.
+Follow the codemod below to update multiple files at once.
+
+## Codemod
+
+The codemod replaces the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` with theme color functions.
+
+```bash
+npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
+```
+
+A transformation example looks like this:
+
+```diff
+- import { alpha } from '@mui/system/colorManipulator';
+
+ styled('div')(({ theme }) => ({
+   width: '100%',
+   height: '100%',
+   '&.good': {
+-    backgroundColor: theme.vars
+-      ? `rgba(${theme.vars.palette.success.mainChannel} /  0.3)`
+-      : alpha(theme.palette.success.main, 0.3),
++    backgroundColor: theme.alpha((theme.vars || theme).palette.success.main, 0.3),
+   },
+   '&.bad': {
+-    backgroundColor: theme.vars
+-      ? `rgba(${theme.vars.palette.error.mainChannel} /  0.3)`
+-      : alpha(theme.palette.error.main, 0.3),
++    backgroundColor: theme.alpha((theme.vars || theme).palette.error.main, 0.3),
+   },
+ }));
+```
