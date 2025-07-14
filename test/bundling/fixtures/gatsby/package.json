@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "concurrently": "7.4.0",
-    "@playwright/test": "1.53.1"
+    "@playwright/test": "1.54.1"
   },
   "pnpm": {
     "overrides": {
