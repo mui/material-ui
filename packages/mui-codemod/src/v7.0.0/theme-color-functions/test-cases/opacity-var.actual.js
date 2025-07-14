@@ -1,3 +1,5 @@
+import { alpha } from '@mui/system/colorManipulator';
+
 export const DigitalClockItem = styled(MenuItem, {
   name: 'MuiDigitalClock',
   slot: 'Item',

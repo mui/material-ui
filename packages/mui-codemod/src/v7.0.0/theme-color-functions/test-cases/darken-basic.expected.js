@@ -1,5 +1,3 @@
-import { darken } from '@mui/system/colorManipulator';
-
 const Button = styled('button')(({ theme }) => ({
   backgroundColor: theme.darken(theme.palette.primary.main, 0.1),
   '&:active': {

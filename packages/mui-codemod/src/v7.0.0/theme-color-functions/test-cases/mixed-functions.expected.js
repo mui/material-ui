@@ -1,5 +1,3 @@
-import { alpha, lighten, darken } from '@mui/system/colorManipulator';
-
 const ComplexComponent = styled('div')(({ theme }) => ({
   backgroundColor: theme.alpha((theme.vars || theme).palette.primary.main, 0.1),
   border: `2px solid ${theme.lighten(theme.palette.primary.main, 0.5)}`,

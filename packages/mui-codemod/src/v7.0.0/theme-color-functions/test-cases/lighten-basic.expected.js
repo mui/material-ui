@@ -1,5 +1,3 @@
-import { lighten } from '@mui/system/colorManipulator';
-
 const Component = styled('div')(({ theme }) => ({
   backgroundColor: theme.lighten(theme.palette.primary.main, 0.2),
   color: theme.lighten(theme.palette.text.primary, 0.5),

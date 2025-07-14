@@ -135,5 +135,35 @@ export default function transformer(file, api, options) {
       });
   }
 
+  // Remove transformed functions from import statement
+  root
+    .find(j.ImportDeclaration, {
+      source: {
+        value: '@mui/system/colorManipulator'
+      }
+    })
+    .forEach(path => {
+      const specifiers = path.node.specifiers.filter(spec => {
+        if (spec.type === 'ImportSpecifier') {
+          const name = spec.imported.name;
+          // Remove if it was transformed
+          if ((name === 'alpha' && hasAlphaImport) ||
+              (name === 'lighten' && hasLightenImport) ||
+              (name === 'darken' && hasDarkenImport)) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+      if (specifiers.length === 0) {
+        // Remove the import entirely if no specifiers left
+        j(path).remove();
+      } else {
+        // Update the import with remaining specifiers
+        path.node.specifiers = specifiers;
+      }
+    });
+
   return root.toSource(printOptions);
 }

@@ -1,3 +1,5 @@
+import { alpha } from '@mui/system/colorManipulator';
+
 export const TreeItemContent =
   styled('div', {
     name: 'MuiTreeItem',

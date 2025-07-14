@@ -1,3 +1,5 @@
+import { alpha } from '@mui/system/colorManipulator';
+
 const Value = styled('div')(({ theme }) => ({
   width: '100%',
   height: '100%',
