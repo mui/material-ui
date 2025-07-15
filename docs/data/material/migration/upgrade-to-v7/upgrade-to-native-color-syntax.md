@@ -39,6 +39,9 @@ const theme = createTheme({
 
 Once you've enabled the native color syntax, Material UI will start using CSS color-mix and relative color to manipulate colors.
 
+To check that it's working, open the browser's developer tools. On the Elements tab, click the Styles panel and search for "color-mix".
+You should see the Material UI color tokens appear as CSS variables.
+
 ## Handling JS color manipulation
 
 Your application might break if you're using the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` to manipulate colors that have been updated to use native color syntax.

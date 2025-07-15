@@ -11,7 +11,7 @@ This feature only works in modern browsers. Please check the [browser support](h
 - No longer need JavaScript to manipulate colors.
 - Support modern color spaces, for example `oklch`, `oklab`, and `display-p3`.
 - Support color aliases to external CSS variables.
-- Automatically calculate contrast text color based on the [color-contrast research](https://lea.verou.me/blog/2024/contrast-color) by [Lea Verou](https://lea.verou.me/).
+- Automatically calculate contrast text from the main color.
 
 ## Usage
 
