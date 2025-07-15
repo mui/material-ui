@@ -45,6 +45,12 @@
       "allowedVersions": "< 21.0.0"
     },
     {
+      "groupName": "nx",
+      "description": "FIXME: Seems to cause never-ending windows builds in CI",
+      "matchPackageNames": ["nx"],
+      "allowedVersions": "<= 20"
+    },
+    {
       "groupName": "bundling fixtures",
       "matchPaths": ["test/bundling/fixtures/**/package.json"],
       "schedule": "every 6 months on the first day of the month"
