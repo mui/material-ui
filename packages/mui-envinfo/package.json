@@ -27,6 +27,7 @@
     "fs-extra": "^11.3.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   }
 }
