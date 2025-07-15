@@ -16,7 +16,7 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['./index.js', './esm/index.js', './esm/index.mjs', './modern/index.js', './node/index.js'].map(
+    ['./index.js', './esm/index.js', './esm/index.mjs', './cjs/index.js'].map(
       async (file) => {
         try {
           await prepend(path.resolve(buildPath, file), license);
