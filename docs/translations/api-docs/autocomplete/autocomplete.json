@@ -71,7 +71,11 @@
     },
     "getOptionDisabled": {
       "description": "Used to determine the disabled state for a given option.",
-      "typeDescriptions": { "option": "The option to test." }
+      "typeDescriptions": {
+        "option": "The option to test.",
+        "argType": "Value",
+        "argTypeDescription": "The option shape. Will be the same shape as an item of the options."
+      }
     },
     "getOptionKey": {
       "description": "Used to determine the key for a given option. This can be useful when the labels of options are not unique (since labels are used as keys by default).",

@@ -31,6 +31,7 @@ import {
   ComponentApiContent,
   ComponentReactApi,
   ParsedProperty,
+  TypeDescriptions,
 } from '../types/ApiBuilder.types';
 import { Slot, ComponentInfo, ApiItemDescription } from '../types/utils.types';
 import extractInfoFromEnum from '../utils/extractInfoFromEnum';
@@ -434,10 +435,16 @@ const attachTranslations = (
         generatePropDescription(prop, propName);
       // description = renderMarkdownInline(`${description}`);
 
-      const typeDescriptions: { [t: string]: string } = {};
-      (signatureArgs || []).concat(signatureReturn || []).forEach(({ name, description }) => {
-        typeDescriptions[name] = renderMarkdown(description);
-      });
+      const typeDescriptions: TypeDescriptions = {};
+      (signatureArgs || [])
+        .concat(signatureReturn || [])
+        .forEach(({ name, description, argType, argTypeDescription }) => {
+          typeDescriptions[name] = renderMarkdown(description);
+          typeDescriptions.argType = argType;
+          typeDescriptions.argTypeDescription = argTypeDescription
+            ? renderMarkdown(argTypeDescription)
+            : undefined;
+        });
 
       translations.propDescriptions[propName] = {
         description: renderMarkdown(jsDocText),

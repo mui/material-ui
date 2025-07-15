@@ -1,6 +1,8 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
@@ -249,15 +251,31 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                       {signatureArgs && (
                         <div>
                           <ul>
-                            {signatureArgs.map(({ argName, argDescription }) => (
-                              <li
-                                className="prop-signature-list"
-                                key={argName}
-                                dangerouslySetInnerHTML={{
-                                  __html: `<code>${argName}</code> ${argDescription}`,
-                                }}
-                              />
-                            ))}
+                            {signatureArgs.map(
+                              ({ argName, argDescription, argType, argTypeDescription }) => (
+                                <li className="prop-signature-list" key={argName}>
+                                  <code>{argName}</code>
+                                  {argType && (
+                                    <Tooltip title={argTypeDescription}>
+                                      <span>
+                                        :{' '}
+                                        <Typography
+                                          className="MuiApi-table-item-type"
+                                          component="code"
+                                          sx={{
+                                            textDecoration: 'underline',
+                                            cursor: 'help',
+                                          }}
+                                        >
+                                          {argType}
+                                        </Typography>
+                                      </span>
+                                    </Tooltip>
+                                  )}{' '}
+                                  {argDescription}
+                                </li>
+                              ),
+                            )}
                           </ul>
                         </div>
                       )}

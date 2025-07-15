@@ -21,7 +21,12 @@ export interface PropertyDefinition {
   requiresRef?: boolean;
   seeMoreDescription?: string;
   signature?: string;
-  signatureArgs?: { argName: string; argDescription?: string }[];
+  signatureArgs?: {
+    argName: string;
+    argDescription?: string;
+    argType?: string;
+    argTypeDescription?: string;
+  }[];
   signatureReturnDescription?: string;
   typeName: string;
   /**
@@ -117,6 +122,8 @@ export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): Pr
     const signatureArgs = propData.signature?.describedArgs?.map((argName) => ({
       argName,
       argDescription: propertiesDescriptions[propName].typeDescriptions?.[argName],
+      argType: propertiesDescriptions[propName].typeDescriptions?.argType,
+      argTypeDescription: propertiesDescriptions[propName].typeDescriptions?.argTypeDescription,
     }));
     const signatureReturnDescription =
       propData.signature?.returned &&
