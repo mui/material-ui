@@ -95,7 +95,7 @@ function EmployeeEditForm({ initialValues, onSubmit }) {
       onFieldChange={handleFormFieldChange}
       onSubmit={handleFormSubmit}
       onReset={handleFormReset}
-      submitButtonLabel="Save"
+      submitButtonLabel="Edit"
       backButtonPath={`/employees/${employeeId}`}
     />
   );
