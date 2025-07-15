@@ -34,7 +34,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   flexShrink: 0,
   borderRadius: '6px',
   border: '1px solid transparent',
-  borderBottomWidth: '2px',
+  borderBottomWidth: '3px',
   borderBottomColor: 'transparent',
   boxShadow: '0 -1px 4px 0px rgba(255, 255, 255, 0.32)',
   '&.MuiButton-loading': {
@@ -46,7 +46,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   backgroundSize: '200%',
   backgroundClip: 'padding-box, border-box, border-box',
   backgroundOrigin: 'border-box',
-  animation: `${rainbow} 3s linear infinite`,
+  animation: `${rainbow} 2s linear infinite`,
   '--bg-color-raw': '16, 18, 20',
   '--bg-color': 'rgb(var(--bg-color-raw))',
   backgroundImage: `linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(var(--bg-color) 50%, rgba(var(--bg-color-raw), 0.6) 80%, rgba(var(--bg-color-raw), 0)), linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)))`,
@@ -55,6 +55,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   }),
   '&:hover': {
     boxShadow: '0 -1px 4px 0px rgba(255, 255, 255, 0.56)',
+    animationPlayState: 'paused',
   },
   '&::before': {
     content: '""',
@@ -76,7 +77,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
     margin: '1px 4px 0 4px',
   },
   '& > svg > path': {
-    fill: 'currentColor',
+    fill: (theme.vars || theme).palette.primary.main,
   },
 }));
 

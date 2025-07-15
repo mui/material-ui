@@ -639,19 +639,31 @@ export default function Demo(props) {
                 </TabPanel>
               ))}
               {process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL && (
-                <Box sx={{ position: 'relative' }}>
-                  <OpenMuiChat
-                    data-ga-event-category="mui-chat"
-                    data-ga-event-label={demo.gaLabel}
-                    data-ga-event-action="open-in-mui-chat"
-                    demoData={demoData}
+                <Box
+                  sx={(theme) => ({
+                    position: 'relative',
+                    display: 'none',
+                    [theme.breakpoints.up('sm')]: { display: 'block' },
+                  })}
+                >
+                  {/* This extra box is to prevent hover styles of DemoEditor when mouse move from the corner to the chat button. */}
+                  <Box
                     sx={{
                       position: 'absolute',
-                      bottom: '0.875rem',
-                      right: '0.875rem',
+                      bottom: '0',
+                      right: '0',
                       zIndex: 1,
+                      pr: '0.875rem',
+                      pb: '0.875rem',
                     }}
-                  />
+                  >
+                    <OpenMuiChat
+                      data-ga-event-category="mui-chat"
+                      data-ga-event-label={demo.gaLabel}
+                      data-ga-event-action="open-in-mui-chat"
+                      demoData={demoData}
+                    />
+                  </Box>
                 </Box>
               )}
             </Collapse>
