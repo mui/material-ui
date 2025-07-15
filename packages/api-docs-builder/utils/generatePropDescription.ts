@@ -85,6 +85,7 @@ export default function generatePropDescription(
   seeMore?: SeeMore;
   jsDocText: string;
   signature?: string;
+  generics?: { name: string; description: string }[];
   signatureArgs?: { name: string; description: string }[];
   signatureReturn?: { name: string; description: string };
   requiresRef?: boolean;
@@ -128,16 +129,24 @@ export default function generatePropDescription(
   let signature;
   let signatureArgs;
   let signatureReturn;
-  const parsedTemplates = annotation.tags
-    .filter((tag) => tag.title === 'template')
-    .map((template) => {
-      const [key, description] = template.description?.split(/(?<=^\S+)\s/) || [];
-      if (!description) {
-        return null;
-      }
-      return { key, description };
-    })
-    .filter(Boolean) as PropTemplateDescriptor[];
+  const generics = (
+    annotation.tags
+      .filter((tag) => tag.title === 'template')
+      .map((template) => {
+        const [key, description] = template.description?.split(/(?<=^\S+)\s/) || [];
+        if (!description) {
+          return null;
+        }
+        return { key, description };
+      })
+      .filter(Boolean) as PropTemplateDescriptor[]
+  ).map((template) => ({
+    name: template.key,
+    // stripping "`" as it's not going to be parsed into `code` blocks inside of a title
+    description: `<span class="info-block" title="${template.description.replace(/`/g, '')}"><code>${
+      template.key
+    }</code></span>`,
+  }));
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
@@ -175,24 +184,6 @@ export default function generatePropDescription(
       .filter((tag) => tag.description && tag.name)
       .map((tag) => ({ name: tag.name!, description: tag.description! }));
 
-    signature += `) => ${returnTypeName}\`<br>`;
-    if (parsedTemplates.length > 0) {
-      signature += `*templates:* `;
-      signature += parsedTemplates
-        .map(
-          (template) =>
-            // stripping "`" as it's not going to be parsed into `code` blocks inside of a title
-            `<span class="info-block" title="${template.description.replace(/`/g, '')}"><code>${
-              template.key
-            }</code></span>`,
-        )
-        .join(', ');
-      signature += '.<br>';
-    }
-    signature += parsedArgs
-      .filter((tag) => tag.description)
-      .map((tag) => `*${tag.name}:* ${tag.description}`)
-      .join('<br>');
     if (parsedReturns.description) {
       signatureReturn = { name: returnTypeName, description: parsedReturns.description };
     }
@@ -206,6 +197,7 @@ export default function generatePropDescription(
     seeMore,
     jsDocText,
     signature,
+    generics,
     signatureArgs,
     signatureReturn,
     requiresRef,
