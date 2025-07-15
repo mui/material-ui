@@ -255,8 +255,14 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                               ({ argName, argDescription, argType, argTypeDescription }) => (
                                 <li className="prop-signature-list" key={argName}>
                                   <code>{argName}</code>
-                                  {argType && (
-                                    <Tooltip title={argTypeDescription}>
+                                  {argType && argTypeDescription && (
+                                    <Tooltip
+                                      title={
+                                        <span
+                                          dangerouslySetInnerHTML={{ __html: argTypeDescription }}
+                                        />
+                                      }
+                                    >
                                       <span>
                                         :{' '}
                                         <Typography

@@ -229,10 +229,16 @@ export default function PropertiesList(props: PropertiesListProps) {
                             ({ argName, argDescription, argType, argTypeDescription }) => (
                               <li key={argName}>
                                 <code>{argName}</code>
-                                {argType && (
+                                {argType && argTypeDescription && (
                                   <span>
                                     :{' '}
-                                    <Tooltip title={argTypeDescription}>
+                                    <Tooltip
+                                      title={
+                                        <span
+                                          dangerouslySetInnerHTML={{ __html: argTypeDescription }}
+                                        />
+                                      }
+                                    >
                                       <Typography
                                         className="Api-code"
                                         component="code"

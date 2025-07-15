@@ -68,9 +68,7 @@ export interface TypeDescription {
   argTypeDescription?: string;
 }
 
-export interface TypeDescriptions {
-  [t: string]: TypeDescription;
-}
+export interface TypeDescriptions { [t: string]: TypeDescription }
 
 interface PropDescription {
   description: string;
