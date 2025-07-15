@@ -44,6 +44,44 @@ const theme = createTheme({
 theme.spacing(2); // = '8px'
 ```
 
+:::warning
+Note that when spacing is defined as an array, it only works with positive integers that will be used as array indexes.<br />
+It doesn't support all possible signatures of the `theme.spacing()` helper, for example `theme.spacing(0.5)`, `theme.spacing(-1)`, or `theme.spacing(1, 'auto')`.
+
+If you must use spacing array, consider using a function signature that can handle all possible signatures of the `theme.spacing()` helper:
+
+<details>
+<summary>Spacing function example</summary>
+
+```tsx
+const spacings = [0, 4, 8, 16, 32, 64];
+
+const theme = createTheme({
+  spacing: (factor: number | 'auto' = 0) => {
+    if (factor === 'auto') {
+      return 'auto';
+    }
+    const sign = factor >= 0 ? 1 : -1;
+    const factorAbs = Math.min(Math.abs(factor), spacings.length - 1);
+    if (Number.isInteger(factor)) {
+      return spacings[factorAbs] * sign;
+    }
+    return interpolate(factorAbs, spacings) * sign;
+  },
+});
+
+const interpolate = (value: number, array: readonly number[]) => {
+  const floor = Math.floor(value);
+  const ceil = Math.ceil(value);
+  const diff = value - floor;
+  return array[floor] + (array[ceil] - array[floor]) * diff;
+};
+```
+
+</details>
+
+:::
+
 ## Multiple arity
 
 The `theme.spacing()` helper accepts up to 4 arguments.
