@@ -107,6 +107,10 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
       border: '1px solid',
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+      '&.signature-type': {
+        textDecoration: 'underline',
+        cursor: 'help',
+      },
     },
   }),
   ({ theme }) => ({

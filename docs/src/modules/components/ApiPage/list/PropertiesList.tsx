@@ -240,12 +240,8 @@ export default function PropertiesList(props: PropertiesListProps) {
                                       }
                                     >
                                       <Typography
-                                        className="Api-code"
+                                        className="Api-code signature-type"
                                         component="code"
-                                        sx={{
-                                          textDecoration: 'underline',
-                                          cursor: 'help',
-                                        }}
                                       >
                                         {argType}
                                       </Typography>

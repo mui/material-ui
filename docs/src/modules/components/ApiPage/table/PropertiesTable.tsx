@@ -43,6 +43,10 @@ const StyledTable = styled('table')(
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
     },
+    '& .MuiApi-table-item-signature-type': {
+      textDecoration: 'underline',
+      cursor: 'help',
+    },
     '& .MuiApi-table-item-default': {
       ...theme.typography.caption,
       fontFamily: theme.typography.fontFamilyCode,
@@ -266,12 +270,8 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                                       <span>
                                         :{' '}
                                         <Typography
-                                          className="MuiApi-table-item-type"
+                                          className="MuiApi-table-item-type MuiApi-table-item-signature-type"
                                           component="code"
-                                          sx={{
-                                            textDecoration: 'underline',
-                                            cursor: 'help',
-                                          }}
                                         >
                                           {argType}
                                         </Typography>
