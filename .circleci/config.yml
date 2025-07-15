@@ -395,6 +395,8 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm release:build
+          environment:
+            MUI_EXPERIMENTAL_MJS: 1
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
