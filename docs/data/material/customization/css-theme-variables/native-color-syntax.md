@@ -8,10 +8,10 @@ This feature only works in modern browsers. Please check the [browser support](h
 
 ## Benefits
 
-- No longer need JavaScript to manipulate colors.
-- Support modern color spaces, for example `oklch`, `oklab`, and `display-p3`.
-- Support color aliases to external CSS variables.
-- Automatically calculate contrast text from the main color.
+- No longer need to use JavaScript to manipulate colors.
+- Supports modern color spaces, for example `oklch`, `oklab`, and `display-p3`.
+- Supports color aliases to external CSS variables.
+- Automatically calculates contrast text from the main color.
 
 ## Usage
 
@@ -19,7 +19,7 @@ Set `cssVariables` with `nativeColorSyntax: true` to the theme options.
 Material UI will start using CSS color-mix and relative color instead of the JavaScript color manipulation.
 
 :::info
-Try inspecting the demo below to the calculated values of the color tokens.
+Try inspecting the demo below to see the calculated values of the color tokens.
 :::
 
 ```js
@@ -78,7 +78,7 @@ When native color syntax is enabled, those functions will use CSS color-mix and 
 
 :::info
 The theme color functions are backward compatible.
-If native color syntax is not enabled, they will fallback to the JavaScript color manipulation.
+If native color syntax is not enabled, they will fall back to the JavaScript color manipulation.
 :::
 
 ## Contrast color function
@@ -90,7 +90,7 @@ The demo below shows the result of the `theme.palette.getContrastText` function 
 {{"demo": "ContrastTextDemo.js"}}
 
 :::info
-The CSS variable `--__l` and `--__a` are internal variables set globally by Material UI.
+The CSS variables `--__l` and `--__a` are internal variables set globally by Material UI.
 
 To learn more about the formula, please refer to the [color-contrast research](https://lea.verou.me/blog/2024/contrast-color).
 :::
