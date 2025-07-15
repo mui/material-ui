@@ -52,9 +52,6 @@ importers:
       '@arethetypeswrong/cli':
         specifier: ^0.18.2
         version: 0.18.2
-      '@argos-ci/core':
-        specifier: ^3.2.0
-        version: 3.2.0
       '@babel/cli':
         specifier: ^7.28.0
         version: 7.28.0(@babel/core@7.28.0)
