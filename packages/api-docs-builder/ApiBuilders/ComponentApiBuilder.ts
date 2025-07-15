@@ -439,11 +439,12 @@ const attachTranslations = (
       (signatureArgs || [])
         .concat(signatureReturn || [])
         .forEach(({ name, description, argType, argTypeDescription }) => {
-          typeDescriptions[name] = renderMarkdown(description);
-          typeDescriptions.argType = argType;
-          typeDescriptions.argTypeDescription = argTypeDescription
-            ? renderMarkdown(argTypeDescription)
-            : undefined;
+          typeDescriptions[name] = {
+            name,
+            description: renderMarkdown(description),
+            argType,
+            argTypeDescription: argTypeDescription ? renderMarkdown(argTypeDescription) : undefined,
+          };
         });
 
       translations.propDescriptions[propName] = {
