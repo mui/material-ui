@@ -11,5 +11,9 @@
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts*"],
-  "exclude": ["src/**/*.d.ts", "src/**/*.spec.ts*", "src/**/*.test.ts*"]
+  "exclude": [
+    "src/types/OverridableComponentAugmentation.*",
+    "src/**/*.spec.ts*",
+    "src/**/*.test.ts*"
+  ]
 }
