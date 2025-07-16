@@ -78,7 +78,7 @@
           "name": "option",
           "description": "The option to test.",
           "argType": "Value",
-          "argTypeDescription": "The value type. It will be the same type as <code>value</code> or <code>null</code>. It can be in <code>[start, end]</code> format in case of range value."
+          "argTypeDescription": "The option shape. Will be the same shape as an item of the options."
         }
       }
     },
