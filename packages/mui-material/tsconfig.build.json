@@ -3,7 +3,13 @@
   // Actual .ts source files are transpiled via babel
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "paths": {},
+    "paths": {
+      // reset paths, but keep the one for @mui/material. Necessary to be able to build
+      //   packages/mui-material/src/types/OverridableComponentAugmentation.ts
+      //   packages/mui-material/src/themeCssVarsAugmentation/index.ts
+      // as the types to be overriden are otherwise not found
+      "@mui/material/*": ["./src/*"]
+    },
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
@@ -11,9 +17,5 @@
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts*"],
-  "exclude": [
-    "src/types/OverridableComponentAugmentation.*",
-    "src/**/*.spec.ts*",
-    "src/**/*.test.ts*"
-  ]
+  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"]
 }

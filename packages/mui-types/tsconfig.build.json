@@ -3,7 +3,12 @@
   // Actual .ts source files are transpiled via babel
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "paths": {},
+    "paths": {
+      // reset paths, but keep the one for @mui/types. Necessary to be able to build
+      //   packages/mui-types/src/OverridableComponentAugmentation.ts
+      // as the types to be overriden are otherwise not found
+      "@mui/types": ["./src"]
+    },
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
@@ -11,5 +16,5 @@
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts*"],
-  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*", "src/OverridableComponentAugmentation.ts"]
+  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"]
 }
