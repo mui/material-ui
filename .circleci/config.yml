@@ -597,7 +597,7 @@ jobs:
 
       - run:
           name: build @mui packages
-          command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+          command: pnpm release:build --scope "@mui/*" --ignore @mui/icons-material
       - aws-cli/setup:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
