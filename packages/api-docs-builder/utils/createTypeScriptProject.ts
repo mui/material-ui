@@ -43,7 +43,7 @@ export const createTypeScriptProject = (
   const {
     name,
     rootPath,
-    tsConfigPath: inputTsConfigPath = 'tsconfig.build.json',
+    tsConfigPath: inputTsConfigPath = 'tsconfig.json',
     entryPointPath: inputEntryPointPath,
     files,
   } = options;
