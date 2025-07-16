@@ -248,7 +248,9 @@ export default function PropertiesList(props: PropertiesListProps) {
                                     </Tooltip>
                                   </span>
                                 )}{' '}
-                                {argDescription}
+                                {argDescription && (
+                                  <span dangerouslySetInnerHTML={{ __html: argDescription }} />
+                                )}
                               </li>
                             ),
                           )}

@@ -278,7 +278,9 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                                       </span>
                                     </Tooltip>
                                   )}{' '}
-                                  {argDescription}
+                                  {argDescription && (
+                                    <span dangerouslySetInnerHTML={{ __html: argDescription }} />
+                                  )}
                                 </li>
                               ),
                             )}
