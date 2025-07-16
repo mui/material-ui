@@ -10,34 +10,38 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
   const printOptions = options.printOptions;
 
-  // Check if the file imports alpha, lighten, or darken from @mui/system/colorManipulator
+  // Check if the file imports alpha, lighten, or darken from @mui/system/colorManipulator or @mui/material/styles
   let hasAlphaImport = false;
   let hasLightenImport = false;
   let hasDarkenImport = false;
 
-  root
-    .find(j.ImportDeclaration, {
-      source: {
-        value: '@mui/system/colorManipulator',
-      },
-    })
-    .forEach((path) => {
-      path.node.specifiers.forEach((spec) => {
-        if (spec.type === 'ImportSpecifier') {
-          if (spec.imported.name === 'alpha') {
-            hasAlphaImport = true;
-          }
-          if (spec.imported.name === 'lighten') {
-            hasLightenImport = true;
-          }
-          if (spec.imported.name === 'darken') {
-            hasDarkenImport = true;
-          }
-        }
-      });
-    });
+  const importSources = ['@mui/system/colorManipulator', '@mui/material/styles', '@mui/material'];
 
-  // Skip transformation if none of the functions are imported from @mui/system/colorManipulator
+  importSources.forEach((source) => {
+    root
+      .find(j.ImportDeclaration, {
+        source: {
+          value: source,
+        },
+      })
+      .forEach((path) => {
+        path.node.specifiers.forEach((spec) => {
+          if (spec.type === 'ImportSpecifier') {
+            if (spec.imported.name === 'alpha') {
+              hasAlphaImport = true;
+            }
+            if (spec.imported.name === 'lighten') {
+              hasLightenImport = true;
+            }
+            if (spec.imported.name === 'darken') {
+              hasDarkenImport = true;
+            }
+          }
+        });
+      });
+  });
+
+  // Skip transformation if none of the functions are imported
   if (!hasAlphaImport && !hasLightenImport && !hasDarkenImport) {
     return file.source;
   }
@@ -97,6 +101,21 @@ export default function transformer(file, api, options) {
         }
       }
     });
+
+    root
+      .find(j.CallExpression, {
+        callee: {
+          name: 'alpha',
+        },
+      })
+      .forEach((path) => {
+        path.replace(
+          j.callExpression(
+            j.memberExpression(j.identifier('theme'), j.identifier('alpha')),
+            path.node.arguments,
+          ),
+        );
+      });
   }
 
   // Transform lighten function
@@ -135,37 +154,39 @@ export default function transformer(file, api, options) {
       });
   }
 
-  // Remove transformed functions from import statement
-  root
-    .find(j.ImportDeclaration, {
-      source: {
-        value: '@mui/system/colorManipulator',
-      },
-    })
-    .forEach((path) => {
-      const specifiers = path.node.specifiers.filter((spec) => {
-        if (spec.type === 'ImportSpecifier') {
-          const name = spec.imported.name;
-          // Remove if it was transformed
-          if (
-            (name === 'alpha' && hasAlphaImport) ||
-            (name === 'lighten' && hasLightenImport) ||
-            (name === 'darken' && hasDarkenImport)
-          ) {
-            return false;
+  // Remove transformed functions from import statements
+  importSources.forEach((source) => {
+    root
+      .find(j.ImportDeclaration, {
+        source: {
+          value: source,
+        },
+      })
+      .forEach((path) => {
+        const specifiers = path.node.specifiers.filter((spec) => {
+          if (spec.type === 'ImportSpecifier') {
+            const name = spec.imported.name;
+            // Remove if it was transformed
+            if (
+              (name === 'alpha' && hasAlphaImport) ||
+              (name === 'lighten' && hasLightenImport) ||
+              (name === 'darken' && hasDarkenImport)
+            ) {
+              return false;
+            }
           }
-        }
-        return true;
-      });
+          return true;
+        });
 
-      if (specifiers.length === 0) {
-        // Remove the import entirely if no specifiers left
-        j(path).remove();
-      } else {
-        // Update the import with remaining specifiers
-        path.node.specifiers = specifiers;
-      }
-    });
+        if (specifiers.length === 0) {
+          // Remove the import entirely if no specifiers left
+          j(path).remove();
+        } else {
+          // Update the import with remaining specifiers
+          path.node.specifiers = specifiers;
+        }
+      });
+  });
 
   return root.toSource(printOptions);
 }

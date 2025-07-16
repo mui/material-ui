@@ -36,6 +36,14 @@ describe('@mui/codemod', () => {
           actual: '/test-cases/no-import.actual.js',
           expected: '/test-cases/no-import.expected.js',
         },
+        {
+          actual: '/test-cases/mui-material-styles.actual.js',
+          expected: '/test-cases/mui-material-styles.expected.js',
+        },
+        {
+          actual: '/test-cases/mixed-imports.actual.js',
+          expected: '/test-cases/mixed-imports.expected.js',
+        },
       ],
     });
   });

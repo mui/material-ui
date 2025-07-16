@@ -44,12 +44,12 @@ You should see the Material UI color tokens appear as CSS variables.
 
 ## Handling JavaScript color manipulation
 
-Your application might break if you're using the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` to manipulate colors that have been updated to use native color syntax.
+Your application might break if you're using the `alpha`, `lighten`, and `darken` functions from `@mui/*` to manipulate colors that have been updated to use native color syntax.
 
 For example, manipulating the `contrastText` token will break the application:
 
 ```js
-import { alpha } from '@mui/system/colorManipulator';
+import { alpha } from '@mui/material/styles';
 
 const theme = createTheme({
   cssVariables: { nativeColorSyntax: true },
@@ -84,7 +84,7 @@ Instead, use the theme color functions to manipulate colors like this:
 
 ## Codemod
 
-The codemod replaces the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` with theme color functions.
+The codemod replaces the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` or `@mui/material/styles` with theme color functions.
 
 ```bash
 npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
@@ -94,6 +94,7 @@ The following transformation example shows what the codemod does:
 
 ```diff
 - import { alpha } from '@mui/system/colorManipulator';
+- // or import { alpha } from '@mui/material/styles';
 
  styled('div')(({ theme }) => ({
    width: '100%',
