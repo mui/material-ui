@@ -82,10 +82,11 @@ async function renameDtsFilesToDmts(sourceDirectory: string) {
   console.log('Renaming .d.ts files to .d.mts files in', sourceDirectory);
   await Promise.all(
     dtsFiles.map(async (dtsFile) => {
-      const mtsFile = dtsFile.replace(/\.d\.ts$/, '.d.mts');
-      // @TODO - Fix this. Temporarily maintaining both .d.ts and .d.mts files to avoid issues with parent packages that
-      // expect .d.ts files to be present.
-      await fs.copyFile(dtsFile, mtsFile);
+      // Rename the file from .d.ts to .d.mts
+      const basename = path.basename(dtsFile, '.d.ts');
+      const dirname = path.dirname(dtsFile);
+      const newFilePath = path.join(dirname, `${basename}.d.mts`);
+      await fs.rename(dtsFile, newFilePath);
     }),
   );
 }

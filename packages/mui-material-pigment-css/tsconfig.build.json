@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "composite": true,
+    "paths": {},
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,

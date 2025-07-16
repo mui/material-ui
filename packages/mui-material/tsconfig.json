@@ -4,5 +4,8 @@
   "compilerOptions": {
     "moduleResolution": "Bundler"
   },
-  "exclude": ["test/typescript/moduleAugmentation", "src/types/OverridableComponentAugmentation.ts"]
+  "exclude": [
+    "test/typescript/moduleAugmentation",
+    "src/types/OverridableComponentAugmentation.d.ts"
+  ]
 }
