@@ -212,8 +212,8 @@
   "pnpm": {
     "packageExtensions": {
       "@pigment-css/react": {
-        "dependencies": {
-          "@mui/types": "workspace:^"
+        "peerDependencies": {
+          "@mui/types": "7"
         }
       }
     }
