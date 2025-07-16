@@ -55,7 +55,8 @@ const theme = createTheme({
   cssVariables: { nativeColorSyntax: true },
 });
 
-console.log(alpha(theme.palette.primary.contrastText, 0.3)); // ❌ This will break because `alpha` does not support relative colors.
+// ❌ This will break because `alpha` does not support relative colors.
+console.log(alpha(theme.palette.primary.contrastText, 0.3));
 ```
 
 To fix this, you can use the adapter `theme.alpha` function to manipulate colors.
@@ -65,7 +66,8 @@ const theme = createTheme({
   cssVariables: { nativeColorSyntax: true },
 });
 
-console.log(theme.alpha(theme.palette.primary.contrastText, 0.3)); // ✅ This will work because `theme.alpha` supports relative colors.
+// ✅ This will work because `theme.alpha` supports relative colors.
+console.log(theme.alpha(theme.palette.primary.contrastText, 0.3));
 ```
 
 The same applies to the `lighten` and `darken` functions.
