@@ -209,15 +209,6 @@
   "engines": {
     "pnpm": "10.13.1"
   },
-  "pnpm": {
-    "packageExtensions": {
-      "@pigment-css/react": {
-        "dependencies": {
-          "@mui/types": "workspace:^"
-        }
-      }
-    }
-  },
   "resolutions": {
     "@babel/core": "^7.28.0",
     "@babel/plugin-transform-runtime": "^7.28.0",
