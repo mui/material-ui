@@ -21,6 +21,8 @@ overrides:
   '@pigment-css/nextjs-plugin': 0.0.30
   '@pigment-css/vite-plugin': 0.0.30
 
+packageExtensionsChecksum: sha256-CsjQdOHLIxEVb2BzL7tdDHAPrQUBuqB2SurhhtMu4L0=
+
 patchedDependencies:
   styled-components:
     hash: 383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f
@@ -18162,6 +18164,7 @@ snapshots:
       '@emotion/serialize': 1.3.3
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0)
       '@mui/system': 6.4.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0)
+      '@mui/types': link:packages/mui-types/build
       '@mui/utils': 6.4.8(@types/react@19.1.8)(react@19.1.0)
       '@wyw-in-js/processor-utils': 0.5.5
       '@wyw-in-js/shared': 0.5.5
