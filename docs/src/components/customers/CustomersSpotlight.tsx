@@ -34,15 +34,15 @@ function Spotlight({ posts }: SpotlightProps) {
             key={index}
             component="li"
             variant="outlined"
-            sx={(theme) => ({
+            sx={(t) => ({
               p: 2,
               display: 'flex',
               flexDirection: 'column',
-              backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
+              backgroundImage: (t.vars || t).palette.gradients.radioSubtle,
               boxShadow: '0 4px 12px rgba(170, 180, 190, 0.2)',
-              ...theme.applyDarkStyles({
-                background: (theme.vars || theme).palette.primaryDark[900],
-                backgroundImage: (theme.vars || theme).palette.gradients.radioSubtle,
+              ...t.applyDarkStyles({
+                background: (t.vars || t).palette.primaryDark[900],
+                backgroundImage: (t.vars || t).palette.gradients.radioSubtle,
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
               }),
             })}
@@ -64,7 +64,9 @@ function Spotlight({ posts }: SpotlightProps) {
                     maxWidth: '100%',
                     height: 'auto',
                   }}
-                  src={theme.palette.mode === 'dark' ? post.image.replace('light', 'dark') : post.image}
+                  src={
+                    theme.palette.mode === 'dark' ? post.image.replace('light', 'dark') : post.image
+                  }
                 />
               </Box>
             )}
