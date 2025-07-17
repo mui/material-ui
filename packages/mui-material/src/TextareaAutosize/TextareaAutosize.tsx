@@ -89,7 +89,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     }
 
     hiddenTextarea.style.width = computedStyle.width;
-    hiddenTextarea.value = textarea.value || props.placeholder || 'x';
+    hiddenTextarea.value = textarea.value || 'x';
     if (hiddenTextarea.value.slice(-1) === '\n') {
       // Certain fonts which overflow the line height will cause the textarea
       // to report a different scrollHeight depending on whether the last line
@@ -126,7 +126,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
     const overflowing = Math.abs(outerHeight - innerHeight) <= 1;
 
     return { outerHeightStyle, overflowing };
-  }, [maxRows, minRows, props.placeholder]);
+  }, [maxRows, minRows]);
 
   const didHeightChange = useEventCallback(() => {
     const textarea = textareaRef.current;
@@ -155,6 +155,9 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
       textarea.style.height = `${outerHeightStyle}px`;
     }
     textarea.style.overflow = textareaStyles.overflowing ? 'hidden' : '';
+    if (!textarea.value) {
+      textarea.style.whiteSpace = 'nowrap';
+    }
   }, [calculateTextareaStyles]);
 
   const frameRef = React.useRef(-1);
@@ -274,10 +277,6 @@ TextareaAutosize.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  placeholder: PropTypes.string,
   /**
    * @ignore
    */
