@@ -370,6 +370,7 @@ describe('<Autocomplete />', () => {
       checkHighlightIs(getByRole('listbox'), 'Bar');
     });
 
+    // https://github.com/mui/material-ui/issues/45279
     it('should auto highlight first option after options order changes with autoHighlight', () => {
       const { setProps, getByRole } = render(
         <Autocomplete
