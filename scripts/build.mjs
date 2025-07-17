@@ -41,15 +41,18 @@ async function run(argv) {
   const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
 
   let babelRuntimeVersion = packageJson.dependencies['@babel/runtime'];
+  if (babelRuntimeVersion === 'catalog:') {
+    // resolve the version from the given package
+    // outputs the pnpm-workspace.yaml config as json
+    const { stdout: configStdout } = await exec('pnpm config list --json');
+    const pnpmWorkspaceConfig = JSON.parse(configStdout);
+    babelRuntimeVersion = pnpmWorkspaceConfig.catalog['@babel/runtime'];
+  }
+
   if (!babelRuntimeVersion) {
     throw new Error(
       'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',
     );
-  } else if (babelRuntimeVersion === 'catalog:') {
-    // resolve the version from the given package
-    const { stdout: listedBabelRuntime } = await exec('pnpm list "@babel/runtime" --json');
-    const jsonListedDependencies = JSON.parse(listedBabelRuntime);
-    babelRuntimeVersion = jsonListedDependencies[0].dependencies['@babel/runtime'].version;
   }
 
   const babelConfigPath = path.resolve(getWorkspaceRoot(), 'babel.config.js');
