@@ -101,6 +101,10 @@ const StyledTable = styled('table')(
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
       },
+      '& .MuiApi-table-item-signature-type': {
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+        textDecorationColor: alpha(darkTheme.palette.primary.main, 0.6),
+      },
       '& .MuiApi-table-item-default': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         backgroundColor: `var(--muidocs-palette-grey-900, ${darkTheme.palette.grey[900]})`,

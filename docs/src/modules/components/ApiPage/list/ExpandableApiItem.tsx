@@ -157,6 +157,10 @@ const Root = styled('div')<{ ownerState: { type?: DescriptionType } }>(
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
       },
+      '& .signature-type': {
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+        textDecorationColor: alpha(darkTheme.palette.primary.main, 0.6),
+      },
     },
   }),
 );
