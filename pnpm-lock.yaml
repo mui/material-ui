@@ -538,9 +538,6 @@ importers:
       '@babel/runtime':
         specifier: ^7.27.6
         version: 7.27.6
-      '@babel/runtime-corejs2':
-        specifier: ^7.27.6
-        version: 7.27.6
       '@docsearch/react':
         specifier: ^3.9.0
         version: 3.9.0(@algolia/client-search@5.18.0)(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.13.0)
@@ -673,9 +670,6 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      core-js:
-        specifier: ^2.6.11
-        version: 2.6.12
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -3108,10 +3102,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.28.0
-
-  '@babel/runtime-corejs2@7.27.6':
-    resolution: {integrity: sha512-WgvlQpGnm1rmvgrm+H+cVcAckEPlwURUCvv1ZVSFr9J9yixgFbNlu7+CjVKKAd4xQtMijPwxwcSi5SFFHKlmDw==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime-corejs3@7.24.4':
     resolution: {integrity: sha512-VOQOexSilscN24VEY810G/PqtpFvx/z6UqDIjIWbDe2368HhDLkYN5TYwaEz/+eRCUkhJ2WaNLLmQAlxzfWj4w==}
@@ -7644,10 +7634,6 @@ packages:
 
   core-js-pure@3.32.1:
     resolution: {integrity: sha512-f52QZwkFVDPf7UEQZGHKx6NYxsxmVGJe5DIvbzOdRMJlmT6yv0KDjR8rmy3ngr/t5wU54c7Sp/qIJH0ppbhVpQ==}
-
-  core-js@2.6.12:
-    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
-    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
 
   core-js@3.32.1:
     resolution: {integrity: sha512-lqufgNn9NLnESg5mQeYsxQP5w7wrViSj0jr/kv6ECQiByzQkrn1MKvV0L3acttpDqfQrHLwr2KCMgX5b8X+lyQ==}
@@ -16096,10 +16082,6 @@ snapshots:
       pirates: 4.0.6
       source-map-support: 0.5.21
 
-  '@babel/runtime-corejs2@7.27.6':
-    dependencies:
-      core-js: 2.6.12
-
   '@babel/runtime-corejs3@7.24.4':
     dependencies:
       core-js-pure: 3.32.1
@@ -21471,8 +21453,6 @@ snapshots:
       browserslist: 4.25.1
 
   core-js-pure@3.32.1: {}
-
-  core-js@2.6.12: {}
 
   core-js@3.32.1: {}
 
