@@ -19,9 +19,7 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import teamMembers from 'docs/data/about/teamMembers.json';
-/**
- * The teamMembers.json file should be synced with `pnpm docs:sync-team`.
- */
+// The teamMembers.json file should be synced with `pnpm docs:sync-team`.
 
 interface Profile {
   /**
@@ -243,6 +241,16 @@ const contributors = [
     src: 'https://avatars.githubusercontent.com/u/20900032',
     twitter: 'ZeeshanTamboli',
     linkedin: 'in/zeeshantamboli',
+  },
+  {
+    name: 'Sai Chand',
+    github: 'sai6855',
+    location: 'Hyderabad, India',
+    locationCountry: 'in',
+    title: 'Material UI, MUI X',
+    src: 'https://avatars.githubusercontent.com/u/60743144',
+    twitter: 'UrsSaichand',
+    linkedin: 'in/sai-chand-yamsani',
   },
 ];
 

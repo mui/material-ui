@@ -52,12 +52,12 @@ describe('StackBlitz', () => {
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.js"></script>
+    <script type="module" src="/src/index.jsx"></script>
   </body>
 </html>`,
         'package.json': `{
-  "name": "mui-demo",
   "private": true,
+  "description": "https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -76,7 +76,7 @@ describe('StackBlitz', () => {
     "vite": "latest"
   }
 }`,
-        'src/Demo.js': `import * as React from 'react';
+        'src/Demo.jsx': `import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
@@ -90,7 +90,7 @@ export default function BasicButtons() {
   );
 }
 `,
-        'src/index.js': `import * as React from 'react';
+        'src/index.jsx': `import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './Demo';
@@ -166,8 +166,8 @@ export default defineConfig({
   </body>
 </html>`,
         'package.json': `{
-  "name": "mui-demo",
   "private": true,
+  "description": "https://github.com/mui/material-ui/blob/v5.7.0/docs/data/material/components/buttons/BasicButtons.tsx",
   "type": "module",
   "scripts": {
     "dev": "vite",

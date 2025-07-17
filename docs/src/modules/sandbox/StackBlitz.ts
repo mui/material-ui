@@ -1,9 +1,18 @@
 import addHiddenInput from 'docs/src/modules/utils/addHiddenInput';
 import SandboxDependencies from 'docs/src/modules/sandbox/Dependencies';
-import getFileExtension from 'docs/src/modules/sandbox/FileExtension';
 import flattenRelativeImports from 'docs/src/modules/sandbox/FlattenRelativeImports';
 import { CodeVariant, DemoData } from 'docs/src/modules/sandbox/types';
 import * as CRA from 'docs/src/modules/sandbox/CreateReactApp';
+
+function getFileExtension(codeVariant: 'TS' | 'JS') {
+  if (codeVariant === 'TS') {
+    return 'tsx';
+  }
+  if (codeVariant === 'JS') {
+    return 'jsx';
+  }
+  throw new Error(`Unsupported codeVariant: ${codeVariant}`);
+}
 
 function ensureExtension(file: string, extension: string): string {
   return file.endsWith(`.${extension}`) ? file : `${file}.${extension}`;
@@ -47,8 +56,9 @@ function openStackBlitz({
  */
 function createViteFiles(
   demoData: DemoData,
-  dependencies: Record<string, string> = {},
-  devDependencies: Record<string, string> = {},
+  dependencies: Record<string, string>,
+  devDependencies: Record<string, string>,
+  description: string,
 ): Record<string, string> {
   const ext = getFileExtension(demoData.codeVariant);
   return {
@@ -64,8 +74,8 @@ export default defineConfig({
     'index.html': CRA.getHtml({ ...demoData, main: `/src/index.${ext}` }),
     'package.json': JSON.stringify(
       {
-        name: 'mui-demo',
         private: true,
+        description,
         type: 'module',
         scripts: {
           dev: 'vite',
@@ -115,7 +125,7 @@ export default defineConfig({
 }
 
 /**
- * Create a Material Template for StackBlitz using the SDK and Vite
+ * Create a Material Template for StackBlitz using the SDK and Vite.
  */
 function createJoyTemplate(templateData: {
   title: string;
@@ -139,7 +149,7 @@ function createJoyTemplate(templateData: {
   });
 
   // Create base Vite files with dependencies
-  const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
+  const viteFiles = createViteFiles(demoData, dependencies, devDependencies, description);
 
   // Restructure template files to be under src/
   const templateSourceFiles = templateData.files
@@ -183,7 +193,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
       });
       return this;
     },
-    openStackBlitz: (initialFile: string = `src/App`) => {
+    openStackBlitz: (initialFile: string = 'src/App') => {
       openStackBlitz({
         title,
         description,
@@ -194,7 +204,7 @@ ReactDOM.createRoot(document.querySelector("#root")${type}).render(
   };
 }
 /**
- * Create a Material Template for StackBlitz using the SDK and Vite
+ * Create a Material Template for StackBlitz using the SDK and Vite.
  */
 function createMaterialTemplate(templateData: {
   title: string;
@@ -218,7 +228,7 @@ function createMaterialTemplate(templateData: {
   });
 
   // Create base Vite files with dependencies
-  const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
+  const viteFiles = createViteFiles(demoData, dependencies, devDependencies, description);
 
   // Restructure template files to be under src/
   const templateSourceFiles = templateData.files
@@ -260,7 +270,7 @@ ReactDOM.createRoot(document.getElementById('root')${templateData.codeVariant ==
       });
       return this;
     },
-    openStackBlitz: (initialFile: string = `src/App`) => {
+    openStackBlitz: (initialFile: string = 'src/App') => {
       openStackBlitz({
         title,
         description,
@@ -272,8 +282,8 @@ ReactDOM.createRoot(document.getElementById('root')${templateData.codeVariant ==
 }
 
 /**
- * Create a React App for StackBlitz using the SDK and Vite
- * This maintains similar structure to the original createReactApp but uses Vite
+ * Create a React App for StackBlitz using the SDK and Vite.
+ * This maintains similar structure to the original createReactApp but uses Vite.
  */
 function createReactApp(demoData: DemoData) {
   const ext = getFileExtension(demoData.codeVariant);
@@ -285,7 +295,7 @@ function createReactApp(demoData: DemoData) {
     devDeps: VITE_DEV_DEPENDENCIES,
   });
 
-  const viteFiles = createViteFiles(demoData, dependencies, devDependencies);
+  const viteFiles = createViteFiles(demoData, dependencies, devDependencies, description);
 
   const demoFiles: Record<string, string> = {
     [`src/Demo.${ext}`]: flattenRelativeImports(demoData.raw),
