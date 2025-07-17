@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
@@ -45,6 +44,13 @@ const StyledTable = styled('table')(
     },
     '& .MuiApi-table-item-signature-type': {
       textDecoration: 'underline',
+      textDecorationStyle: 'dotted',
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+      fontWeight: theme.typography.fontWeightMedium,
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
       cursor: 'help',
     },
     '& .MuiApi-table-item-default': {
@@ -258,26 +264,25 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                             {signatureArgs.map(
                               ({ argName, argDescription, argType, argTypeDescription }) => (
                                 <li className="prop-signature-list" key={argName}>
-                                  <code>{argName}</code>
-                                  {argType && argTypeDescription && (
-                                    <Tooltip
-                                      title={
-                                        <span
-                                          dangerouslySetInnerHTML={{ __html: argTypeDescription }}
-                                        />
-                                      }
-                                    >
-                                      <span>
-                                        :{' '}
-                                        <Typography
-                                          className="MuiApi-table-item-type MuiApi-table-item-signature-type"
-                                          component="code"
-                                        >
-                                          {argType}
-                                        </Typography>
-                                      </span>
-                                    </Tooltip>
-                                  )}{' '}
+                                  <code>
+                                    {argName}
+                                    {argType && argTypeDescription && (
+                                      <Tooltip
+                                        title={
+                                          <span
+                                            dangerouslySetInnerHTML={{ __html: argTypeDescription }}
+                                          />
+                                        }
+                                      >
+                                        <span>
+                                          :{' '}
+                                          <span className="MuiApi-table-item-signature-type">
+                                            {argType}
+                                          </span>
+                                        </span>
+                                      </Tooltip>
+                                    )}
+                                  </code>{' '}
                                   {argDescription && (
                                     <span dangerouslySetInnerHTML={{ __html: argDescription }} />
                                   )}

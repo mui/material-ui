@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
@@ -228,26 +227,23 @@ export default function PropertiesList(props: PropertiesListProps) {
                           {signatureArgs.map(
                             ({ argName, argDescription, argType, argTypeDescription }) => (
                               <li key={argName}>
-                                <code>{argName}</code>
-                                {argType && argTypeDescription && (
-                                  <span>
-                                    :{' '}
-                                    <Tooltip
-                                      title={
-                                        <span
-                                          dangerouslySetInnerHTML={{ __html: argTypeDescription }}
-                                        />
-                                      }
-                                    >
-                                      <Typography
-                                        className="Api-code signature-type"
-                                        component="code"
+                                <code>
+                                  {argName}
+                                  {argType && argTypeDescription && (
+                                    <span>
+                                      :{' '}
+                                      <Tooltip
+                                        title={
+                                          <span
+                                            dangerouslySetInnerHTML={{ __html: argTypeDescription }}
+                                          />
+                                        }
                                       >
-                                        {argType}
-                                      </Typography>
-                                    </Tooltip>
-                                  </span>
-                                )}{' '}
+                                        <span className="signature-type">{argType}</span>
+                                      </Tooltip>
+                                    </span>
+                                  )}
+                                </code>{' '}
                                 {argDescription && (
                                   <span dangerouslySetInnerHTML={{ __html: argDescription }} />
                                 )}
