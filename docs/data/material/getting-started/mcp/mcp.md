@@ -22,12 +22,7 @@ MCP solves these problems by:
 
 ## Installation & Setup
 
-The MCP is available as a separate package that runs locally and communicates via your AI client using the `stdio` transport.
-Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
-
-```bash
-npx -y @mui/mcp@latest
-```
+Below are the list of MCP clients that are supported.
 
 ### Cursor/Windsurf
 
@@ -105,6 +100,8 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 
 ### Question
 
+Below is a prompt related to the [MUI X — DataGrid Pro](/x/react-data-grid/#pro-version):
+
 > I am using DataGrid Pro version and I am trying to use pinning and reordering in the same time.
 > I don't want the reorder handler to disappear when I have the row pinned.
 > I am using it for functionality with pagination so I can:
@@ -117,29 +114,12 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 >
 > However, when I'm trying to use GRID_REORDER_COL_DEF the renderCell is returning null for pinned rows.
 
-### AI clients without MCP
+### Response
 
-> This is a known limitation in MUI DataGrid Pro: when a row is pinned, the default row reorder handler
-> (provided by GRID_REORDER_COL_DEF) is hidden for pinned rows, and the renderCell returns null.
-> This is by design to prevent reordering of pinned rows, but your use case requires both features together.
->
-> To achieve your goal (showing the reorder handler for pinned rows and allowing cross-page drag-and-drop with pinned rows), you need to:
->
-> Override the default renderCell of the reorder column to always render the reorder handler, even for pinned rows.
-> Implement custom logic to handle reordering, especially across pages and with pinned rows.
->
-> Here's how you can proceed:
->
-> Create a custom reorder column definition
-> Use your own renderCell that always renders the reorder handler, regardless of pinning
-> You can copy the default reorder handler from MUI source and adjust the logic as needed
-> Add this custom column to your columns array, replacing the default reorder column
-> Handle the row reordering logic in your onRowOrderChange callback
->
-> Would you like a code example for a custom reorder column that works with pinned rows?
-> If yes, please specify if you're using TypeScript or JavaScript, and if you want the handler to be visible for both pinned and unpinned rows
+Let's compare the response with and without MCP:
 
-### AI clients with MCP
+<details open>
+<summary><b>AI clients with MCP</b></summary>
 
 > You are encountering this issue because, according to the official MUI DataGrid Pro documentation, row pinning and row reordering are not fully compatible.
 > Specifically:
@@ -161,7 +141,32 @@ Here's a real-world comparison of how MCP helps you get answers that are accurat
 >
 > If you want a code example for a custom workaround, let me know!
 
-<hr/>
+</details>
+
+<details>
+<summary><b>AI clients without MCP</b></summary>
+
+> This is a known limitation in MUI DataGrid Pro: when a row is pinned, the default row reorder handler
+> (provided by GRID_REORDER_COL_DEF) is hidden for pinned rows, and the renderCell returns null.
+> This is by design to prevent reordering of pinned rows, but your use case requires both features together.
+>
+> To achieve your goal (showing the reorder handler for pinned rows and allowing cross-page drag-and-drop with pinned rows), you need to:
+>
+> Override the default renderCell of the reorder column to always render the reorder handler, even for pinned rows.
+> Implement custom logic to handle reordering, especially across pages and with pinned rows.
+>
+> Here's how you can proceed:
+>
+> Create a custom reorder column definition
+> Use your own renderCell that always renders the reorder handler, regardless of pinning
+> You can copy the default reorder handler from MUI source and adjust the logic as needed
+> Add this custom column to your columns array, replacing the default reorder column
+> Handle the row reordering logic in your onRowOrderChange callback
+>
+> Would you like a code example for a custom reorder column that works with pinned rows?
+> If yes, please specify if you're using TypeScript or JavaScript, and if you want the handler to be visible for both pinned and unpinned rows
+
+</details>
 
 The MCP-aided response is more coherent and directly references the documentation, building trust and enabling the user to be able to discover further details.
 
@@ -212,3 +217,12 @@ For VS Code, for instance, add the following to `.github/instructions/mui.md`:
 ```
 
 You can use the same content as rules for whichever AI-enabled IDE you're using.
+
+## Troubleshooting
+
+The MCP is available as a separate package that runs locally and communicates via your AI client using the `stdio` transport.
+Use the following command to test the MCP in the [MCP inspector](https://modelcontextprotocol.io/docs/tools/inspector):
+
+```bash
+npx -y @mui/mcp@latest
+```
