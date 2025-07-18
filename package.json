@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@googleapis/sheets": "^9.8.0",
-    "@netlify/functions": "^3.1.10",
+    "@netlify/functions": "^4.1.12",
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
