@@ -1340,6 +1340,7 @@ importers:
       fs-extra:
         specifier: ^11.3.0
         version: 11.3.0
+    publishDirectory: build
 
   packages/mui-envinfo/test:
     dependencies:

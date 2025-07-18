@@ -9,7 +9,7 @@ envinfo
         '@mui/*',
         '@toolpad/*',
         '@pigment-css/*',
-        '@base_ui/*',
+        '@base-ui-components/*',
         // Peer dependencies
         'react',
         'react-dom',
@@ -20,7 +20,7 @@ envinfo
         '@types/react',
         // auxiliary libraries
         'typescript',
-      ]}}`,
+      ].join(',')}}`,
       Binaries: ['Node', 'npm', 'pnpm'],
       System: ['OS'],
       Browsers: ['Chrome', 'Firefox', 'Safari', 'Edge'],
