@@ -83,20 +83,19 @@ If native color syntax is not enabled, they will fall back to the JavaScript col
 
 ## Contrast color function
 
-The `theme.palette.getContrastText` function produces the contrast color based on the [color-contrast research](https://lea.verou.me/blog/2024/contrast-color).
-
-The demo below shows the result of the `theme.palette.getContrastText` function to produce the text color based on the selected background.
+The `theme.palette.getContrastText()` function produces the contrast color.
+The demo below shows the result of the `theme.palette.getContrastText()` function, which produces the text color based on the selected background.
 
 {{"demo": "ContrastTextDemo.js"}}
 
 :::info
 The CSS variables `--__l` and `--__a` are internal variables set globally by Material UI.
 
-To learn more about the formula, please refer to the [color-contrast research](https://lea.verou.me/blog/2024/contrast-color).
+To learn more about the formulas used, see [this article on color contrast from Lea Verou](https://lea.verou.me/blog/2024/contrast-color).
 :::
 
 ## Caveats
 
-- The color contrast is calculated based on the [color-contrast research](https://lea.verou.me/blog/2024/contrast-color) by [Lea Verou](https://lea.verou.me/). The produced color **might not** be exactly the same as the JavaScript color manipulation.
-- In the future, the relative color contrast will be replaced by native [CSS `contrast-color` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/contrast-color) when the browser support is improved.
-- For relative color contrast, the color space is automatically set to `oklch` internally. It's not possible to change at the moment until we see the need for customizing it. Feel free to [open an issue](https://github.com/mui/material-ui/issues/new/) if you have a use case for it.
+- Because of the differences in how contrast is calculated between CSS and JavaScript, the resulting CSS colors may not exactly match the corresponding JS colors to be replaced.
+- In the future, the relative color contrast will be replaced by native [CSS `contrast-color()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/contrast-color) when browser support is improved.
+- For relative color contrast, the color space is automatically set to `oklch` internally. Currently it's not possible to change this, but please [open an issue](https://github.com/mui/material-ui/issues/new/) if you have a use case that calls for it.

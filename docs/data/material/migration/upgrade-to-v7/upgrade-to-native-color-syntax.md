@@ -2,7 +2,7 @@
 
 <p class="description">This guide explains how to upgrade from JavaScript color manipulation to native color syntax.</p>
 
-Native color syntax is a new opt-in feature that replaces the JavaScript color manipulation with CSS color-mix and relative color.
+Native color syntax is an opt-in feature that replaces the JavaScript color manipulation with CSS `color-mix()` and relative colors.
 Check out the [native color syntax documentation](/material-ui/customization/css-theme-variables/native-color-syntax/) for more details.
 
 ## Prerequisites
@@ -29,7 +29,7 @@ yarn add @mui/material@latest
 
 ## Enable native color syntax
 
-Set the `cssVariables.nativeColorSyntax` option to `true` in the `createTheme` function.
+Set the `cssVariables.nativeColorSyntax` option to `true` in the `createTheme()` function.
 
 ```js
 const theme = createTheme({
@@ -37,7 +37,7 @@ const theme = createTheme({
 });
 ```
 
-Once you've enabled the native color syntax, Material UI will start using CSS color-mix and relative color to manipulate colors.
+Once you've enabled the native color syntax, Material UI will start using CSS `color-mix()` and relative colors to manipulate colors.
 
 To check that it's working, open the browser's developer tools. On the Elements tab, click the Styles panel and search for "color-mix".
 You should see the Material UI color tokens appear as CSS variables.
@@ -59,7 +59,7 @@ const theme = createTheme({
 console.log(alpha(theme.palette.primary.contrastText, 0.3));
 ```
 
-To fix this, you can use the adapter `theme.alpha` function to manipulate colors.
+To fix this, you can use the `theme.alpha()` adapter function to manipulate colors.
 
 ```js
 const theme = createTheme({
@@ -86,7 +86,7 @@ Instead, use the theme color functions to manipulate colors like this:
 
 ## Codemod
 
-The codemod replaces the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` or `@mui/material/styles` with theme color functions.
+The codemod replaces the `alpha()`, `lighten()`, and `darken()` functions from `@mui/system/colorManipulator` or `@mui/material/styles` with theme color functions.
 
 ```bash
 npx @mui/codemod@latest v7.0.0/theme-color-functions <path>

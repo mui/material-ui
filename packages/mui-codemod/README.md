@@ -2162,7 +2162,7 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
 ```
 
-Replace the usage of the `alpha`, `lighten`, and `darken` functions from `@mui/system/colorManipulator` to use the `theme` object instead.
+Replace the usage of the `alpha()`, `lighten()`, and `darken()` functions from `@mui/system/colorManipulator` to use the `theme` object instead.
 
 ```diff
 - import { alpha, lighten, darken } from '@mui/system/colorManipulator';
