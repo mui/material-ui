@@ -240,14 +240,6 @@ jobs:
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
       - run:
-          name: Diff declaration files
-          command: |
-            git add -f packages/mui-material/build || echo '/material declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:stable && pnpm -r build:types
-            git --no-pager diff
-      - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
       - save_cache:
@@ -395,6 +387,8 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm release:build
+          environment:
+            MUI_EXPERIMENTAL_MJS: 1
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
@@ -595,7 +589,7 @@ jobs:
 
       - run:
           name: build @mui packages
-          command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+          command: pnpm release:build --scope "@mui/*" --ignore @mui/icons-material
       - aws-cli/setup:
           aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
           aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS

@@ -4,9 +4,11 @@ import path from 'path';
 import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
-import { parse } from 'jsonc-parser';
 
 const $$ = $({ stdio: 'inherit' });
+
+// Use .mjs extension for ESM output files if the MUI_EXPERIMENTAL_MJS environment variable is set.
+const EXPERIMENTAL_MJS = !!process.env.MUI_EXPERIMENTAL_MJS;
 
 async function emitDeclarations(tsconfig: string, outDir: string) {
   // eslint-disable-next-line no-console
@@ -14,22 +16,22 @@ async function emitDeclarations(tsconfig: string, outDir: string) {
   await $$`tsc -p ${tsconfig} --outDir ${outDir} --declaration --emitDeclarationOnly`;
 }
 
-async function postProcessImports(folder: string, removeCss: boolean) {
+async function postProcessImports(folder: string, removeCss: boolean, filter = '.d.ts') {
   // eslint-disable-next-line no-console
   console.log(`Adding import extensions`);
-  const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: folder });
+  const dtsFiles = await glob(`**/*${filter}`, { absolute: true, cwd: folder });
   if (dtsFiles.length === 0) {
-    throw new Error(`Unable to find declaration files in '${folder}'`);
+    return;
   }
 
-  const babelPlugins: babel.PluginItem[] = [
-    ['@babel/plugin-syntax-typescript', { dts: true }],
-    ['@mui/internal-babel-plugin-resolve-imports'],
-  ];
+  const babelPlugins: babel.PluginItem[] = [['@babel/plugin-syntax-typescript', { dts: true }]];
 
   if (removeCss) {
     babelPlugins.push(['babel-plugin-transform-remove-imports', { test: /\.css$/ }]);
   }
+
+  // this plugin needs to come after remove-imports so that css imports are already removed
+  babelPlugins.push(['@mui/internal-babel-plugin-resolve-imports']);
 
   await Promise.all(
     dtsFiles.map(async (dtsFile) => {
@@ -70,9 +72,28 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
   });
 }
 
+async function renameDtsFilesToDmts(sourceDirectory: string) {
+  const dtsFiles = await glob('**/*.d.ts', { absolute: true, cwd: sourceDirectory });
+  if (dtsFiles.length === 0) {
+    console.warn('No .d.ts files found in the directory. Skipping renaming to .d.mts');
+    return;
+  }
+
+  console.log('Renaming .d.ts files to .d.mts files in', sourceDirectory);
+  await Promise.all(
+    dtsFiles.map(async (dtsFile) => {
+      // Rename the file from .d.ts to .d.mts
+      const basename = path.basename(dtsFile, '.d.ts');
+      const dirname = path.dirname(dtsFile);
+      const newFilePath = path.join(dirname, `${basename}.d.mts`);
+      await fs.rename(dtsFile, newFilePath);
+    }),
+  );
+}
+
 interface HandlerArgv {
   skipTsc: boolean;
-  copy: string[];
+  cjsDir: string;
   removeCss: boolean;
 }
 
@@ -84,17 +105,12 @@ async function main(argv: HandlerArgv) {
     () => false,
   );
 
-  const tsConfig = tsconfigExists
-    ? (parse(await fs.readFile(tsconfigPath, 'utf-8')) as { compilerOptions: { outDir: string } })
-    : null;
-
   const srcPath = path.join(packageRoot, 'src');
   const buildFolder = path.join(packageRoot, 'build');
-  const esmOrOutDir = tsConfig?.compilerOptions.outDir
-    ? path.join(packageRoot, tsConfig.compilerOptions.outDir)
-    : path.join(buildFolder, 'esm');
+  const esmDir = path.join(buildFolder, 'esm');
+  const cjsDir = path.join(buildFolder, argv.cjsDir);
 
-  await copyDeclarations(srcPath, esmOrOutDir);
+  await copyDeclarations(srcPath, esmDir);
 
   if (!argv.skipTsc) {
     if (!tsconfigExists) {
@@ -105,14 +121,17 @@ async function main(argv: HandlerArgv) {
       );
     }
 
-    await emitDeclarations(tsconfigPath, esmOrOutDir);
+    await emitDeclarations(tsconfigPath, esmDir);
   }
 
-  await postProcessImports(esmOrOutDir, argv.removeCss);
+  await copyDeclarations(esmDir, cjsDir);
 
-  await Promise.all(
-    argv.copy.map((copy) => copyDeclarations(esmOrOutDir, path.join(packageRoot, copy))),
-  );
+  if (EXPERIMENTAL_MJS) {
+    await renameDtsFilesToDmts(esmDir);
+  }
+
+  await postProcessImports(esmDir, argv.removeCss, '.d.mts');
+  await postProcessImports(cjsDir, argv.removeCss, '.d.ts');
 
   const tsbuildinfo = await glob('**/*.tsbuildinfo', { absolute: true, cwd: buildFolder });
   await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
@@ -129,11 +148,10 @@ yargs(process.argv.slice(2))
           default: false,
           describe: 'Set to `true` if you want the legacy behavior of just copying .d.ts files.',
         })
-        .option('copy', {
-          alias: 'c',
-          type: 'array',
-          description: 'Directories where the type definition files should be copied',
-          default: ['build'],
+        .option('cjsDir', {
+          type: 'string',
+          description: 'Directory under the build folder where the cjs build lives',
+          default: '.',
         })
         .option('removeCss', {
           type: 'boolean',
