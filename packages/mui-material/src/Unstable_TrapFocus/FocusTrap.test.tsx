@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor, screen, fireEvent } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
 
@@ -89,7 +89,7 @@ describe('<FocusTrap />', () => {
           <UnfocusableDialog />
         </FocusTrap>,
       );
-    }).toErrorDev('MUI: The modal content node does not accept focus');
+    }).toErrorDev('MUI: The modal content node does not have focusable elements');
   });
 
   it('should not attempt to focus nonexistent children', () => {
@@ -405,6 +405,116 @@ describe('<FocusTrap />', () => {
         setProps({ open: false });
         expect(screen.getByTestId('outside-input')).toHaveFocus();
       });
+    });
+  });
+
+  describe('focusTrap respects explicit/implicit tabindex', () => {
+    const nextItemKey = 'Tab';
+
+    it('respects implicit tabindex', () => {
+      render(
+        <FocusTrap open>
+          <div>
+            <div />
+            {/* This will have the starting focus */}
+            <input />
+            <button />
+          </div>
+        </FocusTrap>,
+      );
+
+      expect(screen.getByRole('textbox')).toHaveFocus();
+    });
+
+    it('respects explicit tabindex on non-interactive element', () => {
+      render(
+        <FocusTrap open>
+          <div>
+            <div />
+            <input data-testid="first" />
+            <button data-testid="second" />
+            {/* This will have the starting focus, but cannot be focused afterwards
+                as https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+              */}
+            <div data-testid="focused" tabIndex={-1} />
+          </div>
+        </FocusTrap>,
+      );
+
+      // The order of focusable elements should be: focused, first, second here
+      expect(screen.getByTestId('focused')).toHaveFocus();
+      // The order of focusable elements should be: first, second from now on
+
+      // Going forward
+      act(() => {
+        fireEvent.keyDown(screen.getByTestId('focused'), { key: nextItemKey });
+        screen.getByTestId('sentinelEnd').focus();
+      });
+
+      expect(screen.getByTestId('first')).toHaveFocus();
+
+      // Going backwards
+      act(() => {
+        fireEvent.keyDown(screen.getByTestId('first'), { key: nextItemKey, shiftKey: true });
+        screen.getByTestId('sentinelStart').focus();
+      });
+
+      expect(screen.getByTestId('second')).toHaveFocus();
+    });
+
+    it('respects explicit tabindex on interactive element ', () => {
+      render(
+        <FocusTrap open>
+          <div>
+            <div />
+            <input data-testid="first" />
+            <button data-testid="second" />
+            {/* This will have the starting focus, but cannot be focused afterwards
+                as https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+
+                If you would want this to remain focusable you should use a positive tabindex
+              */}
+            <button data-testid="third" tabIndex={-1} />
+          </div>
+        </FocusTrap>,
+      );
+
+      // The order of focusable elements should be: third, first, second here
+      expect(screen.getByTestId('third')).toHaveFocus();
+      // After this the order of focusable elements should be: first, second from now on
+
+      // Going forward
+      act(() => {
+        fireEvent.keyDown(screen.getByTestId('third'), { key: nextItemKey });
+        screen.getByTestId('sentinelEnd').focus();
+      });
+
+      expect(screen.getByTestId('first')).toHaveFocus();
+
+      // Going backwards
+      act(() => {
+        fireEvent.keyDown(screen.getByTestId('first'), { key: nextItemKey, shiftKey: true });
+        screen.getByTestId('sentinelStart').focus();
+      });
+
+      expect(screen.getByTestId('second')).toHaveFocus();
+
+      // We can't test native browser behaviour but after tabbing on the second button it should go to the sentinelEnd too.
+    });
+
+    it('no tabbable elements are handled', () => {
+      expect(() =>
+        render(
+          <FocusTrap open>
+            <div data-testid="to-be-focused">
+              <div />
+              <div />
+            </div>
+          </FocusTrap>,
+        ),
+      ).toErrorDev('MUI: The modal content node does not have focusable elements');
+
+      expect(screen.getByTestId('to-be-focused')).toHaveFocus();
     });
   });
 });
