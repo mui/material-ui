@@ -80,6 +80,11 @@ describe('<Checkbox />', () => {
       const { getByTestId } = render(<Checkbox indeterminate />);
       expect(getByTestId('IndeterminateCheckBoxIcon')).not.to.equal(null);
     });
+
+    it('should have aria-checked="mixed"', () => {
+      const { getByRole } = render(<Checkbox indeterminate />);
+      expect(getByRole('checkbox')).to.have.attribute('aria-checked', 'mixed');
+    });
   });
 
   describe('prop: size', () => {
