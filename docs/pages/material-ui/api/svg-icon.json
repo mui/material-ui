@@ -19,6 +19,7 @@
     },
     "htmlColor": { "type": { "name": "string" } },
     "inheritViewBox": { "type": { "name": "bool" }, "default": "false" },
+    "legacyTestId": { "type": { "name": "bool" }, "default": "true" },
     "shapeRendering": { "type": { "name": "string" } },
     "sx": {
       "type": {
