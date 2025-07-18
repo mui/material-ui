@@ -3,6 +3,11 @@ import styleFunctionSx, {
   unstable_defaultSxConfig as defaultSxConfig,
 } from '@mui/system/styleFunctionSx';
 import systemCreateTheme from '@mui/system/createTheme';
+import {
+  alpha as systemAlpha,
+  lighten as systemLighten,
+  darken as systemDarken,
+} from '@mui/system/colorManipulator';
 import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
@@ -11,6 +16,60 @@ import shadows from './shadows';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 import { stringifyTheme } from './stringifyTheme';
+
+function coefficientToPercentage(coefficient) {
+  if (typeof coefficient === 'number') {
+    return `${(coefficient * 100).toFixed(0)}%`;
+  }
+  return `calc((${coefficient}) * 100%)`;
+}
+
+// This can be removed when moved to `color-mix()` entirely.
+const parseAddition = (str) => {
+  if (!Number.isNaN(+str)) {
+    return +str;
+  }
+  const numbers = str.match(/\d*\.?\d+/g);
+  if (!numbers) {
+    return 0;
+  }
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i += 1) {
+    sum += +numbers[i];
+  }
+  return sum;
+};
+
+function attachColorManipulators(theme) {
+  Object.assign(theme, {
+    alpha(color, coefficient) {
+      const obj = this || theme;
+      if (obj.colorSpace) {
+        return `oklch(from ${color} l c h / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
+      }
+      if (obj.vars) {
+        // To preserve the behavior of the CSS theme variables
+        // In the future, this could be replaced by `color-mix` (when https://caniuse.com/?search=color-mix reaches 95%).
+        return `rgba(${color.replace(/var\(--([^,\s)]+)(?:,[^)]+)?\)+/g, 'var(--$1Channel)')} / ${typeof coefficient === 'string' ? `calc(${coefficient})` : coefficient})`;
+      }
+      return systemAlpha(color, parseAddition(coefficient));
+    },
+    lighten(color, coefficient) {
+      const obj = this || theme;
+      if (obj.colorSpace) {
+        return `color-mix(in ${obj.colorSpace}, ${color}, #fff ${coefficientToPercentage(coefficient)})`;
+      }
+      return systemLighten(color, coefficient);
+    },
+    darken(color, coefficient) {
+      const obj = this || theme;
+      if (obj.colorSpace) {
+        return `color-mix(in ${obj.colorSpace}, ${color}, #000 ${coefficientToPercentage(coefficient)})`;
+      }
+      return systemDarken(color, coefficient);
+    },
+  });
+}
 
 function createThemeNoVars(options = {}, ...args) {
   const {
@@ -21,6 +80,7 @@ function createThemeNoVars(options = {}, ...args) {
     transitions: transitionsInput = {},
     typography: typographyInput = {},
     shape: shapeInput,
+    colorSpace,
     ...other
   } = options;
 
@@ -37,7 +97,7 @@ function createThemeNoVars(options = {}, ...args) {
     );
   }
 
-  const palette = createPalette(paletteInput);
+  const palette = createPalette({ ...paletteInput, colorSpace });
   const systemTheme = systemCreateTheme(options);
 
   let muiTheme = deepmerge(systemTheme, {
@@ -125,6 +185,8 @@ function createThemeNoVars(options = {}, ...args) {
     });
   };
   muiTheme.toRuntimeSource = stringifyTheme; // for Pigment CSS integration
+
+  attachColorManipulators(muiTheme);
 
   return muiTheme;
 }
