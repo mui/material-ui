@@ -89,14 +89,14 @@ importers:
         specifier: ^2.0.8-canary.3
         version: 2.0.8-canary.3(@babel/core@7.28.0)
       '@mui/internal-babel-plugin-resolve-imports':
-        specifier: ^2.0.7-canary.6
-        version: 2.0.7-canary.6(@babel/core@7.28.0)
+        specifier: ^2.0.7-canary.7
+        version: 2.0.7-canary.7(@babel/core@7.28.0)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.4
-        version: 1.0.9-canary.4(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.1))(yaml@2.8.0)
+        specifier: ^1.0.9-canary.5
+        version: 1.0.9-canary.5(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.1))(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: 0.0.2-canary.16
-        version: 0.0.2-canary.16(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
+        specifier: 0.0.2-canary.17
+        version: 0.0.2-canary.17(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4165,17 +4165,17 @@ packages:
     peerDependencies:
       '@babel/core': ^7.28.0
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.6':
-    resolution: {integrity: sha512-iI//OCmE5K17Hfp4EpjK4KplZR8UQXNEbf+VOaZPqXyOXGgATuW+VPF0H86JafvesPyNt67NF2mfZByn/OXolQ==}
+  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.7':
+    resolution: {integrity: sha512-F9LhdkkNLWFFiyaT+cXFxCGkV0/YFcFl3i/7DmaJj6x0crlaWtAtxHfBmSHjSZDaMxF2gvTh/0ukjVCyUt2qJQ==}
     peerDependencies:
       '@babel/core': ^7.28.0
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.4':
-    resolution: {integrity: sha512-yLZJZUK6bP/Y9Guw/yLnk/v+FKRR9mgLVicS+C4mkrf96Efeh8fVNz2XX6th3H3VYQyKDoBObRqK5Ayby5MSqw==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.5':
+    resolution: {integrity: sha512-ISOu9Qg30aYIbikYE0FzlBBqiQKTcNcYGl7uSh5qYE1vMAQexEFOyvN4bSPNOenfXCKP3DW2dfAg7hzfHXwBuQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.2-canary.16':
-    resolution: {integrity: sha512-7o/HId9jlrd/mW4GmAvMfAEvtFLkxXP3VWGflAK1XOHkjdCWjl60cvCuEZNmEvBD6G0oOYe3W5hilNCro9D34g==}
+  '@mui/internal-code-infra@0.0.2-canary.17':
+    resolution: {integrity: sha512-aUUezDTG+JpuNvwKvQKTP0gzAPOR02JZWMvwAfto7H7iUxRlO3Acv0NuZlFTiBgGJ+eyDFIP2XL48zT6IyAWng==}
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -17117,12 +17117,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.6(@babel/core@7.28.0)':
+  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.7(@babel/core@7.28.0)':
     dependencies:
       '@babel/core': 7.28.0
       resolve: 1.22.10
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.4(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.1))(yaml@2.8.0)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.5(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.1))(yaml@2.8.0)':
     dependencies:
       '@aws-sdk/client-s3': 3.787.0
       '@aws-sdk/credential-providers': 3.787.0
@@ -17171,7 +17171,7 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@0.0.2-canary.16(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
+  '@mui/internal-code-infra@0.0.2-canary.17(@typescript-eslint/parser@8.35.1(eslint@9.30.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.30.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
     dependencies:
       '@argos-ci/core': 3.2.0
       '@eslint/compat': 1.3.1(eslint@9.30.0(jiti@2.4.2))
