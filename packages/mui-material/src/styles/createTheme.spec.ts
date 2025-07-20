@@ -155,6 +155,16 @@ const theme = createTheme();
           },
         },
       },
+      MuiGrid: {
+        styleOverrides: {
+          root: {
+            justifyContent: 'space-between',
+          },
+          container: {
+            justifyContent: 'space-between',
+          },
+        },
+      },
     },
   });
 }
@@ -208,6 +218,7 @@ const theme = createTheme();
             variants: [
               {
                 props: ({ ownerState }) => ownerState.color === 'primary',
+                style: {},
               },
             ],
           }),
@@ -238,8 +249,15 @@ const theme = createTheme();
 {
   createTheme({
     shape: {
-      // @ts-expect-error invalid borderRadius string value in theme
       borderRadius: '5px',
+    },
+  });
+}
+
+{
+  createTheme({
+    shape: {
+      borderRadius: 8,
     },
   });
 }
@@ -250,6 +268,49 @@ const theme = createTheme();
     cssVariables: {
       rootSelector: ':host',
       colorSchemeSelector: 'class',
+    },
+  });
+}
+
+// Invalid variant
+{
+  createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          // @ts-expect-error invalid variant
+          root: {
+            variants: [
+              {
+                props: { variant: 'not-a-variant' },
+                style: { border: 0 },
+              },
+            ],
+          },
+        },
+      },
+    },
+  });
+}
+
+{
+  createTheme({
+    components: {
+      MuiTablePaginationActions: {
+        styleOverrides: {
+          root: {
+            color: 'red',
+          },
+        },
+      },
+    },
+  });
+}
+
+{
+  createTheme({
+    components: {
+      mergeClassNameAndStyle: true,
     },
   });
 }

@@ -121,7 +121,6 @@ const AlertRoot = styled(Paper, {
 const AlertIcon = styled('div', {
   name: 'MuiAlert',
   slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
 })({
   marginRight: 12,
   padding: '7px 0',
@@ -133,7 +132,6 @@ const AlertIcon = styled('div', {
 const AlertMessage = styled('div', {
   name: 'MuiAlert',
   slot: 'Message',
-  overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
   minWidth: 0,
@@ -143,7 +141,6 @@ const AlertMessage = styled('div', {
 const AlertAction = styled('div', {
   name: 'MuiAlert',
   slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
 })({
   display: 'flex',
   alignItems: 'flex-start',
@@ -202,6 +199,43 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     },
   };
 
+  const [RootSlot, rootSlotProps] = useSlot('root', {
+    ref,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.root, className),
+    elementType: AlertRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    ownerState,
+    additionalProps: {
+      role,
+      elevation: 0,
+    },
+  });
+
+  const [IconSlot, iconSlotProps] = useSlot('icon', {
+    className: classes.icon,
+    elementType: AlertIcon,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [MessageSlot, messageSlotProps] = useSlot('message', {
+    className: classes.message,
+    elementType: AlertMessage,
+    externalForwardedProps,
+    ownerState,
+  });
+
+  const [ActionSlot, actionSlotProps] = useSlot('action', {
+    className: classes.action,
+    elementType: AlertAction,
+    externalForwardedProps,
+    ownerState,
+  });
+
   const [CloseButtonSlot, closeButtonProps] = useSlot('closeButton', {
     elementType: IconButton,
     externalForwardedProps,
@@ -215,29 +249,16 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   });
 
   return (
-    <AlertRoot
-      role={role}
-      elevation={0}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
+    <RootSlot {...rootSlotProps}>
       {icon !== false ? (
-        <AlertIcon ownerState={ownerState} className={classes.icon}>
+        <IconSlot {...iconSlotProps}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
-        </AlertIcon>
+        </IconSlot>
       ) : null}
-      <AlertMessage ownerState={ownerState} className={classes.message}>
-        {children}
-      </AlertMessage>
-      {action != null ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
-          {action}
-        </AlertAction>
-      ) : null}
+      <MessageSlot {...messageSlotProps}>{children}</MessageSlot>
+      {action != null ? <ActionSlot {...actionSlotProps}>{action}</ActionSlot> : null}
       {action == null && onClose ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
+        <ActionSlot {...actionSlotProps}>
           <CloseButtonSlot
             size="small"
             aria-label={closeText}
@@ -248,9 +269,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
           >
             <CloseIconSlot fontSize="small" {...closeIconProps} />
           </CloseButtonSlot>
-        </AlertAction>
+        </ActionSlot>
       ) : null}
-    </AlertRoot>
+    </RootSlot>
   );
 });
 
@@ -294,7 +315,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -306,7 +327,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -356,16 +377,24 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   slotProps: PropTypes.shape({
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     closeButton: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     closeIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    message: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({
+    action: PropTypes.elementType,
     closeButton: PropTypes.elementType,
     closeIcon: PropTypes.elementType,
+    icon: PropTypes.elementType,
+    message: PropTypes.elementType,
+    root: PropTypes.elementType,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.

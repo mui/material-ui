@@ -5,7 +5,6 @@ components: Select, NativeSelect
 githubLabel: 'component: select'
 materialDesign: https://m2.material.io/components/menus#exposed-dropdown-menu
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
-unstyled: /base-ui/react-select/
 githubSource: packages/mui-material/src/Select
 ---
 
@@ -33,6 +32,10 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/).
 It extends the [text field components](/material-ui/react-text-field/) subcomponents, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
+
+:::warning
+Unlike input components, the `placeholder` prop is not available in Select. To add a placeholder, refer to the [placeholder](#placeholder) section below.
+:::
 
 ### Filled and standard variants
 
@@ -200,7 +203,7 @@ If you use the ListSubheader directly, **no additional code is required**.
 ## Accessibility
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label.
-That `id` needs to match the `labelId` of the `Select` e.g.
+That `id` needs to match the `labelId` of the `Select`, for example:
 
 ```jsx
 <InputLabel id="label">Age</InputLabel>

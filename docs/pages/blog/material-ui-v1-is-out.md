@@ -9,7 +9,7 @@ manualCard: true
 
 > React components that implement Google's Material Design.
 
-![Our new [documentation](https://mui.com/) header & logo by @hai-cea](https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png)
+<img src="https://cdn-images-1.medium.com/max/2050/1*BKssrX-qEmyN6YaRNTvNlw.png" width="1025" height="342" alt="Our new [documentation](https://mui.com/) header & logo by @hai-cea" />
 
 <p class="blog-description">Our new documentation header & logo by @hai-cea</p>
 
@@ -105,7 +105,7 @@ There are so many new things, we can't be exhaustive. Aside from what we have al
 
 ## Premium themes
 
-We have shipped the long-awaited Material UI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://mui.com/store/) from [Creative Tim](https://mui.com/store/contributors/creative-tim/). More are coming.
+We have shipped the long-awaited Material UI v1 stable release. With a new codebase designed to better support customization, it's the perfect timing to start building and promoting premium themes. We are very happy to announce [the first two](https://mui.com/store/) from [Creative Tim](https://mui.com/store/authors/creative-tim/). More are coming.
 
 ![Creative Tim themes](https://cdn-images-1.medium.com/v2/resize:fit:2000/1*jPOu6n1EMsqv4Gh652MtPA.png)
 

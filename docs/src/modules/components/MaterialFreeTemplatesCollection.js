@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -20,66 +19,73 @@ import stackBlitz from 'docs/src/modules/sandbox/StackBlitz';
 
 const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
 
-function layouts(translatation) {
+function layouts(translation) {
   return [
     {
-      title: translatation('dashboardTitle'),
-      description: translatation('dashboardDescr'),
+      title: translation('dashboardTitle'),
+      description: translation('dashboardDescr'),
       href: '/material-ui/getting-started/templates/dashboard/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard`,
       hasDarkMode: true,
     },
     {
-      title: translatation('marketingPageTitle'),
-      description: translatation('marketingPageDescr'),
+      title: translation('marketingPageTitle'),
+      description: translation('marketingPageDescr'),
       href: '/material-ui/getting-started/templates/marketing-page/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/marketing-page`,
       hasDarkMode: true,
     },
     {
-      title: translatation('checkoutTitle'),
-      description: translatation('checkoutDescr'),
+      title: translation('checkoutTitle'),
+      description: translation('checkoutDescr'),
       href: '/material-ui/getting-started/templates/checkout/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signInTitle'),
-      description: translatation('signInDescr'),
+      title: translation('signInTitle'),
+      description: translation('signInDescr'),
       href: '/material-ui/getting-started/templates/sign-in/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signInSideTitle'),
-      description: translatation('signInSideDescr'),
+      title: translation('signInSideTitle'),
+      description: translation('signInSideDescr'),
       href: '/material-ui/getting-started/templates/sign-in-side/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in-side`,
       hasDarkMode: true,
     },
     {
-      title: translatation('signUpTitle'),
-      description: translatation('signUpDescr'),
+      title: translation('signUpTitle'),
+      description: translation('signUpDescr'),
       href: '/material-ui/getting-started/templates/sign-up/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-up`,
       hasDarkMode: true,
     },
     {
-      title: translatation('blogTitle'),
-      description: translatation('blogDescr'),
+      title: translation('blogTitle'),
+      description: translation('blogDescr'),
       href: '/material-ui/getting-started/templates/blog/',
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
+      hasDarkMode: true,
+    },
+    {
+      title: translation('crudDashboardTitle'),
+      description: translation('crudDashboardDescr'),
+      href: '/material-ui/getting-started/templates/crud-dashboard/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/crud-dashboard`,
       hasDarkMode: true,
     },
   ];
 }
 
-export default function Templates() {
-  const translatation = useTranslate();
+export default function MaterialFreeTemplatesCollection() {
+  const translation = useTranslate();
   const materialTemplates = sourceMaterialTemplates();
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, mb: 4 }}>
-      {layouts(translatation).map((layout) => {
+      {layouts(translation).map((layout, index) => {
         const templateId = layout.source.split('/').pop();
         const templateName = pascalCase(templateId);
         const item = materialTemplates.map.get(templateId);
@@ -100,7 +106,8 @@ export default function Templates() {
                 borderColor: 'divider',
               }}
             >
-              <Box
+              <Link
+                href={layout.href}
                 sx={{
                   position: 'relative',
                   '&:hover > .MuiCardMedia-root': {
@@ -115,7 +122,8 @@ export default function Templates() {
                   component="img"
                   // The image source is generated from `pnpm template:screenshot material-ui`, do not modify the image manually.
                   image={`/static/screenshots${layout.href.replace(/\/$/, '')}.jpg`}
-                  title={layout.title}
+                  alt={layout.title}
+                  fetchPriority={index === 0 ? 'high' : undefined}
                   sx={(theme) => ({
                     aspectRatio: '16 / 9',
                     objectPosition: 'top',
@@ -133,11 +141,12 @@ export default function Templates() {
                 <Button
                   variant="text"
                   endIcon={<OpenInNewRoundedIcon />}
-                  component={Link}
-                  href={layout.href}
+                  component="div"
                   data-ga-event-category="material-ui-template"
                   data-ga-event-label={layout.title}
                   data-ga-event-action="preview-img"
+                  tabIndex={null}
+                  role="none"
                   sx={{
                     position: 'absolute',
                     top: '50%',
@@ -153,7 +162,7 @@ export default function Templates() {
                 >
                   See live preview
                 </Button>
-              </Box>
+              </Link>
               <Box
                 sx={{
                   display: 'flex',

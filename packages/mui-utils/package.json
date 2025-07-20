@@ -1,7 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "6.1.6",
-  "private": false,
+  "version": "7.2.0",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "main": "./src/index.ts",
@@ -20,45 +19,45 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "private package",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-utils",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-utils/**/*.test.?(c|m)[jt]s?(x)'",
-    "typescript": "tsc -p tsconfig.json"
+    "typescript": "tsc -p tsconfig.json",
+    "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.0",
+    "@babel/runtime": "^7.27.6",
     "@mui/types": "workspace:^",
-    "@types/prop-types": "^15.7.13",
+    "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
     "prop-types": "^15.8.1",
-    "react-is": "^18.3.1"
+    "react-is": "^19.1.0"
   },
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/mocha": "^10.0.9",
-    "@types/node": "^20.17.6",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@types/react-is": "^18.3.0",
-    "@types/sinon": "^17.0.3",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.19.9",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/react-is": "^19.0.0",
+    "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "sinon": "^19.0.2"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sinon": "^19.0.5"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",

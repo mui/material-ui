@@ -12,6 +12,8 @@ import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
 import speedDialActionClasses, { getSpeedDialActionUtilityClass } from './speedDialActionClasses';
+import useSlot from '../utils/useSlot';
+import { mergeSlotProps } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, tooltipPlacement, classes } = ownerState;
@@ -128,7 +130,6 @@ const SpeedDialActionStaticTooltip = styled('span', {
 const SpeedDialActionStaticTooltipLabel = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltipLabel',
-  overridesResolver: (props, styles) => styles.staticTooltipLabel,
 })(
   memoTheme(({ theme }) => ({
     position: 'absolute',
@@ -155,13 +156,34 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
     tooltipOpen: tooltipOpenProp = false,
     tooltipPlacement = 'left',
     tooltipTitle,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
   const ownerState = { ...props, tooltipPlacement };
   const classes = useUtilityClasses(ownerState);
 
-  const [tooltipOpen, setTooltipOpen] = React.useState(tooltipOpenProp);
+  const externalForwardedProps = {
+    slots,
+    slotProps: {
+      fab: FabProps,
+      ...slotProps,
+      tooltip: mergeSlotProps(
+        typeof slotProps.tooltip === 'function' ? slotProps.tooltip(ownerState) : slotProps.tooltip,
+        {
+          title: tooltipTitle,
+          open: tooltipOpenProp,
+          placement: tooltipPlacement,
+          classes: TooltipClasses,
+        },
+      ),
+    },
+  };
+
+  const [tooltipOpen, setTooltipOpen] = React.useState(
+    externalForwardedProps.slotProps.tooltip?.open,
+  );
 
   const handleTooltipClose = () => {
     setTooltipOpen(false);
@@ -173,44 +195,76 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
 
   const transitionStyle = { transitionDelay: `${delay}ms` };
 
-  const fab = (
-    <SpeedDialActionFab
-      size="small"
-      className={clsx(classes.fab, className)}
-      tabIndex={-1}
-      role="menuitem"
-      ownerState={ownerState}
-      {...FabProps}
-      style={{
-        ...transitionStyle,
-        ...FabProps.style,
-      }}
-    >
-      {icon}
-    </SpeedDialActionFab>
-  );
+  const [FabSlot, fabSlotProps] = useSlot('fab', {
+    elementType: SpeedDialActionFab,
+    externalForwardedProps,
+    ownerState,
+    shouldForwardComponentProp: true,
+    className: clsx(classes.fab, className),
+    additionalProps: {
+      style: transitionStyle,
+      tabIndex: -1,
+      role: 'menuitem',
+      size: 'small',
+    },
+  });
 
-  if (tooltipOpenProp) {
+  const [TooltipSlot, tooltipSlotProps] = useSlot('tooltip', {
+    elementType: Tooltip,
+    externalForwardedProps,
+    shouldForwardComponentProp: true,
+    ref,
+    additionalProps: {
+      id,
+    },
+    ownerState,
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onClose: (event) => {
+        handlers.onClose?.(event);
+        handleTooltipClose();
+      },
+      onOpen: (event) => {
+        handlers.onOpen?.(event);
+        handleTooltipOpen();
+      },
+    }),
+  });
+
+  const [StaticTooltipSlot, staticTooltipSlotProps] = useSlot('staticTooltip', {
+    elementType: SpeedDialActionStaticTooltip,
+    externalForwardedProps,
+    ownerState,
+    ref,
+    className: classes.staticTooltip,
+    additionalProps: {
+      id,
+    },
+  });
+
+  const [StaticTooltipLabelSlot, staticTooltipLabelSlotProps] = useSlot('staticTooltipLabel', {
+    elementType: SpeedDialActionStaticTooltipLabel,
+    externalForwardedProps,
+    ownerState,
+    className: classes.staticTooltipLabel,
+    additionalProps: {
+      style: transitionStyle,
+      id: `${id}-label`,
+    },
+  });
+
+  const fab = <FabSlot {...fabSlotProps}>{icon}</FabSlot>;
+
+  if (tooltipSlotProps.open) {
     return (
-      <SpeedDialActionStaticTooltip
-        id={id}
-        ref={ref}
-        className={classes.staticTooltip}
-        ownerState={ownerState}
-        {...other}
-      >
-        <SpeedDialActionStaticTooltipLabel
-          style={transitionStyle}
-          id={`${id}-label`}
-          className={classes.staticTooltipLabel}
-          ownerState={ownerState}
-        >
-          {tooltipTitle}
-        </SpeedDialActionStaticTooltipLabel>
+      <StaticTooltipSlot {...staticTooltipSlotProps} {...other}>
+        <StaticTooltipLabelSlot {...staticTooltipLabelSlotProps}>
+          {tooltipSlotProps.title}
+        </StaticTooltipLabelSlot>
         {React.cloneElement(fab, {
           'aria-labelledby': `${id}-label`,
         })}
-      </SpeedDialActionStaticTooltip>
+      </StaticTooltipSlot>
     );
   }
 
@@ -219,19 +273,16 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(inProps, ref) 
   }
 
   return (
-    <Tooltip
-      id={id}
-      ref={ref}
-      title={tooltipTitle}
-      placement={tooltipPlacement}
-      onClose={handleTooltipClose}
-      onOpen={handleTooltipOpen}
+    <TooltipSlot
+      {...tooltipSlotProps}
+      title={tooltipSlotProps.title}
       open={open && tooltipOpen}
-      classes={TooltipClasses}
+      placement={tooltipSlotProps.placement}
+      classes={tooltipSlotProps.classes}
       {...other}
     >
       {fab}
-    </Tooltip>
+    </TooltipSlot>
   );
 });
 
@@ -256,6 +307,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the [`Fab`](https://mui.com/material-ui/api/fab/) component.
    * @default {}
+   * @deprecated Use `slotProps.fab` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   FabProps: PropTypes.object,
   /**
@@ -272,6 +324,26 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool,
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    fab: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    staticTooltip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    staticTooltipLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    tooltip: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    fab: PropTypes.elementType,
+    staticTooltip: PropTypes.elementType,
+    staticTooltipLabel: PropTypes.elementType,
+    tooltip: PropTypes.elementType,
+  }),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -281,18 +353,24 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * `classes` prop applied to the [`Tooltip`](https://mui.com/material-ui/api/tooltip/) element.
+   * @deprecated Use `slotProps.tooltip.classes` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   TooltipClasses: PropTypes.object,
   /**
    * Make the tooltip always visible when the SpeedDial is open.
    * @default false
+   * @deprecated Use `slotProps.tooltip.open` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipOpen: PropTypes.bool,
   /**
    * Placement of the tooltip.
    * @default 'left'
+   * @deprecated Use `slotProps.tooltip.placement` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipPlacement: PropTypes.oneOf([
+    'auto-end',
+    'auto-start',
+    'auto',
     'bottom-end',
     'bottom-start',
     'bottom',
@@ -308,6 +386,7 @@ SpeedDialAction.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Label to display in the tooltip.
+   * @deprecated Use `slotProps.tooltip.title` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   tooltipTitle: PropTypes.node,
 };

@@ -1,0 +1,20 @@
+import { linearProgressClasses } from '@mui/material/LinearProgress';
+
+('& .MuiLinearProgress-bar1Buffer');
+('& .MuiLinearProgress-bar1Determinate');
+('& .MuiLinearProgress-bar1Indeterminate');
+('& .MuiLinearProgress-bar2Buffer');
+('& .MuiLinearProgress-bar2Indeterminate');
+('& .MuiLinearProgress-barColorPrimary');
+('& .MuiLinearProgress-barColorSecondary');
+('& .MuiLinearProgress-dashedColorPrimary');
+('& .MuiLinearProgress-dashedColorSecondary');
+`& .${linearProgressClasses.bar1Buffer}`;
+`& .${linearProgressClasses.bar1Determinate}`;
+`& .${linearProgressClasses.bar1Indeterminate}`;
+`& .${linearProgressClasses.bar2Buffer}`;
+`& .${linearProgressClasses.bar2Indeterminate}`;
+`& .${linearProgressClasses.barColorPrimary}`;
+`& .${linearProgressClasses.barColorSecondary}`;
+`& .${linearProgressClasses.dashedColorPrimary}`;
+`& .${linearProgressClasses.dashedColorSecondary}`;

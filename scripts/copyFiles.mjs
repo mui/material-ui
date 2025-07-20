@@ -1,16 +1,10 @@
 /* eslint-disable no-console */
 import path from 'path';
-import {
-  createModulePackages,
-  createPackageFile,
-  includeFileInBuild,
-  prepend,
-  typescriptCopy,
-} from './copyFilesUtils.mjs';
+import { stat } from 'fs/promises';
+import { createPackageFile, includeFileInBuild, prepend } from './copyFilesUtils.mjs';
 
 const packagePath = process.cwd();
 const buildPath = path.join(packagePath, './build');
-const srcPath = path.join(packagePath, './src');
 
 async function addLicense(packageData) {
   const license = `/**
@@ -22,7 +16,7 @@ async function addLicense(packageData) {
  */
 `;
   await Promise.all(
-    ['./index.js', './modern/index.js', './node/index.js'].map(async (file) => {
+    ['./index.js', './esm/index.js', './modern/index.js', './node/index.js'].map(async (file) => {
       try {
         await prepend(path.resolve(buildPath, file), license);
       } catch (err) {
@@ -39,24 +33,50 @@ async function addLicense(packageData) {
 async function run() {
   const extraFiles = process.argv.slice(2);
   try {
-    // TypeScript
-    await typescriptCopy({ from: srcPath, to: buildPath });
+    const packageData = await createPackageFile(true);
+    const defaultFiles = ['README.md'];
 
-    const packageData = await createPackageFile();
+    const packageOrRootFiles = [
+      ['LICENSE', '../../LICENSE'],
+      ['CHANGELOG.md', '../../CHANGELOG.md'],
+    ];
 
     await Promise.all(
-      ['./README.md', '../../CHANGELOG.md', '../../LICENSE', ...extraFiles].map(async (file) => {
+      packageOrRootFiles.map(async (files) => {
+        for (const file of files) {
+          const sourcePath = path.join(packagePath, file);
+          // eslint-disable-next-line no-await-in-loop
+          if (await fileExists(sourcePath)) {
+            defaultFiles.push(file);
+            break;
+          }
+        }
+      }),
+    );
+
+    await Promise.all(
+      [...defaultFiles, ...extraFiles].map(async (file) => {
         const [sourcePath, targetPath] = file.split(':');
         await includeFileInBuild(sourcePath, targetPath);
       }),
     );
 
     await addLicense(packageData);
-
-    await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
     console.error(err);
     process.exit(1);
+  }
+}
+
+async function fileExists(filePath) {
+  try {
+    await stat(filePath);
+    return true;
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return false;
+    }
+    throw err;
   }
 }
 

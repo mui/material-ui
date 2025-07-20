@@ -18,14 +18,16 @@
     {
       "key": "flexContainer",
       "className": "MuiTabList-flexContainer",
-      "description": "Styles applied to the flex container element.",
-      "isGlobal": false
+      "description": "",
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "flexContainerVertical",
       "className": "MuiTabList-flexContainerVertical",
-      "description": "Styles applied to the flex container element if `orientation=\"vertical\"`.",
-      "isGlobal": false
+      "description": "",
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "hideScrollbar",
@@ -37,6 +39,12 @@
       "key": "indicator",
       "className": "MuiTabList-indicator",
       "description": "Styles applied to the TabIndicator component.",
+      "isGlobal": false
+    },
+    {
+      "key": "list",
+      "className": "MuiTabList-list",
+      "description": "Styles applied to the list element.",
       "isGlobal": false
     },
     {

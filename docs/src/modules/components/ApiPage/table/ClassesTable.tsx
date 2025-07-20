@@ -65,9 +65,9 @@ export default function ClassesTable(props: ClassesTableProps) {
       <StyledTable>
         <thead>
           <tr>
-            <th>Class name</th>
-            {displayClassKeys && <th>Rule name</th>}
-            <th>Description</th>
+            <th>{'Class name'}</th>
+            {displayClassKeys && <th>{'Rule name'}</th>}
+            <th>{'Description'}</th>
           </tr>
         </thead>
         <tbody>

@@ -1,6 +1,6 @@
 {
   "name": "@mui/material-pigment-css",
-  "version": "6.1.6",
+  "version": "7.2.0",
   "author": "MUI Team",
   "description": "A wrapper over Pigment CSS that provides the same styled and theming APIs as Material UI.",
   "main": "./src/index.ts",
@@ -26,12 +26,11 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs styles.css",
-    "build:types": "node ../../scripts/buildTypes.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.?(c|m)[jt]s?(x)'",
@@ -39,9 +38,11 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.0",
-    "@mui/system": "workspace:*",
-    "@pigment-css/react": "0.0.25"
+    "@babel/runtime": "^7.27.6",
+    "@mui/system": "workspace:*"
+  },
+  "peerDependencies": {
+    "@pigment-css/react": "^0.0.30"
   },
   "sideEffects": false,
   "publishConfig": {
@@ -60,6 +61,10 @@
       "globalCss": "@pigment-css/react/exports/globalCss",
       "useTheme": "@pigment-css/react/exports/useTheme"
     }
+  },
+  "exports": {
+    "./styles.css": "./styles.css",
+    "./modern/styles.css": "./styles.css"
   },
   "engines": {
     "node": ">=14.0.0"

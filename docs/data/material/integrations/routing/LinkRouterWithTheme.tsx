@@ -3,8 +3,8 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
   MemoryRouter,
-} from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+  StaticRouter,
+} from 'react-router';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';

@@ -17,7 +17,7 @@ interface SectionHeadlineProps {
 export default function SectionHeadline(props: SectionHeadlineProps) {
   const { alwaysCenter = false, description, id, inverted = false, overline, title } = props;
   return (
-    <Box sx={{ m: alwaysCenter ? 'auto' : 'none' }}>
+    <Box sx={{ m: alwaysCenter ? 'auto' : null }}>
       {overline && (
         <Typography
           id={id}
@@ -27,7 +27,6 @@ export default function SectionHeadline(props: SectionHeadlineProps) {
             fontWeight: 'bold',
             color: 'primary.main',
             mb: 1,
-
             ...(alwaysCenter && {
               textAlign: 'center',
             }),

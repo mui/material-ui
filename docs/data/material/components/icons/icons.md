@@ -26,7 +26,7 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 Run one of the following commands to install it and save it to your `package.json` dependencies:
 
-<!-- #default-branch-switch -->
+<!-- #npm-tag-reference -->
 
 <codeblock storageKey="package-manager">
 ```bash npm
@@ -65,7 +65,7 @@ Import icons using one of these two options:
   ```
 
 The safest for bundle size is Option 1, but some developers prefer Option 2.
-Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin) before using the second approach.
+Make sure you read the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 
@@ -80,20 +80,6 @@ The Material Design guidelines name the icons using "snake_case" naming (for exa
 :::
 
 {{"demo": "SvgMaterialIcons.js"}}
-
-### Testing
-
-For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
-
-```jsx
-import DeleteIcon from '@mui/icons-material/Delete';
-```
-
-has the following attribute once mounted:
-
-```html
-<svg data-testid="DeleteIcon"></svg>
-```
 
 ## SvgIcon
 

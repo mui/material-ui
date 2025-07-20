@@ -131,13 +131,6 @@ const ignoreExternalDocumentation: Record<string, readonly string[]> = {
   Zoom: transitionCallbacks,
 };
 
-function sortBreakpointsLiteralByViewportAscending(a: LiteralType, b: LiteralType) {
-  // default breakpoints ordered by their size ascending
-  const breakpointOrder: readonly unknown[] = ['"xs"', '"sm"', '"md"', '"lg"', '"xl"'];
-
-  return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
-}
-
 function sortSizeByScaleAscending(a: LiteralType, b: LiteralType) {
   const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
   return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
@@ -148,13 +141,6 @@ const getSortLiteralUnions: InjectPropTypesInFileOptions['getSortLiteralUnions']
   component,
   propType,
 ) => {
-  if (
-    component.name === 'Hidden' &&
-    (propType.name === 'initialWidth' || propType.name === 'only')
-  ) {
-    return sortBreakpointsLiteralByViewportAscending;
-  }
-
   if (propType.name === 'size') {
     return sortSizeByScaleAscending;
   }
@@ -303,7 +289,7 @@ async function generateProptypes(
   }
 
   const prettierConfig = await prettier.resolveConfig(process.cwd(), {
-    config: path.join(__dirname, '../prettier.config.js'),
+    config: path.join(__dirname, '../prettier.config.mjs'),
   });
 
   const prettified = await prettier.format(result, { ...prettierConfig, filepath: sourceFile });

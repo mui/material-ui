@@ -1,17 +1,18 @@
-# Material UI Sync plugin
+# Material UI Sync plugin 🧪
 
 <p class="description">Sync is a Figma plugin that generates Material UI themes directly from design to code.</p>
+
+:::warning
+This plugin is experimental.
+:::
 
 ## Introduction
 
 [Material UI Sync](https://www.figma.com/community/plugin/1336346114713490235/material-ui-sync) is a Figma plugin that lets you generate a theme from the [Material UI for Figma Design Kit](https://www.figma.com/community/file/912837788133317724/material-ui-for-figma-and-mui-x).
 
-:::warning
-Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
-Other kits, such as the Joy UI Design Kit, are not supported yet.
-:::
-
 <img src="/static/material-ui/design-resources/sync.png" style="width: 814px;" alt="Customizing the Material UI Switch component in Figma with the Sync plugin running." width="1628" height="400" />
+
+Sync works in combination with the [Material UI for Figma Design Kit v5.16.0](https://github.com/mui/mui-design-kits/releases) and later.
 
 ## Running the plugin
 

@@ -7,6 +7,11 @@ export interface Slot {
   default?: string;
 }
 
+export interface ApiItemDescription {
+  name: string;
+  description: string;
+}
+
 export type ComponentInfo = {
   /**
    * Full path to the source file.
@@ -42,7 +47,7 @@ export type ComponentInfo = {
      */
     apiPathname: string;
   };
-  getDemos: () => Array<{ demoPageTitle: string; demoPathname: string }>;
+  getDemos: () => Array<{ demoPageTitle: string; demoPathname: string; filePath: string }>;
   apiPagesDirectory: string;
   /**
    * The path to import specific layout config of the page if needed.
@@ -53,6 +58,10 @@ export type ComponentInfo = {
    * If `true`, the component's name match one of the MUI System components.
    */
   isSystemComponent?: boolean;
+  /**
+   * If provided, this annotation will be used instead of the auto-generated demo & API links
+   */
+  customAnnotation?: string;
 };
 
 export type HookInfo = {
@@ -69,4 +78,8 @@ export type HookInfo = {
   getDemos: ComponentInfo['getDemos'];
   apiPagesDirectory: string;
   skipApiGeneration?: boolean;
+  /**
+   * If provided, this annotation will be used instead of the auto-generated demo & API links
+   */
+  customAnnotation?: string;
 };

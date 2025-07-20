@@ -10,7 +10,7 @@ interface Props {
 export default function ValueLabelComponent(props: Props) {
   const { children, value } = props;
 
-  const popperRef = React.useRef<Instance | null>(null);
+  const popperRef = React.useRef<Instance>(null);
   React.useEffect(() => {
     if (popperRef.current) {
       popperRef.current.update();

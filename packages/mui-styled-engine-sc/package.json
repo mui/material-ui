@@ -1,7 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "6.1.6",
-  "private": false,
+  "version": "7.2.0",
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
   "main": "./src/index.js",
@@ -26,18 +25,19 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:types": "tsx ../../scripts/buildTypes.mts --skipTsc",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-styled-engine-sc/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.0",
+    "@babel/runtime": "^7.27.6",
+    "@types/hoist-non-react-statics": "^3.3.6",
     "csstype": "^3.1.3",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.8.1"
@@ -45,11 +45,10 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/hoist-non-react-statics": "^3.3.5",
-    "@types/react": "^18.3.12",
+    "@types/react": "^19.1.8",
     "chai": "^4.5.0",
-    "react": "^18.3.1",
-    "styled-components": "^6.1.13"
+    "react": "^19.1.0",
+    "styled-components": "^6.1.19"
   },
   "peerDependencies": {
     "styled-components": "^6.0.0"

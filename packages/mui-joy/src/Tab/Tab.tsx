@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
+import useForkRef from '@mui/utils/useForkRef';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useTab } from '@mui/base/useTab';
 import { StyledListItemButton } from '../ListItemButton/ListItemButton';
@@ -150,7 +151,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...other
   } = props;
 
-  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement | null>(null);
+  const tabRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>(null);
   const handleRef = useForkRef(tabRef, ref) as React.RefCallback<Element>;
 
   const { active, focusVisible, setFocusVisible, selected, getRootProps } = useTab({

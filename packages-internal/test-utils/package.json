@@ -1,6 +1,6 @@
 {
   "name": "@mui/internal-test-utils",
-  "version": "1.0.19",
+  "version": "2.0.10",
   "author": "MUI Team",
   "description": "Utilities for MUI tests. This is an internal package not meant for general use.",
   "main": "./build/index.js",
@@ -23,7 +23,8 @@
     "./setupJSDOM": "./build/setupJSDOM.js",
     "./setupKarma": "./build/setupKarma.js",
     "./chaiPlugin": "./build/chaiPlugin.js",
-    "./setupVitest": "./build/setupVitest.js"
+    "./setupVitest": "./build/setupVitest.js",
+    "./describeSkipIf": "./build/describeSkipIf.js"
   },
   "scripts": {
     "prebuild": "rimraf ./build",
@@ -33,40 +34,41 @@
     "release:publish:dry-run": "pnpm publish --tag latest --registry=\"http://localhost:4873/\""
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.25.9",
-    "@babel/preset-typescript": "^7.26.0",
-    "@babel/register": "^7.25.9",
-    "@babel/runtime": "^7.26.0",
-    "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@babel/register": "^7.27.1",
+    "@babel/runtime": "^7.27.6",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.0.1",
-    "@testing-library/user-event": "^14.5.2",
-    "chai": "^4.5.0",
-    "chai-dom": "^1.12.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "chai-dom": "^1.12.1",
     "dom-accessibility-api": "^0.7.0",
     "format-util": "^1.0.5",
-    "fs-extra": "^11.2.0",
-    "jsdom": "^24.0.0",
+    "fs-extra": "^11.3.0",
+    "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
-    "mocha": "^10.8.2",
-    "playwright": "^1.48.2",
+    "mocha": "^11.7.1",
     "prop-types": "^15.8.1",
-    "sinon": "^19.0.2"
+    "sinon": "^19.0.5"
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
-    "@types/prop-types": "^15.7.13",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@types/sinon": "^17.0.3",
-    "typescript": "^5.6.3"
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/sinon": "^17.0.4",
+    "@playwright/test": "^1.54.1",
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "chai": "^4.5.0 || ^5.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@playwright/test": "^1.53.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import childProcess from 'child_process';
 import { promisify } from 'util';
 import { Octokit } from '@octokit/rest';
@@ -214,7 +213,7 @@ yargs(process.argv.slice(2))
           type: 'string',
         })
         .option('release', {
-          // #default-branch-switch
+          // #target-branch-reference
           default: 'master',
           describe: 'Ref which we want to release',
           type: 'string',

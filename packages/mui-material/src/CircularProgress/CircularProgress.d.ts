@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { CircularProgressClasses } from './circularProgressClasses';
 
 export interface CircularProgressPropsColorOverrides {}
+export interface CircularProgressPropsVariantOverrides {}
 
 export interface CircularProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children'> {
@@ -55,7 +57,10 @@ export interface CircularProgressProps
    * Use indeterminate when there is no progress value.
    * @default 'indeterminate'
    */
-  variant?: 'determinate' | 'indeterminate';
+  variant?: OverridableStringUnion<
+    'determinate' | 'indeterminate',
+    CircularProgressPropsVariantOverrides
+  >;
 }
 
 /**

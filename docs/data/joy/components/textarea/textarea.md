@@ -3,7 +3,6 @@ productId: joy-ui
 title: React Textarea component
 components: Textarea
 githubLabel: 'component: TextareaAutosize'
-unstyled: /base-ui/react-textarea-autosize/
 ---
 
 # Textarea
@@ -14,7 +13,7 @@ unstyled: /base-ui/react-textarea-autosize/
 
 ## Introduction
 
-Joy UI's textarea component is built on top of the Base UI [`TextareaAutoSize`](/base-ui/react-textarea-autosize/) component.
+Joy UI's textarea component is built on top of the MUI Base [`TextareaAutoSize`](https://v6.mui.com/base-ui/react-textarea-autosize/) component.
 
 {{"demo": "TextareaUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
@@ -117,7 +116,7 @@ It's usually more common to see textarea components using decorators at the top 
 
 ### HTML textarea ref
 
-Use the `slotProps.textarea` attribute to pass props to the `ref` and other [supported HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes) to the textarea element.
+Use the `slotProps.textarea` attribute to pass props to the `ref` and other [supported HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea#attributes) to the textarea element.
 
 {{"demo": "TextareaRef.js"}}
 

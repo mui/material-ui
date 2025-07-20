@@ -4,7 +4,6 @@ title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://m2.material.io/components/text-fields
-unstyled: /base-ui/react-input/
 githubSource: packages/mui-material/src/TextField
 ---
 
@@ -35,6 +34,31 @@ Standard form attributes are supported, for example `required`, `disabled`, `typ
 
 {{"demo": "FormPropsTextFields.js"}}
 
+## Controlling the HTML input
+
+Use `slotProps.htmlInput` to pass attributes to the underlying `<input>` element.
+
+```jsx
+<TextField slotProps={{ htmlInput: { 'data-testid': '…' } }} />
+```
+
+The rendered HTML input will look like this:
+
+```html
+<input
+  aria-invalid="false"
+  class="MuiInputBase-input MuiOutlinedInput-input"
+  type="text"
+  data-testid="…"
+/>
+```
+
+:::warning
+`slotProps.htmlInput` is not the same as `slotProps.input`.
+`slotProps.input` refers to the React `<Input />` component that's rendered based on the specified variant prop.
+`slotProps.htmlInput` refers to the HTML `<input>` element rendered within that Input component, regardless of the variant.
+:::
+
 ## Validation
 
 The `error` prop toggles the error state.
@@ -44,8 +68,8 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 ## Multiline
 
-The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element.
-Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)).
+The `multiline` prop transforms the Text Field into a [MUI Base Textarea Autosize](https://v6.mui.com/base-ui/react-textarea-autosize/) element.
+Unless the `rows` prop is set, the height of the text field dynamically matches its content.
 You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
@@ -69,6 +93,13 @@ This can be used to add a prefix, a suffix, or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "InputAdornments.js"}}
+
+#### Customizing adornments
+
+You can apply custom styles to adornments, and trigger changes to one based on attributes from another.
+For example, the demo below uses the label's `[data-shrink=true]` attribute to make the suffix visible (via opacity) when the label is in its shrunken state.
+
+{{"demo": "InputSuffixShrink.js"}}
 
 ## Sizes
 
@@ -121,7 +152,7 @@ and [`FormHelperText`](/material-ui/api/form-helper-text/)
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
 This is on purpose.
 The component takes care of the most used properties.
-Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `slotProps.htmlInput` (and `slotProps.input`, `slotProps.inputLabel` properties) if you want to avoid some boilerplate.
 
 {{"demo": "ComposedTextField.js"}}
 
@@ -235,14 +266,14 @@ export default function App() {
 
 The input label "shrink" state isn't always correct.
 The input label is supposed to shrink as soon as the input is displaying something.
-In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+In some circumstances, we can't determine the "shrink" state (datetime input, Stripe input). You might notice an overlap.
 
 ![shrink](/static/images/text-fields/shrink.png)
 
 To workaround the issue, you can force the "shrink" state of the label.
 
 ```jsx
-<TextField InputLabelProps={{ shrink: true }} />
+<TextField slotProps={{ inputLabel: { shrink: true } }} />
 ```
 
 or
@@ -268,7 +299,7 @@ We do not recommend using `type="number"` with a Text Field due to potential usa
 
   :::
 
-If you need a text field with number validation, you can use Base UI's [Number Input](/base-ui/react-number-input/) instead.
+If you need a text field with number validation, you can use MUI Base's [Number Input](https://mui.com/base-ui/react-number-input/) instead.
 
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 
@@ -353,13 +384,13 @@ In order for the text field to be accessible, **the input should be linked to th
 </FormControl>
 ```
 
-## Complementary projects
+## Supplementary projects
+
+<!-- To sync with related-projects.md -->
 
 For more advanced use cases, you might be able to take advantage of:
 
-- [react-hook-form](https://react-hook-form.com/): React hook for form validation.
-- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and react-hook-form combined.
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): Material UI and [react-hook-form](https://react-hook-form.com/) combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using Material UI with [formik](https://formik.org/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using Material UI with [React Final Form](https://final-form.org/react).
 - [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
-- [@data-driven-forms/mui-component-mapper](https://www.data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

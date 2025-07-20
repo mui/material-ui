@@ -17,7 +17,7 @@ By the end, you should understand how to:
 
 Here's what the final product looks like—click on the "Show code" button underneath the demo to see the full source code:
 
-{{"demo": "LoginFinal.js", "iframe": true, "height": 500, "bg": "outlined"}}
+{{"demo": "LoginFinal.js", "iframe": true, "isolated": true, "height": 500, "bg": "outlined"}}
 
 ## Prerequisites
 
