@@ -1,6 +1,6 @@
 ---
 title: CGI
-description: How CGI's Techyon Project Enhanced Performance & Usability with MUI X.
+description: How CGI's Techyon Project Enhanced Performance & Usability with MUI X.
 image: '/static/branding/companies/netflix.svg'
 date: 2022-06-08T00:00:00.000Z
 authors: ['oliviertassinari']
@@ -26,9 +26,7 @@ manualCard: true
     style="width: 60%; object-fit: cover; object-position: center; border: 0px;"
   />
 
-## How CGI's Techyon Project Enhanced Performance & Usability with MUI X
-
----
+## How CGI's Techyon Project Enhanced Performance & Usability with MUI X
 
 CGI is a global leader in IT and business consulting, providing innovative digital solutions across various industries. Their Techyon project is dedicated to transforming the energy sector by integrating AI, machine learning, IoT, and cloud-based services to optimize internal operations and data flow.
 
@@ -42,7 +40,7 @@ Developer Consistency – Standardizing the design approach across teams.
 
 ## Solution
 
-CGI adopted MUI X Premium Data Grid as the foundation for Techyon's GUI, providing:
+CGI adopted MUI X Premium Data Grid as the foundation for Techyon's GUI, providing:
 
 - A seamless, modern UI for managing workflows and energy data.
 - High-performance data handling, even with tens of thousands of rows displayed at once.
@@ -51,30 +49,30 @@ CGI adopted MUI X Premium Data Grid as the foundation for Techyon's GUI, providi
 
 ## Results
 
-After implementing MUI X, the Techyon team experienced:
+After implementing MUI X, the Techyon team experienced:
 
 - Instant performance improvements – Large datasets loaded smoothly, eliminating lag.
 - A streamlined design process – Developers could create polished interfaces without needing a design background.
-- Faster development cycles – MUI X's well-documented components simplified UI implementation.
+- Faster development cycles – MUI X's well-documented components simplified UI implementation.
 
-> "MUI X helps our developers—who aren't designers—effortlessly create well-designed interfaces. The structured and strict nature of the components ensures a consistent development process, which is crucial for maintaining quality."
+> "MUI X helps our developers—who aren't designers—effortlessly create well-designed interfaces. The structured and strict nature of the components ensures a consistent development process, which is crucial for maintaining quality."
 
-> "When we switched to MUI X's Data Grid and fine-tuned it, the performance issues disappeared—it felt like pure magic.
-> MUI X quickly became a go-to tool in Techyon's stack, helping CGI deliver a high-performance, future-ready solution for the energy industry."
+> "When we switched to MUI X's Data Grid and fine-tuned it, the performance issues disappeared—it felt like pure magic.
+> MUI X quickly became a go-to tool in Techyon's stack, helping CGI deliver a high-performance, future-ready solution for the energy industry."
 > – Helge Andersen, Team Leader, CGI
 
 ## Developer Experience & Best Practices
 
-CGI's team found MUI X's documentation to be clear, organized, and developer-friendly, making it easy for both new and experienced developers to integrate and optimize components.
+CGI's team found MUI X's documentation to be clear, organized, and developer-friendly, making it easy for both new and experienced developers to integrate and optimize components.
 
-Pro Tip from CGI: For developers handling large datasets, MUI X's Data Grid is highly optimized, but profiling your UI and using pagination or lazy loading can further enhance performance.
+Pro Tip from CGI: For developers handling large datasets, MUI X's Data Grid is highly optimized, but profiling your UI and using pagination or lazy loading can further enhance performance.
 
 ## Recommendation
 
-For teams looking to build data-heavy applications efficiently, CGI highly recommends MUI X as a powerful, time-saving solution. Its advanced components (such as grids, filters, and tables) provide both flexibility and enterprise-grade performance.
-Before MUI X, the team struggled with performance bottlenecks when handling large datasets without pagination—leading to slow load times and poor user experience.
+For teams looking to build data-heavy applications efficiently, CGI highly recommends MUI X as a powerful, time-saving solution. Its advanced components (such as grids, filters, and tables) provide both flexibility and enterprise-grade performance.
+Before MUI X, the team struggled with performance bottlenecks when handling large datasets without pagination—leading to slow load times and poor user experience.
 
-- Switching to MUI X Data Grid was a game-changer:
+- Switching to MUI X Data Grid was a game-changer:
 - Instant data loading – No more sluggish UI.
 - Custom filtering & real-time adjustments – Meeting client needs with ease.
 - Scalability & flexibility – Adapting effortlessly to industry demands.
