@@ -63,7 +63,7 @@ const RainbowButton = styled(Button)(({ theme }) => ({
   '&::before': {
     content: '""',
     position: 'absolute',
-    bottom: '-50%',
+    bottom: '-25%',
     left: '50%',
     zIndex: 0,
     height: '20%',
@@ -72,7 +72,11 @@ const RainbowButton = styled(Button)(({ theme }) => ({
     animation: `${rainbow} 3s linear infinite`,
     background:
       'linear-gradient(90deg, hsl(var(--color-1)), hsl(var(--color-5)), hsl(var(--color-3)), hsl(var(--color-4)), hsl(var(--color-2)))',
-    filter: 'blur(0.8rem)',
+    filter: 'blur(1.2rem)',
+    ...theme.applyDarkStyles({
+      width: '90%',
+      filter: 'blur(0.5rem)',
+    }),
   },
   '& > svg': {
     height: 18,
