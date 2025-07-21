@@ -4,6 +4,7 @@ import Button, { ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import { createMuiChat } from '../sandbox/MuiChat';
 import { DemoData } from '../sandbox/types';
@@ -83,9 +84,11 @@ const RainbowButton = styled(Button)(({ theme }) => ({
 
 const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatButtonProps>(
   function OpenInMUIChatButton({ demoData, ...props }, ref) {
+    const { productId } = React.useContext(PageContext);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<Error | null>(null);
-    const baseUrl = process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL;
+    const baseUrl = process.env.MUI_CHAT_API_BASE_URL;
+    const scopes = process.env.MUI_CHAT_SCOPES;
 
     const handleClick = async () => {
       setLoading(true);
@@ -101,7 +104,7 @@ const OpenInMUIChatButton = React.forwardRef<HTMLButtonElement, OpenInMUIChatBut
     };
 
     // If the base URL is not set, we can't render the button
-    if (!baseUrl) {
+    if (!baseUrl || !scopes || !scopes.split(',').includes(productId)) {
       return null;
     }
 

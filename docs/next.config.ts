@@ -184,6 +184,8 @@ export default withDocsInfra({
     GITHUB_AUTH: process.env.GITHUB_AUTH
       ? `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`
       : '',
+    MUI_CHAT_API_BASE_URL: 'https://chat-backend.mui.com',
+    MUI_CHAT_SCOPES: process.env.DEPLOY_ENV === 'production' ? '' : 'material-ui',
   },
   // Ensure CSS from the Data Grid packages is included in the build:
   // https://github.com/mui/mui-x/issues/17427#issuecomment-2813967605
