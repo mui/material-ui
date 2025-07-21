@@ -1,9 +1,9 @@
-# Upgrade to native color syntax
+# Upgrade to native color
 
-<p class="description">This guide explains how to upgrade from JavaScript color manipulation to native color syntax.</p>
+<p class="description">This guide explains how to upgrade from JavaScript color manipulation to native color.</p>
 
-Native color syntax is an opt-in feature that replaces the JavaScript color manipulation with CSS `color-mix()` and relative colors.
-Check out the [native color syntax documentation](/material-ui/customization/css-theme-variables/native-color-syntax/) for more details.
+Native color is an opt-in feature that replaces the JavaScript color manipulation with CSS `color-mix()` and relative colors.
+Check out the [native color documentation](/material-ui/customization/css-theme-variables/native-color/) for more details.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ yarn add @mui/material@latest
 
 </codeblock>
 
-## Enable native color syntax
+## Enable native color
 
 Set the `cssVariables.nativeColor` option to `true` in the `createTheme()` function.
 
@@ -37,14 +37,14 @@ const theme = createTheme({
 });
 ```
 
-Once you've enabled the native color syntax, Material UI will start using CSS `color-mix()` and relative colors to manipulate colors.
+Once you've enabled the native color, Material UI will start using CSS `color-mix()` and relative colors to manipulate colors.
 
 To check that it's working, open the browser's developer tools. On the Elements tab, click the Styles panel and search for "color-mix".
 You should see the Material UI color tokens appear as CSS variables.
 
 ## Handling JavaScript color manipulation
 
-Your application might break if you're using the `alpha`, `lighten`, and `darken` functions from `@mui/*` to manipulate colors that have been updated to use native color syntax.
+Your application might break if you're using the `alpha`, `lighten`, and `darken` functions from `@mui/*` to manipulate colors that have been updated to use native color.
 
 For example, manipulating the `contrastText` token will break the application:
 
@@ -75,7 +75,7 @@ Follow the codemod below to update multiple files at once.
 
 ## Remove usage of channel tokens
 
-After enabling the native color syntax, you **should not** rely on the `*Channel` tokens anymore because their values are not guaranteed to be channels (numbers separated by a white space).
+After enabling the native color, you **should not** rely on the `*Channel` tokens anymore because their values are not guaranteed to be channels (numbers separated by a white space).
 
 Instead, use the theme color functions to manipulate colors like this:
 

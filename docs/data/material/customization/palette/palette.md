@@ -151,7 +151,7 @@ const theme = createTheme({
 
 :::info
 The supported color formats are `hex`, `rgb`, and `hsl`.
-If you want to use other formats, such as `oklch`, you need to enable the [native color syntax](/material-ui/customization/css-theme-variables/native-color-syntax/) feature.
+If you want to use other formats, such as `oklch`, you need to enable the [native color](/material-ui/customization/css-theme-variables/native-color/) feature.
 :::
 
 <!-- #target-branch-reference -->

@@ -113,7 +113,7 @@ describe('getTextDecoration', () => {
     });
   });
 
-  describe('Native color syntax', () => {
+  describe('Native color', () => {
     const theme = createTheme({
       cssVariables: {
         nativeColor: true,

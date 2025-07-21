@@ -1,6 +1,6 @@
-# CSS theme variables - Native color syntax
+# CSS theme variables - Native color
 
-<p class="description">Learn how to use native color syntax with CSS theme variables.</p>
+<p class="description">Learn how to use native color with CSS theme variables.</p>
 
 :::warning
 This feature only works in modern browsers. Please check the [browser support](https://caniuse.com/css-relative-colors) before using it.
@@ -72,13 +72,13 @@ const theme = createTheme({
 
 The theme object contains these new color utilities: `alpha()`, `lighten()`, and `darken()`.
 
-When native color syntax is enabled, those functions will use CSS color-mix and relative color instead of the JavaScript color manipulation.
+When native color is enabled, those functions will use CSS color-mix and relative color instead of the JavaScript color manipulation.
 
 {{"demo": "ThemeColorFunctions.js"}}
 
 :::info
 The theme color functions are backward compatible.
-If native color syntax is not enabled, they will fall back to the JavaScript color manipulation.
+If native color is not enabled, they will fall back to the JavaScript color manipulation.
 :::
 
 ## Contrast color function

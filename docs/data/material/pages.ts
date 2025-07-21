@@ -229,8 +229,8 @@ const pages: MuiPage[] = [
             title: 'Basic usage',
           },
           {
-            pathname: '/material-ui/customization/css-theme-variables/native-color-syntax',
-            title: 'Native color syntax',
+            pathname: '/material-ui/customization/css-theme-variables/native-color',
+            title: 'Native color',
           },
           {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
@@ -328,8 +328,8 @@ const pages: MuiPage[] = [
             title: 'Upgrade to v7: getting started',
           },
           {
-            pathname: '/material-ui/migration/upgrade-to-native-color-syntax',
-            title: 'Native color syntax',
+            pathname: '/material-ui/migration/upgrade-to-native-color',
+            title: 'Native color',
           },
         ],
       },
