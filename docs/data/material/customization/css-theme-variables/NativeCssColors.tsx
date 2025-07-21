@@ -10,6 +10,11 @@ const theme = createTheme({
   cssVariables: {
     nativeColor: true,
     cssVarPrefix: 'nativeColor', // This is for the demo only, you don't need to set this to use the feature
+    colorSchemeSelector: 'data-mui-color-scheme',
+  },
+  colorSchemes: {
+    light: true,
+    dark: true,
   },
 });
 
