@@ -21,7 +21,7 @@ MCP solves these problems by:
 
 ## Installation and setup
 
-The sections below detail how to set up the Material UI MCP in popular IDEs.
+The sections below detail how to set up the Material UI MCP in popular IDEs.
 
 ### VS Code, Cursor, Windsurf
 
@@ -58,7 +58,7 @@ Click **OK** and **Apply**.
 
 ### Zed
 
-You can add the Material UI MCP server to Zed as an extension or as a custom server:
+You can add the Material UI MCP server to Zed as an extension or as a custom server:
 
 #### As an extension
 
