@@ -1033,8 +1033,8 @@ importers:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.1.0(react@19.1.0)
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
     devDependencies:
       '@playwright/test':
         specifier: ^1.54.1
@@ -1146,8 +1146,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
 
   packages/api-docs-builder-core:
     dependencies:
@@ -1180,8 +1180,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1502,8 +1502,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
     publishDirectory: build
 
   packages/mui-lab:
@@ -1567,8 +1567,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
     publishDirectory: build
 
   packages/mui-material:
@@ -1668,8 +1668,8 @@ importers:
         specifier: ^7.5.1
         version: 7.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
     publishDirectory: build
 
   packages/mui-material-nextjs:
@@ -1859,8 +1859,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
       stylis:
         specifier: 4.3.6
         version: 4.3.6
@@ -1930,8 +1930,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
       styled-components:
         specifier: ^6.1.19
         version: 6.1.19(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2006,8 +2006,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
     publishDirectory: build
 
   packages/netlify-plugin-cache-docs:
@@ -2121,8 +2121,8 @@ importers:
         specifier: ^1.8.11
         version: 1.8.11(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sinon:
-        specifier: ^19.0.5
-        version: 19.0.5
+        specifier: ^21.0.0
+        version: 21.0.0
       styled-components:
         specifier: ^6.1.19
         version: 6.1.19(patch_hash=383c648dfdb5dfc82fbe414d54027d8c982a01c6320370f0ecfdb387e753c09f)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -5394,9 +5394,6 @@ packages:
 
   '@sinonjs/samsam@8.0.2':
     resolution: {integrity: sha512-v46t/fwnhejRSFTGqbpn9u+LQ9xJDse10gNnPgAcxgdoCDMXj/G2asWAC/8Qs+BAZDicX+MNZouXT1A7c83kVw==}
-
-  '@sinonjs/text-encoding@0.7.3':
-    resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
 
   '@slack/bolt@4.4.0':
     resolution: {integrity: sha512-FjGl1+hUo0w6ZSP2v3ZyjEkpGnA2t83Kz/Et2aEtIe8rRxrHd8R9CKShpd7BesuIcvqaz2eVe33YiKGohOiMKw==}
@@ -10214,9 +10211,6 @@ packages:
   just-diff@6.0.2:
     resolution: {integrity: sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA==}
 
-  just-extend@6.2.0:
-    resolution: {integrity: sha512-cYofQu2Xpom82S6qD778jBDpwvvy39s1l/hrYij2u9AMdQcGRpaBu6kY4mVhuno5kJVi1DAz4aiphA2WI1/OAw==}
-
   jwa@1.4.1:
     resolution: {integrity: sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==}
 
@@ -11196,9 +11190,6 @@ packages:
 
   nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
-
-  nise@6.1.1:
-    resolution: {integrity: sha512-aMSAzLVY7LyeM60gvBS423nBmIPP+Wy7St7hsb+8/fc1HmeoHJfLO8CKse4u3BtOZvQLJghYPI2i/1WZrEj5/g==}
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
@@ -13007,8 +12998,8 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
-  sinon@19.0.5:
-    resolution: {integrity: sha512-r15s9/s+ub/d4bxNXqIUmwp6imVSdTorIRaxoecYjqTVLZ8RuoXr/4EDGwIBo6Waxn7f2gnURX9zuhAfCwaF6Q==}
+  sinon@21.0.0:
+    resolution: {integrity: sha512-TOgRcwFPbfGtpqvZw+hyqJDvqfapr1qUlOizROIk4bBLjlsjlB00Pg6wMFXNtJRpu+eCZuVOaLatG7M8105kAw==}
 
   sirv@2.0.4:
     resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
@@ -18716,8 +18707,6 @@ snapshots:
       '@sinonjs/commons': 3.0.1
       lodash.get: 4.4.2
       type-detect: 4.1.0
-
-  '@sinonjs/text-encoding@0.7.3': {}
 
   '@slack/bolt@4.4.0(@types/express@5.0.0)':
     dependencies:
@@ -24564,8 +24553,6 @@ snapshots:
 
   just-diff@6.0.2: {}
 
-  just-extend@6.2.0: {}
-
   jwa@1.4.1:
     dependencies:
       buffer-equal-constant-time: 1.0.1
@@ -25922,14 +25909,6 @@ snapshots:
       - babel-plugin-macros
 
   nice-try@1.0.5: {}
-
-  nise@6.1.1:
-    dependencies:
-      '@sinonjs/commons': 3.0.1
-      '@sinonjs/fake-timers': 13.0.5
-      '@sinonjs/text-encoding': 0.7.3
-      just-extend: 6.2.0
-      path-to-regexp: 8.1.0
 
   no-case@3.0.4:
     dependencies:
@@ -28125,13 +28104,12 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
 
-  sinon@19.0.5:
+  sinon@21.0.0:
     dependencies:
       '@sinonjs/commons': 3.0.1
       '@sinonjs/fake-timers': 13.0.5
       '@sinonjs/samsam': 8.0.2
       diff: 7.0.0
-      nise: 6.1.1
       supports-color: 7.2.0
 
   sirv@2.0.4:
