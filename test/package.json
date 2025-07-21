@@ -39,7 +39,7 @@
     "styled-components": "^6.1.19",
     "stylis": "4.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.100.1",
+    "webpack": "^5.100.2",
     "yargs": "^17.7.2"
   },
   "dependencies": {
