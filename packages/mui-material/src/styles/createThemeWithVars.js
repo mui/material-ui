@@ -130,7 +130,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     defaultColorScheme: defaultColorSchemeInput,
     disableCssColorScheme = false,
     cssVarPrefix = 'mui',
-    nativeColorSyntax = false,
+    nativeColor = false,
     shouldSkipGeneratingVar = defaultShouldSkipGeneratingVar,
     colorSchemeSelector: selector = colorSchemesInput.light && colorSchemesInput.dark
       ? 'media'
@@ -168,7 +168,7 @@ export default function createThemeWithVars(options = {}, ...args) {
 
   // The reason to use `oklch` is that it is the most perceptually uniform color space and widely supported.
   let colorSpace;
-  if (nativeColorSyntax) {
+  if (nativeColor) {
     colorSpace = 'oklch';
   }
 
@@ -611,7 +611,7 @@ export default function createThemeWithVars(options = {}, ...args) {
     disableCssColorScheme,
     shouldSkipGeneratingVar,
     getSelector: defaultGetSelector(theme),
-    enableContrastVars: nativeColorSyntax,
+    enableContrastVars: nativeColor,
   };
   const { vars, generateThemeVars, generateStyleSheets } = prepareCssVars(theme, parserConfig);
   theme.vars = vars;

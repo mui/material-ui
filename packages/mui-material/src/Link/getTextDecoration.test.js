@@ -116,7 +116,7 @@ describe('getTextDecoration', () => {
   describe('Native color syntax', () => {
     const theme = createTheme({
       cssVariables: {
-        nativeColorSyntax: true,
+        nativeColor: true,
       },
       colorSchemes: {
         light: true,

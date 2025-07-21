@@ -15,7 +15,7 @@ This feature only works in modern browsers. Please check the [browser support](h
 
 ## Usage
 
-Set `cssVariables` with `nativeColorSyntax: true` to the theme options.
+Set `cssVariables` with `nativeColor: true` to the theme options.
 Material UI will start using CSS color-mix and relative color instead of the JavaScript color manipulation.
 
 :::info
@@ -25,7 +25,7 @@ Try inspecting the demo below to see the calculated values of the color tokens.
 ```js
 const theme = createTheme({
   cssVariables: {
-    nativeColorSyntax: true,
+    nativeColor: true,
   },
 });
 ```
@@ -38,7 +38,7 @@ The theme palette supports all modern color spaces, for example `oklch`, `oklab`
 
 ```js
 const theme = createTheme({
-  cssVariables: { nativeColorSyntax: true },
+  cssVariables: { nativeColor: true },
   palette: {
     primary: {
       main: 'color(display-p3 0.5 0.8 0.2)',
@@ -56,7 +56,7 @@ If you have set colors via CSS variables, you can provide the values to the them
 ```js
 const theme = createTheme({
   cssVariables: {
-    nativeColorSyntax: true,
+    nativeColor: true,
   },
   palette: {
     primary: {

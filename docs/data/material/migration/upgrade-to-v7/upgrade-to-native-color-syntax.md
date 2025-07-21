@@ -29,11 +29,11 @@ yarn add @mui/material@latest
 
 ## Enable native color syntax
 
-Set the `cssVariables.nativeColorSyntax` option to `true` in the `createTheme()` function.
+Set the `cssVariables.nativeColor` option to `true` in the `createTheme()` function.
 
 ```js
 const theme = createTheme({
-  cssVariables: { nativeColorSyntax: true },
+  cssVariables: { nativeColor: true },
 });
 ```
 
@@ -52,7 +52,7 @@ For example, manipulating the `contrastText` token will break the application:
 import { alpha } from '@mui/material/styles';
 
 const theme = createTheme({
-  cssVariables: { nativeColorSyntax: true },
+  cssVariables: { nativeColor: true },
 });
 
 // ❌ This will break because `alpha` does not support relative colors.
@@ -63,7 +63,7 @@ To fix this, you can use the `theme.alpha()` adapter function to manipulate colo
 
 ```js
 const theme = createTheme({
-  cssVariables: { nativeColorSyntax: true },
+  cssVariables: { nativeColor: true },
 });
 
 // ✅ This will work because `theme.alpha` supports relative colors.

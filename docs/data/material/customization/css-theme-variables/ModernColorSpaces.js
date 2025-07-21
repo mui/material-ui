@@ -23,7 +23,7 @@ export default function ModernColorSpaces() {
     () =>
       createTheme({
         cssVariables: {
-          nativeColorSyntax: true,
+          nativeColor: true,
           cssVarPrefix: 'modern-color-spaces',
         },
         palette: {
