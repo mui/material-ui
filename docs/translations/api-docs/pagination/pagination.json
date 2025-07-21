@@ -14,9 +14,12 @@
     "getItemAriaLabel": {
       "description": "Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"https://mui.com/material-ui/guides/localization/\">translations</a>.",
       "typeDescriptions": {
-        "type": "The link or button type to format (&#39;page&#39; | &#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39; | &#39;start-ellipsis&#39; | &#39;end-ellipsis&#39;). Defaults to &#39;page&#39;.",
-        "page": "The page number to format.",
-        "selected": "If true, the current page is selected."
+        "type": {
+          "name": "type",
+          "description": "The link or button type to format (&#39;page&#39; | &#39;first&#39; | &#39;last&#39; | &#39;next&#39; | &#39;previous&#39; | &#39;start-ellipsis&#39; | &#39;end-ellipsis&#39;). Defaults to &#39;page&#39;."
+        },
+        "page": { "name": "page", "description": "The page number to format." },
+        "selected": { "name": "selected", "description": "If true, the current page is selected." }
       }
     },
     "hideNextButton": { "description": "If <code>true</code>, hide the next-page button." },
@@ -24,8 +27,8 @@
     "onChange": {
       "description": "Callback fired when the page is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "page": "The page selected."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "page": { "name": "page", "description": "The page selected." }
       }
     },
     "page": {
@@ -33,7 +36,9 @@
     },
     "renderItem": {
       "description": "Render the item.",
-      "typeDescriptions": { "params": "The props to spread on a PaginationItem." }
+      "typeDescriptions": {
+        "params": { "name": "params", "description": "The props to spread on a PaginationItem." }
+      }
     },
     "shape": { "description": "The shape of the pagination items." },
     "showFirstButton": { "description": "If <code>true</code>, show the first-page button." },
