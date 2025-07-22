@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { PropTypes, Theme } from '..';
+import { PropTypes, Theme } from '../styles';
 import { AppBarClasses } from './appBarClasses';
 import { ExtendPaperTypeMap } from '../Paper/Paper';
 

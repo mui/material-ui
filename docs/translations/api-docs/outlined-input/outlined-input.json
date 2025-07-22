@@ -55,7 +55,10 @@
     "onChange": {
       "description": "Callback fired when the value is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        }
       }
     },
     "placeholder": {
@@ -116,22 +119,26 @@
     "inputAdornedEnd": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
-      "conditions": "<code>endAdornment</code> is provided"
+      "conditions": "<code>endAdornment</code> is provided",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/input-base/#inputbase-classes-input\">.MuiInputBase-input</a> and <a href=\"/material-ui/api/input-base/#inputbase-classes-adornedEnd\">.MuiInputBase-adornedEnd</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "inputAdornedStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
-      "conditions": "<code>startAdornment</code> is provided"
+      "conditions": "<code>startAdornment</code> is provided",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/input-base/#inputbase-classes-input\">.MuiInputBase-input</a> and <a href=\"/material-ui/api/input-base/#inputbase-classes-adornedStart\">.MuiInputBase-adornedStart</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "inputMultiline": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
-      "conditions": "<code>multiline={true}</code>"
+      "conditions": "<code>multiline={true}</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/input-base/#inputbase-classes-input\">.MuiInputBase-input</a> and <a href=\"/material-ui/api/input-base/#inputbase-classes-multiline\">.MuiInputBase-multiline</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "inputSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
-      "conditions": "<code>size=\"small\"</code>"
+      "conditions": "<code>size=\"small\"</code>",
+      "deprecationInfo": "Combine the <a href=\"/material-ui/api/input-base/#inputbase-classes-input\">.MuiInputBase-input</a> and <a href=\"/material-ui/api/input-base/#inputbase-classes-sizeSmall\">.MuiInputBase-sizeSmall</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "inputTypeSearch": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

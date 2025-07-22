@@ -84,7 +84,7 @@ This flexibility enables faster insight discovery and more efficient data analys
 This feature is available right out of the box, but you can also create a preconfigured setup to tailor it to your user requirements.
 
 <figure>
-  <video autoplay muted loop playsinline width="1350" height="1126" controls style="border: 0; width: 675px">
+  <video autoplay muted loop playsinline width="1366" height="1142" controls style="border: 0; width: 683px">
     <source src="/static/blog/mui-x-v8/pivoting.mp4" type="video/mp4">
   </video>
   <figcaption>A common pivoting use case</figcaption>
@@ -426,7 +426,12 @@ We've published migration guides for Material UI and each of the advanced compo
 These guides detail every breaking change from previous versions with the recommended approach to fix them.
 We care deeply about providing a smooth migration, so it's been a top priority for us when planning our new major versions.
 
-Please follow the instructions in our [migration guide](/x/migration/).
+Please refer to the migration instructions for each individual component below:
+
+- [Data Grid](/x/migration/migration-data-grid-v7/)
+- [Date and Time Pickers](/x/migration/migration-pickers-v7/)
+- [Tree View](/x/migration/migration-tree-view-v7/)
+- [Charts](/x/migration/migration-charts-v7/)
 
 ## Long‑Term Support (LTS)
 

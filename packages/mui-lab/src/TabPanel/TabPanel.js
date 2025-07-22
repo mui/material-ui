@@ -20,7 +20,6 @@ const useUtilityClasses = (ownerState) => {
 const TabPanelRoot = styled('div', {
   name: 'MuiTabPanel',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
   padding: theme.spacing(3),
 }));

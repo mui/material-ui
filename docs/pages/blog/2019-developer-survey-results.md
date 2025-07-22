@@ -1,5 +1,5 @@
 ---
-title: 'The 2019 Material UI Developer Survey: here's what we discovered'
+title: "The 2019 Material UI Developer Survey: here's what we discovered"
 description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']

@@ -1,10 +1,13 @@
+import * as React from 'react';
 import { SxProps } from '@mui/material/styles';
-import { PageContext } from './PageContext';
+import { MuiPageContext } from './PageContext';
 
-export function convertProductIdToName(productInfo: PageContext): string | undefined;
+export function convertProductIdToName(productInfo: MuiPageContext): string | undefined;
 
 export interface AppSearchProps {
   sx?: SxProps;
 }
 
-export default React.ComponentType<AppSearchProps>;
+declare const AppSearch: React.ComponentType<AppSearchProps>;
+
+export default AppSearch;

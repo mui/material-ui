@@ -1,6 +1,6 @@
 {
   "name": "material-ui-preact",
-  "version": "5.0.0",
+  "version": "7.0.0",
   "private": true,
   "dependencies": {
     "@babel/helper-builder-react-jsx": "latest",
