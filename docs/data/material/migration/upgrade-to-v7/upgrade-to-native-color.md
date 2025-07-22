@@ -7,7 +7,7 @@ Check out the [native color documentation](/material-ui/customization/css-theme-
 
 ## Prerequisites
 
-Update Material UI to the latest version or at least v7.3.0.
+Update Material UI to the latest version (or at least v7.3.0).
 
 <!-- #npm-tag-reference -->
 
@@ -37,7 +37,7 @@ const theme = createTheme({
 });
 ```
 
-Once you've enabled the native color, Material UI will start using CSS `color-mix()` and relative colors to manipulate colors.
+Once you've enabled native color, Material UI will start using CSS `color-mix()` and relative colors to manipulate colors.
 
 To check that it's working, open the browser's developer tools. On the Elements tab, click the Styles panel and search for "color-mix".
 You should see the Material UI color tokens appear as CSS variables.

@@ -8,17 +8,17 @@ This feature only works in modern browsers. Please check the [browser support](h
 
 ## Benefits
 
-- No longer need to use JavaScript to manipulate colors.
-- Supports modern color spaces, for example `oklch`, `oklab`, and `display-p3`.
+- No need to use JavaScript to manipulate colors.
+- Supports modern color spaces such as `oklch`, `oklab`, and `display-p3`.
 - Supports color aliases to external CSS variables.
 - Automatically calculates contrast text from the main color.
 
 ## Usage
 
-Set `cssVariables` with `nativeColor: true` to the theme options.
+Set `cssVariables` with `nativeColor: true` in the theme options.
 Material UI will start using CSS color-mix and relative color instead of the JavaScript color manipulation.
 
-:::info
+:::success
 Try inspecting the demo below to see the calculated values of the color tokens.
 :::
 
@@ -34,7 +34,7 @@ const theme = createTheme({
 
 ## Modern color spaces
 
-The theme palette supports all modern color spaces, for example `oklch`, `oklab`, and `display-p3`.
+The theme palette supports all modern color spaces, including `oklch`, `oklab`, and `display-p3`.
 
 ```js
 const theme = createTheme({
@@ -51,7 +51,7 @@ const theme = createTheme({
 
 ## Aliasing color variables
 
-If you have set colors via CSS variables, you can provide the values to the theme palette options.
+If you're using CSS variables to define colors, you can provide the values to the theme palette options.
 
 ```js
 const theme = createTheme({
@@ -70,9 +70,9 @@ const theme = createTheme({
 
 ## Theme color functions
 
-The theme object contains these new color utilities: `alpha()`, `lighten()`, and `darken()`.
+The theme object contains these color utilities: `alpha()`, `lighten()`, and `darken()`.
 
-When native color is enabled, those functions will use CSS color-mix and relative color instead of the JavaScript color manipulation.
+When native color is enabled, these functions use CSS `color-mix()` and relative color instead of the JavaScript color manipulation.
 
 {{"demo": "ThemeColorFunctions.js"}}
 
@@ -97,5 +97,5 @@ To learn more about the formulas used, see [this article on color contrast from 
 ## Caveats
 
 - Because of the differences in how contrast is calculated between CSS and JavaScript, the resulting CSS colors may not exactly match the corresponding JavaScript colors to be replaced.
-- In the future, the relative color contrast will be replaced by native [CSS `contrast-color()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/contrast-color) when browser support is improved.
+- In the future, the relative color contrast will be replaced by the native [CSS `contrast-color()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/contrast-color) when browser support is improved.
 - For relative color contrast, the color space is automatically set to `oklch` internally. Currently it's not possible to change this, but please [open an issue](https://github.com/mui/material-ui/issues/new/) if you have a use case that calls for it.
