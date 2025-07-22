@@ -23,7 +23,7 @@ MCP solves these problems by:
 
 The sections below detail how to set up the Material UI MCP in popular IDEs.
 
-### VS Code, Cursor, Windsurf
+### VS Code, Cursor, Windsurf
 
 Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add the following:
 
@@ -39,7 +39,7 @@ Open the MCP configuration (**Settings** -> **MCP** -> **Add Server**) and add t
 }
 ```
 
-VS Code users must also enable Agent mode (for Copilot Chat) and add the following to `settings.json`:
+VS Code users must also enable Agent mode (for Copilot Chat) and add the following to `settings.json`:
 
 ```json
   "chat.mcp.enabled": true,
