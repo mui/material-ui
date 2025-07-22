@@ -27,7 +27,7 @@ export function createMuiChat(demoData: DemoData) {
     description,
     dependencies,
     openSandbox: async () => {
-      const baseUrl = process.env.NEXT_PUBLIC_MUI_CHAT_API_BASE_URL;
+      const baseUrl = process.env.MUI_CHAT_API_BASE_URL;
 
       if (!baseUrl) {
         throw new Error(
