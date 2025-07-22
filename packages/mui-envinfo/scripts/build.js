@@ -43,11 +43,6 @@ async function main() {
   } finally {
     await fse.remove(untarDestination);
   }
-  const pkgJson = await fse.readJson(path.join(buildDirectory, 'package.json'));
-  delete pkgJson.publishConfig.directory;
-  await fse.writeJson(path.join(buildDirectory, 'package.json'), pkgJson, {
-    spaces: 2,
-  });
 }
 
 main().catch((error) => {
