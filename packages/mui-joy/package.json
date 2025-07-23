@@ -59,7 +59,7 @@
     "next": "^15.4.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "sinon": "^19.0.5"
+    "sinon": "^21.0.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
