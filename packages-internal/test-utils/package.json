@@ -49,9 +49,9 @@
     "fs-extra": "^11.3.0",
     "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
-    "mocha": "^11.7.0",
+    "mocha": "^11.7.1",
     "prop-types": "^15.8.1",
-    "sinon": "^19.0.5"
+    "sinon": "^21.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",
@@ -61,7 +61,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/sinon": "^17.0.4",
-    "@playwright/test": "^1.53.1",
+    "@playwright/test": "^1.54.1",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {

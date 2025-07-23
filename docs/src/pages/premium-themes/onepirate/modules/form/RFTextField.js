@@ -60,7 +60,7 @@ RFTextField.propTypes = {
     dirty: PropTypes.bool,
     dirtySinceLastSubmit: PropTypes.bool,
     error: PropTypes.any,
-    initial: PropTypes.string,
+    initial: PropTypes.any,
     invalid: PropTypes.bool,
     length: PropTypes.number,
     modified: PropTypes.bool,

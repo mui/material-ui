@@ -13,8 +13,8 @@
     "renderSurplus": {
       "description": "custom renderer of extraAvatars",
       "typeDescriptions": {
-        "surplus": "number of extra avatars",
-        "React.ReactNode": "custom element to display"
+        "surplus": { "name": "surplus", "description": "number of extra avatars" },
+        "React.ReactNode": { "name": "React.ReactNode", "description": "custom element to display" }
       }
     },
     "slotProps": { "description": "The props used for each slot inside." },
