@@ -1455,7 +1455,7 @@ describe('<Select />', () => {
       expect(trigger).to.have.text('Ten');
 
       // open the menu
-      await user.click(trigger);
+      await user.pointer({ keys: '[MouseLeft]', target: trigger });
 
       // const listbox = screen.queryByRole('listbox');
       // expect(listbox).not.to.equal(null);
