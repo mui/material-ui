@@ -284,9 +284,13 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       }
     });
     if (!skip) {
-      ReactDOM.flushSync(() => {
-        setMaxColumnHeight(Math.max(...columnHeights));
-        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      Promise.resolve().then(() => {
+        if (masonryRef.current) {
+          ReactDOM.flushSync(() => {
+            setMaxColumnHeight(Math.max(...columnHeights));
+            setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+          });
+        }
       });
     }
   }, [sequential]);
