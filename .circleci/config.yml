@@ -43,6 +43,7 @@ default-job: &default-job
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
     DANGER_DISABLE_TRANSPILATION: 'true'
+    MUI_EXPERIMENTAL_MJS: 1
   working_directory: /tmp/material-ui
   docker:
     - image: cimg/node:20.17
@@ -387,8 +388,6 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm release:build
-          environment:
-            MUI_EXPERIMENTAL_MJS: 1
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
