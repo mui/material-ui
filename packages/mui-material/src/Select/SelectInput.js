@@ -271,6 +271,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       update(false, mouseEvent);
     }
 
+    // `{ once: true }` to automatically remove the listener, see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#once
     doc.addEventListener('mouseup', handleMouseUp, { once: true });
 
     update(true, event);
