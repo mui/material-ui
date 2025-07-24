@@ -23,7 +23,7 @@ import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Select />', () => {
-  const { clock, render } = createRenderer();
+  const { clock, render } = createRenderer({ clock: 'fake' });
 
   describeConformance(<Select value="" />, () => ({
     classes,
@@ -907,8 +907,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: MenuProps', () => {
-    clock.withFakeTimers();
-
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
@@ -1079,8 +1077,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: open (controlled)', () => {
-    clock.withFakeTimers();
-
     it('should not focus on close controlled select', async () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);
@@ -1443,6 +1439,8 @@ describe('<Select />', () => {
     });
 
     it('should be able to select the items on click of options', async () => {
+      clock.restore();
+
       const { user } = render(
         <Select defaultValue={[10]} multiple>
           <MenuItem value={10}>Ten</MenuItem>
@@ -1472,6 +1470,8 @@ describe('<Select />', () => {
     });
 
     it('should be able to select the items on mouseup', async () => {
+      clock.restore();
+
       const { user } = render(
         <Select defaultValue={[10]} multiple>
           <MenuItem value={10}>Ten</MenuItem>
