@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { userEvent } from '@testing-library/user-event';
 import {
   ErrorBoundary,
   act,
@@ -24,7 +23,7 @@ import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
 
 describe('<Select />', () => {
-  const { clock, render } = createRenderer({ clock: 'fake' });
+  const { clock, render } = createRenderer();
 
   describeConformance(<Select value="" />, () => ({
     classes,
@@ -908,6 +907,8 @@ describe('<Select />', () => {
   });
 
   describe('prop: MenuProps', () => {
+    clock.withFakeTimers();
+
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
@@ -1078,6 +1079,8 @@ describe('<Select />', () => {
   });
 
   describe('prop: open (controlled)', () => {
+    clock.withFakeTimers();
+
     it('should not focus on close controlled select', async () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);
@@ -1439,39 +1442,8 @@ describe('<Select />', () => {
       );
     });
 
-    it('should be able to select the items on click', async () => {
-      const user = userEvent.setup();
-
-      render(
-        <Select defaultValue={[10]} multiple>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>,
-      );
-
-      const trigger = screen.getByRole('combobox');
-
-      expect(trigger).to.have.text('Ten');
-
-      // open the menu
-      await user.pointer({ keys: '[MouseLeft]', target: trigger });
-
-      // const listbox = screen.queryByRole('listbox');
-      // expect(listbox).not.to.equal(null);
-
-      // const options = await screen.findAllByRole('option');
-      // Click second option
-      // await user.click(options[1]);
-
-      // expect(trigger).to.have.text('Ten, Twenty');
-
-      // Menu is still open in case of multiple
-      // expect(listbox).not.to.equal(null);
-    });
-
-    it('should be able to select the items on mouseup', () => {
-      render(
+    it('should be able to select the items on click of options', async () => {
+      const { user } = render(
         <Select defaultValue={[10]} multiple>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -1490,8 +1462,39 @@ describe('<Select />', () => {
       expect(listbox).not.to.equal(null);
 
       const options = screen.getAllByRole('option');
-      // Mouse up on second option
-      fireEvent.mouseUp(options[1]);
+      // Click second option
+      await user.click(options[1]);
+
+      expect(trigger).to.have.text('Ten, Twenty');
+
+      // Menu is still open in case of multiple
+      expect(listbox).not.to.equal(null);
+    });
+
+    it('should be able to select the items on mouseup', async () => {
+      const { user } = render(
+        <Select defaultValue={[10]} multiple>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = screen.getByRole('combobox');
+
+      expect(trigger).to.have.text('Ten');
+
+      // Open the menu without releasing the mouse
+      await user.pointer({ keys: '[MouseLeft>]', target: trigger });
+
+      const listbox = screen.queryByRole('listbox');
+      expect(listbox).not.to.equal(null);
+
+      const options = screen.getAllByRole('option');
+      // Mouse up on second option, release the mouse
+      await user.pointer(
+        { keys: '[/MouseLeft]', target: options[1] }, // mouseup
+      );
 
       expect(trigger).to.have.text('Ten, Twenty');
 
