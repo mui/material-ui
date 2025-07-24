@@ -1439,6 +1439,7 @@ describe('<Select />', () => {
     });
 
     it('should be able to select the items on click of options', async () => {
+      // Restore real timers — needed for `userEvent` to work correctly with async events.
       clock.restore();
 
       const { user } = render(
@@ -1470,6 +1471,7 @@ describe('<Select />', () => {
     });
 
     it('should be able to select the items on mouseup', async () => {
+      // Restore real timers — needed for `userEvent` to work correctly with async events.
       clock.restore();
 
       const { user } = render(
