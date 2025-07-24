@@ -35,11 +35,11 @@
     "react-is": "^19.1.0",
     "react-router": "^7.5.1",
     "react-window": "^1.8.11",
-    "sinon": "^19.0.5",
+    "sinon": "^21.0.0",
     "styled-components": "^6.1.19",
     "stylis": "4.2.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^5.100.1",
+    "webpack": "^5.100.2",
     "yargs": "^17.7.2"
   },
   "dependencies": {
