@@ -141,6 +141,10 @@ export async function createPackageFile(useEsmExports = false) {
     newPackageData.types = './index.d.ts';
   }
 
+  if (newPackageData.publishConfig?.directory) {
+    delete newPackageData.publishConfig.directory;
+  }
+
   const targetPath = path.resolve(buildPath, './package.json');
 
   await fse.writeFile(targetPath, JSON.stringify(newPackageData, null, 2), 'utf8');

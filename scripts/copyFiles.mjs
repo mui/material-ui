@@ -34,16 +34,28 @@ async function run() {
   const extraFiles = process.argv.slice(2);
   try {
     const packageData = await createPackageFile(true);
+    const defaultFiles = ['README.md'];
 
-    let changlogPath;
-    if (await fileExists(path.join(packagePath, './CHANGELOG.md'))) {
-      changlogPath = './CHANGELOG.md';
-    } else {
-      changlogPath = '../../CHANGELOG.md';
-    }
+    const packageOrRootFiles = [
+      ['LICENSE', '../../LICENSE'],
+      ['CHANGELOG.md', '../../CHANGELOG.md'],
+    ];
 
     await Promise.all(
-      ['./README.md', changlogPath, '../../LICENSE', ...extraFiles].map(async (file) => {
+      packageOrRootFiles.map(async (files) => {
+        for (const file of files) {
+          const sourcePath = path.join(packagePath, file);
+          // eslint-disable-next-line no-await-in-loop
+          if (await fileExists(sourcePath)) {
+            defaultFiles.push(file);
+            break;
+          }
+        }
+      }),
+    );
+
+    await Promise.all(
+      [...defaultFiles, ...extraFiles].map(async (file) => {
         const [sourcePath, targetPath] = file.split(':');
         await includeFileInBuild(sourcePath, targetPath);
       }),

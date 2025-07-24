@@ -21,15 +21,21 @@
     "onClose": {
       "description": "Callback fired when the component requests to be closed.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;mouseLeave&quot;</code>, <code>&quot;escapeKeyDown&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;blur&quot;</code>, <code>&quot;mouseLeave&quot;</code>, <code>&quot;escapeKeyDown&quot;</code>."
+        }
       }
     },
     "onOpen": {
       "description": "Callback fired when the component requests to be open.",
       "typeDescriptions": {
-        "event": "The event source of the callback.",
-        "reason": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;focus&quot;</code>, <code>&quot;mouseEnter&quot;</code>."
+        "event": { "name": "event", "description": "The event source of the callback." },
+        "reason": {
+          "name": "reason",
+          "description": "Can be: <code>&quot;toggle&quot;</code>, <code>&quot;focus&quot;</code>, <code>&quot;mouseEnter&quot;</code>."
+        }
       }
     },
     "open": { "description": "If <code>true</code>, the component is shown." },
