@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { blue, purple, red, green, orange, brown } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -7,18 +8,49 @@ import Typography from '@mui/material/Typography';
 const theme = createTheme({
   cssVariables: {
     nativeColor: true,
-    cssVarPrefix: 'demo', // This is for the demo only, you don't need to set this to use the feature
+    // This is for the demo only, you don't need to set this to use the feature
+    cssVarPrefix: 'demo',
+    colorSchemeSelector: 'data',
+  },
+  colorSchemes: {
+    light: true,
+    dark: true,
   },
 });
 
 const colorSwatches = [
-  { color: theme.palette.primary.main, key: 'primary' as const },
-  { color: theme.palette.secondary.main, key: 'secondary' as const },
-  { color: theme.palette.error.main, key: 'error' as const },
-  { color: theme.palette.warning.main, key: 'warning' as const },
-  { color: theme.palette.info.main, key: 'info' as const },
-  { color: theme.palette.success.main, key: 'success' as const },
+  { color: blue[500] },
+  { color: purple[500] },
+  { color: red[500] },
+  { color: brown[600] },
+  { color: green[600] },
+  { color: orange[500] },
 ];
+
+function ColorDisplay({ color }: { color: string }) {
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box
+        sx={{
+          width: 48,
+          height: 48,
+          bgcolor: color,
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: 'divider',
+        }}
+      />
+      <Typography
+        variant="caption"
+        fontFamily="monospace"
+        color="text.secondary"
+        sx={{ wordBreak: 'break-all' }}
+      >
+        {color}
+      </Typography>
+    </Box>
+  );
+}
 
 export default function ThemeColorFunctions() {
   const [selectedColor, setSelectedColor] = React.useState(colorSwatches[0]);
@@ -32,32 +64,33 @@ export default function ThemeColorFunctions() {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ p: 2 }}>
-        {/* Color Swatches */}
         <Box sx={{ display: 'flex', gap: 1, mb: 3, flexWrap: 'wrap' }}>
           {colorSwatches.map((swatch) => {
-            const isSelected = selectedColor.key === swatch.key;
+            const isSelected = selectedColor.color === swatch.color;
             return (
               <Button
-                key={swatch.key}
+                key={swatch.color}
                 variant={isSelected ? 'contained' : 'outlined'}
-                color={swatch.key}
                 onClick={() => setSelectedColor(swatch)}
-                sx={{
+                sx={(t) => ({
                   width: 56,
                   height: 56,
                   minWidth: 56,
                   p: 0,
                   fontSize: '0.625rem',
                   fontFamily: 'monospace',
-                }}
+                  borderColor: isSelected ? 'transparent' : swatch.color,
+                  bgcolor: isSelected ? swatch.color : 'transparent',
+                  color: isSelected
+                    ? t.palette.getContrastText(swatch.color)
+                    : swatch.color,
+                })}
               >
                 {swatch.color}
               </Button>
             );
           })}
         </Box>
-
-        {/* Function Results */}
         <Box
           sx={{
             display: 'grid',
@@ -65,85 +98,23 @@ export default function ThemeColorFunctions() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           }}
         >
-          {/* Alpha Function */}
           <div>
             <Typography variant="subtitle2" gutterBottom fontWeight="medium">
               theme.alpha(color, 0.5)
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box
-                sx={{
-                  width: 48,
-                  height: 48,
-                  bgcolor: colorValues.alpha,
-                  borderRadius: 1,
-                  border: '1px solid',
-                  borderColor: 'divider',
-                }}
-              />
-              <Typography
-                variant="caption"
-                fontFamily="monospace"
-                color="text.secondary"
-                sx={{ wordBreak: 'break-all' }}
-              >
-                {colorValues.alpha}
-              </Typography>
-            </Box>
+            <ColorDisplay color={colorValues.alpha} />
           </div>
-
-          {/* Lighten Function */}
           <div>
             <Typography variant="subtitle2" gutterBottom fontWeight="medium">
               theme.lighten(color, 0.5)
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box
-                sx={{
-                  width: 48,
-                  height: 48,
-                  bgcolor: colorValues.lighten,
-                  borderRadius: 1,
-                  border: '1px solid',
-                  borderColor: 'divider',
-                }}
-              />
-              <Typography
-                variant="caption"
-                fontFamily="monospace"
-                color="text.secondary"
-                sx={{ wordBreak: 'break-all' }}
-              >
-                {colorValues.lighten}
-              </Typography>
-            </Box>
+            <ColorDisplay color={colorValues.lighten} />
           </div>
-
-          {/* Darken Function */}
           <div>
             <Typography variant="subtitle2" gutterBottom fontWeight="medium">
               theme.darken(color, 0.5)
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box
-                sx={{
-                  width: 48,
-                  height: 48,
-                  bgcolor: colorValues.darken,
-                  borderRadius: 1,
-                  border: '1px solid',
-                  borderColor: 'divider',
-                }}
-              />
-              <Typography
-                variant="caption"
-                fontFamily="monospace"
-                color="text.secondary"
-                sx={{ wordBreak: 'break-all' }}
-              >
-                {colorValues.darken}
-              </Typography>
-            </Box>
+            <ColorDisplay color={colorValues.darken} />
           </div>
         </Box>
       </Box>
