@@ -58,5 +58,5 @@
     // Otherwise we get react-native typings which conflict with dom.lib.
     "types": ["node", "react", "mocha"]
   },
-  "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
+  "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export", "packages/mui-icons-material/templateSvgIcon.js"]
 }
