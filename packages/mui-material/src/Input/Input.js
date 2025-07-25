@@ -36,12 +36,13 @@ const useUtilityClasses = (ownerState) => {
 
 
 const InputRoot = styled(InputBaseRoot, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || (prop === 'classes' || prop === 'ownerState'),
+  shouldForwardProp: (prop) => 
+    rootShouldForwardProp(prop) && 
+    !['classes', 'ownerState', 'disableUnderline'].includes(prop),
   name: 'MuiInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-
     return [
       ...inputBaseRootOverridesResolver(props, styles),
       !ownerState.disableUnderline && styles.underline,
