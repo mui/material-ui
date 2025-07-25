@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-/* eslint-disable material-ui/no-hardcoded-labels */
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';

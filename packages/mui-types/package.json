@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "7.4.2",
+  "version": "7.4.4",
   "author": "MUI Team",
   "description": "Utility types for Material UI.",
   "types": "./index.d.ts",
@@ -38,11 +38,11 @@
     "directory": "build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.1"
+    "@babel/runtime": "^7.27.6"
   },
   "devDependencies": {
     "@mui/types": "workspace:*",
-    "@types/react": "^19.1.4"
+    "@types/react": "^19.1.8"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0"

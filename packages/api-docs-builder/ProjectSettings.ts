@@ -113,4 +113,9 @@ export interface ProjectSettings {
    * Determines the base API URL for generated JSDocs
    */
   baseApiUrl?: string;
+  /**
+   * Determines the non-component folders to be included in the llms.txt file.
+   * The folders are relative to the `docs/data` directory.
+   */
+  nonComponentFolders?: string[];
 }

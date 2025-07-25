@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import Check from '@mui/icons-material/Check';
 import CheckRounded from '@mui/icons-material/CheckRounded';

@@ -21,7 +21,7 @@ const Nav = styled('nav')(({ theme }) => ({
   overflowY: 'auto',
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(7),
-  paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
+  paddingRight: theme.spacing(4), // We can't use `padding` as @mui/stylis-plugin-rtl doesn't swap it
   display: 'none',
   scrollbarWidth: 'thin',
   [theme.breakpoints.up('md')]: {
@@ -301,7 +301,6 @@ export default function AppTableOfContents(props) {
               variant="caption"
               sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}
             </Typography>
           </Link>

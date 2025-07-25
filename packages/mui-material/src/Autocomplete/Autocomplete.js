@@ -588,23 +588,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     ...getItemProps(params),
   });
 
-  if (renderTags && multiple && value.length > 0) {
-    startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
+  if (multiple) {
+    if (value.length > 0) {
+      if (renderTags) {
+        startAdornment = renderTags(value, getCustomizedItemProps, ownerState);
+      } else if (renderValue) {
+        startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
+      } else {
+        startAdornment = value.map((option, index) => {
+          const { key, ...customItemProps } = getCustomizedItemProps({ index });
+          return (
+            <Chip
+              key={key}
+              label={getOptionLabel(option)}
+              size={size}
+              {...customItemProps}
+              {...externalForwardedProps.slotProps.chip}
+            />
+          );
+        });
+      }
+    }
   } else if (renderValue && value != null) {
     startAdornment = renderValue(value, getCustomizedItemProps, ownerState);
-  } else if (multiple && value.length > 0) {
-    startAdornment = value.map((option, index) => {
-      const { key, ...customItemProps } = getCustomizedItemProps({ index });
-      return (
-        <Chip
-          key={key}
-          label={getOptionLabel(option)}
-          size={size}
-          {...customItemProps}
-          {...externalForwardedProps.slotProps.chip}
-        />
-      );
-    });
   }
 
   if (limitTags > -1 && Array.isArray(startAdornment)) {
@@ -950,6 +956,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Used to determine the disabled state for a given option.
    *
    * @param {Value} option The option to test.
+   * @template Value The option shape. Will be the same shape as an item of the options.
    * @returns {boolean}
    */
   getOptionDisabled: PropTypes.func,

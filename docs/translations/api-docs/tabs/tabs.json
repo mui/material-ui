@@ -23,8 +23,11 @@
     "onChange": {
       "description": "Callback fired when the value changes.",
       "typeDescriptions": {
-        "event": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.",
-        "value": "We default to the index of the child (number)"
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event."
+        },
+        "value": { "name": "value", "description": "We default to the index of the child (number)" }
       }
     },
     "orientation": { "description": "The component orientation (layout flow direction)." },

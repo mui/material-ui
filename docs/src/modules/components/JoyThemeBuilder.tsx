@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import TypeScriptIcon from '@mui/docs/svgIcons/TypeScript';
 import startCase from 'lodash/startCase';
@@ -1318,7 +1317,6 @@ function TemplatesDialog({
           }}
         >
           <div>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <Link
               component="button"
               color="neutral"
@@ -1393,7 +1391,6 @@ function TemplatesDialog({
                 alignItems: 'center',
               }}
             >
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 component="button"
                 color="neutral"
