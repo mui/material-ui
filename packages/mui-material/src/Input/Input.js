@@ -35,7 +35,7 @@ const useUtilityClasses = (ownerState) => {
 };
 
 const InputRoot = styled(InputBaseRoot, {
-  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || (prop === 'classes' || prop === 'ownerState'),
   name: 'MuiInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
