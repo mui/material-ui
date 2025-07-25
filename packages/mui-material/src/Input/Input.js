@@ -196,10 +196,7 @@ Input.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOfType([
-    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
-    PropTypes.string,
-  ]),
+  color: PropTypes.oneOfType([PropTypes.oneOf(['primary', 'secondary']), PropTypes.string]),
   /**
    * The components used for each slot inside.
    *
