@@ -34,6 +34,7 @@ const useUtilityClasses = (ownerState) => {
   };
 };
 
+
 const InputRoot = styled(InputBaseRoot, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || (prop === 'classes' || prop === 'ownerState'),
   name: 'MuiInput',
@@ -226,6 +227,7 @@ Input.propTypes /* remove-proptypes */ = {
    *
    * @default {}
    */
+
   componentsProps: PropTypes.shape({
     input: PropTypes.object,
     root: PropTypes.object,
