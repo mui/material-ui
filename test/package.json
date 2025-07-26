@@ -40,7 +40,7 @@
     "stylis": "4.2.0",
     "webfontloader": "^1.6.28",
     "webpack": "^5.100.2",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "dependencies": {
     "@react-spring/web": "^10.0.1"
