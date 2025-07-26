@@ -81,6 +81,12 @@ export interface SvgIconOwnProps {
    * @default '0 0 24 24'
    */
   viewBox?: string;
+  /**
+   * For @mui/icons-material, enable the legacy behavior of adding a data-testid property to the
+   * root element containing the icon name.
+   * @default true
+   */
+  legacyTestId?: boolean;
 }
 
 export interface SvgIconTypeMap<
