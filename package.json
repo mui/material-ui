@@ -107,7 +107,7 @@
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0",
-    "google-auth-library": "^9.15.1"
+    "google-auth-library": "^10.2.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
