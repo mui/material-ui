@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { blue, purple, red, green, orange, brown } from '@mui/material/colors';
 import Box from '@mui/material/Box';
@@ -51,6 +52,10 @@ function ColorDisplay({ color }) {
     </Box>
   );
 }
+
+ColorDisplay.propTypes = {
+  color: PropTypes.string.isRequired,
+};
 
 export default function ThemeColorFunctions() {
   const [selectedColor, setSelectedColor] = React.useState(colorSwatches[0]);
