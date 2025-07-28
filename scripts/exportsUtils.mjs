@@ -1,5 +1,6 @@
-import { readFile } from 'fs/promises';
-import { resolve } from 'path';
+import * as fs from 'fs/promises';
+import * as path from 'path';
+import { resolveExports } from 'resolve-pkg-maps';
 import fg from 'fast-glob';
 
 const processedObjects = new WeakMap();
@@ -12,15 +13,15 @@ const processedObjects = new WeakMap();
  * @param {Object} [options.exports] - Exports object to analyze (if not provided, reads from package.json)
  * @returns {Promise<Map<string, Array<{conditions: string[], path: string}>>>} Map of export paths to resolved files
  */
-// eslint-disable-next-line import/prefer-default-export
+
 export async function findAllExportedPaths({ cwd = process.cwd(), exports } = {}) {
   let exportsObj = exports;
 
   // Read package.json if exports not provided
   if (!exportsObj) {
     try {
-      const packageJsonPath = resolve(cwd, 'package.json');
-      const packageJsonContent = await readFile(packageJsonPath, 'utf8');
+      const packageJsonPath = path.resolve(cwd, 'package.json');
+      const packageJsonContent = await fs.readFile(packageJsonPath, 'utf8');
       const packageJson = JSON.parse(packageJsonContent);
       exportsObj = packageJson.exports;
     } catch (error) {
@@ -132,7 +133,7 @@ async function resolvePattern(pattern, cwd) {
 
   if (!filePattern.includes('*')) {
     // Non-wildcard pattern - return immediately
-    const absolutePath = resolve(cwd, filePattern);
+    const absolutePath = path.resolve(cwd, filePattern);
     return [
       {
         exportPath: exportPattern,
@@ -161,7 +162,7 @@ async function resolvePattern(pattern, cwd) {
 
     const capturedValue = match[1];
     const exportPath = exportPattern.replace('*', capturedValue);
-    const absolutePath = resolve(cwd, matchedFile);
+    const absolutePath = path.resolve(cwd, matchedFile);
 
     return {
       exportPath,
@@ -221,4 +222,70 @@ function createCaptureRegex(filePattern) {
   const regexPattern = `^${escaped.replace('\\\\*', '(.+)')}$`;
 
   return new RegExp(regexPattern);
+}
+
+/**
+ * Creates package.json shim files for all exported paths
+ *
+ * @param {string} cwd - Working directory to create shims in
+ * @param {Object} exports - Exports object from package.json
+ * @returns {Promise<void>}
+ */
+export async function shimPackageExports(cwd, exports) {
+  const exportedPaths = await findAllExportedPaths({ cwd, exports });
+
+  const shimPromises = Array.from(exportedPaths.keys(), async (exportPath) => {
+    if (exportPath === '.') {
+      return; // Skip root export
+    }
+
+    let esmPath = null;
+    let cjsPath = null;
+
+    // Try to resolve with import conditions
+    try {
+      const esmResults = resolveExports(exports, exportPath, ['import']);
+      if (esmResults && esmResults.length > 0) {
+        esmPath = esmResults[0];
+      }
+    } catch (error) {
+      // Ignore resolution errors
+    }
+
+    // Try to resolve with require conditions
+    try {
+      const cjsResults = resolveExports(exports, exportPath, ['require']);
+      if (cjsResults && cjsResults.length > 0) {
+        cjsPath = cjsResults[0];
+      }
+    } catch (error) {
+      // Ignore resolution errors
+    }
+
+    // Skip if neither ESM nor CJS resolved
+    if (!esmPath && !cjsPath) {
+      return;
+    }
+
+    // Create the shim directory
+    const shimPath = path.join(cwd, exportPath.replace(/^\.\//, ''));
+    const shimDir = path.dirname(shimPath);
+
+    await fs.mkdir(shimDir, { recursive: true });
+
+    // Create package.json content
+    const packageJsonContent = {};
+    if (cjsPath) {
+      packageJsonContent.main = cjsPath;
+    }
+    if (esmPath) {
+      packageJsonContent.module = esmPath;
+    }
+
+    // Write the shim package.json
+    const shimPackageJsonPath = path.join(shimPath, 'package.json');
+    await fs.writeFile(shimPackageJsonPath, JSON.stringify(packageJsonContent, null, 2));
+  });
+
+  await Promise.all(shimPromises);
 }
