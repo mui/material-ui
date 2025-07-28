@@ -2,7 +2,6 @@ import * as React from 'react';
 import { withStyles } from '@mui/styles';
 
 import {
-  ThemeProvider,
   MenuItem,
   Tab,
   Tabs as MuiTabs,
