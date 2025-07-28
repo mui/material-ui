@@ -37,22 +37,25 @@ export async function findAllExportedPaths({ cwd = process.cwd(), exports } = {}
   const patterns = [];
   collectPatterns(exportsObj, [], patterns);
 
-  // Phase 2: Resolve patterns
-  const resolvePromises = patterns.map((pattern) => resolvePattern(pattern, cwd));
-  const resolvedResults = await Promise.all(resolvePromises);
-
-  // Flatten and organize results with deduplication
+  // Phase 2: Resolve patterns sequentially
   const results = new Map();
-  const seen = new Set();
 
-  for (const resultList of resolvedResults) {
-    for (const result of resultList) {
-      // Create unique key: path + conditions (preserve order)
-      const uniqueKey = `${result.filePath}|${result.conditions.join(',')}`;
+  for (const pattern of patterns) {
+    if (pattern.filePattern === null) {
+      // This is a blocking pattern - remove matching entries
+      const blockingRegex = createBlockingRegex(pattern.exportPattern);
+      // Remove all matching entries from results
+      for (const exportPath of results.keys()) {
+        if (blockingRegex.test(exportPath)) {
+          results.delete(exportPath);
+        }
+      }
+    } else {
+      // Normal pattern - resolve and add to results
+      // eslint-disable-next-line no-await-in-loop
+      const resolvedResults = await resolvePattern(pattern, cwd);
 
-      if (!seen.has(uniqueKey)) {
-        seen.add(uniqueKey);
-
+      for (const result of resolvedResults) {
         if (!results.has(result.exportPath)) {
           results.set(result.exportPath, []);
         }
@@ -72,7 +75,13 @@ export async function findAllExportedPaths({ cwd = process.cwd(), exports } = {}
  * Phase 1: Recursively collect all export patterns
  */
 function collectPatterns(exportsObj, conditions, patterns, exportPath = '') {
-  if (exportsObj == null) {
+  if (exportsObj === null) {
+    // Handle null exports (blocking patterns)
+    patterns.push({
+      exportPattern: exportPath,
+      filePattern: null, // null indicates this blocks the path
+      conditions: [...conditions],
+    });
     return;
   }
 
@@ -126,6 +135,16 @@ function collectPatterns(exportsObj, conditions, patterns, exportPath = '') {
 }
 
 /**
+ * Create regex to match paths that should be blocked by null exports
+ */
+function createBlockingRegex(exportPattern) {
+  // Convert export pattern to regex that matches blocked paths
+  const escaped = RegExp.escape(exportPattern);
+  const regexPattern = escaped.replace('\\*', '.*');
+  return new RegExp(`^${regexPattern}$`);
+}
+
+/**
  * Phase 2: Resolve a single pattern to actual file paths
  */
 async function resolvePattern(pattern, cwd) {
@@ -157,7 +176,6 @@ async function resolvePattern(pattern, cwd) {
   return matchedFiles.map((matchedFile) => {
     const match = regex.exec(matchedFile);
     if (!match || match[1] === undefined) {
-      console.log(regex.source);
       throw new Error(`File ${matchedFile} does not match pattern ${filePattern}`);
     }
 
@@ -219,7 +237,7 @@ function createCaptureRegex(filePattern) {
   const regexPattern = escaped.replace('\\*', '(.+)');
 
   // Always make leading ./ optional
-  return new RegExp(`^(?:\\.\/)?${regexPattern}$`);
+  return new RegExp(`^(?:\\./)?${regexPattern}$`);
 }
 
 /**
