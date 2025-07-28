@@ -23,7 +23,7 @@
   "scripts": {
     "build": "code-infra build --bundle cjs --bundle esm --cjsOutDir . && pnpm build:copy-files",
     "build:copy-files": "code-infra copy-files",
-    "prebuild": "rimraf build *.tsbuildinfo",
+    "prebuild": "rimraf --glob build \"*.tsbuildinfo\"",
     "release": "pnpm build && pnpm publish",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
     "typescript": "tsc -p tsconfig.json",
