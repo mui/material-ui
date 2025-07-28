@@ -225,16 +225,18 @@ function createCaptureRegex(filePattern) {
 /**
  * Converts a path relative to package root to a path relative to shim location
  * @param {string} packageRoot - Absolute path to package root
- * @param {string} shimLocation - Absolute path to shim directory  
+ * @param {string} shimLocation - Absolute path to shim directory
  * @param {string} resolvedPath - Path relative to package root (e.g., "./index.js")
  * @returns {string|null} Path relative to shim location with "./" prefix
  */
 function makeRelativeToShim(packageRoot, shimLocation, resolvedPath) {
-  if (!resolvedPath) return null;
-  
+  if (!resolvedPath) {
+    return null;
+  }
+
   const absoluteResolvedPath = path.resolve(packageRoot, resolvedPath);
   const relativePath = path.relative(shimLocation, absoluteResolvedPath);
-  return './' + relativePath;
+  return `./${relativePath}`;
 }
 
 /**
