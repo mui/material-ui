@@ -3,7 +3,6 @@ import { withStyles } from '@mui/styles';
 
 import {
   ThemeProvider,
-  createTheme,
   MenuItem,
   Tab,
   Tabs as MuiTabs,
