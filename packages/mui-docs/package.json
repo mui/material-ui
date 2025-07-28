@@ -3,7 +3,6 @@
   "version": "7.2.0",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -22,11 +21,13 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build": "code-infra build --bundle cjs --bundle esm --cjsOutDir . && pnpm build:copy-files",
+    "build:old": "pnpm prebuild && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files:old",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:types": "tsx ../../scripts/buildTypes.mts",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json ./src/translations/translations.json:./modern/translations/translations.json",
+    "build:copy-files:old": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json",
+    "build:copy-files": "code-infra copy-files ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",

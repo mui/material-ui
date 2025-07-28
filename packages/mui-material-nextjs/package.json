@@ -77,8 +77,6 @@
     "./*": {
       "mui-src": "./src/*/index.ts"
     },
-    "./v13-pagesRouter": {
-      "mui-src": "./src/v13-pagesRouter/index.ts"
-    }
+    "./v13-pagesRouter": "./src/v13-pagesRouter/index.ts"
   }
 }

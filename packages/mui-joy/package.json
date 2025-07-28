@@ -24,10 +24,12 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build": "code-infra build --bundle cjs --bundle esm --cjsOutDir . && pnpm build:copy-files",
+    "build:old": "pnpm prebuild && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files:old",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
+    "build:copy-files": "code-infra copy-files",
+    "build:copy-files:old": "node ../../scripts/copyFiles.mjs",
     "build:types": "tsx ../../scripts/buildTypes.mts",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
