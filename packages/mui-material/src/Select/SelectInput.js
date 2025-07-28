@@ -133,11 +133,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     ...other
   } = props;
 
-  const paperProps = {
-    ...MenuProps.PaperProps,
-    ...MenuProps.slotProps?.paper,
-  };
-
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -157,6 +152,23 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
+
+  const open = displayNode !== null && openState;
+
+  const ownerState = {
+    ...props,
+    variant,
+    value,
+    open,
+    error,
+  };
+
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...(typeof MenuProps.slotProps?.paper === 'function'
+      ? MenuProps.slotProps.paper(ownerState)
+      : MenuProps.slotProps?.paper),
+  };
 
   const handleRef = useForkRef(ref, inputRefProp);
   const handlePaperRef = useForkRef(paperProps.ref, paperRef);
@@ -219,8 +231,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = (open, event) => {
-    if (open) {
+  const update = (openParam, event) => {
+    if (openParam) {
       if (onOpen) {
         onOpen(event);
       }
@@ -230,7 +242,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (!isOpenControlled) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
-      setOpenState(open);
+      setOpenState(openParam);
     }
   };
 
@@ -359,8 +371,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
     }
   };
-
-  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -528,19 +538,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
 
-  const ownerState = {
-    ...props,
-    variant,
-    value,
-    open,
-    error,
-  };
-
   const classes = useUtilityClasses(ownerState);
 
   const listProps = {
     ...MenuProps.MenuListProps,
-    ...MenuProps.slotProps?.list,
+    ...(typeof MenuProps.slotProps?.list === 'function'
+      ? MenuProps.slotProps.list(ownerState)
+      : MenuProps.slotProps?.list),
   };
 
   const listboxId = useId();
