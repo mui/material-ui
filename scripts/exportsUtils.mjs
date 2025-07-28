@@ -157,6 +157,7 @@ async function resolvePattern(pattern, cwd) {
   return matchedFiles.map((matchedFile) => {
     const match = regex.exec(matchedFile);
     if (!match || match[1] === undefined) {
+      console.log(regex.source);
       throw new Error(`File ${matchedFile} does not match pattern ${filePattern}`);
     }
 
@@ -175,21 +176,19 @@ async function resolvePattern(pattern, cwd) {
 /**
  * Convert file pattern with * to glob pattern
  */
-function convertToGlob(filePattern) {
-  const pattern = filePattern.startsWith('./') ? filePattern.slice(2) : filePattern;
-
+function convertToGlob(pattern) {
   if (!pattern.includes('*')) {
     return pattern; // No wildcard
   }
 
   // Check for exactly one wildcard
   if (pattern.indexOf('*') !== pattern.lastIndexOf('*')) {
-    throw new Error(`Export pattern can only contain one wildcard: ${filePattern}`);
+    throw new Error(`Export pattern can only contain one wildcard: ${pattern}`);
   }
 
   // Rule 1: * between two / slashes → convert to **
   if (pattern.includes('/*/')) {
-    return pattern.replace('/*/', '/**/');
+    return pattern.replace('/*/', '/**/*/');
   }
 
   // Rule 2: * between / and file extension → convert to **/*.
@@ -203,9 +202,7 @@ function convertToGlob(filePattern) {
   }
 
   // If we reach here, it's an invalid wildcard usage
-  throw new Error(
-    `Invalid wildcard pattern: ${filePattern}. Wildcard must be entire path segment.`,
-  );
+  throw new Error(`Invalid wildcard pattern: ${pattern}. Wildcard must be entire path segment.`);
 }
 
 /**
@@ -216,12 +213,28 @@ function createCaptureRegex(filePattern) {
   const pattern = filePattern.startsWith('./') ? filePattern.slice(2) : filePattern;
 
   // Escape regex special characters except *
-  const escaped = pattern.replace(/[.+?^${}()|[\\]\\\\]/g, '\\\\$&');
+  const escaped = RegExp.escape(pattern);
 
   // Replace * with capturing group (.+)
-  const regexPattern = `^${escaped.replace('\\\\*', '(.+)')}$`;
+  const regexPattern = escaped.replace('\\*', '(.+)');
 
-  return new RegExp(regexPattern);
+  // Always make leading ./ optional
+  return new RegExp(`^(?:\\.\/)?${regexPattern}$`);
+}
+
+/**
+ * Converts a path relative to package root to a path relative to shim location
+ * @param {string} packageRoot - Absolute path to package root
+ * @param {string} shimLocation - Absolute path to shim directory  
+ * @param {string} resolvedPath - Path relative to package root (e.g., "./index.js")
+ * @returns {string|null} Path relative to shim location with "./" prefix
+ */
+function makeRelativeToShim(packageRoot, shimLocation, resolvedPath) {
+  if (!resolvedPath) return null;
+  
+  const absoluteResolvedPath = path.resolve(packageRoot, resolvedPath);
+  const relativePath = path.relative(shimLocation, absoluteResolvedPath);
+  return './' + relativePath;
 }
 
 /**
@@ -237,6 +250,16 @@ export async function shimPackageExports(cwd, exports) {
   const shimPromises = Array.from(exportedPaths.keys(), async (exportPath) => {
     if (exportPath === '.') {
       return; // Skip root export
+    }
+
+    // Skip package.json
+    if (exportPath === './package.json') {
+      return;
+    }
+
+    // Skip non-JavaScript files
+    if (/\.[a-zA-Z0-9]+$/.test(exportPath) && !/\.(js|jsx|mjs|cjs|ts|tsx)$/.test(exportPath)) {
+      return;
     }
 
     let esmPath = null;
@@ -268,22 +291,26 @@ export async function shimPackageExports(cwd, exports) {
     }
 
     // Create the shim directory
-    const shimPath = path.join(cwd, exportPath.replace(/^\.\//, ''));
-    const shimDir = path.dirname(shimPath);
+    const shimDir = path.resolve(cwd, exportPath);
 
     await fs.mkdir(shimDir, { recursive: true });
 
+    // Convert resolved paths to be relative to shim location
+    const absoluteCwd = path.resolve(cwd);
+    const relativeCjsPath = makeRelativeToShim(absoluteCwd, shimDir, cjsPath);
+    const relativeEsmPath = makeRelativeToShim(absoluteCwd, shimDir, esmPath);
+
     // Create package.json content
     const packageJsonContent = {};
-    if (cjsPath) {
-      packageJsonContent.main = cjsPath;
+    if (relativeCjsPath) {
+      packageJsonContent.main = relativeCjsPath;
     }
-    if (esmPath) {
-      packageJsonContent.module = esmPath;
+    if (relativeEsmPath) {
+      packageJsonContent.module = relativeEsmPath;
     }
 
     // Write the shim package.json
-    const shimPackageJsonPath = path.join(shimPath, 'package.json');
+    const shimPackageJsonPath = path.join(shimDir, 'package.json');
     await fs.writeFile(shimPackageJsonPath, JSON.stringify(packageJsonContent, null, 2));
   });
 

@@ -2,6 +2,7 @@
 import path from 'path';
 import fse from 'fs-extra';
 import glob from 'fast-glob';
+import { shimPackageExports } from './exportsUtils.mjs';
 
 // Use .mjs extension for ESM output files if the MUI_EXPERIMENTAL_MJS environment variable is set.
 const EXPERIMENTAL_MJS = !!process.env.MUI_EXPERIMENTAL_MJS;
@@ -149,6 +150,12 @@ export async function createPackageFile(useEsmExports = false) {
 
   await fse.writeFile(targetPath, JSON.stringify(newPackageData, null, 2), 'utf8');
   console.log(`Created package.json in ${targetPath}`);
+
+  // Create shim structure for package exports
+  if (newPackageData.exports) {
+    await shimPackageExports(buildPath, newPackageData.exports);
+    console.log(`Created shim structure in ${buildPath}`);
+  }
 
   return newPackageData;
 }
