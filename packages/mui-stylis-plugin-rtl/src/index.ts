@@ -6,7 +6,7 @@
  */
 
 // @ts-nocheck
-import cssjanus from 'cssjanus';
+import cssjanus from "cssjanus";
 import {
   COMMENT,
   compile,
@@ -20,14 +20,14 @@ import {
   MEDIA,
   SUPPORTS,
   LAYER,
-} from 'stylis';
+} from "stylis";
 
 type MiddlewareParams = Parameters<Middleware>;
 
 function stringifyPreserveComments(
   element: MiddlewareParams[0],
   index: MiddlewareParams[1],
-  children: MiddlewareParams[2],
+  children: MiddlewareParams[2]
 ): string {
   switch (element.type) {
     case IMPORT:
@@ -35,7 +35,9 @@ function stringifyPreserveComments(
     case COMMENT:
       return (element.return = element.return || element.value);
     case RULESET: {
-      element.value = Array.isArray(element.props) ? element.props.join(',') : element.props;
+      element.value = Array.isArray(element.props)
+        ? element.props.join(",")
+        : element.props;
 
       if (Array.isArray(element.children)) {
         element.children.forEach((x) => {
@@ -47,39 +49,60 @@ function stringifyPreserveComments(
 
   const serializedChildren = serialize(
     Array.prototype.concat(element.children),
-    stringifyPreserveComments,
+    stringifyPreserveComments
   );
 
   return strlen(serializedChildren)
-    ? (element.return = element.value + '{' + serializedChildren + '}')
-    : '';
+    ? (element.return = element.value + "{" + serializedChildren + "}")
+    : "";
 }
 
-function stylisRTLPlugin(
-  element: MiddlewareParams[0],
-  index: MiddlewareParams[1],
-  children: MiddlewareParams[2],
-  callback: MiddlewareParams[3],
-): string | void {
-  if (
-    element.type === KEYFRAMES ||
-    element.type === SUPPORTS ||
-    (element.type === RULESET &&
-      (!element.parent ||
-        element.parent.type === MEDIA ||
-        element.parent.type === RULESET ||
-        element.parent.type === LAYER))
-  ) {
-    const stringified = cssjanus.transform(stringifyPreserveComments(element, index, children));
+function stylisRTLPluginFactory(layer?: string) {
+  const stylisRTLPlugin = (
+    element: MiddlewareParams[0],
+    index: MiddlewareParams[1],
+    children: MiddlewareParams[2],
+    callback: MiddlewareParams[3]
+  ): string | void => {
+    if (layer && !element.root) {
+      const child = { ...element, parent: element, root: element };
 
-    element.children = stringified ? compile(stringified)[0].children : [];
+      Object.assign(element, {
+        children: [child],
+        length: 6,
+        parent: null,
+        props: [layer],
+        return: "",
+        root: null,
+        type: "@layer",
+        value: `@layer ${layer}`,
+      });
+    }
 
-    element.return = '';
-  }
+    if (
+      element.type === KEYFRAMES ||
+      element.type === SUPPORTS ||
+      (element.type === RULESET &&
+        (!element.parent ||
+          element.parent.type === MEDIA ||
+          element.parent.type === RULESET ||
+          element.parent.type === LAYER))
+    ) {
+      const stringified = cssjanus.transform(
+        stringifyPreserveComments(element, index, children)
+      );
+
+      element.children = stringified ? compile(stringified)[0].children : [];
+
+      element.return = "";
+    }
+  };
+
+  return stylisRTLPlugin;
 }
 
 // stable identifier that will not be dropped by minification unless the whole module
 // is unused
-Object.defineProperty(stylisRTLPlugin, 'name', { value: 'stylisRTLPlugin' });
+Object.defineProperty(stylisRTLPluginFactory, "name", { value: "stylisRTLPlugin" });
 
-export default stylisRTLPlugin;
+export default stylisRTLPluginFactory;
