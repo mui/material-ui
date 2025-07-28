@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
 import { useTranslate } from '@mui/docs/i18n';
 import {
   brandingDarkTheme as darkTheme,
@@ -40,6 +41,17 @@ const StyledTable = styled('table')(
       border: '1px solid',
       borderColor: alpha(darkTheme.palette.primary[100], 0.8),
       backgroundColor: `var(--muidocs-palette-primary-50, ${lightTheme.palette.primary[50]})`,
+    },
+    '& .MuiApi-table-item-signature-type': {
+      textDecoration: 'underline',
+      textDecorationStyle: 'dotted',
+      textDecorationColor: alpha(lightTheme.palette.primary.main, 0.4),
+      fontWeight: theme.typography.fontWeightMedium,
+      color: `var(--muidocs-palette-primary-600, ${lightTheme.palette.primary[600]})`,
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
+      cursor: 'help',
     },
     '& .MuiApi-table-item-default': {
       ...theme.typography.caption,
@@ -88,6 +100,10 @@ const StyledTable = styled('table')(
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
         borderColor: `var(--muidocs-palette-divider, ${darkTheme.palette.divider})`,
         backgroundColor: alpha(darkTheme.palette.primary[900], 0.3),
+      },
+      '& .MuiApi-table-item-signature-type': {
+        color: `var(--muidocs-palette-primary-200, ${darkTheme.palette.primary[200]})`,
+        textDecorationColor: alpha(darkTheme.palette.primary.main, 0.6),
       },
       '& .MuiApi-table-item-default': {
         color: `var(--muidocs-palette-text-primary, ${darkTheme.palette.text.primary})`,
@@ -249,15 +265,34 @@ export default function PropertiesTable(props: PropertiesTableProps) {
                       {signatureArgs && (
                         <div>
                           <ul>
-                            {signatureArgs.map(({ argName, argDescription }) => (
-                              <li
-                                className="prop-signature-list"
-                                key={argName}
-                                dangerouslySetInnerHTML={{
-                                  __html: `<code>${argName}</code> ${argDescription}`,
-                                }}
-                              />
-                            ))}
+                            {signatureArgs.map(
+                              ({ argName, argDescription, argType, argTypeDescription }) => (
+                                <li className="prop-signature-list" key={argName}>
+                                  <code>
+                                    {argName}
+                                    {argType && argTypeDescription && (
+                                      <Tooltip
+                                        title={
+                                          <span
+                                            dangerouslySetInnerHTML={{ __html: argTypeDescription }}
+                                          />
+                                        }
+                                      >
+                                        <span>
+                                          :{' '}
+                                          <span className="MuiApi-table-item-signature-type">
+                                            {argType}
+                                          </span>
+                                        </span>
+                                      </Tooltip>
+                                    )}
+                                  </code>{' '}
+                                  {argDescription && (
+                                    <span dangerouslySetInnerHTML={{ __html: argDescription }} />
+                                  )}
+                                </li>
+                              ),
+                            )}
                           </ul>
                         </div>
                       )}
