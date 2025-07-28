@@ -6,7 +6,7 @@
   "bin": "./envinfo.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mui/material-ui",
+    "url": "git+https://github.com/mui/material-ui.git",
     "directory": "packages/mui-envinfo"
   },
   "license": "MIT",
@@ -16,17 +16,15 @@
   "homepage": "https://github.com/mui/material-ui/tree/HEAD/packages/mui-envinfo",
   "files": [],
   "scripts": {
-    "build": "pnpm build:node && pnpm build:copy-files",
-    "build:node": "node scripts/build",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs"
+    "build": "code-infra build --bundle cjs --buildTypes false --skipBabelRuntimeCheck && pnpm build:copy-files",
+    "build:copy-files": "code-infra copy-files"
   },
   "dependencies": {
     "envinfo": "^7.14.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.20",
-    "chai": "^4.5.0",
-    "fs-extra": "^11.3.1"
+    "chai": "^4.5.0"
   },
   "publishConfig": {
     "access": "public",

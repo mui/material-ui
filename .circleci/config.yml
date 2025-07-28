@@ -256,7 +256,7 @@ jobs:
       - run:
           name: Build declaration files
           command: |
-            pnpm -r build:stable && pnpm -r build:types
+            pnpm -r build
       - run:
           name: Log defect declaration files
           command: |
