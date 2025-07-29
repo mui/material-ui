@@ -170,32 +170,12 @@ export async function createPackageFile(useEsmExports = false) {
     }
   }
 
-  const newPackageData = useEsmExports
-    ? {
-        ...packageDataOther,
-        private: false,
-        ...(packageDataOther.main
-          ? {
-              main: './index.js',
-              module: './esm/index.js',
-            }
-          : {}),
-        exports: packageExports,
-      }
-    : {
-        ...packageDataOther,
-        private: false,
-        ...(packageDataOther.main
-          ? {
-              main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
-                ? './node/index.js'
-                : './index.js',
-              module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-                ? './esm/index.js'
-                : './index.js',
-            }
-          : {}),
-      };
+  const newPackageData = {
+    ...packageDataOther,
+    private: false,
+    ...(packageDataOther.main ? { main: './index.js' } : {}),
+    exports: packageExports,
+  };
 
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
   if (await fse.pathExists(typeDefinitionsFilePath)) {
