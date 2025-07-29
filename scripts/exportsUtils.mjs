@@ -5,6 +5,14 @@ import fg from 'fast-glob';
 
 const processedObjects = new WeakMap();
 
+function ensurePrefix(str, prefix) {
+  return str.startsWith(prefix) ? str : `${prefix}${str}`;
+}
+
+function ensureNoPrefix(str, prefix) {
+  return str.startsWith(prefix) ? str.slice(prefix.length) : str;
+}
+
 /**
  * Finds all exported paths from a package.json exports field and resolves them to actual file paths.
  *
@@ -115,7 +123,7 @@ function collectPatterns(exportsObj, conditions, patterns, exportPath = '') {
 
     try {
       for (const [key, value] of Object.entries(exportsObj)) {
-        if (key.startsWith('./') || key === '.') {
+        if (key.startsWith('.')) {
           // This is an export path
           collectPatterns(value, conditions, patterns, key);
         } else {
@@ -164,7 +172,6 @@ async function resolvePattern(pattern, cwd) {
 
   // Wildcard pattern - use glob and regex
   const globPattern = convertToGlob(filePattern);
-  const regex = createCaptureRegex(filePattern);
 
   const matchedFiles = await fg(globPattern, {
     cwd,
@@ -173,14 +180,13 @@ async function resolvePattern(pattern, cwd) {
     ignore: ['node_modules/**', '.git/**', '**/.DS_Store'],
   });
 
+  const wildcardIndex = filePattern.indexOf('*');
+  const leadingChars = wildcardIndex;
+  const trailingChars = filePattern.length - wildcardIndex - 1;
   return matchedFiles.map((matchedFile) => {
-    const match = regex.exec(matchedFile);
-    if (!match || match[1] === undefined) {
-      throw new Error(`File ${matchedFile} does not match pattern ${filePattern}`);
-    }
-
-    const capturedValue = match[1];
-    const exportPath = exportPattern.replace('*', capturedValue);
+    matchedFile = ensurePrefix(matchedFile, './');
+    const expandedWildcard = matchedFile.slice(leadingChars, matchedFile.length - trailingChars);
+    const exportPath = exportPattern.replace('*', expandedWildcard);
     const absolutePath = path.resolve(cwd, matchedFile);
 
     return {
@@ -224,23 +230,6 @@ function convertToGlob(pattern) {
 }
 
 /**
- * Create regex with capturing group for the * in file pattern
- */
-function createCaptureRegex(filePattern) {
-  // Remove leading ./ if present
-  const pattern = filePattern.startsWith('./') ? filePattern.slice(2) : filePattern;
-
-  // Escape regex special characters except *
-  const escaped = RegExp.escape(pattern);
-
-  // Replace * with capturing group (.+)
-  const regexPattern = escaped.replace('\\*', '(.+)');
-
-  // Always make leading ./ optional
-  return new RegExp(`^(?:\\./)?${regexPattern}$`);
-}
-
-/**
  * Converts a path relative to package root to a path relative to shim location
  * @param {string} packageRoot - Absolute path to package root
  * @param {string} shimLocation - Absolute path to shim directory
@@ -254,7 +243,7 @@ function makeRelativeToShim(packageRoot, shimLocation, resolvedPath) {
 
   const absoluteResolvedPath = path.resolve(packageRoot, resolvedPath);
   const relativePath = path.relative(shimLocation, absoluteResolvedPath);
-  return `./${relativePath}`;
+  return relativePath.startsWith('.') ? relativePath : `./${relativePath}`;
 }
 
 /**
@@ -287,7 +276,10 @@ export async function shimPackageExports(cwd, exports) {
 
     // Try to resolve with import conditions
     try {
-      const esmResults = resolveExports(exports, exportPath, ['import']);
+      const esmResults = resolveExports(exports, ensureNoPrefix(exportPath, './'), [
+        'import',
+        'default',
+      ]);
       if (esmResults && esmResults.length > 0) {
         esmPath = esmResults[0];
       }
@@ -297,7 +289,10 @@ export async function shimPackageExports(cwd, exports) {
 
     // Try to resolve with require conditions
     try {
-      const cjsResults = resolveExports(exports, exportPath, ['require']);
+      const cjsResults = resolveExports(exports, ensureNoPrefix(exportPath, './'), [
+        'require',
+        'default',
+      ]);
       if (cjsResults && cjsResults.length > 0) {
         cjsPath = cjsResults[0];
       }

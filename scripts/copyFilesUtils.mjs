@@ -105,8 +105,6 @@ export async function createPackageFile(useEsmExports = false) {
       ...createExportFor('./*', { [srcCondition]: './src/*/index.ts' }),
       ...createExportFor('./esm', null),
       ...createExportFor('./esm/*', null),
-      ...createExportFor('./modern', null),
-      ...createExportFor('./modern/*', null),
     });
   }
 
