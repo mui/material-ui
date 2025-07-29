@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import childProcess from 'child_process';
 import path from 'path';
 import { promisify } from 'util';
@@ -5,6 +6,9 @@ import yargs from 'yargs';
 import * as fs from 'fs/promises';
 import { cjsCopy } from './copyFilesUtils.mjs';
 import { getVersionEnvVariables, getWorkspaceRoot } from './utils.mjs';
+
+// Use .mjs extension for ESM output files if the MUI_EXPERIMENTAL_MJS environment variable is set.
+const EXPERIMENTAL_MJS = !!process.env.MUI_EXPERIMENTAL_MJS;
 
 const exec = promisify(childProcess.exec);
 
@@ -71,7 +75,13 @@ async function run(argv) {
     ...babelIgnore,
   ];
 
-  const outFileExtension = '.js';
+  let outFileExtension = '.js';
+
+  if (EXPERIMENTAL_MJS && bundle === 'stable') {
+    outFileExtension = '.mjs';
+  }
+
+  console.log(`Building ${bundle} bundle with outFileExtension: ${outFileExtension}`);
 
   const relativeOutDir = {
     node: cjsDir,
@@ -114,7 +124,6 @@ async function run(argv) {
   const command = ['pnpm babel', ...babelArgs].join(' ');
 
   if (verbose) {
-    // eslint-disable-next-line no-console
     console.log(`running '${command}' with ${JSON.stringify(env)}`);
   }
 
@@ -131,7 +140,7 @@ async function run(argv) {
   // Write a package.json file in the output directory if we are building the stable bundle
   // or if the output directory is not the root of the package.
   const shouldWriteBundlePackageJson = bundle === 'stable' || relativeOutDir !== './';
-  if (shouldWriteBundlePackageJson && !argv.skipEsmPkg) {
+  if (!EXPERIMENTAL_MJS && shouldWriteBundlePackageJson && !argv.skipEsmPkg) {
     const rootBundlePackageJson = path.join(outDir, 'package.json');
     await fs.writeFile(
       rootBundlePackageJson,
@@ -140,7 +149,6 @@ async function run(argv) {
   }
 
   if (verbose) {
-    // eslint-disable-next-line no-console
     console.log(stdout);
   }
 }

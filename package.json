@@ -189,6 +189,8 @@
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
     "process": "^0.11.10",
+    "regexp.escape": "^2.0.1",
+    "resolve-pkg-maps": "^1.0.0",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
     "stylelint": "^16.22.0",
@@ -208,6 +210,15 @@
   "packageManager": "pnpm@10.13.1",
   "engines": {
     "pnpm": "10.13.1"
+  },
+  "pnpm": {
+    "packageExtensions": {
+      "@pigment-css/react": {
+        "peerDependencies": {
+          "@mui/types": "7"
+        }
+      }
+    }
   },
   "resolutions": {
     "@babel/core": "^7.28.0",

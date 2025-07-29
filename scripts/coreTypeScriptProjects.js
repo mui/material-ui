@@ -19,6 +19,5 @@ export default {
   },
   docs: {
     rootPath: path.join(process.cwd(), 'docs'),
-    tsConfigPath: 'tsconfig.json',
   },
 };
