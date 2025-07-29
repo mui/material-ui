@@ -263,54 +263,64 @@ function resolveForShim(exports, exportPath, conditions, packageRoot, shimLocati
 export async function shimPackageExports(cwd, exports, pkgJson = {}) {
   const exportedPaths = await findAllExportedPaths({ cwd, exports });
 
-  const shimPromises = Array.from(exportedPaths.keys(), async (exportPath) => {
-    if (exportPath === '.') {
-      return; // Skip root export
+  const iterator = exportedPaths.keys();
+  const concurrency = 100; // Limit concurrent file operations
+
+  // Worker function that processes items from shared iterator
+  // Avoid `Error: EMFILE: too many open files` on large packages
+  const worker = async () => {
+    for (const exportPath of iterator) {
+      if (exportPath === '.') {
+        continue; // Skip root export
+      }
+
+      // Skip package.json
+      if (exportPath === './package.json') {
+        continue;
+      }
+
+      // Skip non-JavaScript files
+      if (/\.[a-zA-Z0-9]+$/.test(exportPath) && !/\.(js|jsx|mjs|cjs|ts|tsx)$/.test(exportPath)) {
+        continue;
+      }
+
+      // Create the shim directory
+      const shimDir = path.resolve(cwd, exportPath);
+      const absoluteCwd = path.resolve(cwd);
+      const pathToResolve = ensureNoPrefix(exportPath, './');
+
+      // Resolve and convert paths to be relative to shim location
+      const typesPath = resolveForShim(exports, pathToResolve, ['types'], absoluteCwd, shimDir);
+      const cjsPath = resolveForShim(exports, pathToResolve, ['require'], absoluteCwd, shimDir);
+      const esmPath = resolveForShim(exports, pathToResolve, ['import'], absoluteCwd, shimDir);
+
+      // Skip if neither ESM nor CJS resolved
+      if (!cjsPath && !esmPath) {
+        continue;
+      }
+
+      // Create package.json content
+      const packageJsonContent = { ...pkgJson };
+      if (cjsPath) {
+        packageJsonContent.main = cjsPath;
+      }
+      if (esmPath) {
+        packageJsonContent.module = esmPath;
+      }
+      if (typesPath) {
+        packageJsonContent.types = typesPath;
+      }
+
+      // Write the shim package.json
+      const shimPackageJsonPath = path.join(shimDir, 'package.json');
+      // eslint-disable-next-line no-await-in-loop
+      await fs.mkdir(shimDir, { recursive: true });
+      // eslint-disable-next-line no-await-in-loop
+      await fs.writeFile(shimPackageJsonPath, JSON.stringify(packageJsonContent, null, 2));
     }
+  };
 
-    // Skip package.json
-    if (exportPath === './package.json') {
-      return;
-    }
-
-    // Skip non-JavaScript files
-    if (/\.[a-zA-Z0-9]+$/.test(exportPath) && !/\.(js|jsx|mjs|cjs|ts|tsx)$/.test(exportPath)) {
-      return;
-    }
-
-    // Create the shim directory
-    const shimDir = path.resolve(cwd, exportPath);
-    const absoluteCwd = path.resolve(cwd);
-    const pathToResolve = ensureNoPrefix(exportPath, './');
-
-    // Resolve and convert paths to be relative to shim location
-    const typesPath = resolveForShim(exports, pathToResolve, ['types'], absoluteCwd, shimDir);
-    const cjsPath = resolveForShim(exports, pathToResolve, ['require'], absoluteCwd, shimDir);
-    const esmPath = resolveForShim(exports, pathToResolve, ['import'], absoluteCwd, shimDir);
-
-    // Skip if neither ESM nor CJS resolved
-    if (!cjsPath && !esmPath) {
-      return;
-    }
-
-    await fs.mkdir(shimDir, { recursive: true });
-
-    // Create package.json content
-    const packageJsonContent = { ...pkgJson };
-    if (cjsPath) {
-      packageJsonContent.main = cjsPath;
-    }
-    if (esmPath) {
-      packageJsonContent.module = esmPath;
-    }
-    if (typesPath) {
-      packageJsonContent.types = typesPath;
-    }
-
-    // Write the shim package.json
-    const shimPackageJsonPath = path.join(shimDir, 'package.json');
-    await fs.writeFile(shimPackageJsonPath, JSON.stringify(packageJsonContent, null, 2));
-  });
-
-  await Promise.all(shimPromises);
+  // Start multiple workers concurrently
+  const workers = Array.from({ length: concurrency }, worker);
+  await Promise.all(workers);
 }
