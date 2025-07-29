@@ -1,4 +1,4 @@
-# Techical Recruiter
+# Technical Recruiter
 
 <p class="description">We're looking for a driven and experienced Technical Recruiter to join our People & Talent team. You will play a crucial role in attracting, engaging, and hiring top-tier talent across various engineering, non-engineering, and product functions, helping us scale our remote-first, open-source organization.</p>
 
