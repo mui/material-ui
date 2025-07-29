@@ -33,8 +33,6 @@ jobs:
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install:codesandbox
       - run: pnpm build:codesandbox
-        env:
-          MUI_EXPERIMENTAL_MJS: 1
       - run: pnpm pkg-pr-new-release
 
   # Tests dev-only scripts across all supported dev environments
