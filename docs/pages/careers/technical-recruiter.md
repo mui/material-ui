@@ -1,6 +1,6 @@
 # Technical Recruiter
 
-<p class="description">You will play a crucial role in attracting, engaging, and hiring top-tier talent across various engineering, non-engineering, and product functions, helping us scale our remote-first, open-source organization.</p>
+<p class="description">You will play a crucial role in attracting, engaging, and hiring top-tier talent across various engineering, non-engineering, and product functions.</p>
 
 ## Details of the role
 
