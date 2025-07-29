@@ -70,7 +70,7 @@ If you're on **Next.js 13.5 or newer**, you're in good hands. These versions inc
 
 ## Using parcel
 
-Parcel, by default, doesn't resolve package.json "exports". This makes it always resolve to the commonjs version of our library. To make it optimally make use of our ESM version, make sure to [enable the `packageExports` option](https://parceljs.org/features/dependency-resolution/#enabling-package-exports).
+Parcel, by default, doesn't resolve package.json `"exports"`. This makes it always resolve to the commonjs version of our library. To make it optimally make use of our ESM version, make sure to [enable the `packageExports` option](https://parceljs.org/features/dependency-resolution/#enabling-package-exports).
 
 ```json
 // ./package.json
