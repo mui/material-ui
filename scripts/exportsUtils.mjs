@@ -230,20 +230,27 @@ function convertToGlob(pattern) {
 }
 
 /**
- * Converts a path relative to package root to a path relative to shim location
+ * Resolves and converts export path to be relative to shim location
+ * @param {Object} exports - Exports object from package.json
+ * @param {string} exportPath - Export path to resolve (without leading "./")
+ * @param {string[]} conditions - Conditions to resolve with
  * @param {string} packageRoot - Absolute path to package root
  * @param {string} shimLocation - Absolute path to shim directory
- * @param {string} resolvedPath - Path relative to package root (e.g., "./index.js")
- * @returns {string|null} Path relative to shim location with "./" prefix
+ * @returns {string|null} Path relative to shim location with "./" prefix, or null if resolution fails
  */
-function makeRelativeToShim(packageRoot, shimLocation, resolvedPath) {
-  if (!resolvedPath) {
-    return null;
+function resolveForShim(exports, exportPath, conditions, packageRoot, shimLocation) {
+  try {
+    const results = resolveExports(exports, exportPath, conditions);
+    if (results && results.length > 0) {
+      const resolvedPath = results[0];
+      const absoluteResolvedPath = path.resolve(packageRoot, resolvedPath);
+      const relativePath = path.relative(shimLocation, absoluteResolvedPath);
+      return relativePath.startsWith('.') ? relativePath : `./${relativePath}`;
+    }
+  } catch (error) {
+    // Ignore resolution errors
   }
-
-  const absoluteResolvedPath = path.resolve(packageRoot, resolvedPath);
-  const relativePath = path.relative(shimLocation, absoluteResolvedPath);
-  return relativePath.startsWith('.') ? relativePath : `./${relativePath}`;
+  return null;
 }
 
 /**
@@ -271,57 +278,41 @@ export async function shimPackageExports(cwd, exports) {
       return;
     }
 
-    let esmPath = null;
-    let cjsPath = null;
+    // Create the shim directory
+    const shimDir = path.resolve(cwd, exportPath);
+    const absoluteCwd = path.resolve(cwd);
+    const pathToResolve = ensureNoPrefix(exportPath, './');
 
-    // Try to resolve with import conditions
-    try {
-      const esmResults = resolveExports(exports, ensureNoPrefix(exportPath, './'), [
-        'import',
-        'default',
-      ]);
-      if (esmResults && esmResults.length > 0) {
-        esmPath = esmResults[0];
-      }
-    } catch (error) {
-      // Ignore resolution errors
-    }
-
-    // Try to resolve with require conditions
-    try {
-      const cjsResults = resolveExports(exports, ensureNoPrefix(exportPath, './'), [
-        'require',
-        'default',
-      ]);
-      if (cjsResults && cjsResults.length > 0) {
-        cjsPath = cjsResults[0];
-      }
-    } catch (error) {
-      // Ignore resolution errors
-    }
+    // Resolve and convert paths to be relative to shim location
+    const cjsPath = resolveForShim(
+      exports,
+      pathToResolve,
+      ['require', 'default'],
+      absoluteCwd,
+      shimDir,
+    );
+    const esmPath = resolveForShim(
+      exports,
+      pathToResolve,
+      ['import', 'default'],
+      absoluteCwd,
+      shimDir,
+    );
 
     // Skip if neither ESM nor CJS resolved
-    if (!esmPath && !cjsPath) {
+    if (!cjsPath && !esmPath) {
       return;
     }
 
-    // Create the shim directory
-    const shimDir = path.resolve(cwd, exportPath);
-
     await fs.mkdir(shimDir, { recursive: true });
-
-    // Convert resolved paths to be relative to shim location
-    const absoluteCwd = path.resolve(cwd);
-    const relativeCjsPath = makeRelativeToShim(absoluteCwd, shimDir, cjsPath);
-    const relativeEsmPath = makeRelativeToShim(absoluteCwd, shimDir, esmPath);
 
     // Create package.json content
     const packageJsonContent = {};
-    if (relativeCjsPath) {
-      packageJsonContent.main = relativeCjsPath;
+    if (cjsPath) {
+      packageJsonContent.main = cjsPath;
     }
-    if (relativeEsmPath) {
-      packageJsonContent.module = relativeEsmPath;
+    if (esmPath) {
+      packageJsonContent.module = esmPath;
     }
 
     // Write the shim package.json
