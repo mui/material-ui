@@ -2,6 +2,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { resolveExports } from 'resolve-pkg-maps';
 import fg from 'fast-glob';
+import regexpEscape from 'regexp.escape';
 
 const processedObjects = new WeakMap();
 
@@ -146,8 +147,7 @@ function collectPatterns(exportsObj, conditions, patterns, exportPath = '') {
  * Create regex to match paths that should be blocked by null exports
  */
 function createBlockingRegex(exportPattern) {
-  // Convert export pattern to regex that matches blocked paths
-  const escaped = RegExp.escape(exportPattern);
+  const escaped = regexpEscape(exportPattern);
   const regexPattern = escaped.replace('\\*', '.*');
   return new RegExp(`^${regexPattern}$`);
 }
@@ -260,7 +260,7 @@ function resolveForShim(exports, exportPath, conditions, packageRoot, shimLocati
  * @param {Object} exports - Exports object from package.json
  * @returns {Promise<void>}
  */
-export async function shimPackageExports(cwd, exports) {
+export async function shimPackageExports(cwd, exports, pkgJson = {}) {
   const exportedPaths = await findAllExportedPaths({ cwd, exports });
 
   const shimPromises = Array.from(exportedPaths.keys(), async (exportPath) => {
@@ -284,20 +284,9 @@ export async function shimPackageExports(cwd, exports) {
     const pathToResolve = ensureNoPrefix(exportPath, './');
 
     // Resolve and convert paths to be relative to shim location
-    const cjsPath = resolveForShim(
-      exports,
-      pathToResolve,
-      ['require', 'default'],
-      absoluteCwd,
-      shimDir,
-    );
-    const esmPath = resolveForShim(
-      exports,
-      pathToResolve,
-      ['import', 'default'],
-      absoluteCwd,
-      shimDir,
-    );
+    const typesPath = resolveForShim(exports, pathToResolve, ['types'], absoluteCwd, shimDir);
+    const cjsPath = resolveForShim(exports, pathToResolve, ['require'], absoluteCwd, shimDir);
+    const esmPath = resolveForShim(exports, pathToResolve, ['import'], absoluteCwd, shimDir);
 
     // Skip if neither ESM nor CJS resolved
     if (!cjsPath && !esmPath) {
@@ -307,12 +296,15 @@ export async function shimPackageExports(cwd, exports) {
     await fs.mkdir(shimDir, { recursive: true });
 
     // Create package.json content
-    const packageJsonContent = {};
+    const packageJsonContent = { ...pkgJson };
     if (cjsPath) {
       packageJsonContent.main = cjsPath;
     }
     if (esmPath) {
       packageJsonContent.module = esmPath;
+    }
+    if (typesPath) {
+      packageJsonContent.types = typesPath;
     }
 
     // Write the shim package.json

@@ -189,6 +189,7 @@
     "prettier": "^3.6.2",
     "pretty-quick": "^4.2.2",
     "process": "^0.11.10",
+    "regexp.escape": "^2.0.1",
     "resolve-pkg-maps": "^1.0.0",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",

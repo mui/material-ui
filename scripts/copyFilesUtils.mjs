@@ -153,7 +153,9 @@ export async function createPackageFile(useEsmExports = false) {
 
   // Create shim structure for package exports
   if (newPackageData.exports) {
-    await shimPackageExports(buildPath, newPackageData.exports);
+    await shimPackageExports(buildPath, newPackageData.exports, {
+      sideEffects: newPackageData.sideEffects,
+    });
     console.log(`Created shim structure in ${buildPath}`);
   }
 
