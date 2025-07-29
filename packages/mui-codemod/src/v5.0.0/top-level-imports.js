@@ -20,8 +20,6 @@ export default function transformer(fileInfo, api, options) {
     }),
   );
 
-  console.log("whitelist: ", JSON.stringify(Array.from(whitelist), null, 1));
-
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
