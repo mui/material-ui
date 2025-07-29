@@ -19,7 +19,6 @@ export default function transformer(fileInfo, api, options) {
       paths: [dirname(fileInfo.path)],
     }),
   );
-
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
