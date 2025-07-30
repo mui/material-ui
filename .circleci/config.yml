@@ -8,14 +8,6 @@ parameters:
     description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
     type: boolean
     default: false
-  react-version:
-    description: The version of react to be used
-    type: string
-    default: stable
-  typescript-version:
-    description: The version of typescript to be used
-    type: string
-    default: stable
   workflow:
     description: The name of the workflow to run
     type: string
