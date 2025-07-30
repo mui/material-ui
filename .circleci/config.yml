@@ -12,6 +12,10 @@ parameters:
     description: The version of react to be used
     type: string
     default: stable
+  typescript-version:
+    description: The version of typescript to be used
+    type: string
+    default: stable
   workflow:
     description: The name of the workflow to run
     type: string
@@ -27,6 +31,10 @@ default-job: &default-job
       description: The version of react to be used
       type: string
       default: << pipeline.parameters.react-version >>
+    typescript-version:
+      description: The version of typescript to be used
+      type: string
+      default: << pipeline.parameters.typescript-version >>
     test-gate:
       description: A particular type of tests that should be run
       type: string
@@ -39,6 +47,7 @@ default-job: &default-job
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_VERSION: << parameters.react-version >>
+    TYPESCRIPT_VERSION: << parameters.typescript-version >>
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
@@ -103,9 +112,24 @@ commands:
       - run:
           name: Resolve React version
           command: |
-            pnpm use-react-version
-            # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
+            if [ "$REACT_VERSION" != "stable" ]; then
+              pnpm update -r react@$REACT_VERSION react-dom@$REACT_VERSION react-is@$REACT_VERSION scheduler@$REACT_VERSION
+              
+              if [ "$REACT_VERSION" = "^17.0.0" ]; then
+                pnpm update -r @testing-library/react@^12.1.0
+              fi
+
+              # log a patch for maintainers who want to check out this change
+              git --no-pager diff HEAD
+            fi
+      - run:
+          name: Resolve TypeScript version
+          command: |
+            if [ "$TYPESCRIPT_VERSION" != "stable" ]; then
+              pnpm update -r typescript@$TYPESCRIPT_VERSION
+              # log a patch for maintainers who want to check out this change
+              git --no-pager diff HEAD
+            fi
       - run:
           name: Install js dependencies
           command: pnpm install
@@ -264,12 +288,6 @@ jobs:
     steps:
       - checkout
       - install_js
-      - run:
-          name: Resolve typescript version
-          command: |
-            pnpm update -r typescript@next
-            # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
       - run:
           name: Tests TypeScript definitions
           command: |
@@ -854,6 +872,7 @@ workflows:
     jobs:
       - test_types_next:
           <<: *default-context
+          typescript-version: next
 
   typescript-next-cron:
     triggers:
@@ -868,3 +887,4 @@ workflows:
     jobs:
       - test_types_next:
           <<: *default-context
+          typescript-version: next
