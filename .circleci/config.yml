@@ -111,6 +111,8 @@ commands:
                 pnpm update -r @testing-library/react@^12.1.0
               fi
 
+              pnpm dedupe
+
               # log a patch for maintainers who want to check out this change
               git --no-pager diff HEAD
             fi
@@ -119,6 +121,7 @@ commands:
           command: |
             if [ "$TYPESCRIPT_VERSION" != "stable" ]; then
               pnpm update -r typescript@$TYPESCRIPT_VERSION
+              pnpm dedupe
               # log a patch for maintainers who want to check out this change
               git --no-pager diff HEAD
             fi
