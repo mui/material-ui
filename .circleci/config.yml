@@ -285,8 +285,9 @@ jobs:
       - install_js
       - run:
           name: Tests TypeScript definitions
-          command: |
-            pnpm typescript:ci
+          command: pnpm typescript:ci
+          environment:
+            NODE_OPTIONS: --max-old-space-size=3072
       - run:
           name: Build declaration files
           command: |
