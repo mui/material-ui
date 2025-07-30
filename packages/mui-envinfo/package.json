@@ -1,8 +1,8 @@
 {
   "name": "@mui/envinfo",
-  "version": "2.0.38",
+  "version": "2.0.39",
   "author": "MUI Team",
-  "description": "Logs infos about the environment relevant to @mui/*.",
+  "description": "Logs info about the environment relevant to @mui/*.",
   "bin": "./envinfo.js",
   "repository": {
     "type": "git",
@@ -16,7 +16,9 @@
   "homepage": "https://github.com/mui/material-ui/tree/HEAD/packages/mui-envinfo",
   "files": [],
   "scripts": {
-    "build": "node scripts/build"
+    "build": "pnpm build:node && pnpm build:copy-files",
+    "build:node": "node scripts/build",
+    "build:copy-files": "node ../../scripts/copyFiles.mjs"
   },
   "dependencies": {
     "envinfo": "^7.14.0"
@@ -27,6 +29,7 @@
     "fs-extra": "^11.3.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "build"
   }
 }

@@ -12,7 +12,6 @@ export default function CircularProgressButton() {
       <IconButton>
         <CircularProgress />
       </IconButton>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <Link
         component="button"
         variant="plain"

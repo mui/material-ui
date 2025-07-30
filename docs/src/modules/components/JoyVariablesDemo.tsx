@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
@@ -42,7 +41,6 @@ function SlotVariables({ slot, data, renderField, defaultOpen = false }: SlotVar
   const [open, setOpen] = React.useState(defaultOpen);
   return (
     <React.Fragment>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <Link
         id={`accordion-${slot}`}
         aria-expanded={open ? 'true' : 'false'}

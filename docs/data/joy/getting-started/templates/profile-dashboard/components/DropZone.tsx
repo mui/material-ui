@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import Card, { CardProps } from '@mui/joy/Card';
 import Link from '@mui/joy/Link';

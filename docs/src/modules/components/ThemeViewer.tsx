@@ -81,7 +81,6 @@ function ObjectEntryLabel(props: { objectKey: string; objectValue: any }) {
 
   return (
     <React.Fragment>
-      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
       {`${objectKey}: `}
       {type === 'color' ? (
         <Color style={{ borderColor: lighten(label, 0.7) }}>

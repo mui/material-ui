@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "7.1.1",
+  "version": "7.2.0",
   "author": "MUI Team",
   "description": "Utility functions for React components.",
   "main": "./src/index.ts",
@@ -37,7 +37,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints types deepmerge"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6",
+    "@babel/runtime": "^7.28.2",
     "@mui/types": "workspace:^",
     "@types/prop-types": "^15.7.15",
     "clsx": "^2.1.1",
@@ -49,7 +49,7 @@
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^20.19.1",
+    "@types/node": "^20.19.9",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/react-is": "^19.0.0",
@@ -57,7 +57,7 @@
     "chai": "^4.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "sinon": "^19.0.5"
+    "sinon": "^21.0.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0",
