@@ -23,23 +23,32 @@ const SelectSelect = styled(StyledSelectSelect, {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
     return [
-      // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
       { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
       { [`&.${selectClasses.error}`]: styles.error },
       { [`&.${selectClasses.multiple}`]: styles.multiple },
     ];
   },
-})({
-  // Win specificity over the input base
+})((theme) => ({
   [`&.${selectClasses.select}`]: {
-    height: 'auto', // Resets for multiple select with chips
-    minHeight: '1.4375em', // Required for select\text-field height consistency
+    height: 'auto',
+    minHeight: '1.4375em',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    // Dark mode + Firefox fix
+    '&:-moz-focusring': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.text.primary
+          : 'transparent',
+      textShadow:
+        theme.palette.mode === 'dark'
+          ? `0 0 0 ${theme.palette.text.primary}`
+          : '0 0 0 #000',
+    },
   },
-});
+}));
 
 const SelectIcon = styled(StyledSelectIcon, {
   name: 'MuiSelect',
