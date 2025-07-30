@@ -203,7 +203,7 @@ importers:
         specifier: ^13.0.4
         version: 13.0.4(encoding@0.1.13)
       eslint:
-        specifier: ^9.31.0
+        specifier: ^9.32.0
         version: 9.32.0(jiti@2.4.2)
       eslint-import-resolver-webpack:
         specifier: ^0.13.10
