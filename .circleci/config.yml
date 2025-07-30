@@ -22,11 +22,11 @@ default-job: &default-job
     react-version:
       description: The version of react to be used
       type: string
-      default: << pipeline.parameters.react-version >>
+      default: stable
     typescript-version:
       description: The version of typescript to be used
       type: string
-      default: << pipeline.parameters.typescript-version >>
+      default: stable
     test-gate:
       description: A particular type of tests that should be run
       type: string
