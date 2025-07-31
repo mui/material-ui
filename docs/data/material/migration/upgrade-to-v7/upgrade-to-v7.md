@@ -132,7 +132,6 @@ yarn add react-is@18.3.1
 
 </codeblock>
 
-
 #### Why is this needed?
 
 Material UI v6 and v7 use `react-is@19`, which changed how React elements are identified.
