@@ -92,6 +92,17 @@ yarn add react@<version> react-dom@<version>
 
 If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
 
+#### Why is this needed?
+
+Material UI v6 depends on `react-is@^19` (aligned with React 19). React 19 changed the internal element tag from
+`Symbol.for('react.element')` to `Symbol.for('react.transitional.element')`.
+
+React 18 uses `Symbol.for('react.element')` to identify React elements, but `react-is@19` uses `Symbol.for('react.transitional.element')` (aligned with React 19). When your app runs on React 18 but Material UI resolves `react-is@19`, the `PropTypes.node` validator fails to recognize valid React elements because they have different `$$typeof` symbols, causing warnings like:
+
+```text
+Warning: Failed prop type: Invalid prop `children` supplied to `<Component>`, expected a ReactNode.
+```
+
 For example, if you are using `react@18.3.1`, do the following steps:
 
 1. Install `react-is@18.3.1`.
