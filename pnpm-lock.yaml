@@ -121,6 +121,9 @@ importers:
       '@octokit/rest':
         specifier: ^22.0.0
         version: 22.0.0
+      '@pigment-css/react':
+        specifier: 0.0.30
+        version: 0.0.30(@types/react@19.1.8)(react@19.1.0)(typescript@5.8.3)
       '@playwright/test':
         specifier: 1.54.1
         version: 1.54.1
@@ -283,6 +286,9 @@ importers:
       process:
         specifier: ^0.11.10
         version: 0.11.10
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
