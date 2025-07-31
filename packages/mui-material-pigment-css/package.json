@@ -65,7 +65,8 @@
     }
   },
   "exports": {
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./*": "./src/*/index.ts"
   },
   "engines": {
     "node": ">=14.0.0"
