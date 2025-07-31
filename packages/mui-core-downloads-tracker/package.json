@@ -19,8 +19,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:copy-files",
-    "build:copy-files": "code-infra copy-files package.json",
+    "build": "code-infra copy-files package.json",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish"
   },

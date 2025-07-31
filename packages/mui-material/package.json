@@ -104,7 +104,8 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js"
+    "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
+    "./*": "./src/*/index.ts"
   },
   "pigment-css": {
     "vite": {
