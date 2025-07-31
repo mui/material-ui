@@ -358,7 +358,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  slotProps: PropTypes.shape({
+  slotProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     clickAwayListener: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
