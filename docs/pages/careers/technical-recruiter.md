@@ -1,6 +1,6 @@
 # Technical Recruiter
 
-<p class="description">MUI is looking for an experienced Tech Recruiter to join our People team. You'll hire top engineering and product talent, helping us scale our open-source company.</p>
+<p class="description">MUI is hiring an experienced Tech Recruiter to join our People team and help scale by hiring top engineering and product talent.</p>
 
 ## Details of the role
 
