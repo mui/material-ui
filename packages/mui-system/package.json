@@ -38,7 +38,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints borders"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6",
+    "@babel/runtime": "^7.28.2",
     "@mui/private-theming": "workspace:^",
     "@mui/styled-engine": "workspace:^",
     "@mui/types": "workspace:^",
@@ -60,7 +60,7 @@
     "fast-glob": "^3.3.3",
     "lodash": "^4.17.21",
     "react": "^19.1.0",
-    "sinon": "^19.0.5",
+    "sinon": "^21.0.0",
     "styled-components": "^6.1.19"
   },
   "peerDependencies": {

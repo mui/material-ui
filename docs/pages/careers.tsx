@@ -66,6 +66,17 @@ const openRolesData = [
     ],
   },
   {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description:
+          'We are looking for a driven and experienced Technical Recruiter to join our People & Talent team.',
+        url: '/careers/technical-recruiter/',
+      },
+    ],
+  },
+  {
     title: 'Design',
     roles: [],
   },
@@ -88,17 +99,11 @@ const nextRolesData = [
     ],
   },
   {
-    title: 'People',
-    roles: [
-      // {
-      //   title: 'Technical Recruiter',
-      //   description: 'You will hire the next engineers, among other roles, joining the team.',
-      //   url: '/careers/technical-recruiter/',
-      // },
-    ],
+    title: 'Sales',
+    roles: [],
   },
   {
-    title: 'Sales',
+    title: 'People',
     roles: [],
   },
   {

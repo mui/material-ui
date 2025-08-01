@@ -44,7 +44,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6"
+    "@babel/runtime": "^7.28.2"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
@@ -62,7 +62,7 @@
     "react": "^19.1.0",
     "rimraf": "^6.0.1",
     "shx": "^0.4.0",
-    "svgo": "^3.3.2",
+    "svgo": "^4.0.0",
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
