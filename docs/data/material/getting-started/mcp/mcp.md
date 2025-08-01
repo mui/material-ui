@@ -99,7 +99,7 @@ Navigate to this URL in your browser and set the following paramters:
 
 - **Transport type: Stdio**
 - **Command:**`npx`
-- **Arguments:** `y @mui/mcp@latest`
+- **Arguments:** `-y @mui/mcp@latest`
 
 Click **Connect** and wait for the connection to be established.
 
