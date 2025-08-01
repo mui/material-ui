@@ -89,10 +89,10 @@ commands:
       - run:
           name: View install environment
           command: |
+            which node
             node --version
-            pnpm --version
             which pnpm
-            echo $PATH
+            pnpm --version
   install_js:
     parameters:
       browsers:
