@@ -93,6 +93,7 @@ commands:
             node --version
             pnpm --version
             which pnpm
+            echo $PATH
   install_js:
     parameters:
       browsers:
