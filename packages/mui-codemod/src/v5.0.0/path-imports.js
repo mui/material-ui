@@ -19,6 +19,7 @@ export default function transformer(fileInfo, api, options) {
 
   const root = j(fileInfo.source);
   const importRegExp = new RegExp(`^${importModule}$`);
+  const classesRegExp = /Classes$/;
 
   const importsToAdd = {};
 
@@ -54,7 +55,7 @@ export default function transformer(fileInfo, api, options) {
       if (specifier.type === 'ImportSpecifier') {
         const name = specifier.imported.name;
 
-        if (name === 'ThemeProvider') {
+        if (name === 'ThemeProvider' || classesRegExp.test(name)) {
           return;
         }
 
