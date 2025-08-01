@@ -1,7 +1,5 @@
 import querystring from 'node:querystring';
 import { App, AwsLambdaReceiver, BlockAction, ButtonAction } from '@slack/bolt';
-import { JWT } from 'google-auth-library';
-import { sheets } from '@googleapis/sheets';
 import { Handler } from '@netlify/functions';
 
 const X_FEEBACKS_CHANNEL_ID = 'C04U3R2V9UK';
@@ -97,33 +95,9 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
   try {
     await ack();
 
-    const {
-      user: { username },
-      channel,
-      message,
-      actions: [{ value }],
-    } = body;
+    const { channel, message } = body;
 
     const channelId = channel?.id;
-
-    const { comment, currentLocationURL = '', commentSectionURL = '' } = JSON.parse(value);
-
-    const googleAuth = new JWT({
-      email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-      key: process.env.G_SHEET_TOKEN!.replace(/\\n/g, '\n'),
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
-    const service = sheets({ version: 'v4', auth: googleAuth });
-
-    // @ts-ignore
-    service.spreadsheets.values.append({
-      spreadsheetId: spreadSheetsIds.forLater,
-      range: 'Deleted messages!A:D',
-      valueInputOption: 'USER_ENTERED',
-      resource: {
-        values: [[username, comment, currentLocationURL, commentSectionURL]],
-      },
-    });
 
     if (!channelId) {
       throw Error('feedback-management: Unknonw channel Id');
@@ -133,50 +107,6 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
       ts: message!.ts,
       as_user: true,
       token: process.env.SLACK_BOT_TOKEN,
-    });
-  } catch (error) {
-    logger.error(JSON.stringify(error, null, 2));
-  }
-});
-
-app.action('save_message', async ({ ack, body, client, logger }) => {
-  try {
-    await ack();
-    const {
-      user: { username },
-      channel,
-      message,
-      actions: [{ value }],
-    } = body as BlockAction<ButtonAction>;
-
-    const channelId = channel?.id;
-    const { comment, currentLocationURL = '', commentSectionURL = '' } = JSON.parse(value);
-
-    const googleAuth = new JWT({
-      email: 'service-account-804@docs-feedbacks.iam.gserviceaccount.com',
-      key: process.env.G_SHEET_TOKEN!.replace(/\\n/g, '\n'),
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
-    const service = sheets({ version: 'v4', auth: googleAuth });
-
-    // @ts-ignore
-    service.spreadsheets.values.append({
-      spreadsheetId: spreadSheetsIds.forLater,
-      range: 'Sheet1!A:D',
-      valueInputOption: 'USER_ENTERED',
-      updates: {
-        values: [[username, comment, currentLocationURL, commentSectionURL]],
-      },
-    });
-
-    if (!channelId) {
-      throw Error('feedback-management: Unknonw channel Id');
-    }
-    client.chat.postMessage({
-      channel: channelId,
-      thread_ts: message!.ts,
-      as_user: true,
-      text: `Saved in <https://docs.google.com/spreadsheets/d/${spreadSheetsIds.forLater}/>`,
     });
   } catch (error) {
     logger.error(JSON.stringify(error, null, 2));
@@ -248,19 +178,6 @@ from ${commentSectionURL}
                   emoji: true,
                 },
                 url: `${githubRepo}/issues/new?${githubNewIssueParams}`,
-              },
-              {
-                type: 'button',
-                text: {
-                  type: 'plain_text',
-                  text: 'Save',
-                },
-                value: JSON.stringify({
-                  comment,
-                  currentLocationURL,
-                  commentSectionURL,
-                }),
-                action_id: 'save_message',
               },
               {
                 type: 'button',
