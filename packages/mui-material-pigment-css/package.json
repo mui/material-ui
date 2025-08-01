@@ -41,6 +41,9 @@
     "@babel/runtime": "^7.28.2",
     "@mui/system": "workspace:*"
   },
+  "devDependencies": {
+    "react": "^19.1.0"
+  },
   "peerDependencies": {
     "@pigment-css/react": "^0.0.30"
   },

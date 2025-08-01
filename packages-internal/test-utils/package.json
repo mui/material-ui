@@ -54,6 +54,7 @@
     "sinon": "^21.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.54.1",
     "@types/chai": "^4.3.20",
     "@types/chai-dom": "^1.11.3",
     "@types/format-util": "^1.0.4",
@@ -61,14 +62,13 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/sinon": "^17.0.4",
-    "@playwright/test": "^1.54.1",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
+    "@playwright/test": "^1.53.1",
     "chai": "^4.5.0 || ^5.0.0",
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "@playwright/test": "^1.53.1"
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "publishConfig": {
     "access": "public"
