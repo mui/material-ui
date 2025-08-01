@@ -92,6 +92,7 @@ commands:
           command: |
             node --version
             pnpm --version
+            which pnpm
   install_js:
     parameters:
       browsers:
