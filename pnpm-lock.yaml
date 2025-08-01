@@ -89,8 +89,8 @@ importers:
         specifier: ^1.0.9-canary.10
         version: 1.0.9-canary.10(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.2))(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: 0.0.2-canary.23
-        version: 0.0.2-canary.23(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
+        specifier: 0.0.2-canary.24
+        version: 0.0.2-canary.24(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -280,6 +280,9 @@ importers:
       process:
         specifier: ^0.11.10
         version: 0.11.10
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1703,6 +1706,10 @@ importers:
       '@pigment-css/react':
         specifier: 0.0.30
         version: 0.0.30(@types/react@19.1.8)(react@19.1.0)(typescript@5.8.3)
+    devDependencies:
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
     publishDirectory: build
 
   packages/mui-private-theming:
@@ -4150,8 +4157,8 @@ packages:
     resolution: {integrity: sha512-p2YZVgeSbNILLs8IHhfvTrkSr0v80dyTui9nMfsgnCk967QdDB+lHSZ976neFznZd/doQkFqp59hrIbC+ao/1Q==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.2-canary.23':
-    resolution: {integrity: sha512-husZBzsHzbRH4DmJpm0KzffPowatt9J5HQ8OwPwA/IOauur4LxRlSGedTu3k4XsWp8V6TriB2FUnOXMi7JT3oA==}
+  '@mui/internal-code-infra@0.0.2-canary.24':
+    resolution: {integrity: sha512-Nx23gK+bmSFZhFww8kVGYyjoQO6xCmine/0+hH5FIokK9f+s4v54IUEWKsgkU6GBepuaS0Q3SECddSQshpyKzw==}
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -17022,7 +17029,7 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@0.0.2-canary.23(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
+  '@mui/internal-code-infra@0.0.2-canary.24(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
     dependencies:
       '@argos-ci/core': 3.2.0
       '@eslint/compat': 1.3.1(eslint@9.32.0(jiti@2.4.2))

@@ -8,10 +8,6 @@ parameters:
     description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
     type: boolean
     default: false
-  react-version:
-    description: The version of react to be used
-    type: string
-    default: stable
   workflow:
     description: The name of the workflow to run
     type: string
@@ -26,7 +22,11 @@ default-job: &default-job
     react-version:
       description: The version of react to be used
       type: string
-      default: << pipeline.parameters.react-version >>
+      default: stable
+    typescript-version:
+      description: The version of typescript to be used
+      type: string
+      default: stable
     test-gate:
       description: A particular type of tests that should be run
       type: string
@@ -39,6 +39,7 @@ default-job: &default-job
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_VERSION: << parameters.react-version >>
+    TYPESCRIPT_VERSION: << parameters.typescript-version >>
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
     COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
@@ -84,12 +85,13 @@ commands:
           steps:
             - run:
                 name: Install pnpm package manager
-                # See https://stackoverflow.com/a/73411601
-                command: corepack enable --install-directory ~/bin
+                command: sudo corepack enable
       - run:
           name: View install environment
           command: |
+            which node
             node --version
+            which pnpm
             pnpm --version
   install_js:
     parameters:
@@ -101,14 +103,12 @@ commands:
       - setup_corepack:
           browsers: << parameters.browsers >>
       - run:
-          name: Resolve React version
-          command: |
-            pnpm use-react-version
-            # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
-      - run:
           name: Install js dependencies
           command: pnpm install
+      - run:
+          name: Set version overrides
+          command: |
+            pnpm code-infra set-version-overrides --pkg "react@$REACT_VERSION" --pkg "typescript@$TYPESCRIPT_VERSION"
 
 jobs:
   test_unit:
@@ -265,43 +265,18 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Resolve typescript version
-          command: |
-            pnpm update -r typescript@next
-            # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
-      - run:
           name: Tests TypeScript definitions
-          command: |
-            # ignore build failures
-            # it's expected that typescript@next fails since the lines of the errors
-            # change frequently. This build is monitored regardless of its status
-            set +e
-            pnpm typescript:ci
-            exit 0
-      - restore_cache:
-          name: Restore generated declaration files
-          keys:
-            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
-            # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-next
+          command: pnpm typescript:ci
+          environment:
+            NODE_OPTIONS: --max-old-space-size=3072
       - run:
-          name: Diff declaration files
+          name: Build declaration files
           command: |
-            git add -f packages/mui-material/build || echo '/core declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:types
-            git --no-pager diff
+            pnpm -r build:stable && pnpm -r build:types
       - run:
           name: Log defect declaration files
           command: |
-            # ignore build failures
-            # Fixing these takes some effort that isn't viable to merge in a single PR.
-            # We'll simply monitor them for now.
-            set +e
             node scripts/testBuiltTypes.mjs
-            exit 0
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
@@ -869,6 +844,14 @@ workflows:
           name: test_e2e-react@next
 
   typescript-next:
+    when:
+      equal: [typescript-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_types_next:
+          <<: *default-context
+          typescript-version: next
+
+  typescript-next-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
@@ -881,3 +864,4 @@ workflows:
     jobs:
       - test_types_next:
           <<: *default-context
+          typescript-version: next
