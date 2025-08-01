@@ -95,8 +95,8 @@ importers:
         specifier: ^1.0.9-canary.10
         version: 1.0.9-canary.10(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.2))(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8a1e6aa
-        version: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8a1e6aa(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
+        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@b34b26b
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@b34b26b(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4167,8 +4167,8 @@ packages:
     resolution: {integrity: sha512-p2YZVgeSbNILLs8IHhfvTrkSr0v80dyTui9nMfsgnCk967QdDB+lHSZ976neFznZd/doQkFqp59hrIbC+ao/1Q==}
     hasBin: true
 
-  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8a1e6aa':
-    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8a1e6aa}
+  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@b34b26b':
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@b34b26b}
     version: 0.0.1
     hasBin: true
     peerDependencies:
@@ -17082,7 +17082,7 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@8a1e6aa(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
+  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@b34b26b(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
     dependencies:
       '@argos-ci/core': 3.2.0
       '@eslint/compat': 1.3.1(eslint@9.32.0(jiti@2.4.2))
