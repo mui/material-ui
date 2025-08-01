@@ -102,32 +102,12 @@ commands:
       - setup_corepack:
           browsers: << parameters.browsers >>
       - run:
-          name: Resolve React version
-          command: |
-            if [ "$REACT_VERSION" != "stable" ]; then
-              pnpm update -r react@$REACT_VERSION react-dom@$REACT_VERSION react-is@$REACT_VERSION scheduler@$REACT_VERSION
-              
-              if [ "$REACT_VERSION" = "^17.0.0" ]; then
-                pnpm update -r @testing-library/react@^12.1.0
-              fi
-
-              pnpm dedupe
-
-              # log a patch for maintainers who want to check out this change
-              git --no-pager diff HEAD
-            fi
-      - run:
-          name: Resolve TypeScript version
-          command: |
-            if [ "$TYPESCRIPT_VERSION" != "stable" ]; then
-              pnpm update -r typescript@$TYPESCRIPT_VERSION
-              pnpm dedupe
-              # log a patch for maintainers who want to check out this change
-              git --no-pager diff HEAD
-            fi
-      - run:
           name: Install js dependencies
           command: pnpm install
+      - run:
+          name: Set version overrides
+          command: |
+            pnpm code-infra set-version-overrides --react-version "$REACT_VERSION" --typescript-version "$TYPESCRIPT_VERSION"
 
 jobs:
   test_unit:
