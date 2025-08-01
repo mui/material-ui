@@ -79,18 +79,18 @@ importers:
       '@mui-internal/api-docs-builder-core':
         specifier: workspace:^
         version: link:packages/api-docs-builder-core
+      '@mui/internal-babel-plugin-display-name':
+        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4(@babel/core@7.28.0)(@babel/preset-react@7.27.1(@babel/core@7.28.0))
       '@mui/internal-babel-plugin-minify-errors':
         specifier: ^2.0.8-canary.3
         version: 2.0.8-canary.3(@babel/core@7.28.0)
-      '@mui/internal-babel-plugin-resolve-imports':
-        specifier: ^2.0.7-canary.11
-        version: 2.0.7-canary.11(@babel/core@7.28.0)
       '@mui/internal-bundle-size-checker':
         specifier: ^1.0.9-canary.10
         version: 1.0.9-canary.10(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.40.0)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.2))(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: 0.0.2-canary.22
-        version: 0.0.2-canary.22(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
+        specifier: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@adfceb4
+        version: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@adfceb4(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4135,14 +4135,36 @@ packages:
   '@mui/core-downloads-tracker@5.15.14':
     resolution: {integrity: sha512-on75VMd0XqZfaQW+9pGjSNiqW+ghc5E2ZSLRBXwcXl/C4YzjfyjrLPhrEpKnR9Uym9KXBvxrhoHfPcczYHweyA==}
 
+  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4':
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4}
+    version: 1.0.2
+    peerDependencies:
+      '@babel/core': ^7.28.0
+      '@babel/preset-react': ^7.27.1
+
+  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4cc7ce37f19190b262b03e749e6f2f7d67':
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4cc7ce37f19190b262b03e749e6f2f7d67}
+    version: 1.0.2
+    peerDependencies:
+      '@babel/core': ^7.28.0
+      '@babel/preset-react': ^7.27.1
+
   '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.3':
     resolution: {integrity: sha512-XqZCKeT7vavRzaKcG4avGBxH5SXMLiP7gqrUGhZ6+wSfY5f3RitfOxatZoRomshvkfL7y0hO0sV4L+Xw52uqMg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@babel/core': ^7.28.0
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.11':
-    resolution: {integrity: sha512-vKjoQBGJLT6Nl8jI1DURzq1jqTP2VmaQK1HV01DDlBVGeF1HA2DjtCiywTAShV/jvOqDglsTn+gWGXflhwuKfg==}
+  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@adfceb4cc7ce37f19190b262b03e749e6f2f7d67':
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@adfceb4cc7ce37f19190b262b03e749e6f2f7d67}
+    version: 2.0.6
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@babel/core': ^7.28.0
+
+  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@adfceb4cc7ce37f19190b262b03e749e6f2f7d67':
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@adfceb4cc7ce37f19190b262b03e749e6f2f7d67}
+    version: 2.0.5
     peerDependencies:
       '@babel/core': ^7.28.0
 
@@ -4150,8 +4172,9 @@ packages:
     resolution: {integrity: sha512-p2YZVgeSbNILLs8IHhfvTrkSr0v80dyTui9nMfsgnCk967QdDB+lHSZ976neFznZd/doQkFqp59hrIbC+ao/1Q==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.2-canary.22':
-    resolution: {integrity: sha512-hWpl5uZYg8vSncgXOGD2hihlS9dipKfSPIciFaEzpFjPdECeXEcTURshBhXAteM251zYZAX1zNWoCiFOosqWbg==}
+  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@adfceb4':
+    resolution: {tarball: https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@adfceb4}
+    version: 0.0.1
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -4994,6 +5017,18 @@ packages:
     resolution: {integrity: sha512-FS8hQ12acieG2dYSksmLOF7BNxnVf2afRJdCuM1eMSxj6QTSE6G4InGF7oApGgDb65MX7AwMVlIkpru0yZA4Xw==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@pnpm/constants@1001.2.0':
+    resolution: {integrity: sha512-ohlStawRU3+C1AvUPtfkK+HfZ/5UbDGO79dujS2dbTpzl3O03L3Ggk7nnH361ubbMYZqp4yWlX030xhMGpr8Nw==}
+    engines: {node: '>=18.12'}
+
+  '@pnpm/error@1000.0.3':
+    resolution: {integrity: sha512-Sr1wmJitZ768J+9MJVXXyd7tRaX3qThEiFH1K0AQovy2sIbLqo73MITphfVZH3YWIElt+Y1uMDnUZa676ZDA8g==}
+    engines: {node: '>=18.12'}
+
+  '@pnpm/find-workspace-dir@1000.1.1':
+    resolution: {integrity: sha512-mI3FqyEcEXHO2c0YvGfvssaK3ITzKmc10DKRO+HdrN9zFoJxNMerzmVGqea+jeSlApDFzKqyrGCewITPZN9d2g==}
+    engines: {node: '>=18.12'}
 
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
@@ -6849,6 +6884,9 @@ packages:
   babel-plugin-react-remove-properties@0.3.0:
     resolution: {integrity: sha512-vbxegtXGyVcUkCvayLzftU95vuvpYFV85pRpeMpohMHeEY46Qe0VNWfkVVcCbaZ12CXHzDFOj0esumATcW83ng==}
 
+  babel-plugin-search-and-replace@1.1.1:
+    resolution: {integrity: sha512-fjP2VTF3mxxOUnc96mdK22llH92A6gu7A5AFapJmgnqsQi3bqLduIRP0FpA2r5vRZOYPpnX4rE5izQlpsMBjSA==}
+
   babel-plugin-transform-flow-enums@0.0.2:
     resolution: {integrity: sha512-g4aaCrDDOsWjbm0PUUeVnkcVd6AKJsVc/MbnPhEotEpkeJQP6b8nzewohQi7+QS8UyPehOhGWn0nOwjvWpmMvQ==}
 
@@ -6862,6 +6900,11 @@ packages:
 
   babel-plugin-transform-react-remove-prop-types@0.4.24:
     resolution: {integrity: sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==}
+
+  babel-plugin-transform-remove-imports@1.8.0:
+    resolution: {integrity: sha512-QdE5ZnIjON1pSgTPU8KzLnl/LEzdq9PLmZNuHgGKTx0LOI9PBrHBj0fz9uCg2CdssiTw7v/zVRYs8GJxbvhKnQ==}
+    peerDependencies:
+      '@babel/core': ^7.28.0
 
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
@@ -12100,7 +12143,6 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
-
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qjobs@1.2.0:
@@ -16960,6 +17002,24 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.14': {}
 
+  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4(@babel/core@7.28.0)(@babel/preset-react@7.27.1(@babel/core@7.28.0))':
+    dependencies:
+      '@babel/core': 7.28.0
+      '@babel/helper-module-imports': 7.27.1
+      '@babel/helper-plugin-utils': 7.27.1
+      '@babel/preset-react': 7.27.1(@babel/core@7.28.0)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@mui/internal-babel-plugin-display-name@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4cc7ce37f19190b262b03e749e6f2f7d67(@babel/core@7.28.0)(@babel/preset-react@7.27.1(@babel/core@7.28.0))':
+    dependencies:
+      '@babel/core': 7.28.0
+      '@babel/helper-module-imports': 7.27.1
+      '@babel/helper-plugin-utils': 7.27.1
+      '@babel/preset-react': 7.27.1(@babel/core@7.28.0)
+    transitivePeerDependencies:
+      - supports-color
+
   '@mui/internal-babel-plugin-minify-errors@2.0.8-canary.3(@babel/core@7.28.0)':
     dependencies:
       '@babel/core': 7.28.0
@@ -16968,7 +17028,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@mui/internal-babel-plugin-resolve-imports@2.0.7-canary.11(@babel/core@7.28.0)':
+  '@mui/internal-babel-plugin-minify-errors@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@adfceb4cc7ce37f19190b262b03e749e6f2f7d67(@babel/core@7.28.0)':
+    dependencies:
+      '@babel/core': 7.28.0
+      '@babel/helper-module-imports': 7.27.1
+      find-package-json: 1.2.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@mui/internal-babel-plugin-resolve-imports@https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@adfceb4cc7ce37f19190b262b03e749e6f2f7d67(@babel/core@7.28.0)':
     dependencies:
       '@babel/core': 7.28.0
       resolve: 1.22.10
@@ -17022,12 +17090,27 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@0.0.2-canary.22(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
+  '@mui/internal-code-infra@https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@adfceb4(@typescript-eslint/parser@8.35.1(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3))(eslint-import-resolver-webpack@0.13.10)(eslint@9.32.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.8.3)':
     dependencies:
       '@argos-ci/core': 3.2.0
+      '@babel/core': 7.28.0
+      '@babel/plugin-syntax-typescript': 7.27.1(@babel/core@7.28.0)
+      '@babel/plugin-transform-runtime': 7.28.0(@babel/core@7.28.0)
+      '@babel/preset-env': 7.28.0(@babel/core@7.28.0)
+      '@babel/preset-react': 7.27.1(@babel/core@7.28.0)
+      '@babel/preset-typescript': 7.27.1(@babel/core@7.28.0)
       '@eslint/compat': 1.3.1(eslint@9.32.0(jiti@2.4.2))
+      '@mui/internal-babel-plugin-display-name': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-display-name@adfceb4cc7ce37f19190b262b03e749e6f2f7d67(@babel/core@7.28.0)(@babel/preset-react@7.27.1(@babel/core@7.28.0))
+      '@mui/internal-babel-plugin-minify-errors': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-minify-errors@adfceb4cc7ce37f19190b262b03e749e6f2f7d67(@babel/core@7.28.0)
+      '@mui/internal-babel-plugin-resolve-imports': https://pkg.pr.new/mui/mui-public/@mui/internal-babel-plugin-resolve-imports@adfceb4cc7ce37f19190b262b03e749e6f2f7d67(@babel/core@7.28.0)
       '@next/eslint-plugin-next': 15.4.4
       '@octokit/rest': 22.0.0
+      '@pnpm/find-workspace-dir': 1000.1.1
+      babel-plugin-optimize-clsx: 2.6.2
+      babel-plugin-search-and-replace: 1.1.1
+      babel-plugin-transform-inline-environment-variables: 0.4.4
+      babel-plugin-transform-react-remove-prop-types: 0.4.24
+      babel-plugin-transform-remove-imports: 1.8.0(@babel/core@7.28.0)
       chalk: 5.4.1
       eslint: 9.32.0(jiti@2.4.2)
       eslint-config-airbnb: 19.0.4(eslint-plugin-import@2.32.0)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.32.0(jiti@2.4.2)))(eslint-plugin-react-hooks@6.0.0(eslint@9.32.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.32.0(jiti@2.4.2)))(eslint@9.32.0(jiti@2.4.2))
@@ -17046,6 +17129,7 @@ snapshots:
       git-url-parse: 16.1.0
       globals: 16.2.0
       globby: 14.1.0
+      lodash-es: 4.17.21
       minimatch: 10.0.3
       prettier: 3.6.2
       semver: 7.7.2
@@ -18053,6 +18137,17 @@ snapshots:
   '@playwright/test@1.54.1':
     dependencies:
       playwright: 1.54.1
+
+  '@pnpm/constants@1001.2.0': {}
+
+  '@pnpm/error@1000.0.3':
+    dependencies:
+      '@pnpm/constants': 1001.2.0
+
+  '@pnpm/find-workspace-dir@1000.1.1':
+    dependencies:
+      '@pnpm/error': 1000.0.3
+      find-up: 5.0.0
 
   '@polka/url@1.0.0-next.28': {}
 
@@ -20426,6 +20521,8 @@ snapshots:
 
   babel-plugin-react-remove-properties@0.3.0: {}
 
+  babel-plugin-search-and-replace@1.1.1: {}
+
   babel-plugin-transform-flow-enums@0.0.2(@babel/core@7.28.0):
     dependencies:
       '@babel/plugin-syntax-flow': 7.26.0(@babel/core@7.28.0)
@@ -20441,6 +20538,10 @@ snapshots:
   babel-plugin-transform-inline-environment-variables@0.4.4: {}
 
   babel-plugin-transform-react-remove-prop-types@0.4.24: {}
+
+  babel-plugin-transform-remove-imports@1.8.0(@babel/core@7.28.0):
+    dependencies:
+      '@babel/core': 7.28.0
 
   bail@2.0.2: {}
 

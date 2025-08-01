@@ -16,9 +16,11 @@
   "homepage": "https://github.com/mui/material-ui/tree/HEAD/packages/mui-envinfo",
   "files": [],
   "scripts": {
-    "build": "pnpm build:node && pnpm build:copy-files",
+    "build": "code-infra build --bundle cjs --cjsOutDir . --buildTypes false --skipBabelRuntimeCheck && pnpm build:copy-files",
+    "build:old": "pnpm build:node && pnpm build:copy-files:old",
     "build:node": "node scripts/build",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs"
+    "build:copy-files": "code-infra copy-files envinfo.js",
+    "build:copy-files:old": "node ../../scripts/copyFiles.mjs"
   },
   "dependencies": {
     "envinfo": "^7.14.0"
