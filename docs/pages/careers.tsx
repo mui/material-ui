@@ -70,8 +70,7 @@ const openRolesData = [
     roles: [
       {
         title: 'Technical Recruiter',
-        description:
-          'We are looking for a driven and experienced Technical Recruiter to join our People & Talent team.',
+        description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
         url: '/careers/technical-recruiter/',
       },
     ],

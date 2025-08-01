@@ -1,6 +1,6 @@
 # Technical Recruiter
 
-<p class="description">You will play a crucial role in attracting, engaging, and hiring top-tier talent across various engineering, non-engineering, and product functions.</p>
+<p class="description">MUI is looking for an experienced Tech Recruiter to join our People team. You'll hire top engineering and product talent, helping us scale our open-source company.</p>
 
 ## Details of the role
 
@@ -9,13 +9,32 @@
 - **Level**: [IC4 or above](https://mui-org.notion.site/Leveling-at-MUI-5c30f9bfe65149d697f346447cef9db1)..
 - We're a **remote** company, we prefer asynchronous communication over meetings.
 
-## The company
+## You should apply if
+
+- You are **ready to own the full recruitment cycle**.
+- You have **5-8 years** of recruiting experience, with a strong background in technical R&D hiring.
+- You are excited by the challenge of finding and attracting the right technical talent and **solving the problem**.
+- You have **strong sourcing skills**; you regularly use platforms like LinkedIn Recruiter, GitHub, Boolean search, and other industry-specific tools.
+- You're comfortable assessing the complexity and impact of a candidate's work — not just what they built, but how and why it mattered.
+- You routinely collaborate with senior stakeholders, including top-level leadership and founders.
+- You are ensuring fairness in hiring practices.
+- You're **data-informed**, comfortable using data to understand what's working and suggest improvements.
+- You value **autonomy** and are keen to self-manage.
+- You are excited by the prospect of owning employer branding and diversity and inclusion initiatives.
+- You're familiar with the open-source community or developer tools space.
+
+## You should not apply if
+
+- You prefer a highly structured environment where processes are already fully defined; we're building as we grow.
+- You avoid getting into the "weeds" of solving technical problems; you'll be hiring for complex R&D positions.
+- You prefer a traditional in-office setting; this role is fully remote within a largely asynchronous culture.
+- You're **not interested in contributing beyond core recruitment tasks**; we encourage broad impact and provide opportunities for you to define your responsibilities even outside of recruitment.
+
+## About MUI
 
 MUI's story began in 2014 with Material UI, the most successful React implementation of Google's Material Design. Today, Material UI stands as one of the most popular open-source libraries on GitHub and has paved the way for the fully-fledged startup known as MUI (founded in 2019), which now boasts an ever-expanding ecosystem of React UI products.
 
 We're a company of 35+ people as of early 2024, and we're growing.
-
-## The products
 
 MUI is best known for our flagship product, Material UI—but this is just one of three core component libraries we maintain. Base UI is our headless component library, and Pigment CSS is a zero-runtime CSS-in-JS styling engine. We also host Design Kits and pre-built Templates.
 
@@ -25,55 +44,25 @@ We're also making ambitious moves to incorporate our full suite of components in
 
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
-## The culture
+## About the People & Talent team
+
+MUI is experiencing rapid growth across both our open-source community and our premium product offerings. To sustain this momentum and meet the demands of our dynamic community, we need to expand our talented team. Our People & Talent team currently counts 1 person who is taking care of both HR and talent needs. We need someone who will directly contribute to and own recruitment initiatives, as well as expand their knowledge and contribute to broader People-related topics. You will lead the recruitment effort with the help of our Talent and Culture Partner, acting as a strategic thought partner to our hiring managers and contributing to the overall growth of our organization.
+
+## The culture at MUI
 
 MUI is a fully remote company with a team that spans the globe. The majority of our work is asynchronous, and we rely on written communication to collaborate. We're radically transparent: nearly all of our work happens in public. Each contributor has the freedom to decide how and when they work, and that work is primarily self-directed: it's your responsibility to define and complete your own tasks in a timely manner.
 
 For additional details about the culture, you can check our [careers](https://mui.com/careers/) and [about](https://mui.com/about/) pages and also our [public Handbook](https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b).
 
-## Why we're hiring
+## Interview Process
 
-MUI is experiencing growth across both our open-source community and our premium product offerings. To sustain this momentum and meet the demands of our dynamic community, we need to expand our talented team.
-Overall, both our open-source community and our premium products are growing fast. We need talented people to keep up with the demands of our community!
+Our interview process is thorough – we aim to ensure each person that joins the team is the right fit for MUI and will provide ample information for you to assess if MUI is the right fit for you. The process for this role typically follows these stages:
 
-### Why this is interesting
-
-This is a unique opportunity to shape the growth of a leading open-source company. You will directly contribute to building the team that empowers millions of developers worldwide. You'll work in a remote-first, transparent, and highly autonomous environment.
-
-## The role
-
-### Key responsibilities
-
-Depending on the day, you'll:
-
-- Design, execute, and own full life-cycle recruiting.
-- Attract and engage top talent in creative, targeted, and meaningful ways.
-- Manage candidates through the entire interview process (sourcing, updating candidate pipeline, coordinating interviews, setting expectations, etc.) while maintaining an excellent candidate experience.
-- Collaborate with internal team members on recruiting best practices and ways to improve hiring.
-- Actively work towards building a diverse team and ensure fairness in hiring practices.
-- Regularly manage pipeline activity and analyze KPIs for recruiting.
-- Scale a lean team to support growth.
-- Own Employer Branding and Diversity and Inclusion initiatives.
-
-## Who we're looking for
-
-### Required
-
-- 5-8 years of recruiting experience, with a strong background in technical R&D hiring.
-- Confidence with assessing the complexity and impact of a candidate's work — not just what they built, but how and why it mattered.
-- Ability to establish credibility and trust with diverse groups (candidates, hiring managers, and internal stakeholders).
-- Proficiency in sourcing candidates using platforms like LinkedIn Recruiter, GitHub, and other industry-specific tools.
-- Comfortable using data to understand what's working and suggest improvements.
-- Excellent written and verbal communication skills.
-- Strong organizational skills and attention to detail.
-- Proficiency with Applicant Tracking Systems (ideally Ashby) to manage pipelines, automate workflows, and keep hiring visible and on track.
-
-### Nice to have (but not required)
-
-- Familiarity with the open-source community or developer tools space.
-- Experience recruiting for remote-first companies.
-- Fluency with AI tools that support sourcing or decision-making.
-- Previous experience recruiting and scaling an early-stage team.
+- **Intro Call with Talent & Culture**
+- **Sourcing challenge / Take Home Assessment**
+- **Team Interview**
+- **References**
+- **Cultural fit interview**
 
 ## Benefits and compensation
 
