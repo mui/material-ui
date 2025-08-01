@@ -108,7 +108,7 @@ commands:
       - run:
           name: Set version overrides
           command: |
-            pnpm code-infra set-version-overrides --react-version "$REACT_VERSION" --typescript-version "$TYPESCRIPT_VERSION"
+            pnpm code-infra set-version-overrides --pkg "react@$REACT_VERSION" --pkg "typescript@$TYPESCRIPT_VERSION"
 
 jobs:
   test_unit:
