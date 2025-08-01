@@ -125,7 +125,7 @@
     "@mui/internal-babel-plugin-minify-errors": "^2.0.8-canary.3",
     "@mui/internal-babel-plugin-resolve-imports": "^2.0.7-canary.11",
     "@mui/internal-bundle-size-checker": "^1.0.9-canary.10",
-    "@mui/internal-code-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@a47b846",
+    "@mui/internal-code-infra": "https://pkg.pr.new/mui/mui-public/@mui/internal-code-infra@1592652",
     "@mui/internal-docs-utils": "workspace:^",
     "@mui/internal-scripts": "workspace:^",
     "@mui/internal-test-utils": "workspace:^",
@@ -225,8 +225,7 @@
     "@pigment-css/react": "0.0.30",
     "@pigment-css/unplugin": "0.0.30",
     "@pigment-css/nextjs-plugin": "0.0.30",
-    "@pigment-css/vite-plugin": "0.0.30",
-    "typescript": "5.9.0-dev.20250731"
+    "@pigment-css/vite-plugin": "0.0.30"
   },
   "nyc": {
     "include": [
