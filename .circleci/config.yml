@@ -240,14 +240,6 @@ jobs:
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
       - run:
-          name: Diff declaration files
-          command: |
-            git add -f packages/mui-material/build || echo '/material declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build
-            git --no-pager diff
-      - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
       - save_cache:
@@ -285,14 +277,6 @@ jobs:
             # We assume that the target branch is `next` and that declaration files are persisted in commit order.
             # "If there are multiple matches, the most recently generated cache will be used."
             - typescript-declaration-files-next
-      - run:
-          name: Diff declaration files
-          command: |
-            git add -f packages/mui-material/build || echo '/core declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build
-            git --no-pager diff
       - run:
           name: Log defect declaration files
           command: |
