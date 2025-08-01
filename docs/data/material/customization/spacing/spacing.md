@@ -57,7 +57,7 @@ If you must use spacing array, consider using a function signature that can hand
 const spacings = [0, 4, 8, 16, 32, 64];
 
 const theme = createTheme({
-  spacing: (factor: number | 'auto' = 0) => {
+  spacing: (factor: number | 'auto' = 1) => {
     if (factor === 'auto') {
       return 'auto';
     }
