@@ -102,7 +102,7 @@
     "nx_test_unit": "cross-env NODE_ENV=test mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\""
   },
   "dependencies": {
-    "@netlify/functions": "^3.1.10",
+    "@netlify/functions": "^4.2.1",
     "@slack/bolt": "^4.4.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
     "execa": "^9.6.0"
