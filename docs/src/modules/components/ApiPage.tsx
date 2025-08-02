@@ -238,7 +238,7 @@ export default function ApiPage(props: ApiPageProps) {
         title={`${pageContent.name} API`}
         toc={toc}
       >
-        <MarkdownElement>
+        <MarkdownElement className="MuiDocs-content-block MuiDocs-api-content-block">
           <h1>{pageContent.name} API</h1>
           {deprecated ? (
             <Alert
