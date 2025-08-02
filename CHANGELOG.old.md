@@ -5223,7 +5223,7 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [core] Add bundle size Toolpad app link to PRs (#36311) @Janpot
 - [core] Fix priority support prompt action flow (#37726) @DanailH
 - [core] Fix typo in priority support @oliviertassinari
-- [core][docs] add Eslint rule to ensure main demo component match file… (#37278) @alexfauquette
+- [core][docs] add ESlint rule to ensure main demo component match file… (#37278) @alexfauquette
 - [docs-infra] Fix truncated TOCs scrollbar (#37770) @oliviertassinari
 - [docs-infra] Adjust demo container to be glued to the toolbar (#37744) @danilo-leal
 - [docs-infra] Fix layout shift ad (#37694) @oliviertassinari
