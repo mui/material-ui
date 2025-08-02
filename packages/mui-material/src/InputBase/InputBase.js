@@ -256,8 +256,8 @@ export const InputBaseInput = styled('input', {
 );
 
 const InputGlobalStyles = globalCss({
-  '@keyframes mui-auto-fill': { from: { display: 'block' } },
-  '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+  '@keyframes mui-auto-fill': {},
+  '@keyframes mui-auto-fill-cancel': {},
 });
 
 /**
