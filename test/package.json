@@ -37,7 +37,7 @@
     "react-window": "^1.8.11",
     "sinon": "^21.0.0",
     "styled-components": "^6.1.19",
-    "stylis": "4.2.0",
+    "stylis": "4.3.6",
     "webfontloader": "^1.6.28",
     "webpack": "^5.100.2",
     "yargs": "^17.7.2"
