@@ -202,7 +202,7 @@
     "webpack": "^5.100.2",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "packageManager": "pnpm@10.13.1",
   "engines": {
