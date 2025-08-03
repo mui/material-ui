@@ -28,7 +28,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Material UI.
+Please note that [react](https://www.npmjs.com/package/react) and [react-dom](https://www.npmjs.com/package/react-dom) are peer dependencies, meaning you should ensure they are installed before installing Material UI.
 
 ```json
 "peerDependencies": {
@@ -38,7 +38,7 @@ Please note that [react](https://www.npmjs.com/package/react) and [react-dom](ht
 ```
 
 :::info
-**Using React 18 or below?** If you're using React 18 or below with Material UI v6/v7, you may encounter PropTypes warnings related to `react-is`. See the [upgrade guide](/material-ui/migration/upgrade-to-v7/#react-18-and-below) for details on how to resolve this.
+**Using React 18 or below?** If you're using React 18 or below with Material UI v6/v7, you may encounter PropTypes warnings related to `react-is`. See the [upgrade guide](/material-ui/migration/upgrade-to-v7/#react-18-and-below) for details on how to resolve this.
 :::
 
 ## With styled-components

@@ -147,9 +147,9 @@ yarn add react-is@18.3.1
 
 #### Why is this needed?
 
-Material UI v6 and v7 use `react-is@19`, which changed how React elements are identified.
+Material UI v6 and v7 use `react-is@19`, which changed how React elements are identified.
 
-React 18 uses `Symbol.for('react.element')` to identify React elements, but `react-is@19` uses `Symbol.for('react.transitional.element')` (aligned with React 19). When your app runs on React 18 but Material UI resolves `react-is@19`, the `PropTypes.node` validator fails to recognize valid React elements because they have different `$$typeof` symbols, causing warnings like:
+React 18 uses `Symbol.for('react.element')` to identify React elements, but `react-is@19` uses `Symbol.for('react.transitional.element')` (aligned with React 19). When your app runs on React 18 but Material UI resolves `react-is@19`, the `PropTypes.node` validator fails to recognize valid React elements because they have different `$$typeof` symbols, causing warnings like:
 
 ```text
 Warning: Failed prop type: Invalid prop `children` supplied to `<Component>`, expected a ReactNode.
