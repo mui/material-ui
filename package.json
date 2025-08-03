@@ -198,7 +198,7 @@
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vitest": "^3.2.4",
-    "vitest-fail-on-console": "^0.7.1",
+    "vitest-fail-on-console": "^0.8.0",
     "webpack": "^5.100.2",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
