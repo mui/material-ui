@@ -12,14 +12,9 @@ import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportC
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
 import {
-  CommunitySupportIcon,
   ProSupportIcon,
   PremiumSupportIcon,
-  CommunitySupportText,
-  ProSupportText,
-  PremiumSupportText,
   PrioritySupportIcon,
-  PrioritySupportText,
 } from 'docs/src/components/pricing/SupportIcons';
 
 export interface Feature {
@@ -230,7 +225,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'premium') {
     const premiumAnnualValue = 588;
-    
+
     const premiumPerpetualValue = premiumAnnualValue * perpetualMultiplier;
     const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
@@ -413,19 +408,10 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
           }}
         >
           {(() => {
-            if (feature.supportType === 'community') {
-              return (
-                <React.Fragment>
-                  <CommunitySupportIcon idPrefix={idPrefix} />
-                  <CommunitySupportText />
-                </React.Fragment>
-              );
-            }
             if (feature.supportType === 'pro') {
               return (
                 <React.Fragment>
                   <ProSupportIcon idPrefix={idPrefix} />
-                  <ProSupportText />
                 </React.Fragment>
               );
             }
@@ -433,7 +419,6 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
               return (
                 <React.Fragment>
                   <PremiumSupportIcon idPrefix={idPrefix} />
-                  <PremiumSupportText />
                 </React.Fragment>
               );
             }
@@ -441,7 +426,6 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
               return (
                 <React.Fragment>
                   <PrioritySupportIcon idPrefix={idPrefix} />
-                  <PrioritySupportText />
                 </React.Fragment>
               );
             }
