@@ -45,9 +45,9 @@
   "devDependencies": {
     "@mui/internal-test-utils": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.8",
+    "@types/react": "^19.1.9",
     "chai": "^4.5.0",
-    "react": "^19.1.0",
+    "react": "^19.1.1",
     "styled-components": "^6.1.19"
   },
   "peerDependencies": {
