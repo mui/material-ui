@@ -66,6 +66,16 @@ const openRolesData = [
     ],
   },
   {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
+        url: '/careers/technical-recruiter/',
+      },
+    ],
+  },
+  {
     title: 'Design',
     roles: [],
   },
@@ -88,17 +98,11 @@ const nextRolesData = [
     ],
   },
   {
-    title: 'People',
-    roles: [
-      // {
-      //   title: 'Technical Recruiter',
-      //   description: 'You will hire the next engineers, among other roles, joining the team.',
-      //   url: '/careers/technical-recruiter/',
-      // },
-    ],
+    title: 'Sales',
+    roles: [],
   },
   {
-    title: 'Sales',
+    title: 'People',
     roles: [],
   },
   {

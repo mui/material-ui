@@ -11,6 +11,9 @@ const StatRoot = styled('div')(({ theme }) => ({
   boxShadow: theme.shadows[2],
   letterSpacing: '-0.025em',
   fontWeight: 600,
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'inherit',
+  }),
 }));
 
 const StatValue = styled('div')(({ theme }) => ({
@@ -20,6 +23,9 @@ const StatValue = styled('div')(({ theme }) => ({
 const StatUnit = styled('div')(({ theme }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
+  ...theme.applyStyles('dark', {
+    color: 'inherit',
+  }),
 }));
 
 export default function StatComponent() {

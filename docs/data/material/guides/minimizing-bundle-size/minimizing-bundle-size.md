@@ -67,3 +67,16 @@ To prevent VS Code from automatically importing from `@mui/material`, you can u
 ## Using Next.js 13.5 or later?
 
 If you're on **Next.js 13.5 or newer**, you're in good hands. These versions include automatic import optimization via the `optimizePackageImports` option. This removes the need for manual configuration or Babel plugins to optimize imports.
+
+## Using parcel
+
+Parcel, by default, doesn't resolve package.json `"exports"`. This makes it always resolve to the commonjs version of our library. To make it optimally make use of our ESM version, make sure to [enable the `packageExports` option](https://parceljs.org/features/dependency-resolution/#enabling-package-exports).
+
+```json
+// ./package.json
+{
+  "@parcel/resolver-default": {
+    "packageExports": true
+  }
+}
+```
