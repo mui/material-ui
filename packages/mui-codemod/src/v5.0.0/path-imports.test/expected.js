@@ -61,3 +61,6 @@ import TableFooter from '@mui/material/TableFooter';
 import Zoom from '@mui/material/Zoom';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import ListSubheader from '@mui/material/ListSubheader';
+
+import Delete from '@mui/icons-material/Delete';
+import PeopleIcon from '@mui/icons-material/People';

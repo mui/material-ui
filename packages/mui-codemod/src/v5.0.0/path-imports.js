@@ -7,21 +7,21 @@ if (process.env.NODE_ENV === 'test') {
     resolve(source.replace(/^@mui\/material\/modern/, '../../../mui-material/src'));
 }
 
+const barrelImportsToTransform = {
+  material: {},
+  'icons-material': {},
+};
+const muiImportRegExp = /^@mui\/([^/]+)$/;
+const classesRegExp = /Classes$/;
+
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
-  const importModule = options.importModule || '@mui/material';
-  const targetModule = options.targetModule || '@mui/material';
-
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
   };
 
   const root = j(fileInfo.source);
-  const importRegExp = new RegExp(`^${importModule}$`);
-  const classesRegExp = /Classes$/;
-
-  const importsToAdd = {};
 
   root.find(j.ImportDeclaration).forEach((path) => {
     if (!path.node.specifiers.length) {
@@ -33,12 +33,16 @@ export default function transformer(fileInfo, api, options) {
     }
 
     const importPath = path.value.source.value;
-    const match = importPath.match(importRegExp);
+
+    const match = importPath.match(muiImportRegExp);
     if (!match) {
       return;
     }
 
-    if (importPath.includes('internal/')) {
+    const moduleName = match[1];
+    const importsToAdd = barrelImportsToTransform[moduleName];
+
+    if (!importsToAdd) {
       return;
     }
 
@@ -54,18 +58,17 @@ export default function transformer(fileInfo, api, options) {
 
       if (specifier.type === 'ImportSpecifier') {
         const name = specifier.imported.name;
+        if (moduleName === 'material') {
+          if (name === 'ThemeProvider' || classesRegExp.test(name)) {
+            return;
+          }
 
-        if (name === 'ThemeProvider' || classesRegExp.test(name)) {
-          return;
-        }
-
-        if (name === 'createTheme') {
-          importsToAdd.styles ??= [];
-          importsToAdd.styles.push(specifier);
-
-          indexesToPrune.push(index);
-
-          return;
+          if (name === 'createTheme') {
+            importsToAdd.styles ??= [];
+            importsToAdd.styles.push(specifier);
+            indexesToPrune.push(index);
+            return;
+          }
         }
 
         importsToAdd[name] ??= [];
@@ -85,10 +88,11 @@ export default function transformer(fileInfo, api, options) {
     }
   });
 
-  Object.entries(importsToAdd).forEach(([module, specifiers]) => {
-    const fullTargetModule = `${targetModule}/${module}`;
-
-    addImports(root, j.importDeclaration(specifiers, j.stringLiteral(fullTargetModule)));
+  Object.entries(barrelImportsToTransform).forEach(([moduleName, importsToAdd]) => {
+    Object.entries(importsToAdd).forEach(([module, specifiers]) => {
+      const fullTargetModule = `@mui/${moduleName}/${module}`;
+      addImports(root, j.importDeclaration(specifiers, j.stringLiteral(fullTargetModule)));
+    });
   });
 
   return root.toSource(printOptions);
