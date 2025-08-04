@@ -69,6 +69,12 @@
       "description": "The component that renders the transition.\n[Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.",
       "default": "Collapse",
       "class": null
+    },
+    {
+      "name": "region",
+      "description": "The component that renders the region.",
+      "default": "'div'",
+      "class": "MuiAccordion-region"
     }
   ],
   "classes": [
@@ -88,12 +94,6 @@
       "key": "gutters",
       "className": "MuiAccordion-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
-      "isGlobal": false
-    },
-    {
-      "key": "region",
-      "className": "MuiAccordion-region",
-      "description": "Styles applied to the region element, the container of the children.",
       "isGlobal": false
     },
     {
