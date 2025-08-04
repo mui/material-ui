@@ -41,7 +41,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - Add dashboard with CRUD template based on Toolpad Core (#46376) @apedroferreira
 - Clarify `createTheme` warning for future compatibility (#46476) @satendra03
 - Remove typo in `_redirects` (#46463) @bharatkashyap
-- Change API docs to stay inside Material UI (#46414) @bharatkashyap
+- Change API docs to stay inside Material UI (#46414) @bharatkashyap
 - [Dialog] Fix Form dialog demo's actions button padding (#46506) @frontman-git
 - [SpeedDial] Remove deprecated props from demos (#46485) @sai6855
 - [Switch] Use `slotProps.input` instead of deprecated `inputProps` for accessible controlled switch (#46625) @adiitxa
