@@ -150,10 +150,11 @@ export function PlanPrice(props: PlanPriceProps) {
     }
     return '';
   };
+  const perpetualMultiplier = 3;
 
   if (plan === 'pro') {
     const annualValue = 180;
-    const perpetualValue = annualValue * 3;
+    const perpetualValue = annualValue * perpetualMultiplier;
     const monthlyValueForAnnual = annualValue / 12;
 
     const mainDisplayValue = annual ? annualValue : perpetualValue;
@@ -219,17 +220,11 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'premium') {
     const premiumAnnualValue = 588;
-    const premiumPerpetualValue = premiumAnnualValue * 3;
+    const premiumPerpetualValue = premiumAnnualValue * perpetualMultiplier;
     const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
     const priceExplanation = getPriceExplanation(premiumMonthlyValueForAnnual);
-
-    let premiumDisplayedValue: number = premiumAnnualValue;
-    if (annual) {
-      premiumDisplayedValue = premiumAnnualValue;
-    } else if (!annual) {
-      premiumDisplayedValue = premiumPerpetualValue;
-    }
+    const premiumDisplayedValue = annual ? premiumAnnualValue : premiumPerpetualValue;
 
     return (
       <Box
