@@ -1,7 +1,5 @@
 import * as React from 'react';
 import SvgIcon from '@mui/material/SvgIcon';
-import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 
 export function ProSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
   const gradientId = `${idPrefix}pro-gradient`;

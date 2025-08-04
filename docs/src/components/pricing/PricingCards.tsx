@@ -377,13 +377,13 @@ export function PlanPrice(props: PlanPriceProps) {
 function getHref(annual: boolean, prioritySupport: boolean): string {
   if (annual && prioritySupport) {
     return 'https://mui.com/store/items/mui-x-premium/?addons=mui-x-priority-support';
-  } else if (!annual && prioritySupport) {
+  } if (!annual && prioritySupport) {
     return 'https://mui.com/store/items/mui-x-premium-perpetual/?addons=mui-x-priority-support';
-  } else if (annual && !prioritySupport) {
+  } if (annual && !prioritySupport) {
     return 'https://mui.com/store/items/mui-x-premium/';
-  } else {
+  } 
     return 'https://mui.com/store/items/mui-x-premium-perpetual/';
-  }
+  
 }
 
 export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?: string }) {
@@ -409,25 +409,13 @@ export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?
         >
           {(() => {
             if (feature.supportType === 'pro') {
-              return (
-                <React.Fragment>
-                  <ProSupportIcon idPrefix={idPrefix} />
-                </React.Fragment>
-              );
+              return <ProSupportIcon idPrefix={idPrefix} />;
             }
             if (feature.supportType === 'premium') {
-              return (
-                <React.Fragment>
-                  <PremiumSupportIcon idPrefix={idPrefix} />
-                </React.Fragment>
-              );
+              return <PremiumSupportIcon idPrefix={idPrefix} />;
             }
             if (feature.supportType === 'priority') {
-              return (
-                <React.Fragment>
-                  <PrioritySupportIcon idPrefix={idPrefix} />
-                </React.Fragment>
-              );
+              return <PrioritySupportIcon idPrefix={idPrefix} />;
             }
             return null;
           })()}
