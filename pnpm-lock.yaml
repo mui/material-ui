@@ -876,8 +876,8 @@ importers:
         specifier: ^1.25.1
         version: 1.25.1
       marked:
-        specifier: ^15.0.12
-        version: 15.0.12
+        specifier: ^16.1.2
+        version: 16.1.2
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -1209,8 +1209,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       marked:
-        specifier: ^15.0.12
-        version: 15.0.12
+        specifier: ^16.1.2
+        version: 16.1.2
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
@@ -10580,9 +10580,9 @@ packages:
     peerDependencies:
       marked: '>=1 <16'
 
-  marked@15.0.12:
-    resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
-    engines: {node: '>= 18'}
+  marked@16.1.2:
+    resolution: {integrity: sha512-rNQt5EvRinalby7zJZu/mB+BvaAY2oz3wCuCjt1RDrWNpS1Pdf9xqMOeC9Hm5adBdcV/3XZPJpG58eT+WBc0XQ==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   marked@9.1.6:
@@ -24883,7 +24883,7 @@ snapshots:
       node-emoji: 2.2.0
       supports-hyperlinks: 3.2.0
 
-  marked@15.0.12: {}
+  marked@16.1.2: {}
 
   marked@9.1.6: {}
 
