@@ -133,6 +133,11 @@ const AccordionHeading = styled('h3', {
   all: 'unset',
 });
 
+const AccordionRegion = styled('div', {
+  name: 'MuiAccordion',
+  slot: 'Region',
+})({});
+
 const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiAccordion' });
   const {
@@ -221,20 +226,25 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ownerState,
   });
 
+  const [AccordionRegionSlot, accordionRegionProps] = useSlot('region', {
+    elementType: AccordionRegion,
+    externalForwardedProps,
+    ownerState,
+    className: classes.region,
+    additionalProps: {
+      'aria-labelledby': summary.props.id,
+      id: summary.props['aria-controls'],
+      role: 'region',
+    },
+  });
+
   return (
     <RootSlot {...rootProps}>
       <AccordionHeadingSlot {...accordionProps}>
         <AccordionContext.Provider value={contextValue}>{summary}</AccordionContext.Provider>
       </AccordionHeadingSlot>
       <TransitionSlot in={expanded} timeout="auto" {...transitionProps}>
-        <div
-          aria-labelledby={summary.props.id}
-          id={summary.props['aria-controls']}
-          role="region"
-          className={classes.region}
-        >
-          {children}
-        </div>
+        <AccordionRegionSlot {...accordionRegionProps}>{children}</AccordionRegionSlot>
       </TransitionSlot>
     </RootSlot>
   );

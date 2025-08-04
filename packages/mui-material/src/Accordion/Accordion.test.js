@@ -48,6 +48,10 @@ describe('<Accordion />', () => {
         expectedClassName: classes.root,
         testWithElement: CustomPaper,
       },
+      region: {
+        expectedClassName: classes.region,
+        testWithElement: 'div',
+      },
     },
     skip: ['componentProp', 'componentsProp'],
   }));
