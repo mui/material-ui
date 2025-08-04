@@ -320,4 +320,15 @@ describe('<Accordion />', () => {
       });
     });
   });
+
+  it('should allow custom role for region via slotProps', () => {
+    render(
+      <Accordion slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
+        <AccordionSummary>Summary</AccordionSummary>
+        Details
+      </Accordion>,
+    );
+
+    expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
+  });
 });
