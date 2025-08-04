@@ -321,7 +321,7 @@ describe('<Accordion />', () => {
     });
   });
 
-  it('should allow custom role for region via slotProps', () => {
+  it('should allow custom role for region slot via slotProps', () => {
     render(
       <Accordion expanded slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
         <AccordionSummary>Summary</AccordionSummary>
