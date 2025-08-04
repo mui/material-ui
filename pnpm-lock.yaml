@@ -314,8 +314,8 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.9)(@vitest/browser@3.2.4)(happy-dom@15.11.6)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(msw@2.7.3(@types/node@20.19.9)(typescript@5.8.3))(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)
       vitest-fail-on-console:
-        specifier: ^0.7.1
-        version: 0.7.1(vite@6.3.5(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0))(vitest@3.2.4)
+        specifier: ^0.8.0
+        version: 0.8.0(vite@6.3.5(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0))(vitest@3.2.4)
       webpack:
         specifier: ^5.100.2
         version: 5.100.2(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.100.2))
@@ -7172,10 +7172,6 @@ packages:
     resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
-  chalk@5.3.0:
-    resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-
   chalk@5.4.1:
     resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
@@ -13985,8 +13981,8 @@ packages:
       yaml:
         optional: true
 
-  vitest-fail-on-console@0.7.1:
-    resolution: {integrity: sha512-/PjuonFu7CwUVrKaiQPIGXOtiEv2/Gz3o8MbLmovX9TGDxoRCctRC8CA9zJMRUd6AvwGu/V5a3znObTmlPNTgw==}
+  vitest-fail-on-console@0.8.0:
+    resolution: {integrity: sha512-RvUaTyX/0/CYq+US/6UzXOWtKZF8ewrYEnobEZFh2FW9OCuw9dZzecKlskKS0dDpaMuPfBP9xqJ2rp5XxpJeMQ==}
     peerDependencies:
       vite: '>=4.5.2'
       vitest: '>=0.26.2'
@@ -20828,8 +20824,6 @@ snapshots:
       supports-color: 7.2.0
 
   chalk@5.0.1: {}
-
-  chalk@5.3.0: {}
 
   chalk@5.4.1: {}
 
@@ -28979,9 +28973,9 @@ snapshots:
       tsx: 4.20.3
       yaml: 2.8.0
 
-  vitest-fail-on-console@0.7.1(vite@6.3.5(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0))(vitest@3.2.4):
+  vitest-fail-on-console@0.8.0(vite@6.3.5(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0))(vitest@3.2.4):
     dependencies:
-      chalk: 5.3.0
+      chalk: 5.4.1
       vite: 6.3.5(@types/node@20.19.9)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)
       vitest: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.9)(@vitest/browser@3.2.4)(happy-dom@15.11.6)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(msw@2.7.3(@types/node@20.19.9)(typescript@5.8.3))(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)
 
