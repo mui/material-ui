@@ -35,6 +35,12 @@ import Delete from '@mui/icons-material/Delete';
 
 This approach avoids loading unnecessary parts of the package and does not require any special configuration. It is also the default used in all our official examples and demos.
 
+If you have existing barrel imports in your codebase, use the `path-imports` [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#path-imports) below to migrate your code:
+
+```bash
+npx @mui/codemod@latest v5.0.0/path-imports <path>
+```
+
 ## Enforce best practices with ESLint
 
 To prevent accidental deep imports, you can use the `no-restricted-imports` rule in your ESLint configuration:
