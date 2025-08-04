@@ -41,7 +41,7 @@ export const planInfo: Record<
     title: 'Community',
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
     features: [
-      { text: '+40 free components', icon: 'check' },
+      { text: '40+ free components', icon: 'check' },
       {
         icon: 'support',
         supportType: 'community',

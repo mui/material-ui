@@ -941,7 +941,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'priority-support': <PrioritySupportSwitchTable />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <InfoPrioritySupport value={yes} metadata="24 hours" value2={no} />,
+  'response-time': <InfoPrioritySupport value={yes} metadata="1 business day" value2={no} />,
   'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
   'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
