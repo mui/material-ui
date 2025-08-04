@@ -3,7 +3,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
+import { unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
 import { keyframes, css, styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -99,7 +99,7 @@ const SkeletonRoot = styled('span', {
       // Create a "on paper" color with sufficient contrast retaining the color
       backgroundColor: theme.vars
         ? theme.vars.palette.Skeleton.bg
-        : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
+        : theme.alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
       height: '1.2em',
       variants: [
         {
