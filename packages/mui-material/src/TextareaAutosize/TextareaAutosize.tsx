@@ -1,13 +1,11 @@
 'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  unstable_debounce as debounce,
-  unstable_useForkRef as useForkRef,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_useEventCallback as useEventCallback,
-  unstable_ownerWindow as ownerWindow,
-} from '@mui/utils';
+import debounce from '@mui/utils/debounce';
+import useForkRef from '@mui/utils/useForkRef';
+import useEnhancedEffect from '@mui/utils/useEnhancedEffect';
+import useEventCallback from '@mui/utils/useEventCallback';
+import ownerWindow from '@mui/utils/ownerWindow';
 import { TextareaAutosizeProps } from './TextareaAutosize.types';
 
 function getStyleValue(value: string) {
@@ -53,11 +51,11 @@ function isEmpty(obj: TextareaStyles) {
  *
  * Demos:
  *
- * - [Textarea Autosize](https://next.mui.com/material-ui/react-textarea-autosize/)
+ * - [Textarea Autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://next.mui.com/material-ui/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/material-ui/api/textarea-autosize/)
  */
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   props: TextareaAutosizeProps,
@@ -209,6 +207,16 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!isControlled) {
       syncHeight();
+    }
+
+    const textarea = event.target;
+    const countOfCharacters = textarea.value.length;
+    const isLastCharacterNewLine = textarea.value.endsWith('\n');
+    const isEndOfTheLine = textarea.selectionStart === countOfCharacters;
+
+    // Set the cursor position to the very end of the text.
+    if (isLastCharacterNewLine && isEndOfTheLine) {
+      textarea.setSelectionRange(countOfCharacters, countOfCharacters);
     }
 
     if (onChange) {

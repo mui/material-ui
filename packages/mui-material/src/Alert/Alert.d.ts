@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { IconButtonProps, InternalStandardProps as StandardProps, SvgIconProps, Theme } from '..';
+import { SvgIconProps } from '../SvgIcon';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
+import { IconButtonProps } from '../IconButton';
 import { PaperProps } from '../Paper';
 import { AlertClasses } from './alertClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -124,7 +127,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -136,7 +139,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'>, AlertS
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -192,11 +195,11 @@ export interface AlertOwnerState extends AlertProps {}
  *
  * Demos:
  *
- * - [Alert](https://next.mui.com/material-ui/react-alert/)
+ * - [Alert](https://mui.com/material-ui/react-alert/)
  *
  * API:
  *
- * - [Alert API](https://next.mui.com/material-ui/api/alert/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [Alert API](https://mui.com/material-ui/api/alert/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function Alert(props: AlertProps): React.JSX.Element;

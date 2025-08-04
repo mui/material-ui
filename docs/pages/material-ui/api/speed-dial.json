@@ -52,9 +52,9 @@
     },
     "TransitionComponent": {
       "type": { "name": "elementType" },
-      "default": "Zoom\n* @deprecated Use `slots.transition` instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)",
+      "default": "Zoom\n* @deprecated Use `slots.transition` instead. This prop will be removed in a future major release. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/)",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in a future major release. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     },
     "transitionDuration": {
       "type": {
@@ -66,7 +66,7 @@
     "TransitionProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in a future major release. <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">How to migrate</a>"
     }
   },
   "name": "SpeedDial",

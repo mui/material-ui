@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
-import { unstable_useId as useId } from '@mui/material/utils';
+import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -175,21 +174,24 @@ const ButtonRoot = styled(ButtonBase, {
             style: {
               '--variant-textColor': (theme.vars || theme).palette[color].main,
               '--variant-outlinedColor': (theme.vars || theme).palette[color].main,
-              '--variant-outlinedBorder': theme.vars
-                ? `rgba(${theme.vars.palette[color].mainChannel} / 0.5)`
-                : alpha(theme.palette[color].main, 0.5),
+              '--variant-outlinedBorder': theme.alpha(
+                (theme.vars || theme).palette[color].main,
+                0.5,
+              ),
               '--variant-containedColor': (theme.vars || theme).palette[color].contrastText,
               '--variant-containedBg': (theme.vars || theme).palette[color].main,
               '@media (hover: hover)': {
                 '&:hover': {
                   '--variant-containedBg': (theme.vars || theme).palette[color].dark,
-                  '--variant-textBg': theme.vars
-                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                    : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                  '--variant-textBg': theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.hoverOpacity,
+                  ),
                   '--variant-outlinedBorder': (theme.vars || theme).palette[color].main,
-                  '--variant-outlinedBg': theme.vars
-                    ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                    : alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+                  '--variant-outlinedBg': theme.alpha(
+                    (theme.vars || theme).palette[color].main,
+                    (theme.vars || theme).palette.action.hoverOpacity,
+                  ),
                 },
               },
             },
@@ -209,12 +211,14 @@ const ButtonRoot = styled(ButtonBase, {
                 '--variant-containedBg': theme.vars
                   ? theme.vars.palette.Button.inheritContainedHoverBg
                   : inheritContainedHoverBackgroundColor,
-                '--variant-textBg': theme.vars
-                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-                '--variant-outlinedBg': theme.vars
-                  ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
-                  : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+                '--variant-textBg': theme.alpha(
+                  (theme.vars || theme).palette.text.primary,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
+                '--variant-outlinedBg': theme.alpha(
+                  (theme.vars || theme).palette.text.primary,
+                  (theme.vars || theme).palette.action.hoverOpacity,
+                ),
               },
             },
           },
@@ -411,7 +415,6 @@ const ButtonEndIcon = styled('span', {
 const ButtonLoadingIndicator = styled('span', {
   name: 'MuiButton',
   slot: 'LoadingIndicator',
-  overridesResolver: (props, styles) => styles.loadingIndicator,
 })(({ theme }) => ({
   display: 'none',
   position: 'absolute',
@@ -496,7 +499,6 @@ const ButtonLoadingIndicator = styled('span', {
 const ButtonLoadingIconPlaceholder = styled('span', {
   name: 'MuiButton',
   slot: 'LoadingIconPlaceholder',
-  overridesResolver: (props, styles) => styles.loadingIconPlaceholder,
 })({
   display: 'inline-block',
   width: '1em',

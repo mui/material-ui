@@ -1,54 +1,5 @@
-import * as React from 'react';
-import { DistributiveOmit } from '@mui/types';
-import { StyledComponentProps } from './styles';
-
-export { StyledComponentProps };
-
-/**
- * All standard components exposed by `material-ui` are `StyledComponents` with
- * certain `classes`, on which one can also set a top-level `className` and inline
- * `style`.
- * @deprecated will be removed in v5 for internal usage only
- */
-export type StandardProps<
-  ComponentProps,
-  ClassKey extends string,
-  Removals extends keyof ComponentProps = never,
-> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
-  StyledComponentProps<ClassKey> & {
-    className?: string;
-    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
-    style?: React.CSSProperties;
-  };
-
-/**
- * @internal
- * ONLY USE FROM WITHIN mui/material-ui
- *
- * Internal helper type for conform (describeConformance) components
- * However, we don't declare classes on this type.
- * It is recommended to declare them manually with an interface so that each class can have a separate JSDoc.
- */
-export type InternalStandardProps<
-  ComponentProps,
-  Removals extends keyof ComponentProps = never,
-> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
-  // each component declares it's classes in a separate interface for proper JSDoc
-  StyledComponentProps<never> & {
-    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
-    // TODO: Remove implicit props. Up to each component.
-    className?: string;
-    style?: React.CSSProperties;
-  };
-
-export namespace PropTypes {
-  // keeping the type structure for backwards compat
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
-}
-
 // From index.js
-// eslint-disable-next-line import/first
+
 import * as colors from './colors';
 
 export { colors };
@@ -407,6 +358,9 @@ export * from './TableHead';
 export { default as TablePagination } from './TablePagination';
 export * from './TablePagination';
 
+export { default as TablePaginationActions } from './TablePaginationActions';
+export * from './TablePaginationActions';
+
 export { default as TableRow } from './TableRow';
 export * from './TableRow';
 
@@ -457,7 +411,7 @@ export * from './GlobalStyles';
 
 export * from './version';
 
-export { unstable_composeClasses } from '@mui/utils';
+export { default as unstable_composeClasses } from '@mui/utils/composeClasses';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
@@ -466,3 +420,5 @@ export { default as generateUtilityClasses } from './generateUtilityClasses';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 export * from './Unstable_TrapFocus';
+
+export { default as InitColorSchemeScript } from './InitColorSchemeScript';

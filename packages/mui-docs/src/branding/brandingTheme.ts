@@ -584,7 +584,7 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: (theme.vars || theme).palette.primaryDark[800],
                   },
-                  '&.Mui-disabled': {
+                  '&.Mui-disabled:not(.MuiButton-loading)': {
                     color: theme.palette.grey[500],
                   },
                 }),
@@ -614,7 +614,7 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.3),
                   },
-                  '&.Mui-disabled': {
+                  '&.Mui-disabled:not(.MuiButton-loading)': {
                     background: 'none',
                     backgroundColor: alpha(theme.palette.primaryDark[700], 0.2),
                     color: theme.palette.grey[500],
@@ -645,7 +645,7 @@ export function getThemedComponents(): ThemeOptions {
                   borderColor: theme.palette.grey[400],
                 },
                 ...theme.applyDarkStyles({
-                  '&.Mui-disabled': {
+                  '&.Mui-disabled:not(.MuiButton-loading)': {
                     color: theme.palette.grey[400],
                     textShadow: 'none',
                     borderColor: theme.palette.grey[800],
@@ -676,7 +676,7 @@ export function getThemedComponents(): ThemeOptions {
                   borderColor: theme.palette.grey[400],
                 },
                 ...theme.applyDarkStyles({
-                  '&.Mui-disabled': {
+                  '&.Mui-disabled:not(.MuiButton-loading)': {
                     color: theme.palette.grey[400],
                     textShadow: 'none',
                     borderColor: theme.palette.grey[800],
@@ -721,7 +721,7 @@ export function getThemedComponents(): ThemeOptions {
                   '&:active': {
                     backgroundColor: alpha(theme.palette.primary[900], 0.1),
                   },
-                  '&.Mui-disabled': {
+                  '&.Mui-disabled:not(.MuiButton-loading)': {
                     color: theme.palette.grey[500],
                   },
                 }),
@@ -1401,7 +1401,7 @@ export function getThemedComponents(): ThemeOptions {
             {
               textTransform: 'none',
               fontWeight: theme.typography.fontWeightMedium,
-              color: theme.palette.text.secondary,
+              color: (theme.vars || theme).palette.text.secondary,
               borderColor: theme.palette.grey[200],
               ...(ownerState.size === 'small' && {
                 padding: '0.375rem 0.75rem',

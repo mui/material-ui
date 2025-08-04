@@ -197,7 +197,6 @@ describe('styled', () => {
       const CustomTest = styled('div', {
         name: 'MuiTest',
         slot: 'Rect',
-        overridesResolver: (props, styles) => styles.rect,
       })({
         width: '200px',
         height: '300px',
@@ -290,7 +289,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
       })`
         width: 200px;
         height: 300px;
@@ -315,7 +313,6 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
-        overridesResolver: (props, styles) => styles.slot,
         skipVariantsResolver: false,
       })`
         width: 200px;

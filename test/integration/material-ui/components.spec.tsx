@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createStyles } from '@mui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router';
 import { expectType } from '@mui/types';
 import {
@@ -879,34 +878,6 @@ const StepperTest = () =>
       );
     }
   };
-
-const TableTest = () => {
-  const styles = (theme: Theme) => {
-    const backgroundColor: string = theme.palette.secondary.light;
-    return createStyles({
-      paper: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-        backgroundColor,
-        overflowX: 'auto',
-      },
-    });
-  };
-
-  let id = 0;
-  function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
-  }
-
-  const data = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-  ];
-};
 
 function TextFieldTest() {
   return (

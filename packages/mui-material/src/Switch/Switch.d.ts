@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { SwitchClasses } from './switchClasses';
@@ -131,12 +132,12 @@ export interface SwitchProps
  *
  * Demos:
  *
- * - [Switch](https://next.mui.com/material-ui/react-switch/)
- * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
+ * - [Switch](https://mui.com/material-ui/react-switch/)
+ * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [Switch API](https://next.mui.com/material-ui/api/switch/)
- * - inherits [IconButton API](https://next.mui.com/material-ui/api/icon-button/)
+ * - [Switch API](https://mui.com/material-ui/api/switch/)
+ * - inherits [IconButton API](https://mui.com/material-ui/api/icon-button/)
  */
 export default function Switch(props: SwitchProps): React.JSX.Element;

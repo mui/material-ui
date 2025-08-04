@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
-import { InternalStandardProps as StandardProps } from '..';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { SpeedDialIconClasses } from './speedDialIconClasses';
 
 export interface SpeedDialIconProps
@@ -33,11 +33,11 @@ export interface SpeedDialIconProps
  *
  * Demos:
  *
- * - [Speed Dial](https://next.mui.com/material-ui/react-speed-dial/)
+ * - [Speed Dial](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDialIcon API](https://next.mui.com/material-ui/api/speed-dial-icon/)
+ * - [SpeedDialIcon API](https://mui.com/material-ui/api/speed-dial-icon/)
  */
 declare const SpeedDialIcon: ((props: SpeedDialIconProps) => React.JSX.Element) & {
   muiName: string;

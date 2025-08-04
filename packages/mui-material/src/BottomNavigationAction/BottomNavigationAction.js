@@ -11,6 +11,7 @@ import unsupportedProp from '../utils/unsupportedProp';
 import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
+import useSlot from '../utils/useSlot';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, showLabel, selected } = ownerState;
@@ -65,7 +66,6 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
 const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
 })(
   memoTheme(({ theme }) => ({
     fontFamily: theme.typography.fontFamily,
@@ -100,6 +100,8 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     selected,
     showLabel,
     value,
+    slots = {},
+    slotProps = {},
     ...other
   } = props;
 
@@ -116,20 +118,45 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     }
   };
 
+  const externalForwardedProps = {
+    slots,
+    slotProps,
+  };
+
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: BottomNavigationActionRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
+    },
+    shouldForwardComponentProp: true,
+    ownerState,
+    ref,
+    className: clsx(classes.root, className),
+    additionalProps: {
+      focusRipple: true,
+    },
+    getSlotProps: (handlers) => ({
+      ...handlers,
+      onClick: (event) => {
+        handlers.onClick?.(event);
+        handleChange(event);
+      },
+    }),
+  });
+
+  const [LabelSlot, labelProps] = useSlot('label', {
+    elementType: BottomNavigationActionLabel,
+    externalForwardedProps,
+    ownerState,
+    className: classes.label,
+  });
+
   return (
-    <BottomNavigationActionRoot
-      ref={ref}
-      className={clsx(classes.root, className)}
-      focusRipple
-      onClick={handleChange}
-      ownerState={ownerState}
-      {...other}
-    >
+    <RootSlot {...rootProps}>
       {icon}
-      <BottomNavigationActionLabel className={classes.label} ownerState={ownerState}>
-        {label}
-      </BottomNavigationActionLabel>
-    </BottomNavigationActionRoot>
+      <LabelSlot {...labelProps}>{label}</LabelSlot>
+    </RootSlot>
   );
 });
 
@@ -175,6 +202,22 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent BottomNavigation component.
    */
   showLabel: PropTypes.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: PropTypes.shape({
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: PropTypes.shape({
+    label: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -290,36 +290,6 @@ import { TreeView as TreeView_lab } from '@mui/lab';
 import TreeView_lab__pathImport from '@mui/lab/TreeView';
 import { useAutocomplete as useAutocomplete_lab } from '@mui/lab';
 import useAutocomplete_lab__pathImport from '@mui/lab/useAutocomplete';
-import { createGenerateClassName as createGenerateClassName_styles } from '@mui/styles';
-import createGenerateClassName_styles__pathImport from '@mui/styles/createGenerateClassName';
-import { createStyles as createStyles_styles } from '@mui/styles';
-import createStyles_styles__pathImport from '@mui/styles/createStyles';
-import { getThemeProps as getThemeProps_styles } from '@mui/styles';
-import getThemeProps_styles__pathImport from '@mui/styles/getThemeProps';
-import { jssPreset as jssPreset_styles } from '@mui/styles';
-import jssPreset_styles__pathImport from '@mui/styles/jssPreset';
-import { makeStyles as makeStyles_styles } from '@mui/styles';
-import makeStyles_styles__pathImport from '@mui/styles/makeStyles';
-import { mergeClasses as mergeClasses_styles } from '@mui/styles';
-import mergeClasses_styles__pathImport from '@mui/styles/mergeClasses';
-import { propsToClassKey as propsToClassKey_styles } from '@mui/styles';
-import propsToClassKey_styles__pathImport from '@mui/styles/propsToClassKey';
-import { ServerStyleSheets as ServerStyleSheets_styles } from '@mui/styles';
-import ServerStyleSheets_styles__pathImport from '@mui/styles/ServerStyleSheets';
-import { styled as styled_styles } from '@mui/styles';
-import styled_styles__pathImport from '@mui/styles/styled';
-import { StylesProvider as StylesProvider_styles } from '@mui/styles';
-import StylesProvider_styles__pathImport from '@mui/styles/StylesProvider';
-import { ThemeProvider as ThemeProvider_styles } from '@mui/styles';
-import ThemeProvider_styles__pathImport from '@mui/styles/ThemeProvider';
-import { useTheme as useTheme_styles } from '@mui/styles';
-import useTheme_styles__pathImport from '@mui/styles/useTheme';
-import { useThemeVariants as useThemeVariants_styles } from '@mui/styles';
-import useThemeVariants_styles__pathImport from '@mui/styles/useThemeVariants';
-import { withStyles as withStyles_styles } from '@mui/styles';
-import withStyles_styles__pathImport from '@mui/styles/withStyles';
-import { withTheme as withTheme_styles } from '@mui/styles';
-import withTheme_styles__pathImport from '@mui/styles/withTheme';
 import { borders as borders_system } from '@mui/system';
 import { breakpoints as breakpoints_system } from '@mui/system';
 import { compose as compose_system } from '@mui/system';
@@ -1372,96 +1342,6 @@ console.assert(
 console.assert(
   useAutocomplete_lab__pathImport !== undefined,
   'useAutocomplete path import is not consumable.',
-);
-console.assert(
-  createGenerateClassName_styles !== undefined,
-  'createGenerateClassName named import is not consumable.',
-);
-console.assert(
-  createGenerateClassName_styles__pathImport !== undefined,
-  'createGenerateClassName path import is not consumable.',
-);
-console.assert(createStyles_styles !== undefined, 'createStyles named import is not consumable.');
-console.assert(
-  createStyles_styles__pathImport !== undefined,
-  'createStyles path import is not consumable.',
-);
-console.assert(getThemeProps_styles !== undefined, 'getThemeProps named import is not consumable.');
-console.assert(
-  getThemeProps_styles__pathImport !== undefined,
-  'getThemeProps path import is not consumable.',
-);
-console.assert(jssPreset_styles !== undefined, 'jssPreset named import is not consumable.');
-console.assert(
-  jssPreset_styles__pathImport !== undefined,
-  'jssPreset path import is not consumable.',
-);
-console.assert(makeStyles_styles !== undefined, 'makeStyles named import is not consumable.');
-console.assert(
-  makeStyles_styles__pathImport !== undefined,
-  'makeStyles path import is not consumable.',
-);
-console.assert(mergeClasses_styles !== undefined, 'mergeClasses named import is not consumable.');
-console.assert(
-  mergeClasses_styles__pathImport !== undefined,
-  'mergeClasses path import is not consumable.',
-);
-console.assert(
-  propsToClassKey_styles !== undefined,
-  'propsToClassKey named import is not consumable.',
-);
-console.assert(
-  propsToClassKey_styles__pathImport !== undefined,
-  'propsToClassKey path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ServerStyleSheets_styles),
-  'ServerStyleSheets named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ServerStyleSheets_styles__pathImport),
-  'ServerStyleSheets path import is not consumable.',
-);
-console.assert(styled_styles !== undefined, 'styled named import is not consumable.');
-console.assert(styled_styles__pathImport !== undefined, 'styled path import is not consumable.');
-console.assert(
-  ReactIs.isValidElementType(StylesProvider_styles),
-  'StylesProvider named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(StylesProvider_styles__pathImport),
-  'StylesProvider path import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ThemeProvider_styles),
-  'ThemeProvider named import is not consumable.',
-);
-console.assert(
-  ReactIs.isValidElementType(ThemeProvider_styles__pathImport),
-  'ThemeProvider path import is not consumable.',
-);
-console.assert(useTheme_styles !== undefined, 'useTheme named import is not consumable.');
-console.assert(
-  useTheme_styles__pathImport !== undefined,
-  'useTheme path import is not consumable.',
-);
-console.assert(
-  useThemeVariants_styles !== undefined,
-  'useThemeVariants named import is not consumable.',
-);
-console.assert(
-  useThemeVariants_styles__pathImport !== undefined,
-  'useThemeVariants path import is not consumable.',
-);
-console.assert(withStyles_styles !== undefined, 'withStyles named import is not consumable.');
-console.assert(
-  withStyles_styles__pathImport !== undefined,
-  'withStyles path import is not consumable.',
-);
-console.assert(withTheme_styles !== undefined, 'withTheme named import is not consumable.');
-console.assert(
-  withTheme_styles__pathImport !== undefined,
-  'withTheme path import is not consumable.',
 );
 console.assert(borders_system !== undefined, 'borders named import is not consumable.');
 console.assert(breakpoints_system !== undefined, 'breakpoints named import is not consumable.');

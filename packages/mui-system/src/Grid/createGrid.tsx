@@ -33,7 +33,6 @@ const defaultTheme = createTheme();
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
   name: 'MuiGrid',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 });
 
 function useThemePropsDefault<T extends {}>(props: T) {

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { TransitionProps } from '../transitions/transition';
 import { CollapseClasses } from './collapseClasses';
 
@@ -54,18 +55,18 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
 
 /**
  * The Collapse transition is used by the
- * [Vertical Stepper](https://next.mui.com/material-ui/react-stepper/#vertical-stepper) StepContent component.
+ * [Vertical Stepper](https://mui.com/material-ui/react-stepper/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  *
  * Demos:
  *
- * - [Card](https://next.mui.com/material-ui/react-card/)
- * - [Lists](https://next.mui.com/material-ui/react-list/)
- * - [Transitions](https://next.mui.com/material-ui/transitions/)
+ * - [Card](https://mui.com/material-ui/react-card/)
+ * - [Lists](https://mui.com/material-ui/react-list/)
+ * - [Transitions](https://mui.com/material-ui/transitions/)
  *
  * API:
  *
- * - [Collapse API](https://next.mui.com/material-ui/api/collapse/)
+ * - [Collapse API](https://mui.com/material-ui/api/collapse/)
  * - inherits [Transition API](https://reactcommunity.org/react-transition-group/transition/#Transition-props)
  */
 

@@ -76,7 +76,6 @@ const StepLabelRoot = styled('span', {
 const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
 })(
   memoTheme(({ theme }) => ({
     ...theme.typography.body2,
@@ -104,7 +103,6 @@ const StepLabelLabel = styled('span', {
 const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
-  overridesResolver: (props, styles) => styles.iconContainer,
 })({
   flexShrink: 0,
   display: 'flex',
@@ -117,7 +115,6 @@ const StepLabelIconContainer = styled('span', {
 const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
-  overridesResolver: (props, styles) => styles.labelContainer,
 })(
   memoTheme(({ theme }) => ({
     width: '100%',
@@ -243,7 +240,7 @@ StepLabel.propTypes /* remove-proptypes */ = {
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     label: PropTypes.object,
@@ -281,12 +278,12 @@ StepLabel.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The component to render in place of the [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
-   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slots.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconComponent: PropTypes.elementType,
   /**
    * Props applied to the [`StepIcon`](https://mui.com/material-ui/api/step-icon/) element.
-   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.stepIcon` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   StepIconProps: PropTypes.object,
   /**

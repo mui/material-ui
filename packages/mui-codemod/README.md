@@ -14,7 +14,7 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next <codemod> <paths...>
+npx @mui/codemod <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -39,6 +39,16 @@ Examples:
   --component=Grid --from=prop --to=newProp
   npx @mui/codemod@latest v5.0.0/preset-safe src --parser=flow
 ```
+
+### package name
+
+Use this flag if you have a custom package name that reexports Material UI components. For example:
+
+```bash
+npx @mui/codemod@latest --packageName="@org/ui"
+```
+
+The snippet above will look for `@org/ui` instead of `@mui/material` in the codemod.
 
 ### jscodeshift options
 
@@ -391,6 +401,10 @@ npx @mui/codemod@latest deprecations/avatar-group-props <path>
 +    },
    }}
  />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
 ```
 
 #### `backdrop-props`
@@ -1033,6 +1047,64 @@ npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
+#### `dialog-classes`
+
+JS transforms:
+
+```diff
+ import { dialogClasses } from '@mui/material/Dialog';
+
+ MuiDialog: {
+   styleOverrides: {
+     root: {
+-      [`& .${dialogClasses.paperScrollBody}`]: {
++      [`& .${dialogClasses.scrollBody} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`& .${dialogClasses.paperScrollPaper}`]: {
++      [`& .${dialogClasses.scrollPaper} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiDialog-root .MuiDialog-paperScrollBody
++.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper
+-.MuiDialog-root .MuiDialog-paperScrollPaper
++.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-classes <path>
+```
+
+#### `dialog-props`
+
+JS transforms:
+
+```diff
+ <Dialog
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+- TransitionComponent={CustomTransition}
++ slots={{ transition: CustomTransition }}
+- TransitionProps={CustomTransitionProps}
++ slotProps={{ transition: CustomTransitionProps }}
+ />
+     },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-props <path>
+```
+
 #### `drawer-classes`
 
 JS transforms:
@@ -1609,7 +1681,7 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 #### `rating-props`
 
 ```diff
- <Snackbar
+ <Rating
 -  IconContainerComponent={CustomContainer}
 +  slots={{
 +    icon: { component: CustomContainer }
@@ -1618,7 +1690,7 @@ npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/snackbar-props <path>
+npx @mui/codemod deprecations/rating-props <path>
 ```
 
 #### `select-classes`
@@ -1713,7 +1785,7 @@ npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/snackbar-props <path>
+npx @mui/codemod deprecations/snackbar-props <path>
 ```
 
 #### `slider-classes`
@@ -1861,8 +1933,20 @@ JS transforms:
  },
 ```
 
+CSS transforms:
+
+```diff
+-.MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+```
+
+```diff
+-.MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
 ```bash
-npx @mui/codemod@next deprecations/step-connector-classes <path>
+npx @mui/codemod deprecations/step-connector-classes <path>
 ```
 
 #### `step-content-props`
@@ -1972,22 +2056,6 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
 ```
 
-CSS transforms:
-
-```diff
--.MuiStepConnector-lineHorizontal
-+.MuiStepConnector-horizontal > .MuiStepConnector-line
-```
-
-```diff
--.MuiStepConnector-lineVertical
-+.MuiStepConnector-vertical > .MuiStepConnector-line
-```
-
-```bash
-npx @mui/codemod@latest deprecations/step-connector-classes <path>
-```
-
 #### `tab-classes`
 
 JS transforms:
@@ -2088,12 +2156,33 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `theme-color-functions`
+
+```bash
+npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
+```
+
+Replace the usage of the `alpha()`, `lighten()`, and `darken()` functions from `@mui/system/colorManipulator` to use the `theme` object instead.
+
+```diff
+- import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+
+- alpha(theme.palette.primary.main, 0.8)
++ theme.alpha((theme.vars || theme).palette.primary.main, 0.8)
+
+- lighten(theme.palette.primary.main, 0.1)
++ theme.lighten(theme.palette.primary.main, 0.1)
+
+- darken(theme.palette.primary.main, 0.3)
++ theme.darken(theme.palette.primary.main, 0.3)
+```
+
 #### `grid-props`
 
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/grid-props <path>
+npx @mui/codemod v7.0.0/grid-props <path>
 ```
 
 Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
@@ -2114,7 +2203,7 @@ You can provide the theme breakpoints via options, for example, `--jscodeshift='
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
 ```
 
 ```diff
@@ -2127,7 +2216,7 @@ npx @mui/codemod@next v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=m
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+npx @mui/codemod v7.0.0/lab-removed-components <path>
 ```
 
 Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
@@ -2173,7 +2262,7 @@ Updates the `InputLabel`'s `size` value from `normal` to `medium`.
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path>
+npx @mui/codemod v7.0.0/input-label-size-normal-medium <path>
 ```
 
 <!-- #host-reference -->

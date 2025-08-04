@@ -218,7 +218,7 @@ export default function GitHubLabel() {
                 setPendingValue(newValue);
               }}
               disableCloseOnSelect
-              renderTags={() => null}
+              renderValue={() => null}
               noOptionsText="No labels"
               renderOption={(props, option, { selected }) => {
                 const { key, ...optionProps } = props;

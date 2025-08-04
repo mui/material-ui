@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
 import { ModalProps } from '../Modal';
 import { BackdropProps } from '../Backdrop';
-import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 import { CreateSlotsAndSlotProps, SlotComponentProps, SlotProps } from '../utils/types';
@@ -29,7 +29,7 @@ export interface MenuSlots {
   root: React.ElementType;
   /**
    * The component used for the paper.
-   * @default Paper
+   * @default PopoverPaper
    */
   paper: React.ElementType;
   /**
@@ -123,7 +123,7 @@ export interface MenuProps
   disableAutoFocusItem?: boolean;
   /**
    * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
-   * @deprecated use the `slotProps.list` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.list` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   MenuListProps?: Partial<MenuListProps>;
@@ -154,7 +154,7 @@ export interface MenuProps
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -173,12 +173,12 @@ export declare const MenuPaper: React.FC<PaperProps>;
  *
  * Demos:
  *
- * - [App Bar](https://next.mui.com/material-ui/react-app-bar/)
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [Menu API](https://next.mui.com/material-ui/api/menu/)
- * - inherits [Popover API](https://next.mui.com/material-ui/api/popover/)
+ * - [Menu API](https://mui.com/material-ui/api/menu/)
+ * - inherits [Popover API](https://mui.com/material-ui/api/popover/)
  */
 export default function Menu(props: MenuProps): React.JSX.Element;

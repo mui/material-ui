@@ -21,7 +21,12 @@ export interface PropertyDefinition {
   requiresRef?: boolean;
   seeMoreDescription?: string;
   signature?: string;
-  signatureArgs?: { argName: string; argDescription?: string }[];
+  signatureArgs?: {
+    argName: string;
+    argDescription?: string;
+    argType?: string;
+    argTypeDescription?: string;
+  }[];
   signatureReturnDescription?: string;
   typeName: string;
   /**
@@ -116,11 +121,15 @@ export function getPropsApiDefinitions(params: GetPropsApiDefinitionsParams): Pr
     const signature = propData.signature?.type;
     const signatureArgs = propData.signature?.describedArgs?.map((argName) => ({
       argName,
-      argDescription: propertiesDescriptions[propName].typeDescriptions?.[argName],
+      argDescription: propertiesDescriptions[propName].typeDescriptions?.[argName].description,
+      argType: propertiesDescriptions[propName].typeDescriptions?.[argName]?.argType,
+      argTypeDescription:
+        propertiesDescriptions[propName].typeDescriptions?.[argName]?.argTypeDescription,
     }));
     const signatureReturnDescription =
       propData.signature?.returned &&
-      propertiesDescriptions[propName].typeDescriptions?.[propData.signature.returned];
+      propertiesDescriptions[propName].typeDescriptions?.[propData.signature.returned]
+        .argTypeDescription;
 
     return {
       hash: `${kebabCase(componentName)}-prop-${propName}`,

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { ButtonBaseProps, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
-import { CreateSlotsAndSlotProps, SlotProps, Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import { AccordionSummaryClasses } from './accordionSummaryClasses';
 
 export interface AccordionSummarySlots {
@@ -91,12 +92,12 @@ export interface AccordionSummaryOwnerState
  *
  * Demos:
  *
- * - [Accordion](https://next.mui.com/material-ui/react-accordion/)
+ * - [Accordion](https://mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [AccordionSummary API](https://next.mui.com/material-ui/api/accordion-summary/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [AccordionSummary API](https://mui.com/material-ui/api/accordion-summary/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 

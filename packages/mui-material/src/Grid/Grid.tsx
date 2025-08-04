@@ -118,11 +118,11 @@ export type GridProps<
  *
  * Demos:
  *
- * - [Grid](https://next.mui.com/material-ui/react-grid/)
+ * - [Grid](https://mui.com/material-ui/react-grid/)
  *
  * API:
  *
- * - [Grid API](https://next.mui.com/material-ui/api/grid/)
+ * - [Grid API](https://mui.com/material-ui/api/grid/)
  */
 const Grid = createGrid({
   createStyledComponent: styled('div', {

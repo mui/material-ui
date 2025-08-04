@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { PropTypes, Theme } from '..';
+import { PropTypes, Theme } from '../styles';
 import { AppBarClasses } from './appBarClasses';
 import { ExtendPaperTypeMap } from '../Paper/Paper';
 
@@ -56,12 +56,12 @@ export type AppBarTypeMap<
  *
  * Demos:
  *
- * - [App Bar](https://next.mui.com/material-ui/react-app-bar/)
+ * - [App Bar](https://mui.com/material-ui/react-app-bar/)
  *
  * API:
  *
- * - [AppBar API](https://next.mui.com/material-ui/api/app-bar/)
- * - inherits [Paper API](https://next.mui.com/material-ui/api/paper/)
+ * - [AppBar API](https://mui.com/material-ui/api/app-bar/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 
 declare const AppBar: OverridableComponent<AppBarTypeMap>;

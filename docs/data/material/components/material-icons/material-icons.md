@@ -23,15 +23,15 @@ Use one of the following commands to install it:
 <codeblock storageKey="package-manager">
 
 ```bash npm
-npm install @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+pnpm add @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@next @mui/material@next @emotion/styled @emotion/react
+yarn add @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 </codeblock>

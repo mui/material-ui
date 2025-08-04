@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { TableContainerClasses } from './tableContainerClasses';
 
@@ -30,11 +30,11 @@ export interface TableContainerTypeMap<
  *
  * Demos:
  *
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableContainer API](https://next.mui.com/material-ui/api/table-container/)
+ * - [TableContainer API](https://mui.com/material-ui/api/table-container/)
  */
 declare const TableContainer: OverridableComponent<TableContainerTypeMap>;
 

@@ -3,9 +3,8 @@ import SvgIcon from '@mui/material/SvgIcon';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
-
-export function CommunitySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
-  const gradientId = `${idPrefix}community-gradient`;
+export function ProSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
+  const gradientId = `${idPrefix}pro-gradient`;
   return (
     <SvgIcon inheritViewBox>
       <path
@@ -38,8 +37,8 @@ export function CommunitySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
   );
 }
 
-export function ProSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
-  const gradientId = `${idPrefix}pro-gradient`;
+export function PremiumSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
+  const gradientId = `${idPrefix}premium-gradient`;
   return (
     <SvgIcon inheritViewBox>
       <path
@@ -61,20 +60,18 @@ export function ProSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#FDFFFE" />
-          <stop offset="0.23" stopColor="#7ABBAC" />
-          <stop offset="0.39" stopColor="#B1FFEF" />
-          <stop offset="0.535" stopColor="#8AD2C3" />
-          <stop offset="0.745" stopColor="#CFFEF4" />
-          <stop offset="0.915" stopColor="#6CA196" />
-          <stop offset="1" stopColor="#35544E" />
+          <stop offset="0.39" stopColor="#7A96AC" />
+          <stop offset="0.635" stopColor="#D4DEE5" />
+          <stop offset="0.815" stopColor="#7A96AC" />
+          <stop offset="1" stopColor="#BCCAD7" />
         </linearGradient>
       </defs>
     </SvgIcon>
   );
 }
 
-export function PremiumSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
-  const gradientId = `${idPrefix}premium-gradient`;
+export function PrioritySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
+  const gradientId = `${idPrefix}priority-gradient`;
   return (
     <SvgIcon inheritViewBox>
       <path
@@ -104,126 +101,4 @@ export function PremiumSupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
       </defs>
     </SvgIcon>
   );
-}
-
-export function PrioritySupportIcon({ idPrefix = '' }: { idPrefix?: string }) {
-  const gradientId = `${idPrefix}priority-gradient`;
-  return (
-    <SvgIcon inheritViewBox>
-      <path
-        d="M10.92 13.125L12 12.305L13.07 13.115C13.46 13.405 13.99 13.035 13.85 12.565L13.43 11.205L14.63 10.255C15 9.975 14.79 9.375 14.31 9.375H12.91L12.48 8.035C12.33 7.575 11.68 7.575 11.53 8.035L11.09 9.375H9.68C9.21 9.375 9 9.975 9.37 10.265L10.56 11.215L10.14 12.575C10 13.045 10.53 13.415 10.92 13.125ZM6 21.985C6 22.665 6.67 23.145 7.32 22.935L12 21.375L16.68 22.935C17.33 23.155 18 22.675 18 21.985V15.655C19.24 14.245 20 12.405 20 10.375C20 5.955 16.42 2.375 12 2.375C7.58 2.375 4 5.955 4 10.375C4 12.405 4.76 14.245 6 15.655V21.985ZM12 4.375C15.31 4.375 18 7.065 18 10.375C18 13.685 15.31 16.375 12 16.375C8.69 16.375 6 13.685 6 10.375C6 7.065 8.69 4.375 12 4.375Z"
-        fill="currentColor"
-      />
-      <path
-        d="M10.92 13.125L12 12.305L13.07 13.115C13.46 13.405 13.99 13.035 13.85 12.565L13.43 11.205L14.63 10.255C15 9.975 14.79 9.375 14.31 9.375H12.91L12.48 8.035C12.33 7.575 11.68 7.575 11.53 8.035L11.09 9.375H9.68C9.21 9.375 9 9.975 9.37 10.265L10.56 11.215L10.14 12.575C10 13.045 10.53 13.415 10.92 13.125ZM6 21.985C6 22.665 6.67 23.145 7.32 22.935L12 21.375L16.68 22.935C17.33 23.155 18 22.675 18 21.985V15.655C19.24 14.245 20 12.405 20 10.375C20 5.955 16.42 2.375 12 2.375C7.58 2.375 4 5.955 4 10.375C4 12.405 4.76 14.245 6 15.655V21.985ZM12 4.375C15.31 4.375 18 7.065 18 10.375C18 13.685 15.31 16.375 12 16.375C8.69 16.375 6 13.685 6 10.375C6 7.065 8.69 4.375 12 4.375Z"
-        fill={`url(#${gradientId})`}
-        fillOpacity="0.8"
-      />
-      <defs>
-        <linearGradient
-          id={gradientId}
-          x1="5.26667"
-          y1="3.14802"
-          x2="22.2138"
-          y2="18.1715"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#CCE8FE" />
-          <stop offset="0.241554" stopColor="#CDA0FF" />
-          <stop offset="0.4" stopColor="#8489F5" />
-          <stop offset="0.713254" stopColor="#CDF1FF" />
-          <stop offset="1" stopColor="#B591E9" />
-        </linearGradient>
-      </defs>
-    </SvgIcon>
-  );
-}
-
-const CommunitySupportGradient = styled('span')(() => ({
-  background: `linear-gradient(rgba(106, 81, 36, 0.5), rgba(106, 81, 36, 0.5)),
-  linear-gradient(
-  97deg,
-  #B6947E 0%,
-  #8F6959 20%,
-  #F8DAC8 44%,
-  #AC836E 67%,
-  #8F6959 83%,
-  #F8DCCB 100%
-  )`,
-  backgroundClip: 'text',
-  color: 'transparent',
-  fontSize: '14px',
-  fontWeight: 600,
-  lineHeight: '15px',
-  backgroundBlendMode: 'multiply',
-}));
-
-export function CommunitySupportText() {
-  return <CommunitySupportGradient>Community support</CommunitySupportGradient>;
-}
-
-const ProSupportGradient = styled('span')(() => ({
-  background: `linear-gradient(rgba(34, 76, 97, 0.5), rgba(34, 76, 97, 0.5)),
-  linear-gradient(
-  23deg,
-  #FDFFFE 0%,
-  #7ABBAC 23%,
-  #B1FFEF 39%,
-  #8AD2C3 54%,
-  #CFFEF4 75%,
-  #6CA196 100%
-  )`,
-  backgroundClip: 'text',
-  color: 'transparent',
-  fontSize: '14px',
-  fontWeight: 600,
-  backgroundBlendMode: 'multiply',
-}));
-
-export function ProSupportText() {
-  return <ProSupportGradient>Pro support</ProSupportGradient>;
-}
-
-const PremiumSupportGradient = styled('span')(() => ({
-  background: `linear-gradient(rgba(122, 114, 58, 0.5), rgba(122, 114, 58, 0.5)),
-  linear-gradient(
-  97deg,
-  #8C421D 0%,
-  #FBE67B 30%,
-  #FCFBE7 50%,
-  #F7D14E 70%,
-  #D4A041 100%
-  )`,
-  backgroundClip: 'text',
-  color: 'transparent',
-  fontSize: '14px',
-  fontWeight: 600,
-  lineHeight: '15px',
-  backgroundBlendMode: 'multiply',
-}));
-
-export function PremiumSupportText() {
-  return <PremiumSupportGradient>Premium support</PremiumSupportGradient>;
-}
-
-const PrioritySupportGradient = styled('span')(() => ({
-  background: `linear-gradient(rgba(79, 100, 147, 0.5), rgba(79, 100, 147, 0.5)),
-    linear-gradient(
-      97deg,
-      #cce8fe 0%,
-      #cda0ff 24%,
-      #8489f5 40%,
-      #cdf1ff 71%,
-      #b591e9 100%
-    )`,
-  backgroundClip: 'text',
-  color: 'transparent',
-  fontSize: '14px',
-  fontWeight: 600,
-  lineHeight: '15px',
-  backgroundBlendMode: 'multiply',
-}));
-
-export function PrioritySupportText() {
-  return <PrioritySupportGradient>Priority support</PrioritySupportGradient>;
 }

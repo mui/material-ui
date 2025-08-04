@@ -145,11 +145,11 @@ export default function createCssVarsProvider(options) {
       }
     }
 
-    const calculatedColorScheme =
-      forceThemeRerender && restThemeProp.vars
-        ? // `colorScheme` is undefined on the server and hydration phase
-          colorScheme || restThemeProp.defaultColorScheme
-        : restThemeProp.defaultColorScheme;
+    // `colorScheme` is undefined on the server and hydration phase
+    let calculatedColorScheme = colorScheme || restThemeProp.defaultColorScheme;
+    if (restThemeProp.vars && !forceThemeRerender) {
+      calculatedColorScheme = restThemeProp.defaultColorScheme;
+    }
 
     const memoTheme = React.useMemo(() => {
       // 2. get the `vars` object that refers to the CSS custom properties

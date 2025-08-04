@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
-import { useTheme } from '@mui/system';
 import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
@@ -150,6 +149,11 @@ export const authors = {
     name: 'Armin Mehinović',
     avatar: 'https://avatars.githubusercontent.com/u/4390250',
     github: 'arminmeh',
+  },
+  janpot: {
+    name: 'Jan Potoms',
+    avatar: 'https://avatars.githubusercontent.com/u/2109932',
+    github: 'Janpot',
   },
 };
 
@@ -312,7 +316,6 @@ const Root = styled('div')(
 );
 
 export default function TopLayoutBlog(props) {
-  const theme = useTheme();
   const { className, docs, demos, demoComponents, srcComponents } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
@@ -412,7 +415,6 @@ export default function TopLayoutBlog(props) {
             sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             {'Back to blog'}
           </Link>
           {headers.title ? (
@@ -474,8 +476,6 @@ export default function TopLayoutBlog(props) {
                 disableAd
                 localizedDoc={docs.en}
                 renderedMarkdownOrDemo={chunk}
-                theme={theme}
-                WrapperComponent={React.Fragment}
               />
             );
           })}

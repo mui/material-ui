@@ -116,9 +116,9 @@ function ColumnHead({
   tooltip,
   href,
 }: {
-  label: React.ReactNode;
+  label: React.ReactNode | string;
   metadata?: string;
-  tooltip?: string;
+  tooltip?: React.ReactNode | string;
   href?: string;
 }) {
   const text = (
@@ -282,10 +282,10 @@ function RowHead({
 
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': (
+  'Base UI': (
     <ColumnHead
-      label="MUI Base"
-      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
+      label="Base UI"
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @base-ui-components/react."
     />
   ),
   'MUI System': (
@@ -535,8 +535,22 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       {...{
         label: 'Priority support',
-        tooltip:
-          'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.',
+        tooltip: (
+          <React.Fragment>
+            At $399/year/dev, get the highest level of support with a 24h SLA response time,
+            pre-screening and issue escalation. More details in the{' '}
+            <Link
+              href="https://mui.com/legal/technical-support-sla/#priority-support"
+              target="_blank"
+              color="inherit"
+              underline="always"
+              rel="noopener"
+            >
+              Technical Support SLA
+            </Link>
+            .
+          </React.Fragment>
+        ),
       }}
     />
   ),
@@ -594,7 +608,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'customer-success': (
     <ColumnHead
       {...{
-        label: 'Customer success manager',
+        label: 'Customer Success Manager',
         tooltip: 'A dedicated person to help you get the most out of MUI products.',
       }}
     />
@@ -620,7 +634,7 @@ const toBeDefined = (
 
 const communityData: Record<string, React.ReactNode> = {
   // Core open-source libraries
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -681,7 +695,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/gauge': yes,
   'charts/heatmap': no,
   'charts/treemap': pending,
-  'charts/radar': pending,
+  'charts/radar': yes,
   'charts/funnel': no,
   'charts/sankey': no,
   'charts/gantt': no,
@@ -714,18 +728,18 @@ const communityData: Record<string, React.ReactNode> = {
   'core-support': <Info value="Community" />,
   'x-support': <Info value="Community" />,
   'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': no,
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
   'security-questionnaire': no,
-  'customer-success': no,
 };
 
 const proData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -787,8 +801,8 @@ const proData: Record<string, React.ReactNode> = {
   'charts/heatmap': yes,
   'charts/treemap': pending,
 
-  'charts/radar': pending,
-  'charts/funnel': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
   'charts/sankey': pending,
   'charts/gantt': pending,
   'charts/gantt-advanced': no,
@@ -820,18 +834,18 @@ const proData: Record<string, React.ReactNode> = {
   'core-support': <Info value="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Community" />,
   'priority-support': no,
+  'customer-success': no,
   'tech-advisory': no,
   'support-duration': <Info value="1 year" />,
   'response-time': no,
   'pre-screening': no,
   'issue-escalation': no,
-  'security-questionnaire': <Info value="Available from 10+ devs" />,
-  'customer-success': no,
+  'security-questionnaire': <Info value="Available from 10+ devs" />,
 };
 
 const premiumData: Record<string, React.ReactNode> = {
   // Core
-  'MUI Base': yes,
+  'Base UI': yes,
   'MUI System': yes,
   'Material UI': yes,
   'Joy UI': yes,
@@ -876,7 +890,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
   'data-grid/aggregation': yes,
-  'data-grid/pivoting': pending,
+  'data-grid/pivoting': yes,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
@@ -892,8 +906,8 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/gauge': yes,
   'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/radar': pending,
-  'charts/funnel': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
   'charts/sankey': pending,
   'charts/gantt': pending,
   'charts/gantt-advanced': toBeDefined,
@@ -981,7 +995,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
   'data-grid/aggregation': yes,
-  'data-grid/pivoting': pending,
+  'data-grid/pivoting': yes,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
@@ -1030,13 +1044,13 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'core-support': yes,
   'x-support': <Info value={yes} metadata="Priority over Premium" />,
   'priority-support': <Info value="Included" />,
+  'customer-success': yes,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value={yes} metadata="24 hours" />,
+  'response-time': <Info value={yes} metadata="1 business day" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
-  'customer-success': yes,
 };
 
 function RowCategory(props: BoxProps) {
@@ -1300,11 +1314,11 @@ export default function PricingTable({
         <RowHead startIcon={<IconImage name="product-core" width={28} height={28} />}>
           MUI Core (open-source)
         </RowHead>
+        {renderRow('Base UI')}
+        {divider}
         {renderRow('Material UI')}
         {divider}
         {renderRow('Joy UI')}
-        {divider}
-        {renderRow('MUI Base')}
         {divider}
         {renderRow('MUI System')}
         <RowHead startIcon={<IconImage name="product-advanced" width={28} height={28} />}>
@@ -1537,11 +1551,11 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('charts/gauge')}
           {divider}
-          {renderNestedRow('charts/heatmap')}
+          {renderNestedRow('charts/radar')}
           {divider}
           {renderNestedRow('charts/treemap')}
           {divider}
-          {renderNestedRow('charts/radar')}
+          {renderNestedRow('charts/heatmap')}
           {divider}
           {renderNestedRow('charts/funnel')}
           {divider}
@@ -1628,7 +1642,7 @@ export default function PricingTable({
                 }),
             ]}
           >
-            TreeView
+            Tree View
           </Button>
         </Box>
         <StyledCollapse in={treeViewCollapsed}>
@@ -1660,6 +1674,8 @@ export default function PricingTable({
         </RowHead>
         {renderRow('priority-support')}
         {divider}
+        {renderRow('customer-success')}
+        {divider}
         {renderRow('core-support')}
         {divider}
         {renderRow('x-support')}
@@ -1671,8 +1687,6 @@ export default function PricingTable({
         {renderRow('pre-screening')}
         {divider}
         {renderRow('issue-escalation')}
-        {divider}
-        {renderRow('customer-success')}
         {divider}
         {renderRow('security-questionnaire')}
         {divider}

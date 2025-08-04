@@ -1,9 +1,8 @@
 {
   "name": "@mui/types",
-  "version": "7.3.1",
-  "private": false,
+  "version": "7.4.4",
   "author": "MUI Team",
-  "description": "Utility types for MUI.",
+  "description": "Utility types for Material UI.",
   "types": "./index.d.ts",
   "keywords": [
     "react",
@@ -22,8 +21,7 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
-    "build": "pnpm build:modern && pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:modern": "node ../../scripts/build.mjs modern",
+    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:types": "tsx ../../scripts/buildTypes.mts",
@@ -40,11 +38,11 @@
     "directory": "build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.10"
+    "@babel/runtime": "^7.28.2"
   },
   "devDependencies": {
     "@mui/types": "workspace:*",
-    "@types/react": "^19.0.10"
+    "@types/react": "^19.1.8"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0 || ^19.0.0"

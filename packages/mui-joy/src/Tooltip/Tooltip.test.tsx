@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createRenderer, act } from '@mui/internal-test-utils';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import capitalize from '@mui/utils/capitalize';
 import { PopperProps } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tooltip, { tooltipClasses as classes, TooltipClassKey } from '@mui/joy/Tooltip';

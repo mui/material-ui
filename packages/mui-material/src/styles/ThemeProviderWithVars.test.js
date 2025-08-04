@@ -470,11 +470,48 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const { container } = render(<App />);
 
-    expect(container).to.have.text('1 light');
+    expect(container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text('1 light');
+    expect(container).to.have.text(`2 light`);
+  });
+
+  it('palette mode should change if not using CSS variables', () => {
+    function Toggle() {
+      const [count, setCount] = React.useState(0);
+      const { setMode } = useColorScheme();
+      const theme = useTheme();
+      React.useEffect(() => {
+        setCount((prev) => prev + 1);
+      }, [theme]);
+      return (
+        <button onClick={() => setMode('dark')}>
+          {count} {theme.palette.mode} {theme.palette.primary.main}
+        </button>
+      );
+    }
+
+    const theme = createTheme({
+      cssVariables: false,
+      colorSchemes: { light: true, dark: true },
+    });
+    function App() {
+      return (
+        <ThemeProvider theme={theme}>
+          <Toggle />
+        </ThemeProvider>
+      );
+    }
+    const { container } = render(<App />);
+
+    expect(container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(container).to.have.text(
+      `3 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
+    );
   });
 
   it('`forceThemeRerender` recalculates the theme', () => {
@@ -505,10 +542,10 @@ describe('[Material UI] ThemeProviderWithVars', () => {
     }
     const { container } = render(<App />);
 
-    expect(container).to.have.text('1 light');
+    expect(container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text('2 dark');
+    expect(container).to.have.text(`3 dark`);
   });
 });

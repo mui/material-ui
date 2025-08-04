@@ -30,15 +30,15 @@ Run one of the following commands to install it and save it to your `package.jso
 
 <codeblock storageKey="package-manager">
 ```bash npm
-npm install @mui/icons-material@next
+npm install @mui/icons-material
 ```
 
 ```bash pnpm
-pnpm add @mui/icons-material@next
+pnpm add @mui/icons-material
 ```
 
 ```bash yarn
-yarn add @mui/icons-material@next
+yarn add @mui/icons-material
 ```
 
 </codeblock>
@@ -65,7 +65,7 @@ Import icons using one of these two options:
   ```
 
 The safest for bundle size is Option 1, but some developers prefer Option 2.
-Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-two-use-a-babel-plugin) before using the second approach.
+Make sure you read the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/) before using the second approach.
 
 Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 

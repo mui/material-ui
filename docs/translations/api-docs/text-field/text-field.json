@@ -30,7 +30,7 @@
       "description": "Props applied to the <a href=\"https://mui.com/material-ui/api/input-label/\"><code>InputLabel</code></a> element. Pointer events like <code>onClick</code> are enabled if and only if <code>shrink</code> is <code>true</code>."
     },
     "inputProps": {
-      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element."
+      "description": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes\">Attributes</a> applied to the <code>input</code> element."
     },
     "InputProps": {
       "description": "Props applied to the Input element. It will be a <a href=\"https://mui.com/material-ui/api/filled-input/\"><code>FilledInput</code></a>, <a href=\"https://mui.com/material-ui/api/outlined-input/\"><code>OutlinedInput</code></a> or <a href=\"https://mui.com/material-ui/api/input/\"><code>Input</code></a> component depending on the <code>variant</code> prop value."
@@ -53,7 +53,10 @@
     "onChange": {
       "description": "Callback fired when the value is changed.",
       "typeDescriptions": {
-        "event": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        "event": {
+          "name": "event",
+          "description": "The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string)."
+        }
       }
     },
     "placeholder": {
@@ -76,7 +79,7 @@
       "description": "The system prop that allows defining system overrides as well as additional CSS styles."
     },
     "type": {
-      "description": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>."
+      "description": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#input_types\">a valid HTML5 input type</a>."
     },
     "value": {
       "description": "The value of the <code>input</code> element, required for a controlled component."

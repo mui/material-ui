@@ -12,7 +12,7 @@
     },
     "BackdropComponent": {
       "type": { "name": "elementType" },
-      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
       "deprecationInfo": "Use <code>slots.backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
@@ -40,7 +40,7 @@
       "type": { "name": "object" },
       "default": "{}",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.paper</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slotProps.paper</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "scroll": {
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
@@ -71,7 +71,7 @@
       "type": { "name": "elementType" },
       "default": "Fade",
       "deprecated": true,
-      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slots.transition</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     },
     "transitionDuration": {
       "type": {
@@ -83,7 +83,7 @@
     "TransitionProps": {
       "type": { "name": "object" },
       "deprecated": true,
-      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in v7. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
+      "deprecationInfo": "Use <code>slotProps.transition</code> instead. This prop will be removed in a future major release. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     }
   },
   "name": "Dialog",
@@ -137,13 +137,15 @@
       "key": "paperScrollBody",
       "className": "MuiDialog-paperScrollBody",
       "description": "Styles applied to the Paper component if `scroll=\"body\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperScrollPaper",
       "className": "MuiDialog-paperScrollPaper",
       "description": "Styles applied to the Paper component if `scroll=\"paper\"`.",
-      "isGlobal": false
+      "isGlobal": false,
+      "isDeprecated": true
     },
     {
       "key": "paperWidthFalse",

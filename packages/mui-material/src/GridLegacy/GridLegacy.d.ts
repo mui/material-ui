@@ -164,11 +164,11 @@ export interface GridLegacyTypeMap<
  *
  * Demos:
  *
- * - [GridLegacy](https://next.mui.com/material-ui/react-grid-legacy/)
+ * - [GridLegacy](https://mui.com/material-ui/react-grid-legacy/)
  *
  * API:
  *
- * - [GridLegacy API](https://next.mui.com/material-ui/api/grid-legacy/)
+ * - [GridLegacy API](https://mui.com/material-ui/api/grid-legacy/)
  *
  * @deprecated Use the [`Grid`](https://mui.com/material-ui/react-grid/) component instead.
  */

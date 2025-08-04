@@ -107,13 +107,7 @@ function DashboardLayoutBasic(props: DemoProps) {
 
 export default function ToolpadDashboardLayout() {
   return (
-    <DemoSandbox
-      iframe
-      name="DashboardLayout"
-      onResetDemoClick={NOOP}
-      usesCssVarsTheme
-      sx={{ height: '100%' }}
-    >
+    <DemoSandbox iframe name="DashboardLayout" onResetDemoClick={NOOP} sx={{ height: '100%' }}>
       <DashboardLayoutBasic />
     </DemoSandbox>
   );

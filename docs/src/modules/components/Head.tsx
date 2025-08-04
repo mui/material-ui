@@ -8,7 +8,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 // #host-reference
 const HOST = process.env.PULL_REQUEST_ID
   ? `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`
-  : 'https://next.mui.com';
+  : 'https://mui.com';
 
 interface HeadProps {
   card?: string;
@@ -64,7 +64,7 @@ export default function Head(props: HeadProps) {
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://next.mui.com${
+              href={`https://mui.com${
                 userLanguage2 === 'en' ? '' : `/${userLanguage2}`
               }${canonicalAs}`}
               hrefLang={userLanguage2}

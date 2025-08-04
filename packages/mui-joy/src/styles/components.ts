@@ -1,4 +1,4 @@
-import { GlobalStateSlot } from '@mui/utils';
+import { GlobalStateSlot } from '@mui/utils/generateUtilityClass';
 import { CSSInterpolation } from '@mui/system';
 import { AccordionProps, AccordionOwnerState, AccordionSlot } from '../Accordion/AccordionProps';
 import {

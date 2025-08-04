@@ -1,4 +1,4 @@
-import { expectType } from 'packages/mui-types/src';
+import { expectType } from '.';
 
 function expectTypeTypes() {
   // it rejects assignability to `any`

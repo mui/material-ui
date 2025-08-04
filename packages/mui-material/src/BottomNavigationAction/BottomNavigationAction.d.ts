@@ -1,11 +1,46 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
-import { ButtonBaseTypeMap, ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
+import {
+  ButtonBaseProps,
+  ButtonBaseTypeMap,
+  ExtendButtonBase,
+  ExtendButtonBaseTypeMap,
+} from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { BottomNavigationActionClasses } from './bottomNavigationActionClasses';
 
-export interface BottomNavigationActionOwnProps {
+export interface BottomNavigationActionSlots {
+  /**
+   * The component that renders the root.
+   * @default ButtonBase
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default span
+   */
+  label: React.ElementType;
+}
+
+export type BottomNavigationActionSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  BottomNavigationActionSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the ButtonBase element.
+     */
+    root: SlotProps<React.ElementType<ButtonBaseProps>, {}, BottomNavigationActionOwnerState>;
+    /**
+     * Props forwarded to the label slot.
+     * By default, the avaible props are based on the span element.
+     */
+    label: SlotProps<'span', {}, BottomNavigationActionOwnerState>;
+  }
+>;
+
+export interface BottomNavigationActionOwnProps extends BottomNavigationActionSlotsAndSlotProps {
   /**
    * This prop isn't supported.
    * Use the `component` prop if you need to change the children structure.
@@ -53,12 +88,12 @@ export type BottomNavigationActionTypeMap<
  *
  * Demos:
  *
- * - [Bottom Navigation](https://next.mui.com/material-ui/react-bottom-navigation/)
+ * - [Bottom Navigation](https://mui.com/material-ui/react-bottom-navigation/)
  *
  * API:
  *
- * - [BottomNavigationAction API](https://next.mui.com/material-ui/api/bottom-navigation-action/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [BottomNavigationAction API](https://mui.com/material-ui/api/bottom-navigation-action/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const BottomNavigationAction: ExtendButtonBase<
   BottomNavigationActionTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
@@ -70,5 +105,8 @@ export type BottomNavigationActionProps<
 > = OverrideProps<BottomNavigationActionTypeMap<AdditionalProps, RootComponent>, RootComponent> & {
   component?: React.ElementType;
 };
+
+export interface BottomNavigationActionOwnerState
+  extends Omit<BottomNavigationActionProps, 'slots' | 'slotProps'> {}
 
 export default BottomNavigationAction;

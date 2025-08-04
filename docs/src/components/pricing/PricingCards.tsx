@@ -61,10 +61,7 @@ export const planInfo: Record<
       { text: 'All Community features and…', icon: 'check' },
       { text: 'MUI X', highlight: 'Pro', text2: 'access', icon: 'check' },
       { text: '10+', highlight: 'Pro', text2: 'features', icon: 'check' },
-      {
-        icon: 'support',
-        supportType: 'pro',
-      },
+      { highlight: 'Pro', text2: 'support', icon: 'support', supportType: 'pro' },
     ],
   },
   premium: {
@@ -76,10 +73,7 @@ export const planInfo: Record<
       { text: 'All Pro', text2: 'features and…', icon: 'check' },
       { text: 'MUI X', highlight: 'Premium', text2: 'access', icon: 'check' },
       { text: '5+', highlight: 'Premium', text2: 'features', icon: 'check' },
-      {
-        icon: 'support',
-        supportType: 'premium',
-      },
+      { highlight: 'Premium', text2: 'support', icon: 'support', supportType: 'premium' },
     ],
   },
   enterprise: {
@@ -93,11 +87,8 @@ export const planInfo: Record<
       { text: 'Guaranteed response time', icon: 'check' },
       { text: 'Pre-screening', icon: 'check' },
       { text: 'Issue escalation', icon: 'check' },
-      { text: 'Customer success manager', icon: 'check' },
-      {
-        icon: 'support',
-        supportType: 'priority',
-      },
+      { text: 'Customer Success Manager', icon: 'check' },
+      { highlight: 'Priority', text2: 'support', icon: 'support', supportType: 'priority' },
     ],
   },
 };
@@ -118,9 +109,7 @@ export function PlanPrice(props: PlanPriceProps) {
   const { licenseModel } = useLicenseModel();
   const annual = licenseModel === 'annual';
   const planPriceMinHeight = 24;
-
   const { prioritySupport } = usePrioritySupport();
-
   if (plan === 'community') {
     return (
       <React.Fragment>
@@ -171,10 +160,11 @@ export function PlanPrice(props: PlanPriceProps) {
     }
     return '';
   };
+  const perpetualMultiplier = 3;
 
   if (plan === 'pro') {
     const annualValue = 180;
-    const perpetualValue = annualValue * 3;
+    const perpetualValue = annualValue * perpetualMultiplier;
     const monthlyValueForAnnual = annualValue / 12;
 
     const mainDisplayValue = annual ? annualValue : perpetualValue;
@@ -240,7 +230,8 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'premium') {
     const premiumAnnualValue = 588;
-    const premiumPerpetualValue = premiumAnnualValue * 3;
+    
+    const premiumPerpetualValue = premiumAnnualValue * perpetualMultiplier;
     const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
     const premiumAnnualValueWithPrioritySupport = premiumAnnualValue + 399;
@@ -370,7 +361,7 @@ export function PlanPrice(props: PlanPriceProps) {
             minHeight: 38,
           }}
         >
-          Got a bigger team? Request a quote!
+          Got a big team? Request a personalized quote!
         </Typography>
       </Box>
       <Button

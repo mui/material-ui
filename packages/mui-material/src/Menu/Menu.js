@@ -41,13 +41,11 @@ const MenuRoot = styled(Popover, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiMenu',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({});
 
 export const MenuPaper = styled(PopoverPaper, {
   name: 'MuiMenu',
   slot: 'Paper',
-  overridesResolver: (props, styles) => styles.paper,
 })({
   // specZ: The maximum height of a simple menu should be one or more rows less than the view
   // height. This ensures a tappable area outside of the simple menu with which to dismiss
@@ -60,7 +58,6 @@ export const MenuPaper = styled(PopoverPaper, {
 const MenuMenuList = styled(MenuList, {
   name: 'MuiMenu',
   slot: 'List',
-  overridesResolver: (props, styles) => styles.list,
 })({
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
@@ -303,7 +300,7 @@ Menu.propTypes /* remove-proptypes */ = {
   disableAutoFocusItem: PropTypes.bool,
   /**
    * Props applied to the [`MenuList`](https://mui.com/material-ui/api/menu-list/) element.
-   * @deprecated use the `slotProps.list` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.list` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   MenuListProps: PropTypes.object,
@@ -372,7 +369,7 @@ Menu.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps: PropTypes.object,

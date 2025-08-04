@@ -1134,6 +1134,80 @@ The Divider's `light` prop was deprecated, Use `sx={{ opacity : "0.6" }}` (or an
  />
 ```
 
+## Dialog
+
+Use the [dialog-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#dialog-classes) and [dialog-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#dialog-props) below to migrate the code as described in the following sections:
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-classes <path>
+npx @mui/codemod@latest deprecations/dialog-props <path>
+```
+
+### Composed CSS classes
+
+The CSS classes composing the `scroll` prop values have been removed.
+
+Here's how to migrate:
+
+```diff
+-.MuiDialog-root .MuiDialog-paperScrollBody
++.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper
+-.MuiDialog-root .MuiDialog-paperScrollPaper
++.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper
+```
+
+```diff
+ import { dialogClasses } from '@mui/material/Dialog';
+
+ MuiDialog: {
+   styleOverrides: {
+     root: {
+-      [`& .${dialogClasses.paperScrollBody}`]: {
++      [`& .${dialogClasses.scrollBody} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`& .${dialogClasses.paperScrollPaper}`]: {
++      [`& .${dialogClasses.scrollPaper} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+
+```
+
+### TransitionComponent
+
+The Dialog's `TransitionComponent` prop was deprecated in favor of `slots.transition`:
+
+```diff
+ <Dialog
+-  TransitionComponent={CustomTransition}
++  slots={{ transition: CustomTransition }}
+```
+
+### TransitionProps
+
+The Dialog's `TransitionProps` prop was deprecated in favor of `slotProps.transition`:
+
+```diff
+ <Dialog
+-  TransitionProps={{ unmountOnExit: true }}
++  slotProps={{ transition: { unmountOnExit: true } }}
+ />
+```
+
+### PaperProps
+
+The Dialog's `PaperProps` prop was deprecated in favor of `slotProps.paper`:
+
+```diff
+ <Dialog
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+ />
+```
+
 ## Drawer
 
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#drawer-props) below to migrate the code as described in the following sections:
@@ -1333,7 +1407,7 @@ The Input's prop `componentsProps` was deprecated in favor of `slotProps`:
 
 ## InputBase
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) below to migrate the code as described in the following sections:
+Use the [input-base-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-props) and [input-base-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#input-base-classes) codemods below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/input-base-props <path>
@@ -1479,7 +1553,9 @@ The ListItemSecondaryAction component was deprecated in favor of the `secondaryA
 +  }
    disablePadding
  >
-   <ListItemText primary="John Doe" />
+   <ListItemButton>
+     <ListItemText primary="John Doe" />
+   </ListItemButton>
 -  <ListItemSecondaryAction>
 -    <IconButton aria-label="Leave a comment">
 -      <CommentIcon />
@@ -1930,7 +2006,7 @@ The Popper's prop `componentsProps` was deprecated in favor of `slotProps`:
 Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#rating-props) below to migrate the code as described in the following sections:
 
 ```bash
-npx @mui/codemod@latest deprecations/step-label-props <path>
+npx @mui/codemod@latest deprecations/rating-props <path>
 ```
 
 ### IconContainerComponent
@@ -1992,7 +2068,7 @@ Here's how to migrate:
 
 ## Slider
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) below to migrate the code as described in the following sections:
+Use the [slider-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-props) and [slider-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#slider-classes) codemods below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/slider-props <path>
@@ -2172,7 +2248,7 @@ Here's how to migrate:
 
 ## Tabs
 
-Use the [codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props) below to migrate the code as described in the following sections:
+Use the [tab-props-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-props), [tab-classes-codemod](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod#tabs-classes) codemods below to migrate the code as described in the following sections:
 
 ```bash
 npx @mui/codemod@latest deprecations/tabs-classes <path>

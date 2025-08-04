@@ -104,9 +104,6 @@ export async function cjsCopy({ from, to }) {
 }
 
 const srcCondition = 'mui-src';
-const modernCondition = 'mui-modern';
-const polyfillLegacyModern = false;
-const legacyModernPrefix = './modern';
 
 function createExportFor(exportName, conditions) {
   if (typeof conditions === 'object' && conditions) {
@@ -126,10 +123,6 @@ function createExportFor(exportName, conditions) {
             types: `./esm/${baseName}.d.ts`,
             default: `./esm/${baseName}.js`,
           },
-          [modernCondition]: {
-            types: `./modern/${baseName}.d.ts`,
-            default: `./modern/${baseName}.js`,
-          },
           ...rest,
         },
       };
@@ -145,8 +138,7 @@ function createExportFor(exportName, conditions) {
   };
 }
 
-// TODO: remove useEsmExports paramater once X is on the ESM-exports package layout (default to true)
-export async function createPackageFile(useEsmExports = false) {
+export async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
@@ -177,47 +169,20 @@ export async function createPackageFile(useEsmExports = false) {
     }
   }
 
-  if (polyfillLegacyModern) {
-    const exportedNames = new Set(Object.keys(packageExports));
-    for (const exportedName of exportedNames) {
-      const modernName = exportedName.replace(/^\./, legacyModernPrefix);
-      const modernExport = packageExports[exportedName][modernCondition] ?? null;
-      if (modernExport && !exportedNames.has(modernName)) {
-        packageExports[modernName] = modernExport;
-      }
-    }
-  }
-
-  const newPackageData = useEsmExports
-    ? {
-        ...packageDataOther,
-        private: false,
-        ...(packageDataOther.main
-          ? {
-              main: './index.js',
-              module: './esm/index.js',
-            }
-          : {}),
-        exports: packageExports,
-      }
-    : {
-        ...packageDataOther,
-        private: false,
-        ...(packageDataOther.main
-          ? {
-              main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
-                ? './node/index.js'
-                : './index.js',
-              module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-                ? './esm/index.js'
-                : './index.js',
-            }
-          : {}),
-      };
+  const newPackageData = {
+    ...packageDataOther,
+    private: false,
+    ...(packageDataOther.main ? { main: './index.js' } : {}),
+    exports: packageExports,
+  };
 
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
   if (await fse.pathExists(typeDefinitionsFilePath)) {
     newPackageData.types = './index.d.ts';
+  }
+
+  if (newPackageData.publishConfig?.directory) {
+    delete newPackageData.publishConfig.directory;
   }
 
   const targetPath = path.resolve(buildPath, './package.json');

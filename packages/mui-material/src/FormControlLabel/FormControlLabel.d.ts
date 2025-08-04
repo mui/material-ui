@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme, InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import Typography, { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -35,7 +36,7 @@ export interface FormControlLabelProps
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     /**
@@ -98,12 +99,12 @@ export interface FormControlLabelProps
  *
  * Demos:
  *
- * - [Checkbox](https://next.mui.com/material-ui/react-checkbox/)
- * - [Radio Group](https://next.mui.com/material-ui/react-radio-button/)
- * - [Switch](https://next.mui.com/material-ui/react-switch/)
+ * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
+ * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
+ * - [Switch](https://mui.com/material-ui/react-switch/)
  *
  * API:
  *
- * - [FormControlLabel API](https://next.mui.com/material-ui/api/form-control-label/)
+ * - [FormControlLabel API](https://mui.com/material-ui/api/form-control-label/)
  */
 export default function FormControlLabel(props: FormControlLabelProps): React.JSX.Element;

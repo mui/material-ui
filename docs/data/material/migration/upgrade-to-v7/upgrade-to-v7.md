@@ -2,58 +2,177 @@
 
 <p class="description">This guide explains how to upgrade from Material UI v6 to v7.</p>
 
-## Start using the alpha release
+## Why you should upgrade to Material UI v7
 
-In the `package.json` file, change the package version from `latest` to `next`.
+### Improved ESM support
 
-```diff title="package.json"
--"@mui/material": "latest",
-+"@mui/material": "next",
+The package layout has been updated, and now unambiguously supports both valid ESM and CommonJS through the `exports` field in `package.json`.
+You can read more about package exports in the [Node.js documentation](https://nodejs.org/api/packages.html#packages_exports).
+
+This update fixes several issues with popular bundlers like Vite and webpack, and makes it possible to load MUI packages from ES modules under Node.js.
+
+### Quality-of-life improvements
+
+Material UI v7 features other quality-of-life improvements, including:
+
+- Standardization of the slot pattern across all components
+- CSS layers support via the `enableCssLayer` prop in `StyledEngineProvider` for client-side apps, and `AppRouterCacheProvider` for Next.js App Router apps
+- Removed deprecated APIs to reduce the API surface and make the docs easier to navigate
+
+If you're using any of these packages, you should also update their versions to `"7.0.0"`:
+
+- `@mui/icons-material`
+- `@mui/system`
+- `@mui/lab`
+- `@mui/material-nextjs`
+- `@mui/styled-engine`
+- `@mui/styled-engine-sc`
+- `@mui/utils`
+
+Note that MUI X packages _do not_ follow the same versioning strategy as Material UI.
+If you're using any of the following packages, they should remain unchanged during the upgrade process:
+
+- `@mui/x-data-grid`
+- `@mui/x-data-grid-pro`
+- `@mui/x-data-grid-premium`
+- `@mui/x-date-pickers`
+- `@mui/x-date-pickers-pro`
+- `@mui/x-charts`
+- `@mui/x-tree-view`
+- `@mui/x-tree-view-pro`
+
+## Minimum TypeScript version
+
+The minimum supported version of TypeScript has been increased from v4.7 to 4.9.
+
+:::info
+We align with [support window](https://github.com/DefinitelyTyped/DefinitelyTyped?tab=readme-ov-file#support-window) by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (published on npm under the `@types` namespace).
+
+We will not change the minimum supported version in a minor version of Material UI.
+However, we recommend not using a TypeScript version older than the lowest supported version by DefinitelyTyped.
+:::
+
+For `@types/react*` packages, make sure they are the same major version as the `react` you are using.
+Use the snippet below to update your project if needed (replace the `<version>` with the major version of `react` you are using):
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install @types/react@<version> @types/react-dom@<version>
 ```
 
-Using `next` ensures your project always uses the latest v7 pre-releases.
-Alternatively, you can also target and fix it to a specific version, for example, `7.0.0-alpha.0`.
+```bash pnpm
+pnpm add @types/react@<version> @types/react-dom@<version>
+```
+
+```bash yarn
+yarn add @types/react@<version> @types/react-dom@<version>
+```
+
+</codeblock>
+
+:::warning
+Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+:::
+
+## React 18 and below
+
+If you are using React 18 or below, you need to set up a resolution of `react-is` package to the same version as the `react` you are using.
+
+For example, if you are using `react@18.3.1`, do the following steps:
+
+1. Install `react-is@18.3.1`.
+
+<codeblock storageKey="package-manager">
+
+```bash npm
+npm install react-is@18.3.1
+```
+
+```bash pnpm
+pnpm add react-is@18.3.1
+```
+
+```bash yarn
+yarn add react-is@18.3.1
+```
+
+</codeblock>
+
+2. Set the resolutions or overrides in the `package.json`.
+
+<codeblock storageKey="package-manager">
+
+```json npm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json pnpm
+{
+  …
+  "overrides": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+```json yarn
+{
+  …
+  "resolutions": {
+    "react-is": "^18.3.1"
+  }
+}
+```
+
+</codeblock>
 
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
 The steps you need to take to migrate from Material UI v6 to v7 are described below.
 
-:::info
-This list is a work in progress.
-Expect updates as new breaking changes are introduced.
-:::
-
 ### Package layout updated
 
 The package layout has been updated to use the Node.js exports field. This brings several changes:
 
-Deep imports with more than one level are no longer allowed. For example:
+Deep imports with more than one level are no longer working, at all (they were already considered private API). For example:
 
 ```diff
-- import createTheme from '@mui/material/styles/createTheme';
-+ import { createTheme } from '@mui/material/styles';
+-import createTheme from '@mui/material/styles/createTheme';
++import { createTheme } from '@mui/material/styles';
 ```
 
 This was never officially supported, but now it will be restricted by bundlers and runtimes.
 
-To use the modern bundle (which excludes legacy browser support for smaller bundle size), you'll need to configure your bundler to use the "mui-modern" exports condition:
+Modern bundles have also been removed, as the potential for a smaller bundle size is no longer significant.
+If you've configured aliases for these bundles, you must remove them now.
 
-```js
-// webpack.config.js
-{
-  resolve: {
-    conditionNames: ['mui-modern', '...'],
-  }
-}
-
-// vite.config.js
-{
-  resolve: {
-    conditions: ['mui-modern', 'module', 'browser', 'development|production']
-  }
-}
+```diff
+ {
+   resolve: {
+     alias: {
+-      '@mui/material': '@mui/material/modern',
+-      '@mui/styled-engine': '@mui/styled-engine/modern',
+-      '@mui/system': '@mui/system/modern',
+-      '@mui/base': '@mui/base/modern',
+-      '@mui/utils': '@mui/utils/modern',
+-      '@mui/lab': '@mui/lab/modern',
+     }
+   }
+ }
 ```
+
+:::info
+Earlier versions of this guide mention the existence of a `mui-modern` conditional exports.
+This has since been removed.
+This is a non-breaking change, and your bundler will fall back to the ESM bundle.
+:::
 
 If you are using a Vite alias to force ESM imports for the icons package, you should remove it as it's no longer necessary:
 
@@ -97,7 +216,7 @@ Depending on your project, you may follow one of the following approaches:
    <!-- #npm-tag-reference -->
 
    ```bash
-   npx @mui/codemod@next v7.0.0/grid-props <path/to/folder>
+   npx @mui/codemod v7.0.0/grid-props <path/to/folder>
    ```
 
    See the [Grid upgrade guide](/material-ui/migration/upgrade-to-grid-v2/) for more information.
@@ -170,12 +289,21 @@ Use this codemod to automatically update the `size` value:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/input-label-size-normal-medium <path/to/folder>
+npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
 ```
 
 ### SvgIcon's data-testid removed
 
 The default `data-testid` prop has been removed from the icons in `@mui/icons-material` in production bundles. This change ensures that the `data-testid` prop is only defined where needed, reducing the potential for naming clashes and removing unnecessary properties in production.
+
+### TablePaginationActions types import path changed
+
+The import path for the types has changed from `@mui/material/TablePagination/TablePaginationActions` to `@mui/material/TablePaginationActions`.
+
+```diff
+- import type { TablePaginationActionsProps } from '@mui/material/TablePagination/TablePaginationActions';
++ import type { TablePaginationActionsProps } from '@mui/material/TablePaginationActions';
+```
 
 ### Theme behavior changes
 
@@ -210,7 +338,8 @@ function ColorModeToggle() {
   }, [mode]);
 
   React.useEffect(() => {
-    console.log(theme.palette.mode); // logged 'light' at first render, no log after the button click
+    // logged 'light' at first render, no log after the button click
+    console.log(theme.palette.mode);
   }, [theme]);
 
   return <button onClick={() => setMode('dark')}>Toggle dark mode</button>;
@@ -374,8 +503,8 @@ The deprecated `MuiRating-readOnly` class was removed in favor of `Mui-readOnly`
 The deprecated `StepButtonIcon` type has been removed. Use `StepButtonProps['icon']` instead.
 
 ```diff
-- import { StepButtonIcon } from '@mui/material/StepButton';
-+ import { StepButtonProps } from '@mui/material/StepButton';
+-import { StepButtonIcon } from '@mui/material/StepButton';
++import { StepButtonProps } from '@mui/material/StepButton';
 
 -StepButtonIcon
 +StepButtonProps['icon']
@@ -425,7 +554,7 @@ Use this codemod to automatically update the imports:
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/lab-removed-components <path/to/folder>
+npx @mui/codemod v7.0.0/lab-removed-components <path/to/folder>
 ```
 
 :::warning

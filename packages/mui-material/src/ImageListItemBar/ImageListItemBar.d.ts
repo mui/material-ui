@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { ImageListItemBarClasses } from './imageListItemBarClasses';
 
 export interface ImageListItemBarProps
@@ -42,10 +43,10 @@ export interface ImageListItemBarProps
  *
  * Demos:
  *
- * - [Image List](https://next.mui.com/material-ui/react-image-list/)
+ * - [Image List](https://mui.com/material-ui/react-image-list/)
  *
  * API:
  *
- * - [ImageListItemBar API](https://next.mui.com/material-ui/api/image-list-item-bar/)
+ * - [ImageListItemBar API](https://mui.com/material-ui/api/image-list-item-bar/)
  */
 export default function ImageListItemBar(props: ImageListItemBarProps): React.JSX.Element;
