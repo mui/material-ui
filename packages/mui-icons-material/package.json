@@ -44,7 +44,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm --include-entrypoints Close"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6"
+    "@babel/runtime": "^7.28.2"
   },
   "devDependencies": {
     "@mui/icons-material": "workspace:*",
