@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import LicenseModelSwitch from 'docs/src/components/pricing/LicenseModelSwitch';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
+import PrioritySupportSwitch from 'docs/src/components/pricing/PrioritySupportSwitch';
+import { usePrioritySupport } from 'docs/src/components/pricing/PrioritySupportContext';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import { Link } from '@mui/docs/Link';
 import {
@@ -39,8 +41,11 @@ export const planInfo: Record<
     title: 'Community',
     description: 'Get started with the industry-standard React UI library, MIT-licensed.',
     features: [
-      { text: '+40 free components', icon: 'check' },
-      { text: 'Community support', icon: 'check' },
+      { text: '40+ free components', icon: 'check' },
+      {
+        icon: 'support',
+        supportType: 'community',
+      },
     ],
   },
   pro: {
@@ -99,7 +104,7 @@ export function PlanPrice(props: PlanPriceProps) {
   const { licenseModel } = useLicenseModel();
   const annual = licenseModel === 'annual';
   const planPriceMinHeight = 24;
-
+  const { prioritySupport } = usePrioritySupport();
   if (plan === 'community') {
     return (
       <React.Fragment>
@@ -220,11 +225,30 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'premium') {
     const premiumAnnualValue = 588;
+
     const premiumPerpetualValue = premiumAnnualValue * perpetualMultiplier;
     const premiumMonthlyValueForAnnual = premiumAnnualValue / 12;
 
-    const priceExplanation = getPriceExplanation(premiumMonthlyValueForAnnual);
-    const premiumDisplayedValue = annual ? premiumAnnualValue : premiumPerpetualValue;
+    const premiumAnnualValueWithPrioritySupport = premiumAnnualValue + 399;
+    const premiumPerpetualValueWithPrioritySupport = premiumPerpetualValue + 399;
+    const premiumMonthlyValueForAnnualWithPrioritySupport = 82; // premiumAnnualValueWithPrioritySupport / 12;
+
+    const priceExplanation = getPriceExplanation(
+      prioritySupport
+        ? premiumMonthlyValueForAnnualWithPrioritySupport
+        : premiumMonthlyValueForAnnual,
+    );
+
+    let premiumDisplayedValue: number = premiumAnnualValue;
+    if (annual && prioritySupport) {
+      premiumDisplayedValue = premiumAnnualValueWithPrioritySupport;
+    } else if (!annual && prioritySupport) {
+      premiumDisplayedValue = premiumPerpetualValueWithPrioritySupport;
+    } else if (annual && !prioritySupport) {
+      premiumDisplayedValue = premiumAnnualValue;
+    } else if (!annual && !prioritySupport) {
+      premiumDisplayedValue = premiumPerpetualValue;
+    }
 
     return (
       <Box
@@ -276,18 +300,15 @@ export function PlanPrice(props: PlanPriceProps) {
         <Button
           component={Link}
           noLinkStyle
-          href={
-            licenseModel === 'annual'
-              ? 'https://mui.com/store/items/mui-x-premium/'
-              : 'https://mui.com/store/items/mui-x-premium-perpetual/'
-          }
+          href={getHref(annual, prioritySupport)}
           variant="contained"
           fullWidth
           endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1, width: '100%', mt: 2 }}
+          sx={{ py: 1, mt: 2, mb: 2 }}
         >
           Buy now
         </Button>
+        <PrioritySupportSwitch />
       </Box>
     );
   }
@@ -351,6 +372,19 @@ export function PlanPrice(props: PlanPriceProps) {
       </Button>
     </Box>
   );
+}
+
+function getHref(annual: boolean, prioritySupport: boolean): string {
+  if (annual && prioritySupport) {
+    return 'https://mui.com/store/items/mui-x-premium/?addons=mui-x-priority-support';
+  }
+  if (!annual && prioritySupport) {
+    return 'https://mui.com/store/items/mui-x-premium-perpetual/?addons=mui-x-priority-support';
+  }
+  if (annual && !prioritySupport) {
+    return 'https://mui.com/store/items/mui-x-premium/';
+  }
+  return 'https://mui.com/store/items/mui-x-premium-perpetual/';
 }
 
 export function FeatureItem({ feature, idPrefix }: { feature: Feature; idPrefix?: string }) {
@@ -568,7 +602,6 @@ export default function PricingCards() {
             <PlanNameDisplay plan="premium" disableDescription={false} />
             <PlanPrice plan="premium" />
           </Box>
-          <Divider />
           <Box textAlign="left">
             {planInfo.premium.features.map((feature, index) => (
               <Box

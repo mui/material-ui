@@ -16,6 +16,8 @@ import { Link } from '@mui/docs/Link';
 import IconImage from 'docs/src/components/icon/IconImage';
 import { useLicenseModel } from 'docs/src/components/pricing/LicenseModelContext';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import { PrioritySupportSwitchTable } from 'docs/src/components/pricing/PrioritySupportSwitch';
+import InfoPrioritySupport from 'docs/src/components/pricing/InfoPrioritySupport';
 import { PlanName, planInfo } from './PricingCards';
 
 // TODO: Collapse should expose an API to customize the duration based on the height.
@@ -80,6 +82,7 @@ export function PlanNameTable({
 
 function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
   const { value, metadata } = props;
+
   return (
     <React.Fragment>
       {typeof value === 'string' ? (
@@ -933,26 +936,16 @@ const premiumData: Record<string, React.ReactNode> = {
   'mui-x-development-perpetual': <Info value="Perpetual" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
-  'core-support': <Info value={yes} metadata="Priority add-on only" />,
+  'core-support': <InfoPrioritySupport value={yes} value2="Community" />,
   'x-support': <Info value={yes} metadata="Priority over Pro" />,
-  'priority-support': <Info value={yes} metadata="Available as add-on" />,
-  'customer-success': no,
+  'priority-support': <PrioritySupportSwitchTable />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': (
-    <Info
-      value={yes}
-      metadata={
-        <React.Fragment>
-          2 business days.
-          <br />1 business day (priority add-on only)
-        </React.Fragment>
-      }
-    />
-  ),
-  'pre-screening': <Info value={yes} metadata="4 hours (priority add-on only)" />,
-  'issue-escalation': <Info value={yes} metadata="Priority add-on only" />,
+  'response-time': <InfoPrioritySupport value={yes} metadata="1 business day" value2={no} />,
+  'pre-screening': <InfoPrioritySupport value={yes} metadata="4 hours" value2={no} />,
+  'issue-escalation': <InfoPrioritySupport value={yes} value2={no} />,
   'security-questionnaire': <Info value="Available from 4+ devs" />,
+  'customer-success': no,
 };
 
 const enterpriseData: Record<string, React.ReactNode> = {
@@ -1057,7 +1050,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'response-time': <Info value={yes} metadata="1 business day" />,
   'pre-screening': <Info value={yes} metadata="4 hours" />,
   'issue-escalation': <Info value={yes} />,
-  'security-questionnaire': <Info value={yes} />,
+  'security-questionnaire': <Info value="Available from 4+ devs" />,
 };
 
 function RowCategory(props: BoxProps) {
@@ -1258,6 +1251,9 @@ export default function PricingTable({
         columnHeaderHidden ? '0px' : '200px'
       }, 1fr))`,
     },
+    width: '100%',
+    maxWidth: '100%',
+    overflow: 'auto',
   };
   const nestedGridSx = {
     ...gridSx,
