@@ -8,7 +8,7 @@ _Aug 4, 2025_
 
 A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎨 Introduced `nativeColor` feature to remove JS color manipulation and support all modern color spaces (#43942) @siriwatknp.
+- 🚀 Shipped `nativeColor` feature that eliminates JS color manipulation and unlocks support for all modern color spaces (#43942) @siriwatknp!
 
   To learn more, check out the [Native Color](https://mui.com/material-ui/customization/css-theme-variables/native-color/) guide.
 
