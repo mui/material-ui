@@ -1116,8 +1116,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/babel__traverse':
-        specifier: ^7.20.7
-        version: 7.20.7
+        specifier: ^7.28.0
+        version: 7.28.0
       '@types/chai':
         specifier: ^4.3.20
         version: 4.3.20
@@ -5790,8 +5790,8 @@ packages:
   '@types/babel__template@7.4.1':
     resolution: {integrity: sha512-azBFKemX6kMg5Io+/rdGT0dkGreboUVR0Cdm3fz9QJWpaQGJRQXl7C+6hOTCZcMll7KFyEQpgbYI2lHdsS4U7g==}
 
-  '@types/babel__traverse@7.20.7':
-    resolution: {integrity: sha512-dkO5fhS7+/oos4ciWxyEyjWe48zmG6wbCheo/G2ZnHx4fs3EU6YC6UM8rk56gAjNJ9P3MTH2jo5jb92/K6wbng==}
+  '@types/babel__traverse@7.28.0':
+    resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
@@ -19139,7 +19139,7 @@ snapshots:
       '@babel/types': 7.28.2
       '@types/babel__generator': 7.6.4
       '@types/babel__template': 7.4.1
-      '@types/babel__traverse': 7.20.7
+      '@types/babel__traverse': 7.28.0
 
   '@types/babel__generator@7.6.4':
     dependencies:
@@ -19154,7 +19154,7 @@ snapshots:
       '@babel/parser': 7.28.0
       '@babel/types': 7.28.2
 
-  '@types/babel__traverse@7.20.7':
+  '@types/babel__traverse@7.28.0':
     dependencies:
       '@babel/types': 7.28.2
 
