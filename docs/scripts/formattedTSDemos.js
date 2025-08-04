@@ -5,26 +5,29 @@
  * would indicate equivalence.
  */
 
+import path from 'path';
+import fse from 'fs-extra';
+import * as babel from '@babel/core';
+import prettier from 'prettier';
+import { fileURLToPath } from 'url';
+import {
+  getPropTypesFromFile,
+  injectPropTypesInFile,
+} from '@mui/internal-scripts/typescript-to-proptypes';
+import { createTypeScriptProjectBuilder } from '@mui-internal/api-docs-builder/utils/createTypeScriptProject';
+import yargs from 'yargs';
+import { fixBabelGeneratorIssues, fixLineEndings } from '@mui/internal-docs-utils';
+// eslint-disable-next-line import/no-relative-packages
+import CORE_TYPESCRIPT_PROJECTS from '../../scripts/coreTypeScriptProjects';
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+
 /**
  * List of demos or folders to ignore when transpiling.
  * Only ignore files that aren't used in the UI.
  */
 const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
-
-const path = require('path');
-const fse = require('fs-extra');
-const babel = require('@babel/core');
-const prettier = require('prettier');
-const {
-  getPropTypesFromFile,
-  injectPropTypesInFile,
-} = require('@mui/internal-scripts/typescript-to-proptypes');
-const {
-  createTypeScriptProjectBuilder,
-} = require('@mui-internal/api-docs-builder/utils/createTypeScriptProject');
-const yargs = require('yargs');
-const { fixBabelGeneratorIssues, fixLineEndings } = require('@mui/internal-docs-utils');
-const { default: CORE_TYPESCRIPT_PROJECTS } = require('../../scripts/coreTypeScriptProjects');
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
@@ -35,7 +38,7 @@ const babelConfig = {
   shouldPrintComment: (comment) => !comment.startsWith(' @babel-ignore-comment-in-output'),
 };
 
-const workspaceRoot = path.join(__dirname, '../../');
+const workspaceRoot = path.join(dirname, '../../');
 
 async function getFiles(root) {
   const files = [];
@@ -91,7 +94,7 @@ async function transpileFile(tsxPath, project) {
     if (enableJSXPreview) {
       transformOptions.plugins = transformOptions.plugins.concat([
         [
-          require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
+          path.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
           { maxLines: 16, outputFilename: `${tsxPath}.preview` },
         ],
       ]);
@@ -213,7 +216,7 @@ async function main(argv) {
   console.log('\nWatching for file changes...');
 }
 
-yargs
+yargs()
   .command({
     command: '$0',
     description: 'transpile TypeScript demos',
