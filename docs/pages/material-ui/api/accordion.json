@@ -16,14 +16,14 @@
     "slotProps": {
       "type": {
         "name": "shape",
-        "description": "{ heading?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ heading?: func<br>&#124;&nbsp;object, region?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
     "slots": {
       "type": {
         "name": "shape",
-        "description": "{ heading?: elementType, root?: elementType, transition?: elementType }"
+        "description": "{ heading?: elementType, region?: elementType, root?: elementType, transition?: elementType }"
       },
       "default": "{}"
     },
