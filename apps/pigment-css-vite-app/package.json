@@ -15,7 +15,7 @@
     "@mui/material-pigment-css": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/utils": "workspace:^",
-    "@playwright/test": "^1.54.1",
+    "@playwright/test": "^1.54.2",
     "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
