@@ -11,9 +11,9 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function PrioritySupportSwitch() {
   const { prioritySupport, setPrioritySupport } = usePrioritySupport();
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setPrioritySupport(event.target.checked);
-  };
+  }, []);
   const prioritySupportDescription =
     'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.';
 
@@ -88,9 +88,9 @@ export default function PrioritySupportSwitch() {
 
 export function PrioritySupportSwitchTable() {
   const { prioritySupport, setPrioritySupport } = usePrioritySupport();
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setPrioritySupport(event.target.checked);
-  };
+  }, []);
   const prioritySupportDescription =
     'At $399/year/dev, get the highest level of support with a 24h SLA response time, pre-screening and issue escalation.';
 
