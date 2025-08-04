@@ -23,7 +23,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 
 ### `@mui/codemod@7.3.0`
 
-- [codemod] Fix `v5.0.0/top-level-imports` codemod changing color imports (#46405) @AidanLDev
+- Fix `v5.0.0/top-level-imports` codemod changing color imports (#46405) @AidanLDev
 
 ### Docs
 
