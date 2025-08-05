@@ -37,7 +37,7 @@
     "@mui/internal-docs-utils": "workspace:^",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.2",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
