@@ -92,6 +92,25 @@ For TypeScript, you must also update the `tsconfig.json` as shown here:
 +});
 ```
 
+### Vite
+
+For Vitest and styled-components, you need to configure the test environment:
+
+```diff title="vite.config.js"
+export default defineConfig({
++  test: {
++    environment: "jsdom",
++    globals: true,
++    server: {
++      deps: {
++        fallbackCJS: true,
++      },
++    },
++  },
+  plugins: [react(), tsconfigPaths()],
+});
+```
+
 :::info
 **Versions compatibility**: To ensure compatibility, it's essential to align the major version of `@mui/styled-engine-sc` with that of the `styled-components` package you're using. For instance, if you opt for `styled-components` version 5, it's necessary to use `@mui/styled-engine-sc` version 5. Similarly, if your preference is `styled-components` version 6, you'll need to upgrade `@mui/styled-engine-sc` to its version 6, which is currently in an alpha state.
 :::
