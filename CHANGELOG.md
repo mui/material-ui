@@ -15,6 +15,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 ### `@mui/material@7.3.0`
 
 - Support native color without JS manipulation (#43942) @siriwatknp
+- [Accordion] Add `region` slot (#46659) @sai6855
 - [SpeedDial] Fix navigation with arrow keys when slotProps.fab is defined (#46508) @sai6855
 - [Select] Improve `MenuProps.slotProps` implementation (#46612) @ZeeshanTamboli
 - [Select] Implement pointer cancellation (#45789) @Kartik-Murthy
