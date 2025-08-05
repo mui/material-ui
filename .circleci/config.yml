@@ -46,7 +46,7 @@ default-job: &default-job
     DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:20.17
+    - image: cimg/node:20.19
 
 default-context: &default-context
   context:
