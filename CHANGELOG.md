@@ -1,5 +1,81 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.0
+
+<!-- generated comparing v7.2.0..master -->
+
+_Aug 5, 2025_
+
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Shipped `nativeColor` feature that eliminates JS color manipulation and unlocks support for all modern color spaces (#43942) @siriwatknp!
+
+  To learn more, check out the [Native Color](https://mui.com/material-ui/customization/css-theme-variables/native-color/) guide.
+
+### `@mui/material@7.3.0`
+
+- Support native color without JS manipulation (#43942) @siriwatknp
+- [Accordion] Add `region` slot (#46659) @sai6855
+- [SpeedDial] Fix navigation with arrow keys when slotProps.fab is defined (#46508) @sai6855
+- [Select] Improve `MenuProps.slotProps` implementation (#46612) @ZeeshanTamboli
+- [Select] Implement pointer cancellation (#45789) @Kartik-Murthy
+- [Switch] Add role="switch" (#46482) @ZeeshanTamboli
+- [Autocomplete] Fix auto highlight when options change but not the length (#46489) @yafeng-c
+
+### `@mui/codemod@7.3.0`
+
+- Fix `v5.0.0/top-level-imports` codemod changing color imports (#46405) @AidanLDev
+
+### Docs
+
+- Add JetBrains IDEs MCP configuration (#46470) @bernardobelchior
+- Add warning to array spacing section (#46542) @cherniavskii
+- Add MCP server installation details for Claude Code (#46621) @saschabratton
+- Fix incorrect command for MCP Inspector in mcp.md (#46630) @EndiM
+- Fix incorrect Typography override example for responsive styles (#46558) @aditi291soni
+- Improve MCP docs (#46557) @siriwatknp
+- Fix displaying of components in dark mode (#46544) @sai6855
+- Generate `template` entries about documented generics (#46540) @LukasTy
+- Use fixed dates for stable CRUD dashboard screenshots (#46546) @apedroferreira
+- Add "Edit in Mui Chat" button on demos (#46480) @siriwatknp
+- Fix Menu customization demo (#46535) @siriwatknp
+- Add dashboard with CRUD template based on Toolpad Core (#46376) @apedroferreira
+- Clarify `createTheme` warning for future compatibility (#46476) @satendra03
+- Remove typo in `_redirects` (#46463) @bharatkashyap
+- Change API docs to stay inside Material UI (#46414) @bharatkashyap
+- [Dialog] Fix Form dialog demo's actions button padding (#46506) @frontman-git
+- [SpeedDial] Remove deprecated props from demos (#46485) @sai6855
+- [Switch] Use `slotProps.input` instead of deprecated `inputProps` for accessible controlled switch (#46625) @adiitxa
+
+### Core
+
+- Fix ESLint reference name (80d32a2) @oliviertassinari
+- Fix ESLint reference name (5fc166e) @oliviertassinari
+- Add `@base-ui-components/*` to env info (#46539) @Janpot
+- Remove dead property from routes (#46534) @oliviertassinari
+- Fix unpinned version regression (#46438) @oliviertassinari
+- [code-infra] Accomodate build requirements from mui-x (#46551) @brijeshb42
+- [code-infra] Extend renovate preset from infra repo (#46483) @brijeshb42
+- [code-infra] Use flat eslint config (#46258) @brijeshb42
+- [docs-infra] Remove comment saving in G-sheet option (#46617) @alexfauquette
+- [docs-infra] Move `Open in MUI Chat` to Demo toolbar and adjust styles (#46579) @siriwatknp
+- [docs-infra] Fix codeblock issues (#46323) @atharva3333
+- [docs-infra] Handle white spaces and generate either TS or JS demo for llms files (#46494) @siriwatknp
+- [examples] Rename PopOverMenu.tsx file to match its usage (#46532) @rjray
+- [infra] Fix `test_types_next`, `test_react_18`, `test_react_next` jobs (#46182) @Janpot
+- [infra] Remove package.json `module` field (#46620) @Janpot
+- [infra] Upgrade form-data to >4.0.4 (#46618) @Janpot
+- [infra] Use cpu option only in CI (#46588) @Janpot
+- [infra] Update scripts to delete publishConfig.directory (#46563) @brijeshb42
+- [infra] Remove `transform-runtime` from `next/babel` (#46552) @Janpot
+- [infra] Revert nx update (#46538) @Janpot
+- [infra] Replace Argos script with code-infra CLI and update deps (#46475) @Janpot
+- [infra] Update node group in renovate config (#46474) @Janpot
+- [infra] Move @playwright/test to peer deps in @mui/internal-test-utils (#46459) @Janpot
+- [infra] Add instructions for patch release (#46382) @mnajdova
+
+All contributors of this release in alphabetical order: @adiitxa, @aditi291soni, @AidanLDev, @alexfauquette, @apedroferreira, @atharva3333, @bernardobelchior, @bharatkashyap, @brijeshb42, @cherniavskii, @EndiM, @frontman-git, @Janpot, @Kartik-Murthy, @LukasTy, @mnajdova, @oliviertassinari, @rjray, @sai6855, @saschabratton, @satendra03, @siriwatknp, @yafeng-c, @ZeeshanTamboli
+
 ## 7.2.0
 
 <!-- generated comparing v7.1.1..master -->

@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "main": "./src/index.js",

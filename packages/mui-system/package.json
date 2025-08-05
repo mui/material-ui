@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
   "main": "./src/index.js",
