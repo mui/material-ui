@@ -42,7 +42,7 @@
     "@mui/system": "workspace:*"
   },
   "devDependencies": {
-    "react": "^19.1.0"
+    "react": "^19.1.1"
   },
   "peerDependencies": {
     "@pigment-css/react": "^0.0.30"
