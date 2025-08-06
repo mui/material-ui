@@ -41,22 +41,22 @@ export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the first slot.
-     * By default, the avaible props are based on svg element.
+     * By default, the available props are based on svg element.
      */
     first: SlotProps<'svg', {}, PaginationItemOwnerState>;
     /**
      * Props forwarded to the last slot.
-     * By default, the avaible props are based on svg element.
+     * By default, the available props are based on svg element.
      */
     last: SlotProps<'svg', {}, PaginationItemOwnerState>;
     /**
      * Props forwarded to the next slot.
-     * By default, the avaible props are based on svg element.
+     * By default, the available props are based on svg element.
      */
     next: SlotProps<'svg', {}, PaginationItemOwnerState>;
     /**
      * Props forwarded to the previous slot.
-     * By default, the avaible props are based on svg element.
+     * By default, the available props are based on svg element.
      */
     previous: SlotProps<'svg', {}, PaginationItemOwnerState>;
   }
