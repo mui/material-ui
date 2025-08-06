@@ -23,6 +23,8 @@ function getProjects() {
 export default defineConfig({
   test: {
     projects: getProjects(),
+    reporters: ['default', 'junit'],
+    outputFile: 'test-results/junit.xml',
     coverage: {
       provider: 'v8',
       reporter: process.env.CI ? ['lcovonly'] : ['text'],

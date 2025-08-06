@@ -147,6 +147,8 @@ jobs:
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
             ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
+      - store_test_results:
+          path: test-results
   test_lint:
     <<: *default-job
     steps:
@@ -306,6 +308,8 @@ jobs:
           # hardcoded in karma-webpack
           path: /tmp/_karma_webpack_
           destination: artifact-file
+      - store_test_results:
+          path: test-results
   test_e2e:
     <<: *default-job
     docker:
