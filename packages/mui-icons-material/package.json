@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "author": "MUI Team",
   "description": "Material Design icons distributed as SVG React components.",
   "main": "./src/index.js",
