@@ -51,6 +51,13 @@ export default async function create(
   const pkg = await fs.readFile(pkgJson, 'utf8').then((content) => JSON.parse(content));
 
   const name = `${testEnv}:${pkg.name}`;
+
+  const ignore = await fs.readFile(path.resolve(MONOREPO_ROOT, './.gitignore'), 'utf8');
+  const excludes = ignore
+    .trim()
+    .split('\n')
+    .filter((line) => line.startsWith('#'));
+
   return defineConfig({
     plugins: [react(), forceJsxForJsFiles()],
     define: {
@@ -59,7 +66,7 @@ export default async function create(
     },
     test: {
       name,
-      exclude: ['node_modules', 'build', '**/*.spec.*'],
+      exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
       setupFiles: [
         path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
