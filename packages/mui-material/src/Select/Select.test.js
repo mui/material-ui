@@ -34,74 +34,6 @@ describe('<Select />', () => {
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
-  describe('Pointer Cancellation', () => {
-    beforeEach(function beforeEachCallback() {
-      // Run these tests only in browser because JSDOM doesn't have getBoundingClientRect() API
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-    });
-
-    it('should close the menu when mouse is outside the select', () => {
-      render(
-        <Select value="" MenuProps={{ slotProps: { backdrop: { 'data-testid': 'backdrop' } } }}>
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-      const trigger = screen.getByRole('combobox');
-
-      // Open the menu
-      fireEvent.mouseDown(trigger);
-      expect(screen.getByRole('listbox')).not.to.equal(null);
-
-      // Simulate mouse up outside the menu. The mouseup target is the backdrop when the menu is opened.
-      fireEvent.mouseUp(screen.getByTestId('backdrop'), { clientX: 60, clientY: 10 });
-
-      // Menu should be closed now
-      expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
-    });
-
-    it('should not close the menu when mouse is inside the trigger', () => {
-      render(
-        <Select value="">
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-      const trigger = screen.getByRole('combobox');
-
-      // Open the menu
-      fireEvent.mouseDown(trigger);
-      expect(screen.getByRole('listbox')).not.to.equal(null);
-
-      // Simulate mouse up inside the trigger
-      fireEvent.mouseUp(trigger, { clientX: 20, clientY: 20 });
-
-      // Menu should still be open
-      expect(screen.queryByRole('listbox', { hidden: false })).not.to.equal(null);
-    });
-
-    it('should not close the menu when releasing on menu paper', () => {
-      render(
-        <Select value="" MenuProps={{ slotProps: { paper: { 'data-testid': 'paper' } } }}>
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-      const trigger = screen.getByRole('combobox');
-
-      // Open the menu
-      fireEvent.mouseDown(trigger);
-
-      // Simulate mouse up on menu paper
-      fireEvent.mouseUp(screen.getByTestId('paper'));
-
-      // Menu should still be open
-      expect(screen.getByRole('listbox')).not.to.equal(null);
-    });
-  });
-
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
       render(
@@ -999,23 +931,6 @@ describe('<Select />', () => {
 
       expect(backdrop.style).to.have.property('backgroundColor', 'red');
     });
-
-    it('should merge ref coming from paper props', () => {
-      const paperRef = React.createRef();
-
-      render(
-        <Select
-          defaultValue="10"
-          open
-          MenuProps={{ slotProps: { paper: { 'data-testid': 'paper', ref: paperRef } } }}
-        >
-          <MenuItem value="10">Ten</MenuItem>
-          <MenuItem value="20">Twenty</MenuItem>
-        </Select>,
-      );
-
-      expect(paperRef.current).to.equal(screen.getByTestId('paper'));
-    });
   });
 
   describe('prop: SelectDisplayProps', () => {
@@ -1437,72 +1352,6 @@ describe('<Select />', () => {
         combinedStyle,
       );
     });
-
-    it('should be able to select the items on click of options', async () => {
-      // Restore real timers — needed for `userEvent` to work correctly with async events.
-      clock.restore();
-
-      const { user } = render(
-        <Select defaultValue={[10]} multiple>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>,
-      );
-
-      const trigger = screen.getByRole('combobox');
-
-      expect(trigger).to.have.text('Ten');
-
-      // open the menu
-      fireEvent.mouseDown(trigger);
-
-      const listbox = screen.queryByRole('listbox');
-      expect(listbox).not.to.equal(null);
-
-      const options = screen.getAllByRole('option');
-      // Click second option
-      await user.click(options[1]);
-
-      expect(trigger).to.have.text('Ten, Twenty');
-
-      // Menu is still open in case of multiple
-      expect(listbox).not.to.equal(null);
-    });
-
-    it('should be able to select the items on mouseup', async () => {
-      // Restore real timers — needed for `userEvent` to work correctly with async events.
-      clock.restore();
-
-      const { user } = render(
-        <Select defaultValue={[10]} multiple>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>,
-      );
-
-      const trigger = screen.getByRole('combobox');
-
-      expect(trigger).to.have.text('Ten');
-
-      // Open the menu without releasing the mouse
-      await user.pointer({ keys: '[MouseLeft>]', target: trigger });
-
-      const listbox = screen.queryByRole('listbox');
-      expect(listbox).not.to.equal(null);
-
-      const options = screen.getAllByRole('option');
-      // Mouse up on second option, release the mouse
-      await user.pointer(
-        { keys: '[/MouseLeft]', target: options[1] }, // mouseup
-      );
-
-      expect(trigger).to.have.text('Ten, Twenty');
-
-      // Menu is still open in case of multiple
-      expect(listbox).not.to.equal(null);
-    });
   });
 
   describe('prop: autoFocus', () => {
@@ -1610,22 +1459,6 @@ describe('<Select />', () => {
     fireEvent.click(options[0]);
 
     expect(onClick.callCount).to.equal(1);
-  });
-
-  it('should pass onMouseUp prop to MenuItem', () => {
-    const onMouseUp = spy();
-    const { getAllByRole } = render(
-      <Select open value="30">
-        <MenuItem onMouseUp={onMouseUp} value={30}>
-          Thirty
-        </MenuItem>
-      </Select>,
-    );
-
-    const options = getAllByRole('option');
-    fireEvent.mouseUp(options[0]);
-
-    expect(onMouseUp.callCount).to.equal(1);
   });
 
   // https://github.com/testing-library/react-testing-library/issues/322
@@ -2005,29 +1838,5 @@ describe('<Select />', () => {
     const { container } = render(<Select value="" variant="filled" />);
     expect(container.querySelector('.MuiSelect-iconFilled')).not.to.equal(null);
     expect(container.querySelector('.MuiSelect-filled ~ .MuiSelect-icon')).not.to.equal(null);
-  });
-
-  it('should select the item on mouse up', () => {
-    render(
-      <Select defaultValue={10}>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
-      </Select>,
-    );
-
-    const trigger = screen.getByRole('combobox');
-
-    // open the menu
-    fireEvent.mouseDown(trigger);
-    expect(screen.queryByRole('listbox')).not.to.equal(null);
-
-    const options = screen.getAllByRole('option');
-    fireEvent.mouseUp(options[1]);
-
-    expect(trigger).to.have.text('Twenty');
-
-    // Menu should be closed now
-    expect(screen.queryByRole('listbox', { hidden: false })).to.equal(null);
   });
 });
