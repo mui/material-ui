@@ -242,14 +242,6 @@ jobs:
       - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
-      - save_cache:
-          name: Save generated declaration files
-          key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
-          paths:
-            # packages with generated declaration files
-            - packages/mui-material/build
-            - packages/mui-lab/build
-            - packages/mui-utils/build
   test_types_next:
     <<: *default-job
     resource_class: 'medium+'
