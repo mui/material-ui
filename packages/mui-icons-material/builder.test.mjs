@@ -43,7 +43,6 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    // eslint-disable-next-line mocha/handle-done-callback
     beforeEach(
       process.env.VITEST
         ? async function beforeEachHook(ctx) {
@@ -83,7 +82,6 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    // eslint-disable-next-line mocha/handle-done-callback
     beforeEach(
       process.env.VITEST
         ? async function beforeEachHook(ctx) {
@@ -137,7 +135,6 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    // eslint-disable-next-line mocha/handle-done-callback
     beforeEach(
       process.env.VITEST
         ? async function beforeEachHook(ctx) {
