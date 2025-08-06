@@ -13,6 +13,11 @@ export interface PaginationItemPropsSizeOverrides {}
 
 export interface PaginationItemPropsColorOverrides {}
 
+export interface PaginationItemFirstSlotPropsOverrides {}
+export interface PaginationItemLastSlotPropsOverrides {}
+export interface PaginationItemNextSlotPropsOverrides {}
+export interface PaginationItemPreviousSlotPropsOverrides {}
+
 export interface PaginationItemSlots {
   /**
    * The component that renders the `first page` slot.
@@ -43,22 +48,22 @@ export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
      * Props forwarded to the `first page` slot.
      * By default, the available props are based on svg element.
      */
-    first: SlotProps<'svg', {}, PaginationItemOwnerState>;
+    first: SlotProps<'svg', PaginationItemFirstSlotPropsOverrides, PaginationItemOwnerState>;
     /**
      * Props forwarded to the `last page` slot.
      * By default, the available props are based on svg element.
      */
-    last: SlotProps<'svg', {}, PaginationItemOwnerState>;
+    last: SlotProps<'svg', PaginationItemLastSlotPropsOverrides, PaginationItemOwnerState>;
     /**
      * Props forwarded to the `next page` slot.
      * By default, the available props are based on svg element.
      */
-    next: SlotProps<'svg', {}, PaginationItemOwnerState>;
+    next: SlotProps<'svg', PaginationItemNextSlotPropsOverrides, PaginationItemOwnerState>;
     /**
      * Props forwarded to the `previous page` slot.
      * By default, the available props are based on svg element.
      */
-    previous: SlotProps<'svg', {}, PaginationItemOwnerState>;
+    previous: SlotProps<'svg', PaginationItemPreviousSlotPropsOverrides, PaginationItemOwnerState>;
   }
 >;
 
