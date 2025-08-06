@@ -20,7 +20,7 @@ function LibThemeProvider({ children }: React.PropsWithChildren<{}>) {
 }
 
 function LibComponent() {
-  const theme = React.useContext(ThemeContext as React.Context<LibTheme>);
+  const theme = React.useContext(ThemeContext as unknown as React.Context<LibTheme>);
   return <div style={{ color: theme.palette.brand }} />;
 }
 

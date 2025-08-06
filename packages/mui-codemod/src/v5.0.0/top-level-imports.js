@@ -67,10 +67,7 @@ export default function transformer(fileInfo, api, options) {
           break;
         }
         case 'ImportSpecifier':
-          if (
-            !whitelist.has(specifier.imported.name) == null &&
-            specifier.imported.name !== 'withStyles'
-          ) {
+          if (!whitelist.has(specifier.imported.name) && specifier.imported.name !== 'withStyles') {
             return;
           }
           resultSpecifiers.push(specifier);

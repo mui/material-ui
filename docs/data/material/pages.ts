@@ -10,6 +10,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started', title: 'Overview' },
       { pathname: '/material-ui/getting-started/installation' },
       { pathname: '/material-ui/getting-started/usage' },
+      { pathname: '/material-ui/getting-started/mcp', newFeature: true, title: 'MCP' },
       { pathname: '/material-ui/getting-started/example-projects' },
       { pathname: '/material-ui/getting-started/templates' },
       { pathname: '/material-ui/getting-started/learn' },
@@ -228,6 +229,10 @@ const pages: MuiPage[] = [
             title: 'Basic usage',
           },
           {
+            pathname: '/material-ui/customization/css-theme-variables/native-color',
+            title: 'Native color',
+          },
+          {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
             title: 'Advanced configuration',
           },
@@ -321,6 +326,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/migration/upgrade-to-v7',
             title: 'Upgrade to v7: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/upgrade-to-native-color',
+            title: 'Native color',
           },
         ],
       },

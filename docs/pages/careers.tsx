@@ -28,18 +28,6 @@ const openRolesData = [
           'You will provide guidance to the community and solve their struggle, working on one of the most popular React UI library.',
         url: '/careers/react-engineer-material-ui-maintainer/',
       },
-      {
-        title: 'React Engineer — Docs-infra',
-        description:
-          'You will drive the development and maintenance of the documentation platform that powers all MUI products.',
-        url: '/careers/react-engineer-docs-infra/',
-      },
-      {
-        title: 'Frontend Engineer — Code-infra',
-        description:
-          'You will drive the development and maintenance of the infrastructure that powers all MUI products.',
-        url: '/careers/code-infra-engineer/',
-      },
       // {
       //   title: 'React Engineer — xCharts',
       //   description:
@@ -78,6 +66,16 @@ const openRolesData = [
     ],
   },
   {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'MUI is looking for an experienced Tech Recruiter to join our People team.',
+        url: '/careers/technical-recruiter/',
+      },
+    ],
+  },
+  {
     title: 'Design',
     roles: [],
   },
@@ -92,37 +90,19 @@ const nextRolesData = [
     title: 'Engineering',
     roles: [
       {
-        title: 'React Tech Lead — Core',
-        description:
-          'You will lead the development of the core libraries, helping position it as the industry standard for design system teams.',
-        url: '/careers/react-tech-lead-core/',
-      },
-      {
         title: 'React Community Engineer — X',
         description:
           'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
         url: '/careers/react-community-engineer/',
       },
-      {
-        title: 'Accessibility Engineer',
-        description:
-          'You will become our go-to expert for accessibility, to ensure all products meet or exceed WCAG 2.1 level AA guidelines.',
-        url: '/careers/accessibility-engineer/',
-      },
-    ],
-  },
-  {
-    title: 'People',
-    roles: [
-      // {
-      //   title: 'Technical Recruiter',
-      //   description: 'You will hire the next engineers, among other roles, joining the team.',
-      //   url: '/careers/technical-recruiter/',
-      // },
     ],
   },
   {
     title: 'Sales',
+    roles: [],
+  },
+  {
+    title: 'People',
     roles: [],
   },
   {

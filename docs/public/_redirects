@@ -294,18 +294,18 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/* /material-ui/react-:splat 301
 /pt/components/* /pt/material-ui/react-:splat 301
 /zh/components/* /zh/material-ui/react-:splat 301
-/api/unstable-trap-focus/ /base-ui/react-focus-trap/components-api/#focus-trap 301
-/pt/api/unstable-trap-focus/ /pt/base-ui/react-focus-trap/components-api/#focus-trap 301
-/zh/api/unstable-trap-focus/ /zh/base-ui/react-focus-trap/components-api/#focus-trap 301
-/api/click-away-listener/ /base-ui/react-click-away-listener/components-api/#click-away-listener 301
-/pt/api/click-away-listener/ /pt/base-ui/react-click-away-listener/components-api/#click-away-listener 301
-/zh/api/click-away-listener/ /zh/base-ui/react-click-away-listener/components-api/#click-away-listener 301
+# /api/unstable-trap-focus/ /base-ui/react-focus-trap/components-api/#focus-trap 301
+# /pt/api/unstable-trap-focus/ /pt/base-ui/react-focus-trap/components-api/#focus-trap 301
+# /zh/api/unstable-trap-focus/ /zh/base-ui/react-focus-trap/components-api/#focus-trap 301
+# /api/click-away-listener/ /base-ui/react-click-away-listener/components-api/#click-away-listener 301
+# /pt/api/click-away-listener/ /pt/base-ui/react-click-away-listener/components-api/#click-away-listener 301
+# /zh/api/click-away-listener/ /zh/base-ui/react-click-away-listener/components-api/#click-away-listener 301
 /api/input-unstyled/ /base-ui/react-input/components-api/#input 301
 /pt/api/input-unstyled/ /pt/base-ui/react-input/components-api/#input 301
 /zh/api/input-unstyled/ /zh/base-ui/react-input/components-api/#input 301
-/api/no-ssr/ /base-ui/react-no-ssr/components-api/#no-ssr 301
-/pt/api/no-ssr/ /pt/base-ui/react-no-ssr/components-api/#no-ssr 301
-/zh/api/no-ssr/ /zh/base-ui/react-no-ssr/components-api/#no-ssr 301
+# /api/no-ssr/ /base-ui/react-no-ssr/components-api/#no-ssr 301
+# /pt/api/no-ssr/ /pt/base-ui/react-no-ssr/components-api/#no-ssr 301
+# /zh/api/no-ssr/ /zh/base-ui/react-no-ssr/components-api/#no-ssr 301
 /api/form-control-unstyled/ /base-ui/react-form-control/components-api/#form-control 301
 /pt/api/form-control-unstyled/ /pt/base-ui/react-form-control/components-api/#form-control 301
 /zh/api/form-control-unstyled/ /zh/base-ui/react-form-control/components-api/#form-control 301
@@ -324,18 +324,18 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/button-unstyled/ /base-ui/react-button/components-api/#button 301
 /pt/api/button-unstyled/ /pt/base-ui/react-button/components-api/#button 301
 /zh/api/button-unstyled/ /zh/base-ui/react-button/components-api/#button 301
-/api/textarea-autosize/ /base-ui/react-textarea-autosize/components-api/#textarea-autosize 301
-/pt/api/textarea-autosize/ /pt/base-ui/react-textarea-autosize/components-api/#textarea-autosize 301
-/zh/api/textarea-autosize/ /zh/base-ui/react-textarea-autosize/components-api/#textarea-autosize 301
+# /api/textarea-autosize/ /base-ui/react-textarea-autosize/components-api/#textarea-autosize 301
+# /pt/api/textarea-autosize/ /pt/base-ui/react-textarea-autosize/components-api/#textarea-autosize 301
+# /zh/api/textarea-autosize/ /zh/base-ui/react-textarea-autosize/components-api/#textarea-autosize 301
 /api/modal-unstyled/ /base-ui/react-modal/components-api/#modal 301
 /pt/api/modal-unstyled/ /pt/base-ui/react-modal/components-api/#modal 301
 /zh/api/modal-unstyled/ /zh/base-ui/react-modal/components-api/#modal 301
 /api/option-group-unstyled/ /base-ui/react-select/components-api/#option-group 301
 /pt/api/option-group-unstyled/ /pt/base-ui/react-select/components-api/#option-group 301
 /zh/api/option-group-unstyled/ /zh/base-ui/react-select/components-api/#option-group 301
-/api/portal/ /base-ui/react-portal/components-api/#portal 301
-/pt/api/portal/ /pt/base-ui/react-portal/components-api/#portal 301
-/zh/api/portal/ /zh/base-ui/react-portal/components-api/#portal 301
+# /api/portal/ /base-ui/react-portal/components-api/#portal 301
+# /pt/api/portal/ /pt/base-ui/react-portal/components-api/#portal 301
+# /zh/api/portal/ /zh/base-ui/react-portal/components-api/#portal 301
 /api/menu-item-unstyled/ /base-ui/react-menu/components-api/#menu-item 301
 /pt/api/menu-item-unstyled/ /pt/base-ui/react-menu/components-api/#menu-item 301
 /zh/api/menu-item-unstyled/ /zh/base-ui/react-menu/components-api/#menu-item 301

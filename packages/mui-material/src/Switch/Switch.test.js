@@ -74,28 +74,28 @@ describe('<Switch />', () => {
     expect(root.childNodes[1]).to.have.class(classes.track);
   });
 
-  it('renders a `role="checkbox"` with the Unchecked state by default', () => {
+  it('renders a `role="switch"` with the Unchecked state by default', () => {
     const { getByRole } = render(<Switch />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('switch')).to.have.property('checked', false);
   });
 
-  it('renders a checkbox with the Checked state when checked', () => {
+  it('renders a switch with the Checked state when checked', () => {
     const { getByRole } = render(<Switch defaultChecked />);
 
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(getByRole('switch')).to.have.property('checked', true);
   });
 
   specify('the switch can be disabled', () => {
     const { getByRole } = render(<Switch disabled />);
 
-    expect(getByRole('checkbox')).to.have.property('disabled', true);
+    expect(getByRole('switch')).to.have.property('disabled', true);
   });
 
   specify('the switch can be readonly', () => {
     const { getByRole } = render(<Switch readOnly />);
 
-    expect(getByRole('checkbox')).to.have.property('readOnly', true);
+    expect(getByRole('switch')).to.have.property('readOnly', true);
   });
 
   specify('renders a custom icon when provided', () => {
@@ -117,11 +117,11 @@ describe('<Switch />', () => {
 
     // how a user would trigger it
     act(() => {
-      getByRole('checkbox').click();
-      fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+      getByRole('switch').click();
+      fireEvent.change(getByRole('switch'), { target: { checked: '' } });
     });
 
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(getByRole('switch')).to.have.property('checked', false);
   });
 
   it('should not show warnings when custom `type` is provided', () => {
@@ -137,7 +137,7 @@ describe('<Switch />', () => {
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+        expect(getByRole('switch')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
@@ -147,7 +147,7 @@ describe('<Switch />', () => {
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).to.have.attribute('disabled');
+        expect(getByRole('switch')).to.have.attribute('disabled');
       });
     });
 
@@ -159,7 +159,7 @@ describe('<Switch />', () => {
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).to.have.attribute('disabled');
+        expect(getByRole('switch')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
@@ -169,7 +169,7 @@ describe('<Switch />', () => {
           </FormControl>,
         );
 
-        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+        expect(getByRole('switch')).not.to.have.attribute('disabled');
       });
     });
   });
