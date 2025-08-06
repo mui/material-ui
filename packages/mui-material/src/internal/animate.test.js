@@ -3,7 +3,7 @@ import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import animate from './animate';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
 describeSkipIf(isJSDOM || isSafari)('animate', () => {
   let container;

@@ -105,7 +105,7 @@ describe('<Fab />', () => {
   });
 
   it('should have a focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // JSDOM doesn't support :focus-visible
       this.skip();
     }
@@ -161,7 +161,7 @@ describe('<Fab />', () => {
     expect(renderedIconChild).to.have.class(childClassName);
   });
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Fab>Fab</Fab>);
       expect(container.firstChild).to.have.text('Fab');

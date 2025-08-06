@@ -206,7 +206,7 @@ describe('<SpeedDial />', () => {
     });
 
     it('should reset the state of the tooltip when the speed dial is closed while it is open', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -524,13 +524,21 @@ describe('<SpeedDial />', () => {
 
     it('considers arrow keys with the same initial orientation', async () => {
       await renderSpeedDial();
-      fireEvent.keyDown(fabButton, { key: 'left' });
+      await act(async () => {
+        fireEvent.keyDown(fabButton, { key: 'left' });
+      });
       expect(isActionFocused(0)).to.equal(true);
-      fireEvent.keyDown(getActionButton(0), { key: 'up' });
+      await act(async () => {
+        fireEvent.keyDown(getActionButton(0), { key: 'up' });
+      });
       expect(isActionFocused(0)).to.equal(true);
-      fireEvent.keyDown(getActionButton(0), { key: 'left' });
+      await act(async () => {
+        fireEvent.keyDown(getActionButton(0), { key: 'left' });
+      });
       expect(isActionFocused(1)).to.equal(true);
-      fireEvent.keyDown(getActionButton(1), { key: 'right' });
+      await act(async () => {
+        fireEvent.keyDown(getActionButton(1), { key: 'right' });
+      });
       expect(isActionFocused(0)).to.equal(true);
     });
 
@@ -544,8 +552,9 @@ describe('<SpeedDial />', () => {
           const [firstFocusedAction, ...foci] = expected;
 
           await renderSpeedDial(dialDirection);
-
-          fireEvent.keyDown(fabButton, { key: firstKey });
+          await act(async () => {
+            fireEvent.keyDown(fabButton, { key: firstKey });
+          });
           expect(isActionFocused(firstFocusedAction)).to.equal(
             true,
             `focused action initial ${firstKey} should be ${firstFocusedAction}`,
@@ -556,9 +565,11 @@ describe('<SpeedDial />', () => {
             const previousFocusedAction = foci[i - 1] || firstFocusedAction;
             const expectedFocusedAction = foci[i];
             const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
-
-            fireEvent.keyDown(getActionButton(previousFocusedAction), {
-              key: arrowKey,
+            // eslint-disable-next-line no-await-in-loop
+            await act(async () => {
+              fireEvent.keyDown(getActionButton(previousFocusedAction), {
+                key: arrowKey,
+              });
             });
             expect(isActionFocused(expectedFocusedAction)).to.equal(
               true,
@@ -634,7 +645,7 @@ describe('<SpeedDial />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -649,7 +660,7 @@ describe('<SpeedDial />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -672,7 +683,7 @@ describe('<SpeedDial />', () => {
     });
 
     it('should render the values provided via prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

@@ -86,7 +86,7 @@ describe('<Divider />', () => {
       });
     });
 
-    describeSkipIf(/jsdom/.test(window.navigator.userAgent))(
+    describeSkipIf(window.navigator.userAgent.includes('jsdom'))(
       'custom border style',
       function test() {
         const StyledDivider = styled(Divider)(() => ({

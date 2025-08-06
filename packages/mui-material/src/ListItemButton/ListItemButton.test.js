@@ -55,23 +55,26 @@ describe('<ListItemButton />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: focusVisibleClassName', () => {
-    it('should merge the class names', async () => {
-      const { getByRole } = render(
-        <ListItemButton focusVisibleClassName="focusVisibleClassName" />,
-      );
-      const button = getByRole('button');
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))(
+    'prop: focusVisibleClassName',
+    () => {
+      it('should merge the class names', async () => {
+        const { getByRole } = render(
+          <ListItemButton focusVisibleClassName="focusVisibleClassName" />,
+        );
+        const button = getByRole('button');
 
-      fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+        fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
 
-      await act(async () => {
-        button.focus();
+        await act(async () => {
+          button.focus();
+        });
+
+        expect(button).to.have.class('focusVisibleClassName');
+        expect(button).to.have.class(classes.focusVisible);
       });
-
-      expect(button).to.have.class('focusVisibleClassName');
-      expect(button).to.have.class(classes.focusVisible);
-    });
-  });
+    },
+  );
 
   describe('prop: href', () => {
     const href = 'example.com';

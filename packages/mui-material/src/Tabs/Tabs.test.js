@@ -48,7 +48,7 @@ function hasRightScrollButton(container) {
 
 describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
-  const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+  const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
   const { clock, render, renderToString } = createRenderer();
 
@@ -383,7 +383,7 @@ describe('<Tabs />', () => {
         ]);
       });
 
-      describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('hidden tab / tabs', () => {
+      describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('hidden tab / tabs', () => {
         let nodeEnv;
 
         before(function test() {

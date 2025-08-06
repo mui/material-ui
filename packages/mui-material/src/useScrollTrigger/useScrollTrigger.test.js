@@ -69,7 +69,7 @@ describe('useScrollTrigger', () => {
     });
   });
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('scroll', () => {
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('scroll', () => {
     const triggerRef = React.createRef();
     const containerRef = React.createRef(); // Get the scroll container's parent
     const getContainer = () => containerRef.current.children[0]; // Get the scroll container

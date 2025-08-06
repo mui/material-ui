@@ -8,7 +8,7 @@ import Portal, { PortalProps } from '@mui/material/Portal';
 describe('<Portal />', () => {
   const { render, renderToString } = createRenderer();
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('render nothing on the server', () => {
       const { container } = renderToString(
         <Portal>

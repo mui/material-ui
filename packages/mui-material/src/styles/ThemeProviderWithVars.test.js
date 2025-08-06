@@ -335,7 +335,10 @@ describe('[Material UI] ThemeProviderWithVars', () => {
   });
 
   it("should use numeric values in system's spacing", function test() {
-    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
+    if (
+      window.navigator.userAgent.includes('jsdom') ||
+      !/WebKit/.test(window.navigator.userAgent)
+    ) {
       this.skip();
     }
 

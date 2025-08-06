@@ -213,7 +213,7 @@ describe('<Rating />', () => {
   });
 
   it('should apply labelEmptyValueActive styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -305,7 +305,7 @@ describe('<Rating />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<form> integration', () => {
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('<form> integration', () => {
     [
       {
         ratingProps: { name: 'rating', defaultValue: 2 },

@@ -9,7 +9,7 @@ import './chai.types';
 const isKarma = Boolean(process.env.KARMA);
 
 function isInJSDOM() {
-  return /jsdom/.test(window.navigator.userAgent);
+  return window.navigator.userAgent.includes('jsdom');
 }
 
 // chai#utils.elToString that looks like stringified elements in testing-library
@@ -278,7 +278,7 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
 
     const jsdomHint =
       'Styles in JSDOM e.g. from `test:unit` are often misleading since JSDOM does not implement the Cascade nor actual CSS property value computation. ' +
-      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (/jsdom/.test(window.navigator.userAgent)) this.skip();`';
+      'If results differ between real browsers and JSDOM, skip the test in JSDOM e.g. `if (window.navigator.userAgent.includes("jsdom")) this.skip();`';
     const shorthandHint =
       'Browsers can compute shorthand properties differently. Prefer longhand properties e.g. `borderTopColor`, `borderRightColor` etc. instead of `border` or `border-color`.';
     const messageHint = `${jsdomHint}\n${shorthandHint}`;

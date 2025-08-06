@@ -296,7 +296,7 @@ describe('<Autocomplete />', () => {
 
     // https://github.com/mui/material-ui/issues/34998
     it('should scroll the listbox to the top when keyboard highlight wraps around after the last item is highlighted', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -463,7 +463,7 @@ describe('<Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -488,7 +488,7 @@ describe('<Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -806,7 +806,7 @@ describe('<Autocomplete />', () => {
     });
 
     it('should fail validation if a required field has no value', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
@@ -831,7 +831,7 @@ describe('<Autocomplete />', () => {
 
     it('should fail validation if a required field has a value', async function test() {
       // Unclear how native Constraint validation can be enabled for `multiple`
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
         this.skip();
@@ -3495,7 +3495,7 @@ describe('<Autocomplete />', () => {
 
   // https://github.com/mui/material-ui/issues/36212
   it('should preserve scrollTop position of the listbox when adding new options on mobile', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
     function getOptions(count) {

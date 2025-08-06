@@ -320,7 +320,7 @@ describe('<Dialog />', () => {
     });
 
     it('scrolls if overflown on the Y axis', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -394,7 +394,7 @@ describe('<Dialog />', () => {
 
   describe('prop: transitionDuration', () => {
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -409,7 +409,7 @@ describe('<Dialog />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -431,7 +431,7 @@ describe('<Dialog />', () => {
     });
 
     it('should render the values provided via prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

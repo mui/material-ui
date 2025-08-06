@@ -242,7 +242,7 @@ describe('useAutocomplete', () => {
 
   it('should warn if the input is not binded', function test() {
     // TODO is this fixed?
-    if (!/jsdom/.test(window.navigator.userAgent)) {
+    if (!window.navigator.userAgent.includes('jsdom')) {
       // can't catch render errors in the browser for unknown reason
       // tried try-catch + error boundary + window onError preventDefault
       this.skip();

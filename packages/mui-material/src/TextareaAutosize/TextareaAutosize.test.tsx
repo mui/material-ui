@@ -96,7 +96,7 @@ describe('<TextareaAutosize />', () => {
 
   // For https://github.com/mui/material-ui/pull/37135
   it('should update height without delay', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // It depends on ResizeObserver
       this.skip();
     }
@@ -138,7 +138,7 @@ describe('<TextareaAutosize />', () => {
     expect(parseInt(input.style.height, 10)).to.be.within(15, 17);
   });
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('layout', () => {
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('layout', () => {
     const getComputedStyleStub = new Map<Element, Partial<CSSStyleDeclaration>>();
     function setLayout(
       input: HTMLTextAreaElement,
@@ -430,7 +430,7 @@ describe('<TextareaAutosize />', () => {
   });
 
   it('should apply the inline styles using the "style" prop', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -445,7 +445,7 @@ describe('<TextareaAutosize />', () => {
   // edge case: https://github.com/mui/material-ui/issues/45307
   it('should not infinite loop document selectionchange', async function test() {
     // document selectionchange event doesn't fire in JSDOM
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

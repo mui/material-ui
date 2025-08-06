@@ -48,7 +48,7 @@ describe('System <Grid />', () => {
     });
 
     it('should apply the styles necessary for variable width nested item when set to auto', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Need full CSS resolution
         this.skip();
       }
@@ -118,7 +118,7 @@ describe('System <Grid />', () => {
 
   describe('spacing', () => {
     it('should generate the right values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

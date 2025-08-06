@@ -126,7 +126,7 @@ describe('<ToggleButton />', () => {
     });
   });
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<ToggleButton value="hello">Hello World</ToggleButton>);
       expect(container.firstChild).to.have.text('Hello World');

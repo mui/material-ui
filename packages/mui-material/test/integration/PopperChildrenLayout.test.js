@@ -12,7 +12,7 @@ import Popper from '@mui/material/Popper';
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-describeSkipIf(/jsdom/.test(window.navigator.userAgent))('<Popper />', () => {
+describeSkipIf(window.navigator.userAgent.includes('jsdom'))('<Popper />', () => {
   const { render } = createRenderer();
 
   let originalScrollX;

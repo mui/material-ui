@@ -30,7 +30,7 @@ describe('<Masonry />', () => {
 
   describe('render', () => {
     it('should render with correct default styles', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const width = 400;
@@ -68,7 +68,7 @@ describe('<Masonry />', () => {
     });
 
     it('should re-compute the height of masonry when dimensions of any child change', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // only run on browser
         this.skip();
       }
@@ -101,7 +101,7 @@ describe('<Masonry />', () => {
 
     it('should throw console error when children are empty', function test() {
       // React 19 removed prop types support
-      if (!/jsdom/.test(window.navigator.userAgent) || reactMajor >= 19) {
+      if (!window.navigator.userAgent.includes('jsdom') || reactMajor >= 19) {
         this.skip();
       }
       expect(() => render(<Masonry columns={3} spacing={1} />)).toErrorDev(
@@ -110,7 +110,7 @@ describe('<Masonry />', () => {
     });
 
     it('should not throw type error when children are empty', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -389,7 +389,7 @@ describe('<Masonry />', () => {
       );
 
     it('should place children in sequential order', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // only run on browser
         this.skip();
       }

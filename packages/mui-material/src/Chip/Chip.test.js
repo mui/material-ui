@@ -672,7 +672,7 @@ describe('<Chip />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('event: focus', () => {
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('event: focus', () => {
     it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);

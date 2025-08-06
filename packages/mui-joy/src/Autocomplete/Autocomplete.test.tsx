@@ -256,7 +256,7 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -280,7 +280,7 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -532,7 +532,7 @@ describe('Joy <Autocomplete />', () => {
     });
 
     it('should fail validation if a required field has no value', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
@@ -552,7 +552,7 @@ describe('Joy <Autocomplete />', () => {
 
     it('should fail validation if a required field has a value', async function test() {
       // Unclear how native Constraint validation can be enabled for `multiple`
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
         this.skip();
@@ -1283,7 +1283,7 @@ describe('Joy <Autocomplete />', () => {
 
   describe('prop: options', () => {
     it('should scroll selected option into view when multiple elements with role as listbox available', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       render(

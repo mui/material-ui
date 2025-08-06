@@ -585,7 +585,7 @@ describe('<Button />', () => {
   });
 
   it('should have a focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // JSDOM doesn't support :focus-visible
       this.skip();
     }
@@ -604,7 +604,7 @@ describe('<Button />', () => {
   });
 
   it('can disable the focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // JSDOM doesn't support :focus-visible
       this.skip();
     }
@@ -625,7 +625,7 @@ describe('<Button />', () => {
     expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
   });
 
-  describeSkipIf(!/jsdom/.test(window.navigator.userAgent))('server-side', () => {
+  describeSkipIf(!window.navigator.userAgent.includes('jsdom'))('server-side', () => {
     it('should server-side render', () => {
       const { container } = renderToString(<Button>Hello World</Button>);
       expect(container.firstChild).to.have.text('Hello World');

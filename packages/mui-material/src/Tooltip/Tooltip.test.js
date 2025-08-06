@@ -486,7 +486,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should handle autoFocus + onFocus forwarding', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -518,7 +518,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('prop: delay', () => {
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
       const { queryByRole } = render(
         <Tooltip title="Hello World" enterDelay={111}>
@@ -640,7 +640,7 @@ describe('<Tooltip />', () => {
     });
 
     it(`should be transparent for the focus and blur event`, async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -965,7 +965,7 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describeSkipIf(/jsdom/.test(window.navigator.userAgent))('focus', () => {
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('focus', () => {
     it('ignores base focus', async () => {
       render(
         <Tooltip enterDelay={0} title="Some information">

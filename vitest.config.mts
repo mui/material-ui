@@ -22,7 +22,7 @@ function getProjects() {
 
 export default defineConfig({
   test: {
-    workspace: getProjects(),
+    projects: getProjects(),
     coverage: {
       provider: 'v8',
       reporter: process.env.CI ? ['lcovonly'] : ['text'],

@@ -156,7 +156,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme();
@@ -175,7 +175,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme({
@@ -238,7 +238,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the default theme values by default', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme();
@@ -251,7 +251,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme({
@@ -536,7 +536,7 @@ describe('<Slide />', () => {
 
     describe('prop: container', () => {
       it('should set element transform and transition in the `up` direction', async function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           // Need layout
           this.skip();
         }

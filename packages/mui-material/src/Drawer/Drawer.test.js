@@ -91,7 +91,7 @@ describe('<Drawer />', () => {
       };
 
       it('should delay the slide transition to complete using default theme values by default', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           this.skip();
         }
         const theme = createTheme();
@@ -110,7 +110,7 @@ describe('<Drawer />', () => {
       });
 
       it('should delay the slide transition to complete using custom theme values', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+        if (window.navigator.userAgent.includes('jsdom')) {
           this.skip();
         }
         const theme = createTheme({
