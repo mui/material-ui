@@ -123,9 +123,9 @@
     }
   },
   "slotDescriptions": {
-    "first": "The component that renders the root slot.",
-    "last": "The component that renders the last slot.",
-    "next": "The component that renders the next slot.",
-    "previous": "The component that renders the previous slot."
+    "first": "The component that renders the <code>first page</code> slot.",
+    "last": "The component that renders the <code>last page</code> slot.",
+    "next": "The component that renders the <code>next page</code> slot.",
+    "previous": "The component that renders the <code>previous page</code> slot."
   }
 }
