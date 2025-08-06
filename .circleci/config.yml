@@ -113,6 +113,7 @@ commands:
 jobs:
   test_unit:
     <<: *default-job
+    resource_class: 'medium+'
     steps:
       - checkout
       - install_js
