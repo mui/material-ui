@@ -118,7 +118,7 @@ jobs:
       - install_js
       - run:
           name: Tests fake browser
-          command: pnpm test:node --minWorkers=1 --maxWorkers=2 --coverage
+          command: pnpm test:node --minWorkers=1 --maxWorkers=2
       - run:
           name: Check coverage generated
           command: |
