@@ -18,7 +18,6 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import { listClasses } from '@mui/material/List';
-import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import classes from './selectClasses';
 import { nativeSelectClasses } from '../NativeSelect';
 import describeConformance from '../../test/describeConformance';
