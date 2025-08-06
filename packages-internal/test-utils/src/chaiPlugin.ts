@@ -4,6 +4,8 @@ import * as chai from 'chai';
 import { computeAccessibleDescription, computeAccessibleName } from 'dom-accessibility-api';
 import formatUtil from 'format-util';
 import _ from 'lodash';
+// avoid loading whole lodash, it takes ~50ms to initialize
+import kebabCase from 'lodash.kebabcase';
 import './chai.types';
 
 const isKarma = Boolean(process.env.KARMA);
@@ -201,7 +203,7 @@ const chaiPlugin: Parameters<typeof chai.use>[0] = (chaiAPI, utils) => {
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
     Object.keys(expectedStyleUnnormalized).forEach((cssProperty) => {
-      const hyphenCasedPropertyName = _.kebabCase(cssProperty);
+      const hyphenCasedPropertyName = kebabCase(cssProperty);
       const isVendorPrefixed = /^(moz|ms|o|webkit)-/.test(hyphenCasedPropertyName);
       const propertyName = isVendorPrefixed
         ? `-${hyphenCasedPropertyName}`
