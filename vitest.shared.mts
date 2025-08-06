@@ -56,15 +56,17 @@ export default async function create(
   const excludes = ignore
     .trim()
     .split('\n')
-    .filter((line) => line.startsWith('#'));
+    .filter((line) => line.startsWith('#'))
+    .map((line) => (line.startsWith('/') ? line.slice(1) : line));
 
   return defineConfig({
-    plugins: [react(), forceJsxForJsFiles()],
+    plugins: [forceJsxForJsFiles()],
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.CI': process.env.CI ? JSON.stringify(process.env.CI) : 'undefined',
     },
     test: {
+      isolate: false,
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
