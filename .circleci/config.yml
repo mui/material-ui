@@ -113,13 +113,12 @@ commands:
 jobs:
   test_unit:
     <<: *default-job
-    resource_class: 'medium+'
     steps:
       - checkout
       - install_js
       - run:
           name: Tests fake browser
-          command: pnpm test:node --minWorkers=1 --maxWorkers=3 --coverage
+          command: pnpm test:node --minWorkers=1 --maxWorkers=2 --coverage
       - run:
           name: Check coverage generated
           command: |
