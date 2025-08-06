@@ -473,7 +473,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
 
-    const ownerState = {
+  const ownerState = {
     ...props,
     variant,
     value,
