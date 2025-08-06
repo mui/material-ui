@@ -136,7 +136,7 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
 
 export interface PaginationItemTypeMap<
   AdditionalProps = {},
-  RootComponent extends React.ElementType = 'button',
+  RootComponent extends React.ElementType = 'div',
 > {
   props: AdditionalProps & PaginationItemOwnProps;
   defaultComponent: RootComponent;
