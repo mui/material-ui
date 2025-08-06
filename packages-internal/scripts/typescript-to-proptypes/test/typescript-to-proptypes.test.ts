@@ -33,7 +33,7 @@ describe('typescript-to-proptypes', () => {
     return cachedProject;
   }
 
-  // @ts-expect-error Second argument is viteest
+  // @ts-expect-error Second argument is vitest
   before(function beforeHook() {
     // Creating a TS program might take a while.
     this?.timeout?.(20000);

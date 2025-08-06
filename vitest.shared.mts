@@ -72,6 +72,9 @@ export default async function create(
       globals: true,
       setupFiles: [
         path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
+        ...(jsdom
+          ? [path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitestJsdom.ts')]
+          : []),
       ],
       environment: jsdom ? 'jsdom' : 'node',
       environmentOptions: jsdom
