@@ -16,22 +16,22 @@ export interface PaginationItemPropsColorOverrides {}
 export interface PaginationItemSlots {
   /**
    * The component that renders the root slot.
-   * @default FirstPage
+   * @default FirstPageIcon
    */
   first: React.ElementType;
   /**
    * The component that renders the last slot.
-   * @default LastPage
+   * @default LastPageIcon
    */
   last: React.ElementType;
   /**
    * The component that renders the next slot.
-   * @default NavigateNext
+   * @default NavigateNextIcon
    */
   next: React.ElementType;
   /**
    * The component that renders the previous slot.
-   * @default NavigateBefore
+   * @default NavigateBeforeIcon
    */
   previous: React.ElementType;
 }
