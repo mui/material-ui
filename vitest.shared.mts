@@ -3,7 +3,6 @@ import { configDefaults, defineConfig } from 'vitest/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import react from '@vitejs/plugin-react';
 import { Plugin, transformWithEsbuild } from 'vite';
 
 function forceJsxForJsFiles(): Plugin {
@@ -66,13 +65,13 @@ export default async function create(
       'process.env.CI': process.env.CI ? JSON.stringify(process.env.CI) : 'undefined',
     },
     test: {
-      isolate: false,
+      isolate: jsdom,
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
       setupFiles: [
         path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitest.ts'),
-        ...(jsdom
+        ...(jsdom || testEnv === 'browser'
           ? [path.resolve(MONOREPO_ROOT, './packages-internal/test-utils/src/setupVitestJsdom.ts')]
           : []),
       ],
