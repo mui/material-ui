@@ -14,23 +14,51 @@ export interface PaginationItemPropsSizeOverrides {}
 export interface PaginationItemPropsColorOverrides {}
 
 export interface PaginationItemSlots {
+  /**
+   * The component that renders the root slot.
+   * @default FirstPage
+   */
   first: React.ElementType;
+  /**
+   * The component that renders the last slot.
+   * @default LastPage
+   */
   last: React.ElementType;
+  /**
+   * The component that renders the next slot.
+   * @default NavigateNext
+   */
   next: React.ElementType;
+  /**
+   * The component that renders the previous slot.
+   * @default NavigateBefore
+   */
   previous: React.ElementType;
 }
 
 export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
   PaginationItemSlots,
   {
-    first: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
-    last: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
-    next: SlotProps<React.ElementType<React.HTMLProps<HTMLElement>>, {}, PaginationItemOwnerState>;
-    previous: SlotProps<
-      React.ElementType<React.HTMLProps<HTMLElement>>,
-      {},
-      PaginationItemOwnerState
-    >;
+    /**
+     * Props forwarded to the first slot.
+     * By default, the avaible props are based on svg element.
+     */
+    first: SlotProps<'svg', {}, PaginationItemOwnerState>;
+    /**
+     * Props forwarded to the last slot.
+     * By default, the avaible props are based on svg element.
+     */
+    last: SlotProps<'svg', {}, PaginationItemOwnerState>;
+    /**
+     * Props forwarded to the next slot.
+     * By default, the avaible props are based on svg element.
+     */
+    next: SlotProps<'svg', {}, PaginationItemOwnerState>;
+    /**
+     * Props forwarded to the previous slot.
+     * By default, the avaible props are based on svg element.
+     */
+    previous: SlotProps<'svg', {}, PaginationItemOwnerState>;
   }
 >;
 
@@ -108,7 +136,7 @@ export interface PaginationItemOwnProps extends PaginationItemSlotsAndSlotProps 
 
 export interface PaginationItemTypeMap<
   AdditionalProps = {},
-  RootComponent extends React.ElementType = 'div',
+  RootComponent extends React.ElementType = 'button',
 > {
   props: AdditionalProps & PaginationItemOwnProps;
   defaultComponent: RootComponent;

@@ -122,5 +122,10 @@
       "deprecationInfo": "Combine the <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-text\">.MuiPaginationItem-text</a> and <a href=\"/material-ui/api/pagination-item/#pagination-item-classes-colorSecondary\">.MuiPaginationItem-colorSecondary</a> classes instead. See <a href=\"/material-ui/migration/migrating-from-deprecated-apis/\">Migrating from deprecated APIs</a> for more details."
     }
   },
-  "slotDescriptions": { "first": "", "last": "", "next": "", "previous": "" }
+  "slotDescriptions": {
+    "first": "The component that renders the root slot.",
+    "last": "The component that renders the last slot.",
+    "next": "The component that renders the next slot.",
+    "previous": "The component that renders the previous slot."
+  }
 }
