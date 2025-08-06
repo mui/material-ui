@@ -1,9 +1,9 @@
 import { beforeAll, afterAll, it } from 'vitest';
-import * as testingLibrary from '@testing-library/dom';
+import { configure } from '@testing-library/dom';
 import failOnConsole from 'vitest-fail-on-console';
 import './initMatchers';
 
-testingLibrary.configure({
+configure({
   // JSDOM logs errors otherwise on `getComputedStyle(element, pseudoElement)` calls.
   computedStyleSupportsPseudoElements: false,
 });
