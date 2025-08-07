@@ -12,7 +12,6 @@ const barrelImportsToTransform = {
   'icons-material': {},
 };
 const muiImportRegExp = /^@mui\/([^/]+)$/;
-const classesRegExp = /Classes$/;
 
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
@@ -59,13 +58,20 @@ export default function transformer(fileInfo, api, options) {
       if (specifier.type === 'ImportSpecifier') {
         const name = specifier.imported.name;
         if (moduleName === 'material') {
-          if (classesRegExp.test(name)) {
-            return;
-          }
-
           if (name === 'ThemeProvider' || name === 'createTheme') {
             importsToAdd.styles ??= [];
             importsToAdd.styles.push(specifier);
+            indexesToPrune.push(index);
+            return;
+          }
+
+          if (name.endsWith('Classes')) {
+            const base = name.replace(/Classes$/, '');
+            const componentName = base.charAt(0).toUpperCase() + base.slice(1); // autocomplete → Autocomplete
+            importsToAdd[componentName] ??= [];
+            importsToAdd[componentName].push(
+              j.importSpecifier(specifier.imported, specifier.local),
+            );
             indexesToPrune.push(index);
             return;
           }

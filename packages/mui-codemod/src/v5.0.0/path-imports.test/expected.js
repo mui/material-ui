@@ -5,12 +5,11 @@ import { grey, blue } from '@mui/material/colors';
 import { grey as grey2 } from '@mui/material/colors';
 import { blue as blue2 } from '@mui/material/colors';
 
-import { autocompleteClasses, tooltipClasses } from '@mui/material';
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Tab from '@mui/material/Tab';
 import MuiTabs from '@mui/material/Tabs';
+import { autocompleteClasses } from '@mui/material/Autocomplete';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import CardContent from '@mui/material/CardContent';
@@ -55,6 +54,7 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
+import { tooltipClasses } from '@mui/material/Tooltip';
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import Grow from '@mui/material/Grow';
