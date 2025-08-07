@@ -269,7 +269,6 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 ### List
 
 - [List] Rework the list components to match the specification:
-
   - The `ListItemAvatar` component is required when using an avatar.
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
@@ -342,7 +341,6 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 ### Snackbar
 
 - [Snackbar] Match the new specification.
-
   - Change the dimensions
   - Change the default transition from `Slide` to `Grow`.
 
@@ -470,7 +468,6 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
   ```
 
   It's consistent with other React projects:
-
   - material-ui => MaterialUI
   - react-dom => ReactDOM
   - prop-types => PropTypes

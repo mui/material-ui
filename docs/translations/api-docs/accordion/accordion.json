@@ -53,11 +53,6 @@
       "nodeName": "the root element",
       "conditions": "<code>disableGutters={true}</code>"
     },
-    "region": {
-      "description": "Styles applied to {{nodeName}}, {{conditions}}.",
-      "nodeName": "the region element",
-      "conditions": "the container of the children"
-    },
     "rounded": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",
@@ -66,6 +61,7 @@
   },
   "slotDescriptions": {
     "heading": "The component that renders the heading.",
+    "region": "The component that renders the region.",
     "root": "The component that renders the root.",
     "transition": "The component that renders the transition. <a href=\"https://mui.com/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component."
   }
