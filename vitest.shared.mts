@@ -1,5 +1,5 @@
 /// <reference types="@vitest/browser/providers/playwright" />
-import { configDefaults, defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig, coverageConfigDefaults } from 'vitest/config';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -66,7 +66,22 @@ export default async function create(
       'process.env.CI': process.env.CI ? JSON.stringify(process.env.CI) : 'undefined',
     },
     test: {
-      isolate: testEnv === 'node' && !jsdom,
+      reporters: ['default', 'junit'],
+      outputFile: 'test-results/junit.xml',
+      coverage: {
+        provider: 'v8',
+        reporter: process.env.CI ? ['lcovonly'] : ['text'],
+        reportsDirectory: path.resolve(MONOREPO_ROOT, 'coverage'),
+        ignoreEmptyLines: true,
+        include: ['packages/*/src/**'],
+        exclude: [
+          '**/__fixtures__/**',
+          'packages/mui-icons-material/src/**',
+          'packages/mui-codemod/src/**/{test-cases,*.test}/**',
+          '**/{postcss,vitest}.config.*',
+          ...coverageConfigDefaults.exclude,
+        ],
+      },
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
