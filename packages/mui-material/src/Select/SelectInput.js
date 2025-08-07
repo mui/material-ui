@@ -146,32 +146,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
-  const paperRef = React.useRef(null);
-  const didPointerDownRef = React.useRef(false);
-
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
 
-  const open = displayNode !== null && openState;
-
-  const ownerState = {
-    ...props,
-    variant,
-    value,
-    open,
-    error,
-  };
-
-  const paperProps = {
-    ...MenuProps.PaperProps,
-    ...(typeof MenuProps.slotProps?.paper === 'function'
-      ? MenuProps.slotProps.paper(ownerState)
-      : MenuProps.slotProps?.paper),
-  };
-
   const handleRef = useForkRef(ref, inputRefProp);
-  const handlePaperRef = useForkRef(paperProps.ref, paperRef);
 
   const handleDisplayRef = React.useCallback((node) => {
     displayRef.current = node;
@@ -231,8 +210,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return undefined;
   }, [labelId]);
 
-  const update = (openParam, event) => {
-    if (openParam) {
+  const update = (open, event) => {
+    if (open) {
       if (onOpen) {
         onOpen(event);
       }
@@ -242,7 +221,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     if (!isOpenControlled) {
       setMenuMinWidthState(autoWidth ? null : anchorElement.clientWidth);
-      setOpenState(openParam);
+      setOpenState(open);
     }
   };
 
@@ -254,37 +233,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // Hijack the default focus behavior.
     event.preventDefault();
     displayRef.current.focus();
-
-    const doc = ownerDocument(event.currentTarget);
-
-    function handleMouseUp(mouseEvent) {
-      if (!displayRef.current) {
-        return;
-      }
-
-      // mouse is over the options/menuitem, don't close the menu
-      if (paperRef.current.contains(mouseEvent.target)) {
-        return;
-      }
-
-      const triggerElement = displayRef.current.getBoundingClientRect();
-
-      // mouse is inside the trigger, don't close the menu
-      if (
-        mouseEvent.clientX >= triggerElement.left &&
-        mouseEvent.clientX <= triggerElement.right &&
-        mouseEvent.clientY >= triggerElement.top &&
-        mouseEvent.clientY <= triggerElement.bottom
-      ) {
-        return;
-      }
-
-      // close the menu
-      update(false, mouseEvent);
-    }
-
-    // `{ once: true }` to automatically remove the listener, see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#once
-    doc.addEventListener('mouseup', handleMouseUp, { once: true });
 
     update(true, event);
   };
@@ -310,7 +258,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleItemSelect = (child) => (event) => {
+  const handleItemClick = (child) => (event) => {
     let newValue;
 
     // We use the tabindex attribute to signal the available options.
@@ -328,6 +276,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
     } else {
       newValue = child.props.value;
+    }
+
+    if (child.props.onClick) {
+      child.props.onClick(event);
     }
 
     if (value !== newValue) {
@@ -371,6 +323,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
     }
   };
+
+  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -441,26 +395,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
-      onPointerDown: () => {
-        didPointerDownRef.current = true;
-      },
-      onClick: (event) => {
-        didPointerDownRef.current = false;
-        if (child.props.onClick) {
-          child.props.onClick(event);
-        }
-        handleItemSelect(child)(event);
-      },
-      onMouseUp: (event) => {
-        if (didPointerDownRef.current) {
-          didPointerDownRef.current = false;
-          return;
-        }
-        if (child.props.onMouseUp) {
-          child.props.onMouseUp(event);
-        }
-        handleItemSelect(child)(event);
-      },
+      onClick: handleItemClick(child),
       onKeyUp: (event) => {
         if (event.key === ' ') {
           // otherwise our MenuItems dispatches a click event
@@ -538,7 +473,22 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
 
+  const ownerState = {
+    ...props,
+    variant,
+    value,
+    open,
+    error,
+  };
+
   const classes = useUtilityClasses(ownerState);
+
+  const paperProps = {
+    ...MenuProps.PaperProps,
+    ...(typeof MenuProps.slotProps?.paper === 'function'
+      ? MenuProps.slotProps.paper(ownerState)
+      : MenuProps.slotProps?.paper),
+  };
 
   const listProps = {
     ...MenuProps.MenuListProps,
@@ -627,7 +577,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           },
           paper: {
             ...paperProps,
-            ref: handlePaperRef,
             style: {
               minWidth: menuMinWidth,
               ...(paperProps != null ? paperProps.style : null),

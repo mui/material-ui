@@ -767,7 +767,8 @@ workflows:
   react-18-cron:
     triggers:
       - schedule:
-          cron: '0 0 * * *'
+          # Stagger daily cron job to prevent Browserstack timeouts
+          cron: '40 23 * * *'
           filters:
             branches:
               only:
@@ -818,7 +819,8 @@ workflows:
   react-next-cron:
     triggers:
       - schedule:
-          cron: '0 0 * * *'
+          # Stagger daily cron job to prevent Browserstack timeouts
+          cron: '50 23 * * *'
           filters:
             branches:
               only:

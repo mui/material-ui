@@ -1,5 +1,20 @@
 # [Versions](https://mui.com/versions/)
 
+## 7.3.1
+
+<!-- generated comparing v7.3.0..master -->
+
+_Aug 6, 2025_
+
+A big thanks to the 2 contributors who made this release possible.
+
+### `@mui/material@7.3.1`
+
+- [PaginationItem] Fix inheritance of component (#46666) @sai6855
+- [Select] Revert - Implement pointer cancellation PR 45789 (#46672) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @sai6855, @ZeeshanTamboli
+
 ## 7.3.0
 
 <!-- generated comparing v7.2.0..master -->
