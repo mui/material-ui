@@ -46,7 +46,6 @@ export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the first page slot.
-     * By default, the available props are based on svg element.
      */
     first: SlotProps<
       React.ElementType<React.HTMLProps<HTMLElement>>,
@@ -55,7 +54,6 @@ export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the last page slot.
-     * By default, the available props are based on svg element.
      */
     last: SlotProps<
       React.ElementType<React.HTMLProps<HTMLElement>>,
@@ -64,7 +62,6 @@ export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the next page slot.
-     * By default, the available props are based on svg element.
      */
     next: SlotProps<
       React.ElementType<React.HTMLProps<HTMLElement>>,
@@ -73,7 +70,6 @@ export type PaginationItemSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the previous page slot.
-     * By default, the available props are based on svg element.
      */
     previous: SlotProps<
       React.ElementType<React.HTMLProps<HTMLElement>>,
