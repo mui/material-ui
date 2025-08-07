@@ -27,6 +27,7 @@
   },
   "scripts": {
     "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
+    "build:tsdown": "node ../../scripts/build-tsdown.mjs",
     "build:node": "node ../../scripts/build.mjs node",
     "build:stable": "node ../../scripts/build.mjs stable",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
@@ -102,9 +103,9 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./ButtonBase/TouchRipple": {
-      "mui-src": "./src/ButtonBase/TouchRipple.ts"
-    }
+    ".": "./src/index.js",
+    "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.ts",
+    "./*": "./src/*/index.{js,ts,tsx}"
   },
   "pigment-css": {
     "vite": {
