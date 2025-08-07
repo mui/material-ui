@@ -3484,7 +3484,7 @@ Converts all `@mui/material` & `@mui/icons-material` top-level imports to path i
 npx @mui/codemod@latest v5.0.0/path-imports <path>
 ```
 
-Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
 
 #### `optimal-imports`
 
