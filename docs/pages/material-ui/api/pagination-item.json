@@ -210,7 +210,7 @@
   "muiName": "MuiPaginationItem",
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/PaginationItem/PaginationItem.js",
-  "inheritance": null,
+  "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
   "demos": "<ul><li><a href=\"/material-ui/react-pagination/\">Pagination</a></li></ul>",
   "cssComponent": false
 }
