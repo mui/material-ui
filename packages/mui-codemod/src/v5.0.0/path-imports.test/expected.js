@@ -5,7 +5,7 @@ import { grey, blue } from '@mui/material/colors';
 import { grey as grey2 } from '@mui/material/colors';
 import { blue as blue2 } from '@mui/material/colors';
 
-import { autoCompleteClasses, tooltipClasses } from '@mui/material';
+import { autocompleteClasses, tooltipClasses } from '@mui/material';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';

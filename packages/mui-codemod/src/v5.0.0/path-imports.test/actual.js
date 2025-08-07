@@ -11,7 +11,7 @@ import {
   MenuItem,
   Tab,
   Tabs as MuiTabs,
-  autoCompleteClasses,
+  autocompleteClasses,
   BottomNavigationAction,
   BottomNavigation,
   CardContent,
