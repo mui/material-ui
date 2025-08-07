@@ -76,25 +76,25 @@
   "slots": [
     {
       "name": "first",
-      "description": "The component that renders the `first page` slot.",
+      "description": "The component that renders the first page slot.",
       "default": "FirstPageIcon",
       "class": null
     },
     {
       "name": "last",
-      "description": "The component that renders the `last page` slot.",
+      "description": "The component that renders the last page slot.",
       "default": "LastPageIcon",
       "class": null
     },
     {
       "name": "next",
-      "description": "The component that renders the `next page` slot.",
+      "description": "The component that renders the next page slot.",
       "default": "NavigateNextIcon",
       "class": null
     },
     {
       "name": "previous",
-      "description": "The component that renders the `previous page` slot.",
+      "description": "The component that renders the previous page slot.",
       "default": "NavigateBeforeIcon",
       "class": null
     }
