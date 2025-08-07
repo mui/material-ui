@@ -59,11 +59,11 @@ export default function transformer(fileInfo, api, options) {
       if (specifier.type === 'ImportSpecifier') {
         const name = specifier.imported.name;
         if (moduleName === 'material') {
-          if (name === 'ThemeProvider' || classesRegExp.test(name)) {
+          if (classesRegExp.test(name)) {
             return;
           }
 
-          if (name === 'createTheme') {
+          if (name === 'ThemeProvider' || name === 'createTheme') {
             importsToAdd.styles ??= [];
             importsToAdd.styles.push(specifier);
             indexesToPrune.push(index);
