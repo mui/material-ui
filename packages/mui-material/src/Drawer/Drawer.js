@@ -287,6 +287,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     additionalProps: {
       elevation: variant === 'temporary' ? elevation : 0,
       square: true,
+      ...(variant === 'temporary' && {
+        role: 'dialog',
+        'aria-modal': 'true',
+      }),
     },
   });
 
