@@ -3,7 +3,6 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import {
   createRenderer,
-  screen,
   fireEvent,
   strictModeDoubleLoggingSuppressed,
   reactMajor,
@@ -120,7 +119,7 @@ describe('<Menu />', () => {
   });
 
   it('should pass `classes.paper` to the Paper', () => {
-    render(
+    const screen = render(
       <Menu
         anchorEl={document.createElement('div')}
         open
@@ -133,7 +132,7 @@ describe('<Menu />', () => {
 
   describe('prop: PopoverClasses', () => {
     it('should be able to change the Popover style', () => {
-      render(
+      const screen = render(
         <Menu
           anchorEl={document.createElement('div')}
           open
@@ -146,7 +145,7 @@ describe('<Menu />', () => {
     });
 
     it('should be able to change the Popover root element style when Menu classes prop is also provided', () => {
-      render(
+      const screen = render(
         <Menu
           anchorEl={document.createElement('div')}
           open
@@ -164,7 +163,7 @@ describe('<Menu />', () => {
       const customElevation = 12;
       const customClasses = { rounded: 'custom-rounded' };
 
-      render(
+      const screen = render(
         <Menu
           anchorEl={document.createElement('div')}
           open
@@ -183,7 +182,9 @@ describe('<Menu />', () => {
 
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
-    render(<Menu anchorEl={document.createElement('div')} open onClose={handleClose} />);
+    const screen = render(
+      <Menu anchorEl={document.createElement('div')} open onClose={handleClose} />,
+    );
 
     fireEvent.keyDown(screen.getByRole('menu'), { key: 'Escape' });
 
@@ -191,7 +192,7 @@ describe('<Menu />', () => {
   });
 
   it('renders its children only when open', () => {
-    const { setProps } = render(
+    const screen = render(
       <Menu anchorEl={document.createElement('div')} open={false}>
         <div data-testid="children" />
       </Menu>,
@@ -199,14 +200,16 @@ describe('<Menu />', () => {
 
     expect(screen.queryByTestId('children')).to.equal(null);
 
-    setProps({ open: true });
+    screen.setProps({ open: true });
 
     expect(screen.getByTestId('children')).not.to.equal(null);
   });
 
   describe('list node', () => {
     it('should render a menu inside the Popover', () => {
-      render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
+      const screen = render(
+        <Menu anchorEl={document.createElement('div')} open data-testid="popover" />,
+      );
 
       expect(screen.getByTestId('popover').querySelector('[role="menu"]')).not.to.equal(null);
     });
@@ -221,7 +224,7 @@ describe('<Menu />', () => {
         </div>
       );
     }
-    render(
+    const screen = render(
       <Menu anchorEl={document.createElement('div')} open>
         <MenuItem>one</MenuItem>
       </Menu>,
@@ -231,7 +234,7 @@ describe('<Menu />', () => {
   });
 
   it('should not focus list if autoFocus=false', () => {
-    render(
+    const screen = render(
       <Menu anchorEl={document.createElement('div')} autoFocus={false} open>
         <div tabIndex={-1} />
       </Menu>,
@@ -315,7 +318,7 @@ describe('<Menu />', () => {
       );
     }
     const onCloseSpy = spy();
-    render(
+    const screen = render(
       <Menu anchorEl={document.createElement('div')} open onClose={onCloseSpy}>
         <MenuItem>hello</MenuItem>
       </Menu>,
@@ -328,7 +331,7 @@ describe('<Menu />', () => {
   });
 
   it('ignores invalid children', () => {
-    render(
+    const screen = render(
       <Menu anchorEl={document.createElement('div')} open>
         {null}
         <span role="menuitem">hello</span>
@@ -377,7 +380,7 @@ describe('<Menu />', () => {
         },
       });
 
-      render(
+      const screen = render(
         <ThemeProvider theme={theme}>
           <Menu
             anchorEl={document.createElement('div')}
@@ -411,7 +414,7 @@ describe('<Menu />', () => {
         },
       });
 
-      render(
+      const screen = render(
         <ThemeProvider theme={theme}>
           <Menu
             anchorEl={document.createElement('div')}
@@ -435,7 +438,7 @@ describe('<Menu />', () => {
 
   describe('slots', () => {
     it('should merge slots with existing values', () => {
-      render(
+      const screen = render(
         <Menu
           slots={{ root: 'span' }}
           slotProps={{ paper: { 'data-testid': 'paper' } }}

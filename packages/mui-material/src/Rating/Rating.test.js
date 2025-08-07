@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -195,11 +195,11 @@ describe('<Rating />', () => {
   });
 
   it('has a customization point for the label of the empty value when it is active', () => {
-    const { container } = render(
+    const screen = render(
       <Rating classes={{ labelEmptyValueActive: 'customized' }} name="" value={null} />,
     );
 
-    expect(container.querySelector('.customized')).to.equal(null);
+    expect(screen.container.querySelector('.customized')).to.equal(null);
 
     act(() => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
@@ -209,7 +209,7 @@ describe('<Rating />', () => {
       noValueRadio.focus();
     });
 
-    expect(container.querySelector('.customized')).to.have.tagName('label');
+    expect(screen.container.querySelector('.customized')).to.have.tagName('label');
   });
 
   it('should apply labelEmptyValueActive styles from theme', function test() {
@@ -228,7 +228,7 @@ describe('<Rating />', () => {
         },
       },
     });
-    const { container } = render(
+    const screen = render(
       <ThemeProvider theme={theme}>
         <Rating value={null} />
       </ThemeProvider>,
@@ -242,9 +242,11 @@ describe('<Rating />', () => {
       noValueRadio.focus();
     });
 
-    expect(container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle({
-      height: '120px',
-    });
+    expect(screen.container.querySelector(`.${classes.labelEmptyValueActive}`)).toHaveComputedStyle(
+      {
+        height: '120px',
+      },
+    );
   });
 
   // Internal test that only applies if Rating is implemented using `input[type"radio"]`
@@ -273,7 +275,9 @@ describe('<Rating />', () => {
     function Icon(props) {
       return <i data-testid="custom" {...props} />;
     }
-    render(<Rating name="rating-test" max={1} slotProps={{ icon: { component: Icon } }} />);
+    const screen = render(
+      <Rating name="rating-test" max={1} slotProps={{ icon: { component: Icon } }} />,
+    );
 
     expect(screen.getByTestId('custom')).to.have.property('tagName', 'I');
     expect(screen.getByTestId('custom')).to.have.class(classes.icon);
@@ -281,25 +285,27 @@ describe('<Rating />', () => {
 
   describe('prop: readOnly', () => {
     it('renders a role="img"', () => {
-      render(<Rating readOnly value={2} />);
+      const screen = render(<Rating readOnly value={2} />);
 
       expect(screen.getByRole('img')).toHaveAccessibleName('2 Stars');
     });
 
     it('can be labelled with getLabelText', () => {
-      render(<Rating getLabelText={(value) => `Stars: ${value}`} readOnly value={2} />);
+      const screen = render(
+        <Rating getLabelText={(value) => `Stars: ${value}`} readOnly value={2} />,
+      );
 
       expect(screen.getByRole('img')).toHaveAccessibleName('Stars: 2');
     });
 
     it('should have a correct label when no value is set', () => {
-      render(<Rating readOnly />);
+      const screen = render(<Rating readOnly />);
 
       expect(screen.getByRole('img')).toHaveAccessibleName('0 Stars');
     });
 
     it('should have readOnly class applied', () => {
-      render(<Rating readOnly value={2} />);
+      const screen = render(<Rating readOnly value={2} />);
 
       expect(screen.getByRole('img')).to.have.class(classes.readOnly);
     });

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import {
   createRenderer,
-  screen,
   ErrorBoundary,
   act,
   fireEvent,
@@ -51,9 +50,9 @@ describe('useAutocomplete', () => {
       );
     }
 
-    const { rerender } = render(<Test options={['foo', 'bar']} />);
+    const screen = render(<Test options={['foo', 'bar']} />);
     const [fooOptionAsFirst, barOptionAsSecond] = screen.getAllByRole('option');
-    rerender(<Test options={['bar', 'foo']} />);
+    screen.rerender(<Test options={['bar', 'foo']} />);
     const [barOptionAsFirst, fooOptionAsSecond] = screen.getAllByRole('option');
 
     // If the DOM nodes are not preserved VO will not read the first option again since it thinks it didn't change.
@@ -342,7 +341,7 @@ describe('useAutocomplete', () => {
 
         return <input {...getInputProps()} />;
       }
-      render(<Test options={['foo', 'bar']} />);
+      const screen = render(<Test options={['foo', 'bar']} />);
       const input = screen.getByRole('combobox');
 
       act(() => {
@@ -362,7 +361,7 @@ describe('useAutocomplete', () => {
 
         return <input {...getInputProps()} />;
       }
-      render(<Test options={['foo', 'bar']} />);
+      const screen = render(<Test options={['foo', 'bar']} />);
       const input = screen.getByRole('combobox');
 
       expect(input).to.have.attribute('disabled');

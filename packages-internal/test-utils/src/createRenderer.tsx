@@ -19,6 +19,7 @@ import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { useFakeTimers } from 'sinon';
+import { VitestUtils } from 'vitest';
 import reactMajor from './reactMajor';
 
 interface Interaction {
@@ -550,7 +551,7 @@ export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 's
    * Vitest needs to be injected because this file is transpiled to commonjs and vitest is an esm module.
    * @default {}
    */
-  vi?: any;
+  vi?: VitestUtils;
 }
 
 export function createRenderer(globalOptions: CreateRendererOptions = {}): Renderer {
@@ -559,7 +560,7 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     clockConfig,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
-    vi = (globalThis as any).vi || {},
+    vi = (globalThis as any).vi as typeof import('vitest').vi | undefined,
     clockOptions,
   } = globalOptions;
   // save stack to re-use in test-hooks

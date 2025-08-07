@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createRenderer,
-  act,
-  fireEvent,
-  fireDiscreteEvent,
-  screen,
-} from '@mui/internal-test-utils';
+import { createRenderer, act, fireEvent, fireDiscreteEvent } from '@mui/internal-test-utils';
 import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
@@ -268,7 +262,7 @@ describe('<SpeedDial />', () => {
       actionButtons = [];
       fabButton = undefined;
 
-      render(
+      const screen = render(
         <SpeedDial
           ariaLabel={`${direction}-actions-${actionCount}`}
           FabProps={{
@@ -297,6 +291,8 @@ describe('<SpeedDial />', () => {
       await act(async () => {
         fabButton.focus();
       });
+
+      return screen;
     };
 
     /**
@@ -319,7 +315,7 @@ describe('<SpeedDial />', () => {
     };
 
     it('displays the actions on focus gain', async () => {
-      await renderSpeedDial();
+      const screen = await renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
       expect(fabButton).to.have.attribute('aria-expanded', 'true');
     });
@@ -464,7 +460,7 @@ describe('<SpeedDial />', () => {
       actionButtons = [];
       fabButton = undefined;
 
-      render(
+      const screen = render(
         <SpeedDial
           ariaLabel={`${direction}-actions-${actionCount}`}
           FabProps={{
@@ -495,6 +491,7 @@ describe('<SpeedDial />', () => {
       await act(async () => {
         fabButton.focus();
       });
+      return screen;
     };
 
     /**
@@ -517,7 +514,7 @@ describe('<SpeedDial />', () => {
     };
 
     it('displays the actions on focus gain', async () => {
-      await renderSpeedDial();
+      const screen = await renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
       expect(fabButton).to.have.attribute('aria-expanded', 'true');
     });

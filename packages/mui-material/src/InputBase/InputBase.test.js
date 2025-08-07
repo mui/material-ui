@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen, reactMajor } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@emotion/react';
 import FormControl, { useFormControl } from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -50,7 +50,7 @@ describe('<InputBase />', () => {
 
   describe('multiline', () => {
     it('should render a `textbox` with `aria-multiline`', () => {
-      render(<InputBase multiline />);
+      const screen = render(<InputBase multiline />);
 
       const textarea = screen.getByRole('textbox', { hidden: false });
       // implicit `aria-multiline`
@@ -58,7 +58,7 @@ describe('<InputBase />', () => {
     });
 
     it('should render a `textbox` with `aria-multiline` if `rows` is specified', () => {
-      render(<InputBase multiline rows={4} />);
+      const screen = render(<InputBase multiline rows={4} />);
 
       const textarea = screen.getByRole('textbox', { hidden: false });
       // implicit `aria-multiline`
@@ -66,20 +66,20 @@ describe('<InputBase />', () => {
     });
 
     it('should forward the value to the textarea', () => {
-      render(<InputBase multiline maxRows={4} value="Hello" />);
+      const screen = render(<InputBase multiline maxRows={4} value="Hello" />);
 
       const textarea = screen.getByRole('textbox', { hidden: false });
       expect(textarea).to.have.value('Hello');
     });
 
     it('should preserve state when changing rows', () => {
-      const { setProps } = render(<InputBase multiline />);
+      const screen = render(<InputBase multiline />);
       const textarea = screen.getByRole('textbox', { hidden: false });
       act(() => {
         textarea.focus();
       });
 
-      setProps({ rows: 4 });
+      screen.setProps({ rows: 4 });
 
       expect(textarea).toHaveFocus();
     });

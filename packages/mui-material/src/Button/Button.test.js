@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
+import { createRenderer, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -116,7 +116,7 @@ describe('<Button />', () => {
   });
 
   it('should render a text success button', () => {
-    render(<Button color="success">Hello World</Button>);
+    const screen = render(<Button color="success">Hello World</Button>);
     const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -131,7 +131,7 @@ describe('<Button />', () => {
   });
 
   it('should render a text error button', () => {
-    render(<Button color="error">Hello World</Button>);
+    const screen = render(<Button color="error">Hello World</Button>);
     const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -146,7 +146,7 @@ describe('<Button />', () => {
   });
 
   it('should render a text info button', () => {
-    render(<Button color="info">Hello World</Button>);
+    const screen = render(<Button color="info">Hello World</Button>);
     const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -161,7 +161,7 @@ describe('<Button />', () => {
   });
 
   it('should render a text warning button', () => {
-    render(<Button color="warning">Hello World</Button>);
+    const screen = render(<Button color="warning">Hello World</Button>);
     const button = screen.getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -234,7 +234,7 @@ describe('<Button />', () => {
   });
 
   it('should render a success outlined button', () => {
-    render(
+    const screen = render(
       <Button variant="outlined" color="success">
         Hello World
       </Button>,
@@ -253,7 +253,7 @@ describe('<Button />', () => {
   });
 
   it('should render a error outlined button', () => {
-    render(
+    const screen = render(
       <Button variant="outlined" color="error">
         Hello World
       </Button>,
@@ -273,7 +273,7 @@ describe('<Button />', () => {
   });
 
   it('should render a info outlined button', () => {
-    render(
+    const screen = render(
       <Button variant="outlined" color="info">
         Hello World
       </Button>,
@@ -293,7 +293,7 @@ describe('<Button />', () => {
   });
 
   it('should render a warning outlined button', () => {
-    render(
+    const screen = render(
       <Button variant="outlined" color="warning">
         Hello World
       </Button>,
@@ -362,7 +362,7 @@ describe('<Button />', () => {
   });
 
   it('should render a contained success button', () => {
-    render(
+    const screen = render(
       <Button variant="contained" color="success">
         Hello World
       </Button>,
@@ -381,7 +381,7 @@ describe('<Button />', () => {
   });
 
   it('should render a contained error button', () => {
-    render(
+    const screen = render(
       <Button variant="contained" color="error">
         Hello World
       </Button>,
@@ -400,7 +400,7 @@ describe('<Button />', () => {
   });
 
   it('should render a contained info button', () => {
-    render(
+    const screen = render(
       <Button variant="contained" color="info">
         Hello World
       </Button>,
@@ -419,7 +419,7 @@ describe('<Button />', () => {
   });
 
   it('should render a contained warning button', () => {
-    render(
+    const screen = render(
       <Button variant="contained" color="warning">
         Hello World
       </Button>,
@@ -766,7 +766,7 @@ describe('<Button />', () => {
     });
 
     it('disables the button', () => {
-      render(<Button loading />);
+      const screen = render(<Button loading />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('tabIndex', -1);
@@ -774,13 +774,13 @@ describe('<Button />', () => {
     });
 
     it('cannot be enabled while `loading`', () => {
-      render(<Button disabled={false} loading />);
+      const screen = render(<Button disabled={false} loading />);
 
       expect(screen.getByRole('button')).to.have.property('disabled', true);
     });
 
     it('renders a progressbar that is labelled by the button', () => {
-      render(<Button loading>Submit</Button>);
+      const screen = render(<Button loading>Submit</Button>);
 
       const button = screen.getByRole('button');
       const progressbar = within(button).getByRole('progressbar');
@@ -789,7 +789,7 @@ describe('<Button />', () => {
 
     it('has no id when `loading=false` and no `id` prop is present`', () => {
       const id = 'some-id';
-      render(
+      const screen = render(
         <React.Fragment>
           <Button />
           <Button id={id} />
@@ -805,13 +805,13 @@ describe('<Button />', () => {
 
   describe('prop: loadingIndicator', () => {
     it('is not rendered by default', () => {
-      render(<Button loadingIndicator="loading">Test</Button>);
+      const screen = render(<Button loadingIndicator="loading">Test</Button>);
 
       expect(screen.getByRole('button')).to.have.text('Test');
     });
 
     it('is rendered before the children when `loading`', () => {
-      render(
+      const screen = render(
         <Button loadingIndicator="loading…" loading>
           Test
         </Button>,
@@ -821,17 +821,17 @@ describe('<Button />', () => {
     });
 
     it('should have loading position class attached to root when `loading`', () => {
-      const { rerender } = render(<Button loading>Test</Button>);
+      const screen = render(<Button loading>Test</Button>);
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionCenter);
 
-      rerender(
+      screen.rerender(
         <Button loading loadingPosition="start">
           Test
         </Button>,
       );
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionStart);
 
-      rerender(
+      screen.rerender(
         <Button loading loadingPosition="end">
           Test
         </Button>,

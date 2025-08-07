@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { MenuProvider, MenuProviderValue } from '@mui/base/useMenu';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuItem, { menuItemClasses as classes } from '@mui/joy/MenuItem';
@@ -61,14 +61,14 @@ describe('Joy <MenuItem />', () => {
   });
 
   it('should render a focusable menuitem', () => {
-    render(<MenuItem />);
+    const screen = render(<MenuItem />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.property('tabIndex', -1);
   });
 
   it('should render with the selected class but not aria-selected when `selected`', () => {
-    render(<MenuItem selected />);
+    const screen = render(<MenuItem selected />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.selected);
@@ -76,7 +76,7 @@ describe('Joy <MenuItem />', () => {
   });
 
   it('can have a role of option', () => {
-    render(<MenuItem role="option" aria-selected={false} />);
+    const screen = render(<MenuItem role="option" aria-selected={false} />);
 
     expect(screen.queryByRole('option')).not.to.equal(null);
   });
@@ -95,7 +95,7 @@ describe('Joy <MenuItem />', () => {
       it(`should fire ${eventName}`, async () => {
         const handlerName = `on${eventName[0].toUpperCase()}${eventName.slice(1)}`;
         const handler = spy();
-        render(<MenuItem {...{ [handlerName]: handler }} />);
+        const screen = render(<MenuItem {...{ [handlerName]: handler }} />);
 
         fireEvent[eventName](screen.getByRole('menuitem'));
 
@@ -108,7 +108,7 @@ describe('Joy <MenuItem />', () => {
       const handleKeyDown = spy();
       const handleKeyUp = spy();
       const handleBlur = spy();
-      render(
+      const screen = render(
         <MenuItem
           tabIndex={0}
           onFocus={handleFocus}
@@ -147,7 +147,7 @@ describe('Joy <MenuItem />', () => {
       }
 
       const handleTouchStart = spy();
-      render(<MenuItem onTouchStart={handleTouchStart} />);
+      const screen = render(<MenuItem onTouchStart={handleTouchStart} />);
       const menuitem = screen.getByRole('menuitem');
 
       const touch = new Touch({ identifier: 0, target: menuitem, clientX: 0, clientY: 0 });
@@ -158,14 +158,14 @@ describe('Joy <MenuItem />', () => {
   });
 
   it('can be disabled', () => {
-    render(<MenuItem disabled />);
+    const screen = render(<MenuItem disabled />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
   });
 
   it('can be selected', () => {
-    render(<MenuItem selected />);
+    const screen = render(<MenuItem selected />);
     const menuitem = screen.getByRole('menuitem');
 
     expect(menuitem).to.have.class(classes.selected);

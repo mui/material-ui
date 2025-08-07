@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -179,7 +179,7 @@ describe('<Dialog />', () => {
       return <Dialog onClose={handleClose} {...other} />;
     }
     const onClose = spy();
-    const { getByRole } = render(
+    const screen = render(
       <DialogWithBackdropClickDisabled
         open
         disableEscapeKeyDown
@@ -189,7 +189,7 @@ describe('<Dialog />', () => {
         foo
       </DialogWithBackdropClickDisabled>,
     );
-    const dialog = getByRole('dialog');
+    const dialog = screen.getByRole('dialog');
     expect(dialog).not.to.equal(null);
 
     act(() => {
@@ -207,14 +207,14 @@ describe('<Dialog />', () => {
 
   describe('backdrop', () => {
     it('does have `role` `presentation`', () => {
-      render(<Dialog open>foo</Dialog>);
+      const screen = render(<Dialog open>foo</Dialog>);
 
       expect(findBackdrop(screen)).to.have.attribute('role', 'presentation');
     });
 
     it('calls onClose when clicked', () => {
       const onClose = spy();
-      render(
+      const screen = render(
         <Dialog onClose={onClose} open>
           foo
         </Dialog>,
@@ -225,15 +225,15 @@ describe('<Dialog />', () => {
     });
 
     it('should not close if the target changes between the mousedown and the click', () => {
-      const { getByRole } = render(
+      const screen = render(
         <Dialog open>
           <h2>my dialog</h2>
         </Dialog>,
       );
 
-      fireEvent.mouseDown(getByRole('heading'));
+      fireEvent.mouseDown(screen.getByRole('heading'));
       findBackdrop(screen).click();
-      expect(getByRole('dialog')).not.to.equal(null);
+      expect(screen.getByRole('dialog')).not.to.equal(null);
     });
   });
 
@@ -259,7 +259,7 @@ describe('<Dialog />', () => {
     });
 
     it('should use the right className when maxWidth={false}', () => {
-      render(
+      const screen = render(
         <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
@@ -268,7 +268,7 @@ describe('<Dialog />', () => {
     });
 
     it('should apply the correct max-width styles when maxWidth={false}', () => {
-      render(
+      const screen = render(
         <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,

@@ -6,7 +6,6 @@ import {
   act,
   createRenderer,
   fireEvent,
-  screen,
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
@@ -1082,7 +1081,7 @@ describe('<ButtonBase />', () => {
       it('does not call onClick if Enter was pressed on a child', () => {
         const onClickSpy = spy();
         const onKeyDownSpy = spy();
-        render(
+        const screen = render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
             <input autoFocus type="text" />
           </ButtonBase>,
@@ -1099,7 +1098,7 @@ describe('<ButtonBase />', () => {
       it('does not call onClick if Space was released on a child', () => {
         const onClickSpy = spy();
         const onKeyUpSpy = spy();
-        render(
+        const screen = render(
           <ButtonBase onClick={onClickSpy} onKeyUp={onKeyUpSpy} component="div">
             <input autoFocus type="text" />
           </ButtonBase>,
@@ -1217,20 +1216,20 @@ describe('<ButtonBase />', () => {
 
   describe('prop: type', () => {
     it('is `button` by default', () => {
-      render(<ButtonBase />);
+      const screen = render(<ButtonBase />);
 
       expect(screen.getByRole('button')).to.have.property('type', 'button');
     });
 
     it('can be changed to other button types', () => {
-      render(<ButtonBase type="submit" />);
+      const screen = render(<ButtonBase type="submit" />);
 
       expect(screen.getByRole('button')).to.have.property('type', 'submit');
     });
 
     it('allows non-standard values', () => {
       // @ts-expect-error `@types/react` only lists standard values
-      render(<ButtonBase type="fictional-type" />);
+      const screen = render(<ButtonBase type="fictional-type" />);
 
       expect(screen.getByRole('button')).to.have.attribute('type', 'fictional-type');
       // By spec non-supported types result in the default type for `<button>` which is `submit`
@@ -1238,7 +1237,9 @@ describe('<ButtonBase />', () => {
     });
 
     it('is forwarded to anchor components', () => {
-      render(<ButtonBase component="a" href="some-recording.ogg" download type="audio/ogg" />);
+      const screen = render(
+        <ButtonBase component="a" href="some-recording.ogg" download type="audio/ogg" />,
+      );
 
       expect(screen.getByRole('link')).to.have.attribute('type', 'audio/ogg');
       expect(screen.getByRole('link')).to.have.property('type', 'audio/ogg');
@@ -1249,7 +1250,7 @@ describe('<ButtonBase />', () => {
        * @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>}
        */
       const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
-      render(<ButtonBase component={CustomButton} type="reset" />);
+      const screen = render(<ButtonBase component={CustomButton} type="reset" />);
 
       expect(screen.getByRole('button')).to.have.property('type', 'reset');
     });
@@ -1258,7 +1259,7 @@ describe('<ButtonBase />', () => {
   describe('prop: touchRippleRef', () => {
     it('should return a ref', async () => {
       const ref = React.createRef();
-      render(<ButtonBase touchRippleRef={ref} />);
+      const screen = render(<ButtonBase touchRippleRef={ref} />);
       await ripple.startTouch(screen.getByRole('button'));
       expect(ref.current).not.to.equal(null);
     });

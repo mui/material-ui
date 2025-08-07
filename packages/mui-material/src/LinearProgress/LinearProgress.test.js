@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  createRenderer,
-  screen,
-  strictModeDoubleLoggingSuppressed,
-} from '@mui/internal-test-utils';
+import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 import describeConformance from '../../test/describeConformance';
 
@@ -23,7 +19,7 @@ describe('<LinearProgress />', () => {
   }));
 
   it('should render indeterminate variant by default', () => {
-    render(<LinearProgress />);
+    const screen = render(<LinearProgress />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.class(classes.root);
@@ -35,7 +31,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render for the primary color by default', () => {
-    render(<LinearProgress />);
+    const screen = render(<LinearProgress />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar.children[0]).to.have.class(classes.barColorPrimary);
@@ -43,7 +39,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render for the secondary color', () => {
-    render(<LinearProgress color="secondary" />);
+    const screen = render(<LinearProgress color="secondary" />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar.children[0]).to.have.class(classes.barColorSecondary);
@@ -51,7 +47,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the primary color by default', () => {
-    render(<LinearProgress value={1} variant="determinate" />);
+    const screen = render(<LinearProgress value={1} variant="determinate" />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.class(classes.determinate);
@@ -60,7 +56,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the primary color', () => {
-    render(<LinearProgress color="primary" value={1} variant="determinate" />);
+    const screen = render(<LinearProgress color="primary" value={1} variant="determinate" />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.class(classes.determinate);
@@ -69,7 +65,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with determinate classes for the secondary color', () => {
-    render(<LinearProgress color="secondary" value={1} variant="determinate" />);
+    const screen = render(<LinearProgress color="secondary" value={1} variant="determinate" />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.class(classes.determinate);
@@ -78,14 +74,14 @@ describe('<LinearProgress />', () => {
   });
 
   it('should set width of bar1 on determinate variant', () => {
-    render(<LinearProgress variant="determinate" value={77} />);
+    const screen = render(<LinearProgress variant="determinate" value={77} />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar.children[0]).to.have.nested.property('style.transform', 'translateX(-23%)');
   });
 
   it('should render with buffer classes for the primary color by default', () => {
-    render(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
+    const screen = render(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar.children[0]).to.have.class(classes.dashedColorPrimary);
@@ -96,7 +92,9 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the primary color', () => {
-    render(<LinearProgress value={1} valueBuffer={1} color="primary" variant="buffer" />);
+    const screen = render(
+      <LinearProgress value={1} valueBuffer={1} color="primary" variant="buffer" />,
+    );
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar.children[0]).to.have.class(classes.dashedColorPrimary);
@@ -107,7 +105,9 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with buffer classes for the secondary color', () => {
-    render(<LinearProgress value={1} valueBuffer={1} color="secondary" variant="buffer" />);
+    const screen = render(
+      <LinearProgress value={1} valueBuffer={1} color="secondary" variant="buffer" />,
+    );
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar.children[0]).to.have.class(classes.dashedColorSecondary);
@@ -131,7 +131,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('should render with query classes', () => {
-    render(<LinearProgress variant="query" />);
+    const screen = render(<LinearProgress variant="query" />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.class(classes.query);
@@ -142,7 +142,7 @@ describe('<LinearProgress />', () => {
   });
 
   it('exposes the current, min and max value to screen readers when determinate', () => {
-    render(<LinearProgress variant="determinate" value={77} />);
+    const screen = render(<LinearProgress variant="determinate" value={77} />);
     const progressbar = screen.getByRole('progressbar');
 
     expect(progressbar).to.have.attribute('aria-valuenow', '77');

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
@@ -167,26 +167,26 @@ describe('<Divider />', () => {
 
   describe('role', () => {
     it('avoids adding implicit aria semantics', () => {
-      render(<Divider />);
+      const screen = render(<Divider />);
       expect(screen.getByRole('separator')).not.to.have.attribute('role');
       expect(screen.getByRole('separator')).not.to.have.attribute('aria-orientation');
     });
 
     it('adds a proper role if none is specified', () => {
-      render(<Divider component="div" />);
+      const screen = render(<Divider component="div" />);
       expect(screen.getByRole('separator')).not.to.equal(null);
       expect(screen.getByRole('separator')).to.have.attribute('aria-orientation');
     });
 
     it('adds a proper role with vertical orientation', () => {
-      render(<Divider orientation="vertical" />);
+      const screen = render(<Divider orientation="vertical" />);
       expect(screen.getByRole('separator')).not.to.equal(null);
       expect(screen.getByRole('separator')).to.have.attribute('aria-orientation');
     });
 
     it('overrides the computed role with the provided one', () => {
       // presentation is the only valid aria role
-      render(<Divider role="presentation" data-testid="divider" />);
+      const screen = render(<Divider role="presentation" data-testid="divider" />);
       expect(screen.queryByRole('separator')).to.equal(null);
       expect(screen.getByTestId('divider')).to.have.attribute('role', 'presentation');
       expect(screen.getByTestId('divider')).not.to.have.attribute('aria-orientation');

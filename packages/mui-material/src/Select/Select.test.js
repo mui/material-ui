@@ -6,7 +6,6 @@ import {
   act,
   createRenderer,
   fireEvent,
-  screen,
   reactMajor,
 } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -141,7 +140,7 @@ describe('<Select />', () => {
   });
 
   it('options should have a data-value attribute', () => {
-    render(
+    const screen = render(
       <Select open value={10}>
         <MenuItem value={10}>Ten</MenuItem>
         <MenuItem value={20}>Twenty</MenuItem>
@@ -155,7 +154,7 @@ describe('<Select />', () => {
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach((key) => {
     it(`should open menu when pressed ${key} key on select`, async () => {
-      render(
+      const screen = render(
         <Select value="">
           <MenuItem value="">none</MenuItem>
         </Select>,
@@ -213,7 +212,7 @@ describe('<Select />', () => {
   it('should call onClose when the same option is selected', () => {
     const handleChange = spy();
     const handleClose = spy();
-    render(
+    const screen = render(
       <Select open onChange={handleChange} onClose={handleClose} value="second">
         <MenuItem value="first" />
         <MenuItem value="second" />
@@ -314,7 +313,7 @@ describe('<Select />', () => {
 
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
-      render(
+      const screen = render(
         <Select open value={20}>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -329,7 +328,7 @@ describe('<Select />', () => {
     });
 
     it('should select the option based on the string value', () => {
-      render(
+      const screen = render(
         <Select open value="20">
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -346,7 +345,7 @@ describe('<Select />', () => {
     it('should select only the option that matches the object', () => {
       const obj1 = { id: 1 };
       const obj2 = { id: 2 };
-      render(
+      const screen = render(
         <Select open value={obj1}>
           <MenuItem value={obj1}>1</MenuItem>
           <MenuItem value={obj2}>2</MenuItem>
@@ -398,7 +397,7 @@ describe('<Select />', () => {
   });
 
   it('should not have the selectable option selected when inital value provided is empty string on Select with ListSubHeader item', () => {
-    render(
+    const screen = render(
       <Select open value="">
         <ListSubheader>Category 1</ListSubheader>
         <MenuItem value={10}>Ten</MenuItem>
@@ -819,7 +818,7 @@ describe('<Select />', () => {
 
   describe('prop: readOnly', () => {
     it('should not trigger any event with readOnly', async () => {
-      render(
+      const screen = render(
         <Select readOnly value="10">
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -891,7 +890,7 @@ describe('<Select />', () => {
 
     // https://github.com/mui/material-ui/issues/46273
     it('should merge `slotProps.list` with default List props', () => {
-      render(
+      const screen = render(
         <Select
           MenuProps={{
             slotProps: { list: { disablePadding: true } },
@@ -1431,7 +1430,7 @@ describe('<Select />', () => {
 
   it('prevents the default when releasing Space on the children', () => {
     const keyUpSpy = spy();
-    render(
+    const screen = render(
       <Select value="one" open>
         <MenuItem onKeyUp={keyUpSpy} value="one">
           One
@@ -1535,7 +1534,7 @@ describe('<Select />', () => {
   it('should not override the event.target on mouse events', () => {
     const handleChange = spy();
     const handleClick = spy();
-    render(
+    const screen = render(
       <div onClick={handleClick}>
         <Select open onChange={handleChange} value="second">
           <MenuItem value="first" />

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import AppBar, { appBarClasses as classes } from '@mui/material/AppBar';
 import Paper from '@mui/material/Paper';
 import { ThemeProvider, CssVarsProvider, hexToRgb } from '@mui/material/styles';
@@ -46,7 +46,7 @@ describe('<AppBar />', () => {
   });
 
   it('should change elevation', () => {
-    render(
+    const screen = render(
       <AppBar data-testid="root" elevation={5} classes={{ elevation5: 'app-bar-elevation-5' }}>
         Hello World
       </AppBar>,
@@ -70,7 +70,7 @@ describe('<AppBar />', () => {
       this.skip();
     }
 
-    render(
+    const screen = render(
       <ThemeProvider theme={defaultTheme}>
         <AppBar data-testid="root" color="inherit">
           Hello World
@@ -89,7 +89,7 @@ describe('<AppBar />', () => {
       this.skip();
     }
 
-    render(
+    const screen = render(
       <CssVarsProvider>
         <AppBar data-testid="root" color="inherit">
           Hello World

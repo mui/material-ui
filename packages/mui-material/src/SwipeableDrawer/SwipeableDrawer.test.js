@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { fireEvent, createRenderer, screen } from '@mui/internal-test-utils';
+import { fireEvent, createRenderer } from '@mui/internal-test-utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
@@ -172,7 +172,7 @@ describe('<SwipeableDrawer />', () => {
         it('should open and close when swiping', () => {
           const handleClose = spy();
           const handleOpen = spy();
-          const { setProps } = render(
+          const screen = render(
             <SwipeableDrawer
               anchor={params.anchor}
               onOpen={handleOpen}
@@ -204,7 +204,7 @@ describe('<SwipeableDrawer />', () => {
           });
           expect(handleOpen.callCount).to.equal(1);
 
-          setProps({ open: true });
+          screen.setProps({ open: true });
 
           const drawer = screen.getByTestId('drawer');
 
@@ -337,7 +337,7 @@ describe('<SwipeableDrawer />', () => {
         it('should stay opened when not swiping far enough', () => {
           // simulate close swipe that doesn't swipe far enough
           const handleClose = spy();
-          render(
+          const screen = render(
             <SwipeableDrawer
               anchor={params.anchor}
               onOpen={() => {}}
@@ -370,7 +370,7 @@ describe('<SwipeableDrawer />', () => {
         it('should slide in a bit when touching near the edge', () => {
           const handleOpen = spy();
           const handleClose = spy();
-          render(
+          const screen = render(
             <SwipeableDrawer
               anchor={params.anchor}
               onOpen={handleOpen}
@@ -436,7 +436,7 @@ describe('<SwipeableDrawer />', () => {
 
     it('should abort when the SwipeableDrawer is closed', () => {
       const handleClose = spy();
-      const { setProps } = render(
+      const screen = render(
         <SwipeableDrawer
           onOpen={() => {}}
           onClose={handleClose}
@@ -456,7 +456,7 @@ describe('<SwipeableDrawer />', () => {
       fireEvent.touchMove(drawer, {
         touches: [new Touch({ identifier: 0, target: drawer, pageX: 180, clientY: 0 })],
       });
-      setProps({
+      screen.setProps({
         open: false,
       });
       fireEvent.touchEnd(drawer, {
@@ -527,7 +527,7 @@ describe('<SwipeableDrawer />', () => {
     describe('prop: allowSwipeInChildren', () => {
       it('should allow swiping on children to open', () => {
         const handleOpen = spy();
-        render(
+        const screen = render(
           <SwipeableDrawer
             anchor={'bottom'}
             allowSwipeInChildren
@@ -593,7 +593,7 @@ describe('<SwipeableDrawer />', () => {
 
       it('should not allow swiping on children to open that are excluded via a function', () => {
         const handleOpen = spy();
-        render(
+        const screen = render(
           <SwipeableDrawer
             anchor={'bottom'}
             allowSwipeInChildren={(event) => {
@@ -746,7 +746,7 @@ describe('<SwipeableDrawer />', () => {
 
     it('should support swipe to close if disableSwipeToOpen is set', () => {
       const handleClose = spy();
-      render(
+      const screen = render(
         <SwipeableDrawer
           disableSwipeToOpen
           onOpen={() => {}}
@@ -780,7 +780,7 @@ describe('<SwipeableDrawer />', () => {
   describe('lock', () => {
     it('should handle a single swipe at the time', () => {
       const handleOpen = spy();
-      render(
+      const screen = render(
         <div>
           <SwipeableDrawer
             onOpen={handleOpen}
@@ -829,7 +829,7 @@ describe('<SwipeableDrawer />', () => {
   });
 
   it('does not crash when updating the parent component while swiping', () => {
-    render(
+    const screen = render(
       <SwipeableDrawer
         onOpen={() => {}}
         onClose={() => {}}
@@ -918,7 +918,7 @@ describe('<SwipeableDrawer />', () => {
       }
 
       const handleClose = spy();
-      render(
+      const screen = render(
         <SwipeableDrawer onOpen={() => {}} onClose={handleClose} anchor="bottom" open>
           <div style={{ height: 10000, flexShrink: 0 }}>
             <div data-testid="drawer">SwipeableDrawer</div>
@@ -980,7 +980,7 @@ describe('<SwipeableDrawer />', () => {
       );
     }
 
-    render(<Test />);
+    const screen = render(<Test />);
     const target = screen.getByTestId('target');
     // Perform a full swipe left to horizontally scroll
     fireEvent.touchStart(target, {
@@ -1020,7 +1020,7 @@ describe('<SwipeableDrawer />', () => {
       );
     }
 
-    render(<Test />);
+    const screen = render(<Test />);
     const target = screen.getByTestId('target');
     // Perform a full swipe left to horizontally scroll
     fireEvent.touchStart(target, {

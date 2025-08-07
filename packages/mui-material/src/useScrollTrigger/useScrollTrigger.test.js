@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, RenderCounter } from '@mui/internal-test-utils';
 import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';
@@ -22,7 +22,7 @@ describe('useScrollTrigger', () => {
         );
       }
 
-      render(<TestDefault />);
+      const screen = render(<TestDefault />);
 
       expect(screen.getByTestId('trigger').textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(1);

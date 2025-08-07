@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -309,7 +309,7 @@ describe('<Menu /> integration', () => {
   });
 
   it('closes the menu when Tabbing while the list is active', async () => {
-    render(<ButtonMenu />);
+    const screen = render(<ButtonMenu />);
 
     const trigger = screen.getByRole('button');
     await act(async () => {

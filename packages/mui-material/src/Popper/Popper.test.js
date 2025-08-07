@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grow from '@mui/material/Grow';
@@ -44,7 +44,7 @@ describe('<Popper />', () => {
 
   describe('prop: placement', () => {
     it('should have top placement', () => {
-      render(
+      const screen = render(
         <Popper {...defaultProps} placement="top">
           {({ placement }) => {
             return <span data-testid="renderSpy" data-placement={placement} />;
@@ -94,7 +94,7 @@ describe('<Popper />', () => {
             </ThemeProvider>
           );
         }
-        render(<Test />);
+        const screen = render(<Test />);
 
         expect(screen.getByTestId('placement')).to.have.text(test.out);
       });
@@ -106,7 +106,7 @@ describe('<Popper />', () => {
         this.skip();
       }
       const popperRef = React.createRef();
-      render(
+      const screen = render(
         <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
           {({ placement }) => {
             return <div data-testid="placement">{placement}</div>;

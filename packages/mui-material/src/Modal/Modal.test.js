@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, within, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent, within } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Fade from '@mui/material/Fade';
 import Modal, { modalClasses as classes } from '@mui/material/Modal';
@@ -130,7 +130,7 @@ describe('<Modal />', () => {
         return <div data-testid="backdrop" />;
       }
 
-      render(
+      const screen = render(
         <Modal open slots={{ backdrop: TestBackdrop }}>
           <div />
         </Modal>,
@@ -163,7 +163,7 @@ describe('<Modal />', () => {
 
         return <div data-testid="backdrop" data-timeout={transitionDuration} />;
       }
-      render(
+      const screen = render(
         <Modal
           open
           slots={{ backdrop: TestBackdrop }}

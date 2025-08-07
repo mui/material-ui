@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { act, createRenderer, reactMajor, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, reactMajor } from '@mui/internal-test-utils';
 import FocusTrap from '@mui/material/Unstable_TrapFocus';
 import Portal from '@mui/material/Portal';
 
@@ -103,7 +103,7 @@ describe('<FocusTrap />', () => {
   });
 
   it('should focus rootRef if no tabbable children are rendered', () => {
-    render(
+    const screen = render(
       <FocusTrap open>
         <div tabIndex={-1} data-testid="root">
           <div>Title</div>
@@ -123,7 +123,7 @@ describe('<FocusTrap />', () => {
         </FocusTrap>
       );
     }
-    const { setProps } = render(<Test />);
+    const screen = render(<Test />);
     const portaledTextbox = screen.getByTestId('portal-input');
     act(() => {
       portaledTextbox.focus();
@@ -132,20 +132,20 @@ describe('<FocusTrap />', () => {
     // sanity check
     expect(portaledTextbox).toHaveFocus();
 
-    setProps({ disableAutoFocus: false });
+    screen.setProps({ disableAutoFocus: false });
 
     expect(portaledTextbox).toHaveFocus();
 
-    setProps({ disableEnforceFocus: true });
+    screen.setProps({ disableEnforceFocus: true });
 
     expect(portaledTextbox).toHaveFocus();
 
-    setProps({ disableRestoreFocus: true });
+    screen.setProps({ disableRestoreFocus: true });
 
     expect(portaledTextbox).toHaveFocus();
 
     // same behavior, just referential equality changes
-    setProps({ isEnabled: () => true });
+    screen.setProps({ isEnabled: () => true });
 
     expect(portaledTextbox).toHaveFocus();
   });
@@ -195,14 +195,14 @@ describe('<FocusTrap />', () => {
         </div>
       );
     }
-    const { setProps } = render(<Test />, {
+    const screen = render(<Test />, {
       // Strict Effects interferes with the premise of the test.
       // It would trigger a focus restore (i.e. a blur event)
       strictEffects: false,
     });
 
     // same behavior, just referential equality changes
-    setProps({ isEnabled: () => true });
+    screen.setProps({ isEnabled: () => true });
 
     expect(screen.getByTestId('root')).toHaveFocus();
     expect(eventLog).to.deep.equal([]);
@@ -219,20 +219,20 @@ describe('<FocusTrap />', () => {
         </div>
       );
     }
-    const { setProps, getByRole } = render(<Test />, { strict: reactMajor <= 18 });
+    const screen = render(<Test />, { strict: reactMajor <= 18 });
     expect(screen.getByTestId('root')).toHaveFocus();
 
     act(() => {
-      getByRole('textbox').focus();
+      screen.getByRole('textbox').focus();
     });
-    expect(getByRole('textbox')).not.toHaveFocus();
+    expect(screen.getByRole('textbox')).not.toHaveFocus();
 
-    setProps({ isEnabled: () => false });
+    screen.setProps({ isEnabled: () => false });
 
     act(() => {
-      getByRole('textbox').focus();
+      screen.getByRole('textbox').focus();
     });
-    expect(getByRole('textbox')).toHaveFocus();
+    expect(screen.getByRole('textbox')).toHaveFocus();
   });
 
   it('restores focus when closed', () => {
@@ -262,9 +262,9 @@ describe('<FocusTrap />', () => {
         </FocusTrap>
       );
     }
-    const { setProps } = render(<Test />);
+    const screen = render(<Test />);
 
-    setProps({ open: false, disableRestoreFocus: false });
+    screen.setProps({ open: false, disableRestoreFocus: false });
 
     // undesired: should be expect(initialFocus).toHaveFocus();
     expect(screen.getByTestId('root')).toHaveFocus();
@@ -280,10 +280,10 @@ describe('<FocusTrap />', () => {
         </FocusTrap>
       );
     }
-    const { setProps } = render(<Test />);
+    const screen = render(<Test />);
 
-    setProps({ disableRestoreFocus: false });
-    setProps({ open: false });
+    screen.setProps({ disableRestoreFocus: false });
+    screen.setProps({ open: false });
 
     // undesired: should be expect(initialFocus).toHaveFocus();
     expect(screen.getByTestId('root')).toHaveFocus();
@@ -307,7 +307,7 @@ describe('<FocusTrap />', () => {
         );
       }
 
-      const { setProps } = render(<WithRemovableElement />);
+      const screen = render(<WithRemovableElement />);
 
       expect(screen.getByTestId('root')).toHaveFocus();
       act(() => {
@@ -315,7 +315,7 @@ describe('<FocusTrap />', () => {
       });
       expect(screen.getByTestId('hide-button')).toHaveFocus();
 
-      setProps({ hideButton: true });
+      screen.setProps({ hideButton: true });
       expect(screen.getByTestId('root')).not.toHaveFocus();
       clock.tick(500); // wait for the interval check to kick in.
       expect(screen.getByTestId('root')).toHaveFocus();
@@ -342,7 +342,7 @@ describe('<FocusTrap />', () => {
       });
 
       it('should trap once the focus moves inside', () => {
-        render(
+        const screen = render(
           <div>
             <input data-testid="outside-input" />
             <FocusTrap open disableAutoFocus>
@@ -387,7 +387,7 @@ describe('<FocusTrap />', () => {
           );
         }
 
-        const { setProps } = render(<Test />);
+        const screen = render(<Test />);
 
         // set the expected focus restore location
         act(() => {
@@ -402,7 +402,7 @@ describe('<FocusTrap />', () => {
         expect(screen.getByTestId('root')).toHaveFocus();
 
         // restore the focus to the first element before triggering the trap
-        setProps({ open: false });
+        screen.setProps({ open: false });
         expect(screen.getByTestId('outside-input')).toHaveFocus();
       });
     });
