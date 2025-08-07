@@ -172,6 +172,7 @@ export interface PaginationItemTypeMap<
  * API:
  *
  * - [PaginationItem API](https://mui.com/material-ui/api/pagination-item/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 
