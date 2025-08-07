@@ -3739,7 +3739,7 @@ Converts all `@mui/material` submodule imports to the root module:
 npx @mui/codemod@latest v5.0.0/top-level-imports <path>
 ```
 
-Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
 
 #### `transitions`
 
