@@ -5,16 +5,18 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from '@mui/docs/Link';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import { useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 // import Divider from '@mui/material/Divider';
-import { useTheme } from '@mui/material/styles';
+
 
 interface SpotlightProps {
   posts: BlogPost[];
 }
 
 function Spotlight({ posts }: SpotlightProps) {
-  const theme = useTheme();
+  const { mode } = useColorScheme();
+  
   return (
     <Container>
       <Box
@@ -57,16 +59,16 @@ function Spotlight({ posts }: SpotlightProps) {
                   height: '100px',
                 }}
               >
-                <img
-                  // src={post.image}
+                <Box
+                  component="img"
                   alt="Company Logo"
-                  style={{
-                    maxWidth: '100%',
+                  src={mode === 'dark' ? post.image.replace('light', 'dark') : post.image}
+                  sx={{
+                    maxWidth: '280px',
+                    maxHeight: '70px',
+                    width: 'auto',
                     height: 'auto',
                   }}
-                  src={
-                    theme.palette.mode === 'dark' ? post.image.replace('light', 'dark') : post.image
-                  }
                 />
               </Box>
             )}

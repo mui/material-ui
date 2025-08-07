@@ -1,9 +1,8 @@
 ---
 title: Athena Intelligence
 description: How Athena Intelligence Accelerated UI Development with MUI X.
-image: '/static/branding/companies/amazon-light.svg'
+image: '/static/branding/companies/athena-light.png'
 date: 2022-06-08T00:00:00.000Z
-authors: ['oliviertassinari']
 tags: ['Case Study', 'Customer']
 manualCard: true
 ---
@@ -17,18 +16,47 @@ manualCard: true
   }
 </style>
 
+<span class="only-light-mode">
 <img
-    id="blog-responsive-image"
-    src="/static/branding/companies/amazon-light.svg"
+  id="blog-responsive-image-light"
+  src="/static/branding/companies/athena-light.png"
+  alt=""
+  style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+/>
+</span>
+<span class="only-dark-mode">
+<img
+    id="blog-responsive-image-dark"
+    src="/static/branding/companies/athena-dark.png"
     alt=""
-    height="230"
-    width="100"
-    style="width: 60%; object-fit: cover; object-position: center; border: 0px;"
+    style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
+</span>
 
-## How Athena Intelligence Accelerated UI Development with MUI X
+How Athena Intelligence Accelerated UI Development with MUI X.
+
+## Overview
 
 Athena Intelligence provides Olympus, world's first AI-native analytics platform designed for seamless human-machine collaboration. Olympus empowers organizations to unlock the full potential of their data and drive intelligent decision-making.
+
+<span class="only-light-mode">
+<blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
+  MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  <br>
+  <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
+    – Brendon Geils, Founder, Athena Intelligence
+  </span>
+</blockquote>
+</span>
+<span class="only-dark-mode">
+<blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
+  MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  <br>
+  <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
+    – Brendon Geils, Founder, Athena Intelligence
+  </span>
+</blockquote>
+</span>
 
 ## Challenge
 
@@ -64,5 +92,3 @@ Athena Intelligence found MUI X's documentation to be highly detailed and struc
 For developers looking to build complex, interactive UI components, Athena Intelligence highly recommends MUI X. Its deep customization options, seamless React integration, and structured documentation make it an excellent choice for UI-heavy applications.
 A defining moment came when the team rapidly implemented direct asset renaming and customized components using MUI X. The ease of integration and instant improvements in interactivity and UI cohesion reinforced the framework's powerful capabilities.
 MUI X is now an essential tool in Athena Intelligence's development stack, enabling rapid, scalable, and high-performance UI solutions.
-
-> "MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure." – Brendon Geils, Founder, Athena Intelligence

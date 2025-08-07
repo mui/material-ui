@@ -1,9 +1,8 @@
 ---
 title: AT&T
-description: How AT&T streamlined performance dashboards with MUI X.
-image: '/static/branding/companies/nasa.svg'
+description: How AT&T streamlined performance dashboards with MUI X.
+image: '/static/branding/companies/atandt-light.svg'
 date: 2022-06-08T00:00:00.000Z
-authors: ['oliviertassinari']
 tags: ['Case Study', 'Customer']
 manualCard: true
 ---
@@ -17,18 +16,47 @@ manualCard: true
   }
 </style>
 
+<span class="only-light-mode">
 <img
-    id="blog-responsive-image"
-    src="/static/branding/companies/amazon-light.svg"
+  id="blog-responsive-image-light"
+  src="/static/branding/companies/atandt-light.svg"
+  alt=""
+  style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+/>
+</span>
+<span class="only-dark-mode">
+<img
+    id="blog-responsive-image-dark"
+    src="/static/branding/companies/atandt-dark.svg"
     alt=""
-    height="230"
-    width="100"
-    style="width: 60%; object-fit: cover; object-position: center; border: 0px;"
+    style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
+</span>
 
-## How AT&T streamlined performance dashboards with MUI X
+How AT&T streamlined performance dashboards with MUI X
+
+## Overview
 
 AT&T, a leading global telecommunications company, develops advanced tools to enhance productivity and performance across its Retail and Call Center teams. Their internal applications, MyResults and MyCOACH, serve as key platforms for performance tracking and coaching within the organization.
+
+<span class="only-light-mode">
+<blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
+  MUI X has enabled us to develop faster and maintain standards across our multiple applications.
+  <br>
+  <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
+    – Bliss Keith, AT&T
+  </span>
+</blockquote>
+</span>
+<span class="only-dark-mode">
+<blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
+  MUI X has enabled us to develop faster and maintain standards across our multiple applications.
+  <br>
+  <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
+    – Bliss Keith, AT&T
+  </span>
+</blockquote>
+</span>
 
 ## Challenge
 
@@ -57,5 +85,3 @@ AT&T's developers found MUI X documentation to be clear and reliable, ensuring 
 ## Recommendation
 
 AT&T recommends MUI X for teams looking to build scalable, standardized, and customizable UI components. MUI X enabled seamless integration and customization, reinforcing its value as a go-to UI framework for AT&T's internal tools.
-
-> "MUI X has enabled us to develop faster and maintain standards across our multiple applications." – Bliss Keith, AT&T
