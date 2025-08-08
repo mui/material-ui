@@ -1,4 +1,7 @@
 import { defineProject, coverageConfigDefaults } from 'vitest/config';
+import * as path from 'path';
+
+const MONOREPO_ROOT = path.resolve(__dirname, '.');
 
 const BROWSER_TESTS = ['{docs,packages{-internal,}/*}/vitest.config.browser.mts'];
 const NODE_TESTS = ['{docs,packages{-internal,}/*}/vitest.config.mts'];
@@ -22,6 +25,22 @@ export default defineProject({
     projects: getProjects(),
     sequence: {
       hooks: 'list',
+    },
+    reporters: ['default', 'junit'],
+    outputFile: 'test-results/junit.xml',
+    coverage: {
+      provider: 'v8',
+      reporter: process.env.CI ? ['lcovonly'] : ['text'],
+      reportsDirectory: path.resolve(MONOREPO_ROOT, 'coverage'),
+      ignoreEmptyLines: true,
+      include: ['packages/*/src/**'],
+      exclude: [
+        '**/__fixtures__/**',
+        'packages/mui-icons-material/src/**',
+        'packages/mui-codemod/src/**/{test-cases,*.test}/**',
+        '**/{postcss,vitest}.config.*',
+        ...coverageConfigDefaults.exclude,
+      ],
     },
   },
 });

@@ -66,23 +66,6 @@ export default async function create(
       'process.env.CI': process.env.CI ? JSON.stringify(process.env.CI) : 'undefined',
     },
     test: {
-      reporters: ['default', 'junit'],
-      outputFile: 'test-results/junit.xml',
-      coverage: {
-        provider: 'v8',
-        reporter: process.env.CI ? ['lcovonly'] : ['text'],
-        reportsDirectory: path.resolve(MONOREPO_ROOT, 'coverage'),
-        ignoreEmptyLines: true,
-        include: ['packages/*/src/**'],
-        exclude: [
-          '**/__fixtures__/**',
-          'packages/mui-icons-material/src/**',
-          'packages/mui-codemod/src/**/{test-cases,*.test}/**',
-          '**/{postcss,vitest}.config.*',
-          '**/build/**',
-          ...coverageConfigDefaults.exclude,
-        ],
-      },
       name,
       exclude: ['**/node_modules/**', '**/build/**', '**/*.spec.*', '**/.next/**', ...excludes],
       globals: true,
