@@ -74,10 +74,30 @@
     "import { PaginationItem } from '@mui/material';"
   ],
   "slots": [
-    { "name": "first", "description": "", "class": null },
-    { "name": "last", "description": "", "class": null },
-    { "name": "next", "description": "", "class": null },
-    { "name": "previous", "description": "", "class": null }
+    {
+      "name": "first",
+      "description": "The component that renders the first page slot.",
+      "default": "FirstPageIcon",
+      "class": null
+    },
+    {
+      "name": "last",
+      "description": "The component that renders the last page slot.",
+      "default": "LastPageIcon",
+      "class": null
+    },
+    {
+      "name": "next",
+      "description": "The component that renders the next page slot.",
+      "default": "NavigateNextIcon",
+      "class": null
+    },
+    {
+      "name": "previous",
+      "description": "The component that renders the previous page slot.",
+      "default": "NavigateBeforeIcon",
+      "class": null
+    }
   ],
   "classes": [
     {
