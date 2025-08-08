@@ -38,6 +38,11 @@ const TimelineItemRoot = styled('li', {
   display: 'flex',
   position: 'relative',
   minHeight: 70,
+  [`&:not(:has(.${timelineOppositeContentClasses.root}))::before`]: {
+    content: '""',
+    flex: 1,
+    padding: '6px 16px',
+  },
   ...(ownerState.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
@@ -52,27 +57,22 @@ const TimelineItemRoot = styled('li', {
       },
     },
   }),
-  ...(!ownerState.hasOppositeContent && {
-    '&::before': {
-      content: '""',
-      flex: 1,
-      padding: '6px 16px',
-    },
-  }),
 }));
 
 const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimelineItem' });
   const { position: positionProp, className, ...other } = props;
   const { position: positionContext } = React.useContext(TimelineContext);
+  const [hasOppositeContent, setHasOppositeContent] = React.useState(false);
 
-  let hasOppositeContent = false;
-
-  React.Children.forEach(props.children, (child) => {
-    if (isMuiElement(child, ['TimelineOppositeContent'])) {
-      hasOppositeContent = true;
-    }
-  });
+  React.useEffect(() => {
+    React.Children.forEach(props.children, (child) => {
+      if (isMuiElement(child, ['TimelineOppositeContent'])) {
+        setHasOppositeContent(true);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const ownerState = {
     ...props,
