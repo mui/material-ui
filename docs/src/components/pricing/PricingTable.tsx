@@ -460,7 +460,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'charts/legend': <ColumnHead label="Legend" href="/x/react-charts/legend/" />,
   'charts/tooltip': <ColumnHead label="Tooltip" href="/x/react-charts/tooltip/" />,
   'charts/zoom-and-pan': <ColumnHead label="Zoom & Pan" href="/x/react-charts/zoom-and-pan/" />,
-  'charts/export': <ColumnHead label="Export" />,
+  'charts/export': <ColumnHead label="Export" href="/x/react-charts/export/" />,
   // charts - datagrid
   'charts/cell-with-charts': (
     <ColumnHead label="Cell with chart" href="/x/react-data-grid/custom-columns/#sparkline" />
@@ -694,7 +694,7 @@ const communityData: Record<string, React.ReactNode> = {
   'charts/sparkline': yes,
   'charts/gauge': yes,
   'charts/heatmap': no,
-  'charts/treemap': pending,
+  'charts/treemap': no,
   'charts/radar': yes,
   'charts/funnel': no,
   'charts/sankey': no,
@@ -804,7 +804,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/radar': yes,
   'charts/funnel': yes,
   'charts/sankey': pending,
-  'charts/gantt': pending,
+  'charts/gantt': no,
   'charts/gantt-advanced': no,
   'charts/candlestick': no,
   'charts/large-dataset': no,
@@ -812,7 +812,7 @@ const proData: Record<string, React.ReactNode> = {
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/zoom-and-pan': yes,
-  'charts/export': pending,
+  'charts/export': yes,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
@@ -917,7 +917,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/zoom-and-pan': yes,
-  'charts/export': pending,
+  'charts/export': yes,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
@@ -1011,8 +1011,8 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'charts/gauge': yes,
   'charts/heatmap': yes,
   'charts/treemap': pending,
-  'charts/radar': pending,
-  'charts/funnel': pending,
+  'charts/radar': yes,
+  'charts/funnel': yes,
   'charts/sankey': pending,
   'charts/gantt': pending,
   'charts/gantt-advanced': toBeDefined,
@@ -1022,7 +1022,7 @@ const enterpriseData: Record<string, React.ReactNode> = {
   'charts/legend': yes,
   'charts/tooltip': yes,
   'charts/zoom-and-pan': yes,
-  'charts/export': pending,
+  'charts/export': yes,
   // charts - datagrid
   'charts/cell-with-charts': yes,
   'charts/filter-interaction': pending,
@@ -1251,9 +1251,6 @@ export default function PricingTable({
         columnHeaderHidden ? '0px' : '200px'
       }, 1fr))`,
     },
-    width: '100%',
-    maxWidth: '100%',
-    overflow: 'auto',
   };
   const nestedGridSx = {
     ...gridSx,
@@ -1553,11 +1550,11 @@ export default function PricingTable({
           {divider}
           {renderNestedRow('charts/radar')}
           {divider}
-          {renderNestedRow('charts/treemap')}
-          {divider}
           {renderNestedRow('charts/heatmap')}
           {divider}
           {renderNestedRow('charts/funnel')}
+          {divider}
+          {renderNestedRow('charts/treemap')}
           {divider}
           {renderNestedRow('charts/sankey')}
           {divider}
