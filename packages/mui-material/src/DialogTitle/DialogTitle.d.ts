@@ -5,7 +5,7 @@ import { Theme } from '../styles';
 import { TypographyTypeMap } from '../Typography';
 import { DialogTitleClasses } from './dialogTitleClasses';
 
-export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes'> {
+export interface DialogTitleOwnProps extends Omit<TypographyTypeMap['props'], 'classes' | 'sx'> {
   /**
    * The content of the component.
    */
