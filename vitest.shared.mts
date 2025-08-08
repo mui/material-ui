@@ -79,6 +79,7 @@ export default async function create(
           'packages/mui-icons-material/src/**',
           'packages/mui-codemod/src/**/{test-cases,*.test}/**',
           '**/{postcss,vitest}.config.*',
+          '**/build/**',
           ...coverageConfigDefaults.exclude,
         ],
       },
