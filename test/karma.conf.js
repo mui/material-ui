@@ -85,6 +85,7 @@ module.exports = function setKarmaConfig(config) {
       'karma-sourcemap-loader',
       'karma-webpack',
       'karma-firefox-launcher',
+      'karma-spec-reporter',
     ],
     /**
      * possible values:
@@ -105,7 +106,7 @@ module.exports = function setKarmaConfig(config) {
     },
     // The CI branch fixes double log issue
     // https://github.com/karma-runner/karma/issues/2342
-    reporters: ['dots', ...(CI ? ['coverage-istanbul'] : [])],
+    reporters: CI ? ['dots', 'coverage-istanbul'] : ['spec'],
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
@@ -199,7 +200,7 @@ module.exports = function setKarmaConfig(config) {
     customLaunchers: {
       chromeHeadless: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox'],
+        flags: ['--no-sandbox', '--use-mock-keychain'],
       },
     },
     singleRun: CI,

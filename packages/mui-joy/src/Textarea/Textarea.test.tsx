@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen, act, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, act, fireEvent } from '@mui/internal-test-utils';
 import Textarea, { textareaClasses as classes } from '@mui/joy/Textarea';
 import { ThemeProvider } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
@@ -38,12 +38,12 @@ describe('Joy <Textarea />', () => {
   });
 
   it('should have startDecorator', () => {
-    render(<Textarea startDecorator={<span data-testid="start">start</span>} />);
+    const screen = render(<Textarea startDecorator={<span data-testid="start">start</span>} />);
     expect(screen.getByTestId('start')).toBeVisible();
   });
 
   it('should have endDecorator', () => {
-    render(<Textarea endDecorator={<span data-testid="end">end</span>} />);
+    const screen = render(<Textarea endDecorator={<span data-testid="end">end</span>} />);
     expect(screen.getByTestId('end')).toBeVisible();
   });
 

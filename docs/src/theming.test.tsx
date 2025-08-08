@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme, useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { THEME_ID as JOY_THEME_ID, extendTheme } from '@mui/joy/styles';
@@ -29,7 +29,7 @@ describe('docs demo theming', () => {
   const { render } = createRenderer();
 
   it('should inherit the theme.palette.mode from upper theme', () => {
-    render(
+    const screen = render(
       <UpperProvider>
         <DemoInstanceThemeProvider runtimeTheme={undefined}>
           <Box

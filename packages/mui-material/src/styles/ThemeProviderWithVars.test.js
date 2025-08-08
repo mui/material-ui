@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Box from '@mui/material/Box';
 import {
   CssVarsProvider,
@@ -68,7 +68,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider theme={extendTheme({ colorSchemes: { light: true, dark: true } })}>
           <Vars />
         </CssVarsProvider>,
@@ -207,7 +207,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -233,7 +233,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -335,7 +335,10 @@ describe('[Material UI] ThemeProviderWithVars', () => {
   });
 
   it("should use numeric values in system's spacing", function test() {
-    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
+    if (
+      window.navigator.userAgent.includes('jsdom') ||
+      !/WebKit/.test(window.navigator.userAgent)
+    ) {
       this.skip();
     }
 
@@ -375,7 +378,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       const { setMode } = useColorScheme();
       return <button onClick={() => setMode('dark')}>Dark</button>;
     }
-    render(
+    const screen = render(
       <ThemeProvider
         theme={createTheme({ cssVariables: true, colorSchemes: { light: true, dark: true } })}
       >
@@ -395,7 +398,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
       const { setMode } = useColorScheme();
       return <button onClick={() => setMode('dark')}>Dark</button>;
     }
-    render(
+    const screen = render(
       <ThemeProvider
         theme={createTheme({
           cssVariables: { colorSchemeSelector: 'class' },
@@ -435,7 +438,7 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    render(<App />);
+    const screen = render(<App />);
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -468,13 +471,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const screen = render(<App />);
 
-    expect(container).to.have.text(`2 light`);
+    expect(screen.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(`2 light`);
+    expect(screen.container).to.have.text(`2 light`);
   });
 
   it('palette mode should change if not using CSS variables', () => {
@@ -503,13 +506,13 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const screen = render(<App />);
 
-    expect(container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
+    expect(screen.container).to.have.text(`2 light ${createTheme().palette.primary.main}`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(
+    expect(screen.container).to.have.text(
       `3 dark ${createTheme({ palette: { mode: 'dark' } }).palette.primary.main}`,
     );
   });
@@ -540,12 +543,12 @@ describe('[Material UI] ThemeProviderWithVars', () => {
         </ThemeProvider>
       );
     }
-    const { container } = render(<App />);
+    const screen = render(<App />);
 
-    expect(container).to.have.text(`2 light`);
+    expect(screen.container).to.have.text(`2 light`);
 
     fireEvent.click(screen.getByRole('button'));
 
-    expect(container).to.have.text(`3 dark`);
+    expect(screen.container).to.have.text(`3 dark`);
   });
 });

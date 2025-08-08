@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { act, createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { Popper as PopperUnstyled } from '@mui/base/Popper';
 import { DropdownContext, DropdownContextValue } from '@mui/base/useDropdown';
 import { ThemeProvider } from '@mui/joy/styles';
@@ -50,13 +50,13 @@ describe('Joy <Menu />', () => {
   anchorEl.setAttribute('aria-controls', 'test');
 
   it('should render with `ul` by default', () => {
-    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
+    const screen = render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
     expect(screen.getByTestId('popover')).to.have.tagName('ul');
   });
 
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
-    render(
+    const screen = render(
       <Dropdown open onOpenChange={handleClose}>
         <MenuButton />
         <Menu>
@@ -77,7 +77,7 @@ describe('Joy <Menu />', () => {
   });
 
   it('renders its children only when open', () => {
-    const { setProps } = render(
+    const screen = render(
       <Menu anchorEl={anchorEl} open={false}>
         <div data-testid="children" />
       </Menu>,
@@ -85,19 +85,19 @@ describe('Joy <Menu />', () => {
 
     expect(screen.queryByTestId('children')).to.equal(null);
 
-    setProps({ open: true });
+    screen.setProps({ open: true });
 
     expect(screen.getByTestId('children')).not.to.equal(null);
   });
 
   it('should have role="menu"', () => {
-    render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
+    const screen = render(<Menu anchorEl={anchorEl} open data-testid="popover" />);
 
     expect(screen.getByTestId('popover')).to.have.attribute('role', 'menu');
   });
 
   it('ignores invalid children', () => {
-    render(
+    const screen = render(
       <Menu anchorEl={anchorEl} open>
         {null}
         <span role="menuitem">hello</span>
@@ -113,19 +113,19 @@ describe('Joy <Menu />', () => {
 
   describe('classnames', () => {
     it('size prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open size="sm" />);
+      const screen = render(<Menu anchorEl={anchorEl} data-testid="menu" open size="sm" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.sizeSm);
     });
 
     it('variant prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open variant="soft" />);
+      const screen = render(<Menu anchorEl={anchorEl} data-testid="menu" open variant="soft" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.variantSoft);
     });
 
     it('color prop', () => {
-      render(<Menu anchorEl={anchorEl} data-testid="menu" open color="primary" />);
+      const screen = render(<Menu anchorEl={anchorEl} data-testid="menu" open color="primary" />);
 
       expect(screen.getByTestId('menu')).to.have.class(classes.colorPrimary);
     });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createRenderer, screen } from '@mui/internal-test-utils';
+import { act, createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import ToggleButtonGroup, { toggleButtonGroupClasses as classes } from '@mui/joy/ToggleButtonGroup';
 import Button from '@mui/joy/Button';
@@ -35,7 +35,7 @@ describe('<ToggleButtonGroup />', () => {
   });
 
   it('should disable all ToggleButton if disabled prop is passed', () => {
-    render(
+    const screen = render(
       <ToggleButtonGroup disabled>
         <Button value="one">1</Button>
         <IconButton value="two">2</IconButton>

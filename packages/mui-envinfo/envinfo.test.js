@@ -17,7 +17,7 @@ describe('@mui/envinfo', () => {
 
   it('includes info about the environment relevant to MUI', function test() {
     // only run in node
-    if (!/jsdom/.test(window.navigator.userAgent)) {
+    if (!window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

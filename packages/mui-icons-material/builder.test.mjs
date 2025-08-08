@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import fse from 'fs-extra';
 import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder.mjs';
 
-const currentDirectory = fileURLToPath(new URL('.', import.meta.url));
+const currentDirectory = path.dirname(fileURLToPath(new URL(import.meta.url)));
 
 const DISABLE_LOG = true;
 
@@ -43,15 +43,27 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    beforeEach(async function beforeEachHook() {
-      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
-      options.outputDir = path.join(
-        os.tmpdir(),
-        'material-ui-icons-builder-test',
-        this.currentTest.fullTitle(),
-      );
-      await fse.emptyDir(options.outputDir);
-    });
+    beforeEach(
+      process.env.VITEST
+        ? async function beforeEachHook(ctx) {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              ctx.task.name,
+            );
+            await fse.emptyDir(options.outputDir);
+          }
+        : async function beforeEachHook() {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              this.currentTest.fullTitle(),
+            );
+            await fse.emptyDir(options.outputDir);
+          },
+    );
 
     it('script outputs to directory', async () => {
       await handler(options);
@@ -70,15 +82,27 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    beforeEach(async function beforeEachHook() {
-      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
-      options.outputDir = path.join(
-        os.tmpdir(),
-        'material-ui-icons-builder-test',
-        this.currentTest.fullTitle(),
-      );
-      await fse.emptyDir(options.outputDir);
-    });
+    beforeEach(
+      process.env.VITEST
+        ? async function beforeEachHook(ctx) {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              ctx.task.name,
+            );
+            await fse.emptyDir(options.outputDir);
+          }
+        : async function beforeEachHook() {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              this.currentTest.fullTitle(),
+            );
+            await fse.emptyDir(options.outputDir);
+          },
+    );
 
     it('script outputs to directory', async () => {
       await handler(options);
@@ -111,15 +135,27 @@ describe('builder', () => {
       outputDir: null,
     };
 
-    beforeEach(async function beforeEachHook() {
-      // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
-      options.outputDir = path.join(
-        os.tmpdir(),
-        'material-ui-icons-builder-test',
-        this.currentTest.fullTitle(),
-      );
-      await fse.emptyDir(options.outputDir);
-    });
+    beforeEach(
+      process.env.VITEST
+        ? async function beforeEachHook(ctx) {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              ctx.task.name,
+            );
+            await fse.emptyDir(options.outputDir);
+          }
+        : async function beforeEachHook() {
+            // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
+            options.outputDir = path.join(
+              os.tmpdir(),
+              'material-ui-icons-builder-test',
+              this.currentTest.fullTitle(),
+            );
+            await fse.emptyDir(options.outputDir);
+          },
+    );
 
     it('should produce the expected output', async () => {
       await handler(options);

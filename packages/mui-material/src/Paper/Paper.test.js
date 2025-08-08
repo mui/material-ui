@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import {
-  createRenderer,
-  strictModeDoubleLoggingSuppressed,
-  screen,
-} from '@mui/internal-test-utils';
+import { createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import Paper, { paperClasses as classes } from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import describeConformance from '../../test/describeConformance';
@@ -116,7 +112,7 @@ describe('<Paper />', () => {
   });
 
   it('should have no boxShadow or background-image on Paper with elevation 0 in dark mode using CSS variables', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -128,7 +124,7 @@ describe('<Paper />', () => {
       defaultColorScheme: 'dark',
     });
 
-    render(
+    const screen = render(
       <ThemeProvider theme={theme}>
         <Paper data-testid="parent" elevation={23}>
           elevation=23

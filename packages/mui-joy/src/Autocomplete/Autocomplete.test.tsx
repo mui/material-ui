@@ -256,7 +256,7 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -280,7 +280,7 @@ describe('Joy <Autocomplete />', () => {
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         expect(getAllByRole('button', { hidden: false })).to.have.lengthOf(5);
       }
     });
@@ -531,42 +531,42 @@ describe('Joy <Autocomplete />', () => {
       expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
-    it('should fail validation if a required field has no value', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+    it('should fail validation if a required field has no value', async function test() {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         this.skip();
       }
 
       const handleSubmit = spy((event) => event.preventDefault());
-      render(
+      const { user } = render(
         <form onSubmit={handleSubmit}>
           <Autocomplete multiple options={['one', 'two']} required value={[]} />
           <button type="submit">Submit</button>
         </form>,
       );
 
-      screen.getByRole('button', { name: 'Submit' }).click();
+      await user.click(screen.getByRole('button', { name: 'Submit' }));
 
       expect(handleSubmit.callCount).to.equal(0);
     });
 
-    it('should fail validation if a required field has a value', function test() {
+    it('should fail validation if a required field has a value', async function test() {
       // Unclear how native Constraint validation can be enabled for `multiple`
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Enable once https://github.com/jsdom/jsdom/issues/2898 is resolved
         // The test is passing in JSDOM but form validation is buggy in JSDOM so we rather skip than have false confidence
         this.skip();
       }
 
       const handleSubmit = spy((event) => event.preventDefault());
-      render(
+      const { user } = render(
         <form onSubmit={handleSubmit}>
           <Autocomplete multiple options={['one', 'two']} required value={['one']} />
           <button type="submit">Submit</button>
         </form>,
       );
 
-      screen.getByRole('button', { name: 'Submit' }).click();
+      await user.click(screen.getByRole('button', { name: 'Submit' }));
 
       expect(handleSubmit.callCount).to.equal(0);
     });
@@ -932,7 +932,7 @@ describe('Joy <Autocomplete />', () => {
     it('should ignore keydown event until the IME is confirmed', function test() {
       // TODO: Often times out in Firefox 78.
       // Is this slow because of testing-library or because of the implementation?
-      this.timeout(4000);
+      this?.timeout?.(4000);
 
       const { getByRole } = render(<Autocomplete open options={['가1', '가2']} autoFocus />);
       const textbox = getByRole('combobox');
@@ -1283,7 +1283,7 @@ describe('Joy <Autocomplete />', () => {
 
   describe('prop: options', () => {
     it('should scroll selected option into view when multiple elements with role as listbox available', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       render(
