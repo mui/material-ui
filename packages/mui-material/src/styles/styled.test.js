@@ -6,7 +6,6 @@ import styled from './styled';
 import ThemeProvider from './ThemeProvider';
 
 describe('styled', () => {
-  console.log('jooow');
   const { render } = createRenderer();
 
   it('should work', () => {
