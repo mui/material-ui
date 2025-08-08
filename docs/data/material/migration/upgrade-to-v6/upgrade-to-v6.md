@@ -145,6 +145,13 @@ yarn add react-is@18.3.1
 
 </codeblock>
 
+#### Why is this needed?
+
+Material UI v6 uses `react-is@19`, which changed how React elements are identified.
+
+If you're on React 18 or below, mismatched versions of `react-is` can cause runtime errors in prop type checks.
+Forcing `react-is` to match your React version prevents these errors.
+
 ### Minimum TypeScript version
 
 The minimum supported version of TypeScript has been increased from v3.5 to 4.7.
