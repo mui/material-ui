@@ -14,9 +14,8 @@
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.?(c|m)[jt]s?(x)'",
     "prebuild": "rimraf build",
-    "build:node": "node ../../scripts/build.mjs node --out-dir ./build",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs codemod.js",
-    "build": "pnpm build:node && pnpm build:copy-files",
+    "build:copy-files": "code-infra copy-files codemod.js",
+    "build": "code-infra build --bundle cjs --buildTypes false && pnpm build:copy-files",
     "release": "pnpm build && pnpm publish"
   },
   "repository": {
