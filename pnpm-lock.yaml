@@ -181,6 +181,9 @@ importers:
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
+      chokidar:
+        specifier: ^4.0.3
+        version: 4.0.3
       compression-webpack-plugin:
         specifier: ^11.1.0
         version: 11.1.0(webpack@5.101.0)
