@@ -282,10 +282,10 @@ If you were using `size="normal"`, update it to `size="medium"`:
 +<InputLabel size="medium">Label</InputLabel>
 
 -<TextField size="normal">Text</TextField>
-+<TextField size="medium>Text</TextField>
++<TextField size="medium">Text</TextField>
 
 -<Button size="normal">Button</Button>
-+<Button size="medium>Button</Button>
++<Button size="medium">Button</Button>
 ```
 
 The default behavior remains unchanged, so no updates are needed unless you explicitly set `size="normal"`.
