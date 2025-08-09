@@ -275,6 +275,8 @@ Depending on your project, you may follow one of the following approaches:
 
 The `size` prop for `InputLabel` now follows the standard naming convention used across other components like `Button` and `TextField`. `'normal'` has been replaced with `'medium'` for consistency.
 
+> **Note:** Because the default size of `InputLabel` was changed from `normal` to `medium`, the class name `MuiInputLabel‑sizeMedium` is no longer added. If you relied on this class for custom styling, apply your own class to the `TextField` or use the `sx` prop to target the label.
+
 If you were using `size="normal"`, update it to `size="medium"`:
 
 ```diff
