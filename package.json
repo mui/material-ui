@@ -164,7 +164,7 @@
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.0",
+    "fs-extra": "^11.3.1",
     "git-url-parse": "^16.1.0",
     "globby": "^14.1.0",
     "jsonc-parser": "^3.3.1",
