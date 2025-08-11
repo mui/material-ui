@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "7.1.1",
+  "version": "7.3.1",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
   "main": "./src/index.js",
@@ -33,7 +33,7 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6",
+    "@babel/runtime": "^7.28.2",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -44,11 +44,11 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.19.1",
+    "@types/node": "^20.19.9",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.8",
-    "next": "^15.3.4",
-    "react": "^19.1.0"
+    "@types/react": "^19.1.9",
+    "next": "^15.4.5",
+    "react": "^19.1.1"
   },
   "peerDependencies": {
     "@mui/base": "*",

@@ -55,6 +55,9 @@ const StatRoot = styled('div', {
   boxShadow: theme.shadows[2],
   letterSpacing: '-0.025em',
   fontWeight: 600,
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'inherit',
+  }),
 }));
 
 const StatValue = styled('div', {
@@ -181,6 +184,9 @@ Then you can read `ownerState` in the slot to style it based on the `variant` pr
     boxShadow: theme.shadows[2],
     letterSpacing: '-0.025em',
     fontWeight: 600,
+    ...theme.applyStyles('dark', {
+      backgroundColor: 'inherit',
+    }),
 +   ...ownerState.variant === 'outlined' && {
 +    border: `2px solid ${theme.palette.divider}`,
 +   },
@@ -257,6 +263,9 @@ const StatRoot = styled('div', {
   boxShadow: theme.shadows[2],
   letterSpacing: '-0.025em',
   fontWeight: 600,
+  ...theme.applyStyles('dark', {
+    backgroundColor: 'inherit',
+  }),
   // typed-safe access to the `variant` prop
   ...(ownerState.variant === 'outlined' && {
     border: `2px solid ${theme.palette.divider}`,
