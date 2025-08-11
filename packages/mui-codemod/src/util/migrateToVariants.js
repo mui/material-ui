@@ -135,9 +135,9 @@ export const getObjectToArrowFunction = (j) => {
     /**
      *
      * @param {import('jscodeshift').ObjectExpression} objectExpression
-     * @param {import('jscodeshift').BinaryExpression} addtional
+     * @param {import('jscodeshift').BinaryExpression} additional
      */
-    function objectToArrowFunction(objectExpression, addtional) {
+    function objectToArrowFunction(objectExpression, additional) {
       const paramKeys = new Set();
       let left;
       objectExpression.properties.forEach((prop, index) => {
@@ -149,12 +149,12 @@ export const getObjectToArrowFunction = (j) => {
           left = j.logicalExpression('&&', left, result);
         }
       });
-      if (addtional) {
-        paramKeys.add(getObjectKey(addtional.left).name);
+      if (additional) {
+        paramKeys.add(getObjectKey(additional.left).name);
       }
       return buildArrowFunctionAST(
         paramKeys,
-        addtional ? j.logicalExpression('&&', left, addtional) : left,
+        additional ? j.logicalExpression('&&', left, additional) : left,
       );
     }
   );
