@@ -1,7 +1,7 @@
 ---
 title: Oregon State University
-description: How Oregon State University Transformed Course Planning with MUI X's Data Grid.
-image: 'https://mui.com/static/branding/companies/oregon.svg'
+description: How Oregon State University Transformed Course Planning with MUI X's Data Grid.
+image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/oregon.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true
@@ -23,7 +23,7 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How Oregon State University Transformed Course Planning with MUI X Data Grid.
+How Oregon State University Transformed Course Planning with MUI X Data Grid.
 
 ## Overview
 
@@ -56,11 +56,11 @@ The university needed a robust solution to handle tabular data efficiently. Plan
 - The need for an Excel-like experience in a web-based tool.
 - Finding a framework that was well-supported, actively maintained, and native to React.
 - Ensuring high performance and customization while keeping the UI intuitive.
-  While alternatives like AG Grid were considered, MUI X was preferred because it is deeply integrated with React, whereas AG Grid's approach spans multiple frameworks, leading to inconsistencies in React-specific implementations.
+  While alternatives like AG Grid were considered, MUI X was preferred because it is deeply integrated with React, whereas AG Grid's approach spans multiple frameworks, leading to inconsistencies in React-specific implementations.
 
 ## Solution
 
-The team adopted MUI X's Data Grid as the core component for handling tabular data. This choice was driven by its extensive feature set, including:
+The team adopted MUI X's Data Grid as the core component for handling tabular data. This choice was driven by its extensive feature set, including:
 
 - Column manipulation – Moving, sorting, filtering, and grouping columns for enhanced usability.
 - Row grouping – Organizing complex datasets for better visualization.
@@ -74,7 +74,7 @@ The Data Grid's customization capabilities allowed the team to build an interfac
 - Faster and more intuitive workflows – Replacing spreadsheets with an interactive grid improved efficiency in faculty and course planning.
 - Custom editing interfaces – In-cell editing for simple data and modal-based forms for complex changes streamlined data management.
 - Seamless system integration – Real-time enrollment data updates reduced manual input errors.
-- Developer-friendly implementation – MUI X's well-structured documentation and conventions enabled smooth adoption.
+- Developer-friendly implementation – MUI X's well-structured documentation and conventions enabled smooth adoption.
 
 ## Recommendation
 

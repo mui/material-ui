@@ -1,7 +1,7 @@
 ---
 title: Delivery Hero
-description: How DeliveryHero Partner Portal Streamlined Development with MUI X.
-image: 'https://mui.com/static/branding/companies/deliveryhero.svg'
+description: How DeliveryHero Partner Portal Streamlined Development with MUI X.
+image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/deliveryhero.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true
@@ -14,7 +14,7 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How DeliveryHero Partner Portal Streamlined Development with MUI X
+How DeliveryHero Partner Portal Streamlined Development with MUI X
 
 ## Overview
 
@@ -22,7 +22,7 @@ DeliveryHero Partner Portal provides restaurant and local shop management soluti
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  By leveraging MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
+  By leveraging MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – Ahmed Ibrahim, Senior Manager Software Engineering | Vendor Growth, Delivery Hero
@@ -31,7 +31,7 @@ DeliveryHero Partner Portal provides restaurant and local shop management soluti
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  By leveraging MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
+  By leveraging MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
     – Ahmed Ibrahim, Senior Manager Software Engineering | Vendor Growth, Delivery Hero

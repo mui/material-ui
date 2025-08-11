@@ -1,7 +1,7 @@
 ---
 title: CGI
-description: How CGI's Techyon Project Enhanced Performance & Usability with MUI X.
-image: 'https://mui.com/static/branding/companies/cgi.svg'
+description: How CGI's Techyon Project Enhanced Performance & Usability with MUI X.
+image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/cgi.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true
@@ -23,7 +23,7 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How CGI's Techyon Project Enhanced Performance & Usability with MUI X
+How CGI's Techyon Project Enhanced Performance & Usability with MUI X
 
 ## Overview
 

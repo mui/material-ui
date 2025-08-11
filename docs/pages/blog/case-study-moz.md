@@ -1,7 +1,7 @@
 ---
 title: Moz
-description: How Moz Optimized Large-Scale Keyword Analysis with MUI X.
-image: 'https://mui.com/static/branding/companies/moz.svg'
+description: How Moz Optimized Large-Scale Keyword Analysis with MUI X.
+image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/moz.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true
@@ -23,7 +23,7 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How Moz Optimized Large-Scale Keyword Analysis with MUI X
+How Moz Optimized Large-Scale Keyword Analysis with MUI X
 
 ## Overview
 
@@ -59,16 +59,16 @@ Moz needed a UI framework that could handle:
 
 ## Solution
 
-To meet these challenges, Moz integrated MUI X Premium, leveraging its Data Grid and Date Picker components to create an optimized, interactive, and scalable UI. Key benefits of using MUI X:
+To meet these challenges, Moz integrated MUI X Premium, leveraging its Data Grid and Date Picker components to create an optimized, interactive, and scalable UI. Key benefits of using MUI X:
 
 - Optimized DX & UX – A developer-friendly and intuitive user experience.
 - Advanced Customization – Built highly tailored components using Data Grid API refs.
-- Scalability – Handled large keyword datasets efficiently with MUI X's performance optimizations.
+- Scalability – Handled large keyword datasets efficiently with MUI X's performance optimizations.
 - Faster Development – Accelerated UI implementation across the platform.
 
 ## Results
 
-By adopting MUI X, Moz achieved:
+By adopting MUI X, Moz achieved:
 
 - Seamless data handling – Efficiently displayed and interacted with vast amounts of keyword data.
 - Enhanced customization – Developed custom filtering and column management features.
