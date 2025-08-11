@@ -9,14 +9,13 @@ import { useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 // import Divider from '@mui/material/Divider';
 
-
 interface SpotlightProps {
   posts: BlogPost[];
 }
 
 function Spotlight({ posts }: SpotlightProps) {
   const { mode } = useColorScheme();
-  
+
   return (
     <Container>
       <Box

@@ -1,7 +1,7 @@
 ---
 title: Moz
 description: How Moz Optimized Large-Scale Keyword Analysis with MUI X.
-image: '/static/branding/companies/moz.svg'
+image: 'https://mui.com/static/branding/companies/moz.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true

@@ -1,7 +1,7 @@
 ---
 title: Oregon State University
 description: How Oregon State University Transformed Course Planning with MUI X's Data Grid.
-image: '/static/branding/companies/oregon.svg'
+image: 'https://mui.com/static/branding/companies/oregon.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true
@@ -56,7 +56,7 @@ The university needed a robust solution to handle tabular data efficiently. Plan
 - The need for an Excel-like experience in a web-based tool.
 - Finding a framework that was well-supported, actively maintained, and native to React.
 - Ensuring high performance and customization while keeping the UI intuitive.
-While alternatives like AG Grid were considered, MUI X was preferred because it is deeply integrated with React, whereas AG Grid's approach spans multiple frameworks, leading to inconsistencies in React-specific implementations.
+  While alternatives like AG Grid were considered, MUI X was preferred because it is deeply integrated with React, whereas AG Grid's approach spans multiple frameworks, leading to inconsistencies in React-specific implementations.
 
 ## Solution
 

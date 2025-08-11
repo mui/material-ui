@@ -322,8 +322,7 @@ export default function TopLayoutCaseStudy(props) {
   const router = useRouter();
   const slug = router.pathname.replace(/(.*)\/(.*)/, '$2');
   const { canonicalAsServer } = pathnameToLanguage(router.asPath);
-  const card = `/static/blog/${slug}/card.png`
-
+  const card = `/static/blog/${slug}/card.png`;
 
   if (process.env.NODE_ENV !== 'production') {
     if (headers.manualCard === undefined) {
@@ -412,12 +411,12 @@ export default function TopLayoutCaseStudy(props) {
           </Link>
           {/* {headers.title ? (
             <React.Fragment> */}
-              {/*
+          {/*
                 Depending on the timezone, the display date can change from one day to another.
                 e.g. Sunday vs. Monday
                 TODO: Move the date formating to the server.
               */}
-               {/* <time dateTime={headers.date} className={classes.time}>
+          {/* <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {
                   weekday: 'long',
                   year: 'numeric',

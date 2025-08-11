@@ -1,7 +1,7 @@
 ---
 title: CGI
 description: How CGI's Techyon Project Enhanced Performance & Usability with MUI X.
-image: '/static/branding/companies/cgi.svg'
+image: 'https://mui.com/static/branding/companies/cgi.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true

@@ -1,13 +1,13 @@
 ---
 title: Delivery Hero
-description: How DeliveryHero Partner Portal Streamlined Development with MUI X.
-image: '/static/branding/companies/deliveryhero.svg'
+description: How DeliveryHero Partner Portal Streamlined Development with MUI X.
+image: 'https://mui.com/static/branding/companies/deliveryhero.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
 manualCard: true
 ---
 
-  <img
+<img
     id="blog-responsive-image"
     src="/static/branding/companies/deliveryhero.svg"
     alt=""
