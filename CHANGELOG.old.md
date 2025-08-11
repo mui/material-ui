@@ -5223,7 +5223,7 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [core] Add bundle size Toolpad app link to PRs (#36311) @Janpot
 - [core] Fix priority support prompt action flow (#37726) @DanailH
 - [core] Fix typo in priority support @oliviertassinari
-- [core][docs] add Eslint rule to ensure main demo component match file… (#37278) @alexfauquette
+- [core][docs] add ESlint rule to ensure main demo component match file… (#37278) @alexfauquette
 - [docs-infra] Fix truncated TOCs scrollbar (#37770) @oliviertassinari
 - [docs-infra] Adjust demo container to be glued to the toolbar (#37744) @danilo-leal
 - [docs-infra] Fix layout shift ad (#37694) @oliviertassinari
@@ -5668,7 +5668,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   The full documentation about the codemod can be found [here](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#base-remove-component-prop).
 
   This is the list of PR related to this change:
-
   - [Button][base] Drop `component` prop (#36677) @mnajdova
   - [Badge][base] Drop `component` prop (#37028) @hbjORbj
   - [FormControl][base] Drop component prop (#37031) @hbjORbj
@@ -5692,7 +5691,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [base] Improve API consistency (#36970) @michaldudak
 
   Brought consistency to Base UI components and hooks' parameters and return values:
-
   1. Whenever a hook needs a ref, it's now called `<slot_name>Ref`, which matches the `get<slot_name>Props` in the return value.
   2. All hooks that accept external refs now return merged refs, making combining multiple hooks on one element easier. This was proven necessary in several compound components (like menuItem being both a button and a list item). The type of this value is `React.RefCallback` as using the more general `React.Ref` caused variance issues.
   3. Type of accepted refs is standardized to `React.Ref<Element>`
@@ -6555,7 +6553,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [Joy] Replace `Joy[Component]` classname with `Mui[Component]` classname for all slots of components (#35718) @hbjORbj
-
   - Renames the classname prefix of all Joy UI components from `'Joy'` to `'Mui'`.
 
   ```diff
@@ -6568,7 +6565,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
 
 - [Joy] Replace `row` prop with `orientation` prop in all Joy UI components (#35721) @hbjORbj
-
   - Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components in Joy UI.
 
   ```diff
@@ -6633,7 +6629,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [SliderUnstyled] Improved logic for displaying the value label (#35805) @ZeeshanTamboli
-
   - The `valueLabelDisplay` prop is removed from `SliderUnstyled`. The prop was not working as intended in `SliderUnstyled` (See #35398). You can instead provide a `valueLabel` slot with the `slots` prop API to show the value label:
 
   ```diff
@@ -6642,7 +6637,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   ```
 
   The following demo shows how to show a value label when it is hovered over with the thumb: https://v6.mui.com/base-ui/react-slider/#value-label
-
   - The following classes are removed from `sliderUnstyledClasses` since they are not needed for the value label:
 
   ```diff
@@ -6653,7 +6647,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   ```
 
   In the custom value label component, you can define your own classNames and target them with CSS.
-
   - The `SliderValueLabelUnstyled` component is removed from SliderUnstyled. You should provide your own custom component for the value label.
 
   - To avoid using `React.cloneElement` API in value label, the component hierarchy structure of the value label is changed. The value label is now inside the Thumb slot - `Thumb` -> `Input`, `ValueLabel`.
@@ -7043,7 +7036,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 #### BREAKING CHANGE
 
 - [Joy] Add `slots`/`slotProps` props to the typing of all components and apply `useSlot` to all components (#34997) @hbjORbj
-
   - Change all occurrences of `components` and `componentsProps` props in Joy UI components to `slots` and `slotProps`, respectively.
 
   ```diff
@@ -7396,7 +7388,6 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 #### BREAKING CHANGE
 
 - [base] `components` -> `slots` API rename (#34693) @michaldudak
-
   - Change all occurrences of components and componentsProps props in Base components to slots and slotProps, respectively.
   - Change casing of slots' fields to camelCase
 
@@ -7547,7 +7538,6 @@ A big thanks to the 7 contributors who made this release possible. Here are some
   The `enableColorScheme` prop has been removed from `CssVarsProvider` and `getInitColorScheme` (both Material UI and Joy UI).
 
   Migration:
-
   - **Material UI**: you can enable the CSS color scheme via `<CssBaseline enableColorScheme />`.
   - **Joy UI**: it is enabled automatically if you use `<CssBaseline />`, [see the docs](https://mui.com/joy-ui/react-css-baseline/).
 
@@ -9800,7 +9790,6 @@ A big thanks to the 22 contributors who made this release possible. Here are som
   Note: the utility components, such as ClickAwayListener, NoSsr, Portal, and TextareaAutosize continue to be exported from both `@mui/material` and `@mui/base`.
 
   If you're encountering build errors after upgrading @mui/material, do the following:
-
   1. Install @mui/base: npm install @mui/base or yarn add @mui/base
   2. Make sure the version of @mui/base match the version of @mui/material
   3. Change the import paths of unstyled components from @mui/material to @mui/base, e.g.:
@@ -11279,7 +11268,6 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [core] Update `.browserslistrc` file (#27788) @DanailH
 
   The targets of the default bundle have changed:
-
   - Chrome 90 (up from 84)
   - Edge 91 (up from 85)
   - Safari 14 (macOS) (up from 13.1) and 12.4 (iOS) (up from 12.2)
@@ -11906,7 +11894,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [Menu] Use ButtonBase in MenuItem (#26591) @siriwatknp
-
   - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. You can restore the previous behavior with:
 
     ```diff
@@ -12000,7 +11987,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [core] Remove `unstable_` prefix on the `useThemeProps` hook (#26777) @mnajdova
 
   The following utilities were renamed to not contain the `unstable_` prefix:
-
   - `@material-ui/sytstem`
 
   ```diff
@@ -12385,7 +12371,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [Tabs] Update `min` & `max` width and remove `minWidth` media query (#26458) @siriwatknp
 
   Update the implementation to better match Material Design:
-
   - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://m2.material.io/components/tabs#specs)
   - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://m2.material.io/components/tabs#specs)
 
@@ -12816,7 +12801,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [Autocomplete] Rename values of the reason argument (#26172) @m4theushw
 
   Rename the values of the reason argument in `onChange` and `onClose` for consistency:
-
   1. `create-option` to `createOption`
   2. `select-option` to `selectOption`
   3. `remove-option` to `removeOption`
@@ -12841,7 +12825,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   ```
 
 - [core] Remove `createStyles` from `@material-ui/core` (#26018) @mnajdova
-
   - The `createGenerateClassName` module is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
@@ -13835,7 +13818,6 @@ A big thanks to the 30 contributors who made this release possible. Here are som
 
 - 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
   The podium of the most active community members in the migration 🏆:
-
   1. @natac13 x17
   2. @vicasas x5
   3. @kodai3 x4
@@ -15049,14 +15031,12 @@ Here are some highlights ✨:
   You can read the [introduction blog post](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df) that we did for MUI System two years ago.
 
   The system is meant to solve the following problems:
-
   1. Naming things is hard. How should a class name, JSS style rule, or styled component be named?
   2. Jumping between JS and CSS in the editor wastes time. This is particularly true as the complexity (LOCs/# of elements) of a component increases. It's still true when using the `styled()` API.
   3. Introducing a `makeStyles` for the first time in a component is daunting. For example, it's why https://github.com/vscodeshift/material-ui-codemorphs#add-usestyles-hook exists. What if we had less code to type, gaining velocity when writing styles?
   4. Pulling values out from the theme can be cumbersome. How can we make it less painful to increase the usage of design tokens?
 
   This new iteration of MUI System brings two major improvements:
-
   - It moves from the support of a subset of CSS to the support of a superset of CSS.
     Learning the shorthand is optional. It's no longer necessary to moving back to styled() when MUI System doesn't support a specific CSS property.
   - It moves from support on Box only to any core component (starting with the slider).
@@ -15088,7 +15068,6 @@ Here are some highlights ✨:
 - [Popper] Upgrade to popper.js to v2 (#21761) @joshwooding
   This third-party library has introduced a lot of changes.<br />
   You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
-
   - The CSS prefixes have changed:
 
     ```diff
@@ -15220,7 +15199,6 @@ Here are some highlights ✨:
 - 📦 Ship modern bundle (#22814) @eps1lon.
   This is a significant update to the [browsers supported](https://mui.com/material-ui/getting-started/supported-platforms/) by Material UI.
   The previous policy was defined 2 years ago, and the landscape has evolved since then. The package now includes 4 bundles:
-
   1. `stable` (default, formerly `esm`) which targets a snapshot (on release) of `> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"`
   2. `node` (formerly default) which targets a snapshot (on release) of `maintained node versions`
   3. `legacy` (new) which is `stable` + IE 11
@@ -15613,7 +15591,6 @@ Here are some highlights ✨:
 
 - [Tabs] Add allowScrollButtonsMobile prop for mobile view (#22700) @GauravKesarwani
   The API that controls the scroll buttons has been split it into two props:
-
   - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
   - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hides the scroll buttons on mobile.
 
@@ -16023,7 +16000,6 @@ const theme = createMuiTheme({
 - [theme] Rename theme keys to defaultProps and styleOverrides (#22347) @mnajdova
 - [theme] Restructure component definitions (#22293) @mnajdova
   The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
-
   1. `props`
 
   ```diff
@@ -19892,7 +19868,6 @@ Here are some highlights ✨:
 
   If you are not familiar with codemods, [check the library out](https://github.com/facebook/codemod). This is a tool tool to assist you with large-scale codebase refactors.
   We introduce two new codemods in this release:
-
   - `optimal-imports`: Material UI supports tree shaking for modules at 1 level depth maximum.
     You shouldn't import any module at a higher level depth.
 
@@ -20998,13 +20973,11 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
 - [List] Update to match the specification (#15339) @oliviertassinari
   Rework the list components to match the specification:
-
   - The usage of the `ListItemAvatar` component is required when using an avatar
   - The usage of the `ListItemIcon` component is required when using a left checkbox
   - The `edge` property should be set on the icon buttons.
 
 - [actions] Rename disableActionSpacing to disableSpacing (#15355) @oliviertassinari
-
   - [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
   - [CardActions] Remove the `disableActionSpacing` CSS class.
   - [CardActions] Rename the `action` CSS class `spacing`.
@@ -21152,7 +21125,6 @@ Here are some highlights ✨:
   ```
 
 - [Snackbar] Match the new specification (#15122) @oliviertassinari
-
   - Change the dimensions
   - Change the default transition to from `Slide` to `Grow`.
 
@@ -21244,7 +21216,6 @@ Here are some highlights ✨:
 #### Breaking Changes
 
 - [Typography] Better defaults (#15100) @oliviertassinari
-
   - Change the default variant from `body2` to `body1`.
     A font size of 16px is a better default than 14px.
     Bootstrap, material.io or even our documentation use 16px as a default font size.
@@ -21568,7 +21539,6 @@ Here are some highlights ✨:
 
 - [styles] Remove the old styles modules (#14767) @oliviertassinari
   Isolation of the styling solution of the core components in a dedicated package.
-
   - Remove the `MuiThemeProvider` component:
 
     ```diff
@@ -21642,7 +21612,6 @@ Here are some highlights ✨:
   ![wrapper](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Table] Add dense support (#14561) @leMaik
-
   - We have removed the deprecated numeric property.
 
   ```diff
@@ -21754,7 +21723,6 @@ Here are some highlights ✨:
 #### Breaking Changes
 
 - [Typography] Remove deprecated Typography variants (#14562) @joshwooding
-
   - Remove the deprecated typography variants. You can upgrade by performing the following replacements:
     - display4 => h1
     - display3 => h2
@@ -21876,7 +21844,6 @@ Here are some highlights ✨:
 
   The upgrade path to React 16.8.0 should be pretty easy for our users.
   Introducing this breaking change in v4 enables the following:
-
   - We can remove the recompose dependency and use the new `React.memo()` API.
   - Before or after v4 is out, we can gradually migrate the core components to use the Hook API.
 
@@ -21921,7 +21888,6 @@ console.log({ background });
   ```
 
   It's consistent with the other projects:
-
   - material-ui => MaterialUI
   - react-dom => ReactDOM
   - prop-types => PropTypes
@@ -24831,7 +24797,6 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [ButtonBase] Better keyboard focused story (#11090) @oliviertassinari
-
   - Rename the `keyboardFocused` feature `focusVisible` in order to follow the CSS specification wording:
     https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo
   - Give up on the `classes` property to host the focus visible feature. The fact that the classes don't cascade was making it hard to use. Instead, we rely on a `focusVisibleClassName` property. This is allowing any component along the rendering chain to use the feature. For instance, a Switch component: Switch > SwitchBase > IconButton > ButtonBase.
@@ -25715,7 +25680,6 @@ It's making our components less biased around the svg icon vs font icon choice.
 ```
 
 - [theme] Further simplification & standardization (#10015) @mbrookes
-
   - Most component specific `theme.palette.background` colors have been removed. The affected components use `theme.palette.grey` instead. Shift the values of `theme.palette.grey` if you wish to lighten or darken these as a whole; this will maintain the contrast relationship between them. (Paper remains in the theme, as it is used across multiple components.)
   - `theme.palette.common.fullBlack` and `fullWhite` have been removed. Components that used these values now use `theme.palette.common.black` and `white` instead.
   - `theme.palette.common.transparent` has been removed. Components that used this value now use `'transparent'` directly.
@@ -25857,7 +25821,6 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [palette] Keep simplifying the solution (#9876) @oliviertassinari
-
   - Remove the contrast color from our API. This color variation hasn't proven itseft to be useful enough.
 
   ```diff
@@ -25866,7 +25829,6 @@ Here are some highlights ✨:
   ```
 
   Instead, you can use the `color="inherit"` property or use the `theme.palette.XXX.contrastText` value.
-
   - Rename `accent` to `secondary`. We have removed the accent indirection to be closer to the object people are providing to customize the palette.
 
   ```diff
@@ -27593,7 +27555,6 @@ A big thanks to the 12 contributors who made this release possible.
 ```
 
 - [theme] Simplification of the API (#7934) @oliviertassinari
-
   - If you are using a direct import of `material-ui/styles/theme`, the path changed:
 
   ```diff

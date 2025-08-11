@@ -229,6 +229,10 @@ const pages: MuiPage[] = [
             title: 'Basic usage',
           },
           {
+            pathname: '/material-ui/customization/css-theme-variables/native-color',
+            title: 'Native color',
+          },
+          {
             pathname: '/material-ui/customization/css-theme-variables/configuration',
             title: 'Advanced configuration',
           },
@@ -322,6 +326,10 @@ const pages: MuiPage[] = [
           {
             pathname: '/material-ui/migration/upgrade-to-v7',
             title: 'Upgrade to v7: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/upgrade-to-native-color',
+            title: 'Native color',
           },
         ],
       },
