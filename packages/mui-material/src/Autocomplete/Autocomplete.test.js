@@ -1706,7 +1706,7 @@ describe('<Autocomplete />', () => {
       // <button> since it has "pointer-events: none"
       const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
 
-      const user = userEvent.setup();
+      const user = userEvent.setup({ document });
 
       await user.pointer([
         // this sequence does not work with fireEvent
