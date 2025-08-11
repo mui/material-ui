@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha } from '@mui/system/colorManipulator';
 import { unstable_useId as useId } from '../utils';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -63,9 +62,10 @@ const IconButtonRoot = styled(ButtonBase, {
       {
         props: (props) => !props.disableRipple,
         style: {
-          '--IconButton-hoverBg': theme.vars
-            ? `rgba(${theme.vars.palette.action.activeChannel} / ${theme.vars.palette.action.hoverOpacity})`
-            : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+          '--IconButton-hoverBg': theme.alpha(
+            (theme.vars || theme).palette.action.active,
+            (theme.vars || theme).palette.action.hoverOpacity,
+          ),
           '&:hover': {
             backgroundColor: 'var(--IconButton-hoverBg)',
             // Reset on touch devices, it doesn't add specificity
@@ -122,9 +122,10 @@ const IconButtonRoot = styled(ButtonBase, {
         .map(([color]) => ({
           props: { color },
           style: {
-            '--IconButton-hoverBg': theme.vars
-              ? `rgba(${(theme.vars || theme).palette[color].mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
-              : alpha((theme.vars || theme).palette[color].main, theme.palette.action.hoverOpacity),
+            '--IconButton-hoverBg': theme.alpha(
+              (theme.vars || theme).palette[color].main,
+              (theme.vars || theme).palette.action.hoverOpacity,
+            ),
           },
         })),
       {
