@@ -240,24 +240,8 @@ jobs:
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
       - run:
-          name: Diff declaration files
-          command: |
-            git add -f packages/mui-material/build || echo '/material declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:stable && pnpm -r build:types
-            git --no-pager diff
-      - run:
           name: Any defect declaration files?
           command: node scripts/testBuiltTypes.mjs
-      - save_cache:
-          name: Save generated declaration files
-          key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
-          paths:
-            # packages with generated declaration files
-            - packages/mui-material/build
-            - packages/mui-lab/build
-            - packages/mui-utils/build
   test_types_next:
     <<: *default-job
     resource_class: 'medium+'
