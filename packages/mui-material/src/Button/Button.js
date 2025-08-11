@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import resolveProps from '@mui/utils/resolveProps';
 import composeClasses from '@mui/utils/composeClasses';
+import useForkRef from '@mui/utils/useForkRef';
 import { unstable_useId as useId } from '../utils';
 import rootShouldForwardProp from '../styles/rootShouldForwardProp';
 import { styled } from '../zero-styled';
@@ -15,7 +16,7 @@ import capitalize from '../utils/capitalize';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
-import ButtonGroupButtonContext from '../ButtonGroup/ButtonGroupButtonContext';
+import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 
 const useUtilityClasses = (ownerState) => {
   const { color, disableElevation, fullWidth, size, variant, loading, loadingPosition, classes } =
@@ -508,8 +509,16 @@ const ButtonLoadingIconPlaceholder = styled('span', {
 const Button = React.forwardRef(function Button(inProps, ref) {
   // props priority: `inProps` > `contextProps` > `themeDefaultProps`
   const contextProps = React.useContext(ButtonGroupContext);
-  const buttonGroupButtonContextPositionClassName = React.useContext(ButtonGroupButtonContext);
-  const resolvedProps = resolveProps(contextProps, inProps);
+  const {
+    register: groupRegister,
+    unregister: groupUnregister,
+    getPosition: groupGetPosition,
+    version: groupVersion,
+    className: groupClassName,
+    ...visualContextProps
+  } = contextProps || {};
+
+  const resolvedProps = resolveProps(visualContextProps, inProps);
   const props = useDefaultProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
@@ -556,6 +565,43 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Ref to the actual DOM element rendered by ButtonRoot
+  const rootRef = React.useRef(null);
+  const combinedRef = useForkRef(ref, rootRef);
+
+  // Opaque handle returned by ButtonGroupContext.register(...)
+  const groupItemHandleRef = React.useRef(null);
+
+  // Register on mount, unregister on unmount.
+  // Passive effect avoids parent setState during layout-unmount -> re-entrancy loops in dev.
+  React.useEffect(() => {
+    if (!groupRegister || !groupUnregister) {
+      // Not inside a ButtonGroup, so no need to register
+      return;
+    } // not inside a ButtonGroup
+    groupItemHandleRef.current = groupRegister(rootRef.current);
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      if (groupItemHandleRef.current) {
+        groupUnregister(groupItemHandleRef.current);
+      }
+    };
+  }, [groupRegister, groupUnregister]);
+
+  let positionClassName = '';
+
+  if (groupGetPosition && groupItemHandleRef.current) {
+    const pos = groupGetPosition(groupItemHandleRef.current);
+    if (pos === 'first') {
+      positionClassName = buttonGroupClasses.firstButton;
+    } else if (pos === 'last') {
+      positionClassName = buttonGroupClasses.lastButton;
+    } else if (pos === 'middle') {
+      positionClassName = buttonGroupClasses.middleButton;
+    }
+  }
+
   const startIcon = (startIconProp || (loading && loadingPosition === 'start')) && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp || (
@@ -578,8 +624,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     </ButtonEndIcon>
   );
 
-  const positionClassName = buttonGroupButtonContextPositionClassName || '';
-
   const loader =
     typeof loading === 'boolean' ? (
       // use plain HTML span to minimize the runtime overhead
@@ -600,7 +644,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       disabled={disabled || loading}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-      ref={ref}
+      ref={combinedRef}
       type={type}
       id={loading ? loadingId : idProp}
       {...other}
