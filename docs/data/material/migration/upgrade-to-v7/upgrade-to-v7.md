@@ -292,7 +292,7 @@ Use this codemod to automatically update the `size` value:
 npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
 ```
 
-> **Note:** Because the default size of `InputLabel` was changed from `normal` to `medium`, the class `MuiInputLabel‑sizeMedium` is no longer added. If you relied on this class for custom styling, use a different class.
+**Note:** Because the default size of `InputLabel` was changed from `normal` to `medium`, the class `MuiInputLabel‑sizeMedium` is no longer added. If you relied on this class for custom styling, use a different class.
 
 ### SvgIcon's data-testid removed
 
