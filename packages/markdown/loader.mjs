@@ -476,7 +476,7 @@ export default async function demoLoader() {
               }
 
               try {
-                // We are only iterating trough an array that looks
+                // We are only iterating through an array that looks
                 // like this: ['JS', 'TS'], so  it is safe to await
                 // eslint-disable-next-line no-await-in-loop
                 raw = await fs.readFile(relativeModuleFilePath, {
@@ -515,7 +515,7 @@ export default async function demoLoader() {
                         entry,
                       );
 
-                      // We are only iterating trough an array that looks
+                      // We are only iterating through an array that looks
                       // like this: ['JS', 'TS'], so  it is safe to await
                       // eslint-disable-next-line no-await-in-loop
                       const rawEntry = await fs.readFile(entryModuleFilePath, { encoding: 'utf8' });
