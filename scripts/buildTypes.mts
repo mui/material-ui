@@ -5,6 +5,7 @@ import yargs from 'yargs';
 import { $ } from 'execa';
 import * as babel from '@babel/core';
 import { parse } from 'jsonc-parser';
+import chokidar from 'chokidar';
 
 const $$ = $({ stdio: 'inherit' });
 
@@ -57,15 +58,10 @@ async function copyDeclarations(sourceDirectory: string, destinationDirectory: s
   await fs.cp(fullSourceDirectory, fullDestinationDirectory, {
     recursive: true,
     filter: async (src) => {
-      if (src.startsWith('.')) {
-        // ignore dotfiles
-        return false;
-      }
+      // eslint-disable-next-line curly
+      if (src.startsWith('.')) return false;
       const stats = await fs.stat(src);
-      if (stats.isDirectory()) {
-        return true;
-      }
-      return src.endsWith('.d.ts');
+      return stats.isDirectory() || src.endsWith('.d.ts');
     },
   });
 }
@@ -74,9 +70,10 @@ interface HandlerArgv {
   skipTsc: boolean;
   copy: string[];
   removeCss: boolean;
+  watch?: boolean;
 }
 
-async function main(argv: HandlerArgv) {
+async function buildOnce(argv: HandlerArgv) {
   const packageRoot = process.cwd();
   const tsconfigPath = path.join(packageRoot, 'tsconfig.build.json');
   const tsconfigExists = await fs.access(tsconfigPath).then(
@@ -118,6 +115,41 @@ async function main(argv: HandlerArgv) {
   await Promise.all(tsbuildinfo.map(async (file) => fs.rm(file)));
 }
 
+async function main(argv: HandlerArgv) {
+  if (argv.watch) {
+    // eslint-disable-next-line no-console
+    console.log('[watch] Starting in watch mode...');
+
+    let isBuilding = false;
+    const triggerBuild = async () => {
+      // eslint-disable-next-line curly
+      if (isBuilding) return;
+      isBuilding = true;
+      try {
+        await buildOnce(argv);
+        // eslint-disable-next-line no-console
+        console.log('[watch] Build complete');
+      } catch (err) {
+        console.error('[watch] Build failed:', err);
+      } finally {
+        isBuilding = false;
+      }
+    };
+
+    await triggerBuild();
+
+    chokidar
+      .watch(['src/**/*.ts', 'src/**/*.d.ts'], { ignoreInitial: true })
+      .on('all', async (event, tmpPath) => {
+        // eslint-disable-next-line no-console
+        console.log(`[watch] ${event}: ${tmpPath}`);
+        await triggerBuild();
+      });
+  } else {
+    await buildOnce(argv);
+  }
+}
+
 yargs(process.argv.slice(2))
   .command<HandlerArgv>(
     '$0',
@@ -139,9 +171,16 @@ yargs(process.argv.slice(2))
           type: 'boolean',
           default: false,
           describe: 'Set to `true` if you want to remove the css imports in the type definitions',
+        })
+        .option('watch', {
+          type: 'boolean',
+          default: false,
+          describe: 'Watch mode: rebuild when source files change',
         });
     },
-    main,
+    async (argv) => {
+      await main(argv);
+    },
   )
   .help()
   .strict(true)
