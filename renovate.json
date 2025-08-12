@@ -2,6 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>mui/mui-public//renovate/default"],
   "ignoreDeps": [],
+  "schedule": "on sunday before 6:00am",
+  "lockFileMaintenance": {
+    "schedule": "before 6:00am on the first day of the month"
+  },
   "packageRules": [
     {
       "groupName": "Pigment CSS",
