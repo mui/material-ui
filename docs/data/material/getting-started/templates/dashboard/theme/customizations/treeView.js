@@ -2,7 +2,7 @@ import { alpha } from '@mui/material/styles';
 
 import { gray, brand } from '../../../shared-theme/themePrimitives';
 
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import-x/prefer-default-export */
 export const treeViewCustomizations = {
   MuiTreeItem: {
     styleOverrides: {

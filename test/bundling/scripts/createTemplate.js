@@ -46,7 +46,7 @@ function writeImports(outStream) {
     })}\n`,
   );
   outStream.write('// #region imports\n');
-  outStream.write('/* eslint-disable import/no-duplicates */\n');
+  outStream.write('/* eslint-disable import-x/no-duplicates */\n');
   Object.entries(packages).forEach(([packageName, topLevelPackages]) => {
     topLevelPackages.forEach((topLevelPackageName) => {
       if (isNamespace(topLevelPackageName)) {
@@ -77,7 +77,7 @@ function writeImports(outStream) {
       }
     });
   });
-  outStream.write('/* eslint-enable import/no-duplicates */\n');
+  outStream.write('/* eslint-enable import-x/no-duplicates */\n');
   outStream.write('// #endregion\n');
 }
 
