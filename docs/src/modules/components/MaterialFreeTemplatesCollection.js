@@ -70,6 +70,13 @@ function layouts(translation) {
       source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
       hasDarkMode: true,
     },
+    {
+      title: translation('crudDashboardTitle'),
+      description: translation('crudDashboardDescr'),
+      href: '/material-ui/getting-started/templates/crud-dashboard/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/crud-dashboard`,
+      hasDarkMode: true,
+    },
   ];
 }
 

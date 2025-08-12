@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import chainPropTypes from '@mui/utils/chainPropTypes';
 import composeClasses from '@mui/utils/composeClasses';
-import { alpha, lighten, darken } from '@mui/system/colorManipulator';
 import { useRtl } from '@mui/system/RtlProvider';
 import useSlotProps from '@mui/utils/useSlotProps';
 import isHostComponent from '@mui/utils/isHostComponent';
@@ -215,13 +214,13 @@ export const SliderTrack = styled('span', {
                     borderColor: theme.vars.palette.Slider[`${color}Track`],
                   }
                 : {
-                    backgroundColor: lighten(theme.palette[color].main, 0.62),
-                    borderColor: lighten(theme.palette[color].main, 0.62),
+                    backgroundColor: theme.lighten(theme.palette[color].main, 0.62),
+                    borderColor: theme.lighten(theme.palette[color].main, 0.62),
                     ...theme.applyStyles('dark', {
-                      backgroundColor: darken(theme.palette[color].main, 0.5),
+                      backgroundColor: theme.darken(theme.palette[color].main, 0.5),
                     }),
                     ...theme.applyStyles('dark', {
-                      borderColor: darken(theme.palette[color].main, 0.5),
+                      borderColor: theme.darken(theme.palette[color].main, 0.5),
                     }),
                   }),
             },
@@ -312,25 +311,13 @@ export const SliderThumb = styled('span', {
           props: { color },
           style: {
             [`&:hover, &.${sliderClasses.focusVisible}`]: {
-              ...(theme.vars
-                ? {
-                    boxShadow: `0px 0px 0px 8px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
-                  }
-                : {
-                    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[color].main, 0.16)}`,
-                  }),
+              boxShadow: `0px 0px 0px 8px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
               '@media (hover: none)': {
                 boxShadow: 'none',
               },
             },
             [`&.${sliderClasses.active}`]: {
-              ...(theme.vars
-                ? {
-                    boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`,
-                  }
-                : {
-                    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[color].main, 0.16)}`,
-                  }),
+              boxShadow: `0px 0px 0px 14px ${theme.alpha((theme.vars || theme).palette[color].main, 0.16)}`,
             },
           },
         })),

@@ -78,7 +78,7 @@ describe('<AccordionGroup />', () => {
 
   it('should not warn when using custom color, variant, size', () => {
     expect(() => {
-      // @ts-expect-error as `custom` color, varaint, size is not part of the type system
+      // @ts-expect-error as `custom` color, variant, size is not part of the type system
       render(<AccordionGroup color="custom" variant="custom" size="custom" />);
     }).not.toErrorDev();
   });

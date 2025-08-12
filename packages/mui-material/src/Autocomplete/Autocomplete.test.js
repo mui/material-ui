@@ -9,7 +9,6 @@ import {
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
 import { spy } from 'sinon';
-import userEvent from '@testing-library/user-event';
 import Box from '@mui/system/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -368,6 +367,57 @@ describe('<Autocomplete />', () => {
       fireEvent.change(textbox, { target: { value: 'aa' } });
       fireEvent.change(textbox, { target: { value: 'a' } });
       checkHighlightIs(getByRole('listbox'), 'Bar');
+    });
+
+    // https://github.com/mui/material-ui/issues/45279
+    it('should auto highlight first option after options order changes with autoHighlight', () => {
+      const { setProps, getByRole } = render(
+        <Autocomplete
+          autoHighlight
+          open
+          options={['pediatric ent', 'pediatric flu', 'pediatrician', 'pediatric cough']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), 'pediatric ent');
+      setProps({
+        options: ['pediatrician', 'pediatric ent', 'pediatric flu', 'pediatric cough'],
+      });
+      checkHighlightIs(getByRole('listbox'), 'pediatrician');
+    });
+
+    it('should auto highlight first option when no match with input value with autoHighlight', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          autoHighlight
+          options={['1', '2', '3', '4']}
+          value="5"
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+
+      checkHighlightIs(getByRole('listbox'), '1');
+    });
+
+    it('should auto highlight first option of rest after selecting an option with autoHighlight and filterSelectedOptions', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          open
+          autoHighlight
+          options={['1', '2', '3', '4']}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          filterSelectedOptions
+          disableCloseOnSelect
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      checkHighlightIs(getByRole('listbox'), '1');
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      checkHighlightIs(getByRole('listbox'), '2');
     });
   });
 
@@ -1637,7 +1687,7 @@ describe('<Autocomplete />', () => {
     });
 
     it('mouseup should not toggle the listbox open state when disabled', async () => {
-      const { container, queryByRole } = render(
+      const { container, queryByRole, user } = render(
         <Autocomplete
           disabled
           options={['one', 'two', 'three']}
@@ -1654,8 +1704,6 @@ describe('<Autocomplete />', () => {
       // userEvent will fail at releasing MouseLeft if we target the
       // <button> since it has "pointer-events: none"
       const popupIndicator = container.querySelector(`.${classes.endAdornment}`);
-
-      const user = userEvent.setup();
 
       await user.pointer([
         // this sequence does not work with fireEvent

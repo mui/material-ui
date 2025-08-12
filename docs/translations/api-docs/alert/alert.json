@@ -24,7 +24,9 @@
     },
     "onClose": {
       "description": "Callback fired when the component requests to be closed. When provided and no <code>action</code> prop is set, a close icon button is displayed that triggers the callback when clicked.",
-      "typeDescriptions": { "event": "The event source of the callback." }
+      "typeDescriptions": {
+        "event": { "name": "event", "description": "The event source of the callback." }
+      }
     },
     "role": { "description": "The ARIA role attribute of the element." },
     "severity": {

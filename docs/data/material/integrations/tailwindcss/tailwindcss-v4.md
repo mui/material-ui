@@ -417,18 +417,18 @@ If you want to use Material UI theme tokens in your Tailwind CSS classes, copy
 
 /* Material UI typography utilities */
 @utility typography-* {
-  font: --value(--font- *);
+  font: --value(--font-*);
 }
 
 /* Material UI overlay utilities */
 @utility overlay-* {
-  background-image: --value(--overlay- *);
+  background-image: --value(--overlay-*);
 }
 
 /* Material UI elevation utilities */
 @utility elevation-* {
-  background-image: --value(--overlay- *);
-  box-shadow: --value(--shadow- *);
+  background-image: --value(--overlay-*);
+  box-shadow: --value(--shadow-*);
 }
 ```
 
