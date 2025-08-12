@@ -662,6 +662,8 @@ function useAutocomplete(props) {
   };
 
   const isTouch = React.useRef(false);
+  const touchScrolled = React.useRef(false);
+  const touchStartPos = React.useRef({ x: 0, y: 0 });
 
   const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
@@ -1017,12 +1019,42 @@ function useAutocomplete(props) {
   };
 
   const handleOptionTouchStart = (event) => {
+    const touch = event.touches[0];
+    touchStartPos.current = { x: touch.clientX, y: touch.clientY };
+    touchScrolled.current = false;
+    
     setHighlightedIndex({
       event,
       index: Number(event.currentTarget.getAttribute('data-option-index')),
       reason: 'touch',
     });
     isTouch.current = true;
+  };
+
+  const handleOptionTouchMove = (event) => {
+    if (!touchScrolled.current && event.touches.length > 0) {
+      const touch = event.touches[0];
+      const deltaX = Math.abs(touch.clientX - touchStartPos.current.x);
+      const deltaY = Math.abs(touch.clientY - touchStartPos.current.y);
+      
+      // If the touch has moved more than 10 pixels, consider it scrolling
+      if (deltaX > 10 || deltaY > 10) {
+        touchScrolled.current = true;
+        // Clear the highlighted index since user is scrolling
+        setHighlightedIndex({
+          event,
+          index: -1,
+          reason: 'touch',
+        });
+      }
+    }
+  };
+
+  const handleOptionTouchEnd = () => {
+    // Reset scroll detection after touch ends
+    setTimeout(() => {
+      touchScrolled.current = false;
+    }, 100);
   };
 
   const handleOptionClick = (event) => {
@@ -1212,6 +1244,8 @@ function useAutocomplete(props) {
         onMouseMove: handleOptionMouseMove,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,
+        onTouchMove: handleOptionTouchMove,
+        onTouchEnd: handleOptionTouchEnd,
         'data-option-index': index,
         'aria-disabled': disabled,
         'aria-selected': selected,
