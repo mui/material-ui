@@ -159,7 +159,7 @@
     "cpy-cli": "^5.0.0",
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
-    "eslint": "^9.32.0",
+    "eslint": "^9.33.0",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-consistent-default-export-name": "^0.0.15",
     "eslint-plugin-react": "^7.37.5",
