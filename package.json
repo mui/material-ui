@@ -153,7 +153,7 @@
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "chalk": "^5.4.1",
+    "chalk": "^5.5.0",
     "compression-webpack-plugin": "^11.1.0",
     "concurrently": "^9.2.0",
     "cpy-cli": "^5.0.0",
