@@ -70,7 +70,8 @@ const BACKLINKs = [
   },
   {
     name: 'TikTokFame.co',
-    description: 'TikTokFame stands out as the ultimate TikTok growth platform for all the right reasons!',
+    description:
+      'TikTokFame stands out as the ultimate TikTok growth platform for all the right reasons!',
     href: 'https://tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
