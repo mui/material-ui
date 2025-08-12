@@ -1,7 +1,7 @@
 {
   "name": "@mui/lab",
   "//": "version should be 'alpha' at all time",
-  "version": "7.0.0-beta.14",
+  "version": "7.0.0-beta.16",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
   "main": "./src/index.js",
@@ -51,12 +51,12 @@
     "@mui/material": "workspace:^",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "sinon": "^21.0.0"
   },
   "peerDependencies": {
