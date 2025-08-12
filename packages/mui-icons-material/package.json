@@ -53,7 +53,7 @@
     "@types/chai": "^4.3.20",
     "@types/react": "^19.1.9",
     "chai": "^4.5.0",
-    "chalk": "^5.4.1",
+    "chalk": "^5.5.0",
     "cross-fetch": "^4.1.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.1",

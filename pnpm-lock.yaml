@@ -179,8 +179,8 @@ importers:
         specifier: ^0.4.24
         version: 0.4.24
       chalk:
-        specifier: ^5.4.1
-        version: 5.4.1
+        specifier: ^5.5.0
+        version: 5.5.0
       compression-webpack-plugin:
         specifier: ^11.1.0
         version: 11.1.0(webpack@5.101.0)
@@ -1392,8 +1392,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       chalk:
-        specifier: ^5.4.1
-        version: 5.4.1
+        specifier: ^5.5.0
+        version: 5.5.0
       cross-fetch:
         specifier: ^4.1.0
         version: 4.1.0(encoding@0.1.13)
@@ -7194,8 +7194,8 @@ packages:
     resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
-  chalk@5.4.1:
-    resolution: {integrity: sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w==}
+  chalk@5.5.0:
+    resolution: {integrity: sha512-1tm8DTaJhPBG3bIkVeZt1iZM9GfSX2lzOeDVZH9R9ffRHpmHvxZ/QhgQH/aDTkswQVt+YHdXAdS/In/30OjCbg==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   chance@1.1.13:
@@ -16981,7 +16981,7 @@ snapshots:
       '@octokit/auth-action': 6.0.1
       '@octokit/rest': 22.0.0
       babel-loader: 10.0.0(@babel/core@7.28.0)(webpack@5.101.0)
-      chalk: 5.4.1
+      chalk: 5.5.0
       compression-webpack-plugin: 10.0.0(webpack@5.101.0)
       css-loader: 7.1.2(webpack@5.101.0)
       env-ci: 11.1.0
@@ -17027,7 +17027,7 @@ snapshots:
       '@eslint/compat': 1.3.1(eslint@9.32.0(jiti@2.4.2))
       '@next/eslint-plugin-next': 15.4.6
       '@octokit/rest': 22.0.0
-      chalk: 5.4.1
+      chalk: 5.5.0
       eslint: 9.32.0(jiti@2.4.2)
       eslint-config-airbnb: 19.0.4(eslint-plugin-import@2.32.0)(eslint-plugin-jsx-a11y@6.10.2(eslint@9.32.0(jiti@2.4.2)))(eslint-plugin-react-hooks@6.0.0(eslint@9.32.0(jiti@2.4.2)))(eslint-plugin-react@7.37.5(eslint@9.32.0(jiti@2.4.2)))(eslint@9.32.0(jiti@2.4.2))
       eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.32.0)(eslint@9.32.0(jiti@2.4.2))
@@ -20555,7 +20555,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.4.1
+      chalk: 5.5.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -20844,7 +20844,7 @@ snapshots:
 
   chalk@5.0.1: {}
 
-  chalk@5.4.1: {}
+  chalk@5.5.0: {}
 
   chance@1.1.13: {}
 
@@ -24877,7 +24877,7 @@ snapshots:
     dependencies:
       ansi-escapes: 7.0.0
       ansi-regex: 6.1.0
-      chalk: 5.4.1
+      chalk: 5.5.0
       cli-highlight: 2.1.11
       cli-table3: 0.6.5
       marked: 9.1.6
@@ -28440,7 +28440,7 @@ snapshots:
   title@4.0.1:
     dependencies:
       arg: 5.0.2
-      chalk: 5.4.1
+      chalk: 5.5.0
       clipboardy: 4.0.0
 
   tldts-core@6.1.61: {}
@@ -28961,7 +28961,7 @@ snapshots:
 
   vitest-fail-on-console@0.8.0(vite@6.3.5(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0))(vitest@3.2.4):
     dependencies:
-      chalk: 5.4.1
+      chalk: 5.5.0
       vite: 6.3.5(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)
       vitest: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.10)(@vitest/browser@3.2.4)(happy-dom@15.11.6)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.30.1)(msw@2.7.3(@types/node@20.19.10)(typescript@5.9.2))(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)
 
