@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import-x/prefer-default-export */
 import { DemoData } from './types';
 import SandboxDependencies from './Dependencies';
 import flattenRelativeImports from './FlattenRelativeImports';

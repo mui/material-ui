@@ -1,9 +1,9 @@
 {
   "extends": ["plugin:react/jsx-runtime"],
   "rules": {
-    "import/prefer-default-export": "off",
-    "import/extensions": "off",
-    "import/no-unresolved": "off",
+    "import-x/prefer-default-export": "off",
+    "import-x/extensions": "off",
+    "import-x/no-unresolved": "off",
     "react/no-unknown-property": ["error", { "ignore": ["sx"] }],
   },
 }

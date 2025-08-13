@@ -113,7 +113,7 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
   }
 });
 
-// eslint-disable-next-line import/prefer-default-export
+// eslint-disable-next-line import-x/prefer-default-export
 export const handler: Handler = async (event, context, callback) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 404 };

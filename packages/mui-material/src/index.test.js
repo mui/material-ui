@@ -1,4 +1,4 @@
-/* eslint import/namespace: ['error', { allowComputed: true }] */
+/* eslint import-x/namespace: ['error', { allowComputed: true }] */
 /**
  * Important: This test also serves as a point to
  * import the entire lib for coverage reporting
