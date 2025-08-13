@@ -1,7 +1,7 @@
 const childProcess = require('child_process');
 const path = require('path');
 const { promisify } = require('util');
-const fse = require('fs-extra');
+const fs = require('fs/promises');
 
 const packageRoot = path.resolve(__dirname, '../');
 const buildDirectory = path.join(packageRoot, 'build');
@@ -14,7 +14,13 @@ const exec = promisify(childProcess.exec);
  */
 async function main() {
   // clean
-  await fse.remove(buildDirectory);
+  try {
+    await fs.rm(buildDirectory, { recursive: true });
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      throw error;
+    }
+  }
 
   const { stdout: filenames } = await exec('npm pack', { cwd: packageRoot });
   const packageTgzPath = path.join(
@@ -39,9 +45,13 @@ async function main() {
         cwd: packageRoot,
       },
     );
-    await fse.move(untarDestination, buildDirectory);
+    await fs.rename(untarDestination, buildDirectory);
   } finally {
-    await fse.remove(untarDestination);
+    await fs.rm(untarDestination, { recursive: true }).catch((error) => {
+      if (error.code !== 'ENOENT') {
+        Promise.reject(error);
+      }
+    });
   }
 }
 

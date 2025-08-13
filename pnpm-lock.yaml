@@ -1331,9 +1331,6 @@ importers:
       chai:
         specifier: ^4.5.0
         version: 4.5.0
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
     publishDirectory: build
 
   packages/mui-envinfo/test:
