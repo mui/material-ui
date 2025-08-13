@@ -86,8 +86,8 @@ importers:
         specifier: ^2.0.7-canary.12
         version: 2.0.7-canary.12(@babel/core@7.28.0)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.16
-        version: 1.0.9-canary.16(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))(yaml@2.8.0)
+        specifier: ^1.0.9-canary.18
+        version: 1.0.9-canary.18(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))(yaml@2.8.0)
       '@mui/internal-code-infra':
         specifier: 0.0.2-canary.29
         version: 0.0.2-canary.29(@typescript-eslint/parser@8.35.1(eslint@9.33.0(jiti@2.4.2))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.33.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.9.2)
@@ -4160,8 +4160,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.28.0
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.16':
-    resolution: {integrity: sha512-znpLLWLccnggfE7fgn+ALv/bh3pQBpSGCv3T88LptQkb6RrT2tidh2KllIevWCNpaR8vDsbjw2pN3DF8RQs0YQ==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.18':
+    resolution: {integrity: sha512-F0hBCE/7ICw7slXGUCoifIye+EIgy6xEcLf2balGBgOfcalF06bKlvtQ8ZaqHtwdZIk+kCRfAg7C4tN6W5066w==}
     hasBin: true
 
   '@mui/internal-code-infra@0.0.2-canary.29':
@@ -16897,7 +16897,7 @@ snapshots:
       '@babel/core': 7.28.0
       resolve: 1.22.10
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.16(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))(yaml@2.8.0)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.18(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))(yaml@2.8.0)':
     dependencies:
       '@aws-sdk/client-s3': 3.787.0
       '@aws-sdk/credential-providers': 3.787.0
