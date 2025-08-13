@@ -1,6 +1,5 @@
-import { mkdirSync } from 'fs';
 import path from 'path';
-import * as fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import { renderMarkdown as _renderMarkdown } from '@mui/internal-markdown';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
@@ -25,7 +24,7 @@ async function removeOutdatedApiDocsTranslations(
   const projectFiles = await Promise.all(
     apiDocsTranslationsDirectories.map(async (directory) => ({
       directory: path.resolve(directory),
-      files: await fse.readdir(directory),
+      files: await fs.readdir(directory),
     })),
   );
 
@@ -34,7 +33,7 @@ async function removeOutdatedApiDocsTranslations(
       await Promise.all(
         files.map(async (filename) => {
           const filepath = path.join(directory, filename);
-          const stats = await fse.stat(filepath);
+          const stats = await fs.stat(filepath);
           if (stats.isDirectory()) {
             componentDirectories.add(filepath);
           }
@@ -61,9 +60,9 @@ async function removeOutdatedApiDocsTranslations(
   });
 
   await Promise.all(
-    Array.from(outdatedComponentDirectories, (outdatedComponentDirectory) => {
-      return fse.remove(outdatedComponentDirectory);
-    }),
+    Array.from(outdatedComponentDirectories, (outdatedComponentDirectory) =>
+      fs.rm(outdatedComponentDirectory, { recursive: true }),
+    ),
   );
 }
 
@@ -126,7 +125,7 @@ async function buildSingleProject(
 
   const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
   if (manifestDir) {
-    mkdirSync(manifestDir, { recursive: true });
+    await fs.mkdir(manifestDir, { recursive: true });
   }
   const apiBuilds = tsProjects.flatMap((project) => {
     const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
@@ -157,7 +156,7 @@ async function buildSingleProject(
       try {
         const componentInfo = projectSettings.getComponentInfo(component.filename);
 
-        mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+        await fs.mkdir(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
 
         return await generateComponentApi(componentInfo, project, projectSettings);
       } catch (error: any) {
@@ -174,7 +173,7 @@ async function buildSingleProject(
         const { filename } = hook;
         const hookInfo = projectSettings.getHookInfo(filename);
 
-        mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+        await fs.mkdir(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
         return generateHookApi(hookInfo, project, projectSettings);
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
