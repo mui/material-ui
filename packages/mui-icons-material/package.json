@@ -29,10 +29,9 @@
   "scripts": {
     "build": "shx cp -r lib/ build/ && pnpm build:copy-files && pnpm build:typings && pnpm build:esm-pkg",
     "build:esm-pkg": "node ./scripts/create-esm-package-json.mjs",
-    "build:lib": "pnpm build:node && pnpm build:stable",
-    "build:lib:clean": "rimraf lib/ && pnpm build:lib",
-    "build:node": "node ../../scripts/build.mjs node --largeFiles --outDir lib",
-    "build:stable": "node ../../scripts/build.mjs stable --largeFiles --outDir lib --skipEsmPkg",
+    "build:lib": "code-infra build --hasLargeFiles --skipPackageJson --skipBundlePackageJson --buildTypes false",
+    "build:lib:clean": "rimraf lib && pnpm build:lib && shx cp -R build lib",
+    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
     "prebuild": "rimraf build",
