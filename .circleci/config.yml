@@ -239,9 +239,6 @@ jobs:
             pnpm --filter @mui/material typescript:module-augmentation
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
-      - run:
-          name: Any defect declaration files?
-          command: node scripts/testBuiltTypes.mjs
   test_types_next:
     <<: *default-job
     resource_class: 'medium+'
@@ -357,6 +354,9 @@ jobs:
       - run:
           name: Analyze exported typescript
           command: pnpm test:attw
+      - run:
+          name: Any defect declaration files?
+          command: node scripts/testBuiltTypes.mjs
       - run:
           name: test exported typescript
           command: pnpm --filter @mui-internal/test-module-resolution typescript:all
