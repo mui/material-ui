@@ -1364,9 +1364,6 @@ importers:
       fast-glob:
         specifier: ^3.3.3
         version: 3.3.3
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1975,11 +1972,7 @@ importers:
         version: 21.0.0
     publishDirectory: build
 
-  packages/netlify-plugin-cache-docs:
-    dependencies:
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
+  packages/netlify-plugin-cache-docs: {}
 
   packages/react-docgen-types:
     devDependencies:
