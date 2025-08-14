@@ -1,11 +1,17 @@
 // @ts-check
-const path = require('path');
+import { fileURLToPath } from 'node:url';
+import * as path from 'node:path';
+// @ts-ignore
+import getBaseConfig from '@mui/internal-code-infra/babel-config';
 
 /**
  * @typedef {import('@babel/core')} babel
  */
 
-const errorCodesPath = path.resolve(__dirname, './docs/public/static/error-codes.json');
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+
+const errorCodesPath = path.resolve(dirname, './docs/public/static/error-codes.json');
 const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 'annotate';
 
 /**
@@ -13,12 +19,13 @@ const missingError = process.env.MUI_EXTRACT_ERROR_CODES === 'true' ? 'write' : 
  * @returns {string}
  */
 function resolveAliasPath(relativeToBabelConf) {
-  const resolvedPath = path.relative(process.cwd(), path.resolve(__dirname, relativeToBabelConf));
+  const resolvedPath = path.relative(process.cwd(), path.resolve(dirname, relativeToBabelConf));
   return `./${resolvedPath.replace('\\', '/')}`;
 }
 
 /** @type {babel.ConfigFunction} */
-module.exports = function getBabelConfig(api) {
+export default function getBabelConfig(api) {
+  const baseConfig = getBaseConfig(api);
   const useESModules = api.env(['regressions', 'stable']);
 
   const defaultAlias = {
@@ -41,58 +48,8 @@ module.exports = function getBabelConfig(api) {
     test: resolveAliasPath('./test'),
   };
 
-  const presets = [
-    [
-      '@babel/preset-env',
-      {
-        bugfixes: true,
-        browserslistEnv: api.env() || process.env.NODE_ENV,
-        debug: process.env.MUI_BUILD_VERBOSE === 'true',
-        modules: useESModules ? false : 'commonjs',
-      },
-    ],
-    [
-      '@babel/preset-react',
-      {
-        runtime: 'automatic',
-      },
-    ],
-    '@babel/preset-typescript',
-  ];
-
-  // Essentially only replace in production builds.
-  // When aliasing we want to keep the original extension
-  const outFileExtension = process.env.MUI_OUT_FILE_EXTENSION || null;
-
   /** @type {babel.PluginItem[]} */
   const plugins = [
-    'babel-plugin-optimize-clsx',
-    [
-      '@babel/plugin-transform-runtime',
-      {
-        useESModules,
-        // any package needs to declare 7.25.0 as a runtime dependency. default is ^7.0.0
-        version: process.env.MUI_BABEL_RUNTIME_VERSION || '^7.25.0',
-      },
-    ],
-    [
-      'babel-plugin-transform-react-remove-prop-types',
-      {
-        mode: 'unsafe-wrap',
-      },
-    ],
-    [
-      'transform-inline-environment-variables',
-      {
-        include: [
-          'MUI_VERSION',
-          'MUI_MAJOR_VERSION',
-          'MUI_MINOR_VERSION',
-          'MUI_PATCH_VERSION',
-          'MUI_PRERELEASE',
-        ],
-      },
-    ],
     [
       '@mui/internal-babel-plugin-minify-errors',
       {
@@ -101,16 +58,6 @@ module.exports = function getBabelConfig(api) {
         runtimeModule: '@mui/utils/formatMuiErrorMessage',
       },
     ],
-    ...(useESModules
-      ? [
-          [
-            '@mui/internal-babel-plugin-resolve-imports',
-            {
-              outExtension: outFileExtension,
-            },
-          ],
-        ]
-      : []),
   ];
 
   if (process.env.NODE_ENV === 'test') {
@@ -122,14 +69,15 @@ module.exports = function getBabelConfig(api) {
       },
     ]);
   }
+  const basePlugins = (baseConfig.plugins || []).filter(
+    (/** @type {[unknown, unknown, string]} */ [, , pluginName]) =>
+      pluginName !== '@mui/internal-babel-plugin-display-name',
+  );
+  basePlugins.push(...plugins);
 
   return {
-    assumptions: {
-      noDocumentAll: true,
-    },
-    presets,
-    plugins,
-    ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
+    ...baseConfig,
+    plugins: basePlugins,
     overrides: [
       {
         exclude: /\.test\.(m?js|ts|tsx)$/,
@@ -181,4 +129,4 @@ module.exports = function getBabelConfig(api) {
       },
     },
   };
-};
+}
