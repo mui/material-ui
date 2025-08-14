@@ -61,7 +61,7 @@ async function removeOutdatedApiDocsTranslations(
 
   await Promise.all(
     Array.from(outdatedComponentDirectories, (outdatedComponentDirectory) =>
-      fs.rm(outdatedComponentDirectory, { recursive: true }),
+      fs.rm(outdatedComponentDirectory, { recursive: true, force: true }),
     ),
   );
 }
