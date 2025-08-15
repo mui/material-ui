@@ -92,7 +92,7 @@ async function main() {
   }
 
   // prepare screenshots
-  await fs.rmdir(screenshotDir, { recursive: true });
+  await fs.rm(screenshotDir, { recursive: true, force: true });
   await fs.mkdir(screenshotDir, { recursive: true });
 
   describe('visual regressions', () => {
