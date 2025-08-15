@@ -12,8 +12,7 @@ async function run() {
   const swDest = path.join(swDestDir, 'sw.js');
   const swSrc = path.join(__dirname, '../src/sw.js');
 
-  await fs.mkdir(swDestDir, { recursive: true });
-  await fs.copyFile(swSrc, swDest);
+  await fs.cp(swSrc, swDest, { recursive: true });
   await prepend(
     swDest,
     `
