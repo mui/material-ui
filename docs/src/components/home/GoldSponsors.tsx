@@ -76,7 +76,7 @@ const BACKLINKs = [
     href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'TikTokFame.co',
+    name: 'TikTokFame',
     description: 'The ultimate TikTok growth platform.',
     href: 'https://tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
