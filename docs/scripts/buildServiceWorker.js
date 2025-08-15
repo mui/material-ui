@@ -8,8 +8,7 @@ async function prepend(file, string) {
 }
 
 async function run() {
-  const swDestDir = path.join(__dirname, '../export');
-  const swDest = path.join(swDestDir, 'sw.js');
+  const swDest = path.join(__dirname, '../export/sw.js');
   const swSrc = path.join(__dirname, '../src/sw.js');
 
   await fs.cp(swSrc, swDest, { recursive: true });
