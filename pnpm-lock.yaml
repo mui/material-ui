@@ -655,9 +655,6 @@ importers:
       flexsearch:
         specifier: ^0.8.205
         version: 0.8.205
-      fs-extra:
-        specifier: ^11.3.1
-        version: 11.3.1
       json2mq:
         specifier: ^0.2.0
         version: 0.2.0
