@@ -83,10 +83,6 @@ export default function getBabelConfig(api) {
         exclude: /\.test\.(m?js|ts|tsx)$/,
         plugins: ['@babel/plugin-transform-react-constant-elements'],
       },
-      {
-        test: /(\.test\.[^.]+$|\.test\/)/,
-        plugins: [['@mui/internal-babel-plugin-resolve-imports', false]],
-      },
     ],
     env: {
       coverage: {
