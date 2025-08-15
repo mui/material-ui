@@ -25,7 +25,7 @@ export default function useScrollTrigger(options = {}) {
   const {
     getTrigger = defaultTrigger,
     target = defaultTarget,
-    disableReentrant = true, // Default to true for backwards compatibility
+    disableReentrant = true,
     reentrantLockDuration = 300,
     ...other
   } = options;
@@ -40,14 +40,12 @@ export default function useScrollTrigger(options = {}) {
     }
 
     const handleScroll = () => {
-      // Don't process if we're in a locked state (transition happening)
       if (!disableReentrant && isLockedRef.current) {
         return;
       }
 
       const newTrigger = getTrigger(store, { target, ...other });
 
-      // Only update if the value changed
       setTrigger((prevTrigger) => {
         if (newTrigger !== prevTrigger) {
           // Lock updates for a period after state change if reentrant protection is enabled
@@ -70,7 +68,6 @@ export default function useScrollTrigger(options = {}) {
       });
     };
 
-    // Initial evaluation
     handleScroll();
 
     target.addEventListener('scroll', handleScroll, { passive: true });

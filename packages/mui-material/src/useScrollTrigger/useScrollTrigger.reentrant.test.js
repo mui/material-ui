@@ -14,7 +14,7 @@ describe('useScrollTrigger - reentrant protection', () => {
         const trigger = useScrollTrigger({
           threshold: 100,
           disableReentrant: false,
-          reentrantLockDuration: 100, // Shorter duration for testing
+          reentrantLockDuration: 100,
         });
 
         // Track all trigger values
@@ -27,7 +27,6 @@ describe('useScrollTrigger - reentrant protection', () => {
 
       render(<TestComponent />);
 
-      // Initial state should be false
       expect(screen.getByTestId('trigger').textContent).to.equal('false');
 
       // Simulate rapid scroll events that would normally cause oscillation
@@ -36,7 +35,6 @@ describe('useScrollTrigger - reentrant protection', () => {
         window.dispatchEvent(new window.Event('scroll', {}));
       });
 
-      // Should change to true
       expect(screen.getByTestId('trigger').textContent).to.equal('true');
 
       // Immediately try to trigger another change (simulating feedback from DOM change)
@@ -73,7 +71,6 @@ describe('useScrollTrigger - reentrant protection', () => {
 
       render(<TestComponent />);
 
-      // Initial state should be false
       expect(screen.getByTestId('trigger').textContent).to.equal('false');
 
       // Scroll past threshold
@@ -82,7 +79,6 @@ describe('useScrollTrigger - reentrant protection', () => {
         window.dispatchEvent(new window.Event('scroll', {}));
       });
 
-      // Should change to true
       expect(screen.getByTestId('trigger').textContent).to.equal('true');
 
       // Immediate change should work
@@ -91,7 +87,6 @@ describe('useScrollTrigger - reentrant protection', () => {
         window.dispatchEvent(new window.Event('scroll', {}));
       });
 
-      // Should change to false immediately
       expect(screen.getByTestId('trigger').textContent).to.equal('false');
     });
 
@@ -148,7 +143,6 @@ describe('useScrollTrigger - reentrant protection', () => {
   });
 
   afterEach(() => {
-    // Reset window scroll position
     window.pageYOffset = 0;
   });
 });
