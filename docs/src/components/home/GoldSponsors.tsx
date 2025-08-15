@@ -81,8 +81,8 @@ const BACKLINKs = [
     href: 'https://tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
-    name: 'Instant Delivery Google Reviews',
-    description: 'Buy online reviews',
+    name: 'Reputation Manage',
+    description: 'Instant Delivery Google Reviews',
     href: 'https://reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];

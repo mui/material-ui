@@ -94,7 +94,7 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
  <a href="https://www.tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">TikTokFame</a>
   &nbsp;
-  <a href="https://www.reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Instant Delivery Google Reviews</a>
+  <a href="https://www.reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Reputation Manage</a>
   &nbsp;
 </p>
 
