@@ -22,31 +22,31 @@ function defaultTrigger(store, options) {
 const defaultTarget = typeof window !== 'undefined' ? window : null;
 
 export default function useScrollTrigger(options = {}) {
-  const { 
-    getTrigger = defaultTrigger, 
+  const {
+    getTrigger = defaultTrigger,
     target = defaultTarget,
     disableReentrant = true, // Default to true for backwards compatibility
     reentrantLockDuration = 300,
-    ...other 
+    ...other
   } = options;
   const store = React.useRef();
   const [trigger, setTrigger] = React.useState(() => getTrigger(store, other));
   const lockTimeoutRef = React.useRef();
   const isLockedRef = React.useRef(false);
-  
+
   React.useEffect(() => {
     if (target === null) {
       return setTrigger(false);
     }
-    
+
     const handleScroll = () => {
       // Don't process if we're in a locked state (transition happening)
       if (!disableReentrant && isLockedRef.current) {
         return;
       }
-      
+
       const newTrigger = getTrigger(store, { target, ...other });
-      
+
       // Only update if the value changed
       setTrigger((prevTrigger) => {
         if (newTrigger !== prevTrigger) {
@@ -54,27 +54,27 @@ export default function useScrollTrigger(options = {}) {
           // This prevents rapid back-and-forth during Collapse animations
           if (!disableReentrant) {
             isLockedRef.current = true;
-            
+
             if (lockTimeoutRef.current) {
               clearTimeout(lockTimeoutRef.current);
             }
-            
+
             lockTimeoutRef.current = setTimeout(() => {
               isLockedRef.current = false;
             }, reentrantLockDuration);
           }
-          
+
           return newTrigger;
         }
         return prevTrigger;
       });
     };
-    
+
     // Initial evaluation
     handleScroll();
-    
+
     target.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       if (lockTimeoutRef.current) {
         clearTimeout(lockTimeoutRef.current);
