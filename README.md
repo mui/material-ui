@@ -90,9 +90,9 @@ via [Open Collective](https://opencollective.com/mui-org) or via [Patreon](http
   &nbsp;
   <a href="https://www.socialwick.com/instagram/followers/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">SocialWick</a>
   &nbsp;
- <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">>Follower24</a>
+ <a href="https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">Follower24</a>
   &nbsp;
- <a href="https://www.tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">>TikTokFame</a>
+ <a href="https://www.tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank">TikTokFame</a>
   &nbsp;
 </p>
 
