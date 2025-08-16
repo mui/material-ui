@@ -64,7 +64,7 @@ It contains the highlights we aim to include in the first versions:
 
 ### Tree View
 
-- [Parent/chidren selection propagation](https://github.com/mui/mui-x/issues/12883)
+- [Parent/children selection propagation](https://github.com/mui/mui-x/issues/12883)
 - [Lazy loading](https://github.com/mui/mui-x/issues/9687)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 - [Virtualization](https://github.com/mui/mui-x/issues/9685)[<span class="plan-pro"></span>](/x/introduction/licensing/#pro-plan 'Pro plan')
 
