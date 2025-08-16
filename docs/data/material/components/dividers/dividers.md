@@ -65,7 +65,7 @@ The demo below shows how to combine the props `variant="middle"` and `orientatio
 
 ## Accessibility
 
-Due to its implicit role of `separator`, the Divider, which is a `<hr>` element, will be announced by screen readers as a "Horziontal Splitter" (or vertical, if you're using the `orientation` prop).
+Due to its implicit role of `separator`, the Divider, which is a `<hr>` element, will be announced by screen readers as a "Horizontal Splitter" (or vertical, if you're using the `orientation` prop).
 
 If you're using it as a purely stylistic element, we recommend setting `aria-hidden="true"` which will make screen readers bypass it.
 
