@@ -68,11 +68,11 @@ importers:
         specifier: ^2.0.8-canary.4
         version: 2.0.8-canary.4(@babel/core@7.28.0)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.18
-        version: 1.0.9-canary.18(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))(yaml@2.8.0)
+        specifier: ^1.0.9-canary.19
+        version: 1.0.9-canary.19(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: ^0.0.2-canary.32
-        version: 0.0.2-canary.32(@typescript-eslint/parser@8.35.1(eslint@9.33.0(jiti@2.4.2))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.33.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.9.2)
+        specifier: ^0.0.2-canary.34
+        version: 0.0.2-canary.34(@typescript-eslint/parser@8.35.1(eslint@9.33.0(jiti@2.4.2))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.33.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.9.2)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -4039,12 +4039,12 @@ packages:
     peerDependencies:
       '@babel/core': ^7.28.0
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.18':
-    resolution: {integrity: sha512-F0hBCE/7ICw7slXGUCoifIye+EIgy6xEcLf2balGBgOfcalF06bKlvtQ8ZaqHtwdZIk+kCRfAg7C4tN6W5066w==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.19':
+    resolution: {integrity: sha512-2fk2iH6Y97WrMod00QCjeYQ0f2N0p92BFZadNLXq+JnBMmATii/Nv7c3ENdOGn24hXjK45wSlWiAIJGpZbbMuw==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.2-canary.32':
-    resolution: {integrity: sha512-8TJ9q/B3SLumznDwTiAK1fDQYTlZ+won3HMmZCBIZ//afQ0cx15650tOOePxZsNTlo381pJXtXWm80DRGK3iOA==}
+  '@mui/internal-code-infra@0.0.2-canary.34':
+    resolution: {integrity: sha512-goZEOm7RZAbtbISZFpj0uXJWYZNU63eQIlt1WVCN1WfWTKEX0Ky/lkkSeKMCt9Xl8NqqJ+BsKrxzMQrZHxlmYg==}
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -6200,11 +6200,6 @@ packages:
       ajv:
         optional: true
 
-  ajv-keywords@3.5.2:
-    resolution: {integrity: sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==}
-    peerDependencies:
-      ajv: ^6.9.1
-
   ajv-keywords@5.1.0:
     resolution: {integrity: sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==}
     peerDependencies:
@@ -6568,9 +6563,6 @@ packages:
   big-integer@1.6.51:
     resolution: {integrity: sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==}
     engines: {node: '>=0.6'}
-
-  big.js@5.2.2:
-    resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
 
   bin-links@4.0.4:
     resolution: {integrity: sha512-cMtq4W5ZsEwcutJrVId+a/tjt8GSbS+h0oNkdl6+6rBuEv8Ot33Bevj5KPm40t309zuhVic8NjpuL42QCiJWWA==}
@@ -7094,12 +7086,6 @@ packages:
     resolution: {integrity: sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==}
     engines: {node: '>= 0.6'}
 
-  compression-webpack-plugin@10.0.0:
-    resolution: {integrity: sha512-wLXLIBwpul/ALcm7Aj+69X0pYT3BYt6DdPn3qrgBIh9YejV9Bju9ShhlAsjujLyWMo6SAweFIWaUoFmXZNuNrg==}
-    engines: {node: '>= 14.15.0'}
-    peerDependencies:
-      webpack: ^5.1.0
-
   compression-webpack-plugin@11.1.0:
     resolution: {integrity: sha512-zDOQYp10+upzLxW+VRSjEpRRwBXJdsb5lBMlRxx1g8hckIFBpe3DTI0en2w7h+beuq89576RVzfiXrkdPGrHhA==}
     engines: {node: '>= 18.12.0'}
@@ -7338,18 +7324,6 @@ packages:
   css-functions-list@3.2.3:
     resolution: {integrity: sha512-IQOkD3hbR5KrN93MtcYuad6YPuTSUhntLHDuLEbFWE+ff2/XSZNdZG+LcbbIW5AXKg/WFIfYItIzVoHngHXZzA==}
     engines: {node: '>=12 || >=16'}
-
-  css-loader@7.1.2:
-    resolution: {integrity: sha512-6WvYYn7l/XEGN8Xu2vWFt9nVzrCn39vKyTEFf/ExEyoksJjjSZV/0/35XPlMbpnr6VGhZIUg5yJrL8tGfes/FA==}
-    engines: {node: '>= 18.12.0'}
-    peerDependencies:
-      '@rspack/core': 0.x || 1.x
-      webpack: ^5.27.0
-    peerDependenciesMeta:
-      '@rspack/core':
-        optional: true
-      webpack:
-        optional: true
 
   css-mediaquery@0.1.2:
     resolution: {integrity: sha512-COtn4EROW5dBGlE/4PiKnh6rZpAPxDeFLaEEwt4i10jpDMFt2EhQGS79QmmrO+iKCHv0PU/HrOWEhijFd1x99Q==}
@@ -7828,10 +7802,6 @@ packages:
 
   emojilib@2.4.0:
     resolution: {integrity: sha512-5U0rVMU5Y2n2+ykNLQqMoqklN9ICBT/KsvC1Gz6vqHbz2AXXGkG+Pm5rMWk/8Vjrr/mY9985Hi8DYzn1F09Nyw==}
-
-  emojis-list@3.0.0:
-    resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
-    engines: {node: '>= 4'}
 
   empathic@2.0.0:
     resolution: {integrity: sha512-i6UzDscO/XfAcNYD75CfICkmfLedpyPDdozrLMmQc5ORaQcdMoc21OnlEylMIqI7U8eniKrPMxxtj8k0vhmJhA==}
@@ -8358,12 +8328,6 @@ packages:
   file-entry-cache@8.0.0:
     resolution: {integrity: sha512-XXTUwCvisa5oacNGRP9SfNtYBNAMi+RPwBFmblZEF7N7swHYQS6/Zfk7SRwx4D5j3CH211YNRco1DEMNVfZCnQ==}
     engines: {node: '>=16.0.0'}
-
-  file-loader@6.2.0:
-    resolution: {integrity: sha512-qo3glqyTa61Ytg4u73GultjHGjdRyig3tG6lPtyX/jOEJvHif9uB0/OCI2Kif6ctF3caQTW2G5gym21oAsI4pw==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
 
   file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
@@ -8970,12 +8934,6 @@ packages:
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
-
-  icss-utils@5.1.0:
-    resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
-    engines: {node: ^10 || ^12 || >= 14}
-    peerDependencies:
-      postcss: ^8.1.0
 
   ieee754@1.1.13:
     resolution: {integrity: sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg==}
@@ -9817,10 +9775,6 @@ packages:
   loader-runner@4.3.0:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
     engines: {node: '>=6.11.5'}
-
-  loader-utils@2.0.4:
-    resolution: {integrity: sha512-xXqpXoINfFhgua9xiqD8fPFHgkoq1mmmpE92WlDbm9rNRd/EbRb+Gqf908T2DMfuHjjJlksiK2RbHVOdD/MqSw==}
-    engines: {node: '>=8.9.0'}
 
   local-pkg@1.1.1:
     resolution: {integrity: sha512-WunYko2W1NcdfAFpuLUoucsgULmgDBRkdxHxWQ7mK0cQqwPiy8E1enjuRBrhLtZkB5iScJ1XIPdhVEFK8aOLSg==}
@@ -11221,30 +11175,6 @@ packages:
       tsx:
         optional: true
 
-  postcss-modules-extract-imports@3.1.0:
-    resolution: {integrity: sha512-k3kNe0aNFQDAZGbin48pL2VNidTF0w4/eASDsxlyspobzU3wZQLOGj7L9gfRe0Jo9/4uud09DsjFNH7winGv8Q==}
-    engines: {node: ^10 || ^12 || >= 14}
-    peerDependencies:
-      postcss: ^8.1.0
-
-  postcss-modules-local-by-default@4.2.0:
-    resolution: {integrity: sha512-5kcJm/zk+GJDSfw+V/42fJ5fhjL5YbFDl8nVdXkJPLLW+Vf9mTD5Xe0wqIaDnLuL2U6cDNpTr+UQ+v2HWIBhzw==}
-    engines: {node: ^10 || ^12 || >= 14}
-    peerDependencies:
-      postcss: ^8.1.0
-
-  postcss-modules-scope@3.2.1:
-    resolution: {integrity: sha512-m9jZstCVaqGjTAuny8MdgE88scJnCiQSlSrOWcTQgM2t32UBe+MUmFSO5t7VMSfAf/FJKImAxBav8ooCHJXCJA==}
-    engines: {node: ^10 || ^12 || >= 14}
-    peerDependencies:
-      postcss: ^8.1.0
-
-  postcss-modules-values@4.0.0:
-    resolution: {integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==}
-    engines: {node: ^10 || ^12 || >= 14}
-    peerDependencies:
-      postcss: ^8.1.0
-
   postcss-reporter@7.1.0:
     resolution: {integrity: sha512-/eoEylGWyy6/DOiMP5lmFRdmDKThqgn7D6hP2dXKJI/0rJSO1ADFNngZfDzxL0YAxFvws+Rtpuji1YIHj4mySA==}
     engines: {node: '>=10'}
@@ -11976,10 +11906,6 @@ packages:
 
   scheduler@0.26.0:
     resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
-
-  schema-utils@3.3.0:
-    resolution: {integrity: sha512-pN/yOAvcC+5rQ5nERGuwrjLlYvLTbCibnZ1I7B1LaiAz9BRBlE9GMgE/eqV30P7aJQUf7Ddimy/RsbYO/GrVGg==}
-    engines: {node: '>= 10.13.0'}
 
   schema-utils@4.3.2:
     resolution: {integrity: sha512-Gn/JaSk/Mt9gYubxTtSn/QCV4em9mpAPiR1rqy/Ocu19u/G9J5WWdNoUT4SiV6mFC3y6cxyFcFwdzPM3FgxGAQ==}
@@ -16014,39 +15940,25 @@ snapshots:
       '@babel/core': 7.28.0
       resolve: 1.22.10
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.18(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))(yaml@2.8.0)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.19(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)':
     dependencies:
       '@aws-sdk/client-s3': 3.787.0
       '@aws-sdk/credential-providers': 3.787.0
-      '@babel/core': 7.28.0
-      '@babel/preset-react': 7.27.1(@babel/core@7.28.0)
-      '@babel/preset-typescript': 7.27.1(@babel/core@7.28.0)
       '@octokit/auth-action': 6.0.1
       '@octokit/rest': 22.0.0
-      babel-loader: 10.0.0(@babel/core@7.28.0)(webpack@5.101.0)
       chalk: 5.5.0
-      compression-webpack-plugin: 10.0.0(webpack@5.101.0)
-      css-loader: 7.1.2(webpack@5.101.0)
       env-ci: 11.1.0
       execa: 7.2.0
       fast-glob: 3.3.3
-      file-loader: 6.2.0(webpack@5.101.0)
       git-url-parse: 16.1.0
       micromatch: 4.0.8
       piscina: 4.9.2
       rollup-plugin-visualizer: 6.0.3(rollup@4.46.2)
-      terser-webpack-plugin: 5.3.14(webpack@5.101.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0)))
       vite: 6.3.5(@types/node@20.19.10)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(tsx@4.20.3)(yaml@2.8.0)
-      webpack: 5.101.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))
-      webpack-bundle-analyzer: 4.10.2
       yargs: 17.7.2
     transitivePeerDependencies:
-      - '@rspack/core'
-      - '@swc/core'
       - '@types/node'
       - aws-crt
-      - bufferutil
-      - esbuild
       - jiti
       - less
       - lightningcss
@@ -16056,15 +15968,11 @@ snapshots:
       - sass-embedded
       - stylus
       - sugarss
-      - supports-color
       - terser
       - tsx
-      - uglify-js
-      - utf-8-validate
-      - webpack-cli
       - yaml
 
-  '@mui/internal-code-infra@0.0.2-canary.32(@typescript-eslint/parser@8.35.1(eslint@9.33.0(jiti@2.4.2))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.33.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.9.2)':
+  '@mui/internal-code-infra@0.0.2-canary.34(@typescript-eslint/parser@8.35.1(eslint@9.33.0(jiti@2.4.2))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.33.0(jiti@2.4.2))(prettier@3.6.2)(typescript@5.9.2)':
     dependencies:
       '@argos-ci/core': 3.2.3
       '@babel/core': 7.28.0
@@ -18655,10 +18563,6 @@ snapshots:
     optionalDependencies:
       ajv: 8.12.0
 
-  ajv-keywords@3.5.2(ajv@6.12.6):
-    dependencies:
-      ajv: 6.12.6
-
   ajv-keywords@5.1.0(ajv@8.12.0):
     dependencies:
       ajv: 8.12.0
@@ -19112,8 +19016,6 @@ snapshots:
   bezier-easing@2.1.0: {}
 
   big-integer@1.6.51: {}
-
-  big.js@5.2.2: {}
 
   bin-links@4.0.4:
     dependencies:
@@ -19721,12 +19623,6 @@ snapshots:
     dependencies:
       mime-db: 1.53.0
 
-  compression-webpack-plugin@10.0.0(webpack@5.101.0):
-    dependencies:
-      schema-utils: 4.3.2
-      serialize-javascript: 6.0.2
-      webpack: 5.101.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))
-
   compression-webpack-plugin@11.1.0(webpack@5.101.0):
     dependencies:
       schema-utils: 4.3.2
@@ -20036,19 +19932,6 @@ snapshots:
   css-color-keywords@1.0.0: {}
 
   css-functions-list@3.2.3: {}
-
-  css-loader@7.1.2(webpack@5.101.0):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.6)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.6)
-      postcss-modules-scope: 3.2.1(postcss@8.5.6)
-      postcss-modules-values: 4.0.0(postcss@8.5.6)
-      postcss-value-parser: 4.2.0
-      semver: 7.7.2
-    optionalDependencies:
-      webpack: 5.101.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))
 
   css-mediaquery@0.1.2: {}
 
@@ -20557,8 +20440,6 @@ snapshots:
   emoji-regex@9.2.2: {}
 
   emojilib@2.4.0: {}
-
-  emojis-list@3.0.0: {}
 
   empathic@2.0.0: {}
 
@@ -21372,12 +21253,6 @@ snapshots:
     dependencies:
       flat-cache: 4.0.1
 
-  file-loader@6.2.0(webpack@5.101.0):
-    dependencies:
-      loader-utils: 2.0.4
-      schema-utils: 3.3.0
-      webpack: 5.101.0(webpack-cli@6.0.1(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0))
-
   file-uri-to-path@1.0.0: {}
 
   filelist@1.0.4:
@@ -22054,10 +21929,6 @@ snapshots:
   iconv-lite@0.6.3:
     dependencies:
       safer-buffer: 2.1.2
-
-  icss-utils@5.1.0(postcss@8.5.6):
-    dependencies:
-      postcss: 8.5.6
 
   ieee754@1.1.13: {}
 
@@ -23012,12 +22883,6 @@ snapshots:
       type-fest: 0.6.0
 
   loader-runner@4.3.0: {}
-
-  loader-utils@2.0.4:
-    dependencies:
-      big.js: 5.2.2
-      emojis-list: 3.0.0
-      json5: 2.2.3
 
   local-pkg@1.1.1:
     dependencies:
@@ -24674,27 +24539,6 @@ snapshots:
       postcss: 8.5.6
       tsx: 4.20.3
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.5.6):
-    dependencies:
-      postcss: 8.5.6
-
-  postcss-modules-local-by-default@4.2.0(postcss@8.5.6):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-selector-parser: 7.1.0
-      postcss-value-parser: 4.2.0
-
-  postcss-modules-scope@3.2.1(postcss@8.5.6):
-    dependencies:
-      postcss: 8.5.6
-      postcss-selector-parser: 7.1.0
-
-  postcss-modules-values@4.0.0(postcss@8.5.6):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
-
   postcss-reporter@7.1.0(postcss@8.5.6):
     dependencies:
       picocolors: 1.1.1
@@ -25511,12 +25355,6 @@ snapshots:
       xmlchars: 2.2.0
 
   scheduler@0.26.0: {}
-
-  schema-utils@3.3.0:
-    dependencies:
-      '@types/json-schema': 7.0.15
-      ajv: 6.12.6
-      ajv-keywords: 3.5.2(ajv@6.12.6)
 
   schema-utils@4.3.2:
     dependencies:
