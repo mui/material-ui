@@ -7,6 +7,8 @@ import Button, { buttonClasses as classes } from '@mui/material/Button';
 import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 import describeConformance from '../../test/describeConformance';
 import * as ripple from '../../test/ripple';
+import ButtonGroupContext from '../ButtonGroup/ButtonGroupContext';
+import buttonGroupClasses from '../ButtonGroup/buttonGroupClasses';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
@@ -843,6 +845,105 @@ describe('<Button />', () => {
         </Button>,
       );
       expect(screen.getByRole('button')).to.have.class(classes.loadingPositionEnd);
+    });
+  });
+
+  describe('integration: ButtonGroupContext', () => {
+    it('registers/unregisters once, merges grouped class, applies position class, and does not leak runtime props', () => {
+      const calls = { reg: 0, unreg: 0 };
+      const handle = { __opaque: true };
+
+      function GroupHarness({ children }) {
+        const [version, setVersion] = React.useState(0);
+
+        const register = React.useCallback((node) => {
+          calls.reg += 1;
+          expect(node).to.be.instanceOf(HTMLElement);
+          // force group -> children re-render after the button registers
+          setVersion((v) => v + 1);
+          return handle;
+        }, []);
+
+        const unregister = React.useCallback((h) => {
+          calls.unreg += 1;
+          expect(h).to.equal(handle);
+          // no setVersion here to avoid noisy updates during unmount
+        }, []);
+
+        const getPosition = React.useCallback(() => 'first', []);
+
+        const value = React.useMemo(
+          () => ({
+            register,
+            unregister,
+            getPosition,
+            className: 'grouped-from-context',
+            version, // changing value identity triggers Button re-render
+          }),
+          [register, unregister, getPosition, version],
+        );
+
+        return <ButtonGroupContext.Provider value={value}>{children}</ButtonGroupContext.Provider>;
+      }
+
+      const { getByRole, unmount } = render(
+        <GroupHarness>
+          <Button>In group</Button>
+        </GroupHarness>,
+      );
+
+      const btn = getByRole('button');
+
+      // should not leak unknown attributes onto the DOM element
+      expect(btn).not.to.have.attribute('register');
+      expect(btn).not.to.have.attribute('unregister');
+      expect(btn).not.to.have.attribute('getPosition');
+
+      // grouped class from context should be merged
+      expect(btn).to.have.class('grouped-from-context');
+
+      // position class from getPosition() should be applied after re-render
+      expect(btn).to.have.class(buttonGroupClasses.firstButton);
+      expect(btn).not.to.have.class(buttonGroupClasses.middleButton);
+      expect(btn).not.to.have.class(buttonGroupClasses.lastButton);
+
+      unmount();
+      // Button registers at least once; with our harness it registers twice
+      expect(calls.reg).to.be.at.least(1);
+      // cleanup symmetry: every register gets an unregister
+      expect(calls.unreg).to.equal(calls.reg);
+    });
+
+    it('does not apply first/middle/last when getPosition returns "only"', () => {
+      function GroupHarnessOnly({ children }) {
+        const [version, setVersion] = React.useState(0);
+
+        const register = React.useCallback(() => {
+          setVersion((v) => v + 1);
+          return {}; // opaque handle
+        }, []);
+        const unregister = React.useCallback(() => {}, []);
+        const getPosition = React.useCallback(() => 'only', []);
+
+        const value = React.useMemo(
+          () => ({ register, unregister, getPosition, className: 'grouped-from-context', version }),
+          [register, unregister, getPosition, version],
+        );
+
+        return <ButtonGroupContext.Provider value={value}>{children}</ButtonGroupContext.Provider>;
+      }
+
+      const { getByRole } = render(
+        <GroupHarnessOnly>
+          <Button>Single</Button>
+        </GroupHarnessOnly>,
+      );
+
+      const btn = getByRole('button');
+      expect(btn).to.have.class('grouped-from-context');
+      expect(btn).not.to.have.class(buttonGroupClasses.firstButton);
+      expect(btn).not.to.have.class(buttonGroupClasses.middleButton);
+      expect(btn).not.to.have.class(buttonGroupClasses.lastButton);
     });
   });
 });
