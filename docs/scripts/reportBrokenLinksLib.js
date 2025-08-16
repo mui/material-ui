@@ -1,6 +1,6 @@
 // @ts-check
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs';
 import { createRender } from '@mui/internal-markdown';
 import { marked } from 'marked';
 import { LANGUAGES_IGNORE_PAGES } from '../config';
@@ -31,7 +31,7 @@ function getPageLinks(markdown) {
  * @returns {string[]}
  */
 function getJsFilesInFolder(folderPath) {
-  const files = fse.readdirSync(folderPath, { withFileTypes: true });
+  const files = fs.readdirSync(folderPath, { withFileTypes: true });
   return files.reduce((acc, file) => {
     if (file.isDirectory()) {
       const filesInFolder = getJsFilesInFolder(path.join(folderPath, file.name));
@@ -100,7 +100,7 @@ function getLinksAndAnchors(fileName) {
     },
   });
 
-  const data = fse.readFileSync(fileName, { encoding: 'utf8' });
+  const data = fs.readFileSync(fileName, { encoding: 'utf8' });
   render(data);
 
   const links = getPageLinks(data).map(cleanLink);
@@ -120,7 +120,7 @@ const markdownImportRegExp = /'(.*)\?(muiMarkdown|@mui\/markdown)'/g;
  */
 function getMdFilesImported(jsPageFile) {
   // For each JS file extract the markdown rendered if it exists
-  const fileContent = fse.readFileSync(jsPageFile, 'utf8');
+  const fileContent = fs.readFileSync(jsPageFile, 'utf8');
   /**
    * Content files can be represented by either:
    * - 'docsx/data/advanced-components/overview.md?muiMarkdown'; (for mui-x)

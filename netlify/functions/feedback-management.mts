@@ -100,7 +100,7 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
     const channelId = channel?.id;
 
     if (!channelId) {
-      throw Error('feedback-management: Unknonw channel Id');
+      throw Error('feedback-management: Unknown channel Id');
     }
     await client.chat.delete({
       channel: channelId,
@@ -123,7 +123,7 @@ export const handler: Handler = async (event, context, callback) => {
     const data = JSON.parse(payload);
 
     if (data.callback_id === 'send_feedback') {
-      // We send the feedback to the appopiate slack channel
+      // We send the feedback to the appropriate slack channel
       const {
         rating,
         comment,
