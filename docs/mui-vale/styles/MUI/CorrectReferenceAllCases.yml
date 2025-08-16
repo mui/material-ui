@@ -2,7 +2,7 @@
 extends: substitution
 message: Use '%s' instead of '%s'
 level: error
-ignorecase: true # There is only one correct way to spell those, so we want to match inputs regarless of case.
+ignorecase: true # There is only one correct way to spell those, so we want to match inputs regardless of case.
 # swap maps tokens in form of bad: good
 # for more information: https://vale.sh/docs/topics/styles/#substitution
 swap:
