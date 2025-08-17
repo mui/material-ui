@@ -20,8 +20,6 @@ import {
 import { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
 
-
-
 function getNewValue(
   currentValue: number,
   step: number,
@@ -664,10 +662,10 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
       // Avoid text selection
       event.preventDefault();
-      
+
       // Set dragging immediately for better responsiveness
       setDragging(true);
-      
+
       const finger = trackFinger(event, touchId);
       if (finger !== false) {
         const { newValue, activeIndex } = getFingerNewValue({ finger });
