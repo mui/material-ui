@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Divider component
 components: Divider
-githubLabel: 'component: divider'
+githubLabel: 'scope: divider'
 materialDesign: https://m2.material.io/components/dividers
 githubSource: packages/mui-material/src/Divider
 ---

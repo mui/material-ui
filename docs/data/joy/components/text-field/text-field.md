@@ -1,7 +1,7 @@
 ---
 productId: joy-ui
 title: React Text Field component
-githubLabel: 'component: text field'
+githubLabel: 'scope: text field'
 ---
 
 # Text Field
