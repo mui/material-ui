@@ -4,7 +4,7 @@ const { expect } = require('chai');
 
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;
-  const testProjectPath = path.resolve(packagePath, 'test');
+  const testProjectPath = path.resolve(path.dirname(packagePath), 'test');
 
   function execEnvinfo(args) {
     const envinfoPath = path.resolve(packagePath, 'envinfo.js');

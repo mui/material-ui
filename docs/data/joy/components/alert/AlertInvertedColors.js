@@ -51,7 +51,7 @@ export default function AlertInvertedColors() {
         <div>
           <Typography level="title-lg">Success</Typography>
           <Typography level="body-sm">
-            Success is walking from failure to failure with no loss of enthusiam.
+            Success is walking from failure to failure with no loss of enthusiasm.
           </Typography>
         </div>
         <LinearProgress
