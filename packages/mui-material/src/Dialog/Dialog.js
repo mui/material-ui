@@ -367,6 +367,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             role="dialog"
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
+            tabIndex={-1}
             aria-modal={ariaModal}
             {...paperSlotProps}
           >

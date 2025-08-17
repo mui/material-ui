@@ -24,7 +24,7 @@ describe('<Modal />', () => {
 
   describeConformance(
     <Modal open>
-      <div />
+      <div tabIndex={-1} />
     </Modal>,
     () => ({
       classes,
@@ -64,7 +64,9 @@ describe('<Modal />', () => {
       render(
         <ThemeProvider theme={theme}>
           <Modal open>
-            <p id="content">Hello World</p>
+            <p tabIndex={-1} id="content">
+              Hello World
+            </p>
           </Modal>
         </ThemeProvider>,
       );
@@ -77,7 +79,7 @@ describe('<Modal />', () => {
     it('adds custom classes to the component', () => {
       const { getByTestId } = render(
         <Modal data-testid="Portal" open classes={{ root: 'custom-root', hidden: 'custom-hidden' }}>
-          <div />
+          <div tabIndex={-1} />
         </Modal>,
       );
       expect(getByTestId('Portal')).to.have.class(classes.root);
@@ -90,7 +92,9 @@ describe('<Modal />', () => {
     it('should not render the children by default', () => {
       const { queryByTestId } = render(
         <Modal open={false}>
-          <p data-testid="content">Hello World</p>
+          <p tabIndex={-1} data-testid="content">
+            Hello World
+          </p>
         </Modal>,
       );
 
@@ -100,7 +104,7 @@ describe('<Modal />', () => {
     it('renders the children inside a div through a portal when open', () => {
       const { getByTestId } = render(
         <Modal data-testid="Portal" open>
-          <p>Hello World</p>
+          <p tabIndex={-1}>Hello World</p>
         </Modal>,
       );
 
@@ -110,7 +114,9 @@ describe('<Modal />', () => {
     it('makes the child focusable without adding a role', () => {
       const { getByTestId } = render(
         <Modal open>
-          <div data-testid="child">Hello World</div>
+          <div tabIndex={-1} data-testid="child">
+            Hello World
+          </div>
         </Modal>,
       );
 
@@ -132,7 +138,7 @@ describe('<Modal />', () => {
 
       render(
         <Modal open slots={{ backdrop: TestBackdrop }}>
-          <div />
+          <div tabIndex={-1} />
         </Modal>,
       );
 
@@ -142,7 +148,7 @@ describe('<Modal />', () => {
     it('should render a backdrop component into the portal before the modal content', () => {
       const { getByTestId } = render(
         <Modal open data-testid="modal">
-          <div data-testid="container" />
+          <div tabIndex={-1} data-testid="container" />
         </Modal>,
       );
 
@@ -173,7 +179,7 @@ describe('<Modal />', () => {
             },
           }}
         >
-          <div />
+          <div tabIndex={-1} />
         </Modal>,
       );
 
@@ -192,7 +198,7 @@ describe('<Modal />', () => {
             },
           }}
         >
-          <div />
+          <div tabIndex={-1} />
         </Modal>,
       );
 
@@ -212,7 +218,7 @@ describe('<Modal />', () => {
 
         return (
           <Modal onClose={handleClose} {...other}>
-            <div />
+            <div tabIndex={-1} />
           </Modal>
         );
       }
@@ -237,7 +243,7 @@ describe('<Modal />', () => {
     it('should not render a backdrop component into the portal before the modal content', () => {
       const { getByTestId } = render(
         <Modal open hideBackdrop data-testid="modal">
-          <div data-testid="container" />
+          <div tabIndex={-1} data-testid="container" />
         </Modal>,
       );
 
@@ -330,7 +336,9 @@ describe('<Modal />', () => {
       const { getByTestId } = render(
         <Modal keepMounted open={false}>
           <div>
-            <p data-testid="children">Hello World</p>
+            <p tabIndex={-1} data-testid="children">
+              Hello World
+            </p>
           </div>
         </Modal>,
       );
@@ -342,7 +350,7 @@ describe('<Modal />', () => {
       const modalRef = React.createRef();
       const { setProps } = render(
         <Modal keepMounted open={false} ref={modalRef}>
-          <div>ModalContent</div>
+          <div tabIndex={-1}>ModalContent</div>
         </Modal>,
       );
       const modalNode = modalRef.current;
@@ -375,7 +383,7 @@ describe('<Modal />', () => {
               </button>
               <Modal open={this.state.open}>
                 <Fade in={this.state.open}>
-                  <span>
+                  <span tabIndex={-1}>
                     <p data-testid="children">Hello World</p>
                   </span>
                 </Fade>
@@ -414,7 +422,9 @@ describe('<Modal />', () => {
     it('should focus on the modal when it is opened', () => {
       const { getByTestId, setProps } = render(
         <Modal open>
-          <div data-testid="modal">Foo</div>
+          <div tabIndex={-1} data-testid="modal">
+            Foo
+          </div>
         </Modal>,
       );
 
@@ -446,7 +456,9 @@ describe('<Modal />', () => {
     it('should keep focus on the modal when it is closed', () => {
       const { getByTestId, setProps } = render(
         <Modal open disableRestoreFocus>
-          <div data-testid="modal">Foo</div>
+          <div tabIndex={-1} data-testid="modal">
+            Foo
+          </div>
         </Modal>,
       );
 
@@ -460,7 +472,7 @@ describe('<Modal />', () => {
     it('should not focus on the modal when disableAutoFocus is true', () => {
       render(
         <Modal open disableAutoFocus>
-          <div>Foo</div>
+          <div tabIndex={-1}>Foo</div>
         </Modal>,
       );
 
@@ -518,7 +530,7 @@ describe('<Modal />', () => {
             <input data-testid="foreign-input" type="text" />
             <IFrame>
               <FramedModal open>
-                <div data-testid="modal" />
+                <div tabIndex={-1} data-testid="modal" />
               </FramedModal>
             </IFrame>
           </React.Fragment>,
@@ -568,10 +580,10 @@ describe('<Modal />', () => {
         return (
           <React.Fragment>
             <Modal open={props.open}>
-              <div>Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Modal>
             <Modal open={props.open}>
-              <div>World</div>
+              <div tabIndex={-1}>World</div>
             </Modal>
           </React.Fragment>
         );
@@ -599,11 +611,11 @@ describe('<Modal />', () => {
           <React.Fragment>
             <Modal open={props.open}>
               <Fade onEntered={props.onEntered} onExited={props.onExited} in={props.open}>
-                <div>Hello</div>
+                <div tabIndex={-1}>Hello</div>
               </Fade>
             </Modal>
             <Modal open={props.open}>
-              <div>World</div>
+              <div tabIndex={-1}>World</div>
             </Modal>
           </React.Fragment>
         );
@@ -648,7 +660,7 @@ describe('<Modal />', () => {
       render() {
         return (
           <Modal open={this.state.open}>
-            <div>Hello</div>
+            <div tabIndex={-1}>Hello</div>
           </Modal>
         );
       }
@@ -669,7 +681,7 @@ describe('<Modal />', () => {
               onExited={props.onExited}
               in={props.open}
             >
-              <div>Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Fade>
           </Modal>
         );
@@ -727,7 +739,7 @@ describe('<Modal />', () => {
               onExited={props.onExited}
               in={props.open}
             >
-              <div>Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Fade>
           </Modal>
         );
@@ -781,7 +793,7 @@ describe('<Modal />', () => {
         return (
           <Modal open={Boolean(anchorEl)} container={anchorEl}>
             <Fade in={Boolean(anchorEl)}>
-              <div>Hello</div>
+              <div tabIndex={-1}>Hello</div>
             </Fade>
           </Modal>
         );
@@ -799,7 +811,7 @@ describe('<Modal />', () => {
       const { getByTestId } = render(
         <div data-testid="parent">
           <Modal open disablePortal>
-            <div data-testid="child" />
+            <div tabIndex={-1} data-testid="child" />
           </Modal>
         </div>,
       );
@@ -811,7 +823,7 @@ describe('<Modal />', () => {
     it('should handle custom className', () => {
       const { getByTestId } = render(
         <Modal open BackdropProps={{ className: 'custom-backdrop', 'data-testid': 'backdrop' }}>
-          <div />
+          <div tabIndex={-1} />
         </Modal>,
       );
       expect(getByTestId('backdrop')).to.have.class('custom-backdrop');
@@ -822,7 +834,7 @@ describe('<Modal />', () => {
     expect(() => {
       render(
         <Modal open onTransitionEnter={() => {}} onTransitionExited={() => {}}>
-          <div />
+          <div tabIndex={-1} />
         </Modal>,
       );
     }).not.toErrorDev();

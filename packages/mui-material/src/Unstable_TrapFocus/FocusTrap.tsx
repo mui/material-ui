@@ -86,28 +86,50 @@ function isNodeMatchingSelectorFocusable(node: HTMLInputElement): boolean {
   return true;
 }
 
-function defaultGetTabbable(root: HTMLElement): HTMLElement[] {
+function defaultGetTabbable(
+  root: HTMLElement,
+  allowExplicitMinusOne: boolean = false,
+  allowRootFocus: boolean = false,
+): HTMLElement[] {
   const regularTabNodes: HTMLElement[] = [];
   const orderedTabNodes: OrderedTabNode[] = [];
 
-  Array.from(root.querySelectorAll(candidatesSelector)).forEach((node, i) => {
-    const nodeTabIndex = getTabIndex(node as HTMLElement);
+  const focusableNodes = Array.from(root.querySelectorAll(candidatesSelector));
+
+  if (allowRootFocus) {
+    focusableNodes.unshift(root);
+  }
+
+  focusableNodes.forEach((node, i) => {
+    const element = node as HTMLElement;
+
+    const nodeTabIndex = getTabIndex(element);
+
+    if (allowExplicitMinusOne && node.getAttribute('tabindex') === '-1') {
+      orderedTabNodes.push({
+        documentOrder: i,
+        tabIndex: nodeTabIndex,
+        node: element,
+      });
+      return;
+    }
 
     if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node as HTMLInputElement)) {
       return;
     }
 
     if (nodeTabIndex === 0) {
-      regularTabNodes.push(node as HTMLElement);
+      regularTabNodes.push(element);
     } else {
       orderedTabNodes.push({
         documentOrder: i,
         tabIndex: nodeTabIndex,
-        node: node as HTMLElement,
+        node: element,
       });
     }
   });
 
+  // Sort by tabIndex ascending, then by DOM order
   return orderedTabNodes
     .sort((a, b) =>
       a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex,
@@ -156,29 +178,33 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
   }, [disableAutoFocus, open]);
 
   React.useEffect(() => {
+    // React 18+ Strict mode reset
+    ignoreNextEnforceFocus.current = false;
     // We might render an empty child.
     if (!open || !rootRef.current) {
       return;
     }
 
     const doc = ownerDocument(rootRef.current);
+    const openFocusElement = getTabbable(rootRef.current, true, true)?.[0] ?? rootRef.current;
 
     if (!rootRef.current.contains(doc.activeElement)) {
-      if (!rootRef.current.hasAttribute('tabIndex')) {
+      // No focusable child was found and rootRef.current cannot be focused
+      if (rootRef.current === openFocusElement && !openFocusElement.hasAttribute('tabIndex')) {
         if (process.env.NODE_ENV !== 'production') {
           console.error(
             [
-              'MUI: The modal content node does not accept focus.',
+              'MUI: The modal content node does not have focusable elements.',
               'For the benefit of assistive technologies, ' +
                 'the tabIndex of the node is being set to "-1".',
             ].join('\n'),
           );
         }
-        rootRef.current.setAttribute('tabIndex', '-1');
+        openFocusElement.setAttribute('tabIndex', '-1');
       }
 
       if (activated.current) {
-        rootRef.current.focus();
+        openFocusElement.focus();
       }
     }
 
@@ -190,6 +216,8 @@ function FocusTrap(props: FocusTrapProps): React.JSX.Element {
         // Not all elements in IE11 have a focus method.
         // Once IE11 support is dropped the focus() call can be unconditional.
         if (nodeToRestore.current && (nodeToRestore.current as HTMLElement).focus) {
+          // On React 18+ Strict mode this line would make the first focus ignored
+          // so we need to reset it every time the component is mounted.
           ignoreNextEnforceFocus.current = true;
           (nodeToRestore.current as HTMLElement).focus();
         }

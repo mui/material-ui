@@ -9,8 +9,14 @@ export interface FocusTrapProps {
    * Returns an array of ordered tabbable nodes (i.e. in tab order) within the root.
    * For instance, you can provide the "tabbable" npm dependency.
    * @param {HTMLElement} root
+   * @param {boolean} allowExplicitMinusOne default `false`. allows the minus one index to be considered tabbable
+   * @param {boolean} allowRootFocus default `false`. allows the root node to be focused
    */
-  getTabbable?: (root: HTMLElement) => ReadonlyArray<HTMLElement>;
+  getTabbable?: (
+    root: HTMLElement,
+    allowExplicitMinusOne?: boolean,
+    allowRootFocus?: boolean,
+  ) => ReadonlyArray<HTMLElement>;
   /**
    * This prop extends the `open` prop.
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
