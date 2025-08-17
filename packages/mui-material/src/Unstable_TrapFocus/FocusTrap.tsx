@@ -4,10 +4,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import useForkRef from '@mui/utils/useForkRef';
 import ownerDocument from '@mui/utils/ownerDocument';
-import getActiveElement from '@mui/utils/getActiveElement';
 import getReactElementRef from '@mui/utils/getReactElementRef';
 import exactProp from '@mui/utils/exactProp';
 import elementAcceptingRef from '@mui/utils/elementAcceptingRef';
+import getActiveElement from '../utils/getActiveElement';
 import { FocusTrapProps } from './FocusTrap.types';
 
 // Inspired by https://github.com/focus-trap/tabbable
