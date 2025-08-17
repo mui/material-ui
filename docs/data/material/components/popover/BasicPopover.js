@@ -15,15 +15,13 @@ export default function BasicPopover() {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
 
   return (
     <div>
-      <Button aria-describedby={id} variant="contained" onClick={handleClick}>
+      <Button variant="contained" onClick={handleClick}>
         Open Popover
       </Button>
       <Popover
-        id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
