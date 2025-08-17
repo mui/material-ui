@@ -187,7 +187,14 @@ jobs:
             fi
       - run:
           name: '`pnpm prettier` changes committed?'
-          command: pnpm prettier --check
+          command: |
+            # #target-branch-reference
+            if [[ $(git diff --name-status master | grep pnpm-lock) == "" ]];
+            then
+                pnpm prettier --check
+            else
+                pnpm exec prettier --check . --ignore-path .lintignore
+            fi
       - run:
           name: Generate PropTypes
           command: pnpm proptypes
