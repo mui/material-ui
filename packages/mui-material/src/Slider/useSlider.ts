@@ -20,7 +20,7 @@ import {
 import { EventHandlers } from '../utils/types';
 import areArraysEqual from '../utils/areArraysEqual';
 
-const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
+
 
 function getNewValue(
   currentValue: number,
@@ -554,10 +554,6 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
 
-    if (!dragging && moveCount.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
-      setDragging(true);
-    }
-
     if (handleChange && !areValuesEqual(newValue, valueDerived)) {
       handleChange(nativeEvent, newValue, activeIndex);
     }
@@ -596,6 +592,9 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
     if (!doesSupportTouchActionNone()) {
       nativeEvent.preventDefault();
     }
+
+    // Set dragging immediately for better responsiveness
+    setDragging(true);
 
     const touch = nativeEvent.changedTouches[0];
     if (touch != null) {
@@ -665,6 +664,10 @@ export function useSlider(parameters: UseSliderParameters): UseSliderReturnValue
 
       // Avoid text selection
       event.preventDefault();
+      
+      // Set dragging immediately for better responsiveness
+      setDragging(true);
+      
       const finger = trackFinger(event, touchId);
       if (finger !== false) {
         const { newValue, activeIndex } = getFingerNewValue({ finger });
