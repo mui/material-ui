@@ -33,7 +33,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2"
+    "@babel/runtime": "^7.28.3"
   },
   "devDependencies": {
     "@emotion/cache": "^11.14.0",
