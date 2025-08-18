@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import * as path from 'path';
-import * as fse from 'fs-extra';
+import * as fs from 'node:fs/promises';
 import * as prettier from 'prettier';
 import glob from 'fast-glob';
 import * as _ from 'lodash';
@@ -199,7 +199,7 @@ async function generateProptypes(
     });
   });
 
-  const sourceContent = await fse.readFile(sourceFile, 'utf8');
+  const sourceContent = await fs.readFile(sourceFile, 'utf8');
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
   // If the component inherits the props from some unstyled components
   // we don't want to add those propTypes again in the Material UI/Joy UI propTypes
@@ -296,7 +296,7 @@ async function generateProptypes(
   const formatted = fixBabelGeneratorIssues(prettified);
   const correctedLineEndings = fixLineEndings(sourceContent, formatted);
 
-  await fse.writeFile(sourceFile, correctedLineEndings);
+  await fs.writeFile(sourceFile, correctedLineEndings);
 }
 
 interface HandlerArgv {

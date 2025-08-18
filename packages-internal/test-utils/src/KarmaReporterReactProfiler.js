@@ -1,6 +1,6 @@
 // File is not transpiled.
 const path = require('path');
-const fse = require('fs-extra');
+const fs = require('node:fs');
 
 /**
  * @typedef {object} Browser
@@ -25,7 +25,7 @@ function KarmaReporterReactProfiler(karmaConfig) {
       `Expected karma config to contain reactProfilerReporter.outputDir of type 'string' but got type '${typeof outputDir}'.`,
     );
   }
-  fse.ensureDirSync(outputDir);
+  fs.mkdirSync(outputDir, { recursive: true });
 
   /**
    * @param {Browser} browser
@@ -44,7 +44,7 @@ function KarmaReporterReactProfiler(karmaConfig) {
   this.onBrowserStart = (browser) => {
     allRenders.set(browser.id, {});
     // Create it on start to signal to users where the files will appear
-    fse.ensureDirSync(path.join(outputDir, browser.name));
+    fs.mkdirSync(path.join(outputDir, browser.name), { recursive: true });
 
     browser.emitter.addListener('browser_info', handleBrowserInfo);
   };
@@ -67,10 +67,11 @@ function KarmaReporterReactProfiler(karmaConfig) {
       return;
     }
 
-    fse.ensureDirSync(path.join(outputDir, browser.name));
-    fse.writeJSONSync(path.join(outputDir, browser.name, `${Date.now()}.json`), browserRenders, {
-      spaces: 2,
-    });
+    fs.mkdirSync(path.join(outputDir, browser.name), { recursive: true });
+    fs.writeFileSync(
+      path.join(outputDir, browser.name, `${Date.now()}.json`),
+      JSON.stringify(browserRenders, null, 2),
+    );
   };
 }
 

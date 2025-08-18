@@ -1,5 +1,5 @@
 import glob from 'fast-glob';
-import fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import path from 'path';
 import { getWorkspaceRoot } from './utils.mjs';
 
@@ -15,7 +15,7 @@ async function main() {
 
   await Promise.all(
     declarationFiles.map(async (declarationFilePath) => {
-      const declarationFile = await fse.readFile(declarationFilePath, { encoding: 'utf8' });
+      const declarationFile = await fs.readFile(declarationFilePath, { encoding: 'utf8' });
       // find occurrences of e.g. `import("../../mui-*/src/...")`
       const typeImportsRelativeToWorkspace = declarationFile.match(/import\(("|')(\.\.\/)+mui/g);
 
