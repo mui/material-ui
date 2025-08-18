@@ -140,7 +140,7 @@ function createExportFor(exportName, conditions) {
 
 export async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
-  const { nyc, scripts, devDependencies, workspaces, publishConfig, ...packageDataOther } =
+  const { nyc, scripts, devDependencies, workspaces, ...packageDataOther } =
     JSON.parse(packageData);
 
   const packageExports = {
@@ -175,11 +175,6 @@ export async function createPackageFile() {
     ...(packageDataOther.main ? { main: './index.js' } : {}),
     exports: packageExports,
   };
-
-  if (publishConfig) {
-    const { directory, ...newPublishConfig } = publishConfig;
-    newPackageData.publishConfig = newPublishConfig;
-  }
 
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
   if (await fse.pathExists(typeDefinitionsFilePath)) {
