@@ -1,6 +1,5 @@
 import type * as dangerModule from 'danger';
 import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
-import { renderMarkdownReport } from '@mui/internal-bundle-size-checker';
 
 declare const danger: (typeof dangerModule)['danger'];
 declare const markdown: (typeof dangerModule)['markdown'];
@@ -28,6 +27,7 @@ async function reportBundleSize() {
 
   const circleciBuildNumber = process.env.CIRCLE_BUILD_NUM;
 
+  const { renderMarkdownReport } = await import('@mui/internal-bundle-size-checker');
   markdownContent += await renderMarkdownReport(danger.github.pr, circleciBuildNumber, {
     track: ['@mui/material', '@mui/lab', '@mui/system', '@mui/utils'],
   });
