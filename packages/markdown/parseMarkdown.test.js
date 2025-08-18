@@ -64,7 +64,7 @@ describe('parseMarkdown', () => {
 title: React Alert component
 components: Alert, AlertTitle
 hooks: useAlert
-githubLabel: 'component: alert'
+githubLabel: 'scope: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors: ['foo', 'bar']
@@ -73,7 +73,7 @@ authors: ['foo', 'bar']
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
         hooks: ['useAlert'],
-        githubLabel: 'component: alert',
+        githubLabel: 'scope: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',

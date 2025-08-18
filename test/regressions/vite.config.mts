@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [
     {
-      // Unfortunatelly necessary as we opted to write our jsx in js files
+      // Unfortunately necessary as we opted to write our jsx in js files
       name: 'treat-js-files-as-jsx',
       async transform(code, id) {
         if (/\/node_modules\//.test(id)) {

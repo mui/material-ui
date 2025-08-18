@@ -71,7 +71,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - Fix unpinned version regression (#46438) @oliviertassinari
 - [code-infra] Accomodate build requirements from mui-x (#46551) @brijeshb42
 - [code-infra] Extend renovate preset from infra repo (#46483) @brijeshb42
-- [code-infra] Use flat eslint config (#46258) @brijeshb42
+- [code-infra] Use flat ESLint config (#46258) @brijeshb42
 - [docs-infra] Remove comment saving in G-sheet option (#46617) @alexfauquette
 - [docs-infra] Move `Open in MUI Chat` to Demo toolbar and adjust styles (#46579) @siriwatknp
 - [docs-infra] Fix codeblock issues (#46323) @atharva3333
@@ -143,11 +143,11 @@ A big thanks to the 17 contributors who made this release possible. Here are the
 ### Core
 
 - pnpm docs:sync-team (3641a0b) @oliviertassinari
-- Add cross-env to eslint script (#46358) @ZeeshanTamboli
+- Add cross-env to ESLint script (#46358) @ZeeshanTamboli
 - Support merging of className and style from theme (#45975) @sai6855
 - [code-infra] Create bundle size package (#45911) @Janpot
 - [docs-infra] Add a script to generate Material UI `llms.txt` and docs markdown. (#46308) @siriwatknp
-- [docs-infra] Fix stackblitz for js projects (#46220) @Janpot
+- [docs-infra] Fix StackBlitz for js projects (#46220) @Janpot
 - [infra] Add emotion as external for bundle monitor (#46372) @Janpot
 - [infra] Create update PR on every canary publish for internal packages (#46367) @Janpot
 - [infra] Remove deprecated esmExternals (#46365) @Janpot
@@ -225,7 +225,7 @@ A big thanks to the 15 contributors who made this release possible.
 ### Core
 
 - [code-infra] Add plugin to check for index file access (#46178) @Janpot
-- [code-infra] Bump eslint to v9 (#46222) @brijeshb42
+- [code-infra] Bump ESLint to v9 (#46222) @brijeshb42
 - [code-infra] Move packages to mui/mui-public (#46155) @Janpot
 - [code-infra] Move `chai` to peerDep (#46227) @JCQuintas
 - [code-infra] Avoid loading barrel file during type checking (#46177) @Janpot

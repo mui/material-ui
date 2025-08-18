@@ -115,7 +115,7 @@ To do so, run:
 ```
 
 Wait for the terminal to print "🔍 MCP Inspector is up and running at http://127.0.0.1:6274".
-Navigate to this URL in your browser and set the following paramters:
+Navigate to this URL in your browser and set the following parameters:
 
 - **Transport type: Stdio**
 - **Command:**`npx`

@@ -73,7 +73,7 @@ export default function useControlled<T = unknown>(
     }, []);
 
   // TODO: provide overloads for the useControlled function to account for the case where either
-  // controlled or default is not undefiend.
+  // controlled or default is not undefined.
   // In that case the return type should be [T, React.Dispatch<React.SetStateAction<T>>]
   // otherwise it should be [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>]
   return [value as T, setValueIfUncontrolled];

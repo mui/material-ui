@@ -22,10 +22,10 @@
   },
   "devDependencies": {
     "@pigment-css/nextjs-plugin": "0.0.30",
-    "@types/node": "^20.19.9",
+    "@types/node": "^20.19.10",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "eslint": "^9.32.0",
+    "eslint": "^9.33.0",
     "typescript": "^5.9.2"
   },
   "nx": {
