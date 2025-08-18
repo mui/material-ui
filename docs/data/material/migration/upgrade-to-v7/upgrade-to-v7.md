@@ -132,6 +132,13 @@ yarn add react-is@18.3.1
 
 </codeblock>
 
+### Why is this needed?
+
+Material UI v7 uses `react-is@19`, which changed how React elements are identified.
+
+If you're on React 18 or below, mismatched versions of `react-is` can cause runtime errors in prop type checks.
+Forcing `react-is` to match your React version prevents these errors.
+
 ## Breaking changes
 
 Since v7 is a new major release, it contains some changes that affect the public API.
@@ -291,6 +298,8 @@ Use this codemod to automatically update the `size` value:
 ```bash
 npx @mui/codemod v7.0.0/input-label-size-normal-medium <path/to/folder>
 ```
+
+**Note:** Because the default size of `InputLabel` was changed from `normal` to `medium`, the class `MuiInputLabel‑sizeMedium` is no longer added. If you relied on this class for custom styling, use a different class.
 
 ### SvgIcon's data-testid removed
 

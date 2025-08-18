@@ -21,7 +21,15 @@ const bundleTypes = {
 };
 
 async function run(argv) {
-  const { bundle, largeFiles, outDir: outDirBase, verbose, cjsDir } = argv;
+  const {
+    bundle,
+    largeFiles,
+    outDir: outDirBase,
+    verbose,
+    cjsDir,
+    babelIgnore,
+    babelFlag: babelFlags,
+  } = argv;
 
   if (!validBundles.includes(bundle)) {
     throw new TypeError(
@@ -32,7 +40,15 @@ async function run(argv) {
   const packageJsonPath = path.resolve('./package.json');
   const packageJson = JSON.parse(await fs.readFile(packageJsonPath, { encoding: 'utf8' }));
 
-  const babelRuntimeVersion = packageJson.dependencies?.['@babel/runtime'];
+  let babelRuntimeVersion = packageJson.dependencies['@babel/runtime'];
+  if (babelRuntimeVersion === 'catalog:') {
+    // resolve the version from the given package
+    // outputs the pnpm-workspace.yaml config as json
+    const { stdout: configStdout } = await exec('pnpm config list --json');
+    const pnpmWorkspaceConfig = JSON.parse(configStdout);
+    babelRuntimeVersion = pnpmWorkspaceConfig.catalog['@babel/runtime'];
+  }
+
   if (!babelRuntimeVersion) {
     throw new Error(
       'package.json needs to have a dependency on `@babel/runtime` when building with `@babel/plugin-transform-runtime`.',
@@ -46,11 +62,13 @@ async function run(argv) {
     '**/*.test.js',
     '**/*.test.ts',
     '**/*.test.tsx',
+    '**/*.spec.js',
     '**/*.spec.ts',
     '**/*.spec.tsx',
     '**/*.d.ts',
     '**/*.test/*.*',
     '**/test-cases/*.*',
+    ...babelIgnore,
   ];
 
   const outFileExtension = '.js';
@@ -68,7 +86,7 @@ async function run(argv) {
     MUI_BUILD_VERBOSE: verbose,
     MUI_BABEL_RUNTIME_VERSION: babelRuntimeVersion,
     MUI_OUT_FILE_EXTENSION: outFileExtension,
-    ...(await getVersionEnvVariables(packageJson)),
+    ...getVersionEnvVariables(packageJson),
   };
 
   const babelArgs = [
@@ -82,6 +100,7 @@ async function run(argv) {
     '--ignore',
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
+    ...babelFlags,
   ];
 
   if (outFileExtension !== '.js') {
@@ -153,7 +172,14 @@ yargs(process.argv.slice(2))
           description: 'The directory to copy the cjs files to.',
         })
         .option('out-dir', { default: './build', type: 'string' })
-        .option('verbose', { type: 'boolean' });
+        .option('babel-ignore', { type: 'string', array: true, default: [] })
+        .option('verbose', { type: 'boolean' })
+        .option('babel-flag', {
+          type: 'string',
+          array: true,
+          default: [],
+          description: 'Additional flags to pass to babel cli.',
+        });
     },
     handler: run,
   })

@@ -138,8 +138,7 @@ function createExportFor(exportName, conditions) {
   };
 }
 
-// TODO: remove useEsmExports paramater once X is on the ESM-exports package layout (default to true)
-export async function createPackageFile(useEsmExports = false) {
+export async function createPackageFile() {
   const packageData = await fse.readFile(path.resolve(packagePath, './package.json'), 'utf8');
   const { nyc, scripts, devDependencies, workspaces, publishConfig, ...packageDataOther } =
     JSON.parse(packageData);
@@ -170,32 +169,12 @@ export async function createPackageFile(useEsmExports = false) {
     }
   }
 
-  const newPackageData = useEsmExports
-    ? {
-        ...packageDataOther,
-        private: false,
-        ...(packageDataOther.main
-          ? {
-              main: './index.js',
-              module: './esm/index.js',
-            }
-          : {}),
-        exports: packageExports,
-      }
-    : {
-        ...packageDataOther,
-        private: false,
-        ...(packageDataOther.main
-          ? {
-              main: fse.existsSync(path.resolve(buildPath, './node/index.js'))
-                ? './node/index.js'
-                : './index.js',
-              module: fse.existsSync(path.resolve(buildPath, './esm/index.js'))
-                ? './esm/index.js'
-                : './index.js',
-            }
-          : {}),
-      };
+  const newPackageData = {
+    ...packageDataOther,
+    private: false,
+    ...(packageDataOther.main ? { main: './index.js' } : {}),
+    exports: packageExports,
+  };
 
   if (publishConfig) {
     const { directory, ...newPublishConfig } = publishConfig;
@@ -205,6 +184,10 @@ export async function createPackageFile(useEsmExports = false) {
   const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
   if (await fse.pathExists(typeDefinitionsFilePath)) {
     newPackageData.types = './index.d.ts';
+  }
+
+  if (newPackageData.publishConfig?.directory) {
+    delete newPackageData.publishConfig.directory;
   }
 
   const targetPath = path.resolve(buildPath, './package.json');

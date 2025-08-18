@@ -1,9 +1,8 @@
 {
   "name": "@mui/docs",
-  "version": "7.2.0",
+  "version": "7.3.1",
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -22,18 +21,15 @@
   },
   "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json ./src/translations/translations.json:./modern/translations/translations.json",
+    "build": "code-infra build && pnpm build:copy-files",
+    "build:copy-files": "code-infra copy-files ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json",
     "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.27.6",
+    "@babel/runtime": "^7.28.2",
     "@mui/internal-markdown": "workspace:^",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -44,11 +40,11 @@
     "@mui/icons-material": "workspace:*",
     "@mui/material": "workspace:*",
     "@types/gtag.js": "^0.0.20",
-    "@types/node": "^20.19.7",
+    "@types/node": "^20.19.10",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.8",
-    "next": "^15.3.5",
-    "react": "^19.1.0"
+    "@types/react": "^19.1.9",
+    "next": "^15.4.6",
+    "react": "^19.1.1"
   },
   "peerDependencies": {
     "@mui/base": "*",
@@ -72,5 +68,8 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    "./*": "./src/*/index.ts"
   }
 }

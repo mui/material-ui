@@ -38,4 +38,5 @@ swap:
   app router: App Router # Next.js
   pages router: Pages Router # Next.js
   page router: Pages Router # Next.js
+  eslint: ESLint
   ES modules: ES modules

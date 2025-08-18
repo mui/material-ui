@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Card component
 components: Card, CardActions, CardContent, CardCover, CardOverflow
-githubLabel: 'component: card'
+githubLabel: 'scope: card'
 ---
 
 # Card
