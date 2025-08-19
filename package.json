@@ -109,8 +109,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@babel/cli": "^7.28.0",
-    "@babel/core": "^7.28.0",
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.3",
     "@babel/node": "^7.28.0",
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
     "@mui-internal/api-docs-builder": "workspace:^",
@@ -199,12 +199,12 @@
     "pnpm": "10.14.0"
   },
   "resolutions": {
-    "@babel/core": "^7.28.0",
-    "@babel/plugin-transform-runtime": "^7.28.0",
-    "@babel/preset-env": "^7.28.0",
+    "@babel/core": "^7.28.3",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@babel/runtime": "^7.28.2",
+    "@babel/runtime": "^7.28.3",
     "@definitelytyped/header-parser": "^0.2.20",
     "@definitelytyped/typescript-versions": "^0.1.9",
     "@definitelytyped/utils": "^0.1.8",

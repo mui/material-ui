@@ -36,7 +36,7 @@
     "directory": "build"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2"
+    "@babel/runtime": "^7.28.3"
   },
   "devDependencies": {
     "@mui/types": "workspace:*",

@@ -36,8 +36,8 @@
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@babel/register": "^7.27.1",
-    "@babel/runtime": "^7.28.2",
+    "@babel/register": "^7.28.3",
+    "@babel/runtime": "^7.28.3",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@testing-library/dom": "^10.4.1",
