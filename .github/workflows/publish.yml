@@ -1,0 +1,40 @@
+name: Publish packages
+
+# single workflow for both canary and stable as we can only specify a single
+# workflow file for trusted publishing
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight UTC
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: 'Commit SHA to release from'
+        required: false
+        type: string
+      dry-run:
+        description: 'Run in dry-run mode without actually publishing packages'
+        required: false
+        type: boolean
+        default: false
+      github-release:
+        description: 'Create a GitHub release after publishing'
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: write # Required for pushing tags and creating releases
+  id-token: write # Required for provenance
+
+jobs:
+  publish-stable:
+    if: github.event_name == 'workflow_dispatch'
+    uses: mui/mui-public/.github/workflows/publish-stable.yml@publushing
+    with:
+      sha: ${{ inputs.sha }}
+      dry-run: ${{ inputs.dry-run }}
+      github-release: ${{ inputs.github-release }}
