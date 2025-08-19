@@ -37,7 +37,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2",
+    "@babel/runtime": "^7.28.3",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -56,7 +56,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.9",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
