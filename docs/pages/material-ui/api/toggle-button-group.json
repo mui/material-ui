@@ -23,6 +23,7 @@
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
     },
+    "rovingFocus": { "type": { "name": "bool" }, "default": "false" },
     "size": {
       "type": {
         "name": "union",

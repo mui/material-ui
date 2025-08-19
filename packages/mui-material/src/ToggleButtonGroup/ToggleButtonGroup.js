@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
-import { styled } from '../zero-styled';
-import { useTheme } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
@@ -157,36 +156,59 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
 
   const getFocusableItems = React.useCallback(() => {
     const root = groupRef.current;
-    if (!root) return [];
+    if (!root) {
+      return [];
+    }
     const candidates = Array.from(root.querySelectorAll('button,[role="button"],[tabindex]'));
     return candidates.filter((el) => {
-      if (!(el instanceof HTMLElement)) return false;
-      if (el.getAttribute('aria-disabled') === 'true') return false;
-      if (/** @type {any} */ (el).disabled) return false;
+      if (!(el instanceof HTMLElement)) {
+        return false;
+      }
+      if (el.getAttribute('aria-disabled') === 'true') {
+        return false;
+      }
+      if (/** @type {any} */ el.disabled) {
+        return false;
+      }
       return el.tabIndex >= 0 && typeof el.focus === 'function';
     });
   }, []);
 
   const handleRovingKeyDown = React.useCallback(
     (event) => {
-      if (!rovingFocus) return;
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (!rovingFocus) {
+        return;
+      }
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+        return;
+      }
 
       const list = groupRef.current;
-      if (!list) return;
+      if (!list) {
+        return;
+      }
       const doc = ownerDocument(list);
       const active = doc.activeElement;
       const current =
         active && list.contains(active)
-          ? /** @type {HTMLElement} */ (active.closest('button,[role="button"],[tabindex]'))
+          ? /** @type {HTMLElement} */ active.closest('button,[role="button"],[tabindex]')
           : null;
       const items = getFocusableItems();
-      if (items.length === 0) return;
+      if (items.length === 0) {
+        return;
+      }
 
       const isHorizontal = orientation === 'horizontal';
       const isRtl = theme?.direction === 'rtl';
-      const prevKey = isHorizontal ? (isRtl ? 'ArrowRight' : 'ArrowLeft') : 'ArrowUp';
-      const nextKey = isHorizontal ? (isRtl ? 'ArrowLeft' : 'ArrowRight') : 'ArrowDown';
+      let prevKey;
+      let nextKey;
+      if (isHorizontal) {
+        prevKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
+        nextKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+      } else {
+        prevKey = 'ArrowUp';
+        nextKey = 'ArrowDown';
+      }
 
       const currentIndex = current ? items.indexOf(current) : -1;
       let nextIndex = -1;
@@ -382,10 +404,19 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * If `true`, enables roving focus with Arrow keys (and Home/End) across the group's focusable children.
+   * @default false
+   */
+  rovingFocus: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'medium'

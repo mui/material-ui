@@ -21,6 +21,9 @@
       "description": "If <code>true</code>, the buttons will take up the full width of its container."
     },
     "orientation": { "description": "The component orientation (layout flow direction)." },
+    "rovingFocus": {
+      "description": "If <code>true</code>, enables roving focus with Arrow keys (and Home/End) across the group&#39;s focusable children. Mirrors the toolbar keyboard behavior described in WAI-ARIA Authoring Practices."
+    },
     "size": {
       "description": "The size of the component. <code>small</code> is equivalent to the dense button styling."
     },

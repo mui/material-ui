@@ -5,8 +5,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
-import { styled } from '../zero-styled';
-import { useTheme } from '../zero-styled';
+import { styled, useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
@@ -300,9 +299,15 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     }
     const candidates = Array.from(root.querySelectorAll('button,[role="button"],[tabindex]'));
     return candidates.filter((el) => {
-      if (!(el instanceof HTMLElement)) return false;
-      if (el.getAttribute('aria-disabled') === 'true') return false;
-      if (/** @type {any} */ (el).disabled) return false;
+      if (!(el instanceof HTMLElement)) {
+        return false;
+      }
+      if (el.getAttribute('aria-disabled') === 'true') {
+        return false;
+      }
+      if (/** @type {any} */ el.disabled) {
+        return false;
+      }
       // Only elements that can be focused via keyboard
       return el.tabIndex >= 0 && typeof el.focus === 'function';
     });
@@ -310,27 +315,42 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   const handleRovingKeyDown = React.useCallback(
     (event) => {
-      if (!rovingFocus) return;
+      if (!rovingFocus) {
+        return;
+      }
       // Ignore with modifiers
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+        return;
+      }
 
       const list = groupRef.current;
-      if (!list) return;
+      if (!list) {
+        return;
+      }
 
       const doc = ownerDocument(list);
       const active = doc.activeElement;
       // Find the closest focusable item within the group
       const current =
         active && list.contains(active)
-          ? /** @type {HTMLElement} */ (active.closest('button,[role="button"],[tabindex]'))
+          ? /** @type {HTMLElement} */ active.closest('button,[role="button"],[tabindex]')
           : null;
       const items = getFocusableItems();
-      if (items.length === 0) return;
+      if (items.length === 0) {
+        return;
+      }
 
       const isHorizontal = orientation === 'horizontal';
       const isRtl = theme?.direction === 'rtl';
-      const prevKey = isHorizontal ? (isRtl ? 'ArrowRight' : 'ArrowLeft') : 'ArrowUp';
-      const nextKey = isHorizontal ? (isRtl ? 'ArrowLeft' : 'ArrowRight') : 'ArrowDown';
+      let prevKey;
+      let nextKey;
+      if (isHorizontal) {
+        prevKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
+        nextKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+      } else {
+        prevKey = 'ArrowUp';
+        nextKey = 'ArrowDown';
+      }
 
       const currentIndex = current ? items.indexOf(current) : -1;
       let nextIndex = -1;
@@ -492,10 +512,20 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * @deprecated Use `rovingFocus` and handle arrow navigation within the group.
+   */
+  onKeyDown: PropTypes.func,
+  /**
    * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * If `true`, enables roving focus with Arrow keys (and Home/End) across the group's focusable children.
+   * Mirrors the toolbar keyboard behavior described in WAI-ARIA Authoring Practices.
+   * @default false
+   */
+  rovingFocus: PropTypes.bool,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.
