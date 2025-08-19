@@ -73,6 +73,12 @@ export interface ButtonGroupOwnProps {
     ButtonGroupPropsVariantOverrides
   >;
   /**
+   * If `true`, enables roving focus with Arrow keys (and Home/End) across the group's focusable children.
+   * Mirrors the toolbar keyboard behavior described in WAI-ARIA Authoring Practices.
+   * @default false
+   */
+  rovingFocus?: boolean;
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
@@ -82,7 +88,13 @@ export interface ButtonGroupTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & ButtonGroupOwnProps;
+  props: AdditionalProps &
+    ButtonGroupOwnProps & {
+      /**
+       * @deprecated Use `rovingFocus` and handle arrow navigation within the group.
+       */
+      onKeyDown?: React.KeyboardEventHandler;
+    };
   defaultComponent: RootComponent;
 }
 

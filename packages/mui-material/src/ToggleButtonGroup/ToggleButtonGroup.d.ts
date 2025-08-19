@@ -59,6 +59,11 @@ export interface ToggleButtonGroupProps
    */
   orientation?: 'horizontal' | 'vertical';
   /**
+   * If `true`, enables roving focus with Arrow keys (and Home/End) across the group's focusable children.
+   * @default false
+   */
+  rovingFocus?: boolean;
+  /**
    * The size of the component.
    * @default 'medium'
    */

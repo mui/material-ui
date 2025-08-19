@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@mui/material/ToggleButtonGroup';
@@ -289,5 +289,28 @@ describe('<ToggleButtonGroup />', () => {
       expect(button).not.to.have.class(classes.middleButton);
       expect(button).not.to.have.class(classes.lastButton);
     });
+  });
+
+  it('rovingFocus moves focus with ArrowRight/ArrowLeft when enabled', () => {
+    const { getAllByRole } = render(
+      <ToggleButtonGroup rovingFocus exclusive value={null}>
+        <ToggleButton value="one">One</ToggleButton>
+        <ToggleButton value="two">Two</ToggleButton>
+        <ToggleButton value="three">Three</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+
+    const [one, two, three] = getAllByRole('button');
+    one.focus();
+    expect(document.activeElement).to.equal(one);
+
+    fireEvent.keyDown(one, { key: 'ArrowRight' });
+    expect(document.activeElement).to.equal(two);
+
+    fireEvent.keyDown(two, { key: 'End' });
+    expect(document.activeElement).to.equal(three);
+
+    fireEvent.keyDown(three, { key: 'Home' });
+    expect(document.activeElement).to.equal(one);
   });
 });

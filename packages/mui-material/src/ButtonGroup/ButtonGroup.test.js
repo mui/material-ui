@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer, screen, fireEvent } from '@mui/internal-test-utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@mui/material/ButtonGroup';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses } from '@mui/material/Button';
@@ -275,6 +275,37 @@ describe('<ButtonGroup />', () => {
       expect(button).not.to.have.class(classes.firstButton);
       expect(button).not.to.have.class(classes.middleButton);
       expect(button).not.to.have.class(classes.lastButton);
+    });
+  });
+
+  describe('rovingFocus', () => {
+    it('moves focus with ArrowRight/ArrowLeft when enabled', () => {
+      const { getAllByRole } = render(
+        <ButtonGroup rovingFocus>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>,
+      );
+
+      const [one, two, three] = getAllByRole('button');
+      one.focus();
+      expect(document.activeElement).to.equal(one);
+
+      fireEvent.keyDown(one, { key: 'ArrowRight' });
+      expect(document.activeElement).to.equal(two);
+
+      fireEvent.keyDown(two, { key: 'ArrowRight' });
+      expect(document.activeElement).to.equal(three);
+
+      fireEvent.keyDown(three, { key: 'ArrowLeft' });
+      expect(document.activeElement).to.equal(two);
+
+      fireEvent.keyDown(two, { key: 'Home' });
+      expect(document.activeElement).to.equal(one);
+
+      fireEvent.keyDown(one, { key: 'End' });
+      expect(document.activeElement).to.equal(three);
     });
   });
 });

@@ -6,12 +6,15 @@ import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
+import { useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFilter';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
 import ButtonGroupButtonContext from './ButtonGroupButtonContext';
+import ownerDocument from '../utils/ownerDocument';
+import useForkRef from '../utils/useForkRef';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -265,6 +268,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     orientation = 'horizontal',
     size = 'medium',
     variant = 'outlined',
+    rovingFocus = false,
+    onKeyDown,
     ...other
   } = props;
 
@@ -283,6 +288,81 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  const theme = useTheme();
+  const groupRef = React.useRef(null);
+  const handleRef = useForkRef(groupRef, ref);
+
+  const getFocusableItems = React.useCallback(() => {
+    const root = groupRef.current;
+    if (!root) {
+      return [];
+    }
+    const candidates = Array.from(root.querySelectorAll('button,[role="button"],[tabindex]'));
+    return candidates.filter((el) => {
+      if (!(el instanceof HTMLElement)) return false;
+      if (el.getAttribute('aria-disabled') === 'true') return false;
+      if (/** @type {any} */ (el).disabled) return false;
+      // Only elements that can be focused via keyboard
+      return el.tabIndex >= 0 && typeof el.focus === 'function';
+    });
+  }, []);
+
+  const handleRovingKeyDown = React.useCallback(
+    (event) => {
+      if (!rovingFocus) return;
+      // Ignore with modifiers
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+      const list = groupRef.current;
+      if (!list) return;
+
+      const doc = ownerDocument(list);
+      const active = doc.activeElement;
+      // Find the closest focusable item within the group
+      const current =
+        active && list.contains(active)
+          ? /** @type {HTMLElement} */ (active.closest('button,[role="button"],[tabindex]'))
+          : null;
+      const items = getFocusableItems();
+      if (items.length === 0) return;
+
+      const isHorizontal = orientation === 'horizontal';
+      const isRtl = theme?.direction === 'rtl';
+      const prevKey = isHorizontal ? (isRtl ? 'ArrowRight' : 'ArrowLeft') : 'ArrowUp';
+      const nextKey = isHorizontal ? (isRtl ? 'ArrowLeft' : 'ArrowRight') : 'ArrowDown';
+
+      const currentIndex = current ? items.indexOf(current) : -1;
+      let nextIndex = -1;
+      switch (event.key) {
+        case prevKey:
+          nextIndex = currentIndex === -1 ? 0 : (currentIndex - 1 + items.length) % items.length;
+          break;
+        case nextKey:
+          nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % items.length;
+          break;
+        case 'Home':
+          nextIndex = 0;
+          break;
+        case 'End':
+          nextIndex = items.length - 1;
+          break;
+        default:
+          break;
+      }
+
+      if (nextIndex !== -1) {
+        event.preventDefault();
+        items[nextIndex].focus();
+      }
+    },
+    [getFocusableItems, orientation, rovingFocus, theme?.direction],
+  );
+
+  const handleRootKeyDown = (event) => {
+    handleRovingKeyDown(event);
+    onKeyDown?.(event);
+  };
 
   const context = React.useMemo(
     () => ({
@@ -333,8 +413,9 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       as={component}
       role="group"
       className={clsx(classes.root, className)}
-      ref={ref}
+      ref={handleRef}
       ownerState={ownerState}
+      onKeyDown={handleRootKeyDown}
       {...other}
     >
       <ButtonGroupContext.Provider value={context}>

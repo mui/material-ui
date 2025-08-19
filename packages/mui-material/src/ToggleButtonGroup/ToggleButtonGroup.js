@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
 import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import { styled } from '../zero-styled';
+import { useTheme } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
@@ -15,6 +16,8 @@ import toggleButtonGroupClasses, {
 import ToggleButtonGroupContext from './ToggleButtonGroupContext';
 import ToggleButtonGroupButtonContext from './ToggleButtonGroupButtonContext';
 import toggleButtonClasses from '../ToggleButton/toggleButtonClasses';
+import ownerDocument from '../utils/ownerDocument';
+import useForkRef from '../utils/useForkRef';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, orientation, fullWidth, disabled } = ownerState;
@@ -141,10 +144,81 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     orientation = 'horizontal',
     size = 'medium',
     value,
+    rovingFocus = false,
+    onKeyDown,
     ...other
   } = props;
   const ownerState = { ...props, disabled, fullWidth, orientation, size };
   const classes = useUtilityClasses(ownerState);
+
+  const theme = useTheme();
+  const groupRef = React.useRef(null);
+  const handleRef = useForkRef(groupRef, ref);
+
+  const getFocusableItems = React.useCallback(() => {
+    const root = groupRef.current;
+    if (!root) return [];
+    const candidates = Array.from(root.querySelectorAll('button,[role="button"],[tabindex]'));
+    return candidates.filter((el) => {
+      if (!(el instanceof HTMLElement)) return false;
+      if (el.getAttribute('aria-disabled') === 'true') return false;
+      if (/** @type {any} */ (el).disabled) return false;
+      return el.tabIndex >= 0 && typeof el.focus === 'function';
+    });
+  }, []);
+
+  const handleRovingKeyDown = React.useCallback(
+    (event) => {
+      if (!rovingFocus) return;
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+      const list = groupRef.current;
+      if (!list) return;
+      const doc = ownerDocument(list);
+      const active = doc.activeElement;
+      const current =
+        active && list.contains(active)
+          ? /** @type {HTMLElement} */ (active.closest('button,[role="button"],[tabindex]'))
+          : null;
+      const items = getFocusableItems();
+      if (items.length === 0) return;
+
+      const isHorizontal = orientation === 'horizontal';
+      const isRtl = theme?.direction === 'rtl';
+      const prevKey = isHorizontal ? (isRtl ? 'ArrowRight' : 'ArrowLeft') : 'ArrowUp';
+      const nextKey = isHorizontal ? (isRtl ? 'ArrowLeft' : 'ArrowRight') : 'ArrowDown';
+
+      const currentIndex = current ? items.indexOf(current) : -1;
+      let nextIndex = -1;
+      switch (event.key) {
+        case prevKey:
+          nextIndex = currentIndex === -1 ? 0 : (currentIndex - 1 + items.length) % items.length;
+          break;
+        case nextKey:
+          nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % items.length;
+          break;
+        case 'Home':
+          nextIndex = 0;
+          break;
+        case 'End':
+          nextIndex = items.length - 1;
+          break;
+        default:
+          break;
+      }
+
+      if (nextIndex !== -1) {
+        event.preventDefault();
+        items[nextIndex].focus();
+      }
+    },
+    [getFocusableItems, orientation, rovingFocus, theme?.direction],
+  );
+
+  const handleRootKeyDown = (event) => {
+    handleRovingKeyDown(event);
+    onKeyDown?.(event);
+  };
 
   const handleChange = React.useCallback(
     (event, buttonValue) => {
@@ -224,8 +298,9 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     <ToggleButtonGroupRoot
       role="group"
       className={clsx(classes.root, className)}
-      ref={ref}
+      ref={handleRef}
       ownerState={ownerState}
+      onKeyDown={handleRootKeyDown}
       {...other}
     >
       <ToggleButtonGroupContext.Provider value={context}>
