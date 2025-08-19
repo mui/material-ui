@@ -611,7 +611,7 @@ Popover.propTypes /* remove-proptypes */ = {
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
    *
-   * This prop is an alias for `slotProps.paper` and will be overriden by it if both are used.
+   * This prop is an alias for `slotProps.paper` and will be overridden by it if both are used.
    * @deprecated Use `slotProps.paper` instead.
    *
    * @default {}

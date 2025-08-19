@@ -18,7 +18,7 @@ type SwipeableDrawerSlotsAndSlotProps = DrawerSlotsAndSlotProps &
     {
       /**
        * Props forwarded to the docked slot.
-       * By default, the avaible props are based on a div element.
+       * By default, the available props are based on a div element.
        */
       swipeArea: SlotProps<'div', SwipeableDrawerSwipeAreaSlotPropsOverrides, DrawerOwnerState>;
     }
