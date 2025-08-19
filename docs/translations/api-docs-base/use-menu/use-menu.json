@@ -2,7 +2,7 @@
   "hookDescription": "",
   "parametersDescriptions": {
     "autoFocus": {
-      "description": "If <code>true</code> (Default) will focus the highligted item. If you set this prop to <code>false</code> the focus will not be moved inside the Menu component. This has severe accessibility implications and should only be considered if you manage focus otherwise."
+      "description": "If <code>true</code> (Default) will focus the highlighted item. If you set this prop to <code>false</code> the focus will not be moved inside the Menu component. This has severe accessibility implications and should only be considered if you manage focus otherwise."
     },
     "componentName": {
       "description": "The name of the component using useMenu. For debugging purposes."

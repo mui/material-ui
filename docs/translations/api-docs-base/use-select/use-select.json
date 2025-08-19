@@ -2,7 +2,7 @@
   "hookDescription": "",
   "parametersDescriptions": {
     "areOptionsEqual": {
-      "description": "A function used to determine if two options&#39; values are equal. By default, reference equality is used.<br>There is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options). Therefore, it&#39;s recommented to use the default reference equality comparison whenever possible."
+      "description": "A function used to determine if two options&#39; values are equal. By default, reference equality is used.<br>There is a performance impact when using the <code>areOptionsEqual</code> prop (proportional to the number of options). Therefore, it&#39;s recommended to use the default reference equality comparison whenever possible."
     },
     "buttonRef": { "description": "The ref of the trigger button element." },
     "componentName": {
