@@ -87,7 +87,7 @@ Pro tip from CGI: For developers handling large datasets, MUI X's Data Grid is 
 
 ## Recommendation
 
-For teams looking to build data-heavy applications efficiently, CGI highly recommends MUI X as a powerful, time-saving solution. 
+For teams looking to build data-heavy applications efficiently, CGI highly recommends MUI X as a powerful, time-saving solution.
 Its advanced components (such as grids, filters, and tables) provide both flexibility and enterprise-grade performance.
 
 Before MUI X, the team struggled with performance bottlenecks when handling large datasets without pagination—leading to slow load times and poor user experience.
