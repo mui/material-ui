@@ -33,7 +33,7 @@ permissions:
 jobs:
   publish-stable:
     if: github.event_name == 'workflow_dispatch'
-    uses: mui/mui-public/.github/workflows/publish-stable.yml@publushing
+    uses: mui/mui-public/.github/workflows/publish-packages.yml@publushing
     with:
       sha: ${{ inputs.sha }}
       dry-run: ${{ inputs.dry-run }}
