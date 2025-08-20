@@ -35,7 +35,8 @@ manualCard: true
 
 ## Overview
 
-AT&T, a leading global telecommunications company, develops advanced tools to enhance productivity and performance across its Retail and Call Center teams. Their internal applications, MyResults and MyCOACH, serve as key platforms for performance tracking and coaching within the organization.
+AT&T, a leading global telecommunications company, develops advanced tools to enhance productivity and performance across its Retail and Call Center teams.
+Their internal applications, MyResults and MyCOACH, serve as key platforms for performance tracking and coaching within the organization.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -58,11 +59,13 @@ AT&T, a leading global telecommunications company, develops advanced tools to en
 
 ## Challenge
 
-They needed a highly customizable, efficient UI solution to help them deliver more consistent performance dashboards across their applications. They wanted to have a standard look and feel across their dashbaords and were looking for a solution that helps them build fast.
+They needed a highly customizable, efficient UI solution to help them deliver more consistent performance dashboards across their applications.
+They wanted to have a standard look and feel across their dashbaords and were looking for a solution that helps them build fast.
 
 ## Solution
 
-To power MyResults and MyCOACH, AT&T integrated **MUI X Data Grid Premium**, leveraging its robust features and flexible customization options. Key benefits of using MUI X Data Grid:
+To power MyResults and MyCOACH, AT&T integrated **MUI X Data Grid Premium**, leveraging its robust features and flexible customization options.
+Key benefits of using the MUI X Data Grid include:
 
 - Faster development – Accelerated UI implementation across applications.
 - Customizable UI – Adaptable components tailored to AT&T's needs.
@@ -82,4 +85,5 @@ AT&T's developers found MUI X documentation to be clear and reliable, ensuring 
 
 ## Recommendation
 
-AT&T recommends MUI X for teams looking to build scalable, standardized, and customizable UI components. MUI X enabled seamless integration and customization, reinforcing its value as a go-to UI framework for AT&T's internal tools.
+AT&T recommends MUI X for teams looking to build scalable, standardized, and customizable UI components.
+MUI X enabled seamless integration and customization, reinforcing its value as a go-to UI framework for AT&T's internal tools.

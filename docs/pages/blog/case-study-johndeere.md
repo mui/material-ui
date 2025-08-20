@@ -25,7 +25,8 @@ manualCard: true
 
 ## Overview
 
-John Deere is a global leader in agricultural, construction, and f sorestry machinery. With a strong emphasis on innovation, their teams build solutions that enhance efficiency and productivity across industries.
+John Deere is a global leader in agricultural, construction, and forestry machinery.
+With a strong emphasis on innovation, their teams build solutions that enhance efficiency and productivity across industries.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -48,7 +49,8 @@ John Deere is a global leader in agricultural, construction, and f sorestry mach
 
 ## Challenge
 
-With multiple teams working towards different design goals, maintaining consistency for developers was a major challenge. John Deere needed a reliable, standardized component library to bridge the gaps in their internal design system.
+With multiple teams working towards different design goals, maintaining consistency for developers was a major challenge.
+John Deere needed a reliable, standardized component library to bridge the gaps in their internal design system.
 
 ## Solution
 

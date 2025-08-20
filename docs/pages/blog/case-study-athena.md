@@ -35,7 +35,8 @@ manualCard: true
 
 ## Overview
 
-Athena Intelligence provides Olympus, world's first AI-native analytics platform designed for seamless human-machine collaboration. Olympus empowers organizations to unlock the full potential of their data and drive intelligent decision-making.
+Athena Intelligence provides Olympus, world's first AI-native analytics platform designed for seamless human-machine collaboration.
+Olympus empowers organizations to unlock the full potential of their data and drive intelligent decision-making.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -62,7 +63,8 @@ Athena needed a customizable and performant UI framework to build their schema m
 
 ## Solution
 
-To power their schema management interface, Athena Intelligence integrated MUI X Data Grid Premium and additional components like Tree View, leveraging MUI X's structured approach to UI development. Key benefits of using MUI X:
+To power their schema management interface, Athena Intelligence integrated MUI X Data Grid Premium and additional components like Tree View, leveraging MUI X's structured approach to UI development.
+Key benefits of using MUI X include:
 
 - Higher-level abstractions – Built on top of MUI (Material UI) for seamless integration.
 - Faster iteration cycles – Simplified the development of complex UI components.
@@ -87,6 +89,8 @@ Athena Intelligence found MUI X's documentation to be highly detailed and struc
 
 ## Recommendation
 
-For developers looking to build complex, interactive UI components, Athena Intelligence highly recommends MUI X. Its deep customization options, seamless React integration, and structured documentation make it an excellent choice for UI-heavy applications.
-A defining moment came when the team rapidly implemented direct asset renaming and customized components using MUI X. The ease of integration and instant improvements in interactivity and UI cohesion reinforced the framework's powerful capabilities.
+For developers looking to build complex, interactive UI components, Athena Intelligence highly recommends MUI X.
+Its deep customization options, seamless React integration, and structured documentation make it an excellent choice for UI-heavy applications.
+A defining moment came when the team rapidly implemented direct asset renaming and customized components using MUI X.
+The ease of integration and instant improvements in interactivity and UI cohesion reinforced the framework's powerful capabilities.
 MUI X is now an essential tool in Athena Intelligence's development stack, enabling rapid, scalable, and high-performance UI solutions.

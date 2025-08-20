@@ -1,6 +1,6 @@
 ---
 title: Oregon State University
-description: How Oregon State University transformed course planning with MUI X's Data Grid.
+description: How Oregon State University transformed course planning with the MUI X Data Grid.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/oregon.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
@@ -63,7 +63,7 @@ Key challenges included:
 
 ## Solution
 
-The team adopted MUI X's Data Grid as the core component for handling tabular data. 
+The team adopted MUI X's Data Grid as the core component for handling tabular data.
 This choice was driven by its extensive feature set, including:
 
 - Column manipulation – Moving, sorting, filtering, and grouping columns for enhanced usability.
@@ -83,7 +83,5 @@ The Data Grid's customization capabilities allowed the team to build an interfac
 ## Recommendation
 
 The Resource Insights team sees MUI X as a powerful tool for projects requiring complex tabular interactions.
-
 They believe more real-world examples in the documentation—such as integrating autocomplete in a data grid cell—would further enhance usability for advanced implementations.
-
 Additionally, they expressed interest in future features like pivot tables, which would further support their data-heavy use case.

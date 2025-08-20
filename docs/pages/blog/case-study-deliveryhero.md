@@ -16,7 +16,8 @@ manualCard: true
 
 ## Overview
 
-DeliveryHero Partner Portal provides restaurant and local shop management solutions for the global food delivery market. Their platform equips vendors with the tools they need to manage operations efficiently, enhance customer experience, and optimize performance.
+DeliveryHero Partner Portal provides restaurant and local shop management solutions for the global food delivery market.
+Their platform equips vendors with the tools they need to manage operations efficiently, enhance customer experience, and optimize performance.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -46,7 +47,8 @@ Before adopting MUI X, the DeliveryHero team faced two major challenges:
 
 ## Solution
 
-To address these challenges, the team integrated MUI X Pro Date and Time Pickers and Data Grid Pro into their platform. These components enabled them to:
+To address these challenges, the team integrated MUI X Pro Date and Time Pickers and Data Grid Pro into their platform.
+These components enabled them to:
 
 - Accelerate development – Pre-built, high-quality components reduced time spent on UI implementation.
 - Enhance usability – A modern, sleek UI improved user interactions and consistency.
@@ -67,4 +69,5 @@ The team also praised MUI X's documentation, describing it as clear, well-struc
 ## Recommendation
 
 For developers looking to build modern, high-performance UI components with minimal effort, the DeliveryHero team highly recommends MUI X.
-One key success story was the implementation of the Date Time Picker, which significantly reduced the number of clicks required for users to achieve their desired results. This simple enhancement greatly improved user efficiency and satisfaction.
+One key success story was the implementation of the Date Time Picker, which significantly reduced the number of clicks required for users to achieve their desired results.
+This simple enhancement greatly improved user efficiency and satisfaction.

@@ -25,7 +25,8 @@ manualCard: true
 
 ## Overview
 
-CGI is a global leader in IT and business consulting, providing innovative digital solutions across various industries. Their Techyon project is dedicated to transforming the energy sector by integrating AI, machine learning, IoT, and cloud-based services to optimize internal operations and data flow.
+CGI is a global leader in IT and business consulting, providing innovative digital solutions across various industries.
+Their Techyon project is dedicated to transforming the energy sector by integrating AI, machine learning, IoT, and cloud-based services to optimize internal operations and data flow.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1 rem; font-style: italic;">
@@ -53,7 +54,8 @@ CGI is a global leader in IT and business consulting, providing innovative digit
 
 ## Challenge
 
-As the energy sector undergoes rapid transformation, CGI needed a high-performance, scalable GUI to support Techyon's advanced capabilities. Their key challenges included:
+As the energy sector undergoes rapid transformation, CGI needed a high-performance, scalable GUI to support Techyon's advanced capabilities.
+Their key challenges included:
 
 - Performance issues – Handling massive datasets (over 10 terawatts of data in Google Cloud) efficiently.
 - Usability and consistency – Creating an intuitive, user-friendly interface for energy operators and analysts.
@@ -86,9 +88,10 @@ Pro Tip from CGI: For developers handling large datasets, MUI X's Data Grid is 
 ## Recommendation
 
 For teams looking to build data-heavy applications efficiently, CGI highly recommends MUI X as a powerful, time-saving solution. Its advanced components (such as grids, filters, and tables) provide both flexibility and enterprise-grade performance.
-Before MUI X, the team struggled with performance bottlenecks when handling large datasets without pagination—leading to slow load times and poor user experience.
 
-- Switching to MUI X Data Grid was a game-changer:
+Before MUI X, the team struggled with performance bottlenecks when handling large datasets without pagination—leading to slow load times and poor user experience.
+Switching to MUI X Data Grid was a game-changer:
+
 - Instant data loading – No more sluggish UI.
 - Custom filtering & real-time adjustments – Meeting client needs with ease.
 - Scalability & flexibility – Adapting effortlessly to industry demands.

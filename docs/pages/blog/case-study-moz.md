@@ -25,7 +25,8 @@ manualCard: true
 
 ## Overview
 
-Moz, a leader in SEO software and analytics, provides powerful tools for keyword research, site audits, and rank tracking. To handle large-scale keyword analysis, Moz required a robust UI solution capable of managing massive datasets efficiently.
+Moz, a leader in SEO software and analytics, provides powerful tools for keyword research, site audits, and rank tracking.
+To handle large-scale keyword analysis, Moz required a robust UI solution capable of managing massive datasets efficiently.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -57,7 +58,8 @@ Moz needed a UI framework that could handle:
 
 ## Solution
 
-To meet these challenges, Moz integrated MUI X Premium, leveraging its Data Grid and Date Picker components to create an optimized, interactive, and scalable UI. Key benefits of using MUI X:
+To meet these challenges, Moz integrated MUI X Premium, leveraging its Data Grid and Date Picker components to create an optimized, interactive, and scalable UI.
+Key benefits of using MUI X include:
 
 - Optimized DX & UX – A developer-friendly and intuitive user experience.
 - Advanced Customization – Built highly tailored components using Data Grid API refs.
@@ -79,5 +81,6 @@ Moz developers found MUI X's documentation intuitive and in-depth, making custo
 
 ## Recommendation
 
-Moz strongly recommends MUI X for developers working with large-scale, data-intensive applications. Its performance, flexibility, and ease of use make it a top choice for scalable UI development.
+Moz strongly recommends MUI X for developers working with large-scale, data-intensive applications.
+Its performance, flexibility, and ease of use make it a top choice for scalable UI development.
 Moz unlocked new customization possibilities by leveraging the Data Grid API ref, allowing them to build highly customized components for filtering and column management—a game-changer for their keyword analysis platform.
