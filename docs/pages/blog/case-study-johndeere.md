@@ -1,6 +1,6 @@
 ---
 title: John Deere
-description: How John Deere Standardized UI Development with MUI X.
+description: How John Deere standardized UI development with MUI X.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/johndeere.svg'
 date: 2022-06-08T00:00:00.000Z
 tags: ['Case Study', 'Customer']
