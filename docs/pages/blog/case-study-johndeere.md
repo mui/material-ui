@@ -54,17 +54,13 @@ John Deere needed a reliable, standardized component library to bridge the gaps 
 
 ## Solution
 
-By integrating MUI X Premium Data Grid, John Deere's teams found a baseline of standardized components to rely on, ensuring a cohesive development approach where their Fuel Design System didn't provide the necessary coverage.
+By integrating MUI X Premium Data Grid, John Deere's teams found a baseline of standardized components to rely on, ensuring a cohesive development approach in places where their in-house Fuel Design System didn't provide the necessary coverage.
 
 ## Results
 
 - Improved consistency – Developers could use MUI X as a standardized foundation across teams.
 - Faster development – Teams saved time by leveraging ready-to-use, high-performance components.
 - Enhanced flexibility – MUI X filled in the gaps where the internal design system fell short.
-
-## Documentation experience and feedback
-
-While the MUI X documentation was useful, the team found it challenging to understand recent pricing changes and how to forecast costs for various groups using the tool.
 
 ## Recommendation
 
