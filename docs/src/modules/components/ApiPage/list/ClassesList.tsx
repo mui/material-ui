@@ -87,7 +87,6 @@ export default function ClassesList(props: ClassesListProps) {
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
             {displayClassKeys && !isGlobal && (
               <p className="prop-list-class">
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
                 <span className="prop-list-title">{'Rule name'}:</span>
                 <code className="Api-code">{key}</code>
               </p>

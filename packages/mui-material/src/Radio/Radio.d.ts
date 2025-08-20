@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { RadioClasses } from './radioClasses';
@@ -99,11 +100,11 @@ export interface RadioOwnerState extends Omit<RadioProps, 'slots' | 'slotProps'>
  *
  * Demos:
  *
- * - [Radio Group](https://next.mui.com/material-ui/react-radio-button/)
+ * - [Radio Group](https://mui.com/material-ui/react-radio-button/)
  *
  * API:
  *
- * - [Radio API](https://next.mui.com/material-ui/api/radio/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [Radio API](https://mui.com/material-ui/api/radio/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 export default function Radio(props: RadioProps): React.JSX.Element;

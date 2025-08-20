@@ -1,8 +1,9 @@
+import { DistributiveOmit } from '@mui/types';
+
 export { default as THEME_ID } from './identifier';
 export {
   default as createTheme,
   default as unstable_createMuiStrictModeTheme,
-  createMuiTheme,
   ThemeOptions,
   Theme,
   CssThemeVariables,
@@ -26,10 +27,10 @@ export {
 export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';
 export {
-  Typography as TypographyVariants,
-  TypographyOptions as TypographyVariantsOptions,
+  TypographyVariants,
+  TypographyVariantsOptions,
   TypographyStyle,
-  Variant as TypographyVariant,
+  TypographyVariant,
 } from './createTypography';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export {
@@ -40,7 +41,7 @@ export {
   duration,
   easing,
 } from './createTransitions';
-export { Mixins } from './createMixins';
+export { Mixins, CSSProperties, MixinsOptions } from './createMixins';
 export {
   Direction,
   Breakpoint,
@@ -78,11 +79,7 @@ export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
-/**
- * @deprecated will be removed in v5.beta, please use styled from @mui/material/styles instead
- */
-export { default as experimentalStyled } from './styled';
-export { default as ThemeProvider } from './ThemeProvider';
+export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
 export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
@@ -98,11 +95,34 @@ export interface StyledComponentProps<ClassKey extends string = string> {
   classes?: Partial<ClassNameMap<ClassKey>>;
 }
 
+/**
+ * All standard components exposed by `material-ui` are `StyledComponents` with
+ * certain `classes`, on which one can also set a top-level `className` and inline
+ * `style`.
+ * @deprecated will be removed in v5 for internal usage only
+ */
+export type StandardProps<
+  ComponentProps,
+  ClassKey extends string,
+  Removals extends keyof ComponentProps = never,
+> = DistributiveOmit<ComponentProps, 'classes' | Removals> &
+  StyledComponentProps<ClassKey> & {
+    className?: string;
+    ref?: ComponentProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    style?: React.CSSProperties;
+  };
+
+export namespace PropTypes {
+  // keeping the type structure for backwards compat
+  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
+}
+
 export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
 
 export * from './ThemeProviderWithVars';
+export type { StorageManager } from '@mui/system/cssVars';
 
 export { default as extendTheme } from './createThemeWithVars';
 

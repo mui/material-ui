@@ -21,7 +21,7 @@ const Nav = styled('nav')(({ theme }) => ({
   overflowY: 'auto',
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(7),
-  paddingRight: theme.spacing(4), // We can't use `padding` as stylis-plugin-rtl doesn't swap it
+  paddingRight: theme.spacing(4), // We can't use `padding` as @mui/stylis-plugin-rtl doesn't swap it
   display: 'none',
   scrollbarWidth: 'thin',
   [theme.breakpoints.up('md')]: {
@@ -82,13 +82,18 @@ const NavItem = styled(Link, {
       variants: [
         {
           props: ({ active }) => !!active,
-          style: activeStyles,
+          style: [activeStyles, theme.applyDarkStyles(activeDarkStyles)],
         },
         {
           props: ({ active }) => !active,
-          style: {
-            color: (theme.vars || theme).palette.text.primary,
-          },
+          style: [
+            {
+              color: (theme.vars || theme).palette.text.primary,
+            },
+            theme.applyDarkStyles({
+              color: (theme.vars || theme).palette.grey[500],
+            }),
+          ],
         },
         {
           props: ({ level }) => level === 2,
@@ -110,18 +115,6 @@ const NavItem = styled(Link, {
         borderLeftColor: (theme.vars || theme).palette.grey[500],
         color: (theme.vars || theme).palette.grey[200],
       },
-      variants: [
-        {
-          props: ({ active }) => !!active,
-          style: activeDarkStyles,
-        },
-        {
-          props: ({ active }) => !active,
-          style: {
-            color: (theme.vars || theme).palette.grey[500],
-          },
-        },
-      ],
       '&:active': activeDarkStyles,
     }),
   ];
@@ -308,7 +301,6 @@ export default function AppTableOfContents(props) {
               variant="caption"
               sx={{ fontWeight: 'normal', color: 'text.secondary', mt: 0.5 }}
             >
-              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               {"We're looking for React Engineers and other amazing roles－come find out more!"}
             </Typography>
           </Link>

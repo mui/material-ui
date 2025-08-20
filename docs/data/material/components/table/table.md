@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
-githubLabel: 'component: table'
+githubLabel: 'scope: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://m2.material.io/components/data-tables
 githubSource: packages/mui-material/src/Table
@@ -148,4 +148,4 @@ A caption functions like a heading for a table. Most screen readers announce the
 ## Unstyled
 
 If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.
-See the demos in the [unstyled table pagination docs](/base-ui/react-table-pagination/)
+See the demos in the [unstyled table pagination docs](https://v6.mui.com/base-ui/react-table-pagination/)

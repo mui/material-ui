@@ -1,9 +1,41 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ChipClasses } from './chipClasses';
+
+export interface ChipSlots {
+  /**
+   * The component that renders the root.
+   * @default div
+   */
+  root: React.ElementType;
+  /**
+   * The component that renders the label.
+   * @default span
+   */
+  label: React.ElementType;
+}
+
+export type ChipSlotsAndSlotProps = CreateSlotsAndSlotProps<
+  ChipSlots,
+  {
+    /**
+     * Props forwarded to the root slot.
+     * By default, the avaible props are based on the div element.
+     */
+    root: SlotProps<'div', {}, ChipOwnerState>;
+    /**
+     * Props forwarded to the label slot.
+     * By default, the avaible props are based on the span element.
+     */
+    label: SlotProps<'span', {}, ChipOwnerState>;
+  }
+>;
+
+export interface ChipOwnerState extends Omit<ChipProps, 'slots' | 'slotProps'> {}
 
 export interface ChipPropsVariantOverrides {}
 
@@ -96,7 +128,7 @@ export interface ChipTypeMap<
   AdditionalProps = {},
   RootComponent extends React.ElementType = 'div',
 > {
-  props: AdditionalProps & ChipOwnProps;
+  props: AdditionalProps & ChipOwnProps & ChipSlotsAndSlotProps;
   defaultComponent: RootComponent;
 }
 
@@ -105,11 +137,11 @@ export interface ChipTypeMap<
  *
  * Demos:
  *
- * - [Chip](https://next.mui.com/material-ui/react-chip/)
+ * - [Chip](https://mui.com/material-ui/react-chip/)
  *
  * API:
  *
- * - [Chip API](https://next.mui.com/material-ui/api/chip/)
+ * - [Chip API](https://mui.com/material-ui/api/chip/)
  */
 declare const Chip: OverridableComponent<ChipTypeMap>;
 

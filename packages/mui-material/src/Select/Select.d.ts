@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
@@ -65,7 +66,7 @@ export interface BaseSelectProps<Value = unknown>
    */
   input?: React.ReactElement<unknown, any>;
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input#attributes) applied to the `input` element.
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps?: InputProps['inputProps'];
@@ -195,12 +196,12 @@ export type SelectProps<Value = unknown> =
  *
  * Demos:
  *
- * - [Select](https://next.mui.com/material-ui/react-select/)
+ * - [Select](https://mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://next.mui.com/material-ui/api/select/)
- * - inherits [OutlinedInput API](https://next.mui.com/material-ui/api/outlined-input/)
+ * - [Select API](https://mui.com/material-ui/api/select/)
+ * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
 declare const Select: (<Value = unknown>(props: SelectProps<Value>) => React.JSX.Element) & {
   muiName: string;

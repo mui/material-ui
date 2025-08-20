@@ -1,10 +1,9 @@
 {
   "name": "@mui/codemod",
-  "version": "7.0.0-alpha.0",
-  "bin": "./codemod.js",
-  "private": false,
+  "version": "7.3.0",
   "author": "MUI Team",
-  "description": "Codemod scripts for MUI.",
+  "description": "Codemod scripts for Material UI.",
+  "bin": "./codemod.js",
   "keywords": [
     "react",
     "react-component",
@@ -15,7 +14,8 @@
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.?(c|m)[jt]s?(x)'",
     "prebuild": "rimraf build",
-    "build": "node ../../scripts/build.mjs node --out-dir ./build && cpy README.md build && cpy package.json build && cpy codemod.js build",
+    "build:copy-files": "code-infra copy-files codemod.js",
+    "build": "code-infra build --bundle cjs --buildTypes false && pnpm build:copy-files",
     "release": "pnpm build && pnpm publish"
   },
   "repository": {
@@ -30,13 +30,13 @@
     "url": "https://opencollective.com/mui-org"
   },
   "dependencies": {
-    "@babel/core": "^7.26.8",
-    "@babel/runtime": "^7.26.7",
-    "@babel/traverse": "^7.26.8",
+    "@babel/core": "^7.28.3",
+    "@babel/runtime": "^7.28.3",
+    "@babel/traverse": "^7.28.3",
     "jscodeshift": "^17.1.2",
     "jscodeshift-add-imports": "^1.0.11",
-    "postcss": "^8.5.1",
-    "postcss-cli": "^11.0.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

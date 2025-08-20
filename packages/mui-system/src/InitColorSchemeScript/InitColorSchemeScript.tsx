@@ -75,7 +75,7 @@ export default function InitColorSchemeScript(options?: InitColorSchemeScriptPro
     setter += `${colorSchemeNode}.classList.remove('${selector}'.replace('%s', light), '${selector}'.replace('%s', dark));
       ${colorSchemeNode}.classList.add('${selector}'.replace('%s', colorScheme));`;
   }
-  const matches = attribute.match(/\[([^\]]+)\]/); // case [data-color-scheme=%s] or [data-color-scheme]
+  const matches = attribute.match(/\[([^[\]]+)\]/); // case [data-color-scheme='%s'] or [data-color-scheme]
   if (matches) {
     const [attr, value] = matches[1].split('=');
     if (!value) {

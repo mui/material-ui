@@ -14,7 +14,7 @@ Some of the codemods also run [postcss](https://github.com/postcss/postcss) plug
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next <codemod> <paths...>
+npx @mui/codemod <codemod> <paths...>
 
 Applies a `@mui/codemod` to the specified paths
 
@@ -39,6 +39,16 @@ Examples:
   --component=Grid --from=prop --to=newProp
   npx @mui/codemod@latest v5.0.0/preset-safe src --parser=flow
 ```
+
+### package name
+
+Use this flag if you have a custom package name that reexports Material UI components. For example:
+
+```bash
+npx @mui/codemod@latest --packageName="@org/ui"
+```
+
+The snippet above will look for `@org/ui` instead of `@mui/material` in the codemod.
 
 ### jscodeshift options
 
@@ -391,6 +401,10 @@ npx @mui/codemod@latest deprecations/avatar-group-props <path>
 +    },
    }}
  />
+```
+
+```bash
+npx @mui/codemod@latest deprecations/avatar-props <path>
 ```
 
 #### `backdrop-props`
@@ -1033,6 +1047,64 @@ npx @mui/codemod@latest deprecations/circular-progress-classes <path>
 npx @mui/codemod@latest deprecations/divider-props <path>
 ```
 
+#### `dialog-classes`
+
+JS transforms:
+
+```diff
+ import { dialogClasses } from '@mui/material/Dialog';
+
+ MuiDialog: {
+   styleOverrides: {
+     root: {
+-      [`& .${dialogClasses.paperScrollBody}`]: {
++      [`& .${dialogClasses.scrollBody} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+-      [`& .${dialogClasses.paperScrollPaper}`]: {
++      [`& .${dialogClasses.scrollPaper} > .${dialogClasses.paper}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiDialog-root .MuiDialog-paperScrollBody
++.MuiDialog-root .MuiDialog-scrollBody > .MuiDialog-paper
+-.MuiDialog-root .MuiDialog-paperScrollPaper
++.MuiDialog-root .MuiDialog-scrollPaper > .MuiDialog-paper
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-classes <path>
+```
+
+#### `dialog-props`
+
+JS transforms:
+
+```diff
+ <Dialog
+-  PaperProps={paperProps}
++  slotProps={{ paper: paperProps }}
+- TransitionComponent={CustomTransition}
++ slots={{ transition: CustomTransition }}
+- TransitionProps={CustomTransitionProps}
++ slotProps={{ transition: CustomTransitionProps }}
+ />
+     },
+   },
+ },
+```
+
+```bash
+npx @mui/codemod@latest deprecations/dialog-props <path>
+```
+
 #### `drawer-classes`
 
 JS transforms:
@@ -1287,6 +1359,60 @@ npx @mui/codemod@latest deprecations/image-list-item-bar-classes <path>
 
 ```bash
 npx @mui/codemod@latest deprecations/input-base-props <path>
+```
+
+#### `input-base-classes`
+
+JS transforms:
+
+```diff
+ import { inputBaseClasses } from '@mui/material/InputBase';
+
+ MuiInputBase: {
+   styleOverrides: {
+     root: {
+-      [`& .${inputBaseClasses.inputSizeSmall}`]: {
++      [`&.${inputBaseClasses.sizeSmall} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputMultiline}`]: {
++      [`&.${inputBaseClasses.multiline} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedStart}`]: {
++      [`&.${inputBaseClasses.adornedStart} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputAdornedEnd}`]: {
++      [`&.${inputBaseClasses.adornedEnd} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+-      [`& .${inputBaseClasses.inputHiddenLabel}`]: {
++      [`&.${inputBaseClasses.hiddenLabel} > .${inputBaseClasses.input}`]: {
+         color: 'red',
+       },
+     },
+   },
+ },
+```
+
+CSS transforms:
+
+```diff
+-.MuiInputBase-root .MuiInputBase-inputSizeSmall
++.MuiInputBase-root.MuiInputBase-sizeSmall > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputMultiline
++.MuiInputBase-root.MuiInputBase-multiline > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedStart
++.MuiInputBase-root.MuiInputBase-adornedStart > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputAdornedEnd
++.MuiInputBase-root.MuiInputBase-adornedEnd > .MuiInputBase-input
+-.MuiInputBase-root .MuiInputBase-inputHiddenLabel
++.MuiInputBase-root.MuiInputBase-hiddenLabel > .MuiInputBase-input
+```
+
+```bash
+npx @mui/codemod@latest deprecations/input-base-classes <path>
 ```
 
 #### `input-props`
@@ -1552,6 +1678,21 @@ npx @mui/codemod@latest deprecations/popper-props <path>
 npx @mui/codemod@latest deprecations/outlined-input-props <path>
 ```
 
+#### `rating-props`
+
+```diff
+ <Rating
+-  IconContainerComponent={CustomContainer}
++  slots={{
++    icon: { component: CustomContainer }
++  }}
+ />
+```
+
+```bash
+npx @mui/codemod deprecations/rating-props <path>
+```
+
 #### `select-classes`
 
 JS transforms:
@@ -1644,7 +1785,7 @@ npx @mui/codemod@latest deprecations/slider-props <path>
 ```
 
 ```bash
-npx @mui/codemod@next deprecations/snackbar-props <path>
+npx @mui/codemod deprecations/snackbar-props <path>
 ```
 
 #### `slider-classes`
@@ -1657,35 +1798,35 @@ JS transforms:
  MuiSlider: {
    styleOverrides: {
      root: {
--      [`&.${sliderClasses.thumbSizeSmall}`]: {
+-      [`& .${sliderClasses.thumbSizeSmall}`]: {
 +      [`&.${sliderClasses.sizeSmall} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbSizeMedium}`]: {
+-      [`& .${sliderClasses.thumbSizeMedium}`]: {
 +      [`&.${sliderClasses.sizeMedium} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorPrimary}`]: {
+-      [`& .${sliderClasses.thumbColorPrimary}`]: {
 +      [`&.${sliderClasses.colorPrimary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSecondary}`]: {
+-      [`& .${sliderClasses.thumbColorSecondary}`]: {
 +      [`&.${sliderClasses.colorSecondary} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorError}`]: {
+-      [`& .${sliderClasses.thumbColorError}`]: {
 +      [`&.${sliderClasses.colorError} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClrsses.thumbColorInfo}`]: {
-+      [`&.${soiderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
+-      [`& .${sliderClasses.thumbColorInfo}`]: {
++      [`&.${sliderClasses.colorInfo} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorSuccess}`]: {
+-      [`& .${sliderClasses.thumbColorSuccess}`]: {
 +      [`&.${sliderClasses.colorSuccess} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
--      [`&.${sliderClasses.thumbColorWarning}`]: {
+-      [`& .${sliderClasses.thumbColorWarning}`]: {
 +      [`&.${sliderClasses.colorWarning} > .${sliderClasses.thumb}`]: {
          color: 'red',
        },
@@ -1716,7 +1857,7 @@ CSS transforms:
 ```
 
 ```bash
-npx @mui/codemod@latest deprecations/button-classes <path>
+npx @mui/codemod@latest deprecations/slider-classes <path>
 ```
 
 #### `tooltip-props`
@@ -1792,8 +1933,20 @@ JS transforms:
  },
 ```
 
+CSS transforms:
+
+```diff
+-.MuiStepConnector-lineHorizontal
++.MuiStepConnector-horizontal > .MuiStepConnector-line
+```
+
+```diff
+-.MuiStepConnector-lineVertical
++.MuiStepConnector-vertical > .MuiStepConnector-line
+```
+
 ```bash
-npx @mui/codemod@next deprecations/step-connector-classes <path>
+npx @mui/codemod deprecations/step-connector-classes <path>
 ```
 
 #### `step-content-props`
@@ -1903,22 +2056,6 @@ CSS transforms:
 npx @mui/codemod@latest deprecations/toggle-button-group-classes <path>
 ```
 
-CSS transforms:
-
-```diff
--.MuiStepConnector-lineHorizontal
-+.MuiStepConnector-horizontal > .MuiStepConnector-line
-```
-
-```diff
--.MuiStepConnector-lineVertical
-+.MuiStepConnector-vertical > .MuiStepConnector-line
-```
-
-```bash
-npx @mui/codemod@latest deprecations/step-connector-classes <path>
-```
-
 #### `tab-classes`
 
 JS transforms:
@@ -2019,12 +2156,67 @@ npx @mui/codemod@latest deprecations/typography-props <path>
 
 ### v7.0.0
 
+#### `theme-color-functions`
+
+```bash
+npx @mui/codemod@latest v7.0.0/theme-color-functions <path>
+```
+
+Replace the usage of the `alpha()`, `lighten()`, and `darken()` functions from `@mui/system/colorManipulator` to use the `theme` object instead.
+
+```diff
+- import { alpha, lighten, darken } from '@mui/system/colorManipulator';
+
+- alpha(theme.palette.primary.main, 0.8)
++ theme.alpha((theme.vars || theme).palette.primary.main, 0.8)
+
+- lighten(theme.palette.primary.main, 0.1)
++ theme.lighten(theme.palette.primary.main, 0.1)
+
+- darken(theme.palette.primary.main, 0.3)
++ theme.darken(theme.palette.primary.main, 0.3)
+```
+
+#### `grid-props`
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod v7.0.0/grid-props <path>
+```
+
+Updates the usage of the `@mui/material/Grid`, `@mui/system/Grid`, and `@mui/joy/Grid` components to their updated APIs.
+
+```diff
+ <Grid
+-   xs={12}
+-   sm={6}
+-   xsOffset={2}
+-   smOffset={3}
++   size={{ xs: 12, sm: 6 }}
++   offset={{ xs: 2, sm: 3 }}
+ />
+```
+
+You can provide the theme breakpoints via options, for example, `--jscodeshift='--muiBreakpoints=mobile,desktop'`, to use your custom breakpoints in the transformation.
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod v7.0.0/grid-props <path> --jscodeshift='--muiBreakpoints=mobile,desktop'
+```
+
+```diff
+- <Grid mobile={12} mobileOffset={2} desktop={6} desktopOffset={4} >
++ <Grid size={{ mobile: 12, desktop: 6 }} offset={{ mobile: 2, desktop: 4 }} >
+```
+
 #### `lab-removed-components`
 
 <!-- #npm-tag-reference -->
 
 ```bash
-npx @mui/codemod@next v7.0.0/lab-removed-components <path>
+npx @mui/codemod v7.0.0/lab-removed-components <path>
 ```
 
 Update the import of the following components and hook moved from `@mui/lab` to `@mui/material`:
@@ -2057,6 +2249,25 @@ As well as default and named imports from component-level files:
 - import Alert, { alertClasses } from '@mui/lab/Alert';
 + import Alert, { alertClasses } from '@mui/material/Alert';
 ```
+
+#### `input-label-size-normal-medium`
+
+Updates the `InputLabel`'s `size` value from `normal` to `medium`.
+
+```diff
+-<InputLabel size="normal">Label</InputLabel>
++<InputLabel size="medium">Label</InputLabel>
+```
+
+<!-- #npm-tag-reference -->
+
+```bash
+npx @mui/codemod v7.0.0/input-label-size-normal-medium <path>
+```
+
+<!-- #host-reference -->
+
+You can find more details about this breaking change in [the migration guide](https://next.mui.com/material-ui/migration/upgrade-to-v7/#inputlabel).
 
 ### v6.0.0
 
@@ -3255,6 +3466,26 @@ npx @mui/codemod@latest v5.0.0/pagination-round-circular <path>
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/migration/v5-component-changes/#pagination).
 
+#### `path-imports`
+
+Converts all `@mui/material` & `@mui/icons-material` top-level imports to path imports (essentially the reverse of `top-level-imports`, with the addition of `@mui/icons-material`):
+
+```diff
+-import { List, Grid } from '@mui/material';
++import List from '@mui/material/List';
++import Grid from '@mui/material/Grid';
+
+-import { Delete, People as PeopleIcon } from '@mui/icons-material';
++import Delete from '@mui/icons-material/Delete';
++import PeopleIcon from '@mui/icons-material/People';
+```
+
+```bash
+npx @mui/codemod@latest v5.0.0/path-imports <path>
+```
+
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
+
 #### `optimal-imports`
 
 Fix private import paths.
@@ -3508,7 +3739,7 @@ Converts all `@mui/material` submodule imports to the root module:
 npx @mui/codemod@latest v5.0.0/top-level-imports <path>
 ```
 
-Head to https://mui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+Head to https://mui.com/material-ui/guides/minimizing-bundle-size/ to understand when it's useful.
 
 #### `transitions`
 

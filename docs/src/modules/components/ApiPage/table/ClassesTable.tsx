@@ -65,11 +65,9 @@ export default function ClassesTable(props: ClassesTableProps) {
       <StyledTable>
         <thead>
           <tr>
-            {/* eslint-disable material-ui/no-hardcoded-labels */}
             <th>{'Class name'}</th>
             {displayClassKeys && <th>{'Rule name'}</th>}
             <th>{'Description'}</th>
-            {/* eslint-enable material-ui/no-hardcoded-labels */}
           </tr>
         </thead>
         <tbody>

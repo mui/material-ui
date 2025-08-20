@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
-githubLabel: 'component: autocomplete'
+githubLabel: 'scope: autocomplete'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 githubSource: packages/mui-material/src/Autocomplete
 ---
@@ -225,9 +225,21 @@ Before you can start using the Google Maps JavaScript API and Places API, you ne
 This demo has limited quotas to make API requests. When your quota exceeds, you will see the response for "Paris".
 :::
 
+## Custom Single Value Rendering
+
+By default, when `multiple={false}`, the selected option is displayed as plain text inside the input. The `renderValue` prop allows you to customize how the selected value is rendered. This can be useful for adding custom styles, displaying additional information, or formatting the value differently.
+
+- The `getItemProps` callback provides props like `data-item-index`, `disabled`, `tabIndex` and others. These props should be spread onto the rendered component for proper accessibility.
+- If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
+
+{{"demo": "CustomSingleValueRendering.js"}}
+
 ## Multiple values
 
-Also known as tags, the user is allowed to enter more than one value.
+When `multiple={true}`, the user can select multiple values. These selected values, referred to as "items" can be customized using the `renderValue` prop.
+
+- The `getItemProps` callback supplies essential props like `data-item-index`, `disabled`, `tabIndex` and others. Make sure to spread them on each rendered item.
+- If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
 
 {{"demo": "Tags.js"}}
 

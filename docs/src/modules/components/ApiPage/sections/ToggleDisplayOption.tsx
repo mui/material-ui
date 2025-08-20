@@ -117,7 +117,6 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
         sx={{ height: '1.875rem', p: '6px 4px 6px 8px', textTransform: 'capitalize' }}
       >
         <Box component="span" sx={{ fontWeight: 'medium', mr: 0.5 }}>
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'View:'}
         </Box>
         {displayOption}
@@ -137,7 +136,6 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="table"
         >
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Table'}
           <CheckIcon
             sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'table' ? 1 : 0 }}
@@ -151,7 +149,6 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="expanded"
         >
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Expanded list'}
           <CheckIcon
             sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'expanded' ? 1 : 0 }}
@@ -165,7 +162,6 @@ export default function ToggleDisplayOption(props: ToggleDisplayOptionProps) {
           data-ga-event-action={sectionType}
           data-ga-event-label="collapsed"
         >
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           {'Collapsed list'}
           <CheckIcon
             sx={{ fontSize: '0.85rem', ml: 'auto', opacity: displayOption === 'collapsed' ? 1 : 0 }}

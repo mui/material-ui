@@ -106,7 +106,7 @@ const StyledDiv = styled.div`
 <p class="blog-description"><a href="https://codesandbox.io/p/sandbox/elastic-yonath-uedfv?file=/src/App.js">CodeSandbox</a></p>
 
 You can find it in [styled-components](https://styled-components.com/), [emotion](https://emotion.sh/docs/styled), [goober](https://goober.js.org/), [stitches](https://stitches.dev/docs/api#styled), or [linaria](https://linaria.dev/).
-While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://mui.com/system/styles/basics/#hook-api) API.
+While Material UI is compatible with any styling solution (as long as the styles have more specificity, for example, Tailwind CSS), many developers still felt the need to learn something new: the [`makeStyles`](https://v6.mui.com/system/styles/basics/#hook-api) API.
 
 2. Our React integration with JSS (`@mui/styles`) is **too slow** to unlock the next layer of customization DX we aim for.
    The static CSS generation using v4 was fast enough, even [faster](https://codesandbox.io/p/sandbox/nb05w?file=/src/App.js) than emotion,
@@ -120,7 +120,6 @@ After [exploring](https://github.com/mui/material-ui/issues/22342) many differen
 1. We have made `styled()` the lowest level primitive to add styles.
    This API is already known by many.
 2. We have defined a common interface with concrete implementations:
-
    - `@mui/styled-engine`: implemented with Emotion (default).
    - `@mui/styled-engine-sc`: implemented with styled-components
    - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
@@ -527,25 +526,25 @@ This release comes with eight new components!
 The development of the Grid was mostly put on hold for the last three years, blocked by the size of the statically generated CSS with JSS.
 The [migration to emotion](#migration-from-jss-to-emotion) has unlocked the following frequently requested changes:
 
-Support for [row & column](/material-ui/react-grid/#row-amp-column-spacing) spacing:
+Support for [row & column](/material-ui/react-grid-legacy/#row-amp-column-spacing) spacing:
 
 ```jsx
 <Grid container rowSpacing={1} columnSpacing={2} />
 ```
 
-Support for [responsive values](/material-ui/react-grid/#responsive-values) on all the props:
+Support for [responsive values](/material-ui/react-grid-legacy/#responsive-values) on all the props:
 
 ```jsx
 <Grid container spacing={{ xs: 2, md: 3 }} />
 ```
 
-Support for a different [number of columns](/material-ui/react-grid/#columns) than 12:
+Support for a different [number of columns](/material-ui/react-grid-legacy/#columns) than 12:
 
 ```jsx
 <Grid container columns={16}>
 ```
 
-An alternative implementation that uses [CSS grid](/material-ui/react-grid/#css-grid-layout):
+An alternative implementation that uses [CSS grid](/material-ui/react-grid-legacy/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -603,7 +602,7 @@ Having a separate lab package allows us to release breaking changes when necessa
 The following components are now available in the lab:
 
 - [LoadingButton](https://v5.mui.com/material-ui/react-button/#loading-button). It does what you would expect. It renders the `Button` with a configurable loading/pending state.
-- [FocusTrap](/base-ui/react-focus-trap/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
+- [FocusTrap](https://v6.mui.com/base-ui/react-focus-trap/). This component traps the keyboard focus within a DOM node. For example, it's used by the Modal to prevent tabbing out of the component for accessibility reasons.
 - [Masonry](/material-ui/react-masonry/). One great use case for this component is when using the `Grid` component leads to wasted space. It's frequently used in dashboards.
 
   <a href="/material-ui/react-masonry/">
@@ -739,7 +738,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/base-ui/issues/10).
+You can read more about them in [the docs](https://v6.mui.com/base-ui/getting-started/) and keep track of our progress in [#27170](https://github.com/mui/base-ui/issues/10).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).

@@ -287,6 +287,10 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     additionalProps: {
       elevation: variant === 'temporary' ? elevation : 0,
       square: true,
+      ...(variant === 'temporary' && {
+        role: 'dialog',
+        'aria-modal': 'true',
+      }),
     },
   });
 
@@ -383,13 +387,13 @@ Drawer.propTypes /* remove-proptypes */ = {
   open: PropTypes.bool,
   /**
    * Props applied to the [`Paper`](https://mui.com/material-ui/api/paper/) element.
-   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.paper` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   PaperProps: PropTypes.object,
   /**
    * Props applied to the [`Slide`](https://mui.com/material-ui/api/slide/) element.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   SlideProps: PropTypes.object,
   /**

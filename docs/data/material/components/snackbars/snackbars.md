@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Snackbar component
 components: Snackbar, SnackbarContent
-githubLabel: 'component: snackbar'
+githubLabel: 'scope: snackbar'
 materialDesign: https://m2.material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 githubSource: packages/mui-material/src/Snackbar
@@ -66,6 +66,23 @@ You can use the `TransitionComponent` prop to change the transition of the Snack
 {{"demo": "TransitionsSnackbar.js"}}
 
 ## Customization
+
+### Preventing default click away event
+
+If you would like to prevent the default onClickAway behavior, you can set the event's `defaultMuiPrevented` property to `true`:
+
+```jsx
+<Snackbar
+  slotProps={{
+    clickAwayListener: {
+      onClickAway: (event) => {
+        // Prevent's default 'onClickAway' behavior.
+        event.defaultMuiPrevented = true;
+      },
+    },
+  }}
+/>
+```
 
 ### Use with Alerts
 
@@ -140,11 +157,3 @@ The Snackbar component is composed of a root `<div>` that houses interior elemen
   </div>
 </div>
 ```
-
-## Experimental APIs - Toolpad
-
-### useNotifications
-
-You can create and manipulate notifications imperatively with the [`useNotifications()`](https://mui.com/toolpad/core/react-use-notifications/) API in `@toolpad/core`. This API provides state management for opening and closing snackbars. It also allows for queueing multiple notifications at once.
-
-{{"demo": "ToolpadNotificationsNoSnap.js", "defaultCodeOpen": false}}

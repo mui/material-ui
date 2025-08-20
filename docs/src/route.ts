@@ -19,7 +19,6 @@ const ROUTES = {
   customization: '/material-ui/customization/how-to-customize/',
   theming: '/material-ui/customization/theming/',
   documentation: '/material-ui/getting-started/',
-  communityHelp: '/material-ui/getting-started/support/#community-help-free',
   showcase: '/material-ui/discover-more/showcase/',
   coreRoadmap: '/material-ui/discover-more/roadmap/',
   vision: '/material-ui/discover-more/vision/',
@@ -39,9 +38,9 @@ const ROUTES = {
   xLicensing: '/x/introduction/licensing/',
   // Data Grid doc pages
   dataGridOverview: '/x/react-data-grid/',
-  dataGridDocs: '/x/react-data-grid/getting-started/',
-  dataGridFeatures: '/x/react-data-grid/#features',
-  dataGridFeaturesComparison: '/x/react-data-grid/getting-started/#feature-comparison',
+  dataGridDocs: '/x/react-data-grid/quickstart/',
+  dataGridFeatures: '/x/react-data-grid/features/',
+  dataGridFeaturesComparison: '/x/react-data-grid/features/',
   // Date and Time Pickers doc pages
   datePickersOverview: '/x/react-date-pickers/',
   // Charts doc pages

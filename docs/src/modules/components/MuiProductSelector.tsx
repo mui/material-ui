@@ -3,7 +3,6 @@ import NextLink from 'next/link';
 import { styled, alpha, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import MenuList, { MenuListProps } from '@mui/material/MenuList';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
@@ -11,14 +10,12 @@ import ROUTES from 'docs/src/route';
 import PageContext from 'docs/src/modules/components/PageContext';
 import SvgMuiLogomark from 'docs/src/icons/SvgMuiLogomark';
 import SvgBaseUiLogo from 'docs/src/icons/SvgBaseUiLogo';
-import SvgToolpadCoreLogo from 'docs/src/icons/SvgToolpadCoreLogo';
 import BackupTableRoundedIcon from '@mui/icons-material/BackupTableRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import WebRoundedIcon from '@mui/icons-material/WebRounded';
-import BrushIcon from '@mui/icons-material/Brush';
 
 const iconStyles = (theme: Theme) => ({
   fontSize: '.875rem',
@@ -193,23 +190,6 @@ const advancedProducts = [
   },
 ];
 
-const toolpadProducts = [
-  {
-    id: 'toolpad-core',
-    name: 'Toolpad Core',
-    description: 'Components for building dashboards.',
-    icon: <SvgToolpadCoreLogo width={14} height={14} sx={logoColor} />,
-    href: ROUTES.toolpadCoreDocs,
-  },
-  {
-    id: 'toolpad-studio',
-    name: 'Toolpad Studio',
-    description: 'Self-hosted, low-code internal tool builder.',
-    icon: <BrushIcon sx={iconStyles} />,
-    href: ROUTES.toolpadStudioDocs,
-  },
-];
-
 const MuiProductSelector = React.forwardRef(function MuiProductSelector(
   props: MenuListProps<'div'>,
   forwardedRef: React.ForwardedRef<HTMLDivElement>,
@@ -260,60 +240,9 @@ const MuiProductSelector = React.forwardRef(function MuiProductSelector(
           },
         }}
       >
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         <NavLabel>MUI X Components</NavLabel>
       </Box>
       {advancedProducts.map((product) => (
-        <ProductItem
-          key={product.name}
-          name={product.name}
-          description={product.description}
-          icon={product.icon}
-          href={product.href}
-          active={pageContext.productId === product.id}
-        />
-      ))}
-      <Divider
-        sx={{
-          mx: -1,
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      />
-      <Box
-        key="Toolpad"
-        role="none"
-        sx={{
-          gridColumn: {
-            xs: '1 / span 1',
-            sm: '1 / span 2',
-          },
-        }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '1px' }}>
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-          <NavLabel> Toolpad </NavLabel>
-          <Chip
-            label="Beta"
-            size="small"
-            color="primary"
-            variant="outlined"
-            sx={{
-              fontSize: '.625rem',
-              fontWeight: 'semiBold',
-              textTransform: 'uppercase',
-              letterSpacing: '.04rem',
-              height: '16px',
-              '& .MuiChip-label': {
-                px: '4px',
-              },
-            }}
-          />
-        </Box>
-      </Box>
-      {toolpadProducts.map((product) => (
         <ProductItem
           key={product.name}
           name={product.name}

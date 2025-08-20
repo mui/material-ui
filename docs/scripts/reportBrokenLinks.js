@@ -1,34 +1,62 @@
+// @ts-check
 /* eslint-disable no-console */
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs';
 import { parseDocFolder, getAnchor } from './reportBrokenLinksLib';
 
 /**
- * The remaining pat to the code is specific to this repository
+ * The remaining path to the code is specific to this repository
  */
-const UNSUPPORTED_PATHS = ['/api/', '/careers/', '/store/', '/x/'];
+const EXTERNAL_PATHS = [
+  '/api/',
+  // Not defined in .md file
+  '/careers/',
+  // Same domain, different project
+  '/store/',
+  // Same domain, different project
+  '/x/',
+  // these url segments are specific to Base UI and added by scripts (can not be found in markdown)
+  'components-api',
+  'hooks-api',
+  '#unstyled',
+];
 
 const docsSpaceRoot = path.join(path.dirname(new URL(import.meta.url).pathname), '../');
 
+/** @type {string[]} */
 const buffer = [];
+/**
+ *
+ * @param {string} text
+ */
 function write(text) {
   buffer.push(text);
 }
 
+/**
+ *
+ * @param {string[]} lines
+ */
 function save(lines) {
   const fileContents = [...lines, ''].join('\n');
-  fse.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
+  fs.writeFileSync(path.join(docsSpaceRoot, '.link-check-errors.txt'), fileContents);
 }
 
+/**
+ *
+ * @param {string} link
+ * @returns {string}
+ */
 function getPageUrlFromLink(link) {
   const [rep] = link.split('/#');
   return rep;
 }
 
-// {[url with hash]: true}
+/** @type {Record<string, boolean>} */
 const availableLinks = {};
 
-// {[url with hash]: list of files using this link}
+// Per link a list a of files where it is used
+/** @type {Record<string, string[]>} */
 const usedLinks = {};
 
 parseDocFolder(path.join(docsSpaceRoot, './pages/'), availableLinks, usedLinks);
@@ -37,18 +65,14 @@ write('Broken links found by `pnpm docs:link-check` that exist:\n');
 Object.keys(usedLinks)
   .filter((link) => link.startsWith('/'))
   .filter((link) => !availableLinks[link])
-  // these url segments are specific to Base UI and added by scripts (can not be found in markdown)
-  .filter((link) =>
-    ['components-api', 'hooks-api', '#unstyled'].every((str) => !link.includes(str)),
-  )
-  .filter((link) => UNSUPPORTED_PATHS.every((unsupportedPath) => !link.includes(unsupportedPath)))
+  .filter((link) => EXTERNAL_PATHS.every((externalPath) => !link.includes(externalPath)))
   .sort()
   .forEach((linkKey) => {
     //
     // <!-- #host-reference -->
     //
-    write(`- https://next.mui.com${linkKey}`);
-    console.log(`https://next.mui.com${linkKey}`);
+    write(`- https://mui.com${linkKey}`);
+    console.log(`https://mui.com${linkKey}`);
 
     console.log(`used in`);
     usedLinks[linkKey].forEach((f) => console.log(`- ${path.relative(docsSpaceRoot, f)}`));

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { InternalStandardProps as StandardProps, Theme } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
 import { SwitchBaseProps } from '../internal/SwitchBase';
 import { CheckboxClasses } from './checkboxClasses';
@@ -143,12 +144,12 @@ export interface CheckboxOwnerState extends Omit<CheckboxProps, 'slots' | 'slotP
  *
  * Demos:
  *
- * - [Checkbox](https://next.mui.com/material-ui/react-checkbox/)
- * - [Transfer List](https://next.mui.com/material-ui/react-transfer-list/)
+ * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
+ * - [Transfer List](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:
  *
- * - [Checkbox API](https://next.mui.com/material-ui/api/checkbox/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [Checkbox API](https://mui.com/material-ui/api/checkbox/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 export default function Checkbox(props: CheckboxProps): React.JSX.Element;

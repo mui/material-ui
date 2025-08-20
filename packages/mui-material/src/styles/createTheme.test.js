@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from '@mui/internal-test-utils';
+import {
+  alpha as systemAlpha,
+  lighten as systemLighten,
+  darken as systemDarken,
+} from '@mui/system/colorManipulator';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
@@ -240,7 +245,31 @@ describe('createTheme', () => {
     describe('spacing', () => {
       it('should provide the default spacing', () => {
         const theme = createTheme({ cssVariables: true });
-        expect(theme.spacing(1)).to.equal(`calc(1 * var(--mui-spacing, 8px))`);
+        expect(theme.spacing(1)).to.equal(`var(--mui-spacing, 8px)`);
+        expect(theme.spacing(2)).to.equal(`calc(2 * var(--mui-spacing, 8px))`);
+      });
+    });
+
+    describe('spacing array', () => {
+      it('should create spacing vars array', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.vars.spacing).to.deep.equal([
+          'var(--mui-spacing-0, 0px)',
+          'var(--mui-spacing-1, 4px)',
+          'var(--mui-spacing-2, 8px)',
+        ]);
+      });
+
+      it('should work with positive input', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.spacing(1)).to.equal(`var(--mui-spacing-1, 4px)`);
+        expect(theme.spacing(2)).to.equal(`var(--mui-spacing-2, 8px)`);
+      });
+
+      it('should work with negative input', () => {
+        const theme = createTheme({ cssVariables: true, spacing: [0, 4, 8] });
+        expect(theme.spacing(-1)).to.equal(`calc(-1 * var(--mui-spacing-1, 4px))`);
+        expect(theme.spacing(-2)).to.equal(`calc(-1 * var(--mui-spacing-2, 8px))`);
       });
     });
   });
@@ -535,9 +564,40 @@ describe('createTheme', () => {
     } catch (error) {
       expect(error.message).to.equal(
         'MUI: `vars` is a private field used for CSS variables support.\n' +
-          'Please use another name.',
+          'Please use another name or follow the [docs](https://mui.com/material-ui/customization/css-theme-variables/usage/) to enable the feature.',
       );
     }
+  });
+
+  it('should not throw for nested theme that includes `vars` node', () => {
+    const outerTheme = createTheme({
+      cssVariables: true,
+      palette: {
+        secondary: {
+          main: deepOrange[500],
+        },
+      },
+    });
+
+    expect(() =>
+      render(
+        <ThemeProvider theme={outerTheme}>
+          <ThemeProvider
+            theme={(theme) => {
+              return createTheme({
+                ...theme,
+                palette: {
+                  ...theme.palette,
+                  primary: {
+                    main: green[500],
+                  },
+                },
+              });
+            }}
+          />
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 
   it('should create a new object', () => {
@@ -584,5 +644,144 @@ describe('createTheme', () => {
 
     const themeCssVars = createTheme({ cssVariables: true });
     expect(typeof themeCssVars.toRuntimeSource).to.equal('function');
+  });
+
+  describe('color manipulators', () => {
+    it('should have the color manipulators', () => {
+      const theme = createTheme();
+      expect(typeof theme.alpha).to.equal('function');
+      expect(typeof theme.lighten).to.equal('function');
+      expect(typeof theme.darken).to.equal('function');
+    });
+
+    it('should have the color manipulators with CSS variables', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(typeof theme.alpha).to.equal('function');
+      expect(typeof theme.lighten).to.equal('function');
+      expect(typeof theme.darken).to.equal('function');
+    });
+
+    it('[default] should use system color manipulators', () => {
+      const theme = createTheme();
+      expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
+        systemAlpha(theme.palette.primary.main, 0.5),
+      );
+      expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
+        systemLighten(theme.palette.primary.main, 0.5),
+      );
+      expect(theme.darken(theme.palette.primary.main, 0.5)).to.equal(
+        systemDarken(theme.palette.primary.main, 0.5),
+      );
+    });
+
+    it('[default] `alpha()` should work with coefficient as string', () => {
+      const theme = createTheme();
+      expect(theme.alpha(theme.palette.primary.main, '0.3+0.2')).to.equal(
+        systemAlpha(theme.palette.primary.main, 0.5),
+      );
+    });
+
+    it('[CSS variables] `alpha()` should work with string and number coefficient', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha(theme.vars.palette.primary.main, 0.5)).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / 0.5)',
+      );
+      expect(theme.alpha(theme.vars.palette.primary.main, '0.5 + 0.3')).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / calc(0.5 + 0.3))',
+      );
+      expect(
+        theme.alpha(
+          theme.vars.palette.primary.main,
+          `${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}`,
+        ),
+      ).to.equal(
+        'rgba(var(--mui-palette-primary-mainChannel) / calc(var(--mui-palette-action-selectedOpacity, 0.08) + var(--mui-palette-action-hoverOpacity, 0.04)))',
+      );
+    });
+
+    it('[CSS variables] `alpha()` should work with fallbacks', () => {
+      const theme = createTheme({ cssVariables: true });
+      expect(theme.alpha('var(--mui-palette-text-primary, rgba(0 0 0 / 0.87))', 0.5)).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
+      );
+      expect(theme.alpha('var(--mui-palette-text-primary, var(--foo))', 0.5)).to.equal(
+        'rgba(var(--mui-palette-text-primaryChannel) / 0.5)',
+      );
+      expect(
+        theme.alpha('var(--mui-palette-text-primary, var(--foo, hsl(0 0 0 / 100%)))', 0.5),
+      ).to.equal('rgba(var(--mui-palette-text-primaryChannel) / 0.5)');
+    });
+
+    it('[color space with CSS variables] should use CSS for manipulating colors', () => {
+      const theme = createTheme({
+        cssVariables: {
+          nativeColor: true,
+        },
+        palette: {
+          primary: {
+            main: 'oklch(0.65 0.3 28.95)',
+          },
+        },
+      });
+
+      expect(theme.alpha(theme.palette.primary.main, 0.5)).to.equal(
+        'oklch(from oklch(0.65 0.3 28.95) l c h / 0.5)',
+      );
+      expect(theme.lighten(theme.palette.primary.main, 0.5)).to.equal(
+        'color-mix(in oklch, oklch(0.65 0.3 28.95), #fff 50%)',
+      );
+      expect(theme.darken(theme.palette.primary.main, 0.5)).to.equal(
+        'color-mix(in oklch, oklch(0.65 0.3 28.95), #000 50%)',
+      );
+    });
+
+    it('[color space with CSS variables] should use CSS for manipulating vars', () => {
+      const theme = createTheme({
+        cssVariables: {
+          nativeColor: true,
+        },
+        palette: {
+          primary: {
+            main: 'oklch(0.65 0.3 28.95)',
+          },
+        },
+      });
+
+      expect(theme.alpha(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'oklch(from var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)) l c h / 0.3)',
+      );
+      expect(theme.lighten(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'color-mix(in oklch, var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #fff 30%)',
+      );
+      expect(theme.darken(theme.vars.palette.primary.main, 0.3)).to.equal(
+        'color-mix(in oklch, var(--mui-palette-primary-main, oklch(0.65 0.3 28.95)), #000 30%)',
+      );
+    });
+
+    it('mixing color space', () => {
+      const theme = createTheme({
+        cssVariables: {
+          nativeColor: true,
+        },
+        palette: {
+          primary: {
+            main: 'oklch(0.65 0.3 28.95)',
+          },
+          secondary: {
+            main: 'hsl(0 0% 100%)',
+          },
+        },
+      });
+
+      expect(theme.alpha(theme.palette.secondary.main, 0.2)).to.equal(
+        'oklch(from hsl(0 0% 100%) l c h / 0.2)',
+      );
+      expect(theme.lighten(theme.palette.secondary.main, 0.2)).to.equal(
+        'color-mix(in oklch, hsl(0 0% 100%), #fff 20%)',
+      );
+      expect(theme.darken(theme.palette.secondary.main, 0.2)).to.equal(
+        'color-mix(in oklch, hsl(0 0% 100%), #000 20%)',
+      );
+    });
   });
 });

@@ -12,6 +12,7 @@ import {
   screen as rtlScreen,
   Screen,
   render as testingLibraryRender,
+  RenderOptions as TestingLibraryRenderOptions,
   within,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
@@ -201,7 +202,7 @@ const customQueries = {
   findAllDescriptionsOf,
 };
 
-interface RenderConfiguration {
+interface RenderConfiguration extends Pick<TestingLibraryRenderOptions, 'reactStrictMode'> {
   /**
    * https://testing-library.com/docs/react-testing-library/api#container
    */
@@ -232,7 +233,7 @@ interface ServerRenderConfiguration extends RenderConfiguration {
   container: HTMLElement;
 }
 
-export type RenderOptions = Partial<RenderConfiguration>;
+export type RenderOptions = Omit<Partial<RenderConfiguration>, 'reactStrictMode'>;
 
 export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
   user: ReturnType<typeof userEvent.setup>;
@@ -256,7 +257,7 @@ function render(
   element: React.ReactElement<DataAttributes>,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
-  const { container, hydrate, wrapper } = configuration;
+  const { container, hydrate, wrapper, reactStrictMode } = configuration;
 
   const testingLibraryRenderResult = traceSync('render', () =>
     testingLibraryRender(element, {
@@ -264,11 +265,12 @@ function render(
       hydrate,
       queries: { ...queries, ...customQueries },
       wrapper,
+      reactStrictMode,
     }),
   );
   const result: MuiRenderResult = {
     ...testingLibraryRenderResult,
-    user: userEvent.setup(),
+    user: userEvent.setup({ document }),
     forceUpdate() {
       traceSync('forceUpdate', () =>
         testingLibraryRenderResult.rerender(
@@ -628,24 +630,16 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
     serverContainer = null!;
   });
 
-  function createWrapper(options: Partial<RenderConfiguration>) {
-    const {
-      strict = globalStrict,
-      strictEffects = globalStrictEffects,
-      wrapper: InnerWrapper = React.Fragment,
-    } = options;
+  function createWrapper(options: Pick<RenderOptions, 'wrapper'>) {
+    const { wrapper: InnerWrapper = React.Fragment } = options;
 
-    const usesLegacyRoot = reactMajor < 18;
-    const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
     return function Wrapper({ children }: { children?: React.ReactNode }) {
       return (
-        <Mode>
-          <EmotionCacheProvider value={emotionCache}>
-            <React.Profiler id={profiler.id} onRender={profiler.onRender}>
-              <InnerWrapper>{children}</InnerWrapper>
-            </React.Profiler>
-          </EmotionCacheProvider>
-        </Mode>
+        <EmotionCacheProvider value={emotionCache}>
+          <React.Profiler id={profiler.id} onRender={profiler.onRender}>
+            <InnerWrapper>{children}</InnerWrapper>
+          </React.Profiler>
+        </EmotionCacheProvider>
       );
     };
   }
@@ -661,8 +655,14 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         );
       }
 
+      const usesLegacyRoot = reactMajor < 18;
+      const reactStrictMode =
+        (options.strict ?? globalStrict) &&
+        ((options.strictEffects ?? globalStrictEffects) || usesLegacyRoot);
+
       return render(element, {
         ...options,
+        reactStrictMode,
         hydrate: false,
         wrapper: createWrapper(options),
       });

@@ -6,7 +6,6 @@ import createThemeWithVars, {
 } from './createThemeWithVars';
 import createThemeNoVars, { Theme, ThemeOptions } from './createThemeNoVars';
 
-export { createMuiTheme } from './createThemeNoVars';
 export type { ThemeOptions, Theme, CssThemeVariables } from './createThemeNoVars';
 
 // eslint-disable-next-line consistent-return
@@ -47,6 +46,7 @@ export default function createTheme(
             | 'disableCssColorScheme'
             | 'cssVarPrefix'
             | 'shouldSkipGeneratingVar'
+            | 'nativeColor'
           >;
     } = {} as any, // cast type to skip module augmentation test
   ...args: object[]

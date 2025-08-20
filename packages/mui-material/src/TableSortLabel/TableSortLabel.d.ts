@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { TableSortLabelClasses } from './tableSortLabelClasses';
@@ -97,12 +97,12 @@ export type TableSortLabelTypeMap<
  *
  * Demos:
  *
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TableSortLabel API](https://next.mui.com/material-ui/api/table-sort-label/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [TableSortLabel API](https://mui.com/material-ui/api/table-sort-label/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 

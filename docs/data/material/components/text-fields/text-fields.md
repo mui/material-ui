@@ -2,9 +2,8 @@
 productId: material-ui
 title: React Text Field component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
-githubLabel: 'component: text field'
+githubLabel: 'scope: text field'
 materialDesign: https://m2.material.io/components/text-fields
-unstyled: /base-ui/react-input/
 githubSource: packages/mui-material/src/TextField
 ---
 
@@ -35,6 +34,31 @@ Standard form attributes are supported, for example `required`, `disabled`, `typ
 
 {{"demo": "FormPropsTextFields.js"}}
 
+## Controlling the HTML input
+
+Use `slotProps.htmlInput` to pass attributes to the underlying `<input>` element.
+
+```jsx
+<TextField slotProps={{ htmlInput: { 'data-testid': '…' } }} />
+```
+
+The rendered HTML input will look like this:
+
+```html
+<input
+  aria-invalid="false"
+  class="MuiInputBase-input MuiOutlinedInput-input"
+  type="text"
+  data-testid="…"
+/>
+```
+
+:::warning
+`slotProps.htmlInput` is not the same as `slotProps.input`.
+`slotProps.input` refers to the React `<Input />` component that's rendered based on the specified variant prop.
+`slotProps.htmlInput` refers to the HTML `<input>` element rendered within that Input component, regardless of the variant.
+:::
+
 ## Validation
 
 The `error` prop toggles the error state.
@@ -44,7 +68,7 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 ## Multiline
 
-The `multiline` prop transforms the Text Field into a [MUI Base Textarea Autosize](/base-ui/react-textarea-autosize/) element.
+The `multiline` prop transforms the Text Field into a [MUI Base Textarea Autosize](https://v6.mui.com/base-ui/react-textarea-autosize/) element.
 Unless the `rows` prop is set, the height of the text field dynamically matches its content.
 You can use the `minRows` and `maxRows` props to bound it.
 
@@ -242,7 +266,7 @@ export default function App() {
 
 The input label "shrink" state isn't always correct.
 The input label is supposed to shrink as soon as the input is displaying something.
-In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+In some circumstances, we can't determine the "shrink" state (datetime input, Stripe input). You might notice an overlap.
 
 ![shrink](/static/images/text-fields/shrink.png)
 
@@ -275,7 +299,7 @@ We do not recommend using `type="number"` with a Text Field due to potential usa
 
   :::
 
-If you need a text field with number validation, you can use MUI Base's [Number Input](/base-ui/react-number-input/) instead.
+If you need a text field with number validation, you can use MUI Base's [Number Input](https://mui.com/base-ui/react-number-input/) instead.
 
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/19154) to track the progress of introducing the Number Input component to Material UI.
 

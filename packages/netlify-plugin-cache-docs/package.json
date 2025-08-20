@@ -1,8 +1,6 @@
 {
   "name": "netlify-plugin-cache-docs",
-  "version": "6.0.0",
   "private": true,
-  "author": "MUI Team",
   "description": "Alternative to netlify-plugin-cache-nextjs",
   "keywords": [],
   "repository": {
@@ -12,9 +10,6 @@
   },
   "license": "MIT",
   "scripts": {},
-  "dependencies": {
-    "fs-extra": "^11.3.0"
-  },
   "engines": {
     "node": ">=14.0.0"
   }

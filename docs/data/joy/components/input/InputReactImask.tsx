@@ -9,7 +9,7 @@ interface CustomProps {
   name: string;
 }
 
-const TextMaskAdapter = React.forwardRef<HTMLElement, CustomProps>(
+const TextMaskAdapter = React.forwardRef<HTMLInputElement, CustomProps>(
   function TextMaskAdapter(props, ref) {
     const { onChange, ...other } = props;
     return (

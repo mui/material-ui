@@ -22,6 +22,8 @@ function NoTransition(props) {
   return children;
 }
 
+const CustomPaper = React.forwardRef(({ square, ...props }, ref) => <Paper ref={ref} {...props} />);
+
 describe('<Accordion />', () => {
   const { render } = createRenderer();
 
@@ -41,6 +43,14 @@ describe('<Accordion />', () => {
       heading: {
         testWithElement: 'h4',
         expectedClassName: classes.heading,
+      },
+      root: {
+        expectedClassName: classes.root,
+        testWithElement: CustomPaper,
+      },
+      region: {
+        expectedClassName: classes.region,
+        testWithElement: 'div',
       },
     },
     skip: ['componentProp', 'componentsProp'],
@@ -309,5 +319,16 @@ describe('<Accordion />', () => {
         expect(screen.getByRole('region')).not.to.have.attribute('ownerstate');
       });
     });
+  });
+
+  it('should allow custom role for region slot via slotProps', () => {
+    render(
+      <Accordion expanded slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
+        <AccordionSummary>Summary</AccordionSummary>
+        Details
+      </Accordion>,
+    );
+
+    expect(screen.getByTestId('region-slot')).to.have.attribute('role', 'list');
   });
 });

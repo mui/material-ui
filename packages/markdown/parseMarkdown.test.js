@@ -64,7 +64,7 @@ describe('parseMarkdown', () => {
 title: React Alert component
 components: Alert, AlertTitle
 hooks: useAlert
-githubLabel: 'component: alert'
+githubLabel: 'scope: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors: ['foo', 'bar']
@@ -73,7 +73,7 @@ authors: ['foo', 'bar']
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
         hooks: ['useAlert'],
-        githubLabel: 'component: alert',
+        githubLabel: 'scope: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
@@ -87,9 +87,6 @@ authors: ['foo', 'bar']
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: alert'
-packageName: '@mui/lab'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors:
   ['foo', 'bar']
 ---
@@ -97,10 +94,7 @@ authors:
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
         hooks: [],
-        githubLabel: 'component: alert',
-        packageName: '@mui/lab',
         title: 'React Alert component',
-        waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
         authors: ['foo', 'bar'],
       });
     });
@@ -111,9 +105,6 @@ authors:
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: alert'
-packageName: '@mui/lab'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors:
   [
     'foo',
@@ -124,11 +115,22 @@ authors:
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
         hooks: [],
-        githubLabel: 'component: alert',
-        packageName: '@mui/lab',
         title: 'React Alert component',
-        waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
         authors: ['foo', 'bar'],
+      });
+    });
+
+    it('should work with quotes', () => {
+      expect(
+        getHeaders(`
+---
+title: "Our docs just got a major upgrade—here's what that means for you"
+---
+    `),
+      ).to.deep.equal({
+        title: "Our docs just got a major upgrade—here's what that means for you",
+        components: [],
+        hooks: [],
       });
     });
   });

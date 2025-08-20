@@ -1,7 +1,7 @@
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
 import * as React from 'react';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { ToggleButtonClasses } from './toggleButtonClasses';
@@ -91,12 +91,12 @@ export type ToggleButtonTypeMap<
  *
  * Demos:
  *
- * - [Toggle Button](https://next.mui.com/material-ui/react-toggle-button/)
+ * - [Toggle Button](https://mui.com/material-ui/react-toggle-button/)
  *
  * API:
  *
- * - [ToggleButton API](https://next.mui.com/material-ui/api/toggle-button/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [ToggleButton API](https://mui.com/material-ui/api/toggle-button/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 

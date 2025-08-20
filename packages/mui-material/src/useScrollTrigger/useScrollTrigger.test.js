@@ -46,6 +46,26 @@ describe('useScrollTrigger', () => {
       expect(triggerRef.current.textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(2);
     });
+
+    it('should do nothing when ref is null', () => {
+      const getRenderCountRef = React.createRef();
+      const triggerRef = React.createRef();
+      function TestWithNullRef() {
+        const [container, setContainer] = React.useState(null);
+        const trigger = useScrollTrigger({
+          target: container,
+        });
+        return (
+          <RenderCounter ref={getRenderCountRef}>
+            <span ref={triggerRef}>{`${trigger}`}</span>
+            <span ref={setContainer} />
+          </RenderCounter>
+        );
+      }
+      render(<TestWithNullRef />);
+      expect(triggerRef.current.textContent).to.equal('false');
+      expect(getRenderCountRef.current()).to.equal(2);
+    });
   });
 
   describe('scroll', () => {

@@ -62,6 +62,30 @@ describe('@mui/codemod', () => {
       });
     });
 
+    describe('[package] button-props', () => {
+      it('transforms props as needed', () => {
+        const actual = transform(
+          { source: read('./test-cases/package.actual.js') },
+          { jscodeshift },
+          { packageName: '@org/ui/material' },
+        );
+
+        const expected = read('./test-cases/package.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          { source: read('./test-cases/package.expected.js') },
+          { jscodeshift },
+          { packageName: '@org/ui/material' },
+        );
+
+        const expected = read('./test-cases/package.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+
     it('should skip files that do not import ListItem from @mui/material', () => {
       const actual = transform(
         { source: read('./test-cases/not-related.actual.js') },

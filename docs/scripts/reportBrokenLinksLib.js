@@ -1,11 +1,17 @@
+// @ts-check
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs';
 import { createRender } from '@mui/internal-markdown';
 import { marked } from 'marked';
 import { LANGUAGES_IGNORE_PAGES } from '../config';
 
-// Use renderer to extract all links into a markdown document
+/**
+ * Use renderer to extract all links into a markdown document
+ * @param {string} markdown
+ * @returns {string[]}
+ */
 function getPageLinks(markdown) {
+  /** @type {string[]} */
   const hrefs = [];
 
   const renderer = new marked.Renderer();
@@ -13,14 +19,19 @@ function getPageLinks(markdown) {
     if (href.startsWith('/')) {
       hrefs.push(href);
     }
+    return '';
   };
   marked(markdown, { renderer });
   return hrefs;
 }
 
-// List all .js files in a folder
+/**
+ * List all .js files in a folder
+ * @param {string} folderPath
+ * @returns {string[]}
+ */
 function getJsFilesInFolder(folderPath) {
-  const files = fse.readdirSync(folderPath, { withFileTypes: true });
+  const files = fs.readdirSync(folderPath, { withFileTypes: true });
   return files.reduce((acc, file) => {
     if (file.isDirectory()) {
       const filesInFolder = getJsFilesInFolder(path.join(folderPath, file.name));
@@ -30,11 +41,15 @@ function getJsFilesInFolder(folderPath) {
       return [...acc, path.join(folderPath, file.name).replace(/\\/g, '/')];
     }
     return acc;
-  }, []);
+  }, /** @type {string[]} */ ([]));
 }
 
-// Returns url assuming it's "./docs/pages/x/..." becomes  "mui.com/x/..."
-const jsFilePathToUrl = (jsFilePath) => {
+/**
+ * Returns url assuming it's "./docs/pages/x/..." becomes  "mui.com/x/..."
+ * @param {string} jsFilePath
+ * @returns {string}
+ */
+function jsFilePathToUrl(jsFilePath) {
   const folder = path.dirname(jsFilePath);
   const file = path.basename(jsFilePath);
 
@@ -47,8 +62,13 @@ const jsFilePathToUrl = (jsFilePath) => {
   }
 
   return `${root}${page}`;
-};
+}
 
+/**
+ *
+ * @param {string} link
+ * @returns {string}
+ */
 function cleanLink(link) {
   const startQueryIndex = link.indexOf('?');
   const endQueryIndex = link.indexOf('#', startQueryIndex);
@@ -62,7 +82,13 @@ function cleanLink(link) {
   return `${link.slice(0, startQueryIndex)}${link.slice(endQueryIndex)}`;
 }
 
+/**
+ *
+ * @param {string} fileName
+ * @returns {{ hashes: string[], links: string[] }}
+ */
 function getLinksAndAnchors(fileName) {
+  /** @type {Record<string, string>} */
   const headingHashes = {};
   const render = createRender({
     headingHashes,
@@ -74,7 +100,7 @@ function getLinksAndAnchors(fileName) {
     },
   });
 
-  const data = fse.readFileSync(fileName, { encoding: 'utf8' });
+  const data = fs.readFileSync(fileName, { encoding: 'utf8' });
   render(data);
 
   const links = getPageLinks(data).map(cleanLink);
@@ -87,9 +113,14 @@ function getLinksAndAnchors(fileName) {
 
 const markdownImportRegExp = /'(.*)\?(muiMarkdown|@mui\/markdown)'/g;
 
-const getMdFilesImported = (jsPageFile) => {
+/**
+ *
+ * @param {string} jsPageFile
+ * @returns {string[]}
+ */
+function getMdFilesImported(jsPageFile) {
   // For each JS file extract the markdown rendered if it exists
-  const fileContent = fse.readFileSync(jsPageFile, 'utf8');
+  const fileContent = fs.readFileSync(jsPageFile, 'utf8');
   /**
    * Content files can be represented by either:
    * - 'docsx/data/advanced-components/overview.md?muiMarkdown'; (for mui-x)
@@ -125,9 +156,15 @@ const getMdFilesImported = (jsPageFile) => {
 
     return cleanImportPath;
   });
-};
+}
 
-const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
+/**
+ *
+ * @param {string} folderPath
+ * @param {Record<string, boolean>} availableLinks
+ * @param {Record<string, string[]>} usedLinks
+ */
+function parseDocFolder(folderPath, availableLinks = {}, usedLinks = {}) {
   const jsPageFiles = getJsFilesInFolder(folderPath);
 
   const mdFiles = jsPageFiles.flatMap((jsPageFile) => {
@@ -159,13 +196,18 @@ const parseDocFolder = (folderPath, availableLinks = {}, usedLinks = {}) => {
       availableLinks[`${url}#${hash}`] = true;
     });
   });
-};
+}
 
-const getAnchor = (link) => {
+/**
+ *
+ * @param {string} link
+ * @returns {string}
+ */
+function getAnchor(link) {
   const splittedPath = link.split('/');
   const potentialAnchor = splittedPath[splittedPath.length - 1];
   return potentialAnchor.includes('#') ? potentialAnchor : '';
-};
+}
 
 // Export useful method for doing similar checks in other repositories
 export { parseDocFolder, getAnchor };

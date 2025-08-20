@@ -2,9 +2,8 @@
 productId: joy-ui
 title: React Modal component
 components: Modal, ModalClose, ModalDialog, ModalOverflow, DialogTitle, DialogContent, DialogActions
-githubLabel: 'component: modal'
+githubLabel: 'scope: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-unstyled: https://base-ui.com/react/components/dialog
 ---
 
 # Modal
@@ -237,7 +236,7 @@ If the user needs to interact with another part of the page－for example, to in
 
 See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) for complete details on accessibility best practices. Here are a couple of highlights:
 
-- All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
+- All interactive elements must have an [accessible name](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-labelledby). Use the `aria-labelledby="id..."` to give your `Modal` component an accessible name.
   You can also use `aria-describedby="id..."` to provide a description of the `Modal`:
 
   ```jsx

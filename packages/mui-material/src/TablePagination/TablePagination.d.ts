@@ -2,7 +2,10 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { TablePaginationActionsProps, TablePaginationActionsSlots } from './TablePaginationActions';
+import {
+  TablePaginationActionsProps,
+  TablePaginationActionsSlots,
+} from '../TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
@@ -282,13 +285,13 @@ export interface TablePaginationTypeMap<AdditionalProps, RootComponent extends R
  *
  * Demos:
  *
- * - [Pagination](https://next.mui.com/material-ui/react-pagination/)
- * - [Table](https://next.mui.com/material-ui/react-table/)
+ * - [Pagination](https://mui.com/material-ui/react-pagination/)
+ * - [Table](https://mui.com/material-ui/react-table/)
  *
  * API:
  *
- * - [TablePagination API](https://next.mui.com/material-ui/api/table-pagination/)
- * - inherits [TableCell API](https://next.mui.com/material-ui/api/table-cell/)
+ * - [TablePagination API](https://mui.com/material-ui/api/table-pagination/)
+ * - inherits [TableCell API](https://mui.com/material-ui/api/table-cell/)
  */
 declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>

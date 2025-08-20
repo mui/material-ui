@@ -15,7 +15,7 @@ export default function InputValidation() {
         <Input placeholder="Type in here…" defaultValue="Oh no, error found!" />
         <FormHelperText>
           <InfoOutlined />
-          Opps! something is wrong.
+          Oops! something is wrong.
         </FormHelperText>
       </FormControl>
     </Stack>

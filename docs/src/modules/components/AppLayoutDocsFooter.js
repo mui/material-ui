@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-/* eslint-disable material-ui/no-hardcoded-labels */
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, useTheme } from '@mui/material/styles';
@@ -39,9 +39,9 @@ const FooterLink = styled(Link)(({ theme }) => {
     display: 'flex',
     alignItems: 'center',
     gap: 2,
-    fontFamily: (theme.vars || theme).typography.fontFamily,
-    fontSize: (theme.vars || theme).typography.pxToRem(13),
-    fontWeight: (theme.vars || theme).typography.fontWeightMedium,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.pxToRem(13),
+    fontWeight: theme.typography.fontWeightMedium,
     color: (theme.vars || theme).palette.primary[600],
     '& > svg': { fontSize: '13px', transition: '0.2s' },
     '&:hover > svg': { transform: 'translateX(2px)' },
@@ -106,8 +106,8 @@ async function postFeedbackOnSlack(data) {
     rating,
     comment,
     currentLocationURL: window.location.href,
-    commmentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
-    commmentSectionTitle: commentedSection.text,
+    commentSectionURL: `${window.location.origin}${window.location.pathname}#${commentedSection.hash}`,
+    commentSectionTitle: commentedSection.text,
     githubRepo: process.env.SOURCE_CODE_REPO,
     productId,
   };
@@ -192,18 +192,17 @@ async function getUserFeedback(id) {
 }
 
 async function submitFeedback(page, rating, comment, language, commentedSection, productId) {
-  const data = {
-    id: getCookie('feedbackId'),
-    page,
-    rating,
-    comment,
-    version: process.env.LIB_VERSION,
-    language,
-  };
+  const resultSlack = await postFeedbackOnSlack({ rating, comment, commentedSection, productId });
 
-  const resultSlack = await postFeedbackOnSlack({ ...data, productId, commentedSection });
   if (rating !== undefined) {
-    const resultVote = await postFeedback(data);
+    const resultVote = await postFeedback({
+      id: getCookie('feedbackId'),
+      page,
+      rating,
+      comment,
+      version: process.env.LIB_VERSION,
+      language,
+    });
     if (resultVote) {
       document.cookie = `feedbackId=${resultVote.id};path=/;max-age=31536000`;
       setTimeout(async () => {

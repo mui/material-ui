@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SlotComponentProps } from '@mui/utils';
-import { BackdropProps, InternalStandardProps as StandardProps } from '..';
+import { SlotComponentProps } from '@mui/utils/types';
+import { BackdropProps } from '../Backdrop';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import Paper, { PaperProps } from '../Paper';
 import Modal, { ModalProps } from '../Modal';
-import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { PopoverClasses } from './popoverClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -56,8 +57,8 @@ export type PopoverSlotsAndSlotProps = CreateSlotsAndSlotProps<
      */
     transition: SlotComponentProps<
       // use SlotComponentProps because transition slot does not support `component` and `sx` prop
-      React.ElementType<TransitionProps>,
-      PopoverTransitionSlotPropsOverrides,
+      React.ElementType,
+      TransitionProps & PopoverTransitionSlotPropsOverrides,
       PopoverOwnerState
     >;
     /**
@@ -108,9 +109,8 @@ export interface PopoverProps
   anchorEl?:
     | null
     | Element
-    | (() => Element)
     | PopoverVirtualElement
-    | (() => PopoverVirtualElement);
+    | (() => Element | PopoverVirtualElement | null);
   /**
    * This is the point on the anchor where the popover's
    * `anchorEl` will attach to. This is not used when the
@@ -138,7 +138,7 @@ export interface PopoverProps
   anchorReference?: PopoverReference;
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `slots.backdrop` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slots.backdrop` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -152,7 +152,7 @@ export interface PopoverProps
   BackdropComponent?: React.ElementType<BackdropProps>;
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
-   * @deprecated Use `slotProps.backdrop` instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated Use `slotProps.backdrop` instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   BackdropProps?: Partial<BackdropProps>;
   /**
@@ -216,7 +216,7 @@ export interface PopoverProps
   /**
    * The component used for the transition.
    * [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
-   * @deprecated use the `slots.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
@@ -230,7 +230,7 @@ export interface PopoverProps
   /**
    * Props applied to the transition element.
    * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition/) component.
-   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps.transition` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    * @default {}
    */
   TransitionProps?: TransitionProps;
@@ -259,12 +259,12 @@ export declare const PopoverPaper: React.FC<PopoverPaperProps>;
  *
  * Demos:
  *
- * - [Menu](https://next.mui.com/material-ui/react-menu/)
- * - [Popover](https://next.mui.com/material-ui/react-popover/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
+ * - [Popover](https://mui.com/material-ui/react-popover/)
  *
  * API:
  *
- * - [Popover API](https://next.mui.com/material-ui/api/popover/)
- * - inherits [Modal API](https://next.mui.com/material-ui/api/modal/)
+ * - [Popover API](https://mui.com/material-ui/api/popover/)
+ * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
 export default function Popover(props: PopoverProps): React.JSX.Element;

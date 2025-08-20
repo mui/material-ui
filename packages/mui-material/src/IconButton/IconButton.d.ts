@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { IconButtonClasses } from './iconButtonClasses';
@@ -81,17 +81,17 @@ export type IconButtonTypeMap<
 }>;
 
 /**
- * Refer to the [Icons](https://next.mui.com/material-ui/icons/) section of the documentation
+ * Refer to the [Icons](https://mui.com/material-ui/icons/) section of the documentation
  * regarding the available icon options.
  *
  * Demos:
  *
- * - [Button](https://next.mui.com/material-ui/react-button/)
+ * - [Button](https://mui.com/material-ui/react-button/)
  *
  * API:
  *
- * - [IconButton API](https://next.mui.com/material-ui/api/icon-button/)
- * - inherits [ButtonBase API](https://next.mui.com/material-ui/api/button-base/)
+ * - [IconButton API](https://mui.com/material-ui/api/icon-button/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 

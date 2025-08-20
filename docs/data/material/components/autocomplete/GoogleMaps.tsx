@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Paper, { PaperProps } from '@mui/material/Paper';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Grid2 from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import parse from 'autosuggest-highlight/parse';
@@ -48,7 +48,7 @@ function CustomPaper(props: PaperProps) {
   return (
     <Paper {...props}>
       {props.children}
-      {/* Legal requirment https://developers.google.com/maps/documentation/javascript/policies#logo */}
+      {/* Legal requirement https://developers.google.com/maps/documentation/javascript/policies#logo */}
       <Box
         sx={(staticTheme) => ({
           display: 'flex',
@@ -230,11 +230,11 @@ export default function GoogleMaps() {
         );
         return (
           <li key={key} {...optionProps}>
-            <Grid2 container sx={{ alignItems: 'center' }}>
-              <Grid2 sx={{ display: 'flex', width: 44 }}>
+            <Grid container sx={{ alignItems: 'center' }}>
+              <Grid sx={{ display: 'flex', width: 44 }}>
                 <LocationOnIcon sx={{ color: 'text.secondary' }} />
-              </Grid2>
-              <Grid2 sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
+              </Grid>
+              <Grid sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
                   <Box
                     key={index}
@@ -253,8 +253,8 @@ export default function GoogleMaps() {
                     {option.structured_formatting.secondary_text}
                   </Typography>
                 ) : null}
-              </Grid2>
-            </Grid2>
+              </Grid>
+            </Grid>
           </li>
         );
       }}

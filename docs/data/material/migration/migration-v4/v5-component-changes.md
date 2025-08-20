@@ -33,6 +33,34 @@ As the core components use Emotion as their style engine, the props used by Emot
 <MuiComponent component={SomeOtherComponent} as="button" />
 ```
 
+## AccordionSummary
+
+### Rename `expandIcon` to `expandIconWrapper`
+
+This change was made to make it clearer that the element is a wrapper around the icon, not the icon itself.
+
+Update the CSS class name and the theme overrides accordingly.
+
+```diff
+-'.MuiAccordionSummary-expandIcon': {
++'.MuiAccordionSummary-expandIconWrapper': {
+```
+
+```diff
+ createTheme({
+   components: {
+     MuiAccordionSummary: {
+       styleOverrides: {
+-        expandIcon: {
++        expandIconWrapper: {
+          // ...
+         },
+       },
+     },
+   },
+ });
+```
+
 ## AppBar
 
 ### Fix z-index issues
@@ -775,10 +803,10 @@ If you need negative margins on all sides, we recommend using the new Grid v2 in
 + import Grid from '@mui/material/Grid2';
 ```
 
-To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/) and the [Grid migration guide](/material-ui/migration/migration-grid-v2/).
+To learn more about Grid2, check out the [Grid2 component doc](/material-ui/react-grid/) and the [upgrade guide](/material-ui/migration/upgrade-to-grid-v2/).
 
 :::info
-Grid v2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
+Grid2 was introduced in Material UI v5.9.1 and features negative margins on all sides by default.
 :::
 
 ## GridList
