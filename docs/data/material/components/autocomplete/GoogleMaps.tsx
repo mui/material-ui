@@ -125,7 +125,7 @@ export default function GoogleMaps() {
   const [value, setValue] = React.useState<PlaceType | null>(null);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<readonly PlaceType[]>(emptyOptions);
-  const callbackId = React.useId().replace(/:/g, '');
+  const callbackId = React.useId().replace(/[^\w]/g, '');
   const [loaded, setLoaded] = React.useState(false);
 
   if (typeof window !== 'undefined') {
