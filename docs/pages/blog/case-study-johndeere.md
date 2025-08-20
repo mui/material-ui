@@ -23,8 +23,6 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How John Deere Standardized UI Development with MUI X
-
 ## Overview
 
 John Deere is a global leader in agricultural, construction, and f sorestry machinery. With a strong emphasis on innovation, their teams build solutions that enhance efficiency and productivity across industries.

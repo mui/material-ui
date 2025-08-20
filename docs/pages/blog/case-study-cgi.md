@@ -23,8 +23,6 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How CGI's Techyon Project Enhanced Performance & Usability with MUI X
-
 ## Overview
 
 CGI is a global leader in IT and business consulting, providing innovative digital solutions across various industries. Their Techyon project is dedicated to transforming the energy sector by integrating AI, machine learning, IoT, and cloud-based services to optimize internal operations and data flow.

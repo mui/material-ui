@@ -33,8 +33,6 @@ manualCard: true
   />
 </span>
 
-How Athena Intelligence Accelerated UI Development with MUI X.
-
 ## Overview
 
 Athena Intelligence provides Olympus, world's first AI-native analytics platform designed for seamless human-machine collaboration. Olympus empowers organizations to unlock the full potential of their data and drive intelligent decision-making.

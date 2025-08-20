@@ -23,11 +23,12 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How Oregon State University Transformed Course Planning with MUI X Data Grid.
-
 ## Overview
 
-Oregon State University is developing Resource Insights, an application aimed at improving course planning and faculty assignment. The project replaces outdated Excel-based methods with a modern online system that balances course sections, faculty availability, and student demand. The tool integrates with existing university systems to provide real-time enrollment data, eliminating manual data entry. Initial adoption is expected at around 30 users, with the potential to expand university-wide.
+Oregon State University is developing Resource Insights, an application aimed at improving course planning and faculty assignment.
+The project replaces outdated Excel-based methods with a modern online system that balances course sections, faculty availability, and student demand.
+The tool integrates with existing university systems to provide real-time enrollment data, eliminating manual data entry.
+Initial adoption is expected at around 30 users, with the potential to expand university-wide.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -50,7 +51,9 @@ Oregon State University is developing Resource Insights, an application aimed at
 
 ## Challenge
 
-The university needed a robust solution to handle tabular data efficiently. Planners and administrators required a system that could provide spreadsheet-like interactions, allowing them to filter, sort, and manipulate data dynamically. Key challenges included:
+The university needed a robust solution to handle tabular data efficiently.
+Planners and administrators required a system that could provide spreadsheet-like interactions, allowing them to filter, sort, and manipulate data dynamically.
+Key challenges included:
 
 - Lack of real-time data integration in current processes.
 - The need for an Excel-like experience in a web-based tool.
@@ -60,7 +63,8 @@ The university needed a robust solution to handle tabular data efficiently. Plan
 
 ## Solution
 
-The team adopted MUI X's Data Grid as the core component for handling tabular data. This choice was driven by its extensive feature set, including:
+The team adopted MUI X's Data Grid as the core component for handling tabular data. 
+This choice was driven by its extensive feature set, including:
 
 - Column manipulation – Moving, sorting, filtering, and grouping columns for enhanced usability.
 - Row grouping – Organizing complex datasets for better visualization.
@@ -78,5 +82,8 @@ The Data Grid's customization capabilities allowed the team to build an interfac
 
 ## Recommendation
 
-The Resource Insights team sees MUI X as a powerful tool for projects requiring complex tabular interactions. They believe more real-world examples in the documentation—such as integrating autocomplete in a data grid cell—would further enhance usability for advanced implementations.
+The Resource Insights team sees MUI X as a powerful tool for projects requiring complex tabular interactions.
+
+They believe more real-world examples in the documentation—such as integrating autocomplete in a data grid cell—would further enhance usability for advanced implementations.
+
 Additionally, they expressed interest in future features like pivot tables, which would further support their data-heavy use case.

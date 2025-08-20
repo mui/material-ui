@@ -14,8 +14,6 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How DeliveryHero Partner Portal Streamlined Development with MUI X
-
 ## Overview
 
 DeliveryHero Partner Portal provides restaurant and local shop management solutions for the global food delivery market. Their platform equips vendors with the tools they need to manage operations efficiently, enhance customer experience, and optimize performance.

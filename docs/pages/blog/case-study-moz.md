@@ -23,8 +23,6 @@ manualCard: true
     style="width: 40%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
   />
 
-How Moz Optimized Large-Scale Keyword Analysis with MUI X
-
 ## Overview
 
 Moz, a leader in SEO software and analytics, provides powerful tools for keyword research, site audits, and rank tracking. To handle large-scale keyword analysis, Moz required a robust UI solution capable of managing massive datasets efficiently.

@@ -33,8 +33,6 @@ manualCard: true
   />
 </span>
 
-How AT&T streamlined performance dashboards with MUI X
-
 ## Overview
 
 AT&T, a leading global telecommunications company, develops advanced tools to enhance productivity and performance across its Retail and Call Center teams. Their internal applications, MyResults and MyCOACH, serve as key platforms for performance tracking and coaching within the organization.
