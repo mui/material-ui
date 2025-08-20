@@ -43,16 +43,16 @@ DeliveryHero Partner Portal provides restaurant and local shop management soluti
 
 Before adopting MUI X, the DeliveryHero team faced two major challenges:
 
-- Slow Development Speed – Building and refining UI components took too much time.
-- Usability & Consistency – Ensuring a seamless and intuitive experience for end-users was difficult.
+- Slow development speed – Building and refining UI components took too much time.
+- Usability and consistency – Ensuring a seamless and intuitive experience for end-users was difficult.
 
 ## Solution
 
 To address these challenges, the team integrated MUI X Pro Date and Time Pickers and Data Grid Pro into their platform. These components enabled them to:
 
-- Accelerate Development – Pre-built, high-quality components reduced time spent on UI implementation.
-- Enhance Usability – A modern, sleek UI improved user interactions and consistency.
-- Optimize Performance – The solution provided a smooth experience for restaurant and shop managers.
+- Accelerate development – Pre-built, high-quality components reduced time spent on UI implementation.
+- Enhance usability – A modern, sleek UI improved user interactions and consistency.
+- Optimize performance – The solution provided a smooth experience for restaurant and shop managers.
 
 ## Results
 
@@ -62,7 +62,7 @@ After implementing MUI X, the team saw immediate benefits:
 - Improved UI/UX consistency across the platform.
 - Reduced user clicks when interacting with date and time inputs.
 
-## Documentation Experience & Feedback
+## Documentation experience and feedback
 
 The team also praised MUI X's documentation, describing it as clear, well-structured, and easy to follow, which helped their developers integrate and customize components effortlessly.
 

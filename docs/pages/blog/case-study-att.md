@@ -78,7 +78,7 @@ By integrating MUI X, AT&T achieved:
 - Improved UI consistency – A standardized, professional interface.
 - Enhanced customization – Greater flexibility in designing performance dashboards.
 
-## DevEx
+## Developer experience
 
 AT&T's developers found MUI X documentation to be clear and reliable, ensuring smooth implementation without issues.
 

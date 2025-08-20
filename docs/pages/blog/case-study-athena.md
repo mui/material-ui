@@ -77,9 +77,9 @@ After integrating MUI X, Athena Intelligence saw:
 
 - Increased development speed – Reducing time-to-market for complex UI features.
 - Improved UI consistency – A polished and cohesive experience across the platform.
-- Better performance & flexibility – Smooth, interactive data management without performance bottlenecks.
+- Better performance and flexibility – Smooth, interactive data management without performance bottlenecks.
 
-## Developer Experience & Documentation
+## Developer experience and documentation
 
 Athena Intelligence found MUI X's documentation to be highly detailed and structured, making it easy to:
 

@@ -57,10 +57,10 @@ CGI is a global leader in IT and business consulting, providing innovative digit
 
 As the energy sector undergoes rapid transformation, CGI needed a high-performance, scalable GUI to support Techyon's advanced capabilities. Their key challenges included:
 
-- Performance Issues – Handling massive datasets (over 10 terawatts of data in Google Cloud) efficiently.
-- Usability & Consistency – Creating an intuitive, user-friendly interface for energy operators and analysts.
-- Slow Development Speed – Ensuring developers could quickly build and iterate on the UI.
-- Developer Consistency – Standardizing the design approach across teams.
+- Performance issues – Handling massive datasets (over 10 terawatts of data in Google Cloud) efficiently.
+- Usability and consistency – Creating an intuitive, user-friendly interface for energy operators and analysts.
+- Slow development speed – Ensuring developers could quickly build and iterate on the UI.
+- Developer consistency – Standardizing the design approach across teams.
 
 ## Solution
 
@@ -79,7 +79,7 @@ After implementing MUI X, the Techyon team experienced:
 - A streamlined design process – Developers could create polished interfaces without needing a design background.
 - Faster development cycles – MUI X's well-documented components simplified UI implementation.
 
-## Developer Experience & Best Practices
+## Developer experience and best practices
 
 CGI's team found MUI X's documentation to be clear, organized, and developer-friendly, making it easy for both new and experienced developers to integrate and optimize components.
 

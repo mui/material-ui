@@ -58,11 +58,11 @@ By integrating MUI X Premium Data Grid, John Deere's teams found a baseline of 
 
 ## Results
 
-- Improved Consistency – Developers could use MUI X as a standardized foundation across teams.
-- Faster Development – Teams saved time by leveraging ready-to-use, high-performance components.
-- Enhanced Flexibility – MUI X filled in the gaps where the internal design system fell short.
+- Improved consistency – Developers could use MUI X as a standardized foundation across teams.
+- Faster development – Teams saved time by leveraging ready-to-use, high-performance components.
+- Enhanced flexibility – MUI X filled in the gaps where the internal design system fell short.
 
-## Documentation Experience & Feedback
+## Documentation experience and feedback
 
 While the MUI X documentation was useful, the team found it challenging to understand recent pricing changes and how to forecast costs for various groups using the tool.
 

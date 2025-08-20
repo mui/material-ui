@@ -74,7 +74,7 @@ By adopting MUI X, Moz achieved:
 - Enhanced customization – Developed custom filtering and column management features.
 - Improved development experience – Standardized and simplified the UI-building process.
 
-## Developer Experience & Documentation
+## Developer experience and documentation
 
 Moz developers found MUI X's documentation intuitive and in-depth, making customization straightforward.
 💡 Pro Tip: "Read the docs thoroughly—there are many small examples that can greatly help with customization."
