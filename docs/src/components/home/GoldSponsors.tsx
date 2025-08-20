@@ -165,8 +165,8 @@ export default function GoldSponsors() {
         </Grid>
       </Grid>
       <Box sx={{ maxWidth: 1000, mt: { xs: 2, md: 3 } }}>
-        {BACKLINKs.map((item) => (
-          <BacklinkSponsor key={item.name} item={item} />
+        {BACKLINKs.map((item, index) => (
+          <BacklinkSponsor key={index} item={item} />
         ))}
       </Box>
     </div>
