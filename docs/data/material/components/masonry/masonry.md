@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Masonry component
 components: Masonry
-githubLabel: 'component: masonry'
+githubLabel: 'scope: masonry'
 ---
 
 # Masonry

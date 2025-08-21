@@ -300,7 +300,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 - Remove `getSlotOwnerState` from `useSlot` util (#44403) @ZeeshanTamboli
 - Extract useRippleHandler outside of ButtonBase (#44591) @albarv340
-- Update eslint config (#44586) @MBilalShafi
+- Update ESLint config (#44586) @MBilalShafi
 - [core-infra] Remove useless fragments (#44516) @oliviertassinari
 - [docs-infra] Fix Banner CLS (#44632) @oliviertassinari
 - [docs-infra] Change CSS vars generation to be extracted from Enum (#44587) @mnajdova
@@ -554,7 +554,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Core
 
-- [code-infra] Widen eslint file patterns (#44148) @Janpot
+- [code-infra] Widen ESLint file patterns (#44148) @Janpot
 - [code-infra] Fix icon builder tests (#44143) @Janpot
 - [code-infra] Fix dependabot vulnerabilities (#44124) @Janpot
 - [core] Reference commits in changelog when no PR (#44115) @oliviertassinari
@@ -706,7 +706,7 @@ A big thanks to the 13 contributors who made this release possible.
 ### Core
 
 - [code-infra] Fix flaky dashboard screenshot - take 2 (#43937) @Janpot
-- [code-infra] Replace all instances of `e` with `event` and add eslint rule (#43866) @samuelsycamore
+- [code-infra] Replace all instances of `e` with `event` and add ESLint rule (#43866) @samuelsycamore
 - [code-infra] Fix and update bundling fixtures (#43709) @Janpot
 - [code-infra] Update transitive dependencies with vulnerabilties (#43895) @Janpot
 - [code-infra] Optimize regression tests (#43889) @Janpot
@@ -1218,7 +1218,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [code-infra] Fix `@mui/internal-test-utils` `screen` export type (#43150) @LukasTy
 - [code-infra] Do not look for changes with previous commit when releasing a canary version (#43129) @michaldudak
 - [code-infra] Automate canary releases (#43066) @michaldudak
-- [core] Apply top-level eslint rule to docs and fix violations (#43126) @Janpot
+- [core] Apply top-level ESLint rule to docs and fix violations (#43126) @Janpot
 - [core] Patch styled-components to use React.JSX namespace (#43205) @aarongarciah
 - [core] Replace JSX namespace usages with React.JSX (#43204) @aarongarciah
 - [core] Remove `react-router` package from `pigment-css-vite-app` (#43201) @ZeeshanTamboli
@@ -1502,7 +1502,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 
 ### Core
 
-- [code-infra] Refactor eslint `import/no-cycle` rule (#42705) @LukasTy
+- [code-infra] Refactor ESLint `import/no-cycle` rule (#42705) @LukasTy
 - [core] Target direct version for prerelease (#42768) @siriwatknp
 - [test] Remove enzyme (#42706) @aarongarciah
 - [test] Remove createMount test util (#42703) @aarongarciah
@@ -1742,7 +1742,7 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 - [code-infra] Simplify .stylelintrc.js @oliviertassinari
 - [code-infra] Fix stylelint locally (#42411) @oliviertassinari
 - [code-infra] Run corepack enable on all CI jobs (#42331) @Janpot
-- [code-infra] Create examples eslint rule (#42170) @oliviertassinari
+- [code-infra] Create examples ESLint rule (#42170) @oliviertassinari
 - [core] Apply React 19 type changes that don't require upcoming `@types/` packages (#42346) @DiegoAndai
 - [core] Remove `react-swipeable-views-utils` package from docs (#42378) @ZeeshanTamboli
 - [core] Update `@testing-library/react` and `@testing-library/dom` packages (#42349) @ZeeshanTamboli
@@ -3676,7 +3676,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [blog] Add a Phuket retreat blog post (#40055) @mikailaread
 - [blog] Adjust the latest MUI X blog post (#40046) @danilo-leal
-- [core] Migrate from tslint to eslint (#40020) @ZeeshanTamboli
+- [core] Migrate from tslint to ESLint (#40020) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @abreel, @alexfauquette, @anle9650, @blakenetz, @danilo-leal, @EloB, @lhilgert9, @mbrookes, @mikailaread, @mj12albert, @mnajdova, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
@@ -4242,8 +4242,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### Core
 
-- Add next lint config to eslint (#39183) @Janpot
-- [core] Update eslint rules (#39178) @romgrk
+- Add next lint config to ESLint (#39183) @Janpot
+- [core] Update ESLint rules (#39178) @romgrk
 - [core] Fix Greg GitHub slug @oliviertassinari
 - [core] Priority Support casing normalization @oliviertassinari
 
@@ -4364,7 +4364,7 @@ A big thanks to the 16 contributors who made this release possible. This release
 - [core] Remove react from styled-engine dependencies (#38971) @michaldudak
 - [core] Fix image loading bug on Safari @oliviertassinari
 - [core] Fix bundle size upload to S3 job (#38956) @Janpot
-- [core] Move eslint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
+- [core] Move ESLint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
 - [docs-infra] Display markdown lists correctly in docs for props description (#38973) @ZeeshanTamboli
 - [zero][next] Setup nextjs plugin package (#38852) @brijeshb42
 
@@ -5155,7 +5155,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [core] Prepend "use-client" directive + add docs and examples for using the library with Next.js App Router (#37656) @mj12albert
 - [core] Fix imports to React (#37863) @oliviertassinari
-- [core] Disambiguate eslint plugin name @oliviertassinari
+- [core] Disambiguate ESLint plugin name @oliviertassinari
 - [core] Sync the lint script name with the other repositories @oliviertassinari
 - [core] Point to Crowdin directly @oliviertassinari
 
@@ -5223,7 +5223,7 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [core] Add bundle size Toolpad app link to PRs (#36311) @Janpot
 - [core] Fix priority support prompt action flow (#37726) @DanailH
 - [core] Fix typo in priority support @oliviertassinari
-- [core][docs] add ESlint rule to ensure main demo component match file… (#37278) @alexfauquette
+- [core][docs] add ESLint rule to ensure main demo component match file… (#37278) @alexfauquette
 - [docs-infra] Fix truncated TOCs scrollbar (#37770) @oliviertassinari
 - [docs-infra] Adjust demo container to be glued to the toolbar (#37744) @danilo-leal
 - [docs-infra] Fix layout shift ad (#37694) @oliviertassinari
@@ -5668,7 +5668,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   The full documentation about the codemod can be found [here](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#base-remove-component-prop).
 
   This is the list of PR related to this change:
-
   - [Button][base] Drop `component` prop (#36677) @mnajdova
   - [Badge][base] Drop `component` prop (#37028) @hbjORbj
   - [FormControl][base] Drop component prop (#37031) @hbjORbj
@@ -5692,7 +5691,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [base] Improve API consistency (#36970) @michaldudak
 
   Brought consistency to Base UI components and hooks' parameters and return values:
-
   1. Whenever a hook needs a ref, it's now called `<slot_name>Ref`, which matches the `get<slot_name>Props` in the return value.
   2. All hooks that accept external refs now return merged refs, making combining multiple hooks on one element easier. This was proven necessary in several compound components (like menuItem being both a button and a list item). The type of this value is `React.RefCallback` as using the more general `React.Ref` caused variance issues.
   3. Type of accepted refs is standardized to `React.Ref<Element>`
@@ -6555,7 +6553,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [Joy] Replace `Joy[Component]` classname with `Mui[Component]` classname for all slots of components (#35718) @hbjORbj
-
   - Renames the classname prefix of all Joy UI components from `'Joy'` to `'Mui'`.
 
   ```diff
@@ -6568,7 +6565,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
   You can use this [codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#joy-rename-classname-prefix) to help with the migration.
 
 - [Joy] Replace `row` prop with `orientation` prop in all Joy UI components (#35721) @hbjORbj
-
   - Transforms `row` prop to `orientation` prop across `Card`, `List` and `RadioGroup` components in Joy UI.
 
   ```diff
@@ -6633,7 +6629,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [SliderUnstyled] Improved logic for displaying the value label (#35805) @ZeeshanTamboli
-
   - The `valueLabelDisplay` prop is removed from `SliderUnstyled`. The prop was not working as intended in `SliderUnstyled` (See #35398). You can instead provide a `valueLabel` slot with the `slots` prop API to show the value label:
 
   ```diff
@@ -6642,7 +6637,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   ```
 
   The following demo shows how to show a value label when it is hovered over with the thumb: https://v6.mui.com/base-ui/react-slider/#value-label
-
   - The following classes are removed from `sliderUnstyledClasses` since they are not needed for the value label:
 
   ```diff
@@ -6653,7 +6647,6 @@ A big thanks to the 13 contributors who made this release possible. Here are som
   ```
 
   In the custom value label component, you can define your own classNames and target them with CSS.
-
   - The `SliderValueLabelUnstyled` component is removed from SliderUnstyled. You should provide your own custom component for the value label.
 
   - To avoid using `React.cloneElement` API in value label, the component hierarchy structure of the value label is changed. The value label is now inside the Thumb slot - `Thumb` -> `Input`, `ValueLabel`.
@@ -7043,7 +7036,6 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 #### BREAKING CHANGE
 
 - [Joy] Add `slots`/`slotProps` props to the typing of all components and apply `useSlot` to all components (#34997) @hbjORbj
-
   - Change all occurrences of `components` and `componentsProps` props in Joy UI components to `slots` and `slotProps`, respectively.
 
   ```diff
@@ -7363,7 +7355,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [core] Pin GitHub Actions dependencies (#34929) @renovate[bot]
 - [core] Make the reproduction more important in the bug template (#34875) @oliviertassinari
 - [core] Fix docs GitHub API rate limit (#34856) @oliviertassinari
-- [core] Fix eslint issues (#34964) @mnajdova
+- [core] Fix ESLint issues (#34964) @mnajdova
 - [core] Pin GitHub Action to digests (#34855) @oliviertassinari
 - [core] Fix permissions in workflow @oliviertassinari
 - [core] memoize context values for react/jsx-no-constructed-context-values (#34849) @Janpot
@@ -7396,7 +7388,6 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 #### BREAKING CHANGE
 
 - [base] `components` -> `slots` API rename (#34693) @michaldudak
-
   - Change all occurrences of components and componentsProps props in Base components to slots and slotProps, respectively.
   - Change casing of slots' fields to camelCase
 
@@ -7515,8 +7506,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [core] Fix CI after out of sync merge @oliviertassinari
 - [core] Enforce straight quote (#34686) @oliviertassinari
 - [core] Add code scanning via CodeQL (#34707) @DanailH
-- [core] Fix some upcoming eslint issues (#34727) @oliviertassinari
-- [core] Auto-fix upcoming eslint issues (#34644) @Janpot
+- [core] Fix some upcoming ESLint issues (#34727) @oliviertassinari
+- [core] Auto-fix upcoming ESLint issues (#34644) @Janpot
 - [core] Move SearchIcons to docs src folder (#34802)
 - [test] Enable `react/no-unstable-nested-components` (#34518) @eps1lon
 
@@ -7547,7 +7538,6 @@ A big thanks to the 7 contributors who made this release possible. Here are some
   The `enableColorScheme` prop has been removed from `CssVarsProvider` and `getInitColorScheme` (both Material UI and Joy UI).
 
   Migration:
-
   - **Material UI**: you can enable the CSS color scheme via `<CssBaseline enableColorScheme />`.
   - **Joy UI**: it is enabled automatically if you use `<CssBaseline />`, [see the docs](https://mui.com/joy-ui/react-css-baseline/).
 
@@ -7871,7 +7861,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 ### Core
 
 - [core] Move renovate config to the repository root (#34180) @oliviertassinari
-- [core] Reinstate react/no-unused-prop-types eslint rule (#34125) @Janpot
+- [core] Reinstate react/no-unused-prop-types ESLint rule (#34125) @Janpot
 - [core] Do not append `types` field to packages without index.d.ts (#33952) @michaldudak
 - [core] Sanitize input in icon synonyms update script (#33989) @michaldudak
 - [test] Allow to pass options to `mousePress` function (#34124) @cherniavskii
@@ -9800,7 +9790,6 @@ A big thanks to the 22 contributors who made this release possible. Here are som
   Note: the utility components, such as ClickAwayListener, NoSsr, Portal, and TextareaAutosize continue to be exported from both `@mui/material` and `@mui/base`.
 
   If you're encountering build errors after upgrading @mui/material, do the following:
-
   1. Install @mui/base: npm install @mui/base or yarn add @mui/base
   2. Make sure the version of @mui/base match the version of @mui/material
   3. Change the import paths of unstyled components from @mui/material to @mui/base, e.g.:
@@ -11279,7 +11268,6 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - [core] Update `.browserslistrc` file (#27788) @DanailH
 
   The targets of the default bundle have changed:
-
   - Chrome 90 (up from 84)
   - Edge 91 (up from 85)
   - Safari 14 (macOS) (up from 13.1) and 12.4 (iOS) (up from 12.2)
@@ -11906,7 +11894,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [Menu] Use ButtonBase in MenuItem (#26591) @siriwatknp
-
   - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. You can restore the previous behavior with:
 
     ```diff
@@ -12000,7 +11987,6 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - [core] Remove `unstable_` prefix on the `useThemeProps` hook (#26777) @mnajdova
 
   The following utilities were renamed to not contain the `unstable_` prefix:
-
   - `@material-ui/sytstem`
 
   ```diff
@@ -12385,7 +12371,6 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [Tabs] Update `min` & `max` width and remove `minWidth` media query (#26458) @siriwatknp
 
   Update the implementation to better match Material Design:
-
   - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://m2.material.io/components/tabs#specs)
   - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://m2.material.io/components/tabs#specs)
 
@@ -12816,7 +12801,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [Autocomplete] Rename values of the reason argument (#26172) @m4theushw
 
   Rename the values of the reason argument in `onChange` and `onClose` for consistency:
-
   1. `create-option` to `createOption`
   2. `select-option` to `selectOption`
   3. `remove-option` to `removeOption`
@@ -12841,7 +12825,6 @@ A big thanks to the 17 contributors who made this release possible. Here are som
   ```
 
 - [core] Remove `createStyles` from `@material-ui/core` (#26018) @mnajdova
-
   - The `createGenerateClassName` module is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
@@ -13835,7 +13818,6 @@ A big thanks to the 30 contributors who made this release possible. Here are som
 
 - 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
   The podium of the most active community members in the migration 🏆:
-
   1. @natac13 x17
   2. @vicasas x5
   3. @kodai3 x4
@@ -14214,7 +14196,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 ### Core
 
 - [core] Create issue labeled (#24283) @xrkffgg
-- [core] Fix eslint @oliviertassinari
+- [core] Fix ESLint @oliviertassinari
 - [core] Skip downloading browser binaries when building docs (#24393) @eps1lon
 - [core] Small changes (#24329) @oliviertassinari
 - [core] Support public paths in module augmentation (#24267) @eps1lon
@@ -14520,7 +14502,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [example] Update nextjs examples to fix hydration (#23936) @mnajdova
 - [docs] Add API tradeoff section for the sx prop (#23962) @mnajdova
 - [docs] Add ELEVATOR to backers (#23977) @mbrookes
-- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add ESLint rule to docs (#23843) @jens-ox
 - [docs] Add infrastructure to translate API pages (#23852) @mbrookes
 - [docs] Add link to the sx docs page in the API description (#23967) @mnajdova
 - [docs] Add prepend option on emotion caches to allow JSS style overrides (#23892) @mnajdova
@@ -15049,14 +15031,12 @@ Here are some highlights ✨:
   You can read the [introduction blog post](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df) that we did for MUI System two years ago.
 
   The system is meant to solve the following problems:
-
   1. Naming things is hard. How should a class name, JSS style rule, or styled component be named?
   2. Jumping between JS and CSS in the editor wastes time. This is particularly true as the complexity (LOCs/# of elements) of a component increases. It's still true when using the `styled()` API.
   3. Introducing a `makeStyles` for the first time in a component is daunting. For example, it's why https://github.com/vscodeshift/material-ui-codemorphs#add-usestyles-hook exists. What if we had less code to type, gaining velocity when writing styles?
   4. Pulling values out from the theme can be cumbersome. How can we make it less painful to increase the usage of design tokens?
 
   This new iteration of MUI System brings two major improvements:
-
   - It moves from the support of a subset of CSS to the support of a superset of CSS.
     Learning the shorthand is optional. It's no longer necessary to moving back to styled() when MUI System doesn't support a specific CSS property.
   - It moves from support on Box only to any core component (starting with the slider).
@@ -15088,7 +15068,6 @@ Here are some highlights ✨:
 - [Popper] Upgrade to popper.js to v2 (#21761) @joshwooding
   This third-party library has introduced a lot of changes.<br />
   You can read [their migration guide](https://popper.js.org/docs/v2/migration-guide/) or the following summary:
-
   - The CSS prefixes have changed:
 
     ```diff
@@ -15220,7 +15199,6 @@ Here are some highlights ✨:
 - 📦 Ship modern bundle (#22814) @eps1lon.
   This is a significant update to the [browsers supported](https://mui.com/material-ui/getting-started/supported-platforms/) by Material UI.
   The previous policy was defined 2 years ago, and the landscape has evolved since then. The package now includes 4 bundles:
-
   1. `stable` (default, formerly `esm`) which targets a snapshot (on release) of `> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"`
   2. `node` (formerly default) which targets a snapshot (on release) of `maintained node versions`
   3. `legacy` (new) which is `stable` + IE 11
@@ -15613,7 +15591,6 @@ Here are some highlights ✨:
 
 - [Tabs] Add allowScrollButtonsMobile prop for mobile view (#22700) @GauravKesarwani
   The API that controls the scroll buttons has been split it into two props:
-
   - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
   - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hides the scroll buttons on mobile.
 
@@ -16023,7 +16000,6 @@ const theme = createMuiTheme({
 - [theme] Rename theme keys to defaultProps and styleOverrides (#22347) @mnajdova
 - [theme] Restructure component definitions (#22293) @mnajdova
   The components' definition inside the theme were restructure under the `components` key, to allow people easier discoverability about the definitions regarding one component.
-
   1. `props`
 
   ```diff
@@ -16674,7 +16650,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 - [core] Allow dist tag as argv in use-react-dist-tag (#21810) @eps1lon
 - [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
-- [core] Lint with typescript-eslint parser (#21758) @oliviertassinari
+- [core] Lint with typescript-ESLint parser (#21758) @oliviertassinari
 - [core] One label is enough @oliviertassinari
 - [core] Remove lint:fix command @oliviertassinari
 - [test] Enable "missing act()"-warnings (#21802) @eps1lon
@@ -17202,7 +17178,7 @@ This release fixes an important issue with Chrome 88. The usage of NaN as a CSS 
 
 - [blog] 2020 in review and beyond (#24130) @oliviertassinari
 - [docs] Add ELEVATOR to backers (#23977) @mbrookes
-- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add ESLint rule to docs (#23843) @jens-ox
 - [docs] Add notification for Adobe XD design assets (#23979) @mbrookes
 - [docs] Allow codesandbox deploy for demos in X (#23644) @oliviertassinari
 - [docs] Fix codesandbox datagrid demo (#24218) @brno32
@@ -19892,7 +19868,6 @@ Here are some highlights ✨:
 
   If you are not familiar with codemods, [check the library out](https://github.com/facebook/codemod). This is a tool tool to assist you with large-scale codebase refactors.
   We introduce two new codemods in this release:
-
   - `optimal-imports`: Material UI supports tree shaking for modules at 1 level depth maximum.
     You shouldn't import any module at a higher level depth.
 
@@ -20998,13 +20973,11 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
 - [List] Update to match the specification (#15339) @oliviertassinari
   Rework the list components to match the specification:
-
   - The usage of the `ListItemAvatar` component is required when using an avatar
   - The usage of the `ListItemIcon` component is required when using a left checkbox
   - The `edge` property should be set on the icon buttons.
 
 - [actions] Rename disableActionSpacing to disableSpacing (#15355) @oliviertassinari
-
   - [CardActions] Rename the `disableActionSpacing` prop `disableSpacing`.
   - [CardActions] Remove the `disableActionSpacing` CSS class.
   - [CardActions] Rename the `action` CSS class `spacing`.
@@ -21152,7 +21125,6 @@ Here are some highlights ✨:
   ```
 
 - [Snackbar] Match the new specification (#15122) @oliviertassinari
-
   - Change the dimensions
   - Change the default transition to from `Slide` to `Grow`.
 
@@ -21244,7 +21216,6 @@ Here are some highlights ✨:
 #### Breaking Changes
 
 - [Typography] Better defaults (#15100) @oliviertassinari
-
   - Change the default variant from `body2` to `body1`.
     A font size of 16px is a better default than 14px.
     Bootstrap, material.io or even our documentation use 16px as a default font size.
@@ -21509,7 +21480,7 @@ Here are some highlights ✨:
 ### Core
 
 - [core] Only import from top or 2nd level (#14888) @eps1lon
-- [test] Leaner eslint config (#14901) @eps1lon
+- [test] Leaner ESLint config (#14901) @eps1lon
 - [core] Upgrade the dev dependencies (#14911) @oliviertassinari
 - [core] Stop using @types/jss (#14852) @VincentLanglet
 - [core] Babel plugin unwrap createStyles now handle material-ui/styles package (#14850) @VincentLanglet
@@ -21568,7 +21539,6 @@ Here are some highlights ✨:
 
 - [styles] Remove the old styles modules (#14767) @oliviertassinari
   Isolation of the styling solution of the core components in a dedicated package.
-
   - Remove the `MuiThemeProvider` component:
 
     ```diff
@@ -21642,7 +21612,6 @@ Here are some highlights ✨:
   ![wrapper](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Table] Add dense support (#14561) @leMaik
-
   - We have removed the deprecated numeric property.
 
   ```diff
@@ -21754,7 +21723,6 @@ Here are some highlights ✨:
 #### Breaking Changes
 
 - [Typography] Remove deprecated Typography variants (#14562) @joshwooding
-
   - Remove the deprecated typography variants. You can upgrade by performing the following replacements:
     - display4 => h1
     - display3 => h2
@@ -21876,7 +21844,6 @@ Here are some highlights ✨:
 
   The upgrade path to React 16.8.0 should be pretty easy for our users.
   Introducing this breaking change in v4 enables the following:
-
   - We can remove the recompose dependency and use the new `React.memo()` API.
   - Before or after v4 is out, we can gradually migrate the core components to use the Hook API.
 
@@ -21921,7 +21888,6 @@ console.log({ background });
   ```
 
   It's consistent with the other projects:
-
   - material-ui => MaterialUI
   - react-dom => ReactDOM
   - prop-types => PropTypes
@@ -24091,7 +24057,7 @@ N/A
 
 - [typescript] Fix Typings for disableTouchRipple and allVariants (#11944) @franklixuefei
 - [core] Upgrade the dev dependencies (#11954) @oliviertassinari
-- [core] Upgrade eslint (#11957) @oliviertassinari
+- [core] Upgrade ESLint (#11957) @oliviertassinari
 - [core] Upgrade preval (#11958) @oliviertassinari
 - [core] Use Chrome Headless for the tests over PhantomJS (#11961) @oliviertassinari
 
@@ -24831,7 +24797,6 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [ButtonBase] Better keyboard focused story (#11090) @oliviertassinari
-
   - Rename the `keyboardFocused` feature `focusVisible` in order to follow the CSS specification wording:
     https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo
   - Give up on the `classes` property to host the focus visible feature. The fact that the classes don't cascade was making it hard to use. Instead, we rely on a `focusVisibleClassName` property. This is allowing any component along the rendering chain to use the feature. For instance, a Switch component: Switch > SwitchBase > IconButton > ButtonBase.
@@ -25715,7 +25680,6 @@ It's making our components less biased around the svg icon vs font icon choice.
 ```
 
 - [theme] Further simplification & standardization (#10015) @mbrookes
-
   - Most component specific `theme.palette.background` colors have been removed. The affected components use `theme.palette.grey` instead. Shift the values of `theme.palette.grey` if you wish to lighten or darken these as a whole; this will maintain the contrast relationship between them. (Paper remains in the theme, as it is used across multiple components.)
   - `theme.palette.common.fullBlack` and `fullWhite` have been removed. Components that used these values now use `theme.palette.common.black` and `white` instead.
   - `theme.palette.common.transparent` has been removed. Components that used this value now use `'transparent'` directly.
@@ -25857,7 +25821,6 @@ Here are some highlights ✨:
 ### Breaking change
 
 - [palette] Keep simplifying the solution (#9876) @oliviertassinari
-
   - Remove the contrast color from our API. This color variation hasn't proven itseft to be useful enough.
 
   ```diff
@@ -25866,7 +25829,6 @@ Here are some highlights ✨:
   ```
 
   Instead, you can use the `color="inherit"` property or use the `theme.palette.XXX.contrastText` value.
-
   - Rename `accent` to `secondary`. We have removed the accent indirection to be closer to the object people are providing to customize the palette.
 
   ```diff
@@ -27094,7 +27056,7 @@ Here are some highlights ✨:
 
 - [core] Upgrade to mocha@v4 (#8517) @oliviertassinari
 - [core] Upgrade dependencies (#8577) @oliviertassinari
-- [core] Upgrade eslint (#8583) @oliviertassinari
+- [core] Upgrade ESLint (#8583) @oliviertassinari
 - [core] Prepare upgrade enzyme v3 (#8595) @oliviertassinari
 - [misc] Fix small issues reported by users (#8524) @oliviertassinari
 
@@ -27593,7 +27555,6 @@ A big thanks to the 12 contributors who made this release possible.
 ```
 
 - [theme] Simplification of the API (#7934) @oliviertassinari
-
   - If you are using a direct import of `material-ui/styles/theme`, the path changed:
 
   ```diff
@@ -27804,7 +27765,7 @@ A big thanks to the 7 contributors who made this release possible.
 - [docs] Fix language issues for clarity (#7610) @skirunman
 - [docs] Update docs for <RadioGroup> (#7640) @sebald
 - [docs] Fixed "initial" word in vars and typo (#7639) @kybarg
-- [docs] Spell check eslint script (#7643) @kybarg
+- [docs] Spell check ESLint script (#7643) @kybarg
 - [docs] Fix audit issues (#7595) @oliviertassinari
 - [docs] Show how to use the insertionPoint (#7611) @oliviertassinari
 
@@ -28113,7 +28074,7 @@ _Jun 19, 2017_
 
 ### Core
 
-- [MuiThemeProvider] Small eslint fix (#7128) @Airblader
+- [MuiThemeProvider] Small ESLint fix (#7128) @Airblader
 - [core] Simplify the array logic (#7112) @oliviertassinari
 - [core] Fix type use of Element (#7111) @rosskevin
 - [core] Use the beta of circleci (#7133) @oliviertassinari
@@ -28165,7 +28126,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 ### Core
 
-- [eslint] Loosen no-unused-vars eslint rule (#7064) @yuchi
+- [eslint] Loosen no-unused-vars ESLint rule (#7064) @yuchi
 - [core] Various fixes (#7028) @oliviertassinari
 
 ## 1.0.0-alpha.16
@@ -28289,7 +28250,7 @@ _May 8, 2017_
 
 ### Breaking changes
 
-- [lint/flow] validate imports/exports with eslint and flow (#6757) @rosskevin
+- [lint/flow] validate imports/exports with ESLint and flow (#6757) @rosskevin
   Change some import:
 
 ```diff
@@ -29278,7 +29239,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 - [Tests] Refactor karma tests, add JSDOM for node tests and improve coverage (#4102)
 - [Tests] Add basic README for test setup (#4106)
 - [colorManipulator] Prevent illegal color values (#3989)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `jsx-first-prop-new-line` (#4112)
   1. Enforce `react/prefer-es6-class` (#4126)
 
@@ -29417,7 +29378,7 @@ Although we discourage you to use this library like that.
   - [Menu](#3821)
   - [MenuItem](#3821)
   - [RaisedButton](#3839)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `jsx-handler-names` (#3408)
   1. Enforce `spaced-comment` (#3910)
 
@@ -29506,7 +29467,7 @@ import MaterialUI from 'material-ui'; // no changes here :D
 - [Tests] Add `Paper` unit tests (#3528)
 - [Tests] Add `Slider` unit tests (#3688)
 - [IconBuilder] Move to packages directory (#3680)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `operator-linebreak` (#3516)
   1. Enforce `no-multiple-empty-lines` (#3516)
   1. Enforce `@ignore` before comment (#3611)
@@ -29620,7 +29581,7 @@ from the code with the 0.16.0 release.
 - [Docs] Enable GPU rasterization (#3451)
 - [Docs] Add versions to docs site (#3383)
 - [eslint] Upgrade to v2 (#3390)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `arrow-parens` (#3207)
   1. Enforce `prefer-template` (#3208, #3242)
   1. Enforce `no-unneeded-ternary` (#3320)
@@ -29741,7 +29702,7 @@ Unless you have used these implementation details in your code.
   1. [Autocomplete](#2871)
   1. [Popover](#2870)
   1. [IconMenu](#2882)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Extend `eslint:recommended` (#2854)
   1. `one-var` (#2855)
   1. `brace-style` (#2855)
@@ -29787,7 +29748,7 @@ _Jan 08, 2016_
   1. [Sliders](#2800)
   1. [Paper](#2797)
   1. [Menus](#2785)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. `react/jsx-indent` (#2808)
 
 ### Component Fixes / Enhancements
@@ -29811,7 +29772,7 @@ _Jan 05, 2016_
   1. [GridList](#2681)
   1. [SelectField](#2694)
   1. [IconButton](#2700)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. react/sort-comp (#2774, #2776)
 
 ### Component Fixes / Enhancements
@@ -29842,7 +29803,7 @@ Have a look at them as well.
   1. [Snackbar](#2562)
   1. [DropDownMenu](#2565)
   1. [Card](#2590)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. key-spacing (#2552)
 - [SvgIcon] Improved the code generation tasks (#2606)
 - [ES6] Use module everywhere (#2614)
@@ -29881,7 +29842,7 @@ _Dec 15, 2015_
   1. [Badge](#2489)
   1. [Dialog](#2483)
   1. [LeftNav](#2507)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. react/jsx-indent-props (#2377)
   1. max-len (#2381)
   1. wrap-multilines (#2419)

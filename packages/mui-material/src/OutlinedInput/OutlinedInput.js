@@ -75,7 +75,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
             },
           })),
         {
-          props: {}, // to overide the above style
+          props: {}, // to override the above style
           style: {
             [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
               borderColor: (theme.vars || theme).palette.error.main,

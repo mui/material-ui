@@ -36,7 +36,6 @@ It aims to solve the same problem, but also provides the following benefits:
 
 1. `Component`: The component that will be wrapped.
 2. `options` (_object_ [optional]):
-
    - `options.shouldForwardProp` (_`(prop: string) => bool`_ [optional]): Indicates whether the `prop` should be forwarded to the `Component`.
    - `options.label` (_string_ [optional]): The suffix of the style sheet. Useful for debugging.
    - `options.name` (_string_ [optional]): The key used under `theme.components` for specifying `styleOverrides` and `variants`. Also used for generating the `label`.

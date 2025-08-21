@@ -33,7 +33,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
+     * By default, the available props are based on the [ButtonBase](https://mui.com/material-ui/api/button-base/#props) component.
      */
     root: SlotProps<
       React.ElementType<ButtonBaseProps>,
@@ -42,7 +42,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the content slot.
-     * By default, the avaible props are based on a div element.
+     * By default, the available props are based on a div element.
      */
     content: SlotProps<
       'div',
@@ -51,7 +51,7 @@ export type AccordionSummarySlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the expand icon wrapper slot.
-     * By default, the avaible props are based on a div element.
+     * By default, the available props are based on a div element.
      */
     expandIconWrapper: SlotProps<
       'div',

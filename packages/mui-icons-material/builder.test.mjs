@@ -3,7 +3,6 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import fse from 'fs-extra';
 import { RENAME_FILTER_MUI, RENAME_FILTER_DEFAULT, getComponentName, handler } from './builder.mjs';
 
 const currentDirectory = path.dirname(fileURLToPath(new URL(import.meta.url)));
@@ -52,7 +51,7 @@ describe('builder', () => {
               'material-ui-icons-builder-test',
               ctx.task.name,
             );
-            await fse.emptyDir(options.outputDir);
+            await emptyDir(options.outputDir);
           }
         : async function beforeEachHook() {
             // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
@@ -61,7 +60,7 @@ describe('builder', () => {
               'material-ui-icons-builder-test',
               this.currentTest.fullTitle(),
             );
-            await fse.emptyDir(options.outputDir);
+            await emptyDir(options.outputDir);
           },
     );
 
@@ -91,7 +90,7 @@ describe('builder', () => {
               'material-ui-icons-builder-test',
               ctx.task.name,
             );
-            await fse.emptyDir(options.outputDir);
+            await emptyDir(options.outputDir);
           }
         : async function beforeEachHook() {
             // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
@@ -100,7 +99,7 @@ describe('builder', () => {
               'material-ui-icons-builder-test',
               this.currentTest.fullTitle(),
             );
-            await fse.emptyDir(options.outputDir);
+            await emptyDir(options.outputDir);
           },
     );
 
@@ -144,7 +143,7 @@ describe('builder', () => {
               'material-ui-icons-builder-test',
               ctx.task.name,
             );
-            await fse.emptyDir(options.outputDir);
+            await emptyDir(options.outputDir);
           }
         : async function beforeEachHook() {
             // DON'T CLEAN UP TO MAKE TEST INSPECTABLE
@@ -153,7 +152,7 @@ describe('builder', () => {
               'material-ui-icons-builder-test',
               this.currentTest.fullTitle(),
             );
-            await fse.emptyDir(options.outputDir);
+            await emptyDir(options.outputDir);
           },
     );
 
@@ -190,3 +189,8 @@ describe('builder', () => {
     });
   });
 });
+
+async function emptyDir(dir) {
+  await fs.promises.rm(dir, { recursive: true, force: true });
+  await fs.promises.mkdir(dir, { recursive: true });
+}

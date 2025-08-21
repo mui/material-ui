@@ -26,11 +26,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "pnpm build:node && pnpm build:stable && pnpm build:types && pnpm build:copy-files",
-    "build:node": "node ../../scripts/build.mjs node",
-    "build:stable": "node ../../scripts/build.mjs stable",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "build:types": "tsx ../../scripts/buildTypes.mts",
+    "build": "code-infra build && pnpm build:copy-files",
+    "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
+    "build:copy-files": "code-infra copy-files",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "pnpm build && pnpm publish",
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/material\"",
@@ -39,7 +37,7 @@
     "attw": "attw --pack ./build --exclude-entrypoints esm modern --include-entrypoints Button styles"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2",
+    "@babel/runtime": "^7.28.3",
     "@mui/core-downloads-tracker": "workspace:^",
     "@mui/system": "workspace:^",
     "@mui/types": "workspace:^",
@@ -58,13 +56,13 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/chai": "^4.3.20",
     "@types/prop-types": "^15.7.15",
-    "@types/react": "^19.1.9",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@types/sinon": "^17.0.4",
     "chai": "^4.5.0",
     "css-mediaquery": "^0.1.2",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.0",
+    "fs-extra": "^11.3.1",
     "jsdom": "^26.1.0",
     "lodash": "^4.17.21",
     "react": "^19.1.1",
@@ -103,9 +101,8 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./ButtonBase/TouchRipple": {
-      "mui-src": "./src/ButtonBase/TouchRipple.ts"
-    }
+    "./ButtonBase/TouchRipple": "./src/ButtonBase/TouchRipple.js",
+    "./*": "./src/*/index.ts"
   },
   "pigment-css": {
     "vite": {
