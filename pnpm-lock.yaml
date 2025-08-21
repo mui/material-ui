@@ -1236,8 +1236,7 @@ importers:
         version: 4.5.0
     publishDirectory: build
 
-  packages/mui-core-downloads-tracker:
-    publishDirectory: build
+  packages/mui-core-downloads-tracker: {}
 
   packages/mui-docs:
     dependencies:
@@ -1412,7 +1411,7 @@ importers:
         version: 7.0.0-beta.4(@types/react@19.1.10)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@mui/core-downloads-tracker':
         specifier: workspace:^
-        version: link:../mui-core-downloads-tracker/build
+        version: link:../mui-core-downloads-tracker
       '@mui/system':
         specifier: workspace:^
         version: link:../mui-system/build
@@ -1551,7 +1550,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@19.1.10)(react@19.1.1))(@types/react@19.1.10)(react@19.1.1)
       '@mui/core-downloads-tracker':
         specifier: workspace:^
-        version: link:../mui-core-downloads-tracker/build
+        version: link:../mui-core-downloads-tracker
       '@mui/material-pigment-css':
         specifier: workspace:^
         version: link:../mui-material-pigment-css/build
