@@ -1,5 +1,5 @@
 import path from 'path';
-import fse from 'fs-extra';
+import fs from 'node:fs/promises';
 import yargs from 'yargs';
 import { rimrafSync } from 'rimraf';
 import Mustache from 'mustache';
@@ -49,7 +49,7 @@ async function generateIndex(options) {
     .sort()
     .join('');
 
-  await fse.writeFile(path.join(options.outputDir, 'index.js'), index);
+  await fs.writeFile(path.join(options.outputDir, 'index.js'), index);
 }
 
 // Noise introduced by Google by mistake
@@ -127,7 +127,7 @@ export function cleanPaths({ svgPath, data }) {
       { name: 'removeDimensions' },
       { name: 'removeElementsByAttr' },
       { name: 'removeStyleElement' },
-      { name: 'removeScriptElement' },
+      { name: 'removeScripts' },
       { name: 'removeEmptyContainers' },
     ],
   });
@@ -218,9 +218,9 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
   const destPath = renameFilter(svgPathObj, innerPath, options);
 
   const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
-  await fse.ensureDir(outputFileDir);
+  await fs.mkdir(outputFileDir, { recursive: true });
 
-  const data = await fse.readFile(svgPath, { encoding: 'utf8' });
+  const data = await fs.readFile(svgPath, { encoding: 'utf8' });
   const paths = cleanPaths({ svgPath, data });
 
   const componentName = getComponentName(destPath);
@@ -231,7 +231,7 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
   });
 
   const absDestPath = path.join(options.outputDir, destPath);
-  await fse.writeFile(absDestPath, fileString);
+  await fs.writeFile(absDestPath, fileString);
 }
 
 export async function handler(options) {
@@ -245,13 +245,13 @@ export async function handler(options) {
     renameFilter = renameFilterModule.default;
   }
   if (typeof renameFilter !== 'function') {
-    throw Error('renameFilter must be a function');
+    throw new Error('renameFilter must be a function');
   }
-  await fse.ensureDir(options.outputDir);
+  await fs.mkdir(options.outputDir, { recursive: true });
 
   const [svgPaths, template] = await Promise.all([
     globAsync(normalizePath(path.join(options.svgDir, options.glob))),
-    fse.readFile(path.join(currentDirectory, 'templateSvgIcon.js'), {
+    fs.readFile(path.join(currentDirectory, 'templateSvgIcon.js'), {
       encoding: 'utf8',
     }),
   ]);
@@ -286,8 +286,8 @@ export async function handler(options) {
     );
   }
 
-  await fse.copy(path.join(currentDirectory, '/legacy'), options.outputDir);
-  await fse.copy(path.join(currentDirectory, '/custom'), options.outputDir);
+  await fs.cp(path.join(currentDirectory, '/legacy'), options.outputDir, { recursive: true });
+  await fs.cp(path.join(currentDirectory, '/custom'), options.outputDir, { recursive: true });
 
   await generateIndex(options);
 }

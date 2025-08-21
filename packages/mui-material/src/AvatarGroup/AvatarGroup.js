@@ -31,10 +31,9 @@ const useUtilityClasses = (ownerState) => {
 const AvatarGroupRoot = styled('div', {
   name: 'MuiAvatarGroup',
   slot: 'Root',
-  overridesResolver: (props, styles) => ({
-    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-    ...styles.root,
-  }),
+  overridesResolver: (props, styles) => {
+    return [{ [`& .${avatarGroupClasses.avatar}`]: styles.avatar }, styles.root];
+  },
 })(
   memoTheme(({ theme }) => ({
     display: 'flex',
@@ -109,10 +108,15 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const extraAvatars = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
   const extraAvatarsElement = renderSurplus ? renderSurplus(extraAvatars) : `+${extraAvatars}`;
 
-  const marginValue =
-    ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined
-      ? SPACINGS[ownerState.spacing]
-      : -ownerState.spacing || -8;
+  let marginValue;
+
+  if (ownerState.spacing && SPACINGS[ownerState.spacing] !== undefined) {
+    marginValue = SPACINGS[ownerState.spacing];
+  } else if (ownerState.spacing === 0) {
+    marginValue = 0;
+  } else {
+    marginValue = -ownerState.spacing || SPACINGS.medium;
+  }
 
   const externalForwardedProps = {
     slots,
@@ -130,10 +134,6 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     ownerState,
     additionalProps: {
       variant,
-      style: {
-        '--AvatarRoot-spacing': marginValue ? `${marginValue}px` : undefined,
-        ...other.style,
-      },
     },
   });
 
@@ -144,6 +144,10 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
+      style={{
+        '--AvatarGroup-spacing': `${marginValue}px`, // marginValue is always defined
+        ...other.style,
+      }}
     >
       {extraAvatars ? <SurplusSlot {...surplusProps}>{extraAvatarsElement}</SurplusSlot> : null}
       {children
@@ -187,7 +191,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    *
    * This prop is an alias for the `slotProps` prop.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps: PropTypes.shape({
     additionalAvatar: PropTypes.object,

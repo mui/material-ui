@@ -37,12 +37,6 @@ const disableAd =
   process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD_IN_DEV_MODE !== 'true';
 const inHouseAds = [
   {
-    name: 'scaffoldhub',
-    link: 'https://v2.scaffoldhub.io/scaffolds/react-material-ui?partner=1',
-    img: '/static/ads-in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material UI web-app.',
-  },
-  {
     name: 'templates',
     link: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/ads-in-house/themes-2.jpg',
@@ -58,7 +52,7 @@ const inHouseAds = [
   },
   {
     name: 'tidelift',
-    link: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+    link: 'https://tidelift.com/?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
     img: '/static/ads-in-house/tidelift.png',
     description:
       '<b>MUI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
@@ -146,7 +140,7 @@ export function Ad() {
   const ad = React.useContext(AdContext);
   const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
 
-  const timerAdblock = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const timerAdblock = React.useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const checkAdblock = React.useCallback(
     (attempt = 1) => {
@@ -232,7 +226,6 @@ export function Ad() {
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
-      className="Ad-root"
     >
       <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>

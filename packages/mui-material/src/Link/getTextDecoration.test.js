@@ -36,6 +36,26 @@ describe('getTextDecoration', () => {
       );
       expect(() => getTextDecoration({ theme, ownerState: { color: 'yellow' } })).to.throw();
     });
+
+    it('work with a custom palette', () => {
+      const customTheme = createTheme({
+        colorSchemes: {
+          light: {
+            palette: {
+              myColor: theme.palette.augmentColor({ color: { main: '#bbbbbb' } }),
+            },
+          },
+          dark: {
+            palette: {
+              myColor: theme.palette.augmentColor({ color: { main: '#aaaaaa' } }),
+            },
+          },
+        },
+      });
+      expect(getTextDecoration({ theme: customTheme, ownerState: { color: 'myColor' } })).to.equal(
+        'rgba(187, 187, 187, 0.4)',
+      );
+    });
   });
 
   describe('CSS variables', () => {
@@ -90,6 +110,24 @@ describe('getTextDecoration', () => {
         'rgba(1, 1, 1, 0.4)',
       );
       expect(() => getTextDecoration({ theme, ownerState: { color: 'yellow' } })).to.throw();
+    });
+  });
+
+  describe('Native color', () => {
+    const theme = createTheme({
+      cssVariables: {
+        nativeColor: true,
+      },
+      colorSchemes: {
+        light: true,
+        dark: true,
+      },
+    });
+
+    it('oklch', () => {
+      expect(getTextDecoration({ theme, ownerState: { color: 'primary.main' } })).to.equal(
+        'oklch(from var(--mui-palette-primary-main, #1976d2) l c h / 0.4)',
+      );
     });
   });
 });

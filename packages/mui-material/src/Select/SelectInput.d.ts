@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { MenuProps } from '../Menu';
 
 /**
@@ -8,9 +8,12 @@ import { MenuProps } from '../Menu';
  * The type of event depends on what caused the change.
  * For example, when the browser auto-fills the `Select` you'll receive a `React.ChangeEvent`.
  */
-export type SelectChangeEvent<Value = string> =
-  | (Event & { target: { value: Value; name: string } })
-  | React.ChangeEvent<HTMLInputElement>;
+
+export type SelectChangeEvent<Value = string> = Value extends (string & {}) | number
+  ?
+      | React.ChangeEvent<Omit<HTMLInputElement, 'value'> & { value: Value }>
+      | (Event & { target: { value: Value; name: string } })
+  : React.ChangeEvent<HTMLInputElement> | (Event & { target: { value: Value; name: string } });
 
 export interface SelectInputProps<Value = unknown> {
   autoFocus?: boolean;

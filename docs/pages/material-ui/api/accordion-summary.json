@@ -4,6 +4,20 @@
     "classes": { "type": { "name": "object" }, "additionalInfo": { "cssApi": true } },
     "expandIcon": { "type": { "name": "node" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
+    "slotProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ content?: func<br>&#124;&nbsp;object, expandIconWrapper?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
+      "default": "{}"
+    },
+    "slots": {
+      "type": {
+        "name": "shape",
+        "description": "{ content?: elementType, expandIconWrapper?: elementType, root?: elementType }"
+      },
+      "default": "{}"
+    },
     "sx": {
       "type": {
         "name": "union",
@@ -17,13 +31,27 @@
     "import AccordionSummary from '@mui/material/AccordionSummary';",
     "import { AccordionSummary } from '@mui/material';"
   ],
-  "classes": [
+  "slots": [
     {
-      "key": "content",
-      "className": "MuiAccordionSummary-content",
-      "description": "Styles applied to the children wrapper element.",
-      "isGlobal": false
+      "name": "root",
+      "description": "The component that renders the root slot.",
+      "default": "ButtonBase",
+      "class": "MuiAccordionSummary-root"
     },
+    {
+      "name": "content",
+      "description": "The component that renders the content slot.",
+      "default": "div",
+      "class": "MuiAccordionSummary-content"
+    },
+    {
+      "name": "expandIconWrapper",
+      "description": "The component that renders the expand icon wrapper slot.",
+      "default": "div",
+      "class": "MuiAccordionSummary-expandIconWrapper"
+    }
+  ],
+  "classes": [
     {
       "key": "contentGutters",
       "className": "MuiAccordionSummary-contentGutters",
@@ -44,12 +72,6 @@
       "isGlobal": true
     },
     {
-      "key": "expandIconWrapper",
-      "className": "MuiAccordionSummary-expandIconWrapper",
-      "description": "Styles applied to the `expandIcon`'s wrapper element.",
-      "isGlobal": false
-    },
-    {
       "key": "focusVisible",
       "className": "Mui-focusVisible",
       "description": "State class applied to the ButtonBase root element if the button is keyboard focused.",
@@ -60,18 +82,12 @@
       "className": "MuiAccordionSummary-gutters",
       "description": "Styles applied to the root element unless `disableGutters={true}`.",
       "isGlobal": false
-    },
-    {
-      "key": "root",
-      "className": "MuiAccordionSummary-root",
-      "description": "Styles applied to the root element.",
-      "isGlobal": false
     }
   ],
   "spread": true,
   "themeDefaultProps": true,
   "muiName": "MuiAccordionSummary",
-  "forwardsRefTo": "HTMLDivElement",
+  "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/AccordionSummary/AccordionSummary.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/material-ui/api/button-base/" },
   "demos": "<ul><li><a href=\"/material-ui/react-accordion/\">Accordion</a></li></ul>",

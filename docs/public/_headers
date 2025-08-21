@@ -22,4 +22,6 @@
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: frame-ancestors 'self'
+  # TODO: progressively reduce the CSP scopes
+  # Start with a wildcard, using https://github.com/mui/toolpad/blob/f4c4eb046b352e4fc00729c3bed605e671b040c4/packages/toolpad-studio/src/server/index.ts#L241
+  Content-Security-Policy: default-src * data: mediastream: blob: filesystem: about: ws: wss: 'unsafe-eval' 'wasm-unsafe-eval' 'unsafe-inline'; script-src * data: blob: 'unsafe-inline' 'unsafe-eval'; script-src-elem * data: blob: 'unsafe-inline'; connect-src * data: blob: 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; media-src * data: blob: 'unsafe-inline'; frame-src * data: blob: ; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline'; frame-ancestors *;

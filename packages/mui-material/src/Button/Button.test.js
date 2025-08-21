@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, simulateKeyboardDevice } from '@mui/internal-test-utils';
+import { createRenderer, screen, simulateKeyboardDevice, within } from '@mui/internal-test-utils';
 import { ClassNames } from '@emotion/react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
@@ -751,6 +751,98 @@ describe('<Button />', () => {
       const button = getByRole('button');
 
       expect(getComputedStyle(button).color).to.equal(color);
+    });
+  });
+
+  describe('prop: loading', () => {
+    it('should not have a loading wrapper by default', () => {
+      const { container } = render(<Button>Test</Button>);
+
+      expect(container.querySelector(`.${classes.loadingWrapper}`)).to.equal(null);
+    });
+
+    it('should have a loading wrapper when loading is boolean', () => {
+      const { container, rerender } = render(<Button loading={false}>Test</Button>);
+
+      expect(container.querySelector(`.${classes.loadingWrapper}`)).not.to.equal(null);
+
+      rerender(<Button loading>Test</Button>);
+
+      expect(container.querySelector(`.${classes.loadingWrapper}`)).not.to.equal(null);
+    });
+
+    it('disables the button', () => {
+      render(<Button loading />);
+
+      const button = screen.getByRole('button');
+      expect(button).to.have.property('tabIndex', -1);
+      expect(button).to.have.property('disabled', true);
+    });
+
+    it('cannot be enabled while `loading`', () => {
+      render(<Button disabled={false} loading />);
+
+      expect(screen.getByRole('button')).to.have.property('disabled', true);
+    });
+
+    it('renders a progressbar that is labelled by the button', () => {
+      render(<Button loading>Submit</Button>);
+
+      const button = screen.getByRole('button');
+      const progressbar = within(button).getByRole('progressbar');
+      expect(progressbar).toHaveAccessibleName('Submit');
+    });
+
+    it('has no id when `loading=false` and no `id` prop is present`', () => {
+      const id = 'some-id';
+      render(
+        <React.Fragment>
+          <Button />
+          <Button id={id} />
+        </React.Fragment>,
+      );
+
+      const buttons = screen.getAllByRole('button');
+
+      expect(buttons[0]).not.to.have.attribute('id');
+      expect(buttons[1]).to.have.attribute('id', id);
+    });
+  });
+
+  describe('prop: loadingIndicator', () => {
+    it('is not rendered by default', () => {
+      render(<Button loadingIndicator="loading">Test</Button>);
+
+      expect(screen.getByRole('button')).to.have.text('Test');
+    });
+
+    it('is rendered before the children when `loading`', () => {
+      render(
+        <Button loadingIndicator="loading…" loading>
+          Test
+        </Button>,
+      );
+
+      expect(screen.getByRole('button')).to.have.text('loading…Test');
+    });
+
+    it('should have loading position class attached to root when `loading`', () => {
+      const { rerender } = render(<Button loading>Test</Button>);
+      expect(screen.getByRole('button')).to.have.class(classes.loadingPositionCenter);
+
+      rerender(
+        <Button loading loadingPosition="start">
+          Test
+        </Button>,
+      );
+      expect(screen.getByRole('button')).to.have.class(classes.loadingPositionStart);
+
+      rerender(
+        <Button loading loadingPosition="end">
+          Test
+        </Button>,
+      );
+      expect(screen.getByRole('button')).to.have.class(classes.loadingPositionEnd);
     });
   });
 });

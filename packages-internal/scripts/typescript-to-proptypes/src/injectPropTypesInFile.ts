@@ -173,8 +173,8 @@ function createBabelPlugin({
   let importName = '';
   let needImport = false;
   let alreadyImported = false;
-  let originalPropTypesPath: null | babel.NodePath = null;
-  const previousPropTypesSource = new Map<string, string>();
+  const originalPropTypesPaths = new Map<string, babel.NodePath>();
+  const previousPropTypesSources = new Map<string, Map<string, string>>();
 
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
@@ -183,6 +183,9 @@ function createBabelPlugin({
     nodeName: string;
   }) {
     const { path, props, usedProps, nodeName } = injectOptions;
+
+    const previousPropTypesSource =
+      previousPropTypesSources.get(nodeName) || new Map<string, string>();
 
     const source = generatePropTypes(props, {
       ...otherOptions,
@@ -201,8 +204,10 @@ function createBabelPlugin({
 
     mapOfPropTypes.set(placeholder, source);
 
+    const originalPropTypesPath = originalPropTypesPaths.get(nodeName);
+
     // `Component.propTypes` already exists
-    if (originalPropTypesPath !== null) {
+    if (originalPropTypesPath) {
       originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babel.Node);
     } else if (!emptyPropTypes && babelTypes.isExportNamedDeclaration(path.parent)) {
       // in:
@@ -258,7 +263,12 @@ function createBabelPlugin({
               babelTypes.isMemberExpression(node.expression.left) &&
               babelTypes.isIdentifier(node.expression.left.property, { name: 'propTypes' })
             ) {
-              originalPropTypesPath = nodePath as babel.NodePath;
+              babelTypes.assertIdentifier(node.expression.left.object);
+              const componentName = node.expression.left.object.name;
+              originalPropTypesPaths.set(componentName, nodePath);
+
+              const previousPropTypesSource = new Map<string, string>();
+              previousPropTypesSources.set(componentName, previousPropTypesSource);
 
               let maybeObjectExpression = node.expression.right;
               // Component.propTypes = {} as any;

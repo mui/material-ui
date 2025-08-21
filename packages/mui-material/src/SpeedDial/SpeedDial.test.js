@@ -35,7 +35,7 @@ describe('<SpeedDial />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSpeedDial',
     testVariantProps: { direction: 'right' },
-    slots: { transition: { testWithElement: null } },
+    slots: { transition: { testWithElement: null }, root: { expectedClassName: classes.root } },
     skip: [
       'componentProp', // react-transition-group issue
       'componentsProp',
@@ -276,6 +276,191 @@ describe('<SpeedDial />', () => {
               FabProps={{
                 ref: (element) => {
                   actionButtons[index] = element;
+                },
+              }}
+              icon={icon}
+              tooltipTitle={`action${index}`}
+            />
+          ))}
+        </SpeedDial>,
+      );
+      await act(async () => {
+        fabButton.focus();
+      });
+    };
+
+    /**
+     *
+     * @param actionIndex
+     * @returns the button of the nth SpeedDialAction or the Fab if -1
+     */
+    const getActionButton = (actionIndex) => {
+      if (actionIndex === -1) {
+        return fabButton;
+      }
+      return actionButtons[actionIndex];
+    };
+    /**
+     * @returns true if the button of the nth action is focused
+     */
+    const isActionFocused = (index) => {
+      const expectedFocusedElement = index === -1 ? fabButton : actionButtons[index];
+      return expectedFocusedElement === document.activeElement;
+    };
+
+    it('displays the actions on focus gain', async () => {
+      await renderSpeedDial();
+      expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
+      expect(fabButton).to.have.attribute('aria-expanded', 'true');
+    });
+
+    it('considers arrow keys with the same initial orientation', async () => {
+      await renderSpeedDial();
+      fireEvent.keyDown(fabButton, { key: 'left' });
+      expect(isActionFocused(0)).to.equal(true);
+      fireEvent.keyDown(getActionButton(0), { key: 'up' });
+      expect(isActionFocused(0)).to.equal(true);
+      fireEvent.keyDown(getActionButton(0), { key: 'left' });
+      expect(isActionFocused(1)).to.equal(true);
+      fireEvent.keyDown(getActionButton(1), { key: 'right' });
+      expect(isActionFocused(0)).to.equal(true);
+    });
+
+    describe('actions navigation', () => {
+      /**
+       * tests a combination of arrow keys on a focused SpeedDial
+       */
+      const itTestCombination = (dialDirection, keys, expected) => {
+        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, async () => {
+          const [firstKey, ...combination] = keys;
+          const [firstFocusedAction, ...foci] = expected;
+
+          await renderSpeedDial(dialDirection);
+
+          fireEvent.keyDown(fabButton, { key: firstKey });
+          expect(isActionFocused(firstFocusedAction)).to.equal(
+            true,
+            `focused action initial ${firstKey} should be ${firstFocusedAction}`,
+          );
+
+          for (let i = 0; i < combination.length; i += 1) {
+            const arrowKey = combination[i];
+            const previousFocusedAction = foci[i - 1] || firstFocusedAction;
+            const expectedFocusedAction = foci[i];
+            const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
+
+            fireEvent.keyDown(getActionButton(previousFocusedAction), {
+              key: arrowKey,
+            });
+            expect(isActionFocused(expectedFocusedAction)).to.equal(
+              true,
+              `focused action after ${combinationUntilNot.join(
+                ',',
+              )} should be ${expectedFocusedAction}`,
+            );
+          }
+        });
+      };
+
+      describe('considers the first arrow key press as forward navigation', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        itTestCombination('up', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
+
+        itTestCombination(
+          'right',
+          ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
+          [0, 1, 2, 1],
+        );
+        itTestCombination(
+          'right',
+          ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
+          [0, 1, 2, 1],
+        );
+
+        itTestCombination('down', ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, 1, 2, 1]);
+        itTestCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+
+        itTestCombination(
+          'left',
+          ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
+          [0, 1, 2, 1],
+        );
+        itTestCombination(
+          'left',
+          ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
+          [0, 1, 2, 1],
+        );
+      });
+
+      describe('ignores array keys orthogonal to the direction', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'], [0, 0, 0, 1]);
+        itTestCombination(
+          'right',
+          ['ArrowRight', 'ArrowUp', 'ArrowDown', 'ArrowRight'],
+          [0, 0, 0, 1],
+        );
+        itTestCombination(
+          'down',
+          ['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowDown'],
+          [0, 0, 0, 1],
+        );
+        itTestCombination('left', ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'], [0, 0, 0, 1]);
+      });
+
+      describe('does not wrap around', () => {
+        itTestCombination('up', ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'], [0, -1, -1, 0]);
+        itTestCombination(
+          'right',
+          ['ArrowRight', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
+          [0, -1, -1, 0],
+        );
+        itTestCombination('down', ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, -1, -1, 0]);
+        itTestCombination(
+          'left',
+          ['ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
+          [0, -1, -1, 0],
+        );
+      });
+    });
+  });
+
+  describe('dial focus with slotProps.fab', () => {
+    let actionButtons;
+    let fabButton;
+
+    function NoTransition(props) {
+      const { children, in: inProp } = props;
+
+      if (!inProp) {
+        return null;
+      }
+      return children;
+    }
+
+    const renderSpeedDial = async (direction = 'up', actionCount = 4) => {
+      actionButtons = [];
+      fabButton = undefined;
+
+      render(
+        <SpeedDial
+          ariaLabel={`${direction}-actions-${actionCount}`}
+          FabProps={{
+            ref: (element) => {
+              fabButton = element;
+            },
+          }}
+          open
+          direction={direction}
+          TransitionComponent={NoTransition}
+        >
+          {Array.from({ length: actionCount }, (_, index) => (
+            <SpeedDialAction
+              key={index}
+              slotProps={{
+                fab: {
+                  ref: (element) => {
+                    actionButtons[index] = element;
+                  },
                 },
               }}
               icon={icon}

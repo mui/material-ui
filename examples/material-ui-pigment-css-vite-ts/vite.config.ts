@@ -11,7 +11,10 @@ const pigmentConfig = {
   transformLibraries: ['@mui/material'],
 };
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), pigment(pigmentConfig)],
+  optimizeDeps: {
+    include: ['prop-types', 'react-is', 'hoist-non-react-statics'],
+  },
 });

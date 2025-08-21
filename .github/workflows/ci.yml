@@ -6,6 +6,7 @@ on:
       # Renovate branches are always Pull Requests.
       # We don't need to run CI twice (push+pull_request)
       - 'renovate/**'
+      - 'dependabot/**'
   pull_request:
     paths-ignore:
       # should sync with ci-check.yml as a workaround to bypass github checks
@@ -14,6 +15,12 @@ on:
 permissions: {}
 
 jobs:
+  continuous-releases:
+    name: Continuous Releases
+    uses: mui/mui-public/.github/workflows/ci-base.yml@master
+    with:
+      node-version: '22'
+
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
@@ -24,21 +31,21 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
     steps:
       - run: echo "${{ github.actor }}"
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
         with:
           # fetch all tags which are required for `pnpm release:changelog`
           fetch-depth: 0
       - name: Set up pnpm
-        uses: pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2 # v4.0.0
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
       - name: Use Node.js 20.x
-        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 20
+          node-version: 20.19.4
           cache: 'pnpm' # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - run: pnpm install
       - run: pnpm build:ci
         env:
-          NODE_OPTIONS: --max_old_space_size=4096
+          NODE_OPTIONS: --max_old_space_size=6144
       - run: pnpm release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

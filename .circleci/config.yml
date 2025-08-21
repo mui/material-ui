@@ -1,17 +1,13 @@
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@4.2.3
-  aws-s3: circleci/aws-s3@4.0
+  aws-cli: circleci/aws-cli@5.4.1
+  aws-s3: circleci/aws-s3@4.1.3
 
 parameters:
   browserstack-force:
     description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
     type: boolean
     default: false
-  react-version:
-    description: The version of react to be used
-    type: string
-    default: stable
   workflow:
     description: The name of the workflow to run
     type: string
@@ -26,7 +22,11 @@ default-job: &default-job
     react-version:
       description: The version of react to be used
       type: string
-      default: << pipeline.parameters.react-version >>
+      default: stable
+    typescript-version:
+      description: The version of typescript to be used
+      type: string
+      default: stable
     test-gate:
       description: A particular type of tests that should be run
       type: string
@@ -36,16 +36,17 @@ default-job: &default-job
       type: string
       default: << pipeline.parameters.e2e-base-url >>
   environment:
-    # Keep in sync with "Save playwright cache"
-    PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_VERSION: << parameters.react-version >>
+    TYPESCRIPT_VERSION: << parameters.typescript-version >>
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
+    COREPACK_ENABLE_DOWNLOAD_PROMPT: '0'
+    DANGER_DISABLE_TRANSPILATION: 'true'
   working_directory: /tmp/material-ui
   docker:
-    - image: cimg/node:20.17
+    - image: cimg/node:20.19
 
 default-context: &default-context
   context:
@@ -61,93 +62,55 @@ default-context: &default-context
 #     key: v1-repo-{{ .Branch }}-{{ .Revision }}
 
 commands:
+  setup_corepack:
+    parameters:
+      browsers:
+        type: boolean
+        default: false
+        description: 'Set to true if you intend to any browser (for example with playwright).'
+    steps:
+      - run:
+          name: Set npm registry public signing keys
+          command: |
+            echo "export COREPACK_INTEGRITY_KEYS='$(curl https://registry.npmjs.org/-/npm/v1/keys | jq -c '{npm: .keys}')'" >> $BASH_ENV
+      - when:
+          condition: << parameters.browsers >>
+          steps:
+            - run:
+                name: Install pnpm package manager
+                command: corepack enable
+      - when:
+          condition:
+            not: << parameters.browsers >>
+          steps:
+            - run:
+                name: Install pnpm package manager
+                command: sudo corepack enable
+      - run:
+          name: View install environment
+          command: |
+            which node
+            node --version
+            which pnpm
+            pnpm --version
   install_js:
     parameters:
       browsers:
         type: boolean
         default: false
         description: 'Set to true if you intend to any browser (for example with playwright).'
-
     steps:
-      - when:
-          condition: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install pnpm package manager
-                command: |
-                  corepack enable
-                  corepack prepare pnpm@latest-8 --activate
-            - run:
-                name: Prepare playwright hash
-                command: pnpm list --json --filter playwright > /tmp/playwright_info.json
-            - store_artifacts:
-                name: Debug playwright hash
-                path: /tmp/playwright_info.json
-            - restore_cache:
-                name: Restore playwright cache
-                keys:
-                  - v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
-      - when:
-          condition:
-            not: << parameters.browsers >>
-          steps:
-            # See https://stackoverflow.com/a/73411601
-            - run: corepack enable --install-directory ~/bin
-
-      - run:
-          name: View install environment
-          command: |
-            node --version
-            pnpm --version
-
-      - run:
-          name: Resolve React version
-          command: |
-            pnpm use-react-version
-            # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
-
+      - setup_corepack:
+          browsers: << parameters.browsers >>
       - run:
           name: Install js dependencies
           command: pnpm install
-      - when:
-          condition: << parameters.browsers >>
-          steps:
-            - run:
-                name: Install playwright browsers
-                command: pnpm playwright install --with-deps
-            - save_cache:
-                name: Save playwright cache
-                key: v6-playwright-{{ arch }}-{{ checksum "/tmp/playwright_info.json" }}
-                paths:
-                  # Keep path in sync with "PLAYWRIGHT_BROWSERS_PATH"
-                  # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
-                  - /tmp/pw-browsers
+      - run:
+          name: Set version overrides
+          command: |
+            pnpm code-infra set-version-overrides --pkg "react@$REACT_VERSION" --pkg "typescript@$TYPESCRIPT_VERSION"
 
 jobs:
-  checkout:
-    <<: *default-job
-    steps:
-      - checkout
-      - install_js
-      - when:
-          # Install can be "dirty" when running with non-default versions of React
-          condition:
-            equal: [<< parameters.react-version >>, stable]
-          steps:
-            - run:
-                name: Should not have any git not staged
-                command: git add -A && git diff --exit-code --staged
-            - run:
-                name: '`pnpm dedupe` was run?'
-                command: |
-                  # #default-branch-switch
-                  if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
-                  then
-                      echo "No changes to dependencies detected. Skipping..."
-                  else
-                      pnpm dedupe --check
-                  fi
   test_unit:
     <<: *default-job
     steps:
@@ -165,22 +128,6 @@ jobs:
             fi
       - store_test_results:
           path: test-reports
-      - run:
-          name: material-ui-icons
-          command: |
-            # latest commit
-            LATEST_COMMIT=$(git rev-parse HEAD)
-
-            # latest commit where packages/mui-icons-material was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/mui-icons-material)
-
-            if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
-              pnpm --filter @mui/icons-material build:typings
-              pnpm --filter @mui/icons-material test:built-typings
-            else
-              echo "no changes"
-            fi
       - run:
           name: internal-scripts
           command: |
@@ -208,7 +155,7 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Eslint
+          name: ESLint
           command: pnpm eslint:ci
       - run:
           name: Stylelint
@@ -220,44 +167,10 @@ jobs:
           name: Lint Markdown
           command: pnpm markdownlint
       - run:
-          # See https://circleci.com/developer/orbs/orb/circleci/vale as reference
-          name: Install Vale
-          command: |
-            #!/bin/bash
-            VALE_STR_CLI_VERSION=3.3.0
-
-            # set smart sudo
-            if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
-
-            mkdir /tmp/vale-extract
-            cd /tmp/vale-extract
-            GZIPPED_OUTPUT="vale.tar.gz"
-            BINARY_URL=https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_Linux_64-bit.tar.gz
-            curl -sSL "$BINARY_URL" -o "${GZIPPED_OUTPUT}"
-
-            if [ ! -s "${GZIPPED_OUTPUT}" ]; then
-              echo "Downloaded file is empty"
-              rm "${GZIPPED_OUTPUT}"
-              exit 1
-            fi
-
-            tar -xzf "${GZIPPED_OUTPUT}"
-            $SUDO mv vale /usr/local/bin
-            rm "${GZIPPED_OUTPUT}"
-
-            # validate installation
-            if [[ -z "$(command -v vale)" ]]; then
-              echo "vale installation failed"
-              exit 1
-            else
-              echo "vale installation successful"
-              vale --version
-              exit 0
-            fi
-      - run:
           name: Lint writing style
           command: |
-            vale sync
+            # Or use https://circleci.com/developer/orbs/orb/circleci/vale as reference to install Vale
+            pnpm vale sync
             pnpm valelint
   test_static:
     <<: *default-job
@@ -265,19 +178,30 @@ jobs:
       - checkout
       - install_js
       - run:
+          name: '`pnpm dedupe` was run?'
+          command: |
+            # #target-branch-reference
+            if [[ $(git diff --name-status master | grep -E 'pnpm-workspace\.yaml|pnpm-lock.yaml|package\.json') == "" ]];
+            then
+                echo "No changes to dependencies detected. Skipping..."
+            else
+                pnpm dedupe --check
+            fi
+      - run:
           name: '`pnpm prettier` changes committed?'
-          command: pnpm prettier --check
+          command: |
+            # #target-branch-reference
+            if [[ $(git diff --name-status master | grep pnpm-lock) == "" ]];
+            then
+                pnpm prettier --check
+            else
+                pnpm exec prettier --check . --ignore-path .lintignore
+            fi
       - run:
           name: Generate PropTypes
           command: pnpm proptypes
       - run:
           name: '`pnpm proptypes` changes committed?'
-          command: git add -A && git diff --exit-code --staged
-      - run:
-          name: 'Write "use client" directive'
-          command: pnpm rsc:build
-      - run:
-          name: '`pnpm rsc:build` changes committed?'
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Generate the documentation
@@ -322,28 +246,8 @@ jobs:
           name: Test module augmentation
           command: |
             pnpm --filter @mui/material typescript:module-augmentation
-            pnpm --filter @mui/base typescript:module-augmentation
             pnpm --filter @mui/joy typescript:module-augmentation
             pnpm --filter @mui/system typescript:module-augmentation
-      - run:
-          name: Diff declaration files
-          command: |
-            git add -f packages/mui-material/build || echo '/material declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:types
-            git --no-pager diff
-      - run:
-          name: Any defect declaration files?
-          command: node scripts/testBuiltTypes.mjs
-      - save_cache:
-          name: Save generated declaration files
-          key: typescript-declaration-files-{{ .Branch }}-{{ .Revision }}
-          paths:
-            # packages with generated declaration files
-            - packages/mui-material/build
-            - packages/mui-lab/build
-            - packages/mui-utils/build
   test_types_next:
     <<: *default-job
     resource_class: 'medium+'
@@ -351,53 +255,23 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Resolve typescript version
-          command: |
-            pnpm update -r typescript@next
-            # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
-      - run:
           name: Tests TypeScript definitions
-          command: |
-            # ignore build failures
-            # it's expected that typescript@next fails since the lines of the errors
-            # change frequently. This build is monitored regardless of its status
-            set +e
-            pnpm typescript:ci
-            exit 0
-
-      - restore_cache:
-          name: Restore generated declaration files
-          keys:
-            # We assume that the target branch is `next` and that declaration files are persisted in commit order.
-            # "If there are multiple matches, the most recently generated cache will be used."
-            - typescript-declaration-files-next
-
+          command: pnpm typescript:ci
+          environment:
+            NODE_OPTIONS: --max-old-space-size=3072
       - run:
-          name: Diff declaration files
+          name: Build declaration files
           command: |
-            git add -f packages/mui-material/build || echo '/core declarations do not exist'
-            git add -f packages/mui-lab/build || echo '/lab declarations do not exist'
-            git add -f packages/mui-utils/build || echo '/utils declarations do not exist'
-            pnpm -r build:types
-            git --no-pager diff
-
+            pnpm -r build
       - run:
           name: Log defect declaration files
           command: |
-            # ignore build failures
-            # Fixing these takes some effort that isn't viable to merge in a single PR.
-            # We'll simply monitor them for now.
-            set +e
             node scripts/testBuiltTypes.mjs
-            exit 0
   test_browser:
     <<: *default-job
     resource_class: 'medium+'
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
     steps:
       - checkout
       - install_js:
@@ -427,9 +301,7 @@ jobs:
   test_e2e:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
     steps:
       - checkout
       - install_js:
@@ -441,9 +313,7 @@ jobs:
     # NOTE: This workflow runs after successful docs deploy. See /test/e2e-website/README.md#ci
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
     steps:
       - checkout
       - install_js:
@@ -456,9 +326,7 @@ jobs:
   test_profile:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
     steps:
       - checkout
       - install_js:
@@ -475,7 +343,7 @@ jobs:
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
             pnpm test:karma:profile --browsers chrome,chromeHeadless
-      # Persist reports for inspection in https://mui-dashboard.netlify.app/
+      # Persist reports for inspection in https://frontend-public.mui.com/
       - store_artifacts:
           # see karma.conf.profile.js reactProfilerReporter.outputDir
           path: tmp/react-profiler-report/karma
@@ -483,9 +351,7 @@ jobs:
   test_regressions:
     <<: *default-job
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
     steps:
       - checkout
       - install_js:
@@ -495,7 +361,16 @@ jobs:
           command: xvfb-run pnpm test:regressions
       - run:
           name: Build packages for fixtures
-          command: xvfb-run pnpm release:build
+          command: pnpm release:build
+      - run:
+          name: Analyze exported typescript
+          command: pnpm test:attw
+      - run:
+          name: Any defect declaration files?
+          command: node scripts/testBuiltTypes.mjs
+      - run:
+          name: test exported typescript
+          command: pnpm --filter @mui-internal/test-module-resolution typescript:all
       - run:
           name: Run visual regression tests using Pigment CSS
           command: xvfb-run pnpm test:regressions-pigment-css
@@ -510,203 +385,169 @@ jobs:
       - run:
           name: Build packages for fixtures
           command: pnpm lerna run --scope "@mui/*" build
+      - run:
+          name: Pack packages
+          command: pnpm release:pack
       - persist_to_workspace:
-          root: packages
+          root: packed
           paths:
-            - '*/build'
-
-  test_bundling_node-esm:
+            - '*'
+  test_bundling_node_cjs:
+    <<: *default-job
+    working_directory: /tmp/material-ui/test/bundling/fixtures/node-cjs/
+    steps:
+      - checkout:
+          path: /tmp/material-ui
+      - attach_workspace:
+          at: /tmp/material-ui/packed
+      - setup_corepack
+      - run:
+          name: Install dependencies
+          command: pnpm install --ignore-workspace
+      - run:
+          name: Test fixture
+          command: pnpm start
+  test_bundling_node_esm:
     <<: *default-job
     working_directory: /tmp/material-ui/test/bundling/fixtures/node-esm/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture node-esm
+          at: /tmp/material-ui/packed
+      - setup_corepack
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
-          command: |
-            # TODO: Known failure
-            set +e
-            pnpm start
-            exit 0
-  test_bundling_next-webpack4:
+          # TODO: Known failure
+          command: pnpm start
+  test_bundling_next_webpack4:
     <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack4/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture next-webpack4
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
-  test_bundling_next-webpack5:
+  test_bundling_next_webpack5:
     <<: *default-job
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
     working_directory: /tmp/material-ui/test/bundling/fixtures/next-webpack5/
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture next-webpack5
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
-  test_bundling_create-react-app:
+  test_bundling_create_react_app:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
+    working_directory: /tmp/material-ui/test/bundling/fixtures/create-react-app/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture create-react-app
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_snowpack:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
+    working_directory: /tmp/material-ui/test/bundling/fixtures/snowpack/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture snowpack
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_vite:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
+    working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture vite
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
   test_bundling_esbuild:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
+    working_directory: /tmp/material-ui/test/bundling/fixtures/esbuild/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/createFixture esbuild
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: |
-            pnpm
-            node ../../scripts/useBuildFromSource.js .
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
-          command: |
-            # TODO: Known failure
-            set +e
-            pnpm start
-            exit 0
+          command: pnpm start
   test_bundling_gatsby:
     <<: *default-job
-    working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
+      - image: mcr.microsoft.com/playwright:v1.54.2-noble
         environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
+          GATSBY_CPU_COUNT: '3'
+    working_directory: /tmp/material-ui/test/bundling/fixtures/gatsby/
     steps:
       - checkout:
           path: /tmp/material-ui
       - attach_workspace:
-          at: /tmp/material-ui/packages
-      - run:
-          name: Prepare fixture
-          command: |
-            node ../../scripts/useBuildFromSource.js .
-            node ../../scripts/createFixture gatsby
+          at: /tmp/material-ui/packed
+      - setup_corepack:
+          browsers: true
       - run:
           name: Install dependencies
-          command: pnpm
+          command: pnpm install --ignore-workspace
       - run:
           name: Test fixture
           command: pnpm start
@@ -720,160 +561,95 @@ jobs:
           command: pnpm danger ci
           environment:
             DANGER_COMMAND: prepareBundleSizeReport
+      - setup_corepack
+
       - run:
           name: build @mui packages
           command: pnpm lerna run --ignore @mui/icons-material --concurrency 6 --scope "@mui/*" build
+      - aws-cli/setup:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID_ARTIFACTS
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY_ARTIFACTS
+          region: ${AWS_REGION_ARTIFACTS}
+
       - run:
-          name: create @mui/material canary distributable
+          name: create and upload a size snapshot
           command: |
-            cd packages/mui-material/build
-            npm version 0.0.0-canary.${CIRCLE_SHA1} --no-git-tag-version
-            npm pack
-            mv mui-material-0.0.0-canary.${CIRCLE_SHA1}.tgz ../../../mui-material.tgz
+            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_ARTIFACTS
+            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_ARTIFACTS
+            export AWS_REGION=$AWS_REGION_ARTIFACTS
+            pnpm size:snapshot --concurrency 6
+
+      # === LEGACY START ===
+      # remove once the UI can handle the new format
+      # persist size snapshot on S3
       - when:
           # don't run on PRs
           condition:
             not:
               matches:
-                # "^pull/\d+" is not valid YAML
-                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
-                value: << pipeline.git.branch >>
+                pattern: '.+'
+                value: '${CIRCLE_PULL_REQUEST}'
           steps:
-            - aws-cli/setup:
-                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
-            # Upload distributables to S3
             - aws-s3/copy:
-                from: mui-material.tgz
+                arguments: --content-type application/json
+                from: size-snapshot.json
                 to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-      - store_artifacts:
-          path: mui-material.tgz
-          destination: mui-material.tgz
-      - run:
-          name: create a size snapshot
-          command: pnpm size:snapshot
+      # === LEGACY END ===
+
+      # Keep the artifact storage as a CircleCI artifact
       - store_artifacts:
           name: persist size snapshot as pipeline artifact
           path: size-snapshot.json
           destination: size-snapshot.json
-      - when:
-          # don't run on PRs
-          condition:
-            not:
-              matches:
-                # "^pull/\d+" is not valid YAML
-                # "^pull/\\d+" matches neither 'pull/1' nor 'main'
-                # Note that we want to include 'pull/1', 'pull/1/head' and ''pull/1/merge'
-                pattern: '^pull/.+$'
-                value: << pipeline.git.branch >>
-          steps:
-            - aws-cli/setup:
-                aws_access_key_id: AWS_ACCESS_KEY_ID_ARTIFACTS
-                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_ARTIFACTS
-                region: ${AWS_REGION_ARTIFACTS}
-            # persist size snapshot on S3
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/$CIRCLE_SHA1/
-            # symlink size-snapshot to latest
-            - aws-s3/copy:
-                arguments: --content-type application/json
-                from: size-snapshot.json
-                to: s3://mui-org-ci/artifacts/$CIRCLE_BRANCH/latest/
+
       - run:
           name: Run danger on PRs
           command: pnpm danger ci --fail-on-errors
           environment:
             DANGER_COMMAND: reportBundleSize
-  test_benchmark:
-    <<: *default-job
-    docker:
-      - image: mcr.microsoft.com/playwright:v1.47.1-focal
-        environment:
-          NODE_ENV: development # Needed if playwright is in `devDependencies`
-    steps:
-      - checkout
-      - install_js:
-          browsers: true
-      - run: pnpm benchmark:browser
-      - store_artifacts:
-          name: Publish benchmark results as a pipeline artifact.
-          path: tmp/benchmarks
-          destination: benchmarks
 workflows:
   version: 2
   pipeline:
     when:
       equal: [pipeline, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_unit:
           <<: *default-context
-          requires:
-            - checkout
       - test_lint:
           <<: *default-context
-          requires:
-            - checkout
       - test_static:
           <<: *default-context
-          requires:
-            - checkout
       - test_types:
           <<: *default-context
-          requires:
-            - checkout
       - test_browser:
           <<: *default-context
-          requires:
-            - checkout
       - test_regressions:
           <<: *default-context
-          requires:
-            - checkout
       - test_e2e:
           <<: *default-context
-          requires:
-            - checkout
       - test_bundle_size_monitor:
           <<: *default-context
-          requires:
-            - checkout
   e2e-website:
     when:
       equal: [e2e-website, << pipeline.parameters.workflow >>]
     jobs:
-      - checkout:
-          <<: *default-context
       - test_e2e_website:
           <<: *default-context
-          requires:
-            - checkout
-
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
     jobs:
       - test_bundling_prepare:
           <<: *default-context
-      - test_bundling_node-esm:
+      - test_bundling_node_cjs:
           <<: *default-context
           requires:
             - test_bundling_prepare
-      - test_bundling_next-webpack4:
+      - test_bundling_node_esm:
           <<: *default-context
           requires:
             - test_bundling_prepare
-      - test_bundling_next-webpack5:
-          <<: *default-context
-          requires:
-            - test_bundling_prepare
-      - test_bundling_create-react-app:
+      - test_bundling_create_react_app:
           <<: *default-context
           requires:
             - test_bundling_prepare
@@ -890,6 +666,14 @@ workflows:
           requires:
             - test_bundling_prepare
       - test_bundling_gatsby:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next_webpack4:
+          <<: *default-context
+          requires:
+            - test_bundling_prepare
+      - test_bundling_next_webpack5:
           <<: *default-context
           requires:
             - test_bundling_prepare
@@ -923,32 +707,87 @@ workflows:
           name: test_e2e-react@17
 
   # This workflow is identical to react-17, but scheduled
-  react-17-cron:
-    triggers:
-      - schedule:
-          cron: '0 0 * * *'
-          filters:
-            branches:
-              only:
-                - master
-                - next
+  # TODO: The v17 tests have deteriorated to the point of no return. Fix for v18 once we
+  #       deprecate v17, and reenable this workflow.
+  # react-17-cron:
+  #   triggers:
+  #     - schedule:
+  #         cron: '0 0 * * *'
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #               - next
+  #   jobs:
+  #     - test_unit:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_unit-react@17
+  #     - test_browser:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_browser-react@17
+  #     - test_regressions:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_regressions-react@17
+  #     - test_e2e:
+  #         <<: *default-context
+  #         react-version: ^17.0.0
+  #         name: test_e2e-react@17
+
+  # This workflow can be triggered manually on the PR
+  react-18:
+    when:
+      equal: [react-18, << pipeline.parameters.workflow >>]
     jobs:
       - test_unit:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_unit-react@17
+          react-version: ^18.0.0
+          name: test_unit-react@18
       - test_browser:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_browser-react@17
+          react-version: ^18.0.0
+          name: test_browser-react@18
       - test_regressions:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_regressions-react@17
+          react-version: ^18.0.0
+          name: test_regressions-react@18
       - test_e2e:
           <<: *default-context
-          react-version: ^17.0.0
-          name: test_e2e-react@17
+          react-version: ^18.0.0
+          name: test_e2e-react@18
+
+  # This workflow is identical to react-18, but scheduled
+  react-18-cron:
+    triggers:
+      - schedule:
+          # Stagger daily cron job to prevent Browserstack timeouts
+          cron: '40 23 * * *'
+          filters:
+            branches:
+              only:
+                # #target-branch-reference
+                - master
+                - v5.x
+                - v6.x
+    jobs:
+      - test_unit:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_unit-react@18
+      - test_browser:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_browser-react@18
+      - test_regressions:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_regressions-react@18
+      - test_e2e:
+          <<: *default-context
+          react-version: ^18.0.0
+          name: test_e2e-react@18
 
   # This workflow can be triggered manually on the PR
   react-next:
@@ -975,12 +814,14 @@ workflows:
   react-next-cron:
     triggers:
       - schedule:
-          cron: '0 0 * * *'
+          # Stagger daily cron job to prevent Browserstack timeouts
+          cron: '50 23 * * *'
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_unit:
           <<: *default-context
@@ -1000,20 +841,24 @@ workflows:
           name: test_e2e-react@next
 
   typescript-next:
+    when:
+      equal: [typescript-next, << pipeline.parameters.workflow >>]
+    jobs:
+      - test_types_next:
+          <<: *default-context
+          typescript-version: next
+
+  typescript-next-cron:
     triggers:
       - schedule:
           cron: '0 0 * * *'
           filters:
             branches:
               only:
+                # #target-branch-reference
                 - master
-                - next
+                - v6.x
     jobs:
       - test_types_next:
           <<: *default-context
-  benchmark:
-    when:
-      equal: [benchmark, << pipeline.parameters.workflow >>]
-    jobs:
-      - test_benchmark:
-          <<: *default-context
+          typescript-version: next

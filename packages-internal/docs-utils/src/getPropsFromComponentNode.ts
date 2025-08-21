@@ -4,7 +4,7 @@ import { TypeScriptProject } from './createTypeScriptProject';
 export interface ParsedProp {
   /**
    * If `true`, some signatures do not contain this property.
-   * e.g: `id` in `{ id: number, value: string } | { value: string }`
+   * For example: `id` in `{ id: number, value: string } | { value: string }`
    */
   onlyUsedInSomeSignatures: boolean;
   signatures: { symbol: ts.Symbol; componentType: ts.Type }[];

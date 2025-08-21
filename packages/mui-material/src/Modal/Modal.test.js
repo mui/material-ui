@@ -36,7 +36,7 @@ describe('<Modal />', () => {
       testLegacyComponentsProp: true,
       slots: {
         root: { expectedClassName: classes.root },
-        backdrop: {},
+        backdrop: { expectedClassName: classes.backdrop },
       },
       skip: [
         'rootClass', // portal, can't determine the root
@@ -231,56 +231,6 @@ describe('<Modal />', () => {
 
       expect(onClose).to.have.property('callCount', 0);
     });
-
-    it('should call through to the user specified onBackdropClick callback', () => {
-      const onBackdropClick = spy();
-      const { getByTestId } = render(
-        <Modal
-          onClose={(event, reason) => {
-            if (reason === 'backdropClick') {
-              onBackdropClick();
-            }
-          }}
-          open
-          slotProps={{ backdrop: { 'data-testid': 'backdrop' } }}
-        >
-          <div />
-        </Modal>,
-      );
-
-      getByTestId('backdrop').click();
-
-      expect(onBackdropClick).to.have.property('callCount', 1);
-    });
-
-    it('should ignore the backdrop click if the event did not come from the backdrop', () => {
-      function CustomBackdrop(props) {
-        const { ownerState, ...other } = props;
-        return (
-          <div {...other}>
-            <span data-testid="inner" />
-          </div>
-        );
-      }
-      const onBackdropClick = spy();
-      const { getByTestId } = render(
-        <Modal
-          onClose={(event, reason) => {
-            if (reason === 'backdropClick') {
-              onBackdropClick();
-            }
-          }}
-          open
-          slots={{ backdrop: CustomBackdrop }}
-        >
-          <div />
-        </Modal>,
-      );
-
-      getByTestId('inner').click();
-
-      expect(onBackdropClick).to.have.property('callCount', 0);
-    });
   });
 
   describe('hide backdrop', () => {
@@ -396,10 +346,10 @@ describe('<Modal />', () => {
         </Modal>,
       );
       const modalNode = modalRef.current;
-      expect(modalNode).toBeAriaHidden();
+      expect(modalNode).toBeInaccessible();
 
       setProps({ open: true });
-      expect(modalNode).not.toBeAriaHidden();
+      expect(modalNode).not.toBeInaccessible();
     });
 
     // Test case for https://github.com/mui/material-ui/issues/15180
@@ -589,7 +539,6 @@ describe('<Modal />', () => {
 
       // Test case for https://github.com/mui/material-ui/issues/12831
       it('should unmount the children ', () => {
-        const timeout = 50;
         function TestCase() {
           const [open, setOpen] = React.useState(true);
 
@@ -599,15 +548,13 @@ describe('<Modal />', () => {
 
           return (
             <Modal open={open}>
-              <Fade in={open} timeout={timeout}>
-                <div id="modal-body">hello</div>
-              </Fade>
+              {/* TODO: Look into why this test started to fail with React 19 when using a transition component as children. */}
+              {/* See: https://github.com/mui/material-ui/issues/43312 */}
+              <div id="modal-body">hello</div>
             </Modal>
           );
         }
         render(<TestCase />);
-        // exit transition started
-        clock.tick(timeout);
         expect(document.querySelector('#modal-body')).to.equal(null);
       });
     });

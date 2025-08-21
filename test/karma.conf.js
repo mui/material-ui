@@ -1,5 +1,5 @@
 const path = require('path');
-const playwright = require('playwright');
+const playwright = require('@playwright/test');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
@@ -160,11 +160,9 @@ module.exports = function setKarmaConfig(config) {
                         '@mui/icons-material': './packages/mui-icons-material/lib',
                         '@mui/lab': './packages/mui-lab/src',
                         '@mui/styled-engine': './packages/mui-styled-engine/src',
-                        '@mui/styles': './packages/mui-styles/src',
                         '@mui/system': './packages/mui-system/src',
                         '@mui/private-theming': './packages/mui-private-theming/src',
                         '@mui/utils': './packages/mui-utils/src',
-                        '@mui/base': './packages/mui-base/src',
                         '@mui/material-nextjs': './packages/mui-material-nextjs/src',
                         '@mui/joy': './packages/mui-joy/src',
                       },

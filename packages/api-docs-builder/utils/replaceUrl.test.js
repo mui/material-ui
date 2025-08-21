@@ -22,8 +22,8 @@ describe('replaceUrl', () => {
     expect(replaceMaterialLinks(`/experimental-api/css-theme-variables/overview/`)).to.equal(
       `/material-ui/experimental-api/css-theme-variables/overview/`,
     );
-    expect(replaceMaterialLinks(`/migration/migration-grid-v2/`)).to.equal(
-      `/material-ui/migration/migration-grid-v2/`,
+    expect(replaceMaterialLinks(`/migration/upgrade-to-grid-v2/`)).to.equal(
+      `/material-ui/migration/upgrade-to-grid-v2/`,
     );
   });
 
@@ -257,6 +257,9 @@ describe('replaceUrl', () => {
   it('only replace links for new routes (/material-ui/* & /x/*)', () => {
     expect(replaceUrl(`/guides/minimizing-bundle-size/`, '/material-ui/react-buttons')).to.equal(
       `/material-ui/guides/minimizing-bundle-size/`,
+    );
+    expect(replaceUrl(`/integrations/tailwindcss/`, '/material-ui')).to.equal(
+      `/material-ui/integrations/tailwindcss/`,
     );
     expect(
       replaceUrl(`/components/data-grid/getting-started/#main-content`, '/x/react-data-grid'),

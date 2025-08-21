@@ -1,4 +1,4 @@
-/* eslint-env mocha */
+/* global before, after, beforeEach, afterEach */
 import { createMochaHooks } from './mochaHooks';
 
 const mochaHooks = createMochaHooks(window.Mocha);

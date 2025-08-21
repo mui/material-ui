@@ -1,11 +1,11 @@
 import * as path from 'path';
 import * as fse from 'fs-extra';
-import * as playwright from 'playwright';
+import { chromium } from '@playwright/test';
 
 async function main() {
   const baseUrl = 'http://localhost:5001/fixtures';
-  const screenshotDir = path.resolve('screenshots/chrome');
-  const browser = await playwright.chromium.launch({
+  const screenshotDir = path.resolve('test/regressions/screenshots/chrome');
+  const browser = await chromium.launch({
     args: ['--font-render-hinting=none'],
     // otherwise the loaded google Roboto font isn't applied
     headless: false,
@@ -50,6 +50,13 @@ async function main() {
   routes = routes.map((route) => route.replace(baseUrl, ''));
 
   async function renderFixture(index) {
+    await page.evaluate(() => {
+      // Playwright hides scrollbar when capturing a screenshot on an element or with fullPage: true.
+      // When the body has a scrollbar, this causes a brief layout shift. Disable the body overflow
+      // altogether to prevent this
+      window.document.body.style.overflow = 'hidden';
+    });
+
     // Use client-side routing which is much faster than full page navigation via page.goto().
     // Could become an issue with test isolation.
     // If tests are flaky due to global pollution switch to page.goto(route);
@@ -78,9 +85,6 @@ async function main() {
       animations: 'disabled',
     });
   }
-
-  // prepare screenshots
-  await fse.emptyDir(screenshotDir);
 
   describe('visual regressions', () => {
     beforeEach(async () => {

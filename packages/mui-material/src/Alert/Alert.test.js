@@ -20,8 +20,20 @@ describe('<Alert />', () => {
     muiName: 'MuiAlert',
     testVariantProps: { variant: 'standard', color: 'success' },
     testDeepOverrides: { slotName: 'message', slotClassName: classes.message },
-    testLegacyComponentsProp: true,
+    testLegacyComponentsProp: ['closeButton', 'closeIcon'],
     slots: {
+      root: {
+        expectedClassName: classes.root,
+      },
+      icon: {
+        expectedClassName: classes.icon,
+      },
+      message: {
+        expectedClassName: classes.message,
+      },
+      action: {
+        expectedClassName: classes.action,
+      },
       closeButton: {
         expectedClassName: classes.closeButton,
       },

@@ -14,18 +14,24 @@ export {
 
 export type Direction = 'ltr' | 'rtl';
 
+export interface Typography {}
+export interface Mixins {}
+export interface Shadows {}
+export interface Transitions {}
+export interface ZIndex {}
+
 export interface ThemeOptions {
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
-  mixins?: unknown;
+  mixins?: Mixins;
   palette?: Record<string, any>;
-  shadows?: unknown;
+  shadows?: Shadows;
   spacing?: SpacingOptions;
-  transitions?: unknown;
+  transitions?: Transitions;
   components?: Record<string, any>;
-  typography?: unknown;
-  zIndex?: Record<string, number>;
+  typography?: Typography;
+  zIndex?: ZIndex;
   unstable_sxConfig?: SxConfig;
 }
 
@@ -34,13 +40,13 @@ export interface Theme extends CssContainerQueries {
   breakpoints: Breakpoints;
   direction: Direction;
   palette: Record<string, any> & { mode: 'light' | 'dark' };
-  shadows?: unknown;
+  shadows?: Shadows;
   spacing: Spacing;
-  transitions?: unknown;
+  transitions?: Transitions;
   components?: Record<string, any>;
-  mixins?: unknown;
-  typography?: unknown;
-  zIndex?: unknown;
+  mixins?: Mixins;
+  typography?: Typography;
+  zIndex?: ZIndex;
   applyStyles: ApplyStyles<'light' | 'dark'>;
   unstable_sxConfig: SxConfig;
   unstable_sx: (props: SxProps<Theme>) => CSSObject;

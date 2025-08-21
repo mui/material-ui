@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
-githubLabel: 'component: dialog'
+githubLabel: 'scope: dialog'
 materialDesign: https://m2.material.io/components/dialogs
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 githubSource: packages/mui-material/src/Dialog
@@ -153,7 +153,7 @@ Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
-## Complementary projects
+## Supplementary projects
 
 For more advanced use cases you might be able to take advantage of:
 
@@ -167,9 +167,3 @@ The package [`material-ui-confirm`](https://github.com/jonatanklosko/material-ui
 ## Accessibility
 
 Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).
-
-## Experimental APIs
-
-### Imperative API
-
-You can create and manipulate dialogs imperatively with the [`useDialog`](https://mui.com/toolpad/core/react-use-dialogs/) API in `@toolpad/core`. This API provides state management for opening and closing dialogs and for passing data to the dialog and back. It allows for stacking multiple dialogs. It also provides themed alternatives for `window.alert`, `window.confirm` and `window.prompt`.

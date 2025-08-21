@@ -22,8 +22,6 @@ We also host Design Kits and pre-built Templates.
 
 Beyond the core libraries, MUI X offers advanced components like the Data Grid, Date and Time Pickers, and Charts, for more complex user interactions and data visualization needs.
 
-We're also making ambitious moves to incorporate our full suite of components into Toolpad, a low-code admin builder tool for assembling full-stack apps faster than ever.
-
 Learn more about MUI's products in this blog post: [An introduction to the MUI ecosystem](https://mui.com/blog/mui-product-comparison/).
 
 ## The culture
@@ -64,7 +62,7 @@ Depending on the day, you'll:
 
 ### Required
 
-- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, Webpack, and Babel. Working knowledge of these technologies is critical.
+- **Expertise with the modern JavaScript ecosystem**. Base UI is built on modern front-end technologies like TypeScript, Node.js, React, Next.js, webpack, and Babel. Working knowledge of these technologies is critical.
 - **Expertise with CSS.** Deep knowledge of the functional aspects of CSS will be required.
 - **Familiarity with a11y requirements.** We are looking for someone familiar with ARIA requirements, who cares about building accessible UI, and wants to make the web a more accessible place.
 - **An eye for detail.** We appreciate people who sweat the details. People who go above and beyond to make interfaces fast, accessible, beautiful, and delightful.

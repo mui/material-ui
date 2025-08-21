@@ -1,4 +1,5 @@
 name: Scorecards supply-chain security
+
 on:
   # Only the default branch is supported.
   branch_protection_rule:
@@ -19,15 +20,13 @@ jobs:
       # Needs for private repositories.
       contents: read
       actions: read
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
         with:
           persist-credentials: false
-
       - name: Run analysis
-        uses: ossf/scorecard-action@62b2cac7ed8198b15735ed49ab1e5cf35480ba46 # v2.4.0
+        uses: ossf/scorecard-action@05b42c624433fc40578a4040d5cf5e36ddca8cde # v2.4.2
         with:
           results_file: results.sarif
           results_format: sarif
@@ -36,13 +35,11 @@ jobs:
           # - you are installing Scorecards on a *private* repository
           # To create the PAT, follow the steps in https://github.com/ossf/scorecard-action#authentication-with-pat.
           repo_token: ${{ secrets.SCORECARD_READ_TOKEN }}
-
           # Publish the results for public repositories to enable scorecard badges. For more details, see
           # https://github.com/ossf/scorecard-action#publishing-results.
           publish_results: true
-
       # Upload the results to GitHub's code scanning dashboard.
       - name: Upload to code-scanning
-        uses: github/codeql-action/upload-sarif@8214744c546c1e5c8f03dde8fab3a7353211988d # v3.26.7
+        uses: github/codeql-action/upload-sarif@96f518a34f7a870018057716cc4d7a5c014bd61c # v3.29.10
         with:
           sarif_file: results.sarif

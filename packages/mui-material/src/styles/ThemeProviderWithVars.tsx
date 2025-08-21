@@ -83,7 +83,7 @@ const getInitColorSchemeScript: typeof deprecatedGetInitColorSchemeScript = (par
  * @deprecated
  * The `CssVarsProvider` component has been deprecated and ported into `ThemeProvider`.
  *
- * You should use `ThemeProvider` and `createTheme` instead:
+ * You should use `ThemeProvider` and `createTheme()` instead:
  *
  * ```diff
  * - import { CssVarsProvider, extendTheme } from '@mui/material/styles';

@@ -49,7 +49,26 @@ describe('<TablePagination />', () => {
       refInstanceof: window.HTMLTableCellElement,
       testComponentPropWith: 'td',
       testComponentsRootPropWith: 'td',
-      testDeepOverrides: { slotName: 'toolbar', slotClassName: classes.toolbar },
+      testRootOverrides: { slotName: 'root', slotClassName: classes.root },
+      testDeepOverrides: [
+        { slotName: 'toolbar', slotClassName: classes.toolbar },
+        { slotName: 'spacer', slotClassName: classes.spacer },
+        { slotName: 'selectLabel', slotClassName: classes.selectLabel },
+        { slotName: 'displayedRows', slotClassName: classes.displayedRows },
+      ],
+      slots: {
+        root: {
+          expectedClassName: classes.root,
+          testWithComponent: React.forwardRef((props, ref) => (
+            <TableCell component="th" ref={ref} {...props} data-testid="custom" />
+          )),
+          testWithElement: 'th',
+        },
+        toolbar: { expectedClassName: classes.toolbar },
+        spacer: { expectedClassName: classes.spacer },
+        selectLabel: { expectedClassName: classes.selectLabel },
+        displayedRows: { expectedClassName: classes.displayedRows },
+      },
       skip: ['themeVariants', 'componentsProps'],
     }),
   );

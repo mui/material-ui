@@ -307,11 +307,22 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
    */
   colorSchemeSelector?: 'media' | 'class' | 'data' | string;
   /**
+   * The selector to generate the global CSS variables (non-color-scheme related)
+   * @default ':root'
+   * @example ':host' // (for shadow DOM)
+   * @see https://mui.com/material-ui/customization/shadow-dom/#3-css-theme-variables-optional
+   */
+  rootSelector?: string;
+  /**
    * If `true`, the CSS color-scheme will not be set.
    * https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * @default false
    */
   disableCssColorScheme?: boolean;
+  /**
+   * If `true`, the CSS relative color will be used.
+   */
+  nativeColor?: boolean;
   /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
@@ -430,6 +441,7 @@ export type ThemeCssVar = OverridableStringUnion<
  */
 export interface CssVarsTheme extends ColorSystem {
   colorSchemes: Partial<Record<SupportedColorScheme, ColorSystem>>;
+  rootSelector: string;
   colorSchemeSelector: 'media' | 'class' | 'data' | string;
   cssVarPrefix: string;
   defaultColorScheme: SupportedColorScheme;

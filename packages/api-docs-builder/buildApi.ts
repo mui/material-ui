@@ -1,6 +1,6 @@
-import { mkdirSync } from 'fs';
 import path from 'path';
-import * as fse from 'fs-extra';
+import fs from 'node:fs/promises';
+import { renderMarkdown as _renderMarkdown } from '@mui/internal-markdown';
 import findComponents from './utils/findComponents';
 import findHooks from './utils/findHooks';
 import { writePrettifiedFile } from './buildApiUtils';
@@ -13,6 +13,8 @@ import {
 } from './utils/createTypeScriptProject';
 import { ProjectSettings } from './ProjectSettings';
 import { ComponentReactApi } from './types/ApiBuilder.types';
+import _escapeCell from './utils/escapeCell';
+import _escapeEntities from './utils/escapeEntities';
 
 async function removeOutdatedApiDocsTranslations(
   components: readonly ComponentReactApi[],
@@ -22,7 +24,7 @@ async function removeOutdatedApiDocsTranslations(
   const projectFiles = await Promise.all(
     apiDocsTranslationsDirectories.map(async (directory) => ({
       directory: path.resolve(directory),
-      files: await fse.readdir(directory),
+      files: await fs.readdir(directory),
     })),
   );
 
@@ -31,7 +33,7 @@ async function removeOutdatedApiDocsTranslations(
       await Promise.all(
         files.map(async (filename) => {
           const filepath = path.join(directory, filename);
-          const stats = await fse.stat(filepath);
+          const stats = await fs.stat(filepath);
           if (stats.isDirectory()) {
             componentDirectories.add(filepath);
           }
@@ -58,13 +60,20 @@ async function removeOutdatedApiDocsTranslations(
   });
 
   await Promise.all(
-    Array.from(outdatedComponentDirectories, (outdatedComponentDirectory) => {
-      return fse.remove(outdatedComponentDirectory);
-    }),
+    Array.from(outdatedComponentDirectories, (outdatedComponentDirectory) =>
+      fs.rm(outdatedComponentDirectory, { recursive: true, force: true }),
+    ),
   );
 }
 
-export async function buildApi(projectsSettings: ProjectSettings[], grep: RegExp | null = null) {
+let rawDescriptionsCurrent = false;
+
+export async function buildApi(
+  projectsSettings: ProjectSettings[],
+  grep: RegExp | null = null,
+  rawDescriptions = false,
+) {
+  rawDescriptionsCurrent = rawDescriptions;
   const allTypeScriptProjects = projectsSettings
     .flatMap((setting) => setting.typeScriptProjects)
     .reduce(
@@ -116,9 +125,8 @@ async function buildSingleProject(
 
   const manifestDir = apiPagesManifestPath.match(/(.*)\/[^/]+\./)?.[1];
   if (manifestDir) {
-    mkdirSync(manifestDir, { recursive: true });
+    await fs.mkdir(manifestDir, { recursive: true });
   }
-
   const apiBuilds = tsProjects.flatMap((project) => {
     const projectComponents = findComponents(path.join(project.rootPath, 'src')).filter(
       (component) => {
@@ -148,7 +156,7 @@ async function buildSingleProject(
       try {
         const componentInfo = projectSettings.getComponentInfo(component.filename);
 
-        mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+        await fs.mkdir(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
 
         return await generateComponentApi(componentInfo, project, projectSettings);
       } catch (error: any) {
@@ -165,7 +173,7 @@ async function buildSingleProject(
         const { filename } = hook;
         const hookInfo = projectSettings.getHookInfo(filename);
 
-        mkdirSync(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
+        await fs.mkdir(hookInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
         return generateHookApi(hookInfo, project, projectSettings);
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), hook.filename)}: ${error.message}`;
@@ -191,7 +199,7 @@ async function buildSingleProject(
   }
 
   if (writeApiManifest) {
-    let source = `module.exports = ${JSON.stringify(projectSettings.getApiPages())}`;
+    let source = `export default ${JSON.stringify(projectSettings.getApiPages())}`;
     if (projectSettings.onWritingManifestFile) {
       source = projectSettings.onWritingManifestFile(builds, source);
     }
@@ -201,4 +209,24 @@ async function buildSingleProject(
 
   await projectSettings.onCompleted?.();
   return builds;
+}
+
+export function renderMarkdown(markdown: string) {
+  return rawDescriptionsCurrent ? markdown : _renderMarkdown(markdown);
+}
+export function renderCodeTags(value: string) {
+  return rawDescriptionsCurrent ? value : value.replace(/`(.*?)`/g, '<code>$1</code>');
+}
+export function escapeEntities(value: string) {
+  return rawDescriptionsCurrent ? value : _escapeEntities(value);
+}
+export function escapeCell(value: string) {
+  return rawDescriptionsCurrent ? value : _escapeCell(value);
+}
+export function removeNewLines(value: string) {
+  return rawDescriptionsCurrent ? value : value.replace(/\r*\n/g, ' ');
+}
+export function joinUnionTypes(value: string[]) {
+  // Use unopinionated formatting for raw descriptions
+  return rawDescriptionsCurrent ? value.join(' | ') : value.join('<br>&#124;&nbsp;');
 }

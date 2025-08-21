@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -7,7 +8,7 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass';
 import composeClasses from '@mui/utils/composeClasses';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
-import useTheme from '../useTheme';
+import useThemeSystem from '../useTheme';
 import { extendSxProp } from '../styleFunctionSx';
 import createTheme, { Breakpoint, Breakpoints } from '../createTheme';
 import {
@@ -24,6 +25,7 @@ import {
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridTypeMap, GridOwnerState, GridProps, GridOffset, GridSize } from './GridProps';
+import deleteLegacyGridProps from './deleteLegacyGridProps';
 
 const defaultTheme = createTheme();
 
@@ -31,7 +33,6 @@ const defaultTheme = createTheme();
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
   name: 'MuiGrid',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 });
 
 function useThemePropsDefault<T extends {}>(props: T) {
@@ -46,6 +47,7 @@ export default function createGrid(
   options: {
     createStyledComponent?: typeof defaultCreateStyledComponent;
     useThemeProps?: typeof useThemePropsDefault;
+    useTheme?: typeof useThemeSystem;
     componentName?: string;
   } = {},
 ) {
@@ -53,6 +55,7 @@ export default function createGrid(
     // This will allow adding custom styled fn (for example for custom sx style function)
     createStyledComponent = defaultCreateStyledComponent,
     useThemeProps = useThemePropsDefault,
+    useTheme = useThemeSystem,
     componentName = 'MuiGrid',
   } = options;
 
@@ -119,6 +122,10 @@ export default function createGrid(
     const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'> & GridOwnerState; // `color` type conflicts with html color attribute.
+
+    // TODO v8: Remove when removing the legacy Grid component
+    deleteLegacyGridProps(props, theme.breakpoints);
+
     const {
       className,
       children,
@@ -169,7 +176,12 @@ export default function createGrid(
         {...other}
       >
         {React.Children.map(children, (child) => {
-          if (React.isValidElement(child) && isMuiElement(child, ['Grid'])) {
+          if (
+            React.isValidElement<{ container?: unknown }>(child) &&
+            isMuiElement(child, ['Grid']) &&
+            container &&
+            child.props.container
+          ) {
             return React.cloneElement(child, {
               unstable_level: (child.props as GridProps)?.unstable_level ?? level + 1,
             } as GridProps);

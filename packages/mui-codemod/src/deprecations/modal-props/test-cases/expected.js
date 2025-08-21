@@ -22,3 +22,13 @@ import Modal from '@mui/material/Modal';
     ...componentsRootProps,
     ...slotsRootProps
   } }} />;
+<Modal
+  slots={{
+    backdrop: Backdrop
+  }}
+  slotProps={{
+    backdrop: {
+      timeout: 500,
+    }
+  }}
+/>;

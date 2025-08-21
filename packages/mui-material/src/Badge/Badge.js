@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import usePreviousProps from '@mui/utils/usePreviousProps';
 import composeClasses from '@mui/utils/composeClasses';
-import useSlotProps from '@mui/utils/useSlotProps';
 import useBadge from './useBadge';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -12,6 +11,7 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import capitalize from '../utils/capitalize';
 import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
+import useSlot from '../utils/useSlot';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
@@ -40,7 +40,6 @@ const useUtilityClasses = (ownerState) => {
 const BadgeRoot = styled('span', {
   name: 'MuiBadge',
   slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
 })({
   position: 'relative',
   display: 'inline-flex',
@@ -242,13 +241,17 @@ const BadgeBadge = styled('span', {
   })),
 );
 
+function getAnchorOrigin(anchorOrigin) {
+  return {
+    vertical: anchorOrigin?.vertical ?? 'top',
+    horizontal: anchorOrigin?.horizontal ?? 'right',
+  };
+}
+
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useDefaultProps({ props: inProps, name: 'MuiBadge' });
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
+    anchorOrigin: anchorOriginProp,
     className,
     classes: classesProp,
     component,
@@ -280,7 +283,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   });
 
   const prevProps = usePreviousProps({
-    anchorOrigin: anchorOriginProp,
+    anchorOrigin: getAnchorOrigin(anchorOriginProp),
     color: colorProp,
     overlap: overlapProp,
     variant: variantProp,
@@ -292,10 +295,11 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const {
     color = colorProp,
     overlap = overlapProp,
-    anchorOrigin = anchorOriginProp,
+    anchorOrigin: anchorOriginPropProp,
     variant = variantProp,
   } = invisible ? prevProps : props;
 
+  const anchorOrigin = getAnchorOrigin(anchorOriginPropProp);
   const displayValue = variant !== 'dot' ? displayValueFromHook : undefined;
 
   const ownerState = {
@@ -314,29 +318,36 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   // support both `slots` and `components` for backward compatibility
-  const RootSlot = slots?.root ?? components.Root ?? BadgeRoot;
-  const BadgeSlot = slots?.badge ?? components.Badge ?? BadgeBadge;
+  const externalForwardedProps = {
+    slots: {
+      root: slots?.root ?? components.Root,
+      badge: slots?.badge ?? components.Badge,
+    },
+    slotProps: {
+      root: slotProps?.root ?? componentsProps.root,
+      badge: slotProps?.badge ?? componentsProps.badge,
+    },
+  };
 
-  const rootSlotProps = slotProps?.root ?? componentsProps.root;
-  const badgeSlotProps = slotProps?.badge ?? componentsProps.badge;
-
-  const rootProps = useSlotProps({
-    elementType: RootSlot,
-    externalSlotProps: rootSlotProps,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-      as: component,
+  const [RootSlot, rootProps] = useSlot('root', {
+    elementType: BadgeRoot,
+    externalForwardedProps: {
+      ...externalForwardedProps,
+      ...other,
     },
     ownerState,
-    className: clsx(rootSlotProps?.className, classes.root, className),
+    className: clsx(classes.root, className),
+    ref,
+    additionalProps: {
+      as: component,
+    },
   });
 
-  const badgeProps = useSlotProps({
-    elementType: BadgeSlot,
-    externalSlotProps: badgeSlotProps,
+  const [BadgeSlot, badgeProps] = useSlot('badge', {
+    elementType: BadgeBadge,
+    externalForwardedProps,
     ownerState,
-    className: clsx(classes.badge, badgeSlotProps?.className),
+    className: classes.badge,
   });
 
   return (
@@ -360,8 +371,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * }
    */
   anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
-    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
+    horizontal: PropTypes.oneOf(['left', 'right']),
+    vertical: PropTypes.oneOf(['bottom', 'top']),
   }),
   /**
    * The content rendered within the badge.
@@ -397,7 +408,7 @@ Badge.propTypes /* remove-proptypes */ = {
   /**
    * The components used for each slot inside.
    *
-   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slots` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -409,7 +420,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * The extra props for the slot components.
    * You can override the existing props or add new ones.
    *
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    *
    * @default {}
    */
@@ -438,7 +449,7 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   showZero: PropTypes.bool,
   /**
-   * The props used for each slot inside the Badge.
+   * The props used for each slot inside.
    * @default {}
    */
   slotProps: PropTypes.shape({
@@ -446,8 +457,7 @@ Badge.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The components used for each slot inside the Badge.
-   * Either a string to use a HTML element or a component.
+   * The components used for each slot inside.
    * @default {}
    */
   slots: PropTypes.shape({

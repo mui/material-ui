@@ -4,6 +4,7 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
 import MuiAccordionSummary, {
   AccordionSummaryProps,
+  accordionSummaryClasses,
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
@@ -28,10 +29,11 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 ))(({ theme }) => ({
   backgroundColor: 'rgba(0, 0, 0, .03)',
   flexDirection: 'row-reverse',
-  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-    transform: 'rotate(90deg)',
-  },
-  '& .MuiAccordionSummary-content': {
+  [`& .${accordionSummaryClasses.expandIconWrapper}.${accordionSummaryClasses.expanded}`]:
+    {
+      transform: 'rotate(90deg)',
+    },
+  [`& .${accordionSummaryClasses.content}`]: {
     marginLeft: theme.spacing(1),
   },
   ...theme.applyStyles('dark', {
@@ -56,7 +58,7 @@ export default function CustomizedAccordions() {
     <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Collapsible Group Item #1</Typography>
+          <Typography component="span">Collapsible Group Item #1</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -69,7 +71,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Collapsible Group Item #2</Typography>
+          <Typography component="span">Collapsible Group Item #2</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -82,7 +84,7 @@ export default function CustomizedAccordions() {
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>Collapsible Group Item #3</Typography>
+          <Typography component="span">Collapsible Group Item #3</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>

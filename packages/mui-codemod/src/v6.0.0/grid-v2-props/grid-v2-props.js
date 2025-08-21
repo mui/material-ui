@@ -19,6 +19,12 @@ export default function gridV2Props(file, api, options) {
   const root = j(file.source);
   const breakpoints = options.muiBreakpoints?.split(',') || defaultBreakpoints;
   const printOptions = options.printOptions;
+  const packageName = options.packageName;
+
+  if (packageName) {
+    possibleDefaultImports.push(`${packageName}/Grid2`);
+    possibleNamedImports[packageName] = 'Grid2';
+  }
 
   const gridLocalNames = [];
 
@@ -200,6 +206,16 @@ export default function gridV2Props(file, api, options) {
       if (itemProp) {
         el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
           (attr) => attr.type === 'JSXAttribute' && attr.name.name !== 'item',
+        );
+      }
+
+      const zeroMinWidthProp = el.node.openingElement.attributes.find(
+        (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'zeroMinWidth',
+      );
+
+      if (zeroMinWidthProp) {
+        el.node.openingElement.attributes = el.node.openingElement.attributes.filter(
+          (attr) => attr.type === 'JSXAttribute' && attr.name.name !== 'zeroMinWidth',
         );
       }
     });

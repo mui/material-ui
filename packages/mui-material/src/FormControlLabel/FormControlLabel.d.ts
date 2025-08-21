@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme, InternalStandardProps as StandardProps } from '..';
+import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '../internal';
 import Typography, { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';
 import { CreateSlotsAndSlotProps, SlotProps } from '../utils/types';
@@ -35,7 +36,7 @@ export interface FormControlLabelProps
   /**
    * The props used for each slot inside.
    * @default {}
-   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in a future major release. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
    */
   componentsProps?: {
     /**

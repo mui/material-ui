@@ -13,7 +13,7 @@ pnpm build
 Then start the Next.js development server:
 
 ```bash
-pnpm run --filter=@app/next-app dev
+pnpm run --filter=@app/pigment-css-next-app dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the app running live.
@@ -37,5 +37,5 @@ You might have to restart the Next.js server.
 To build the project, run the `build` command in this package:
 
 ```bash
-pnpm run --filter=@app/next-app build
+pnpm run --filter=@app/pigment-css-next-app build
 ```

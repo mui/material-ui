@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { Link } from '@mui/docs/Link';
 import { useTranslate } from '@mui/docs/i18n';
@@ -44,39 +43,12 @@ export default function DiamondSponsors() {
   const t = useTranslate();
 
   return (
-    <Stack direction="column" sx={{ mt: 2 }}>
-      <NativeLink
-        data-ga-event-category="sponsor"
-        data-ga-event-action="docs-premium"
-        data-ga-event-label="octopus.com"
-        href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
-        rel="noopener sponsored"
-        target="_blank"
-      >
-        <Box
-          component="img"
-          src="/static/sponsors/octopus-light.svg"
-          alt="octopus"
-          title="Repeatable, reliable deployments"
-          loading="lazy"
-          sx={[
-            {
-              height: '25px',
-              width: '116px',
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/octopus-dark.svg)`,
-              }),
-          ]}
-        />
-      </NativeLink>
-      <Divider />
+    <Stack direction="column" sx={{ mt: 2, mx: 0.5 }}>
       <NativeLink
         data-ga-event-category="sponsor"
         data-ga-event-action="docs-premium"
         data-ga-event-label="doit.com"
-        href="https://www.doit.com/?utm_source=materialui&utm_medium=referral"
+        href="https://www.doit.com/?utm_source=mui.com&utm_medium=referral"
         rel="noopener sponsored"
         target="_blank"
       >
@@ -94,33 +66,6 @@ export default function DiamondSponsors() {
             (theme) =>
               theme.applyDarkStyles({
                 content: `url(/static/sponsors/doit-dark.svg)`,
-              }),
-          ]}
-        />
-      </NativeLink>
-      <Divider />
-      <NativeLink
-        data-ga-event-category="sponsor"
-        data-ga-event-action="docs-premium"
-        data-ga-event-label="marblism.com"
-        href="https://www.marblism.com/?utm_source=mui"
-        rel="noopener sponsored"
-        target="_blank"
-      >
-        <Box
-          component="img"
-          src="/static/sponsors/marblism-light.svg"
-          alt="marblism"
-          title="AI web app generation"
-          loading="lazy"
-          sx={[
-            {
-              height: '27px',
-              width: '90px',
-            },
-            (theme) =>
-              theme.applyDarkStyles({
-                content: `url(/static/sponsors/marblism-dark.svg)`,
               }),
           ]}
         />

@@ -409,7 +409,7 @@ describe('<TextareaAutosize />', () => {
           width: `${width}px`,
         },
         scrollHeight: () => {
-          // assuming that the width of the word is 1px, and substract the width of the paddingRight
+          // assuming that the width of the word is 1px, and subtract the width of the paddingRight
           const lineNum = Math.ceil(
             input.value.length / (width - getStyleValue(shadow.style.paddingRight)),
           );
@@ -444,5 +444,34 @@ describe('<TextareaAutosize />', () => {
     expect(input).toHaveComputedStyle({
       backgroundColor: 'rgb(255, 255, 0)',
     });
+  });
+
+  // edge case: https://github.com/mui/material-ui/issues/45307
+  it('should not infinite loop document selectionchange', async function test() {
+    // document selectionchange event doesn't fire in JSDOM
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const handleSelectionChange = spy();
+
+    function App() {
+      React.useEffect(() => {
+        document.addEventListener('selectionchange', handleSelectionChange);
+        return () => {
+          document.removeEventListener('selectionchange', handleSelectionChange);
+        };
+      }, []);
+
+      return (
+        <TextareaAutosize defaultValue="some long text that makes the input start with multiple rows" />
+      );
+    }
+
+    await render(<App />);
+    await sleep(100);
+    // when the component mounts and idles this fires 3 times in browser tests
+    // and 2 times in a real browser
+    expect(handleSelectionChange.callCount).to.lessThanOrEqual(3);
   });
 });

@@ -31,6 +31,7 @@ describe('<InputBase />', () => {
     skip: [
       'componentProp',
       'slotPropsCallback', // not supported yet
+      'slotPropsCallbackWithPropsAsOwnerState', // not supported yet
     ],
   }));
 
@@ -281,7 +282,7 @@ describe('<InputBase />', () => {
 
         let expectedOccurrences = 1;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 2;
         }
 
@@ -506,7 +507,7 @@ describe('<InputBase />', () => {
 
         let expectedOccurrences = 1;
 
-        if (reactMajor === 18) {
+        if (reactMajor >= 18) {
           expectedOccurrences = 2;
         }
         expect(() => {
@@ -593,8 +594,8 @@ describe('<InputBase />', () => {
       const MyInputBase = React.forwardRef(function MyInputBase(props, ref) {
         const { onChange, ...other } = props;
 
-        const handleChange = (e) => {
-          onChange(e.target.value, OUTPUT_VALUE);
+        const handleChange = (event) => {
+          onChange(event.target.value, OUTPUT_VALUE);
         };
 
         return <input ref={ref} onChange={handleChange} {...other} />;

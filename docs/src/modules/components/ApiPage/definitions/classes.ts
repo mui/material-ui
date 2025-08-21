@@ -60,14 +60,14 @@ export function getClassApiDefinitions(params: GetClassApiDefinitionsParams): Cl
 
     if (description.includes('{{conditions}}')) {
       if (!conditions) {
-        throw Error(errorMessage(componentName, classDefinition.className, 'conditions'));
+        throw new Error(errorMessage(componentName, classDefinition.className, 'conditions'));
       }
       description = description.replace(/{{conditions}}/, conditions);
     }
 
     if (description.includes('{{nodeName}}')) {
       if (!nodeName) {
-        throw Error(errorMessage(componentName, classDefinition.className, 'nodeName'));
+        throw new Error(errorMessage(componentName, classDefinition.className, 'nodeName'));
       }
       description = description.replace(/{{nodeName}}/, nodeName);
     }

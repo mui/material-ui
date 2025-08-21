@@ -3,7 +3,7 @@ import camelCase from 'lodash/camelCase';
 import { LANGUAGES } from 'docs/config';
 import { Translate } from '@mui/docs/i18n';
 
-function pascalCase(str: string) {
+export function pascalCase(str: string) {
   return upperFirst(camelCase(str));
 }
 

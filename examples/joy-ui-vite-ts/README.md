@@ -2,13 +2,13 @@
 
 [Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy in the development process.
 
-[Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command.
+[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command.
 
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/joy-ui-vite-ts
@@ -24,7 +24,7 @@ npm run dev
 
 or:
 
-<!-- #default-branch-switch -->
+<!-- #target-branch-reference -->
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/joy-ui-vite-ts)
 
@@ -37,7 +37,7 @@ It includes `@mui/joy` and it's peer dependencies.
 
 ## What's next?
 
-<!-- #default-branch-switch -->
+<!-- #host-reference -->
 
 You now have a working example project.
 You can head back to the documentation and continue by browsing the [templates](https://mui.com/joy-ui/getting-started/templates/) section.

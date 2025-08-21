@@ -10,8 +10,14 @@ import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Typography from '@mui/material/Typography';
-import { Link, Route, Routes, MemoryRouter, useLocation } from 'react-router-dom';
-import { StaticRouter } from 'react-router-dom/server';
+import {
+  Link,
+  Route,
+  Routes,
+  MemoryRouter,
+  useLocation,
+  StaticRouter,
+} from 'react-router';
 
 function Router(props: { children?: React.ReactNode }) {
   const { children } = props;
@@ -27,7 +33,7 @@ function Router(props: { children?: React.ReactNode }) {
 }
 
 interface ListItemLinkProps {
-  icon?: React.ReactElement<any>;
+  icon?: React.ReactElement<unknown>;
   primary: string;
   to: string;
 }

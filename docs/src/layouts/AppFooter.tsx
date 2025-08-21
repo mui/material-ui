@@ -76,14 +76,9 @@ export default function AppFooter(props: AppFooterProps) {
             <Link prefetch={false} href={ROUTES.productMaterial}>
               Material UI
             </Link>
-            <Link prefetch={false} href={ROUTES.productBase}>
-              Base UI
-            </Link>
+            <Link href="https://base-ui.com">Base UI</Link>
             <Link prefetch={false} href={ROUTES.productAdvanced}>
               MUI X
-            </Link>
-            <Link prefetch={false} href={ROUTES.productToolpad}>
-              Toolpad
             </Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
