@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import CardMedia, { cardMediaClasses as classes } from '@mui/material/CardMedia';
 import describeConformance from '../../test/describeConformance';
 
@@ -78,7 +78,7 @@ describe('<CardMedia />', () => {
     });
 
     it('should not have an explicit role when host components already apply image semantics', () => {
-      render(
+      const screen = render(
         <React.Fragment>
           <CardMedia data-testid="cardmedia" image="/fake.png" component="img" />
           <CardMedia data-testid="cardmedia" image="/fake.png" component="picture" />

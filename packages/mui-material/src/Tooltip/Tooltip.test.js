@@ -5,16 +5,25 @@ import {
   act,
   createRenderer,
   fireEvent,
-  screen,
   simulatePointerDevice,
-  focusVisible,
   programmaticFocusTriggersFocusVisible,
   reactMajor,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { camelCase } from 'lodash/string';
 import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 import describeConformance from '../../test/describeConformance';
+
+async function focusVisible(element) {
+  await act(async () => {
+    element.blur();
+  });
+  fireEvent.keyDown(document.body, { key: 'Tab' });
+  await act(async () => {
+    element.focus();
+  });
+}
 
 describe('<Tooltip />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -68,7 +77,7 @@ describe('<Tooltip />', () => {
   );
 
   it('should render a popper', () => {
-    render(
+    const screen = render(
       <Tooltip title="Hello World" open>
         <button type="submit">Hello World</button>
       </Tooltip>,
@@ -79,7 +88,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: disableHoverListener', () => {
     it('should hide the native title', () => {
-      render(
+      const screen = render(
         <Tooltip title="Hello World" disableHoverListener>
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -90,7 +99,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: title', () => {
     it('should display if the title is present', () => {
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open>
           <button id="testChild" type="submit">
             Hello World
@@ -101,7 +110,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should display if the title is 0', () => {
-      render(
+      const screen = render(
         <Tooltip title={0} open>
           <button id="testChild" type="submit">
             Hello World
@@ -112,7 +121,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should not display if the title is an empty string', () => {
-      render(
+      const screen = render(
         <Tooltip title="" open>
           <button id="testChild" type="submit">
             Hello World
@@ -123,7 +132,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should not display if the title is a false', () => {
-      render(
+      const screen = render(
         <Tooltip title={false} open>
           <button id="testChild" type="submit">
             Hello World
@@ -134,7 +143,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should not display if the title is a null', () => {
-      render(
+      const screen = render(
         <Tooltip title={null} open>
           <button id="testChild" type="submit">
             Hello World
@@ -145,7 +154,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should not display if the title is an undefined', () => {
-      render(
+      const screen = render(
         <Tooltip title={undefined} open>
           <button id="testChild" type="submit">
             Hello World
@@ -156,7 +165,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should label the child when closed', () => {
-      render(
+      const screen = render(
         <Tooltip title="the title">
           <button data-testid="target">The content</button>
         </Tooltip>,
@@ -168,7 +177,7 @@ describe('<Tooltip />', () => {
     });
 
     it('cannot label the child when closed with an exotic title', () => {
-      render(
+      const screen = render(
         <Tooltip title={<div>the title</div>}>
           <button data-testid="target">the content</button>
         </Tooltip>,
@@ -180,7 +189,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should label the child when open', () => {
-      render(
+      const screen = render(
         <Tooltip open title="the title">
           <button data-testid="target">The content</button>
         </Tooltip>,
@@ -192,7 +201,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should label the child when open with an exotic title', () => {
-      render(
+      const screen = render(
         <Tooltip open title={<div>the title</div>}>
           <button data-testid="target">The content</button>
         </Tooltip>,
@@ -204,7 +213,7 @@ describe('<Tooltip />', () => {
     });
 
     it('can describe the child when closed', () => {
-      render(
+      const screen = render(
         <Tooltip describeChild title="the title">
           <button aria-label="the label" data-testid="target">
             The content
@@ -219,7 +228,7 @@ describe('<Tooltip />', () => {
     });
 
     it('cannot describe the child when closed with an exotic title', () => {
-      render(
+      const screen = render(
         <Tooltip describeChild title={<div>the title</div>}>
           <button aria-label="the label" data-testid="target">
             The content
@@ -234,7 +243,7 @@ describe('<Tooltip />', () => {
     });
 
     it('can describe the child when open', () => {
-      render(
+      const screen = render(
         <Tooltip describeChild open title="the title">
           <button aria-label="the label" data-testid="target">
             The content
@@ -249,7 +258,7 @@ describe('<Tooltip />', () => {
     });
 
     it('can describe the child when open with an exotic title', () => {
-      render(
+      const screen = render(
         <Tooltip describeChild open title={<div>the title</div>}>
           <button aria-label="the label" data-testid="target">
             The content
@@ -286,7 +295,7 @@ describe('<Tooltip />', () => {
   it('should respond to external events', () => {
     const transitionTimeout = 10;
     const enterDelay = 100;
-    render(
+    const screen = render(
       <Tooltip
         enterDelay={enterDelay}
         title="Hello World"
@@ -315,7 +324,7 @@ describe('<Tooltip />', () => {
   it('should be controllable', () => {
     const eventLog = [];
 
-    const { setProps } = render(
+    const screen = render(
       <Tooltip
         enterDelay={100}
         title="Hello World"
@@ -340,7 +349,7 @@ describe('<Tooltip />', () => {
     clock.tick(100);
 
     expect(eventLog).to.deep.equal(['mouseover', 'open']);
-    setProps({ open: true });
+    screen.setProps({ open: true });
 
     fireEvent.mouseLeave(screen.getByRole('button'));
     clock.tick(0);
@@ -350,7 +359,7 @@ describe('<Tooltip />', () => {
 
   it('should not call onOpen again if already open', () => {
     const eventLog = [];
-    render(
+    const screen = render(
       <Tooltip enterDelay={100} title="Hello World" onOpen={() => eventLog.push('open')} open>
         <button data-testid="trigger" onMouseOver={() => eventLog.push('mouseover')} />
       </Tooltip>,
@@ -366,7 +375,7 @@ describe('<Tooltip />', () => {
 
   it('should not call onClose if already closed', () => {
     const eventLog = [];
-    render(
+    const screen = render(
       <Tooltip title="Hello World" onClose={() => eventLog.push('close')} open={false}>
         <button data-testid="trigger" onMouseLeave={() => eventLog.push('mouseleave')} />
       </Tooltip>,
@@ -406,7 +415,7 @@ describe('<Tooltip />', () => {
 
   describe('touch screen', () => {
     it('should not respond to quick events', () => {
-      render(
+      const screen = render(
         <Tooltip title="Hello World">
           <button id="testChild" type="submit">
             Hello World
@@ -423,7 +432,7 @@ describe('<Tooltip />', () => {
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
       const transitionTimeout = 10;
-      render(
+      const screen = render(
         <Tooltip
           enterTouchDelay={enterTouchDelay}
           enterDelay={enterDelay}
@@ -450,7 +459,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should not open if disableTouchListener', () => {
-      render(
+      const screen = render(
         <Tooltip title="Hello World" disableTouchListener>
           <button id="testChild" type="submit">
             Hello World
@@ -475,8 +484,8 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+    it('should handle autoFocus + onFocus forwarding', async function test() {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -494,13 +503,13 @@ describe('<Tooltip />', () => {
         );
       }
 
-      const { setProps } = render(
+      const screen = render(
         <AutoFocus />,
         // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
         { strictEffects: false },
       );
 
-      setProps({ open: true });
+      screen.setProps({ open: true });
       clock.tick(100);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
@@ -508,16 +517,9 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('prop: delay', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: delay', () => {
     it('should take the enterDelay into account', async () => {
-      const { queryByRole } = render(
+      const screen = render(
         <Tooltip title="Hello World" enterDelay={111}>
           <button id="testChild" type="submit">
             Hello World
@@ -526,8 +528,8 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
-      expect(queryByRole('tooltip')).to.equal(null);
+      await focusVisible(screen.getByRole('button'));
+      expect(screen.queryByRole('tooltip')).to.equal(null);
 
       clock.tick(111);
 
@@ -535,7 +537,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should use hysteresis with the enterDelay', async () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           enterDelay={111}
@@ -549,7 +551,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
       const children = screen.getByRole('button');
-      focusVisible(children);
+      await focusVisible(children);
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -565,7 +567,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(children);
+      await focusVisible(children);
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
@@ -580,7 +582,7 @@ describe('<Tooltip />', () => {
       const leaveDelay = 111;
       const enterDelay = 0;
       const transitionTimeout = 10;
-      render(
+      const screen = render(
         <Tooltip
           leaveDelay={leaveDelay}
           enterDelay={enterDelay}
@@ -594,7 +596,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
       clock.tick(enterDelay);
 
       expect(screen.getByRole('tooltip')).toBeVisible();
@@ -623,7 +625,7 @@ describe('<Tooltip />', () => {
     ].forEach((name) => {
       it(`should be transparent for the ${name} event`, () => {
         const handler = spy();
-        render(
+        const screen = render(
           <Tooltip followCursor title="Hello World">
             <button id="testChild" type="submit" {...{ [name]: handler }}>
               Hello World
@@ -637,14 +639,14 @@ describe('<Tooltip />', () => {
     });
 
     it(`should be transparent for the focus and blur event`, async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
 
       const handleBlur = spy();
       const handleFocus = spy();
-      render(
+      const screen = render(
         <Tooltip title="Hello World">
           <button id="testChild" type="submit" onFocus={handleFocus} onBlur={handleBlur}>
             Hello World
@@ -670,7 +672,7 @@ describe('<Tooltip />', () => {
 
     it('should ignore event from the tooltip', () => {
       const handleMouseOver = spy();
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open>
           <button type="submit" onMouseOver={handleMouseOver}>
             Hello World
@@ -724,7 +726,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: disableInteractive', () => {
     it('when false should keep the overlay open if the popper element is hovered', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           enterDelay={100}
@@ -753,7 +755,7 @@ describe('<Tooltip />', () => {
     });
 
     it('when `true` should not keep the overlay open if the popper element is hovered', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           enterDelay={100}
@@ -784,7 +786,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: PopperProps', () => {
     it('should pass PopperProps to Popper Component', () => {
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open PopperProps={{ 'data-testid': 'popper' }}>
           <button id="testChild" type="submit">
             Hello World
@@ -962,16 +964,9 @@ describe('<Tooltip />', () => {
     });
   });
 
-  describe('focus', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('focus', () => {
     it('ignores base focus', async () => {
-      render(
+      const screen = render(
         <Tooltip enterDelay={0} title="Some information">
           <button />
         </Tooltip>,
@@ -991,9 +986,9 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('opens on focus-visible', () => {
+    it('opens on focus-visible', async () => {
       const eventLog = [];
-      render(
+      const screen = render(
         <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">
           <button onFocus={() => eventLog.push('focus')} />
         </Tooltip>,
@@ -1002,7 +997,7 @@ describe('<Tooltip />', () => {
 
       expect(screen.queryByRole('tooltip')).to.equal(null);
 
-      focusVisible(screen.getByRole('button'));
+      await focusVisible(screen.getByRole('button'));
 
       expect(screen.getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);
@@ -1011,7 +1006,7 @@ describe('<Tooltip />', () => {
     it('closes on blur', async () => {
       const eventLog = [];
       const transitionTimeout = 0;
-      render(
+      const screen = render(
         <Tooltip
           enterDelay={0}
           leaveDelay={0}
@@ -1050,7 +1045,7 @@ describe('<Tooltip />', () => {
           </div>
         );
       });
-      render(
+      const screen = render(
         <Tooltip open title="test">
           <TextField onFocus={handleFocus} variant="standard" />
         </Tooltip>,
@@ -1083,7 +1078,7 @@ describe('<Tooltip />', () => {
           </div>
         );
       });
-      render(
+      const screen = render(
         <Tooltip open title="test">
           <TextField onFocus={handleFocus} onBlur={handleBlur} variant="standard" />
         </Tooltip>,
@@ -1174,7 +1169,7 @@ describe('<Tooltip />', () => {
       function CustomPopper() {
         return <div data-testid="CustomPopper" />;
       }
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open PopperComponent={CustomPopper}>
           <button id="testChild" type="submit">
             Hello World
@@ -1190,7 +1185,7 @@ describe('<Tooltip />', () => {
       const x = 50;
       const y = 10;
 
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           placement="bottom-end"
@@ -1239,7 +1234,7 @@ describe('<Tooltip />', () => {
       function CustomPopper() {
         return <div data-testid="CustomPopper" />;
       }
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open components={{ Popper: CustomPopper }}>
           <button id="testChild" type="submit">
             Hello World
@@ -1253,7 +1248,7 @@ describe('<Tooltip />', () => {
       const CustomTooltip = React.forwardRef((props, ref) => (
         <div data-testid="CustomTooltip" ref={ref} />
       ));
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open components={{ Tooltip: CustomTooltip }}>
           <button id="testChild" type="submit">
             Hello World
@@ -1267,7 +1262,7 @@ describe('<Tooltip />', () => {
       const CustomArrow = React.forwardRef((props, ref) => (
         <div data-testid="CustomArrow" ref={ref} />
       ));
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open arrow components={{ Arrow: CustomArrow }}>
           <button id="testChild" type="submit">
             Hello World
@@ -1280,7 +1275,7 @@ describe('<Tooltip />', () => {
 
   describe('prop: componentsProps', () => {
     it('can provide custom props for the inner Popper component', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           open
@@ -1295,7 +1290,7 @@ describe('<Tooltip />', () => {
     });
 
     it('can provide custom props for the inner Tooltip component', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           open
@@ -1310,7 +1305,7 @@ describe('<Tooltip />', () => {
     });
 
     it('can provide custom props for the inner Arrow component', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           open
@@ -1331,7 +1326,7 @@ describe('<Tooltip />', () => {
       function CustomPopper() {
         return <div data-testid="CustomPopper" />;
       }
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open slots={{ popper: CustomPopper }}>
           <button id="testChild" type="submit">
             Hello World
@@ -1345,7 +1340,7 @@ describe('<Tooltip />', () => {
       const CustomTooltip = React.forwardRef((props, ref) => (
         <div data-testid="CustomTooltip" ref={ref} />
       ));
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open slots={{ tooltip: CustomTooltip }}>
           <button id="testChild" type="submit">
             Hello World
@@ -1359,7 +1354,7 @@ describe('<Tooltip />', () => {
       const CustomArrow = React.forwardRef((props, ref) => (
         <div data-testid="CustomArrow" ref={ref} />
       ));
-      render(
+      const screen = render(
         <Tooltip title="Hello World" open arrow slots={{ arrow: CustomArrow }}>
           <button id="testChild" type="submit">
             Hello World
@@ -1386,7 +1381,7 @@ describe('<Tooltip />', () => {
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
       const transitionTimeout = 10;
-      render(
+      const screen = render(
         <Tooltip
           enterTouchDelay={enterTouchDelay}
           enterDelay={enterDelay}
@@ -1408,7 +1403,7 @@ describe('<Tooltip />', () => {
     });
 
     it('ensures text-selection is reset after single press', () => {
-      render(
+      const screen = render(
         <Tooltip title="Hello World">
           <button type="submit">Hello World</button>
         </Tooltip>,
@@ -1427,7 +1422,7 @@ describe('<Tooltip />', () => {
       const enterDelay = 100;
       const leaveTouchDelay = 1500;
       const transitionTimeout = 10;
-      const { unmount } = render(
+      const screen = render(
         <Tooltip
           enterTouchDelay={enterTouchDelay}
           enterDelay={enterDelay}
@@ -1442,7 +1437,7 @@ describe('<Tooltip />', () => {
       document.body.style.WebkitUserSelect = 'text';
       // Let updates flush before unmounting
       fireEvent.touchStart(screen.getByRole('button'));
-      unmount();
+      screen.unmount();
 
       expect(document.body.style.WebkitUserSelect).to.equal('text');
     });
@@ -1450,7 +1445,7 @@ describe('<Tooltip />', () => {
 
   describe('className', () => {
     it('should allow className from PopperProps', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           open
@@ -1464,7 +1459,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should allow className from componentsProps.popper', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           open
@@ -1477,7 +1472,7 @@ describe('<Tooltip />', () => {
     });
 
     it('should apply both the className from PopperProps and componentsProps.popper if both are passed', () => {
-      render(
+      const screen = render(
         <Tooltip
           title="Hello World"
           open

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createRenderer, reactMajor, screen, within } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor, within } from '@mui/internal-test-utils';
 import capitalize from '@mui/utils/capitalize';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import IconButton, { iconButtonClasses as classes } from '@mui/material/IconButton';
@@ -164,7 +164,7 @@ describe('<IconButton />', () => {
 
   describe('prop: loading', () => {
     it('does not render the wrapper by default', () => {
-      render(<IconButton />);
+      const screen = render(<IconButton />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('disabled', false);
@@ -172,7 +172,7 @@ describe('<IconButton />', () => {
     });
 
     it('disables the button', () => {
-      render(<IconButton loading />);
+      const screen = render(<IconButton loading />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('tabIndex', -1);
@@ -180,13 +180,13 @@ describe('<IconButton />', () => {
     });
 
     it('cannot be enabled while `loading`', () => {
-      render(<IconButton disabled={false} loading />);
+      const screen = render(<IconButton disabled={false} loading />);
 
       expect(screen.getByRole('button')).to.have.property('disabled', true);
     });
 
     it('renders a progressbar that is labelled by the button', () => {
-      render(<IconButton loading>Submit</IconButton>);
+      const screen = render(<IconButton loading>Submit</IconButton>);
 
       const button = screen.getByRole('button');
       const progressbar = within(button).getByRole('progressbar');
@@ -195,7 +195,7 @@ describe('<IconButton />', () => {
 
     it('has no id when `loading=false` and no `id` prop is present`', () => {
       const id = 'some-id';
-      render(
+      const screen = render(
         <React.Fragment>
           <IconButton />
           <IconButton id={id} />
@@ -211,13 +211,13 @@ describe('<IconButton />', () => {
 
   describe('prop: loadingIndicator', () => {
     it('is not rendered by default', () => {
-      render(<IconButton loadingIndicator="loading">Test</IconButton>);
+      const screen = render(<IconButton loadingIndicator="loading">Test</IconButton>);
 
       expect(screen.getByRole('button')).to.have.text('Test');
     });
 
     it('is rendered before the children when `loading`', () => {
-      render(
+      const screen = render(
         <IconButton loadingIndicator="loading…" loading>
           Test
         </IconButton>,

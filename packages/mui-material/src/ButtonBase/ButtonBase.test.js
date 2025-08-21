@@ -6,11 +6,11 @@ import {
   act,
   createRenderer,
   fireEvent,
-  screen,
   focusVisible,
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import PropTypes from 'prop-types';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
@@ -247,14 +247,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('ripple', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('ripple', () => {
     describe('interactions', () => {
       it('should not have a focus ripple by default', () => {
         const { getByRole } = render(
@@ -611,14 +604,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('focusRipple', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('focusRipple', () => {
     it('should pulsate the ripple when focusVisible', async () => {
       const { getByRole } = render(
         <ButtonBase
@@ -745,7 +731,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('should reset the focused state', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -818,7 +804,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('has a focus-visible polyfill', async function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -845,7 +831,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('removes focus-visible if focus is re-targetted', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -895,7 +881,7 @@ describe('<ButtonBase />', () => {
     });
 
     it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // JSDOM doesn't support :focus-visible
         this.skip();
       }
@@ -923,14 +909,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('event: keydown', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('event: keydown', () => {
     it('ripples on repeated keydowns', async () => {
       const { container, getByText } = render(
         <ButtonBase focusRipple TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
@@ -1102,7 +1081,7 @@ describe('<ButtonBase />', () => {
       it('does not call onClick if Enter was pressed on a child', () => {
         const onClickSpy = spy();
         const onKeyDownSpy = spy();
-        render(
+        const screen = render(
           <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
             <input autoFocus type="text" />
           </ButtonBase>,
@@ -1119,7 +1098,7 @@ describe('<ButtonBase />', () => {
       it('does not call onClick if Space was released on a child', () => {
         const onClickSpy = spy();
         const onKeyUpSpy = spy();
-        render(
+        const screen = render(
           <ButtonBase onClick={onClickSpy} onKeyUp={onKeyUpSpy} component="div">
             <input autoFocus type="text" />
           </ButtonBase>,
@@ -1177,14 +1156,7 @@ describe('<ButtonBase />', () => {
     });
   });
 
-  describe('prop: action', () => {
-    before(function beforeCallback() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        // JSDOM doesn't support :focus-visible
-        this.skip();
-      }
-    });
-
+  describeSkipIf(window.navigator.userAgent.includes('jsdom'))('prop: action', () => {
     it('should be able to focus visible the button', async () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions | null>}
@@ -1216,7 +1188,7 @@ describe('<ButtonBase />', () => {
 
     it('warns on invalid `component` prop: ref forward', function test() {
       // Only run the test on node. On the browser the thrown error is not caught
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1244,20 +1216,20 @@ describe('<ButtonBase />', () => {
 
   describe('prop: type', () => {
     it('is `button` by default', () => {
-      render(<ButtonBase />);
+      const screen = render(<ButtonBase />);
 
       expect(screen.getByRole('button')).to.have.property('type', 'button');
     });
 
     it('can be changed to other button types', () => {
-      render(<ButtonBase type="submit" />);
+      const screen = render(<ButtonBase type="submit" />);
 
       expect(screen.getByRole('button')).to.have.property('type', 'submit');
     });
 
     it('allows non-standard values', () => {
       // @ts-expect-error `@types/react` only lists standard values
-      render(<ButtonBase type="fictional-type" />);
+      const screen = render(<ButtonBase type="fictional-type" />);
 
       expect(screen.getByRole('button')).to.have.attribute('type', 'fictional-type');
       // By spec non-supported types result in the default type for `<button>` which is `submit`
@@ -1265,7 +1237,9 @@ describe('<ButtonBase />', () => {
     });
 
     it('is forwarded to anchor components', () => {
-      render(<ButtonBase component="a" href="some-recording.ogg" download type="audio/ogg" />);
+      const screen = render(
+        <ButtonBase component="a" href="some-recording.ogg" download type="audio/ogg" />,
+      );
 
       expect(screen.getByRole('link')).to.have.attribute('type', 'audio/ogg');
       expect(screen.getByRole('link')).to.have.property('type', 'audio/ogg');
@@ -1276,7 +1250,7 @@ describe('<ButtonBase />', () => {
        * @type {React.ForwardRefExoticComponent<React.ButtonHTMLAttributes<HTMLButtonElement>>}
        */
       const CustomButton = React.forwardRef((props, ref) => <button ref={ref} {...props} />);
-      render(<ButtonBase component={CustomButton} type="reset" />);
+      const screen = render(<ButtonBase component={CustomButton} type="reset" />);
 
       expect(screen.getByRole('button')).to.have.property('type', 'reset');
     });
@@ -1285,7 +1259,7 @@ describe('<ButtonBase />', () => {
   describe('prop: touchRippleRef', () => {
     it('should return a ref', async () => {
       const ref = React.createRef();
-      render(<ButtonBase touchRippleRef={ref} />);
+      const screen = render(<ButtonBase touchRippleRef={ref} />);
       await ripple.startTouch(screen.getByRole('button'));
       expect(ref.current).not.to.equal(null);
     });

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, reactMajor, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, reactMajor } from '@mui/internal-test-utils';
 import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
 import Paper from '@mui/material/Paper';
 import Collapse from '@mui/material/Collapse';
@@ -11,6 +11,7 @@ import Slide from '@mui/material/Slide';
 import Grow from '@mui/material/Grow';
 import Zoom from '@mui/material/Zoom';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import describeConformance from '../../test/describeConformance';
 
 function NoTransition(props) {
@@ -172,13 +173,8 @@ describe('<Accordion />', () => {
   });
 
   describe('prop: children', () => {
-    describe('first child', () => {
-      beforeEach(function beforeEachCallback() {
-        if (reactMajor >= 19) {
-          // React 19 removed prop types support
-          this.skip();
-        }
-
+    describeSkipIf(reactMajor >= 19)('first child', () => {
+      beforeEach(() => {
         PropTypes.resetWarningCache();
       });
 
@@ -303,7 +299,7 @@ describe('<Accordion />', () => {
 
     transitions.forEach((transition) => {
       it(transition.name, () => {
-        render(
+        const screen = render(
           <Accordion
             defaultExpanded
             slots={{
@@ -322,7 +318,7 @@ describe('<Accordion />', () => {
   });
 
   it('should allow custom role for region slot via slotProps', () => {
-    render(
+    const screen = render(
       <Accordion expanded slotProps={{ region: { role: 'list', 'data-testid': 'region-slot' } }}>
         <AccordionSummary>Summary</AccordionSummary>
         Details

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import Switch, { switchClasses as classes } from '@mui/joy/Switch';
 import { ThemeProvider } from '@mui/joy/styles';
 import describeConformance from '../../test/describeConformance';
@@ -35,7 +35,7 @@ describe('<Switch />', () => {
   }));
 
   it('should pass `slotProps` down to slots', () => {
-    const { container } = render(
+    const screen = render(
       <Switch
         data-testid="root-switch"
         slotProps={{
@@ -48,10 +48,10 @@ describe('<Switch />', () => {
     );
 
     expect(screen.getByTestId('root-switch')).toBeVisible();
-    expect(container.querySelector('.custom-thumb')).to.have.class(classes.thumb);
-    expect(container.querySelector('.custom-track')).to.have.class(classes.track);
-    expect(container.querySelector('.custom-action')).to.have.class(classes.action);
-    expect(container.querySelector('.custom-input')).to.have.class(classes.input);
+    expect(screen.container.querySelector('.custom-thumb')).to.have.class(classes.thumb);
+    expect(screen.container.querySelector('.custom-track')).to.have.class(classes.track);
+    expect(screen.container.querySelector('.custom-action')).to.have.class(classes.action);
+    expect(screen.container.querySelector('.custom-input')).to.have.class(classes.input);
   });
 
   it('should have the classes required for Switch', () => {

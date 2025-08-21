@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -72,7 +72,7 @@ describe('Joy <List />', () => {
 
   describe('MenuList - integration', () => {
     it('should have role="group" inside MenuList', () => {
-      render(
+      const screen = render(
         <MenuList>
           <List />
         </MenuList>,
@@ -81,7 +81,7 @@ describe('Joy <List />', () => {
     });
 
     it('should inherit size', () => {
-      render(
+      const screen = render(
         <MenuList size="sm">
           <List />
         </MenuList>,
@@ -90,7 +90,7 @@ describe('Joy <List />', () => {
     });
 
     it('should use instance size', () => {
-      render(
+      const screen = render(
         <MenuList size="sm">
           <List size="lg" />
         </MenuList>,
@@ -104,7 +104,7 @@ describe('Joy <List />', () => {
     element.setAttribute('aria-controls', 'test');
 
     it('should have role="group" inside Menu', () => {
-      render(
+      const screen = render(
         <Menu open anchorEl={() => element}>
           <List />
         </Menu>,
@@ -113,7 +113,7 @@ describe('Joy <List />', () => {
     });
 
     it('should inherit size', () => {
-      render(
+      const screen = render(
         <Menu size="sm" open anchorEl={() => element}>
           <List />
         </Menu>,
@@ -122,7 +122,7 @@ describe('Joy <List />', () => {
     });
 
     it('should use instance size', () => {
-      render(
+      const screen = render(
         <Menu size="sm" open anchorEl={() => element}>
           <List size="lg" />
         </Menu>,
@@ -133,7 +133,7 @@ describe('Joy <List />', () => {
 
   describe('Select - integration', () => {
     it('should have role="group" inside Select', () => {
-      render(
+      const screen = render(
         <Select defaultListboxOpen>
           <List />
         </Select>,
@@ -142,7 +142,7 @@ describe('Joy <List />', () => {
     });
 
     it('should inherit size', () => {
-      render(
+      const screen = render(
         <Select size="sm" defaultListboxOpen>
           <List />
         </Select>,
@@ -151,7 +151,7 @@ describe('Joy <List />', () => {
     });
 
     it('should use instance size', () => {
-      render(
+      const screen = render(
         <Select size="sm" defaultListboxOpen>
           <List size="lg" />
         </Select>,
@@ -162,7 +162,7 @@ describe('Joy <List />', () => {
 
   describe('RadioGroup - integration', () => {
     it('should have div tag', () => {
-      render(
+      const screen = render(
         <RadioGroup>
           <List />
         </RadioGroup>,
@@ -172,7 +172,7 @@ describe('Joy <List />', () => {
     });
 
     it('can override by prop', () => {
-      render(
+      const screen = render(
         <RadioGroup>
           <List role="none" />
         </RadioGroup>,

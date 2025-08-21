@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import useId from '@mui/utils/useId';
 
 interface TestComponentProps {
@@ -16,11 +16,11 @@ describe('useId', () => {
       return <span data-testid="target" id={id} />;
     }
     const { hydrate } = renderToString(<TestComponent id="some-id" />);
-    const { setProps } = hydrate();
+    const screen = hydrate();
 
     expect(screen.getByTestId('target')).to.have.property('id', 'some-id');
 
-    setProps({ id: 'another-id' });
+    screen.setProps({ id: 'another-id' });
 
     expect(screen.getByTestId('target')).to.have.property('id', 'another-id');
   });
@@ -31,11 +31,11 @@ describe('useId', () => {
       return <span data-testid="target" id={id} />;
     }
     const { hydrate } = renderToString(<TestComponent />);
-    const { setProps } = hydrate();
+    const screen = hydrate();
 
     expect(screen.getByTestId('target').id).not.to.equal('');
 
-    setProps({ id: 'another-id' });
+    screen.setProps({ id: 'another-id' });
     expect(screen.getByTestId('target')).to.have.property('id', 'another-id');
   });
 
@@ -53,7 +53,7 @@ describe('useId', () => {
         </React.Fragment>
       );
     }
-    render(<Widget />);
+    const screen = render(<Widget />);
 
     expect(screen.getByTestId('labelable')).to.have.attr(
       'aria-labelledby',
@@ -78,7 +78,7 @@ describe('useId', () => {
         </React.Fragment>
       );
     }
-    render(<Widget />);
+    const screen = render(<Widget />);
 
     expect(screen.getByTestId('labelable')).to.have.attr(
       'aria-labelledby',
@@ -94,7 +94,8 @@ describe('useId', () => {
       const id = useId();
       return <span data-testid="target" id={id} />;
     }
-    renderToString(<TestComponent />);
+    const { hydrate } = renderToString(<TestComponent />);
+    const screen = hydrate();
 
     expect(screen.getByTestId('target').id).not.to.equal('');
   });
