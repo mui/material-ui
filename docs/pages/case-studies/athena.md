@@ -40,19 +40,19 @@ Olympus empowers organizations to unlock the full potential of their data and dr
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  We started using MUI from the day one to provide wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Brendon Geils, Founder, Athena Intelligence
+    – Brendon Geils, Founder & CEO, Athena Intelligence
   </span>
 </blockquote>
 </span>
 <span class="only-dark-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: var(--muidocs-palette-background-default); border-left: 6px solid var(--muidocs-palette-primary-main); color: #f5f5f7; border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
+  We started using MUI from the day one to provide wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Brendon Geils, Founder, Athena Intelligence
+    – Brendon Geils, Founder & CEO, Athena Intelligence
   </span>
 </blockquote>
 </span>

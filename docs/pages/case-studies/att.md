@@ -43,7 +43,7 @@ Their internal applications, MyResults and MyCOACH, serve as key platforms for p
   MUI X has enabled us to develop faster and maintain standards across our multiple applications.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Bliss Keith, AT&T
+    – Bliss Keith, Principal Scrum Master, AT&T
   </span>
 </blockquote>
 </span>
@@ -52,7 +52,7 @@ Their internal applications, MyResults and MyCOACH, serve as key platforms for p
   MUI X has enabled us to develop faster and maintain standards across our multiple applications.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Bliss Keith, AT&T
+    – Bliss Keith, Principal Scrum Master, AT&T
   </span>
 </blockquote>
 </span>
