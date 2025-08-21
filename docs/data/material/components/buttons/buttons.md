@@ -3,7 +3,7 @@ productId: material-ui
 title: React Button component
 components: Button, IconButton, ButtonBase
 materialDesign: https://m2.material.io/components/buttons
-githubLabel: 'component: button'
+githubLabel: 'scope: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 githubSource: packages/mui-material/src/Button
 ---

@@ -33,13 +33,13 @@
     "attw": "attw --pack ./build --exclude-entrypoints . esm modern --include-entrypoints v15-pagesRouter v15-appRouter"
   },
   "dependencies": {
-    "@babel/runtime": "^7.28.2"
+    "@babel/runtime": "^7.28.3"
   },
   "devDependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
-    "@types/react": "^19.1.9",
+    "@types/react": "^19.1.10",
     "next": "^15.4.6",
     "react": "^19.1.1"
   },

@@ -35,7 +35,7 @@ function CustomPaper(props) {
   return (
     <Paper {...props}>
       {props.children}
-      {/* Legal requirment https://developers.google.com/maps/documentation/javascript/policies#logo */}
+      {/* Legal requirement https://developers.google.com/maps/documentation/javascript/policies#logo */}
       <Box
         sx={(staticTheme) => ({
           display: 'flex',

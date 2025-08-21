@@ -2,7 +2,7 @@
 productId: material-ui
 title: React Table component
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
-githubLabel: 'component: table'
+githubLabel: 'scope: table'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://m2.material.io/components/data-tables
 githubSource: packages/mui-material/src/Table
