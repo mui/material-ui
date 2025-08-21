@@ -35,7 +35,7 @@ manualCard: true
 
 ## Overview
 
-Athena Intelligence provides Olympus, the world's first AI-native analytics platform designed for seamless human-machine collaboration.
+[Athena Intelligence](https://www.athenaintel.com/) provides Olympus, the world's first AI-native analytics platform designed for seamless human-machine collaboration.
 Olympus empowers organizations to unlock the full potential of their data and drive intelligent decision-making.
 
 <span class="only-light-mode">
@@ -70,6 +70,15 @@ Key benefits of using MUI X included:
 - Faster iteration cycles – Simplified the development of complex UI components.
 - Component-based architecture – Aligned perfectly with React's ecosystem.
 - Efficient code organization – Improved maintainability over inline styling methods like Tailwind.
+
+<img
+  id="athena-ui"
+  src="/static/branding/companies/athena-ui.png"
+  alt=""
+  style="width: 100%; height: auto; object-fit: cover; object-position: top left; border: 0px; margin-left: 0; margin-bottom: 20px; display: block; text-align: left;"
+/>
+
+In the above image from Athena's platform, the Tree View in the first column neatly organizes the assets, while the customized and responsive Data Grid in the third column shows query output in a tabular form.
 
 ## Results
 

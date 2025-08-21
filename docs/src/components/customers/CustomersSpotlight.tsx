@@ -62,8 +62,8 @@ function Spotlight({ posts }: SpotlightProps) {
                   alt="Company Logo"
                   src={mode === 'dark' ? post.image.replace('light', 'dark') : post.image}
                   sx={{
-                    maxWidth: '280px',
-                    maxHeight: '70px',
+                    maxWidth: '150px',
+                    maxHeight: '60px',
                     width: 'auto',
                     height: 'auto',
                   }}
