@@ -346,7 +346,7 @@ index 791a7da1f4..a5db13b414 100644
      "@mui/system": "^5.0.0-alpha.16",
 ```
 
-Alternatively, you can open the Netlify preview of the documentation, and open any demo in CodeSandbox or Stackblitz.
+Alternatively, you can open the Netlify preview of the documentation, and open any demo in CodeSandbox or StackBlitz.
 The documentation automatically configures the dependencies to use the preview packages.
 
 You can also package and test your changes locally.
