@@ -59,13 +59,6 @@ export default defineConfig(
       enableReactCompiler: ENABLE_REACT_COMPILER_PLUGIN,
       baseDirectory: dirname,
     }),
-    settings: {
-      'import/resolver': {
-        webpack: {
-          config: path.join(dirname, './webpackBaseConfig.js'),
-        },
-      },
-    },
     rules: {
       'import/prefer-default-export': 'error',
       'material-ui/straight-quotes': 'error',
@@ -75,6 +68,10 @@ export default defineConfig(
           patterns: NO_RESTRICTED_IMPORTS_PATTERNS_DEEPLY_NESTED,
         },
       ],
+      '@typescript-eslint/no-namespace': 'off',
+      'react/sort-prop-types': 'off', // 228
+      '@typescript-eslint/ban-ts-comment': 'off', // 117
+      '@typescript-eslint/no-require-imports': 'off', // 133
     },
   },
   ...['mui-material', 'mui-system', 'mui-utils', 'mui-lab', 'mui-utils', 'mui-styled-engine'].map(

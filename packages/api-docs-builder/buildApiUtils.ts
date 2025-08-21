@@ -83,8 +83,8 @@ export function extractPackageFile(filePath: string) {
     /.*\/packages.*\/(?<packagePath>[^/]+)\/src\/(.*\/)?(?<name>[^/]+)\.(js|tsx|ts|d\.ts)/,
   );
   const result = {
-    packagePath: match ? match.groups?.packagePath! : null,
-    name: match ? match.groups?.name! : null,
+    packagePath: match ? match.groups?.packagePath : null,
+    name: match ? match.groups?.name : null,
   };
   return {
     ...result,
