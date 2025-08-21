@@ -5,157 +5,16 @@ import { useRouter } from 'next/router';
 import { exactProp } from '@mui/utils';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Divider from '@mui/material/Divider';
-// import Typography from '@mui/material/Typography';
-// import Avatar from '@mui/material/Avatar';
 import Head from 'docs/src/modules/components/Head';
 import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-// import { MarkdownElement } from '@mui/docs/MarkdownElement';
 import RichMarkdownElement from 'docs/src/modules/components/RichMarkdownElement';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
 import { Link } from '@mui/docs/Link';
-
-// export const authors = {
-//   oliviertassinari: {
-//     name: 'Olivier Tassinari',
-//     avatar: 'https://avatars.githubusercontent.com/u/3165635',
-//     github: 'oliviertassinari',
-//   },
-//   mbrookes: {
-//     name: 'Matt Brookes',
-//     avatar: 'https://avatars.githubusercontent.com/u/357702',
-//     github: 'mbrookes',
-//   },
-//   eps1lon: {
-//     name: 'Sebastian Silbermann',
-//     avatar: 'https://avatars.githubusercontent.com/u/12292047',
-//     github: 'eps1lon',
-//   },
-//   mnajdova: {
-//     name: 'Marija Najdova',
-//     avatar: 'https://avatars.githubusercontent.com/u/4512430',
-//     github: 'mnajdova',
-//   },
-//   michaldudak: {
-//     name: 'Michał Dudak',
-//     avatar: 'https://avatars.githubusercontent.com/u/4696105',
-//     github: 'michaldudak',
-//   },
-//   siriwatknp: {
-//     name: 'Siriwat Kunaporn',
-//     avatar: 'https://avatars.githubusercontent.com/u/18292247',
-//     github: 'siriwatknp',
-//   },
-//   'danilo-leal': {
-//     name: 'Danilo Leal',
-//     avatar: 'https://avatars.githubusercontent.com/u/67129314',
-//     github: 'danilo-leal',
-//   },
-//   m4theushw: {
-//     name: 'Matheus Wichman',
-//     avatar: 'https://avatars.githubusercontent.com/u/42154031',
-//     github: 'm4theushw',
-//   },
-//   flaviendelangle: {
-//     name: 'Flavien Delangle',
-//     avatar: 'https://avatars.githubusercontent.com/u/3309670',
-//     github: 'flaviendelangle',
-//   },
-//   DanailH: {
-//     name: 'Danail Hadjiatanasov',
-//     avatar: 'https://avatars.githubusercontent.com/u/5858539',
-//     github: 'DanailH',
-//   },
-//   alexfauquette: {
-//     name: 'Alexandre Fauquette',
-//     avatar: 'https://avatars.githubusercontent.com/u/45398769',
-//     github: 'alexfauquette',
-//   },
-//   samuelsycamore: {
-//     name: 'Sam Sycamore',
-//     avatar: 'https://avatars.githubusercontent.com/u/71297412',
-//     github: 'samuelsycamore',
-//   },
-//   josefreitas: {
-//     name: 'José Freitas',
-//     avatar: 'https://avatars.githubusercontent.com/u/550141',
-//     github: 'joserodolfofreitas',
-//   },
-//   cherniavskii: {
-//     name: 'Andrew Cherniavskyi',
-//     avatar: 'https://avatars.githubusercontent.com/u/13808724',
-//     github: 'cherniavskii',
-//   },
-//   mikailaread: {
-//     name: 'Mikaila Read',
-//     avatar: 'https://avatars.githubusercontent.com/u/76401606',
-//     github: 'mikailaread',
-//   },
-//   prakhargupta: {
-//     name: 'Prakhar Gupta',
-//     avatar: 'https://avatars.githubusercontent.com/u/92228082',
-//     github: 'prakhargupta1',
-//   },
-//   richbustos: {
-//     name: 'Rich Bustos',
-//     avatar: 'https://avatars.githubusercontent.com/u/92274722',
-//     github: 'richbustos',
-//   },
-//   colmtuite: {
-//     name: 'Colm Tuite',
-//     avatar: 'https://avatars.githubusercontent.com/u/805073',
-//     github: 'colmtuite',
-//   },
-//   diegoandai: {
-//     name: 'Diego Andai',
-//     avatar: 'https://avatars.githubusercontent.com/u/16889233',
-//     github: 'DiegoAndai',
-//   },
-//   alelthomas: {
-//     name: 'Ale Thomas',
-//     avatar: 'https://avatars.githubusercontent.com/u/93217218',
-//     github: 'alelthomas',
-//   },
-//   DavidCnoops: {
-//     name: 'David Cnoops',
-//     avatar: 'https://avatars.githubusercontent.com/u/28001064',
-//     github: 'DavidCnoops',
-//   },
-//   brijeshb42: {
-//     name: 'Brijesh Bittu',
-//     avatar: 'https://avatars.githubusercontent.com/u/717550?',
-//     github: 'brijeshb42',
-//   },
-//   aarongarciah: {
-//     name: 'Aarón García',
-//     avatar: 'https://avatars.githubusercontent.com/u/7225802?',
-//     github: 'aarongarciah',
-//   },
-//   zanivan: {
-//     name: 'Victor Zanivan Monteiro',
-//     avatar: 'https://avatars.githubusercontent.com/u/37222944?',
-//     github: 'zanivan',
-//   },
-//   romgrk: {
-//     name: 'Romain Gregoire',
-//     avatar: 'https://avatars.githubusercontent.com/u/1423607',
-//     github: 'romgrk',
-//   },
-//   arminmeh: {
-//     name: 'Armin Mehinović',
-//     avatar: 'https://avatars.githubusercontent.com/u/4390250',
-//     github: 'arminmeh',
-//   },
-//   janpot: {
-//     name: 'Jan Potoms',
-//     avatar: 'https://avatars.githubusercontent.com/u/2109932',
-//     github: 'Janpot',
-//   },
-// };
 
 const classes = {
   back: 'TopLayoutCaseStudy-back',
@@ -165,21 +24,6 @@ const classes = {
 
 // Replicate the value used by https://medium.com/, a trusted reference.
 const BLOG_MAX_WIDTH = 692;
-
-// const AuthorsContainer = styled('div')(({ theme }) => ({
-//   display: 'flex',
-//   flexWrap: 'wrap',
-//   marginBottom: theme.spacing(2),
-//   '& .author': {
-//     display: 'flex',
-//     alignItems: 'center',
-//     paddingBottom: theme.spacing(2),
-//     paddingRight: theme.spacing(3),
-//     '& .MuiAvatar-root': {
-//       marginRight: theme.spacing(1),
-//     },
-//   },
-// }));
 
 const Root = styled('div')(
   ({ theme }) => ({
@@ -346,8 +190,6 @@ export default function TopLayoutCaseStudy(props) {
         card={card}
         type="article"
       >
-        {/* <meta name="author" content={headers.authors.map((key) => authors[key].name).join(', ')} /> */}
-        {/* <meta property="article:published_time" content={headers.date} /> */}
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -364,21 +206,8 @@ export default function TopLayoutCaseStudy(props) {
                   url: 'https://mui.com/static/icons/512x512.png',
                 },
               },
-              // author: {
-              //   '@type': 'Person',
-              //   name: authors[headers.authors[0]].name,
-              //   image: {
-              //     '@type': 'ImageObject',
-              //     url: `${authors[headers.authors[0]].avatar}?s=${250}`,
-              //     width: 250,
-              //     height: 250,
-              //   },
-              //   sameAs: [`https://github.com/${authors[headers.authors[0]].github}`],
-              // },
               headline: finalTitle,
               url: `https://mui.com${canonicalAsServer}`,
-              // datePublished: headers.date,
-              // dateModified: headers.date,
               image: {
                 '@type': 'ImageObject',
                 url: card,
@@ -398,8 +227,8 @@ export default function TopLayoutCaseStudy(props) {
       <Root className={className}>
         <AppContainer component="main" className={classes.container}>
           <Link
-            href={ROUTES.blog}
-            {...(ROUTES.blog.startsWith('http') && {
+            href={ROUTES.customers}
+            {...(ROUTES.customers.startsWith('http') && {
               rel: 'nofollow',
             })}
             variant="body2"
@@ -407,28 +236,8 @@ export default function TopLayoutCaseStudy(props) {
             sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
-            {'Back to blog'}
+            {'Back to customers'}
           </Link>
-          {/* {headers.title ? (
-            <React.Fragment> */}
-          {/*
-                Depending on the timezone, the display date can change from one day to another.
-                e.g. Sunday vs. Monday
-                TODO: Move the date formating to the server.
-              */}
-          {/* <time dateTime={headers.date} className={classes.time}>
-                {new Intl.DateTimeFormat('en', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                }).format(new Date(headers.date))}
-              </time>
-              <MarkdownElement>
-                <h1>{headers.title}</h1>
-              </MarkdownElement>
-            </React.Fragment> */}
-          {/* ) : null}  */}
           {rendered.map((chunk, index) => {
             return (
               <RichMarkdownElement

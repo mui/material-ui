@@ -7,7 +7,6 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { useColorScheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-// import Divider from '@mui/material/Divider';
 
 interface SpotlightProps {
   posts: BlogPost[];
@@ -71,7 +70,6 @@ function Spotlight({ posts }: SpotlightProps) {
                 />
               </Box>
             )}
-            {/* <Divider /> */}
             <Box
               sx={{
                 display: 'flex',
@@ -79,7 +77,6 @@ function Spotlight({ posts }: SpotlightProps) {
                 alignItems: 'start',
               }}
             >
-              {/* <h3>{post.title}</h3> */}
               <p>{post.description}</p>
               <Button
                 component={Link}

@@ -3,7 +3,7 @@ title: AT&T
 description: How AT&T streamlined performance dashboards with MUI X.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/atandt-light.svg'
 date: 2022-06-08T00:00:00.000Z
-tags: ['Case Study', 'Customer']
+tags: ['MUI X']
 manualCard: true
 ---
 
