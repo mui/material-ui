@@ -85,7 +85,7 @@
     "generate-codeowners": "node scripts/generateCodeowners.mjs",
     "canary:release": "tsx ./scripts/canaryRelease.mts",
     "nx_test_tc": "node test/cli.js",
-    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha --reporter-options mochaFile=./test-reports/unit/results.xml \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
+    "nx_test_coverage_ci": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=lcov mocha --reporter-options mochaFile=./test-results/unit/results.xml \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
     "nx_test_coverage_html": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=html mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
     "nx_test_coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha \"packages/**/*.test.?(c|m)[jt]s?(x)\" \"packages-internal/**/*.test.?(c|m)[jt]s?(x)\" \"docs/**/*.test.?(c|m)[jt]s?(x)\"",
     "nx_test_e2e_build": "webpack --config test/e2e/webpack.config.js",

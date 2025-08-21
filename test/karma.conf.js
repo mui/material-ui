@@ -108,7 +108,7 @@ module.exports = function setKarmaConfig(config) {
     // https://github.com/karma-runner/karma/issues/2342
     reporters: ['dots', ...(CI ? ['coverage-istanbul', 'junit'] : [])],
     junitReporter: {
-      outputDir: './test-reports',
+      outputDir: './test-results',
       outputFile: 'results.xml',
     },
     webpack: {
