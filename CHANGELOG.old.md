@@ -300,7 +300,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 - Remove `getSlotOwnerState` from `useSlot` util (#44403) @ZeeshanTamboli
 - Extract useRippleHandler outside of ButtonBase (#44591) @albarv340
-- Update eslint config (#44586) @MBilalShafi
+- Update ESLint config (#44586) @MBilalShafi
 - [core-infra] Remove useless fragments (#44516) @oliviertassinari
 - [docs-infra] Fix Banner CLS (#44632) @oliviertassinari
 - [docs-infra] Change CSS vars generation to be extracted from Enum (#44587) @mnajdova
@@ -554,7 +554,7 @@ A big thanks to the 9 contributors who made this release possible.
 
 ### Core
 
-- [code-infra] Widen eslint file patterns (#44148) @Janpot
+- [code-infra] Widen ESLint file patterns (#44148) @Janpot
 - [code-infra] Fix icon builder tests (#44143) @Janpot
 - [code-infra] Fix dependabot vulnerabilities (#44124) @Janpot
 - [core] Reference commits in changelog when no PR (#44115) @oliviertassinari
@@ -706,7 +706,7 @@ A big thanks to the 13 contributors who made this release possible.
 ### Core
 
 - [code-infra] Fix flaky dashboard screenshot - take 2 (#43937) @Janpot
-- [code-infra] Replace all instances of `e` with `event` and add eslint rule (#43866) @samuelsycamore
+- [code-infra] Replace all instances of `e` with `event` and add ESLint rule (#43866) @samuelsycamore
 - [code-infra] Fix and update bundling fixtures (#43709) @Janpot
 - [code-infra] Update transitive dependencies with vulnerabilties (#43895) @Janpot
 - [code-infra] Optimize regression tests (#43889) @Janpot
@@ -1218,7 +1218,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - [code-infra] Fix `@mui/internal-test-utils` `screen` export type (#43150) @LukasTy
 - [code-infra] Do not look for changes with previous commit when releasing a canary version (#43129) @michaldudak
 - [code-infra] Automate canary releases (#43066) @michaldudak
-- [core] Apply top-level eslint rule to docs and fix violations (#43126) @Janpot
+- [core] Apply top-level ESLint rule to docs and fix violations (#43126) @Janpot
 - [core] Patch styled-components to use React.JSX namespace (#43205) @aarongarciah
 - [core] Replace JSX namespace usages with React.JSX (#43204) @aarongarciah
 - [core] Remove `react-router` package from `pigment-css-vite-app` (#43201) @ZeeshanTamboli
@@ -1502,7 +1502,7 @@ A big thanks to the 10 contributors who made this release possible. Here are som
 
 ### Core
 
-- [code-infra] Refactor eslint `import/no-cycle` rule (#42705) @LukasTy
+- [code-infra] Refactor ESLint `import/no-cycle` rule (#42705) @LukasTy
 - [core] Target direct version for prerelease (#42768) @siriwatknp
 - [test] Remove enzyme (#42706) @aarongarciah
 - [test] Remove createMount test util (#42703) @aarongarciah
@@ -1742,7 +1742,7 @@ A big thanks to the 23 contributors who made this release possible. Here are som
 - [code-infra] Simplify .stylelintrc.js @oliviertassinari
 - [code-infra] Fix stylelint locally (#42411) @oliviertassinari
 - [code-infra] Run corepack enable on all CI jobs (#42331) @Janpot
-- [code-infra] Create examples eslint rule (#42170) @oliviertassinari
+- [code-infra] Create examples ESLint rule (#42170) @oliviertassinari
 - [core] Apply React 19 type changes that don't require upcoming `@types/` packages (#42346) @DiegoAndai
 - [core] Remove `react-swipeable-views-utils` package from docs (#42378) @ZeeshanTamboli
 - [core] Update `@testing-library/react` and `@testing-library/dom` packages (#42349) @ZeeshanTamboli
@@ -3676,7 +3676,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [blog] Add a Phuket retreat blog post (#40055) @mikailaread
 - [blog] Adjust the latest MUI X blog post (#40046) @danilo-leal
-- [core] Migrate from tslint to eslint (#40020) @ZeeshanTamboli
+- [core] Migrate from tslint to ESLint (#40020) @ZeeshanTamboli
 
 All contributors of this release in alphabetical order: @abreel, @alexfauquette, @anle9650, @blakenetz, @danilo-leal, @EloB, @lhilgert9, @mbrookes, @mikailaread, @mj12albert, @mnajdova, @sai6855, @siriwatknp, @zanivan, @ZeeshanTamboli
 
@@ -4242,8 +4242,8 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 ### Core
 
-- Add next lint config to eslint (#39183) @Janpot
-- [core] Update eslint rules (#39178) @romgrk
+- Add next lint config to ESLint (#39183) @Janpot
+- [core] Update ESLint rules (#39178) @romgrk
 - [core] Fix Greg GitHub slug @oliviertassinari
 - [core] Priority Support casing normalization @oliviertassinari
 
@@ -4364,7 +4364,7 @@ A big thanks to the 16 contributors who made this release possible. This release
 - [core] Remove react from styled-engine dependencies (#38971) @michaldudak
 - [core] Fix image loading bug on Safari @oliviertassinari
 - [core] Fix bundle size upload to S3 job (#38956) @Janpot
-- [core] Move eslint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
+- [core] Move ESLint to peer dependencies of eslint-plugin-material-ui (#39033) @michaldudak
 - [docs-infra] Display markdown lists correctly in docs for props description (#38973) @ZeeshanTamboli
 - [zero][next] Setup nextjs plugin package (#38852) @brijeshb42
 
@@ -5155,7 +5155,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [core] Prepend "use-client" directive + add docs and examples for using the library with Next.js App Router (#37656) @mj12albert
 - [core] Fix imports to React (#37863) @oliviertassinari
-- [core] Disambiguate eslint plugin name @oliviertassinari
+- [core] Disambiguate ESLint plugin name @oliviertassinari
 - [core] Sync the lint script name with the other repositories @oliviertassinari
 - [core] Point to Crowdin directly @oliviertassinari
 
@@ -5223,7 +5223,7 @@ This release focuses primarily on 🐛 bug fixes, 📚 documentation, and ⚙️
 - [core] Add bundle size Toolpad app link to PRs (#36311) @Janpot
 - [core] Fix priority support prompt action flow (#37726) @DanailH
 - [core] Fix typo in priority support @oliviertassinari
-- [core][docs] add ESlint rule to ensure main demo component match file… (#37278) @alexfauquette
+- [core][docs] add ESLint rule to ensure main demo component match file… (#37278) @alexfauquette
 - [docs-infra] Fix truncated TOCs scrollbar (#37770) @oliviertassinari
 - [docs-infra] Adjust demo container to be glued to the toolbar (#37744) @danilo-leal
 - [docs-infra] Fix layout shift ad (#37694) @oliviertassinari
@@ -7355,7 +7355,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [core] Pin GitHub Actions dependencies (#34929) @renovate[bot]
 - [core] Make the reproduction more important in the bug template (#34875) @oliviertassinari
 - [core] Fix docs GitHub API rate limit (#34856) @oliviertassinari
-- [core] Fix eslint issues (#34964) @mnajdova
+- [core] Fix ESLint issues (#34964) @mnajdova
 - [core] Pin GitHub Action to digests (#34855) @oliviertassinari
 - [core] Fix permissions in workflow @oliviertassinari
 - [core] memoize context values for react/jsx-no-constructed-context-values (#34849) @Janpot
@@ -7506,8 +7506,8 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - [core] Fix CI after out of sync merge @oliviertassinari
 - [core] Enforce straight quote (#34686) @oliviertassinari
 - [core] Add code scanning via CodeQL (#34707) @DanailH
-- [core] Fix some upcoming eslint issues (#34727) @oliviertassinari
-- [core] Auto-fix upcoming eslint issues (#34644) @Janpot
+- [core] Fix some upcoming ESLint issues (#34727) @oliviertassinari
+- [core] Auto-fix upcoming ESLint issues (#34644) @Janpot
 - [core] Move SearchIcons to docs src folder (#34802)
 - [test] Enable `react/no-unstable-nested-components` (#34518) @eps1lon
 
@@ -7861,7 +7861,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 ### Core
 
 - [core] Move renovate config to the repository root (#34180) @oliviertassinari
-- [core] Reinstate react/no-unused-prop-types eslint rule (#34125) @Janpot
+- [core] Reinstate react/no-unused-prop-types ESLint rule (#34125) @Janpot
 - [core] Do not append `types` field to packages without index.d.ts (#33952) @michaldudak
 - [core] Sanitize input in icon synonyms update script (#33989) @michaldudak
 - [test] Allow to pass options to `mousePress` function (#34124) @cherniavskii
@@ -14196,7 +14196,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 ### Core
 
 - [core] Create issue labeled (#24283) @xrkffgg
-- [core] Fix eslint @oliviertassinari
+- [core] Fix ESLint @oliviertassinari
 - [core] Skip downloading browser binaries when building docs (#24393) @eps1lon
 - [core] Small changes (#24329) @oliviertassinari
 - [core] Support public paths in module augmentation (#24267) @eps1lon
@@ -14502,7 +14502,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [example] Update nextjs examples to fix hydration (#23936) @mnajdova
 - [docs] Add API tradeoff section for the sx prop (#23962) @mnajdova
 - [docs] Add ELEVATOR to backers (#23977) @mbrookes
-- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add ESLint rule to docs (#23843) @jens-ox
 - [docs] Add infrastructure to translate API pages (#23852) @mbrookes
 - [docs] Add link to the sx docs page in the API description (#23967) @mnajdova
 - [docs] Add prepend option on emotion caches to allow JSS style overrides (#23892) @mnajdova
@@ -16650,7 +16650,7 @@ A big thanks to the 11 contributors who made this release possible.
 
 - [core] Allow dist tag as argv in use-react-dist-tag (#21810) @eps1lon
 - [core] Drop support for non-ref-forwarding class components (#21811) @eps1lon
-- [core] Lint with typescript-eslint parser (#21758) @oliviertassinari
+- [core] Lint with typescript-ESLint parser (#21758) @oliviertassinari
 - [core] One label is enough @oliviertassinari
 - [core] Remove lint:fix command @oliviertassinari
 - [test] Enable "missing act()"-warnings (#21802) @eps1lon
@@ -17178,7 +17178,7 @@ This release fixes an important issue with Chrome 88. The usage of NaN as a CSS 
 
 - [blog] 2020 in review and beyond (#24130) @oliviertassinari
 - [docs] Add ELEVATOR to backers (#23977) @mbrookes
-- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add ESLint rule to docs (#23843) @jens-ox
 - [docs] Add notification for Adobe XD design assets (#23979) @mbrookes
 - [docs] Allow codesandbox deploy for demos in X (#23644) @oliviertassinari
 - [docs] Fix codesandbox datagrid demo (#24218) @brno32
@@ -21480,7 +21480,7 @@ Here are some highlights ✨:
 ### Core
 
 - [core] Only import from top or 2nd level (#14888) @eps1lon
-- [test] Leaner eslint config (#14901) @eps1lon
+- [test] Leaner ESLint config (#14901) @eps1lon
 - [core] Upgrade the dev dependencies (#14911) @oliviertassinari
 - [core] Stop using @types/jss (#14852) @VincentLanglet
 - [core] Babel plugin unwrap createStyles now handle material-ui/styles package (#14850) @VincentLanglet
@@ -24057,7 +24057,7 @@ N/A
 
 - [typescript] Fix Typings for disableTouchRipple and allVariants (#11944) @franklixuefei
 - [core] Upgrade the dev dependencies (#11954) @oliviertassinari
-- [core] Upgrade eslint (#11957) @oliviertassinari
+- [core] Upgrade ESLint (#11957) @oliviertassinari
 - [core] Upgrade preval (#11958) @oliviertassinari
 - [core] Use Chrome Headless for the tests over PhantomJS (#11961) @oliviertassinari
 
@@ -27056,7 +27056,7 @@ Here are some highlights ✨:
 
 - [core] Upgrade to mocha@v4 (#8517) @oliviertassinari
 - [core] Upgrade dependencies (#8577) @oliviertassinari
-- [core] Upgrade eslint (#8583) @oliviertassinari
+- [core] Upgrade ESLint (#8583) @oliviertassinari
 - [core] Prepare upgrade enzyme v3 (#8595) @oliviertassinari
 - [misc] Fix small issues reported by users (#8524) @oliviertassinari
 
@@ -27765,7 +27765,7 @@ A big thanks to the 7 contributors who made this release possible.
 - [docs] Fix language issues for clarity (#7610) @skirunman
 - [docs] Update docs for <RadioGroup> (#7640) @sebald
 - [docs] Fixed "initial" word in vars and typo (#7639) @kybarg
-- [docs] Spell check eslint script (#7643) @kybarg
+- [docs] Spell check ESLint script (#7643) @kybarg
 - [docs] Fix audit issues (#7595) @oliviertassinari
 - [docs] Show how to use the insertionPoint (#7611) @oliviertassinari
 
@@ -28074,7 +28074,7 @@ _Jun 19, 2017_
 
 ### Core
 
-- [MuiThemeProvider] Small eslint fix (#7128) @Airblader
+- [MuiThemeProvider] Small ESLint fix (#7128) @Airblader
 - [core] Simplify the array logic (#7112) @oliviertassinari
 - [core] Fix type use of Element (#7111) @rosskevin
 - [core] Use the beta of circleci (#7133) @oliviertassinari
@@ -28126,7 +28126,7 @@ A big thanks to the 8 contributors who made this release possible.
 
 ### Core
 
-- [eslint] Loosen no-unused-vars eslint rule (#7064) @yuchi
+- [eslint] Loosen no-unused-vars ESLint rule (#7064) @yuchi
 - [core] Various fixes (#7028) @oliviertassinari
 
 ## 1.0.0-alpha.16
@@ -28250,7 +28250,7 @@ _May 8, 2017_
 
 ### Breaking changes
 
-- [lint/flow] validate imports/exports with eslint and flow (#6757) @rosskevin
+- [lint/flow] validate imports/exports with ESLint and flow (#6757) @rosskevin
   Change some import:
 
 ```diff
@@ -29239,7 +29239,7 @@ Please read through the alpha and beta releases of 0.15.0 too as their changes a
 - [Tests] Refactor karma tests, add JSDOM for node tests and improve coverage (#4102)
 - [Tests] Add basic README for test setup (#4106)
 - [colorManipulator] Prevent illegal color values (#3989)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `jsx-first-prop-new-line` (#4112)
   1. Enforce `react/prefer-es6-class` (#4126)
 
@@ -29378,7 +29378,7 @@ Although we discourage you to use this library like that.
   - [Menu](#3821)
   - [MenuItem](#3821)
   - [RaisedButton](#3839)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `jsx-handler-names` (#3408)
   1. Enforce `spaced-comment` (#3910)
 
@@ -29467,7 +29467,7 @@ import MaterialUI from 'material-ui'; // no changes here :D
 - [Tests] Add `Paper` unit tests (#3528)
 - [Tests] Add `Slider` unit tests (#3688)
 - [IconBuilder] Move to packages directory (#3680)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `operator-linebreak` (#3516)
   1. Enforce `no-multiple-empty-lines` (#3516)
   1. Enforce `@ignore` before comment (#3611)
@@ -29581,7 +29581,7 @@ from the code with the 0.16.0 release.
 - [Docs] Enable GPU rasterization (#3451)
 - [Docs] Add versions to docs site (#3383)
 - [eslint] Upgrade to v2 (#3390)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Enforce `arrow-parens` (#3207)
   1. Enforce `prefer-template` (#3208, #3242)
   1. Enforce `no-unneeded-ternary` (#3320)
@@ -29702,7 +29702,7 @@ Unless you have used these implementation details in your code.
   1. [Autocomplete](#2871)
   1. [Popover](#2870)
   1. [IconMenu](#2882)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. Extend `eslint:recommended` (#2854)
   1. `one-var` (#2855)
   1. `brace-style` (#2855)
@@ -29748,7 +29748,7 @@ _Jan 08, 2016_
   1. [Sliders](#2800)
   1. [Paper](#2797)
   1. [Menus](#2785)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. `react/jsx-indent` (#2808)
 
 ### Component Fixes / Enhancements
@@ -29772,7 +29772,7 @@ _Jan 05, 2016_
   1. [GridList](#2681)
   1. [SelectField](#2694)
   1. [IconButton](#2700)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. react/sort-comp (#2774, #2776)
 
 ### Component Fixes / Enhancements
@@ -29803,7 +29803,7 @@ Have a look at them as well.
   1. [Snackbar](#2562)
   1. [DropDownMenu](#2565)
   1. [Card](#2590)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. key-spacing (#2552)
 - [SvgIcon] Improved the code generation tasks (#2606)
 - [ES6] Use module everywhere (#2614)
@@ -29842,7 +29842,7 @@ _Dec 15, 2015_
   1. [Badge](#2489)
   1. [Dialog](#2483)
   1. [LeftNav](#2507)
-- Added the following eslint rules:
+- Added the following ESLint rules:
   1. react/jsx-indent-props (#2377)
   1. max-len (#2381)
   1. wrap-multilines (#2419)

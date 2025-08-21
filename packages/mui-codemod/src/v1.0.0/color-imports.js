@@ -37,7 +37,7 @@ function colorImportPath(colorPalette) {
 /**
  * Replace all expressions that use identifier to access color palettes.
  * e.g. colors.amber100 -> colors.amber['100']
- * @param {sting} identifier
+ * @param {string} identifier
  * @param {jscodeshift_api_object} j
  * @param {jscodeshift_ast_object} root
  */

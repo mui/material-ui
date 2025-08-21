@@ -4,6 +4,7 @@ import type { ElementHandle } from '@playwright/test';
 
 // https://stackoverflow.com/a/46755166/3406963
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Chai {
     interface Assertion {
       /**

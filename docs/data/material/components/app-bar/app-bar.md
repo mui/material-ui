@@ -2,7 +2,7 @@
 productId: material-ui
 title: App Bar React component
 components: AppBar, Toolbar, Menu
-githubLabel: 'component: app bar'
+githubLabel: 'scope: app bar'
 materialDesign: https://m2.material.io/components/app-bars-top
 githubSource: packages/mui-material/src/AppBar
 ---

@@ -19,13 +19,9 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "mkdir build && pnpm build:copy-files",
-    "build:copy-files": "node ../../scripts/copyFiles.mjs",
-    "prebuild": "rimraf build",
-    "release": "pnpm build && pnpm publish"
+    "release": "pnpm publish"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "build"
+    "access": "public"
   }
 }
