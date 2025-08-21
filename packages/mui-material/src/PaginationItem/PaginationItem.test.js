@@ -140,7 +140,7 @@ describe('<PaginationItem />', () => {
       return <KeyboardDoubleArrowRightIcon data-testid={props['data-testid'] ?? 'custom-last'} />;
     }
 
-    it('icons passed in slots prop should override defualt icons', () => {
+    it('icons passed in slots prop should override default icons', () => {
       const slots = {
         previous: CustomPreviousIcon,
         next: CustomNextIcon,
@@ -179,7 +179,7 @@ describe('<PaginationItem />', () => {
       });
     });
 
-    it('icons passed in slots should overide icons passed in components prop ', () => {
+    it('icons passed in slots should override icons passed in components prop ', () => {
       const slots = {
         previous: CustomPreviousIcon,
         next: CustomNextIcon,
