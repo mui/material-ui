@@ -41,7 +41,7 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the Paper element.
+     * By default, the available props are based on the Paper element.
      */
     root: SlotProps<
       React.ElementType<PaperProps>,
@@ -50,12 +50,12 @@ export type AccordionSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the heading slot.
-     * By default, the avaible props are based on the h3 element.
+     * By default, the available props are based on the h3 element.
      */
     heading: SlotProps<'h3', AccordionHeadingSlotPropsOverrides, AccordionOwnerState>;
     /**
      * Props forwarded to the transition slot.
-     * By default, the avaible props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
+     * By default, the available props are based on the [Collapse](https://mui.com/material-ui/api/collapse/#props) component.
      */
     transition: SlotComponentProps<
       React.ElementType,

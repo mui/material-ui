@@ -40,7 +40,7 @@ export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
+     * By default, the available props are based on the [Paper](https://mui.com/material-ui/api/paper/#props) component.
      */
     root: SlotProps<
       React.ElementType<PaperProps>,
@@ -49,7 +49,7 @@ export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the progress slot.
-     * By default, the avaible props are based on the [LinearProgress](https://mui.com/material-ui/api/linear-progress/#props) component.
+     * By default, the available props are based on the [LinearProgress](https://mui.com/material-ui/api/linear-progress/#props) component.
      */
     progress: SlotProps<
       React.ElementType<LinearProgressProps>,
@@ -58,12 +58,12 @@ export type MobileStepperSlotsAndSlotProps = CreateSlotsAndSlotProps<
     >;
     /**
      * Props forwarded to the dots slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     dots: SlotProps<'div', MobileStepperDotsSlotPropsOverrides, MobileStepperOwnerState>;
     /**
      * Props forwarded to the dot slot.
-     * By default, the avaible props are based on the div element.
+     * By default, the available props are based on the div element.
      */
     dot: SlotProps<'div', MobileStepperDotSlotPropsOverrides, MobileStepperOwnerState>;
   }
