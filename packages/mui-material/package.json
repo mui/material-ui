@@ -59,7 +59,7 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@types/sinon": "^17.0.4",
-    "chai": "^4.5.0",
+    "chai": "^5.3.1",
     "css-mediaquery": "^0.1.2",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.1",

@@ -45,7 +45,7 @@
     "@types/node": "^20.19.11",
     "@types/sinon": "^17.0.4",
     "@types/stylis": "4.2.7",
-    "chai": "^4.5.0",
+    "chai": "^5.3.1",
     "sinon": "^21.0.0",
     "stylis": "4.3.6"
   },
