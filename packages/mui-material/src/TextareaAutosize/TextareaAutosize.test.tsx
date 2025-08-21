@@ -409,7 +409,7 @@ describe('<TextareaAutosize />', () => {
           width: `${width}px`,
         },
         scrollHeight: () => {
-          // assuming that the width of the word is 1px, and substract the width of the paddingRight
+          // assuming that the width of the word is 1px, and subtract the width of the paddingRight
           const lineNum = Math.ceil(
             input.value.length / (width - getStyleValue(shadow.style.paddingRight)),
           );

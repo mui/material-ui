@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Badge component
 components: Badge
-githubLabel: 'component: badge'
+githubLabel: 'scope: badge'
 ---
 
 # Badge

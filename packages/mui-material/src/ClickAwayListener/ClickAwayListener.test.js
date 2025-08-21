@@ -230,8 +230,8 @@ describe('<ClickAwayListener />', () => {
           <ClickAwayListener onClickAway={onClickAway}>
             <div data-testid="trigger" onMouseDown={toggleOpen}>
               {open &&
-                // interleave an element during mousedown so that the following mouseup would not be targetted at the mousedown target.
-                // This results in the click event being targetted at the nearest common ancestor.
+                // interleave an element during mousedown so that the following mouseup would not be targeted at the mousedown target.
+                // This results in the click event being targeted at the nearest common ancestor.
                 ReactDOM.createPortal(
                   <div data-testid="interleaved-element">Portaled Div</div>,
                   document.body,
