@@ -236,7 +236,7 @@ export default function TopLayoutCaseStudy(props) {
             sx={{ color: 'primary' }}
           >
             <ChevronLeftRoundedIcon fontSize="small" sx={{ mr: 0.5 }} />
-            {'Back to customers'}
+            {'Back'}
           </Link>
           {rendered.map((chunk, index) => {
             return (

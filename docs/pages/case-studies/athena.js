@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TopLayoutCaseStudy from 'docs/src/modules/components/TopLayoutCaseStudy';
-import { docs } from './case-study-deliveryhero.md?muiMarkdown';
+import { docs } from './athena.md?muiMarkdown';
 
 export default function Page() {
   return <TopLayoutCaseStudy docs={docs} />;

@@ -327,6 +327,11 @@ export default function HeaderNavDropdown() {
                   Blog
                 </Anchor>
               </li>
+              <li>
+                <Anchor href={ROUTES.customers} as={Link} noLinkStyle>
+                  Case Studies
+                </Anchor>
+              </li>
             </UList>
           </Box>
         </Collapse>

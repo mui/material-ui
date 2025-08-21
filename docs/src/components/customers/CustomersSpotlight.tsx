@@ -80,7 +80,7 @@ function Spotlight({ posts }: SpotlightProps) {
               <p>{post.description}</p>
               <Button
                 component={Link}
-                href={`/blog/${post.slug}`}
+                href={`/case-studies/${post.slug}`}
                 endIcon={<ArrowForwardIcon />}
                 size="small"
                 sx={{ ml: -1 }}
