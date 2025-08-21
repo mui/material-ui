@@ -146,7 +146,7 @@
     "chalk": "^5.5.0",
     "compression-webpack-plugin": "^11.1.0",
     "concurrently": "^9.2.0",
-    "cpy-cli": "^5.0.0",
+    "cpy-cli": "^6.0.0",
     "cross-env": "^10.0.0",
     "danger": "^13.0.4",
     "eslint": "^9.33.0",
