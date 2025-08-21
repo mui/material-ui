@@ -1,9 +1,9 @@
 ---
 title: John Deere
-description: How John Deere standardized UI development with MUI X.
+description: How John Deere standardized UI development with MUI X.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/johndeere.svg'
 date: 2022-06-08T00:00:00.000Z
-tags: ['MUI X']
+tags: ['MUI X']
 manualCard: true
 ---
 
@@ -54,15 +54,10 @@ John Deere needed a reliable, standardized component library to bridge the gaps 
 
 ## Solution
 
-By integrating MUI X Premium Data Grid, John Deere's teams found a baseline of standardized components to rely on, ensuring a cohesive development approach in places where their in-house Fuel Design System didn't provide the necessary coverage.
+By integrating **MUI X Premium Data Grid**, John Deere's teams found a baseline of standardized components to rely on, ensuring a cohesive development approach in places where their in-house Fuel Design System didn't provide the necessary coverage.
 
 ## Results
 
 - Improved consistency – Developers could use MUI X as a standardized foundation across teams.
 - Faster development – Teams saved time by leveraging ready-to-use, high-performance components.
 - Enhanced flexibility – MUI X filled in the gaps where the internal design system fell short.
-
-## Recommendation
-
-For developers working with John Deere's Fuel Design System, MUI X is a great complement when additional features or components are needed.
-A notable experiment involved testing heatmaps with their current key to determine the watermark for non-grandfathered functionality—an innovative approach to balancing licensing considerations with usability needs.

@@ -64,8 +64,8 @@ They wanted to have a standard look and feel across their dashbaords and were lo
 
 ## Solution
 
-To power MyResults and MyCOACH, AT&T integrated the MUI X Data Grid Premium, leveraging its robust features and flexible customization options.
-Key benefits of using the MUI X Data Grid included:
+To power MyResults and MyCOACH, AT&T integrated the **MUI X Data Grid Premium**, leveraging its robust features and flexible customization options.
+Key benefits of using the Data Grid included:
 
 - Faster development – Accelerated UI implementation across applications.
 - Customizable UI – Adaptable components tailored to AT&T's needs.
@@ -81,9 +81,4 @@ By integrating MUI X, AT&T achieved:
 
 ## Developer experience
 
-AT&T's developers found the MUI X documentation to be clear and reliable, ensuring smooth implementation without issues.
-
-## Recommendation
-
-AT&T recommends MUI X for teams looking to build scalable, standardized, and customizable UI components.
-MUI X enabled seamless integration and customization, reinforcing its value as the go-to UI framework for AT&T's internal tools.
+AT&T's developers found the MUI documentation to be clear and reliable, ensuring smooth implementation without issues. MUI X enabled seamless integration with other React libraries, reinforcing its value as the go-to UI framework for AT&T's internal tools.

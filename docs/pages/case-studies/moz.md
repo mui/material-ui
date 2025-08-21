@@ -1,9 +1,9 @@
 ---
 title: Moz
-description: How Moz optimized large-scale keyword analysis with MUI X.
+description: How Moz optimized large-scale keyword analysis with MUI X.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/moz.svg'
 date: 2022-06-08T00:00:00.000Z
-tags: ['MUI X']
+tags: ['MUI X']
 manualCard: true
 ---
 
@@ -58,11 +58,11 @@ Moz needed a UI framework that could handle:
 
 ## Solution
 
-To meet these challenges, Moz integrated MUI X Premium, leveraging its Data Grid and Date Picker components to create an optimized, interactive, and scalable UI.
+To meet these challenges, Moz integrated **MUI X Premium**, leveraging its **Data Grid** and **Date Picker** components to create an optimized, interactive, and performant UI.
 Key benefits of using MUI X included:
 
 - Optimized DX and UX – A developer-friendly and intuitive user experience.
-- Advanced customization – Built highly tailored components using Data Grid API refs.
+- Advanced customization – Data Grid API refs allowed them to build a UI for filtering and column management,a game-changer for their keyword analysis platform.
 - Scalability – Handled large keyword datasets efficiently with MUI X's performance optimizations.
 - Faster development – Accelerated UI implementation across the platform.
 
@@ -74,14 +74,13 @@ By adopting MUI X, Moz achieved:
 - Enhanced customization – Developed custom filtering and column management features.
 - Improved development experience – Standardized and simplified the UI-building process.
 
-## Developer experience and documentation
+## Developer experience
 
-Moz developers found MUI X's documentation intuitive and in-depth, making customization straightforward.
+Moz developers found MUI documentation intuitive and in-depth, making customizations straightforward.
+
+:::info
 Pro tip: "Read the docs thoroughly—there are many small examples that can greatly help with customization."
+:::
 
-## Recommendation
-
-Moz strongly recommends MUI X for developers working with large-scale, data-intensive applications.
-Its performance, flexibility, and ease of use make it a top choice for scalable UI development.
-
-Moz unlocked new customization possibilities by leveraging the Data Grid API ref, allowing them to build highly customized components for filtering and column management—a game-changer for their keyword analysis platform.
+Moz strongly recommends MUI X to developers working with large-scale, data-intensive applications.
+Its performance, flexibility, and ease of use makes it a top choice for scalable UI development.

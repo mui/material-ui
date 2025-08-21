@@ -3,7 +3,7 @@ title: Delivery Hero
 description: How Delivery Hero's Partner Portal streamlined development with MUI X.
 image: 'https://deploy-preview-46416--material-ui.netlify.app/static/branding/companies/deliveryhero.svg'
 date: 2022-06-08T00:00:00.000Z
-tags: ['MUI X']
+tags: ['MUI X']
 manualCard: true
 ---
 
@@ -47,7 +47,7 @@ Before adopting MUI X, the Delivery Hero team faced two major challenges:
 
 ## Solution
 
-To address these challenges, the team integrated the MUI X Pro Date and Time Pickers and Data Grid Pro into their platform.
+To address these challenges, the team integrated the **MUI X Pro Date and Time Pickers** and **Data Grid** into their platform.
 These components enabled them to:
 
 - Accelerate development – Pre-built, high-quality components reduced time spent on UI implementation.
@@ -62,13 +62,10 @@ After implementing MUI X, the team saw immediate benefits:
 - Improved UI/UX consistency across the platform.
 - Reduced user clicks when interacting with date and time inputs.
 
-## Documentation experience and feedback
-
-The team also praised MUI X's documentation, describing it as clear, well-structured, and easy to follow, which helped their developers integrate and customize components effortlessly.
-
-## Recommendation
-
-For developers looking to build modern, high-performance UI components with minimal effort, the Delivery Hero team highly recommends MUI X.
-
 One key success story was the implementation of the Date Time Picker, which significantly reduced the number of clicks required for users to achieve their desired results.
 This simple enhancement greatly improved user efficiency and satisfaction.
+
+## Developer experience
+
+The team praised MUI documentation, describing it as clear, well-structured, and easy to follow, which helped their developers integrate and customize components effortlessly.
+For developers looking to build modern, high-performance UI components with minimal effort, the Delivery Hero team highly recommends MUI X.
