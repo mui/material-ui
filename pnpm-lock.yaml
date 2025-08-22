@@ -6769,8 +6769,9 @@ packages:
     resolution: {integrity: sha512-l+2bNRMiQgcfILUi33labAZYIWlH1kWDp+ecNo5iisRKrbm0xcRyCww71/YU0Fkw0mAFpz9bJayXPjey6vkmaQ==}
     engines: {node: '>=8'}
 
-  cipher-base@1.0.4:
-    resolution: {integrity: sha512-Kkht5ye6ZGmwv40uUDZztayT2ThLQGfnj/T71N/XzeZeo3nf8foyW7zGTsPYkEya3m5f3cAypH+qe7YOrM1U2Q==}
+  cipher-base@1.0.6:
+    resolution: {integrity: sha512-3Ek9H3X6pj5TgenXYtNWdaBon1tgYCaebd+XPg0keyjEbEfkD4KkmAxkQ/i1vYvxdcT5nscLBfq9VJRmCBcFSw==}
+    engines: {node: '>= 0.10'}
 
   cjs-module-lexer@1.4.3:
     resolution: {integrity: sha512-9z8TZaGM1pfswYeXrUpzPrkx8UnWYdhJclsiYMm6x/w5+nN+8Tf/LnAgfLGQCm59qAOxU8WwHEq2vNwF6i4j+Q==}
@@ -18950,7 +18951,7 @@ snapshots:
   browserify-aes@1.2.0:
     dependencies:
       buffer-xor: 1.0.3
-      cipher-base: 1.0.4
+      cipher-base: 1.0.6
       create-hash: 1.2.0
       evp_bytestokey: 1.0.3
       inherits: 2.0.4
@@ -18964,7 +18965,7 @@ snapshots:
 
   browserify-des@1.0.2:
     dependencies:
-      cipher-base: 1.0.4
+      cipher-base: 1.0.6
       des.js: 1.1.0
       inherits: 2.0.4
       safe-buffer: 5.2.1
@@ -19242,7 +19243,7 @@ snapshots:
 
   ci-info@4.3.0: {}
 
-  cipher-base@1.0.4:
+  cipher-base@1.0.6:
     dependencies:
       inherits: 2.0.4
       safe-buffer: 5.2.1
@@ -19695,7 +19696,7 @@ snapshots:
 
   create-hash@1.2.0:
     dependencies:
-      cipher-base: 1.0.4
+      cipher-base: 1.0.6
       inherits: 2.0.4
       md5.js: 1.3.5
       ripemd160: 2.0.2
@@ -19703,7 +19704,7 @@ snapshots:
 
   create-hmac@1.1.7:
     dependencies:
-      cipher-base: 1.0.4
+      cipher-base: 1.0.6
       create-hash: 1.2.0
       inherits: 2.0.4
       ripemd160: 2.0.2
