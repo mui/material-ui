@@ -34,7 +34,6 @@
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "node ../../scripts/copyFiles.mjs",
     "build:typings": "node ./scripts/create-typings.mjs",
-    "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "src:download": "node ./scripts/download.mjs",
     "src:icons": "cross-env UV_THREADPOOL_SIZE=64 node ./builder.mjs --output-dir src --svg-dir material-icons --renameFilter ./renameFilters/material-design-icons.mjs && pnpm build:lib:clean",
