@@ -36,7 +36,7 @@ Their Techyon project is dedicated to transforming the energy sector by integrat
   When we switched to MUI X's Data Grid and fine-tuned it, the performance issues disappeared—it felt like pure magic. MUI X quickly became a go-to tool in Techyon's stack, helping CGI deliver a high-performance, future-ready solution for the energy industry.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Helge Andersen, Team Leader, CGI
+    – Helge Andersen, Team Lead
   </span>
 </blockquote>
 </span>
@@ -47,7 +47,7 @@ Their Techyon project is dedicated to transforming the energy sector by integrat
   When we switched to MUI X's Data Grid and fine-tuned it, the performance issues disappeared—it felt like pure magic. MUI X quickly became a go-to tool in Techyon's stack, helping CGI deliver a high-performance, future-ready solution for the energy industry.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Helge Andersen, Team Leader, CGI
+    – Helge Andersen, Team Lead
   </span>
 </blockquote>
 </span>

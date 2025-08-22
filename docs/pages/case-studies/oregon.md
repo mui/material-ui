@@ -34,7 +34,7 @@ The tool integrates with existing university systems to provide real-time enroll
   MUI X provides the right balance of performance, customization, and React integration. If you need a scalable, spreadsheet-like experience in your web app, it's definitely worth considering.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Mark Clements, Senior Development Team Lead
+    – Mark Clements, Manager, Software Development & Quality
   </span>
 </blockquote>
 </span>
@@ -43,7 +43,7 @@ The tool integrates with existing university systems to provide real-time enroll
   MUI X provides the right balance of performance, customization, and React integration. If you need a scalable, spreadsheet-like experience in your web app, it's definitely worth considering.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Mark Clements, Senior Development Team Lead
+    – Mark Clements, Manager, Software Development & Quality
   </span>
 </blockquote>
 </span>

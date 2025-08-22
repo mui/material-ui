@@ -33,7 +33,7 @@ With a strong emphasis on innovation, their teams build solutions that enhance e
   MUI X has provided us with a baseline of standardized components to rely on where our design system may not necessarily fill a needed gap.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Tyler Mitchell, Engineering Manager, John Deere
+    – Tyler Mitchell, Engineering Manager
   </span>
 </blockquote>
 </span>
@@ -42,7 +42,7 @@ With a strong emphasis on innovation, their teams build solutions that enhance e
   MUI X has provided us with a baseline of standardized components to rely on where our design system may not necessarily fill a needed gap.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-   – Tyler Mitchell, Engineering Manager, John Deere
+   – Tyler Mitchell, Engineering Manager
   </span>
 </blockquote>
 </span>

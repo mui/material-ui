@@ -33,7 +33,7 @@ To handle large-scale keyword analysis, Moz required a robust UI solution capabl
   MUI X provides access to a very optimized and consistent DX and UX for a key portion of our app.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Darko Cejkov, Front-end Developer, Moz
+    – Darko Cejkov, Front-end Developer
   </span>
 </blockquote>
 </span>
@@ -42,7 +42,7 @@ To handle large-scale keyword analysis, Moz required a robust UI solution capabl
   MUI X provides access to a very optimized and consistent DX and UX for a key portion of our app.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Darko Cejkov, Front-end Developer, Moz
+    – Darko Cejkov, Front-end Developer
   </span>
 </blockquote>
 </span>

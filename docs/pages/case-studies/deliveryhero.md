@@ -24,7 +24,7 @@ Their platform equips vendors with the tools they need to manage operations effi
   By leveraging the MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Ahmed Ibrahim, Senior Manager Software Engineering | Vendor Growth, Delivery Hero
+    – Ahmed Ibrahim, Senior Manager Software Engineering, Vendor Growth
   </span>
 </blockquote>
 </span>
@@ -33,7 +33,7 @@ Their platform equips vendors with the tools they need to manage operations effi
   By leveraging the MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Ahmed Ibrahim, Senior Manager Software Engineering | Vendor Growth, Delivery Hero
+    – Ahmed Ibrahim, Senior Manager Software Engineering, Vendor Growth
   </span>
 </blockquote>
 </span>
