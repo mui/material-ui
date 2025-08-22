@@ -21,7 +21,7 @@ export default function PrioritySupportSwitch() {
     enterDelay: 400,
     enterNextDelay: 50,
     enterTouchDelay: 500,
-    placement: 'top' as 'top',
+    placement: 'top' as const,
     describeChild: true,
     slotProps: {
       tooltip: {
@@ -98,7 +98,7 @@ export function PrioritySupportSwitchTable() {
     enterDelay: 400,
     enterNextDelay: 50,
     enterTouchDelay: 500,
-    placement: 'top' as 'top',
+    placement: 'top' as const,
     describeChild: true,
     slotProps: {
       tooltip: {
