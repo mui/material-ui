@@ -105,7 +105,6 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@babel/cli": "^7.28.3",
     "@babel/core": "^7.28.3",
     "@babel/node": "^7.28.0",
     "@babel/plugin-transform-react-constant-elements": "^7.27.1",
