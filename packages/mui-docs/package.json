@@ -23,7 +23,6 @@
   "scripts": {
     "build": "code-infra build && pnpm build:copy-files",
     "build:copy-files": "code-infra copy-files ./src/translations/translations.json:./translations/translations.json ./src/translations/translations.json:./esm/translations/translations.json",
-    "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "exit 0",
     "typescript": "tsc -p tsconfig.json"

@@ -46,9 +46,6 @@ importers:
       '@arethetypeswrong/cli':
         specifier: ^0.18.2
         version: 0.18.2
-      '@babel/cli':
-        specifier: ^7.28.3
-        version: 7.28.3(@babel/core@7.28.3)
       '@babel/core':
         specifier: ^7.28.3
         version: 7.28.3
