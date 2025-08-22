@@ -1,5 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": ["../../tsconfig.json", "../../tsconfig.src.json"],
   "compilerOptions": {},
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["test/**/*", "**/*.test.*", "**/*.spec.*"],
+  "references": [{ "path": "../mui-material/tsconfig.json" }]
 }

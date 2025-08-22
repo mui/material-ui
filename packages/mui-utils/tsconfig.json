@@ -1,8 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "allowJs": false,
-    "types": ["react", "mocha", "node"]
-  },
-  "include": ["src/**/*"]
+  "extends": ["../../tsconfig.json", "../../tsconfig.src.json"],
+  "compilerOptions": {},
+  "include": ["src/**/*"],
+  "exclude": ["test/**/*", "**/*.test.*", "**/*.spec.*"],
+  "references": [{ "path": "../mui-types/tsconfig.json" }]
 }

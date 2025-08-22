@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "outDir": "${configDir}/node_modules/.tmp/default",
+    "paths": {},
+    "types": [],
+    "skipLibCheck": true,
+    "allowJs": false,
+    "checkJs": true
+  },
+  "include": ["${configDir}/src/**/*", "./global.d.ts"]
+}

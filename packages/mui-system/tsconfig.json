@@ -1,5 +1,11 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": ["src/**/*", "test/**/*"],
-  "exclude": ["test/typescript/moduleAugmentation"]
+  "extends": ["../../tsconfig.json", "../../tsconfig.src.json"],
+  "include": ["src/**/*"],
+  "exclude": ["test/**/*", "**/*.test.*", "**/*.spec.*"],
+  "references": [
+    { "path": "../mui-types/tsconfig.json" },
+    { "path": "../mui-utils/tsconfig.json" },
+    { "path": "../mui-private-theming/tsconfig.json" },
+    { "path": "../mui-styled-engine/tsconfig.json" }
+  ]
 }

@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "outDir": "${configDir}/node_modules/.tmp/test"
+  },
+  "references": [{ "path": "../../packages-internal/test-utils/tsconfig.json" }]
+}

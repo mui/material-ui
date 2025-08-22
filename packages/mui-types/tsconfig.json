@@ -1,5 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": ["src/**/*", "test/**/*"],
-  "exclude": ["src/OverridableComponentAugmentation.ts"]
+  "extends": ["../../tsconfig.json", "../../tsconfig.src.json"],
+  "compilerOptions": {
+    "paths": {
+      "@mui/types/*": ["./src/*"]
+    }
+  },
+  "exclude": ["src/OverridableComponentAugmentation.ts", "test/**/*", "**/*.test.*", "**/*.spec.*"]
 }

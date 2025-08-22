@@ -1,0 +1,6 @@
+{
+  "extends": ["./tsconfig.json", "./tsconfig.test.json"],
+  "compilerOptions": {},
+  "exclude": [],
+  "references": [{ "path": "./tsconfig.json" }]
+}

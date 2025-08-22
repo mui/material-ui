@@ -3,12 +3,6 @@
   // Actual .ts source files are transpiled via babel
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "declaration": false,
-    "noEmit": false,
-    "emitDeclarationOnly": false,
-    "outDir": "build/esm",
-    "rootDir": "./lib"
-  },
-  "include": ["lib/**/*.*"]
+    "allowJs": false
+  }
 }
