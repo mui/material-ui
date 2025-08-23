@@ -1,6 +1,7 @@
 import * as React from 'react';
 import useAutocomplete, {
   AutocompleteGetTagProps,
+  UseAutocompleteProps,
 } from '@mui/material/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -163,7 +164,9 @@ const Listbox = styled('ul')(({ theme }) => ({
   },
 }));
 
-export default function CustomizedHook() {
+function CustomAutocomplete<Value = FilmOptionType>(
+  props: UseAutocompleteProps<Value, true, false, false>,
+) {
   const {
     getRootProps,
     getInputLabelProps,
@@ -176,11 +179,8 @@ export default function CustomizedHook() {
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: 'customized-hook-demo',
-    defaultValue: [top100Films[1]],
     multiple: true,
-    options: top100Films,
-    getOptionLabel: (option) => option.title,
+    ...props,
   });
 
   return (
@@ -188,9 +188,15 @@ export default function CustomizedHook() {
       <div {...getRootProps()}>
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option: FilmOptionType, index: number) => {
+          {value.map((option, index) => {
             const { key, ...tagProps } = getTagProps({ index });
-            return <StyledTag key={key} {...tagProps} label={option.title} />;
+            return (
+              <StyledTag
+                key={key}
+                {...tagProps}
+                label={props.getOptionLabel!(option)}
+              />
+            );
           })}
           <input {...getInputProps()} />
         </InputWrapper>
@@ -201,7 +207,7 @@ export default function CustomizedHook() {
             const { key, ...optionProps } = getOptionProps({ option, index });
             return (
               <li key={key} {...optionProps}>
-                <span>{option.title}</span>
+                <span>{props.getOptionLabel!(option)}</span>
                 <CheckIcon fontSize="small" />
               </li>
             );
@@ -209,6 +215,17 @@ export default function CustomizedHook() {
         </Listbox>
       ) : null}
     </Root>
+  );
+}
+
+export default function CustomizedHook() {
+  return (
+    <CustomAutocomplete
+      id="customized-hook-demo"
+      defaultValue={[top100Films[1]]}
+      options={top100Films}
+      getOptionLabel={(option) => option.title}
+    />
   );
 }
 
