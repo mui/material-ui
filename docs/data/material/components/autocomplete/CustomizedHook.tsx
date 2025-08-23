@@ -1,6 +1,6 @@
 import * as React from 'react';
 import useAutocomplete, {
-  AutocompleteGetTagProps,
+  AutocompleteGetItemProps,
   UseAutocompleteProps,
 } from '@mui/material/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
@@ -66,11 +66,11 @@ const InputWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-interface TagProps extends ReturnType<AutocompleteGetTagProps> {
+interface ItemProps extends ReturnType<AutocompleteGetItemProps<false>> {
   label: string;
 }
 
-function Tag(props: TagProps) {
+function Item(props: ItemProps) {
   const { label, onDelete, ...other } = props;
   return (
     <div {...other}>
@@ -80,7 +80,7 @@ function Tag(props: TagProps) {
   );
 }
 
-const StyledTag = styled(Tag)<TagProps>(({ theme }) => ({
+const StyledItem = styled(Item)<ItemProps>(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   height: '24px',
@@ -171,7 +171,7 @@ function CustomAutocomplete<Value = FilmOptionType>(
     getRootProps,
     getInputLabelProps,
     getInputProps,
-    getTagProps,
+    getItemProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
@@ -189,9 +189,9 @@ function CustomAutocomplete<Value = FilmOptionType>(
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => {
-            const { key, ...tagProps } = getTagProps({ index });
+            const { key, ...tagProps } = getItemProps({ index });
             return (
-              <StyledTag
+              <StyledItem
                 key={key}
                 {...tagProps}
                 label={props.getOptionLabel!(option)}

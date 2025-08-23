@@ -64,7 +64,7 @@ const InputWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-function Tag(props) {
+function Item(props) {
   const { label, onDelete, ...other } = props;
   return (
     <div {...other}>
@@ -74,12 +74,12 @@ function Tag(props) {
   );
 }
 
-Tag.propTypes = {
+Item.propTypes = {
   label: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
-const StyledTag = styled(Tag)(({ theme }) => ({
+const StyledItem = styled(Item)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   height: '24px',
@@ -168,7 +168,7 @@ function CustomAutocomplete(props) {
     getRootProps,
     getInputLabelProps,
     getInputProps,
-    getTagProps,
+    getItemProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
@@ -186,9 +186,9 @@ function CustomAutocomplete(props) {
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => {
-            const { key, ...tagProps } = getTagProps({ index });
+            const { key, ...tagProps } = getItemProps({ index });
             return (
-              <StyledTag
+              <StyledItem
                 key={key}
                 {...tagProps}
                 label={props.getOptionLabel(option)}
