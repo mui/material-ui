@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, fireEvent, act, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent, act } from '@mui/internal-test-utils';
 import {
   DEFAULT_MODE_STORAGE_KEY,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
@@ -307,7 +307,7 @@ describe('useCurrentColorScheme', () => {
           </div>
         );
       }
-      render(<Data />);
+      const screen = render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
 
@@ -487,7 +487,7 @@ describe('useCurrentColorScheme', () => {
           </div>
         );
       }
-      render(<Data />);
+      const screen = render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
 
@@ -522,7 +522,7 @@ describe('useCurrentColorScheme', () => {
           </div>
         );
       }
-      render(<Data />);
+      const screen = render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
 
@@ -778,7 +778,7 @@ describe('useCurrentColorScheme', () => {
           </div>
         );
       }
-      render(<Data />);
+      const screen = render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
 
@@ -804,7 +804,7 @@ describe('useCurrentColorScheme', () => {
           </div>
         );
       }
-      render(<Data />);
+      const screen = render(<Data />);
 
       fireEvent.click(screen.getByTestId('dark'));
 

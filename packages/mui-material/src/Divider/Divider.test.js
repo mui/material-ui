@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
+import describeSkipIf from '@mui/internal-test-utils/describeSkipIf';
 import { styled } from '@mui/material/styles';
 import Divider, { dividerClasses as classes } from '@mui/material/Divider';
 import describeConformance from '../../test/describeConformance';
@@ -85,39 +86,40 @@ describe('<Divider />', () => {
       });
     });
 
-    describe('custom border style', function test() {
-      before(function beforeHook() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
-          this.skip();
-        }
-      });
+    describeSkipIf(window.navigator.userAgent.includes('jsdom'))(
+      'custom border style',
+      function test() {
+        const StyledDivider = styled(Divider)(() => ({
+          borderStyle: 'dashed',
+        }));
 
-      const StyledDivider = styled(Divider)(() => ({
-        borderStyle: 'dashed',
-      }));
+        it('should set the dashed border-left-style in before and after pseudo-elements when orientation is vertical', () => {
+          const { container } = render(
+            <StyledDivider orientation="vertical">content</StyledDivider>,
+          );
+          expect(
+            getComputedStyle(container.firstChild, '::before').getPropertyValue(
+              'border-left-style',
+            ),
+          ).to.equal('dashed');
+          expect(
+            getComputedStyle(container.firstChild, '::after').getPropertyValue('border-left-style'),
+          ).to.equal('dashed');
+        });
 
-      it('should set the dashed border-left-style in before and after pseudo-elements when orientation is vertical', () => {
-        const { container } = render(<StyledDivider orientation="vertical">content</StyledDivider>);
-        expect(
-          getComputedStyle(container.firstChild, '::before').getPropertyValue('border-left-style'),
-        ).to.equal('dashed');
-        expect(
-          getComputedStyle(container.firstChild, '::after').getPropertyValue('border-left-style'),
-        ).to.equal('dashed');
-      });
-
-      it('should set the dashed border-top-style in before and after pseudo-elements when orientation is horizontal', () => {
-        const { container } = render(
-          <StyledDivider orientation="horizontal">content</StyledDivider>,
-        );
-        expect(
-          getComputedStyle(container.firstChild, '::before').getPropertyValue('border-top-style'),
-        ).to.equal('dashed');
-        expect(
-          getComputedStyle(container.firstChild, '::after').getPropertyValue('border-top-style'),
-        ).to.equal('dashed');
-      });
-    });
+        it('should set the dashed border-top-style in before and after pseudo-elements when orientation is horizontal', () => {
+          const { container } = render(
+            <StyledDivider orientation="horizontal">content</StyledDivider>,
+          );
+          expect(
+            getComputedStyle(container.firstChild, '::before').getPropertyValue('border-top-style'),
+          ).to.equal('dashed');
+          expect(
+            getComputedStyle(container.firstChild, '::after').getPropertyValue('border-top-style'),
+          ).to.equal('dashed');
+        });
+      },
+    );
   });
 
   describe('prop: variant', () => {
@@ -165,26 +167,26 @@ describe('<Divider />', () => {
 
   describe('role', () => {
     it('avoids adding implicit aria semantics', () => {
-      render(<Divider />);
+      const screen = render(<Divider />);
       expect(screen.getByRole('separator')).not.to.have.attribute('role');
       expect(screen.getByRole('separator')).not.to.have.attribute('aria-orientation');
     });
 
     it('adds a proper role if none is specified', () => {
-      render(<Divider component="div" />);
+      const screen = render(<Divider component="div" />);
       expect(screen.getByRole('separator')).not.to.equal(null);
       expect(screen.getByRole('separator')).to.have.attribute('aria-orientation');
     });
 
     it('adds a proper role with vertical orientation', () => {
-      render(<Divider orientation="vertical" />);
+      const screen = render(<Divider orientation="vertical" />);
       expect(screen.getByRole('separator')).not.to.equal(null);
       expect(screen.getByRole('separator')).to.have.attribute('aria-orientation');
     });
 
     it('overrides the computed role with the provided one', () => {
       // presentation is the only valid aria role
-      render(<Divider role="presentation" data-testid="divider" />);
+      const screen = render(<Divider role="presentation" data-testid="divider" />);
       expect(screen.queryByRole('separator')).to.equal(null);
       expect(screen.getByTestId('divider')).to.have.attribute('role', 'presentation');
       expect(screen.getByTestId('divider')).not.to.have.attribute('aria-orientation');

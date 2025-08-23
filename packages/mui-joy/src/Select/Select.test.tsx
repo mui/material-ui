@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Select, { selectClasses as classes, SelectOption } from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -53,7 +53,7 @@ describe('Joy <Select />', () => {
   }));
 
   it('should be able to mount the component', () => {
-    render(
+    const screen = render(
       <Select value={10}>
         <Option value="">
           <em>None</em>
@@ -117,7 +117,7 @@ describe('Joy <Select />', () => {
   it('should call onClose when the same option is selected', () => {
     const handleChange = spy();
     const handleClose = spy();
-    render(
+    const screen = render(
       <Select defaultListboxOpen onChange={handleChange} onClose={handleClose} value="second">
         <Option value="first" />
         <Option value="second" />
@@ -186,7 +186,7 @@ describe('Joy <Select />', () => {
 
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
-      render(
+      const screen = render(
         <Select defaultListboxOpen value={20}>
           <Option value={10}>Ten</Option>
           <Option value={20}>Twenty</Option>
@@ -201,7 +201,7 @@ describe('Joy <Select />', () => {
     });
 
     it('should not select the option based on the string value', () => {
-      render(
+      const screen = render(
         <Select defaultListboxOpen value="20">
           <Option value={10}>Ten</Option>
           <Option value={20}>Twenty</Option>
@@ -218,7 +218,7 @@ describe('Joy <Select />', () => {
     it('should select only the option that matches the object', () => {
       const obj1 = { id: 1 };
       const obj2 = { id: 2 };
-      render(
+      const screen = render(
         <Select defaultListboxOpen value={obj1}>
           <Option value={obj1}>1</Option>
           <Option value={obj2}>2</Option>
@@ -260,7 +260,7 @@ describe('Joy <Select />', () => {
     });
 
     it('should be able to customize SVG icon', () => {
-      render(
+      const screen = render(
         <Select value={1} indicator={<span data-testid="foo" />}>
           <option value={0}>Zero</option>
           <option value={1}>One</option>
@@ -284,7 +284,7 @@ describe('Joy <Select />', () => {
 
   describe('accessibility', () => {
     it('associated with a label', () => {
-      render(
+      const screen = render(
         <div>
           <label htmlFor="foo-bar">label</label>
           <Select id="foo-bar" />
@@ -446,7 +446,7 @@ describe('Joy <Select />', () => {
   it('should not override the event.target on mouse events', () => {
     const handleChange = spy();
     const handleClick = spy();
-    render(
+    const screen = render(
       <div onClick={handleClick}>
         <Select defaultListboxOpen onChange={handleChange} value="second">
           <Option value="first" />
@@ -467,7 +467,7 @@ describe('Joy <Select />', () => {
 
   it('should only select options', () => {
     const handleChange = spy();
-    render(
+    const screen = render(
       <Select defaultListboxOpen onChange={handleChange} value="second">
         <Option value="first" />
         <ListDivider />
@@ -497,7 +497,7 @@ describe('Joy <Select />', () => {
 
   describe('form submission', () => {
     it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // FormData is not available in JSDOM
         this.skip();
       }
@@ -530,7 +530,7 @@ describe('Joy <Select />', () => {
     });
 
     it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // FormData is not available in JSDOM
         this.skip();
       }
@@ -566,7 +566,7 @@ describe('Joy <Select />', () => {
     });
 
     it('formats the object values as JSON before posting', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // FormData is not available in JSDOM
         this.skip();
       }

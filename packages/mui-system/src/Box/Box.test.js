@@ -58,7 +58,7 @@ describe('<Box />', () => {
   });
 
   it('respect properties order when generating the CSS', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();
@@ -100,7 +100,7 @@ describe('<Box />', () => {
   });
 
   it('respect border-*-color properties order when generating the CSS', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();
@@ -164,7 +164,7 @@ describe('<Box />', () => {
   });
 
   it('respect properties order when generating the CSS from the sx prop', function test() {
-    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+    const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
     if (isJSDOM) {
       this.skip();
@@ -285,7 +285,7 @@ describe('<Box />', () => {
 
   describe('prop: maxWidth', () => {
     it('should resolve breakpoints with custom units', function test() {
-      const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+      const isJSDOM = window.navigator.userAgent.includes('jsdom');
 
       if (isJSDOM) {
         this.skip();
