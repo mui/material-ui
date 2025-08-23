@@ -178,7 +178,7 @@ For CircleCI, you need to log in first.
 No further permissions are required to view the build logs.
 The following sections give an overview of what each check is responsible for.
 
-#### Continuous releases
+#### Continuous Releases
 
 This task publishes a preview for the packages to pkg.pr.new. It should not fail in isolation. Use it to test more complex scenarios.
 
@@ -330,7 +330,7 @@ Check out [this Toggle Button demo PR](https://github.com/mui/material-ui/pull/1
 
 We use [pkg.pr.new](https://pkg.pr.new) to publish a working version of the packages for each pull request as a "preview."
 
-You can check the _Continuous releases_ status of a pull request to get the URL needed to install these preview packages:
+You can check the _Continuous Releases_ status of a pull request to get the URL needed to install these preview packages:
 
 ```diff
 diff --git a//package.json b//package.json
