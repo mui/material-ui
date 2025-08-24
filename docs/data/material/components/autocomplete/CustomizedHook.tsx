@@ -66,7 +66,7 @@ const InputWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-interface ItemProps extends ReturnType<AutocompleteGetItemProps<false>> {
+interface ItemProps extends ReturnType<AutocompleteGetItemProps<true>> {
   label: string;
 }
 
@@ -189,11 +189,11 @@ function CustomAutocomplete<Value = FilmOptionType>(
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => {
-            const { key, ...tagProps } = getItemProps({ index });
+            const { key, ...itemProps } = getItemProps({ index });
             return (
               <StyledItem
                 key={key}
-                {...tagProps}
+                {...itemProps}
                 label={props.getOptionLabel!(option)}
               />
             );
