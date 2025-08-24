@@ -110,7 +110,7 @@ const fetch = debounce(
         }),
       );
     } catch (err: any) {
-      if (err.message === 'Quota exceeded for quota') {
+      if (err.message.startsWith('Quota exceeded for quota')) {
         callback(request.input.length === 1 ? fakeAnswer.p : fakeAnswer.paris);
       }
 
@@ -211,7 +211,6 @@ export default function GoogleMaps() {
       includeInputInList
       filterSelectedOptions
       value={value}
-      open
       noOptionsText="No locations"
       onChange={(event: any, newValue: PlaceType | null) => {
         setOptions(newValue ? [newValue, ...options] : options);
