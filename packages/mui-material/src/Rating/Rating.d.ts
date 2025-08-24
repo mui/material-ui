@@ -34,7 +34,7 @@ export interface RatingSlots {
    */
   icon: React.ElementType;
   /**
-   * The component used fo r the decimal slot.
+   * The component used for the decimal slot.
    * @default 'span'
    */
   decimal: React.ElementType;
@@ -45,22 +45,22 @@ export type RatingSlotsAndSlotProps = CreateSlotsAndSlotProps<
   {
     /**
      * Props forwarded to the root slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     root: SlotProps<'span', RatingRootSlotPropsOverrides, RatingOwnerState>;
     /**
      * Props forwarded to the label slot.
-     * By default, the avaible props are based on the label element.
+     * By default, the available props are based on the label element.
      */
     label: SlotProps<'label', RatingLabelSlotPropsOverrides, RatingOwnerState>;
     /**
      * Props forwarded to the icon slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     icon: SlotProps<'span', RatingIconSlotPropsOverrides, RatingOwnerState>;
     /**
      * Props forwarded to the decimal slot.
-     * By default, the avaible props are based on the span element.
+     * By default, the available props are based on the span element.
      */
     decimal: SlotProps<'span', RatingDecimalSlotPropsOverrides, RatingOwnerState>;
   }
