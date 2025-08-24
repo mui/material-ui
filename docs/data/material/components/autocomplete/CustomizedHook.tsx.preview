@@ -1,4 +1,4 @@
-<CustomAutocomplete
+<CustomAutocomplete<FilmOptionType>
   id="customized-hook-demo"
   defaultValue={[top100Films[1]]}
   options={top100Films}

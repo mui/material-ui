@@ -186,11 +186,11 @@ function CustomAutocomplete(props) {
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => {
-            const { key, ...tagProps } = getItemProps({ index });
+            const { key, ...itemProps } = getItemProps({ index });
             return (
               <StyledItem
                 key={key}
-                {...tagProps}
+                {...itemProps}
                 label={props.getOptionLabel(option)}
               />
             );

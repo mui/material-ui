@@ -164,7 +164,7 @@ const Listbox = styled('ul')(({ theme }) => ({
   },
 }));
 
-function CustomAutocomplete<Value = FilmOptionType>(
+function CustomAutocomplete<Value>(
   props: UseAutocompleteProps<Value, true, false, false>,
 ) {
   const {
@@ -220,7 +220,7 @@ function CustomAutocomplete<Value = FilmOptionType>(
 
 export default function CustomizedHook() {
   return (
-    <CustomAutocomplete
+    <CustomAutocomplete<FilmOptionType>
       id="customized-hook-demo"
       defaultValue={[top100Films[1]]}
       options={top100Films}
