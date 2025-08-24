@@ -126,6 +126,8 @@ jobs:
             then
               exit 1
             fi
+      - store_test_results:
+          path: test-results
       - run:
           name: internal-scripts
           command: |
@@ -284,6 +286,8 @@ jobs:
             then
               exit 1
             fi
+      - store_test_results:
+          path: test-results
       - run:
           name: Coverage
           command: |
