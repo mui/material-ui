@@ -229,7 +229,7 @@ This demo has limited quotas to make API requests. When your quota exceeds, you 
 
 By default (when `multiple={false}`), the selected option is displayed as plain text inside the input.
 The `renderValue` prop allows you to customize how the selected value is rendered.
-This can be useful for adding custom styles, displaying additional information, or formatting the value differently:
+This can be useful for adding custom styles, displaying additional information, or formatting the value differently.
 
 - The `getItemProps` getter provides props like `data-item-index`, `disabled`, `tabIndex` and others. These props should be spread onto the rendered component for proper accessibility.
 - If using a custom component other than a Material UI Chip, destructure the `onDelete` prop as it's specific to the Material UI Chip.
