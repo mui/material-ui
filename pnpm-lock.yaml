@@ -31,8 +31,8 @@ importers:
   .:
     dependencies:
       '@netlify/functions':
-        specifier: ^4.2.1
-        version: 4.2.1(encoding@0.1.13)(rollup@4.46.2)
+        specifier: ^4.2.2
+        version: 4.2.2(encoding@0.1.13)(rollup@4.46.2)
       '@slack/bolt':
         specifier: ^4.4.0
         version: 4.4.0(@types/express@5.0.0)
@@ -4418,24 +4418,24 @@ packages:
     resolution: {integrity: sha512-Y3kVGxynxi/Lz42bi20A+PQ0vh25zVjbGnQWZQUTwLzQozEIeokCgUWskPvlhs6btheLZyzUjqGuhUCymOoD1g==}
     engines: {node: ^18.14.0 || >=20}
 
-  '@netlify/functions@4.2.1':
-    resolution: {integrity: sha512-FhwXULPeD9qbUdWxtD9AUjV5GEjB93fqLhl0N4KZAf00i1Ec0t3WmCJ4j5bCbnETxXEkTOYhhUBHZi2BAFQSgw==}
+  '@netlify/functions@4.2.2':
+    resolution: {integrity: sha512-FZ7+Y4e1x5VJ3+36tpcB5kyBk4/mFWR7UBlhNksHWjdhNhC3CP6fqckMBW+OnZ849fMcZL2kq93/fIM49LjS+Q==}
     engines: {node: '>=18.0.0'}
 
   '@netlify/runtime-utils@2.1.0':
     resolution: {integrity: sha512-z1h+wjB7IVYUsFZsuIYyNxiw5WWuylseY+eXaUDHBxNeLTlqziy+lz03QkR67CUR4Y790xGIhaHV00aOR2KAtw==}
     engines: {node: ^18.14.0 || >=20}
 
-  '@netlify/serverless-functions-api@2.1.3':
-    resolution: {integrity: sha512-bNlN/hpND8xFQzpjyKxm6vJayD+bPBlOvs4lWihE7WULrphuH1UuFsoVE5386bNNGH8Rs1IH01AFsl7ALQgOlQ==}
+  '@netlify/serverless-functions-api@2.2.1':
+    resolution: {integrity: sha512-PAEyziX2pkENwQLCqWfS2Jw5CKATwAty/4mcnBcAEVWrfWE5vqKx82qta1nDrbeFOcBw6QD5ShYCfbXUnQ4MNA==}
     engines: {node: '>=18.0.0'}
 
   '@netlify/types@2.0.2':
     resolution: {integrity: sha512-6899BAqehToSAd3hoevqGaIkG0M9epPMLTi6byynNVIzqv2x+b9OtRXqK67G/gCX7XkrtLQ9Xm3QNJmaFNrSXA==}
     engines: {node: ^18.14.0 || >=20}
 
-  '@netlify/zip-it-and-ship-it@14.1.0':
-    resolution: {integrity: sha512-avFOrCOoRMCHfeZyVUNBAbP4Byi0FMYSWS2j4zn5KAbpBgOFRRc841JnGlXGB5gCIzsrJAsW5ZL8SnlXf6lrOQ==}
+  '@netlify/zip-it-and-ship-it@14.1.4':
+    resolution: {integrity: sha512-SLMDv+Wqw496YCar7GI8mhCXjZE5P3L5+W2y7+b8Fu529ocTLpCnSeDjJPgGZBZNM/NC9dOl9r8+hUx1a5CV1w==}
     engines: {node: '>=18.14.0'}
     hasBin: true
 
@@ -6585,10 +6585,6 @@ packages:
   buffers@0.1.1:
     resolution: {integrity: sha512-9q/rDEGSb/Qsvv2qvzIzdluL5k7AaJOTrw23z9reQthrbF7is4CtlT0DXyO1oei2DCp4uojjzQ7igaSHp1kAEQ==}
     engines: {node: '>=0.2.0'}
-
-  builtin-modules@3.3.0:
-    resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
-    engines: {node: '>=6'}
 
   builtin-status-codes@3.0.0:
     resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
@@ -8932,10 +8928,6 @@ packages:
   is-boolean-object@1.2.1:
     resolution: {integrity: sha512-l9qO6eFlUETHtuihLcYOaLKByJ1f+N4kthcU9YjHy3N+B3hWv0y/2Nd0mu/7lTFnRQHTrSdXF50HQ3bl5fEnng==}
     engines: {node: '>= 0.4'}
-
-  is-builtin-module@3.2.1:
-    resolution: {integrity: sha512-BSLE3HnV2syZ0FK0iMA/yUGplUeMmNz4AW5fnTunbCIqZi4vG3WjJT9FHMy5D69xmAYBHXQhJdALdpwVxV501A==}
-    engines: {node: '>=6'}
 
   is-bun-module@2.0.0:
     resolution: {integrity: sha512-gNCGbnnnnFAUGKeZ9PdbyeGYJqewpmc2aKHUEMO5nQPWU9lOmv7jcmQIv+qHD8fXW6W7qfuCwX4rY9LNRjXrkQ==}
@@ -16330,12 +16322,12 @@ snapshots:
       uuid: 11.1.0
       write-file-atomic: 5.0.1
 
-  '@netlify/functions@4.2.1(encoding@0.1.13)(rollup@4.46.2)':
+  '@netlify/functions@4.2.2(encoding@0.1.13)(rollup@4.46.2)':
     dependencies:
       '@netlify/blobs': 10.0.8
       '@netlify/dev-utils': 4.1.1
       '@netlify/types': 2.0.2
-      '@netlify/zip-it-and-ship-it': 14.1.0(encoding@0.1.13)(rollup@4.46.2)
+      '@netlify/zip-it-and-ship-it': 14.1.4(encoding@0.1.13)(rollup@4.46.2)
       cron-parser: 4.9.0
       decache: 4.6.2
       extract-zip: 2.0.1
@@ -16351,16 +16343,16 @@ snapshots:
 
   '@netlify/runtime-utils@2.1.0': {}
 
-  '@netlify/serverless-functions-api@2.1.3': {}
+  '@netlify/serverless-functions-api@2.2.1': {}
 
   '@netlify/types@2.0.2': {}
 
-  '@netlify/zip-it-and-ship-it@14.1.0(encoding@0.1.13)(rollup@4.46.2)':
+  '@netlify/zip-it-and-ship-it@14.1.4(encoding@0.1.13)(rollup@4.46.2)':
     dependencies:
       '@babel/parser': 7.28.3
       '@babel/types': 7.28.1
       '@netlify/binary-info': 1.0.0
-      '@netlify/serverless-functions-api': 2.1.3
+      '@netlify/serverless-functions-api': 2.2.1
       '@vercel/nft': 0.29.4(encoding@0.1.13)(rollup@4.46.2)
       archiver: 7.0.1
       common-path-prefix: 3.0.0
@@ -16371,7 +16363,6 @@ snapshots:
       fast-glob: 3.3.3
       filter-obj: 6.1.0
       find-up: 7.0.0
-      is-builtin-module: 3.2.1
       is-path-inside: 4.0.0
       junk: 4.0.1
       locate-path: 7.2.0
@@ -19027,8 +19018,6 @@ snapshots:
       ieee754: 1.2.1
 
   buffers@0.1.1: {}
-
-  builtin-modules@3.3.0: {}
 
   builtin-status-codes@3.0.0: {}
 
@@ -21828,10 +21817,6 @@ snapshots:
     dependencies:
       call-bound: 1.0.4
       has-tostringtag: 1.0.2
-
-  is-builtin-module@3.2.1:
-    dependencies:
-      builtin-modules: 3.3.0
 
   is-bun-module@2.0.0:
     dependencies:
