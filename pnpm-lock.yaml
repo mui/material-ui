@@ -780,8 +780,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/chance':
         specifier: ^1.1.7
         version: 1.1.7
@@ -895,8 +895,8 @@ importers:
         specifier: ^7.20.5
         version: 7.20.5
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -995,8 +995,8 @@ importers:
         specifier: ^1.54.2
         version: 1.54.2
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/chai-dom':
         specifier: ^1.11.3
         version: 1.11.3
@@ -1056,7 +1056,7 @@ importers:
         version: 5.4.3
       recast:
         specifier: ^0.23.9
-        version: 0.23.9
+        version: 0.23.11
       remark:
         specifier: ^15.0.1
         version: 15.0.1
@@ -1074,8 +1074,8 @@ importers:
         specifier: ^7.28.0
         version: 7.28.0
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/doctrine':
         specifier: ^0.0.9
         version: 0.0.9
@@ -1117,8 +1117,8 @@ importers:
         version: 4.17.21
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -1171,8 +1171,8 @@ importers:
         version: 1.30.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1205,11 +1205,11 @@ importers:
         version: 17.7.2
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/jscodeshift':
-        specifier: 0.12.0
-        version: 0.12.0
+        specifier: 17.3.0
+        version: 17.3.0
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1283,8 +1283,8 @@ importers:
         version: 7.14.0
     devDependencies:
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       chai:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1334,8 +1334,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/react':
         specifier: ^19.1.11
         version: 19.1.11
@@ -1414,8 +1414,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1488,8 +1488,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-material/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1574,8 +1574,8 @@ importers:
         specifier: ^14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1679,8 +1679,8 @@ importers:
         specifier: workspace:^
         version: link:../mui-types/build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/react':
         specifier: ^19.1.11
         version: 19.1.11
@@ -1726,8 +1726,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/react':
         specifier: ^19.1.11
         version: 19.1.11
@@ -1761,8 +1761,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/react':
         specifier: ^19.1.11
         version: 19.1.11
@@ -1790,8 +1790,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -1855,8 +1855,8 @@ importers:
         specifier: workspace:*
         version: link:build
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/prop-types':
         specifier: ^15.7.15
         version: 15.7.15
@@ -1925,8 +1925,8 @@ importers:
         specifier: workspace:^
         version: link:../../packages-internal/test-utils
       '@types/chai':
-        specifier: ^4.3.20
-        version: 4.3.20
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -5514,8 +5514,8 @@ packages:
   '@types/istanbul-lib-coverage@2.0.6':
     resolution: {integrity: sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w==}
 
-  '@types/jscodeshift@0.12.0':
-    resolution: {integrity: sha512-Jr2fQbEoDmjwEa92TreR/mX2t9iAaY/l5P/GKezvK4BodXahex60PDLXaQR0vAgP0KfCzc1CivHusQB9NhzX8w==}
+  '@types/jscodeshift@17.3.0':
+    resolution: {integrity: sha512-ogvGG8VQQqAQQ096uRh+d6tBHrYuZjsumHirKtvBa5qEyTMN3IQJ7apo+sw9lxaB/iKWIhbbLlF3zmAWk9XQIg==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -11458,12 +11458,8 @@ packages:
     resolution: {integrity: sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==}
     engines: {node: '>= 0.8.0'}
 
-  recast@0.20.5:
-    resolution: {integrity: sha512-E5qICoPoNL4yU0H0NoBDntNB0Q5oMSNh9usFctYniLBluTthi3RsQVBXIJNbApOlvSwW/RGxIuokPcAc59J5fQ==}
-    engines: {node: '>= 4'}
-
-  recast@0.23.9:
-    resolution: {integrity: sha512-Hx/BGIbwj+Des3+xy5uAtAbdCyqK9y9wbBcDFDYanLS9JnMqf7OeF87HQwUimE87OEc72mr6tkKUKMBBL+hF9Q==}
+  recast@0.23.11:
+    resolution: {integrity: sha512-YTUo+Flmw4ZXiWfQKGcwwc11KnoRAYgzAE2E7mXKCjSviTKShtxBsN6YUUBB2gtaBzKzeKunxhUwNHQuRryhWA==}
     engines: {node: '>= 4'}
 
   rechoir@0.6.2:
@@ -17576,7 +17572,7 @@ snapshots:
 
   '@types/chai-dom@1.11.3':
     dependencies:
-      '@types/chai': 4.3.20
+      '@types/chai': 5.2.2
 
   '@types/chai@4.3.20': {}
 
@@ -17677,10 +17673,10 @@ snapshots:
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
-  '@types/jscodeshift@0.12.0':
+  '@types/jscodeshift@17.3.0':
     dependencies:
-      ast-types: 0.14.2
-      recast: 0.20.5
+      ast-types: 0.16.1
+      recast: 0.23.11
 
   '@types/json-schema@7.0.15': {}
 
@@ -22178,7 +22174,7 @@ snapshots:
       micromatch: 4.0.8
       neo-async: 2.6.2
       picocolors: 1.1.1
-      recast: 0.23.9
+      recast: 0.23.11
       tmp: 0.2.3
       write-file-atomic: 5.0.1
     optionalDependencies:
@@ -24770,14 +24766,7 @@ snapshots:
 
   readline-sync@1.4.10: {}
 
-  recast@0.20.5:
-    dependencies:
-      ast-types: 0.14.2
-      esprima: 4.0.1
-      source-map: 0.6.1
-      tslib: 2.8.1
-
-  recast@0.23.9:
+  recast@0.23.11:
     dependencies:
       ast-types: 0.16.1
       esprima: 4.0.1
