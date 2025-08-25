@@ -75,10 +75,6 @@ const getSlackChannelId = (
   return CORE_FEEBACKS_CHANNEL_ID;
 };
 
-const spreadSheetsIds = {
-  forLater: '1NAUTsIcReVylWPby5K0omXWZpgjd9bjxE8V2J-dwPyc',
-};
-
 // Setup of the slack bot (taken from https://slack.dev/bolt-js/deployments/aws-lambda)
 const awsLambdaReceiver = new AwsLambdaReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET!,
@@ -100,7 +96,7 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
     const channelId = channel?.id;
 
     if (!channelId) {
-      throw Error('feedback-management: Unknown channel Id');
+      throw new Error('feedback-management: Unknown channel Id');
     }
     await client.chat.delete({
       channel: channelId,
@@ -113,13 +109,12 @@ app.action<BlockAction<ButtonAction>>('delete_action', async ({ ack, body, clien
   }
 });
 
-// eslint-disable-next-line import/prefer-default-export
 export const handler: Handler = async (event, context, callback) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 404 };
   }
   try {
-    const { payload } = querystring.parse(event.body);
+    const { payload } = querystring.parse(event.body ?? '') as { payload: any };
     const data = JSON.parse(payload);
 
     if (data.callback_id === 'send_feedback') {

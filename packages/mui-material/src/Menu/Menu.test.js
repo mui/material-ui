@@ -333,6 +333,7 @@ describe('<Menu />', () => {
         {null}
         <span role="menuitem">hello</span>
         {/* testing conditional rendering */}
+        {/* eslint-disable-next-line no-constant-binary-expression */}
         {false && <span role="menuitem">hello</span>}
         {undefined}
         foo
