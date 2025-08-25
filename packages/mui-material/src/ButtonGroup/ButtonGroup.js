@@ -3,7 +3,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import composeClasses from '@mui/utils/composeClasses';
-import getValidReactChildren from '@mui/utils/getValidReactChildren';
 import capitalize from '../utils/capitalize';
 import { styled } from '../zero-styled';
 import memoTheme from '../utils/memoTheme';
@@ -11,7 +10,6 @@ import createSimplePaletteValueFilter from '../utils/createSimplePaletteValueFil
 import { useDefaultProps } from '../DefaultPropsProvider';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 import ButtonGroupContext from './ButtonGroupContext';
-import ButtonGroupButtonContext from './ButtonGroupButtonContext';
 
 const overridesResolver = (props, styles) => {
   const { ownerState } = props;
@@ -284,6 +282,43 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  // Live set of buttons, in mount/render order
+  const itemsRef = React.useRef(new Map()); // Map<symbol, { node, order }>
+  const orderCounter = React.useRef(0);
+  const [version, setVersion] = React.useState(0); // change-signal
+
+  const register = React.useCallback((node) => {
+    const id = Symbol('button-group-item');
+    orderCounter.current += 1;
+    itemsRef.current.set(id, { node, order: orderCounter.current });
+    setVersion((v) => v + 1);
+    return { id };
+  }, []);
+
+  const unregister = React.useCallback((h) => {
+    if (itemsRef.current.delete(h.id)) {
+      setVersion((v) => v + 1);
+    }
+  }, []);
+
+  const getPosition = React.useCallback((h) => {
+    const arr = Array.from(itemsRef.current.entries())
+      .map(([id, v]) => ({ id, ...v }))
+      .sort((a, b) => a.order - b.order);
+
+    if (arr.length <= 1) {
+      return 'only';
+    }
+    const idx = arr.findIndex((x) => x.id === h.id);
+    if (idx === 0) {
+      return 'first';
+    }
+    if (idx === arr.length - 1) {
+      return 'last';
+    }
+    return 'middle';
+  }, []);
+
   const context = React.useMemo(
     () => ({
       className: classes.grouped,
@@ -295,6 +330,10 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       fullWidth,
       size,
       variant,
+      register,
+      unregister,
+      getPosition,
+      version,
     }),
     [
       color,
@@ -306,27 +345,12 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       size,
       variant,
       classes.grouped,
+      register,
+      unregister,
+      getPosition,
+      version,
     ],
   );
-
-  const validChildren = getValidReactChildren(children);
-  const childrenCount = validChildren.length;
-
-  const getButtonPositionClassName = (index) => {
-    const isFirstButton = index === 0;
-    const isLastButton = index === childrenCount - 1;
-
-    if (isFirstButton && isLastButton) {
-      return '';
-    }
-    if (isFirstButton) {
-      return classes.firstButton;
-    }
-    if (isLastButton) {
-      return classes.lastButton;
-    }
-    return classes.middleButton;
-  };
 
   return (
     <ButtonGroupRoot
@@ -337,18 +361,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       ownerState={ownerState}
       {...other}
     >
-      <ButtonGroupContext.Provider value={context}>
-        {validChildren.map((child, index) => {
-          return (
-            <ButtonGroupButtonContext.Provider
-              key={index}
-              value={getButtonPositionClassName(index)}
-            >
-              {child}
-            </ButtonGroupButtonContext.Provider>
-          );
-        })}
-      </ButtonGroupContext.Provider>
+      <ButtonGroupContext.Provider value={context}>{children}</ButtonGroupContext.Provider>
     </ButtonGroupRoot>
   );
 });
