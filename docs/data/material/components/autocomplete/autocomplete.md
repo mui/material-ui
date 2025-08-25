@@ -181,7 +181,7 @@ import useAutocomplete from '@mui/material/useAutocomplete';
 
 ### Customized hook
 
-{{"demo": "CustomizedHook.js"}}
+{{"demo": "CustomizedHook.js", "defaultCodeOpen": false}}
 
 Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
 
