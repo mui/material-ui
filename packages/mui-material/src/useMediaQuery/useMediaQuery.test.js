@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   act,
   createRenderer,
-  screen,
   RenderCounter,
   strictModeDoubleLoggingSuppressed,
 } from '@mui/internal-test-utils';
@@ -72,7 +71,7 @@ describe('useMediaQuery', () => {
         return <span data-testid="matches">{`${matches}`}</span>;
       }
 
-      render(<Test />);
+      const screen = render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
     });
   });
@@ -108,7 +107,7 @@ describe('useMediaQuery', () => {
           );
         }
 
-        render(<Test />);
+        const screen = render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(1);
       });
@@ -126,7 +125,7 @@ describe('useMediaQuery', () => {
           );
         }
 
-        render(<Test />);
+        const screen = render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       });
@@ -147,7 +146,7 @@ describe('useMediaQuery', () => {
           );
         }
 
-        render(<Test />);
+        const screen = render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(1);
       });
@@ -166,7 +165,7 @@ describe('useMediaQuery', () => {
           );
         }
 
-        render(<Test />);
+        const screen = render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
       });
@@ -186,7 +185,7 @@ describe('useMediaQuery', () => {
           );
         }
 
-        render(<Test />);
+        const screen = render(<Test />);
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(1);
       });
@@ -206,7 +205,7 @@ describe('useMediaQuery', () => {
         }
 
         const { hydrate } = renderToString(<Test />);
-        hydrate();
+        const screen = hydrate();
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(2);
       });
@@ -227,7 +226,7 @@ describe('useMediaQuery', () => {
         }
 
         const { hydrate } = renderToString(<Test />);
-        hydrate();
+        const screen = hydrate();
         expect(screen.getByTestId('matches').textContent).to.equal('false');
         expect(getRenderCountRef.current()).to.equal(1);
       });
@@ -247,13 +246,13 @@ describe('useMediaQuery', () => {
         );
       }
 
-      const { unmount } = render(<Test />);
+      let screen = render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
 
-      unmount();
+      screen.unmount();
 
-      render(<Test />);
+      screen = render(<Test />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
     });
@@ -275,10 +274,10 @@ describe('useMediaQuery', () => {
         query: PropTypes.string.isRequired,
       };
 
-      const { setProps } = render(<Test query="(min-width:2000px)" />);
+      const screen = render(<Test query="(min-width:2000px)" />);
       expect(screen.getByTestId('matches').textContent).to.equal('false');
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 1 : 2);
-      setProps({ query: '(min-width:100px)' });
+      screen.setProps({ query: '(min-width:100px)' });
       expect(screen.getByTestId('matches').textContent).to.equal('true');
       expect(getRenderCountRef.current()).to.equal(usesUseSyncExternalStore ? 2 : 4);
     });
@@ -299,7 +298,7 @@ describe('useMediaQuery', () => {
         query: PropTypes.string.isRequired,
       };
 
-      render(<Test query={query} />);
+      const screen = render(<Test query={query} />);
 
       expect(getRenderCountRef.current()).to.equal(1);
       expect(screen.getByTestId('matches').textContent).to.equal('false');

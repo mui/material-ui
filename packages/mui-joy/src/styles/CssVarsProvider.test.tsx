@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { CssVarsProvider, useTheme, shouldSkipGeneratingVar } from '@mui/joy/styles';
 
 describe('[Joy] CssVarsProvider', () => {
@@ -11,7 +11,7 @@ describe('[Joy] CssVarsProvider', () => {
   beforeEach(() => {
     originalMatchmedia = window.matchMedia;
     // Create mocks of localStorage getItem and setItem functions
-    Object.defineProperty(global, 'localStorage', {
+    Object.defineProperty(globalThis, 'localStorage', {
       value: {
         getItem: (key: string) => storage[key],
         setItem: (key: string, value: string) => {
@@ -72,7 +72,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -317,7 +317,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -372,7 +372,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -400,7 +400,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,
@@ -424,7 +424,7 @@ describe('[Joy] CssVarsProvider', () => {
         );
       }
 
-      render(
+      const screen = render(
         <CssVarsProvider>
           <Vars />
         </CssVarsProvider>,

@@ -37,7 +37,7 @@ describe('<Tab />', () => {
   });
 
   it('should have a focusRipple', async function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       // JSDOM doesn't support :focus-visible
       this.skip();
     }
@@ -168,7 +168,7 @@ describe('<Tab />', () => {
   });
 
   it('should apply iconWrapper styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -196,7 +196,7 @@ describe('<Tab />', () => {
   });
 
   it('should apply icon styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -224,7 +224,7 @@ describe('<Tab />', () => {
   });
 
   it('icon styles should override iconWrapper styles from theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

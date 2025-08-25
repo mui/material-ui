@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  act,
-  createRenderer,
-  screen,
-  strictModeDoubleLoggingSuppressed,
-} from '@mui/internal-test-utils';
+import { act, createRenderer, strictModeDoubleLoggingSuppressed } from '@mui/internal-test-utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
@@ -83,8 +78,9 @@ describe('<Breadcrumbs />', () => {
   });
 
   it('should warn about invalid input', () => {
+    let screen;
     expect(() => {
-      render(
+      screen = render(
         <Breadcrumbs maxItems={3} itemsAfterCollapse={2} itemsBeforeCollapse={2}>
           <span>first</span>
           <span>second</span>
@@ -103,7 +99,7 @@ describe('<Breadcrumbs />', () => {
 
   describe('prop: slots and slotProps', () => {
     it('should show custom collapsed icon', () => {
-      render(
+      const screen = render(
         <Breadcrumbs
           slots={{
             CollapsedIcon: FirstPageIcon,
@@ -120,7 +116,7 @@ describe('<Breadcrumbs />', () => {
     });
 
     it('should apply slotProps to collapsed icon', () => {
-      render(
+      const screen = render(
         <Breadcrumbs
           maxItems={2}
           slotProps={{ collapsedIcon: { 'data-testid': 'collapsedIcon-test-label' } }}

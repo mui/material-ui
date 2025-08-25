@@ -1,4 +1,4 @@
-import { TestOptions } from '../../types';
+import { TestOptions } from '../types';
 
 const options: TestOptions = {
   injector: {

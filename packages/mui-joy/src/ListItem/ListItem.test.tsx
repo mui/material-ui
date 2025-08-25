@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList from '@mui/joy/MenuList';
 import List from '@mui/joy/List';
@@ -77,7 +77,7 @@ describe('Joy <ListItem />', () => {
 
   describe('Semantics - Menu', () => {
     it('should have role="none" if the nearest parent List is not implicitly a list', () => {
-      render(
+      const screen = render(
         <MenuList>
           <ListItem>Foo</ListItem>
         </MenuList>,
@@ -87,7 +87,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('should have role presentation for grouped options', () => {
-      render(
+      const screen = render(
         <MenuList>
           <List>
             <ListItem>Foo</ListItem>
@@ -101,7 +101,7 @@ describe('Joy <ListItem />', () => {
 
   describe('Semantics - List', () => {
     it('should render div automatically if parent List component is not `ol`, `ul`, `menu`', () => {
-      const { getByRole, getAllByRole } = render(
+      const screen = render(
         <div>
           <List component="div" role="group">
             <ListItem>item 1</ListItem>
@@ -118,8 +118,8 @@ describe('Joy <ListItem />', () => {
         </div>,
       );
 
-      expect(getByRole('group').firstChild).to.have.tagName('DIV');
-      const lists = getAllByRole('list');
+      expect(screen.getByRole('group').firstChild).to.have.tagName('DIV');
+      const lists = screen.getAllByRole('list');
       lists.forEach((list) => {
         expect(list.firstChild).to.have.tagName('LI');
       });
@@ -136,7 +136,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('should have role="none" if the nearest parent List has role="menu|menubar"', () => {
-      render(
+      const screen = render(
         <div>
           <List role="menu">
             <ListItem>Foo</ListItem>
@@ -152,7 +152,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('should have role="presentation" if the nearest parent List has role="group"', () => {
-      render(
+      const screen = render(
         <List role="group">
           <ListItem>Foo</ListItem>
         </List>,
@@ -162,7 +162,7 @@ describe('Joy <ListItem />', () => {
     });
 
     it('overridable role', () => {
-      render(
+      const screen = render(
         <List role="menu">
           <ListItem role="menuitem">Foo</ListItem>
         </List>,
