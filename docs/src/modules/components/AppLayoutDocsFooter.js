@@ -337,6 +337,9 @@ export default function AppLayoutDocsFooter(props) {
   const handleSubmitComment = (event) => {
     event.preventDefault();
     // Block more than one submission.
+    // Technically, setState() is async in React, so a ninja user could still
+    // manage to trigger a double form submission. Still, let's wait and see
+    // before adding the overhead of a React ref to solve this.
     if (!commentOpen) {
       return;
     }
