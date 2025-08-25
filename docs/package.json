@@ -127,7 +127,7 @@
     "@types/react-swipeable-views": "^0.13.6",
     "@types/react-transition-group": "^4.4.12",
     "@types/react-window": "^1.8.8",
-    "@types/stylis": "^4.2.0",
+    "@types/stylis": "^4.2.7",
     "chai": "^4.5.0",
     "cross-fetch": "^4.1.0",
     "gm": "^1.25.1",
