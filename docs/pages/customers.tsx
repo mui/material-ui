@@ -42,7 +42,6 @@ export default function Customers(props: InferGetStaticPropsType<typeof getStati
         >
           <CustomersSpotlight customers={props.customers} />
         </Box>
-        <Divider />
         <CustomersTestimonials />
         <Divider />
         <HeroEnd />

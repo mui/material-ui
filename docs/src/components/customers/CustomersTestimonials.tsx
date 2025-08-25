@@ -15,6 +15,8 @@ export default function CustomersTestimonials() {
         m: 0,
         p: 12,
         gap: 2,
+        maxWidth: '1350px',
+        mx: 'auto',
       }}
     >
       <SectionHeadline
