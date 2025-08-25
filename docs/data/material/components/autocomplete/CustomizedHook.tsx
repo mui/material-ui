@@ -1,6 +1,7 @@
 import * as React from 'react';
 import useAutocomplete, {
-  AutocompleteGetTagProps,
+  AutocompleteGetItemProps,
+  UseAutocompleteProps,
 } from '@mui/material/useAutocomplete';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -65,11 +66,11 @@ const InputWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-interface TagProps extends ReturnType<AutocompleteGetTagProps> {
+interface ItemProps extends ReturnType<AutocompleteGetItemProps<true>> {
   label: string;
 }
 
-function Tag(props: TagProps) {
+function Item(props: ItemProps) {
   const { label, onDelete, ...other } = props;
   return (
     <div {...other}>
@@ -79,7 +80,7 @@ function Tag(props: TagProps) {
   );
 }
 
-const StyledTag = styled(Tag)<TagProps>(({ theme }) => ({
+const StyledItem = styled(Item)<ItemProps>(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   height: '24px',
@@ -163,12 +164,14 @@ const Listbox = styled('ul')(({ theme }) => ({
   },
 }));
 
-export default function CustomizedHook() {
+function CustomAutocomplete<Value>(
+  props: UseAutocompleteProps<Value, true, false, false>,
+) {
   const {
     getRootProps,
     getInputLabelProps,
     getInputProps,
-    getTagProps,
+    getItemProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
@@ -176,11 +179,8 @@ export default function CustomizedHook() {
     focused,
     setAnchorEl,
   } = useAutocomplete({
-    id: 'customized-hook-demo',
-    defaultValue: [top100Films[1]],
     multiple: true,
-    options: top100Films,
-    getOptionLabel: (option) => option.title,
+    ...props,
   });
 
   return (
@@ -188,9 +188,15 @@ export default function CustomizedHook() {
       <div {...getRootProps()}>
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option: FilmOptionType, index: number) => {
-            const { key, ...tagProps } = getTagProps({ index });
-            return <StyledTag key={key} {...tagProps} label={option.title} />;
+          {value.map((option, index) => {
+            const { key, ...itemProps } = getItemProps({ index });
+            return (
+              <StyledItem
+                key={key}
+                {...itemProps}
+                label={props.getOptionLabel!(option)}
+              />
+            );
           })}
           <input {...getInputProps()} />
         </InputWrapper>
@@ -201,7 +207,7 @@ export default function CustomizedHook() {
             const { key, ...optionProps } = getOptionProps({ option, index });
             return (
               <li key={key} {...optionProps}>
-                <span>{option.title}</span>
+                <span>{props.getOptionLabel!(option)}</span>
                 <CheckIcon fontSize="small" />
               </li>
             );
@@ -209,6 +215,17 @@ export default function CustomizedHook() {
         </Listbox>
       ) : null}
     </Root>
+  );
+}
+
+export default function CustomizedHook() {
+  return (
+    <CustomAutocomplete<FilmOptionType>
+      id="customized-hook-demo"
+      defaultValue={[top100Films[1]]}
+      options={top100Films}
+      getOptionLabel={(option) => option.title}
+    />
   );
 }
 
