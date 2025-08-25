@@ -138,7 +138,7 @@
     "babel-loader": "^10.0.0",
     "babel-plugin-istanbul": "^7.0.0",
     "babel-plugin-module-resolver": "^5.0.2",
-    "chalk": "^5.5.0",
+    "chalk": "^5.6.0",
     "compression-webpack-plugin": "^11.1.0",
     "concurrently": "^9.2.0",
     "cpy-cli": "^6.0.0",
