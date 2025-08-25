@@ -46,7 +46,7 @@
     "@types/doctrine": "^0.0.9",
     "@types/lodash": "^4.17.20",
     "@types/node": "^20.19.11",
-    "@types/react": "^19.1.10",
+    "@types/react": "^19.1.11",
     "@types/uuid": "^10.0.0",
     "chai": "^4.5.0",
     "fast-glob": "^3.3.3",

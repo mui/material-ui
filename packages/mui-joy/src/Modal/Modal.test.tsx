@@ -395,7 +395,7 @@ describe('<Modal />', () => {
                 ? // @ts-ignore
                   ReactDOM.createPortal(
                     <FrameContext.Provider value={document!}>{children}</FrameContext.Provider>,
-                    document?.body!,
+                    document!.body,
                   )
                 : null}
             </React.Fragment>

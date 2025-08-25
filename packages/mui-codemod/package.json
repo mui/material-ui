@@ -13,7 +13,6 @@
   ],
   "scripts": {
     "test": "pnpm --workspace-root test:unit --project \"*:@mui/codemod\"",
-    "prebuild": "rimraf build",
     "build:copy-files": "code-infra copy-files codemod.js",
     "build": "code-infra build --bundle cjs --buildTypes false && pnpm build:copy-files",
     "release": "pnpm build && pnpm publish"
