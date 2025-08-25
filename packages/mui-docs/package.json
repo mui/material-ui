@@ -42,7 +42,7 @@
     "@types/node": "^20.19.11",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.1.11",
-    "next": "^15.4.6",
+    "next": "^15.5.0",
     "react": "^19.1.1"
   },
   "peerDependencies": {

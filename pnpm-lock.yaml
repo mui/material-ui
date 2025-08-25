@@ -89,8 +89,8 @@ importers:
         specifier: workspace:^
         version: link:packages/mui-utils/build
       '@next/eslint-plugin-next':
-        specifier: ^15.4.6
-        version: 15.4.6
+        specifier: ^15.5.0
+        version: 15.5.0
       '@octokit/rest':
         specifier: ^22.0.0
         version: 22.0.0
@@ -677,7 +677,7 @@ importers:
         specifier: ^5.3.6
         version: 5.3.6(@mui/material@packages+mui-material+build)(@types/react@19.1.11)(react@19.1.1)
       next:
-        specifier: ^15.4.6
+        specifier: ^15.5.0
         version: 15.5.0(@babel/core@7.28.3)(@opentelemetry/api@1.8.0)(@playwright/test@1.54.2)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       notistack:
         specifier: 3.0.2
@@ -1269,7 +1269,7 @@ importers:
         specifier: ^19.1.11
         version: 19.1.11
       next:
-        specifier: ^15.4.6
+        specifier: ^15.5.0
         version: 15.5.0(@babel/core@7.28.3)(@opentelemetry/api@1.8.0)(@playwright/test@1.54.2)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react:
         specifier: ^19.1.1
@@ -1438,7 +1438,7 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       next:
-        specifier: ^15.4.6
+        specifier: ^15.5.0
         version: 15.5.0(@babel/core@7.28.3)(@opentelemetry/api@1.8.0)(@playwright/test@1.54.2)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react:
         specifier: ^19.1.1
@@ -1636,7 +1636,7 @@ importers:
         specifier: ^19.1.11
         version: 19.1.11
       next:
-        specifier: ^15.4.6
+        specifier: ^15.5.0
         version: 15.5.0(@babel/core@7.28.3)(@opentelemetry/api@1.8.0)(@playwright/test@1.54.2)(babel-plugin-macros@3.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react:
         specifier: ^19.1.1
@@ -4442,8 +4442,8 @@ packages:
   '@next/env@15.5.0':
     resolution: {integrity: sha512-sDaprBAfzCQiOgo2pO+LhnV0Wt2wBgartjrr+dpcTORYVnnXD0gwhHhiiyIih9hQbq+JnbqH4odgcFWhqCGidw==}
 
-  '@next/eslint-plugin-next@15.4.6':
-    resolution: {integrity: sha512-2NOu3ln+BTcpnbIDuxx6MNq+pRrCyey4WSXGaJIyt0D2TYicHeO9QrUENNjcf673n3B1s7hsiV5xBYRCK1Q8kA==}
+  '@next/eslint-plugin-next@15.5.0':
+    resolution: {integrity: sha512-+k83U/fST66eQBjTltX2T9qUYd43ntAe+NZ5qeZVTQyTiFiHvTLtkpLKug4AnZAtuI/lwz5tl/4QDJymjVkybg==}
 
   '@next/swc-darwin-arm64@15.5.0':
     resolution: {integrity: sha512-v7Jj9iqC6enxIRBIScD/o0lH7QKvSxq2LM8UTyqJi+S2w2QzhMYjven4vgu/RzgsdtdbpkyCxBTzHl/gN5rTRg==}
@@ -15788,7 +15788,7 @@ snapshots:
       '@mui/internal-babel-plugin-display-name': 1.0.4-canary.6(@babel/core@7.28.3)(@babel/preset-react@7.27.1(@babel/core@7.28.3))
       '@mui/internal-babel-plugin-minify-errors': 2.0.8-canary.7(@babel/core@7.28.3)
       '@mui/internal-babel-plugin-resolve-imports': 2.0.7-canary.18(@babel/core@7.28.3)
-      '@next/eslint-plugin-next': 15.4.6
+      '@next/eslint-plugin-next': 15.5.0
       '@octokit/rest': 22.0.0
       '@pnpm/find-workspace-dir': 1000.1.2
       babel-plugin-optimize-clsx: 2.6.2
@@ -16388,7 +16388,7 @@ snapshots:
 
   '@next/env@15.5.0': {}
 
-  '@next/eslint-plugin-next@15.4.6':
+  '@next/eslint-plugin-next@15.5.0':
     dependencies:
       fast-glob: 3.3.1
 
