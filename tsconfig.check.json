@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/mui-icons-material/tsconfig.json" },
+    // { "path": "./packages/mui-icons-material/tsconfig.test.json" },
+    { "path": "./packages/mui-material/tsconfig.json" },
+    // { "path": "./packages/mui-material/tsconfig.test.json" },
+    { "path": "./packages/mui-utils/tsconfig.json" }
+    // { "path": "./packages/mui-utils/tsconfig.test.json" }
+  ]
+}
