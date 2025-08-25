@@ -112,6 +112,24 @@ const AlertRoot = styled(Paper, {
                   }),
             },
           })),
+        // WCAG override for `info` alert
+        {
+          props: { colorSeverity: 'info', variant: 'filled' },
+          style: {
+            backgroundColor: theme.palette.info.darker || '#01579b',
+            color: theme.palette.info.contrastText || '#ffffff',
+            fontWeight: theme.typography.fontWeightMedium,
+          },
+        },
+        // WCAG override for `info` alert
+        {
+          props: { colorSeverity: 'warning', variant: 'filled' },
+          style: {
+            backgroundColor: theme.palette.warning.darker || '#bf360c',
+            color: theme.palette.warning.contrastText || '#ffffff',
+            fontWeight: theme.typography.fontWeightMedium,
+          },
+        },
       ],
     };
   }),
