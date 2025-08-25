@@ -28,7 +28,6 @@
     "build": "code-infra build --skipTsc && pnpm build:copy-files",
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
-    "prebuild": "rimraf build",
     "release": "pnpm build && pnpm publish",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-private-theming/**/*.test.?(c|m)[jt]s?(x)'",
     "typescript": "tsc -p tsconfig.json"
@@ -42,7 +41,7 @@
     "@mui/internal-test-utils": "workspace:^",
     "@mui/types": "workspace:^",
     "@types/chai": "^4.3.20",
-    "@types/react": "^19.1.10",
+    "@types/react": "^19.1.11",
     "chai": "^4.5.0",
     "react": "^19.1.1"
   },
