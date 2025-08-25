@@ -337,7 +337,7 @@ export default function AppLayoutDocsFooter(props) {
   const handleSubmitComment = (event) => {
     event.preventDefault();
     // Block more than one submission.
-    if (commentOpen !== true) {
+    if (!commentOpen) {
       return;
     }
     setCommentOpen(false);
