@@ -96,7 +96,7 @@ function Spotlight({ posts, variant = 'primary' }: SpotlightProps) {
                 <Typography
                   variant="h2"
                   sx={{
-                    color: 'primary.light',
+                    color: 'text.primary',
                     textAlign: 'left',
                     lineHeight: 1.2,
                     fontSize: '1.2rem',
