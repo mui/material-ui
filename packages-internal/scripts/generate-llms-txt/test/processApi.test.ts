@@ -121,7 +121,7 @@ describe('processApi', () => {
       expect(result).to.include('- [Accordion](/material-ui/react-accordion/)');
     });
 
-    it('should add host to relative URLs in demos when host option is provided', () => {
+    it('should add origin to relative URLs in demos when origin option is provided', () => {
       const apiJson = {
         name: 'Accordion',
         imports: ["import Accordion from '@mui/material/Accordion';"],
@@ -129,13 +129,13 @@ describe('processApi', () => {
         demos: '<ul><li><a href="/material-ui/react-accordion/">Accordion</a></li></ul>',
       };
 
-      const result = processApiJson(apiJson, { host: 'https://mui.com' });
+      const result = processApiJson(apiJson, { origin: 'https://mui.com' });
 
       expect(result).to.include('## Demos');
       expect(result).to.include('- [Accordion](https://mui.com/material-ui/react-accordion/)');
     });
 
-    it('should not modify absolute URLs when host option is provided', () => {
+    it('should not modify absolute URLs when origin option is provided', () => {
       const apiJson = {
         name: 'Component',
         imports: ["import Component from '@mui/material/Component';"],
@@ -143,7 +143,7 @@ describe('processApi', () => {
         demos: '<ul><li><a href="https://example.com/demo">External Demo</a></li></ul>',
       };
 
-      const result = processApiJson(apiJson, { host: 'https://mui.com' });
+      const result = processApiJson(apiJson, { origin: 'https://mui.com' });
 
       expect(result).to.include('- [External Demo](https://example.com/demo)');
       expect(result).to.not.include('https://mui.com/https://example.com');
@@ -230,7 +230,7 @@ describe('processApi', () => {
       );
     });
 
-    it('should add host to inheritance URLs when host option is provided', () => {
+    it('should add origin to inheritance URLs when origin option is provided', () => {
       const apiJson = {
         name: 'Accordion',
         imports: ["import Accordion from '@mui/material/Accordion';"],
@@ -241,7 +241,7 @@ describe('processApi', () => {
         },
       };
 
-      const result = processApiJson(apiJson, { host: 'https://mui.com' });
+      const result = processApiJson(apiJson, { origin: 'https://mui.com' });
 
       expect(result).to.include('## Inheritance');
       expect(result).to.include('[Paper](https://mui.com/material-ui/api/paper/)');
@@ -269,7 +269,7 @@ describe('processApi', () => {
       );
     });
 
-    it('should add host to spread props inheritance URL when host option is provided', () => {
+    it('should add origin to spread props inheritance URL when origin option is provided', () => {
       const apiJson = {
         name: 'Component',
         imports: ["import Component from '@mui/material/Component';"],
@@ -281,7 +281,7 @@ describe('processApi', () => {
         },
       };
 
-      const result = processApiJson(apiJson, { host: 'https://mui.com' });
+      const result = processApiJson(apiJson, { origin: 'https://mui.com' });
 
       expect(result).to.include(
         'Any other props supplied will be provided to the root element ([Paper](https://mui.com/material-ui/api/paper/))',
@@ -415,7 +415,7 @@ describe('processApi', () => {
       expect(result).to.include('| test | `bool` | `true` | No |');
     });
 
-    it('should process API JSON file with host option', () => {
+    it('should process API JSON file with origin option', () => {
       const apiJson = {
         name: 'TestComponent',
         imports: ["import TestComponent from '@mui/material/TestComponent';"],
@@ -430,7 +430,7 @@ describe('processApi', () => {
       const filePath = path.join(tempDir, 'test-component-with-links.json');
       fs.writeFileSync(filePath, JSON.stringify(apiJson, null, 2));
 
-      const result = processApiFile(filePath, { host: 'https://example.com' });
+      const result = processApiFile(filePath, { origin: 'https://example.com' });
 
       expect(result).to.include('# TestComponent API');
       expect(result).to.include('[Test Demo](https://example.com/material-ui/react-test/)');

@@ -68,20 +68,20 @@ import findComponents from '@mui-internal/api-docs-builder/utils/findComponents'
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
 // Determine the host based on environment variables
-let HOST: string | undefined = 'https://mui.com';
+let ORIGIN: string | undefined = 'https://mui.com';
 
 if (process.env.CONTEXT === 'deploy-preview') {
   // ref: https://docs.netlify.com/build/configure-builds/environment-variables/
-  HOST = process.env.DEPLOY_PRIME_URL;
+  ORIGIN = process.env.DEPLOY_PRIME_URL;
 } else if (
   process.env.CONTEXT === 'branch-deploy' &&
   (process.env.HEAD === 'master' || process.env.HEAD === 'next' || process.env.HEAD?.match(/^v\d/))
 ) {
   if (process.env.HEAD === 'master') {
-    HOST = process.env.DEPLOY_PRIME_URL;
+    ORIGIN = process.env.DEPLOY_PRIME_URL;
   } else {
     // https://next.mui.com, https://v6.mui.com, etc.
-    HOST = `https://${process.env.HEAD.replace('.x', '')}.mui.com`;
+    ORIGIN = `https://${process.env.HEAD.replace('.x', '')}.mui.com`;
   }
 }
 
@@ -286,7 +286,7 @@ function processComponent(component: ComponentDocInfo): string | null {
 
       if (fs.existsSync(apiJsonPath)) {
         try {
-          const apiMarkdown = processApiFile(apiJsonPath, { host: HOST });
+          const apiMarkdown = processApiFile(apiJsonPath, { origin: ORIGIN });
           processedMarkdown += `\n\n${apiMarkdown}`;
         } catch (error) {
           console.error(`Warning: Could not process API for ${componentName}:`, error);
@@ -298,7 +298,7 @@ function processComponent(component: ComponentDocInfo): string | null {
   } else if (component.apiJsonPath) {
     // Fallback: Add API section for the primary component if no frontmatter components found
     try {
-      const apiMarkdown = processApiFile(component.apiJsonPath, { host: HOST });
+      const apiMarkdown = processApiFile(component.apiJsonPath, { origin: ORIGIN });
       processedMarkdown += `\n\n${apiMarkdown}`;
     } catch (error) {
       console.error(`Warning: Could not process API for ${component.name}:`, error);
@@ -325,7 +325,7 @@ function generateLlmsTxt(
   generatedFiles: GeneratedFile[],
   projectName: string,
   baseDir: string,
-  host?: string,
+  origin?: string,
 ): string {
   // Group files by category
   const groupedByCategory: Record<string, GeneratedFile[]> = {};
@@ -386,7 +386,7 @@ function generateLlmsTxt(
       const relativePath = file.outputPath.startsWith(`${baseDir}/`)
         ? `/${baseDir}/${file.outputPath.substring(baseDir.length + 1)}`
         : `/${file.outputPath}`;
-      const url = host ? `${host}${relativePath}` : relativePath;
+      const url = origin ? `${origin}${relativePath}` : relativePath;
       content += `- [${file.title}](${url})`;
       if (file.description) {
         content += `: ${file.description}`;
@@ -567,7 +567,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
         projectName = dirName.charAt(0).toUpperCase() + dirName.slice(1);
       }
 
-      const llmsContent = generateLlmsTxt(files, projectName, dirName, HOST);
+      const llmsContent = generateLlmsTxt(files, projectName, dirName, ORIGIN);
       const llmsPath = path.join(outputDir, dirName, 'llms.txt');
 
       // Ensure directory exists

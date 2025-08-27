@@ -57,7 +57,7 @@ interface ApiJson {
 }
 
 export interface ProcessApiOptions {
-  host?: string;
+  origin?: string;
 }
 
 /**
@@ -84,7 +84,7 @@ function formatPropTypeDescription(html: string): string {
 /**
  * Convert HTML to markdown
  */
-function htmlToMarkdown(html: string, host?: string): string {
+function htmlToMarkdown(html: string, origin?: string): string {
   // First pass: decode entities and handle inline elements
   let markdown = html
     // Decode HTML entities first
@@ -98,8 +98,8 @@ function htmlToMarkdown(html: string, host?: string): string {
     .replace(/<code>([^<]+)<\/code>/gi, '`$1`')
     // Convert <a> to markdown links
     .replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/gi, (match, href, text) => {
-      // Add host if provided and href is relative
-      const url = host && href.startsWith('/') ? new URL(href, host).href : href;
+      // Add origin if provided and href is relative
+      const url = origin && href.startsWith('/') ? new URL(href, origin).href : href;
       return `[${text}](${url})`;
     });
 
@@ -159,7 +159,7 @@ function formatPropType(prop: ApiProp): string {
 /**
  * Generate props table
  */
-function generatePropsTable(props: Record<string, ApiProp>, host?: string): string {
+function generatePropsTable(props: Record<string, ApiProp>, origin?: string): string {
   const propEntries = Object.entries(props);
   if (propEntries.length === 0) {
     return '';
@@ -177,7 +177,7 @@ function generatePropsTable(props: Record<string, ApiProp>, host?: string): stri
 
     let description = '';
     if (prop.deprecated && prop.deprecationInfo) {
-      description = `⚠️ ${htmlToMarkdown(prop.deprecationInfo, host)}`;
+      description = `⚠️ ${htmlToMarkdown(prop.deprecationInfo, origin)}`;
     } else if (prop.additionalInfo?.cssApi) {
       description = 'Override or extend the styles applied to the component.';
     } else if (prop.additionalInfo?.sx) {
@@ -194,7 +194,7 @@ function generatePropsTable(props: Record<string, ApiProp>, host?: string): stri
 /**
  * Generate slots table
  */
-function generateSlotsTable(slots: ApiSlot[], host?: string): string {
+function generateSlotsTable(slots: ApiSlot[], origin?: string): string {
   if (!slots || slots.length === 0) {
     return '';
   }
@@ -205,7 +205,7 @@ function generateSlotsTable(slots: ApiSlot[], host?: string): string {
 
   for (const slot of slots) {
     const className = slot.class ? `\`.${slot.class}\`` : '-';
-    const description = htmlToMarkdown(slot.description, host);
+    const description = htmlToMarkdown(slot.description, origin);
     table += `| ${slot.name} | \`${slot.default}\` | ${className} | ${description} |\n`;
   }
 
@@ -215,7 +215,7 @@ function generateSlotsTable(slots: ApiSlot[], host?: string): string {
 /**
  * Generate classes table
  */
-function generateClassesTable(classes: ApiClass[], host?: string): string {
+function generateClassesTable(classes: ApiClass[], origin?: string): string {
   if (!classes || classes.length === 0) {
     return '';
   }
@@ -228,7 +228,7 @@ function generateClassesTable(classes: ApiClass[], host?: string): string {
   for (const cls of classes) {
     const globalClass = cls.isGlobal ? `\`.${cls.className}\`` : '-';
     const ruleName = cls.isGlobal ? '-' : cls.key;
-    const description = htmlToMarkdown(cls.description, host);
+    const description = htmlToMarkdown(cls.description, origin);
     table += `| ${globalClass} | ${ruleName} | ${description} |\n`;
   }
 
@@ -240,14 +240,14 @@ function generateClassesTable(classes: ApiClass[], host?: string): string {
  */
 export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOptions = {}): string {
   const api: ApiJson = typeof apiJson === 'string' ? JSON.parse(apiJson) : apiJson;
-  const { host } = options;
+  const { origin } = options;
 
   let markdown = `# ${api.name} API\n\n`;
 
   // Add deprecation warning if applicable
   if (api.deprecated) {
     const warningText = api.deprecationInfo
-      ? htmlToMarkdown(api.deprecationInfo, host)
+      ? htmlToMarkdown(api.deprecationInfo, origin)
       : 'This component is deprecated. Consider using an alternative component.';
     markdown += `> ⚠️ **Warning**: ${warningText}\n\n`;
   }
@@ -257,7 +257,7 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
     markdown += '## Demos\n\n';
     markdown +=
       'For examples and details on the usage of this React component, visit the component demo pages:\n\n';
-    markdown += `${htmlToMarkdown(api.demos, host)}\n\n`;
+    markdown += `${htmlToMarkdown(api.demos, origin)}\n\n`;
   }
 
   // Add import section
@@ -267,7 +267,7 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
   markdown += '\n```\n\n';
 
   // Add props section
-  const propsTable = generatePropsTable(api.props, host);
+  const propsTable = generatePropsTable(api.props, origin);
   if (propsTable) {
     markdown += `${propsTable}\n`;
   }
@@ -282,8 +282,8 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
   // Add spread information
   if (api.spread) {
     const inheritanceUrl =
-      host && api.inheritance?.pathname.startsWith('/')
-        ? `${host}${api.inheritance.pathname}`
+      origin && api.inheritance?.pathname.startsWith('/')
+        ? `${origin}${api.inheritance.pathname}`
         : api.inheritance?.pathname;
     const spreadElement = api.inheritance
       ? `[${api.inheritance.component}](${inheritanceUrl})`
@@ -295,8 +295,8 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
   if (api.inheritance) {
     markdown += '## Inheritance\n\n';
     const inheritanceUrl =
-      host && api.inheritance.pathname.startsWith('/')
-        ? `${host}${api.inheritance.pathname}`
+      origin && api.inheritance.pathname.startsWith('/')
+        ? `${origin}${api.inheritance.pathname}`
         : api.inheritance.pathname;
     markdown += `While not explicitly documented above, the props of the [${api.inheritance.component}](${inheritanceUrl}) component are also available on ${api.name}.`;
     if (api.inheritance.component === 'Transition') {
@@ -313,13 +313,13 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
   }
 
   // Add slots section
-  const slotsTable = generateSlotsTable(api.slots || [], host);
+  const slotsTable = generateSlotsTable(api.slots || [], origin);
   if (slotsTable) {
     markdown += `${slotsTable}\n`;
   }
 
   // Add classes section
-  const classesTable = generateClassesTable(api.classes || [], host);
+  const classesTable = generateClassesTable(api.classes || [], origin);
   if (classesTable) {
     markdown += `${classesTable}\n`;
   }
