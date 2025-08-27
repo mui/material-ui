@@ -70,7 +70,7 @@ This example also demonstrates how to delay the enter transition.
 - **Forward the style**: To better support server rendering, Material UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
   The `style` prop must be applied to the DOM for the animation to work as expected.
 - **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs)
-- **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
+- **Single element**: The transition components require only one child element (`React.Fragment` is not permitted).
 
 ```jsx
 // The `props` object contains a `style` prop.
@@ -109,7 +109,7 @@ It should respect the following conditions:
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed.
-  These two callbacks allow to unmount the children when in a closed state and fully transitioned.
+  These two callbacks let you unmount the children when in a closed state and fully transitioned.
 
 For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](https://reactcommunity.org/react-transition-group/transition/).
 You can also visit the dedicated sections of some of the components:

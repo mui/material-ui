@@ -32,7 +32,7 @@ Tables are implemented using a collection of related components:
 - `<TableCell />`: A cell in a table. Can be used in `<TableRow />` . Renders as a `<th>` in `<TableHead />` and `<td>` in `<TableBody />` by default.
 - `<TableFooter />`: An optional container for the footer row(s) of the table. Renders as a `<tfoot>` by default.
 - `<TablePagination />`: A component that provides controls for paginating table data. See the ['Sorting & selecting' example](#sorting-amp-selecting) and ['Custom Table Pagination Action' example](#custom-pagination-actions).
-- `<TableSortLabel />`: A component used to display sorting controls for column headers, allowing users to sort data in ascending or descending order. See the ['Sorting & selecting' example](#sorting-amp-selecting).
+- `<TableSortLabel />`: A component used to display sorting controls for column headers, letting users sort data in ascending or descending order. See the ['Sorting & selecting' example](#sorting-amp-selecting).
 
 ## Basic table
 
@@ -90,7 +90,7 @@ You should either provide an array of:
 
 ### Custom pagination actions
 
-The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
+The `ActionsComponent` prop of the `TablePagination` component lets you implement custom actions.
 
 {{"demo": "CustomPaginationActionsTable.js", "bg": true}}
 

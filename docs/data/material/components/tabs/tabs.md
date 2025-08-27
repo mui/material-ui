@@ -12,7 +12,7 @@ githubSource: packages/mui-material/src/Tabs
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
-Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+Tabs organize high-level information so users can switch between related views, datasets, or other content.
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 

@@ -23,7 +23,7 @@ The Material UI Card component includes several complementary utility component
 - Card Header: an optional wrapper for the Card header.
 - Card Media: an optional container for displaying images, videos, etc.
 - Card Actions: an optional wrapper that groups a set of buttons.
-- Card Action Area: an optional wrapper that allows users to interact with the specified area of the Card.
+- Card Action Area: an optional wrapper that lets users interact with the specified area of the Card.
 
 {{"demo": "BasicCard.js", "bg": true}}
 
@@ -62,7 +62,7 @@ By default, we use the combination of a `<div>` element and a _background image_
 
 ## Primary action
 
-Often a card allows users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. 
+Often a card lets users interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior.
 The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
 
 {{"demo": "ActionAreaCard.js", "bg": true}}

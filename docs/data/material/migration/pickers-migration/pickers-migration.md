@@ -110,7 +110,8 @@ The state/value management logic for pickers was rewritten from scratch. Pickers
 
 ## No required mask
 
-Mask is no longer required. Also, if your provided mask is not valid, pickers will just ignore the mask, and allow arbitrary input.
+Mask is no longer required.
+Also, if your provided mask is not valid, the Pickers will just ignore the mask and let you enter arbitrary input.
 
 ```jsx
 <DatePicker

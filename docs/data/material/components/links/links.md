@@ -8,7 +8,7 @@ githubSource: packages/mui-material/src/Link
 
 # Links
 
-<p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
+<p class="description">The Link component lets you customize anchor elements with your theme colors and typography styles.</p>
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 

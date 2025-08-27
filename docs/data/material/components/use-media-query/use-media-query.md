@@ -7,7 +7,7 @@ githubSource: packages/mui-material/src/useMediaQuery
 
 # useMediaQuery
 
-<p class="description">This React hook listens for matches to a CSS media query. It allows the rendering of components based on whether the query matches or not.</p>
+<p class="description">The useMediaQuery React hook lets you conditionally render components based on CSS media queries.</p>
 
 Some of the key features:
 

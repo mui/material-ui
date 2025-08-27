@@ -294,7 +294,7 @@ To see how it can be done, take a look at the [`StyledEngineProvider` implementa
 ### ✅ Add adaptV4Theme helper
 
 The structure of the theme has changed in v5. You need to update its shape.
-For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
+For a smoother transition, the `adaptV4Theme` helper lets you iteratively upgrade some of the theme changes to the new theme structure.
 
 ```diff
 -import { createMuiTheme } from '@mui/material/styles';

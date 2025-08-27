@@ -548,7 +548,7 @@ Remove the `withMobileDialog` higher-order component.
 This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required.
 :::
 
-The hook API allows a simpler and more flexible solution:
+The hook API lets you create a simpler and more flexible solution:
 
 ```diff
 -import withMobileDialog from '@mui/material/withMobileDialog';

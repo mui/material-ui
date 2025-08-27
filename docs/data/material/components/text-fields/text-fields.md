@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/TextField
 
 <p class="description">Text Fields let users enter and edit text.</p>
 
-Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
+Text fields let users enter text into a UI, typically in forms and dialogs.
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
@@ -293,7 +293,7 @@ Make sure that the input is larger than the label to display correctly.
 :::warning
 We do not recommend using `type="number"` with a Text Field due to potential usability issues:
 
-- it allows certain non-numeric characters ('e', '+', '-', '.') and silently discards others
+- it lets certain non-numeric characters ('e', '+', '-', '.') through and silently discards others
 - the functionality of scrolling to increment/decrement the number can cause accidental and hard-to-notice changes
 - and more—see [Why the GOV.UK Design System team changed the input type for numbers](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) for a more detailed explanation of the limitations of `<input type="number">`
 

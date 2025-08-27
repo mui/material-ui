@@ -66,7 +66,7 @@ You can also swap out the transition, the next example uses `Slide`.
 
 ## Form dialogs
 
-Form dialogs allow users to fill out form fields within a dialog.
+Form dialogs let users fill out form fields within a dialog.
 For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
 
 {{"demo": "FormDialog.js"}}

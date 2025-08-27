@@ -10,7 +10,7 @@ githubSource: packages/mui-material/src/Button
 
 # Button
 
-<p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
+<p class="description">Buttons let users take actions, and make choices, with a single tap.</p>
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
@@ -94,7 +94,7 @@ Sometimes you might want to have icons for certain buttons to enhance the UX of 
 
 Icon buttons are commonly found in app bars and toolbars.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or
+Icons are also appropriate for toggle buttons that let you select a single choice or
 deselected, such as adding or removing a star to an item.
 
 {{"demo": "IconButtons.js"}}

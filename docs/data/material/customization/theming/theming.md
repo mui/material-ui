@@ -4,7 +4,8 @@
 
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
-Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+Themes let you apply a consistent tone to your app.
+Using a theme, you can customize all design aspects of your project to meet the specific needs of your business or brand.
 
 To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
 
@@ -67,7 +68,7 @@ declare module '@mui/material/styles' {
       danger: string;
     };
   }
-  // allow configuration using `createTheme()`
+  // configure using `createTheme()`
   interface ThemeOptions {
     status?: {
       danger?: string;

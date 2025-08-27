@@ -29,9 +29,8 @@ To get the best type experience with the types we recommend setting `"strict": t
 
 ## Handling `value` and event handlers
 
-Many components concerned with user input offer a `value` prop or event handlers
-which include the current `value`. In most situations that `value` is only handled
-within React which allows it be of any type, such as objects or arrays.
+Many components concerned with user input offer a `value` prop or event handlers which include the current `value`.
+In most situations that `value` is only handled within React so it can be of any type (such as an object or an array).
 
 However, that type cannot be verified at compile time in situations where it depends on the component's children, for example `Select` or `RadioGroup`.
 This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down.

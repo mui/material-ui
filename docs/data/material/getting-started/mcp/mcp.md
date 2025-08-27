@@ -130,7 +130,7 @@ If you're not able to connect, check the logs in the terminal where you ran the 
 
 If you've installed the MCP and enabled all the necessary settings but it's not being used when you ask questions, you might need to supply rules to your AI client to tell it to use the MCP.
 
-Most editors allow you to specify rules for AI assistants to follow.
+Most editors let you specify rules for AI assistants to follow.
 In VS Code, for instance, you can create a new rule at `.github/instructions/mui.md` and add the following:
 
 ```text

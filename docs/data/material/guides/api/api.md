@@ -1,6 +1,6 @@
 # API design approach
 
-<p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
+<p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite let us completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 > [@sebmarkbage](https://x.com/sebmarkbage/status/728433349337841665)
@@ -14,7 +14,7 @@ You may have noticed some inconsistency in the API regarding composing component
 To provide some transparency, we have been using the following rules when designing the API:
 
 1. Using the `children` prop is the idiomatic way to do composition with React.
-2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations.
+2. Sometimes we only need limited child composition, for instance when we don't need to let children have order permutations.
    In this case, providing explicit props makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` prop.
 3. API consistency matters.
 
@@ -58,7 +58,7 @@ to make the classes structure as simple as possible, while sufficient to impleme
   The lower the style specificity is, the simpler it is to override.
 - We increase the specificity for a variant modifier.
   We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.).
-  It allows much more control at the cost of more boilerplate.
+  It gives you much more control at the cost of more boilerplate.
   Hopefully, it's also more intuitive.
 
 ```js
@@ -89,7 +89,7 @@ Nested components inside a component have:
 ### Prop naming
 
 - **Boolean**
-  - The default value of a boolean prop should be `false`. This allows for better shorthand notation. Consider an example of an input that is enabled by default. How should you name the prop that controls this state? It should be called `disabled`:
+  - The default value of a boolean prop should be `false`. This lets you use better shorthand notation. Consider an example of an input that is enabled by default. How should you name the prop that controls this state? It should be called `disabled`:
 
     ```jsx
     ❌ <Input enabled={false} />

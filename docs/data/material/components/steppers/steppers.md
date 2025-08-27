@@ -54,7 +54,7 @@ Avoid using long step names in horizontal steppers.
 
 ### Linear
 
-A linear stepper allows the user to complete the steps in sequence.
+Linear steppers let users complete the steps in sequence.
 
 The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` prop. `Stepper` orientation is set using the `orientation` prop.
 
@@ -64,7 +64,7 @@ This example also shows the use of an optional step by placing the `optional` pr
 
 ### Non-linear
 
-Non-linear steppers allow the user to enter a multi-step flow at any point.
+Non-linear steppers let users enter a multi-step flow at any point.
 
 This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` prop.
 

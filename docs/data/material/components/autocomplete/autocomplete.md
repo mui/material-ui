@@ -13,7 +13,7 @@ githubSource: packages/mui-material/src/Autocomplete
 
 The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, for example a location field must contain a valid location name: [combo box](#combo-box).
+1. The value for the textbox must be chosen from a predefined set of permitted values, for example a location field must contain a valid location name: [combo box](#combo-box).
 2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, for example a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
 It's meant to be an improved version of the "react-select" and "downshift" packages.
@@ -22,7 +22,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 ## Combo box
 
-The value must be chosen from a predefined set of allowed values.
+The value must be chosen from a predefined set of permitted values.
 
 {{"demo": "ComboBox.js"}}
 
@@ -228,7 +228,7 @@ This demo has limited quotas to make API requests. When your quota exceeds, you 
 ## Single value rendering
 
 By default (when `multiple={false}`), the selected option is displayed as plain text inside the input.
-The `renderValue` prop allows you to customize how the selected value is rendered.
+The `renderValue` prop lets you customize how the selected value is rendered.
 This can be useful for adding custom styles, displaying additional information, or formatting the value differently.
 
 - The `getItemProps` getter provides props like `data-item-index`, `disabled`, `tabIndex` and others. These props should be spread onto the rendered component for proper accessibility.
@@ -271,7 +271,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ### Custom input
 
-The `renderInput` prop allows you to customize the rendered input.
+The `renderInput` prop lets you customize the rendered input.
 The first argument of this render prop contains props that you need to forward.
 Pay specific attention to the `ref` and `inputProps` keys.
 
