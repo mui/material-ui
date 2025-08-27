@@ -67,6 +67,12 @@ import replaceUrl from '@mui-internal/api-docs-builder/utils/replaceUrl';
 import findComponents from '@mui-internal/api-docs-builder/utils/findComponents';
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
+// Determine the host based on environment variables
+const HOST =
+  process.env.DEPLOY_ENV === 'production'
+    ? 'https://mui.com'
+    : process.env.NETLIFY_DEPLOY_URL || undefined;
+
 interface ComponentDocInfo {
   name: string;
   componentInfo: ComponentInfo;
@@ -268,7 +274,7 @@ function processComponent(component: ComponentDocInfo): string | null {
 
       if (fs.existsSync(apiJsonPath)) {
         try {
-          const apiMarkdown = processApiFile(apiJsonPath);
+          const apiMarkdown = processApiFile(apiJsonPath, { host: HOST });
           processedMarkdown += `\n\n${apiMarkdown}`;
         } catch (error) {
           console.error(`Warning: Could not process API for ${componentName}:`, error);
@@ -280,7 +286,7 @@ function processComponent(component: ComponentDocInfo): string | null {
   } else if (component.apiJsonPath) {
     // Fallback: Add API section for the primary component if no frontmatter components found
     try {
-      const apiMarkdown = processApiFile(component.apiJsonPath);
+      const apiMarkdown = processApiFile(component.apiJsonPath, { host: HOST });
       processedMarkdown += `\n\n${apiMarkdown}`;
     } catch (error) {
       console.error(`Warning: Could not process API for ${component.name}:`, error);
@@ -307,6 +313,7 @@ function generateLlmsTxt(
   generatedFiles: GeneratedFile[],
   projectName: string,
   baseDir: string,
+  host?: string,
 ): string {
   // Group files by category
   const groupedByCategory: Record<string, GeneratedFile[]> = {};
@@ -367,7 +374,8 @@ function generateLlmsTxt(
       const relativePath = file.outputPath.startsWith(`${baseDir}/`)
         ? `/${baseDir}/${file.outputPath.substring(baseDir.length + 1)}`
         : `/${file.outputPath}`;
-      content += `- [${file.title}](${relativePath})`;
+      const url = host ? `${host}${relativePath}` : relativePath;
+      content += `- [${file.title}](${url})`;
       if (file.description) {
         content += `: ${file.description}`;
       }
@@ -403,6 +411,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
   // Building LLMs docs...
   // Project settings: ${argv.projectSettings}
   // Output directory: ${outputDir}
+  // Host: ${host || 'not set (using relative paths)'}
   if (grep) {
     // Filter pattern: ${grep}
   }
@@ -546,7 +555,7 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
         projectName = dirName.charAt(0).toUpperCase() + dirName.slice(1);
       }
 
-      const llmsContent = generateLlmsTxt(files, projectName, dirName);
+      const llmsContent = generateLlmsTxt(files, projectName, dirName, HOST);
       const llmsPath = path.join(outputDir, dirName, 'llms.txt');
 
       // Ensure directory exists
