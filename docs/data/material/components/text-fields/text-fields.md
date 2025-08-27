@@ -207,7 +207,7 @@ import { useFormControl } from '@mui/material/FormControl';
 
 - `value.adornedStart` (_bool_): Indicate whether the child `Input` or `Select` component has a start adornment.
 - `value.setAdornedStart` (_func_): Setter function for `adornedStart` state value.
-- `value.color` (_string_): The theme color is being used, inherited from `FormControl` `color` prop .
+- `value.color` (_string_): The theme color is being used, inherited from `FormControl` `color` prop.
 - `value.disabled` (_bool_): Indicate whether the component is being displayed in a disabled state, inherited from `FormControl` `disabled` prop.
 - `value.error` (_bool_): Indicate whether the component is being displayed in an error state, inherited from `FormControl` `error` prop
 - `value.filled` (_bool_): Indicate whether input is filled

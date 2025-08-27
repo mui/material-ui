@@ -29,8 +29,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 ### Text button
 
-[Text buttons](https://m2.material.io/components/buttons#text-button)
-are typically used for less-pronounced actions, including those located: in dialogs, in cards.
+[Text buttons](https://m2.material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located in dialogs and in cards.
 In cards, text buttons help maintain an emphasis on card content.
 
 {{"demo": "TextButtons.js"}}

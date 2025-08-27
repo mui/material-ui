@@ -376,7 +376,7 @@ If you would like to prevent the default key handler behavior, you can set the e
 <Autocomplete
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
-      // Prevent's default 'Enter' behavior.
+      // Prevents default 'Enter' behavior.
       event.defaultMuiPrevented = true;
       // your handler code
     }

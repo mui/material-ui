@@ -138,8 +138,8 @@ This will make the entire dialog draggable.
 
 When dialogs become too long for the user's viewport or device, they scroll.
 
-- `scroll=paper` the content of the dialog scrolls within the paper element.
-- `scroll=body` the content of the dialog scrolls within the body element.
+- `scroll=paper`: the content of the dialog scrolls within the paper element.
+- `scroll=body`: the content of the dialog scrolls within the body element.
 
 Try the demo below to see what we mean:
 
