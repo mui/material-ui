@@ -191,7 +191,8 @@
   },
   "packageManager": "pnpm@10.15.0",
   "engines": {
-    "pnpm": "10.15.0"
+    "pnpm": "10.15.0",
+    "node": ">=22.18.0"
   },
   "resolutions": {
     "@babel/core": "^7.28.3",
