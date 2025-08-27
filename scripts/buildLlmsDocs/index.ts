@@ -420,14 +420,6 @@ async function buildLlmsDocs(argv: ArgumentsCamelCase<CommandOptions>): Promise<
     throw new Error(`Failed to load project settings from ${argv.projectSettings}: ${error}`);
   }
 
-  // Building LLMs docs...
-  // Project settings: ${argv.projectSettings}
-  // Output directory: ${outputDir}
-  // Host: ${host || 'not set (using relative paths)'}
-  if (grep) {
-    // Filter pattern: ${grep}
-  }
-
   // Find all components
   const components = await findComponentsToProcess(projectSettings, grep);
 
