@@ -3,7 +3,6 @@
   "version": "7.3.1",
   "author": "MUI Team",
   "description": "styled() API wrapper package for emotion.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -26,6 +25,7 @@
   },
   "scripts": {
     "build": "code-infra build --skipTsc && pnpm build:copy-files",
+    "build:tsdown": "tsdown && pnpm build:copy-files",
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
@@ -73,6 +73,6 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./*": "./src/*/index.js"
+    ".": "./src/index.js"
   }
 }

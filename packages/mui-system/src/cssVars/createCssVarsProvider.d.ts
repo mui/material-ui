@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InitColorSchemeScript from '../InitColorSchemeScript';
+import type InitColorSchemeScript from '../InitColorSchemeScript';
 import { Result } from './useCurrentColorScheme';
 import type { StorageManager } from './localStorageManager';
 
