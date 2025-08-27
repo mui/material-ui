@@ -281,9 +281,10 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
 
   // Add spread information
   if (api.spread) {
-    const inheritanceUrl = host && api.inheritance?.pathname.startsWith('/') 
-      ? `${host}${api.inheritance.pathname}` 
-      : api.inheritance?.pathname;
+    const inheritanceUrl =
+      host && api.inheritance?.pathname.startsWith('/')
+        ? `${host}${api.inheritance.pathname}`
+        : api.inheritance?.pathname;
     const spreadElement = api.inheritance
       ? `[${api.inheritance.component}](${inheritanceUrl})`
       : 'native element';
@@ -293,9 +294,10 @@ export function processApiJson(apiJson: ApiJson | string, options: ProcessApiOpt
   // Add inheritance section
   if (api.inheritance) {
     markdown += '## Inheritance\n\n';
-    const inheritanceUrl = host && api.inheritance.pathname.startsWith('/') 
-      ? `${host}${api.inheritance.pathname}` 
-      : api.inheritance.pathname;
+    const inheritanceUrl =
+      host && api.inheritance.pathname.startsWith('/')
+        ? `${host}${api.inheritance.pathname}`
+        : api.inheritance.pathname;
     markdown += `While not explicitly documented above, the props of the [${api.inheritance.component}](${inheritanceUrl}) component are also available on ${api.name}.`;
     if (api.inheritance.component === 'Transition') {
       markdown +=
