@@ -99,7 +99,7 @@ function htmlToMarkdown(html: string, host?: string): string {
     // Convert <a> to markdown links
     .replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/gi, (match, href, text) => {
       // Add host if provided and href is relative
-      const url = host && href.startsWith('/') ? `${host}${href}` : href;
+      const url = host && href.startsWith('/') ? new URL(href, host).href : href;
       return `[${text}](${url})`;
     });
 
