@@ -1,6 +1,6 @@
 // #region imports
 import * as ReactIs from 'react-is';
-/* eslint-disable import/no-duplicates */
+/* eslint-disable import-x/no-duplicates */
 import { Accordion as Accordion_core } from '@mui/material';
 import Accordion_core__pathImport from '@mui/material/Accordion';
 import { AccordionActions as AccordionActions_core } from '@mui/material';
@@ -313,7 +313,7 @@ import { getDisplayName as getDisplayName_utils } from '@mui/utils';
 import { HTMLElementType as HTMLElementType_utils } from '@mui/utils';
 import { ponyfillGlobal as ponyfillGlobal_utils } from '@mui/utils';
 import { refType as refType_utils } from '@mui/utils';
-/* eslint-enable import/no-duplicates */
+/* eslint-enable import-x/no-duplicates */
 // #endregion
 
 // #region usage

@@ -3,16 +3,16 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import MaterialUILayout from '../../Layout';
-import CircularColor from '../../../../../docs/data/material/components/progress/CircularColor.tsx';
-import CircularDeterminate from '../../../../../docs/data/material/components/progress/CircularDeterminate.tsx';
-import CircularIndeterminate from '../../../../../docs/data/material/components/progress/CircularIndeterminate.tsx';
-import CircularIntegration from '../../../../../docs/data/material/components/progress/CircularIntegration.tsx';
-import CircularUnderLoad from '../../../../../docs/data/material/components/progress/CircularUnderLoad.tsx';
-import CircularWithValueLabel from '../../../../../docs/data/material/components/progress/CircularWithValueLabel.tsx';
-import CustomizedProgressBars from '../../../../../docs/data/material/components/progress/CustomizedProgressBars.tsx';
-import DelayingAppearance from '../../../../../docs/data/material/components/progress/DelayingAppearance.tsx';
-import LinearColor from '../../../../../docs/data/material/components/progress/LinearColor.tsx';
-import LinearIndeterminate from '../../../../../docs/data/material/components/progress/LinearIndeterminate.tsx';
+import CircularColor from '../../../../../docs/data/material/components/progress/CircularColor';
+import CircularDeterminate from '../../../../../docs/data/material/components/progress/CircularDeterminate';
+import CircularIndeterminate from '../../../../../docs/data/material/components/progress/CircularIndeterminate';
+import CircularIntegration from '../../../../../docs/data/material/components/progress/CircularIntegration';
+import CircularUnderLoad from '../../../../../docs/data/material/components/progress/CircularUnderLoad';
+import CircularWithValueLabel from '../../../../../docs/data/material/components/progress/CircularWithValueLabel';
+import CustomizedProgressBars from '../../../../../docs/data/material/components/progress/CustomizedProgressBars';
+import DelayingAppearance from '../../../../../docs/data/material/components/progress/DelayingAppearance';
+import LinearColor from '../../../../../docs/data/material/components/progress/LinearColor';
+import LinearIndeterminate from '../../../../../docs/data/material/components/progress/LinearIndeterminate';
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (

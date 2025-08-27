@@ -1,11 +1,11 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import BasicModal from '../../../../../docs/data/material/components/modal/BasicModal.tsx';
-import KeepMountedModal from '../../../../../docs/data/material/components/modal/KeepMountedModal.tsx';
-import NestedModal from '../../../../../docs/data/material/components/modal/NestedModal.tsx';
-import ServerModal from '../../../../../docs/data/material/components/modal/ServerModal.tsx';
-import SpringModal from '../../../../../docs/data/material/components/modal/SpringModal.tsx';
-import TransitionsModal from '../../../../../docs/data/material/components/modal/TransitionsModal.tsx';
+import BasicModal from '../../../../../docs/data/material/components/modal/BasicModal';
+import KeepMountedModal from '../../../../../docs/data/material/components/modal/KeepMountedModal';
+import NestedModal from '../../../../../docs/data/material/components/modal/NestedModal';
+import ServerModal from '../../../../../docs/data/material/components/modal/ServerModal';
+import SpringModal from '../../../../../docs/data/material/components/modal/SpringModal';
+import TransitionsModal from '../../../../../docs/data/material/components/modal/TransitionsModal';
 
 export default function Modal() {
   return (

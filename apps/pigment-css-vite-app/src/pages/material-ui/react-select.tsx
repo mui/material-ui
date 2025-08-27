@@ -1,21 +1,21 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import BasicSelect from '../../../../../docs/data/material/components/selects/BasicSelect.tsx';
-import ControlledOpenSelect from '../../../../../docs/data/material/components/selects/ControlledOpenSelect.tsx';
-import CustomizedSelects from '../../../../../docs/data/material/components/selects/CustomizedSelects.tsx';
-import DialogSelect from '../../../../../docs/data/material/components/selects/DialogSelect.tsx';
-import GroupedSelect from '../../../../../docs/data/material/components/selects/GroupedSelect.tsx';
-import MultipleSelect from '../../../../../docs/data/material/components/selects/MultipleSelect.tsx';
-import MultipleSelectCheckmarks from '../../../../../docs/data/material/components/selects/MultipleSelectCheckmarks.tsx';
-import MultipleSelectChip from '../../../../../docs/data/material/components/selects/MultipleSelectChip.tsx';
-import MultipleSelectNative from '../../../../../docs/data/material/components/selects/MultipleSelectNative.tsx';
-import MultipleSelectPlaceholder from '../../../../../docs/data/material/components/selects/MultipleSelectPlaceholder.tsx';
-import NativeSelectDemo from '../../../../../docs/data/material/components/selects/NativeSelectDemo.tsx';
-import SelectAutoWidth from '../../../../../docs/data/material/components/selects/SelectAutoWidth.tsx';
-import SelectLabels from '../../../../../docs/data/material/components/selects/SelectLabels.tsx';
-import SelectOtherProps from '../../../../../docs/data/material/components/selects/SelectOtherProps.tsx';
-import SelectSmall from '../../../../../docs/data/material/components/selects/SelectSmall.tsx';
-import SelectVariants from '../../../../../docs/data/material/components/selects/SelectVariants.tsx';
+import BasicSelect from '../../../../../docs/data/material/components/selects/BasicSelect';
+import ControlledOpenSelect from '../../../../../docs/data/material/components/selects/ControlledOpenSelect';
+import CustomizedSelects from '../../../../../docs/data/material/components/selects/CustomizedSelects';
+import DialogSelect from '../../../../../docs/data/material/components/selects/DialogSelect';
+import GroupedSelect from '../../../../../docs/data/material/components/selects/GroupedSelect';
+import MultipleSelect from '../../../../../docs/data/material/components/selects/MultipleSelect';
+import MultipleSelectCheckmarks from '../../../../../docs/data/material/components/selects/MultipleSelectCheckmarks';
+import MultipleSelectChip from '../../../../../docs/data/material/components/selects/MultipleSelectChip';
+import MultipleSelectNative from '../../../../../docs/data/material/components/selects/MultipleSelectNative';
+import MultipleSelectPlaceholder from '../../../../../docs/data/material/components/selects/MultipleSelectPlaceholder';
+import NativeSelectDemo from '../../../../../docs/data/material/components/selects/NativeSelectDemo';
+import SelectAutoWidth from '../../../../../docs/data/material/components/selects/SelectAutoWidth';
+import SelectLabels from '../../../../../docs/data/material/components/selects/SelectLabels';
+import SelectOtherProps from '../../../../../docs/data/material/components/selects/SelectOtherProps';
+import SelectSmall from '../../../../../docs/data/material/components/selects/SelectSmall';
+import SelectVariants from '../../../../../docs/data/material/components/selects/SelectVariants';
 
 export default function Selects() {
   return (

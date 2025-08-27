@@ -1,14 +1,14 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import AccessibleBadges from '../../../../../docs/data/material/components/badges/AccessibleBadges.tsx';
-import BadgeMax from '../../../../../docs/data/material/components/badges/BadgeMax.tsx';
-import BadgeOverlap from '../../../../../docs/data/material/components/badges/BadgeOverlap.tsx';
-import BadgeVisibility from '../../../../../docs/data/material/components/badges/BadgeVisibility.tsx';
-import ColorBadge from '../../../../../docs/data/material/components/badges/ColorBadge.tsx';
-import CustomizedBadges from '../../../../../docs/data/material/components/badges/CustomizedBadges.tsx';
-import DotBadge from '../../../../../docs/data/material/components/badges/DotBadge.tsx';
-import ShowZeroBadge from '../../../../../docs/data/material/components/badges/ShowZeroBadge.tsx';
-import SimpleBadge from '../../../../../docs/data/material/components/badges/SimpleBadge.tsx';
+import AccessibleBadges from '../../../../../docs/data/material/components/badges/AccessibleBadges';
+import BadgeMax from '../../../../../docs/data/material/components/badges/BadgeMax';
+import BadgeOverlap from '../../../../../docs/data/material/components/badges/BadgeOverlap';
+import BadgeVisibility from '../../../../../docs/data/material/components/badges/BadgeVisibility';
+import ColorBadge from '../../../../../docs/data/material/components/badges/ColorBadge';
+import CustomizedBadges from '../../../../../docs/data/material/components/badges/CustomizedBadges';
+import DotBadge from '../../../../../docs/data/material/components/badges/DotBadge';
+import ShowZeroBadge from '../../../../../docs/data/material/components/badges/ShowZeroBadge';
+import SimpleBadge from '../../../../../docs/data/material/components/badges/SimpleBadge';
 
 export default function Badges() {
   return (

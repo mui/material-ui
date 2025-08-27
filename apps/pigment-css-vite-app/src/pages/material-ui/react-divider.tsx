@@ -1,12 +1,12 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import DividerText from '../../../../../docs/data/material/components/dividers/DividerText.tsx';
-import DividerVariants from '../../../../../docs/data/material/components/dividers/DividerVariants.tsx';
-import FlexDivider from '../../../../../docs/data/material/components/dividers/FlexDivider.tsx';
-import IntroDivider from '../../../../../docs/data/material/components/dividers/IntroDivider.tsx';
-import ListDividers from '../../../../../docs/data/material/components/dividers/ListDividers.tsx';
-import VerticalDividerMiddle from '../../../../../docs/data/material/components/dividers/VerticalDividerMiddle.tsx';
-import VerticalDividers from '../../../../../docs/data/material/components/dividers/VerticalDividers.tsx';
+import DividerText from '../../../../../docs/data/material/components/dividers/DividerText';
+import DividerVariants from '../../../../../docs/data/material/components/dividers/DividerVariants';
+import FlexDivider from '../../../../../docs/data/material/components/dividers/FlexDivider';
+import IntroDivider from '../../../../../docs/data/material/components/dividers/IntroDivider';
+import ListDividers from '../../../../../docs/data/material/components/dividers/ListDividers';
+import VerticalDividerMiddle from '../../../../../docs/data/material/components/dividers/VerticalDividerMiddle';
+import VerticalDividers from '../../../../../docs/data/material/components/dividers/VerticalDividers';
 
 export default function Dividers() {
   return (

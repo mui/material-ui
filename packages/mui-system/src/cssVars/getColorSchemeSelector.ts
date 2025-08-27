@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import-x/prefer-default-export */
 export function createGetColorSchemeSelector<T extends string>(
   selector: 'media' | 'class' | 'data' | string,
 ) {

@@ -21,7 +21,7 @@ interface FindPagesOptions {
  * The output is in the next.js format.
  * Each pathname is a route you can navigate to.
  */
-// eslint-disable-next-line import/prefer-default-export
+// eslint-disable-next-line import-x/prefer-default-export
 export function findPages(
   options: FindPagesOptions = {},
   directory: string = path.resolve(currentDirectory, '../../../pages'),

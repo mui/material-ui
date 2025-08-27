@@ -1,13 +1,13 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import BasicSwitches from '../../../../../docs/data/material/components/switches/BasicSwitches.tsx';
-import ColorSwitches from '../../../../../docs/data/material/components/switches/ColorSwitches.tsx';
-import ControlledSwitches from '../../../../../docs/data/material/components/switches/ControlledSwitches.tsx';
-import CustomizedSwitches from '../../../../../docs/data/material/components/switches/CustomizedSwitches.tsx';
-import FormControlLabelPosition from '../../../../../docs/data/material/components/switches/FormControlLabelPosition.tsx';
-import SwitchLabels from '../../../../../docs/data/material/components/switches/SwitchLabels.tsx';
-import SwitchesGroup from '../../../../../docs/data/material/components/switches/SwitchesGroup.tsx';
-import SwitchesSize from '../../../../../docs/data/material/components/switches/SwitchesSize.tsx';
+import BasicSwitches from '../../../../../docs/data/material/components/switches/BasicSwitches';
+import ColorSwitches from '../../../../../docs/data/material/components/switches/ColorSwitches';
+import ControlledSwitches from '../../../../../docs/data/material/components/switches/ControlledSwitches';
+import CustomizedSwitches from '../../../../../docs/data/material/components/switches/CustomizedSwitches';
+import FormControlLabelPosition from '../../../../../docs/data/material/components/switches/FormControlLabelPosition';
+import SwitchLabels from '../../../../../docs/data/material/components/switches/SwitchLabels';
+import SwitchesGroup from '../../../../../docs/data/material/components/switches/SwitchesGroup';
+import SwitchesSize from '../../../../../docs/data/material/components/switches/SwitchesSize';
 
 export default function Switches() {
   return (

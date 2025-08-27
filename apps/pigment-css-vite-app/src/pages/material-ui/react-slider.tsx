@@ -1,23 +1,23 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import ColorSlider from '../../../../../docs/data/material/components/slider/ColorSlider.tsx';
-import ContinuousSlider from '../../../../../docs/data/material/components/slider/ContinuousSlider.tsx';
-import CustomMarks from '../../../../../docs/data/material/components/slider/CustomMarks.tsx';
-import CustomizedSlider from '../../../../../docs/data/material/components/slider/CustomizedSlider.tsx';
-import DiscreteSlider from '../../../../../docs/data/material/components/slider/DiscreteSlider.tsx';
-import DiscreteSliderLabel from '../../../../../docs/data/material/components/slider/DiscreteSliderLabel.tsx';
-import DiscreteSliderMarks from '../../../../../docs/data/material/components/slider/DiscreteSliderMarks.tsx';
-import DiscreteSliderSteps from '../../../../../docs/data/material/components/slider/DiscreteSliderSteps.tsx';
-import DiscreteSliderValues from '../../../../../docs/data/material/components/slider/DiscreteSliderValues.tsx';
-import InputSlider from '../../../../../docs/data/material/components/slider/InputSlider.tsx';
-import MinimumDistanceSlider from '../../../../../docs/data/material/components/slider/MinimumDistanceSlider.tsx';
-import MusicPlayerSlider from '../../../../../docs/data/material/components/slider/MusicPlayerSlider.tsx';
-import NonLinearSlider from '../../../../../docs/data/material/components/slider/NonLinearSlider.tsx';
-import RangeSlider from '../../../../../docs/data/material/components/slider/RangeSlider.tsx';
-import SliderSizes from '../../../../../docs/data/material/components/slider/SliderSizes.tsx';
-import TrackFalseSlider from '../../../../../docs/data/material/components/slider/TrackFalseSlider.tsx';
-import TrackInvertedSlider from '../../../../../docs/data/material/components/slider/TrackInvertedSlider.tsx';
-import VerticalSlider from '../../../../../docs/data/material/components/slider/VerticalSlider.tsx';
+import ColorSlider from '../../../../../docs/data/material/components/slider/ColorSlider';
+import ContinuousSlider from '../../../../../docs/data/material/components/slider/ContinuousSlider';
+import CustomMarks from '../../../../../docs/data/material/components/slider/CustomMarks';
+import CustomizedSlider from '../../../../../docs/data/material/components/slider/CustomizedSlider';
+import DiscreteSlider from '../../../../../docs/data/material/components/slider/DiscreteSlider';
+import DiscreteSliderLabel from '../../../../../docs/data/material/components/slider/DiscreteSliderLabel';
+import DiscreteSliderMarks from '../../../../../docs/data/material/components/slider/DiscreteSliderMarks';
+import DiscreteSliderSteps from '../../../../../docs/data/material/components/slider/DiscreteSliderSteps';
+import DiscreteSliderValues from '../../../../../docs/data/material/components/slider/DiscreteSliderValues';
+import InputSlider from '../../../../../docs/data/material/components/slider/InputSlider';
+import MinimumDistanceSlider from '../../../../../docs/data/material/components/slider/MinimumDistanceSlider';
+import MusicPlayerSlider from '../../../../../docs/data/material/components/slider/MusicPlayerSlider';
+import NonLinearSlider from '../../../../../docs/data/material/components/slider/NonLinearSlider';
+import RangeSlider from '../../../../../docs/data/material/components/slider/RangeSlider';
+import SliderSizes from '../../../../../docs/data/material/components/slider/SliderSizes';
+import TrackFalseSlider from '../../../../../docs/data/material/components/slider/TrackFalseSlider';
+import TrackInvertedSlider from '../../../../../docs/data/material/components/slider/TrackInvertedSlider';
+import VerticalSlider from '../../../../../docs/data/material/components/slider/VerticalSlider';
 
 export default function Slider() {
   return (

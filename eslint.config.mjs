@@ -60,7 +60,7 @@ export default defineConfig(
       baseDirectory: dirname,
     }),
     rules: {
-      'import/prefer-default-export': 'error',
+      'import-x/prefer-default-export': 'error',
       'material-ui/straight-quotes': 'error',
       'no-restricted-imports': [
         'error',
@@ -176,7 +176,7 @@ export default defineConfig(
   {
     files: ['**/*.d.ts'],
     rules: {
-      'import/export': 'off', // Not sure why it doesn't work
+      'import-x/export': 'off', // Not sure why it doesn't work
     },
   },
   {
@@ -235,37 +235,37 @@ export default defineConfig(
     files: ['test/bundling/scripts/**/*.js'],
     rules: {
       // ES modules need extensions
-      'import/extensions': ['error', 'ignorePackages'],
+      'import-x/extensions': ['error', 'ignorePackages'],
     },
   },
   // Migrated config from packages/mui-icons-material/.eslintrc.js
   {
     files: ['packages/mui-icons-material/custom/**/*'],
     rules: {
-      'import/no-unresolved': 'off',
-      'import/extensions': 'off',
+      'import-x/no-unresolved': 'off',
+      'import-x/extensions': 'off',
     },
   },
   // Migrated config from packages/api-docs-builder/.eslintrc.js
   {
     files: ['packages/api-docs-builder/**/*'],
     rules: {
-      'import/prefer-default-export': 'off',
+      'import-x/prefer-default-export': 'off',
     },
   },
   // Migrated config from packages/api-docs-builder-core/.eslintrc.js
   {
     files: ['packages/api-docs-builder-core/**/*'],
     rules: {
-      'import/no-default-export': 'error',
-      'import/prefer-default-export': 'off',
+      'import-x/no-default-export': 'error',
+      'import-x/prefer-default-export': 'off',
     },
   },
   // Migrated config from apps/bare-next-app/.eslintrc.js
   {
     files: ['apps/**/*', 'examples/**/*'],
     rules: {
-      'import/no-relative-packages': 'off',
+      'import-x/no-relative-packages': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
     },
@@ -273,8 +273,8 @@ export default defineConfig(
   {
     files: ['examples/**/*'],
     rules: {
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
+      'import-x/extensions': 'off',
+      'import-x/no-unresolved': 'off',
       'no-console': 'off',
     },
   },
@@ -282,16 +282,16 @@ export default defineConfig(
     files: ['apps/pigment-css-vite-app/**/*'],
     rules: {
       'react/jsx-filename-extension': 'off',
-      'import/prefer-default-export': 'off',
+      'import-x/prefer-default-export': 'off',
     },
   },
   {
     files: ['apps/bare-next-app/**/*'],
     extends: [eslintPluginReact.configs.flat['jsx-runtime']],
     rules: {
-      'import/prefer-default-export': 'off',
-      'import/extensions': 'off',
-      'import/no-unresolved': 'off',
+      'import-x/prefer-default-export': 'off',
+      'import-x/extensions': 'off',
+      'import-x/no-unresolved': 'off',
       'react/no-unknown-property': ['error', { ignore: ['sx'] }],
     },
   },

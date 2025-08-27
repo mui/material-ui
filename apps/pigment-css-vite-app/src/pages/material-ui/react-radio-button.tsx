@@ -1,15 +1,15 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import ColorRadioButtons from '../../../../../docs/data/material/components/radio-buttons/ColorRadioButtons.tsx';
-import ControlledRadioButtonsGroup from '../../../../../docs/data/material/components/radio-buttons/ControlledRadioButtonsGroup.tsx';
-import CustomizedRadios from '../../../../../docs/data/material/components/radio-buttons/CustomizedRadios.tsx';
-import ErrorRadios from '../../../../../docs/data/material/components/radio-buttons/ErrorRadios.tsx';
-import FormControlLabelPlacement from '../../../../../docs/data/material/components/radio-buttons/FormControlLabelPlacement.tsx';
-import RadioButtonsComponent from '../../../../../docs/data/material/components/radio-buttons/RadioButtons.tsx';
-import RadioButtonsGroup from '../../../../../docs/data/material/components/radio-buttons/RadioButtonsGroup.tsx';
-import RowRadioButtonsGroup from '../../../../../docs/data/material/components/radio-buttons/RowRadioButtonsGroup.tsx';
-import SizeRadioButtons from '../../../../../docs/data/material/components/radio-buttons/SizeRadioButtons.tsx';
-import UseRadioGroup from '../../../../../docs/data/material/components/radio-buttons/UseRadioGroup.tsx';
+import ColorRadioButtons from '../../../../../docs/data/material/components/radio-buttons/ColorRadioButtons';
+import ControlledRadioButtonsGroup from '../../../../../docs/data/material/components/radio-buttons/ControlledRadioButtonsGroup';
+import CustomizedRadios from '../../../../../docs/data/material/components/radio-buttons/CustomizedRadios';
+import ErrorRadios from '../../../../../docs/data/material/components/radio-buttons/ErrorRadios';
+import FormControlLabelPlacement from '../../../../../docs/data/material/components/radio-buttons/FormControlLabelPlacement';
+import RadioButtonsComponent from '../../../../../docs/data/material/components/radio-buttons/RadioButtons';
+import RadioButtonsGroup from '../../../../../docs/data/material/components/radio-buttons/RadioButtonsGroup';
+import RowRadioButtonsGroup from '../../../../../docs/data/material/components/radio-buttons/RowRadioButtonsGroup';
+import SizeRadioButtons from '../../../../../docs/data/material/components/radio-buttons/SizeRadioButtons';
+import UseRadioGroup from '../../../../../docs/data/material/components/radio-buttons/UseRadioGroup';
 
 export default function RadioButtons() {
   return (

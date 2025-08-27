@@ -1,16 +1,16 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import BasicPagination from '../../../../../docs/data/material/components/pagination/BasicPagination.tsx';
-import CustomIcons from '../../../../../docs/data/material/components/pagination/CustomIcons.tsx';
-import PaginationButtons from '../../../../../docs/data/material/components/pagination/PaginationButtons.tsx';
-import PaginationControlled from '../../../../../docs/data/material/components/pagination/PaginationControlled.tsx';
-import PaginationLink from '../../../../../docs/data/material/components/pagination/PaginationLink.tsx';
-import PaginationOutlined from '../../../../../docs/data/material/components/pagination/PaginationOutlined.tsx';
-import PaginationRanges from '../../../../../docs/data/material/components/pagination/PaginationRanges.tsx';
-import PaginationRounded from '../../../../../docs/data/material/components/pagination/PaginationRounded.tsx';
-import PaginationSize from '../../../../../docs/data/material/components/pagination/PaginationSize.tsx';
-import TablePaginationDemo from '../../../../../docs/data/material/components/pagination/TablePaginationDemo.tsx';
-import UsePagination from '../../../../../docs/data/material/components/pagination/UsePagination.tsx';
+import BasicPagination from '../../../../../docs/data/material/components/pagination/BasicPagination';
+import CustomIcons from '../../../../../docs/data/material/components/pagination/CustomIcons';
+import PaginationButtons from '../../../../../docs/data/material/components/pagination/PaginationButtons';
+import PaginationControlled from '../../../../../docs/data/material/components/pagination/PaginationControlled';
+import PaginationLink from '../../../../../docs/data/material/components/pagination/PaginationLink';
+import PaginationOutlined from '../../../../../docs/data/material/components/pagination/PaginationOutlined';
+import PaginationRanges from '../../../../../docs/data/material/components/pagination/PaginationRanges';
+import PaginationRounded from '../../../../../docs/data/material/components/pagination/PaginationRounded';
+import PaginationSize from '../../../../../docs/data/material/components/pagination/PaginationSize';
+import TablePaginationDemo from '../../../../../docs/data/material/components/pagination/TablePaginationDemo';
+import UsePagination from '../../../../../docs/data/material/components/pagination/UsePagination';
 
 export default function Pagination() {
   return (

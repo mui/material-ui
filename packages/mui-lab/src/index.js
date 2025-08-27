@@ -1,5 +1,3 @@
-/* eslint-disable import/export */
-
 export { default as CalendarPicker } from './CalendarPicker';
 export * from './CalendarPicker';
 

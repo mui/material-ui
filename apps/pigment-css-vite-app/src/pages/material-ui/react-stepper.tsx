@@ -1,14 +1,14 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import CustomizedSteppers from '../../../../../docs/data/material/components/steppers/CustomizedSteppers.tsx';
-import DotsMobileStepper from '../../../../../docs/data/material/components/steppers/DotsMobileStepper.tsx';
-import HorizontalLinearAlternativeLabelStepper from '../../../../../docs/data/material/components/steppers/HorizontalLinearAlternativeLabelStepper.tsx';
-import HorizontalLinearStepper from '../../../../../docs/data/material/components/steppers/HorizontalLinearStepper.tsx';
-import HorizontalNonLinearStepper from '../../../../../docs/data/material/components/steppers/HorizontalNonLinearStepper.tsx';
-import HorizontalStepperWithError from '../../../../../docs/data/material/components/steppers/HorizontalStepperWithError.tsx';
-import ProgressMobileStepper from '../../../../../docs/data/material/components/steppers/ProgressMobileStepper.tsx';
-import TextMobileStepper from '../../../../../docs/data/material/components/steppers/TextMobileStepper.tsx';
-import VerticalLinearStepper from '../../../../../docs/data/material/components/steppers/VerticalLinearStepper.tsx';
+import CustomizedSteppers from '../../../../../docs/data/material/components/steppers/CustomizedSteppers';
+import DotsMobileStepper from '../../../../../docs/data/material/components/steppers/DotsMobileStepper';
+import HorizontalLinearAlternativeLabelStepper from '../../../../../docs/data/material/components/steppers/HorizontalLinearAlternativeLabelStepper';
+import HorizontalLinearStepper from '../../../../../docs/data/material/components/steppers/HorizontalLinearStepper';
+import HorizontalNonLinearStepper from '../../../../../docs/data/material/components/steppers/HorizontalNonLinearStepper';
+import HorizontalStepperWithError from '../../../../../docs/data/material/components/steppers/HorizontalStepperWithError';
+import ProgressMobileStepper from '../../../../../docs/data/material/components/steppers/ProgressMobileStepper';
+import TextMobileStepper from '../../../../../docs/data/material/components/steppers/TextMobileStepper';
+import VerticalLinearStepper from '../../../../../docs/data/material/components/steppers/VerticalLinearStepper';
 
 export default function Steppers() {
   return (
