@@ -12,7 +12,7 @@ const pages: MuiPage[] = [
       { pathname: '/material-ui/getting-started/usage' },
       { pathname: '/material-ui/getting-started/mcp', newFeature: true, title: 'MCP' },
       {
-        pathname: `${process.env.DEPLOY_ENV === 'production' ? 'https://mui.com' : process.env.NETLIFY_DEPLOY_URL}/material-ui/llms.txt`,
+        pathname: `${process.env.DEPLOY_ENV === 'production' ? 'https://mui.com' : process.env.NETLIFY_DEPLOY_URL || ''}/material-ui/llms.txt`,
         newFeature: true,
         title: 'llms.txt',
       },
