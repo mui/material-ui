@@ -98,7 +98,6 @@ function htmlToMarkdown(html: string, origin?: string): string {
     .replace(/<code>([^<]+)<\/code>/gi, '`$1`')
     // Convert <a> to markdown links
     .replace(/<a\s+href="([^"]+)">([^<]+)<\/a>/gi, (match, href, text) => {
-      // Add origin if provided and href is relative
       const url = origin && href.startsWith('/') ? new URL(href, origin).href : href;
       return `[${text}](${url})`;
     });
