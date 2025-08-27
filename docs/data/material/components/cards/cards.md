@@ -62,8 +62,8 @@ By default, we use the combination of a `<div>` element and a _background image_
 
 ## Primary action
 
-Often a card lets users interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior.
-The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
+Cards often let users interact with the entirety of their surface to trigger their main action, whether that's an expansion, a link to another screen, or some other behavior.
+You can specify the action area of a card by wrapping its contents in a `CardActionArea` component.
 
 {{"demo": "ActionAreaCard.js", "bg": true}}
 

@@ -20,7 +20,7 @@ githubSource: packages/mui-material/src/Rating
 ## Rating precision
 
 The rating can display any float number with the `value` prop.
-Use the `precision` prop to define the minimum increment value change permitted.
+Use the `precision` prop to define the minimum increment value change allowed.
 
 {{"demo": "HalfRating.js"}}
 

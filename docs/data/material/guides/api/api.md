@@ -1,6 +1,6 @@
 # API design approach
 
-<p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite let us completely rethink the component API.</p>
+<p class="description">We have learned a great deal regarding how Material UI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 > API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
 > [@sebmarkbage](https://x.com/sebmarkbage/status/728433349337841665)
@@ -14,7 +14,7 @@ You may have noticed some inconsistency in the API regarding composing component
 To provide some transparency, we have been using the following rules when designing the API:
 
 1. Using the `children` prop is the idiomatic way to do composition with React.
-2. Sometimes we only need limited child composition, for instance when we don't need to let children have order permutations.
+2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations.
    In this case, providing explicit props makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` prop.
 3. API consistency matters.
 
