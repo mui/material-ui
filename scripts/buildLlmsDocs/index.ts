@@ -71,13 +71,14 @@ import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMar
 let HOST: string | undefined = 'https://mui.com';
 
 if (process.env.CONTEXT === 'deploy-preview') {
-  HOST = `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`;
+  // ref: https://docs.netlify.com/build/configure-builds/environment-variables/
+  HOST = process.env.DEPLOY_PRIME_URL;
 } else if (
   process.env.CONTEXT === 'branch-deploy' &&
   (process.env.HEAD === 'master' || process.env.HEAD === 'next' || process.env.HEAD?.match(/^v\d/))
 ) {
   if (process.env.HEAD === 'master') {
-    HOST = `https://master--material-ui.netlify.app`;
+    HOST = process.env.DEPLOY_PRIME_URL;
   } else {
     // https://next.mui.com, https://v6.mui.com, etc.
     HOST = `https://${process.env.HEAD.replace('.x', '')}.mui.com`;
