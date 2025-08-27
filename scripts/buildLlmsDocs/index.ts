@@ -386,7 +386,7 @@ function generateLlmsTxt(
       const relativePath = file.outputPath.startsWith(`${baseDir}/`)
         ? `/${baseDir}/${file.outputPath.substring(baseDir.length + 1)}`
         : `/${file.outputPath}`;
-      const url = origin ? `${origin}${relativePath}` : relativePath;
+      const url = origin ? new URL(relativePath, origin).href : relativePath;
       content += `- [${file.title}](${url})`;
       if (file.description) {
         content += `: ${file.description}`;
