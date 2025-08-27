@@ -70,13 +70,18 @@ import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMar
 // Determine the host based on environment variables
 let HOST: string | undefined = 'https://mui.com';
 
-if (
-  process.env.CONTEXT === 'deploy-preview' ||
-  (process.env.CONTEXT === 'branch-deploy' && process.env.HEAD === 'master')
+if (process.env.CONTEXT === 'deploy-preview') {
+  HOST = `https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app`;
+} else if (
+  process.env.CONTEXT === 'branch-deploy' &&
+  (process.env.HEAD === 'master' || process.env.HEAD === 'next' || process.env.HEAD?.match(/^v\d/))
 ) {
-  HOST = process.env.DEPLOY_URL;
-} else if (process.env.CONTEXT === 'branch-deploy' && process.env.HEAD === 'next') {
-  HOST = 'https://next.mui.com';
+  if (process.env.HEAD === 'master') {
+    HOST = `https://master--material-ui.netlify.app`;
+  } else {
+    // https://next.mui.com, https://v6.mui.com, etc.
+    HOST = `https://${process.env.HEAD.replace('.x', '')}.mui.com`;
+  }
 }
 
 interface ComponentDocInfo {
