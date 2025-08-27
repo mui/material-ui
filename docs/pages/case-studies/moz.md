@@ -25,7 +25,7 @@ manualCard: true
 
 ## Overview
 
-Moz, a leader in SEO software and analytics, provides powerful tools for keyword research, site audits, and rank tracking.
+[Moz](https://moz.com/), a leader in SEO software and analytics, provides powerful tools for keyword research, site audits, and rank tracking.
 To handle large-scale keyword analysis, Moz required a robust UI solution capable of managing massive datasets efficiently.
 
 <span class="only-light-mode">

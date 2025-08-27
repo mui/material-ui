@@ -25,7 +25,7 @@ manualCard: true
 
 ## Overview
 
-John Deere is a global leader in agricultural, construction, and forestry machinery.
+[John Deere](https://www.deere.com/en/) is a global leader in agricultural, construction, and forestry machinery, as well as diesel engines and financial services, and is recognized globally for its innovation and quality in these sectors.
 With a strong emphasis on innovation, their teams build solutions that enhance efficiency and productivity across industries.
 
 <span class="only-light-mode">

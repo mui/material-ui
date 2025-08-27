@@ -16,12 +16,11 @@ manualCard: true
 
 ## Overview
 
-Delivery Hero's Partner Portal provides restaurant and local shop management solutions for the global food delivery market.
-Their platform equips vendors with the tools they need to manage operations efficiently, enhance customer experience, and optimize performance.
+[Delivery Hero](https://www.deliveryhero.com/) is a leading global local delivery platform, operating in around 70 countries and connecting customers with restaurants, shops, and essential services through fast, technology-driven delivery solutions. Their Partner Portal provides restaurant and vendors with tools to manage operations efficiently, enhance customer experience, and optimize performance.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
-  By leveraging the MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
+  By leveraging the MUI X Date Time Picker and Data Grid Pro, we have been able to provide our customers with cutting-edge, well-designed features in a shorter development time and with less effort.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
     – Ahmed Ibrahim, Senior Manager Software Engineering, Vendor Growth

@@ -25,7 +25,7 @@ manualCard: true
 
 ## Overview
 
-CGI is a global leader in IT and business consulting, providing innovative digital solutions across various industries.
+[CGI](https://www.cgi.com/) is a global leader in IT and business consulting, providing innovative digital solutions across various industries.
 Their Techyon project is dedicated to transforming the energy sector by integrating AI, machine learning, IoT, and cloud-based services to optimize internal operations and data flow.
 
 <span class="only-light-mode">

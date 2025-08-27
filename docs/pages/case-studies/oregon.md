@@ -25,8 +25,9 @@ manualCard: true
 
 ## Overview
 
-Oregon State University is developing Resource Insights, an application aimed at improving course planning and faculty assignment.
-The project replaces outdated Excel-based methods with a modern online system that balances course sections, faculty availability, and student demand.
+[Oregon State University](https://oregonstate.edu/) is a premier public land-grant research university located in Corvallis, Oregon, recognized for innovation, world-class research, and a diverse academic environment with strong community engagement and global impact.
+To improve their course planning and faculty assignment, they developed Resource Insights-an application, which balances course sections, faculty availability, and student demand.
+It replaced outdated Excel-based methods with a modern online system.
 The tool integrates with existing university systems to provide real-time enrollment data, eliminating manual data entry.
 
 <span class="only-light-mode">
