@@ -68,10 +68,16 @@ import findComponents from '@mui-internal/api-docs-builder/utils/findComponents'
 import findPagesMarkdown from '@mui-internal/api-docs-builder/utils/findPagesMarkdown';
 
 // Determine the host based on environment variables
-const HOST =
-  process.env.DEPLOY_ENV === 'production'
-    ? 'https://mui.com'
-    : process.env.NETLIFY_DEPLOY_URL || undefined;
+let HOST: string | undefined = 'https://mui.com';
+
+if (
+  process.env.CONTEXT === 'deploy-preview' ||
+  (process.env.CONTEXT === 'branch-deploy' && process.env.HEAD === 'master')
+) {
+  HOST = process.env.DEPLOY_URL;
+} else if (process.env.CONTEXT === 'branch-deploy' && process.env.HEAD === 'next') {
+  HOST = 'https://next.mui.com';
+}
 
 interface ComponentDocInfo {
   name: string;
