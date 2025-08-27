@@ -154,8 +154,7 @@ export * from './FormHelperText';
 export { default as FormLabel } from './FormLabel';
 export * from './FormLabel';
 
-export { default as GridLegacy } from './GridLegacy';
-export { GridLegacyProps, GridLegacyTypeMap } from './GridLegacy';
+export { default as GridLegacy, type GridLegacyProps, type GridLegacyTypeMap } from './GridLegacy';
 
 export { default as Grid } from './Grid';
 export * from './Grid';
