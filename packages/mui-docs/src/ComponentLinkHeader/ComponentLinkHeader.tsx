@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import Chip from '@mui/material/Chip';
 import Tooltip from '@mui/material/Tooltip';
 import ChatRounded from '@mui/icons-material/ChatRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import SvgIcon from '@mui/material/SvgIcon';
 import { styled } from '@mui/material/styles';
 import { MarkdownHeaders } from '@mui/internal-markdown';
 import SketchIcon from '../svgIcons/SketchIcon';
@@ -52,12 +54,46 @@ export function ComponentLinkHeader(props: ComponentLinkHeaderProps) {
     design,
   } = props;
   const t = useTranslate();
+  const router = useRouter();
 
   const packageName =
     headers.packageName ?? defaultPackageNames[headers.productId] ?? '@mui/material';
 
   return (
     <Root>
+      <li>
+        <Chip
+          clickable
+          role={undefined}
+          component="a"
+          size="small"
+          variant="outlined"
+          href={`${router.pathname}.md`}
+          icon={
+            <SvgIcon>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <title>Markdown</title>
+                <path
+                  d="M22.269 19.385H1.731a1.73 1.73 0 0 1-1.73-1.73V6.345a1.73 1.73 0 0 1 1.73-1.73h20.538a1.73 1.73 0 0 1 1.73 1.73v11.308a1.73 1.73 0 0 1-1.73 1.731zm-16.5-3.462v-4.5l2.308 2.885 2.307-2.885v4.5h2.308V8.078h-2.308l-2.307 2.885-2.308-2.885H3.461v7.847zM21.231 12h-2.308V8.077h-2.307V12h-2.308l3.461 4.039z"
+                  fill="currentColor"
+                />
+              </svg>
+            </SvgIcon>
+          }
+          data-ga-event-category="ComponentLinkHeader"
+          data-ga-event-action="click"
+          data-ga-event-label="Markdown"
+          data-ga-event-split="0.1"
+          label="View as Markdown"
+        />
+      </li>
       {headers.githubLabel ? (
         <li>
           <Chip
