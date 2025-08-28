@@ -24,8 +24,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
-    "build:tsdown": "tsdown && pnpm build:copy-files",
+    "build": "tsdown --logLevel warn && pnpm build:copy-files",
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",

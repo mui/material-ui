@@ -12,6 +12,5 @@
     "jsx": "react-jsx"
   },
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],
-  "references": [{ "path": "../mui-utils/tsconfig.build.json" }]
+  "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"]
 }

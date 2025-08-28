@@ -3,7 +3,6 @@
   "version": "7.3.1",
   "author": "MUI Team",
   "description": "A plugin for Material UI that provides RTL (right-to-left) support.",
-  "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
@@ -25,7 +24,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
+    "build": "tsdown --logLevel warn && pnpm build:copy-files",
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
@@ -58,5 +57,8 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }
