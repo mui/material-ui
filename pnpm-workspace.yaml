@@ -12,3 +12,5 @@ patchedDependencies:
 
 onlyBuiltDependencies:
   - '@vvago/vale'
+
+engineStrict: true
