@@ -34,6 +34,9 @@
     "access": "public",
     "directory": "build"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.28.3"
+  },
   "devDependencies": {
     "@mui/types": "workspace:*",
     "@types/react": "^19.1.11"
