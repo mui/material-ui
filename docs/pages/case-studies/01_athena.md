@@ -43,7 +43,7 @@ Olympus empowers organizations to unlock the full potential of their data and dr
   We started using MUI from the day one to provide wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Brendon Geils, Founder & CEO
+    – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
   </span>
 </blockquote>
 </span>
@@ -52,7 +52,7 @@ Olympus empowers organizations to unlock the full potential of their data and dr
   We started using MUI from the day one to provide wide range of UIs that support data workflows for enterprise teams. MUI X enabled faster iteration for building complex UI components like data grids while fitting seamlessly into our existing MUI-based infrastructure.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Brendon Geils, Founder & CEO
+    – <a href="https://www.linkedin.com/in/brendongeils/" target="_blank" rel="noopener">Brendon Geils</a>, Founder & CEO
   </span>
 </blockquote>
 </span>

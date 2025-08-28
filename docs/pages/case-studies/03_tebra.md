@@ -33,7 +33,7 @@ As their platform evolved over the years, they accumulated a mix of legacy techn
   The feature of searching in the grid is absolutely a killer for us... everything loads to the client the data sits in memory inside the grid and now you can search anything and the search is so fast and amazing.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #555; font-weight: 500;">
-    – Ronen Akiva, Senior Director of Engineering
+    – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank" rel="noopener">Ronen Akiva</a>, Senior Director of Engineering
   </span>
 </blockquote>
 </span>
@@ -42,7 +42,7 @@ As their platform evolved over the years, they accumulated a mix of legacy techn
   The feature of searching in the grid is absolutely a killer for us... everything loads to the client the data sits in memory inside the grid and now you can search anything and the search is so fast and amazing.
   <br>
   <span style="display: block; margin-top: 12px; font-size: 1rem; font-style: normal; color: #bbb; font-weight: 500;">
-    – Ronen Akiva, Senior Director of Engineering
+    – <a href="https://www.linkedin.com/in/ronen-akiva-2881303/" target="_blank" rel="noopener">Ronen Akiva</a>, Senior Director of Engineering
   </span>
 </blockquote>
 </span>
