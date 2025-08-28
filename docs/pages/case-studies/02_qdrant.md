@@ -25,9 +25,9 @@ manualCard: true
 
 ## Overview
 
-[Qdrant](https://qdrant.tech/) is a vector database company that helps enterprises make sense of their data through advanced search and analytics capabilities. As a fast-growing startup that recently secured funding, Qdrant needed to transition from an idea into a scalable, sustainable business.
+[Qdrant](https://qdrant.tech/) is an open-source vector database provider with 25k+ stars, and is used by many enterprises to make sense of their unstructured data through advanced search, recommendation and other AI capabilities.
 
-The company's frontend team uses Material-UI across all of their products, website and dashboards. After starting with MUI's open-source components, Qdrant recently upgraded to a perpetual Pro license to access advanced components like the **Date Range Picker** and plans to explore Data Grid and Charts components.
+After a US$ 30M Series-A round, Qdrant needed to transition from an idea into a scalable, sustainable business. The company's frontend team uses Material-UI across all of their products, website and dashboards. After starting with MUI's open-source components, Qdrant recently upgraded to a perpetual Pro license to access advanced components like the **Date Range Picker** and plans to explore Data Grid and Charts components.
 
 <span class="only-light-mode">
 <blockquote style="margin: 32px 0; padding: 24px 32px; background: #f5f5f7; border-left: 6px solid var(--muidocs-palette-primary-main); border-radius: 8px; font-size: 1.15rem; font-style: italic;">
@@ -85,7 +85,7 @@ The team now has a scalable foundation for further growth—with plans to incorp
 Qdrant's development team consistently praised MUI's developer experience.
 
 - The team highlighted MUI's comprehensive documentation, well-documented APIs, and clear migration guides as standout features that accelerated their implementation process. They liked how the components work immediately with minimal configuration.
-- The team also appreciated the official MCP server from MUI and that it had made them move fast. During the interview they were also introducted to MUI Chat, the latest AI product from MUI. Team agreed that customizing components now would be even simpler with MUI Chat.
+- The team also appreciated the official MCP server from MUI and that it had made them move fast. During the interview they were also introducted to MUI Chat, the latest AI product from MUI. Team agreed that customizing components now would be even faster with MUI Chat.
 - The team appreciated having multiple support channels available, including GitHub for technical issues, Zendesk for feature requests, and comprehensive online resources.
 
 The success of MUI at Qdrant demonstrates how the right component library can enable startups to focus on their core product innovation while maintaining professional, scalable user interfaces.
