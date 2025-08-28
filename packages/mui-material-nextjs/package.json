@@ -23,7 +23,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
+    "build": "tsdown --logLevel warn && pnpm build:copy-files",
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
@@ -70,9 +70,6 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./v13-pagesRouter": "./src/v13-pagesRouter/index.ts",
-    "./*": {
-      "mui-src": "./src/*/index.ts"
-    }
+    "./*": "./src/*/index.ts"
   }
 }

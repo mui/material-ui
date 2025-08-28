@@ -4,7 +4,6 @@
   "version": "7.0.0-beta.16",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -28,7 +27,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
+    "build": "tsdown --logLevel warn && pnpm build:copy-files",
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
@@ -88,6 +87,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./*": "./src/*/index.ts"
+    ".": "./src/index.ts",
+    "./*": "./src/*/index.{ts,js}"
   }
 }

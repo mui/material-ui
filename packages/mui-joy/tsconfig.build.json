@@ -7,8 +7,9 @@
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
-    "outDir": "build/esm",
-    "rootDir": "./src"
+    "outDir": "build",
+    "rootDir": "./src",
+    "jsx": "react-jsx"
   },
   "include": ["./src/**/*.ts*"],
   "exclude": ["src/**/*.spec.ts*", "src/**/*.test.ts*"],

@@ -7,8 +7,9 @@
     "declaration": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
-    "outDir": "build/esm",
+    "outDir": "build",
     "rootDir": "./src",
+    "jsx": "react-jsx",
     "tsBuildInfoFile": "build/tsconfig.build.tsbuildinfo"
   },
   "include": ["./types.d.ts", "src/**/*.ts*", "src/**/*.json"],

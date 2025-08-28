@@ -3,7 +3,6 @@
   "version": "7.3.1",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -25,7 +24,7 @@
     "url": "https://opencollective.com/mui-org"
   },
   "scripts": {
-    "build": "code-infra build && pnpm build:copy-files",
+    "build": "tsdown --logLevel warn && pnpm build:copy-files",
     "build:stable": "code-infra build --bundle esm --hasLargeFiles --skipPackageJson --buildTypes false --skipBundlePackageJson",
     "build:copy-files": "code-infra copy-files",
     "release": "pnpm build && pnpm publish",
@@ -86,6 +85,8 @@
     "node": ">=14.0.0"
   },
   "exports": {
-    "./*": "./src/*/index.ts"
+    ".": "./src/index.js",
+    "./memoTheme": "./src/memoTheme.ts",
+    "./*": "./src/*/index.{js,ts}"
   }
 }

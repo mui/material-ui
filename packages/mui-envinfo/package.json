@@ -3,7 +3,7 @@
   "version": "2.0.40",
   "author": "MUI Team",
   "description": "Logs info about the environment relevant to @mui/*.",
-  "bin": "./envinfo.js",
+  "bin": "./src/envinfo.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mui/material-ui.git",
@@ -16,7 +16,7 @@
   "homepage": "https://github.com/mui/material-ui/tree/HEAD/packages/mui-envinfo",
   "files": [],
   "scripts": {
-    "build": "code-infra build --bundle cjs --buildTypes false --skipBabelRuntimeCheck && pnpm build:copy-files",
+    "build": "tsdown --logLevel warn && pnpm build:copy-files",
     "build:copy-files": "code-infra copy-files"
   },
   "dependencies": {
@@ -29,5 +29,6 @@
   "publishConfig": {
     "access": "public",
     "directory": "build"
-  }
+  },
+  "exports": {}
 }
