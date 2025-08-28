@@ -1,2 +1,2 @@
 export { default } from './FocusTrap';
-export { FocusTrapProps as TrapFocusProps } from './FocusTrap.types';
+export type { FocusTrapProps as TrapFocusProps } from './FocusTrap.types';

@@ -1,4 +1,5 @@
 export { default } from './Popper';
-export * from './Popper';
-export * from './popperClasses';
-export { PopperPlacementType } from './BasePopper.types';
+export type * from './Popper';
+export { default as popperClasses } from './popperClasses';
+export type * from './popperClasses';
+export type { PopperPlacementType } from './BasePopper.types';

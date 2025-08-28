@@ -1,17 +1,14 @@
 import { DistributiveOmit } from '@mui/types';
 
 export { default as THEME_ID } from './identifier';
-export {
-  default as createTheme,
-  default as unstable_createMuiStrictModeTheme,
-  ThemeOptions,
-  Theme,
-  CssThemeVariables,
-} from './createTheme';
-export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
-export { Shadows } from './shadows';
-export { ZIndex } from './zIndex';
-export {
+export { default as createTheme } from './createTheme';
+export type { ThemeOptions, Theme, CssThemeVariables } from './createTheme';
+export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
+export { default as adaptV4Theme } from './adaptV4Theme';
+export type { DeprecatedThemeOptions } from './adaptV4Theme';
+export type { Shadows } from './shadows';
+export type { ZIndex } from './zIndex';
+export type {
   CommonColors,
   Palette,
   PaletteColor,
@@ -26,23 +23,16 @@ export {
 } from './createPalette';
 export { default as createColorScheme } from './createColorScheme';
 export { default as createStyles } from './createStyles';
-export {
+export type {
   TypographyVariants,
   TypographyVariantsOptions,
   TypographyStyle,
   TypographyVariant,
 } from './createTypography';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
-export {
-  Duration,
-  Easing,
-  Transitions,
-  TransitionsOptions,
-  duration,
-  easing,
-} from './createTransitions';
-export { Mixins, CSSProperties, MixinsOptions } from './createMixins';
-export {
+export type { Duration, Easing, Transitions, TransitionsOptions } from './createTransitions';
+export { duration, easing } from './createTransitions';
+export type {
   Direction,
   Breakpoint,
   BreakpointOverrides,
@@ -52,6 +42,11 @@ export {
   Interpolation,
   CSSInterpolation,
   CSSObject,
+  ColorFormat,
+  ColorObject,
+  SxProps,
+} from '@mui/system';
+export {
   css,
   keyframes,
   // color manipulators
@@ -66,24 +61,27 @@ export {
   alpha,
   darken,
   lighten,
-  ColorFormat,
-  ColorObject,
   StyledEngineProvider,
-  SxProps,
 } from '@mui/system';
 export { unstable_createBreakpoints } from '@mui/system/createBreakpoints';
 // TODO: Remove this function in v6.
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function experimental_sx(): any;
+export function experimental_sx() {
+  throw /* minify-error */ new Error(
+    'MUI: The `experimental_sx` has been moved to `theme.unstable_sx`.' +
+      'For more details, see https://github.com/mui/material-ui/pull/35150.',
+  );
+}
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
-export * from './useThemeProps';
+export type * from './useThemeProps';
 export { default as styled } from './styled';
-export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider';
-export { ComponentsProps, ComponentsPropsList } from './props';
-export { ComponentsVariants } from './variants';
-export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
-export { Components } from './components';
+export { default as ThemeProvider } from './ThemeProvider';
+export type { ThemeProviderProps } from './ThemeProvider';
+export type { ComponentsProps, ComponentsPropsList } from './props';
+export type { ComponentsVariants } from './variants';
+export type { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
+export type { Components } from './components';
 export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
@@ -112,9 +110,10 @@ export type StandardProps<
     style?: React.CSSProperties;
   };
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace PropTypes {
   // keeping the type structure for backwards compat
-  type Color = 'inherit' | 'primary' | 'secondary' | 'default';
+  export type Color = 'inherit' | 'primary' | 'secondary' | 'default';
 }
 
 export { default as makeStyles } from './makeStyles';
@@ -123,6 +122,7 @@ export { default as withTheme } from './withTheme';
 
 export * from './ThemeProviderWithVars';
 export type { StorageManager } from '@mui/system/cssVars';
+export { default as experimental_extendTheme } from './experimental_extendTheme'; // TODO: Remove in v7
 
 export { default as extendTheme } from './createThemeWithVars';
 
@@ -164,4 +164,6 @@ export { default as shouldSkipGeneratingVar } from './shouldSkipGeneratingVar';
 
 // Private methods for creating parts of the theme
 export { default as private_createTypography } from './createTypography';
+export type { Mixins, CSSProperties, MixinsOptions } from './createMixins';
+export { default as private_createMixins } from './createMixins';
 export { default as private_excludeVariablesFromRoot } from './excludeVariablesFromRoot';
