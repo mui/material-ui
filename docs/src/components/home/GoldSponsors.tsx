@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddRounded from '@mui/icons-material/AddRounded';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import BacklinkSponsor from 'docs/src/components/home/BacklinkSponsor';
 import { Link } from '@mui/docs/Link';
@@ -32,6 +33,7 @@ const GOLDs = [
     href: 'https://www.dialmycalls.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
+
 const BACKLINKs = [
   {
     name: 'Goread.io',
@@ -41,6 +43,11 @@ const BACKLINKs = [
   {
     name: 'Buzzoid',
     description: 'Instant delivery Instagram followers.',
+    href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Buzzoid',
+    description: 'Instant delivery YouTube Views.',
     href: 'https://buzzoid.com/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -67,6 +74,16 @@ const BACKLINKs = [
     name: 'Follower24',
     description: 'Social media success.',
     href: 'https://www.follower24.de/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'TikTokFame',
+    description: 'The ultimate TikTok growth platform.',
+    href: 'https://tiktokfame.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    name: 'Reputation Manage',
+    description: 'Instant Delivery Google Reviews.',
+    href: 'https://reputationmanage.co/?utm_source=mui.com&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -147,11 +164,11 @@ export default function GoldSponsors() {
           </Paper>
         </Grid>
       </Grid>
-      <div>
-        {BACKLINKs.map((item) => (
-          <BacklinkSponsor key={item.name} item={item} />
+      <Box sx={{ maxWidth: 1000, mt: { xs: 2, md: 3 } }}>
+        {BACKLINKs.map((item, index) => (
+          <BacklinkSponsor key={index} item={item} />
         ))}
-      </div>
+      </Box>
     </div>
   );
 }

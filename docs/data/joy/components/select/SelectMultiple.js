@@ -4,7 +4,7 @@ import Option from '@mui/joy/Option';
 
 export default function SelectMultiple() {
   const handleChange = (event, newValue) => {
-    console.log(`You have choosen "${newValue}"`);
+    console.log(`You have chosen "${newValue}"`);
   };
   return (
     <Select

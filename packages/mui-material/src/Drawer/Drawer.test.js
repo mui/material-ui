@@ -155,6 +155,44 @@ describe('<Drawer />', () => {
       });
     });
 
+    describe('accessibility', () => {
+      it('should have role="dialog" and aria-modal="true" when variant is temporary', () => {
+        render(
+          <Drawer open variant="temporary">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).to.have.attribute('role', 'dialog');
+        expect(paper).to.have.attribute('aria-modal', 'true');
+      });
+
+      it('should not have role="dialog" and aria-modal="true" when variant is permanent', () => {
+        render(
+          <Drawer variant="permanent">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).not.to.have.attribute('role');
+        expect(paper).not.to.have.attribute('aria-modal');
+      });
+
+      it('should not have role="dialog" and aria-modal="true" when variant is persistent', () => {
+        render(
+          <Drawer variant="persistent">
+            <div data-testid="child" />
+          </Drawer>,
+        );
+
+        const paper = document.querySelector(`.${classes.paper}`);
+        expect(paper).not.to.have.attribute('role');
+        expect(paper).not.to.have.attribute('aria-modal');
+      });
+    });
+
     it('should set the custom className for Modal when variant is temporary', () => {
       render(
         <Drawer className="woofDrawer" open variant="temporary">

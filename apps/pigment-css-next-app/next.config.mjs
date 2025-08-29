@@ -113,10 +113,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  devIndicators: {
-    buildActivity: true,
-    buildActivityPosition: 'bottom-right',
-  },
 };
 
 export default withPigment(nextConfig, pigmentOptions);

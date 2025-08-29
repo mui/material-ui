@@ -2,7 +2,7 @@
 productId: joy-ui
 title: React Drawer component
 components: Drawer, ModalClose, DialogContent
-githubLabel: 'component: drawer'
+githubLabel: 'scope: drawer'
 ---
 
 # Drawer
