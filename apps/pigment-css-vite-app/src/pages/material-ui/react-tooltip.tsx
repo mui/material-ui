@@ -1,21 +1,21 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import AccessibilityTooltips from '../../../../../docs/data/material/components/tooltips/AccessibilityTooltips.tsx';
-import AnchorElTooltips from '../../../../../docs/data/material/components/tooltips/AnchorElTooltips.tsx';
-import ArrowTooltips from '../../../../../docs/data/material/components/tooltips/ArrowTooltips.tsx';
-import BasicTooltip from '../../../../../docs/data/material/components/tooltips/BasicTooltip.tsx';
-import ControlledTooltips from '../../../../../docs/data/material/components/tooltips/ControlledTooltips.tsx';
-import CustomizedTooltips from '../../../../../docs/data/material/components/tooltips/CustomizedTooltips.tsx';
-import DelayTooltips from '../../../../../docs/data/material/components/tooltips/DelayTooltips.tsx';
-import DisabledTooltips from '../../../../../docs/data/material/components/tooltips/DisabledTooltips.tsx';
-import FollowCursorTooltips from '../../../../../docs/data/material/components/tooltips/FollowCursorTooltips.tsx';
-import NonInteractiveTooltips from '../../../../../docs/data/material/components/tooltips/NonInteractiveTooltips.tsx';
-import PositionedTooltips from '../../../../../docs/data/material/components/tooltips/PositionedTooltips.tsx';
-import TooltipMargin from '../../../../../docs/data/material/components/tooltips/TooltipMargin.tsx';
-import TooltipOffset from '../../../../../docs/data/material/components/tooltips/TooltipOffset.tsx';
-import TransitionsTooltips from '../../../../../docs/data/material/components/tooltips/TransitionsTooltips.tsx';
-import TriggersTooltips from '../../../../../docs/data/material/components/tooltips/TriggersTooltips.tsx';
-import VariableWidth from '../../../../../docs/data/material/components/tooltips/VariableWidth.tsx';
+import AccessibilityTooltips from '../../../../../docs/data/material/components/tooltips/AccessibilityTooltips';
+import AnchorElTooltips from '../../../../../docs/data/material/components/tooltips/AnchorElTooltips';
+import ArrowTooltips from '../../../../../docs/data/material/components/tooltips/ArrowTooltips';
+import BasicTooltip from '../../../../../docs/data/material/components/tooltips/BasicTooltip';
+import ControlledTooltips from '../../../../../docs/data/material/components/tooltips/ControlledTooltips';
+import CustomizedTooltips from '../../../../../docs/data/material/components/tooltips/CustomizedTooltips';
+import DelayTooltips from '../../../../../docs/data/material/components/tooltips/DelayTooltips';
+import DisabledTooltips from '../../../../../docs/data/material/components/tooltips/DisabledTooltips';
+import FollowCursorTooltips from '../../../../../docs/data/material/components/tooltips/FollowCursorTooltips';
+import NonInteractiveTooltips from '../../../../../docs/data/material/components/tooltips/NonInteractiveTooltips';
+import PositionedTooltips from '../../../../../docs/data/material/components/tooltips/PositionedTooltips';
+import TooltipMargin from '../../../../../docs/data/material/components/tooltips/TooltipMargin';
+import TooltipOffset from '../../../../../docs/data/material/components/tooltips/TooltipOffset';
+import TransitionsTooltips from '../../../../../docs/data/material/components/tooltips/TransitionsTooltips';
+import TriggersTooltips from '../../../../../docs/data/material/components/tooltips/TriggersTooltips';
+import VariableWidth from '../../../../../docs/data/material/components/tooltips/VariableWidth';
 
 export default function Tooltips() {
   return (

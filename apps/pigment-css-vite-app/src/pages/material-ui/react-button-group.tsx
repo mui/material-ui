@@ -1,12 +1,12 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import BasicButtonGroup from '../../../../../docs/data/material/components/button-group/BasicButtonGroup.tsx';
-import DisableElevation from '../../../../../docs/data/material/components/button-group/DisableElevation.tsx';
-import GroupOrientation from '../../../../../docs/data/material/components/button-group/GroupOrientation.tsx';
-import GroupSizesColors from '../../../../../docs/data/material/components/button-group/GroupSizesColors.tsx';
-import LoadingButtonGroup from '../../../../../docs/data/material/components/button-group/LoadingButtonGroup.tsx';
-import SplitButton from '../../../../../docs/data/material/components/button-group/SplitButton.tsx';
-import VariantButtonGroup from '../../../../../docs/data/material/components/button-group/VariantButtonGroup.tsx';
+import BasicButtonGroup from '../../../../../docs/data/material/components/button-group/BasicButtonGroup';
+import DisableElevation from '../../../../../docs/data/material/components/button-group/DisableElevation';
+import GroupOrientation from '../../../../../docs/data/material/components/button-group/GroupOrientation';
+import GroupSizesColors from '../../../../../docs/data/material/components/button-group/GroupSizesColors';
+import LoadingButtonGroup from '../../../../../docs/data/material/components/button-group/LoadingButtonGroup';
+import SplitButton from '../../../../../docs/data/material/components/button-group/SplitButton';
+import VariantButtonGroup from '../../../../../docs/data/material/components/button-group/VariantButtonGroup';
 
 export default function ButtonGroup() {
   return (

@@ -1,24 +1,24 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import AccessibleTabs1 from '../../../../../docs/data/material/components/tabs/AccessibleTabs1.tsx';
-import AccessibleTabs2 from '../../../../../docs/data/material/components/tabs/AccessibleTabs2.tsx';
-import BasicTabs from '../../../../../docs/data/material/components/tabs/BasicTabs.tsx';
-import CenteredTabs from '../../../../../docs/data/material/components/tabs/CenteredTabs.tsx';
-import ColorTabs from '../../../../../docs/data/material/components/tabs/ColorTabs.tsx';
-import CustomizedTabs from '../../../../../docs/data/material/components/tabs/CustomizedTabs.tsx';
-import DisabledTabs from '../../../../../docs/data/material/components/tabs/DisabledTabs.tsx';
-import FullWidthTabs from '../../../../../docs/data/material/components/tabs/FullWidthTabs.tsx';
-import IconLabelTabs from '../../../../../docs/data/material/components/tabs/IconLabelTabs.tsx';
-import IconPositionTabs from '../../../../../docs/data/material/components/tabs/IconPositionTabs.tsx';
-import IconTabs from '../../../../../docs/data/material/components/tabs/IconTabs.tsx';
-import LabTabs from '../../../../../docs/data/material/components/tabs/LabTabs.tsx';
-import NavTabs from '../../../../../docs/data/material/components/tabs/NavTabs.tsx';
-import ScrollableTabsButtonAuto from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonAuto.tsx';
-import ScrollableTabsButtonForce from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonForce.tsx';
-import ScrollableTabsButtonPrevent from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonPrevent.tsx';
-import ScrollableTabsButtonVisible from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonVisible.tsx';
-import TabsWrappedLabel from '../../../../../docs/data/material/components/tabs/TabsWrappedLabel.tsx';
-import VerticalTabs from '../../../../../docs/data/material/components/tabs/VerticalTabs.tsx';
+import AccessibleTabs1 from '../../../../../docs/data/material/components/tabs/AccessibleTabs1';
+import AccessibleTabs2 from '../../../../../docs/data/material/components/tabs/AccessibleTabs2';
+import BasicTabs from '../../../../../docs/data/material/components/tabs/BasicTabs';
+import CenteredTabs from '../../../../../docs/data/material/components/tabs/CenteredTabs';
+import ColorTabs from '../../../../../docs/data/material/components/tabs/ColorTabs';
+import CustomizedTabs from '../../../../../docs/data/material/components/tabs/CustomizedTabs';
+import DisabledTabs from '../../../../../docs/data/material/components/tabs/DisabledTabs';
+import FullWidthTabs from '../../../../../docs/data/material/components/tabs/FullWidthTabs';
+import IconLabelTabs from '../../../../../docs/data/material/components/tabs/IconLabelTabs';
+import IconPositionTabs from '../../../../../docs/data/material/components/tabs/IconPositionTabs';
+import IconTabs from '../../../../../docs/data/material/components/tabs/IconTabs';
+import LabTabs from '../../../../../docs/data/material/components/tabs/LabTabs';
+import NavTabs from '../../../../../docs/data/material/components/tabs/NavTabs';
+import ScrollableTabsButtonAuto from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonAuto';
+import ScrollableTabsButtonForce from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonForce';
+import ScrollableTabsButtonPrevent from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonPrevent';
+import ScrollableTabsButtonVisible from '../../../../../docs/data/material/components/tabs/ScrollableTabsButtonVisible';
+import TabsWrappedLabel from '../../../../../docs/data/material/components/tabs/TabsWrappedLabel';
+import VerticalTabs from '../../../../../docs/data/material/components/tabs/VerticalTabs';
 
 export default function Tabs() {
   return (

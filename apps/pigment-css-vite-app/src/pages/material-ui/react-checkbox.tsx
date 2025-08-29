@@ -1,15 +1,15 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import CheckboxLabels from '../../../../../docs/data/material/components/checkboxes/CheckboxLabels.tsx';
-import CheckboxesComponent from '../../../../../docs/data/material/components/checkboxes/Checkboxes.tsx';
-import CheckboxesGroup from '../../../../../docs/data/material/components/checkboxes/CheckboxesGroup.tsx';
-import ColorCheckboxes from '../../../../../docs/data/material/components/checkboxes/ColorCheckboxes.tsx';
-import ControlledCheckbox from '../../../../../docs/data/material/components/checkboxes/ControlledCheckbox.tsx';
-import CustomizedCheckbox from '../../../../../docs/data/material/components/checkboxes/CustomizedCheckbox.tsx';
-import FormControlLabelPosition from '../../../../../docs/data/material/components/checkboxes/FormControlLabelPosition.tsx';
-import IconCheckboxes from '../../../../../docs/data/material/components/checkboxes/IconCheckboxes.tsx';
-import IndeterminateCheckbox from '../../../../../docs/data/material/components/checkboxes/IndeterminateCheckbox.tsx';
-import SizeCheckboxes from '../../../../../docs/data/material/components/checkboxes/SizeCheckboxes.tsx';
+import CheckboxLabels from '../../../../../docs/data/material/components/checkboxes/CheckboxLabels';
+import CheckboxesComponent from '../../../../../docs/data/material/components/checkboxes/Checkboxes';
+import CheckboxesGroup from '../../../../../docs/data/material/components/checkboxes/CheckboxesGroup';
+import ColorCheckboxes from '../../../../../docs/data/material/components/checkboxes/ColorCheckboxes';
+import ControlledCheckbox from '../../../../../docs/data/material/components/checkboxes/ControlledCheckbox';
+import CustomizedCheckbox from '../../../../../docs/data/material/components/checkboxes/CustomizedCheckbox';
+import FormControlLabelPosition from '../../../../../docs/data/material/components/checkboxes/FormControlLabelPosition';
+import IconCheckboxes from '../../../../../docs/data/material/components/checkboxes/IconCheckboxes';
+import IndeterminateCheckbox from '../../../../../docs/data/material/components/checkboxes/IndeterminateCheckbox';
+import SizeCheckboxes from '../../../../../docs/data/material/components/checkboxes/SizeCheckboxes';
 
 export default function Checkboxes() {
   return (

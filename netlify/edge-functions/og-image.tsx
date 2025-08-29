@@ -1,5 +1,5 @@
 import React from 'https://esm.sh/react@18.2.0';
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import-x/extensions
 import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts';
 
 const MAX_AUTHORS = 5;

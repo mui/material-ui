@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import fetch from 'cross-fetch';
 import * as mui from '@mui/icons-material';
 import synonyms from 'docs/data/material/components/material-icons/synonyms';
-// eslint-disable-next-line import/no-relative-packages
+// eslint-disable-next-line import-x/no-relative-packages
 import myDestRewriter from '../../packages/mui-icons-material/renameFilters/material-design-icons';
 
 function not(a, b) {

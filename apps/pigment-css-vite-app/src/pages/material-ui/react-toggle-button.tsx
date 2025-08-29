@@ -1,13 +1,13 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import ColorToggleButton from '../../../../../docs/data/material/components/toggle-button/ColorToggleButton.tsx';
-import CustomizedDividers from '../../../../../docs/data/material/components/toggle-button/CustomizedDividers.tsx';
-import StandaloneToggleButton from '../../../../../docs/data/material/components/toggle-button/StandaloneToggleButton.tsx';
-import ToggleButtonNotEmpty from '../../../../../docs/data/material/components/toggle-button/ToggleButtonNotEmpty.tsx';
-import ToggleButtonSizes from '../../../../../docs/data/material/components/toggle-button/ToggleButtonSizes.tsx';
-import ToggleButtons from '../../../../../docs/data/material/components/toggle-button/ToggleButtons.tsx';
-import ToggleButtonsMultiple from '../../../../../docs/data/material/components/toggle-button/ToggleButtonsMultiple.tsx';
-import VerticalToggleButtons from '../../../../../docs/data/material/components/toggle-button/VerticalToggleButtons.tsx';
+import ColorToggleButton from '../../../../../docs/data/material/components/toggle-button/ColorToggleButton';
+import CustomizedDividers from '../../../../../docs/data/material/components/toggle-button/CustomizedDividers';
+import StandaloneToggleButton from '../../../../../docs/data/material/components/toggle-button/StandaloneToggleButton';
+import ToggleButtonNotEmpty from '../../../../../docs/data/material/components/toggle-button/ToggleButtonNotEmpty';
+import ToggleButtonSizes from '../../../../../docs/data/material/components/toggle-button/ToggleButtonSizes';
+import ToggleButtons from '../../../../../docs/data/material/components/toggle-button/ToggleButtons';
+import ToggleButtonsMultiple from '../../../../../docs/data/material/components/toggle-button/ToggleButtonsMultiple';
+import VerticalToggleButtons from '../../../../../docs/data/material/components/toggle-button/VerticalToggleButtons';
 
 export default function ToggleButton() {
   return (

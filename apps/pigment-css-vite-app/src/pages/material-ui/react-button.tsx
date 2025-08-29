@@ -1,21 +1,21 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import BasicButtons from '../../../../../docs/data/material/components/buttons/BasicButtons.tsx';
-import ButtonBaseDemo from '../../../../../docs/data/material/components/buttons/ButtonBaseDemo.tsx';
-import ButtonSizes from '../../../../../docs/data/material/components/buttons/ButtonSizes.tsx';
-import ColorButtons from '../../../../../docs/data/material/components/buttons/ColorButtons.tsx';
-import ContainedButtons from '../../../../../docs/data/material/components/buttons/ContainedButtons.tsx';
-import CustomizedButtons from '../../../../../docs/data/material/components/buttons/CustomizedButtons.tsx';
-import DisableElevation from '../../../../../docs/data/material/components/buttons/DisableElevation.tsx';
-import IconButtonColors from '../../../../../docs/data/material/components/buttons/IconButtonColors.tsx';
-import IconButtonSizes from '../../../../../docs/data/material/components/buttons/IconButtonSizes.tsx';
-import IconButtons from '../../../../../docs/data/material/components/buttons/IconButtons.tsx';
-import IconLabelButtons from '../../../../../docs/data/material/components/buttons/IconLabelButtons.tsx';
-import InputFileUpload from '../../../../../docs/data/material/components/buttons/InputFileUpload.tsx';
-import LoadingButtons from '../../../../../docs/data/material/components/buttons/LoadingButtons.tsx';
-import LoadingButtonsTransition from '../../../../../docs/data/material/components/buttons/LoadingButtonsTransition.tsx';
-import OutlinedButtons from '../../../../../docs/data/material/components/buttons/OutlinedButtons.tsx';
-import TextButtons from '../../../../../docs/data/material/components/buttons/TextButtons.tsx';
+import BasicButtons from '../../../../../docs/data/material/components/buttons/BasicButtons';
+import ButtonBaseDemo from '../../../../../docs/data/material/components/buttons/ButtonBaseDemo';
+import ButtonSizes from '../../../../../docs/data/material/components/buttons/ButtonSizes';
+import ColorButtons from '../../../../../docs/data/material/components/buttons/ColorButtons';
+import ContainedButtons from '../../../../../docs/data/material/components/buttons/ContainedButtons';
+import CustomizedButtons from '../../../../../docs/data/material/components/buttons/CustomizedButtons';
+import DisableElevation from '../../../../../docs/data/material/components/buttons/DisableElevation';
+import IconButtonColors from '../../../../../docs/data/material/components/buttons/IconButtonColors';
+import IconButtonSizes from '../../../../../docs/data/material/components/buttons/IconButtonSizes';
+import IconButtons from '../../../../../docs/data/material/components/buttons/IconButtons';
+import IconLabelButtons from '../../../../../docs/data/material/components/buttons/IconLabelButtons';
+import InputFileUpload from '../../../../../docs/data/material/components/buttons/InputFileUpload';
+import LoadingButtons from '../../../../../docs/data/material/components/buttons/LoadingButtons';
+import LoadingButtonsTransition from '../../../../../docs/data/material/components/buttons/LoadingButtonsTransition';
+import OutlinedButtons from '../../../../../docs/data/material/components/buttons/OutlinedButtons';
+import TextButtons from '../../../../../docs/data/material/components/buttons/TextButtons';
 
 export default function Buttons() {
   return (

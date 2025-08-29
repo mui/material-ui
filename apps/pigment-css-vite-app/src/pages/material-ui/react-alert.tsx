@@ -1,14 +1,14 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import ActionAlerts from '../../../../../docs/data/material/components/alert/ActionAlerts.tsx';
-import BasicAlerts from '../../../../../docs/data/material/components/alert/BasicAlerts.tsx';
-import ColorAlerts from '../../../../../docs/data/material/components/alert/ColorAlerts.tsx';
-import DescriptionAlerts from '../../../../../docs/data/material/components/alert/DescriptionAlerts.tsx';
-import FilledAlerts from '../../../../../docs/data/material/components/alert/FilledAlerts.tsx';
-import IconAlerts from '../../../../../docs/data/material/components/alert/IconAlerts.tsx';
-import OutlinedAlerts from '../../../../../docs/data/material/components/alert/OutlinedAlerts.tsx';
-import SimpleAlert from '../../../../../docs/data/material/components/alert/SimpleAlert.tsx';
-import TransitionAlerts from '../../../../../docs/data/material/components/alert/TransitionAlerts.tsx';
+import ActionAlerts from '../../../../../docs/data/material/components/alert/ActionAlerts';
+import BasicAlerts from '../../../../../docs/data/material/components/alert/BasicAlerts';
+import ColorAlerts from '../../../../../docs/data/material/components/alert/ColorAlerts';
+import DescriptionAlerts from '../../../../../docs/data/material/components/alert/DescriptionAlerts';
+import FilledAlerts from '../../../../../docs/data/material/components/alert/FilledAlerts';
+import IconAlerts from '../../../../../docs/data/material/components/alert/IconAlerts';
+import OutlinedAlerts from '../../../../../docs/data/material/components/alert/OutlinedAlerts';
+import SimpleAlert from '../../../../../docs/data/material/components/alert/SimpleAlert';
+import TransitionAlerts from '../../../../../docs/data/material/components/alert/TransitionAlerts';
 
 export default function Alert() {
   return (

@@ -1,17 +1,17 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import AvatarChips from '../../../../../docs/data/material/components/chips/AvatarChips.tsx';
-import BasicChips from '../../../../../docs/data/material/components/chips/BasicChips.tsx';
-import ChipsArray from '../../../../../docs/data/material/components/chips/ChipsArray.tsx';
-import ClickableAndDeletableChips from '../../../../../docs/data/material/components/chips/ClickableAndDeletableChips.tsx';
-import ClickableChips from '../../../../../docs/data/material/components/chips/ClickableChips.tsx';
-import ClickableLinkChips from '../../../../../docs/data/material/components/chips/ClickableLinkChips.tsx';
-import ColorChips from '../../../../../docs/data/material/components/chips/ColorChips.tsx';
-import CustomDeleteIconChips from '../../../../../docs/data/material/components/chips/CustomDeleteIconChips.tsx';
-import DeletableChips from '../../../../../docs/data/material/components/chips/DeletableChips.tsx';
-import IconChips from '../../../../../docs/data/material/components/chips/IconChips.tsx';
-import MultilineChips from '../../../../../docs/data/material/components/chips/MultilineChips.tsx';
-import SizesChips from '../../../../../docs/data/material/components/chips/SizesChips.tsx';
+import AvatarChips from '../../../../../docs/data/material/components/chips/AvatarChips';
+import BasicChips from '../../../../../docs/data/material/components/chips/BasicChips';
+import ChipsArray from '../../../../../docs/data/material/components/chips/ChipsArray';
+import ClickableAndDeletableChips from '../../../../../docs/data/material/components/chips/ClickableAndDeletableChips';
+import ClickableChips from '../../../../../docs/data/material/components/chips/ClickableChips';
+import ClickableLinkChips from '../../../../../docs/data/material/components/chips/ClickableLinkChips';
+import ColorChips from '../../../../../docs/data/material/components/chips/ColorChips';
+import CustomDeleteIconChips from '../../../../../docs/data/material/components/chips/CustomDeleteIconChips';
+import DeletableChips from '../../../../../docs/data/material/components/chips/DeletableChips';
+import IconChips from '../../../../../docs/data/material/components/chips/IconChips';
+import MultilineChips from '../../../../../docs/data/material/components/chips/MultilineChips';
+import SizesChips from '../../../../../docs/data/material/components/chips/SizesChips';
 
 export default function Chips() {
   return (

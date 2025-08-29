@@ -1,12 +1,12 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import AccordionExpandDefault from '../../../../../docs/data/material/components/accordion/AccordionExpandDefault.tsx';
-import AccordionExpandIcon from '../../../../../docs/data/material/components/accordion/AccordionExpandIcon.tsx';
-import AccordionTransition from '../../../../../docs/data/material/components/accordion/AccordionTransition.tsx';
-import AccordionUsage from '../../../../../docs/data/material/components/accordion/AccordionUsage.tsx';
-import ControlledAccordions from '../../../../../docs/data/material/components/accordion/ControlledAccordions.tsx';
-import CustomizedAccordions from '../../../../../docs/data/material/components/accordion/CustomizedAccordions.tsx';
-import DisabledAccordion from '../../../../../docs/data/material/components/accordion/DisabledAccordion.tsx';
+import AccordionExpandDefault from '../../../../../docs/data/material/components/accordion/AccordionExpandDefault';
+import AccordionExpandIcon from '../../../../../docs/data/material/components/accordion/AccordionExpandIcon';
+import AccordionTransition from '../../../../../docs/data/material/components/accordion/AccordionTransition';
+import AccordionUsage from '../../../../../docs/data/material/components/accordion/AccordionUsage';
+import ControlledAccordions from '../../../../../docs/data/material/components/accordion/ControlledAccordions';
+import CustomizedAccordions from '../../../../../docs/data/material/components/accordion/CustomizedAccordions';
+import DisabledAccordion from '../../../../../docs/data/material/components/accordion/DisabledAccordion';
 
 export default function Accordion() {
   return (

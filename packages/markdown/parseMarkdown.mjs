@@ -1,5 +1,6 @@
 import { marked } from 'marked';
 import textToHash from './textToHash.mjs';
+// eslint-disable-next-line import-x/extensions
 import prism from './prism.mjs';
 
 /**

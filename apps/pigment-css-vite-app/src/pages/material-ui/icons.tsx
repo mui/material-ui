@@ -1,14 +1,14 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import CreateSvgIcon from '../../../../../docs/data/material/components/icons/CreateSvgIcon.tsx';
-import FontAwesomeIcon from '../../../../../docs/data/material/components/icons/FontAwesomeIcon.tsx';
-import FontAwesomeIconSize from '../../../../../docs/data/material/components/icons/FontAwesomeIconSize.tsx';
-import FontAwesomeSvgIconDemo from '../../../../../docs/data/material/components/icons/FontAwesomeSvgIconDemo.tsx';
-import Icons from '../../../../../docs/data/material/components/icons/Icons.tsx';
-import SvgIconChildren from '../../../../../docs/data/material/components/icons/SvgIconChildren.tsx';
-import SvgIconsColor from '../../../../../docs/data/material/components/icons/SvgIconsColor.tsx';
-import SvgIconsSize from '../../../../../docs/data/material/components/icons/SvgIconsSize.tsx';
-import SvgMaterialIcons from '../../../../../docs/data/material/components/icons/SvgMaterialIcons.tsx';
+import CreateSvgIcon from '../../../../../docs/data/material/components/icons/CreateSvgIcon';
+import FontAwesomeIcon from '../../../../../docs/data/material/components/icons/FontAwesomeIcon';
+import FontAwesomeIconSize from '../../../../../docs/data/material/components/icons/FontAwesomeIconSize';
+import FontAwesomeSvgIconDemo from '../../../../../docs/data/material/components/icons/FontAwesomeSvgIconDemo';
+import Icons from '../../../../../docs/data/material/components/icons/Icons';
+import SvgIconChildren from '../../../../../docs/data/material/components/icons/SvgIconChildren';
+import SvgIconsColor from '../../../../../docs/data/material/components/icons/SvgIconsColor';
+import SvgIconsSize from '../../../../../docs/data/material/components/icons/SvgIconsSize';
+import SvgMaterialIcons from '../../../../../docs/data/material/components/icons/SvgMaterialIcons';
 
 export default function IconsPage() {
   return (

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import FloatingActionButtonExtendedSize from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtonExtendedSize.tsx';
-import FloatingActionButtonSize from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtonSize.tsx';
-import FloatingActionButtonZoom from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtonZoom.tsx';
-import FloatingActionButtons from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtons.tsx';
+import FloatingActionButtonExtendedSize from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtonExtendedSize';
+import FloatingActionButtonSize from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtonSize';
+import FloatingActionButtonZoom from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtonZoom';
+import FloatingActionButtons from '../../../../../docs/data/material/components/floating-action-button/FloatingActionButtons';
 
 export default function FloatingActionButton() {
   return (

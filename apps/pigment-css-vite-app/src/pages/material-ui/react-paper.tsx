@@ -1,9 +1,9 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import Elevation from '../../../../../docs/data/material/components/paper/Elevation.tsx';
-import SimplePaper from '../../../../../docs/data/material/components/paper/SimplePaper.tsx';
-import SquareCorners from '../../../../../docs/data/material/components/paper/SquareCorners.tsx';
-import Variants from '../../../../../docs/data/material/components/paper/Variants.tsx';
+import Elevation from '../../../../../docs/data/material/components/paper/Elevation';
+import SimplePaper from '../../../../../docs/data/material/components/paper/SimplePaper';
+import SquareCorners from '../../../../../docs/data/material/components/paper/SquareCorners';
+import Variants from '../../../../../docs/data/material/components/paper/Variants';
 
 export default function Paper() {
   return (

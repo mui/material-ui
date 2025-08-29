@@ -1,11 +1,11 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import PopperPopupState from '../../../../../docs/data/material/components/popper/PopperPopupState.tsx';
-import PositionedPopper from '../../../../../docs/data/material/components/popper/PositionedPopper.tsx';
-import SimplePopper from '../../../../../docs/data/material/components/popper/SimplePopper.tsx';
-import SpringPopper from '../../../../../docs/data/material/components/popper/SpringPopper.tsx';
-import TransitionsPopper from '../../../../../docs/data/material/components/popper/TransitionsPopper.tsx';
-import VirtualElementPopper from '../../../../../docs/data/material/components/popper/VirtualElementPopper.tsx';
+import PopperPopupState from '../../../../../docs/data/material/components/popper/PopperPopupState';
+import PositionedPopper from '../../../../../docs/data/material/components/popper/PositionedPopper';
+import SimplePopper from '../../../../../docs/data/material/components/popper/SimplePopper';
+import SpringPopper from '../../../../../docs/data/material/components/popper/SpringPopper';
+import TransitionsPopper from '../../../../../docs/data/material/components/popper/TransitionsPopper';
+import VirtualElementPopper from '../../../../../docs/data/material/components/popper/VirtualElementPopper';
 
 export default function Popper() {
   return (

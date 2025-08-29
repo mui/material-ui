@@ -1,18 +1,18 @@
 import * as React from 'react';
 import MaterialUILayout from '../../Layout';
-import BackToTop from '../../../../../docs/data/material/components/app-bar/BackToTop.tsx';
-import BottomAppBar from '../../../../../docs/data/material/components/app-bar/BottomAppBar.tsx';
-import ButtonAppBar from '../../../../../docs/data/material/components/app-bar/ButtonAppBar.tsx';
-import DenseAppBar from '../../../../../docs/data/material/components/app-bar/DenseAppBar.tsx';
-import DrawerAppBar from '../../../../../docs/data/material/components/app-bar/DrawerAppBar.tsx';
-import ElevateAppBar from '../../../../../docs/data/material/components/app-bar/ElevateAppBar.tsx';
-import EnableColorOnDarkAppBar from '../../../../../docs/data/material/components/app-bar/EnableColorOnDarkAppBar.tsx';
-import HideAppBar from '../../../../../docs/data/material/components/app-bar/HideAppBar.tsx';
-import MenuAppBar from '../../../../../docs/data/material/components/app-bar/MenuAppBar.tsx';
-import PrimarySearchAppBar from '../../../../../docs/data/material/components/app-bar/PrimarySearchAppBar.tsx';
-import ProminentAppBar from '../../../../../docs/data/material/components/app-bar/ProminentAppBar.tsx';
-import ResponsiveAppBar from '../../../../../docs/data/material/components/app-bar/ResponsiveAppBar.tsx';
-import SearchAppBar from '../../../../../docs/data/material/components/app-bar/SearchAppBar.tsx';
+import BackToTop from '../../../../../docs/data/material/components/app-bar/BackToTop';
+import BottomAppBar from '../../../../../docs/data/material/components/app-bar/BottomAppBar';
+import ButtonAppBar from '../../../../../docs/data/material/components/app-bar/ButtonAppBar';
+import DenseAppBar from '../../../../../docs/data/material/components/app-bar/DenseAppBar';
+import DrawerAppBar from '../../../../../docs/data/material/components/app-bar/DrawerAppBar';
+import ElevateAppBar from '../../../../../docs/data/material/components/app-bar/ElevateAppBar';
+import EnableColorOnDarkAppBar from '../../../../../docs/data/material/components/app-bar/EnableColorOnDarkAppBar';
+import HideAppBar from '../../../../../docs/data/material/components/app-bar/HideAppBar';
+import MenuAppBar from '../../../../../docs/data/material/components/app-bar/MenuAppBar';
+import PrimarySearchAppBar from '../../../../../docs/data/material/components/app-bar/PrimarySearchAppBar';
+import ProminentAppBar from '../../../../../docs/data/material/components/app-bar/ProminentAppBar';
+import ResponsiveAppBar from '../../../../../docs/data/material/components/app-bar/ResponsiveAppBar';
+import SearchAppBar from '../../../../../docs/data/material/components/app-bar/SearchAppBar';
 
 export default function AppBar() {
   return (

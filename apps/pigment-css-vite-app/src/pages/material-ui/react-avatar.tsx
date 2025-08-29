@@ -1,15 +1,15 @@
 import MaterialUILayout from '../../Layout';
-import BackgroundLetterAvatars from '../../../../../docs/data/material/components/avatars/BackgroundLetterAvatars.tsx';
-import BadgeAvatars from '../../../../../docs/data/material/components/avatars/BadgeAvatars.tsx';
-import CustomSurplusAvatars from '../../../../../docs/data/material/components/avatars/CustomSurplusAvatars.tsx';
-import FallbackAvatars from '../../../../../docs/data/material/components/avatars/FallbackAvatars.tsx';
-import GroupAvatars from '../../../../../docs/data/material/components/avatars/GroupAvatars.tsx';
-import IconAvatars from '../../../../../docs/data/material/components/avatars/IconAvatars.tsx';
-import ImageAvatars from '../../../../../docs/data/material/components/avatars/ImageAvatars.tsx';
-import LetterAvatars from '../../../../../docs/data/material/components/avatars/LetterAvatars.tsx';
-import SizeAvatars from '../../../../../docs/data/material/components/avatars/SizeAvatars.tsx';
-import TotalAvatars from '../../../../../docs/data/material/components/avatars/TotalAvatars.tsx';
-import VariantAvatars from '../../../../../docs/data/material/components/avatars/VariantAvatars.tsx';
+import BackgroundLetterAvatars from '../../../../../docs/data/material/components/avatars/BackgroundLetterAvatars';
+import BadgeAvatars from '../../../../../docs/data/material/components/avatars/BadgeAvatars';
+import CustomSurplusAvatars from '../../../../../docs/data/material/components/avatars/CustomSurplusAvatars';
+import FallbackAvatars from '../../../../../docs/data/material/components/avatars/FallbackAvatars';
+import GroupAvatars from '../../../../../docs/data/material/components/avatars/GroupAvatars';
+import IconAvatars from '../../../../../docs/data/material/components/avatars/IconAvatars';
+import ImageAvatars from '../../../../../docs/data/material/components/avatars/ImageAvatars';
+import LetterAvatars from '../../../../../docs/data/material/components/avatars/LetterAvatars';
+import SizeAvatars from '../../../../../docs/data/material/components/avatars/SizeAvatars';
+import TotalAvatars from '../../../../../docs/data/material/components/avatars/TotalAvatars';
+import VariantAvatars from '../../../../../docs/data/material/components/avatars/VariantAvatars';
 
 export default function Avatars() {
   return (
