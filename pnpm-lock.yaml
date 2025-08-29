@@ -1223,7 +1223,7 @@ importers:
         specifier: ^7.28.3
         version: 7.28.3
       '@mui/base':
-        specifier: '*'
+        specifier: ^5.0.0 || ^5.0.0-beta || ^7.0.0 || ^7.0.0-beta
         version: 5.0.0-beta.70(@types/react@19.1.11)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@mui/internal-markdown':
         specifier: workspace:^
