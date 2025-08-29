@@ -41,7 +41,8 @@ The result is a new library—codenamed new-lib. A modular, theme-agnostic compo
 - [Distribution: npm package vs copy-and-paste](#distribution-npm-package-vs-copy-and-paste)
 - [Migration and continuity](#migration-and-continuity)
 - [Material Design 3: your vote matters](#material-design-3-your-vote-matters)
-- [What’s next and how to get involved](#whats-next-and-how-to-get-involved)
+- [What's next](#whats-next)
+- [how to get involved](#how-to-get-involved)
 
 :::info
 We are not abandoning Material UI. New-lib is the next generation of the library you know and love. It builds on everything we've learned and preserves the developer-centric principles that have made Material UI successful, while introducing a modern API for improved customization and a much more flexible theming system that works with any styling tech stack (for example, Tailwind, Emotion, or plain CSS with CSS variables). Material UI and MUI X remain in long-term support, and we’ll provide migration guides and hands-on support to help you upgrade. Think of new-lib as the natural evolution of Material UI rather than a separate product.
@@ -94,16 +95,20 @@ We acknowledge that Material Design may still have a place in the ecosystem, but
 
 Have your say →: [Community Poll (1min)](https://tally.so/r/w8X8Po) 🗳️
 
-## What’s next and how to get involved
-
+## What's next
 Our roadmap for new-lib is ambitious. Over the coming months, we’ll release RFCs, beta packages, and developer previews (starting at the end of 2025). In parallel, we’ll continue to deliver improvements to the existing Material UI ecosystem, including updates and new features for our advanced components scheduled for March 2026. Here are a few initiatives on our radar:
 
-**Additional themes.** Beyond a default white-label theme, we plan to ship themes inspired by other design systems and brand palettes. Material design 3 will be a theme depending on the community's wishes.
+**Additional themes.** Beyond a default white-label theme, we plan to ship themes inspired by other design systems and brand palettes. Material Design 3 will be a theme depending on the community's wishes.
 
 **AI-ready components.** Just as MUI X is exploring AI-assisted features, we’re experimenting with patterns and APIs that make AI-driven UIs straightforward to build.
 
 **Stable release around September/October 2026,** though the exact timeline is still subject to change based on your feedback and the results of our beta program.
 
-[Join the discussion on our GitHub](https://github.com/mui/material-ui/discussions) and [vote on MD3](https://tally.so/r/w8X8Po).
-
+## How to get involved
 Your feedback will shape all of these initiatives. We can’t wait to hear what you think and to build the next generation of UI components together.
+
+- **Join the discussion:** [GitHub Discussions](https://github.com/mui/material-ui/discussions)  
+- **Vote on MD3:** [Community poll](https://tally.so/r/w8X8Po)  
+- **Try pre-release builds:** *(when available)*
+
+We’re excited to build this with you.
