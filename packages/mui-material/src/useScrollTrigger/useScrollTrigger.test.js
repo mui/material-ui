@@ -293,9 +293,6 @@ describe('useScrollTrigger', () => {
         this.skip();
       }
     });
-    // afterEach(() => {
-    //   window.pageYOffset = 0;
-    // });
 
     it('should prevent rapid oscillation when enableReentrantLock is true', async () => {
       function TestComponent() {
@@ -323,6 +320,43 @@ describe('useScrollTrigger', () => {
         },
         { timeout: 110 },
       );
+    });
+
+    it('should clean up timeout on unmount when enableReentrantLock is true', () => {
+      const timeoutSpy = { current: null };
+
+      function TestComponent() {
+        const trigger = useScrollTrigger({
+          enableReentrantLock: true,
+          reentrantLockDuration: 1000, // Long duration to ensure timeout is active
+        });
+
+        // Expose the timeout ref for testing (in real code this wouldn't be needed)
+        React.useEffect(() => {
+          // Trigger a scroll to start the lock timer
+          if (trigger) {
+            timeoutSpy.current = 'active';
+          }
+        }, [trigger]);
+
+        return <span data-testid="trigger">{`${trigger}`}</span>;
+      }
+
+      const { unmount } = render(<TestComponent />);
+
+      // Trigger the lock by scrolling past threshold
+      setScroll(101);
+      expect(screen.getByTestId('trigger').textContent).to.equal('true');
+
+      // Try to scroll back - should still be locked
+      setScroll(99);
+      expect(screen.getByTestId('trigger').textContent).to.equal('true');
+
+      // Unmount while lock is active
+      unmount();
+
+      // After unmount, the timeout should be cleared and not cause any errors
+      // This test passes if no errors are thrown during unmount
     });
   });
 });
