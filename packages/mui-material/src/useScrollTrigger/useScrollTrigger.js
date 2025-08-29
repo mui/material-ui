@@ -25,7 +25,7 @@ export default function useScrollTrigger(options = {}) {
   const {
     getTrigger = defaultTrigger,
     target = defaultTarget,
-    disableReentrant = true,
+    enableReentrantLock = false,
     reentrantLockDuration = 300,
     ...other
   } = options;
@@ -40,7 +40,7 @@ export default function useScrollTrigger(options = {}) {
     }
 
     const handleScroll = () => {
-      if (!disableReentrant && isLockedRef.current) {
+      if (enableReentrantLock && isLockedRef.current) {
         return;
       }
 
@@ -50,7 +50,7 @@ export default function useScrollTrigger(options = {}) {
         if (newTrigger !== prevTrigger) {
           // Lock updates for a period after state change if reentrant protection is enabled
           // This prevents rapid back-and-forth during Collapse animations
-          if (!disableReentrant) {
+          if (enableReentrantLock) {
             isLockedRef.current = true;
 
             if (lockTimeoutRef.current) {
@@ -81,7 +81,7 @@ export default function useScrollTrigger(options = {}) {
     // See Option 3. https://github.com/facebook/react/issues/14476#issuecomment-471199055
     // TODO: uncomment once we enable eslint-plugin-react-compiler // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [target, getTrigger, JSON.stringify(other), disableReentrant, reentrantLockDuration]);
+  }, [target, getTrigger, JSON.stringify(other), enableReentrantLock, reentrantLockDuration]);
 
   return trigger;
 }

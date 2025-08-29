@@ -1,10 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { act, createRenderer, RenderCounter, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, RenderCounter, screen, waitFor } from '@mui/internal-test-utils';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+
+const setScroll = (y) => {
+  return act(() => {
+    window.pageYOffset = y;
+    window.dispatchEvent(new window.Event('scroll', {}));
+  });
+};
 
 describe('useScrollTrigger', () => {
   const { render } = createRenderer();
@@ -276,6 +283,46 @@ describe('useScrollTrigger', () => {
         render(<Test threshold={100} />);
         expect(getTriggerValue()).to.equal(test.result, `Index: ${index} ${JSON.stringify(test)}`);
       });
+    });
+  });
+
+  describe('with enableReentrantLock', () => {
+    before(function beforeHook() {
+      // Only run the test on node.
+      if (!/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
+    // afterEach(() => {
+    //   window.pageYOffset = 0;
+    // });
+
+    it('should prevent rapid oscillation when enableReentrantLock is true', async () => {
+      function TestComponent() {
+        const trigger = useScrollTrigger({
+          enableReentrantLock: true,
+          reentrantLockDuration: 100,
+        });
+
+        return <span data-testid="trigger">{`${trigger}`}</span>;
+      }
+
+      render(<TestComponent />);
+      expect(screen.getByTestId('trigger').textContent).to.equal('false');
+
+      setScroll(101);
+      expect(screen.getByTestId('trigger').textContent).to.equal('true');
+
+      setScroll(99);
+      expect(screen.getByTestId('trigger').textContent).to.equal('true');
+
+      await waitFor(
+        () => {
+          setScroll(99);
+          expect(screen.getByTestId('trigger').textContent).to.equal('false');
+        },
+        { timeout: 110 },
+      );
     });
   });
 });
