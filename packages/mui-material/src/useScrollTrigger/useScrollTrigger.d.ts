@@ -3,15 +3,16 @@ export interface UseScrollTriggerOptions {
   target?: Node | Window | null;
   threshold?: number;
   /**
-   * If `true`, the scroll trigger logic will not be locked after a state change.
-   * If `false`, there will be a lock period after state changes to prevent
+   * If `false`, the scroll trigger logic will not be locked after a state change.
+   * If `true`, there will be a lock period after state changes to prevent
    * feedback loops during animations (e.g., Collapse in sticky AppBar).
-   * @default true
+   * @default false
    */
-  disableReentrant?: boolean;
+  enableReentrantLock?: boolean;
   /**
    * Duration in milliseconds for the reentrant lock.
-   * Only applies when `disableReentrant` is `false`.
+   * This should match the Collapse's transition timing.
+   * Only applies when `enableReentrantLock` is `true`.
    * @default 300
    */
   reentrantLockDuration?: number;
