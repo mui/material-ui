@@ -45,7 +45,7 @@ The result is a new library—codenamed new-lib. A modular, theme-agnostic compo
 - [Migration and continuity](#migration-and-continuity)
 - [Material Design 3: your vote matters](#material-design-3-your-vote-matters)
 - [What's next](#whats-next)
-- [how to get involved](#how-to-get-involved)
+- [How to get involved](#how-to-get-involved)
 
 ## Why rebuild Material UI?
 
@@ -89,11 +89,15 @@ Material UI and MUI X remain in long-term support, and we’ll provide migration
 - **Smooth migration.** You can install new-lib alongside Material UI and migrate screen-by-screen. We’ll provide guides, codemods, AI tooling, and office hours.
 - **MD3 as optional theme.** If the community votes for it, Material Design 3 will ship as a theme in new-lib—no lock-in to the Material look.
 
-| Package        | Status            | Support scope        |
-| -------------- | ----------------- | -------------------- |
-| Material UI v7 | Long term support | bug & security fixes |
-| Material UI v6 | Long term support | bug & security fixes |
-| new-lib        | pre-alpha         | active development   |
+<div style="max-width:80%; margin:0 auto;">
+
+| Package        | Status                           | Support scope        |
+| -------------- | -------------------------------- | -------------------- |
+| Material UI v7 | Long term support until 2028     | bug & security fixes |
+| Material UI v6 | Long term support until 2028     | bug & security fixes |
+| new-lib        | pre-alpha - release by Sept 2026 | active development   |
+
+</div>
 
 ## Migration and continuity
 
