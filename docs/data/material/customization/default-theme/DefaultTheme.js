@@ -9,6 +9,7 @@ import ThemeViewer, {
   useItemIdsLazy,
 } from 'docs/src/modules/components/ThemeViewer';
 import { blue, grey } from '@mui/docs/branding';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const StyledSwitch = styled(Switch)(({ theme }) => [
   {
@@ -68,6 +69,7 @@ const StyledSwitch = styled(Switch)(({ theme }) => [
 function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
+  const deferredExpandPaths = React.useDeferredValue(expandPaths);
   const t = useTranslate();
   const [darkTheme, setDarkTheme] = React.useState(false);
 
@@ -138,6 +140,9 @@ function DefaultTheme() {
             />
           }
         />
+        {deferredExpandPaths !== expandPaths && (
+          <CircularProgress disableShrink size={24} />
+        )}
         <Divider orientation="vertical" flexItem />
         <FormControlLabel
           label={t('useDarkTheme')}
@@ -161,7 +166,7 @@ function DefaultTheme() {
           }
         />
       </Box>
-      <ThemeViewer data={data} expandPaths={expandPaths} />
+      <ThemeViewer data={data} expandPaths={deferredExpandPaths} />
     </Box>
   );
 }
