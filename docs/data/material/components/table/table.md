@@ -144,8 +144,3 @@ Virtualization helps with performance issues.
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "AccessibleTable.js", "bg": true}}
-
-## Unstyled
-
-If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.
-See the demos in the [unstyled table pagination docs](https://v6.mui.com/base-ui/react-table-pagination/)

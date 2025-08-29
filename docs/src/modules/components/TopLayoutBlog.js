@@ -422,7 +422,7 @@ export default function TopLayoutBlog(props) {
               {/*
                 Depending on the timezone, the display date can change from one day to another.
                 e.g. Sunday vs. Monday
-                TODO: Move the date formating to the server.
+                TODO: Move the date formatting to the server.
               */}
               <time dateTime={headers.date} className={classes.time}>
                 {new Intl.DateTimeFormat('en', {
