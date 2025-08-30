@@ -1,8 +1,14 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": ["../../tsconfig.json", "../../tsconfig.src.json"],
   "compilerOptions": {
     // @date-io libraries produce duplicate type `DateType`
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "test/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["test/**/*", "**/*.test.*", "**/*.spec.*"],
+  "references": [
+    { "path": "../mui-material/tsconfig.build.json" },
+    { "path": "../mui-system/tsconfig.build.json" },
+    { "path": "../mui-utils/tsconfig.build.json" }
+  ]
 }
