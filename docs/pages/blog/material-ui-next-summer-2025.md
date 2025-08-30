@@ -1,5 +1,5 @@
 ---
-title: The next version of Material UI
+title: The next evolution of Material UI
 description: Learn about “new-lib”, the spiritual successor to Material UI.
 date: 2025-09-09T08:00:00.000Z
 authors: ['josefreitas', 'colmtuite', 'oliviertassinari']
