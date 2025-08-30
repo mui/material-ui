@@ -67,7 +67,7 @@ describe('<Drawer />', () => {
     });
 
     it('should apply content theme styles for content slot', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 

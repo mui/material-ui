@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { act, createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { act, createRenderer, fireEvent } from '@mui/internal-test-utils';
 import FormGroup from '@mui/material/FormGroup';
 import Radio from '@mui/material/Radio';
 import RadioGroup, { useRadioGroup, radioGroupClasses as classes } from '@mui/material/RadioGroup';
@@ -101,7 +101,7 @@ describe('<RadioGroup />', () => {
   });
 
   it('should support number value', () => {
-    render(
+    const screen = render(
       <RadioGroup name="group" defaultValue={1}>
         <Radio value={1} />
         <Radio value={2} />
@@ -416,7 +416,7 @@ describe('<RadioGroup />', () => {
   });
 
   it('should apply the classnames', () => {
-    render(
+    const screen = render(
       <RadioGroup name="group" row>
         <Radio value={1} />
         <Radio value={2} />

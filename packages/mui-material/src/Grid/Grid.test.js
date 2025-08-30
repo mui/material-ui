@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { createTheme, ThemeProvider, THEME_ID } from '@mui/material/styles';
 import { expect } from 'chai';
@@ -37,7 +37,7 @@ describe('<Grid />', () => {
   });
 
   it('should render with the container class', () => {
-    render(<Grid data-testid="grid" container />);
+    const screen = render(<Grid data-testid="grid" container />);
     expect(screen.getByTestId('grid')).to.have.class(classes.container);
   });
 
@@ -53,7 +53,7 @@ describe('<Grid />', () => {
         },
       },
     });
-    render(
+    const screen = render(
       <ThemeProvider theme={theme}>
         <Grid data-testid="grid" container>
           hello

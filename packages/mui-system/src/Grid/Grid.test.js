@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen } from '@mui/internal-test-utils';
+import { createRenderer } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/system';
 import createTheme from '@mui/system/createTheme';
 import Grid, { gridClasses as classes } from '@mui/system/Grid';
@@ -48,12 +48,12 @@ describe('System <Grid />', () => {
     });
 
     it('should apply the styles necessary for variable width nested item when set to auto', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Need full CSS resolution
         this.skip();
       }
 
-      render(
+      const screen = render(
         <Grid container>
           <Grid container data-testid="auto" size="auto">
             <div style={{ width: '300px' }} />
@@ -118,7 +118,7 @@ describe('System <Grid />', () => {
 
   describe('spacing', () => {
     it('should generate the right values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -128,7 +128,7 @@ describe('System <Grid />', () => {
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 
-      const { rerender } = render(
+      const screen = render(
         <div style={{ width: parentWidth }}>
           <ThemeProvider theme={remTheme}>
             <Grid data-testid="grid" container spacing={2}>
@@ -144,7 +144,7 @@ describe('System <Grid />', () => {
         columnGap: `${0.5 * remValue}px`, // 0.5rem
       });
 
-      rerender(
+      screen.rerender(
         <div style={{ width: parentWidth }}>
           <Grid data-testid="grid" container spacing={2}>
             <Grid data-testid="first-default-theme" />
@@ -172,23 +172,23 @@ describe('System <Grid />', () => {
 
   describe('prop: wrap', () => {
     it('should wrap by default', () => {
-      render(<Grid container data-testid="wrap" />);
+      const screen = render(<Grid container data-testid="wrap" />);
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap',
       });
     });
 
     it('should apply nowrap class and style', () => {
-      const { container } = render(<Grid container wrap="nowrap" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-nowrap');
+      const screen = render(<Grid container wrap="nowrap" data-testid="wrap" />);
+      expect(screen.container.firstChild).to.have.class('MuiGrid-wrap-xs-nowrap');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'nowrap',
       });
     });
 
     it('should apply wrap-reverse class and style', () => {
-      const { container } = render(<Grid container wrap="wrap-reverse" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-wrap-reverse');
+      const screen = render(<Grid container wrap="wrap-reverse" data-testid="wrap" />);
+      expect(screen.container.firstChild).to.have.class('MuiGrid-wrap-xs-wrap-reverse');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap-reverse',
       });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, fireEvent, screen } from '@mui/internal-test-utils';
+import { createRenderer, fireEvent } from '@mui/internal-test-utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Accordion from '@mui/joy/Accordion';
 import AccordionSummary from '@mui/joy/AccordionSummary';
@@ -31,7 +31,7 @@ describe('<AccordionDetails />', () => {
 
   describe('tab index', () => {
     it('[initial] interactive content should have tab index -1', () => {
-      render(
+      const screen = render(
         <Accordion>
           <AccordionDetails>
             <a href="/foo" data-testid="link">
@@ -47,7 +47,7 @@ describe('<AccordionDetails />', () => {
     });
 
     it('[expanded] interactive content should not have tab index 0', () => {
-      render(
+      const screen = render(
         <Accordion expanded>
           <AccordionDetails>
             <a href="/foo" data-testid="link">
@@ -63,7 +63,7 @@ describe('<AccordionDetails />', () => {
     });
 
     it('interactive content should preserve the tab index when closed', () => {
-      render(
+      const screen = render(
         <Accordion defaultExpanded>
           <AccordionSummary>title</AccordionSummary>
           <AccordionDetails>
@@ -87,7 +87,7 @@ describe('<AccordionDetails />', () => {
     });
 
     it('should retain the default tab index if not explicitly set', () => {
-      render(
+      const screen = render(
         <Accordion>
           <AccordionSummary>title</AccordionSummary>
           <AccordionDetails>
@@ -112,7 +112,7 @@ describe('<AccordionDetails />', () => {
     });
 
     it('should retain the -1 tab index when explicitly set', () => {
-      render(
+      const screen = render(
         <Accordion>
           <AccordionSummary>title</AccordionSummary>
           <AccordionDetails>

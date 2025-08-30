@@ -156,7 +156,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the default theme values by default', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme();
@@ -175,7 +175,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme({
@@ -238,7 +238,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the default theme values by default', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme();
@@ -251,7 +251,7 @@ describe('<Slide />', () => {
     });
 
     it('should render the custom theme values', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (!window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
       const theme = createTheme({
@@ -293,27 +293,35 @@ describe('<Slide />', () => {
   });
 
   describe('transform styling', () => {
-    const FakeDiv = React.forwardRef((props, ref) => {
+    const RealDiv = React.forwardRef(({ rect, ...props }, ref) => {
+      return (
+        <div {...props} style={{ height: 300, width: 500, background: 'red', ...rect }} ref={ref} />
+      );
+    });
+    const FakeDiv = React.forwardRef(({ rect, ...props }, ref) => {
       const stubBoundingClientRect = (element) => {
         if (element !== null) {
           element.fakeTransform = 'none';
           try {
-            stub(element, 'getBoundingClientRect').callsFake(() => ({
-              width: 500,
-              height: 300,
-              left: 300,
-              right: 800,
-              top: 200,
-              bottom: 500,
-              ...props.rect,
-            }));
+            stub(element, 'getBoundingClientRect').callsFake(() => {
+              const r = {
+                width: 500,
+                height: 300,
+                left: 300,
+                right: 800,
+                top: 200,
+                bottom: 500,
+                ...rect,
+              };
+              return r;
+            });
           } catch (error) {
             // already stubbed
           }
         }
       };
       const handleRef = useForkRef(ref, stubBoundingClientRect);
-      return <div {...props} style={{ height: 300, width: 500 }} ref={handleRef} />;
+      return <RealDiv {...props} ref={handleRef} />;
     });
 
     describe('handleEnter()', () => {
@@ -332,7 +340,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(`translateX(${global.innerWidth - 300}px)`);
+        expect(nodeEnterTransformStyle).to.equal(`translateX(${globalThis.innerWidth - 300}px)`);
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -368,7 +376,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(`translateY(${global.innerHeight - 200}px)`);
+        expect(nodeEnterTransformStyle).to.equal(`translateY(${globalThis.innerHeight - 200}px)`);
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -425,7 +433,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(`translateY(${global.innerHeight + 100}px)`);
+        expect(nodeEnterTransformStyle).to.equal(`translateY(${globalThis.innerHeight + 100}px)`);
       });
 
       it('should set element transform in the `left` direction when element is offscreen', () => {
@@ -444,7 +452,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(`translateX(${global.innerWidth + 100}px)`);
+        expect(nodeEnterTransformStyle).to.equal(`translateX(${globalThis.innerWidth + 100}px)`);
       });
     });
 
@@ -465,7 +473,7 @@ describe('<Slide />', () => {
 
         setProps({ in: false });
 
-        expect(nodeExitingTransformStyle).to.equal(`translateX(${global.innerWidth - 300}px)`);
+        expect(nodeExitingTransformStyle).to.equal(`translateX(${globalThis.innerWidth - 300}px)`);
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -503,7 +511,7 @@ describe('<Slide />', () => {
 
         setProps({ in: false });
 
-        expect(nodeExitingTransformStyle).to.equal(`translateY(${global.innerHeight - 200}px)`);
+        expect(nodeExitingTransformStyle).to.equal(`translateY(${globalThis.innerHeight - 200}px)`);
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -527,8 +535,8 @@ describe('<Slide />', () => {
     });
 
     describe('prop: container', () => {
-      it('should set element transform and transition in the `up` direction', function test() {
-        if (/jsdom/.test(window.navigator.userAgent)) {
+      it('should set element transform and transition in the `up` direction', async function test() {
+        if (window.navigator.userAgent.includes('jsdom')) {
           // Need layout
           this.skip();
         }
@@ -553,7 +561,7 @@ describe('<Slide />', () => {
                   nodeExitingTransformStyle = node.style.transform;
                 }}
               >
-                <FakeDiv rect={{ top: 8 }} />
+                <RealDiv rect={{ top: 8 }} />
               </Slide>
             </div>
           );
@@ -612,7 +620,7 @@ describe('<Slide />', () => {
           style: {},
         };
         setTranslateValue('up', element);
-        expect(element.style.transform).to.equal(`translateY(${global.innerHeight - 780}px)`);
+        expect(element.style.transform).to.equal(`translateY(${globalThis.innerHeight - 780}px)`);
       });
 
       it('should do nothing when visible', () => {

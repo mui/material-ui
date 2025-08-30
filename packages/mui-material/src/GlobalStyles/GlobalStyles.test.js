@@ -12,7 +12,7 @@ describe('Global', () => {
   const { render } = createRenderer();
 
   it('should provide default theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 
@@ -29,7 +29,7 @@ describe('Global', () => {
   });
 
   it('should respect context theme if available', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
+    if (window.navigator.userAgent.includes('jsdom')) {
       this.skip();
     }
 

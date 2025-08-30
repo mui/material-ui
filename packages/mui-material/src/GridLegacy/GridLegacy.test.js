@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createRenderer, screen, reactMajor } from '@mui/internal-test-utils';
+import { createRenderer, reactMajor } from '@mui/internal-test-utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import defaultTheme from '@mui/material/styles/defaultTheme';
 import GridLegacy, { gridLegacyClasses as classes } from '@mui/material/GridLegacy';
@@ -107,12 +107,12 @@ describe('Material UI <GridLegacy />', () => {
     });
 
     it('should apply the styles necessary for variable width nested item when set to auto', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         // Need full CSS resolution
         this.skip();
       }
 
-      render(
+      const screen = render(
         <GridLegacy container>
           <GridLegacy container item xs="auto" data-testid="auto">
             <div style={{ width: '300px' }} />
@@ -1758,7 +1758,7 @@ describe('Material UI <GridLegacy />', () => {
 
   describe('spacing', () => {
     it('should generate the right values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
+      if (window.navigator.userAgent.includes('jsdom')) {
         this.skip();
       }
 
@@ -1768,7 +1768,7 @@ describe('Material UI <GridLegacy />', () => {
         spacing: (factor) => `${0.25 * factor}rem`,
       });
 
-      const { rerender } = render(
+      const screen = render(
         <div style={{ width: parentWidth }}>
           <ThemeProvider theme={remTheme}>
             <GridLegacy data-testid="grid" container spacing={2}>
@@ -1790,7 +1790,7 @@ describe('Material UI <GridLegacy />', () => {
         paddingLeft: `${0.5 * remValue}px`, // 0.5rem
       });
 
-      rerender(
+      screen.rerender(
         <div style={{ width: parentWidth }}>
           <GridLegacy data-testid="grid" container spacing={2}>
             <GridLegacy item data-testid="first-default-theme" />
@@ -1824,23 +1824,23 @@ describe('Material UI <GridLegacy />', () => {
 
   describe('prop: wrap', () => {
     it('should wrap by default', () => {
-      render(<GridLegacy container data-testid="wrap" />);
+      const screen = render(<GridLegacy container data-testid="wrap" />);
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap',
       });
     });
 
     it('should apply nowrap class and style', () => {
-      const { container } = render(<GridLegacy container wrap="nowrap" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-nowrap');
+      const screen = render(<GridLegacy container wrap="nowrap" data-testid="wrap" />);
+      expect(screen.container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-nowrap');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'nowrap',
       });
     });
 
     it('should apply wrap-reverse class and style', () => {
-      const { container } = render(<GridLegacy container wrap="wrap-reverse" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-wrap-reverse');
+      const screen = render(<GridLegacy container wrap="wrap-reverse" data-testid="wrap" />);
+      expect(screen.container.firstChild).to.have.class('MuiGridLegacy-wrap-xs-wrap-reverse');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap-reverse',
       });
