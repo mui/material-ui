@@ -68,14 +68,10 @@ Of course, New Lib will be open-source, so you can copy as much code as you like
 
 ## What happens to Material UI?
 
-We are not abandoning Material UI. New Lib is the next generation of the library you know and love. It builds on everything we've learned and preserves the developer-centric principles that have made Material UI successful, while introducing a modern API for improved customization and a much more flexible theming system that works with any styling tech stack (for example, Tailwind, Emotion, or plain CSS with CSS variables).
-
-Material UI and MUI X remain in long-term support, and we'll provide migration guides and hands-on support to help you upgrade. Think of New Lib as the natural evolution of Material UI rather than a separate product.
+Material UI and MUI X packages will be maintained and supported long-term. While New Lib will be the next generation of Material UI—and you should think of New Lib as the natural evolution of Material UI rather than a separate product—we are not abandoning the current npm package.
 
 - **Active LTS.** Material UI v6 and v7 stay in long-term support (bug/security fixes and critical regressions).
 - **Docs stay up.** Existing guides, examples, and API docs remain available.
-- **Smooth migration.** You can install New Lib alongside Material UI and migrate screen-by-screen. We'll provide guides, codemods, AI tooling, and office hours.
-- **MD3 as optional theme.** If the community votes for it, Material Design 3 will ship as a theme in New Lib—no lock-in to the Material look.
 
 | Package        | Status                          | Support scope        |
 | -------------- | -------------------------------- | -------------------- |
@@ -84,6 +80,11 @@ Material UI and MUI X remain in long-term support, and we'll provide migration g
 | New Lib        | pre-alpha - release by Sept 2026 | active development   |
 
 ## Migration and continuity
+
+We'll provide migration guides and hands-on support to help you upgrade.
+
+- **Smooth migration.** You can install New Lib alongside Material UI and migrate screen-by-screen. We'll provide guides, codemods, AI tooling, and office hours.
+- **MD3 as optional theme.** If the community votes for it, Material Design 3 will ship as a theme in New Lib—no lock-in to the Material look.
 
 We understand that adopting a new major can be intimidating. That's why we're committed to making the transition as smooth as possible. When New Lib reaches beta later this year, you can expect:
 
@@ -132,3 +133,5 @@ We're excited to build this with you.
 - [Material Design 3: your vote matters](#material-design-3-your-vote-matters)
 - [What's next](#whats-next)
 - [How to get involved](#how-to-get-involved)
+
+It builds on everything we've learned and preserves the developer-centric principles that have made Material UI successful, while introducing a modern API for improved customization and a much more flexible theming system that works with any styling tech stack (for example, Tailwind, Emotion, or plain CSS with CSS variables).
