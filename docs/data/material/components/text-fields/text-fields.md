@@ -11,7 +11,7 @@ githubSource: packages/mui-material/src/TextField
 
 <p class="description">Text Fields let users enter and edit text.</p>
 
-Text fields allow users to enter text into a UI. They typically appear in forms and dialogs.
+Text fields let users enter text into a UI, typically in forms and dialogs.
 
 {{"component": "@mui/docs/ComponentLinkHeader"}}
 
@@ -207,7 +207,7 @@ import { useFormControl } from '@mui/material/FormControl';
 
 - `value.adornedStart` (_bool_): Indicate whether the child `Input` or `Select` component has a start adornment.
 - `value.setAdornedStart` (_func_): Setter function for `adornedStart` state value.
-- `value.color` (_string_): The theme color is being used, inherited from `FormControl` `color` prop .
+- `value.color` (_string_): The theme color is being used, inherited from `FormControl` `color` prop.
 - `value.disabled` (_bool_): Indicate whether the component is being displayed in a disabled state, inherited from `FormControl` `disabled` prop.
 - `value.error` (_bool_): Indicate whether the component is being displayed in an error state, inherited from `FormControl` `error` prop
 - `value.filled` (_bool_): Indicate whether input is filled
