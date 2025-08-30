@@ -27,31 +27,19 @@ manualCard: false
   />
 </a>
 
-In one of our last announcement updates, we committed to shipping the next major version of Material UI with Material Design 3 (MD3) support in time for September 2025. As we dug deeper into that work, it became obvious that simply layering MD3 on top of the existing codebase wouldn't deliver the experience the community deserves.
+In a recent announcement, we presented our goal to ship the next major version of Material UI with support for Material Design 3. While working on that project, it became obvious that simply layering MD3 on top of the existing codebase wouldn't deliver the experience the community deserves.
 
-We're thrilled to share a different kind of message today.
+Today, we're excited to share our bold, new vision for Material UI.
 
-Instead, we decided to rebuild the entire component library on top of Base UI, our headless foundation, and incorporate all the lessons we've learned from years of maintaining Material UI.
+We're in the late stages of rebuilding Material UI from the ground-up. Built on top of [Base UI](https://mui.com/base-ui/) (our headless UI library), it incorporates all of the lessons we've learned over 10+ years of maintaining Material UI.
 
-The result is a new library—codenamed new-lib. A modular, theme-agnostic component library that delivers white-label design, out of the box features, and composability for enterprise applications. New-lib is the spiritual successor to Material UI and carry our ecosystem forward.
+The result is a new library, codenamed New Lib. A complete UI component library for enterprise applications that delivers exceptional visual design, dramatically improved performance, enchanced accessibility, optional first-class Tailwind integration, advanced theming, and more composabie APIs.
 
-> **TL;DR** We're rebuilding Material UI on top of Base UI to deliver a white-label, theme-agnostic, highly composable library. Material UI will remain supported (v6/v7 stay in Long term support) and you'll get support for migration, npm distribution (no copy-paste), and MD3 as an optional theme if the community votes for it.
-
-## Table of contents
-
-- [Why rebuild Material UI?](#why-rebuild-material-ui)
-- [Themes: white-label by default](#themes-white-label-by-default)
-- [Composition: break down and build up](#composition-break-down-and-build-up)
-- [Distribution: npm package vs copy-and-paste](#distribution-npm-package-vs-copy-and-paste)
-- [What happens to Material UI?](#what-happens-to-material-ui)
-- [Migration and continuity](#migration-and-continuity)
-- [Material Design 3: your vote matters](#material-design-3-your-vote-matters)
-- [What's next](#whats-next)
-- [How to get involved](#how-to-get-involved)
+New Lib is the spiritual successor to Material UI, and will carry our ecosystem forward.
 
 ## Why rebuild Material UI?
 
-Over the last six years, the web has changed dramatically. Design standards are higher, applications are more complex, and the expectations of enterprise teams have grown. When we looked at our existing codebase through that lens, it became clear that a ground-up refactor was the best path forward.
+Over the last six years, the web has changed dramatically. Design standards are higher, applications are more complex, the web platform has evolved, and the expectations of enterprise teams have grown. When we looked at our existing codebase through that lens, it became clear that a ground-up refactor was the right path forward.
 
 - **Decouple from one look.** Most teams started with Material then overrode nearly everything. White-label by default removes that friction.
 - **Unlock deeper control.** Composition lets you swap pieces instead of forking or wrestling specificity.
@@ -136,3 +124,17 @@ Your feedback will shape all of these initiatives. We can't wait to hear what yo
 - **Try pre-release builds:** _(when available)_
 
 We're excited to build this with you.
+
+> **TL;DR** We're rebuilding Material UI on top of Base UI to deliver a white-label, theme-agnostic, highly composable library. Material UI will remain supported (v6/v7 stay in Long term support) and you'll get support for migration, npm distribution (no copy-paste), and MD3 as an optional theme if the community votes for it.
+
+## Table of contents
+
+- [Why rebuild Material UI?](#why-rebuild-material-ui)
+- [Themes: white-label by default](#themes-white-label-by-default)
+- [Composition: break down and build up](#composition-break-down-and-build-up)
+- [Distribution: npm package vs copy-and-paste](#distribution-npm-package-vs-copy-and-paste)
+- [What happens to Material UI?](#what-happens-to-material-ui)
+- [Migration and continuity](#migration-and-continuity)
+- [Material Design 3: your vote matters](#material-design-3-your-vote-matters)
+- [What's next](#whats-next)
+- [How to get involved](#how-to-get-involved)
