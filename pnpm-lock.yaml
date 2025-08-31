@@ -822,7 +822,7 @@ importers:
         specifier: ^1.8.8
         version: 1.8.8
       '@types/stylis':
-        specifier: ^4.2.0
+        specifier: ^4.2.7
         version: 4.2.7
       chai:
         specifier: ^4.5.0
