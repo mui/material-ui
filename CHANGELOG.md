@@ -24,17 +24,17 @@ A big thanks to the 16 contributors who made this release possible.
 - Remove outdated Next.js lint command (#46847) @oliviertassinari
 - Add `View as Markdown` to component link header (#46835) @siriwatknp
 - Add a link to open `llms.txt` (#46832) @siriwatknp
-- Fix typos in Material UI API docs (#46787) @noritaka1166
+- Fix typos in Material UI API docs (#46787) @noritaka1166
 - Fix typo extra "to" word (#46783) @danpeleg4
 - Remove past employees from about page (#46780) @Janpot
 - Fix typos in `docs/pages` folder (#46761) @noritaka1166
-- Add clarification on `react-is` resolution with Material UI v6 and v7 for React 18 and below (#46633) @alisasanib
+- Add clarification on `react-is` resolution with Material UI v6 and v7 for React 18 and below (#46633) @alisasanib
 - Fix typos in `joy` and `utils` package (#46713) @noritaka1166
 - [autocomplete] Fix console in unstyled demo (#46804) @oliviertassinari
 - [autocomplete] Fix Google Maps brand attribution (#46803) @oliviertassinari
 - [autocomplete] Fix header sentence case (#46805) @oliviertassinari
 - [autocomplete] Fix Google Maps demo (#46793) @oliviertassinari
-- [Select] Fix labelling issues in grouped select demo (#46722) @mj12albert
+- [Select] Fix labeling issues in grouped select demo (#46722) @mj12albert
 - [table] Remove outdated unstyled section (#46786) @mj12albert
 - [TextField] Add note about removal of `sizeMedium` class from InputLabel in v7 upgrade guide (#46693) @checcoux
 
