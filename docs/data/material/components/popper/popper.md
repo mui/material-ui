@@ -19,7 +19,7 @@ Some important features of the Popper component:
 - The scroll isn't blocked like with the [Popover](/material-ui/react-popover/) component.
   The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the Popper component.
-  If you need this behavior, you can use the [MUI Base Click-Away Listener](https://v6.mui.com/base-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#composition-with-menu-list).
+  If you need this behavior, you can use the [MUI Click-Away Listener](https://mui.com/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#composition-with-menu-list).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
 {{"component": "@mui/docs/ComponentLinkHeader", "design": false}}
