@@ -54,15 +54,15 @@ const openRolesData = [
       {
         title: 'Account Executive',
         description:
-          'You will help establish our sales team by implementing effective sales processes and tools to optimize and expand our sales pipeline.',
+          'You will be a key player in driving revenue growth and building strong customer relationships.',
         url: '/careers/account-executive/',
       },
-      {
-        title: 'Account Manager',
-        description:
-          'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
-        url: '/careers/account-manager/',
-      },
+      // {
+      //   title: 'Account Manager',
+      //   description:
+      //     'You will be working with our customers to ensure the successful renewal and retention of existing client contracts.',
+      //   url: '/careers/account-manager/',
+      // },
     ],
   },
   {
@@ -89,12 +89,12 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      {
-        title: 'React Community Engineer — X',
-        description:
-          'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
-        url: '/careers/react-community-engineer/',
-      },
+      // {
+      //   title: 'React Community Engineer — X',
+      //   description:
+      //     'You will provide guidance to the community and solve their struggle, working primarily in the advanced components team.',
+      //   url: '/careers/react-community-engineer/',
+      // },
     ],
   },
   {
