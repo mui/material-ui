@@ -166,10 +166,7 @@ jobs:
           command: pnpm markdownlint
       - run:
           name: Lint writing style
-          command: |
-            # Or use https://circleci.com/developer/orbs/orb/circleci/vale as reference to install Vale
-            pnpm vale sync
-            pnpm valelint
+          command: pnpm valelint
   test_static:
     <<: *default-job
     steps:
