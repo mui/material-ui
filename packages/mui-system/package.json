@@ -3,7 +3,6 @@
   "version": "7.3.2",
   "author": "MUI Team",
   "description": "MUI System is a set of CSS utilities to help you build custom designs more efficiently. It makes it possible to rapidly lay out custom designs.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -86,6 +85,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": "./src/index.js",
     "./*": "./src/*/index.ts"
   }
 }

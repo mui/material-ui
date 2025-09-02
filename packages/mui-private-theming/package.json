@@ -3,7 +3,6 @@
   "version": "7.3.2",
   "author": "MUI Team",
   "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -63,6 +62,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": "./src/index.js",
     "./*": "./src/*/index.js"
   }
 }
