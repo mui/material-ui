@@ -3,7 +3,6 @@
   "version": "7.3.2",
   "author": "MUI Team",
   "description": "A plugin for Material UI that provides RTL (right-to-left) support.",
-  "main": "./src/index.ts",
   "keywords": [
     "react",
     "react-component",
@@ -58,5 +57,8 @@
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }

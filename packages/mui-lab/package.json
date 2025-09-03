@@ -4,7 +4,6 @@
   "version": "7.0.0-beta.17",
   "author": "MUI Team",
   "description": "Laboratory for new Material UI modules.",
-  "main": "./src/index.js",
   "keywords": [
     "react",
     "react-component",
@@ -88,6 +87,7 @@
     "node": ">=14.0.0"
   },
   "exports": {
+    ".": "./src/index.js",
     "./*": "./src/*/index.ts"
   }
 }
