@@ -6,7 +6,7 @@ import ChatRounded from '@mui/icons-material/ChatRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { styled } from '@mui/material/styles';
 import { MarkdownHeaders } from '@mui/internal-markdown';
-import MarkdownIcon from 'docs/src/icons/MarkdownIcon';
+import MarkdownIcon from '../svgIcons/MarkdownIcon';
 import SketchIcon from '../svgIcons/SketchIcon';
 import FigmaIcon from '../svgIcons/FigmaIcon';
 import BundleSizeIcon from '../svgIcons/BundleSizeIcon';
