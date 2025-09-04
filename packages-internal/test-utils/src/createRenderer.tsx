@@ -9,8 +9,11 @@ import {
   RenderResult,
   act as rtlAct,
   fireEvent as rtlFireEvent,
+  screen as rtlScreen,
+  Screen,
   render as testingLibraryRender,
   RenderOptions as TestingLibraryRenderOptions,
+  within,
 } from '@testing-library/react/pure';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
@@ -799,5 +802,8 @@ function act<T>(callback: () => void | T | Promise<T>) {
   return traceSync('act', () => rtlAct(callback));
 }
 
+const bodyBoundQueries = within(document.body, { ...queries, ...customQueries });
+
+export * from '@testing-library/react/pure';
 export { act, fireEvent };
-export { within, waitFor, renderHook } from '@testing-library/react/pure';
+export const screen: Screen & typeof bodyBoundQueries = { ...rtlScreen, ...bodyBoundQueries };
