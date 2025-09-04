@@ -65,11 +65,11 @@ importers:
         specifier: ^2.0.8-canary.7
         version: 2.0.8-canary.7(@babel/core@7.28.3)
       '@mui/internal-bundle-size-checker':
-        specifier: ^1.0.9-canary.36
-        version: 1.0.9-canary.37(@types/node@20.19.11)(jiti@2.5.1)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
+        specifier: ^1.0.9-canary.39
+        version: 1.0.9-canary.39(@types/node@20.19.11)(jiti@2.5.1)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)
       '@mui/internal-code-infra':
-        specifier: ^0.0.3-canary.1
-        version: 0.0.3-canary.1(@typescript-eslint/parser@8.40.0(eslint@9.34.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.34.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)
+        specifier: ^0.0.3-canary.2
+        version: 0.0.3-canary.2(@typescript-eslint/parser@8.40.0(eslint@9.34.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.34.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)
       '@mui/internal-docs-utils':
         specifier: workspace:^
         version: link:packages-internal/docs-utils
@@ -3933,12 +3933,12 @@ packages:
     peerDependencies:
       '@babel/core': ^7.28.3
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.37':
-    resolution: {integrity: sha512-pVNT9s3a7/3aUrgTutyj+y7rwoD7NNo6Zde1qjdxe5oBvCo7U3+758T/9o93Xxf/1++XgymbDyFM1IbkrOO4+A==}
+  '@mui/internal-bundle-size-checker@1.0.9-canary.39':
+    resolution: {integrity: sha512-emtKf5CTo4ySrGTBKKpmiFv1jCx0ZWLchrxpQCWTQ0vxKw7yZEOMkxbqipj9Hi01nPO4WeZaVVxLgJw4jfL5OQ==}
     hasBin: true
 
-  '@mui/internal-code-infra@0.0.3-canary.1':
-    resolution: {integrity: sha512-gr0dPyqDjI3oek/UA4fWYtLZgfHWsQ2rnJ8/1TM2m5PjdOU7QjOYt3cC11K+1e61cWI7oyzBSmKAO6Ci+1tH6A==}
+  '@mui/internal-code-infra@0.0.3-canary.2':
+    resolution: {integrity: sha512-RXS/rhIJ6UdS3C1FrWTClU9AoRa88tS8xWuAzPI/nWa6zzn5kgaV5kowNQSE6+CwfqAnuY5PwejvkC0y00Y7zw==}
     hasBin: true
     peerDependencies:
       eslint: ^9.0.0
@@ -15742,11 +15742,10 @@ snapshots:
       '@babel/core': 7.28.3
       resolve: 1.22.10
 
-  '@mui/internal-bundle-size-checker@1.0.9-canary.37(@types/node@20.19.11)(jiti@2.5.1)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)':
+  '@mui/internal-bundle-size-checker@1.0.9-canary.39(@types/node@20.19.11)(jiti@2.5.1)(lightningcss@1.30.1)(rollup@4.46.2)(terser@5.39.0)(tsx@4.20.4)(yaml@2.8.0)':
     dependencies:
       '@aws-sdk/client-s3': 3.873.0
       '@aws-sdk/credential-providers': 3.873.0
-      '@octokit/auth-action': 6.0.1
       '@octokit/rest': 22.0.0
       chalk: 5.6.0
       env-ci: 11.1.1
@@ -15773,7 +15772,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@mui/internal-code-infra@0.0.3-canary.1(@typescript-eslint/parser@8.40.0(eslint@9.34.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.34.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)':
+  '@mui/internal-code-infra@0.0.3-canary.2(@typescript-eslint/parser@8.40.0(eslint@9.34.0(jiti@2.5.1))(typescript@5.9.2))(eslint-import-resolver-webpack@0.13.10)(eslint@9.34.0(jiti@2.5.1))(prettier@3.6.2)(typescript@5.9.2)':
     dependencies:
       '@argos-ci/core': 4.1.0
       '@babel/cli': 7.28.3(@babel/core@7.28.3)
